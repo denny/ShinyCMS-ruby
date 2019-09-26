@@ -1,3 +1,5 @@
+require: rubocop-rails
+
 # Rubocop does not like lots of Rails' and Activerecord's boilerplate :-\
 AllCops:
     Exclude:
@@ -9,15 +11,15 @@ Style/FrozenStringLiteralComment:
     Enabled: false
 
 # Whitespace Considered Helpful
-Layout/SpaceInsideParens:
-    Enabled: false
 Layout/SpaceInsideArrayLiteralBrackets:
     Enabled: false
+Layout/SpaceInsideBlockBraces:
+    Enabled: false
 Layout/SpaceInsideHashLiteralBraces:
+    Enabled: false
+Layout/SpaceInsideParens:
     Enabled: false
 Layout/SpaceInsidePercentLiteralDelimiters:
     Enabled: false
 Layout/SpaceInsideReferenceBrackets:
-    Enabled: false
-Layout/SpaceInsideBlockBraces:
     Enabled: false
