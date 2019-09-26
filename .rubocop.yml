@@ -1,0 +1,23 @@
+# Rubocop does not like lots of Rails' and Activerecord's boilerplate :-\
+AllCops:
+    Exclude:
+        - db/*
+        - bin/*
+
+# I have no idea but it was annoying me.
+Style/FrozenStringLiteralComment:
+    Enabled: false
+
+# Whitespace Considered Helpful
+Layout/SpaceInsideParens:
+    Enabled: false
+Layout/SpaceInsideArrayLiteralBrackets:
+    Enabled: false
+Layout/SpaceInsideHashLiteralBraces:
+    Enabled: false
+Layout/SpaceInsidePercentLiteralDelimiters:
+    Enabled: false
+Layout/SpaceInsideReferenceBrackets:
+    Enabled: false
+Layout/SpaceInsideBlockBraces:
+    Enabled: false
