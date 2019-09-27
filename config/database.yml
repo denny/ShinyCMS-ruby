@@ -1,11 +1,12 @@
-# PostgreSQL. Versions 9.3 and up are supported.
-#
+# Database Config
+
 default: &default
   adapter: postgresql
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
+
 
 development:
   <<: *default
@@ -15,30 +16,29 @@ development:
   #   debug5, debug4, debug3, debug2, debug1,
   #   log, notice, warning, error, fatal, and panic
   # Defaults to warning.
-  #min_messages: notice
+  #min_messages: debug1
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
+
 test:
   <<: *default
   database: shinycms_test
 
-# As with config/credentials.yml, you never want to store sensitive information,
-# like your database password, in your source code. If your source code is
-# ever seen by anyone, they now have access to your database.
+
+# For security reasons, you should never put your production database details,
+# particularly the password, in this file (or anywhere else in your source code)
 #
-# Instead, provide the password as a unix environment variable when you boot
-# the app.
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
-# for a full rundown on how to provide these environment variables in a
-# production deployment.
+# for how to pass these details to your app via environment variables instead.
 #
 # On Heroku and other platform providers, you may have a full connection URL
 # available as an environment variable. For example:
 #
-#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
-#
+#   DATABASE_URL="postgres://shinyuser:shinypass@localhost/shinycms"
+
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
