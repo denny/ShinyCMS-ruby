@@ -1,3 +1,4 @@
+# Add keys to page sections
 class AddKeysToPageSection < ActiveRecord::Migration[6.0]
   def change
     add_index :page_sections, :section_id
