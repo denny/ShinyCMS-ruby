@@ -1,4 +1,12 @@
 <p>
-  <%= link_to 'Main site',  '/'      %> |
+  <%= link_to 'Main site', '/' %>
+  |
+  Pages:
+  <% if @post %>
+  <%= link_to 'Edit', "/admin/page/#{@post.id}" %> /
+  <% end %>
+  <%= link_to 'Add',  '/admin/page/add' %> /
+  <%= link_to 'List', '/admin/pages'    %>
+  |
   <%= link_to 'Admin area', '/admin' %>
 </p>
