@@ -11,11 +11,11 @@ Rails.application.routes.draw do
   get 'admin', to: 'admin#index'
 
   namespace :admin do
-    get  'pages',     to: 'pages#index'
-    get  'pages/add', to: 'pages#new'
-    post 'pages',     to: 'pages#create'
-    get  'pages/:id', to: 'pages#edit'
-    post 'pages/:id', to: 'pages#update'
+    get  'pages',    to: 'pages#index'
+    get  'page/add', to: 'pages#new'
+    post 'page/add', to: 'pages#create'
+    get  'page/:id', to: 'pages#edit'
+    post 'page/:id', to: 'pages#update'
 
     namespace :pages do
       get  'sections',     to: 'sections#index'
