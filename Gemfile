@@ -28,6 +28,7 @@ group :development, :test do
   gem 'bundler-audit', require: false
   gem 'factory_bot_rails'
   gem 'pry-rails'
+  gem 'rspec_junit_formatter'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
