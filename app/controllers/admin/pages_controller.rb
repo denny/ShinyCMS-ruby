@@ -1,7 +1,9 @@
-# Admin controller for pages
+# Admin controller for CMS-controlled 'brochure' pages
 class Admin::PagesController < AdminController
   def index
     # List all pages
+    @tl_pages = Page.top_level_pages
+    @tl_sections = PageSection.top_level_sections
   end
 
   def new
