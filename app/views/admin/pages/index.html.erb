@@ -2,6 +2,47 @@
   Admin &raquo; Pages
 </h1>
 
-<p>
-  Find me in app/views/admin/pages/index.html.erb
-</p>
+<table class="list">
+	<tr>
+		<th class="main">
+			Page
+		</th>
+		<th>
+			Actions
+		</th>
+	</tr>
+  <tr>
+		<td class="subheading" colspan="2">
+			<b>Top-level pages</b>
+		</td>
+	</tr>
+  <% @tl_pages.each do |page| %>
+	<tr class="showfocus">
+		<td>
+			<% page.name | html %>
+		</td>
+		<td>
+			<a class="action" href='<% link_to( "/pages/#{page.slug}" ) %>'>View</a>
+			<a class="action" href='<% c.uri_for( "/admin/pages/#{page.id}/edit" ) %>'>Edit</a>
+		</td>
+	</tr>
+	<% end %>
+	<% @tl_sections.each do |section| %>
+	<tr>
+		<td class="subheading" colspan="2">
+			<b><% section.name | html %></b>
+		</td>
+	</tr>
+	<% section.pages.each do |page| %>
+	<tr class="showfocus">
+		<td>
+			<% page.name | html %>
+		</td>
+		<td>
+			<a class="action" href='<% link_to( "/pages/#{section.slug}/#{page.slug}" ) %>'>View</a>
+			<a class="action" href='<% c.uri_for( "/admin/pages/#{page.id}/edit" ) %>'>Edit</a>
+		</td>
+	</tr>
+	<% end %>
+	<% end %>
+</table>
