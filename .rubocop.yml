@@ -3,7 +3,7 @@ require: rubocop-rails
 # Rubocop does not like lots of Rails' and Activerecord's boilerplate :-\
 AllCops:
   Exclude:
-    - db/*
+    - db/**/*
     - bin/*
 
 # I have no idea but it was annoying me.
