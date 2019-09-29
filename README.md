@@ -29,8 +29,8 @@ The Perl version of ShinyCMS has the following features:
 * Polls
 * 'Shared content' - store text and HTML fragments for re-use throughout a site
 
-I hope to re-implement all of these eventually, hopefully improving on some of
-them in the process.
+I hope to re-implement all of these eventually... hopefully improving on some
+of them in the process.
 
 
 Ruby version
@@ -64,7 +64,9 @@ To do all three in one command: `rake db:setup`
 Tests
 -----
 
-To run the test suite, simply use the command `rspec`.
+To run the test suite: `rspec`
+
+CircleCI: [![CircleCI](https://circleci.com/gh/denny/ShinyCMS-ruby.svg?style=svg&circle-token=5d3c249b624bd720b7481eb606893737ba65a0ce)](https://circleci.com/gh/denny/ShinyCMS-ruby)
 
 
 Services
