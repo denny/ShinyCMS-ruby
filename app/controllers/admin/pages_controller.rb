@@ -16,6 +16,7 @@ class Admin::PagesController < AdminController
 
   def edit
     # Edit a page
+    @page = Page.find(:id)
   end
 
   def update
