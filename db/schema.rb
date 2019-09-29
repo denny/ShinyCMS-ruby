@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_28_091447) do
+ActiveRecord::Schema.define(version: 2019_09_29_081952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_09_28_091447) do
     t.datetime "last_published_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["section_id"], name: "index_page_sections_on_section_id"
   end
 
   create_table "page_templates", force: :cascade do |t|
@@ -49,6 +50,11 @@ ActiveRecord::Schema.define(version: 2019_09_28_091447) do
     t.datetime "last_published_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["section_id"], name: "index_pages_on_section_id"
+    t.index ["template_id"], name: "index_pages_on_template_id"
   end
 
+  add_foreign_key "page_sections", "page_sections", column: "section_id"
+  add_foreign_key "pages", "page_sections", column: "section_id"
+  add_foreign_key "pages", "page_templates", column: "template_id"
 end

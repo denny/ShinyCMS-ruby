@@ -2,6 +2,6 @@
 class PageSection < ApplicationRecord
   # Class methods
   def self.top_level_sections
-    PageSection.where( section: nil )
+    PageSection.where( section_id: nil )
   end
 end
