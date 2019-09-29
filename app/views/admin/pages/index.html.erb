@@ -1,6 +1,4 @@
-<h1>
-  Admin &raquo; Pages
-</h1>
+<% @page_title = 'List pages' %>
 
 <table class="list">
 	<tr>
@@ -19,28 +17,28 @@
   <% @tl_pages.each do |page| %>
 	<tr class="showfocus">
 		<td>
-			<% page.name | html %>
+			<%= page.name %>
 		</td>
 		<td>
-			<a class="action" href='<% link_to( "/pages/#{page.slug}" ) %>'>View</a>
-			<a class="action" href='<% c.uri_for( "/admin/pages/#{page.id}/edit" ) %>'>Edit</a>
+      <%= link_to 'View', url_for( "/pages/#{page.slug}" ) %>
+      <%= link_to 'Edit', url_for( controller: '/admin/pages', action: 'edit', id: page.id ) %>
 		</td>
 	</tr>
 	<% end %>
 	<% @tl_sections.each do |section| %>
 	<tr>
 		<td class="subheading" colspan="2">
-			<b><% section.name | html %></b>
+			<b><%= section.name %></b>
 		</td>
 	</tr>
 	<% section.pages.each do |page| %>
 	<tr class="showfocus">
 		<td>
-			<% page.name | html %>
+			<%= page.name %>
 		</td>
 		<td>
-			<a class="action" href='<% link_to( "/pages/#{section.slug}/#{page.slug}" ) %>'>View</a>
-			<a class="action" href='<% c.uri_for( "/admin/pages/#{page.id}/edit" ) %>'>Edit</a>
+      <%= link_to 'View', url_for( "/pages/#{section.slug}/#{page.slug}" ) %>
+      <%= link_to 'Edit', url_for( controller: '/admin/pages', action: 'edit', id: page.id ) %>
 		</td>
 	</tr>
 	<% end %>

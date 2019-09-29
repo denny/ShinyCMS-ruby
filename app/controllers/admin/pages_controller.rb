@@ -12,6 +12,19 @@ class Admin::PagesController < AdminController
 
   def create
     # Save new page details
+    @page = Page.new( page_params )
+
+    if @page.save
+      redirect_to action: 'index'
+    else
+      render action: 'new'
+    end
+  end
+
+  def page_params
+    params.require( :page ).permit(
+      :name, :description, :title, :slug, :section_id, :template_id
+    )
   end
 
   def edit
