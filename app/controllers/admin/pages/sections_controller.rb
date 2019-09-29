@@ -2,6 +2,7 @@
 class Admin::Pages::SectionsController < AdminController
   def index
     # List all page sections
+    @tl_sections = PageSection.top_level_sections
   end
 
   def new
@@ -9,7 +10,20 @@ class Admin::Pages::SectionsController < AdminController
   end
 
   def create
-    # Save new page section details
+    # Save new section details
+    @section = PageSection.new( section_params )
+
+    if @section.save
+      redirect_to action: 'index'
+    else
+      render action: 'new'
+    end
+  end
+
+  def section_params
+    params.require( :page_section ).permit(
+      :name, :description, :title, :slug, :section
+    )
   end
 
   def edit

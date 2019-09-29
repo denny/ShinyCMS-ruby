@@ -1,8 +1,33 @@
-<h1>
-  Add new page
-</h1>
+<% @page_title = 'Add new page' %>
 
 <%= form_for :page do |f| %>
-  Name: <%= f.text_field :name %><br>
-  <%= f.submit %>
+  <p>
+    Name:
+    <br><%= f.text_field :name %>
+  </p>
+  <p>
+    Description:
+    <br><%= f.text_field :description %>
+  </p>
+  <p>
+    Title:
+    <br><%= f.text_field :title %>
+  </p>
+  <p>
+    Slug:
+    <br><%= f.text_field :slug %>
+  </p>
+  <p>
+    Template:
+    <br><%= select( 'page', 'template_id',
+      PageTemplate.all.collect { |t| [ t.name, t.id ] } ) %>
+  </p>
+  <p>
+    Section:
+    <br><%= select( 'page', 'section_id',
+      PageSection.all.collect { |s| [ s.name, s.id ] }, { include_blank: 'None' } ) %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
 <% end %>

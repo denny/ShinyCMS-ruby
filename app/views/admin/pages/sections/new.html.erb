@@ -1,0 +1,28 @@
+<% @page_title = 'Add new section' %>
+
+<%= form_for :page_section do |f| %>
+  <p>
+    Name:
+    <br><%= f.text_field :name %>
+  </p>
+  <p>
+    Description:
+    <br><%= f.text_field :description %>
+  </p>
+  <p>
+    Title:
+    <br><%= f.text_field :title %>
+  </p>
+  <p>
+    Slug:
+    <br><%= f.text_field :slug %>
+  </p>
+  <p>
+    Section:
+    <br><%= select( 'page_section', 'section_id',
+      PageSection.all.collect { |s| [ s.name, s.id ] }, { include_blank: 'None' } ) %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

@@ -10,8 +10,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: 'admin/includes/breadcrumbs' %>
 
-    <%= render partial: 'admin/includes/site-toolbar' %>
+    <%= render partial: 'admin/includes/menu' %>
+
+    <%= yield %>
   </body>
 </html>
