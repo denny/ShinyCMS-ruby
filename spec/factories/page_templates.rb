@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :page_template do
-    name { "MyString" }
-    description { "MyText" }
-    title { "MyString" }
-    slug { "MyString" }
+    name  { 'Test Template' }
+    title { 'Test Template' }
+    slug  { 'test_template' }
   end
 end
