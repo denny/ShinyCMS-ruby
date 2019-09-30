@@ -1,6 +1,6 @@
 <% page_title = 'Edit page' %>
 
-<%= form_for @page do |f| %>
+<%= form_for( @page, url: "/admin/page/#{@page.id}", method: 'post' ) do |f| %>
   <p>
     Name:
     <br><%= f.text_field :name %>
@@ -26,6 +26,14 @@
     Section:
     <br><%= select( 'page', 'section_id',
       PageSection.all.collect { |s| [ s.name, s.id ] }, { include_blank: 'None' } ) %>
+  </p>
+  <p>
+    Sort order:
+    <br><%= f.text_field :sort_order %>
+  </p>
+  <p>
+    Hidden:
+    <br><%= f.check_field :hidden %>
   </p>
   <p>
     <%= f.submit %>

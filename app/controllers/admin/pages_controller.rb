@@ -23,16 +23,26 @@ class Admin::PagesController < AdminController
 
   def page_params
     params.require( :page ).permit(
-      :name, :description, :title, :slug, :section_id, :template_id
+      :name, :description, :title, :slug,
+      :template_id, :section_id, :sort_order, :hidden
     )
   end
 
   def edit
     # Edit a page
-    @page = Page.find(:id)
+    @page = Page.find( params[:id] )
   end
 
   def update
     # Save edited page details
+    @page = Page.find( params[:id] )
+
+    if @page.update!( page_params )
+      flash[ :notice ] = 'Page saved'
+    else
+      flash[ :error ] = 'Failed to update page details'
+    end
+
+    render :edit
   end
 end
