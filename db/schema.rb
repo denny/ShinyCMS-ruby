@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_29_210346) do
+ActiveRecord::Schema.define(version: 2019_09_30_213046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,8 +32,7 @@ ActiveRecord::Schema.define(version: 2019_09_29_210346) do
   create_table "page_templates", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.string "title", null: false
-    t.string "slug", null: false
+    t.integer "filename", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
