@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ShinySite</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= favicon_link_tag %>
+    <%= render partial: 'includes/head' %>
   </head>
 
   <body>
-    <%= render partial: 'includes/menu' %>
+    <nav>
+      <%= render partial: 'includes/menu' %>
+    </nav>
 
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
 
-    <%= render partial: 'admin/includes/site-toolbar' %>
+    <footer id="footer" class="container">
+      <%= render partial: 'includes/footer' %>
+    </footer>
+
+    <%# if user.is_admin? %>
+    <footer id="admin-footer">
+      <%= render partial: 'admin/includes/site-toolbar' %>
+    </footer>
+    <%# end %>
   </body>
 </html>
