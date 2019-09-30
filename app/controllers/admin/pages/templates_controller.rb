@@ -21,14 +21,26 @@ class Admin::Pages::TemplatesController < AdminController
   end
 
   def template_params
-    params.require( :page_template ).permit( :name, :description )
+    params.require( :page_template ).permit(
+      :name, :description, :filename
+    )
   end
 
   def edit
     # Edit a template
+    @template = PageTemplate.find( params[:id] )
   end
 
   def update
     # Save edited template details
+    @template = PageTemplate.find( params[:id] )
+
+    if @template.update!( template_params )
+      flash[ :notice ] = 'Template saved'
+    else
+      flash[ :error ] = 'Failed to update template details'
+    end
+
+    render :edit
   end
 end

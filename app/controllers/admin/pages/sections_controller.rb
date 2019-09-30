@@ -22,15 +22,25 @@ class Admin::Pages::SectionsController < AdminController
 
   def section_params
     params.require( :page_section ).permit(
-      :name, :description, :title, :slug, :section
+      :name, :description, :title, :slug, :section_id, :sort_order, :hidden
     )
   end
 
   def edit
     # Edit a page section
+    @section = PageSection.find( params[:id] )
   end
 
   def update
     # Save edited page section details
+    @section = PageSection.find( params[:id] )
+
+    if @section.update!( section_params )
+      flash[ :notice ] = 'Section saved'
+    else
+      flash[ :error ] = 'Failed to update section details'
+    end
+
+    render :edit
   end
 end
