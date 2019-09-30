@@ -1,4 +1,4 @@
-<% page_title = 'Edit template' %>
+<% @page_title = 'Edit template' %>
 
 <%= form_for( @page, url: "/admin/page/template/#{@template.id}", method: 'post' ) do |f| %>
   <p>

@@ -1,4 +1,4 @@
-<% page_title = 'Edit page' %>
+<% @page_title = 'Edit page' %>
 
 <%= form_for( @page, url: "/admin/page/#{@page.id}", method: 'post' ) do |f| %>
   <p>
@@ -33,7 +33,7 @@
   </p>
   <p>
     Hidden:
-    <br><%= f.check_field :hidden %>
+    <br><%= f.check_box :hidden %>
   </p>
   <p>
     <%= f.submit %>
