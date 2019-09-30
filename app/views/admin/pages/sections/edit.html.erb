@@ -1,4 +1,4 @@
-<% page_title = 'Edit section' %>
+<% @page_title = 'Edit section' %>
 
 <%= form_for( @page, url: "/admin/page/section/#{@section.id}", method: 'post' ) do |f| %>
   <p>
@@ -19,7 +19,7 @@
   </p>
   <p>
     Section:
-    <br><%= select( 'section', 'section_id',
+    <br><%= select( 'page_section', 'section_id',
       PageSection.all.collect { |s| [ s.name, s.id ] }, { include_blank: 'None' } ) %>
   </p>
   <p>
@@ -28,7 +28,7 @@
   </p>
   <p>
     Hidden:
-    <br><%= f.check_field :hidden %>
+    <br><%= f.check_box :hidden %>
   </p>
   <p>
     <%= f.submit %>

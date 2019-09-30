@@ -28,6 +28,14 @@
       PageSection.all.collect { |s| [ s.name, s.id ] }, { include_blank: 'None' } ) %>
   </p>
   <p>
+    Sort order:
+    <br><%= f.text_field :sort_order %>
+  </p>
+  <p>
+    Hidden:
+    <br><%= f.check_box :hidden %>
+  </p>
+  <p>
     <%= f.submit %>
   </p>
 <% end %>
