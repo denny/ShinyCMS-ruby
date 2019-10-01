@@ -29,7 +29,7 @@ class PagesController < ApplicationController
   # Handle requests with a single-part path
   # /pages/foo
   def show_top_level
-    slug = params( :slug )
+    slug = params[:slug]
 
     # Is it a top-level page?
     @page = Page.top_level_pages&.find_by( slug: slug )
