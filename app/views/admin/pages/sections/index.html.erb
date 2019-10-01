@@ -1,0 +1,28 @@
+<% @page_title = 'List sections' %>
+
+<table class="list">
+	<tr>
+		<th class="main">
+			Section
+		</th>
+		<th>
+			Actions
+		</th>
+	</tr>
+  <tr>
+		<td class="subheading" colspan="2">
+			<b>Top-level sections</b>
+		</td>
+	</tr>
+  <% @tl_sections.each do |section| %>
+	<tr class="showfocus">
+		<td>
+			<%= section.name %>
+		</td>
+		<td>
+      <%= link_to 'View', url_for( "/pages/#{section.slug}" ) %>
+      <%= link_to 'Edit', url_for( controller: '/admin/pages/sections', action: 'edit', id: section.id ) %>
+		</td>
+	</tr>
+	<% end %>
+</table>

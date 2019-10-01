@@ -1,0 +1,19 @@
+<% @page_title = 'Add new page template' %>
+
+<%= form_for :page_template do |f| %>
+  <p>
+    Name:
+    <br><%= f.text_field :name %>
+  </p>
+  <p>
+    Description:
+    <br><%= f.text_field :description %>
+  </p>
+  <p>
+    Template filename:
+    <br><%= f.text_field :file_name %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

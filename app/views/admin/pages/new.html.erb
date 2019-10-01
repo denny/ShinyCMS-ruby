@@ -1,0 +1,41 @@
+<% @page_title = 'Add new page' %>
+
+<%= form_for :page do |f| %>
+  <p>
+    Name:
+    <br><%= f.text_field :name %>
+  </p>
+  <p>
+    Description:
+    <br><%= f.text_field :description %>
+  </p>
+  <p>
+    Title:
+    <br><%= f.text_field :title %>
+  </p>
+  <p>
+    Slug:
+    <br><%= f.text_field :slug %>
+  </p>
+  <p>
+    Template:
+    <br><%= select( 'page', 'template_id',
+      PageTemplate.all.collect { |t| [ t.name, t.id ] } ) %>
+  </p>
+  <p>
+    Section:
+    <br><%= select( 'page', 'section_id',
+      PageSection.all.collect { |s| [ s.name, s.id ] }, { include_blank: 'None' } ) %>
+  </p>
+  <p>
+    Sort order:
+    <br><%= f.text_field :sort_order %>
+  </p>
+  <p>
+    Hidden:
+    <br><%= f.check_box :hidden %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

@@ -1,0 +1,15 @@
+<nav>
+  <%= link_to 'Home', url_for( '/' ) %>
+  |
+  Pages:
+  <%= link_to 'Add',  url_for( controller: '/admin/pages', action: 'new' ) %> /
+  <%= link_to 'List', url_for( controller: '/admin/pages' ) %>
+  |
+  Sections:
+  <%= link_to 'Add',  url_for( controller: '/admin/pages/sections', action: 'new' ) %> /
+  <%= link_to 'List', url_for( controller: '/admin/pages/sections' ) %>
+  |
+  Templates:
+  <%= link_to 'Add',  url_for( controller: '/admin/pages/templates', action: 'new' ) %> /
+  <%= link_to 'List', url_for( controller: '/admin/pages/templates' ) %>
+</nav>

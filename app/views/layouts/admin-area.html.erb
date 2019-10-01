@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render partial: 'admin/includes/head' %>
+  </head>
+
+  <body>
+    <header>
+      <%= render partial: 'admin/includes/breadcrumbs' %>
+    </header>
+
+    <nav>
+      <%= render partial: 'admin/includes/menu' %>
+    </nav>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+      <%= render partial: 'admin/includes/footer' %>
+    </footer>
+  </body>
+</html>
