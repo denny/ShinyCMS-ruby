@@ -1,6 +1,6 @@
 <% @page_title = 'Add new page template' %>
 
-<%= form_for :page_template do |f| %>
+<%= form_for :page_template, url: '/admin/pages/template/add', method: 'post' do |f| %>
   <p>
     Name:
     <br><%= f.text_field :name %>
@@ -11,7 +11,7 @@
   </p>
   <p>
     Template filename:
-    <br><%= f.text_field :file_name %>
+    <br><%= f.text_field :filename %> <%# TODO: replace with select drop-down %>
   </p>
   <p>
     <%= f.submit %>

@@ -1,6 +1,6 @@
 <% @page_title = 'Add new section' %>
 
-<%= form_for :page_section do |f| %>
+<%= form_for :page_section, url: '/admin/pages/section/add', method: 'post' do |f| %>
   <p>
     Name:
     <br><%= f.text_field :name %>
