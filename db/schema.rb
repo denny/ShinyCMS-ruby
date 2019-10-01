@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_09_30_213046) do
   create_table "page_templates", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.integer "filename", null: false
+    t.string "filename", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
