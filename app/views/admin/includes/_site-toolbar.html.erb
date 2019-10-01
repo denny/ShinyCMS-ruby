@@ -1,0 +1,28 @@
+<p>
+  <%= link_to 'Home', url_for( '/' ) %>
+  |
+  <% if controller_name == 'pages' or controller_name == 'home' %>
+  Page:
+  <%= link_to 'Add',  url_for( controller: '/admin/pages', action: 'new' ) %> /
+  <% if @page %>
+  <%= link_to 'Edit', url_for( controller: '/admin/pages', action: 'edit', id: @page.id ) %> /
+  <% end %>
+  <%= link_to 'List', url_for( controller: '/admin/pages' ) %>
+  |
+  Section:
+  <%= link_to 'Add',  url_for( controller: '/admin/pages/sections', action: 'new' ) %> /
+  <% if @page&.section %>
+  <%= link_to 'Edit', url_for( controller: '/admin/pages/sections', action: 'edit', id: @page.section.id ) %> /
+  <% end %>
+  <%= link_to 'List', url_for( controller: '/admin/pages/sections' ) %>
+  |
+  Template:
+  <%= link_to 'Add',  url_for( controller: '/admin/pages/templates', action: 'new' ) %> /
+  <% if @page %>
+  <%= link_to 'Edit', url_for( controller: '/admin/pages/templates', action: 'edit', id: @page.template.id ) %> /
+  <% end %>
+  <%= link_to 'List', url_for( controller: '/admin/pages/templates' ) %>
+  <% end  # 'pages' %>
+  |
+  <%= link_to 'Admin area', url_for( admin_path ) %>
+</p>
