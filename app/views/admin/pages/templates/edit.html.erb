@@ -1,6 +1,6 @@
 <% @page_title = 'Edit template' %>
 
-<%= form_for( @page, url: "/admin/page/template/#{@template.id}", method: 'post' ) do |f| %>
+<%= form_for( @template, url: "/admin/page/template/#{@template.id}", method: 'post' ) do |f| %>
   <p>
     Name:
     <br><%= f.text_field :name %>
@@ -11,9 +11,9 @@
   </p>
   <p>
     Template filename:
-    <br><%= f.text_field :file_name %>
+    <br><%= f.text_field :filename %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit 'Update Template' %>
   </p>
 <% end %>
