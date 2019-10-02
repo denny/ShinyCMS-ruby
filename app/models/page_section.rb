@@ -12,7 +12,8 @@ class PageSection < ApplicationRecord
              class_name: 'PageSection', optional: true, inverse_of: 'sections'
   has_many   :sections,
              -> { where( hidden: false ).order( :sort_order ) },
-             foreign_key: 'id', inverse_of: 'section'
+             class_name: 'PageSection',
+             foreign_key: 'section_id', inverse_of: 'section'
 
   # Instance methods
 
