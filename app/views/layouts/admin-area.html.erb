@@ -5,19 +5,26 @@
   </head>
 
   <body>
-    <header>
-      <%= render partial: 'admin/includes/breadcrumbs' %>
+    <header id="header">
+      <h1>
+        <%= @page_title %>
+      </h1>
+      <%= render partial: 'admin/includes/messages' %>
     </header>
 
-    <nav>
+    <nav id="side-nav">
       <%= render partial: 'admin/includes/menu' %>
     </nav>
 
-    <main>
+    <main id="main">
+      <%= render partial: 'admin/includes/breadcrumbs' %>
+
       <%= yield %>
     </main>
 
-    <footer>
+    <div class="clearboth"></div>
+
+    <footer id="footer">
       <%= render partial: 'admin/includes/footer' %>
     </footer>
   </body>
