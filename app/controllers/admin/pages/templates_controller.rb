@@ -14,8 +14,10 @@ class Admin::Pages::TemplatesController < AdminController
     @template = PageTemplate.new( template_params )
 
     if @template.save
-      redirect_to action: 'index'
+      flash[ :notice ] = 'New template created'
+      redirect_to action: 'edit', id: @template.id
     else
+      flash.now[ :alert ] = 'Failed to create new template'
       render action: 'new'
     end
   end
@@ -36,9 +38,9 @@ class Admin::Pages::TemplatesController < AdminController
     @template = PageTemplate.find( params[:id] )
 
     if @template.update!( template_params )
-      flash[ :notice ] = 'Template saved'
+      flash.now[ :notice ] = 'Template details updated'
     else
-      flash[ :error ] = 'Failed to update template details'
+      flash.now[ :alert  ] = 'Failed to update template details'
     end
 
     render :edit
