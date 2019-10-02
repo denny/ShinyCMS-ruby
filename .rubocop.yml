@@ -6,7 +6,12 @@ AllCops:
     - db/**/*
     - bin/*
 
-# I have no idea but it was annoying me.
+# Spec files are supposed to be one long block. Shush.
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+# I have no idea what this is but it was annoying me.
 Style/FrozenStringLiteralComment:
   Enabled: false
 
