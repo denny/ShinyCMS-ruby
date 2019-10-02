@@ -1,0 +1,57 @@
+body {
+  font-family:      'Poppins', sans-serif;
+  font-size:        12pt;
+  margin:           0;
+}
+
+header#header h1 {
+  background:       #dddddd;
+  margin:           0 0 0 11rem;
+  padding:          1rem;
+}
+
+header#header #alerts {
+  background:       #ffdddd;
+  padding:          0.5em;
+}
+
+header#header #notices {
+  background:       #ddffdd;
+  padding:          0.5em;
+}
+
+nav#side-nav {
+  background:       #dddddd;
+  padding:          0.5em;
+  width:            10em;
+  float:            left;
+}
+
+nav#side-nav ul {
+  padding-left:     0;
+}
+
+nav#side-nav li {
+  list-style-type:  none;
+  padding:          0.2em 0 0.2em 0;
+}
+
+nav#side-nav ul.submenu {
+  padding-left:     1em;
+}
+
+main#main {
+  padding:          0.5em;
+  width:            auto;
+  float:            left;
+}
+
+footer#footer {
+  border-top:       #dddddd solid 1px;
+  padding:          0.5em;
+  text-align:       right;
+}
+
+.clearboth {
+  clear:            both;
+}

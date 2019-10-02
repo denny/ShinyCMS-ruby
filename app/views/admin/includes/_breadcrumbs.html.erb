@@ -1,4 +1,4 @@
-<h1>
+<nav id="breadcrumbs">
   <%= link_to 'Home',  url_for( '/' ) %>
   &raquo;
   <%= link_to 'Admin', url_for( admin_path ) %>
@@ -8,4 +8,4 @@
       url_for( controller: controller_name, only_path: false ) %>
   &raquo;
   <%= @page_title %>
-</h1>
+</nav>
