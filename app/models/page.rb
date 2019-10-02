@@ -16,6 +16,10 @@ class Page < ApplicationRecord
     Page.where( section: nil, hidden: true )
   end
 
+  def self.are_there_any_hidden_pages?
+    Page.where( hidden: true ).count > 0
+  end
+
   def self.default_page
     # TODO
     # 1.  Page.find( Config.default_page )
