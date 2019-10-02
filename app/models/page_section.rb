@@ -19,7 +19,9 @@ class PageSection < ApplicationRecord
   # Return the default page for this section if one is set
   # If the default isn't set, return the first page in this section
   def default_page
-    pages.find( default_page_id ) || pages.first
+    return pages.find( self[:default_page_id] ) if self[:default_page_id]
+
+    pages.first
   end
 
   # Class methods

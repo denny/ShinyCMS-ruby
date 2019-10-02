@@ -22,7 +22,9 @@ class Page < ApplicationRecord
     # 2.  Section.find( Config.default_section )
     # 2a. default_section.pages.default_page
     # 2b. default_section.pages.first
-    # 3.  Page.top_level_pages.first
+
+    return Page.top_level_pages.first if Page.top_level_pages.first
+
     Page.first
   end
 end
