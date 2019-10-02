@@ -44,7 +44,6 @@ end
 
 group :test do
   gem 'codecov', require: false
-  # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
