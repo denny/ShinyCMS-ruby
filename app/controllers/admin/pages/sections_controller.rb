@@ -14,8 +14,10 @@ class Admin::Pages::SectionsController < AdminController
     @section = PageSection.new( section_params )
 
     if @section.save
-      redirect_to action: 'index'
+      flash[ :notice ] = 'New section created'
+      redirect_to action: 'edit', id: @section.id
     else
+      flash.now[ :alert ] = 'Failed to create new section'
       render action: 'new'
     end
   end
@@ -36,9 +38,9 @@ class Admin::Pages::SectionsController < AdminController
     @section = PageSection.find( params[:id] )
 
     if @section.update!( section_params )
-      flash[ :notice ] = 'Section saved'
+      flash.now[ :notice ] = 'Section details updated'
     else
-      flash[ :error ] = 'Failed to update section details'
+      flash.now[ :alert  ] = 'Failed to update section details'
     end
 
     render :edit
