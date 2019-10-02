@@ -1,15 +1,27 @@
-<nav>
-  <%= link_to 'Home', url_for( '/' ) %>
-  |
-  Pages:
-  <%= link_to 'Add',  url_for( controller: '/admin/pages', action: 'new' ) %> /
-  <%= link_to 'List', url_for( controller: '/admin/pages' ) %>
-  |
-  Sections:
-  <%= link_to 'Add',  url_for( controller: '/admin/pages/sections', action: 'new' ) %> /
-  <%= link_to 'List', url_for( controller: '/admin/pages/sections' ) %>
-  |
-  Templates:
-  <%= link_to 'Add',  url_for( controller: '/admin/pages/templates', action: 'new' ) %> /
-  <%= link_to 'List', url_for( controller: '/admin/pages/templates' ) %>
-</nav>
+<ul>
+  <li>
+    <%= link_to 'Home', url_for( '/' ) %>
+  </li>
+  <li>
+    Pages
+    <ul class="submenu">
+      <li>
+        <%= link_to 'List pages', url_for( controller: '/admin/pages' ) %>
+      </li>
+      <li>
+        <%= link_to 'Add new page', url_for( controller: '/admin/pages', action: 'new' ) %>
+      </li>
+      <li>
+        <%= link_to 'List sections', url_for( controller: '/admin/pages/sections' ) %>
+      </li>
+      <li>
+        <%= link_to 'Add new section', url_for( controller: '/admin/pages/sections', action: 'new' ) %>
+      </li>
+      <li>
+        <%= link_to 'List templates', url_for( controller: '/admin/pages/templates' ) %>
+      </li>
+      <li>
+        <%= link_to 'Add new template', url_for( controller: '/admin/pages/templates', action: 'new' ) %>
+      </li>
+    </ul>
+</ul>
