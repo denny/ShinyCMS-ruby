@@ -59,7 +59,7 @@
 			Actions
 		</th>
 	</tr>
-	<% if @tl_hidden_pages.count > 0 %>
+	<% if @tl_hidden_pages.count.positive? %>
   <tr>
 		<td class="subheading" colspan="2">
 			<b>Top-level pages</b>
@@ -78,7 +78,7 @@
 	<% end %>
 	<% end %>
 	<% @tl_sections.each do |section| %>
-	<% next unless section.hidden_pages.count > 0 %>
+	<% next unless section.hidden_pages.count.positive? %>
 	<tr>
 		<td class="subheading" colspan="2">
 			<b><%= section.name %></b>
