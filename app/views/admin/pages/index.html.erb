@@ -44,3 +44,57 @@
 	<% end %>
 	<% end %>
 </table>
+
+<% if @there_are_hidden_pages %>
+<h2>
+	Hidden Pages
+</h2>
+
+<table class="list">
+	<tr>
+		<th class="main">
+			Page
+		</th>
+		<th>
+			Actions
+		</th>
+	</tr>
+	<% if @tl_hidden_pages.count.positive? %>
+  <tr>
+		<td class="subheading" colspan="2">
+			<b>Top-level pages</b>
+		</td>
+	</tr>
+  <% @tl_hidden_pages.each do |page| %>
+	<tr class="showfocus">
+		<td>
+			<%= page.name %>
+		</td>
+		<td>
+      <%= link_to 'View', url_for( "/pages/#{page.slug}" ) %>
+      <%= link_to 'Edit', url_for( controller: '/admin/pages', action: 'edit', id: page.id ) %>
+		</td>
+	</tr>
+	<% end %>
+	<% end %>
+	<% @tl_sections.each do |section| %>
+	<% next unless section.hidden_pages.count.positive? %>
+	<tr>
+		<td class="subheading" colspan="2">
+			<b><%= section.name %></b>
+		</td>
+	</tr>
+	<% section.hidden_pages.each do |page| %>
+	<tr class="showfocus">
+		<td>
+			<%= page.name %>
+		</td>
+		<td>
+      <%= link_to 'View', url_for( "/pages/#{section.slug}/#{page.slug}" ) %>
+      <%= link_to 'Edit', url_for( controller: '/admin/pages', action: 'edit', id: page.id ) %>
+		</td>
+	</tr>
+	<% end %>
+	<% end %>
+</table>
+<% end %>

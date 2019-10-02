@@ -1,10 +1,90 @@
 require 'rails_helper'
 
 RSpec.describe 'Pages', type: :request do
+  describe 'GET /' do
+    it "fetches the 'no content yet' page if there are no pages defined" do
+      get '/'
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to include 'This site does not have any content'
+    end
+  end
+
+  describe 'GET /' do
+    it 'fetches the first top-level page' do
+      page = FactoryBot.create :top_level_page
+      get '/'
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to match %r{<h1>\s*#{page.title}\s*</h1>}
+    end
+  end
+
   describe 'GET /pages' do
     it 'fetches the default page' do
+      page = FactoryBot.create :top_level_page
       get '/pages'
       expect( response ).to have_http_status :ok
+      expect( response.body ).to match %r{<h1>\s*#{page.title}\s*</h1>}
+    end
+  end
+
+  describe 'GET /pages/page-name' do
+    it 'fetches the specified top-level page' do
+      page = FactoryBot.create :top_level_page
+      get "/pages/#{page.slug}"
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to match %r{<h1>\s*#{page.title}\s*</h1>}
+    end
+  end
+
+  describe 'GET /pages/section-name/page-name' do
+    it 'fetches the specified page from the specified section' do
+      page = FactoryBot.create :page_in_section
+      get "/pages/#{page.section.slug}/#{page.slug}"
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to match %r{<h1>\s*#{page.title}\s*</h1>}
+    end
+  end
+
+  describe 'GET /pages/section-name' do
+    it 'fetches the first page from the specified section' do
+      section = create :page_section
+      create :page_in_section, title: '1st Page', section: section
+      create :page_in_section, title: '2nd Page', section: section
+      create :page_in_section, title: '3rd Page', section: section
+      get "/pages/#{section.slug}"
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to match %r{<h1>\s*1st Page\s*</h1>}
+    end
+  end
+
+  describe 'GET /pages/section-name' do
+    it 'fetches the default page from the specified section if one is set' do
+      section = create :page_section
+      page1 = create :page_in_section, title: '1st Page', section: section
+      page2 = create :page_in_section, title: '2nd Page', section: section
+      page3 = create :page_in_section, title: '3rd Page', section: section
+      page1.section.update default_page_id: page3.id
+      get "/pages/#{page2.section.slug}"
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to match %r{<h1>\s*3rd Page\s*</h1>}
+    end
+  end
+
+  describe 'GET /pages/non-existent-slug' do
+    it 'returns a 404 if no matching page or section is found at top-level' do
+      FactoryBot.create :top_level_page
+      get '/pages/non-existent-slug'
+      expect( response ).to have_http_status :not_found
+      expect( response.body ).to include 'a page that does not exist'
+    end
+  end
+
+  describe 'GET /pages/existing-section/non-existent-slug' do
+    it 'returns a 404 if no matching page or sub-section is found in section' do
+      page = FactoryBot.create :page_in_section
+      get "/pages/#{page.section.slug}/non-existent-slug"
+      expect( response ).to have_http_status :not_found
+      expect( response.body ).to include 'a page that does not exist'
     end
   end
 end
