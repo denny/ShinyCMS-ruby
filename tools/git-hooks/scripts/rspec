@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e  # die on first error
+
+cd "${0%/*}/../../.."  # get back to the project root dir
+
+echo "Running tests"
+bundle exec rspec
