@@ -1,6 +1,6 @@
 # Base class for admin controllers
 class AdminController < ApplicationController
-  layout 'admin-area'
+  layout 'admin/layouts/admin-area'
 
   def index
     # Redirect somewhere useful if logged in, or to admin login page if not
