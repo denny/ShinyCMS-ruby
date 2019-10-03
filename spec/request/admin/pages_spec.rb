@@ -13,7 +13,23 @@ RSpec.describe 'Admin: Pages', type: :request do
     it 'loads the form to add a new page' do
       get '/admin/page/add'
       expect( response ).to have_http_status :ok
-      expect( response.body ).to include 'Add a new page'
+      expect( response.body ).to include 'Add new page'
+    end
+  end
+
+  describe 'POST /admin/page/add' do
+    it 'adds a new page when the form is submitted' do
+      template = create :page_template
+      post '/admin/page/add', params: {
+        'page[name]': 'Test',
+        'page[title]': 'Test',
+        'page[slug]': 'test',
+        'page[template_id]': template.id
+      }
+      expect( response ).to have_http_status :found
+      follow_redirect!
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to include 'Edit page'
     end
   end
 end
