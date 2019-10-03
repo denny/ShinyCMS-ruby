@@ -72,8 +72,8 @@ RSpec.describe 'Pages', type: :request do
 
   describe 'GET /pages/section-name/subsection-name/page-name' do
     it 'fetches the specified page from the specified subsection' do
-      page = create :page_in_subsection
-      get "/pages/#{page.section.slug}/#{page.section.section.slug}/#{page.slug}"
+      p = create :page_in_subsection
+      get "/pages/#{p.section.slug}/#{p.section.section.slug}/#{p.slug}"
       expect( response ).to have_http_status :ok
       expect( response.body ).to match %r{<h1>\s*Test Page\s*</h1>}
     end
