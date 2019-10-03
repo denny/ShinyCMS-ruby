@@ -1,0 +1,98 @@
+/* Project:   ShinyCMS (Ruby version)
+* File:      app/assets/stylsheets/main-site.css
+* Purpose:   Styles for main (user-facing) website
+*
+* Copyright: (c) 2009-2019 Denny de la Haye https://denny.me
+*
+* ShinyCMS is free software; you can redistribute it and/or modify it under
+* the terms of the GPL (version 2.0 or later). Please see the included LICENSE
+* file for more information.
+*/
+
+
+/* ========== ( global styles ) ========== */
+
+body {
+  font-family:  'Poppins', sans-serif;
+  font-size:    12pt;
+  margin:       0;
+}
+
+header#header #alerts {
+  background:   #ffdddd;
+  padding:      0.5em;
+}
+
+header#header #notices {
+  background:   #ddffdd;
+  padding:      0.5em;
+}
+
+nav#top-nav {
+  padding:        0.5em;
+  border-bottom:  1px solid #dddddd;
+}
+
+nav#top-nav ul {
+}
+
+nav#top-nav li {
+  list-style-type:  none;
+  display:          inline;
+  padding:          0.2em;
+}
+
+nav#top-nav ul.submenu {
+}
+
+main#main {
+  padding:      0.5em;
+}
+
+footer#footer {
+  border-top:   #dddddd solid 1px;
+  padding:      0.5em;
+  text-align:   center;
+}
+
+
+
+
+/* ========== ( useful bits and bobs ) ========== */
+
+.clearboth {
+  clear:        both;
+}
+
+
+/* ========== ( admin toolbar ) ========== */
+
+nav#admin-toolbar {
+  z-index:		  999;
+  position:		  fixed;
+  bottom:			  0;
+  width:			  100%;
+	height:			  32px;
+  color:			  #000000;
+	background:		#dddddd url( 'admin/admin-toolbar-bg.png' ) left top repeat-x;
+}
+
+nav#admin-toolbar #admin-toolbar-logo {
+  float:        left;
+  border:       none;
+}
+
+nav#admin-toolbar #admin-toolbar-links {
+  float:        right;
+  padding:      5px 20px 0 0;
+}
+
+nav#admin-toolbar #admin-toolbar-links a {
+  color:            #005a7e;
+  text-decoration:  none;
+}
+
+nav#admin-toolbar #admin-toolbar-links a:hover {
+  color:            #005a7e;
+  text-decoration:  underline;
+}

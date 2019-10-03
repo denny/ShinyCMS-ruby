@@ -5,11 +5,15 @@
   </head>
 
   <body>
-    <nav>
+    <header id="header">
+      <%= render partial: 'includes/messages' %>
+    </header>
+
+    <nav id="top-nav">
       <%= render partial: 'includes/menu' %>
     </nav>
 
-    <main>
+    <main id="main">
       <%= yield %>
     </main>
 
@@ -18,9 +22,9 @@
     </footer>
 
     <%# if user.is_admin? %>
-    <footer id="admin-footer">
-      <%= render partial: 'admin/includes/site-toolbar' %>
-    </footer>
+    <nav id="admin-toolbar">
+      <%= render partial: 'admin/includes/admin-toolbar' %>
+    </nav>
     <%# end %>
   </body>
 </html>
