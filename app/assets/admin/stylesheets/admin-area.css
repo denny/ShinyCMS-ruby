@@ -1,3 +1,18 @@
+/* ================================================================== *\
+   Project:   ShinyCMS (Ruby version)
+   File:      app/assets/admin/stylsheets/admin-area.css
+   Purpose:   Styles for admin area
+
+   Copyright: (c) 2009-2019 Denny de la Haye https://denny.me
+
+   ShinyCMS is free software; you can redistribute it and/or
+   modify it under the terms of the GPL (version 2 or later).
+   Please see the included LICENSE file for more information.
+\* ==================================================================== */
+
+
+/* ========== ( global styles ) ========== */
+
 body {
   font-family:      'Poppins', sans-serif;
   font-size:        12pt;
@@ -6,7 +21,7 @@ body {
 
 header#header h1 {
   background:       #dddddd;
-  margin:           0 0 0 9rem;
+  margin:           0 0 0 10rem;
   padding:          1rem;
 }
 
@@ -23,7 +38,7 @@ header#header #notices {
 nav#side-nav {
   background:       #dddddd;
   padding:          0.5em;
-  width:            10em;
+  width:            11em;
   float:            left;
 }
 
