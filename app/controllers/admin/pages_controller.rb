@@ -26,13 +26,6 @@ class Admin::PagesController < AdminController
     end
   end
 
-  def page_params
-    params.require( :page ).permit(
-      :name, :description, :title, :slug,
-      :template_id, :section_id, :sort_order, :hidden
-    )
-  end
-
   def edit
     # Edit a page
     @page = Page.find( params[:id] )
@@ -49,5 +42,14 @@ class Admin::PagesController < AdminController
     end
 
     render :edit
+  end
+
+  private
+
+  def page_params
+    params.require( :page ).permit(
+      :name, :description, :title, :slug,
+      :template_id, :section_id, :sort_order, :hidden
+    )
   end
 end
