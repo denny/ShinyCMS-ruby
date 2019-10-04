@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe SiteSetting, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context '.get' do
+    it 'returns the specified setting' do
+      create :site_setting, name: 'foo', value: 'bar'
+      expect( SiteSetting.get( 'foo' ) ).to eq 'bar'
+    end
+  end
 end
