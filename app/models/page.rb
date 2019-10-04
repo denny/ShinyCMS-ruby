@@ -17,7 +17,7 @@ class Page < ApplicationRecord
   end
 
   def self.are_there_any_hidden_pages?
-    Page.where( hidden: true ).count.positive?
+    Page.exists?( hidden: true )
   end
 
   def self.default_page
