@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_10_04_223601) do
 
   create_table "site_settings", force: :cascade do |t|
     t.string "name"
+    t.string "not_null"
     t.string "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
