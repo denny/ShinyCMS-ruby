@@ -1,25 +1,14 @@
 <% @page_title = 'List templates' %>
 
 <table class="list">
-	<tr>
-		<th class="main">
-			Template
-		</th>
-		<th>
-			Actions
-		</th>
-	</tr>
   <% @templates.each do |template| %>
 	<tr class="showfocus">
 		<td>
 			<%= template.name %>
 		</td>
-		<td>
-			<%= link_to 'Edit', url_for(
-        controller: '/admin/pages/templates',
-        action: 'edit',
-        id: template.id
-      ) %>
+		<td class="actions">
+			<%= link_to 'Edit', url_for( controller: '/admin/pages/templates',
+                                   action: 'edit', id: template ) %>
 		</td>
 	</tr>
 	<% end %>
