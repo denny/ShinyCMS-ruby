@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe PageSection, type: :model do
   context '.default_page' do
     it 'returns the correct page' do
-      section = create :page_section
       create :top_level_page
-      page1 = create :page, section: section
-      page2 = create :page, section: section
-      expect( page2.section.default_page ).to eq page1
+      section = create :page_section
+      page001 = create :page, section: section
+      page002 = create :page, section: section
+      expect( page002.section.default_page ).to eq page001
     end
   end
 end
