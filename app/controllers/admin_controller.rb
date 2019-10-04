@@ -4,6 +4,6 @@ class AdminController < ApplicationController
 
   def index
     # Redirect somewhere useful if logged in, or to admin login page if not
-    redirect_to '/admin/pages'
+    redirect_to admin_pages_path
   end
 end
