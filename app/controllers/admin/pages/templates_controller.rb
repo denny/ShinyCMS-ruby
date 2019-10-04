@@ -22,12 +22,6 @@ class Admin::Pages::TemplatesController < AdminController
     end
   end
 
-  def template_params
-    params.require( :page_template ).permit(
-      :name, :description, :filename
-    )
-  end
-
   def edit
     # Edit a template
     @template = PageTemplate.find( params[:id] )
@@ -44,5 +38,13 @@ class Admin::Pages::TemplatesController < AdminController
     end
 
     render :edit
+  end
+
+  private
+
+  def template_params
+    params.require( :page_template ).permit(
+      :name, :description, :filename
+    )
   end
 end
