@@ -19,8 +19,8 @@
   </p>
   <p>
     Section:
-    <br><%= select( 'page_section', 'section_id',
-      PageSection.pluck( :name, :id ), { include_blank: 'None' } ) %>
+    <br><%= select( 'page_section', 'section', PageSection.pluck( :name, :id ),
+            { include_blank: 'None', selected: @section.section_id } ) %>
   </p>
   <p>
     Sort order:
