@@ -19,8 +19,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Turbolinks makes navigating your web application faster.
 # Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-# Use SCSS for stylesheets
-# gem 'sass-rails', '~> 5'
+# Use faster SCSS gem for stylesheets
+gem 'sassc-rails'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 # gem 'webpacker', '~> 4.0'
 
