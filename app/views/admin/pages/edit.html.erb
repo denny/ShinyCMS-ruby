@@ -20,12 +20,12 @@
   <p>
     Template:
     <br><%= select( 'page', 'template_id',
-      PageTemplate.all.collect { |t| [ t.name, t.id ] } ) %>
+      PageTemplate.pluck( :name, :id ) ) %>
   </p>
   <p>
     Section:
     <br><%= select( 'page', 'section_id',
-      PageSection.all.collect { |s| [ s.name, s.id ] }, { include_blank: 'None' } ) %>
+      PageSection.pluck( :name, :id ), { include_blank: 'None' } ) %>
   </p>
   <p>
     Sort order:

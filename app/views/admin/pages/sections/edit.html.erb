@@ -20,7 +20,7 @@
   <p>
     Section:
     <br><%= select( 'page_section', 'section_id',
-      PageSection.all.collect { |s| [ s.name, s.id ] }, { include_blank: 'None' } ) %>
+      PageSection.pluck( :name, :id ), { include_blank: 'None' } ) %>
   </p>
   <p>
     Sort order:
