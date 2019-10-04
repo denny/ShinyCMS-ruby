@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_185908) do
+ActiveRecord::Schema.define(version: 2019_10_04_223601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(version: 2019_10_02_185908) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["section_id"], name: "index_pages_on_section_id"
     t.index ["template_id"], name: "index_pages_on_template_id"
+  end
+
+  create_table "site_settings", force: :cascade do |t|
+    t.string "name"
+    t.string "not_null"
+    t.string "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "page_sections", "page_sections", column: "section_id"
