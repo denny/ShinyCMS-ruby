@@ -20,8 +20,8 @@ class Page < ApplicationRecord
     Page.exists?( hidden: true )
   end
 
+  # TODO: Return the default top-level page
   def self.default_page
-    # TODO
     # 1.  Page.find( Config.default_page )
     # 2.  Section.find( Config.default_section )
     # 2a. default_section.pages.default_page
