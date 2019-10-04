@@ -1,18 +1,5 @@
 # Pages controller
 class PagesController < ApplicationController
-  # Main method to display a CMS-controlled page in the front end site
-  def show
-    # FIXME!
-    # render inline: 'Page template file is missing.' && return unless
-    #   File.exist?(
-    #     Rails.root.join( 'pages', 'templates', @page.template.filename )
-    #   )
-
-    # TODO: build element stack
-
-    render template: "pages/templates/#{@page.template.filename}"
-  end
-
   # Handle requests for the root page
   # /  (or /pages)
   def index
@@ -76,5 +63,18 @@ class PagesController < ApplicationController
     return section if path_parts.empty?
 
     traverse_path( path_parts, section.sections )
+  end
+
+  # Build the element stack and render the page
+  def show
+    # FIXME!
+    # render inline: 'Page template file is missing.' && return unless
+    #   File.exist?(
+    #     Rails.root.join( 'pages', 'templates', @page.template.filename )
+    #   )
+
+    # TODO: build element stack
+
+    render template: "pages/templates/#{@page.template.filename}"
   end
 end

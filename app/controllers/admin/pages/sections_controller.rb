@@ -22,12 +22,6 @@ class Admin::Pages::SectionsController < AdminController
     end
   end
 
-  def section_params
-    params.require( :page_section ).permit(
-      :name, :description, :title, :slug, :section_id, :sort_order, :hidden
-    )
-  end
-
   def edit
     # Edit a page section
     @section = PageSection.find( params[:id] )
@@ -44,5 +38,13 @@ class Admin::Pages::SectionsController < AdminController
     end
 
     render :edit
+  end
+
+  private
+
+  def section_params
+    params.require( :page_section ).permit(
+      :name, :description, :title, :slug, :section_id, :sort_order, :hidden
+    )
   end
 end
