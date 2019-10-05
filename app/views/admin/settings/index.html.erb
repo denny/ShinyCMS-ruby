@@ -1,0 +1,27 @@
+<% @page_title = 'Site Settings' %>
+
+<%= form_with url: admin_settings_path, method: 'post' do %>
+  <% @settings.each do |s| %>
+  <p>
+    <label class="setting_name"><%= s.name %>
+    <%= text_field :setting, s.id, value: s.value %>
+    <%= link_to 'Delete', admin_setting_path( s ) %>
+    </label>
+  </p>
+  <% end %>
+  <p>
+    <%= submit_tag 'Update Settings' %>
+  </p>
+<% end %>
+
+<%= form_with url: admin_setting_create_path, method: 'post' do %>
+  <h2>
+    Add new setting
+  </h2>
+  <p>
+    <label><%= text_field :setting, :name %> <%= text_field :setting, :value %></label>
+  </p>
+  <p>
+    <%= submit_tag 'Add' %>
+  </p>
+<% end %>
