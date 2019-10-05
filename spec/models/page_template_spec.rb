@@ -9,6 +9,7 @@ RSpec.describe PageTemplate, type: :model do
       expect( template.pages.size ).to eq 2
     end
   end
+
   context '.file_exists?' do
     it 'returns true if the template file exists on the disk' do
       template = create :page_template, filename: 'example'
