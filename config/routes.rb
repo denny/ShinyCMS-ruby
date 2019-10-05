@@ -35,5 +35,11 @@ Rails.application.routes.draw do
       get  'template/:id', to: 'templates#edit'
       post 'template/:id', to: 'templates#update'
     end
+
+    # Site settings
+    get  'settings',           to: 'settings#index'
+    post 'settings',           to: 'settings#update'
+    post 'setting/create',     to: 'settings#create'
+    get  'setting/delete/:id', to: 'settings#delete', as: :setting
   end
 end
