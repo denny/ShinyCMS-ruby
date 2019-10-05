@@ -2,11 +2,11 @@
 
 <%= form_for @template, url: admin_pages_template_path( @template ), method: 'post' do |f| %>
   <p>
-    Name:
+    <%= f.label :name %>
     <br><%= f.text_field :name %>
   </p>
   <p>
-    Description:
+    <%= f.label :description %>
     <br><%= f.text_field :description %>
   </p>
   <p>

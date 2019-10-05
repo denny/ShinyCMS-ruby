@@ -5,11 +5,11 @@
   |
   <% if controller_name == 'pages' %>
   Page:
-  <%= link_to 'Add',  url_for( controller: '/admin/pages', action: 'new' ) %> /
+  <%= link_to 'Add',  admin_page_add_path %> /
   <% if @page %>
-  <%= link_to 'Edit', url_for( controller: '/admin/pages', action: 'edit', id: @page.id ) %> /
+  <%= link_to 'Edit', admin_page_path( @page ) %> /
   <% end %>
-  <%= link_to 'List', url_for( controller: '/admin/pages' ) %>
+  <%= link_to 'List', admin_pages_path %>
   |
   Section:
   <%= link_to 'Add',  url_for( controller: '/admin/pages/sections', action: 'new' ) %> /
