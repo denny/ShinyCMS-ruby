@@ -16,7 +16,7 @@ RSpec.describe PageSection, type: :model do
       create :page_section
       section2 = create :page_section, name: 'Test2'
 
-      SiteSetting.create( name: 'default_section', value: 'Test2' )
+      Setting.create! name: 'default_section', value: 'Test2'
 
       expect( PageSection.default_section ).to eq section2
     end
