@@ -1,5 +1,10 @@
 # Model for page sections
 class PageSection < ApplicationRecord
+  validates :name,   presence: true
+  validates :title,  presence: true
+  validates :slug,   presence: true
+  validates :hidden, presence: true
+
   has_many  :pages,
             -> { where( hidden: false ).order( :sort_order ) },
             foreign_key: 'section_id', inverse_of: 'section'
