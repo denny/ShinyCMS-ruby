@@ -1,38 +1,38 @@
 <% @page_title = 'Edit page' %>
 
-<%= form_for( @page, url: "/admin/page/#{@page.id}", method: 'post' ) do |f| %>
+<%= form_for( @page, url: admin_page_path( @page ), method: 'post' ) do |f| %>
   <p>
-    Name:
+    <%= f.label :name %>
     <br><%= f.text_field :name %>
   </p>
   <p>
-    Description:
+    <%= f.label :description %>
     <br><%= f.text_field :description %>
   </p>
   <p>
-    Title:
+    <%= f.label :title %>
     <br><%= f.text_field :title %>
   </p>
   <p>
-    Slug:
+    <%= f.label :slug %>
     <br><%= f.text_field :slug %>
   </p>
   <p>
-    Template:
+    <%= f.label :template %>
     <br><%= select( 'page', 'template_id', PageTemplate.pluck( :name, :id ),
             { selected: @page.template_id} ) %>
   </p>
   <p>
-    Section:
+    <%= f.label :section %>
     <br><%= select( 'page', 'section_id', PageSection.pluck( :name, :id ),
             { include_blank: 'None', selected: @page.section_id } ) %>
   </p>
   <p>
-    Sort order:
+    <%= f.label :sort_order %>
     <br><%= f.text_field :sort_order %>
   </p>
   <p>
-    Hidden:
+    <%= f.label :hidden %>
     <br><%= f.check_box :hidden %>
   </p>
   <p>
