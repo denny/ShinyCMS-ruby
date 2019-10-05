@@ -2,6 +2,7 @@ require: rubocop-rails
 
 # Rubocop does not like lots of Rails' and Activerecord's boilerplate :-\
 AllCops:
+  EnabledByDefault: true
   Exclude:
     - db/**/*
     - bin/*
@@ -10,14 +11,6 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
-
-# I have no idea what this is but it was annoying me.
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-# Allow compact class names (e.g. Admin::Pages::TemplatesController)
-Style/ClassAndModuleChildren:
-  Enabled: false
 
 # Whitespace Considered Helpful
 Layout/SpaceInsideArrayLiteralBrackets:
@@ -31,4 +24,32 @@ Layout/SpaceInsideParens:
 Layout/SpaceInsidePercentLiteralDelimiters:
   Enabled: false
 Layout/SpaceInsideReferenceBrackets:
+  Enabled: false
+
+# Allow compact class names (e.g. Admin::Pages::TemplatesController)
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# I have no idea what this is but it was annoying me.
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# ... nah
+Bundler/GemComment:
+  Enabled: false
+Layout/MultilineMethodArgumentLineBreaks:
+  Enabled: false
+Lint/NumberConversion:
+  Enabled: false
+Style/Copyright:
+  Enabled: false
+Style/DocumentationMethod:
+  Enabled: false
+Style/InlineComment:
+  Enabled: false
+Style/MethodCallWithArgsParentheses:
+  Enabled: false
+Style/MissingElse:
+  Enabled: false
+Style/StringHashKeys:
   Enabled: false
