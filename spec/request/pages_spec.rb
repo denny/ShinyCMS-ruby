@@ -63,7 +63,7 @@ RSpec.describe 'Pages', type: :request do
       page1 = create :page_in_section, title: '1st Page', section: section
       page2 = create :page_in_section, title: '2nd Page', section: section
       page3 = create :page_in_section, title: '3rd Page', section: section
-      page1.section.update default_page_id: page3.id
+      page1.section.update! default_page_id: page3.id
       get "/pages/#{page2.section.slug}"
       expect( response ).to have_http_status :ok
       expect( response.body ).to match %r{<h1>\s*3rd Page\s*</h1>}
