@@ -19,7 +19,7 @@ class Admin::SettingsController < AdminController
 
   # Main form submitted; update any changed settings
   def update
-    flash[ :status ] = 'Settings updated'
+    flash[ :notice ] = 'Settings updated'
     redirect_to admin_settings_path
   end
 
