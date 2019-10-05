@@ -1,6 +1,6 @@
 <% @page_title = 'Add new page template' %>
 
-<%= form_for :page_template, url: '/admin/pages/template/add', method: 'post' do |f| %>
+<%= form_for :page_template, url: admin_pages_template_add_path, method: 'post' do |f| %>
   <p>
     Name:
     <br><%= f.text_field :name %>
