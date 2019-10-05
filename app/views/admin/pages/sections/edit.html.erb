@@ -1,6 +1,6 @@
 <% @page_title = 'Edit section' %>
 
-<%= form_for @section, url: "/admin/pages/section/#{@section.id}", method: 'post' do |f| %>
+<%= form_for @section, url: admin_pages_section_path( @section ), method: 'post' do |f| %>
   <p>
     Name:
     <br><%= f.text_field :name %>
@@ -19,7 +19,7 @@
   </p>
   <p>
     Section:
-    <br><%= select( 'page_section', 'section', PageSection.pluck( :name, :id ),
+    <br><%= select( 'page_section', 'section_id', PageSection.pluck( :name, :id ),
             { include_blank: 'None', selected: @section.section_id } ) %>
   </p>
   <p>

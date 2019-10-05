@@ -1,6 +1,6 @@
 <% @page_title = 'Edit page' %>
 
-<%= form_for( @page, url: "/admin/page/#{@page.id}", method: 'post' ) do |f| %>
+<%= form_for( @page, url: admin_page_path( @page ), method: 'post' ) do |f| %>
   <p>
     Name:
     <br><%= f.text_field :name %>
