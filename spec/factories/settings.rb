@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :site_setting do
+  factory :setting do
     name  { 'setting_name' }
   end
 end
