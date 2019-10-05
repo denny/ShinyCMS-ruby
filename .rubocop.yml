@@ -10,7 +10,8 @@ AllCops:
 # Spec files are supposed to be one long block. Shush.
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*.rb'
+    - spec/**/*.rb
+    - config/routes.rb
 
 # Whitespace Considered Helpful
 Layout/SpaceInsideArrayLiteralBrackets:
