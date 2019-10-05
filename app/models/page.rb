@@ -4,6 +4,7 @@ class Page < ApplicationRecord
   validates :title,       presence: true
   validates :slug,        presence: true
   validates :template_id, presence: true
+  validates :hidden,      presence: true
 
   belongs_to :section,  class_name: 'PageSection', optional: true,
                         inverse_of: 'pages'
