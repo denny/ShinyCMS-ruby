@@ -48,7 +48,7 @@ class PageSection < ApplicationRecord
 
   # Return the default top-level section
   def self.default_section
-    default_section = SiteSetting.get 'default_section'
+    default_section = Setting.get 'default_section'
     PageSection.where( slug: default_section ).or(
       PageSection.where( name: default_section )
     ).first
