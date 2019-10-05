@@ -5,26 +5,26 @@
   |
   <% if controller_name == 'pages' %>
   Page:
-  <%= link_to 'Add',  url_for( controller: '/admin/pages', action: 'new' ) %> /
+  <%= link_to 'Add',  admin_page_add_path %> /
   <% if @page %>
-  <%= link_to 'Edit', url_for( controller: '/admin/pages', action: 'edit', id: @page.id ) %> /
+  <%= link_to 'Edit', admin_page_path( @page ) %> /
   <% end %>
-  <%= link_to 'List', url_for( controller: '/admin/pages' ) %>
+  <%= link_to 'List', admin_pages_path %>
   |
   Section:
-  <%= link_to 'Add',  url_for( controller: '/admin/pages/sections', action: 'new' ) %> /
+  <%= link_to 'Add',  admin_pages_section_add_path %> /
   <% if @page&.section %>
-  <%= link_to 'Edit', url_for( controller: '/admin/pages/sections', action: 'edit', id: @page.section.id ) %> /
+  <%= link_to 'Edit', admin_pages_section_path( @page.section ) %> /
   <% end %>
-  <%= link_to 'List', url_for( controller: '/admin/pages/sections' ) %>
+  <%= link_to 'List', admin_pages_sections_path %>
   |
   Template:
-  <%= link_to 'Add',  url_for( controller: '/admin/pages/templates', action: 'new' ) %> /
+  <%= link_to 'Add',  admin_pages_template_add_path %> /
   <% if @page %>
-  <%= link_to 'Edit', url_for( controller: '/admin/pages/templates', action: 'edit', id: @page.template.id ) %> /
+  <%= link_to 'Edit', admin_pages_template_path( @page.template ) %> /
   <% end %>
-  <%= link_to 'List', url_for( controller: '/admin/pages/templates' ) %>
-  <% end  # 'pages' %>
+  <%= link_to 'List', admin_pages_templates_path %>
+  <% end  # pages %>
   |
   <%= link_to 'Admin area', url_for( admin_path ) %>
 </div>

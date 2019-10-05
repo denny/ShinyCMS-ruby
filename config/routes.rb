@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get  'pages',    to: 'pages#index'
     get  'page/add', to: 'pages#new'
     post 'page/add', to: 'pages#create'
-    get  'page/:id', to: 'pages#edit'
+    get  'page/:id', to: 'pages#edit', as: :page
     post 'page/:id', to: 'pages#update'
 
     namespace :pages do
@@ -25,14 +25,14 @@ Rails.application.routes.draw do
       get  'sections',    to: 'sections#index'
       get  'section/add', to: 'sections#new'
       post 'section/add', to: 'sections#create'
-      get  'section/:id', to: 'sections#edit'
+      get  'section/:id', to: 'sections#edit', as: :section
       post 'section/:id', to: 'sections#update'
 
       # Page templates
       get  'templates',    to: 'templates#index'
       get  'template/add', to: 'templates#new'
       post 'template/add', to: 'templates#create'
-      get  'template/:id', to: 'templates#edit'
+      get  'template/:id', to: 'templates#edit', as: :template
       post 'template/:id', to: 'templates#update'
     end
 

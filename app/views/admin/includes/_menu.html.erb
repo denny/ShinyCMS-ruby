@@ -6,22 +6,26 @@
     Pages
     <ul class="submenu">
       <li>
-        <%= link_to 'List pages', url_for( controller: '/admin/pages' ) %>
+        <%= link_to 'List pages',       admin_pages_path %>
       </li>
       <li>
-        <%= link_to 'Add new page', url_for( controller: '/admin/pages', action: 'new' ) %>
+        <%= link_to 'Add new page',     admin_page_add_path %>
       </li>
       <li>
-        <%= link_to 'List sections', url_for( controller: '/admin/pages/sections' ) %>
+        <%= link_to 'List sections',    admin_pages_sections_path %>
       </li>
       <li>
-        <%= link_to 'Add new section', url_for( controller: '/admin/pages/sections', action: 'new' ) %>
+        <%= link_to 'Add new section',  admin_pages_section_add_path %>
       </li>
       <li>
-        <%= link_to 'List templates', url_for( controller: '/admin/pages/templates' ) %>
+        <%= link_to 'List templates',   admin_pages_templates_path %>
       </li>
       <li>
-        <%= link_to 'Add new template', url_for( controller: '/admin/pages/templates', action: 'new' ) %>
+        <%= link_to 'Add new template', admin_pages_template_add_path %>
       </li>
     </ul>
+  </li>
+  <li>
+    <%= link_to 'Settings', admin_settings_path %>
+  </li>
 </ul>
