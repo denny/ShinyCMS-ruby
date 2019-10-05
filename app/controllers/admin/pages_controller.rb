@@ -35,7 +35,8 @@ class Admin::PagesController < AdminController
     # Save edited page details
     @page = Page.find( params[:id] )
 
-    if @page.update!( page_params )
+    _unused = @page.update( page_params )
+    if @page.valid?
       flash.now[ :notice ] = 'Page details updated'
     else
       flash.now[ :alert  ] = 'Failed to update page details'
