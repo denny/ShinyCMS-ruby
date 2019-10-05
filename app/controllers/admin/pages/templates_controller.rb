@@ -31,7 +31,8 @@ class Admin::Pages::TemplatesController < AdminController
     # Save edited template details
     @template = PageTemplate.find( params[:id] )
 
-    if @template.update!( template_params )
+    _unused = @template.update( template_params )
+    if @template.valid?
       flash.now[ :notice ] = 'Template details updated'
     else
       flash.now[ :alert  ] = 'Failed to update template details'
