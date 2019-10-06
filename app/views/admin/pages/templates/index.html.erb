@@ -7,8 +7,7 @@
 			<%= template.name %>
 		</td>
 		<td class="actions">
-			<%= link_to 'Edit', url_for( controller: '/admin/pages/templates',
-                                   action: 'edit', id: template ) %>
+			<%= link_to 'Edit', url_for( admin_pages_template_path( template ) ) %>
 		</td>
 	</tr>
 	<% end %>

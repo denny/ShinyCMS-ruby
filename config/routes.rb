@@ -15,23 +15,23 @@ Rails.application.routes.draw do
   namespace :admin do
     # Pages
     get  'pages',    to: 'pages#index'
-    get  'page/add', to: 'pages#new'
-    post 'page/add', to: 'pages#create'
+    get  'page/new', to: 'pages#new'
+    post 'page/new', to: 'pages#create'
     get  'page/:id', to: 'pages#edit', as: :page
     post 'page/:id', to: 'pages#update'
 
     namespace :pages do
       # Page sections
       get  'sections',    to: 'sections#index'
-      get  'section/add', to: 'sections#new'
-      post 'section/add', to: 'sections#create'
+      get  'section/new', to: 'sections#new'
+      post 'section/new', to: 'sections#create'
       get  'section/:id', to: 'sections#edit', as: :section
       post 'section/:id', to: 'sections#update'
 
       # Page templates
       get  'templates',    to: 'templates#index'
-      get  'template/add', to: 'templates#new'
-      post 'template/add', to: 'templates#create'
+      get  'template/new', to: 'templates#new'
+      post 'template/new', to: 'templates#create'
       get  'template/:id', to: 'templates#edit', as: :template
       post 'template/:id', to: 'templates#update'
     end
