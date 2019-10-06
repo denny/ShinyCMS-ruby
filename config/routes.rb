@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     # Site settings
     get  'settings',           to: 'settings#index'
     post 'settings',           to: 'settings#update'
-    post 'setting/create',     to: 'settings#create'
-    get  'setting/delete/:id', to: 'settings#delete', as: :setting
+    post 'setting/create',     to: 'settings#create', as: :setting_create
+    get  'setting/delete/:id', to: 'settings#delete', as: :setting_delete
   end
 end
