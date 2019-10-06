@@ -8,6 +8,7 @@ class PageTemplate < ApplicationRecord
 
   # Instance methods
 
+  # Check whether the template file is present on disk
   def file_exists?
     File.exist?(
       Rails.root.join(
