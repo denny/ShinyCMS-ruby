@@ -1,11 +1,18 @@
 # Admin controller for CMS settings
 class Admin::SettingsController < AdminController
-  # Render site settings form
+  # Display site settings form
   def index
     @settings = Setting.order( :name )
   end
 
-  # New setting form submitted
+  # Main form submitted; update any changed settings
+  def update
+    # TODO
+    flash[ :notice ] = 'Settings updated'
+    redirect_to admin_settings_path
+  end
+
+  # Add a new setting item
   def create
     @setting = Setting.new( setting_params )
 
@@ -17,12 +24,7 @@ class Admin::SettingsController < AdminController
     redirect_to admin_settings_path
   end
 
-  # Main form submitted; update any changed settings
-  def update
-    flash[ :notice ] = 'Settings updated'
-    redirect_to admin_settings_path
-  end
-
+  # Delete an existing settings item
   def delete
     if Setting.delete( params[ :id ] )
       flash[ :notice ] = 'Setting deleted'
