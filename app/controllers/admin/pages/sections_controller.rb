@@ -31,7 +31,8 @@ class Admin::Pages::SectionsController < AdminController
     # Save edited page section details
     @section = PageSection.find( params[:id] )
 
-    if @section.update!( section_params )
+    _unused = @section.update( section_params )
+    if @section.valid?
       flash.now[ :notice ] = 'Section details updated'
     else
       flash.now[ :alert  ] = 'Failed to update section details'
