@@ -5,7 +5,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
     it 'fetches the list of sections in the admin area' do
       toppy = create :page_section
       subby = create :page_subsection
-      get '/admin/pages/sections'
+      get admin_pages_sections_path
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'List sections'
       expect( response.body ).to include toppy.name
@@ -14,27 +14,24 @@ RSpec.describe 'Admin: Page Sections', type: :request do
     end
   end
 
-  describe 'GET /admin/pages/section/add' do
+  describe 'GET /admin/pages/section/new' do
     it 'loads the form to add a new section' do
-      get '/admin/pages/section/add'
+      get admin_pages_section_new_path
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'Add new section'
     end
   end
 
-  describe 'POST /admin/pages/section/add' do
+  describe 'POST /admin/pages/section/new' do
     it 'fails when the form is submitted without all the details' do
-      post '/admin/pages/section/add', params: {
+      post admin_pages_section_new_path, params: {
         'page_section[title]': 'Test'
       }
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'Failed to create new section'
     end
-  end
-
-  describe 'POST /admin/pages/section/add' do
     it 'adds a new section when the form is submitted' do
-      post '/admin/pages/section/add', params: {
+      post admin_pages_section_new_path, params: {
         'page_section[name]': 'Test',
         'page_section[title]': 'Test',
         'page_section[slug]': 'test'
@@ -49,29 +46,28 @@ RSpec.describe 'Admin: Page Sections', type: :request do
   describe 'GET /admin/pages/section/:id' do
     it 'loads the form to edit an existing section' do
       section = create :page_section
-      get "/admin/pages/section/#{section.id}"
+      get admin_pages_section_path( section )
       expect( response ).to have_http_status :ok
-      expect( response.body ).to include 'Add new section'
+      expect( response.body ).to include 'Edit section'
     end
   end
 
   describe 'POST /admin/pages/section/:id' do
     it 'fails to update the section when submitted without all the details' do
       section = create :page_section
-      post "/admin/pages/section/#{section.id}", params: {
+      post admin_pages_section_path( section ), params: {
         'page_section[name]': nil
       }
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'Failed to update section details'
     end
-  end
-
-  describe 'POST /admin/pages/section/:id' do
     it 'updates the section when the form is submitted' do
       section = create :page_section
-      post "/admin/pages/section/#{section.id}", params: {
+      post admin_pages_section_path( section ), params: {
         'page_section[name]': 'Updated by test'
       }
+      expect( response ).to have_http_status :found
+      follow_redirect!
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'Updated by test'
     end

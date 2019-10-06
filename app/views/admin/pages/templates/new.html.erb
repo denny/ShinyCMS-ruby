@@ -1,19 +1,20 @@
-<% @page_title = 'Add new page template' %>
+<% @page_title = 'Add new template' %>
 
-<%= form_for :page_template, url: admin_pages_template_add_path, method: 'post' do |f| %>
+<%= form_for :page_template, url: admin_pages_template_new_path, method: :post do |f| %>
   <p>
-    Name:
+    <%= f.label :name %>
     <br><%= f.text_field :name %>
   </p>
   <p>
-    Description:
+    <%= f.label :description %>
     <br><%= f.text_field :description %>
   </p>
   <p>
-    Template filename:
-    <br><%= f.text_field :filename %> <%# TODO: replace with select drop-down %>
+    <%# TODO: replace with select drop-down %>
+    <%= f.label :filename %>
+    <br><%= f.text_field :filename %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit 'Save' %>
   </p>
 <% end %>
