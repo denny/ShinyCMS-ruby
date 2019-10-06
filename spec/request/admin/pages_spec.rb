@@ -58,7 +58,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       page = create :page
       get "/admin/page/#{page.id}"
       expect( response ).to have_http_status :ok
-      expect( response.body ).to include 'Add new page'
+      expect( response.body ).to include 'Edit page'
     end
   end
 

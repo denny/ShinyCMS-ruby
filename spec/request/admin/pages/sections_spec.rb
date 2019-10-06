@@ -51,7 +51,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       section = create :page_section
       get "/admin/pages/section/#{section.id}"
       expect( response ).to have_http_status :ok
-      expect( response.body ).to include 'Add new section'
+      expect( response.body ).to include 'Edit section'
     end
   end
 
