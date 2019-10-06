@@ -1,6 +1,6 @@
 <% @page_title = 'Edit page' %>
 
-<%= form_for( @page, url: admin_page_path( @page ), method: 'post' ) do |f| %>
+<%= form_for @page, url: admin_page_path( @page ), method: :post do |f| %>
   <p>
     <%= f.label :name %>
     <br><%= f.text_field :name %>
@@ -36,6 +36,6 @@
     <br><%= f.check_box :hidden %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit 'Update' %>
   </p>
 <% end %>

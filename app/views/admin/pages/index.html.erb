@@ -13,8 +13,8 @@
 			<%= page.name %>
 		</td>
 		<td class="actions">
-      <%= link_to 'View', url_for( "/pages/#{page.slug}" ) %>
-      <%= link_to 'Edit', url_for( controller: '/admin/pages', action: 'edit', id: page ) %>
+      <%= link_to 'View', url_for( "/pages/#{page.slug}" )   %>
+      <%= link_to 'Edit', url_for( admin_page_path( page ) ) %>
 		</td>
 	</tr>
   <% end %>
@@ -35,7 +35,7 @@
 		</td>
 		<td class="actions">
       <%= link_to 'View', url_for( "/pages/#{section.slug}/#{page.slug}" ) %>
-      <%= link_to 'Edit', url_for( controller: '/admin/pages', action: 'edit', id: page ) %>
+      <%= link_to 'Edit', url_for( admin_page_path( page ) ) %>
 		</td>
 	</tr>
 
@@ -54,7 +54,7 @@
 		</td>
 		<td class="actions">
       <%= link_to 'View', url_for( "/pages/#{section.slug}/#{page.slug}" ) %>
-      <%= link_to 'Edit', url_for( controller: '/admin/pages', action: 'edit', id: page ) %>
+      <%= link_to 'Edit', url_for( admin_page_path( page ) ) %>
 		</td>
 	</tr>
 
@@ -73,7 +73,7 @@
 		</td>
 		<td class="actions">
       <%= link_to 'View', url_for( "/pages/#{section.slug}/#{page.slug}" ) %>
-      <%= link_to 'Edit', url_for( controller: '/admin/pages', action: 'edit', id: page ) %>
+      <%= link_to 'Edit', url_for( admin_page_path( page ) ) %>
 		</td>
 	</tr>
   <%# end  # if subsubsection.tree_contains_pages? %>
@@ -118,8 +118,8 @@
 			<%= page.name %>
 		</td>
 		<td class="actions">
-      <%= link_to 'View', url_for( "/pages/#{page.slug}" ) %>
-      <%= link_to 'Edit', url_for( controller: '/admin/pages', action: 'edit', id: page ) %>
+      <%= link_to 'View', url_for( "/pages/#{page.slug}" )   %>
+      <%= link_to 'Edit', url_for( admin_page_path( page ) ) %>
 		</td>
 	</tr>
 	<% end %>
@@ -138,7 +138,7 @@
 		</td>
 		<td class="actions">
       <%= link_to 'View', url_for( "/pages/#{section.slug}/#{page.slug}" ) %>
-      <%= link_to 'Edit', url_for( controller: '/admin/pages', action: 'edit', id: page ) %>
+      <%= link_to 'Edit', url_for( admin_page_path( page ) ) %>
 		</td>
 	</tr>
 	<% end %>
