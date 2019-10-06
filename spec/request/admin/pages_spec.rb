@@ -9,7 +9,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       create :page_in_section, :hidden
       create :page_in_subsection
       create :page_in_subsection, :hidden
-      get '/admin/pages'
+      get admin_pages_path
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'List pages'
       expect( response.body ).to include 'Top-level pages'
@@ -19,28 +19,27 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
   end
 
-  describe 'GET /admin/page/add' do
+  describe 'GET /admin/page/new' do
     it 'loads the form to add a new page' do
-      get '/admin/page/add'
+      get new_admin_page_path
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'Add new page'
     end
   end
 
-  describe 'POST /admin/page/add' do
+  describe 'POST /admin/page' do
     it 'fails when the form is submitted without all the details' do
-      post '/admin/page/add', params: {
+      post '/admin/page', params: {
         'page[title]': 'Test'
       }
+      expect( response ).to have_http_status :found
+      follow_redirect!
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'Failed to create new page'
     end
-  end
-
-  describe 'POST /admin/page/add' do
     it 'adds a new page when the form is submitted' do
       template = create :page_template
-      post '/admin/page/add', params: {
+      post '/admin/page', params: {
         'page[name]': 'Test',
         'page[title]': 'Test',
         'page[slug]': 'test',
@@ -53,32 +52,33 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
   end
 
-  describe 'GET /admin/page/:id' do
+  describe 'GET /admin/page/:id/edit' do
     it 'loads the form to edit an existing page' do
       page = create :page
-      get "/admin/page/#{page.id}"
+      get edit_admin_page_path( page )
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'Edit page'
     end
   end
 
-  describe 'POST /admin/page/:id' do
+  describe 'PUT /admin/page/:id' do
     it 'fails to update the page when submitted without all the details' do
       page = create :page
-      post "/admin/page/#{page.id}", params: {
+      put admin_page_path( page ), params: {
         'page[name]': nil
       }
+      expect( response ).to have_http_status :found
+      follow_redirect!
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'Failed to update page details'
     end
-  end
-
-  describe 'POST /admin/page/:id' do
     it 'updates the page when the form is submitted' do
       page = create :page
-      post "/admin/page/#{page.id}", params: {
+      put admin_page_path( page ), params: {
         'page[name]': 'Updated by test'
       }
+      expect( response ).to have_http_status :found
+      follow_redirect!
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'Updated by test'
     end

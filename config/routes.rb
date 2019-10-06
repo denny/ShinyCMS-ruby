@@ -14,26 +14,19 @@ Rails.application.routes.draw do
 
   namespace :admin do
     # Pages
-    get  'pages',    to: 'pages#index'
-    get  'page/add', to: 'pages#new'
-    post 'page/add', to: 'pages#create'
-    get  'page/:id', to: 'pages#edit', as: :page
-    post 'page/:id', to: 'pages#update'
+    get 'pages', to: 'pages#index'
+    resources :pages, path: 'page', only: %i[ new create edit update delete ]
 
     namespace :pages do
       # Page sections
-      get  'sections',    to: 'sections#index'
-      get  'section/add', to: 'sections#new'
-      post 'section/add', to: 'sections#create'
-      get  'section/:id', to: 'sections#edit', as: :section
-      post 'section/:id', to: 'sections#update'
+      get 'sections', to: 'sections#index'
+      resources :sections,
+                path: 'section', only: %i[ new create edit update delete ]
 
       # Page templates
-      get  'templates',    to: 'templates#index'
-      get  'template/add', to: 'templates#new'
-      post 'template/add', to: 'templates#create'
-      get  'template/:id', to: 'templates#edit', as: :template
-      post 'template/:id', to: 'templates#update'
+      get 'templates', to: 'templates#index'
+      resources :templates,
+                path: 'template', only: %i[ new create edit update delete ]
     end
 
     # Site settings

@@ -19,10 +19,10 @@ class Admin::PagesController < AdminController
 
     if @page.save
       flash[ :notice ] = 'New page created'
-      redirect_to action: 'edit', id: @page.id
+      redirect_to action: :edit, id: @page.id
     else
-      flash.now[ :alert ] = 'Failed to create new page'
-      render action: 'new'
+      flash[ :alert  ] = 'Failed to create new page'
+      redirect_to action: :new
     end
   end
 
@@ -37,12 +37,12 @@ class Admin::PagesController < AdminController
 
     _unused = @page.update( page_params )
     if @page.valid?
-      flash.now[ :notice ] = 'Page details updated'
+      flash[ :notice ] = 'Page details updated'
     else
-      flash.now[ :alert  ] = 'Failed to update page details'
+      flash[ :alert  ] = 'Failed to update page details'
     end
 
-    render :edit
+    redirect_to action: :edit, id: @page.id
   end
 
   private
