@@ -9,7 +9,7 @@
 		</td>
 		<td class="actions">
       <%= link_to 'View', url_for( "/pages/#{section.slug}" ) %>
-      <%= link_to 'Edit', url_for( controller: '/admin/pages/sections', action: 'edit', id: section ) %>
+      <%= link_to 'Edit', url_for( admin_pages_section_path( section ) ) %>
 		</td>
 	</tr>
 	<% indent = indent + 2 %>
@@ -20,7 +20,7 @@
 		</td>
 		<td class="actions">
       <%= link_to 'View', url_for( "/pages/#{section.slug}/#{subsection.slug}" ) %>
-      <%= link_to 'Edit', url_for( controller: '/admin/pages/sections', action: 'edit', id: subsection ) %>
+			<%= link_to 'Edit', url_for( admin_pages_section_path( subsection ) ) %>
 		</td>
 	</tr>
 	<% indent = indent + 2 %>
@@ -31,7 +31,7 @@
 		</td>
 		<td class="actions">
       <%= link_to 'View', url_for( "/pages/#{section.slug}/#{subsection.slug}/#{subsubsection.slug}" ) %>
-      <%= link_to 'Edit', url_for( controller: '/admin/pages/sections', action: 'edit', id: subsubsection ) %>
+			<%= link_to 'Edit', url_for( admin_pages_section_path( subsubsection ) ) %>
 		</td>
 	</tr>
 	<% end  # sub-sub-sections   %>
