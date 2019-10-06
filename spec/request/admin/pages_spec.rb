@@ -13,9 +13,9 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'List pages'
       expect( response.body ).to include 'Top-level pages'
-      # expect( response.body ).to include 'Hidden top-level pages'  # FIXME
       expect( response.body ).to include p1.section.name
       expect( response.body ).to include p1.name
+      # expect( response.body ).to include 'Hidden top-level pages'  # FIXME
     end
   end
 
