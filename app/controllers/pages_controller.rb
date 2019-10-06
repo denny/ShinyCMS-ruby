@@ -67,11 +67,10 @@ class PagesController < ApplicationController
 
   # Build the element stack and render the page
   def show
-    # FIXME!
-    # render inline: 'Page template file is missing.' && return unless
-    #   File.exist?(
-    #     Rails.root.join( 'pages', 'templates', @page.template.filename )
-    #   )
+    unless @page.template.file_exists?
+      render inline: 'Page template file is missing.'
+      return
+    end
 
     # TODO: build element stack
 

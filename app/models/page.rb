@@ -1,6 +1,11 @@
 # Model for 'brochure' pages
 class Page < ApplicationRecord
-  # Associations
+  validates :name,        presence: true
+  validates :title,       presence: true
+  validates :slug,        presence: true
+  validates :template_id, presence: true
+  validates :hidden,      inclusion: { in: [ true, false ] }
+
   belongs_to :section,  class_name: 'PageSection', optional: true,
                         inverse_of: 'pages'
   belongs_to :template, class_name: 'PageTemplate',
