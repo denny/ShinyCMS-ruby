@@ -19,7 +19,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
   end
 
-  describe 'GET /admin/page/add' do
+  describe 'GET /admin/page/new' do
     it 'loads the form to add a new page' do
       get admin_page_new_path
       expect( response ).to have_http_status :ok
@@ -27,7 +27,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
   end
 
-  describe 'POST /admin/page/add' do
+  describe 'POST /admin/page/new' do
     it 'fails when the form is submitted without all the details' do
       post admin_page_new_path, params: {
         'page[title]': 'Test'
