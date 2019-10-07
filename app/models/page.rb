@@ -37,11 +37,14 @@ class Page < ApplicationRecord
 
     return Page.top_level_pages.first if Page.top_level_pages.first
 
-    Page.first
+    Page.find_by( hidden: false )
   end
 
   def self.find_default_page
     name = Setting.get 'default_page'
-    Page.where( name: name ).or( Page.where( slug: name ) ).first
+    Page.where( name: name, hidden: false )
+        .or( Page
+        .where( slug: name, hidden: false ) )
+        .first
   end
 end
