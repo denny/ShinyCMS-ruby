@@ -4,7 +4,7 @@
   <% @settings.each do |s| %>
   <p>
     <label for="shinycms_setting_<%= s.id %>"><%= s.name %></label>
-    <%= text_field :settings, "shinycms_setting_#{s.id}", value: s.value %>
+    <%= text_field :settings, "shinycms_setting_#{s.id}", value: s.value, method: :delete %>
     <%= link_to 'Delete', admin_setting_delete_path( s ) %>
   </p>
   <% end %>
