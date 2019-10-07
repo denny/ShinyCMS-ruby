@@ -32,14 +32,13 @@ class PagesController < ApplicationController
     @page = PageSection.top_level_sections&.find_by( slug: slug )&.default_page
     show && return if @page
 
-    # If not, then bounce to the 'not found' handler
-    render status: :not_found, template: 'special/404.html.erb'
+    # If the slug matches neither, then call the 'not found' handler
+    not_found
   end
 
   # Handle requests with a multi-part path
   # /pages/foo/bar, /pages/foo/bar/baz, /pages/etc/etc/etc
   def show_in_section
-    # We have multiple path parts, so we need to walk through them in order
     path_parts = params[:slugs].split '/'
     slug = path_parts.pop
     section = traverse_path( path_parts, PageSection.top_level_sections )
@@ -48,22 +47,10 @@ class PagesController < ApplicationController
             section.sections&.find_by( slug: slug )&.default_page
     show && return if @page
 
-    # b0rk
-    render status: :not_found, template: 'special/404.html.erb'
+    not_found
   end
 
   private
-
-  # Find the correct section to look for the specified (or default) page in
-  def traverse_path( path_parts, sections )
-    slug = path_parts.shift
-    section = sections&.find_by( slug: slug )
-
-    render status: :not_found, template: 'special/404.html.erb' unless section
-    return section if path_parts.empty?
-
-    traverse_path( path_parts, section.sections )
-  end
 
   # Build the element stack and render the page
   def show
@@ -72,8 +59,40 @@ class PagesController < ApplicationController
       return
     end
 
+    build_menu_data
+
     # TODO: build element stack
 
     render template: "pages/templates/#{@page.template.filename}"
+  end
+
+  # Find the correct section to look for the specified (or default) page in
+  def traverse_path( path_parts, sections )
+    slug = path_parts.shift
+    section = sections&.find_by( slug: slug )
+
+    not_found && return unless section
+    return section if path_parts.empty?
+
+    traverse_path( path_parts, section.sections )
+  end
+
+  # Populate data used by the menu partial
+  def build_menu_data
+    @menu_tl_sections = PageSection.top_level_sections
+    return unless @page
+
+    if @page.section
+      @menu_sections = @page.section.sections
+      @menu_pages    = @page.section.pages
+    else
+      @menu_pages = Page.top_level_pages
+    end
+  end
+
+  # 404 handler
+  def not_found
+    build_menu_data
+    render status: :not_found, template: 'special/404.html.erb'
   end
 end

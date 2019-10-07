@@ -1,18 +1,37 @@
+<% unless @menu_tl_sections.blank? %>
 <ul>
   <li>
-    <%= link_to 'Home', url_for( '/' ) %>
+    <%= link_to Page.default_page.name, url_for( '/' ) %>
   </li>
-  <% PageSection.top_level_sections.each do |menu_tl_section| %>
+  <% @menu_tl_sections.each do |menu_tl_section| %>
   <li>
     <%= link_to menu_tl_section.name, url_for( "/pages/#{menu_tl_section.slug}" ) %>
   </li>
   <% end %>
 </ul>
+<% end %>
 
+<% unless @menu_sections.blank? %>
 <ul>
-  <% Page.top_level_pages.each do |menu_tl_page| %>
+  <% @menu_sections.each do |menu_section| %>
   <li>
-    <%= link_to menu_tl_page.name, url_for( "/pages/#{menu_tl_page.slug}" ) %>
+    <%= link_to menu_section.name, url_for( "/pages/#{menu_section.slug}" ) %>
   </li>
   <% end %>
 </ul>
+<% end %>
+
+<% unless @menu_pages.blank? %>
+<ul>
+  <% if @menu_tl_sections.blank? %>
+  <li>
+    <%= link_to Page.default_page.name, url_for( '/' ) %>
+  </li>
+  <% end %>
+  <% @menu_pages.each do |menu_page| %>
+  <li>
+    <%= link_to menu_page.name, url_for( "/pages/#{menu_page.slug}" ) %>
+  </li>
+  <% end %>
+</ul>
+<% end %>
