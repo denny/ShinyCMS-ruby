@@ -4,6 +4,6 @@ class Setting < ApplicationRecord
 
   # Return the value of the specified setting
   def self.get( name )
-    where( name: name).pluck( :value )
+    where( name: name).pluck( :value ).first
   end
 end
