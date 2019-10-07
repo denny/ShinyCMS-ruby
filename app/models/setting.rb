@@ -1,6 +1,9 @@
 # Model class for site settings
 class Setting < ApplicationRecord
+  # Class methods
+
+  # Return the value of the specified setting
   def self.get( name )
-    find_by( name: name )&.value
+    where( name: name).pluck( :value )
   end
 end
