@@ -5,7 +5,8 @@
   <p>
     <label for="shinycms_setting_<%= s.id %>"><%= s.name %></label>
     <%= text_field :settings, "shinycms_setting_#{s.id}", value: s.value %>
-    <%= link_to 'Delete', admin_setting_delete_path( s ), method: :delete %>
+    <%= link_to 'Delete', admin_setting_delete_path( s ), method: :delete,
+        data: { confirm: 'Are you sure?' } %>
   </p>
   <% end %>
   <p>
