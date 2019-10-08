@@ -4,7 +4,11 @@ class Page < ApplicationRecord
   validates :title,       presence: true
   validates :slug,        presence: true
   validates :template_id, presence: true
-  validates :hidden,      inclusion: { in: [ true, false ] }
+  validates :hidden,      inclusion:  { in: [ true, false ] }
+  validates :slug,        uniqueness: {
+    scope: :section,
+    message: 'The slug must be unique within its section'
+  }
 
   belongs_to :section,  class_name: 'PageSection', optional: true,
                         inverse_of: 'pages'
@@ -37,11 +41,15 @@ class Page < ApplicationRecord
 
     return Page.top_level_pages.first if Page.top_level_pages.first
 
-    Page.first
+    Page.find_by( hidden: false )
   end
 
+  # Return the default top-level page
   def self.find_default_page
-    name = Setting.get 'default_page'
-    Page.where( name: name ).or( Page.where( slug: name ) ).first
+    name_or_slug = Setting.get 'Default page'
+    top_level_pages.where( name: name_or_slug )
+                   .or( top_level_pages
+                   .where( slug: name_or_slug ) )
+                   .first
   end
 end

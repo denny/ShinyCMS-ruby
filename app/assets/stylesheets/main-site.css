@@ -35,6 +35,7 @@ nav#top-nav {
 }
 
 nav#top-nav ul {
+  padding-left:     0;
 }
 
 nav#top-nav li {
@@ -54,6 +55,7 @@ footer#footer {
   border-top:   #dddddd solid 1px;
   padding:      0.5em;
   text-align:   center;
+  font-size:    0.8em;
 }
 
 
@@ -85,7 +87,8 @@ nav#admin-toolbar #admin-toolbar-logo {
 
 nav#admin-toolbar #admin-toolbar-links {
   float:        right;
-  padding:      5px 20px 0 0;
+  padding:      0.5em 20px 0 0;
+  font-size:    0.9em;
 }
 
 nav#admin-toolbar #admin-toolbar-links a {
