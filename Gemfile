@@ -29,6 +29,7 @@ gem 'webpacker', '~> 4.0'
 group :development, :test do
   gem 'bundler-audit', require: false
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
