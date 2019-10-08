@@ -15,3 +15,7 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+// jQuery UJS (required for method: :delete hyperlinks)
+//= require jquery
+//= require jquery_ujs
