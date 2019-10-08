@@ -31,8 +31,7 @@ class Admin::Pages::SectionsController < AdminController
     # Save edited page section details
     @section = PageSection.find( params[:id] )
 
-    _unused = @section.update( section_params )
-    if @section.valid?
+    if @section.update( section_params )
       flash[ :notice ] = 'Section details updated'
       redirect_to action: :edit, id: @section.id
     else
