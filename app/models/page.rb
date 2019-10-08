@@ -40,11 +40,12 @@ class Page < ApplicationRecord
     Page.find_by( hidden: false )
   end
 
+  # Return the default top-level page
   def self.find_default_page
-    name = Setting.get 'default_page'
-    Page.where( name: name, hidden: false )
-        .or( Page
-        .where( slug: name, hidden: false ) )
-        .first
+    name_or_slug = Setting.get 'Default page'
+    top_level_pages.where( name: name_or_slug )
+                   .or( top_level_pages
+                   .where( slug: name_or_slug ) )
+                   .first
   end
 end
