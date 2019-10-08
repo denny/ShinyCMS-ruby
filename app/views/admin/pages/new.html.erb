@@ -18,14 +18,13 @@
     <br><%= f.text_field :slug %>
   </p>
   <p>
-    <%= f.label :template %>
-    <br><%= select( 'page', 'template_id',
-      PageTemplate.pluck( :name, :id ) ) %>
+    <%= f.label :template_id, 'Template' %>
+    <br><%= f.select :template_id, PageTemplate.pluck( :name, :id ) %>
   </p>
   <p>
-    <%= f.label :section %>
-    <br><%= select( 'page', 'section_id',
-      PageSection.pluck( :name, :id ), { include_blank: 'None' } ) %>
+    <%= f.label :section_id, 'Section' %>
+    <br><%= f.select :section_id, PageSection.pluck( :name, :id ),
+            { include_blank: 'None' } %>
   </p>
   <p>
     <%= f.label :sort_order %>

@@ -18,9 +18,9 @@
     <br><%= f.text_field :slug %>
   </p>
   <p>
-    <%= f.label :section %>
-    <br><%= select( 'page_section', 'section_id', PageSection.pluck( :name, :id ),
-            { include_blank: 'None', selected: @section.section_id } ) %>
+    <%= f.label :section_id, 'Section' %>
+    <br><%= f.select :section_id, PageSection.pluck( :name, :id ),
+            { include_blank: 'None' } %>
   </p>
   <p>
     <%= f.label :sort_order %>
