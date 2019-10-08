@@ -3,11 +3,11 @@ class PageSection < ApplicationRecord
   validates :name,   presence: true
   validates :title,  presence: true
   validates :slug,   presence: true
-  validates :hidden, inclusion: { in: [ true, false ] }
-  # validates :slug,   uniqueness: {
-  #  scope: :section,
-  #  message: 'The slug must be unique within its section'
-  # }
+  validates :hidden, inclusion:  { in: [ true, false ] }
+  validates :slug,   uniqueness: {
+    scope: :section,
+    message: 'The slug must be unique within its section'
+  }
 
   has_many  :pages,
             -> { where( hidden: false ).order( :sort_order ) },
