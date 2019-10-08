@@ -10,9 +10,8 @@
     <br><%= f.text_field :description %>
   </p>
   <p>
-    <%# TODO: replace with select drop-down %>
-    <%= f.label :filename %>
-    <br><%= f.text_field :filename %>
+    <%= f.label :filename, 'Template file' %>
+    <br><%= f.select :filename, PageTemplate.available_templates %>
   </p>
   <p>
     <%= f.submit 'Update' %>
