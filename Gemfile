@@ -16,13 +16,15 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+# jQuery (inc. jQuery UJS, required for method: :delete hyperlinks)
+gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster.
 # Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Use faster SCSS gem for stylesheets
 gem 'sassc-rails'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-# gem 'webpacker', '~> 4.0'
+gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'bundler-audit', require: false
