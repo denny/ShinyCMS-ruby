@@ -4,7 +4,11 @@ class Page < ApplicationRecord
   validates :title,       presence: true
   validates :slug,        presence: true
   validates :template_id, presence: true
-  validates :hidden,      inclusion: { in: [ true, false ] }
+  validates :hidden,      inclusion:  { in: [ true, false ] }
+  validates :slug,        uniqueness: {
+    scope: :section,
+    message: 'The slug must be unique within its section'
+  }
 
   belongs_to :section,  class_name: 'PageSection', optional: true,
                         inverse_of: 'pages'
