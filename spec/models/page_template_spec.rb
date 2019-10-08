@@ -16,8 +16,15 @@ RSpec.describe PageTemplate, type: :model do
       expect( template.file_exists? ).to eq true
     end
     it 'returns false if the template file does not exist' do
-      template = create :page_template, filename: 'NO-SUCH-FILE'
+      template = build :page_template, filename: 'NO-SUCH-FILE'
       expect( template.file_exists? ).to eq false
+    end
+  end
+
+  context 'PageTemplate.available_templates' do
+    it 'returns the names of the template files in pages/templates' do
+      expect( PageTemplate.available_templates.size  ).to eq 1
+      expect( PageTemplate.available_templates.first ).to eq 'example'
     end
   end
 end
