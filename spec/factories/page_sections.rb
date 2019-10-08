@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :page_section do
-    name   { 'Test section' }
-    title  { 'Test Section' }
-    slug   { 'test-section' }
-    hidden { false          }
+    name   { Faker::Space.galaxy }
+    title  { Faker::Space.nebula }
+    slug   { Faker::Science.unique.element.downcase }
+    hidden { false }
 
     trait :hidden do
       hidden { true }
