@@ -6,6 +6,7 @@ AllCops:
   Exclude:
     - db/**/*
     - bin/*
+    - node_modules/node-sass/**/*
 
 # Spec files are supposed to be one long block. Shush.
 Metrics/BlockLength:
