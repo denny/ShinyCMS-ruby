@@ -1,7 +1,9 @@
-# This file should contain all the record creation needed to seed the database
-# with its default values. The data can then be loaded with the `rake db:seed`
-# command, or as part of creating the databse with `rake db:setup`
+# This file contains any data which is either necessary to get ShinyCMS running,
+# or which might provide useful hints for configuration after that.
+#
+# It is used to populate the databse when you create it with `rake db:setup`
+# You can also load it (and reload it) at any time using `rake db:seed`
 
 # Settings
-Setting.create! name: 'Default page',    value: '[not set]'
-Setting.create! name: 'Default section', value: '[not set]'
+seed Setting, { name: 'Default page'    }, { value: '[not set]' }
+seed Setting, { name: 'Default section' }, { value: '[not set]' }
