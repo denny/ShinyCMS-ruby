@@ -35,8 +35,7 @@ class Admin::PagesController < AdminController
     # Save edited page details
     @page = Page.find( params[:id] )
 
-    _unused = @page.update( page_params )
-    if @page.valid?
+    if @page.update( page_params )
       flash[ :notice ] = 'Page details updated'
       redirect_to action: :edit, id: @page.id
     else

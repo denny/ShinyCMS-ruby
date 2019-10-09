@@ -30,6 +30,7 @@
   <% end %>
   <% @menu_pages.each do |menu_page| %>
   <li>
+    <%# TODO: the line below is broken for pages in sections! %>
     <%= link_to menu_page.name, url_for( "/pages/#{menu_page.slug}" ) %>
   </li>
   <% end %>
