@@ -40,6 +40,6 @@ class Admin::SettingsController < AdminController
   private
 
   def setting_params
-    params.require( :setting ).permit( :name, :value )
+    params.require( :setting ).permit( :name, :value, :description )
   end
 end
