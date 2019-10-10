@@ -5,7 +5,7 @@
   <% @settings.each do |s| %>
 	<tr class="showfocus">
 		<td>
-      <label for="setting_value_<%= s.id %>"><%= s.name %></label>
+      <label for="settings[setting_value_<%= s.id %>]"><%= s.name %></label>
 		</td>
     <td>
       <%= text_field :settings, "setting_value_#{s.id}", value: s.value %>
