@@ -29,6 +29,6 @@ class PageTemplate < ApplicationRecord
   # Add another validation here, because it uses the class method above
   validates :filename, inclusion: {
     in: PageTemplate.available_templates,
-    message: 'The template file must be in the pages/templates folder'
+    message: I18n.t( 'template_file_must_exist' )
   }
 end
