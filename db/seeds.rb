@@ -5,5 +5,5 @@
 # You can also load it (and reload it) at any time using `rake db:seed`
 
 # Settings
-seed Setting, { name: 'Default page'    }, { value: '[not set]' }
-seed Setting, { name: 'Default section' }, { value: '[not set]' }
+seed Setting, { name: I18n.t( 'default_page'    ) }, { value: '[not set]' }
+seed Setting, { name: I18n.t( 'default_section' ) }, { value: '[not set]' }

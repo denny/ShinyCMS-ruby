@@ -7,7 +7,7 @@ class Page < ApplicationRecord
   validates :hidden,      inclusion:  { in: [ true, false ] }
   validates :slug,        uniqueness: {
     scope: :section,
-    message: 'The slug must be unique within its section'
+    message: I18n.t( 'slug_unique' )
   }
 
   belongs_to :section,  class_name: 'PageSection', optional: true,
@@ -46,7 +46,7 @@ class Page < ApplicationRecord
 
   # Return the default top-level page
   def self.find_default_page
-    name_or_slug = Setting.get 'Default page'
+    name_or_slug = Setting.get I18n.t( 'default_page' )
     top_level_pages.where( name: name_or_slug )
                    .or( top_level_pages
                    .where( slug: name_or_slug ) )
