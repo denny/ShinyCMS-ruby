@@ -41,7 +41,7 @@ class Page < ApplicationRecord
 
     return Page.top_level_pages.first if Page.top_level_pages.first
 
-    Page.find_by( hidden: false )
+    Page.order( :created_at ).find_by( hidden: false )
   end
 
   # Return the default top-level page
