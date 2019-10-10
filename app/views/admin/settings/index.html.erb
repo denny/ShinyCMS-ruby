@@ -1,19 +1,29 @@
 <% @page_title = 'Site Settings' %>
 
 <%= form_with name: 'all_settings', url: admin_settings_path, method: :post do %>
+<table class="list">
   <% @settings.each do |s| %>
-  <p>
-    <label for="setting_value_<%= s.id %>"><%= s.name %></label>
-    <%= text_field :settings, "setting_value_#{s.id}", value: s.value %>
-    <%= text_field :settings, "setting_description_#{s.id}", value: s.description %>
-    <%= link_to 'Delete', admin_setting_delete_path( s ), method: :delete,
-        data: { confirm: 'Are you sure?' } %>
-  </p>
-  <% end %>
-  <p>
-    <%= submit_tag 'Update Settings' %>
-  </p>
-<% end %>
+	<tr class="showfocus">
+		<td>
+      <label for="setting_value_<%= s.id %>"><%= s.name %></label>
+		</td>
+    <td>
+      <%= text_field :settings, "setting_value_#{s.id}", value: s.value %>
+    </td>
+    <td>
+      <%= text_field :settings, "setting_description_#{s.id}", value: s.description, class: 'longtext' %>
+    </td>
+		<td class="actions">
+      <%= link_to 'Delete', admin_setting_delete_path( s ), method: :delete,
+          data: { confirm: 'Are you sure?' } %>
+		</td>
+	</tr>
+  <% end  # settings %>
+</table>
+<p>
+  <%= submit_tag 'Update Settings' %>
+</p>
+<% end  # form %>
 
 <%= form_with name: 'new_setting', url: admin_setting_create_path, method: :post do %>
   <h2>
