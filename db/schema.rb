@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_10_04_223601) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["section_id"], name: "index_page_sections_on_section_id"
+    t.index ["slug", "section_id"], name: "index_page_sections_on_slug_and_section_id", unique: true
   end
 
   create_table "page_templates", force: :cascade do |t|
@@ -51,12 +52,14 @@ ActiveRecord::Schema.define(version: 2019_10_04_223601) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["section_id"], name: "index_pages_on_section_id"
+    t.index ["slug", "section_id"], name: "index_pages_on_slug_and_section_id", unique: true
     t.index ["template_id"], name: "index_pages_on_template_id"
   end
 
   create_table "settings", force: :cascade do |t|
     t.string "name", null: false
     t.string "value"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
