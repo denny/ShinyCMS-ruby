@@ -11,6 +11,7 @@ AllCops:
 # Spec files are supposed to be one long block. Shush.
 Metrics/BlockLength:
   Exclude:
+    - Gemfile
     - spec/**/*.rb
     - config/routes.rb
 

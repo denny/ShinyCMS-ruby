@@ -16,5 +16,22 @@ module ShinyCMS
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # Remove routes for Active Storage
+    initializer(
+      :remove_activestorage_routes, after: :add_routing_paths
+    ) do |app|
+      app.routes_reloader.paths.delete_if do |path|
+        path =~ /activestorage/
+      end
+    end
+    # Remote routes for Action Mailbox
+    initializer(
+      :remove_actionmailbox_routes, after: :add_routing_paths
+    ) do |app|
+      app.routes_reloader.paths.delete_if do |path|
+        path =~ /actionmailbox/
+      end
+    end
   end
 end
