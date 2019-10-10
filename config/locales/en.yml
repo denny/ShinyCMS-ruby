@@ -1,33 +1,46 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
+# To use the locales
 #     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
 #     <%= t('hello') %>
 #
 # To use a different locale, set it with `I18n.locale`:
-#
 #     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
 #
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  # Admin controllers
+
+  # Pages
+  page_created: New page added
+  page_create_failed: Failed to add new page
+  page_updated: Page details updated
+  page_update_failed: Failed to update page details
+  # Page Sections
+  section_created: New section added
+  section_create_failed: Failed to add new section
+  section_updated: Section details updated
+  section_update_failed: Failed to update section details
+  # Page Templates
+  template_created: New template added
+  template_create_failed: Failed to add new template
+  template_updated: Template details updated
+  template_update_failed: Failed to update template details
+  # Settings
+  setting_created: New setting added
+  setting_create_failed: Failed to add new setting
+  settings_updated: Settings updated
+  settings_update_failed: Failed to update settings
+  setting_deleted: Setting deleted
+  setting_delete_failed: Failed to delete setting
+
+
+  # Models
+
+  # Pages & Page Sections
+  slug_unique: The slug must be unique within its section
+  # Page Templates
+  template_file_must_exist: The template file must be in the pages/templates folder
+  # Settings
+  default_page: Default page
+  default_section: Default section

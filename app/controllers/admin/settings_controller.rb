@@ -8,7 +8,8 @@ class Admin::SettingsController < AdminController
   # Main form submitted; update any changed settings
   def update
     # TODO
-    flash[ :notice ] = 'Settings updated'
+    # flash[ :notice ] = I18n.t 'settings_updated'
+    flash[ :alert ] = I18n.t 'settings_update_failed'
     redirect_to admin_settings_path
   end
 
@@ -17,9 +18,9 @@ class Admin::SettingsController < AdminController
     @setting = Setting.new( setting_params )
 
     if @setting.save
-      flash[ :notice ] = 'New setting added'
+      flash[ :notice ] = I18n.t 'setting_created'
     else
-      flash[ :alert ] = 'Failed to create new setting'
+      flash[ :alert ] = I18n.t 'setting_create_failed'
     end
     redirect_to admin_settings_path
   end
@@ -27,9 +28,9 @@ class Admin::SettingsController < AdminController
   # Delete an existing settings item
   def delete
     if Setting.delete( params[ :id ] )
-      flash[ :notice ] = 'Setting deleted'
+      flash[ :notice ] = I18n.t 'setting_deleted'
     else
-      flash[ :alert ] = 'Failed to delete setting'
+      flash[ :alert ] = I18n.t 'setting_delete_failed'
     end
     redirect_to admin_settings_path
   end
