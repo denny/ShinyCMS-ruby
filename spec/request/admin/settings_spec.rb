@@ -10,7 +10,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
   end
 
   describe 'POST /admin/settings/create' do
-    it 'adds a new setting' do
+    it 'adds a new setting, with a string value' do
       post '/admin/setting/create', params: {
         'setting[name]': 'New Setting Is New',
         'setting[value]': 'AND IMPROVED!'
@@ -19,6 +19,29 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       follow_redirect!
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'Site Settings'
+      expect( response.body ).to include 'New Setting Is New'
+    end
+    it 'adds a new setting, with an empty string value' do
+      post '/admin/setting/create', params: {
+        'setting[name]': 'New Setting Is Empty',
+        'setting[value]': ''
+      }
+      expect( response ).to have_http_status :found
+      follow_redirect!
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to include 'Site Settings'
+      expect( response.body ).to include 'New Setting Is Empty'
+    end
+    it 'adds a new setting, with an explicitly null value' do
+      post '/admin/setting/create', params: {
+        'setting[name]': 'New Setting Is Null',
+        'setting[value]': nil
+      }
+      expect( response ).to have_http_status :found
+      follow_redirect!
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to include 'Site Settings'
+      expect( response.body ).to include 'New Setting Is Null'
     end
   end
 
