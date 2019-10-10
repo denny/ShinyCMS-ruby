@@ -1,5 +1,7 @@
 # Admin controller for CMS settings
 class Admin::SettingsController < AdminController
+  before_action :check_admin_ip_whitelist
+
   # Display site settings form
   def index
     @settings = Setting.order( :name )
