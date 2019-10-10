@@ -3,8 +3,9 @@
 <%= form_with name: 'all_settings', url: admin_settings_path, method: :post do %>
   <% @settings.each do |s| %>
   <p>
-    <label for="shinycms_setting_<%= s.id %>"><%= s.name %></label>
-    <%= text_field :settings, "shinycms_setting_#{s.id}", value: s.value %>
+    <label for="setting_value_<%= s.id %>"><%= s.name %></label>
+    <%= text_field :settings, "setting_value_#{s.id}", value: s.value %>
+    <%= text_field :settings, "setting_description_#{s.id}", value: s.description %>
     <%= link_to 'Delete', admin_setting_delete_path( s ), method: :delete,
         data: { confirm: 'Are you sure?' } %>
   </p>
@@ -19,7 +20,11 @@
     Add new setting
   </h2>
   <p>
-    <label><%= text_field :setting, :name %> <%= text_field :setting, :value %></label>
+    <label>
+      <%= text_field :setting, :name %>
+      <%= text_field :setting, :value %>
+    </label>
+    <%= text_field :setting, :description %>
   </p>
   <p>
     <%= submit_tag 'Add' %>
