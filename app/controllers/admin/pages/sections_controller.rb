@@ -1,5 +1,7 @@
 # Admin controller for page sections
 class Admin::Pages::SectionsController < AdminController
+  before_action :check_admin_ip_whitelist
+
   def index
     # List all page sections
     @tl_sections = PageSection.top_level_sections
