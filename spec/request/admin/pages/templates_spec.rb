@@ -25,7 +25,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
         'page_template[filename]': 'Test'
       }
       expect( response ).to have_http_status :ok
-      expect( response.body ).to include 'Failed to create new template'
+      expect( response.body ).to include I18n.t 'template_create_failed'
     end
   end
 
@@ -58,7 +58,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
         'page_template[name]': nil
       }
       expect( response ).to have_http_status :ok
-      expect( response.body ).to include 'Failed to update template details'
+      expect( response.body ).to include I18n.t 'template_update_failed'
     end
   end
 
