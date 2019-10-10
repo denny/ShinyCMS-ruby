@@ -10,7 +10,7 @@ class AdminController < ApplicationController
     allowed = Setting.get I18n.t( 'admin_ip_whitelist' )
     return if allowed.blank?
 
-    return if allowed.strip.split( /,|\s+|\s+,\s+/ ).include? request.remote_ip
+    return if allowed.strip.split( /\s*,\s*|\s+/ ).include? request.remote_ip
 
     redirect_to pages_path
   end
