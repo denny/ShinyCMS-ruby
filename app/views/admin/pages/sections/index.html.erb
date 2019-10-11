@@ -1,42 +1,11 @@
 <% @page_title = 'List sections' %>
 
 <table class="list">
-	<% indent = 0 %>
   <% @tl_sections.each do |section| %>
-	<tr class="showfocus">
-		<td>
-			<%= section.name %>
-		</td>
-		<td class="actions">
-      <%= link_to 'View', url_for( "/pages/#{section.slug}" ) %>
-      <%= link_to 'Edit', url_for( admin_pages_section_path( section ) ) %>
-		</td>
-	</tr>
-	<% indent = indent + 2 %>
-	<% section.sections.each do |subsection| %>
-	<tr class="showfocus">
-		<td style="padding-left: <%= indent %>em;">
-			<%= subsection.name %>
-		</td>
-		<td class="actions">
-      <%= link_to 'View', url_for( "/pages/#{section.slug}/#{subsection.slug}" ) %>
-			<%= link_to 'Edit', url_for( admin_pages_section_path( subsection ) ) %>
-		</td>
-	</tr>
-	<% indent = indent + 2 %>
-	<% subsection.sections.each do |subsubsection| %>
-	<tr class="showfocus">
-		<td style="padding-left: <%= indent %>em;">
-			<%= subsubsection.name %>
-		</td>
-		<td class="actions">
-      <%= link_to 'View', url_for( "/pages/#{section.slug}/#{subsection.slug}/#{subsubsection.slug}" ) %>
-			<%= link_to 'Edit', url_for( admin_pages_section_path( subsubsection ) ) %>
-		</td>
-	</tr>
-	<% end  # sub-sub-sections   %>
-	<% indent = indent - 2 %>
-	<% end  # sub-sections       %>
-	<% indent = indent - 2 %>
-	<% end  # top-level sections %>
+		<%= render partial: 'section', locals: {
+			section: section,
+			view_path: '/pages',
+			indent: 1
+		} %>
+	<% end %>
 </table>
