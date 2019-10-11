@@ -1,0 +1,41 @@
+	<% view_path = "#{view_path}/#{section.slug}" %>
+	<tr>
+		<% if section.hidden %>
+		<td style="padding-left: <%= indent %>em;" class="hidden">
+    <% else %>
+		<td style="padding-left: <%= indent %>em;">
+    <% end %>
+			<b><%= section.name %></b>
+		</td>
+		<td class="actions">
+      <%= link_to 'View', url_for( view_path ) %>
+      <%= link_to 'Edit', url_for( admin_pages_section_path( section ) ) %>
+		</td>
+	</tr>
+	<% pages = section.pages + section.hidden_pages %>
+	<% pages.each do |page| %>
+	<tr class="showfocus">
+		<% if page.hidden %>
+		<td style="padding-left: <%= indent + 2 %>em;" class="hidden">
+    <% else %>
+		<td style="padding-left: <%= indent + 2 %>em;">
+    <% end %>
+			<%= page.name %>
+		</td>
+		<td class="actions">
+      <%= link_to 'View', url_for( "#{view_path}/#{page.slug}" ) %>
+      <%= link_to 'Edit', url_for( admin_page_path( page ) ) %>
+		</td>
+	</tr>
+	<% end %>
+
+	<% sections = section.sections + section.hidden_sections %>
+  <% indent = indent + 2 %>
+  <% sections.each do |subsection| %>
+		<%= render partial: 'section_contents', locals: {
+			section: subsection,
+			view_path: view_path,
+			indent: indent
+		} %>
+	<% end %>
+	<% indent = indent - 2 %>

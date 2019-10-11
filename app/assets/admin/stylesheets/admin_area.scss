@@ -15,6 +15,7 @@
 
 $white:             #ffffff;
 $light_grey:        #dddddd;
+$grey:              #999999;
 $dark_grey:         #444444;
 
 $light_green:       #ddffdd;
@@ -22,6 +23,7 @@ $light_red:         #ffdddd;
 
 $light:             $light_grey;
 $dark:              $dark_grey;
+$medium:            $grey;
 
 
 /* ========== ( global styles ) ========== */
@@ -75,6 +77,7 @@ nav#side-nav {
   background:       $light;
   padding:          0.5em;
   width:            11em;
+  height:           auto;
   float:            left;
 }
 
@@ -130,6 +133,10 @@ main#main table.list td {
 
 main#main table.list td:last-child {
   padding:          0.5em 0.2em 0.5em 0.5em;
+}
+
+main#main table.list .hidden {
+  color:            $medium;
 }
 
 main#main table.list td.actions a {

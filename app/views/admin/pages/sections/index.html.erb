@@ -2,10 +2,10 @@
 
 <table class="list">
   <% @tl_sections.each do |section| %>
-		<%= render partial: 'section', locals: {
+		<%= render partial: 'section_contents', locals: {
 			section: section,
 			view_path: '/pages',
-			indent: 1
+			indent: 0
 		} %>
 	<% end %>
 </table>
