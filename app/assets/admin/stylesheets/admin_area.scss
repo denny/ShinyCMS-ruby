@@ -15,10 +15,15 @@
 
 $white:             #ffffff;
 $light_grey:        #dddddd;
+$grey:              #999999;
 $dark_grey:         #444444;
 
 $light_green:       #ddffdd;
 $light_red:         #ffdddd;
+
+$light:             $light_grey;
+$dark:              $dark_grey;
+$medium:            $grey;
 
 
 /* ========== ( global styles ) ========== */
@@ -50,7 +55,7 @@ header#header #notices {
 }
 
 header#header h1 {
-  background:       $light_grey;
+  background:       $light;
   margin:           0 0 0 10rem;
   padding:          1rem;
 }
@@ -59,7 +64,7 @@ header#header h1 {
 /* ========== ( footer ) ========== */
 
 footer#footer {
-  border-top:       $light_grey solid 1px;
+  border-top:       $light solid 1px;
   padding:          0.5em;
   text-align:       right;
   font-size:        0.8em;
@@ -69,9 +74,10 @@ footer#footer {
 /* ========== ( side menu ) ========== */
 
 nav#side-nav {
-  background:       $light_grey;
+  background:       $light;
   padding:          0.5em;
   width:            11em;
+  height:           auto;
   float:            left;
 }
 
@@ -97,6 +103,9 @@ main#main {
   float:            left;
 }
 
+main#main nav#breadcrumbs {
+  padding-left:     0.5em;
+}
 
 /* ========== ( 'list' pages ) ========== */
 
@@ -107,41 +116,43 @@ main#main table.list {
 }
 
 main#main table.list tr.showfocus:hover {
-  background:       $light_grey;
+  background:       $light;
 }
 
 main#main table.list th {
-  padding:          10px 40px 5px 5px;
+  text-align:       left;
+  font-weight:      bold;
+  padding:          0.5em 2em 0.5em 0.5em;
 }
 
 main#main table.list td {
   line-height:      2em;
-  padding:          5px 45px 5px 5px;
+  padding:          0.5em 2em 0.5em 0.5em;
   border:           0;
 }
 
 main#main table.list td:last-child {
-  padding:          5px 0 5px 5px;
+  padding:          0.5em 0.2em 0.5em 0.5em;
 }
 
-main#main table.list td.subheading {
-  padding-top:      10px;
+main#main table.list .hidden {
+  color:            $medium;
 }
 
 main#main table.list td.actions a {
-  color:            $dark_grey;
+  color:            $dark;
   background:       white;
   text-decoration:  none;
   margin:           0 5px 0 0;
   padding:          2px 4px;
-  border:           1px solid $dark_grey;
+  border:           1px solid $dark;
   border-radius:    3px;
 }
 
 main#main table.list td.actions a:hover {
   text-decoration:  none;
   color:            $white;
-  background:       $dark_grey;
+  background:       $dark;
 }
 
 
