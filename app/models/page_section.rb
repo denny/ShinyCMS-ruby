@@ -23,6 +23,11 @@ class PageSection < ApplicationRecord
             class_name: 'PageSection',
             foreign_key: 'section_id', inverse_of: 'section'
 
+  has_many  :hidden_sections,
+            -> { where( hidden: true ).order( :sort_order ) },
+            class_name: 'PageSection',
+            foreign_key: 'section_id', inverse_of: 'section'
+
   belongs_to  :section,
               class_name: 'PageSection',
               optional: true, inverse_of: 'sections'
@@ -53,6 +58,10 @@ class PageSection < ApplicationRecord
 
   def self.top_level_sections
     PageSection.where( section: nil, hidden: false )
+  end
+
+  def self.top_level_hidden_sections
+    PageSection.where( section: nil, hidden: true )
   end
 
   # Return the default top-level section

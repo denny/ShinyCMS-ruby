@@ -3,13 +3,17 @@
 <table class="list">
   <% if @tl_pages.any? %>
   <tr>
-		<td class="subheading" colspan="2">
-			<b>Top-level pages</b>
-		</td>
+		<th colspan="2">
+			Top-level pages
+		</th>
 	</tr>
   <% @tl_pages.each do |page| %>
 	<tr class="showfocus">
-		<td>
+    <% if page.hidden %>
+    <td class="hidden">
+    <% else %>
+    <td>
+    <% end %>
 			<%= page.name %>
 		</td>
 		<td class="actions">
@@ -20,128 +24,11 @@
   <% end %>
   <% end %>
 
-  <% indent = 0 %>
 	<% @tl_sections.each do |section| %>
-  <%# if section.tree_contains_pages? %>
-	<tr>
-		<td class="subheading" colspan="2">
-			<b><%= section.name %></b>
-		</td>
-	</tr>
-	<% section.pages.each do |page| %>
-	<tr class="showfocus">
-		<td>
-			<%= page.name %>
-		</td>
-		<td class="actions">
-      <%= link_to 'View', url_for( "/pages/#{section.slug}/#{page.slug}" ) %>
-      <%= link_to 'Edit', url_for( admin_page_path( page ) ) %>
-		</td>
-	</tr>
-
-  <% indent = indent + 2 %>
-  <% section.sections.each do |subsection| %>
-  <%# if subsection.tree_contains_pages? %>
-	<tr>
-		<td class="subheading" colspan="2" style="padding-left: <%= indent %>em;">
-			<b><%= subsection.name %></b>
-		</td>
-	</tr>
-	<% subsection.pages.each do |page| %>
-	<tr class="showfocus">
-		<td style="padding-left: <%= indent %>em;">
-			<%= page.name %>
-		</td>
-		<td class="actions">
-      <%= link_to 'View', url_for( "/pages/#{section.slug}/#{page.slug}" ) %>
-      <%= link_to 'Edit', url_for( admin_page_path( page ) ) %>
-		</td>
-	</tr>
-
-  <% indent = indent + 2 %>
-  <% subsection.sections.each do |subsubsection| %>
-  <%# if subsubsection.tree_contains_pages? %>
-	<tr>
-		<td class="subheading" colspan="2" style="padding-left: <%= indent %>em;">
-			<b><%= subsubsection.name %></b>
-		</td>
-	</tr>
-	<% subsubsection.pages.each do |page| %>
-	<tr class="showfocus">
-		<td style="padding-left: <%= indent %>em;">
-			<%= page.name %>
-		</td>
-		<td class="actions">
-      <%= link_to 'View', url_for( "/pages/#{section.slug}/#{page.slug}" ) %>
-      <%= link_to 'Edit', url_for( admin_page_path( page ) ) %>
-		</td>
-	</tr>
-  <%# end  # if subsubsection.tree_contains_pages? %>
-  <%# end  # if subsection.tree_contains_pages? %>
-  <%# end  # if section.tree_contains_pages? %>
-
-  <% end  # subsubsection.pages %>
-  <% end  # subsection.sections %>
-  <% indent = indent - 2 %>
-
-  <% end  # subsection.pages %>
-  <% end  # section.sections %>
-  <% indent = indent - 2 %>
-
-	<% end  # section.pages %>
-	<% end  # sections %>
-</table>
-
-<% if @there_are_hidden_pages %>
-<h2>
-	Hidden Pages
-</h2>
-
-<table class="list">
-	<tr>
-		<th class="main">
-			Page
-		</th>
-		<th>
-			Actions
-		</th>
-	</tr>
-	<% if @tl_hidden_pages.any? %>
-  <tr>
-		<td class="subheading" colspan="2">
-			<b>Top-level pages</b>
-		</td>
-	</tr>
-  <% @tl_hidden_pages.each do |page| %>
-	<tr class="showfocus">
-		<td>
-			<%= page.name %>
-		</td>
-		<td class="actions">
-      <%= link_to 'View', url_for( "/pages/#{page.slug}" )   %>
-      <%= link_to 'Edit', url_for( admin_page_path( page ) ) %>
-		</td>
-	</tr>
-	<% end %>
-	<% end %>
-	<% @tl_sections.each do |section| %>
-	<% next unless section.hidden_pages.any? %>
-	<tr>
-		<td class="subheading" colspan="2">
-			<b><%= section.name %></b>
-		</td>
-	</tr>
-	<% section.hidden_pages.each do |page| %>
-	<tr class="showfocus">
-		<td>
-			<%= page.name %>
-		</td>
-		<td class="actions">
-      <%= link_to 'View', url_for( "/pages/#{section.slug}/#{page.slug}" ) %>
-      <%= link_to 'Edit', url_for( admin_page_path( page ) ) %>
-		</td>
-	</tr>
-	<% end %>
+    <%= render partial: 'section_contents', locals: {
+      section: section,
+      view_path: '/pages',
+      indent: 0.5
+    } %>
 	<% end %>
 </table>
-<% end %>

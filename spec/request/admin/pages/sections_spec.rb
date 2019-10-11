@@ -2,15 +2,12 @@ require 'rails_helper'
 
 RSpec.describe 'Admin: Page Sections', type: :request do
   describe 'GET /admin/pages/sections' do
-    it 'fetches the list of sections in the admin area' do
-      toppy = create :page_section
-      subby = create :page_subsection
+    it 'redirects to the combined pages+sections list' do
       get admin_pages_sections_path
+      expect( response ).to have_http_status :found
+      follow_redirect!
       expect( response ).to have_http_status :ok
-      expect( response.body ).to include 'List sections'
-      expect( response.body ).to include toppy.name
-      expect( response.body ).to include subby.name
-      # expect( response.body ).to include 'Hidden top-level sections'  # FIXME
+      expect( response.body ).to include 'List pages'
     end
   end
 

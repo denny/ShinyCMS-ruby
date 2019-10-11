@@ -4,11 +4,9 @@ class Admin::PagesController < AdminController
 
   def index
     # List all pages
-    @tl_pages = Page.top_level_pages
-    @tl_sections = PageSection.top_level_sections
-
-    @tl_hidden_pages = Page.top_level_hidden_pages
-    @there_are_hidden_pages = Page.are_there_any_hidden_pages?
+    @tl_pages = Page.top_level_pages + Page.top_level_hidden_pages
+    @tl_sections =
+      PageSection.top_level_sections + PageSection.top_level_hidden_sections
   end
 
   def new

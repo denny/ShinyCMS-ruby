@@ -3,8 +3,8 @@ class Admin::Pages::SectionsController < AdminController
   before_action :check_admin_ip_whitelist
 
   def index
-    # List all page sections
-    @tl_sections = PageSection.top_level_sections
+    # Redirect to the combined page+section list
+    redirect_to admin_pages_path
   end
 
   def new
