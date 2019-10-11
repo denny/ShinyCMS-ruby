@@ -1,0 +1,21 @@
+	<% view_path = "#{view_path}/#{section.slug}" %>
+	<tr class="showfocus">
+		<td style="padding-left: <%= indent %>em;">
+			<%= section.name %>
+		</td>
+		<td class="actions">
+      <%= link_to 'View', url_for( view_path ) %>
+      <%= link_to 'Edit', url_for( admin_pages_section_path( section ) ) %>
+		</td>
+	</tr>
+	<% if section.sections.any? %>
+	<% indent = indent + 2 %>
+	<% section.sections.each do |subsection| %>
+		<%= render partial: 'section', locals: {
+			section: subsection,
+			view_path: view_path,
+			indent: indent
+		} %>
+	<% end %>
+	<% indent = indent - 2 %>
+	<% end %>
