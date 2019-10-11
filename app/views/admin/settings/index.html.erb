@@ -31,10 +31,10 @@
   </h2>
   <p>
     <label>
-      <%= text_field :setting, :name %>
-      <%= text_field :setting, :value %>
+      <%= text_field :setting, :name,  placeholder: 'Setting name' %>
+      <%= text_field :setting, :value, placeholder: 'Setting value (can be blank)' %>
     </label>
-    <%= text_field :setting, :description %>
+    <%= text_field :setting, :description, placeholder: 'Description (optional)', class: 'longtext' %>
   </p>
   <p>
     <%= submit_tag 'Add' %>
