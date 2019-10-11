@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin: Page Sections', type: :request do
+  describe 'GET /admin/pages/sections' do
+    it 'redirects to the combined pages+sections list' do
+      get admin_pages_sections_path
+      expect( response ).to have_http_status :found
+      follow_redirect!
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to include 'List pages'
+    end
+  end
+
   describe 'GET /admin/pages/section/new' do
     it 'loads the form to add a new section' do
       get admin_pages_section_new_path
