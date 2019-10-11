@@ -58,7 +58,8 @@ jobs:
             - ~/.cache/yarn
 
       # Database setup
-      - run: bundle exec rake db:setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
 
       # run tests!
       - run:
