@@ -11,7 +11,7 @@
 	<% if section.sections.any? %>
 	<% indent = indent + 2 %>
 	<% section.sections.each do |subsection| %>
-		<%= render partial: 'section', locals: {
+		<%= render partial: 'section_contents', locals: {
 			section: subsection,
 			view_path: view_path,
 			indent: indent
