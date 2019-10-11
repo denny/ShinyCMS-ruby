@@ -7,12 +7,12 @@ class AdminController < ApplicationController
   # Check whether a whitelist of permitted admin IP addresses has been defined,
   # and if one has, then enforce it
   def check_admin_ip_whitelist
-    allowed = Setting.get I18n.t( 'admin_ip_whitelist' )
-    return if allowed.blank?
+    whitelist = Setting.get I18n.t( 'admin_ip_whitelist' )
+    return if whitelist.blank?
 
-    return if allowed.strip.split( /\s*,\s*|\s+/ ).include? request.remote_ip
+    return if whitelist.strip.split( /\s*,\s*|\s+/ ).include? request.remote_ip
 
-    redirect_to pages_path
+    redirect_to url_for '/'
   end
 
   def index

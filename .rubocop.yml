@@ -15,6 +15,11 @@ Metrics/BlockLength:
     - spec/**/*.rb
     - config/routes.rb
 
+# This test is for a whitelist of IP addresses
+Style/IpAddresses:
+  Exclude:
+    - spec/request/admin_spec.rb
+
 # Whitespace Considered Helpful
 Layout/ExtraSpacing:
   Enabled: false
