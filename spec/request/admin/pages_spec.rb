@@ -4,18 +4,22 @@ RSpec.describe 'Admin: Pages', type: :request do
   describe 'GET /admin/pages' do
     it 'fetches the list of pages in the admin area' do
       create :page
-      create :page, :hidden
-      p1 = create :page_in_section
+      page = create :page, :hidden
+      subpage = create :page_in_section
       create :page_in_section, :hidden
       create :page_in_subsection
-      create :page_in_subsection, :hidden
+      hidden_subpage = create :page_in_subsection, :hidden
+      hidden_section = create :page_section, :hidden
+      create :page, section: hidden_section
       get admin_pages_path
       expect( response ).to have_http_status :ok
       expect( response.body ).to include 'List pages'
       expect( response.body ).to include 'Top-level pages'
-      expect( response.body ).to include p1.section.name
-      expect( response.body ).to include p1.name
-      # expect( response.body ).to include 'Hidden top-level pages'  # FIXME
+      expect( response.body ).to include page.name
+      expect( response.body ).to include subpage.name
+      expect( response.body ).to include subpage.section.name
+      expect( response.body ).to include hidden_subpage.name
+      expect( response.body ).to include hidden_section.name
     end
   end
 
