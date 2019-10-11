@@ -14,6 +14,6 @@ seed Setting, { name: I18n.t( 'default_section' ) }, {
   description: 'Default top-level page (either its name or its slug)'
 }
 seed Setting, { name: I18n.t( 'admin_ip_whitelist' ) }, {
-  value: '127.0.0.1, 10.10.10.10, 127.127.127.127',
+  value: '',
   description: 'Comma/space-separated list of IP addresses allowed to access admin area'
 }
