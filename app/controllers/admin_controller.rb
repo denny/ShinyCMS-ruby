@@ -12,7 +12,7 @@ class AdminController < ApplicationController
 
     return if whitelist.strip.split( /\s*,\s*|\s+/ ).include? request.remote_ip
 
-    redirect_to pages_path
+    redirect_to url_for '/'
   end
 
   def index
