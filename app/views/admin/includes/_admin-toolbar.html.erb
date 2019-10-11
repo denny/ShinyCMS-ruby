@@ -12,11 +12,10 @@
   <%= link_to 'List', admin_pages_path %>
   |
   Section:
-  <%= link_to 'New',  admin_pages_section_new_path %> /
+  <%= link_to 'New',  admin_pages_section_new_path %>
   <% if @page&.section %>
-  <%= link_to 'Edit', admin_pages_section_path( @page.section ) %> /
+  / <%= link_to 'Edit', admin_pages_section_path( @page.section ) %>
   <% end %>
-  <%= link_to 'List', admin_pages_sections_path %>
   |
   Template:
   <%= link_to 'New',  admin_pages_template_new_path %> /

@@ -1,19 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin: Page Sections', type: :request do
-  describe 'GET /admin/pages/sections' do
-    it 'fetches the list of sections in the admin area' do
-      toppy = create :page_section
-      subby = create :page_subsection
-      get admin_pages_sections_path
-      expect( response ).to have_http_status :ok
-      expect( response.body ).to include 'List sections'
-      expect( response.body ).to include toppy.name
-      expect( response.body ).to include subby.name
-      # expect( response.body ).to include 'Hidden top-level sections'  # FIXME
-    end
-  end
-
   describe 'GET /admin/pages/section/new' do
     it 'loads the form to add a new section' do
       get admin_pages_section_new_path
