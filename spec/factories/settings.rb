@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :setting do
-    name  { 'setting_name' }
+    name { Faker::DcComics.unique.heroine }
   end
 end

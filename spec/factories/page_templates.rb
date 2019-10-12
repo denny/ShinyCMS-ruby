@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :page_template do
-    name     { 'Test Template' }
-    filename { 'example'       }
+    name     { Faker::DcComics.unique.villain }
+    filename { 'example' }
   end
 end

@@ -1,17 +1,14 @@
 FactoryBot.define do
-  factory :page do
-    name     { Faker::Space.galaxy }
-    title    { Faker::Space.nebula }
-    slug     { Faker::Science.unique.element.downcase }
-    hidden   { false }
+  factory :page, aliases: [ :top_level_page ] do
+    name   { Faker::DcComics.unique.title }
+    title  { name.dup.titlecase }
+    slug   { name.dup.downcase.gsub!( /\s+/, '-' ) }
+    hidden { false }
     association :template, factory: :page_template
 
     trait :hidden do
       hidden { true }
     end
-  end
-
-  factory :top_level_page, parent: :page do
   end
 
   factory :page_in_section, parent: :page do
