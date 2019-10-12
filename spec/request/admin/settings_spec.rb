@@ -3,43 +3,47 @@ require 'rails_helper'
 RSpec.describe 'Admin: Site Settings', type: :request do
   describe 'GET /admin/settings' do
     it 'fetches the site settings page in the admin area' do
-      get '/admin/settings'
-      expect( response ).to have_http_status :ok
+      get admin_settings_path
+
+      expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'Site Settings'
     end
   end
 
   describe 'POST /admin/settings/create' do
     it 'adds a new setting, with a string value' do
-      post '/admin/setting/create', params: {
+      post admin_setting_create_path, params: {
         'setting[name]': 'New Setting Is New',
         'setting[value]': 'AND IMPROVED!'
       }
-      expect( response ).to have_http_status :found
+
+      expect( response      ).to have_http_status :found
       follow_redirect!
-      expect( response ).to have_http_status :ok
+      expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'Site Settings'
       expect( response.body ).to include 'New Setting Is New'
     end
     it 'adds a new setting, with an empty string value' do
-      post '/admin/setting/create', params: {
+      post admin_setting_create_path, params: {
         'setting[name]': 'New Setting Is Empty',
         'setting[value]': ''
       }
-      expect( response ).to have_http_status :found
+
+      expect( response      ).to have_http_status :found
       follow_redirect!
-      expect( response ).to have_http_status :ok
+      expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'Site Settings'
       expect( response.body ).to include 'New Setting Is Empty'
     end
     it 'adds a new setting, with an explicitly null value' do
-      post '/admin/setting/create', params: {
+      post admin_setting_create_path, params: {
         'setting[name]': 'New Setting Is Null',
         'setting[value]': nil
       }
-      expect( response ).to have_http_status :found
+
+      expect( response      ).to have_http_status :found
       follow_redirect!
-      expect( response ).to have_http_status :ok
+      expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'Site Settings'
       expect( response.body ).to include 'New Setting Is Null'
     end
@@ -69,12 +73,14 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       create :setting, name: 'test_setting_one'
       s2 = create :setting, name: 'test_setting_two'
       create :setting, name: 'test_setting_three'
-      post '/admin/settings', params: {
+
+      post admin_settings_path, params: {
         "shinycms_setting_#{s2.id}": 'Updated value'
       }
-      expect( response ).to have_http_status :found
+
+      expect( response      ).to have_http_status :found
       follow_redirect!
-      expect( response ).to have_http_status :ok
+      expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'Site Settings'
     end
   end
