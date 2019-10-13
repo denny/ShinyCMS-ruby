@@ -14,9 +14,10 @@ en:
   template_file_missing: Page template file is missing.
 
   # ========== ( Admin area controllers (and request specs) ) ==========
-  admin_ip_whitelist: Admin IP whitelist
+  admin_ip_list: Admin IP list
   are_you_sure: Are you sure?
   # Pages
+  list_pages: List pages
   page_created: New page added
   page_create_failed: Failed to add new page
   page_updated: Page details updated
