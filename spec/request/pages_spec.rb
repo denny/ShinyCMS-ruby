@@ -78,9 +78,7 @@ RSpec.describe 'Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to match %r{<h1>\s*1st Page\s*</h1>}
     end
-  end
 
-  describe 'GET /pages/section-name' do
     it 'fetches the default page from the specified section if one is set' do
       section = create :page_section
       page1 = create :page_in_section, title: '1st Page', section: section
