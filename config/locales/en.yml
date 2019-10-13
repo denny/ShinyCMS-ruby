@@ -9,9 +9,13 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  # ========== ( Admin controllers (and request specs) ) ==========
-  admin_ip_whitelist: 'Admin IP whitelist'
-  are_you_sure: 'Are you sure?'
+  # ========== ( Main site controllers (and request specs) ) ==========
+  # Pages
+  template_file_missing: Page template file is missing.
+
+  # ========== ( Admin area controllers (and request specs) ) ==========
+  admin_ip_whitelist: Admin IP whitelist
+  are_you_sure: Are you sure?
   # Pages
   page_created: New page added
   page_create_failed: Failed to add new page
