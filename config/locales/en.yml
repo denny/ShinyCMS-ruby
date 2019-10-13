@@ -9,9 +9,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  # Admin controllers
+  # ========== ( Admin controllers (and request specs) ) ==========
   admin_ip_whitelist: 'Admin IP whitelist'
-
+  are_you_sure: 'Are you sure?'
   # Pages
   page_created: New page added
   page_create_failed: Failed to add new page
@@ -28,6 +28,9 @@ en:
   template_updated: Template details updated
   template_update_failed: Failed to update template details
   # Settings
+  setting_name: Setting name
+  setting_value: Setting value (can be blank)
+  setting_description: Description (optional)
   setting_created: New setting added
   setting_create_failed: Failed to add new setting
   settings_updated: Settings updated
@@ -36,12 +39,11 @@ en:
   setting_delete_failed: Failed to delete setting
 
 
-  # Models
-
+  # ========== ( Models ) ==========
   # Pages & Page Sections
   slug_unique: The slug must be unique within its section
   # Page Templates
-  template_file_must_exist: The template file must be in the pages/templates folder
+  template_file_must_exist: The template file must be in 'app/views/pages/templates'
   # Settings
   default_page: Default page
   default_section: Default section
