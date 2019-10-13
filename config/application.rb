@@ -1,6 +1,22 @@
 require_relative 'boot'
 
-require 'rails/all'
+# Replace this:
+# require 'rails/all'
+# ... with this stack of individual require statements (so I can get selective)
+
+require 'rails'
+
+# require 'action_cable/engine'     # Don't think we'll ever need this
+require 'action_controller/railtie' # Pretty sure we need this though
+# require 'action_mailbox/engine'   # Won't need for a long time: inbound email
+# require 'action_mailer/railtie'   # Will need soon: registration emails, etc
+# require 'action_text/engine'
+require 'action_view/railtie'       # Also seems quite fundamental
+# require 'active_job/railtie'
+require 'active_record/railtie'
+# require 'active_storage/engine'   # Will need soon: user profile pics, etc
+# require 'rails/test_unit/railtie'
+# require 'sprockets/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
