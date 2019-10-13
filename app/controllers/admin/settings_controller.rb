@@ -17,23 +17,29 @@ class Admin::SettingsController < AdminController
 
   # Add a new setting item
   def create
-    @setting = Setting.new( setting_params )
+    setting = Setting.new( setting_params )
 
-    if @setting.save
+    if setting.save
       flash[ :notice ] = I18n.t 'setting_created'
     else
       flash[ :alert ] = I18n.t 'setting_create_failed'
     end
     redirect_to admin_settings_path
+  rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
+    flash[ :alert ] = I18n.t 'setting_create_failed'
+    redirect_to admin_settings_path
   end
 
   # Delete an existing settings item
   def delete
-    if Setting.delete( params[ :id ] )
+    if Setting.destroy( params[ :id ] )
       flash[ :notice ] = I18n.t 'setting_deleted'
     else
       flash[ :alert ] = I18n.t 'setting_delete_failed'
     end
+    redirect_to admin_settings_path
+  rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
+    flash[ :alert ] = I18n.t 'setting_delete_failed'
     redirect_to admin_settings_path
   end
 
