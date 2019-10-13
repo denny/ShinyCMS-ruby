@@ -11,6 +11,7 @@ RSpec.describe 'Admin', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'List Pages'
     end
+
     it 'still works with an IP whitelist set' do
       Setting.find_or_create_by!(
         name: I18n.t( 'admin_ip_whitelist' )
@@ -24,6 +25,7 @@ RSpec.describe 'Admin', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'List Pages'
     end
+
     it 'fails with a blocking IP whitelist set' do
       Setting.find_or_create_by!( name: I18n.t( 'admin_ip_whitelist' ) )
              .update!( value: '10.10.10.10' )

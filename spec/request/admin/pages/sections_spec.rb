@@ -30,6 +30,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include I18n.t 'section_create_failed'
     end
+
     it 'adds a new section when the form is submitted' do
       post admin_pages_section_new_path, params: {
         'page_section[name]': 'Test',
@@ -66,6 +67,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include I18n.t 'section_update_failed'
     end
+
     it 'updates the section when the form is submitted' do
       section = create :page_section
 

@@ -4,7 +4,10 @@ class PagesController < ApplicationController
   # /  (or /pages)
   def index
     @page = Page.default_page
-    show && return if @page
+    if @page
+      show
+      return
+    end
 
     render inline: <<~HTML
       <p>
@@ -55,7 +58,7 @@ class PagesController < ApplicationController
   # Build the element stack and render the page
   def show
     unless @page.template.file_exists?
-      render inline: 'Page template file is missing.'
+      render inline: I18n.t( 'template_file_missing' )
       return
     end
 

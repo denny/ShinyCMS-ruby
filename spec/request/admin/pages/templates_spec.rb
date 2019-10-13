@@ -31,9 +31,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include I18n.t 'template_create_failed'
     end
-  end
 
-  describe 'POST /admin/pages/template/add' do
     it 'adds a new template when the form is submitted' do
       post admin_pages_template_new_path, params: {
         'page_template[name]': 'Test',
@@ -69,9 +67,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include I18n.t 'template_update_failed'
     end
-  end
 
-  describe 'POST /admin/pages/template/:id' do
     it 'updates the template when the form is submitted' do
       template = create :page_template
 

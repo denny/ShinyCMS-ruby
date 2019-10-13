@@ -25,6 +25,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       expect( response.body ).to include I18n.t 'setting_created'
       expect( response.body ).to include 'New Setting Is New'
     end
+
     it 'adds a new setting, with an empty string value' do
       post admin_setting_create_path, params: {
         'setting[name]': 'New Setting Is Empty',
@@ -39,6 +40,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       expect( response.body ).to include I18n.t 'setting_created'
       expect( response.body ).to include 'New Setting Is Empty'
     end
+
     it 'adds a new setting, with an explicitly null value' do
       post admin_setting_create_path, params: {
         'setting[name]': 'New Setting Is Null',
@@ -53,6 +55,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       expect( response.body ).to include I18n.t 'setting_created'
       expect( response.body ).to include 'New Setting Is Null'
     end
+
     it 'attempting to add a new setting with no name fails gracefully' do
       post admin_setting_create_path, params: {
         'setting[value]': 'MADE OF FAIL!'
@@ -85,6 +88,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       expect( response.body ).to     include s3.name
       expect( response.body ).not_to include s2.name
     end
+
     it 'attempting to delete a non-existent setting fails gracefully' do
       delete admin_setting_delete_path( 999 )
 

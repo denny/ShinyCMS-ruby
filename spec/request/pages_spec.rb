@@ -8,9 +8,7 @@ RSpec.describe 'Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'This site does not have any content'
     end
-  end
 
-  describe 'GET /' do
     it 'fetches the first top-level page' do
       page = create :top_level_page
 
@@ -18,6 +16,20 @@ RSpec.describe 'Pages', type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to match %r{<h1>\s*#{page.title}\s*</h1>}
+    end
+
+    it 'renders an error if the template file is missing' do
+      create :top_level_page
+      page = create :top_level_page
+      # rubocop:disable Rails/SkipsModelValidations
+      page.template.update_column( :filename, 'no-such-file' )
+      # rubocop:enable Rails/SkipsModelValidations
+      create :setting, name: 'Default page', value: page.slug
+
+      get '/'
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include I18n.t( 'template_file_missing' )
     end
   end
 
@@ -66,9 +78,7 @@ RSpec.describe 'Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to match %r{<h1>\s*1st Page\s*</h1>}
     end
-  end
 
-  describe 'GET /pages/section-name' do
     it 'fetches the default page from the specified section if one is set' do
       section = create :page_section
       page1 = create :page_in_section, title: '1st Page', section: section
