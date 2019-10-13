@@ -2,15 +2,15 @@
 class AdminController < ApplicationController
   layout 'admin/layouts/admin_area'
 
-  before_action :check_admin_ip_whitelist
+  before_action :check_admin_ip_list
 
-  # Check whether a whitelist of permitted admin IP addresses has been defined,
-  # and if one has, then enforce it
-  def check_admin_ip_whitelist
-    whitelist = Setting.get I18n.t( 'admin_ip_whitelist' )
-    return if whitelist.blank?
+  # Check whether a list of permitted admin IP addresses has been defined,
+  # and if one has, then redirect anybody not coming from one of those IPs.
+  def check_admin_ip_list
+    allowed = Setting.get I18n.t( 'admin_ip_list' )
+    return if allowed.blank?
 
-    return if whitelist.strip.split( /\s*,\s*|\s+/ ).include? request.remote_ip
+    return if allowed.strip.split( /\s*,\s*|\s+/ ).include? request.remote_ip
 
     redirect_to url_for '/'
   end
