@@ -43,6 +43,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include I18n.t 'page_create_failed'
     end
+
     it 'adds a new page when the form is submitted' do
       template = create :page_template
 
@@ -82,6 +83,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include I18n.t 'page_update_failed'
     end
+
     it 'updates the page when the form is submitted' do
       page = create :page
 
