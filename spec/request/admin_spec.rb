@@ -34,7 +34,7 @@ RSpec.describe 'Admin', type: :request do
       get admin_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to '/'
+      expect( response      ).to redirect_to root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'This site does not have any content'

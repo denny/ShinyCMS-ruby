@@ -1,6 +1,7 @@
 # Rails routing guide: http://guides.rubyonrails.org/routing.html
 
 Rails.application.routes.draw do
+  devise_for :users
   # ========== ( Main site ) ==========
   root to: 'pages#index'
 
