@@ -17,6 +17,7 @@ RSpec.describe Page, type: :model do
       create :page, :hidden
       expect( Page.are_there_any_hidden_pages? ).to eq true
     end
+
     it 'correctly says nope' do
       create :page
       expect( Page.are_there_any_hidden_pages? ).to eq false
