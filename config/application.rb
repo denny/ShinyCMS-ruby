@@ -9,7 +9,7 @@ require 'rails'
 # require 'action_cable/engine'     # Don't think we'll ever need this
 require 'action_controller/railtie' # Pretty sure we need this though
 # require 'action_mailbox/engine'   # Won't need for a long time: inbound email
-# require 'action_mailer/railtie'   # Will need soon: registration emails, etc
+require 'action_mailer/railtie'     # Registration emails, etc
 # require 'action_text/engine'
 require 'action_view/railtie'       # Also seems quite fundamental
 # require 'active_job/railtie'
