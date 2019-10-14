@@ -1,7 +1,6 @@
 # Rails routing guide: http://guides.rubyonrails.org/routing.html
 
 Rails.application.routes.draw do
-  devise_for :users
   # ========== ( Main site ) ==========
   root to: 'pages#index'
 
@@ -9,6 +8,9 @@ Rails.application.routes.draw do
   get 'pages',        to: 'pages#index'
   get 'pages/:slug',  to: 'pages#show_top_level'
   get 'pages/*slugs', to: 'pages#show_in_section'
+
+  # Users
+  devise_for :users
 
   # ========== ( Admin area ) ==========
   get 'admin', to: 'admin#index'
