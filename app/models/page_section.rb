@@ -42,18 +42,6 @@ class PageSection < ApplicationRecord
     pages.first
   end
 
-  # Returns true if there is a page in this section or in any of its descendants
-  def tree_contains_pages?
-    return true if pages.any?
-
-    sections.each do |section|
-      yarp = section.tree_contains_pages?
-      return true if yarp
-    end
-
-    false
-  end
-
   # Class methods
 
   def self.top_level_sections
