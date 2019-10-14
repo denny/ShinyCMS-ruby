@@ -30,12 +30,10 @@
 	<% end %>
 
 	<% sections = section.sections + section.hidden_sections %>
-  <% indent = indent + 2 %>
   <% sections.each do |subsection| %>
 		<%= render partial: 'section_contents', locals: {
 			section: subsection,
 			view_path: view_path,
-			indent: indent
+			indent: indent + 2
 		} %>
 	<% end %>
-	<% indent = indent - 2 %>
