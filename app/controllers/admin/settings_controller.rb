@@ -34,8 +34,6 @@ class Admin::SettingsController < AdminController
   def delete
     if Setting.destroy( params[ :id ] )
       flash[ :notice ] = I18n.t 'setting_deleted'
-    else
-      flash[ :alert ] = I18n.t 'setting_delete_failed'
     end
     redirect_to admin_settings_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
