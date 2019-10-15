@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get 'pages/:slug',  to: 'pages#show_top_level'
   get 'pages/*slugs', to: 'pages#show_in_section'
 
+  # Users
+  devise_for :users
+
   # ========== ( Admin area ) ==========
   get 'admin', to: 'admin#index'
 

@@ -1,7 +1,5 @@
 # Admin controller for page templates
 class Admin::Pages::TemplatesController < AdminController
-  before_action :check_admin_ip_whitelist
-
   def index
     # List all templates
     @templates = PageTemplate.all
