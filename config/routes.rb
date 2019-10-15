@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   get 'pages/*slugs', to: 'pages#show_in_section'
 
   # Users
+  devise_scope :user do
+    get '/login',         to: 'devise/sessions#new',      as: :user_login
+    get '/logout',        to: 'devise/sessions#destroy',  as: :user_logout
+    get '/user/register', to: 'devise/registrations#new', as: :user_registration
+  end
   devise_for  :users,
               singular: 'user',
               path: 'user',
