@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'factory' do
+    it 'can create a user' do
+      user = create :user
+      expect( user.username ).to match( /\w+/ )
+    end
+  end
 end
