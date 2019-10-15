@@ -15,9 +15,6 @@ class Admin::SettingsController < AdminController
       flash[ :alert ] = I18n.t 'setting_create_failed'
     end
     redirect_to admin_settings_path
-  rescue ActiveRecord::NotNullViolation
-    flash[ :alert ] = I18n.t 'setting_create_failed'
-    redirect_to admin_settings_path
   end
 
   # Main form submitted; update any changed settings and report back
