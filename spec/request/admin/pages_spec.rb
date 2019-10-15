@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin: Pages', type: :request do
+  before :all do
+    Faker::UniqueGenerator.clear
+  end
+
   describe 'GET /admin/pages' do
     it 'fetches the list of pages in the admin area' do
       create :page
