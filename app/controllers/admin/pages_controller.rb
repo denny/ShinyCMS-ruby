@@ -1,7 +1,5 @@
 # Admin controller for CMS-controlled 'brochure' pages
 class Admin::PagesController < AdminController
-  before_action :check_admin_ip_whitelist
-
   def index
     # List all pages
     @tl_pages = Page.top_level_pages + Page.top_level_hidden_pages

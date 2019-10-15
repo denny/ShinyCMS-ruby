@@ -85,12 +85,12 @@ RSpec.describe 'Pages', type: :request do
 
     it 'fetches the default page from the specified section if one is set' do
       section = create :page_section
-      page1 = create :page_in_section, title: '1st Page', section: section
-      page2 = create :page_in_section, title: '2nd Page', section: section
-      page3 = create :page_in_section, title: '3rd Page', section: section
-      page1.section.update! default_page_id: page3.id
+      page001 = create :page_in_section, title: '1st Page', section: section
+      page002 = create :page_in_section, title: '2nd Page', section: section
+      page003 = create :page_in_section, title: '3rd Page', section: section
+      page001.section.update! default_page_id: page003.id
 
-      get "/pages/#{page2.section.slug}"
+      get "/pages/#{page002.section.slug}"
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to match %r{<h1>\s*3rd Page\s*</h1>}
@@ -103,7 +103,7 @@ RSpec.describe 'Pages', type: :request do
 
       get "/pages/#{p.section.section.slug}/#{p.section.slug}/#{p.slug}"
 
-      expect( response ).to have_http_status :ok
+      expect( response      ).to have_http_status :ok
       expect( response.body ).to match %r{<h1>\s*#{p.title}\s*</h1>}
     end
   end
@@ -114,7 +114,7 @@ RSpec.describe 'Pages', type: :request do
 
       get '/pages/non-existent-slug'
 
-      expect( response ).to have_http_status :not_found
+      expect( response      ).to have_http_status :not_found
       expect( response.body ).to include 'a page that does not exist'
     end
   end
