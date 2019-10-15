@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Pages', type: :request do
+  before :all do
+    Faker::UniqueGenerator.clear
+  end
+
   describe 'GET /' do
     it "fetches the 'no content yet' page if there are no pages defined" do
       get '/'
