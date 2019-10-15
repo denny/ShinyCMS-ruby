@@ -5,14 +5,6 @@ class Admin::SettingsController < AdminController
     @settings = Setting.order( :name )
   end
 
-  # Main form submitted; update any changed settings
-  def update
-    # TODO
-    # flash[ :notice ] = I18n.t 'settings_updated'
-    flash[ :alert ] = I18n.t 'settings_update_failed'
-    redirect_to admin_settings_path
-  end
-
   # Add a new setting item
   def create
     setting = Setting.new( setting_params )
@@ -23,8 +15,20 @@ class Admin::SettingsController < AdminController
       flash[ :alert ] = I18n.t 'setting_create_failed'
     end
     redirect_to admin_settings_path
-  rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
+  rescue ActiveRecord::NotNullViolation
     flash[ :alert ] = I18n.t 'setting_create_failed'
+    redirect_to admin_settings_path
+  end
+
+  # Main form submitted; update any changed settings and report back
+  def update
+    updated_settings = false
+    updated_settings = update_settings( updated_settings )
+    flash[ :notice ] = if updated_settings
+                         I18n.t 'settings_updated'
+                       else
+                         I18n.t 'settings_unchanged'
+                       end
     redirect_to admin_settings_path
   end
 
@@ -41,7 +45,28 @@ class Admin::SettingsController < AdminController
 
   private
 
+  # Process the batched settings update
+  def update_settings( flag )
+    settings = settings_params[ :settings ]
+    settings&.each_key do |key|
+      next unless /setting_value_(?<id>\d+)/ =~ key
+
+      value = settings[ "setting_value_#{id}" ]
+      description = settings[ "setting_description_#{id}" ]
+
+      setting = Setting.find( id )
+      next if setting.value == value && setting.description == description
+
+      flag = setting.update! value: value, description: description
+    end
+    flag
+  end
+
   def setting_params
     params.require( :setting ).permit( :name, :value, :description )
+  end
+
+  def settings_params
+    params.permit( :authenticity_token, :commit, settings: {} )
   end
 end
