@@ -38,6 +38,7 @@ en:
   setting_description: Description (optional)
   setting_created: New setting added
   setting_create_failed: Failed to add new setting
+  settings_unchanged: Settings unchanged
   settings_updated: Settings updated
   settings_update_failed: Failed to update settings
   setting_deleted: Setting deleted
