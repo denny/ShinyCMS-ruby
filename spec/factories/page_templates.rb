@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :page_template do
-    name     { 'Test Template' }
-    filename { 'example'       }
+    name     { Faker::Science.unique.scientist }
+    filename { 'example' }
   end
 end
