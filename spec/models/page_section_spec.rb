@@ -9,6 +9,7 @@ RSpec.describe PageSection, type: :model do
       page002 = create :page, section: section
       expect( page002.section.default_page ).to eq page001
     end
+
     it 'returns the correct default page if one is set' do
       create :top_level_page
       section = create :page_section

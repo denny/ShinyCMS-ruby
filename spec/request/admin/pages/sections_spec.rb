@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin: Page Sections', type: :request do
+  before :all do
+    Faker::UniqueGenerator.clear
+  end
+
   describe 'GET /admin/pages/sections' do
     it 'redirects to the combined pages+sections list' do
       get admin_pages_sections_path
