@@ -2,6 +2,9 @@
 class ApplicationController < ActionController::Base
   layout 'main_site'
 
+  include MainSiteMenu
+  before_action :build_menu_data
+
   # Strong params config for Devise
   before_action :configure_permitted_parameters, if: :devise_controller?
 
