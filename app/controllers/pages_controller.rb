@@ -62,6 +62,8 @@ class PagesController < ApplicationController
       return
     end
 
+    build_menu_data
+
     # TODO: build element stack
 
     render template: "pages/templates/#{@page.template.filename}"
