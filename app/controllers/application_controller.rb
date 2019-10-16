@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     keys1 = %i[ username email password password_confirmation ]
     devise_parameter_sanitizer.permit :sign_up, keys: keys1
 
-    keys2 = %i[ username email password password_confirmation remember_me ]
+    keys2 = %i[ login username email password password_confirmation remember_me]
     devise_parameter_sanitizer.permit :sign_in, keys: keys2
 
     keys3 = %i[ username email password password_confirmation current_password ]

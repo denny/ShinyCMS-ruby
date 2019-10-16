@@ -1,6 +1,7 @@
 <p>
 	<% if user_signed_in? %>
-	Welcome back <%= link_to ( @user.display_name || @user.username ), :user_profile %>!
+	Welcome back <%= link_to ( current_user.display_name || current_user.username ),
+		user_profile_path( current_user.username ) %>!
 	Click here to <%= link_to 'log out', :user_logout %>.
 	<% else %>
 	Click here to <%= link_to 'log in', :user_login %>.

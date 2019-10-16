@@ -2,26 +2,32 @@ require 'rails_helper'
 
 RSpec.describe 'User', type: :request do
   describe 'GET /user' do
-    it 'renders the user login page if user logins are enabled' do
+    it 'redirects to the user login page if user logins are enabled' do
       Setting.find_or_create_by!(
         name: I18n.t( 'allow_user_logins' )
       ).update!( value: 'Yes' )
 
       get '/user'
 
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to user_login_path
+      follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'Log in'
     end
   end
 
   describe 'GET /users' do
-    it 'renders the user login page if user logins are enabled' do
+    it 'redirects to the user login page if user logins are enabled' do
       Setting.find_or_create_by!(
         name: I18n.t( 'allow_user_logins' )
       ).update!( value: 'Yes' )
 
       get '/users'
 
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to user_login_path
+      follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'Log in'
     end
@@ -65,6 +71,17 @@ RSpec.describe 'User', type: :request do
       follow_redirect!
       expect( response.body ).to include 'User logins are not enabled'
       expect( response.body ).to include 'This site does not have any content'
+    end
+  end
+
+  describe 'GET /user/:username' do
+    it "renders the user's profile page" do
+      user = create :user
+
+      get user_profile_path( user.username )
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include user.username
     end
   end
 end
