@@ -6,11 +6,11 @@
 
 # Settings
 seed Setting, { name: I18n.t( 'default_page' ) }, {
-  value: 'name or slug',
+  value: '',
   description: 'Default top-level page (either its name or its slug)'
 }
 seed Setting, { name: I18n.t( 'default_section' ) }, {
-  value: 'name or slug',
+  value: '',
   description: 'Default top-level page (either its name or its slug)'
 }
 seed Setting, { name: I18n.t( 'admin_ip_whitelist' ) }, {
