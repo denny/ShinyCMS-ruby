@@ -1,0 +1,21 @@
+# Travis CI config, for https://travis-ci.org/denny/ShinyCMS-ruby
+
+language: ruby
+
+# Not specifying version here means it will get picked up from .ruby-version
+# rvm:
+#   - 2.6.4
+
+cache: bundler
+
+addons:
+  postgresql: "10"
+
+before_script:
+  - bundle exec rails webpacker:install
+  - bundle exec rails webpacker:compile
+  - bundle exec rails db:create
+  - bundle exec rails db:migrate
+
+script:
+  - bundle exec rspec
