@@ -1,5 +1,5 @@
-# Helper methods that will be used across the whole of the main site
-module Menu
+# Menu helper methods, for use across the whole of the main site
+module MainSiteMenu
   extend ActiveSupport::Concern
 
   included do

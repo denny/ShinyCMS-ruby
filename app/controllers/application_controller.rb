@@ -2,6 +2,6 @@
 class ApplicationController < ActionController::Base
   layout 'main_site'
 
-  include Menu
+  include MainSiteMenu
   before_action :build_menu_data
 end
