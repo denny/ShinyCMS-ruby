@@ -1,0 +1,16 @@
+# Travis CI config, for https://travis-ci.org/denny/ShinyCMS-ruby
+
+language: ruby
+
+# Not specifying version here means it will get picked up from .ruby-version
+# rvm:
+#   - 2.6.4
+
+addons:
+  postgresql: "10"
+
+before_script:
+  - rake db:setup
+
+script:
+  - rspec
