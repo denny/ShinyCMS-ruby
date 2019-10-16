@@ -62,8 +62,6 @@ class PagesController < ApplicationController
       return
     end
 
-    build_menu_data
-
     # TODO: build element stack
 
     render template: "pages/templates/#{@page.template.filename}"
@@ -78,19 +76,6 @@ class PagesController < ApplicationController
     return section if path_parts.empty?
 
     traverse_path( path_parts, section.sections )
-  end
-
-  # Populate data used by the menu partial
-  def build_menu_data
-    @menu_tl_sections = PageSection.top_level_sections
-    return unless @page
-
-    if @page.section
-      @menu_sections = @page.section.sections
-      @menu_pages    = @page.section.pages
-    else
-      @menu_pages = Page.top_level_pages
-    end
   end
 
   # 404 handler
