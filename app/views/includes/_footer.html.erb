@@ -1,4 +1,12 @@
 <p>
+	<% if user_signed_in? %>
+	Welcome back <%= link_to ( @user.display_name || @user.username ), :user_profile %>!
+	Click here to <%= link_to 'log out', :user_logout %>.
+	<% else %>
+	Click here to <%= link_to 'log in', :user_login %>.
+	<% end %>
+</p>
+<p>
 	This website is powered by <a href="https://shinycms.org/">ShinyCMS</a>
   (<a href="https://shinycms.org/ruby">Ruby version</a>).
 	ShinyCMS is <a href="http://www.opensource.org/">open source software</a>,
