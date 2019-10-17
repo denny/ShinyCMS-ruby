@@ -44,4 +44,7 @@ Rails.application.routes.draw do
     post   'setting/create',     to: 'settings#create', as: :setting_create
     delete 'setting/delete/:id', to: 'settings#delete', as: :setting_delete
   end
+
+  # The Ultimate Catch-All Route - passes through to page handler
+  get '*path', to: 'pages#show'
 end

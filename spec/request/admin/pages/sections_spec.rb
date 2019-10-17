@@ -31,6 +31,19 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       expect( response.body ).to include I18n.t 'section_create_failed'
     end
 
+    it 'fails if top-level section slug collides with a controller namespace' do
+      skip 'Write code to detect and prevent this'
+
+      post admin_section_new_path, params: {
+        'page_section[name]': 'Test',
+        'page_section[title]': 'Test',
+        'page_section[slug]': 'user'
+      }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include I18n.t 'section_create_failed'
+    end
+
     it 'adds a new section when the form is submitted' do
       post admin_pages_section_new_path, params: {
         'page_section[name]': 'Test',
