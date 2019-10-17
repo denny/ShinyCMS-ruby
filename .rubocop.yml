@@ -40,6 +40,11 @@ Layout/SpaceInsideReferenceBrackets:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+# I'd rather use one style of regex everywhere, that is clear when munging URLs
+# ( %r{/(path)/parts} rather than /\/(path)\/parts/ )
+Style/RegexpLiteral:
+  Enabled: false
+
 # I have no idea what this is but it was annoying me.
 Style/FrozenStringLiteralComment:
   Enabled: false

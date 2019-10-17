@@ -24,7 +24,8 @@ Rails.application.routes.draw do
                 sign_in: 'login',
                 sign_out: 'logout'
               }
-  get 'user/:username', to: 'user#show', as: :user_profile
+  get 'user/:username', to: 'user#show', as: :user_profile,
+                        constraints: { username: User::USERNAME_REGEX }
 
   # ========== ( Admin area ) ==========
   get 'admin', to: 'admin#index'
