@@ -66,6 +66,28 @@ RSpec.describe 'Pages', type: :request do
     end
   end
 
+  describe 'GET /page-name' do
+    it 'fetches the specified top-level page without /pages in the path' do
+      page = create :top_level_page
+
+      get "/#{page.slug}"
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to match %r{<h1>\s*#{page.title}\s*</h1>}
+    end
+  end
+
+  describe 'GET /section-name/page-name' do
+    it 'fetches a page in a section without /pages in the path' do
+      page = create :page_in_section
+
+      get "/#{page.section.slug}/#{page.slug}"
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to match %r{<h1>\s*#{page.title}\s*</h1>}
+    end
+  end
+
   describe 'GET /pages/section-name' do
     it 'fetches the first page from the specified section' do
       section = create :page_section
