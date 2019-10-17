@@ -1,0 +1,2 @@
+class SharedElement < ApplicationRecord
+end

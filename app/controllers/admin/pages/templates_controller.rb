@@ -1,19 +1,19 @@
 # Admin controller for page templates
 class Admin::Pages::TemplatesController < AdminController
+  # List all templates
   def index
-    # List all templates
     @templates = PageTemplate.all
   end
 
-  def new
-    # Add a new template
-  end
+  def new; end
 
   def create
-    # Save new template details
     @template = PageTemplate.new( template_params )
 
-    if @template.save
+    success = false
+    success = create_elements if @template.save
+
+    if success
       flash[ :notice ] = I18n.t 'template_created'
       redirect_to action: :edit, id: @template.id
     else
@@ -23,12 +23,10 @@ class Admin::Pages::TemplatesController < AdminController
   end
 
   def edit
-    # Edit a template
     @template = PageTemplate.find( params[:id] )
   end
 
   def update
-    # Save edited template details
     @template = PageTemplate.find( params[:id] )
 
     if @template.update( template_params )
@@ -41,6 +39,20 @@ class Admin::Pages::TemplatesController < AdminController
   end
 
   private
+
+  # Create the template elements, based on the contents of the template file
+  def create_elements
+    dir = %w[ app views pages templates ]
+    erb = File.read( Rails.root.join( *dir, "#{@template.filename}.html.erb" ) )
+    erb.scan( %r{\@page\.elements\.[a-z][0-9a-z]*}i ).uniq.each do |name|
+      name.remove! '@page.elements.'
+      return false unless PageTemplateElement.new(
+        template_id: @template.id,
+        name: name
+      ).save
+    end
+    true
+  end
 
   def template_params
     params.require( :page_template ).permit(

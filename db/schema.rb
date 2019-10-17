@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_193220) do
+ActiveRecord::Schema.define(version: 2019_10_17_200136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "page_elements", force: :cascade do |t|
+    t.integer "page_id", null: false
+    t.string "name", null: false
+    t.string "type"
+    t.string "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["page_id"], name: "index_page_elements_on_page_id"
+  end
 
   create_table "page_sections", force: :cascade do |t|
     t.string "name", null: false
@@ -29,6 +39,15 @@ ActiveRecord::Schema.define(version: 2019_10_14_193220) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["section_id"], name: "index_page_sections_on_section_id"
     t.index ["slug", "section_id"], name: "index_page_sections_on_slug_and_section_id", unique: true
+  end
+
+  create_table "page_template_elements", force: :cascade do |t|
+    t.integer "template_id", null: false
+    t.string "name", null: false
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["template_id"], name: "index_page_template_elements_on_template_id"
   end
 
   create_table "page_templates", force: :cascade do |t|
@@ -60,6 +79,14 @@ ActiveRecord::Schema.define(version: 2019_10_14_193220) do
     t.string "name", null: false
     t.string "value"
     t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shared_elements", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "type", null: false
+    t.string "value", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -99,7 +126,9 @@ ActiveRecord::Schema.define(version: 2019_10_14_193220) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "page_elements", "pages"
   add_foreign_key "page_sections", "page_sections", column: "section_id"
+  add_foreign_key "page_template_elements", "page_templates", column: "template_id"
   add_foreign_key "pages", "page_sections", column: "section_id"
   add_foreign_key "pages", "page_templates", column: "template_id"
 end
