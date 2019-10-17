@@ -18,6 +18,10 @@ class User < ApplicationRecord
     @login || username || email
   end
 
+  def to_param
+    username
+  end
+
   # Override find method to search by username as well as email
   def self.find_first_by_auth_conditions( warden_conditions )
     conditions = warden_conditions.dup
