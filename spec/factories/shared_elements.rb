@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :shared_element do
-    name  { FactoryBot::Science.unique.element }
-    type  { I18n.t( 'short_text' )             }
-    value { FactoryBot::Science.scientist      }
+    name  { Faker::Science.unique.element }
+    type  { I18n.t( 'short_text' )        }
+    value { Faker::Science.scientist      }
   end
 end
