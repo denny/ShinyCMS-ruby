@@ -24,6 +24,7 @@ source 'https://rubygems.org' do
 
   # Authentication and authorisation
   gem 'devise'
+  gem 'devise-pwned_password'
   gem 'pundit'
 
   group :development, :test do

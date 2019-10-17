@@ -12,7 +12,7 @@ require 'action_controller/railtie' # Pretty sure we need this though
 require 'action_mailer/railtie'     # Registration emails, etc
 # require 'action_text/engine'
 require 'action_view/railtie'       # Also seems quite fundamental
-# require 'active_job/railtie'
+require 'active_job/railtie'        # Queue (for mailer tasks)
 require 'active_record/railtie'
 # require 'active_storage/engine'   # Will need soon: user profile pics, etc
 # require 'rails/test_unit/railtie'
