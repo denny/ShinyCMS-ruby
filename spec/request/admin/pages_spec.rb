@@ -44,6 +44,21 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response.body ).to include I18n.t 'page_create_failed'
     end
 
+    it 'fails when the page slug collides with a controller namespace' do
+      skip 'Write code to detect and prevent this'
+      template = create :page_template
+
+      post admin_page_new_path, params: {
+        'page[name]': 'Test',
+        'page[title]': 'Test',
+        'page[slug]': 'user',
+        'page[template_id]': template.id
+      }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include I18n.t 'page_create_failed'
+    end
+
     it 'adds a new page when the form is submitted' do
       template = create :page_template
 

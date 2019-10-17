@@ -5,9 +5,8 @@ Rails.application.routes.draw do
   root to: 'pages#index'
 
   # Pages
-  get 'pages',        to: 'pages#index'
-  get 'pages/:slug',  to: 'pages#show_top_level'
-  get 'pages/*slugs', to: 'pages#show_in_section'
+  get 'pages',       to: 'pages#index'
+  get 'pages/*path', to: 'pages#show'
 
   # Users
   get 'user',  to: 'user#index', as: :user_index
@@ -60,4 +59,7 @@ Rails.application.routes.draw do
     post   'setting/create',     to: 'settings#create', as: :setting_create
     delete 'setting/delete/:id', to: 'settings#delete', as: :setting_delete
   end
+
+  # The Ultimate Catch-All Route - passes through to page handler
+  get '*path', to: 'pages#show'
 end
