@@ -72,7 +72,9 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       template = create :page_template_with_elements
 
       post admin_pages_template_path( template ), params: {
-        'page_template[name]': 'Updated by test'
+        'page_template[name]': 'Updated by test',
+        'elements[element_1_name]': 'updated_element_name',
+        'elements[element_1_type]': 'HTML'
       }
 
       expect( response      ).to have_http_status :found
