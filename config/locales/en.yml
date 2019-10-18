@@ -16,6 +16,11 @@ en:
   # ========== ( Admin area controllers (and request specs) ) ==========
   admin_ip_list: Admin IP list
   are_you_sure: Are you sure?
+  # Element types (page/template/shared)
+  short_text: Short Text
+  long_text: Long Text
+  filename: Filename
+  html: HTML
   # Pages
   list_pages: List pages
   page_created: New page added
@@ -32,6 +37,8 @@ en:
   template_create_failed: Failed to add new template
   template_updated: Template details updated
   template_update_failed: Failed to update template details
+  # Shared Content
+  shared_content: 'Shared content'
   # Settings
   setting_name: Setting name
   setting_value: Setting value (can be blank)

@@ -3,8 +3,13 @@ class PageTemplate < ApplicationRecord
   validates :name,     presence: true
   validates :filename, presence: true
 
-  has_many :pages, foreign_key: 'template_id', inverse_of: 'template',
+  has_many :pages, foreign_key: 'template_id',
+                   inverse_of: 'template',
                    dependent: :delete_all
+  has_many :elements, class_name: 'PageTemplateElement',
+                      foreign_key: 'template_id',
+                      inverse_of: 'template',
+                      dependent: :delete_all
 
   # Instance methods
 

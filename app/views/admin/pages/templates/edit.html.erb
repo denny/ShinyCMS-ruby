@@ -13,6 +13,16 @@
     <%= f.label :filename, 'Template file' %>
     <br><%= f.select :filename, PageTemplate.available_templates %>
   </p>
+  <% @template.elements.each do |e| %>
+  <p>
+    <input type="text" name="elements[element_<%= e.id %>_name]" value="<%= e.name %>">
+    <select name="elements[element_<%= e.id %>_type]">
+      <% PageTemplateElement.element_types.each do |t| %>
+      <option><%= t %></option>
+      <% end %>
+    </select>
+  </p>
+  <% end %>
   <p>
     <%= f.submit 'Update' %>
   </p>
