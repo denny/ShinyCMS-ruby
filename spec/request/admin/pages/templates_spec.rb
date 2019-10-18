@@ -69,7 +69,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
     end
 
     it 'updates the template when the form is submitted' do
-      template = create :page_template
+      template = create :page_template_with_elements
 
       post admin_pages_template_path( template ), params: {
         'page_template[name]': 'Updated by test'
