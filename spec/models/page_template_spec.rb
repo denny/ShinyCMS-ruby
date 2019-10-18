@@ -28,4 +28,12 @@ RSpec.describe PageTemplate, type: :model do
       expect( PageTemplate.available_templates.first ).to eq 'example'
     end
   end
+
+  context '.elements' do
+    it 'returns the template elements' do
+      template = create :page_template_with_elements
+
+      expect( template.elements.size ).to eq 3
+    end
+  end
 end
