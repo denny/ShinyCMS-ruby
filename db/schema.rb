@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2019_10_17_200136) do
   create_table "page_elements", force: :cascade do |t|
     t.integer "page_id", null: false
     t.string "name", null: false
-    t.string "type"
-    t.string "value"
+    t.string "content"
+    t.string "content_type", default: "Short Text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["page_id"], name: "index_page_elements_on_page_id"
@@ -44,7 +44,8 @@ ActiveRecord::Schema.define(version: 2019_10_17_200136) do
   create_table "page_template_elements", force: :cascade do |t|
     t.integer "template_id", null: false
     t.string "name", null: false
-    t.string "type"
+    t.string "content"
+    t.string "content_type", default: "Short Text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["template_id"], name: "index_page_template_elements_on_template_id"
@@ -85,8 +86,8 @@ ActiveRecord::Schema.define(version: 2019_10_17_200136) do
 
   create_table "shared_elements", force: :cascade do |t|
     t.string "name", null: false
-    t.string "type", null: false
-    t.string "value", null: false
+    t.string "content"
+    t.string "content_type", default: "Short Text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

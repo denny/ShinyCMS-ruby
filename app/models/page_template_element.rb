@@ -1,12 +1,13 @@
 # Model class for template elements
 class PageTemplateElement < ApplicationRecord
-  validates :name, presence: true
+  validates :name,     presence: true
+  validates :template, presence: true
 
   belongs_to :template, class_name: 'PageTemplate', inverse_of: 'elements'
 
   # Class methods
 
-  def self.element_types
+  def self.content_types
     [
       I18n.t( 'short_text' ),
       I18n.t( 'long_text'  ),

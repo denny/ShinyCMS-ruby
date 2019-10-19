@@ -13,14 +13,11 @@
     <%= f.label :filename, 'Template file' %>
     <br><%= f.select :filename, PageTemplate.available_templates %>
   </p>
-  <% @template.elements.each do |e| %>
+  <%= f.fields_for :elements do |fields| %>
   <p>
-    <input type="text" name="elements[element_<%= e.id %>_name]" value="<%= e.name %>">
-    <select name="elements[element_<%= e.id %>_type]">
-      <% PageTemplateElement.element_types.each do |t| %>
-      <option><%= t %></option>
-      <% end %>
-    </select>
+    <%= fields.text_field :name %>
+    <%= fields.select :content_type, PageTemplateElement.content_types %>
+    <br><%= fields.text_field :content %>
   </p>
   <% end %>
   <p>
