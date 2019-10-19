@@ -28,6 +28,11 @@ class User < ApplicationRecord
     username
   end
 
+  # Queue email sends
+  def send_devise_notification( notification, *args )
+    devise_mailer.public_send( notification, self, *args ).deliver_later
+  end
+
   # Override find method to search by username as well as email
   def self.find_first_by_auth_conditions( warden_conditions )
     conditions = warden_conditions.dup
@@ -40,10 +45,5 @@ class User < ApplicationRecord
     else
       find_by( username: conditions[ :username ] )
     end
-  end
-
-  # Queue email sends
-  def send_devise_notification( notification, *args )
-    devise_mailer.public_send( notification, self, *args ).deliver_later
   end
 end
