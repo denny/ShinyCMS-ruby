@@ -30,20 +30,16 @@ class User < ApplicationRecord
 
   # Queue email sends
   def send_devise_notification( notification, *args )
+    # :nocov:
     devise_mailer.public_send( notification, self, *args ).deliver_later
+    # :nocov:
   end
 
   # Override find method to search by username as well as email
   def self.find_first_by_auth_conditions( warden_conditions )
     conditions = warden_conditions.dup
     login = conditions.delete( :login )
-    if login
-      where_clause = 'lower( username ) = :value OR lower( email ) = :value'
-      where( conditions ).find_by( [ where_clause, { value: login.downcase } ] )
-    elsif conditions[ :username ].nil?
-      find_by( conditions )
-    else
-      find_by( username: conditions[ :username ] )
-    end
+    where_clause = 'lower( username ) = :value OR lower( email ) = :value'
+    where( conditions ).find_by( [ where_clause, { value: login.downcase } ] )
   end
 end
