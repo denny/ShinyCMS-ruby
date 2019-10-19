@@ -27,10 +27,9 @@ class Admin::Pages::TemplatesController < AdminController
   end
 
   def update
-    @template = PageTemplate.update( params[:id], template_params )
-    success = update_elements if @template.valid?
+    @template = PageTemplate.find( params[:id] )
 
-    if success
+    if @template.update( template_params )
       flash[ :notice ] = I18n.t 'template_updated'
       redirect_to action: :edit, id: @template.id
     else
@@ -55,26 +54,9 @@ class Admin::Pages::TemplatesController < AdminController
     true
   end
 
-  # Update the elements
-  def update_elements
-    new_elements = template_params[ :elements ]
-    new_elements&.each_key do |key|
-      next unless /element_(?<id>\d+)_name/ =~ key
-
-      name = new_elements[ "element_#{id}_name" ]
-      type = new_elements[ "element_#{id}_type" ]
-
-      element = PageTemplateElement.find( id )
-      next if element.name == name && element.type == type
-
-      return false unless element.update name: name, type: type
-    end
-    true
-  end
-
   def template_params
     params.require( :page_template ).permit(
-      :name, :description, :filename, :elements
+      :name, :description, :filename, elements_attributes: {}
     )
   end
 end
