@@ -63,16 +63,12 @@ class PagesController < ApplicationController
     not_found
   end
 
-  # Build the element stack and render the page
+  # Render the page with the appropriate template
   def show_page
     unless @page.template.file_exists?
       render inline: I18n.t( 'template_file_missing' )
       return
     end
-
-    build_menu_data
-
-    # TODO: build element stack
 
     render template: "pages/templates/#{@page.template.filename}"
   end
@@ -90,7 +86,6 @@ class PagesController < ApplicationController
 
   # 404 handler
   def not_found
-    build_menu_data
     render status: :not_found, template: 'special/404.html.erb'
   end
 end
