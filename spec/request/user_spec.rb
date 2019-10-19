@@ -1,58 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'User', type: :request do
-  describe 'GET /user' do
-    it 'redirects to the user login page if user logins are enabled' do
-      Setting.find_or_create_by!(
-        name: I18n.t( 'allow_user_logins' )
-      ).update!( value: 'Yes' )
+  describe 'GET /user/:username' do
+    it "renders the user's profile page" do
+      user = create :user
 
-      get '/user'
+      get user_profile_path( user )
 
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_login_path
-      follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include 'Log in'
-    end
-
-    it "renders the user's profile page when a user is already logged in" do
-      create :page
-      # TODO: factory for logged in users
-      password = 'shinycms unimaginative test passphrase'
-      user = create :user, password: password
-
-      post user_session_path, params: {
-        'user[email]': user.email,
-        'user[password]': user.password
-      }
-
-      expect( response      ).to have_http_status :found
-      # TODO: make this behaviour actually happen
-      # expect( response      ).to redirect_to user_profile_path( user )
-      expect( response      ).to redirect_to root_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to include "<a href=\"/user/#{user.username}\""
-      expect( response.body ).to include '<a href="/logout">log out</a>'
-
-      get '/user'
-    end
-  end
-
-  describe 'GET /users' do
-    it 'redirects to the user login page if user logins are enabled' do
-      Setting.find_or_create_by!(
-        name: I18n.t( 'allow_user_logins' )
-      ).update!( value: 'Yes' )
-
-      get '/users'
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_login_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to include 'Log in'
+      expect( response.body ).to include user.username
     end
   end
 
@@ -97,26 +53,46 @@ RSpec.describe 'User', type: :request do
     end
   end
 
-  describe 'GET /user/:username' do
-    it "renders the user's profile page" do
-      user = create :user
+  describe 'GET /users' do
+    it 'redirects to the user login page if user logins are enabled' do
+      Setting.find_or_create_by!(
+        name: I18n.t( 'allow_user_logins' )
+      ).update!( value: 'Yes' )
 
-      get user_profile_path( user )
+      get '/users'
 
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to user_login_path
+      follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include user.username
+      expect( response.body ).to include 'Log in'
     end
   end
 
-  describe 'POST /user/login' do
-    it 'logs the user in' do
+  describe 'GET /user' do
+    it 'redirects to the user login page if user logins are enabled' do
+      Setting.find_or_create_by!(
+        name: I18n.t( 'allow_user_logins' )
+      ).update!( value: 'Yes' )
+
+      get '/user'
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to user_login_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include 'Log in'
+    end
+
+    it "renders the user's profile page when a user is already logged in" do
       create :page
+      # TODO: factory for logged in users
       password = 'shinycms unimaginative test passphrase'
       user = create :user, password: password
 
       post user_session_path, params: {
-        'user[email]': user.email,
-        'user[password]': password
+        'user[login]': user.email,
+        'user[password]': user.password
       }
 
       expect( response      ).to have_http_status :found
@@ -127,6 +103,30 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include "<a href=\"/user/#{user.username}\""
       expect( response.body ).to include '<a href="/logout">log out</a>'
+
+      get '/user'
+    end
+
+    describe 'POST /user/login' do
+      it 'logs the user in' do
+        create :page
+        password = 'shinycms unimaginative test passphrase'
+        user = create :user, password: password
+
+        post user_session_path, params: {
+          'user[login]': user.email,
+          'user[password]': password
+        }
+
+        expect( response      ).to have_http_status :found
+        # TODO: make this behaviour actually happen
+        # expect( response      ).to redirect_to user_profile_path( user )
+        expect( response      ).to redirect_to root_path
+        follow_redirect!
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to include "<a href=\"/user/#{user.username}\""
+        expect( response.body ).to include '<a href="/logout">log out</a>'
+      end
     end
   end
 end

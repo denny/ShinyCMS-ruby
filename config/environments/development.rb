@@ -28,6 +28,9 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # Blow up for unexpected user auth params in dev
+  config.action_controller.action_on_unpermitted_parameters = :raise
+
   # Store uploaded files on local file system (config/storage.yml for options)
   # config.active_storage.service = :local
 
