@@ -28,7 +28,7 @@ RSpec.describe 'Pages', type: :request do
 
       get '/'
 
-      expect( response      ).to have_http_status :ok
+      expect( response      ).to have_http_status :failed_dependency
       expect( response.body ).to include I18n.t( 'template_file_missing' )
     end
   end

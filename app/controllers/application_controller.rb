@@ -2,19 +2,14 @@
 class ApplicationController < ActionController::Base
   layout 'main_site'
 
-  include MainSiteMenu
-  before_action :build_menu_data
-
   # Strong params config for Devise
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # Check logins against pwned password service and warn user if necessary
   def after_sign_in_path_for( resource )
-    # :nocov:
     set_flash_message! :alert, :warn_pwned if resource.respond_to?( :pwned? ) &&
                                               resource.pwned?
     super
-    # :nocov:
   end
 
   protected
