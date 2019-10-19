@@ -75,6 +75,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       post admin_pages_template_path( template ), params: {
         'page_template[name]': 'Updated by test',
         "elements[element_#{e_id}_name]": 'updated_element_name',
+        "elements[element_#{e_id}_content]": 'Default content',
         "elements[element_#{e_id}_type]": 'HTML'
       }
 
