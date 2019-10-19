@@ -1,4 +1,4 @@
-<% menu_data = build_menu_data( @section ) %>
+<% menu_data = build_menu_data( @page&.section ) %>
 <ul>
 <% unless menu_data[ :pages ][ :top_sections ].blank? %>
   <li>
