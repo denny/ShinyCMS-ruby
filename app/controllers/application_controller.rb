@@ -21,13 +21,17 @@ class ApplicationController < ActionController::Base
 
   # Strong params config for Devise
   def configure_permitted_parameters
-    keys1 = %i[ username email password password_confirmation ]
-    devise_parameter_sanitizer.permit :sign_up, keys: keys1
+    basic_params = %i[ username email password password_confirmation ]
+    devise_parameter_sanitizer.permit( :sign_up ) do |user_params|
+      user_params.permit( basic_params )
+    end
 
-    keys2 = %i[ login username email password password_confirmation remember_me]
-    devise_parameter_sanitizer.permit :sign_in, keys: keys2
+    devise_parameter_sanitizer.permit( :sign_in ) do |user_params|
+      user_params.permit( basic_params | %i[ login remember_me ] )
+    end
 
-    keys3 = %i[ username email password password_confirmation current_password ]
-    devise_parameter_sanitizer.permit :account_update, keys: keys3
+    devise_parameter_sanitizer.permit( :account_update ) do |user_params|
+      user_params.permit( basic_params | %i[ current_password ] )
+    end
   end
 end
