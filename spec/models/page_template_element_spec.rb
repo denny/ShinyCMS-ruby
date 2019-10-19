@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PageTemplateElement, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it_should_behave_like Element do
+    let( :element ) { described_class }
+  end
 end
