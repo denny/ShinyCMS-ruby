@@ -179,10 +179,10 @@ RSpec.describe 'User', type: :request do
         user = create :user
         sign_in user
 
-        new_name = Faker::Science.unique.element.downcase
+        new_name = Faker::Science.unique.scientist
         put user_registration_path, params: {
-          'user[current_password]': user.password,
-          'user[username]': new_name
+          'user[display_name]': new_name,
+          'user[current_password]': user.password
         }
 
         expect( response      ).to have_http_status :found
