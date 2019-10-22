@@ -45,7 +45,6 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
 
     it 'fails when the page slug collides with a controller namespace' do
-      skip 'Write code to detect and prevent this'
       template = create :page_template
 
       post admin_page_new_path, params: {
