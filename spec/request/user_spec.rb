@@ -84,12 +84,15 @@ RSpec.describe 'User', type: :request do
       expect( response.body ).to include 'Log in'
     end
 
-    it "renders the user's profile page when a user is already logged in" do
+    it "redirects to the user's profile page when user is already logged in" do
       user = create :user
       sign_in user
 
       get '/user'
 
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to user_profile_path( user )
+      follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include user.username
     end
