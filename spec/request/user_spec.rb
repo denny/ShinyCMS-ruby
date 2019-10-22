@@ -132,7 +132,72 @@ RSpec.describe 'User', type: :request do
         expect( response.body ).to include '<a href="/logout">log out</a>'
       end
 
-      it 'warns you if you are using a known-to-be-leaked password' do
+      it 'warns you if you log in using a known-to-be-leaked password' do
+        skip 'Look into why this works in-browser but not here'
+
+        create :page
+        user = create :user, password: password
+
+        post user_session_path, params: {
+          'user[login]': user.username,
+          'user[password]': 'password'
+        }
+
+        expect( response      ).to have_http_status :found
+        expect( response      ).to redirect_to root_path
+        follow_redirect!
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to include 'This password has been leaked'
+      end
+    end
+
+    describe 'POST /user/register' do
+      it 'warns you if you try to sign up with a known-leaked password' do
+        create :page
+
+        username = Faker::Science.unique.element.downcase
+        email = "#{username}@example.com"
+
+        post user_registration_path, params: {
+          'user[email]': email,
+          'user[username]': username,
+          'user[password]': 'password'
+        }
+
+        expect( response      ).to have_http_status :found
+        # TODO: make this behaviour actually happen
+        # expect( response      ).to redirect_to user_profile_path( user )
+        expect( response      ).to redirect_to root_path
+        follow_redirect!
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to include "<a href=\"/user/#{user.username}\""
+        expect( response.body ).to include '<a href="/logout">log out</a>'
+      end
+
+      it 'creates a new user if you use a better password :)' do
+        create :page
+
+        username = Faker::Science.unique.element.downcase
+        password = 'shinycms unimaginative test passphrase'
+        email = "#{username}@example.com"
+
+        post user_registration_path, params: {
+          'user[email]': email,
+          'user[username]': username,
+          'user[password]': password
+        }
+
+        expect( response      ).to have_http_status :found
+        # TODO: make this behaviour actually happen
+        # expect( response      ).to redirect_to user_profile_path( user )
+        expect( response      ).to redirect_to root_path
+        follow_redirect!
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to include "<a href=\"/user/#{user.username}\""
+        expect( response.body ).to include '<a href="/logout">log out</a>'
+      end
+
+      it 'warns you if you log in using a known-to-be-leaked password' do
         skip 'Look into why this works in-browser but not here'
 
         create :page
