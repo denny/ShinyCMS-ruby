@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       # :nocov:
     end
 
-    super
+    user_profile_path( resource )
   end
 
   protected
