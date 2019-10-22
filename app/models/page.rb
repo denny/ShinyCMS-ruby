@@ -16,6 +16,28 @@ class Page < ApplicationRecord
   belongs_to :template, class_name: 'PageTemplate',
                         inverse_of: 'pages'
 
+  has_many :elements, class_name: 'PageElement',
+                      foreign_key: 'page_id',
+                      inverse_of: 'page',
+                      dependent: :delete_all
+
+  accepts_nested_attributes_for :elements
+
+  after_create :add_elements
+
+  # Instance methods
+
+  # Add the elements specified by the template
+  def add_elements
+    template.elements.each do |template_element|
+      elements.create!(
+        name: template_element.name,
+        content: template_element.content,
+        content_type: template_element.content_type
+      )
+    end
+  end
+
   # Class methods
 
   def self.top_level_pages
