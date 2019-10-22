@@ -1,15 +1,9 @@
 # Model for 'brochure' pages
 class Page < ApplicationRecord
-  validates :name,        presence:  true
-  validates :title,       presence:  true
-  validates :slug,        presence:  true
+  include NameTitleSlug
+
   validates :template_id, presence:  true
-  validates :slug,        safe_slug: true
   validates :hidden,      inclusion:  { in: [ true, false ] }
-  validates :slug,        uniqueness: {
-    scope: :section,
-    message: I18n.t( 'slug_unique' )
-  }
 
   belongs_to :section,  class_name: 'PageSection', optional: true,
                         inverse_of: 'pages'
