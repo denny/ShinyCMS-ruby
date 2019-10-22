@@ -216,5 +216,55 @@ RSpec.describe 'User', type: :request do
         )
       end
     end
+
+    describe 'GET /user/edit' do
+      it 'loads the user edit page' do
+        # TODO: replace this with a logged_in_user factory
+        user = create :user
+        post user_session_path, params: {
+          'user[login]': user.username,
+          'user[password]': user.password
+        }
+        expect( response ).to have_http_status :found
+        expect( response ).to redirect_to root_path
+        follow_redirect!
+        expect( response ).to have_http_status :ok
+
+        get edit_user_registration_path
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to include 'Edit User'
+      end
+    end
+
+    describe 'PUT /user' do
+      it 'updates the user when you submit the edit form' do
+        create :page
+
+        # TODO: replace this with a logged_in_user factory
+        user = create :user
+        post user_session_path, params: {
+          'user[login]': user.username,
+          'user[password]': user.password
+        }
+        expect( response ).to have_http_status :found
+        expect( response ).to redirect_to root_path
+        follow_redirect!
+        expect( response ).to have_http_status :ok
+
+        new_name = Faker::Science.unique.element.downcase
+        put user_registration_path, params: {
+          'user[current_password]': user.password,
+          'user[username]': new_name
+        }
+
+        expect( response      ).to have_http_status :found
+        # expect( response      ).to redirect_to edit_user_registration_path
+        expect( response ).to redirect_to root_path # TODO: fixme^
+        follow_redirect!
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to include 'Your account has been updated'
+      end
+    end
   end
 end
