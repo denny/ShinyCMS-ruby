@@ -73,6 +73,23 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'Edit page'
     end
+
+    it 'adds a new page with elements from template' do
+      template = create :page_template_with_elements
+
+      post admin_page_new_path, params: {
+        'page[name]': 'Test',
+        'page[title]': 'Test',
+        'page[slug]': 'test',
+        'page[template_id]': template.id
+      }
+
+      expect( response      ).to have_http_status :found
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include 'Edit page'
+      expect( response.body ).to include template.elements.first.name
+    end
   end
 
   describe 'GET /admin/page/:id' do
