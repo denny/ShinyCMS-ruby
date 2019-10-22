@@ -85,26 +85,13 @@ RSpec.describe 'User', type: :request do
     end
 
     it "renders the user's profile page when a user is already logged in" do
-      create :page
-      # TODO: factory for logged in users
-      password = 'shinycms unimaginative test passphrase'
-      user = create :user, password: password
-
-      post user_session_path, params: {
-        'user[login]': user.email,
-        'user[password]': user.password
-      }
-
-      expect( response      ).to have_http_status :found
-      # TODO: make this behaviour actually happen
-      # expect( response      ).to redirect_to user_profile_path( user )
-      expect( response      ).to redirect_to root_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to include "<a href=\"/user/#{user.username}\""
-      expect( response.body ).to include '<a href="/logout">log out</a>'
+      user = create :user
+      sign_in user
 
       get '/user'
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include user.username
     end
 
     describe 'POST /user/login' do
@@ -175,16 +162,8 @@ RSpec.describe 'User', type: :request do
 
     describe 'GET /user/edit' do
       it 'loads the user edit page' do
-        # TODO: replace this with a logged_in_user factory
         user = create :user
-        post user_session_path, params: {
-          'user[login]': user.username,
-          'user[password]': user.password
-        }
-        expect( response ).to have_http_status :found
-        expect( response ).to redirect_to root_path
-        follow_redirect!
-        expect( response ).to have_http_status :ok
+        sign_in user
 
         get edit_user_registration_path
 
@@ -197,16 +176,8 @@ RSpec.describe 'User', type: :request do
       it 'updates the user when you submit the edit form' do
         create :page
 
-        # TODO: replace this with a logged_in_user factory
         user = create :user
-        post user_session_path, params: {
-          'user[login]': user.username,
-          'user[password]': user.password
-        }
-        expect( response ).to have_http_status :found
-        expect( response ).to redirect_to root_path
-        follow_redirect!
-        expect( response ).to have_http_status :ok
+        sign_in user
 
         new_name = Faker::Science.unique.element.downcase
         put user_registration_path, params: {
