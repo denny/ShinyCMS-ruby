@@ -1,8 +1,9 @@
 # Model for page sections
 class PageSection < ApplicationRecord
-  validates :name,   presence: true
-  validates :title,  presence: true
-  validates :slug,   presence: true
+  validates :name,   presence:  true
+  validates :title,  presence:  true
+  validates :slug,   presence:  true
+  validates :slug,   safe_slug: true
   validates :hidden, inclusion:  { in: [ true, false ] }
   validates :slug,   uniqueness: {
     scope: :section,
