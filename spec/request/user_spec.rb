@@ -99,7 +99,6 @@ RSpec.describe 'User', type: :request do
 
     describe 'POST /user/login' do
       it 'logs the user in using their email address' do
-        create :page
         password = 'shinycms unimaginative test passphrase'
         user = create :user, password: password
 
@@ -109,9 +108,7 @@ RSpec.describe 'User', type: :request do
         }
 
         expect( response      ).to have_http_status :found
-        # TODO: make this behaviour actually happen
-        # expect( response      ).to redirect_to user_profile_path( user )
-        expect( response      ).to redirect_to root_path
+        expect( response      ).to redirect_to user_profile_path( user )
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to include "<a href=\"/user/#{user.username}\""
@@ -119,7 +116,6 @@ RSpec.describe 'User', type: :request do
       end
 
       it 'logs the user in using their username' do
-        create :page
         password = 'shinycms unimaginative test passphrase'
         user = create :user, password: password
 
@@ -129,9 +125,7 @@ RSpec.describe 'User', type: :request do
         }
 
         expect( response      ).to have_http_status :found
-        # TODO: make this behaviour actually happen
-        # expect( response      ).to redirect_to user_profile_path( user )
-        expect( response      ).to redirect_to root_path
+        expect( response      ).to redirect_to user_profile_path( user )
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to include "<a href=\"/user/#{user.username}\""
@@ -177,8 +171,6 @@ RSpec.describe 'User', type: :request do
 
     describe 'PUT /user' do
       it 'updates the user when you submit the edit form' do
-        create :page
-
         user = create :user
         sign_in user
 
@@ -189,8 +181,7 @@ RSpec.describe 'User', type: :request do
         }
 
         expect( response      ).to have_http_status :found
-        # expect( response      ).to redirect_to edit_user_registration_path
-        expect( response ).to redirect_to root_path # TODO: fixme^
+        expect( response      ).to redirect_to edit_user_registration_path
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to include 'Your account has been updated'

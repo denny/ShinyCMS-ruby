@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   # Users
   devise_scope :user do
-    get  'user',          to: 'user#index', as: :user_index
-    get  'users',         to: 'user#index'
+    get  'user',          to: 'users#index'
+    get  'users',         to: 'users#index'
 
     get  'login',         to: 'devise/sessions#new',      as: :user_login
     get  'logout',        to: 'devise/sessions#destroy',  as: :user_logout
@@ -19,9 +19,9 @@ Rails.application.routes.draw do
     get  'user/register', to: 'devise/registrations#new', as: :user_register
     post 'user/register', to: 'devise/registrations#create'
   end
-  devise_for :users
+  devise_for :users, controllers: { registrations: :users }
   devise_scope :user do
-    get  'user/:username', to: 'user#show', as: :user_profile,
+    get  'user/:username', to: 'users#show', as: :user_profile,
                            constraints: { username: User::USERNAME_REGEX }
   end
 

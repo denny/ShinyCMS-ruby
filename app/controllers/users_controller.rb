@@ -1,5 +1,5 @@
 # Controller for user features not provided by Devise - profile pages, etc
-class UserController < Devise::RegistrationsController
+class UsersController < Devise::RegistrationsController
   def index
     if user_signed_in?
       redirect_to user_profile_path( current_user )
@@ -14,7 +14,7 @@ class UserController < Devise::RegistrationsController
 
   protected
 
-  def after_update_path_for( resource )
-    user_path( resource )
+  def after_update_path_for( _resource )
+    edit_user_registration_path
   end
 end
