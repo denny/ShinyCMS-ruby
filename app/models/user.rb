@@ -14,7 +14,8 @@ class User < ApplicationRecord
 
   # Validations for username field
   validates :username, presence:   true
-  validates :username, uniqueness: true
+  validates :username, uniqueness: true, case_sensitive: false
+  validates :username, length:     { maximum: 50 }
   # Restrict the character set for usernames to letters, numbers, and - . _
   validates :username, format: ANCHORED_USERNAME_REGEX
 
