@@ -33,6 +33,9 @@ module ShinyCMS
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    # Add app/validators to autoload paths
+    config.autoload_paths << Rails.root.join( 'app', 'validators' )
+
     # Remove routes for Active Storage
     initializer(
       :remove_activestorage_routes, after: :add_routing_paths
