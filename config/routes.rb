@@ -14,8 +14,9 @@ Rails.application.routes.draw do
       get  'user',          to: 'users#index'
       get  'users',         to: 'users#index'
 
-      get  'login',         to: 'devise/sessions#new',      as: :user_login
+      get  'login',         to: 'users/sessions#new',       as: :user_login
       get  'logout',        to: 'devise/sessions#destroy',  as: :user_logout
+      post 'users/sign_in', to: 'users/sessions#create'
 
       get  'user/register', to: 'devise/registrations#new', as: :user_register
       post 'user/register', to: 'devise/registrations#create'
