@@ -2,10 +2,24 @@
 class ApplicationController < ActionController::Base
   layout 'main_site'
 
-  # Strong params config for Devise
+  # Strong params config for various Devise features
+  SIGN_UP_PARAMS = %i[
+    username email password password_confirmation
+  ].freeze
+  private_constant :SIGN_UP_PARAMS
+  SIGN_IN_PARAMS = %i[
+    username email password password_confirmation login remember_me
+  ].freeze
+  private_constant :SIGN_IN_PARAMS
+  ACCOUNT_UPDATE_PARAMS = %i[
+    username email password password_confirmation current_password display_name
+  ].freeze
+  private_constant :ACCOUNT_UPDATE_PARAMS
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # Check logins against pwned password service and warn user if necessary
+  # Override post-login redirect to take us to user's profile page
+  # Check user's password against pwned password service and warn user if found
   def after_sign_in_path_for( resource )
     if resource.respond_to?( :pwned? ) && resource.pwned?
       # :nocov:
@@ -20,18 +34,16 @@ class ApplicationController < ActionController::Base
 
   # Strong params config for Devise
   def configure_permitted_parameters
-    basic_params = %i[ username email password password_confirmation ]
-
     devise_parameter_sanitizer.permit( :sign_up ) do |user_params|
-      user_params.permit( basic_params )
+      user_params.permit( SIGN_UP_PARAMS )
     end
 
     devise_parameter_sanitizer.permit( :sign_in ) do |user_params|
-      user_params.permit( basic_params | %i[ login remember_me ] )
+      user_params.permit( SIGN_IN_PARAMS )
     end
 
     devise_parameter_sanitizer.permit( :account_update ) do |user_params|
-      user_params.permit( basic_params | %i[ current_password display_name ] )
+      user_params.permit( ACCOUNT_UPDATE_PARAMS )
     end
   end
 end
