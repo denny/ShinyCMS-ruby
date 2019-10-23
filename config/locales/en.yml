@@ -54,7 +54,7 @@ en:
 
   # ========== ( Models ) ==========
   # Pages & Page Sections
-  slug_unique: The slug must be unique within its section
+  slug_must_be_unique: The slug must be unique within its section
   # Page Templates
   template_file_must_exist: The template file must be in 'app/views/pages/templates'
   # Settings
