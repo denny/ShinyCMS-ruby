@@ -1,14 +1,8 @@
 # Model for page sections
 class PageSection < ApplicationRecord
-  validates :name,   presence:  true
-  validates :title,  presence:  true
-  validates :slug,   presence:  true
-  validates :slug,   safe_slug: true
+  include NameTitleSlug
+
   validates :hidden, inclusion:  { in: [ true, false ] }
-  validates :slug,   uniqueness: {
-    scope: :section,
-    message: I18n.t( 'slug_unique' )
-  }
 
   has_many  :pages,
             -> { where( hidden: false ).order( :sort_order ) },

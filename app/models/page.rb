@@ -1,20 +1,36 @@
 # Model for 'brochure' pages
 class Page < ApplicationRecord
-  validates :name,        presence:  true
-  validates :title,       presence:  true
-  validates :slug,        presence:  true
+  include NameTitleSlug
+
   validates :template_id, presence:  true
-  validates :slug,        safe_slug: true
   validates :hidden,      inclusion:  { in: [ true, false ] }
-  validates :slug,        uniqueness: {
-    scope: :section,
-    message: I18n.t( 'slug_unique' )
-  }
 
   belongs_to :section,  class_name: 'PageSection', optional: true,
                         inverse_of: 'pages'
   belongs_to :template, class_name: 'PageTemplate',
                         inverse_of: 'pages'
+
+  has_many :elements, class_name: 'PageElement',
+                      foreign_key: 'page_id',
+                      inverse_of: 'page',
+                      dependent: :delete_all
+
+  accepts_nested_attributes_for :elements
+
+  after_create :add_elements
+
+  # Instance methods
+
+  # Add the elements specified by the template
+  def add_elements
+    template.elements.each do |template_element|
+      elements.create!(
+        name: template_element.name,
+        content: template_element.content,
+        content_type: template_element.content_type
+      )
+    end
+  end
 
   # Class methods
 
@@ -30,9 +46,10 @@ class Page < ApplicationRecord
     Page.exists?( hidden: true )
   end
 
-  # Return the default top-level page
+  # Return the configured default page... or one of a variety of increasingly
+  # desperate fallback options
   def self.default_page
-    page = find_default_page
+    page = configured_default_page
     return page if page
 
     section = PageSection.default_section
@@ -45,12 +62,13 @@ class Page < ApplicationRecord
     Page.order( :created_at ).find_by( hidden: false )
   end
 
-  # Return the default top-level page
-  def self.find_default_page
+  # Return the configured default page (using the default_page setting)
+  def self.configured_default_page
     name_or_slug = Setting.get I18n.t( 'default_page' )
-    top_level_pages.where( name: name_or_slug )
-                   .or( top_level_pages
-                   .where( slug: name_or_slug ) )
-                   .first
+    top_level_pages
+      .where( name: name_or_slug )
+      .or( top_level_pages
+      .where( slug: name_or_slug ) )
+      .first
   end
 end

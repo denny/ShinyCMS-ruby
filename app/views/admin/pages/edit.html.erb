@@ -34,6 +34,12 @@
     <%= f.label :hidden %>
     <br><%= f.check_box :hidden %>
   </p>
+  <%= f.fields_for :elements do |fields| %>
+  <p>
+    <%= fields.label :content, @page.elements[fields.index].name %>
+    <br><%= fields.text_field :content %>
+  </p>
+  <% end %>
   <p>
     <%= f.submit 'Update' %>
   </p>
