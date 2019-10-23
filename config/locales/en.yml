@@ -11,11 +11,16 @@
 en:
   # ========== ( Main site controllers (and request specs) ) ==========
   # Pages
-  template_file_missing: Page template file is missing.
+  template_file_missing: Unable to display page; its template file is missing.
+  # Users
+  user_logins_not_allowed: This site does not allow users to log in
 
   # ========== ( Admin area controllers (and request specs) ) ==========
   admin_ip_list: Admin IP list
+  allow_user_logins: Allow user logins
   are_you_sure: Are you sure?
+  no: No
+  yes: Yes
   # Element types (page/template/shared)
   short_text: Short Text
   long_text: Long Text
@@ -50,7 +55,6 @@ en:
   settings_update_failed: Failed to update settings
   setting_deleted: Setting deleted
   setting_delete_failed: Failed to delete setting
-
 
   # ========== ( Models ) ==========
   # Pages & Page Sections
