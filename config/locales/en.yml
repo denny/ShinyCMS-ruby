@@ -9,58 +9,67 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  # ========== ( Main site controllers (and request specs) ) ==========
-  # Pages
-  template_file_missing: Unable to display page; its template file is missing.
-  # Users
-  user_logins_not_allowed: This site does not allow users to log in
-
-  # ========== ( Admin area controllers (and request specs) ) ==========
-  admin_ip_list: Admin IP list
-  allow_user_logins: Allow user logins
-  are_you_sure: Are you sure?
-  no: No
   yes: Yes
-  # Element types (page/template/shared)
-  short_text: Short Text
-  long_text: Long Text
-  filename: Filename
-  html: HTML
-  # Pages
-  list_pages: List pages
-  page_created: New page added
-  page_create_failed: Failed to add new page
-  page_updated: Page details updated
-  page_update_failed: Failed to update page details
-  # Page Sections
-  section_created: New section added
-  section_create_failed: Failed to add new section
-  section_updated: Section details updated
-  section_update_failed: Failed to update section details
-  # Page Templates
-  template_created: New template added
-  template_create_failed: Failed to add new template
-  template_updated: Template details updated
-  template_update_failed: Failed to update template details
-  # Shared Content
-  shared_content: 'Shared content'
-  # Settings
-  setting_name: Setting name
-  setting_value: Setting value (can be blank)
-  setting_description: Description (optional)
-  setting_created: New setting added
-  setting_create_failed: Failed to add new setting
-  settings_unchanged: Settings unchanged
-  settings_updated: Settings updated
-  settings_update_failed: Failed to update settings
-  setting_deleted: Setting deleted
-  setting_delete_failed: Failed to delete setting
+  no: No
+  are_you_sure: Are you sure?
 
-  # ========== ( Models ) ==========
-  # Pages & Page Sections
-  slug_must_be_unique: The slug must be unique within its section
-  # Page Templates
-  template_file_must_exist: The template file must be in 'app/views/pages/templates'
-  # Settings
-  default_page: Default page
-  default_section: Default section
+  settings:
+    admin_ip_list: Admin IP list
+    allow_user_logins: Allow user logins
+    default_page: Default page
+    default_section: Default section
+
+
+  # ========== ( Main Site ) ==========
+
+  pages:
+    template_file_missing: Unable to display page; its template file is missing.
+
+  users:
+    user_logins_not_allowed: This site does not allow users to log in
+
+
+  # ========== ( Admin Area ) ==========
+
+  admin:
+    # Element types (page/template/shared)
+    short_text: Short Text
+    long_text: Long Text
+    filename: Filename
+    html: HTML
+
+    pages:
+      list_pages: List pages
+      page_created: New page added
+      page_create_failed: Failed to add new page
+      page_updated: Page details updated
+      page_update_failed: Failed to update page details
+
+      section_created: New section added
+      section_create_failed: Failed to add new section
+      section_updated: Section details updated
+      section_update_failed: Failed to update section details
+
+      template_created: New template added
+      template_create_failed: Failed to add new template
+      template_updated: Template details updated
+      template_update_failed: Failed to update template details
+
+      # Used in models (or concerns)
+      slug_must_be_unique: The slug must be unique within its section
+      template_file_must_exist: The template file must be in 'app/views/pages/templates'
+
+    settings:
+      setting_name: Setting name
+      setting_value: Setting value (can be blank)
+      setting_description: Description (optional)
+      setting_created: New setting added
+      setting_create_failed: Failed to add new setting
+      settings_updated: Settings updated
+      settings_unchanged: Settings unchanged
+      settings_update_failed: Failed to update settings
+      setting_deleted: Setting deleted
+      setting_delete_failed: Failed to delete setting
+
+
+    shared_content: Shared content
