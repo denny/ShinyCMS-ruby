@@ -1,7 +1,7 @@
 # User model - Devise powered
 class User < ApplicationRecord
   # Allowed characters for usernames: a-z A-Z 0-9 . _ -
-  USERNAME_REGEX = %r{[-\.\w]+}.freeze
+  USERNAME_REGEX = %r{[-_\.a-zA-Z0-9]+}.freeze
   public_constant :USERNAME_REGEX
   ANCHORED_USERNAME_REGEX = %r{\A#{USERNAME_REGEX}\z}.freeze
   private_constant :ANCHORED_USERNAME_REGEX
