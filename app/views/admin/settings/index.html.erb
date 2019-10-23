@@ -15,7 +15,7 @@
     </td>
 		<td class="actions">
       <%= link_to 'Delete', admin_setting_delete_path( s ), method: :delete,
-          data: { confirm: I18n.t( 'are_you_sure' ) } %>
+          data: { confirm: t( 'are_you_sure' ) } %>
 		</td>
 	</tr>
   <% end  # settings %>
@@ -31,10 +31,10 @@
   </h2>
   <p>
     <label>
-      <%= text_field :setting, :name,  placeholder: I18n.t( 'setting_name'  ) %>
-      <%= text_field :setting, :value, placeholder: I18n.t( 'setting_value' ) %>
+      <%= text_field :setting, :name,  placeholder: t( 'setting_name'  ) %>
+      <%= text_field :setting, :value, placeholder: t( 'setting_value' ) %>
     </label>
-    <%= text_field :setting, :description, placeholder: I18n.t( 'setting_description' ), class: 'longtext' %>
+    <%= text_field :setting, :description, placeholder: t( 'setting_description' ), class: 'longtext' %>
   </p>
   <p>
     <%= submit_tag 'Add' %>

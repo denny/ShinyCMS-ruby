@@ -25,7 +25,7 @@ RSpec.describe 'User', type: :request do
     end
 
     it 'redirects to the site homepage if user logins are not enabled' do
-      skip 'not implemented yet'
+      create :page
 
       Setting.find_or_create_by!(
         name: I18n.t( 'allow_user_logins' )
@@ -33,23 +33,27 @@ RSpec.describe 'User', type: :request do
 
       get user_login_path
 
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to     have_http_status :found
+      expect( response      ).to     redirect_to root_path
       follow_redirect!
-      expect( response.body ).to include 'User logins are not enabled'
-      expect( response.body ).to include 'This site does not have any content'
+      expect( response      ).to     have_http_status :ok
+      expect( response.body ).to     include I18n.t( 'user_logins_not_allowed' )
+      expect( response.body ).not_to include 'Login'
     end
 
     it 'defaults to assuming that user logins are not enabled' do
-      skip 'not implemented yet'
+      create :page
+
+      Setting.delete_by( name: I18n.t( 'allow_user_logins' ) )
 
       get user_login_path
 
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to     have_http_status :found
+      expect( response      ).to     redirect_to root_path
       follow_redirect!
-      expect( response.body ).to include 'User logins are not enabled'
-      expect( response.body ).to include 'This site does not have any content'
+      expect( response      ).to     have_http_status :ok
+      expect( response.body ).to     include I18n.t( 'user_logins_not_allowed' )
+      expect( response.body ).not_to include 'Login'
     end
   end
 
@@ -185,6 +189,7 @@ RSpec.describe 'User', type: :request do
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to include 'Your account has been updated'
+        expect( response.body ).to include new_name
       end
     end
   end
