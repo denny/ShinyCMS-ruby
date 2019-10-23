@@ -24,12 +24,12 @@ RSpec.describe 'Pages', type: :request do
       # rubocop:disable Rails/SkipsModelValidations
       page.template.update_column( :filename, 'no-such-file' )
       # rubocop:enable Rails/SkipsModelValidations
-      create :setting, name: 'Default page', value: page.slug
+      create :setting, name: I18n.t( 'settings.default_page' ), value: page.slug
 
       get '/'
 
       expect( response      ).to have_http_status :failed_dependency
-      expect( response.body ).to include I18n.t( 'template_file_missing' )
+      expect( response.body ).to include I18n.t( 'pages.template_file_missing' )
     end
   end
 
