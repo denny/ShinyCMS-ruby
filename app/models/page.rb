@@ -32,6 +32,11 @@ class Page < ApplicationRecord
     end
   end
 
+  # Find an element by name and return its content
+  def element( name )
+    elements.where( name: name ).pick( :content )
+  end
+
   # Class methods
 
   def self.top_level_pages

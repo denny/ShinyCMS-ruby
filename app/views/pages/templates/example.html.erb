@@ -6,11 +6,11 @@
 
 <p>
   <%#= @page.elements.para1 %>
-  <%= @page.description %>
+  <%= @page.element( 'para1' ) %>
 </p>
 <p>
-  <img src="<%#= @page.elements.image_name %>">
+  <img src="<%= @page.element( 'image_name' ) %>">
 </p>
 <p>
-  <%#= @page.elements.para2 %>
+  <%= @page.element( 'para2' ) %>
 </p>
