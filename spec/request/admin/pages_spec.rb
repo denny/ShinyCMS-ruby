@@ -63,8 +63,6 @@ RSpec.describe 'Admin: Pages', type: :request do
 
       post admin_page_new_path, params: {
         'page[name]': 'Test',
-        'page[title]': 'Test',
-        'page[slug]': 'test',
         'page[template_id]': template.id
       }
 
