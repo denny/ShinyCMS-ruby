@@ -18,13 +18,16 @@ module NameTitleSlug
       scope: :section,
       message: I18n.t( 'slug_must_be_unique' )
     }
-  end
 
-  class_methods do
-    def slugify( slug )
-      slug.replace! %r{\s+}, '-'
-      slug.remove!  %r{[^\-\.\w]}
-      slug.replace! %r{\-+}, '-'
+    before_validation :generate_title, if: -> { title.blank? && name.present? }
+    before_validation :generate_slug,  if: -> { slug.blank?  && name.present? }
+
+    def generate_title
+      self.title = name.titlecase
+    end
+
+    def generate_slug
+      self.slug = name.parameterize
     end
   end
 end
