@@ -63,8 +63,6 @@ RSpec.describe 'Admin: Pages', type: :request do
 
       post admin_page_new_path, params: {
         'page[name]': 'Test',
-        'page[title]': 'Test',
-        'page[slug]': 'test',
         'page[template_id]': template.id
       }
 
@@ -105,11 +103,11 @@ RSpec.describe 'Admin: Pages', type: :request do
   end
 
   describe 'POST /admin/page/:id' do
-    it 'fails to update the page when submitted without all the details' do
+    it 'fails to update the page when submitted with a blank name' do
       page = create :page
 
       post admin_page_path( page ), params: {
-        'page[name]': nil
+        'page[name]': ''
       }
 
       expect( response      ).to have_http_status :ok
@@ -124,9 +122,27 @@ RSpec.describe 'Admin: Pages', type: :request do
       }
 
       expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_page_path( page )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'Updated by test'
+    end
+
+    it 'recreates the slug if it is wiped before submitting an update' do
+      page = create :page
+      old_slug = page.slug
+
+      post admin_page_path( page ), params: {
+        'page[name]': 'Updated by test',
+        'page[slug]': ''
+      }
+
+      expect( response      ).to     have_http_status :found
+      expect( response      ).to     redirect_to admin_page_path( page )
+      follow_redirect!
+      expect( response      ).to     have_http_status :ok
+      expect( response.body ).to     include 'updated-by-test'
+      expect( response.body ).not_to include old_slug
     end
   end
 end
