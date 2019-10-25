@@ -16,10 +16,10 @@ class Admin::PagesController < AdminController
     @page = Page.new( page_params )
 
     if @page.save
-      flash[ :notice ] = I18n.t 'page_created'
+      flash[ :notice ] = I18n.t 'admin.pages.page_created'
       redirect_to action: :edit, id: @page.id
     else
-      flash.now[ :alert ] = I18n.t 'page_create_failed'
+      flash.now[ :alert ] = I18n.t 'admin.pages.page_create_failed'
       render action: :new
     end
   end
@@ -34,10 +34,10 @@ class Admin::PagesController < AdminController
     @page = Page.find( params[:id] )
 
     if @page.update( page_params )
-      flash[ :notice ] = I18n.t 'page_updated'
+      flash[ :notice ] = I18n.t 'admin.pages.page_updated'
       redirect_to action: :edit, id: @page.id
     else
-      flash.now[ :alert ] = I18n.t 'page_update_failed'
+      flash.now[ :alert ] = I18n.t 'admin.pages.page_update_failed'
       render action: :edit
     end
   end
