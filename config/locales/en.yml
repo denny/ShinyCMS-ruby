@@ -67,9 +67,10 @@ en:
       template_file_must_exist: The template file must be in 'app/views/pages/templates'
 
     settings:
-      setting_name: Setting name
-      setting_value: Setting value (can be blank)
-      setting_description: Description (optional)
+      site_settings: Site Settings
+      name_placeholder: Setting name
+      value_placeholder: Setting value (can be blank)
+      description_placeholder: Description (optional)
       setting_created: New setting added
       setting_create_failed: Failed to add new setting
       settings_updated: Settings updated
