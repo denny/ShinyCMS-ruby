@@ -15,7 +15,7 @@ RSpec.describe 'User', type: :request do
   describe 'GET /login' do
     it 'renders the user login page if user logins are enabled' do
       Setting.find_or_create_by!(
-        name: I18n.t( 'allow_user_logins' )
+        name: I18n.t( 'settings.allow_user_logins' )
       ).update!( value: 'Yes' )
 
       get user_login_path
@@ -28,7 +28,7 @@ RSpec.describe 'User', type: :request do
       create :page
 
       Setting.find_or_create_by!(
-        name: I18n.t( 'allow_user_logins' )
+        name: I18n.t( 'settings.allow_user_logins' )
       ).update!( value: 'No' )
 
       get user_login_path
@@ -37,14 +37,14 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to     redirect_to root_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     include I18n.t( 'user_logins_not_allowed' )
+      expect( response.body ).to     include I18n.t( 'users.logins_not_enabled' )
       expect( response.body ).not_to include 'Login'
     end
 
     it 'defaults to assuming that user logins are not enabled' do
       create :page
 
-      Setting.delete_by( name: I18n.t( 'allow_user_logins' ) )
+      Setting.delete_by( name: I18n.t( 'settings.allow_user_logins' ) )
 
       get user_login_path
 
@@ -52,7 +52,7 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to     redirect_to root_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     include I18n.t( 'user_logins_not_allowed' )
+      expect( response.body ).to     include I18n.t( 'users.logins_not_enabled' )
       expect( response.body ).not_to include 'Login'
     end
   end
@@ -60,7 +60,7 @@ RSpec.describe 'User', type: :request do
   describe 'GET /users' do
     it 'redirects to the user login page if user logins are enabled' do
       Setting.find_or_create_by!(
-        name: I18n.t( 'allow_user_logins' )
+        name: I18n.t( 'settings.allow_user_logins' )
       ).update!( value: 'Yes' )
 
       get '/users'
@@ -76,7 +76,7 @@ RSpec.describe 'User', type: :request do
   describe 'GET /user' do
     it 'redirects to the user login page if user logins are enabled' do
       Setting.find_or_create_by!(
-        name: I18n.t( 'allow_user_logins' )
+        name: I18n.t( 'settings.allow_user_logins' )
       ).update!( value: 'Yes' )
 
       get '/user'

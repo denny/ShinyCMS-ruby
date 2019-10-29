@@ -69,7 +69,7 @@ class Page < ApplicationRecord
 
   # Return the configured default page (using the default_page setting)
   def self.configured_default_page
-    name_or_slug = Setting.get I18n.t( 'default_page' )
+    name_or_slug = Setting.get I18n.t( 'settings.default_page' )
     top_level_pages
       .where( name: name_or_slug )
       .or( top_level_pages

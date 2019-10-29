@@ -10,9 +10,9 @@ class Admin::SettingsController < AdminController
     setting = Setting.new( setting_params )
 
     if setting.save
-      flash[ :notice ] = I18n.t 'setting_created'
+      flash[ :notice ] = I18n.t 'admin.settings.setting_created'
     else
-      flash[ :alert ] = I18n.t 'setting_create_failed'
+      flash[ :alert ] = I18n.t 'admin.settings.setting_create_failed'
     end
     redirect_to admin_settings_path
   end
@@ -22,9 +22,9 @@ class Admin::SettingsController < AdminController
     updated_settings = false
     updated_settings = update_settings( updated_settings )
     flash[ :notice ] = if updated_settings
-                         I18n.t 'settings_updated'
+                         I18n.t 'admin.settings.settings_updated'
                        else
-                         I18n.t 'settings_unchanged'
+                         I18n.t 'admin.settings.settings_unchanged'
                        end
     redirect_to admin_settings_path
   end
@@ -32,11 +32,11 @@ class Admin::SettingsController < AdminController
   # Delete an existing settings item
   def delete
     if Setting.destroy( params[ :id ] )
-      flash[ :notice ] = I18n.t 'setting_deleted'
+      flash[ :notice ] = I18n.t 'admin.settings.setting_deleted'
     end
     redirect_to admin_settings_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    flash[ :alert ] = I18n.t 'setting_delete_failed'
+    flash[ :alert ] = I18n.t 'admin.settings.setting_delete_failed'
     redirect_to admin_settings_path
   end
 

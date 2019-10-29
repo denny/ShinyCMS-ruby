@@ -1,4 +1,4 @@
-<% @page_title = 'Add new template' %>
+<% @page_title = t( 'admin.pages.new_template' ) %>
 
 <%= form_for :page_template, url: admin_pages_template_new_path, method: :post do |f| %>
   <p>
@@ -14,6 +14,6 @@
     <br><%= f.select :filename, PageTemplate.available_templates %>
   </p>
   <p>
-    <%= f.submit 'Save' %>
+    <%= submit_tag t( 'admin.add' ) %>
   </p>
 <% end %>

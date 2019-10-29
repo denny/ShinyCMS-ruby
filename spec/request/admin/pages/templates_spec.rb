@@ -8,7 +8,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       get admin_pages_templates_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include 'List templates'
+      expect( response.body ).to include I18n.t( 'admin.pages.list_templates' ).titlecase
       expect( response.body ).to include template.name
     end
   end
@@ -18,7 +18,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       get admin_pages_template_new_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include 'Add new template'
+      expect( response.body ).to include I18n.t( 'admin.pages.new_template' ).titlecase
     end
   end
 
@@ -29,7 +29,8 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include I18n.t 'template_create_failed'
+      expect( response.body ).to include I18n.t( 'admin.pages.new_template' ).titlecase
+      expect( response.body ).to include I18n.t( 'admin.pages.template_create_failed' )
     end
 
     it 'adds a new template when the form is submitted' do
@@ -41,7 +42,8 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response      ).to have_http_status :found
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include 'Edit template'
+      expect( response.body ).to include I18n.t( 'admin.pages.edit_template' ).titlecase
+      expect( response.body ).to include I18n.t( 'admin.pages.template_created' )
     end
   end
 
@@ -65,7 +67,8 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include I18n.t 'template_update_failed'
+      expect( response.body ).to include I18n.t( 'admin.pages.edit_template' ).titlecase
+      expect( response.body ).to include I18n.t( 'admin.pages.template_update_failed' )
     end
 
     it 'updates the template when the form is submitted' do
@@ -82,6 +85,8 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response      ).to have_http_status :found
       follow_redirect!
       expect( response      ).to have_http_status :ok
+      expect( response.body ).to include I18n.t( 'admin.pages.edit_template' ).titlecase
+      expect( response.body ).to include I18n.t( 'admin.pages.template_updated' )
       expect( response.body ).to include 'Updated by test'
     end
   end

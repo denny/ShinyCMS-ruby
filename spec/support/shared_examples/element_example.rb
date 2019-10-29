@@ -4,7 +4,7 @@ RSpec.shared_examples Element do
     it 'returns the list of possible content types' do
       types = element.content_types
       expect( types.size ).to eq 4
-      expect( types      ).to include I18n.t 'short_text'
+      expect( types      ).to include I18n.t 'admin.elements.short_text'
     end
   end
 end
