@@ -7,20 +7,20 @@ I'm re-implementing [ShinyCMS](https://shinycms.org/) in
 [The original version](https://github.com/denny/ShinyCMS)
 is written in [Perl](https://perl.org/).
 
-I built most of the Perl version while I was freelancing between 2009 and 2016,
-and I've added a few minor features and a lot of test coverage since then; it's
-not a small project.
+I built most of the original version to meet various client requirements while
+I was freelancing between 2009 and 2016, and I've added a few more features and
+a lot of test coverage since then. It's not a small project.
 
 The Perl version of ShinyCMS has the following features:
 
-* Content-managed pages, page templates, and forms
+* Content-managed pages, page templates, and form handlers
 * User accounts, profiles and administration
 * Blog
 * News/PR section
 * Newsletters (HTML mailshots)
 * Online shop
-* Membership system which can control access to files, pages, or even paragraphs
-* Payment handling system which can handle recurring subscriptions
+* Access control system which can be used to change page content, allow downloads, etc
+* Payment handling system, including recurring subscriptions (linked to access control)
 * Tags on blog posts, news posts, forum posts, and shop items
 * Nested comment threads on blog posts, news posts, forum posts, and shop items
 * 'Likes' on blog posts, shop items, and comments
@@ -29,7 +29,7 @@ The Perl version of ShinyCMS has the following features:
 * Polls
 * 'Shared content' - store text and HTML fragments for re-use throughout a site
 
-I hope to re-implement all of these eventually... hopefully improving on some
+I intend to re-implement all of these eventually... hopefully improving on some
 of them in the process.
 
 
@@ -38,27 +38,31 @@ Ruby version
 
 I'm setting out with current latest stable, which is Ruby 2.6.4 and Rails 6.0.0
 
+I would be interested in hearing from anybody who has problems (or successes)
+running with earlier versions of either/both.
+
 
 System dependencies
 -------------------
 
-TODO
+So far, just the contents of the Gemfile I think.
 
 
 Configuration
 -------------
 
-TODO
+For a standard local development setup, it should Just Work [tm] as far as I'm
+aware.
 
 
 Database
 --------
 
-To create the database: `rake db:create`  
-To load the database schema: `rake db:schema:load`  
-To load seed data: `rake db:seed`
+To create the database: `rails db:create`
+To load the database schema: `rails db:schema:load`
+To load seed data: `rails db:seed`
 
-To do all three in one command: `rake db:setup`
+To do all three in one command: `rails db:setup`
 
 
 Tests
@@ -70,13 +74,25 @@ To run the test suite: `rspec`
 Services
 --------
 
-TODO
+None currently. Probably needs an outgoing email queue soon, to send user
+registration confirmations.
 
 
 Deployment
 ----------
 
-TODO
+The plan is to make this easy to deploy on Heroku. I haven't given much thought
+to that bit yet though.
+
+
+Licensing
+---------
+
+ShinyCMS is free software; you can redistribute it and/or modify it under the
+terms of the GPL (version 2 or later). There are copies of both v2 and v3 of the
+GPL in the /docs folder, or you can find them here:
+https://opensource.org/licenses/gpl-2.0
+https://opensource.org/licenses/gpl-3.0
 
 
 Current Status
