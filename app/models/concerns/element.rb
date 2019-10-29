@@ -23,10 +23,10 @@ module Element
   class_methods do
     def content_types
       [
-        I18n.t( 'short_text' ),
-        I18n.t( 'long_text'  ),
-        I18n.t( 'filename'   ),
-        I18n.t( 'html'       )
+        I18n.t( 'admin.elements.short_text' ),
+        I18n.t( 'admin.elements.long_text'  ),
+        I18n.t( 'admin.elements.filename'   ),
+        I18n.t( 'admin.elements.html'       )
       ]
     end
   end

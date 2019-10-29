@@ -6,7 +6,7 @@ RSpec.describe Page, type: :model do
       create :page, slug: 'first'
       page2 = create :page, slug: 'default'
 
-      Setting.create! name: I18n.t( 'default_page' ), value: 'default'
+      Setting.create! name: I18n.t( 'settings.default_page' ), value: 'default'
 
       expect( Page.default_page ).to eq page2
     end

@@ -16,7 +16,7 @@ module NameTitleSlug
     validates :slug, format:    ANCHORED_SLUG_REGEX
     validates :slug, uniqueness: {
       scope: :section,
-      message: I18n.t( 'slug_must_be_unique' )
+      message: I18n.t( 'admin.pages.slug_must_be_unique' )
     }
 
     before_validation :generate_title, if: -> { title.blank? && name.present? }

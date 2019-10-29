@@ -1,10 +1,10 @@
-<% @page_title = 'List pages' %>
+<% @page_title = t( 'admin.pages.list_pages' ) %>
 
 <table class="list">
   <% if @tl_pages.any? %>
   <tr>
 		<th colspan="2">
-			Top-level pages
+			<%= t( 'admin.pages.top_level_pages' ) %>
 		</th>
 	</tr>
   <% @tl_pages.each do |page| %>
@@ -17,8 +17,10 @@
 			<%= page.name %>
 		</td>
 		<td class="actions">
-      <%= link_to 'View', url_for( "/pages/#{page.slug}" )   %>
-      <%= link_to 'Edit', url_for( admin_page_path( page ) ) %>
+      <%= link_to t( 'admin.view' ), url_for( "/pages/#{page.slug}" )   %>
+      <%= link_to t( 'admin.edit' ), url_for( admin_page_path( page ) ) %>
+      <%#= link_to t( 'admin.delete' ), admin_page_delete_path( page ),
+          method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
 		</td>
 	</tr>
   <% end %>

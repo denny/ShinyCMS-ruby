@@ -1,4 +1,5 @@
-<% @page_title = 'Edit section' %>
+<% @page_title = t( 'admin.pages.edit_section' ) %>
+
 
 <%= form_for @section, url: admin_pages_section_path( @section ), method: :post do |f| %>
   <p>
@@ -31,6 +32,6 @@
     <br><%= f.check_box :hidden %>
   </p>
   <p>
-    <%= f.submit 'Update' %>
+    <%= submit_tag t( 'admin.update' ) %>
   </p>
 <% end %>
