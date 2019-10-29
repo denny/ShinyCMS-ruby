@@ -14,6 +14,6 @@
     <br><%= f.select :filename, PageTemplate.available_templates %>
   </p>
   <p>
-    <%= f.submit 'Save' %>
+    <%= submit_tag t( 'admin.add' ) %>
   </p>
 <% end %>
