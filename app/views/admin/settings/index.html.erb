@@ -14,8 +14,8 @@
       <%= text_field :settings, "setting_description_#{s.id}", value: s.description, class: 'longtext' %>
     </td>
 		<td class="actions">
-      <%= link_to 'Delete', admin_setting_delete_path( s ), method: :delete,
-          data: { confirm: t( 'are_you_sure' ) } %>
+      <%= link_to t( 'admin.delete' ), admin_setting_delete_path( s ),
+          method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
 		</td>
 	</tr>
   <% end  # settings %>
@@ -37,6 +37,6 @@
     <%= text_field :setting, :description, placeholder: t( 'admin.settings.description_placeholder' ), class: 'longtext' %>
   </p>
   <p>
-    <%= submit_tag 'Add' %>
+    <%= submit_tag t( 'admin.add' ) %>
   </p>
 <% end %>

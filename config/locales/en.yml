@@ -32,6 +32,16 @@ en:
   # ========== ( Admin Area ) ==========
 
   admin:
+    admin_area: Admin area
+    admin: Admin
+    home: Home
+
+    add: Add
+    update: Update
+    view: View
+    edit: Edit
+    delete: Delete
+
     elements:
       short_text: Short Text
       long_text: Long Text
@@ -40,6 +50,7 @@ en:
 
     pages:
       list_pages: List pages
+      top_level_pages: Top-level pages
       new_page: Add new page
       edit_page: Edit page
       page_created: New page added
