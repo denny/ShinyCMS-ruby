@@ -45,6 +45,20 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response.body ).to include I18n.t( 'admin.pages.edit_template' ).titlecase
       expect( response.body ).to include I18n.t( 'admin.pages.template_created' )
     end
+
+    it 'adds the right number of elements to the new template' do
+      post admin_pages_template_new_path, params: {
+        'page_template[name]': 'Another Test',
+        'page_template[filename]': 'example'
+      }
+
+      expect( response      ).to have_http_status :found
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include I18n.t( 'admin.pages.edit_template' ).titlecase
+      expect( response.body ).to include I18n.t( 'admin.pages.template_created' )
+      expect( PageTemplateElement.count ).to eq 3
+    end
   end
 
   describe 'GET /admin/pages/template/:id' do
@@ -109,7 +123,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response.body ).not_to include t2.name
     end
 
-    it 'attempting to delete a non-existent setting fails gracefully' do
+    it 'fails gracefully when attempting to delete a non-existent template' do
       delete admin_pages_template_delete_path( 999 )
 
       expect( response      ).to have_http_status :found
