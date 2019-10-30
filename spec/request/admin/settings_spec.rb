@@ -89,7 +89,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       expect( response.body ).not_to include s2.name
     end
 
-    it 'attempting to delete a non-existent setting fails gracefully' do
+    it 'fails gracefully when attempting to delete a non-existent setting' do
       delete admin_setting_delete_path( 999 )
 
       expect( response      ).to have_http_status :found
