@@ -92,12 +92,12 @@ RSpec.describe 'Admin: Site Settings', type: :request do
     it 'attempting to delete a non-existent setting fails gracefully' do
       delete admin_setting_delete_path( 999 )
 
-      expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to admin_settings_path
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_settings_path
       follow_redirect!
-      expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     include I18n.t 'admin.settings.site_settings'
-      expect( response.body ).to     include I18n.t 'admin.settings.setting_delete_failed'
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include I18n.t 'admin.settings.site_settings'
+      expect( response.body ).to include I18n.t 'admin.settings.setting_delete_failed'
     end
   end
 
@@ -130,13 +130,13 @@ RSpec.describe 'Admin: Site Settings', type: :request do
         "settings[setting_value_#{s2.id}]": s2.value
       }
 
-      expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to admin_settings_path
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_settings_path
       follow_redirect!
-      expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     include I18n.t 'admin.settings.site_settings'
-      expect( response.body ).to     include I18n.t 'admin.settings.settings_unchanged'
-      expect( response.body ).to     include s2.value
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include I18n.t 'admin.settings.site_settings'
+      expect( response.body ).to include I18n.t 'admin.settings.settings_unchanged'
+      expect( response.body ).to include s2.value
     end
   end
 end
