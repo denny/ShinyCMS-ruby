@@ -18,4 +18,13 @@ FactoryBot.define do
   factory :page_in_subsection, parent: :page do
     association :section, factory: :page_subsection
   end
+
+  factory :page_with_one_of_each_element_type, parent: :page do
+    after :create do |page|
+      create :short_text_page_element, page: page, content: 'SHORT!'
+      create :long_text_page_element,  page: page, content: 'LONG!'
+      create :filename_page_element,   page: page, content: 'FILE.png'
+      create :html_page_element,       page: page, content: 'HTML!'
+    end
+  end
 end
