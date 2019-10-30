@@ -38,6 +38,16 @@ class Admin::Pages::TemplatesController < AdminController
     end
   end
 
+  def delete
+    if PageTemplate.destroy( params[ :id ] )
+      flash[ :notice ] = I18n.t 'admin.pages.template_deleted'
+    end
+    redirect_to admin_pages_templates_path
+  rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
+    flash[ :alert ] = I18n.t 'admin.pages.template_delete_failed'
+    redirect_to admin_pages_templates_path
+  end
+
   private
 
   # Create the template elements, based on the contents of the template file
