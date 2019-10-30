@@ -1,0 +1,14 @@
+<p>
+  <%= fields.label content, name %><br>
+  <% if content_type == t( 'admin.elements.short_text' ) %>
+  <%= fields.text_field content %>
+  <% elsif content_type == t( 'admin.elements.long_text' ) %>
+  <%= fields.text_area content %>
+  <% elsif content_type == t( 'admin.elements.filename' ) %>
+  <%= fields.select content, filenames %>
+  <% elsif content_type == t( 'admin.elements.html' ) %>
+  <%= fields.text_area content %>
+  <% else %>
+  [ UNKNOWN ELEMENT TYPE IN PAGE DATA ]
+  <% end %>
+</p>

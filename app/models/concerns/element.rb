@@ -29,5 +29,10 @@ module Element
         I18n.t( 'admin.elements.html'       )
       ]
     end
+
+    def select_filenames( path = nil )
+      path ||= Rails.root.join 'app', 'assets', 'images'
+      Dir.glob '*?.?*', base: path
+    end
   end
 end
