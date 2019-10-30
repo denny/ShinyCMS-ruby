@@ -90,4 +90,34 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response.body ).to include 'Updated by test'
     end
   end
+
+  describe 'DELETE /admin/pages/template/delete/:id' do
+    it 'deletes the specified templates' do
+      t1 = create :page_template
+      t2 = create :page_template
+      create :page_template
+
+      delete admin_pages_template_delete_path( t2 )
+
+      expect( response      ).to     have_http_status :found
+      expect( response      ).to     redirect_to admin_pages_templates_path
+      follow_redirect!
+      expect( response      ).to     have_http_status :ok
+      expect( response.body ).to     include I18n.t 'admin.pages.list_templates'
+      expect( response.body ).to     include I18n.t 'admin.pages.template_deleted'
+      expect( response.body ).to     include t1.name
+      expect( response.body ).not_to include t2.name
+    end
+
+    it 'attempting to delete a non-existent setting fails gracefully' do
+      delete admin_pages_template_delete_path( 999 )
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_pages_templates_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include I18n.t 'admin.pages.list_templates'
+      expect( response.body ).to include I18n.t 'admin.pages.template_delete_failed'
+    end
+  end
 end
