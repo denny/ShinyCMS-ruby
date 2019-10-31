@@ -100,97 +100,97 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include user.username
     end
+  end
 
-    describe 'POST /user/login' do
-      it 'logs the user in using their email address' do
-        password = 'shinycms unimaginative test passphrase'
-        user = create :user, password: password
+  describe 'POST /user/login' do
+    it 'logs the user in using their email address' do
+      password = 'shinycms unimaginative test passphrase'
+      user = create :user, password: password
 
-        post user_session_path, params: {
-          'user[login]': user.email,
-          'user[password]': password
-        }
+      post user_session_path, params: {
+        'user[login]': user.email,
+        'user[password]': password
+      }
 
-        expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to user_profile_path( user )
-        follow_redirect!
-        expect( response      ).to have_http_status :ok
-        expect( response.body ).to include "<a href=\"/user/#{user.username}\""
-        expect( response.body ).to include '<a href="/logout">log out</a>'
-      end
-
-      it 'logs the user in using their username' do
-        password = 'shinycms unimaginative test passphrase'
-        user = create :user, password: password
-
-        post user_session_path, params: {
-          'user[login]': user.username,
-          'user[password]': password
-        }
-
-        expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to user_profile_path( user )
-        follow_redirect!
-        expect( response      ).to have_http_status :ok
-        expect( response.body ).to include "<a href=\"/user/#{user.username}\""
-        expect( response.body ).to include '<a href="/logout">log out</a>'
-      end
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to user_profile_path( user )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include "<a href=\"/user/#{user.username}\""
+      expect( response.body ).to include '<a href="/logout">log out</a>'
     end
 
-    describe 'POST /user/register' do
-      it 'creates a new user' do
-        create :page
+    it 'logs the user in using their username' do
+      password = 'shinycms unimaginative test passphrase'
+      user = create :user, password: password
 
-        username = Faker::Science.unique.element.downcase
-        password = 'shinycms unimaginative test passphrase'
-        email = "#{username}@example.com"
+      post user_session_path, params: {
+        'user[login]': user.username,
+        'user[password]': password
+      }
 
-        post user_registration_path, params: {
-          'user[username]': username,
-          'user[password]': password,
-          'user[email]': email
-        }
-
-        expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to root_path
-        follow_redirect!
-        expect( response      ).to have_http_status :ok
-        expect( response.body ).to include(
-          'a confirmation link has been sent to your email address'
-        )
-      end
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to user_profile_path( user )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include "<a href=\"/user/#{user.username}\""
+      expect( response.body ).to include '<a href="/logout">log out</a>'
     end
+  end
 
-    describe 'GET /user/edit' do
-      it 'loads the user edit page' do
-        user = create :user
-        sign_in user
+  describe 'POST /user/register' do
+    it 'creates a new user' do
+      create :page
 
-        get edit_user_registration_path
+      username = Faker::Science.unique.element.downcase
+      password = 'shinycms unimaginative test passphrase'
+      email = "#{username}@example.com"
 
-        expect( response      ).to have_http_status :ok
-        expect( response.body ).to include 'Edit User'
-      end
+      post user_registration_path, params: {
+        'user[username]': username,
+        'user[password]': password,
+        'user[email]': email
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to root_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include(
+        'a confirmation link has been sent to your email address'
+      )
     end
+  end
 
-    describe 'PUT /user' do
-      it 'updates the user when you submit the edit form' do
-        user = create :user
-        sign_in user
+  describe 'GET /user/edit' do
+    it 'loads the user edit page' do
+      user = create :user
+      sign_in user
 
-        new_name = Faker::Science.unique.scientist
-        put user_registration_path, params: {
-          'user[display_name]': new_name,
-          'user[current_password]': user.password
-        }
+      get edit_user_registration_path
 
-        expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to edit_user_registration_path
-        follow_redirect!
-        expect( response      ).to have_http_status :ok
-        expect( response.body ).to include 'Your account has been updated'
-        expect( response.body ).to include new_name
-      end
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include 'Edit User'
+    end
+  end
+
+  describe 'PUT /user' do
+    it 'updates the user when you submit the edit form' do
+      user = create :user
+      sign_in user
+
+      new_name = Faker::Science.unique.scientist
+      put user_registration_path, params: {
+        'user[display_name]': new_name,
+        'user[current_password]': user.password
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to edit_user_registration_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include 'Your account has been updated'
+      expect( response.body ).to include new_name
     end
   end
 end
