@@ -77,7 +77,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
 
     it 'adds a new page with elements from template' do
-      template = create :page_template_with_elements
+      template = create :page_template
 
       post admin_page_new_path, params: {
         'page[name]': 'Test',

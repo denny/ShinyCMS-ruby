@@ -10,9 +10,7 @@ class Admin::Pages::TemplatesController < AdminController
   def create
     @template = PageTemplate.new( template_params )
 
-    @template.save_and_create_elements
-
-    if @template.valid?
+    if @template.save
       flash[ :notice ] = I18n.t 'admin.pages.template_created'
       redirect_to action: :edit, id: @template.id
     else
