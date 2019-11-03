@@ -13,6 +13,8 @@ class PageTemplate < ApplicationRecord
 
   accepts_nested_attributes_for :elements
 
+  after_create :add_elements
+
   # Instance methods
 
   # Check whether the template file is present on disk
@@ -29,27 +31,16 @@ class PageTemplate < ApplicationRecord
     full_path
   end
 
-  # To avoid triggering the MethodLength cop in the controller...
-  def save_and_create_elements
-    transaction do
-      _unused = save
-      create_elements
-    end
-  end
-
   # Create template elements, based on the content of the template file
-  def create_elements
-    return false unless full_path
-
+  def add_elements
     erb = File.read full_path
     erb.scan( %r{\@page\.elements\.[a-z][0-9a-z]*}i ).uniq.each do |elem_name|
       elem_name.remove! '@page.elements.'
       return false unless PageTemplateElement.new(
         template_id: id,
         name: elem_name
-      ).save
+      ).save!
     end
-    true
   end
 
   # Class methods
