@@ -1,0 +1,36 @@
+<% @page_title = t( 'admin.shared_content.shared_content' ) %>
+
+<%= form_with name: 'all_settings', url: admin_settings_path, method: :post do |elements| %>
+<table class="list">
+  <%= @elements.each do |e| %>
+  <tr class="showfocus">
+    <td>
+      <%= f.text_field :name %>
+      <%= f.select :content_type, SharedElement.content_types %>
+      <br><%= f.text_field :content %>
+    </td>
+    <td class="actions">
+      <%= link_to t( 'admin.delete' ), admin_shared_content_delete_path( e ),
+          method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+		</td>
+  </tr>
+  <% end %>
+</table>
+<p>
+  <%= submit_tag t( 'admin.update' ) %>
+</p>
+<% end  # form %>
+
+<%= form_with name: 'new_setting', url: admin_shared_content_create_path, method: :post do |new_element| %>
+  <h2>
+    Add new setting
+  </h2>
+  <p>
+    <%= f2.text_field :name, placeholder: t( 'admin.shared_content.name_placeholder'    ) %>
+    <%= f2.select :content_type, SharedElement.content_types %>
+    <br><%= f2.text_field :content, placeholder: t( 'admin.shared_content.content_placeholder' ) %>
+  </p>
+  <p>
+    <%= submit_tag t( 'admin.add' ) %>
+  </p>
+<% end %>
