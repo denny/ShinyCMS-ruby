@@ -1,13 +1,13 @@
 <% @page_title = t( 'admin.shared_content.shared_content' ) %>
 
-<%= form_with name: 'all_settings', url: admin_settings_path, method: :post do |elements| %>
+<%= form_with name: 'all_shared_content', url: admin_shared_content_path, method: :post do %>
 <table class="list">
   <%= @elements.each do |e| %>
   <tr class="showfocus">
     <td>
-      <%= f.text_field :name %>
-      <%= f.select :content_type, SharedElement.content_types %>
-      <br><%= f.text_field :content %>
+      <%= text_field :shared_content, "element_#{e.id}_name", value: e.name %>
+      <%= select :shared_content, "element_#{e.id}_content_type", SharedElement.content_types, value: e.content_type %>
+      <br><%= text_field :shared_content, "element_#{e.id}_content", value: e.content %>
     </td>
     <td class="actions">
       <%= link_to t( 'admin.delete' ), admin_shared_content_delete_path( e ),
@@ -21,14 +21,14 @@
 </p>
 <% end  # form %>
 
-<%= form_with name: 'new_setting', url: admin_shared_content_create_path, method: :post do |new_element| %>
+<%= form_with name: 'new_element', url: admin_shared_content_create_path, method: :post do %>
   <h2>
-    Add new setting
+    Add new shared content
   </h2>
   <p>
-    <%= f2.text_field :name, placeholder: t( 'admin.shared_content.name_placeholder'    ) %>
-    <%= f2.select :content_type, SharedElement.content_types %>
-    <br><%= f2.text_field :content, placeholder: t( 'admin.shared_content.content_placeholder' ) %>
+    <%= text_field :new_element, :name, placeholder: t( 'admin.shared_content.name_placeholder' ) %>
+    <%= select :new_element, :content_type, SharedElement.content_types %>
+    <br><%= text_field :new_element, :content, placeholder: t( 'admin.shared_content.content_placeholder' ) %>
   </p>
   <p>
     <%= submit_tag t( 'admin.add' ) %>
