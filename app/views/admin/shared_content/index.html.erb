@@ -2,7 +2,7 @@
 
 <%= form_with name: 'all_shared_content', url: admin_shared_content_path, method: :post do %>
 <table class="list">
-  <%= @elements.each do |e| %>
+  <% @elements.each do |e| %>
   <tr class="showfocus">
     <td>
       <%= text_field :shared_content, "element_#{e.id}_name", value: e.name %>
