@@ -1,0 +1,36 @@
+<% @page_title = t( 'admin.shared_content.shared_content' ) %>
+
+<%= form_with name: 'all_shared_content', url: admin_shared_content_path, method: :post do %>
+<table class="list">
+  <% @elements.each do |e| %>
+  <tr class="showfocus">
+    <td>
+      <%= text_field :shared_content, "element_#{e.id}_name", value: e.name %>
+      <%= select :shared_content, "element_#{e.id}_content_type", SharedElement.content_types, value: e.content_type %>
+      <br><%= text_field :shared_content, "element_#{e.id}_content", value: e.content %>
+    </td>
+    <td class="actions">
+      <%= link_to t( 'admin.delete' ), admin_shared_content_delete_path( e ),
+          method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+		</td>
+  </tr>
+  <% end %>
+</table>
+<p>
+  <%= submit_tag t( 'admin.update' ) %>
+</p>
+<% end  # form %>
+
+<%= form_with name: 'new_element', url: admin_shared_content_create_path, method: :post do %>
+  <h2>
+    Add new shared content
+  </h2>
+  <p>
+    <%= text_field :new_element, :name, placeholder: t( 'admin.shared_content.name_placeholder' ) %>
+    <%= select :new_element, :content_type, SharedElement.content_types %>
+    <br><%= text_field :new_element, :content, placeholder: t( 'admin.shared_content.content_placeholder' ) %>
+  </p>
+  <p>
+    <%= submit_tag t( 'admin.add' ) %>
+  </p>
+<% end %>
