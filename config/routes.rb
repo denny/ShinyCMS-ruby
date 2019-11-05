@@ -54,6 +54,15 @@ Rails.application.routes.draw do
         post 'template/:id', to: 'templates#update'
       end
 
+      # Shared Content
+      get    'shared-content',            to: 'shared_content#index',
+                                          as: :shared_content
+      post   'shared-content',            to: 'shared_content#update'
+      post   'shared-content/create',     to: 'shared_content#create',
+                                          as: :shared_content_create
+      delete 'shared-content/delete/:id', to: 'shared_content#delete',
+                                          as: :shared_content_delete
+
       # Site settings
       get    'settings',           to: 'settings#index'
       post   'settings',           to: 'settings#update'
