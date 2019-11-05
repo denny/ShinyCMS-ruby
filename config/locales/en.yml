@@ -92,4 +92,14 @@ en:
       setting_deleted: Setting deleted
       setting_delete_failed: Failed to delete setting
 
-    shared_content: Shared content
+    shared_content:
+      shared_content: Shared content
+      name_placeholder: Name
+      content_placeholder: Content (can be blank)
+      shared_content_created: New shared content added
+      shared_content_create_failed: Failed to add new shared content
+      shared_content_updated: Shared content updated
+      shared_content_unchanged: Shared content unchanged
+      shared_content_update_failed: Failed to update shared content
+      shared_content_deleted: Specified shared content deleted
+      shared_content_delete_failed: Failed to delete specified shared content
