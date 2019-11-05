@@ -10,9 +10,10 @@ class Admin::SharedContentController < AdminController
     element = SharedElement.new( new_element_params )
 
     if element.save
-      flash[ :notice ] = I18n.t 'admin.shared_content.element_created'
+      flash[ :notice ] = I18n.t 'admin.shared_content.shared_content_created'
     else
-      flash[ :alert ] = I18n.t 'admin.shared_content.element_create_failed'
+      flash[ :alert ] =
+        I18n.t 'admin.shared_content.shared_content_create_failed'
     end
     redirect_to admin_shared_content_path
   end
@@ -22,21 +23,21 @@ class Admin::SharedContentController < AdminController
     updated_something = false
     updated_something = update_shared_content( updated_something )
     flash[ :notice ] = if updated_something
-                         I18n.t 'admin.shared_content.elements_updated'
+                         I18n.t 'admin.shared_content.shared_content_updated'
                        else
-                         I18n.t 'admin.shared_content.elements_unchanged'
+                         I18n.t 'admin.shared_content.shared_content_unchanged'
                        end
     redirect_to admin_shared_content_path
   end
 
   # Delete an existing shared content element
   def delete
-    if SharedContent.destroy( params[ :id ] )
-      flash[ :notice ] = I18n.t 'admin.shared_content.element_deleted'
+    if SharedElement.destroy( params[ :id ] )
+      flash[ :notice ] = I18n.t 'admin.shared_content.shared_content_deleted'
     end
     redirect_to admin_shared_content_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    flash[ :alert ] = I18n.t 'admin.shared_content.element_delete_failed'
+    flash[ :alert ] = I18n.t 'admin.shared_content.shared_content_delete_failed'
     redirect_to admin_shared_content_path
   end
 
@@ -44,15 +45,15 @@ class Admin::SharedContentController < AdminController
 
   # Process the batched elements update
   def update_shared_content( flag )
-    elements = shared_content_params[ :elements ]
+    elements = shared_content_params[ :shared_content ]
     elements&.each_key do |key|
       next unless /element_(?<id>\d+)_content/ =~ key
 
-      name = elements[ "element_#{id}_name" ]
+      content = elements[ "element_#{id}_content" ]
       content_type = elements[ "element_#{id}_content_type" ]
 
       element = SharedElement.find( id )
-      next if element.name == name && element.content_type == content_type
+      next if element.content == content && element.content_type == content_type
 
       flag = element.update! content: content, content_type: content_type
     end
@@ -64,6 +65,6 @@ class Admin::SharedContentController < AdminController
   end
 
   def shared_content_params
-    params.permit( :authenticity_token, :commit, elements: {} )
+    params.permit( :authenticity_token, :commit, shared_content: {} )
   end
 end
