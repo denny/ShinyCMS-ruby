@@ -51,29 +51,16 @@ class Page < ApplicationRecord
     Page.exists?( hidden: true )
   end
 
-  # Return the configured default page... or one of a variety of increasingly
-  # desperate fallback options
+  # Return the configured default page, or one of two fallback options (or nil)
   def self.default_page
-    page = configured_default_page
-    return page if page
-
-    section = PageSection.default_section
-    page    = section&.pages&.default_page
-    page  ||= section&.pages&.first
-    return page if page
-
-    return Page.top_level_pages.first if Page.top_level_pages.first
-
-    Page.order( :created_at ).find_by( hidden: false )
-  end
-
-  # Return the configured default page (using the default_page setting)
-  def self.configured_default_page
     name_or_slug = Setting.get I18n.t( 'settings.default_page' )
-    top_level_pages
-      .where( name: name_or_slug )
-      .or( top_level_pages
-      .where( slug: name_or_slug ) )
-      .first
+    page = top_level_pages
+           .where( name: name_or_slug )
+           .or( top_level_pages
+           .where( slug: name_or_slug ) )
+           .first
+    page ||= PageSection.default_section&.default_page
+    page ||= Page.top_level_pages.min
+    page
   end
 end
