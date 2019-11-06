@@ -51,7 +51,7 @@ class Page < ApplicationRecord
     Page.exists?( hidden: true )
   end
 
-  # Return the configured default page, or one of two fallback options (or nil)
+  # Return the configured default page, or one of a few fallback options, or nil
   def self.default_page
     name_or_slug = Setting.get I18n.t( 'settings.default_page' )
     page = top_level_pages
