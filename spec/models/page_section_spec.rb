@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PageSection, type: :model do
   context '.default_page' do
-    it 'returns the first page in the section if not default is set' do
+    it 'returns the first page in the section if no default is set' do
       create :top_level_page
       section = create :page_section
       page001 = create :page, section: section

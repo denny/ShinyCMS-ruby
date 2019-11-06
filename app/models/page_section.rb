@@ -34,7 +34,7 @@ class PageSection < ApplicationRecord
   def default_page
     return pages.find self[ :default_page_id ] if self[ :default_page_id ]
 
-    pages.first
+    pages.min
   end
 
   # Class methods
