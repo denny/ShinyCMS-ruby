@@ -22,24 +22,15 @@ class PageTemplate < ApplicationRecord
     PageTemplate.available_templates.include? filename
   end
 
-  # Return the full path to the template file, including filename
-  def full_path
-    dir = %w[ app views pages templates ]
-    full_path = Rails.root.join( *dir, "#{filename}.html.erb" )
-    return false unless File.file? full_path
-
-    full_path
-  end
-
   # Create template elements, based on the content of the template file
   def add_elements
+    dir = %w[ app views pages templates ]
+    full_path = Rails.root.join( *dir, "#{filename}.html.erb" )
+    return unless File.file? full_path
+
     erb = File.read full_path
-    erb.scan( %r{\@page\.elements\.[a-z][0-9a-z]*}i ).uniq.each do |elem_name|
-      elem_name.remove! '@page.elements.'
-      return false unless PageTemplateElement.new(
-        template_id: id,
-        name: elem_name
-      ).save!
+    erb.scan( %r{<%=\s+([a-z][0-9a-z]*)\s+%>} ).uniq.each do |result|
+      elements.create!( name: result[0] )
     end
   end
 
