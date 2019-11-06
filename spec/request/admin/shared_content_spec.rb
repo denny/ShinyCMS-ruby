@@ -107,7 +107,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
   describe 'POST /admin/shared-content' do
     it 'updates any settings that were changed' do
       create :shared_content_element
-      s2 = create :shared_content_element, content: 'Please change me!'
+      s2 = create :shared_content_element, content: 'Original content'
       create :shared_content_element
 
       post admin_shared_content_path, params: {
@@ -121,7 +121,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     include I18n.t( 'admin.shared_content.shared_content' ).titlecase
       expect( response.body ).to     include I18n.t 'admin.shared_content.shared_content_updated'
-      expect( response.body ).not_to include 'Please change me!'
+      expect( response.body ).not_to include 'Original content'
       expect( response.body ).to     include 'Updated content'
     end
 
