@@ -75,9 +75,9 @@ RSpec.describe 'Admin: Shared Content', type: :request do
 
   describe 'DELETE /admin/shared-content/delete/:id' do
     it 'deletes the specified piece of shared content' do
-      s1 = create :shared_element
-      s2 = create :shared_element, name: 'do_not_want'
-      s3 = create :shared_element
+      s1 = create :shared_content_element
+      s2 = create :shared_content_element, name: 'do_not_want'
+      s3 = create :shared_content_element
 
       delete admin_shared_content_delete_path( s2 )
 
@@ -106,9 +106,9 @@ RSpec.describe 'Admin: Shared Content', type: :request do
 
   describe 'POST /admin/shared-content' do
     it 'updates any settings that were changed' do
-      create :shared_element
-      s2 = create :shared_element
-      create :shared_element
+      create :shared_content_element
+      s2 = create :shared_content_element
+      create :shared_content_element
 
       post admin_shared_content_path, params: {
         "shared_content[element_#{s2.id}_content]": 'Updated content',
@@ -126,9 +126,9 @@ RSpec.describe 'Admin: Shared Content', type: :request do
     end
 
     it "doesn't update settings if they weren't changed" do
-      create :shared_element
-      s2 = create :shared_element
-      create :shared_element
+      create :shared_content_element
+      s2 = create :shared_content_element
+      create :shared_content_element
 
       post admin_shared_content_path, params: {
         "shared_content[element_#{s2.id}_content]": s2.content,

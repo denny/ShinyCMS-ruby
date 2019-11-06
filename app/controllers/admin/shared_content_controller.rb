@@ -2,12 +2,12 @@
 class Admin::SharedContentController < AdminController
   # Display form containing all shared content elements
   def index
-    @elements = SharedElement.order( :name )
+    @elements = SharedContentElement.order( :name )
   end
 
   # Add a new shared content element
   def create
-    element = SharedElement.new( new_element_params )
+    element = SharedContentElement.new( new_element_params )
 
     if element.save
       flash[ :notice ] = I18n.t 'admin.shared_content.shared_content_created'
@@ -32,7 +32,7 @@ class Admin::SharedContentController < AdminController
 
   # Delete an existing shared content element
   def delete
-    if SharedElement.destroy( params[ :id ] )
+    if SharedContentElement.destroy( params[ :id ] )
       flash[ :notice ] = I18n.t 'admin.shared_content.shared_content_deleted'
     end
     redirect_to admin_shared_content_path
@@ -52,7 +52,7 @@ class Admin::SharedContentController < AdminController
       content = elements[ "element_#{id}_content" ]
       content_type = elements[ "element_#{id}_content_type" ]
 
-      element = SharedElement.find( id )
+      element = SharedContentElement.find( id )
       next if element.content == content && element.content_type == content_type
 
       flag = element.update! content: content, content_type: content_type

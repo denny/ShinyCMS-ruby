@@ -1,4 +1,4 @@
 # Model class for shared-content elements
-class SharedElement < ApplicationRecord
+class SharedContentElement < ApplicationRecord
   include Element
 end
