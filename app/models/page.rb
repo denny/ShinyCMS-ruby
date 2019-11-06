@@ -32,9 +32,13 @@ class Page < ApplicationRecord
     end
   end
 
-  # Find an element by name and return its content
-  def element( name )
-    elements.where( name: name ).pick( :content )
+  # Returns a hash of all the elements for this page, to feed to render's local
+  def elements_hash
+    hash = {}
+    elements.each do |element|
+      hash[element.name] = element.content
+    end
+    hash
   end
 
   # Class methods
