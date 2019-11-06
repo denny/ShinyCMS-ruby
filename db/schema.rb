@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2019_10_17_200136) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "shared_elements", force: :cascade do |t|
+  create_table "shared_content_elements", force: :cascade do |t|
     t.string "name", null: false
     t.string "content"
     t.string "content_type", default: "Short Text", null: false

@@ -1,5 +1,5 @@
 # Common behaviour that all element models might want to use/offer
-# (PageTemplateElement, PageElement, SharedElement, ProductElement, etc)
+# (PageTemplateElement, PageElement, SharedContentElement, ProductElement, etc)
 module Element
   extend ActiveSupport::Concern
 
@@ -22,12 +22,7 @@ module Element
 
   class_methods do
     def content_types
-      [
-        I18n.t( 'admin.elements.short_text' ),
-        I18n.t( 'admin.elements.long_text'  ),
-        I18n.t( 'admin.elements.filename'   ),
-        I18n.t( 'admin.elements.html'       )
-      ]
+      I18n.t( 'admin.elements' ).values
     end
 
     def select_filenames( path = nil )
