@@ -35,10 +35,7 @@
     <br><%= f.check_box :hidden %>
   </p>
   <%= f.fields_for :elements do |fields| %>
-  <p>
-    <%= fields.label :content, @page.elements[fields.index].name %>
-    <br><%= fields.text_field :content %>
-  </p>
+    <%= render partial: 'admin/pages/page_element', locals: { fields: fields, content: :content, name: @page.elements[fields.index].name, content_type: @page.elements[fields.index].content_type, filenames: @filenames } %>
   <% end %>
   <p>
     <%= submit_tag t( 'admin.update' ) %>

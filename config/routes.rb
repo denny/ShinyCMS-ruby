@@ -47,11 +47,12 @@ Rails.application.routes.draw do
         post 'section/:id', to: 'sections#update'
 
         # Page templates
-        get  'templates',    to: 'templates#index'
-        get  'template/new', to: 'templates#new'
-        post 'template/new', to: 'templates#create'
-        get  'template/:id', to: 'templates#edit', as: :template
-        post 'template/:id', to: 'templates#update'
+        get    'templates',    to: 'templates#index'
+        get    'template/new', to: 'templates#new'
+        post   'template/new', to: 'templates#create'
+        get    'template/:id', to: 'templates#edit',   as: :template
+        post   'template/:id', to: 'templates#update'
+        delete 'template/:id', to: 'templates#delete', as: :template_delete
       end
 
       # Shared Content

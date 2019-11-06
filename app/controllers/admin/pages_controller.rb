@@ -7,12 +7,9 @@ class Admin::PagesController < AdminController
       PageSection.top_level_sections + PageSection.top_level_hidden_sections
   end
 
-  def new
-    # Add a new page
-  end
+  def new; end
 
   def create
-    # Save new page details
     @page = Page.new( page_params )
 
     if @page.save
@@ -25,12 +22,11 @@ class Admin::PagesController < AdminController
   end
 
   def edit
-    # Edit a page
+    @filenames = PageElement.select_filenames
     @page = Page.find( params[:id] )
   end
 
   def update
-    # Save edited page details
     @page = Page.find( params[:id] )
 
     if @page.update( page_params )
@@ -38,6 +34,7 @@ class Admin::PagesController < AdminController
       redirect_to action: :edit, id: @page.id
     else
       flash.now[ :alert ] = I18n.t 'admin.pages.page_update_failed'
+      @filenames = PageElement.select_filenames
       render action: :edit
     end
   end

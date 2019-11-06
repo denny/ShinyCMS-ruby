@@ -71,7 +71,8 @@ class PagesController < ApplicationController
       return
     end
 
-    render template: "pages/templates/#{@page.template.filename}"
+    render template: "pages/templates/#{@page.template.filename}",
+           locals: @page.elements_hash
   end
 
   # Find the correct section to look for the specified (or default) page in
