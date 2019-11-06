@@ -24,5 +24,10 @@ module Element
     def content_types
       I18n.t( 'admin.elements' ).values
     end
+
+    def select_filenames( path = nil )
+      path ||= Rails.root.join 'app', 'assets', 'images'
+      Dir.glob '*?.?*', base: path
+    end
   end
 end

@@ -77,7 +77,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
 
     it 'adds a new page with elements from template' do
-      template = create :page_template_with_elements
+      template = create :page_template
 
       post admin_page_new_path, params: {
         'page[name]': 'Test',
@@ -154,6 +154,24 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response.body ).to     include I18n.t( 'admin.pages.page_updated' )
       expect( response.body ).to     include 'updated-by-test'
       expect( response.body ).not_to include old_slug
+    end
+
+    it 'shows the appropriate input type for each element type' do
+      allow( PageElement ).to receive_message_chain(
+        :select_filenames
+      ).and_return( %w[ FILE.png image.jpeg image.gif ] )
+
+      page = create :page_with_one_of_each_element_type
+
+      get admin_page_path( page )
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include I18n.t( 'admin.pages.edit_page' ).titlecase
+      expect( response.body ).to match %r{<input [^>]*value="SHORT!"[^>]*>}
+      expect( response.body ).to match %r{<textarea [^>]+>\nLONG!</textarea>}
+      expect( response.body ).to match %r{<option [^>]+>FILE.png</option>}
+      # TODO: improve this test once the WYSIWYG editor code is in place
+      expect( response.body ).to match %r{<textarea [^>]+>\nHTML!</textarea>}
     end
   end
 end

@@ -72,6 +72,8 @@ en:
       template_create_failed: Failed to add new template
       template_updated: Template details updated
       template_update_failed: Failed to update template details
+      template_deleted: Template deleted
+      template_delete_failed: Failed to delete template
 
       # Used in models (or concerns)
       slug_must_be_unique: The slug must be unique within its section

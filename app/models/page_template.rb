@@ -13,11 +13,25 @@ class PageTemplate < ApplicationRecord
 
   accepts_nested_attributes_for :elements
 
+  after_create :add_elements
+
   # Instance methods
 
   # Check whether the template file is present on disk
   def file_exists?
     PageTemplate.available_templates.include? filename
+  end
+
+  # Create template elements, based on the content of the template file
+  def add_elements
+    dir = %w[ app views pages templates ]
+    full_path = Rails.root.join( *dir, "#{filename}.html.erb" )
+    return unless File.file? full_path
+
+    erb = File.read full_path
+    erb.scan( %r{<%=\s+([a-z][0-9a-z]*)\s+%>} ).uniq.each do |result|
+      elements.create!( name: result[0] )
+    end
   end
 
   # Class methods
