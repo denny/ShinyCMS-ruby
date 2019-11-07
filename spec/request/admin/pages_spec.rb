@@ -167,11 +167,14 @@ RSpec.describe 'Admin: Pages', type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include I18n.t( 'admin.pages.edit_page' ).titlecase
+
       expect( response.body ).to match %r{<input [^>]*value="SHORT!"[^>]*>}
       expect( response.body ).to match %r{<textarea [^>]+>\nLONG!</textarea>}
       expect( response.body ).to match %r{<option [^>]+>FILE.png</option>}
-      # TODO: improve this test once the WYSIWYG editor code is in place
-      expect( response.body ).to match %r{<textarea [^>]+>\nHTML!</textarea>}
+
+      CKE_REGEX = %r{<textarea [^>]*id="(?<cke_id>page_elements_attributes_\d+_content)"[^>]*>\nHTML!</textarea>}.freeze
+      matches = response.body.match CKE_REGEX
+      expect( response.body ).to include "CKEDITOR.replace('#{matches[:cke_id]}'"
     end
   end
 end
