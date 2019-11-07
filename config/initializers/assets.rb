@@ -15,4 +15,5 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w[
   main_site.css
   admin/admin_area.scss
+  ckeditor/config.js
 ]

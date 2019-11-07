@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     # ========== ( Admin area ) ==========
     get 'admin', to: 'admin#index'
 
+    # CKEditor (WYSIWYG editor used on various admin pages)
+    mount Ckeditor::Engine => '/admin/ckeditor'
+
     namespace :admin do
       # Pages
       get  'pages',    to: 'pages#index'
