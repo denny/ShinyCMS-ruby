@@ -76,6 +76,8 @@ GEM
       xpath (~> 3.2)
     childprocess (2.0.0)
       rake (< 13.0)
+    ckeditor (5.0.0)
+      orm_adapter (~> 0.5.0)
     codecov (0.1.15)
       json
       simplecov
@@ -278,6 +280,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)!
   bundler-audit!
   capybara (>= 2.15)!
+  ckeditor!
   codecov!
   devise!
   devise-pwned_password!

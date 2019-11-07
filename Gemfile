@@ -27,6 +27,9 @@ source 'https://rubygems.org' do
   gem 'devise-pwned_password'
   gem 'pundit'
 
+  # WYSIWYG editor for admin area
+  gem 'ckeditor'
+
   group :development, :test do
     gem 'bundler-audit', require: false
     gem 'factory_bot_rails'
