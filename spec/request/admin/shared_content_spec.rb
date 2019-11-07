@@ -61,7 +61,8 @@ RSpec.describe 'Admin: Shared Content', type: :request do
 
     it 'attempting to add a new shared_content element with no name fails gracefully' do
       post admin_shared_content_create_path, params: {
-        'new_element[content]': 'MADE OF FAIL!'
+        'new_element[content]': 'MADE OF FAIL!',
+        'new_element[content_type]': I18n.t( 'short_text' )
       }
 
       expect( response      ).to have_http_status :found
