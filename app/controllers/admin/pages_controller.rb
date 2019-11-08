@@ -39,6 +39,16 @@ class Admin::PagesController < AdminController
     end
   end
 
+  def delete
+    if Page.destroy( params[ :id ] )
+      flash[ :notice ] = I18n.t 'admin.pages.page_deleted'
+    end
+    redirect_to admin_pages_path
+  rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
+    flash[ :alert ] = I18n.t 'admin.pages.page_delete_failed'
+    redirect_to admin_pages_path
+  end
+
   private
 
   def page_params

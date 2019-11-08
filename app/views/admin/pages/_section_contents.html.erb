@@ -27,7 +27,7 @@
     <td class="actions">
       <%= link_to t( 'admin.view' ), url_for( "#{view_path}/#{page.slug}" ) %>
       <%= link_to t( 'admin.edit' ), url_for( admin_page_path( page ) ) %>
-      <%#= link_to t( 'admin.delete' ), admin_page_delete_path( page ),
+      <%= link_to t( 'admin.delete' ), admin_page_delete_path( page ),
           method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
     </td>
   </tr>

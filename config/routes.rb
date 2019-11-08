@@ -35,11 +35,12 @@ Rails.application.routes.draw do
 
     namespace :admin do
       # Pages
-      get  'pages',    to: 'pages#index'
-      get  'page/new', to: 'pages#new'
-      post 'page/new', to: 'pages#create'
-      get  'page/:id', to: 'pages#edit', as: :page
-      post 'page/:id', to: 'pages#update'
+      get    'pages',    to: 'pages#index'
+      get    'page/new', to: 'pages#new'
+      post   'page/new', to: 'pages#create'
+      get    'page/:id', to: 'pages#edit',   as: :page
+      post   'page/:id', to: 'pages#update'
+      delete 'page/:id', to: 'pages#delete', as: :page_delete
 
       namespace :pages do
         # Page sections

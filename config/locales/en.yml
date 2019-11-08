@@ -57,6 +57,8 @@ en:
       page_create_failed: Failed to add new page
       page_updated: Page details updated
       page_update_failed: Failed to update page details
+      page_deleted: Page deleted
+      page_delete_failed: Failed to delete page
 
       new_section: Add new section
       edit_section: Edit section
