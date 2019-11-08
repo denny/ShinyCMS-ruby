@@ -5,7 +5,7 @@ RSpec.describe 'Shared Content', type: :request do
     it 'fetches the page, including the content of the shared element' do
       page   = create :top_level_page
       shared = create :shared_content_element,
-                      name: 'email',
+                      name: 'the_email',
                       content: Faker::Internet.unique.email
 
       get '/'
