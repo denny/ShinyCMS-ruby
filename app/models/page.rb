@@ -7,13 +7,14 @@ class Page < ApplicationRecord
 
   belongs_to :section,  class_name: 'PageSection', optional: true,
                         inverse_of: 'pages'
+
   belongs_to :template, class_name: 'PageTemplate',
                         inverse_of: 'pages'
 
   has_many :elements, class_name: 'PageElement',
                       foreign_key: 'page_id',
                       inverse_of: 'page',
-                      dependent: :delete_all
+                      dependent: :destroy
 
   accepts_nested_attributes_for :elements
 

@@ -5,11 +5,12 @@ class PageTemplate < ApplicationRecord
 
   has_many :pages, foreign_key: 'template_id',
                    inverse_of: 'template',
-                   dependent: :nullify
+                   dependent: :restrict_with_error
+
   has_many :elements, class_name: 'PageTemplateElement',
                       foreign_key: 'template_id',
                       inverse_of: 'template',
-                      dependent: :delete_all
+                      dependent: :destroy
 
   accepts_nested_attributes_for :elements
 
