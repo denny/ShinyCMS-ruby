@@ -66,6 +66,8 @@ en:
       section_create_failed: Failed to add new section
       section_updated: Section details updated
       section_update_failed: Failed to update section details
+      section_deleted: Section deleted
+      section_delete_failed: Failed to section page
 
       list_templates: List templates
       new_template: Add new template

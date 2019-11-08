@@ -44,11 +44,12 @@ Rails.application.routes.draw do
 
       namespace :pages do
         # Page sections
-        get  'sections',    to: 'sections#index'
-        get  'section/new', to: 'sections#new'
-        post 'section/new', to: 'sections#create'
-        get  'section/:id', to: 'sections#edit', as: :section
-        post 'section/:id', to: 'sections#update'
+        get    'sections',    to: 'sections#index'
+        get    'section/new', to: 'sections#new'
+        post   'section/new', to: 'sections#create'
+        get    'section/:id', to: 'sections#edit',   as: :section
+        post   'section/:id', to: 'sections#update'
+        delete 'section/:id', to: 'sections#delete', as: :section_delete
 
         # Page templates
         get    'templates',    to: 'templates#index'
