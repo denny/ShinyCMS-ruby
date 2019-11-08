@@ -11,8 +11,8 @@ RSpec.describe 'Shared Content', type: :request do
       get '/'
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to match %r{<h1>\s*#{page.title}\s*</h1>}
-      expect( response.body ).to match %r{<p class="small">\s*#{shared.content}\s*</p>}
+      expect( response.body ).to have_title page.title
+      expect( response.body ).to have_css '.small', text: shared.content
     end
   end
 end
