@@ -101,4 +101,35 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       expect( response.body ).to include 'Updated by test'
     end
   end
+
+  describe 'DELETE /admin/pages/section/delete/:id' do
+    it 'deletes the specified section' do
+      s1 = create :page_section
+      s2 = create :page_section
+      s3 = create :page_section
+
+      delete admin_pages_section_delete_path( s2 )
+
+      expect( response      ).to     have_http_status :found
+      expect( response      ).to     redirect_to admin_pages_path
+      follow_redirect!
+      expect( response      ).to     have_http_status :ok
+      expect( response.body ).to     have_title I18n.t( 'admin.pages.list_pages' ).titlecase
+      expect( response.body ).to     have_css '#notices', text: I18n.t( 'admin.pages.section_deleted' )
+      expect( response.body ).to     include s1.name
+      expect( response.body ).not_to include s2.name
+      expect( response.body ).to     include s3.name
+    end
+
+    it 'fails gracefully when attempting to delete a non-existent section' do
+      delete admin_pages_section_delete_path( 999 )
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_pages_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.pages.list_pages' ).titlecase
+      expect( response.body ).to have_css '#alerts', text: I18n.t( 'admin.pages.section_delete_failed' )
+    end
+  end
 end
