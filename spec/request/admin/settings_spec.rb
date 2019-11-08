@@ -76,7 +76,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       s2 = create :setting, name: 'DO NOT WANT'
       s3 = create :setting
 
-      delete admin_setting_delete_path( s2.id )
+      delete admin_setting_delete_path( s2 )
 
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to admin_settings_path
@@ -104,7 +104,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
   describe 'POST /admin/settings' do
     it 'updates any settings that were changed' do
       create :setting
-      s2 = create :setting
+      s2 = create :setting, value: 'Original value'
       create :setting
 
       post admin_settings_path, params: {
@@ -117,7 +117,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.settings.site_settings' ).titlecase
       expect( response.body ).to     have_css '#notices', text: I18n.t( 'admin.settings.settings_updated' )
-      expect( response.body ).not_to include s2.value
+      expect( response.body ).not_to include 'Original value'
       expect( response.body ).to     include 'Updated value'
     end
 
