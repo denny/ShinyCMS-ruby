@@ -22,7 +22,7 @@ RSpec.describe 'Pages', type: :request do
         get '/'
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to match %r{<h1>\s*#{@page.title}\s*</h1>}
+        expect( response.body ).to have_title @page.title
       end
 
       it 'renders an error if the template file is missing' do
@@ -44,7 +44,7 @@ RSpec.describe 'Pages', type: :request do
         get '/pages'
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to match %r{<h1>\s*#{@page.title}\s*</h1>}
+        expect( response.body ).to have_title @page.title
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe 'Pages', type: :request do
         get "/pages/#{@page.slug}"
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to match %r{<h1>\s*#{@page.title}\s*</h1>}
+        expect( response.body ).to have_title @page.title
       end
     end
 
@@ -64,7 +64,7 @@ RSpec.describe 'Pages', type: :request do
         get "/pages/#{page.section.slug}/#{page.slug}"
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to match %r{<h1>\s*#{page.title}\s*</h1>}
+        expect( response.body ).to have_title page.title
       end
     end
 
@@ -73,7 +73,7 @@ RSpec.describe 'Pages', type: :request do
         get "/#{@page.slug}"
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to match %r{<h1>\s*#{@page.title}\s*</h1>}
+        expect( response.body ).to have_title @page.title
       end
     end
 
@@ -84,7 +84,7 @@ RSpec.describe 'Pages', type: :request do
         get "/#{page.section.slug}/#{page.slug}"
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to match %r{<h1>\s*#{page.title}\s*</h1>}
+        expect( response.body ).to have_title page.title
       end
     end
 
@@ -98,7 +98,7 @@ RSpec.describe 'Pages', type: :request do
         get "/pages/#{section.slug}"
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to match %r{<h1>\s*1st Page\s*</h1>}
+        expect( response.body ).to have_title '1st Page'
       end
 
       it 'fetches the default page from the specified section if one is set' do
@@ -111,7 +111,7 @@ RSpec.describe 'Pages', type: :request do
         get "/pages/#{page002.section.slug}"
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to match %r{<h1>\s*3rd Page\s*</h1>}
+        expect( response.body ).to have_title '3rd Page'
       end
     end
 
@@ -122,7 +122,7 @@ RSpec.describe 'Pages', type: :request do
         get "/pages/#{p.section.section.slug}/#{p.section.slug}/#{p.slug}"
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to match %r{<h1>\s*#{p.title}\s*</h1>}
+        expect( response.body ).to have_title p.title
       end
     end
 

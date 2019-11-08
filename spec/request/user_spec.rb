@@ -37,7 +37,7 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to     redirect_to root_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     include I18n.t( 'users.logins_not_enabled' )
+      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.logins_not_enabled' )
       expect( response.body ).not_to include 'Login'
     end
 
@@ -52,7 +52,7 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to     redirect_to root_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     include I18n.t( 'users.logins_not_enabled' )
+      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.logins_not_enabled' )
       expect( response.body ).not_to include 'Login'
     end
   end
@@ -189,7 +189,7 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to redirect_to edit_user_registration_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include 'Your account has been updated'
+      expect( response.body ).to have_css '#notices', text: 'Your account has been updated'
       expect( response.body ).to include new_name
     end
   end
