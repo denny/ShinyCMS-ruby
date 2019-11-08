@@ -13,7 +13,9 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w[
-  main_site.css
-  admin/admin_area.scss
+  shinycms/main_site.css
+
+  shinycms/admin_area.scss
+
   ckeditor/config.js
 ]
