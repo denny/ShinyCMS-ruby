@@ -177,4 +177,35 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response.body ).to include "CKEDITOR.replace('#{matches[:cke_id]}'"
     end
   end
+
+  describe 'DELETE /admin/page/delete/:id' do
+    it 'deletes the specified page' do
+      p1 = create :page
+      p2 = create :page
+      p3 = create :page
+
+      delete admin_page_delete_path( p2 )
+
+      expect( response      ).to     have_http_status :found
+      expect( response      ).to     redirect_to admin_pages_path
+      follow_redirect!
+      expect( response      ).to     have_http_status :ok
+      expect( response.body ).to     have_title I18n.t( 'admin.pages.list_pages' ).titlecase
+      expect( response.body ).to     have_css '#notices', text: I18n.t( 'admin.pages.page_deleted' )
+      expect( response.body ).to     include p1.name
+      expect( response.body ).not_to include p2.name
+      expect( response.body ).to     include p3.name
+    end
+
+    it 'fails gracefully when attempting to delete a non-existent page' do
+      delete admin_page_delete_path( 999 )
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_pages_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.pages.list_pages' ).titlecase
+      expect( response.body ).to have_css '#alerts', text: I18n.t( 'admin.pages.page_delete_failed' )
+    end
+  end
 end
