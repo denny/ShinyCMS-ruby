@@ -10,7 +10,7 @@
     <td class="actions">
       <%= link_to t( 'admin.view' ), url_for( view_path ) %>
       <%= link_to t( 'admin.edit' ), url_for( admin_pages_section_path( section ) ) %>
-      <%#= link_to t( 'admin.delete' ), admin_pages_section_delete_path( section ),
+      <%= link_to t( 'admin.delete' ), admin_pages_section_delete_path( section ),
           method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
     </td>
   </tr>
