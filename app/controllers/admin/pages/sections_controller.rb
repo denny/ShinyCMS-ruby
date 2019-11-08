@@ -40,6 +40,16 @@ class Admin::Pages::SectionsController < AdminController
     end
   end
 
+  def delete
+    if PageSection.destroy( params[ :id ] )
+      flash[ :notice ] = I18n.t 'admin.pages.section_deleted'
+    end
+    redirect_to admin_pages_path
+  rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
+    flash[ :alert ] = I18n.t 'admin.pages.section_delete_failed'
+    redirect_to admin_pages_path
+  end
+
   private
 
   def section_params
