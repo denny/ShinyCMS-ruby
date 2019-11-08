@@ -21,13 +21,15 @@
 
 ## Smaller new features and/or improvements over the Perl version
 
-* Improve UX for slug auto-generation; use ideas (and code?) from Fae CMS:
+* Improve UX for slug auto-generation; use ideas (and code?) from Fae CMS?
   https://www.faecms.com/documentation/features-slugger
 
 
 ## Larger new features and/or improvements over the Perl version
 
+* Switch from ERB to handlebars or similar for main site templates?
+
 * Allow Page templates to be stored in database and edited in admin UI?
 
-* Allow in-situ editing of Page (and other?) content, using Mercury:
+* Allow in-situ editing of Page (and other?) content, using Mercury?
   https://jejacks0n.github.io/mercury/
