@@ -30,7 +30,7 @@ class PageTemplate < ApplicationRecord
     return unless File.file? full_path
 
     erb = File.read full_path
-    erb.scan( %r{<%=\s+([a-z][0-9a-z]*)\s+%>} ).uniq.each do |result|
+    erb.scan( %r{<%=\s+([a-z][_0-9a-z]*)\s+%>} ).uniq.each do |result|
       elements.create!( name: result[0] )
     end
   end
