@@ -1,6 +1,6 @@
 /* ================================================================ *\
    Project:   ShinyCMS (Ruby version)
-   File:      app/assets/stylsheets/main_site.css
+   File:      app/assets/stylsheets/shinycms/main_site.css
    Purpose:   Styles for main (user-facing) website
 
    Copyright: (c) 2009-2019 Denny de la Haye https://denny.me
@@ -8,63 +8,6 @@
    ShinyCMS is free software; you can redistribute it and/or
    modify it under the terms of the GPL (version 2 or later).
 \* ================================================================ */
-
-
-/* ========== ( global styles ) ========== */
-
-body {
-  font-family:  'Poppins', sans-serif;
-  font-size:    12pt;
-  margin:       0;
-}
-
-header#header #alerts {
-  background:   #ffdddd;
-  padding:      0.5em;
-}
-
-header#header #notices {
-  background:   #ddffdd;
-  padding:      0.5em;
-}
-
-nav#top-nav {
-  padding:        0.5em;
-  border-bottom:  1px solid #dddddd;
-}
-
-nav#top-nav ul {
-  padding-left:     0;
-}
-
-nav#top-nav li {
-  list-style-type:  none;
-  display:          inline;
-  padding:          0.2em;
-}
-
-nav#top-nav ul.submenu {
-}
-
-main#main {
-  padding:      0.5em;
-}
-
-footer#footer {
-  border-top:   #dddddd solid 1px;
-  padding:      0.5em;
-  text-align:   center;
-  font-size:    0.8em;
-}
-
-
-
-
-/* ========== ( useful bits and bobs ) ========== */
-
-.clearboth {
-  clear:        both;
-}
 
 
 /* ========== ( admin toolbar ) ========== */
