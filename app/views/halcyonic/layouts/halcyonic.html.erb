@@ -1,18 +1,18 @@
 <!DOCTYPE HTML>
 <!--
-	This set of templates is heavily based on Halcyonic by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	This set of templates is heavily based on Halcyonic by HTML5 UP:
+	https://html5up.net/halcyonic | html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license:
+  html5up.net/license
 -->
+<% if controller == 'Pages' && action == 'index' %>
+  <% @viewing_homepage = true %>
+<% end %>
+
 <html>
   <%= render partial: 'halcyonic/includes/head' %>
 
-  <% if controller == 'Pages' && action == 'index' %>
-  <% @viewing_homepage = true %>
-  <body>
-  <% else %>
-  <body class="subpage">
-  <% end %>
+  <body<% unless @viewing_homepage %> class="subpage"<% end %>>
     <div id="page-wrapper">
       <%= render partial: 'halcyonic/includes/header' %>
 
@@ -21,9 +21,7 @@
       <%= render partial: 'halcyonic/includes/footer' %>
 
       <%# if user.is_admin? %>
-      <nav id="admin-toolbar">
-        <%= render partial: 'admin/includes/admin_toolbar' %>
-      </nav>
+      <%= render partial: 'admin/includes/admin_toolbar' %>
       <%# end %>
 
       <%= render partial: 'halcyonic/includes/footer_javascript' %>

@@ -1,15 +1,10 @@
 # Base class for main site controllers
 class ApplicationController < ActionController::Base
-  # theme_name = ENV['SHINYCMS_THEME'] if ENV['SHINYCMS_THEME']
-  theme_name = 'halcyonic'
-  if theme_name
-    layout_dir  = %W[ app views #{theme_name} layouts ]
-    layout_file = Rails.root.join( *layout_dir, "#{theme_name}.html.erb" )
-    if File.file? layout_file
-      layout "#{theme_name}/layouts/#{theme_name}"
-    else
-      layout 'main_site'
-    end
+  theme_name = Rails.application.config.theme_name
+  if theme_name == 'default'
+    layout 'main_site'
+  else
+    layout "#{theme_name}/layouts/#{theme_name}"
   end
 
   # Strong params config for various Devise features
