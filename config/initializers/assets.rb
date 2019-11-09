@@ -4,31 +4,23 @@
 Rails.application.config.assets.version = '1.0'
 
 # Add additional assets to the asset load path.
-# Rails.application.config.assets.paths << Emoji.images_path
-# Add Yarn node_modules folder to the asset load path.
-Rails.application.config.assets.paths << Rails.root.join('node_modules')
+# Yarn node_modules folder
+Rails.application.config.assets.paths << Rails.root.join( 'node_modules' )
+# ShinyCMS default layout images (including admin toolbar)
+Rails.application.config.assets.paths << Rails.root.join( 'shinycms', 'images' )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-# Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w[
   shinycms/main_site.css
-
+  shinycms/admin_toolbar.scss
   shinycms/admin_area.scss
-
-  ckeditor/config.js
 ]
 
-# Halcyonic theme for main site
-# if ENV['SHINYCMS_THEME'] == 'halcyonic'
-Rails.application.config.assets.precompile += %w[
-  halcyonic/main.css
-  halcyonic/shinycms.css
-  halcyonic/jquery.min.js
-  halcyonic/breakpoints.min.js
-  halcyonic/browser.min.js
-  halcyonic/util.js
-  halcyonic/main.js
-]
-# end
+# Look for a non-default theme_name, if one is set then load its assets
+theme = Rails.application.config.theme_name
+unless theme == 'default'
+  Rails.application.config.assets.paths << Rails.root.join( theme, 'images' )
+  Rails.application.config.assets.precompile += %W[ #{theme}/index.css ]
+end

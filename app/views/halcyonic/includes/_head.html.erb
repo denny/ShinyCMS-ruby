@@ -1,15 +1,16 @@
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-<title>
-  <%= "#{@page_title} - " if @page_title %>ShinySite
-</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-<%= csrf_meta_tags %>
-<%= csp_meta_tag %>
+  <title>
+    <%= "#{@page_title} - " if @page_title %>ShinySite
+  </title>
 
-<%= stylesheet_link_tag 'halcyonic/main' %>
-<%= stylesheet_link_tag 'shinycms/main_site', media: 'all' %>
-<%= stylesheet_link_tag 'halcyonic/shinycms' %>
+  <%= favicon_link_tag %>
 
-<%= favicon_link_tag %>
+  <%= stylesheet_link_tag 'halcyonic' %>
+  <%= stylesheet_link_tag 'shinycms/admin_toolbar' %>
+</head>
