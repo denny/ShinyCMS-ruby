@@ -1,0 +1,19 @@
+        <!-- Header -->
+        <section id="header">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <!-- Logo -->
+                <h1><a href="index.html" id="logo">Halcyonic</a></h1>
+
+                <%= render partial: 'halcyonic/includes/menu' %>
+              </div>
+            </div>
+          </div>
+
+          <%= render partial: 'includes/messages' %>
+
+          <% if @viewing_homepage %>
+            <%= render partial: 'halcyonic/includes/banner' %>
+          <% end %>
+        </section>

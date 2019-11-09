@@ -36,7 +36,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
     it 'adds a new template when the form is submitted' do
       post admin_pages_template_new_path, params: {
         'page_template[name]': 'Test',
-        'page_template[filename]': 'example'
+        'page_template[filename]': 'an_example'
       }
 
       expect( response      ).to have_http_status :found
@@ -49,7 +49,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
     it 'adds the right number of elements to the new template' do
       post admin_pages_template_new_path, params: {
         'page_template[name]': 'Another Test',
-        'page_template[filename]': 'example'
+        'page_template[filename]': 'an_example'
       }
 
       expect( response      ).to have_http_status :found

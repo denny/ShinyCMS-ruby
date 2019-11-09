@@ -117,7 +117,7 @@ RSpec.describe 'User', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include "<a href=\"/user/#{user.username}\""
-      expect( response.body ).to include '<a href="/logout">log out</a>'
+      expect( response.body ).to include '<a href="/logout">Log out</a>'
     end
 
     it 'logs the user in using their username' do
@@ -134,7 +134,7 @@ RSpec.describe 'User', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include "<a href=\"/user/#{user.username}\""
-      expect( response.body ).to include '<a href="/logout">log out</a>'
+      expect( response.body ).to include '<a href="/logout">Log out</a>'
     end
   end
 

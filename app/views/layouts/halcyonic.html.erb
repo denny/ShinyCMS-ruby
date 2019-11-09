@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render partial: 'halcyonic/includes/head' %>
+  </head>
+
+  <% if controller == 'Pages' && action == 'index' %>
+  <% @viewing_homepage = true %>
+  <body>
+  <% else %>
+  <body class="subpage">
+  <% end %>
+    <div id="page-wrapper">
+      <%= render partial: 'halcyonic/includes/header' %>
+
+      <%= yield %>
+
+      <%= render partial: 'halcyonic/includes/footer' %>
+
+      <%# if user.is_admin? %>
+      <nav id="admin-toolbar">
+        <%= render partial: 'admin/includes/admin_toolbar' %>
+      </nav>
+      <%# end %>
+
+      <%= render partial: 'halcyonic/includes/footer_javascript' %>
+  </body>
+</html>
