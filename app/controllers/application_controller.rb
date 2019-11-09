@@ -3,10 +3,10 @@ class ApplicationController < ActionController::Base
   # theme_name = ENV['SHINYCMS_THEME'] if ENV['SHINYCMS_THEME']
   theme_name = 'halcyonic'
   if theme_name
-    layout_dir  = %w[ app views layouts ]
+    layout_dir  = %W[ app views #{theme_name} layouts ]
     layout_file = Rails.root.join( *layout_dir, "#{theme_name}.html.erb" )
     if File.file? layout_file
-      layout theme_name
+      layout "#{theme_name}/layouts/#{theme_name}"
     else
       layout 'main_site'
     end
