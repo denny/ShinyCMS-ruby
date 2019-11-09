@@ -1,3 +1,6 @@
+# Secret stuff!
+/config/master.key
+
 *.gem
 *.rbc
 /.config
