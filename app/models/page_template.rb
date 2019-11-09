@@ -45,7 +45,7 @@ class PageTemplate < ApplicationRecord
     filenames.each do |filename|
       template_names << filename.remove( '.html.erb' )
     end
-    template_names
+    template_names.sort
   end
 
   # Add another validation here, because it uses the class method above
