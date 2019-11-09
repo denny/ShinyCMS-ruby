@@ -22,7 +22,8 @@ source 'https://rubygems.org' do
   # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
   gem 'webpacker', '~> 4.0'
 
-  # Authentication and authorisation
+  # Sessions, authentication, and authorisation
+  gem 'activerecord-session_store'
   gem 'devise'
   gem 'devise-pwned_password'
   gem 'pundit'
