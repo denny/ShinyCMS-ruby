@@ -53,8 +53,8 @@ aware.
 
 ## Database
 
-To create the database: `rails db:create`
-To load the database schema: `rails db:schema:load`
+To create the database: `rails db:create`  
+To load the database schema: `rails db:schema:load`  
 To load seed data: `rails db:seed`
 
 To do all three in one command: `rails db:setup`
@@ -64,11 +64,11 @@ To do all three in one command: `rails db:setup`
 
 To run the test suite: `rspec`
 
-You can view test history on CircleCI and Travis CI:
-https://circleci.com/gh/denny/ShinyCMS-ruby
+You can view test history on CircleCI and Travis CI:  
+https://circleci.com/gh/denny/ShinyCMS-ruby  
 https://travis-ci.org/denny/ShinyCMS-ruby
 
-And test coverage information on CodeCov:
+And test coverage information on CodeCov:  
 https://codecov.io/gh/denny/ShinyCMS-ruby
 
 
@@ -93,8 +93,8 @@ to that bit yet though.
 
 ShinyCMS (Ruby version) is free software; you can redistribute it and/or modify
 it under the terms of the GPL (version 2 or later). There are copies of both v2
-and v3 of the GPL in the docs folder, or you can read them online:
-https://opensource.org/licenses/gpl-2.0
+and v3 of the GPL in the docs folder, or you can read them online:  
+https://opensource.org/licenses/gpl-2.0  
 https://opensource.org/licenses/gpl-3.0
 
 ShinyCMS uses code from other open source and free software projects, which
