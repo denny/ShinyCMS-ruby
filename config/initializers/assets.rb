@@ -19,3 +19,16 @@ Rails.application.config.assets.precompile += %w[
 
   ckeditor/config.js
 ]
+
+# Halcyonic theme for main site
+# if ENV['SHINYCMS_THEME'] == 'halcyonic'
+Rails.application.config.assets.precompile += %w[
+  halcyonic/main.css
+  halcyonic/shinycms.css
+  halcyonic/jquery.min.js
+  halcyonic/breakpoints.min.js
+  halcyonic/browser.min.js
+  halcyonic/util.js
+  halcyonic/main.js
+]
+# end
