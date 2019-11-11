@@ -34,16 +34,14 @@ module ShinyCMS
     # the framework and any gems in your application.
 
     # Support for themes on main (user-facing) site
-    config.theme_name = 'default'
-    theme_name = ENV['SHINYCMS_THEME'] if ENV['SHINYCMS_THEME']
-    if theme_name.present?
-      theme_dir = Rails.root.join( 'app', 'views', theme_name )
-      if File.directory? theme_dir
-        layout_file = Rails.root.join(
-          'app', 'views', theme_name.to_s, 'layouts', "#{theme_name}.html.erb"
-        )
-        config.theme_name = theme_name if File.file? layout_file
-      end
+    config.theme_name = 'shinycms'
+    theme_name = ENV['SHINYCMS_THEME'] || 'shinycms'
+    theme_dir = Rails.root.join( 'app', 'views', theme_name )
+    if File.directory? theme_dir
+      layout_file = Rails.root.join(
+        'app', 'views', theme_name.to_s, 'layouts', "#{theme_name}.html.erb"
+      )
+      config.theme_name = theme_name if File.file? layout_file
     end
 
     # Remove routes for Active Storage
