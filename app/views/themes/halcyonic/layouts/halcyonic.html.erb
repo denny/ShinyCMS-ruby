@@ -10,20 +10,20 @@
 <% end %>
 
 <html>
-  <%= render partial: 'halcyonic/includes/head' %>
+  <%= render partial: 'themes/halcyonic/includes/head' %>
 
   <body<% unless @viewing_homepage %> class="subpage"<% end %>>
     <div id="page-wrapper">
-      <%= render partial: 'halcyonic/includes/header' %>
+      <%= render partial: 'themes/halcyonic/includes/header' %>
 
       <%= yield %>
 
-      <%= render partial: 'halcyonic/includes/footer' %>
+      <%= render partial: 'themes/halcyonic/includes/footer' %>
 
       <%# if user.is_admin? %>
       <%= render partial: 'admin/includes/admin_toolbar' %>
       <%# end %>
 
-      <%= render partial: 'halcyonic/includes/footer_javascript' %>
+      <%= render partial: 'themes/halcyonic/includes/footer_javascript' %>
   </body>
 </html>
