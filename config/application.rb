@@ -35,11 +35,12 @@ module ShinyCMS
 
     # Support for themes on main (user-facing) site
     config.theme_name = 'shinycms'
-    theme_name = ENV['SHINYCMS_THEME'] || 'shinycms'
-    theme_dir = Rails.root.join( 'app', 'views', theme_name )
+    theme_name = ENV['SHINYCMS_THEME'].to_s || 'shinycms'
+    path_parts = %W[ app views themes #{theme_name} ]
+    theme_dir = Rails.root.join( *path_parts )
     if File.directory? theme_dir
       layout_file = Rails.root.join(
-        'app', 'views', theme_name.to_s, 'layouts', "#{theme_name}.html.erb"
+        *path_parts, 'layouts', "#{theme_name}.html.erb"
       )
       config.theme_name = theme_name if File.file? layout_file
     end
