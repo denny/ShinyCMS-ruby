@@ -1,11 +1,7 @@
 # Base class for main site controllers
 class ApplicationController < ActionController::Base
   theme_name = Rails.application.config.theme_name
-  if theme_name == 'default'
-    layout 'main_site'
-  else
-    layout "#{theme_name}/layouts/#{theme_name}"
-  end
+  layout "themes/#{theme_name}/layouts/#{theme_name}"
 
   # Strong params config for various Devise features
   SIGN_UP_PARAMS = %i[
