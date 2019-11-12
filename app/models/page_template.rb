@@ -7,10 +7,11 @@ class PageTemplate < ApplicationRecord
                    inverse_of: 'template',
                    dependent: :restrict_with_error
 
-  has_many :elements, class_name: 'PageTemplateElement',
-                      foreign_key: 'template_id',
-                      inverse_of: 'template',
-                      dependent: :destroy
+  has_many :elements, -> { order( id: :asc ) },
+           class_name: 'PageTemplateElement',
+           foreign_key: 'template_id',
+           inverse_of: 'template',
+           dependent: :destroy
 
   accepts_nested_attributes_for :elements
 
