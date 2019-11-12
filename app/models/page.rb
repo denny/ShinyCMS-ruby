@@ -24,7 +24,7 @@ class Page < ApplicationRecord
 
   # Add the elements specified by the template
   def add_elements
-    template.elements.each do |template_element|
+    template.elements.sort.each do |template_element|
       elements.create!(
         name: template_element.name,
         content: template_element.content,
