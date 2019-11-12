@@ -16,7 +16,7 @@ module Element
     before_validation :format_name, if: -> { name.present? }
 
     def format_name
-      self.name = name.underscore
+      self.name = name.parameterize.underscore
     end
   end
 end
