@@ -35,7 +35,7 @@ module ShinyCMS
 
     # Support for themes on main (user-facing) site
     config.theme_name = 'shinycms'
-    theme_name = ENV['SHINYCMS_THEME'].to_s || 'shinycms'
+    theme_name = ENV['SHINYCMS_THEME'] || 'shinycms'
     path_parts = %W[ app views themes #{theme_name} ]
     theme_dir = Rails.root.join( *path_parts )
     if File.directory? theme_dir
