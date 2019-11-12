@@ -82,7 +82,7 @@ input, select, textarea {
 	}
 
 	body {
-		background: #D4D9DD image-url("images/bg03.jpg");
+		background: #D4D9DD image-url("halcyonic/bg03.jpg");
 		color: #474f51;
 		font-size: 13.5pt;
 		font-family: 'Yanone Kaffeesatz';
@@ -1430,7 +1430,7 @@ input, select, textarea {
 	.check-list li {
 		padding: 0.7em 0 0.7em 45px;
 		font-size: 1.2em;
-		background: image-url("images/icon-checkmark.png") 0px 1.05em no-repeat;
+		background: image-url("halcyonic/icon-checkmark.png") 0px 1.05em no-repeat;
 	}
 
 		.check-list li:first-child {
@@ -1457,7 +1457,7 @@ input, select, textarea {
 
 	.bordered-feature-image {
 		display: block;
-		background: #fff image-url("images/bg04.png");
+		background: #fff image-url("halcyonic/bg04.png");
 		padding: 10px;
 		box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.15);
 		margin: 0 0 1.5em 0;
@@ -1511,7 +1511,7 @@ input, select, textarea {
 
 	#header {
 		position: relative;
-		background: #3B4346 image-url("images/bg01.jpg");
+		background: #3B4346 image-url("halcyonic/bg01.jpg");
 		border-bottom: solid 1px #272d30;
 		box-shadow: inset 0px -1px 0px 0px #51575a;
 		text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.75);
@@ -1581,7 +1581,7 @@ input, select, textarea {
 /* Features */
 
 	#features {
-		background: #353D40 image-url("images/bg02.jpg");
+		background: #353D40 image-url("halcyonic/bg02.jpg");
 		border-bottom: solid 1px #272e31;
 		padding: 45px 0 45px 0;
 		text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.75);
@@ -1605,7 +1605,7 @@ input, select, textarea {
 /* Content */
 
 	#content {
-		background: #f7f7f7 image-url("images/bg04.png");
+		background: #f7f7f7 image-url("halcyonic/bg04.png");
 		border-top: solid 1px #fff;
 		padding: 45px 0 45px 0;
 	}
@@ -1833,7 +1833,7 @@ input, select, textarea {
 				width: 100%;
 				z-index: 10001;
 				color: #fff;
-				background: image-url("images/bg04.jpg");
+				background: image-url("halcyonic/bg04.jpg");
 				box-shadow: inset 0px -20px 70px 0px rgba(200, 220, 245, 0.1), inset 0px -1px 0px 0px rgba(255, 255, 255, 0.1), 0px 1px 7px 0px rgba(0, 0, 0, 0.6);
 				text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.75);
 			}
@@ -1874,7 +1874,7 @@ input, select, textarea {
 						position: absolute;
 						width: 20px;
 						height: 30px;
-						background: image-url("images/mobileUI-site-nav-opener-bg.svg");
+						background: image-url("halcyonic/mobileUI-site-nav-opener-bg.svg");
 						top: 15px;
 						left: 20px;
 						z-index: 1;
@@ -1906,7 +1906,7 @@ input, select, textarea {
 				top: 0;
 				width: 275px;
 				z-index: 10002;
-				background: image-url("images/bg04.jpg");
+				background: image-url("halcyonic/bg04.jpg");
 				box-shadow: inset -1px 0px 0px 0px rgba(255, 255, 255, 0.25), inset -2px 0px 25px 0px rgba(0, 0, 0, 0.5);
 				text-shadow: -1px -1px 1px black;
 			}
