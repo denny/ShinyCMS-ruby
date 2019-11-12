@@ -16,7 +16,7 @@
   <%= f.fields_for :elements do |fields| %>
   <p>
     <%= fields.text_field :name %>
-    <%= fields.select :content_type, PageTemplateElement.content_types %>
+    <%= fields.select :content_type, content_types %>
     <br><%= fields.text_field :content %>
   </p>
   <% end %>

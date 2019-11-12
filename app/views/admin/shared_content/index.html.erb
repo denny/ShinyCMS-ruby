@@ -6,7 +6,7 @@
   <tr class="showfocus">
     <td>
       <%= text_field :shared_content, "element_#{e.id}_name", value: e.name %>
-      <%= select :shared_content, "element_#{e.id}_content_type", SharedContentElement.content_types, value: e.content_type %>
+      <%= select :shared_content, "element_#{e.id}_content_type", content_types, value: e.content_type %>
       <br><%= text_field :shared_content, "element_#{e.id}_content", value: e.content %>
     </td>
     <td class="actions">
@@ -27,7 +27,7 @@
   </h2>
   <p>
     <%= text_field :new_element, :name, placeholder: t( 'admin.shared_content.name_placeholder' ) %>
-    <%= select :new_element, :content_type, SharedContentElement.content_types %>
+    <%= select :new_element, :content_type, content_types %>
     <br><%= text_field :new_element, :content, placeholder: t( 'admin.shared_content.content_placeholder' ) %>
   </p>
   <p>
