@@ -38,7 +38,7 @@ class Page < ApplicationRecord
   def elements_hash
     hash = {}
     elements.each do |element|
-      hash[element.name] = element.content
+      hash[ element.name.to_sym ] = element.content
     end
     hash
   end
