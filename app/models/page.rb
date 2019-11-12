@@ -11,10 +11,11 @@ class Page < ApplicationRecord
   belongs_to :template, class_name: 'PageTemplate',
                         inverse_of: 'pages'
 
-  has_many :elements, class_name: 'PageElement',
-                      foreign_key: 'page_id',
-                      inverse_of: 'page',
-                      dependent: :destroy
+  has_many :elements, -> { order( id: :asc ) },
+           class_name: 'PageElement',
+           foreign_key: 'page_id',
+           inverse_of: 'page',
+           dependent: :destroy
 
   accepts_nested_attributes_for :elements
 
@@ -24,7 +25,7 @@ class Page < ApplicationRecord
 
   # Add the elements specified by the template
   def add_elements
-    template.elements.sort.each do |template_element|
+    template.elements.each do |template_element|
       elements.create!(
         name: template_element.name,
         content: template_element.content,
