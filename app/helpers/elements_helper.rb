@@ -10,6 +10,7 @@ module ElementsHelper
     path ||= Rails.root.join(
       'public', 'images', Rails.application.config.theme_name
     )
-    Dir.glob '*?.?*', base: path
+    filenames = Dir.glob '*?.?*', base: path
+    filenames.sort
   end
 end
