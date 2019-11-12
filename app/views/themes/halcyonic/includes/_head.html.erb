@@ -5,8 +5,9 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
+  <% @site_name ||= 'ShinySite' %>
   <title>
-    <%= "#{@page_title} - " if @page_title %>ShinySite
+    <%= "#{@page_title} - " if @page_title %><%= @site_name %>
   </title>
 
   <%= favicon_link_tag %>
