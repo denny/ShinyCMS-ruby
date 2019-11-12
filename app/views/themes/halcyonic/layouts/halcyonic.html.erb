@@ -5,7 +5,7 @@
 	Free for personal and commercial use under the CCA 3.0 license:
   html5up.net/license
 -->
-<% if controller == 'Pages' && action == 'index' %>
+<% if controller_path == 'pages' && @page == Page.default_page %>
   <% @viewing_homepage = true %>
 <% end %>
 
