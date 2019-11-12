@@ -1,10 +1,11 @@
 # Shared test code, for testing the methods mixed-in by the Element concern
 RSpec.shared_examples Element do
-  context 'self.content_types' do
-    it 'returns the list of possible content types' do
-      types = element.content_types
-      expect( types.size ).to eq 4
-      expect( types      ).to include I18n.t 'admin.elements.short_text'
+  context 'format_name' do
+    it 'returns a valid element name' do
+      skip 'Not sure how to test this right now'
+      # element.update_attribute name: 'Format Me Please' )
+      element.format_name
+      expect( element.name ).to eq 'format-me-please'
     end
   end
 end
