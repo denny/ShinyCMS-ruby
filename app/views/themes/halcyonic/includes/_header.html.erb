@@ -10,10 +10,7 @@
               </div>
             </div>
           </div>
-
           <%= render partial: 'includes/messages' %>
-
-          <% if @viewing_homepage %>
-            <%= render partial: 'themes/halcyonic/includes/banner' %>
-          <% end %>
+        <% unless @viewing_homepage %>
         </section>
+        <% end %>
