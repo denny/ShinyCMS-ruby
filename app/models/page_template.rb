@@ -26,15 +26,14 @@ class PageTemplate < ApplicationRecord
 
   # Create template elements, based on the content of the template file
   def add_elements
-    dir = %w[ app views pages templates ]
-    full_path = Rails.root.join( *dir, "#{filename}.html.erb" )
-    return unless File.file? full_path
+    return unless file_exists?
 
-    erb = File.read full_path
+    dir = %w[ app views pages templates ]
+    erb = File.read( Rails.root.join( *dir, "#{filename}.html.erb" ) )
     erb.scan(
-      %r{<%=\s+(sanitize\s+)?([a-z][_0-9a-z]*)\s+%>}
+      %r{<%=\s+(sanitize|simple_format)?\(?\s*(\w+)\s*\)?\s+%>}
     ).uniq.each do |result|
-      elements.create!( name: result[1] )
+      add_element result[0], result[1]
     end
   end
 
@@ -56,4 +55,43 @@ class PageTemplate < ApplicationRecord
     in: PageTemplate.available_templates,
     message: I18n.t( 'admin.pages.template_file_must_exist' )
   }
+
+  private
+
+  def add_element( formatting, name )
+    if formatting.nil? && name.include?( 'image' )
+      add_image_element name
+    elsif formatting.nil?
+      add_default_element name
+    elsif formatting == 'sanitize'
+      add_html_element name
+    elsif formatting == 'simple_format'
+      add_long_text_element name
+    end
+  end
+
+  def add_default_element( name )
+    elements.create!( name: name )
+  end
+
+  def add_image_element( name )
+    elements.create!(
+      name: name,
+      content_type: I18n.t( 'admin.elements.image' )
+    )
+  end
+
+  def add_html_element( name )
+    elements.create!(
+      name: name,
+      content_type: I18n.t( 'admin.elements.html' )
+    )
+  end
+
+  def add_long_text_element( name )
+    elements.create!(
+      name: name,
+      content_type: I18n.t( 'admin.elements.long_text' )
+    )
+  end
 end
