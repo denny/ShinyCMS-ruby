@@ -59,6 +59,9 @@ To load seed data: `rails db:seed`
 
 To do all three in one command: `rails db:setup`
 
+To load the demo site data: `tools/insert-demo-site-data` (and set
+SHINYCMS_THEME=halcyonic in your ENV to use the relevant templates and assets)
+
 
 ## Tests
 
