@@ -1,0 +1,15 @@
+---
+PageTemplate_1:
+  id: 1
+  name: Halcyonic Index
+  description: ''
+  filename: index
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-11-13 22:58:01.310912000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2019-11-13 22:58:01.310912000 Z
+    zone: *2
+    time: *3

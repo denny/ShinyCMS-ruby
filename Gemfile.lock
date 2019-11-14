@@ -85,6 +85,7 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.5)
+    db_fixtures_dump (0.1.1)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -282,6 +283,7 @@ DEPENDENCIES
   capybara (>= 2.15)!
   ckeditor!
   codecov!
+  db_fixtures_dump!
   devise!
   devise-pwned_password!
   factory_bot_rails!
