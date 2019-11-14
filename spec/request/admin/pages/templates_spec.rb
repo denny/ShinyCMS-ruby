@@ -57,7 +57,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit_template' ).titlecase
       expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.pages.template_created' )
-      expect( PageTemplateElement.count ).to eq 3
+      expect( PageTemplateElement.count ).to eq 4
     end
   end
 
