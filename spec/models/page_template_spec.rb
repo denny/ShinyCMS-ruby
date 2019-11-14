@@ -48,7 +48,7 @@ RSpec.describe PageTemplate, type: :model do
     it 'returns the template elements' do
       template = create :page_template
 
-      expect( template.elements.size ).to eq 3
+      expect( template.elements.size ).to eq 4
     end
   end
 end
