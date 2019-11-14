@@ -13,9 +13,12 @@
 /* ========== ( colours etc ) ========== */
 
 $white:             #ffffff;
+$nearwhite:         #eeeeee;
 $light_grey:        #dddddd;
 $grey:              #999999;
 $dark_grey:         #444444;
+$nearblack:         #111111;
+$black:             #000000;
 
 $light_green:       #ddffdd;
 $light_red:         #ffdddd;
@@ -23,6 +26,8 @@ $light_red:         #ffdddd;
 $light:             $light_grey;
 $dark:              $dark_grey;
 $medium:            $grey;
+$background:        $nearwhite;
+$foreground:        $nearblack;
 
 
 /* ========== ( global styles ) ========== */
@@ -31,6 +36,8 @@ body {
   font-family:      'Poppins', sans-serif;
   font-size:        12pt;
   margin:           0;
+  color:            $foreground;
+  background-color: $background;
 }
 
 
@@ -53,17 +60,20 @@ header#header #notices {
   padding:          0.5em;
 }
 
-header#header h1 {
-  background:       $light;
-  margin:           0 0 0 10rem;
+header#header {
+  background:       $medium;
   padding:          1rem;
+}
+
+header#header h1 {
+  margin:           0 0 0 10rem;
 }
 
 
 /* ========== ( footer ) ========== */
 
 footer#footer {
-  border-top:       $light solid 1px;
+  border-top:       $medium solid 1px;
   padding:          0.5em;
   text-align:       right;
   font-size:        0.8em;
@@ -73,7 +83,7 @@ footer#footer {
 /* ========== ( side menu ) ========== */
 
 nav#side-nav {
-  background:       $light;
+  background:       $medium;
   padding:          0.5em;
   width:            11em;
   height:           auto;
@@ -115,7 +125,7 @@ main#main table.list {
 }
 
 main#main table.list tr.showfocus:hover {
-  background:       $light;
+  background:       $medium;
 }
 
 main#main table.list th {
