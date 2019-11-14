@@ -4,7 +4,7 @@
   <%= fields.text_field content %>
   <% elsif content_type == t( 'admin.elements.long_text' ) %>
   <%= fields.text_area content %>
-  <% elsif content_type == t( 'admin.elements.filename' ) %>
+  <% elsif content_type == t( 'admin.elements.image' ) %>
   <%= fields.select content, filenames %>
   <% elsif content_type == t( 'admin.elements.html' ) %>
   <%= fields.cktext_area content %>
