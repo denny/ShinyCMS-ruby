@@ -8,9 +8,10 @@
 <h2>
   <%= a_heading %>
 </h2>
-<p>
-  <%= some_text %>
-</p>
+
+<%= simple_format some_text %>
+
+<%= sanitize html_text %>
 
 <p class="small">
   Contact: <%= shared_content( 'the_email' ) %>
