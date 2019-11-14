@@ -1,0 +1,18 @@
+---
+Page_1:
+  id: 1
+  name: Index
+  description: Homepage using Halcyonic index template
+  title: Home
+  slug: home
+  template_id: 1
+  hidden: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-11-13 23:02:20.365551000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2019-11-13 23:02:20.365551000 Z
+    zone: *2
+    time: *3
