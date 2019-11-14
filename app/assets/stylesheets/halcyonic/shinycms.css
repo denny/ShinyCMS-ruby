@@ -12,3 +12,15 @@
 nav#admin-toolbar {
     font-family:    'Poppins', sans-serif;
 }
+
+div#banner p a {
+  text-decoration:    none;
+  color:              #aaeeff;
+}
+div#banner p a:visited {
+  color:              #99ddff;
+}
+div#banner .button-large a {
+  text-decoration:    none;
+  color:              #ffffff;
+}
