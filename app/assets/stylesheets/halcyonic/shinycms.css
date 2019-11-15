@@ -13,6 +13,15 @@ nav#admin-toolbar {
     font-family:    'Poppins', sans-serif;
 }
 
+#header nav ul {
+  margin:             0;
+}
+
+#header nav li {
+  list-style-type:    none;
+  display:            inline;
+}
+
 div#banner p a {
   text-decoration:    none;
   color:              #aaeeff;
