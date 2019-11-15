@@ -1,30 +1,23 @@
 <% menu_data = build_menu_data( @page&.section ) %>
 <ul>
 <% unless menu_data[ :pages ][ :top_sections ].blank? %>
-  <li>
-    <%= link_to Page.default_page.name, url_for( '/' ) %>
-  </li>
   <% menu_data[ :pages ][ :top_sections ].each do |menu_top_section| %>
   <li>
-    <%= link_to menu_top_section.name, url_for( "/pages/#{menu_top_section.slug}" ) %>
+    <%= link_to menu_top_section.name, url_for( "/#{menu_top_section.slug}" ) %>
   </li>
   <% end %>
 <% end %>
 
 <% unless menu_data[ :pages ][ :top_pages ].blank? %>
-  <% if menu_data[ :pages ][ :top_sections ].blank? %>
-  <li>
-    <%= link_to Page.default_page.name, url_for( '/' ) %>
-  </li>
-  <% end %>
   <% menu_data[ :pages ][ :top_pages ].each do |menu_top_page| %>
   <li>
-    <%= link_to menu_top_page.name, url_for( "/pages/#{menu_top_page.slug}" ) %>
+    <%= link_to menu_top_page.name, url_for( "/#{menu_top_page.slug}" ) %>
   </li>
   <% end %>
 <% end %>
 </ul>
 
+<%# TODO: Pretty sure this is all broken within sections/subsections %>
 <% unless menu_data[ :pages ][ :sections ].blank? %>
 <ul>
   <% menu_data[ :pages ][ :sections ].each do |menu_section| %>
@@ -37,14 +30,8 @@
 
 <% unless menu_data[ :pages ][ :pages ].blank? %>
 <ul>
-  <% if menu_data[ :pages ][ :top_sections ].blank? %>
-  <li>
-    <%= link_to Page.default_page.name, url_for( '/' ) %>
-  </li>
-  <% end %>
   <% menu_data[ :pages ][ :pages ].each do |menu_page| %>
   <li>
-    <%# TODO: the line below is broken for pages in sections! %>
     <%= link_to menu_page.name, url_for( "/pages/#{menu_page.slug}" ) %>
   </li>
   <% end %>
