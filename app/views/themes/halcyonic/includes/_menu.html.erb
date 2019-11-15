@@ -1,8 +1,14 @@
-								<!-- Nav -->
+								<% menu_data = build_menu_data( @page&.section ) %>
 								<nav id="nav">
-									<a href="/">Home</a>
-									<a href="/three-column">Three Column</a>
-									<a href="/two-column-1">Two Column #1</a>
-									<a href="/two-column-2">Two Column #2</a>
-									<a href="/one-column">One Column</a>
+									<% unless menu_data[ :pages ][ :top_sections ].blank? %>
+									  <% menu_data[ :pages ][ :top_sections ].each do |menu_top_section| %>
+									    <%= link_to menu_top_section.name, url_for( "/#{menu_top_section.slug}" ) %>
+									  <% end %>
+									<% end %>
+
+									<% unless menu_data[ :pages ][ :top_pages ].blank? %>
+									  <% menu_data[ :pages ][ :top_pages ].each do |menu_top_page| %>
+									    <%= link_to menu_top_page.name, url_for( "/#{menu_top_page.slug}" ) %>
+									  <% end %>
+									<% end %>
 								</nav>
