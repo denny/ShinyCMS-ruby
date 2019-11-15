@@ -280,3 +280,159 @@ PageTemplateElement_20:
     utc: &41 2019-11-14 23:45:33.143046000 Z
     zone: *2
     time: *41
+PageTemplateElement_21:
+  id: 21
+  template_id: 2
+  name: heading
+  content_type: Short Text
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &42 2019-11-15 13:58:03.818030000 Z
+    zone: *2
+    time: *42
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &43 2019-11-15 13:58:03.818030000 Z
+    zone: *2
+    time: *43
+PageTemplateElement_22:
+  id: 22
+  template_id: 2
+  name: subheading
+  content_type: Short Text
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &44 2019-11-15 13:58:03.821761000 Z
+    zone: *2
+    time: *44
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &45 2019-11-15 13:58:03.821761000 Z
+    zone: *2
+    time: *45
+PageTemplateElement_23:
+  id: 23
+  template_id: 2
+  name: text_content
+  content_type: Long Text
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &46 2019-11-15 13:58:03.825348000 Z
+    zone: *2
+    time: *46
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &47 2019-11-15 13:58:03.825348000 Z
+    zone: *2
+    time: *47
+PageTemplateElement_24:
+  id: 24
+  template_id: 3
+  name: heading
+  content_type: Short Text
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &48 2019-11-15 13:58:53.968125000 Z
+    zone: *2
+    time: *48
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &49 2019-11-15 13:58:53.968125000 Z
+    zone: *2
+    time: *49
+PageTemplateElement_25:
+  id: 25
+  template_id: 3
+  name: subheading
+  content_type: Short Text
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &50 2019-11-15 13:58:53.979030000 Z
+    zone: *2
+    time: *50
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &51 2019-11-15 13:58:53.979030000 Z
+    zone: *2
+    time: *51
+PageTemplateElement_26:
+  id: 26
+  template_id: 3
+  name: text_content
+  content_type: Long Text
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &52 2019-11-15 13:58:53.984544000 Z
+    zone: *2
+    time: *52
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &53 2019-11-15 13:58:53.984544000 Z
+    zone: *2
+    time: *53
+PageTemplateElement_27:
+  id: 27
+  template_id: 4
+  name: heading
+  content_type: Short Text
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &54 2019-11-15 13:59:20.098229000 Z
+    zone: *2
+    time: *54
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &55 2019-11-15 13:59:20.098229000 Z
+    zone: *2
+    time: *55
+PageTemplateElement_28:
+  id: 28
+  template_id: 4
+  name: subheading
+  content_type: Short Text
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &56 2019-11-15 13:59:20.104701000 Z
+    zone: *2
+    time: *56
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &57 2019-11-15 13:59:20.104701000 Z
+    zone: *2
+    time: *57
+PageTemplateElement_29:
+  id: 29
+  template_id: 4
+  name: text_content
+  content_type: Long Text
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &58 2019-11-15 13:59:20.109233000 Z
+    zone: *2
+    time: *58
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &59 2019-11-15 13:59:20.109233000 Z
+    zone: *2
+    time: *59
+PageTemplateElement_30:
+  id: 30
+  template_id: 5
+  name: heading
+  content_type: Short Text
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &60 2019-11-15 14:00:17.735230000 Z
+    zone: *2
+    time: *60
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &61 2019-11-15 14:00:17.735230000 Z
+    zone: *2
+    time: *61
+PageTemplateElement_31:
+  id: 31
+  template_id: 5
+  name: subheading
+  content_type: Short Text
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &62 2019-11-15 14:00:17.738664000 Z
+    zone: *2
+    time: *62
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &63 2019-11-15 14:00:17.738664000 Z
+    zone: *2
+    time: *63
+PageTemplateElement_32:
+  id: 32
+  template_id: 5
+  name: text_content
+  content_type: Long Text
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &64 2019-11-15 14:00:17.741474000 Z
+    zone: *2
+    time: *64
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &65 2019-11-15 14:00:17.741474000 Z
+    zone: *2
+    time: *65
