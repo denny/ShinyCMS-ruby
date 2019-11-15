@@ -22,7 +22,6 @@ class Admin::PagesController < AdminController
   end
 
   def edit
-    @filenames = PageElement.select_filenames
     @page = Page.find( params[:id] )
   end
 
@@ -34,7 +33,6 @@ class Admin::PagesController < AdminController
       redirect_to action: :edit, id: @page.id
     else
       flash.now[ :alert ] = I18n.t 'admin.pages.page_update_failed'
-      @filenames = PageElement.select_filenames
       render action: :edit
     end
   end

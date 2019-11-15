@@ -16,18 +16,7 @@ module Element
     before_validation :format_name, if: -> { name.present? }
 
     def format_name
-      self.name = name.underscore
-    end
-  end
-
-  class_methods do
-    def content_types
-      I18n.t( 'admin.elements' ).values
-    end
-
-    def select_filenames( path = nil )
-      path ||= Rails.root.join 'app', 'assets', 'images'
-      Dir.glob '*?.?*', base: path
+      self.name = name.parameterize.underscore
     end
   end
 end

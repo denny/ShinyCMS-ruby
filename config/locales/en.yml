@@ -45,7 +45,7 @@ en:
     elements:
       short_text: Short Text
       long_text: Long Text
-      filename: Filename
+      image: Image
       html: HTML
 
     pages:

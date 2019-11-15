@@ -1,0 +1,82 @@
+---
+Page_1:
+  id: 1
+  name: Home page
+  description: Homepage using Halcyonic index template
+  title: Home
+  slug: home
+  template_id: 1
+  hidden: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-11-13 23:02:20.365551000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2019-11-15 12:23:37.742647000 Z
+    zone: *2
+    time: *3
+Page_2:
+  id: 2
+  name: No sidebars
+  description: ''
+  title: No Sidebars
+  slug: no-sidebars
+  template_id: 2
+  hidden: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2019-11-15 14:06:17.063354000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2019-11-15 14:06:17.063354000 Z
+    zone: *2
+    time: *5
+Page_3:
+  id: 3
+  name: Right sidebar
+  description: ''
+  title: Right Sidebar
+  slug: right-sidebar
+  template_id: 3
+  hidden: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2019-11-15 14:06:43.040014000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2019-11-15 14:06:43.040014000 Z
+    zone: *2
+    time: *7
+Page_4:
+  id: 4
+  name: Left sidebar
+  description: ''
+  title: Left Sidebar
+  slug: left-sidebar
+  template_id: 4
+  hidden: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2019-11-15 14:07:01.638743000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2019-11-15 14:07:01.638743000 Z
+    zone: *2
+    time: *9
+Page_5:
+  id: 5
+  name: Double sidebars
+  description: ''
+  title: Double Sidebars
+  slug: double-sidebars
+  template_id: 5
+  hidden: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2019-11-15 14:07:44.629697000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2019-11-15 14:07:44.629697000 Z
+    zone: *2
+    time: *11
