@@ -1,4 +1,4 @@
-EXCLUDE_MODELS=ApplicationRecord FIXTURES_PATH=db/demo-site-data/ rails db:fixtures:dump
+EXCLUDE_MODELS="ApplicationRecord User" FIXTURES_PATH=db/demo-site-data/ rails db:fixtures:dump
 
 # NB: for EXCLUDE_MODELS to work, you might need to download
 # https://raw.githubusercontent.com/thams/db_fixtures_dump/master/lib/tasks/db_fixtures_dump.rake
