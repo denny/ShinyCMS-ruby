@@ -1,1 +1,1 @@
-FIXTURES_PATH=db/demo-site-data rails db:fixtures:dump
+FIXTURES_PATH=db/demo-site-data/ rails db:fixtures:dump
