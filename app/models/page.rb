@@ -11,10 +11,11 @@ class Page < ApplicationRecord
   belongs_to :template, class_name: 'PageTemplate',
                         inverse_of: 'pages'
 
-  has_many :elements, class_name: 'PageElement',
-                      foreign_key: 'page_id',
-                      inverse_of: 'page',
-                      dependent: :destroy
+  has_many :elements, -> { order( id: :asc ) },
+           class_name: 'PageElement',
+           foreign_key: 'page_id',
+           inverse_of: 'page',
+           dependent: :destroy
 
   accepts_nested_attributes_for :elements
 
@@ -37,7 +38,7 @@ class Page < ApplicationRecord
   def elements_hash
     hash = {}
     elements.each do |element|
-      hash[element.name] = element.content
+      hash[ element.name.to_sym ] = element.content
     end
     hash
   end

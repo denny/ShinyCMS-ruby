@@ -1,0 +1,1 @@
+require( 'ckeditor/config.js'  )

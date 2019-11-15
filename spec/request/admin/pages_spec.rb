@@ -157,10 +157,6 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
 
     it 'shows the appropriate input type for each element type' do
-      allow( PageElement ).to receive_message_chain(
-        :select_filenames
-      ).and_return( %w[ FILE.png image.jpeg image.gif ] )
-
       page = create :page_with_one_of_each_element_type
 
       get admin_page_path( page )
@@ -170,7 +166,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
       expect( response.body ).to match %r{<input [^>]*value="SHORT!"[^>]*>}
       expect( response.body ).to match %r{<textarea [^>]+>\nLONG!</textarea>}
-      expect( response.body ).to match %r{<option [^>]+>FILE.png</option>}
+      expect( response.body ).to match %r{<option [^>]+>spiral.png</option>}
 
       CKE_REGEX = %r{<textarea [^>]*id="(?<cke_id>page_elements_attributes_\d+_content)"[^>]*>\nHTML!</textarea>}.freeze
       matches = response.body.match CKE_REGEX

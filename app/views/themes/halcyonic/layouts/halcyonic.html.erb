@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<!--
+	This set of templates is heavily based on Halcyonic by HTML5 UP:
+	https://html5up.net/halcyonic | html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license:
+  html5up.net/license
+-->
+<% if controller_path == 'pages' && @page == Page.default_page %>
+  <% @viewing_homepage = true %>
+<% end %>
+
+<html>
+  <%= render partial: 'themes/halcyonic/includes/head' %>
+
+  <body<% unless @viewing_homepage %> class="subpage"<% end %>>
+    <div id="page-wrapper">
+      <%= render partial: 'themes/halcyonic/includes/header' %>
+
+      <%= yield %>
+
+      <%= render partial: 'themes/halcyonic/includes/footer' %>
+
+      <%# if user.is_admin? %>
+      <%= render partial: 'admin/includes/admin_toolbar' %>
+      <%# end %>
+
+      <%= render partial: 'themes/halcyonic/includes/footer_javascript' %>
+  </body>
+</html>

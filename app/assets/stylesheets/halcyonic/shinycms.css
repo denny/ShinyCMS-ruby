@@ -1,0 +1,46 @@
+/* ================================================================ *\
+   Project:   ShinyCMS (Ruby version)
+   File:      app/assets/stylesheets/halcyonic/shinycms.css
+   Purpose:   Style overrides for applying Halcyonic to ShinyCMS
+
+   Copyright: (c) 2009-2019 Denny de la Haye https://denny.me
+
+   ShinyCMS is free software; you can redistribute it and/or
+   modify it under the terms of the GPL (version 2 or later).
+\* ================================================================ */
+
+#header nav ul {
+  margin:             0;
+}
+
+#header nav li {
+  list-style-type:    none;
+  display:            inline;
+}
+
+div#banner p a {
+  text-decoration:    none;
+  color:              #aaeeff;
+}
+div#banner p a:visited {
+  color:              #99ddff;
+}
+div#banner .button-large a {
+  text-decoration:    none;
+  color:              #ffffff;
+}
+
+.sidebar li {
+  padding: 0.2em 0 0.2em 0;
+  border-bottom: solid 1px #e2e6e8;
+}
+
+.sidebar li:first-child {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+.sidebar li:last-child {
+  padding-bottom: 0 !important;
+  border-bottom: 0 !important;
+}

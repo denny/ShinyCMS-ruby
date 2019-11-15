@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render partial: 'themes/shinycms/includes/head' %>
+  </head>
+
+  <body>
+    <header id="header">
+      <%= render partial: 'includes/messages' %>
+    </header>
+
+    <nav id="top-nav">
+      <%= render partial: 'themes/shinycms/includes/menu' %>
+    </nav>
+
+    <main id="main" role="main">
+      <%= yield %>
+    </main>
+
+    <footer id="footer" class="container">
+      <%= render partial: 'themes/shinycms/includes/footer' %>
+    </footer>
+
+    <%# if user.is_admin? %>
+    <%= render partial: 'admin/includes/admin_toolbar' %>
+    <%# end %>
+  </body>
+</html>
