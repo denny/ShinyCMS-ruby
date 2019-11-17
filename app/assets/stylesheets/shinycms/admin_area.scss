@@ -59,6 +59,7 @@ $dark_colour:       $dark_blue;
 
 $button_text:       $dark_colour;
 $input_border:      $light_colour;
+$input_fg:          $dark_colour;
 $input_bg:          $white;
 $row_highlight:     $white;
 
@@ -119,7 +120,7 @@ main#main p {
 /* ==================== ( index/list pages ) ==================== */
 
 main#main table.list {
-  margin-top:       1em;
+  margin-top:       0;
   border:           0;
   border-collapse:  collapse;
 }
@@ -175,7 +176,7 @@ main#main table.list td.actions a:hover {
 /* ==================== ( new/edit pages ) ==================== */
 
 main#main label {
-  color:            $medium_colour;
+  color:            $dark_colour;
   margin-top:       0.5em;
   margin-left:      1px;
   margin-bottom:    0;
@@ -183,11 +184,16 @@ main#main label {
 }
 
 main#main input {
+  color:            $input_fg;
   background:       $input_bg;
   border:           1px solid $input_border;
   height:           2em;
   margin:           0.2em 0.2em 0.2em 0;
   padding-left:     0.5em;
+}
+
+main#main input[type=text] {
+  width:            20em;
 }
 
 main#main input.textnumber {
@@ -204,7 +210,7 @@ main#main input.textshort {
 }
 
 main#main input.textlong {
-  width:            20em;
+  width:            30em;
 }
 
 main#main input.textverylong {
@@ -216,6 +222,7 @@ main#main textarea {
 }
 
 main#main select {
+  color:            $input_fg;
   background:       $input_bg;
   border:           1px solid $input_border;
   height:           2em;
