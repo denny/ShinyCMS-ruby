@@ -13,3 +13,7 @@
     <%= stylesheet_link_tag 'https://unpkg.com/@coreui/coreui@3.0.0-beta.1/dist/css/coreui.min.css' %>
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Poppins&display=swap'          %>
     <%= stylesheet_link_tag 'shinycms/admin_area', media: 'all', 'data-turbolinks-track': 'reload'  %>
+
+    <% if action_name == 'edit' || controller_name == 'SharedContent' %>
+    <%= javascript_include_tag Ckeditor.cdn_url %>
+    <% end %>
