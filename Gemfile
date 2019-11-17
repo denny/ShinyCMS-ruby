@@ -16,7 +16,8 @@ source 'https://rubygems.org' do
   gem 'bootsnap', '>= 1.4.2', require: false
   # Turbolinks makes navigating your web application faster.
   # Read more: https://github.com/turbolinks/turbolinks
-  gem 'turbolinks', '~> 5'
+  # Disabled in ShinyCMS because it causes JavaScript page load bugs in CoreUI
+  # gem 'turbolinks', '~> 5'
   # Use faster SCSS gem for stylesheets
   gem 'sassc-rails'
   # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
