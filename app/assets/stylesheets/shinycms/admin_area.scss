@@ -12,22 +12,22 @@
 
 /* ==================== ( colours ) ==================== */
 
-$blue:              #20a8d8;
-$medium_blue:       #0e5c75;
 $bright_blue:       #3399ff;
 $light_blue:        #63c2de;
+$blue:              #20a8d8;
+$dark_blue:         #0e5c75;
 
 $indigo:            #6610f2;
 $cyan:              #17a2b8;
 $teal:              #20c997;
+
 $green:             #4dbd74;
-
-$light_green:       #ddffdd;
-$light_red:         #ffdddd;
-
 $yellow:            #ffc107;
 $orange:            #f8cb00;
 $red:               #f86c6b;
+
+$light_green:       #ddffdd;
+$light_red:         #ffdddd;
 
 $purple:            #6f42c1;
 $pink:              #e83e8c;
@@ -45,24 +45,22 @@ $light_grey2:       #c8ced3;
 $grey2:             #73818f;
 $dark_grey2:        #2f353a;
 
-$light:             $near_white2;
-$dark:              $dark_grey2;
-
-$primary:           $blue;
-$secondary:         $light_grey2;
-
 $success:           $green;
 $info:              $blue;
 $warning:           $yellow;
 $danger:            $red;
 
-$button_text:       $medium_blue;
-$input_bg:          $white;
-$input_border:      $light-blue;
+$alert_bg:          $light_red;
+$notice_bg:         $light_green;
 
-$light:             $light_grey;
-$dark:              $dark_grey;
-$medium:            $grey;
+$light_colour:      $light_blue;
+$medium_colour:     $blue;
+$dark_colour:       $dark_blue;
+
+$button_text:       $dark_colour;
+$input_border:      $light_colour;
+$input_bg:          $white;
+$row_highlight:     $white;
 
 
 /* ==================== ( global styles ) ==================== */
@@ -75,26 +73,26 @@ body {
 
 /* ==================== ( sidebar ) =================== */
 
-.c-sidebar a.c-active {
-  background:       $bright_blue;
+.c-sidebar-nav-item:hover {
+  background:       $light_colour;
 }
 
 
 /* ==================== ( header ) ==================== */
 
 header.c-header a {
-  color:            $medium_blue;
+  color:            $medium_colour;
 }
 
 header.c-header #alerts {
-  background:       $light_red;
+  background:       $alert_bg;
   width:            100%;
   padding:          0.5em;
   clear:            both;
 }
 
 header.c-header #notices {
-  background:       $light_green;
+  background:       $notice_bg;
   width:            100%;
   padding:          0.5em;
   clear:            both;
@@ -104,22 +102,13 @@ header.c-header #notices {
 /* ==================== ( main content area ) ==================== */
 
 main#main {
-  padding:          1em 2em;
+  padding:          2em;
   width:            auto;
   float:            left;
 }
 
 main#main nav#breadcrumbs {
   padding-left:     0.5em;
-}
-
-main#main fieldset {
-  margin:           2em 0 0 0;
-}
-
-main#main fieldset legend {
-  margin:           0 0 0 0.5em;
-  font-size:        1.2em;
 }
 
 main#main p {
@@ -136,11 +125,11 @@ main#main table.list {
 }
 
 main#main table.list tr.showfocus:hover {
-  background:       $white;
+  background:       $row_highlight;
 }
 
 main#main table.list th {
-  color:            $medium_blue;
+  color:            $dark_colour;
   text-align:       left;
   font-weight:      bold;
   padding:          0.5em 2em 0.5em 0.5em;
@@ -170,7 +159,7 @@ main#main table.list td.actions a {
   text-decoration:  none;
   background:       $input_bg;
   border:           1px solid $input_border;
-  border-radius:    3px;
+  border-radius:    0.2em;
   height:           2em;
   margin:           0.2em;
   padding:          0.3em 0.5em;
@@ -178,7 +167,7 @@ main#main table.list td.actions a {
 
 main#main table.list td.actions a:hover {
   text-decoration:  none;
-  color:            $white;
+  color:            $input_bg;
   background:       $input_border;
 }
 
@@ -186,7 +175,7 @@ main#main table.list td.actions a:hover {
 /* ==================== ( new/edit pages ) ==================== */
 
 main#main label {
-  color:            $medium_blue;
+  color:            $medium_colour;
   margin-top:       0.5em;
   margin-left:      1px;
   margin-bottom:    0;
@@ -227,7 +216,7 @@ main#main textarea {
 }
 
 main#main select {
-  background:       $white;
+  background:       $input_bg;
   border:           1px solid $input_border;
   height:           2em;
   min-width:        10em;
@@ -243,5 +232,19 @@ main#main input[type=button],
 main#main input[type=submit],
 main#main input[type=reset] {
   color:            $button_text;
-  border-radius:    3px;
+  border-radius:    0.2em;
+}
+
+/* fieldset for bottom-of-page 'add new element' forms */
+main#main fieldset {
+  margin:           2em 0 0 0;
+  padding:          0 0.5em 1em 0.5em;
+  border:           1px solid $input_border;
+}
+
+main#main fieldset legend {
+  color:            $dark_colour;
+  margin:           0 0 0 0.5em;
+  font-size:        1.2em;
+  width:            initial;
 }

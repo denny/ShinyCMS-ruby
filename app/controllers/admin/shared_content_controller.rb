@@ -61,7 +61,8 @@ class Admin::SharedContentController < AdminController
   end
 
   def new_element_params
-    params.require( :new_element ).permit( :name, :content, :content_type )
+    params.require( :shared_content_element )
+          .permit( :name, :content, :content_type )
   end
 
   def shared_content_params
