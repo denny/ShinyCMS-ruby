@@ -26,17 +26,19 @@
 <% end  # form %>
 
 <%= form_with name: 'new_setting', url: admin_setting_create_path, method: :post do %>
-  <h2>
-    Add new setting
-  </h2>
-  <p>
-    <label>
-      <%= text_field :setting, :name,  placeholder: t( 'admin.settings.name_placeholder'  ) %>
-      <%= text_field :setting, :value, placeholder: t( 'admin.settings.value_placeholder' ) %>
-    </label>
-    <%= text_field :setting, :description, placeholder: t( 'admin.settings.description_placeholder' ), class: 'longtext' %>
-  </p>
-  <p>
-    <%= submit_tag t( 'admin.add' ) %>
-  </p>
+  <fieldset>
+    <legend>
+      Add new setting
+    </legend>
+    <p>
+      <label>
+        <%= text_field :setting, :name,  placeholder: t( 'admin.settings.name_placeholder'  ) %>
+        <%= text_field :setting, :value, placeholder: t( 'admin.settings.value_placeholder' ) %>
+      </label>
+      <%= text_field :setting, :description, placeholder: t( 'admin.settings.description_placeholder' ), class: 'longtext' %>
+    </p>
+    <p>
+      <%= submit_tag t( 'admin.add' ) %>
+    </p>
+  </fieldset>
 <% end %>
