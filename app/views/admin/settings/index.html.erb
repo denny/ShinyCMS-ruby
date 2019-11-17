@@ -11,7 +11,7 @@
       <%= text_field :settings, "setting_value_#{s.id}", value: s.value %>
     </td>
     <td>
-      <%= text_field :settings, "setting_description_#{s.id}", value: s.description, class: 'longtext' %>
+      <%= text_field :settings, "setting_description_#{s.id}", value: s.description, class: 'textlong' %>
     </td>
 		<td class="actions">
       <%= link_to t( 'admin.delete' ), admin_setting_delete_path( s ),
@@ -31,11 +31,9 @@
       Add new setting
     </legend>
     <p>
-      <label>
-        <%= text_field :setting, :name,  placeholder: t( 'admin.settings.name_placeholder'  ) %>
-        <%= text_field :setting, :value, placeholder: t( 'admin.settings.value_placeholder' ) %>
-      </label>
-      <%= text_field :setting, :description, placeholder: t( 'admin.settings.description_placeholder' ), class: 'longtext' %>
+      <%= text_field :setting, :name,        placeholder: t( 'admin.settings.name_placeholder'        ), class: 'textshort' %>
+      <%= text_field :setting, :value,       placeholder: t( 'admin.settings.value_placeholder'       )                     %>
+      <%= text_field :setting, :description, placeholder: t( 'admin.settings.description_placeholder' ), class: 'textlong'  %>
     </p>
     <p>
       <%= submit_tag t( 'admin.add' ) %>

@@ -27,9 +27,9 @@
       Add new shared content
     </legend>
     <p>
-      <%= f2.text_field :name, placeholder: t( 'admin.shared_content.name_placeholder' ) %>
+      <%= f2.text_field :name, placeholder: t( 'admin.shared_content.name_placeholder' ), class: 'textshort' %>
       <%= f2.select :content_type, content_types %>
-      <br><%= f2.text_field :content, placeholder: t( 'admin.shared_content.content_placeholder' ) %>
+      <br><%= f2.text_field :content, placeholder: t( 'admin.shared_content.content_placeholder' ), class: 'textlong' %>
     </p>
     <p>
       <%= f2.submit t( 'admin.add' ) %>
