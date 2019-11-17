@@ -1,7 +1,7 @@
 /* ================================================================ *\
    Project:   ShinyCMS (Ruby version)
    File:      app/assets/admin/stylsheets/admin_area.scss
-   Purpose:   Styles for admin area
+   Purpose:   Extra styles for admin area, to tweak or fit into CoreUI
 
    Copyright: (c) 2009-2019 Denny de la Haye https://denny.me
 
@@ -10,100 +10,101 @@
 \* ================================================================ */
 
 
-/* ========== ( colours etc ) ========== */
+/* ==================== ( colours ) ==================== */
 
-$white:             #ffffff;
-$nearwhite:         #eeeeee;
-$light_grey:        #dddddd;
-$grey:              #999999;
-$dark_grey:         #444444;
-$nearblack:         #111111;
-$black:             #000000;
+$blue:              #20a8d8;
+$medium_blue:       #0e5c75;
+$bright_blue:       #3399ff;
+$light_blue:        #63c2de;
+
+$indigo:            #6610f2;
+$cyan:              #17a2b8;
+$teal:              #20c997;
+$green:             #4dbd74;
 
 $light_green:       #ddffdd;
 $light_red:         #ffdddd;
 
+$yellow:            #ffc107;
+$orange:            #f8cb00;
+$red:               #f86c6b;
+
+$purple:            #6f42c1;
+$pink:              #e83e8c;
+
+$white:             #ffffff;
+$near_white:        #eeeeee;
+$light_grey:        #c0c0c0;
+$grey:              #777777;
+$dark_grey:         #404040;
+$near_black:        #111111;
+$black:             #000000;
+
+$near_white2:       #f0f3f5;
+$light_grey2:       #c8ced3;
+$grey2:             #73818f;
+$dark_grey2:        #2f353a;
+
+$light:             $near_white2;
+$dark:              $dark_grey2;
+
+$primary:           $blue;
+$secondary:         $light_grey2;
+
+$success:           $green;
+$info:              $blue;
+$warning:           $yellow;
+$danger:            $red;
+
+$button_text:       $medium_blue;
+$input_bg:          $white;
+$input_border:      $light-blue;
+
 $light:             $light_grey;
 $dark:              $dark_grey;
 $medium:            $grey;
-$background:        $nearwhite;
-$foreground:        $nearblack;
 
 
-/* ========== ( global styles ) ========== */
+/* ==================== ( global styles ) ==================== */
 
 body {
   font-family:      'Poppins', sans-serif;
-  font-size:        12pt;
-  margin:           0;
-  color:            $foreground;
-  background-color: $background;
+  font-size:        11pt;
 }
 
 
-/* ========== ( utility styles ) ========== */
+/* ==================== ( sidebar ) =================== */
 
-.clearboth {
+.c-sidebar a.c-active {
+  background:       $bright_blue;
+}
+
+
+/* ==================== ( header ) ==================== */
+
+header.c-header a {
+  color:            $medium_blue;
+}
+
+header.c-header #alerts {
+  background:       $light_red;
+  width:            100%;
+  padding:          0.5em;
+  clear:            both;
+}
+
+header.c-header #notices {
+  background:       $light_green;
+  width:            100%;
+  padding:          0.5em;
   clear:            both;
 }
 
 
-/* ========== ( header ) ========== */
-
-header#header #alerts {
-  background:       $light_red;
-  padding:          0.5em;
-}
-
-header#header #notices {
-  background:       $light_green;
-  padding:          0.5em;
-}
-
-header#header {
-  background:       $medium;
-  padding:          0.5em 0 0.5em 12em;
-}
-
-
-/* ========== ( footer ) ========== */
-
-footer#footer {
-  border-top:       $medium solid 1px;
-  padding:          0.5em;
-  text-align:       right;
-  font-size:        0.8em;
-}
-
-
-/* ========== ( side menu ) ========== */
-
-nav#side-nav {
-  background:       $medium;
-  padding:          0.5em;
-  width:            11em;
-  height:           auto;
-  float:            left;
-}
-
-nav#side-nav ul {
-  padding-left:     0;
-}
-
-nav#side-nav li {
-  list-style-type:  none;
-  padding:          0.2em 0 0.2em 0;
-}
-
-nav#side-nav ul.submenu {
-  padding-left:     1em;
-}
-
-
-/* ========== ( main content area ) ========== */
+/* ==================== ( main content area ) ==================== */
 
 main#main {
-  padding:          0.5em;
+  padding:          1em 2em;
   width:            auto;
   float:            left;
 }
@@ -112,7 +113,21 @@ main#main nav#breadcrumbs {
   padding-left:     0.5em;
 }
 
-/* ========== ( 'list' pages ) ========== */
+main#main fieldset {
+  margin:           2em 0 0 0;
+}
+
+main#main fieldset legend {
+  margin:           0 0 0 0.5em;
+  font-size:        1.2em;
+}
+
+main#main p {
+  margin:           0.5em 0 0 0.5em;
+}
+
+
+/* ==================== ( index/list pages ) ==================== */
 
 main#main table.list {
   margin-top:       1em;
@@ -121,10 +136,11 @@ main#main table.list {
 }
 
 main#main table.list tr.showfocus:hover {
-  background:       $medium;
+  background:       $white;
 }
 
 main#main table.list th {
+  color:            $medium_blue;
   text-align:       left;
   font-weight:      bold;
   padding:          0.5em 2em 0.5em 0.5em;
@@ -137,32 +153,95 @@ main#main table.list td {
 }
 
 main#main table.list td:last-child {
-  padding:          0.5em 0.2em 0.5em 0.5em;
+  padding:          0.5em;
 }
 
 main#main table.list .hidden {
-  color:            $medium;
+  color:            $grey;
+}
+
+main#main table.list td.actions {
+  padding:          0.8em 0.5em 0.8em 0;
+  vertical-align:   top;
 }
 
 main#main table.list td.actions a {
-  color:            $dark;
-  background:       white;
+  color:            $button_text;
   text-decoration:  none;
-  margin:           0 5px 0 0;
-  padding:          2px 4px;
-  border:           1px solid $dark;
+  background:       $input_bg;
+  border:           1px solid $input_border;
   border-radius:    3px;
+  height:           2em;
+  margin:           0.2em;
+  padding:          0.3em 0.5em;
 }
 
 main#main table.list td.actions a:hover {
   text-decoration:  none;
   color:            $white;
-  background:       $dark;
+  background:       $input_border;
 }
 
 
-/* ========== ( settings page ) ========== */
+/* ==================== ( new/edit pages ) ==================== */
 
-main#main input.longtext {
+main#main label {
+  color:            $medium_blue;
+  margin-top:       0.5em;
+  margin-left:      1px;
+  margin-bottom:    0;
+  padding-bottom:   0;
+}
+
+main#main input {
+  background:       $input_bg;
+  border:           1px solid $input_border;
+  height:           2em;
+  margin:           0.2em 0.2em 0.2em 0;
+  padding-left:     0.5em;
+}
+
+main#main input.textnumber {
+  width:            3em;
+  text-align:       right;
+}
+
+main#main input.textveryshort {
+  width:            5em;
+}
+
+main#main input.textshort {
+  width:            10em;
+}
+
+main#main input.textlong {
   width:            20em;
+}
+
+main#main input.textverylong {
+  width:            40em;
+}
+
+main#main textarea {
+  width:            40em;
+}
+
+main#main select {
+  background:       $white;
+  border:           1px solid $input_border;
+  height:           2em;
+  min-width:        10em;
+  margin-bottom:    0.5em;
+  padding-left:     0.2em;
+}
+
+main#main input[type=checkbox] {
+  margin-top:       0;
+}
+
+main#main input[type=button],
+main#main input[type=submit],
+main#main input[type=reset] {
+  color:            $button_text;
+  border-radius:    3px;
 }

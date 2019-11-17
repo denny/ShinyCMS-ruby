@@ -22,9 +22,8 @@
 <% end  # form %>
 
 <%= form_with name: 'new_element', url: admin_shared_content_create_path, method: :post do %>
-  <h2>
-    Add new shared content
-  </h2>
+  <fieldset>
+  <legend>Add new shared content</legend>
   <p>
     <%= text_field :new_element, :name, placeholder: t( 'admin.shared_content.name_placeholder' ) %>
     <%= select :new_element, :content_type, content_types %>
@@ -33,4 +32,5 @@
   <p>
     <%= submit_tag t( 'admin.add' ) %>
   </p>
+  </fieldset>
 <% end %>
