@@ -1,11 +1,10 @@
 <nav id="breadcrumbs">
-  <%= link_to t( 'admin.home' ),  url_for( '/' ) %>
-  &raquo;
-  <%= link_to t( 'admin.admin' ), url_for( admin_path ) %>
-  &raquo;
+<ol class="breadcrumb border-0 m-0">
+  <li class="breadcrumb-item"><%= link_to t( 'admin.home' ),  url_for( '/' ) %></li>
+  <li class="breadcrumb-item"><%= link_to t( 'admin.admin' ), url_for( admin_path ) %></li>
   <%# TODO: handle nested controllers, e.g. Pages::Sections %>
-  <%= link_to controller_name.titlecase,
-      url_for( controller: controller_name, only_path: false ) %>
-  &raquo;
-  <%= @page_title %>
+  <li class="breadcrumb-item"><%= link_to controller_name.titlecase,
+      url_for( controller: controller_name, only_path: false ) %></li>
+  <li class="breadcrumb-item active"><%= @page_title %></li>
+</ol>
 </nav>
