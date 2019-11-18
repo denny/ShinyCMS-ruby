@@ -12,8 +12,8 @@
 
 /* ==================== ( colours ) ==================== */
 
-$bright_blue:       #3399ff;
-$light_blue:        #63c2de;
+$very_light_blue:   #63c2de;
+$light_blue:        #3399ff;
 $blue:              #20a8d8;
 $dark_blue:         #0e5c75;
 
@@ -42,6 +42,7 @@ $black:             #000000;
 
 $near_white2:       #f0f3f5;
 $light_grey2:       #c8ced3;
+$light_grey3:       #d8dbe0;
 $grey2:             #73818f;
 $dark_grey2:        #2f353a;
 
@@ -53,13 +54,13 @@ $danger:            $red;
 $alert_bg:          $light_red;
 $notice_bg:         $light_green;
 
+$highlight_colour:  $very_light_blue;
 $light_colour:      $light_blue;
-$medium_colour:     $blue;
 $dark_colour:       $dark_blue;
 
 $button_text:       $dark_colour;
-$input_border:      $light_colour;
-$input_fg:          $dark_colour;
+$input_border:      $highlight_colour;
+$input_fg:          $near_black;
 $input_bg:          $white;
 $row_highlight:     $white;
 
@@ -69,34 +70,73 @@ $row_highlight:     $white;
 body {
   font-family:      'Poppins', sans-serif;
   font-size:        11pt;
+  color:            $dark_colour;
 }
 
 
 /* ==================== ( sidebar ) =================== */
 
-.c-sidebar-nav-item:hover {
-  background:       $light_colour;
+.c-sidebar-brand {
+  background:       $white !important;
+  border-bottom:    1px solid $light_grey3;
+}
+
+.c-sidebar-brand img {
+  height:           47px;
+}
+
+nav a.c-sidebar-nav-link:hover {
+  background:       $highlight_colour !important;
+}
+
+nav a.c-sidebar-nav-link.c-active {
+  color:            $highlight_colour !important;
+}
+
+nav a.c-sidebar-nav-link.c-active .c-sidebar-nav-icon {
+  fill:             $highlight_colour !important;
+}
+
+nav a.c-sidebar-nav-link.c-active:hover {
+  color:            $white !important;
+}
+
+nav a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
+  fill:             $white !important;
 }
 
 
 /* ==================== ( header ) ==================== */
 
-header.c-header a {
-  color:            $medium_colour;
+header nav#breadcrumbs {
+  font-size:        1.3em;
 }
 
-header.c-header #alerts {
+header nav#breadcrumbs a {
+  color:            $dark_colour;
+}
+
+header nav#breadcrumbs a:hover {
+  color:            $highlight_colour;
+  text-decoration:  none;
+}
+
+header nav#breadcrumbs .active {
+  color:            $dark_grey;
+}
+
+#alerts {
+  color:            $black;
   background:       $alert_bg;
   width:            100%;
-  padding:          0.5em;
-  clear:            both;
+  padding:          0.2em 2.5em;
 }
 
-header.c-header #notices {
+#notices {
+  color:            $black;
   background:       $notice_bg;
   width:            100%;
-  padding:          0.5em;
-  clear:            both;
+  padding:          0.2em 2.5em;
 }
 
 
@@ -104,12 +144,7 @@ header.c-header #notices {
 
 main#main {
   padding:          2em;
-  width:            auto;
-  float:            left;
-}
-
-main#main nav#breadcrumbs {
-  padding-left:     0.5em;
+  min-width:        60%;
 }
 
 main#main p {
@@ -120,6 +155,7 @@ main#main p {
 /* ==================== ( index/list pages ) ==================== */
 
 main#main table.list {
+  width:            100%;
   margin-top:       0;
   border:           0;
   border-collapse:  collapse;
@@ -151,8 +187,9 @@ main#main table.list .hidden {
 }
 
 main#main table.list td.actions {
-  padding:          0.8em 0.5em 0.8em 0;
+  padding:          0.8em 0.3em 0.8em 0;
   vertical-align:   top;
+  text-align:       right;
 }
 
 main#main table.list td.actions a {
@@ -244,6 +281,7 @@ main#main input[type=reset] {
 
 /* fieldset for bottom-of-page 'add new element' forms */
 main#main fieldset {
+  display:          inline-block;
   margin:           2em 0 0 0;
   padding:          0 0.5em 1em 0.5em;
   border:           1px solid $input_border;

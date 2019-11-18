@@ -1,55 +1,8 @@
 <div class="c-sidebar-brand">
-  <img class="c-sidebar-brand-full" src="/assets/coreui/brand/coreui-base-white.svg" width="118" height="46" alt="CoreUI Logo"><img class="c-sidebar-brand-minimized" src="/assets/coreui/brand/coreui-signet-white.svg" width="118" height="46" alt="CoreUI Logo">
+  <img class="c-sidebar-brand-full"      src="/images/shinycms/ShinyCMS-logo.png" alt="ShinyCMS">
+  <img class="c-sidebar-brand-minimized" src="/images/shinycms/spiral.png"        alt="ShinyCMS">
 </div>
 
-<ul class="c-sidebar-nav">
-  <li class="c-sidebar-nav-item">
-    <a class="c-sidebar-nav-link" href="/admin">
-      <svg class="c-sidebar-nav-icon">
-        <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-speedometer"></use>
-      </svg> Dashboard<span class="badge badge-info">NEW</span></a>
-  </li>
-
-  <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
-    <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="">
-      <svg class="c-sidebar-nav-icon">
-        <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-file"></use>
-      </svg> Pages</a>
-    <ul class="c-sidebar-nav-dropdown-items">
-      <li class="c-sidebar-nav-item">
-        <a class="c-sidebar-nav-link" href="<%= admin_pages_path %>">
-        <span class="c-sidebar-nav-icon"></span> List pages</a>
-      </li>
-      <li class="c-sidebar-nav-item">
-        <a class="c-sidebar-nav-link" href="<%= admin_page_new_path %>">
-        <span class="c-sidebar-nav-icon"></span> New page</a>
-      </li>
-      <li class="c-sidebar-nav-item">
-        <a class="c-sidebar-nav-link" href="<%= admin_pages_section_new_path %>">
-        <span class="c-sidebar-nav-icon"></span> New section</a>
-      </li>
-      <li class="c-sidebar-nav-item">
-        <a class="c-sidebar-nav-link" href="<%= admin_pages_templates_path %>">
-        <span class="c-sidebar-nav-icon"></span> List templates</a>
-      </li>
-      <li class="c-sidebar-nav-item">
-        <a class="c-sidebar-nav-link" href="<%= admin_pages_template_new_path %>">
-        <span class="c-sidebar-nav-icon"></span> New template</a>
-      </li>
-    </ul>
-  </li>
-
-  <li class="c-sidebar-nav-item">
-    <a class="c-sidebar-nav-link" href="<%= admin_shared_content_path %>">
-      <svg class="c-sidebar-nav-icon">
-        <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-pencil"></use>
-      </svg> Shared Content</a>
-  </li>
-
-  <li class="c-sidebar-nav-item">
-    <a class="c-sidebar-nav-link" href="<%= admin_settings_path %>">
-      <svg class="c-sidebar-nav-icon">
-        <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-settings"></use>
-      </svg> Settings</a>
-  </li>
-</ul>
+<nav id="menu" role="nav">
+  <%= render partial: 'admin/menu/menu' %>
+</nav>

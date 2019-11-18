@@ -1,0 +1,11 @@
+<li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
+  <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="<%= link %>">
+    <% icon ||= false %>
+    <% if icon %>
+    <svg class="c-sidebar-nav-icon">
+      <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-<%= icon %>"></use>
+    </svg>
+    <% end %>
+    <%= text %>
+  </a>
+  <ul class="c-sidebar-nav-dropdown-items">
