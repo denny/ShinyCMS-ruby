@@ -13,13 +13,14 @@
   </head>
 
   <body class="c-app">
-    <nav id="sidebar" role="nav" class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show">
+    <div id="sidebar" class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show">
       <%= render partial: 'admin/includes/sidebar' %>
-    </nav>
+    </div>
 
     <div class="c-wrapper">
-      <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
-        <%= render partial: 'admin/includes/header' %>
+      <header class="c-header c-header-light c-header-fixed">
+        <%= render partial: 'admin/includes/header'   %>
+        <%= render partial: 'admin/includes/messages' %>
       </header>
 
       <div class="c-body">
