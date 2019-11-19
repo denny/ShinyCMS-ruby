@@ -1,4 +1,36 @@
       <%= javascript_pack_tag 'application' %>
       <%= javascript_pack_tag 'admin_area'  %>
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9&#43;4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb" crossorigin="anonymous"></script>
       <script src="https://unpkg.com/@coreui/coreui@3.0.0-beta.1/dist/js/coreui.min.js"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+      <script language="javascript" type="text/javascript">
+        // TODO: Move this into its own file
+        // Find all of the expandable sections in the sidebar menu
+        sections = document.getElementsByClassName( 'c-sidebar-nav-dropdown' );
+
+        // Loop through them
+        for ( i = 0; sections[i]; i++ ) {
+          section = sections[i];
+
+          // Attach listener to set/unset cookie to store expand/hide state
+          section.addEventListener( 'click',
+            function () {
+              if ( section.className.indexOf( 'c-show' ) == -1 ) {
+                // The menu section is being hidden; clear its cookie
+                Cookies.remove( section.id );
+              }
+              else {
+                // The menu section is being expanded; set a cookie
+                Cookies.set( section.id, 'true' );
+              }
+          });
+
+          // Expand/collapse each section according to its cookie
+          var expand = Cookies.get( section.id );
+          if ( expand != null ) {
+            section.className += ' c-show';
+          }
+        }
+      </script>

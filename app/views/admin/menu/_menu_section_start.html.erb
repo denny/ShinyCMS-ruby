@@ -1,5 +1,7 @@
-<li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
-  <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="<%= link %>">
+<% section_id = text.parameterize %>
+<a name="<%= section_id %>"></a>
+<li class="c-sidebar-nav-item c-sidebar-nav-dropdown" id="<%= section_id %>">
+  <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#<%= section_id %>">
     <% icon ||= false %>
     <% if icon %>
     <svg class="c-sidebar-nav-icon">
@@ -7,5 +9,10 @@
     </svg>
     <% end %>
     <%= text %>
+    <% badge ||= false %>
+    <% if badge %>
+    <% badge_style ||= 'info' %>
+    <span class="badge badge-<%= badge_style %>"><%= badge %></span>
+    <% end %>
   </a>
   <ul class="c-sidebar-nav-dropdown-items">
