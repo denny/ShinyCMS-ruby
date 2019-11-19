@@ -5,6 +5,6 @@
   <%# TODO: handle nested controllers, e.g. Pages::Sections %>
   <li class="breadcrumb-item"><%= link_to controller_name.titlecase,
       url_for( controller: controller_name, only_path: false ) %></li>
-  <li class="breadcrumb-item active"><%= @page_title %></li>
+  <li class="breadcrumb-item active"><%= @page_title.titlecase %></li>
 </ol>
 </nav>
