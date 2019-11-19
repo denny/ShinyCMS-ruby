@@ -7,7 +7,7 @@
   <% elsif content_type == t( 'admin.elements.image' ) %>
   <%= fields.select content, filenames %>
   <% elsif content_type == t( 'admin.elements.html' ) %>
-  <%= fields.cktext_area content %>
+  <%= fields.cktext_area content, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
   <% else %>
   [ UNKNOWN ELEMENT TYPE IN PAGE DATA ]
   <% end %>
