@@ -5,9 +5,8 @@
   <% @elements.each do |e| %>
   <tr class="showfocus">
     <td>
-      <%= text_field :shared_content, "element_#{e.id}_name", value: e.name %>
-      <%= select :shared_content, "element_#{e.id}_content_type", content_types, selected: e.content_type %>
-      <br><%= text_field :shared_content, "element_#{e.id}_content", value: e.content %>
+      <%= render partial: 'admin/shared_content/shared_content_element',
+                 locals: { e: e, filenames: select_filenames } %>
     </td>
     <td class="actions">
       <%= link_to t( 'admin.delete' ), admin_shared_content_delete_path( e ),
