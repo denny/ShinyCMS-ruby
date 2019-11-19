@@ -20,11 +20,11 @@
     <div class="c-wrapper">
       <header class="c-header c-header-light c-header-fixed">
         <%= render partial: 'admin/includes/header'   %>
-        <%= render partial: 'admin/includes/messages' %>
       </header>
 
       <div class="c-body">
         <main id="main" role="main">
+          <%= render partial: 'admin/includes/messages' %>
           <%= yield %>
         </main>
       </div>

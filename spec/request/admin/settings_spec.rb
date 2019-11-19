@@ -22,7 +22,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.settings.site_settings' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.settings.setting_created' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.settings.setting_created' )
       expect( response.body ).to include 'New Setting Is New'
     end
 
@@ -37,7 +37,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.settings.site_settings' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.settings.setting_created' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.settings.setting_created' )
       expect( response.body ).to include 'New Setting Is Empty'
     end
 
@@ -52,7 +52,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.settings.site_settings' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.settings.setting_created' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.settings.setting_created' )
       expect( response.body ).to include 'New Setting Is Null'
     end
 
@@ -66,7 +66,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.settings.site_settings' ).titlecase
-      expect( response.body ).to have_css '#alerts', text: I18n.t( 'admin.settings.setting_create_failed' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.settings.setting_create_failed' )
     end
   end
 
@@ -83,7 +83,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.settings.site_settings' ).titlecase
-      expect( response.body ).to     have_css '#notices', text: I18n.t( 'admin.settings.setting_deleted' )
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.settings.setting_deleted' )
       expect( response.body ).to     include s1.name
       expect( response.body ).to     include s3.name
       expect( response.body ).not_to include s2.name
@@ -97,7 +97,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.settings.site_settings' ).titlecase
-      expect( response.body ).to have_css '#alerts', text: I18n.t( 'admin.settings.setting_delete_failed' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.settings.setting_delete_failed' )
     end
   end
 
@@ -116,7 +116,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.settings.site_settings' ).titlecase
-      expect( response.body ).to     have_css '#notices', text: I18n.t( 'admin.settings.settings_updated' )
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.settings.settings_updated' )
       expect( response.body ).not_to include 'Original value'
       expect( response.body ).to     include 'Updated value'
     end
@@ -135,7 +135,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.settings.site_settings' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.settings.settings_unchanged' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.settings.settings_unchanged' )
       expect( response.body ).to include s2.value
     end
   end
