@@ -25,18 +25,18 @@
 </p>
 <% end  # form %>
 
-<%= form_with name: 'new_setting', url: admin_setting_create_path, method: :post do %>
+<%= form_for :setting, name: 'new_setting', url: admin_setting_create_path, method: :post do |f2| %>
   <fieldset>
     <legend>
       Add new setting
     </legend>
     <p>
-      <%= text_field :setting, :name,        placeholder: t( 'admin.settings.name_placeholder'        ), class: 'textshort' %>
-      <%= text_field :setting, :value,       placeholder: t( 'admin.settings.value_placeholder'       )                     %>
-      <%= text_field :setting, :description, placeholder: t( 'admin.settings.description_placeholder' ), class: 'textlong'  %>
+      <%= f2.text_field :name,        placeholder: t( 'admin.settings.name_placeholder'        ), class: 'textshort' %>
+      <%= f2.text_field :value,       placeholder: t( 'admin.settings.value_placeholder'       )                     %>
+      <%= f2.text_field :description, placeholder: t( 'admin.settings.description_placeholder' ), class: 'textlong'  %>
     </p>
     <p>
-      <%= submit_tag t( 'admin.add' ) %>
+      <%= f2.submit t( 'admin.add' ) %>
     </p>
   </fieldset>
 <% end %>
