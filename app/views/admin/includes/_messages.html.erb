@@ -1,10 +1,57 @@
-<% if flash[ :alert ] %>
-<div id="alerts">
-  <%= flash[ :alert ] %>
+<% if flash[ :notice ] %>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <%= flash[ :notice ] %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 <% end %>
-<% if flash[ :notice ] %>
-<div id="notices">
-  <%= flash[ :notice ] %>
+
+<% if flash[ :alert ] %>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <%= flash[ :alert ] %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% end %>
+
+<% if flash[ :alert_warning ] %>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <%= flash[ :alert_warning ] %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% end %>
+
+<% if flash[ :alert_info ] %>
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+  <%= flash[ :alert_info ] %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% end %>
+
+<% if flash[ :alert_primary ] %>
+<div class="alert alert-primary" role="alert">
+  <%= flash[ :alert_primary ] %>
+</div>
+<% end %>
+<% if flash[ :alert_secondary ] %>
+<div class="alert alert-secondary" role="alert">
+  <%= flash[ :alert_secondary ] %>
+</div>
+<% end %>
+
+<% if flash[ :alert_light ] %>
+<div class="alert alert-light" role="alert">
+  <%= flash[ :alert_light ] %>
+</div>
+<% end %>
+<% if flash[ :alert_dark ] %>
+<div class="alert alert-dark" role="alert">
+  <%= flash[ :alert_dark ] %>
 </div>
 <% end %>

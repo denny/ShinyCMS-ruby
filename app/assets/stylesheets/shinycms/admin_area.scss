@@ -125,20 +125,6 @@ header nav#breadcrumbs .active {
   color:            $dark_grey;
 }
 
-#alerts {
-  color:            $black;
-  background:       $alert_bg;
-  width:            100%;
-  padding:          0.2em 2.5em;
-}
-
-#notices {
-  color:            $black;
-  background:       $notice_bg;
-  width:            100%;
-  padding:          0.2em 2.5em;
-}
-
 
 /* ==================== ( main content area ) ==================== */
 
@@ -149,6 +135,12 @@ main#main {
 
 main#main p {
   margin:           0.5em 0 0 0.5em;
+}
+
+.alert {
+  border:            1px solid $grey;
+  font-size:         1.2em;
+  padding:           0.8em;
 }
 
 
