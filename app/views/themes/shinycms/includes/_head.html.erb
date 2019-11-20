@@ -1,0 +1,11 @@
+<title>
+  <%= "#{@page_title} - " if @page_title %>ShinySite
+</title>
+
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+
+<%= favicon_link_tag %>
+
+<%= stylesheet_link_tag 'shinycms'               %>
+<%= stylesheet_link_tag 'shinycms/admin_toolbar' %>

@@ -1,0 +1,8 @@
+while true; do
+  read -p "This will wipe your database; are you sure? " yn
+  case $yn in
+    [Yy]* ) FIXTURES_PATH=db/demo-site-data rails db:fixtures:load; break;;
+    [Nn]* ) exit;;
+    * ) echo "Please answer yes or no.";;
+  esac
+done

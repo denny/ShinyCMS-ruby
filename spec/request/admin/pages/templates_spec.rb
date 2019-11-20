@@ -30,34 +30,34 @@ RSpec.describe 'Admin: Page Templates', type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.new_template' ).titlecase
-      expect( response.body ).to have_css '#alerts', text: I18n.t( 'admin.pages.template_create_failed' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.template_create_failed' )
     end
 
     it 'adds a new template when the form is submitted' do
       post admin_pages_template_new_path, params: {
         'page_template[name]': 'Test',
-        'page_template[filename]': 'example'
+        'page_template[filename]': 'an_example'
       }
 
       expect( response      ).to have_http_status :found
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit_template' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.pages.template_created' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.template_created' )
     end
 
     it 'adds the right number of elements to the new template' do
       post admin_pages_template_new_path, params: {
         'page_template[name]': 'Another Test',
-        'page_template[filename]': 'example'
+        'page_template[filename]': 'an_example'
       }
 
       expect( response      ).to have_http_status :found
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit_template' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.pages.template_created' )
-      expect( PageTemplateElement.count ).to eq 3
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.template_created' )
+      expect( PageTemplateElement.count ).to eq 4
     end
   end
 
@@ -82,7 +82,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit_template' ).titlecase
-      expect( response.body ).to have_css '#alerts', text: I18n.t( 'admin.pages.template_update_failed' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.template_update_failed' )
     end
 
     it 'updates the template when the form is submitted' do
@@ -100,7 +100,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit_template' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.pages.template_updated' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.template_updated' )
       expect( response.body ).to include 'Updated by test'
     end
   end
@@ -118,7 +118,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.pages.list_templates' ).titlecase
-      expect( response.body ).to     have_css '#notices', text: I18n.t( 'admin.pages.template_deleted' )
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.template_deleted' )
       expect( response.body ).to     include t1.name
       expect( response.body ).not_to include t2.name
     end
@@ -131,7 +131,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.list_templates' ).titlecase
-      expect( response.body ).to have_css '#alerts', text: I18n.t( 'admin.pages.template_delete_failed' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.template_delete_failed' )
     end
   end
 end
