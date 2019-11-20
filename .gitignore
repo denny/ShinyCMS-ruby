@@ -1,3 +1,7 @@
+# Secret stuff!
+/config/master.key
+/config/credentials.yml.enc
+
 *.gem
 *.rbc
 /.config

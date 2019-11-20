@@ -1,0 +1,14 @@
+<%= text_field :shared_content, "element_#{e.id}_name", value: e.name %>
+<%= select :shared_content, "element_#{e.id}_content_type", content_types, selected: e.content_type %>
+<br>
+<% if e.content_type == t( 'admin.elements.short_text' ) %>
+<%= text_field :shared_content, "element_#{e.id}_content", value: e.content %>
+<% elsif e.content_type == t( 'admin.elements.long_text' ) %>
+<%= text_area :shared_content, "element_#{e.id}_content", value: e.content %>
+<% elsif e.content_type == t( 'admin.elements.image' ) %>
+<%= select :shared_content, "element_#{e.id}_content", filenames, selected: e.content %>
+<% elsif e.content_type == t( 'admin.elements.html' ) %>
+<%= cktext_area :shared_content, "element_#{e.id}_content", ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
+<% else %>
+[ UNKNOWN ELEMENT TYPE IN SHARED CONTENT DATA ]
+<% end %>

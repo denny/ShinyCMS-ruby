@@ -5,9 +5,8 @@
   <% @elements.each do |e| %>
   <tr class="showfocus">
     <td>
-      <%= text_field :shared_content, "element_#{e.id}_name", value: e.name %>
-      <%= select :shared_content, "element_#{e.id}_content_type", SharedContentElement.content_types, value: e.content_type %>
-      <br><%= text_field :shared_content, "element_#{e.id}_content", value: e.content %>
+      <%= render partial: 'admin/shared_content/shared_content_element',
+                 locals: { e: e, filenames: select_filenames } %>
     </td>
     <td class="actions">
       <%= link_to t( 'admin.delete' ), admin_shared_content_delete_path( e ),
@@ -21,16 +20,18 @@
 </p>
 <% end  # form %>
 
-<%= form_with name: 'new_element', url: admin_shared_content_create_path, method: :post do %>
-  <h2>
-    Add new shared content
-  </h2>
-  <p>
-    <%= text_field :new_element, :name, placeholder: t( 'admin.shared_content.name_placeholder' ) %>
-    <%= select :new_element, :content_type, SharedContentElement.content_types %>
-    <br><%= text_field :new_element, :content, placeholder: t( 'admin.shared_content.content_placeholder' ) %>
-  </p>
-  <p>
-    <%= submit_tag t( 'admin.add' ) %>
-  </p>
+<%= form_for :shared_content_element, name: 'new_element', url: admin_shared_content_create_path, method: :post do |f2| %>
+  <fieldset>
+    <legend>
+      Add new shared content
+    </legend>
+    <p>
+      <%= f2.text_field :name, placeholder: t( 'admin.shared_content.name_placeholder' ), class: 'textshort' %>
+      <%= f2.select :content_type, content_types %>
+      <br><%= f2.text_field :content, placeholder: t( 'admin.shared_content.content_placeholder' ), class: 'textlong' %>
+    </p>
+    <p>
+      <%= f2.submit t( 'admin.add' ) %>
+    </p>
+  </fieldset>
 <% end %>

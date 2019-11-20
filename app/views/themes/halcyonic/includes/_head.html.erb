@@ -1,0 +1,17 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <% @site_name ||= 'ShinySite' %>
+  <title>
+    <%= "#{@page_title} - " if @page_title %><%= @site_name %>
+  </title>
+
+  <%= favicon_link_tag %>
+
+  <%= stylesheet_link_tag 'halcyonic' %>
+  <%= stylesheet_link_tag 'shinycms/admin_toolbar' %>
+</head>
