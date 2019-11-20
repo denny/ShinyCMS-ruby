@@ -1,31 +1,39 @@
 <!DOCTYPE html>
-<html>
+<!--
+* CoreUI - Free Bootstrap Admin Template
+* @version v3.0.0-alpha.1
+* @link https://coreui.io
+* Copyright (c) 2019 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://coreui.io/license)
+-->
+
+<html lang="en">
   <head>
     <%= render partial: 'admin/includes/head' %>
   </head>
 
-  <body>
-    <header id="header">
-      <h1>
-        <%= @page_title %>
-      </h1>
-      <%= render partial: 'admin/includes/messages' %>
-    </header>
+  <body class="c-app">
+    <div id="sidebar" class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show">
+      <%= render partial: 'admin/includes/sidebar' %>
+    </div>
 
-    <nav id="side-nav">
-      <%= render partial: 'admin/includes/menu' %>
-    </nav>
+    <div class="c-wrapper">
+      <header class="c-header c-header-light c-header-fixed">
+        <%= render partial: 'admin/includes/header'   %>
+      </header>
 
-    <main id="main">
-      <%= render partial: 'admin/includes/breadcrumbs' %>
+      <div class="c-body">
+        <main id="main" role="main">
+          <%= render partial: 'admin/includes/messages' %>
+          <%= yield %>
+        </main>
+      </div>
 
-      <%= yield %>
-    </main>
+      <footer class="c-footer">
+        <%= render partial: 'admin/includes/footer' %>
+      </footer>
+    </div>
 
-    <div class="clearboth"></div>
-
-    <footer id="footer">
-      <%= render partial: 'admin/includes/footer' %>
-    </footer>
+    <%= render partial: 'admin/includes/footer_javascript' %>
   </body>
 </html>

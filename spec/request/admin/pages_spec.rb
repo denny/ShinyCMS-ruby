@@ -42,7 +42,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.new_page' ).titlecase
-      expect( response.body ).to have_css '#alerts', text: I18n.t( 'admin.pages.page_create_failed' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.page_create_failed' )
     end
 
     it 'fails when the page slug collides with a controller namespace' do
@@ -57,7 +57,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.new_page' ).titlecase
-      expect( response.body ).to have_css '#alerts', text: I18n.t( 'admin.pages.page_create_failed' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.page_create_failed' )
     end
 
     it 'adds a new page when the form is submitted' do
@@ -73,7 +73,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit_page' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.pages.page_created' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.page_created' )
     end
 
     it 'adds a new page with elements from template' do
@@ -91,7 +91,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit_page' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.pages.page_created' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.page_created' )
       expect( response.body ).to include template.elements.first.name
       expect( response.body ).to include template.elements.last.name
     end
@@ -118,7 +118,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit_page' ).titlecase
-      expect( response.body ).to have_css '#alerts', text: I18n.t( 'admin.pages.page_update_failed' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.page_update_failed' )
     end
 
     it 'updates the page when the form is submitted' do
@@ -133,7 +133,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit_page' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.pages.page_updated' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.page_updated' )
       expect( response.body ).to include 'Updated by test'
     end
 
@@ -151,7 +151,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.pages.edit_page' ).titlecase
-      expect( response.body ).to     have_css '#notices', text: I18n.t( 'admin.pages.page_updated' )
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.page_updated' )
       expect( response.body ).to     include 'updated-by-test'
       expect( response.body ).not_to include old_slug
     end
@@ -187,7 +187,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.pages.list_pages' ).titlecase
-      expect( response.body ).to     have_css '#notices', text: I18n.t( 'admin.pages.page_deleted' )
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.page_deleted' )
       expect( response.body ).to     include p1.name
       expect( response.body ).not_to include p2.name
       expect( response.body ).to     include p3.name
@@ -201,7 +201,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.list_pages' ).titlecase
-      expect( response.body ).to have_css '#alerts', text: I18n.t( 'admin.pages.page_delete_failed' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.page_delete_failed' )
     end
   end
 end
