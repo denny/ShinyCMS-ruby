@@ -294,3 +294,15 @@ main#main fieldset legend {
   font-size:        1.2em;
   width:            initial;
 }
+
+
+/* ==================== ( footer ) ==================== */
+
+footer a {
+  color:            $dark_colour;
+}
+
+footer a:hover {
+  color:            $light_colour;
+  text-decoration:  none;
+}
