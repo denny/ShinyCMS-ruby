@@ -11,7 +11,7 @@
       <%= text_field :settings, "setting_value_#{s.id}", value: s.value %>
     </td>
     <td>
-      <%= text_field :settings, "setting_description_#{s.id}", value: s.description, class: 'longtext' %>
+      <%= text_field :settings, "setting_description_#{s.id}", value: s.description, class: 'textlong' %>
     </td>
 		<td class="actions">
       <%= link_to t( 'admin.delete' ), admin_setting_delete_path( s ),
@@ -25,18 +25,18 @@
 </p>
 <% end  # form %>
 
-<%= form_with name: 'new_setting', url: admin_setting_create_path, method: :post do %>
-  <h2>
-    Add new setting
-  </h2>
-  <p>
-    <label>
-      <%= text_field :setting, :name,  placeholder: t( 'admin.settings.name_placeholder'  ) %>
-      <%= text_field :setting, :value, placeholder: t( 'admin.settings.value_placeholder' ) %>
-    </label>
-    <%= text_field :setting, :description, placeholder: t( 'admin.settings.description_placeholder' ), class: 'longtext' %>
-  </p>
-  <p>
-    <%= submit_tag t( 'admin.add' ) %>
-  </p>
+<%= form_for :setting, name: 'new_setting', url: admin_setting_create_path, method: :post do |f2| %>
+  <fieldset>
+    <legend>
+      Add new setting
+    </legend>
+    <p>
+      <%= f2.text_field :name,        placeholder: t( 'admin.settings.name_placeholder'        ), class: 'textshort' %>
+      <%= f2.text_field :value,       placeholder: t( 'admin.settings.value_placeholder'       )                     %>
+      <%= f2.text_field :description, placeholder: t( 'admin.settings.description_placeholder' ), class: 'textlong'  %>
+    </p>
+    <p>
+      <%= f2.submit t( 'admin.add' ) %>
+    </p>
+  </fieldset>
 <% end %>

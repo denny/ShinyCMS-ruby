@@ -1,0 +1,30 @@
+<% if user_signed_in? %>
+<ul class="c-header-nav ml-auto mr-4">
+  <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      <div class="c-avatar"><img class="c-avatar-img" src="/assets/coreui/img/avatars/6.jpg" alt="user@email.com"></div>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right pt-0">
+      <div class="dropdown-header bg-light py-2"><strong>current_user.username</strong></div>
+      <a class="dropdown-item" href="<%= user_profile_path( current_user.username ) %>">
+        <svg class="c-icon mr-2">
+          <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-user"></use>
+        </svg>
+        View profile
+      </a>
+      <a class="dropdown-item" href="<%= edit_user_registration_path %>">
+        <svg class="c-icon mr-2">
+          <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-pencil"></use>
+        </svg>
+        Edit profile
+      </a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="<%= user_logout_path %>">
+        <svg class="c-icon mr-2">
+          <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-account-logout"></use>
+        </svg>
+        Log out
+      </a>
+    </div>
+  </li>
+</ul>
+<% end %>

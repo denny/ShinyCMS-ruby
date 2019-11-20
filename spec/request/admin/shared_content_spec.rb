@@ -13,9 +13,9 @@ RSpec.describe 'Admin: Shared Content', type: :request do
   describe 'POST /admin/shared-content/create' do
     it 'adds a new Short Text element' do
       post admin_shared_content_create_path, params: {
-        'new_element[name]': 'new_shared_content',
-        'new_element[content]': 'NEW AND IMPROVED!',
-        'new_element[content_type]': I18n.t( 'short_text' )
+        'shared_content_element[name]': 'new_shared_content',
+        'shared_content_element[content]': 'NEW AND IMPROVED!',
+        'shared_content_element[content_type]': I18n.t( 'short_text' )
       }
 
       expect( response      ).to have_http_status :found
@@ -23,15 +23,15 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.shared_content.shared_content' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.shared_content.shared_content_created' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.shared_content.shared_content_created' )
       expect( response.body ).to include 'new_shared_content'
     end
 
     it 'adds a new element, with an empty content string' do
       post admin_shared_content_create_path, params: {
-        'new_element[name]': 'shared_content_is_empty',
-        'new_element[content]': '',
-        'new_element[content_type]': I18n.t( 'short_text' )
+        'shared_content_element[name]': 'shared_content_is_empty',
+        'shared_content_element[content]': '',
+        'shared_content_element[content_type]': I18n.t( 'short_text' )
       }
 
       expect( response      ).to have_http_status :found
@@ -39,15 +39,15 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.shared_content.shared_content' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.shared_content.shared_content_created' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.shared_content.shared_content_created' )
       expect( response.body ).to include 'shared_content_is_empty'
     end
 
     it 'adds a new element, with a NULL content string' do
       post admin_shared_content_create_path, params: {
-        'new_element[name]': 'shared_content_is_null',
-        'new_element[content]': nil,
-        'new_element[content_type]': I18n.t( 'short_text' )
+        'shared_content_element[name]': 'shared_content_is_null',
+        'shared_content_element[content]': nil,
+        'shared_content_element[content_type]': I18n.t( 'short_text' )
       }
 
       expect( response      ).to have_http_status :found
@@ -55,13 +55,13 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.shared_content.shared_content' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.shared_content.shared_content_created' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.shared_content.shared_content_created' )
       expect( response.body ).to include 'shared_content_is_null'
     end
 
     it 'attempting to add a new shared_content element with no name fails gracefully' do
       post admin_shared_content_create_path, params: {
-        'new_element[content]': 'MADE OF FAIL!'
+        'shared_content_element[content]': 'MADE OF FAIL!'
       }
 
       expect( response      ).to have_http_status :found
@@ -69,7 +69,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.shared_content.shared_content' ).titlecase
-      expect( response.body ).to have_css '#alerts', text: I18n.t( 'admin.shared_content.shared_content_create_failed' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.shared_content.shared_content_create_failed' )
     end
   end
 
@@ -86,7 +86,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.shared_content.shared_content' ).titlecase
-      expect( response.body ).to     have_css '#notices', text: I18n.t( 'admin.shared_content.shared_content_deleted' )
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.shared_content.shared_content_deleted' )
       expect( response.body ).to     include s1.name
       expect( response.body ).to     include s3.name
       expect( response.body ).not_to include s2.name
@@ -100,7 +100,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.shared_content.shared_content' ).titlecase
-      expect( response.body ).to have_css '#alerts', text: I18n.t( 'admin.shared_content.shared_content_delete_failed' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.shared_content.shared_content_delete_failed' )
     end
   end
 
@@ -120,7 +120,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.shared_content.shared_content' ).titlecase
-      expect( response.body ).to     have_css '#notices', text: I18n.t( 'admin.shared_content.shared_content_updated' )
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.shared_content.shared_content_updated' )
       expect( response.body ).not_to include 'Original content'
       expect( response.body ).to     include 'Updated content'
     end
@@ -140,7 +140,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.shared_content.shared_content' ).titlecase
-      expect( response.body ).to have_css '#notices', text: I18n.t( 'admin.shared_content.shared_content_unchanged' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.shared_content.shared_content_unchanged' )
       expect( response.body ).to include s2.content
     end
   end
