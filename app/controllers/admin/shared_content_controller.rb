@@ -1,15 +1,14 @@
 # Admin controller for shared content (globally-reusable text/HTML fragments)
 class Admin::SharedContentController < AdminController
-  # Display form containing all shared content elements
   def index
-    @elements = SharedContentElement.order( :name )
+    elements = SharedContentElement.order( :name )
+    @shared_content = SharedContent.new( elements: elements )
   end
 
-  # Add a new shared content element
   def create
-    element = SharedContentElement.new( new_element_params )
+    @new_element = SharedContentElement.new( new_element_params )
 
-    if element.save
+    if @new_element.save
       flash[ :notice ] = I18n.t 'admin.shared_content.shared_content_created'
     else
       flash[ :alert ] =
@@ -20,9 +19,11 @@ class Admin::SharedContentController < AdminController
 
   # Main form submitted; update any changed elements and report back
   def update
-    updated_something = false
-    updated_something = update_shared_content( updated_something )
-    flash[ :notice ] = if updated_something
+    elements = SharedContentElement.order( :name )
+    @shared_content = SharedContent.new( elements: elements )
+    @shared_content.elements_attributes = shared_content_params
+
+    flash[ :notice ] = if @shared_content.valid?
                          I18n.t 'admin.shared_content.shared_content_updated'
                        else
                          I18n.t 'admin.shared_content.shared_content_unchanged'
@@ -43,29 +44,13 @@ class Admin::SharedContentController < AdminController
 
   private
 
-  # Process the batched elements update
-  def update_shared_content( flag )
-    elements = shared_content_params[ :shared_content ]
-    elements&.each_key do |key|
-      next unless /element_(?<id>\d+)_content/ =~ key
-
-      content = elements[ "element_#{id}_content" ]
-      content_type = elements[ "element_#{id}_content_type" ]
-
-      element = SharedContentElement.find( id )
-      next if element.content == content && element.content_type == content_type
-
-      flag = element.update! content: content, content_type: content_type
-    end
-    flag
-  end
-
   def new_element_params
     params.require( :shared_content_element )
           .permit( :name, :content, :content_type )
   end
 
   def shared_content_params
-    params.permit( :authenticity_token, :commit, shared_content: {} )
+    params.require( :shared_content ).permit( elements_attributes: {} )
+          .require( :elements_attributes )
   end
 end
