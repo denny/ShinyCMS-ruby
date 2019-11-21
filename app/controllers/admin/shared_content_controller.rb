@@ -20,7 +20,8 @@ class Admin::SharedContentController < AdminController
 
   # Main form submitted; update any changed elements and report back
   def update
-    @shared_content = SharedContent.new
+    elements = SharedContentElement.order( :name )
+    @shared_content = SharedContent.new( elements: elements )
     @shared_content.elements_attributes = shared_content_params
 
     flash[ :notice ] = if @shared_content.valid?
@@ -49,6 +50,7 @@ class Admin::SharedContentController < AdminController
   end
 
   def shared_content_params
-    params.permit( :authenticity_token, :commit, elements: {} )
+    params.require( :shared_content ).permit( elements_attributes: {} )
+          .require( :elements_attributes )
   end
 end
