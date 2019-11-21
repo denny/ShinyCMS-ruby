@@ -1,12 +1,21 @@
 require: rubocop-rails
 
-# Rubocop does not like lots of Rails' and Activerecord's boilerplate :-\
+# Rails and ActiveRecord autogenerate a lot of code that fails Rubocop
+# (I find this mildly confusing/annoying). Also, there's no point in
+# having Rubocop look at JavaScript, images, shell scripts, etc.
 AllCops:
   EnabledByDefault: true
   Exclude:
     - db/**/*
     - bin/*
-    - node_modules/node-sass/**/*
+    - app/assets/**/*
+    - coverage/**/*
+    - docs/*
+    - log/*
+    - node_modules/**/*
+    - public/**/*
+    - tmp/**/*
+    - tools/**/*
 
 # Spec files and the routes file are supposed to be one long block. Shush.
 Metrics/BlockLength:
