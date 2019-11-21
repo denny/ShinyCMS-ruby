@@ -3,11 +3,11 @@
 	Welcome back <%= link_to ( current_user.display_name || current_user.username ),
 		user_profile_path( current_user.username ) %>!
 		(
-		  <%= link_to 'edit',    edit_user_registration_path %> |
-	    <%= link_to 'log out', user_logout_path %>
+		  <%= link_to t( 'edit'          ), edit_user_registration_path %> |
+	    <%= link_to t( 'users.log_out' ), user_logout_path            %>
 		)
 	<% else %>
-	Click here to <%= link_to 'log in', user_login_path %>.
+	Click here to <%= link_to t( 'users.log_in' ), user_login_path %>.
 	<% end %>
 </p>
 <p>
