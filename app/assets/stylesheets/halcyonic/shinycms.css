@@ -18,6 +18,16 @@
   display:            inline;
 }
 
+#header #alerts {
+  background:   #ffdddd;
+  padding:      0.5em;
+}
+
+#header #notices {
+  background:   #ddffdd;
+  padding:      0.5em;
+}
+
 div#banner p a {
   text-decoration:    none;
   color:              #aaeeff;
