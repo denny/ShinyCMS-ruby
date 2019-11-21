@@ -1,0 +1,42 @@
+---
+Setting_1:
+  id: 1
+  name: Admin IP list
+  value: ''
+  description: Comma/space-separated list of IP addresses allowed to access admin
+    area
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-11-13 19:24:38.896314000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2019-11-13 19:24:38.896314000 Z
+    zone: *2
+    time: *3
+Setting_2:
+  id: 2
+  name: Default page
+  value: home
+  description: Default top-level page (either its name or its slug)
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2019-11-13 19:24:38.904200000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2019-11-13 23:50:57.136526000 Z
+    zone: *2
+    time: *5
+Setting_3:
+  id: 3
+  name: Default section
+  value: ''
+  description: Default top-level section (either its name or its slug)
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2019-11-13 19:24:38.910978000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2019-11-13 19:24:38.910978000 Z
+    zone: *2
+    time: *7

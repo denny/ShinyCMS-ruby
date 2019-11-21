@@ -9,7 +9,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       expect( response      ).to redirect_to admin_pages_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include I18n.t( 'admin.pages.list_pages' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'admin.pages.list_pages' ).titlecase
     end
   end
 
@@ -18,7 +18,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       get admin_pages_section_new_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include I18n.t( 'admin.pages.new_section' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'admin.pages.new_section' ).titlecase
     end
   end
 
@@ -29,8 +29,8 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include I18n.t( 'admin.pages.new_section' ).titlecase
-      expect( response.body ).to include I18n.t( 'admin.pages.section_create_failed' )
+      expect( response.body ).to have_title I18n.t( 'admin.pages.new_section' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.section_create_failed' )
     end
 
     it 'fails if top-level section slug collides with a controller namespace' do
@@ -41,8 +41,8 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include I18n.t( 'admin.pages.new_section' ).titlecase
-      expect( response.body ).to include I18n.t( 'admin.pages.section_create_failed' )
+      expect( response.body ).to have_title I18n.t( 'admin.pages.new_section' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.section_create_failed' )
     end
 
     it 'adds a new section when the form is submitted' do
@@ -56,8 +56,8 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       expect( response      ).to redirect_to admin_pages_section_path( PageSection.last )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include I18n.t( 'admin.pages.edit_section' ).titlecase
-      expect( response.body ).to include I18n.t( 'admin.pages.section_created' )
+      expect( response.body ).to have_title I18n.t( 'admin.pages.edit_section' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.section_created' )
     end
   end
 
@@ -68,7 +68,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       get admin_pages_section_path( section )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include I18n.t( 'admin.pages.edit_section' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'admin.pages.edit_section' ).titlecase
     end
   end
 
@@ -81,8 +81,8 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include I18n.t( 'admin.pages.edit_section' ).titlecase
-      expect( response.body ).to include I18n.t( 'admin.pages.section_update_failed' )
+      expect( response.body ).to have_title I18n.t( 'admin.pages.edit_section' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.section_update_failed' )
     end
 
     it 'updates the section when the form is submitted' do
@@ -96,9 +96,40 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       expect( response      ).to redirect_to admin_pages_section_path( section )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include I18n.t( 'admin.pages.edit_section' ).titlecase
-      expect( response.body ).to include I18n.t( 'admin.pages.section_updated' )
+      expect( response.body ).to have_title I18n.t( 'admin.pages.edit_section' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.section_updated' )
       expect( response.body ).to include 'Updated by test'
+    end
+  end
+
+  describe 'DELETE /admin/pages/section/delete/:id' do
+    it 'deletes the specified section' do
+      s1 = create :page_section
+      s2 = create :page_section
+      s3 = create :page_section
+
+      delete admin_pages_section_delete_path( s2 )
+
+      expect( response      ).to     have_http_status :found
+      expect( response      ).to     redirect_to admin_pages_path
+      follow_redirect!
+      expect( response      ).to     have_http_status :ok
+      expect( response.body ).to     have_title I18n.t( 'admin.pages.list_pages' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.section_deleted' )
+      expect( response.body ).to     include s1.name
+      expect( response.body ).not_to include s2.name
+      expect( response.body ).to     include s3.name
+    end
+
+    it 'fails gracefully when attempting to delete a non-existent section' do
+      delete admin_pages_section_delete_path( 999 )
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_pages_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.pages.list_pages' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.section_delete_failed' )
     end
   end
 end

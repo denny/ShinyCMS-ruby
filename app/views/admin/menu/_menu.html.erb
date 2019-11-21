@@ -1,0 +1,24 @@
+<%# NTS: CoreUI free icons: https://coreui.io/icons/free/ %>
+<ul class="c-sidebar-nav">
+  <%= render partial: 'admin/menu/menu_item', locals:
+      { text: 'Dashboard', link: admin_path, icon: 'speedometer' } %>
+
+  <%= render partial: 'admin/menu/menu_section_start', locals:
+      { text: 'Pages', link: '#', icon: 'list-rich' } %>
+      <%= render partial: 'admin/menu/menu_item', locals:
+          { text: 'List pages', link: admin_pages_path, icon: 'list-rich' } %>
+      <%= render partial: 'admin/menu/menu_item', locals:
+          { text: 'Add new page', link: admin_page_new_path, icon: 'playlist-add' } %>
+      <%= render partial: 'admin/menu/menu_item', locals:
+          { text: 'Add new section', link: admin_pages_section_new_path, icon: 'playlist-add' } %>
+      <%= render partial: 'admin/menu/menu_item', locals:
+          { text: 'List templates', link: admin_pages_templates_path, icon: 'library' } %>
+      <%= render partial: 'admin/menu/menu_item', locals:
+          { text: 'Add new template', link: admin_pages_template_new_path, icon: 'library-add' } %>
+  <%= render partial: 'admin/menu/menu_section_end' %>
+
+  <%= render partial: 'admin/menu/menu_item', locals:
+      { text: 'Shared content', link: admin_shared_content_path, icon: 'list' } %>
+  <%= render partial: 'admin/menu/menu_item', locals:
+      { text: 'Settings', link: admin_settings_path, icon: 'settings' } %>
+</ul>

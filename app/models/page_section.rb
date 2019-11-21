@@ -6,26 +6,35 @@ class PageSection < ApplicationRecord
 
   has_many  :pages,
             -> { where( hidden: false ).order( :sort_order ) },
-            foreign_key: 'section_id', inverse_of: 'section'
+            foreign_key: 'section_id',
+            inverse_of: 'section',
+            dependent: :restrict_with_error
 
   has_many  :hidden_pages,
             -> { where( hidden: true ).order( :sort_order ) },
             class_name: 'Page',
-            foreign_key: 'section_id', inverse_of: 'section'
+            foreign_key: 'section_id',
+            inverse_of: 'section',
+            dependent: :restrict_with_error
 
   has_many  :sections,
             -> { where( hidden: false ).order( :sort_order ) },
             class_name: 'PageSection',
-            foreign_key: 'section_id', inverse_of: 'section'
+            foreign_key: 'section_id',
+            inverse_of: 'section',
+            dependent: :restrict_with_error
 
   has_many  :hidden_sections,
             -> { where( hidden: true ).order( :sort_order ) },
             class_name: 'PageSection',
-            foreign_key: 'section_id', inverse_of: 'section'
+            foreign_key: 'section_id',
+            inverse_of: 'section',
+            dependent: :restrict_with_error
 
   belongs_to  :section,
               class_name: 'PageSection',
-              optional: true, inverse_of: 'sections'
+              inverse_of: 'sections',
+              optional: true
 
   # Instance methods
 

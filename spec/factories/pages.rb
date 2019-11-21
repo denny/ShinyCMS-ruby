@@ -23,7 +23,7 @@ FactoryBot.define do
     after :create do |page|
       create :short_text_page_element, page: page, content: 'SHORT!'
       create :long_text_page_element,  page: page, content: 'LONG!'
-      create :filename_page_element,   page: page, content: 'FILE.png'
+      create :image_page_element,      page: page, content: 'IMAGE.png'
       create :html_page_element,       page: page, content: 'HTML!'
     end
   end
