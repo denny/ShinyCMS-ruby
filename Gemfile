@@ -31,6 +31,7 @@ source 'https://rubygems.org' do
   gem 'ckeditor'
 
   group :development, :test do
+    gem 'awesome_print'
     gem 'bundler-audit', require: false
     gem 'factory_bot_rails'
     gem 'faker'
