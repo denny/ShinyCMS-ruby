@@ -11,13 +11,13 @@
                       <div class="row">
                         <div class="col-3 col-12-small">
                           <ul class="link-list last-child">
-							<% if user_signed_in? %>
+							              <% if user_signed_in? %>
                             <li>Welcome back <%= link_to ( current_user.display_name || current_user.username ), user_profile_path( current_user.username ) %>!</li>
-                            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
-                            <li><%= link_to 'Log out', user_logout_path %></li>
-							<% else %>
-							<li>Click here to <%= link_to 'log in', user_login_path %></li>
-							<% end %>
+                            <li><%= link_to t( 'users.edit_profile' ), edit_user_registration_path %></li>
+                            <li><%= link_to t( 'users.log_out' ), user_logout_path %></li>
+              							<% else %>
+              							<li>Click here to <%= link_to t( 'users.log_in' ).downcase, user_login_path %></li>
+              							<% end %>
                           </ul>
                         </div>
                         <div class="col-3 col-12-small">

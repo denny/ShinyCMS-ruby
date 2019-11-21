@@ -9,6 +9,14 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  home: Home
+
+  add: Add
+  update: Update
+  view: View
+  edit: Edit
+  delete: Delete
+
   yes: Yes
   no: No
   are_you_sure: Are you sure?
@@ -26,7 +34,10 @@ en:
     template_file_missing: Unable to display page; its template file is missing.
 
   users:
-    logins_not_enabled: This site does not allow users to log in
+    log_in: Log in
+    log_out: Log out
+    logins_not_enabled: The user login feature of this site is not currently enabled
+    edit_profile: Edit profile
 
 
   # ========== ( Admin Area ) ==========
@@ -34,13 +45,6 @@ en:
   admin:
     admin_area: Admin area
     admin: Admin
-    home: Home
-
-    add: Add
-    update: Update
-    view: View
-    edit: Edit
-    delete: Delete
 
     elements:
       short_text: Short Text
