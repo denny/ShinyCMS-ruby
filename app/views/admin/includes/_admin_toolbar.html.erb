@@ -2,7 +2,7 @@
   <%= link_to image_tag( 'shinycms/admin-toolbar-logo' ), 'http://shinycms.org/' %>
 
   <div id="admin-toolbar-links">
-    <%= link_to t( 'admin.home' ), url_for( '/' ) %>
+    <%= link_to t( 'admin.home' ), root_path %>
     |
     <% if controller_name == 'pages' %>
     Page:
@@ -26,6 +26,6 @@
     <%= link_to 'List', admin_pages_templates_path %>
     <% end  # pages %>
     |
-    <%= link_to t( 'admin.admin_area' ), url_for( admin_path ) %>
+    <%= link_to t( 'admin.admin_area' ), admin_path %>
   </div>
 </nav>
