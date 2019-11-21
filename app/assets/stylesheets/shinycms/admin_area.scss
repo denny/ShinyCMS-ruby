@@ -1,0 +1,308 @@
+/* ================================================================ *\
+   Project:   ShinyCMS (Ruby version)
+   File:      app/assets/admin/stylsheets/admin_area.scss
+   Purpose:   Extra styles for admin area, to tweak or fit into CoreUI
+
+   Copyright: (c) 2009-2019 Denny de la Haye https://denny.me
+
+   ShinyCMS is free software; you can redistribute it and/or
+   modify it under the terms of the GPL (version 2 or later).
+\* ================================================================ */
+
+
+/* ==================== ( colours ) ==================== */
+
+$very_light_blue:   #63c2de;
+$light_blue:        #3399ff;
+$blue:              #20a8d8;
+$dark_blue:         #0e5c75;
+
+$indigo:            #6610f2;
+$cyan:              #17a2b8;
+$teal:              #20c997;
+
+$green:             #4dbd74;
+$yellow:            #ffc107;
+$orange:            #f8cb00;
+$red:               #f86c6b;
+
+$light_green:       #ddffdd;
+$light_red:         #ffdddd;
+
+$purple:            #6f42c1;
+$pink:              #e83e8c;
+
+$white:             #ffffff;
+$near_white:        #eeeeee;
+$light_grey:        #c0c0c0;
+$grey:              #777777;
+$dark_grey:         #404040;
+$near_black:        #111111;
+$black:             #000000;
+
+$near_white2:       #f0f3f5;
+$light_grey2:       #c8ced3;
+$light_grey3:       #d8dbe0;
+$grey2:             #73818f;
+$dark_grey2:        #2f353a;
+
+$success:           $green;
+$info:              $blue;
+$warning:           $yellow;
+$danger:            $red;
+
+$alert_bg:          $light_red;
+$notice_bg:         $light_green;
+
+$highlight_colour:  $very_light_blue;
+$light_colour:      $light_blue;
+$dark_colour:       $dark_blue;
+
+$button_text:       $dark_colour;
+$input_border:      $highlight_colour;
+$input_fg:          $near_black;
+$input_bg:          $white;
+$row_highlight:     $white;
+
+
+/* ==================== ( global styles ) ==================== */
+
+body {
+  font-family:      'Poppins', sans-serif;
+  font-size:        11pt;
+  color:            $dark_colour;
+}
+
+
+/* ==================== ( sidebar ) =================== */
+
+.c-sidebar-brand {
+  background:       $white !important;
+  border-bottom:    1px solid $light_grey3;
+}
+
+.c-sidebar-brand img {
+  height:           47px;
+}
+
+nav a.c-sidebar-nav-link:hover {
+  background:       $highlight_colour !important;
+}
+
+nav a.c-sidebar-nav-link.c-active {
+  color:            $highlight_colour !important;
+}
+
+nav a.c-sidebar-nav-link.c-active .c-sidebar-nav-icon {
+  fill:             $highlight_colour !important;
+}
+
+nav a.c-sidebar-nav-link.c-active:hover {
+  color:            $white !important;
+}
+
+nav a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
+  fill:             $white !important;
+}
+
+
+/* ==================== ( header ) ==================== */
+
+header nav#breadcrumbs {
+  font-size:        1.3em;
+}
+
+header nav#breadcrumbs a {
+  color:            $dark_colour;
+}
+
+header nav#breadcrumbs a:hover {
+  color:            $highlight_colour;
+  text-decoration:  none;
+}
+
+header nav#breadcrumbs .active {
+  color:            $dark_grey;
+}
+
+
+/* ==================== ( main content area ) ==================== */
+
+main#main {
+  padding:          2em;
+  min-width:        60%;
+}
+
+main#main p {
+  margin:           0.5em 0 0 0.5em;
+}
+
+.alert {
+  border:            1px solid $grey;
+  font-size:         1.2em;
+  padding:           0.8em;
+}
+
+
+/* ==================== ( index/list pages ) ==================== */
+
+main#main table.list {
+  width:            100%;
+  margin-top:       0;
+  border:           0;
+  border-collapse:  collapse;
+}
+
+main#main table.list tr.showfocus:hover {
+  background:       $row_highlight;
+}
+
+main#main table.list th {
+  color:            $dark_colour;
+  text-align:       left;
+  font-weight:      bold;
+  padding:          0.5em 2em 0.5em 0.5em;
+}
+
+main#main table.list td {
+  line-height:      2em;
+  padding:          0.5em 2em 0.5em 0.5em;
+  border:           0;
+}
+
+main#main table.list td:last-child {
+  padding:          0.5em;
+}
+
+main#main table.list .hidden {
+  color:            $grey;
+}
+
+main#main table.list td.actions {
+  padding:          0.8em 0.3em 0.8em 0;
+  vertical-align:   top;
+  text-align:       right;
+}
+
+main#main table.list td.actions a {
+  color:            $button_text;
+  text-decoration:  none;
+  background:       $input_bg;
+  border:           1px solid $input_border;
+  border-radius:    0.2em;
+  height:           2em;
+  margin:           0.2em;
+  padding:          0.3em 0.5em;
+}
+
+main#main table.list td.actions a:hover {
+  text-decoration:  none;
+  color:            $input_bg;
+  background:       $input_border;
+}
+
+
+/* ==================== ( new/edit pages ) ==================== */
+
+main#main label {
+  color:            $dark_colour;
+  margin-top:       0.5em;
+  margin-left:      1px;
+  margin-bottom:    0;
+  padding-bottom:   0;
+}
+
+main#main input {
+  color:            $input_fg;
+  background:       $input_bg;
+  border:           1px solid $input_border;
+  height:           2em;
+  margin:           0.2em 0.2em 0.2em 0;
+  padding-left:     0.5em;
+}
+
+main#main select {
+  color:            $input_fg;
+  background:       $input_bg;
+  border:           1px solid $input_border;
+  height:           2em;
+  min-width:        10em;
+  margin-bottom:    0.5em;
+  padding-left:     0.2em;
+}
+
+main#main textarea {
+  color:            $input_fg;
+  background:       $input_bg;
+  border:           1px solid $input_border;
+  min-width:        800px;
+  margin-bottom:    0.5em;
+  padding:          0 0.5em;
+}
+
+main#main input[type=text] {
+  width:            20em;
+}
+
+main#main input.textnumber {
+  width:            3em;
+  text-align:       right;
+}
+
+main#main input.textveryshort {
+  width:            5em;
+}
+
+main#main input.textshort {
+  width:            10em;
+}
+
+main#main input.textlong {
+  width:            30em;
+}
+
+main#main input.textverylong {
+  width:            40em;
+}
+
+main#main textarea {
+  width:            40em;
+}
+
+main#main input[type=checkbox] {
+  margin-top:       0;
+}
+
+main#main input[type=button],
+main#main input[type=submit],
+main#main input[type=reset] {
+  color:            $button_text;
+  border-radius:    0.2em;
+}
+
+/* fieldset for bottom-of-page 'add new element' forms */
+main#main fieldset {
+  display:          inline-block;
+  margin:           2em 0 0 0;
+  padding:          0 0.5em 1em 0.5em;
+  border:           1px solid $input_border;
+}
+
+main#main fieldset legend {
+  color:            $dark_colour;
+  margin:           0 0 0 0.5em;
+  font-size:        1.2em;
+  width:            initial;
+}
+
+
+/* ==================== ( footer ) ==================== */
+
+footer a {
+  color:            $dark_colour;
+}
+
+footer a:hover {
+  color:            $light_colour;
+  text-decoration:  none;
+}

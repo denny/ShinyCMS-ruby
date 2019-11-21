@@ -65,4 +65,8 @@ RSpec.configure do |config|
 
   # Load the Devise test helpers
   config.include Devise::Test::IntegrationHelpers, type: :request
+
+  # Allow request specs to use have_* matchers, like so:
+  # expect( response.body ).to have_title 'My Page Title'
+  config.include Capybara::RSpecMatchers, type: :request
 end

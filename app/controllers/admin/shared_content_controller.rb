@@ -1,7 +1,6 @@
 # Admin controller for shared content (globally-reusable text/HTML fragments)
 class Admin::SharedContentController < AdminController
   def index
-    @filenames = SharedContentElement.select_filenames
     elements = SharedContentElement.order( :name )
     @shared_content = SharedContent.new( elements: elements )
   end
@@ -46,7 +45,8 @@ class Admin::SharedContentController < AdminController
   private
 
   def new_element_params
-    params.require( :new_element ).permit( :name, :content, :content_type )
+    params.require( :shared_content_element )
+          .permit( :name, :content, :content_type )
   end
 
   def shared_content_params

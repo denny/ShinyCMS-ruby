@@ -33,6 +33,18 @@ module ShinyCMS
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    # Support for themes on main (user-facing) site
+    config.theme_name = 'shinycms'
+    theme_name = ENV['SHINYCMS_THEME'] || 'shinycms'
+    path_parts = %W[ app views themes #{theme_name} ]
+    theme_dir = Rails.root.join( *path_parts )
+    if File.directory? theme_dir
+      layout_file = Rails.root.join(
+        *path_parts, 'layouts', "#{theme_name}.html.erb"
+      )
+      config.theme_name = theme_name if File.file? layout_file
+    end
+
     # Remove routes for Active Storage
     initializer(
       :remove_activestorage_routes, after: :add_routing_paths

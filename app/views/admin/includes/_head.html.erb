@@ -1,12 +1,19 @@
-<title>
-  <%= "#{@page_title.titlecase} - " if @page_title %>ShinyCMS
-</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<%= csrf_meta_tags   %>
-<%= csp_meta_tag     %>
-<%= favicon_link_tag %>
+    <title>
+      <%= "#{@page_title.titlecase} - " if @page_title %>ShinyCMS
+    </title>
 
-<%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Poppins&display=swap' %>
-<%= stylesheet_link_tag 'admin/admin_area', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-<%= javascript_include_tag Ckeditor.cdn_url %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag   %>
+
+    <%= favicon_link_tag %>
+
+    <%= stylesheet_link_tag 'https://unpkg.com/@coreui/coreui@3.0.0-beta.1/dist/css/coreui.min.css' %>
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Poppins&display=swap'          %>
+    <%= stylesheet_link_tag 'shinycms/admin_area', media: 'all', 'data-turbolinks-track': 'reload'  %>
+
+    <% if action_name == 'edit' || controller_name == 'shared_content' %>
+    <%= javascript_include_tag Ckeditor.cdn_url %>
+    <% end %>

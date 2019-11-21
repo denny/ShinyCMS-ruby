@@ -1,0 +1,15 @@
+<% item_id = text.parameterize %>
+<a name="<%= item_id %>"></a>
+<li class="c-sidebar-nav-item">
+  <a class="c-sidebar-nav-link" href="<%= link %>">
+    <svg class="c-sidebar-nav-icon">
+      <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-<%= icon %>"></use>
+    </svg>
+    <%= text %>
+    <% badge ||= false %>
+    <% if badge %>
+    <% badge_style ||= 'info' %>
+    <span class="badge badge-<%= badge_style %>"><%= badge %></span>
+    <% end %>
+  </a>
+</li>

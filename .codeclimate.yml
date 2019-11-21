@@ -1,0 +1,17 @@
+# Exclude auto-generated and unaltered/minimally altered Rails files from code
+# quality and maintainability analysis. Along with various upstream projects.
+exclude_patterns:
+- "app/javascript/halcyonic/"
+- "bin/"
+- "config/"
+- "db/schema.rb"
+- "db/migrate/"
+- "Gemfile.lock"
+- "log/"
+- "node_modules/"
+- "public/assets/"
+- "public/packs/"
+- "public/packs-test/"
+- "spec/"
+- "tmp/"
+- "vendor/"

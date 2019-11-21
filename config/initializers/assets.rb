@@ -4,16 +4,16 @@
 Rails.application.config.assets.version = '1.0'
 
 # Add additional assets to the asset load path.
-# Rails.application.config.assets.paths << Emoji.images_path
-# Add Yarn node_modules folder to the asset load path.
-Rails.application.config.assets.paths << Rails.root.join('node_modules')
+# Yarn node_modules folder
+Rails.application.config.assets.paths << Rails.root.join( 'node_modules' )
 
-# Precompile additional assets.
-# application.js, application.css, and all non-JS/CSS in the app/assets
-# folder are already added.
-# Rails.application.config.assets.precompile += %w( admin.js admin.css )
+# Precompile stylesheets for ShinyCMS admin area, and the admin toolbar
 Rails.application.config.assets.precompile += %w[
-  main_site.css
-  admin/admin_area.scss
-  ckeditor/config.js
+  shinycms/admin_toolbar.scss
+  shinycms/admin_area.scss
 ]
+
+# Assets for the main site theme (default/unstyled theme is 'shinycms')
+theme = Rails.application.config.theme_name
+Rails.application.config.assets.paths << Rails.root.join( theme, 'images' )
+Rails.application.config.assets.precompile += %W[ #{theme}/index.css ]
