@@ -1,0 +1,20 @@
+<tr class="showfocus">
+  <td>
+    <%= fields.label content, name %><br>
+    <% if content_type == t( 'admin.elements.short_text' ) %>
+    <%= fields.text_field content %>
+    <% elsif content_type == t( 'admin.elements.long_text' ) %>
+    <%= fields.text_area content %>
+    <% elsif content_type == t( 'admin.elements.image' ) %>
+    <%= fields.select content, select_filenames %>
+    <% elsif content_type == t( 'admin.elements.html' ) %>
+    <%= fields.cktext_area content %>
+    <% else %>
+    [ UNKNOWN ELEMENT TYPE IN SHARED CONTENT ]
+    <% end %>
+  </td>
+  <td class="actions">
+    <%= link_to t( 'admin.delete' ), admin_shared_content_delete_path( fields.object ),
+        method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+  </td>
+</tr>
