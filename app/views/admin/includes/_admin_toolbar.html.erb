@@ -8,21 +8,21 @@
     <% if @page %>
     <%= link_to t( 'edit' ), admin_page_path( @page ) %> /
     <% end %>
-    <%= link_to t( 'list'  ), admin_pages_path %>
+    <%= link_to t( 'list' ), admin_pages_path %>
     |
     Section:
     <%= link_to t( 'add' ), admin_pages_section_new_path %> /
     <% if @page&.section %>
     <%= link_to t( 'edit' ), admin_pages_section_path( @page.section ) %> /
     <% end %>
-    <%= link_to t( 'list'  ), admin_pages_path %>
+    <%= link_to t( 'list' ), admin_pages_path %>
     |
     Template:
     <%= link_to t( 'add'  ), admin_pages_template_new_path %> /
     <% if @page %>
     <%= link_to t( 'edit' ), admin_pages_template_path( @page.template ) %> /
     <% end %>
-    <%= link_to t( 'list'  ), admin_pages_templates_path %>
+    <%= link_to t( 'list' ), admin_pages_templates_path %>
     |
 
     <% elsif controller_name == 'users' %>
@@ -31,7 +31,7 @@
     <% if @user %>
     <%#= link_to t( 'edit' ), admin_user_edit_path( @user ) %> /
     <% end %>
-    <%#= link_to t( 'list'  ), admin_users_path %>
+    <%#= link_to t( 'list' ), admin_users_path %>
     |
 
     <% end %>
