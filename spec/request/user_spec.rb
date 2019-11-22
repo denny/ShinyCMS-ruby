@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'User', type: :request do
+  before :each do
+    Setting.find_or_create_by!(
+      name: I18n.t( 'settings.allow_user_logins' )
+    ).update!( value: 'Yes' )
+  end
+
   describe 'GET /user/:username' do
     it "renders the user's profile page" do
       user = create :user
@@ -14,14 +20,10 @@ RSpec.describe 'User', type: :request do
 
   describe 'GET /login' do
     it 'renders the user login page if user logins are enabled' do
-      Setting.find_or_create_by!(
-        name: I18n.t( 'settings.allow_user_logins' )
-      ).update!( value: 'Yes' )
-
       get user_login_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include 'Log in'
+      expect( response.body ).to have_button I18n.t( 'users.log_in' )
     end
 
     it 'redirects to the site homepage if user logins are not enabled' do
@@ -38,7 +40,7 @@ RSpec.describe 'User', type: :request do
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.logins_not_enabled' )
-      expect( response.body ).not_to include 'Login'
+      expect( response.body ).not_to have_button I18n.t( 'users.log_in' )
     end
 
     it 'defaults to assuming that user logins are not enabled' do
@@ -53,39 +55,31 @@ RSpec.describe 'User', type: :request do
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.logins_not_enabled' )
-      expect( response.body ).not_to include 'Login'
+      expect( response.body ).not_to have_button I18n.t( 'users.log_in' )
     end
   end
 
   describe 'GET /users' do
     it 'redirects to the user login page if user logins are enabled' do
-      Setting.find_or_create_by!(
-        name: I18n.t( 'settings.allow_user_logins' )
-      ).update!( value: 'Yes' )
-
       get '/users'
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to user_login_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include 'Log in'
+      expect( response.body ).to have_button I18n.t( 'users.log_in' )
     end
   end
 
   describe 'GET /user' do
     it 'redirects to the user login page if user logins are enabled' do
-      Setting.find_or_create_by!(
-        name: I18n.t( 'settings.allow_user_logins' )
-      ).update!( value: 'Yes' )
-
       get '/user'
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to user_login_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include 'Log in'
+      expect( response.body ).to have_button I18n.t( 'users.log_in' )
     end
 
     it "redirects to the user's profile page when user is already logged in" do
@@ -104,6 +98,7 @@ RSpec.describe 'User', type: :request do
 
   describe 'POST /user/login' do
     it 'logs the user in using their email address' do
+      create :page
       password = 'shinycms unimaginative test passphrase'
       user = create :user, password: password
 
@@ -116,8 +111,8 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to redirect_to user_profile_path( user )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include "<a href=\"/user/#{user.username}\""
-      expect( response.body ).to include '<a href="/logout">log out</a>'
+      expect( response.body ).to have_link user.username, href: "/user/#{user.username}"
+      expect( response.body ).to have_link I18n.t( 'users.log_out' ).downcase
     end
 
     it 'logs the user in using their username' do
@@ -133,8 +128,8 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to redirect_to user_profile_path( user )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include "<a href=\"/user/#{user.username}\""
-      expect( response.body ).to include '<a href="/logout">log out</a>'
+      expect( response.body ).to have_link user.username, href: "/user/#{user.username}"
+      expect( response.body ).to have_link I18n.t( 'users.log_out' ).downcase
     end
   end
 
