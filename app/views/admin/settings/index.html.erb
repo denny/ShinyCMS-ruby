@@ -14,14 +14,14 @@
       <%= text_field :settings, "setting_description_#{s.id}", value: s.description, class: 'textlong' %>
     </td>
 		<td class="actions">
-      <%= link_to t( 'admin.delete' ), admin_setting_delete_path( s ),
+      <%= link_to t( 'delete' ), admin_setting_delete_path( s ),
           method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
 		</td>
 	</tr>
   <% end  # settings %>
 </table>
 <p>
-  <%= submit_tag t( 'admin.update' ) %>
+  <%= submit_tag t( 'update' ) %>
 </p>
 <% end  # form %>
 
@@ -36,7 +36,7 @@
       <%= f2.text_field :description, placeholder: t( 'admin.settings.description_placeholder' ), class: 'textlong'  %>
     </p>
     <p>
-      <%= f2.submit t( 'admin.add' ) %>
+      <%= f2.submit t( 'add' ) %>
     </p>
   </fieldset>
 <% end %>

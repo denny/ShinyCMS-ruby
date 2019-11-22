@@ -13,4 +13,9 @@ module ElementsHelper
     filenames = Dir.glob '*?.?*', base: path
     filenames.sort
   end
+
+  # Return true if the page we're on might need a WYSIWYG HTML editor
+  def html_editor_needed?
+    return true if action_name == 'edit' || controller_name == 'shared_content'
+  end
 end

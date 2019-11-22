@@ -38,6 +38,6 @@
     <%= render partial: 'admin/pages/page_element', locals: { fields: fields, content: :content, name: @page.elements[fields.index].name, content_type: @page.elements[fields.index].content_type, filenames: select_filenames } %>
   <% end %>
   <p>
-    <%= submit_tag t( 'admin.update' ) %>
+    <%= submit_tag t( 'update' ) %>
   </p>
 <% end %>
