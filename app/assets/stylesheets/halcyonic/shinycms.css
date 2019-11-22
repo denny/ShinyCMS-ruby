@@ -18,6 +18,24 @@
   display:            inline;
 }
 
+#header #alerts {
+  color:              #111111;
+  background:         #ffdddd;
+  padding:            0.5em;
+  margin:             0.5em !important;
+  border-radius:      3px;
+  text-shadow:        none;
+}
+
+#header #notices {
+  color:              #111111;
+  background:         #ddffdd;
+  padding:            0.5em;
+  margin:             0.5em !important;
+  border-radius:      3px;
+  text-shadow:        none;
+}
+
 div#banner p a {
   text-decoration:    none;
   color:              #aaeeff;
