@@ -112,7 +112,7 @@ RSpec.describe 'User', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_link user.username, href: "/user/#{user.username}"
-      expect( response.body ).to have_link I18n.t( 'users.log_out' )
+      expect( response.body ).to have_link I18n.t( 'users.log_out' ).downcase
     end
 
     it 'logs the user in using their username' do
@@ -129,7 +129,7 @@ RSpec.describe 'User', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_link user.username, href: "/user/#{user.username}"
-      expect( response.body ).to have_link I18n.t( 'users.log_out' )
+      expect( response.body ).to have_link I18n.t( 'users.log_out' ).downcase
     end
   end
 
