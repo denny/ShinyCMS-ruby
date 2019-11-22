@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
       # :nocov:
     end
 
-    user_profile_path( resource )
+    user_profile_path( resource.username )
   end
 
   protected

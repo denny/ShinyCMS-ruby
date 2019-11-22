@@ -74,6 +74,14 @@ Rails.application.routes.draw do
       post   'settings',           to: 'settings#update'
       post   'setting/create',     to: 'settings#create', as: :setting_create
       delete 'setting/delete/:id', to: 'settings#delete', as: :setting_delete
+
+      # Users
+      get    'users',    to: 'users#index'
+      get    'user/new', to: 'users#new'
+      post   'user/new', to: 'users#create'
+      get    'user/:id', to: 'users#edit',   as: :user
+      post   'user/:id', to: 'users#update'
+      delete 'user/:id', to: 'users#delete', as: :user_delete
     end
 
     # The Ultimate Catch-All Route - passes through to page handler

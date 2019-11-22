@@ -2,7 +2,7 @@
 class UsersController < Devise::RegistrationsController
   def index
     if user_signed_in?
-      redirect_to user_profile_path( current_user )
+      redirect_to user_profile_path( current_user.username )
     else
       redirect_to user_login_path
     end
