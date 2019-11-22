@@ -7,8 +7,8 @@
 			<%= template.name %>
 		</td>
 		<td class="actions">
-			<%= link_to t( 'admin.edit' ), url_for( admin_pages_template_path( template ) ) %>
-      <%= link_to t( 'admin.delete' ), admin_pages_template_delete_path( template ),
+			<%= link_to t( 'edit' ), url_for( admin_pages_template_path( template ) ) %>
+      <%= link_to t( 'delete' ), admin_pages_template_delete_path( template ),
           method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
 		</td>
 	</tr>

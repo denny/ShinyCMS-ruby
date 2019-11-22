@@ -1,57 +1,13 @@
-<% if flash[ :notice ] %>
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <%= flash[ :notice ] %>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<% end %>
+<%= render partial: 'admin/includes/message', locals: { message_type: 'danger',  message: flash[ :alert  ] } if flash[ :alert  ] %>
+<%= render partial: 'admin/includes/message', locals: { message_type: 'success', message: flash[ :notice ] } if flash[ :notice ] %>
 
-<% if flash[ :alert ] %>
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <%= flash[ :alert ] %>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<% end %>
+<%= render partial: 'admin/includes/message', locals: { message_type: 'danger',  message: flash[ :alert_danger  ] } if flash[ :alert_danger  ] %>
+<%= render partial: 'admin/includes/message', locals: { message_type: 'warning', message: flash[ :alert_warning ] } if flash[ :alert_warning ] %>
+<%= render partial: 'admin/includes/message', locals: { message_type: 'success', message: flash[ :alert_success ] } if flash[ :alert_success ] %>
+<%= render partial: 'admin/includes/message', locals: { message_type: 'info',    message: flash[ :alert_info    ] } if flash[ :alert_info    ] %>
 
-<% if flash[ :alert_warning ] %>
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <%= flash[ :alert_warning ] %>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<% end %>
+<%= render partial: 'admin/includes/message', locals: { message_type: 'light',   message: flash[ :alert_light   ] } if flash[ :alert_light   ] %>
+<%= render partial: 'admin/includes/message', locals: { message_type: 'dark',    message: flash[ :alert_dark    ] } if flash[ :alert_dark    ] %>
 
-<% if flash[ :alert_info ] %>
-<div class="alert alert-info alert-dismissible fade show" role="alert">
-  <%= flash[ :alert_info ] %>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<% end %>
-
-<% if flash[ :alert_primary ] %>
-<div class="alert alert-primary" role="alert">
-  <%= flash[ :alert_primary ] %>
-</div>
-<% end %>
-<% if flash[ :alert_secondary ] %>
-<div class="alert alert-secondary" role="alert">
-  <%= flash[ :alert_secondary ] %>
-</div>
-<% end %>
-
-<% if flash[ :alert_light ] %>
-<div class="alert alert-light" role="alert">
-  <%= flash[ :alert_light ] %>
-</div>
-<% end %>
-<% if flash[ :alert_dark ] %>
-<div class="alert alert-dark" role="alert">
-  <%= flash[ :alert_dark ] %>
-</div>
-<% end %>
+<%= render partial: 'admin/includes/message', locals: { message_type: 'primary',   message: flash[ :alert_primary   ] } if flash[ :alert_primary   ] %>
+<%= render partial: 'admin/includes/message', locals: { message_type: 'secondary', message: flash[ :alert_secondary ] } if flash[ :alert_secondary ] %>

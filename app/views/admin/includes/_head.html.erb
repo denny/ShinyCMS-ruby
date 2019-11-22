@@ -14,6 +14,4 @@
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Poppins&display=swap'          %>
     <%= stylesheet_link_tag 'shinycms/admin_area', media: 'all', 'data-turbolinks-track': 'reload'  %>
 
-    <% if action_name == 'edit' || controller_name == 'shared_content' %>
-    <%= javascript_include_tag Ckeditor.cdn_url %>
-    <% end %>
+    <%= javascript_include_tag Ckeditor.cdn_url if html_editor_needed? %>
