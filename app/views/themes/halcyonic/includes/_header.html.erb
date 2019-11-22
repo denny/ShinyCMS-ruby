@@ -12,6 +12,6 @@
             </div>
           </div>
           <%= render partial: 'includes/messages' %>
-        <% unless @viewing_homepage %>
+        <% unless @page&.default_page? %>
         </section>
         <% end %>

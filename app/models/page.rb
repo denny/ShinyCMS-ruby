@@ -43,6 +43,11 @@ class Page < ApplicationRecord
     hash
   end
 
+  # Return true if this page is the default page
+  def default_page?
+    return true if self == Page.default_page
+  end
+
   # Class methods
 
   def self.top_level_pages
