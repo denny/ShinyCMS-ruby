@@ -2,41 +2,30 @@
 /config/master.key
 /config/credentials.yml.enc
 
-*.gem
-*.rbc
-/.config
-/coverage/
-/InstalledFiles
-/pkg/
-/spec/reports/
-/spec/examples.txt
-/test/tmp/
-/test/version_tmp/
-/tmp/
-
-## Documentation cache and generated files:
-/.yardoc/
-/_yardoc/
-/doc/
-/rdoc/
-
-## Environment normalization:
-/.bundle/
-/vendor/bundle
-/lib/bundler/man/
-
-# Used by dotenv library to load environment variables.
-.env
-
-# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
-.rvmrc
-
-# Ignore log files
-/log/*.log
-
+# Sprockets/Webpacker
+/public/assets
 /public/packs
 /public/packs-test
+
+# Test output
+/coverage/
+/spec/reports/
+/spec/examples.txt
+
+# Log files
+/log/*.log
+
+# JavaScript droppings
 /node_modules
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+# Cache and other gank
+/tmp/
+
+# Used by dotenv library to load environment variables.
+.env
+
+# Unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+.rvmrc
