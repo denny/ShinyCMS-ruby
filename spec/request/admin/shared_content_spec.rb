@@ -127,7 +127,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
     end
 
     it "doesn't update settings if they weren't changed" do
-      skip 'OH NOES PLEASE FIX ME'
+      skip "Need to re-implement 'content not changed' detection in the new update code"
 
       create :shared_content_element
       s2 = create :shared_content_element
