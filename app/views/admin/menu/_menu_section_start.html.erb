@@ -1,6 +1,7 @@
 <% section_id = text.parameterize %>
+<% expand = cookies[section_id] ? ' c-show' : '' %>
 <a name="<%= section_id %>"></a>
-<li class="c-sidebar-nav-item c-sidebar-nav-dropdown" id="<%= section_id %>">
+<li class="c-sidebar-nav-item c-sidebar-nav-dropdown<%= expand %>" id="<%= section_id %>">
   <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#<%= section_id %>">
     <% icon ||= false %>
     <% if icon %>
