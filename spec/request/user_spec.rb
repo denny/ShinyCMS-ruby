@@ -11,7 +11,7 @@ RSpec.describe 'User', type: :request do
     it "renders the user's profile page" do
       user = create :user
 
-      get user_profile_path( user )
+      get user_profile_path( user.username )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include user.username
@@ -89,7 +89,7 @@ RSpec.describe 'User', type: :request do
       get '/user'
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_profile_path( user )
+      expect( response      ).to redirect_to user_profile_path( user.username )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include user.username
@@ -108,7 +108,7 @@ RSpec.describe 'User', type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_profile_path( user )
+      expect( response      ).to redirect_to user_profile_path( user.username )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_link user.username, href: "/user/#{user.username}"
@@ -125,7 +125,7 @@ RSpec.describe 'User', type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_profile_path( user )
+      expect( response      ).to redirect_to user_profile_path( user.username )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_link user.username, href: "/user/#{user.username}"

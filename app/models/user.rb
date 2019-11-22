@@ -25,10 +25,6 @@ class User < ApplicationRecord
     @login || username || email
   end
 
-  def to_param
-    username
-  end
-
   # Queue email sends
   def send_devise_notification( notification, *args )
     # :nocov:
