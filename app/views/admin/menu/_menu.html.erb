@@ -22,3 +22,6 @@
   <%= render partial: 'admin/menu/menu_item', locals:
       { text: 'Settings', link: admin_settings_path, icon: 'settings' } %>
 </ul>
+<script>
+  persist_menu_state();
+</script>
