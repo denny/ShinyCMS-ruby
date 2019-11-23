@@ -9,6 +9,12 @@
   <%= a_heading %>
 </h2>
 
+<% if @page.default_page? %>
+<p>
+  You are currently viewing the default page for this site.
+</p>
+<% end %>
+
 <%= simple_format some_text %>
 
 <%= sanitize html_text %>
