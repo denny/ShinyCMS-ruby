@@ -23,11 +23,7 @@ class Admin::SharedContentController < AdminController
     @shared_content = SharedContent.new( elements: elements )
     @shared_content.elements_attributes = shared_content_params
 
-    flash[ :notice ] = if @shared_content.valid?
-                         I18n.t 'admin.shared_content.shared_content_updated'
-                       else
-                         I18n.t 'admin.shared_content.shared_content_unchanged'
-                       end
+    flash[ :notice ] = I18n.t 'admin.shared_content.shared_content_updated'
     redirect_to admin_shared_content_path
   end
 

@@ -125,27 +125,5 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       expect( response.body ).not_to include 'Original content'
       expect( response.body ).to     include 'Updated content'
     end
-
-    it "doesn't update settings if they weren't changed" do
-      skip "Need to re-implement 'content not changed' detection in the new update code"
-
-      create :shared_content_element
-      s2 = create :shared_content_element
-      create :shared_content_element
-
-      post admin_shared_content_path, params: {
-        "shared_content[elements_attributes][1][id]": s2.id,
-        "shared_content[elements_attributes][1][content]": s2.content,
-        "shared_content[elements_attributes][1][content_type]": s2.content_type
-      }
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_shared_content_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.shared_content.shared_content' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.shared_content.shared_content_unchanged' )
-      expect( response.body ).to include s2.content
-    end
   end
 end
