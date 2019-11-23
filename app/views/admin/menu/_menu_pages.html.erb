@@ -1,0 +1,13 @@
+  <%= render partial: 'admin/menu/menu__section_start', locals:
+      { text: 'Pages', link: '#', icon: 'list-rich' } %>
+      <%= render partial: 'admin/menu/menu__item', locals:
+          { text: 'List pages', link: admin_pages_path, icon: 'list-rich' } %>
+      <%= render partial: 'admin/menu/menu__item', locals:
+          { text: 'Add new page', link: admin_page_new_path, icon: 'playlist-add' } %>
+      <%= render partial: 'admin/menu/menu__item', locals:
+          { text: 'Add new section', link: admin_pages_section_new_path, icon: 'playlist-add' } %>
+      <%= render partial: 'admin/menu/menu__item', locals:
+          { text: 'List templates', link: admin_pages_templates_path, icon: 'library' } %>
+      <%= render partial: 'admin/menu/menu__item', locals:
+          { text: 'Add new template', link: admin_pages_template_new_path, icon: 'library-add' } %>
+  <%= render partial: 'admin/menu/menu__section_end' %>
