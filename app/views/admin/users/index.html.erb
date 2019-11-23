@@ -1,0 +1,17 @@
+<% @page_title = t( 'admin.users.list_users' ) %>
+
+<table class="list">
+  <% @users.each do |user| %>
+	<tr class="showfocus">
+    <td>
+			<%= user.username %>
+		</td>
+		<td class="actions">
+      <%= link_to t( 'view' ), user_profile_path( user.username ) %>
+      <%= link_to t( 'edit' ), admin_user_path( user ) %>
+      <%= link_to t( 'delete' ), admin_user_delete_path( user ),
+          method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+		</td>
+	</tr>
+  <% end %>
+</table>
