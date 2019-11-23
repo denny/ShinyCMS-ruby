@@ -1,0 +1,7 @@
+  <%= render partial: 'admin/menu/menu__section_start', locals:
+      { text: 'Users', link: '#', icon: 'people' } %>
+      <%= render partial: 'admin/menu/menu__item', locals:
+          { text: 'List users', link: admin_users_path, icon: 'people' } %>
+      <%= render partial: 'admin/menu/menu__item', locals:
+          { text: 'Add new user', link: admin_user_new_path, icon: 'user-follow' } %>
+  <%= render partial: 'admin/menu/menu__section_end' %>
