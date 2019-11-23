@@ -111,3 +111,15 @@ en:
       shared_content_update_failed: Failed to update shared content
       shared_content_deleted: Specified shared content deleted
       shared_content_delete_failed: Failed to delete specified shared content
+
+    users:
+      list_users: List users
+      top_level_users: Top-level users
+      new_user: Add new user
+      edit_user: Edit user
+      user_created: New user added
+      user_create_failed: Failed to add new user
+      user_updated: user details updated
+      user_update_failed: Failed to update user details
+      user_deleted: user deleted
+      user_delete_failed: Failed to delete user
