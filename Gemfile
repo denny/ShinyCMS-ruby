@@ -32,6 +32,9 @@ source 'https://rubygems.org' do
   # WYSIWYG editor for admin area
   gem 'ckeditor'
 
+  # Pagination
+  gem 'kaminari'
+
   group :development, :test do
     gem 'awesome_print'
     gem 'bundler-audit', require: false

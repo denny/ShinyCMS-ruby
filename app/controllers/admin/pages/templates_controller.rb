@@ -2,7 +2,8 @@
 class Admin::Pages::TemplatesController < AdminController
   # List all templates
   def index
-    @templates = PageTemplate.all
+    page_num = params[ :page ] || 1
+    @templates = PageTemplate.order( :name ).page( page_num )
   end
 
   def new; end

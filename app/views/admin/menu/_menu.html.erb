@@ -13,6 +13,7 @@
   <%= render partial: 'admin/menu/menu__item', locals:
       { text: 'Settings', link: admin_settings_path, icon: 'settings' } %>
 </ul>
+
 <script>
-  persist_menu_state();
+  window.attachEvent( 'onload', persist_menu_state() );
 </script>

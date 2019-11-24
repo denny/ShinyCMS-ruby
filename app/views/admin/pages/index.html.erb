@@ -1,6 +1,17 @@
 <% @page_title = t( 'admin.pages.list_pages' ) %>
 
-<table class="list">
+<% if @tl_pages.present? || @tl_sections.present? %>
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Page / Section
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
   <% if @tl_pages.any? %>
   <tr>
 		<th colspan="2">
@@ -34,3 +45,9 @@
     } %>
 	<% end %>
 </table>
+
+<% else %>
+<p>
+  There are currently no pages or sections to display.
+</p>
+<% end %>

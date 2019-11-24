@@ -1,6 +1,20 @@
 <% @page_title = t( 'admin.users.list_users' ) %>
 
-<table class="list">
+<% if @users.present? %>
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Username
+      </th>
+      <th>
+        Email
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
   <% @users.each do |user| %>
 	<tr class="showfocus">
     <td>
@@ -18,3 +32,14 @@
 	</tr>
   <% end %>
 </table>
+
+<%= paginate @users, window: 3, views_prefix: 'admin' %>
+<p id="pager-info">
+  <%= page_entries_info @users %>
+</p>
+
+<% else %>
+<p>
+  There are currently no users to display.
+</p>
+<% end %>

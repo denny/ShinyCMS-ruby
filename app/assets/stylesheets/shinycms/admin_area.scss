@@ -13,6 +13,7 @@
 /* ==================== ( colours ) ==================== */
 
 $very_light_blue:   #63c2de;
+$lighter_blue:      #5da8b7;
 $light_blue:        #3399ff;
 $blue:              #20a8d8;
 $dark_blue:         #0e5c75;
@@ -55,12 +56,13 @@ $alert_bg:          $light_red;
 $notice_bg:         $light_green;
 
 $highlight_colour:  $very_light_blue;
+$lighter_colour:    $lighter_blue;
 $light_colour:      $light_blue;
 $dark_colour:       $dark_blue;
 
 $button_text:       $dark_colour;
-$input_border:      $highlight_colour;
-$input_fg:          $near_black;
+$input_border:      $lighter_colour;
+$input_fg:          $dark_grey;
 $input_bg:          $white;
 $row_highlight:     $white;
 
@@ -68,13 +70,17 @@ $row_highlight:     $white;
 /* ==================== ( global styles ) ==================== */
 
 body {
-  font-family:      'Poppins', sans-serif;
+  font-family:      'Roboto', sans-serif;
   font-size:        11pt;
   color:            $dark_colour;
 }
 
 
 /* ==================== ( sidebar ) =================== */
+
+.c-sidebar {
+  width:            14em;
+}
 
 .c-sidebar-brand {
   background:       $white !important;
@@ -85,30 +91,49 @@ body {
   height:           47px;
 }
 
-nav a.c-sidebar-nav-link:hover {
+nav#menu a.c-sidebar-nav-link {
+  padding:          0.8em;
+  color:            $white;
+}
+
+nav#menu a.c-sidebar-nav-link:hover {
   background:       $highlight_colour !important;
 }
 
-nav a.c-sidebar-nav-link.c-active {
+nav#menu a.c-sidebar-nav-link.c-active {
   color:            $highlight_colour !important;
 }
 
-nav a.c-sidebar-nav-link.c-active .c-sidebar-nav-icon {
+nav#menu a.c-sidebar-nav-link.c-active .c-sidebar-nav-icon {
   fill:             $highlight_colour !important;
 }
 
-nav a.c-sidebar-nav-link.c-active:hover {
+nav#menu a.c-sidebar-nav-link.c-active:hover {
   color:            $white !important;
 }
 
-nav a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
+nav#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
   fill:             $white !important;
+}
+
+.c-sidebar-footer {
+  height:           48px;
+}
+
+.c-sidebar-footer a {
+  color:            $light_colour;
+}
+
+.c-sidebar-footer a:hover {
+  color:            $white;
+  align-items:      center;
 }
 
 
 /* ==================== ( header ) ==================== */
 
 header nav#breadcrumbs {
+  font-family:      'Roboto Condensed', sans-serif;
   font-size:        1.3em;
 }
 
@@ -128,8 +153,12 @@ header nav#breadcrumbs .active {
 
 /* ==================== ( main content area ) ==================== */
 
+.c-wrapper {
+  margin-left:      14em !important;
+}
+
 main#main {
-  padding:          2em;
+  padding:          1em 2em;
   min-width:        60%;
 }
 
@@ -138,67 +167,67 @@ main#main p {
 }
 
 .alert {
+  color:             $dark_grey;
   border:            1px solid $grey;
-  font-size:         1.2em;
-  padding:           0.8em;
+  font-size:         1.1em;
+  padding:           0.5em 1em;
 }
 
 
 /* ==================== ( index/list pages ) ==================== */
 
-main#main table.list {
-  width:            100%;
-  margin-top:       0;
-  border:           0;
-  border-collapse:  collapse;
-}
-
-main#main table.list tr.showfocus:hover {
-  background:       $row_highlight;
-}
-
-main#main table.list th {
+main#main table.table-striped {
   color:            $dark_colour;
-  text-align:       left;
-  font-weight:      bold;
-  padding:          0.5em 2em 0.5em 0.5em;
 }
 
-main#main table.list td {
-  line-height:      2em;
-  padding:          0.5em 2em 0.5em 0.5em;
-  border:           0;
+main#main table.table-striped th {
+  border-top:       none;
 }
 
-main#main table.list td:last-child {
-  padding:          0.5em;
-}
-
-main#main table.list .hidden {
+main#main table .hidden {
   color:            $grey;
 }
 
-main#main table.list td.actions {
-  padding:          0.8em 0.3em 0.8em 0;
-  vertical-align:   top;
+main#main table td.actions {
   text-align:       right;
+  vertical-align:   middle;
 }
 
-main#main table.list td.actions a {
+main#main table td.actions a {
   color:            $button_text;
   text-decoration:  none;
   background:       $input_bg;
   border:           1px solid $input_border;
   border-radius:    0.2em;
   height:           2em;
-  margin:           0.2em;
   padding:          0.3em 0.5em;
 }
 
-main#main table.list td.actions a:hover {
+main#main table td.actions a:hover {
   text-decoration:  none;
   color:            $input_bg;
   background:       $input_border;
+}
+
+main#main #pager {
+  font-size:        0.8em;
+  margin-top:       2em;
+}
+
+main#main #pager .page-link {
+  color:            $dark_colour;
+  background:       none;
+}
+
+main#main #pager .active .page-link {
+  color:            $white;
+  background:       $dark_colour;
+  border-color:     $dark_colour;
+}
+
+main#main #pager-info {
+  text-align:       center;
+  font-size:        0.8em;
 }
 
 
@@ -206,9 +235,7 @@ main#main table.list td.actions a:hover {
 
 main#main label {
   color:            $dark_colour;
-  margin-top:       0.5em;
-  margin-left:      1px;
-  margin-bottom:    0;
+  margin:           0.5em 1px 0.1em 1px;
   padding-bottom:   0;
 }
 
@@ -219,6 +246,7 @@ main#main input {
   height:           2em;
   margin:           0.2em 0.2em 0.2em 0;
   padding-left:     0.5em;
+  line-height:      1.5;
 }
 
 main#main select {
@@ -228,7 +256,7 @@ main#main select {
   height:           2em;
   min-width:        10em;
   margin-bottom:    0.5em;
-  padding-left:     0.2em;
+  padding:          0.3em;
 }
 
 main#main textarea {
@@ -280,23 +308,37 @@ main#main input[type=reset] {
   border-radius:    0.2em;
 }
 
+main#main input[type=button]:hover,
+main#main input[type=submit]:hover,
+main#main input[type=reset]:hover {
+  color:            $input_bg;
+  background:       $input_border;
+}
+
 /* fieldset for bottom-of-page 'add new element' forms */
 main#main fieldset {
   display:          inline-block;
   margin:           2em 0 0 0;
   padding:          0 0.5em 1em 0.5em;
   border:           1px solid $input_border;
+  border-radius:    3px;
 }
 
 main#main fieldset legend {
   color:            $dark_colour;
   margin:           0 0 0 0.5em;
-  font-size:        1.2em;
+  font-size:        1em;
   width:            initial;
 }
 
 
 /* ==================== ( footer ) ==================== */
+
+.c-footer {
+  height:           48px;
+  flex:             0 0 48px;
+  background:       $near_white;
+}
 
 footer a {
   color:            $dark_colour;

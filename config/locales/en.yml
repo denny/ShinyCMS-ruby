@@ -23,9 +23,12 @@ en:
 
   settings:
     admin_ip_list: Admin IP list
-    allow_user_logins: Allow user logins
     default_page: Default page
     default_section: Default section
+    features:
+      users:
+        register: Allow users to register
+        login: Allow users to login
 
 
   # ========== ( Main Site ) ==========
@@ -36,8 +39,9 @@ en:
   users:
     log_in: Log in
     log_out: Log out
-    logins_not_enabled: The user login feature of this site is not currently enabled
     edit_profile: Edit profile
+    registration_off: The user registration feature of this site is not currently enabled
+    login_off: The user login feature of this site is not currently enabled
 
 
   # ========== ( Admin Area ) ==========
@@ -51,6 +55,14 @@ en:
       long_text: Long Text
       image: Image
       html: HTML
+
+    views:
+      pagination:
+        first: "&laquo; First"
+        last: "Last &raquo;"
+        previous: "&lsaquo; Prev"
+        next: "Next &rsaquo;"
+        truncate: "&hellip;"
 
     pages:
       list_pages: List pages
