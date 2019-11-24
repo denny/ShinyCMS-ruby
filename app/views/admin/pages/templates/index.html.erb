@@ -1,6 +1,17 @@
 <% @page_title = t( 'admin.pages.list_templates' ) %>
 
-<table class="list">
+<% if @templates.present? %>
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Template
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
   <% @templates.each do |template| %>
 	<tr class="showfocus">
 		<td>
@@ -14,3 +25,14 @@
 	</tr>
 	<% end %>
 </table>
+
+<%= paginate @templates, window: 3, views_prefix: 'admin' %>
+<p id="pager-info">
+  <%= page_entries_info @templates %>
+</p>
+
+<% else %>
+<p>
+  There are currently no templates to display.
+</p>
+<% end %>

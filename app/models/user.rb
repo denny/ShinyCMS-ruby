@@ -19,6 +19,9 @@ class User < ApplicationRecord
   # Restrict the character set for usernames to letters, numbers, and - . _
   validates :username, format: ANCHORED_USERNAME_REGEX
 
+  # Configure default count-per-page for pagination
+  paginates_per 20
+
   # Virtual attribute to allow authenticating by either username or email
   attr_writer :login
   def login

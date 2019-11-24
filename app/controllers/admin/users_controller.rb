@@ -1,7 +1,8 @@
 # Controller for user administration features
 class Admin::UsersController < AdminController
   def index
-    @users = User.order( :username )
+    page_num = params[ :page ] || 1
+    @users = User.order( :username ).page( page_num )
   end
 
   def new; end
