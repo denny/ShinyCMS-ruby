@@ -23,6 +23,6 @@ class UsersController < Devise::RegistrationsController
   end
 
   def registration_not_enabled
-    redirect_to root_path, alert: I18n.t( 'users.registration_off' )
+    redirect_to root_path, alert: I18n.t( 'users.alerts.registration_off' )
   end
 end
