@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'User', type: :request do
   before :each do
     Setting.find_or_create_by!(
-      name: I18n.t( 'settings.allow_user_logins' )
+      name: I18n.t( 'settings.features.users.login' )
     ).update!( value: 'Yes' )
   end
 
@@ -30,7 +30,7 @@ RSpec.describe 'User', type: :request do
       create :page
 
       Setting.find_or_create_by!(
-        name: I18n.t( 'settings.allow_user_logins' )
+        name: I18n.t( 'settings.features.users.login' )
       ).update!( value: 'No' )
 
       get user_login_path
@@ -39,14 +39,14 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to     redirect_to root_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.logins_not_enabled' )
+      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.alerts.logins_off' )
       expect( response.body ).not_to have_button I18n.t( 'users.log_in' )
     end
 
     it 'defaults to assuming that user logins are not enabled' do
       create :page
 
-      Setting.delete_by( name: I18n.t( 'settings.allow_user_logins' ) )
+      Setting.delete_by( name: I18n.t( 'settings.features.users.login' ) )
 
       get user_login_path
 
@@ -54,7 +54,7 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to     redirect_to root_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.logins_not_enabled' )
+      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.alerts.logins_off' )
       expect( response.body ).not_to have_button I18n.t( 'users.log_in' )
     end
   end
@@ -184,7 +184,7 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to redirect_to edit_user_registration_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '#notices', text: 'Your account has been updated'
+      expect( response.body ).to have_css '#notices', text: I18n.t( 'devise.registrations.updated' )
       expect( response.body ).to include new_name
     end
   end

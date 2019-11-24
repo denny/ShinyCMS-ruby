@@ -7,6 +7,6 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def logins_not_enabled
-    redirect_to root_path, alert: I18n.t( 'users.logins_off' )
+    redirect_to root_path, alert: I18n.t( 'users.alerts.logins_off' )
   end
 end

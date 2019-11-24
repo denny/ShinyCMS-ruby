@@ -40,8 +40,9 @@ en:
     log_in: Log in
     log_out: Log out
     edit_profile: Edit profile
-    registration_off: The user registration feature of this site is not currently enabled
-    login_off: The user login feature of this site is not currently enabled
+    alerts:
+      registration_off: The user registration feature of this site is not currently enabled
+      logins_off: The user login feature of this site is not currently enabled
 
 
   # ========== ( Admin Area ) ==========
