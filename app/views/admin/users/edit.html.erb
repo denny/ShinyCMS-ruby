@@ -1,0 +1,28 @@
+<% @page_title = t( 'admin.users.edit_user' ) %>
+
+<%= form_for @user, url: admin_user_path( @user ), method: :post do |f| %>
+  <p>
+    <%= f.label :username %>
+    <br><%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :display_name %>
+    <br><%= f.text_field :display_name %>
+  </p>
+  <p>
+    <%= f.label :email %>
+    <br><%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :display_email %>
+    <br><%= f.text_field :display_email %>
+  </p>
+  <p>
+    <%= f.label :password %>
+    <br><%= f.text_field :password %>
+  </p>
+
+  <p>
+    <%= submit_tag t( 'update' ) %>
+  </p>
+<% end %>

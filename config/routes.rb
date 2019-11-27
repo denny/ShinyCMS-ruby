@@ -14,18 +14,22 @@ Rails.application.routes.draw do
       get  'user',          to: 'users#index'
       get  'users',         to: 'users#index'
 
-      get  'login',         to: 'users/sessions#new',       as: :user_login
-      get  'logout',        to: 'devise/sessions#destroy',  as: :user_logout
-      post 'users/sign_in', to: 'users/sessions#create'
+      get  'login',         to: 'users/sessions#new',     as: :user_login
+      get  'logout',        to: 'users/sessions#destroy', as: :user_logout
 
-      get  'user/register', to: 'devise/registrations#new', as: :user_register
-      post 'user/register', to: 'devise/registrations#create'
+      get  'user/login',    to: 'users/sessions#new'
+      get  'user/logout',   to: 'users/sessions#destroy'
+
+      get 'user/register', to: 'users/registrations#new', as: :user_registration
+      post 'user/register', to: 'users/registrations#create'
+
+      get  'user/edit',     to: 'users/registrations#edit',   as: :user_edit
+      put  'user/update',   to: 'users/registrations#update', as: :user_update
+
+      get 'user/:username', to: 'users#show', as: :user_profile,
+                            constraints: { username: User::USERNAME_REGEX }
     end
-    devise_for :users, controllers: { registrations: :users }
-    devise_scope :user do
-      get  'user/:username', to: 'users#show', as: :user_profile,
-                             constraints: { username: User::USERNAME_REGEX }
-    end
+    devise_for :user
 
     # ========== ( Admin area ) ==========
     get 'admin', to: 'admin#index'
@@ -35,21 +39,21 @@ Rails.application.routes.draw do
 
     namespace :admin do
       # Pages
-      get    'pages',    to: 'pages#index'
-      get    'page/new', to: 'pages#new'
-      post   'page/new', to: 'pages#create'
-      get    'page/:id', to: 'pages#edit',   as: :page
-      post   'page/:id', to: 'pages#update'
-      delete 'page/:id', to: 'pages#delete', as: :page_delete
+      get    'pages',          to: 'pages#index'
+      get    'page/new',       to: 'pages#new'
+      post   'page/new',       to: 'pages#create'
+      get    'page/:id',       to: 'pages#edit',       as: :page
+      post   'page/:id',       to: 'pages#update'
+      delete 'page/:id',       to: 'pages#delete',     as: :page_delete
 
       namespace :pages do
         # Page sections
-        get    'sections',    to: 'sections#index'
-        get    'section/new', to: 'sections#new'
-        post   'section/new', to: 'sections#create'
-        get    'section/:id', to: 'sections#edit',   as: :section
-        post   'section/:id', to: 'sections#update'
-        delete 'section/:id', to: 'sections#delete', as: :section_delete
+        get    'sections',     to: 'sections#index'
+        get    'section/new',  to: 'sections#new'
+        post   'section/new',  to: 'sections#create'
+        get    'section/:id',  to: 'sections#edit',    as: :section
+        post   'section/:id',  to: 'sections#update'
+        delete 'section/:id',  to: 'sections#delete',  as: :section_delete
 
         # Page templates
         get    'templates',    to: 'templates#index'
@@ -74,6 +78,14 @@ Rails.application.routes.draw do
       post   'settings',           to: 'settings#update'
       post   'setting/create',     to: 'settings#create', as: :setting_create
       delete 'setting/delete/:id', to: 'settings#delete', as: :setting_delete
+
+      # Users
+      get    'users',    to: 'users#index'
+      get    'user/new', to: 'users#new'
+      post   'user/new', to: 'users#create'
+      get    'user/:id', to: 'users#edit',   as: :user
+      post   'user/:id', to: 'users#update'
+      delete 'user/:id', to: 'users#delete', as: :user_delete
     end
 
     # The Ultimate Catch-All Route - passes through to page handler

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'User', type: :request do
   before :each do
     Setting.find_or_create_by!(
-      name: I18n.t( 'settings.allow_user_logins' )
+      name: I18n.t( 'settings.features.users.can_login' )
     ).update!( value: 'Yes' )
   end
 
@@ -11,14 +11,44 @@ RSpec.describe 'User', type: :request do
     it "renders the user's profile page" do
       user = create :user
 
-      get user_profile_path( user )
+      get user_profile_path( user.username )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include user.username
     end
   end
 
-  describe 'GET /login' do
+  describe 'GET /user/register' do
+    it 'renders the user registration page if user registrations are enabled' do
+      Setting.find_or_create_by!(
+        name: I18n.t( 'settings.features.users.can_register' )
+      ).update!( value: 'Yes' )
+
+      get user_registration_path
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_button I18n.t( 'users.register' )
+    end
+
+    it 'redirects to the site homepage if user registrations are not enabled' do
+      create :page
+
+      Setting.find_or_create_by!(
+        name: I18n.t( 'settings.features.users.can_register' )
+      ).update!( value: 'No' )
+
+      get user_registration_path
+
+      expect( response      ).to     have_http_status :found
+      expect( response      ).to     redirect_to root_path
+      follow_redirect!
+      expect( response      ).to     have_http_status :ok
+      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.alerts.no_registration' )
+      expect( response.body ).not_to have_button I18n.t( 'users.register' )
+    end
+  end
+
+  describe 'GET /register' do
     it 'renders the user login page if user logins are enabled' do
       get user_login_path
 
@@ -30,7 +60,7 @@ RSpec.describe 'User', type: :request do
       create :page
 
       Setting.find_or_create_by!(
-        name: I18n.t( 'settings.allow_user_logins' )
+        name: I18n.t( 'settings.features.users.can_login' )
       ).update!( value: 'No' )
 
       get user_login_path
@@ -39,14 +69,14 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to     redirect_to root_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.logins_not_enabled' )
+      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.alerts.no_login' )
       expect( response.body ).not_to have_button I18n.t( 'users.log_in' )
     end
 
     it 'defaults to assuming that user logins are not enabled' do
       create :page
 
-      Setting.delete_by( name: I18n.t( 'settings.allow_user_logins' ) )
+      Setting.delete_by( name: I18n.t( 'settings.features.users.can_login' ) )
 
       get user_login_path
 
@@ -54,7 +84,7 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to     redirect_to root_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.logins_not_enabled' )
+      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.alerts.no_login' )
       expect( response.body ).not_to have_button I18n.t( 'users.log_in' )
     end
   end
@@ -89,7 +119,7 @@ RSpec.describe 'User', type: :request do
       get '/user'
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_profile_path( user )
+      expect( response      ).to redirect_to user_profile_path( user.username )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include user.username
@@ -108,7 +138,7 @@ RSpec.describe 'User', type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_profile_path( user )
+      expect( response      ).to redirect_to user_profile_path( user.username )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_link user.username, href: "/user/#{user.username}"
@@ -125,7 +155,7 @@ RSpec.describe 'User', type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_profile_path( user )
+      expect( response      ).to redirect_to user_profile_path( user.username )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_link user.username, href: "/user/#{user.username}"
@@ -135,6 +165,10 @@ RSpec.describe 'User', type: :request do
 
   describe 'POST /user/register' do
     it 'creates a new user' do
+      Setting.find_or_create_by!(
+        name: I18n.t( 'settings.features.users.can_register' )
+      ).update!( value: 'Yes' )
+
       create :page
 
       username = Faker::Science.unique.element.downcase
@@ -162,29 +196,29 @@ RSpec.describe 'User', type: :request do
       user = create :user
       sign_in user
 
-      get edit_user_registration_path
+      get user_edit_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'Edit User'
     end
   end
 
-  describe 'PUT /user' do
+  describe 'PUT /user/update' do
     it 'updates the user when you submit the edit form' do
       user = create :user
       sign_in user
 
       new_name = Faker::Science.unique.scientist
-      put user_registration_path, params: {
+      put user_update_path, params: {
         'user[display_name]': new_name,
         'user[current_password]': user.password
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to edit_user_registration_path
+      expect( response      ).to redirect_to user_edit_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '#notices', text: 'Your account has been updated'
+      expect( response.body ).to have_css '#notices', text: I18n.t( 'devise.registrations.updated' )
       expect( response.body ).to include new_name
     end
   end

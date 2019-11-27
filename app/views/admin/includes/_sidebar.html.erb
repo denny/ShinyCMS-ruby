@@ -3,6 +3,10 @@
   <%= image_tag 'shinycms/spiral.png',        alt: 'ShinyCMS', class: 'c-sidebar-brand-minimized' %>
 </div>
 
-<nav id="menu" role="nav">
+<nav id="menu" role="nav" class="c-sidebar-nav">
   <%= render partial: 'admin/menu/menu' %>
 </nav>
+
+<footer class="c-sidebar-footer">
+  Powered by <a href="https://shinycms.org/">ShinyCMS</a>
+</footer>

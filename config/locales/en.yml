@@ -23,9 +23,13 @@ en:
 
   settings:
     admin_ip_list: Admin IP list
-    allow_user_logins: Allow user logins
     default_page: Default page
     default_section: Default section
+
+    features:
+      users:
+        can_register: Allow users to register
+        can_login: Allow users to login
 
 
   # ========== ( Main Site ) ==========
@@ -36,8 +40,12 @@ en:
   users:
     log_in: Log in
     log_out: Log out
-    logins_not_enabled: The user login feature of this site is not currently enabled
+    register: Register
     edit_profile: Edit profile
+
+    alerts:
+      no_registration: The user registration feature of this site is not currently enabled
+      no_login: The user login feature of this site is not currently enabled
 
 
   # ========== ( Admin Area ) ==========
@@ -51,6 +59,14 @@ en:
       long_text: Long Text
       image: Image
       html: HTML
+
+    views:
+      pagination:
+        first: "&laquo; First"
+        last: "Last &raquo;"
+        previous: "&lsaquo; Prev"
+        next: "Next &rsaquo;"
+        truncate: "&hellip;"
 
     pages:
       list_pages: List pages
@@ -111,3 +127,15 @@ en:
       shared_content_update_failed: Failed to update shared content
       shared_content_deleted: Specified shared content deleted
       shared_content_delete_failed: Failed to delete specified shared content
+
+    users:
+      list_users: List users
+      top_level_users: Top-level users
+      new_user: Add new user
+      edit_user: Edit user
+      user_created: New user added
+      user_create_failed: Failed to add new user
+      user_updated: user details updated
+      user_update_failed: Failed to update user details
+      user_deleted: user deleted
+      user_delete_failed: Failed to delete user

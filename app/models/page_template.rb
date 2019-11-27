@@ -17,6 +17,9 @@ class PageTemplate < ApplicationRecord
 
   after_create :add_elements
 
+  # Configure default count-per-page for pagination
+  paginates_per 20
+
   # Instance methods
 
   # Check whether the template file is present on disk

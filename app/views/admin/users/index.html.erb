@@ -1,0 +1,45 @@
+<% @page_title = t( 'admin.users.list_users' ) %>
+
+<% if @users.present? %>
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Username
+      </th>
+      <th>
+        Email
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+  <% @users.each do |user| %>
+	<tr class="showfocus">
+    <td>
+			<%= user.username %>
+		</td>
+    <td>
+			<%= user.email %>
+		</td>
+		<td class="actions">
+      <%= link_to t( 'view'   ), user_profile_path( user.username ) %>
+      <%= link_to t( 'edit'   ), admin_user_path( user ) %>
+      <%= link_to t( 'delete' ), admin_user_delete_path( user ),
+          method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+		</td>
+	</tr>
+  <% end %>
+</table>
+
+<%= paginate @users, window: 3, views_prefix: 'admin' %>
+<p id="pager-info">
+  <%= page_entries_info @users %>
+</p>
+
+<% else %>
+<p>
+  There are currently no users to display.
+</p>
+<% end %>
