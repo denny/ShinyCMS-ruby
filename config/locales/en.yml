@@ -25,10 +25,11 @@ en:
     admin_ip_list: Admin IP list
     default_page: Default page
     default_section: Default section
+
     features:
       users:
-        register: Allow users to register
-        login: Allow users to login
+        can_register: Allow users to register
+        can_login: Allow users to login
 
 
   # ========== ( Main Site ) ==========
@@ -39,10 +40,12 @@ en:
   users:
     log_in: Log in
     log_out: Log out
+    register: Register
     edit_profile: Edit profile
+
     alerts:
-      registration_off: The user registration feature of this site is not currently enabled
-      logins_off: The user login feature of this site is not currently enabled
+      no_registration: The user registration feature of this site is not currently enabled
+      no_login: The user login feature of this site is not currently enabled
 
 
   # ========== ( Admin Area ) ==========
