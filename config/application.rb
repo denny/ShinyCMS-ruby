@@ -36,33 +36,6 @@ module ShinyCMS
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    # Support for themes on main (user-facing) site
-    theme_name = ENV['SHINYCMS_THEME']
-    config.theme_name = nil
-    if theme_name.present?
-      path_parts = %W[ app views themes #{theme_name} ]
-      theme_dir = Rails.root.join( *path_parts )
-      if File.directory? theme_dir
-        layout_file = "#{theme_dir}/layouts/#{theme_name}.html.erb"
-        config.theme_name = theme_name if File.file? layout_file
-      end
-    end
-
-    # Fall back to the default theme
-    if config.theme_name.blank?
-      path_parts = %w[ app views themes shinycms ]
-      theme_dir = Rails.root.join( *path_parts )
-      if File.directory? theme_dir
-        layout_file = "#{theme_dir}/layouts/shinycms.html.erb"
-        config.theme_name = 'shinycms' if File.file? layout_file
-      end
-    end
-
-    # b0rk
-    if config.theme_name.blank?
-      raise MissingFileError, "Default 'shinycms' theme is missing"
-    end
-
     # Remove routes for Active Storage
     initializer(
       :remove_activestorage_routes, after: :add_routing_paths
@@ -71,6 +44,7 @@ module ShinyCMS
         path =~ /activestorage/
       end
     end
+
     # Remote routes for Action Mailbox
     initializer(
       :remove_actionmailbox_routes, after: :add_routing_paths
@@ -79,5 +53,21 @@ module ShinyCMS
         path =~ /actionmailbox/
       end
     end
+
+    # Utility method to set the main site theme, after sanity checks
+    def use_theme( theme_name )
+      path_parts = %W[ app views themes #{theme_name} ]
+      theme_dir = Rails.root.join( *path_parts )
+      return unless File.directory? theme_dir
+
+      layout_file = "#{theme_dir}/layouts/#{theme_name}.html.erb"
+      config.theme_name = theme_name if File.file? layout_file
+    end
+
+    config.theme_name = nil
+    use_theme( ENV['SHINYCMS_THEME'] ) if ENV['SHINYCMS_THEME'].present?
+    use_theme( 'shinycms' )            if config.theme_name.nil?
+
+    raise MissingFileError, 'Default theme is missing' if config.theme_name.nil?
   end
 end
