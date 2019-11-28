@@ -23,6 +23,9 @@ require 'active_record/railtie'
 Bundler.require(*Rails.groups)
 
 module ShinyCMS
+  class MissingFileError < StandardError
+  end
+
   # Application Config
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -34,15 +37,30 @@ module ShinyCMS
     # the framework and any gems in your application.
 
     # Support for themes on main (user-facing) site
-    config.theme_name = 'shinycms'
-    theme_name = ENV['SHINYCMS_THEME'] || 'shinycms'
-    path_parts = %W[ app views themes #{theme_name} ]
-    theme_dir = Rails.root.join( *path_parts )
-    if File.directory? theme_dir
-      layout_file = Rails.root.join(
-        *path_parts, 'layouts', "#{theme_name}.html.erb"
-      )
-      config.theme_name = theme_name if File.file? layout_file
+    theme_name = ENV['SHINYCMS_THEME']
+    config.theme_name = nil
+    if theme_name.present?
+      path_parts = %W[ app views themes #{theme_name} ]
+      theme_dir = Rails.root.join( *path_parts )
+      if File.directory? theme_dir
+        layout_file = "#{theme_dir}/layouts/#{theme_name}.html.erb"
+        config.theme_name = theme_name if File.file? layout_file
+      end
+    end
+
+    # Fall back to the default theme
+    if config.theme_name.blank?
+      path_parts = %w[ app views themes shinycms ]
+      theme_dir = Rails.root.join( *path_parts )
+      if File.directory? theme_dir
+        layout_file = "#{theme_dir}/layouts/shinycms.html.erb"
+        config.theme_name = 'shinycms' if File.file? layout_file
+      end
+    end
+
+    # b0rk
+    if config.theme_name.blank?
+      raise MissingFileError, "Default 'shinycms' theme is missing"
     end
 
     # Remove routes for Active Storage

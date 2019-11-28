@@ -1,5 +1,6 @@
 # Base class for main site controllers
 class ApplicationController < ActionController::Base
+  # Use the layout from the theme that was set in /config/application.rb
   theme_name = Rails.application.config.theme_name
   layout "themes/#{theme_name}/layouts/#{theme_name}"
 
