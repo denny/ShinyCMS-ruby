@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'User', type: :request do
   before :each do
-    Setting.find_or_create_by!(
-      name: I18n.t( 'settings.features.users.can_login' )
-    ).update!( value: 'Yes' )
+    FeatureFlag.find_or_create_by!(
+      name: I18n.t( 'admin.features.user_login' )
+    ).update!( state: 'On' )
   end
 
   describe 'GET /user/:username' do
@@ -20,9 +20,9 @@ RSpec.describe 'User', type: :request do
 
   describe 'GET /user/register' do
     it 'renders the user registration page if user registrations are enabled' do
-      Setting.find_or_create_by!(
-        name: I18n.t( 'settings.features.users.can_register' )
-      ).update!( value: 'Yes' )
+      FeatureFlag.find_or_create_by!(
+        name: I18n.t( 'admin.features.user_registration' )
+      ).update!( state: 'On' )
 
       get user_registration_path
 
@@ -33,9 +33,9 @@ RSpec.describe 'User', type: :request do
     it 'redirects to the site homepage if user registrations are not enabled' do
       create :page
 
-      Setting.find_or_create_by!(
-        name: I18n.t( 'settings.features.users.can_register' )
-      ).update!( value: 'No' )
+      FeatureFlag.find_or_create_by!(
+        name: I18n.t( 'admin.features.user_registration' )
+      ).update!( state: 'Off' )
 
       get user_registration_path
 
@@ -43,12 +43,15 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to     redirect_to root_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.alerts.no_registration' )
+      expect( response.body ).to     have_css '#alerts', text:
+                                     feature_alert_message(
+                                       I18n.t( 'admin.features.user_registration' )
+                                     )
       expect( response.body ).not_to have_button I18n.t( 'users.register' )
     end
   end
 
-  describe 'GET /register' do
+  describe 'GET /login' do
     it 'renders the user login page if user logins are enabled' do
       get user_login_path
 
@@ -59,9 +62,9 @@ RSpec.describe 'User', type: :request do
     it 'redirects to the site homepage if user logins are not enabled' do
       create :page
 
-      Setting.find_or_create_by!(
-        name: I18n.t( 'settings.features.users.can_login' )
-      ).update!( value: 'No' )
+      FeatureFlag.find_or_create_by!(
+        name: I18n.t( 'admin.features.user_login' )
+      ).update!( state: 'Off' )
 
       get user_login_path
 
@@ -69,14 +72,17 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to     redirect_to root_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.alerts.no_login' )
+      expect( response.body ).to     have_css '#alerts', text:
+                                     feature_alert_message(
+                                       I18n.t( 'admin.features.user_login' )
+                                     )
       expect( response.body ).not_to have_button I18n.t( 'users.log_in' )
     end
 
     it 'defaults to assuming that user logins are not enabled' do
       create :page
 
-      Setting.delete_by( name: I18n.t( 'settings.features.users.can_login' ) )
+      FeatureFlag.delete_by( name: I18n.t( 'admin.features.user_login' ) )
 
       get user_login_path
 
@@ -84,7 +90,10 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to     redirect_to root_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_css '#alerts', text: I18n.t( 'users.alerts.no_login' )
+      expect( response.body ).to     have_css '#alerts', text:
+                                     feature_alert_message(
+                                       I18n.t( 'admin.features.user_login' )
+                                     )
       expect( response.body ).not_to have_button I18n.t( 'users.log_in' )
     end
   end
@@ -165,9 +174,9 @@ RSpec.describe 'User', type: :request do
 
   describe 'POST /user/register' do
     it 'creates a new user' do
-      Setting.find_or_create_by!(
-        name: I18n.t( 'settings.features.users.can_register' )
-      ).update!( value: 'Yes' )
+      FeatureFlag.find_or_create_by!(
+        name: I18n.t( 'admin.features.user_registration' )
+      ).update!( state: 'On' )
 
       create :page
 

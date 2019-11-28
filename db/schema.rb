@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_09_152134) do
+ActiveRecord::Schema.define(version: 2019_11_27_225110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "feature_flags", force: :cascade do |t|
+    t.string "name"
+    t.string "state"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "page_elements", force: :cascade do |t|
     t.integer "page_id", null: false
