@@ -23,7 +23,7 @@ require 'active_record/railtie'
 Bundler.require(*Rails.groups)
 
 module ShinyCMS
-  class MissingFileError < StandardError
+  class ShinyCMSError < StandardError
   end
 
   # Application Config
@@ -65,9 +65,16 @@ module ShinyCMS
     end
 
     config.theme_name = nil
-    use_theme( ENV['SHINYCMS_THEME'] ) if ENV['SHINYCMS_THEME'].present?
-    use_theme( 'shinycms' )            if config.theme_name.nil?
 
-    raise MissingFileError, 'Default theme is missing' if config.theme_name.nil?
+    if ENV['SHINYCMS_THEME'].present?
+      use_theme ENV['SHINYCMS_THEME']
+      if config.theme_name.nil?
+        Rails.logger.warn "Templates missing for '#{ENV['SHINYCMS_THEME']}'"
+      end
+    end
+
+    use_theme 'shinycms' if config.theme_name.nil?
+
+    raise ShinyCMSError, 'Default templates missing' if config.theme_name.nil?
   end
 end
