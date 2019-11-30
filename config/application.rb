@@ -6,7 +6,7 @@ require_relative 'boot'
 
 require 'rails'
 
-# require 'action_cable/engine'     # Don't think we'll ever need this
+require 'action_cable/engine'       # Why do I need this?
 require 'action_controller/railtie' # Pretty sure we need this though
 # require 'action_mailbox/engine'   # Won't need for a long time: inbound email
 require 'action_mailer/railtie'     # Registration emails, etc
