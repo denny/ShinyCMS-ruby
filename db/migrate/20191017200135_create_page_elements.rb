@@ -1,6 +1,6 @@
 class CreatePageElements < ActiveRecord::Migration[6.0]
   def change
-    create_table :page_elements do |t|
+    create_table :page_elements, if_not_exists: true do |t|
       t.integer :page_id, null: false
       t.string :name, null: false
       t.string :content

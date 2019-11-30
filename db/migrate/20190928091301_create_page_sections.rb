@@ -1,7 +1,7 @@
 # Create table for page sections
 class CreatePageSections < ActiveRecord::Migration[6.0]
   def change
-    create_table :page_sections do |t|
+    create_table :page_sections, if_not_exists: true do |t|
       t.string :name, null: false
       t.text :description
       t.string :title, null: false
