@@ -83,13 +83,13 @@ https://codecov.io/gh/denny/ShinyCMS-ruby
 ## Services
 
 None currently. Probably needs an outgoing email queue soon, to send user
-registration confirmations.
+registration confirmations, and I intend to use S3 for image hosting.
 
 
 ## Deployment
 
-The plan is to make this easy to deploy on Heroku. I haven't given much thought
-to that bit yet though.
+There's a Procfile for Heroku. Currently it's possible to run it on there for
+free, using a Free Dyno for web and the Hobby Dev level for Postgres add-on.
 
 
 ## Licensing
