@@ -5,6 +5,9 @@ RSpec.describe 'User', type: :request do
     FeatureFlag.find_or_create_by!(
       name: I18n.t( 'admin.features.user_login' )
     ).update!( state: 'On' )
+    FeatureFlag.find_or_create_by!(
+      name: I18n.t( 'admin.features.user_profiles' )
+    ).update!( state: 'On' )
   end
 
   describe 'GET /user/:username' do
