@@ -1,7 +1,5 @@
 # Controller to tweak Devise-based user registration features
 class Users::RegistrationsController < Devise::RegistrationsController
-  include FeaturesHelper
-
   before_action :check_feature_flags, only: %i[ new create ]
 
   def new
@@ -19,6 +17,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_feature_flags
-    enforce_feature_flags 'User Registration'
+    enforce_feature_flags I18n.t( 'admin.features.user_registration' )
   end
 end
