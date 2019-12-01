@@ -51,7 +51,7 @@ en:
       html: HTML
 
     features:
-      on:  On
+      on: On
       off: Off
       admin_only: Admin Only
 
