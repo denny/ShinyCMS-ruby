@@ -13,7 +13,7 @@ module FeaturesHelper
     return false if feature.off?
     return true  if feature.on?
 
-    return false unless current_user.admin?
+    return false unless current_user&.admin?
 
     feature.admin_only?
   end
