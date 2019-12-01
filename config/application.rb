@@ -69,7 +69,7 @@ module ShinyCMS
     if ENV['SHINYCMS_THEME'].present?
       use_theme ENV['SHINYCMS_THEME']
       if config.theme_name.nil?
-        Rails.logger.warn "Templates missing for '#{ENV['SHINYCMS_THEME']}'"
+        warn "Templates missing for '#{ENV['SHINYCMS_THEME']}'"
       end
     end
 
