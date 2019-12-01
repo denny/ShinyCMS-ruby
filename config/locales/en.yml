@@ -51,9 +51,9 @@ en:
       html: HTML
 
     features:
-      on: On
-      off: Off
-      admin_only: Admin Only
+      feature_on:  'On'
+      feature_off: 'Off'
+      admin_only:  Admin Only
 
       user_login: User Login
       user_registration: User Registration
