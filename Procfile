@@ -1,2 +1,2 @@
-release: rails assets:precompile
+release: ./tools/heroku-release
 web: rails s
