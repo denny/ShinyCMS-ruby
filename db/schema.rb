@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 2019_11_09_152134) do
     t.integer "default_page_id"
     t.integer "section_id"
     t.integer "sort_order"
+    t.boolean "hidden_from_menu", default: false, null: false
     t.boolean "hidden", default: false, null: false
-    t.datetime "last_published_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["section_id"], name: "index_page_sections_on_section_id"
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 2019_11_09_152134) do
     t.integer "template_id", null: false
     t.integer "section_id"
     t.integer "sort_order"
+    t.boolean "hidden_from_menu", default: false, null: false
     t.boolean "hidden", default: false, null: false
-    t.datetime "last_published_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["section_id"], name: "index_pages_on_section_id"
