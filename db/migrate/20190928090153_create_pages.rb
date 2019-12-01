@@ -7,6 +7,8 @@ class CreatePages < ActiveRecord::Migration[6.0]
       t.string :slug, null: false
       t.integer :template_id, null: false
       t.integer :section_id
+      t.integer :sort_order
+      t.boolean :hidden_from_menu, null: false, default: false
       t.boolean :hidden, null: false, default: false
 
       t.timestamps

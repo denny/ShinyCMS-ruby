@@ -9,8 +9,8 @@ class CreatePageSections < ActiveRecord::Migration[6.0]
       t.integer :default_page_id
       t.integer :section_id
       t.integer :sort_order
+      t.boolean :hidden_from_menu, null: false, default: false
       t.boolean :hidden, null: false, default: false
-      t.datetime :last_published_at
 
       t.timestamps
     end
