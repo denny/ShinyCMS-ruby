@@ -28,3 +28,11 @@ seed FeatureFlag, { name: I18n.t( 'admin.features.user_login' ) }, {
   state: I18n.t( 'admin.features.on' ),
   description: 'Allow users to log in'
 }
+seed FeatureFlag, { name: I18n.t( 'admin.features.user_profiles' ) }, {
+  state: I18n.t( 'admin.features.on' ),
+  description: 'Allow viewing of user profiles'
+}
+seed FeatureFlag, { name: I18n.t( 'admin.features.user_registration' ) }, {
+  state: I18n.t( 'admin.features.on' ),
+  description: 'Allow users to create accounts'
+}
