@@ -1,4 +1,4 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
+# Rails-specific test setup/config
 require 'spec_helper'
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -69,4 +69,7 @@ RSpec.configure do |config|
   # Allow request specs to use have_* matchers, like so:
   # expect( response.body ).to have_title 'My Page Title'
   config.include Capybara::RSpecMatchers, type: :request
+
+  # Load my app's helpers
+  config.include FeaturesHelper, type: :request
 end

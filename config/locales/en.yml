@@ -12,40 +12,30 @@ en:
   home: Home
 
   add: Add
-  update: Update
   view: View
   edit: Edit
+  update: Update
   delete: Delete
 
   yes: Yes
   no: No
   are_you_sure: Are you sure?
 
-  settings:
-    admin_ip_list: Admin IP list
-    default_page: Default page
-    default_section: Default section
-
-    features:
-      users:
-        can_register: Allow users to register
-        can_login: Allow users to login
-
 
   # ========== ( Main Site ) ==========
+
+  features:
+    alert_front: Sorry, the
+    alert_back: feature of this site has been turned off.
 
   pages:
     template_file_missing: Unable to display page; its template file is missing.
 
   users:
+    edit_profile: Edit profile
     log_in: Log in
     log_out: Log out
     register: Register
-    edit_profile: Edit profile
-
-    alerts:
-      no_registration: The user registration feature of this site is not currently enabled
-      no_login: The user login feature of this site is not currently enabled
 
 
   # ========== ( Admin Area ) ==========
@@ -60,13 +50,17 @@ en:
       image: Image
       html: HTML
 
-    views:
-      pagination:
-        first: "&laquo; First"
-        last: "Last &raquo;"
-        previous: "&lsaquo; Prev"
-        next: "Next &rsaquo;"
-        truncate: "&hellip;"
+    features:
+      feature_on:  'On'
+      feature_off: 'Off'
+      admin_only:  Admin Only
+
+      user_login: User Login
+      user_profiles: User Profiles
+      user_registration: User Registration
+
+      alert_start: The
+      alert_end: feature of this site is not currently enabled
 
     pages:
       list_pages: List pages
@@ -105,6 +99,9 @@ en:
 
     settings:
       site_settings: Site Settings
+      admin_ip_list: Admin IP list
+      default_page: Default page
+      default_section: Default section
       name_placeholder: Setting name
       value_placeholder: Setting value (can be blank)
       description_placeholder: Description (optional)
@@ -139,3 +136,11 @@ en:
       user_update_failed: Failed to update user details
       user_deleted: user deleted
       user_delete_failed: Failed to delete user
+
+    views:
+      pagination:
+        first: "&laquo; First"
+        last: "Last &raquo;"
+        previous: "&lsaquo; Prev"
+        next: "Next &rsaquo;"
+        truncate: "&hellip;"
