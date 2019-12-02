@@ -9,7 +9,7 @@ if ENV['CI'] == 'true'
 end
 
 # Make sure tests go through the 'bad theme' code in config/application.rb
-ENV['SHINYCMS_THEME'] = 'TEST'
+ENV['SHINYCMS_THEME'] ||= 'TEST'
 Dir.mkdir 'app/views/themes/TEST' unless Dir.exist? 'app/views/themes/TEST'
 
 require 'faker'
