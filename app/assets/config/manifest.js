@@ -1,0 +1,13 @@
+// ========== Always needed ==========
+//= link shinycms/admin_toolbar.css
+//= link favicon.ico
+
+// ========== Admin Area ==========
+//= link shinycms/admin_area.css
+//= link_tree ../images/coreui
+
+// ========== Main Site themes ==========
+//= link shinycms.css
+//= link_tree ../images/shinycms
+//= link halcyonic.css
+//= link_tree ../images/halcyonic
