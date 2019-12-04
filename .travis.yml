@@ -2,9 +2,8 @@
 
 language: ruby
 
-# Not specifying version here means it will get picked up from .ruby-version
-# rvm:
-#   - 2.6.4
+rvm:
+  - 2.6.5
 
 cache: bundler
 
