@@ -1,9 +1,11 @@
 # Travis CI config, for https://travis-ci.org/denny/ShinyCMS-ruby
 
+dist: bionic
+
 language: ruby
 
 rvm:
-  - 2.6.5
+  - 2.6.3
 
 cache: bundler
 
