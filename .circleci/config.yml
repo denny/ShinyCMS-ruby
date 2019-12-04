@@ -1,67 +1,62 @@
-# Ruby CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-ruby/ for more details
-#
+# CircleCI config, for https://circleci.com/gh/denny/ShinyCMS-ruby
+
 version: 2
+
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: circleci/ruby:2.6.4-node-browsers
+      - image: circleci/ruby:2.6.5-node-browsers
         environment:
         - RACK_ENV=test
         - NODE_ENV=test
         - DATABASE_URL=postgres://shinyuser:@127.0.0.1:5432/shinycms_test
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/postgres:10.0
         environment:
-          - POSTGRES_USER=shinyuser
-          - POSTGRES_DB=shinycms_test
+        - POSTGRES_USER=shinyuser
+        - POSTGRES_DB=shinycms_test
 
     working_directory: ~/ShinyCMS
 
     steps:
       - checkout
 
-      # Download and cache dependencies
+      # Install Ruby dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - bundler-cache-v0.1-{{ checksum "Gemfile.lock" }}
+            - bundler-cache-v0.1-
 
       - run:
-          name: install dependencies
-          command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+          name: Install Ruby gems
+          command: bundle check --path vendor/bundle || bundle install --deployment --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
+          key: bundler-cache-v0.1-{{ checksum "Gemfile.lock" }}
           paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - vendor/bundle
 
+      # Install Node dependencies
       - restore_cache:
           keys:
-            - yarn-cache-v1-{{ checksum "yarn.lock" }}
-            - yarn-cache-v1-
+            - yarn-cache-v0.1-{{ checksum "yarn.lock" }}
+            - yarn-cache-v0.1-
 
-      - run: yarn install --cache-folder ~/.cache/yarn
+      - run:
+          name: Install Node modules
+          command: yarn install --cache-folder ~/.cache/yarn
 
       - run: bundle exec rake webpacker:compile
 
       - save_cache:
-          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
+          key: yarn-cache-v0.1-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
 
       # Database setup
-      - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
-      # run tests!
+      # Run tests!
       - run:
           name: run tests
           command: |
@@ -76,7 +71,7 @@ jobs:
               --format progress \
               $TEST_FILES
 
-      # collect reports
+      # Collect test reports for CodeCov
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:

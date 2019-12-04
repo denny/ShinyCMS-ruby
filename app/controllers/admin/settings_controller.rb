@@ -21,11 +21,12 @@ class Admin::SettingsController < AdminController
   def update
     updated_settings = false
     updated_settings = update_settings( updated_settings )
-    flash[ :notice ] = if updated_settings
-                         I18n.t 'admin.settings.settings_updated'
-                       else
-                         I18n.t 'admin.settings.settings_unchanged'
-                       end
+    flash[ :notice ] =
+      if updated_settings
+        I18n.t 'admin.settings.settings_updated'
+      else
+        I18n.t 'admin.settings.settings_unchanged'
+      end
     redirect_to admin_settings_path
   end
 
