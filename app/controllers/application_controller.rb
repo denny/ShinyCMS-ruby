@@ -1,5 +1,6 @@
 # Base class for main site controllers
 class ApplicationController < ActionController::Base
+  include Pundit
   include FeaturesHelper
 
   # Use the layout from the theme that was set in /config/application.rb

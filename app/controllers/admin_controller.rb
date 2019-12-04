@@ -1,9 +1,11 @@
 # Base class for admin controllers
 class AdminController < ApplicationController
-  layout 'admin/layouts/admin_area'
-
   before_action :check_admin_ip_list
   # before_action :authenticate_user!
+
+  include Pundit
+
+  layout 'admin/layouts/admin_area'
 
   # TODO: Redirect admins based on their ACL; 'Can edit news posts' to News, etc
   def index
