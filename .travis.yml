@@ -10,6 +10,9 @@ cache: bundler
 addons:
   postgresql: "10"
 
+before_install:
+  - nvm install 8.16
+
 before_script:
   - bundle exec rails webpacker:install
   - bundle exec rails webpacker:compile
