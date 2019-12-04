@@ -4,7 +4,7 @@
 namespace :db do
   task seed: :seed_helper
 
-  task :seed_helper do
+  task seed_helper: :environment do
     def seed( model, find_or_create_by, update_with = {} )
       record = model.where( find_or_create_by ).first_or_initialize
 

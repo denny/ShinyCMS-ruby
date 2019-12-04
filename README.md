@@ -6,11 +6,9 @@ I'm re-implementing [ShinyCMS](https://shinycms.org/) in
 [The original version](https://github.com/denny/ShinyCMS)
 is written in [Perl](https://perl.org/).
 
-I built most of the original version to meet various client requirements while
-I was freelancing between 2009 and 2016, and I've added a few more features and
-a lot of test coverage since then. It's not a small project.
-
-The Perl version of ShinyCMS has the following features:
+The Perl version of ShinyCMS was built to satisfy the varied requirements of a
+number of clients during 10 years of working as a freelance web developer, so
+it's not a small project. Here's the feature list I'm trying to duplicate:
 
 * Content-managed pages, page templates, and form handlers
 * User accounts, profiles and administration
@@ -28,21 +26,26 @@ The Perl version of ShinyCMS has the following features:
 * Polls
 * 'Shared content' - store text and HTML fragments for re-use throughout a site
 
-I intend to re-implement all of these eventually... hopefully improving on some
-of them in the process.
+Ideally I'll be improving on each of these as I re-implement them. :)
 
 
-## Ruby version
+## Ruby and Rails versions
 
-I'm setting out with current latest stable, which is Ruby 2.6.4 and Rails 6.0.0
+I'm aiming to track latest stable Ruby and Rails, which means I started with
+Ruby 2.6.4 and Rails 6.0.0, and I'm currently on Ruby 2.6.5 and Rails 6.0.1
 
-I would be interested in hearing from anybody who has problems (or successes)
-running with earlier versions of either/both.
+I believe there are some Rails-6-isms in the code which mean it won't run on
+rails 5.x without at least minor modifications; I don't intend to put any effort
+into supporting earlier versions of Rails for now.
+
+I don't know of any reason that it shouldn't run on older Ruby versions, but I
+haven't tested it and I don't know how much older; if I get any feedback on what
+does or doesn't work then I'll include it here in future.
 
 
 ## System dependencies
 
-So far, just the contents of the Gemfile I think.
+Currently just the contents of the Gemfile and a Postgres database, I think.
 
 
 ## Configuration
@@ -60,12 +63,17 @@ To load seed data: `rails db:seed`
 To do all three in one command: `rails db:setup`
 
 To load the demo site data: `tools/insert-demo-site-data` (and set
-SHINYCMS_THEME=halcyonic in your ENV to use the relevant templates and assets)
+SHINYCMS_THEME=halcyonic in your ENV to use the relevant templates)
 
 
 ## Tests
 
+To run the linter: `rubocop`
+
 To run the test suite: `rspec`
+
+To install git hooks to check these automatically when you commit/push, run
+`tools/install-git-hooks`
 
 You can view test history on CircleCI and Travis CI:  
 https://circleci.com/gh/denny/ShinyCMS-ruby  
@@ -88,8 +96,9 @@ registration confirmations, and I intend to use S3 for image hosting.
 
 ## Deployment
 
-There's a Procfile for Heroku. Currently it's possible to run it on there for
-free, using a Free Dyno for web and the Hobby Dev level for Postgres add-on.
+There's a Procfile for easy deployment to Heroku. You can run a basic install of
+ShinyCMS on there for free, using a Free Dyno for web and a Postgres add-on at
+the Hobby Dev level.
 
 
 ## Licensing
