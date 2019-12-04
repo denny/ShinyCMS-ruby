@@ -1,6 +1,4 @@
-# Ruby CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+# CircleCI config, for https://circleci.com/gh/denny/ShinyCMS-ruby
 
 version: 2
 jobs:
