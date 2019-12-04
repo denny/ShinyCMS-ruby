@@ -45,7 +45,6 @@ RSpec.describe 'Feature Flags', type: :request do
     end
 
     it "succeeds for admin user with 'User Profiles = Admin Only'" do
-      skip 'Need admin users to test this'
       user = create :user
       sign_in user
 
