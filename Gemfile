@@ -40,27 +40,22 @@ source 'https://rubygems.org' do
     gem 'faker'
     gem 'pry-rails'
     gem 'rspec-rails'
-    gem 'rspec_junit_formatter'
     gem 'rubocop'
     gem 'rubocop-rails'
   end
 
   group :development do
-    gem 'listen', '>= 3.0.5', '< 3.3'
-    # Spring speeds up development by keeping your application running
-    # in the background. Read more: https://github.com/rails/spring
-    gem 'spring'
-    gem 'spring-watcher-listen', '~> 2.0.0'
     # Used to create demo site data
     gem 'db_fixtures_dump'
+    # Reload dev server when files change
+    gem 'listen', '>= 3.0.5', '< 3.3'
   end
 
   group :test do
-    gem 'codecov', require: false
-
+    # Integration tests (request specs)
     gem 'capybara', '>= 2.15'
-    gem 'selenium-webdriver'
-    # Easy installation and use of web drivers to run system tests with browsers
-    gem 'webdrivers'
+    # Analyse and report on test coverage via CodeCov.io
+    gem 'codecov', require: false
+    gem 'rspec_junit_formatter'
   end
 end
