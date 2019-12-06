@@ -1,23 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe FeatureFlag, type: :model do
-  context 'FeatureFlag.on?' do
-    it 'returns false if the flag is set off' do
+  context '.enabled?' do
+    it 'returns false if the feature is not enabled' do
       flag = create :feature_flag
 
-      expect( flag.on? ).to be false
+      expect( flag.enabled? ).to be false
     end
 
-    it 'returns false if the flag is not set' do
-      flag = create :feature_flag, state: nil
+    it 'returns true if the feature is enabled' do
+      flag = create :feature_flag, enabled: true
 
-      expect( flag.on? ).to be false
+      expect( flag.enabled? ).to be true
+    end
+  end
+
+  context '.enabled_for_admins?' do
+    it 'returns false if the feature is enabled but not enabled for admins' do
+      flag = create :feature_flag, enabled: true
+
+      expect( flag.enabled_for_admins? ).to be false
     end
 
-    it 'returns true if the flag is set on' do
-      flag = create :feature_flag, state: 'On'
+    it 'returns true if the feature is enabled for admins' do
+      flag = create :feature_flag, enabled_for_admins: true
 
-      expect( flag.on? ).to be true
+      expect( flag.enabled_for_admins? ).to be true
     end
   end
 end
