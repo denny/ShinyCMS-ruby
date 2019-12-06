@@ -16,11 +16,13 @@ ActiveRecord::Schema.define(version: 2019_11_27_225110) do
   enable_extension "plpgsql"
 
   create_table "feature_flags", force: :cascade do |t|
-    t.string "name"
-    t.string "state"
+    t.string "name", null: false
     t.text "description"
+    t.boolean "enabled", default: false, null: false
+    t.boolean "enabled_for_admins", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_feature_flags_on_name", unique: true
   end
 
   create_table "page_elements", force: :cascade do |t|
