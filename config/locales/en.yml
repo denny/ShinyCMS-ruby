@@ -25,8 +25,7 @@ en:
   # ========== ( Main Site ) ==========
 
   features:
-    alert_front: Sorry, the
-    alert_back: feature of this site has been turned off.
+    off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
   pages:
     template_file_missing: Unable to display page; its template file is missing.
@@ -58,9 +57,6 @@ en:
       user_login: User Login
       user_profiles: User Profiles
       user_registration: User Registration
-
-      alert_start: The
-      alert_end: feature of this site is not currently enabled
 
     pages:
       list_pages: List pages
