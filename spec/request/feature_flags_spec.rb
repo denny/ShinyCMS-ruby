@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Feature Flags', type: :request do
   describe 'GET /login' do
     it "succeeds with 'User Login = On'" do
-      create :feature_flag, name: 'User Login', state: I18n.t( 'admin.features.feature_on' )
+      create :feature_flag, name: 'User Login', enabled: true
 
       get user_login_path
 
@@ -14,7 +14,7 @@ RSpec.describe 'Feature Flags', type: :request do
     it "fails with 'User Login = Off'" do
       page = create :top_level_page
 
-      create :feature_flag, name: 'User Login', state: I18n.t( 'admin.features.feature_off' )
+      create :feature_flag, name: 'User Login', enabled: false
 
       get user_login_path
 
@@ -33,7 +33,7 @@ RSpec.describe 'Feature Flags', type: :request do
       user = create :user
       sign_in user
 
-      create :feature_flag, name: 'User Profiles', state: I18n.t( 'admin.features.admin_only' )
+      create :feature_flag, name: 'User Login', enabled_for_admins: true
 
       get user_profile_path( user.username )
 
@@ -48,7 +48,7 @@ RSpec.describe 'Feature Flags', type: :request do
       user = create :user
       sign_in user
 
-      create :feature_flag, name: 'User Profiles', state: I18n.t( 'admin.features.admin_only' )
+      create :feature_flag, name: 'User Login', enabled_for_admins: true
 
       get user_profile_path( user.username )
 
