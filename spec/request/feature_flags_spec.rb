@@ -33,7 +33,7 @@ RSpec.describe 'Feature Flags', type: :request do
       user = create :user
       sign_in user
 
-      create :feature_flag, name: 'User Login', enabled_for_admins: true
+      create :feature_flag, name: 'User Profiles', enabled_for_admins: true
 
       get user_profile_path( user.username )
 
@@ -48,7 +48,7 @@ RSpec.describe 'Feature Flags', type: :request do
       user = create :user
       sign_in user
 
-      create :feature_flag, name: 'User Login', enabled_for_admins: true
+      create :feature_flag, name: 'User Profiles', enabled_for_admins: true
 
       get user_profile_path( user.username )
 
