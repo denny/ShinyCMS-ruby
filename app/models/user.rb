@@ -28,6 +28,11 @@ class User < ApplicationRecord
     @login || username || email
   end
 
+  # TODO
+  def admin?
+    true
+  end
+
   # Queue email sends
   def send_devise_notification( notification, *args )
     # :nocov:

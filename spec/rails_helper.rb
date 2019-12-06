@@ -69,7 +69,4 @@ RSpec.configure do |config|
   # Allow request specs to use have_* matchers, like so:
   # expect( response.body ).to have_title 'My Page Title'
   config.include Capybara::RSpecMatchers, type: :request
-
-  # Load my app's helpers
-  config.include FeaturesHelper, type: :request
 end
