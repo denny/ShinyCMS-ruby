@@ -42,14 +42,17 @@ RSpec.describe 'User', type: :request do
 
       get user_registration_path
 
-      expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to root_path
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to root_path
       follow_redirect!
-      expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_css '#alerts', text:
-                                     feature_alert_message(
-                                       I18n.t( 'admin.features.user_registration' )
-                                     )
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css(
+        '#alerts',
+        text: I18n.t(
+          'features.off_alert',
+          feature_name: I18n.t( 'admin.features.user_registration' )
+        )
+      )
       expect( response.body ).not_to have_button I18n.t( 'users.register' )
     end
   end
@@ -71,14 +74,17 @@ RSpec.describe 'User', type: :request do
 
       get user_login_path
 
-      expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to root_path
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to root_path
       follow_redirect!
-      expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_css '#alerts', text:
-                                     feature_alert_message(
-                                       I18n.t( 'admin.features.user_login' )
-                                     )
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css(
+        '#alerts',
+        text: I18n.t(
+          'features.off_alert',
+          feature_name: I18n.t( 'admin.features.user_login' )
+        )
+      )
       expect( response.body ).not_to have_button I18n.t( 'users.log_in' )
     end
 
@@ -89,14 +95,17 @@ RSpec.describe 'User', type: :request do
 
       get user_login_path
 
-      expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to root_path
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to root_path
       follow_redirect!
-      expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_css '#alerts', text:
-                                     feature_alert_message(
-                                       I18n.t( 'admin.features.user_login' )
-                                     )
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css(
+        '#alerts',
+        text: I18n.t(
+          'features.off_alert',
+          feature_name: I18n.t( 'admin.features.user_login' )
+        )
+      )
       expect( response.body ).not_to have_button I18n.t( 'users.log_in' )
     end
   end
