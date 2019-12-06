@@ -4,10 +4,10 @@ RSpec.describe 'User', type: :request do
   before :each do
     FeatureFlag.find_or_create_by!(
       name: I18n.t( 'admin.features.user_login' )
-    ).update!( state: 'On' )
+    ).update!( enabled: true )
     FeatureFlag.find_or_create_by!(
       name: I18n.t( 'admin.features.user_profiles' )
-    ).update!( state: 'On' )
+    ).update!( enabled: true )
   end
 
   describe 'GET /user/:username' do
@@ -25,7 +25,7 @@ RSpec.describe 'User', type: :request do
     it 'renders the user registration page if user registrations are enabled' do
       FeatureFlag.find_or_create_by!(
         name: I18n.t( 'admin.features.user_registration' )
-      ).update!( state: 'On' )
+      ).update!( enabled: true )
 
       get user_registration_path
 
@@ -38,7 +38,7 @@ RSpec.describe 'User', type: :request do
 
       FeatureFlag.find_or_create_by!(
         name: I18n.t( 'admin.features.user_registration' )
-      ).update!( state: 'Off' )
+      ).update!( enabled: false )
 
       get user_registration_path
 
@@ -70,7 +70,7 @@ RSpec.describe 'User', type: :request do
 
       FeatureFlag.find_or_create_by!(
         name: I18n.t( 'admin.features.user_login' )
-      ).update!( state: 'Off' )
+      ).update!( enabled: false )
 
       get user_login_path
 
@@ -188,7 +188,7 @@ RSpec.describe 'User', type: :request do
     it 'creates a new user' do
       FeatureFlag.find_or_create_by!(
         name: I18n.t( 'admin.features.user_registration' )
-      ).update!( state: 'On' )
+      ).update!( enabled: true )
 
       create :page
 

@@ -9,14 +9,11 @@ module FeaturesHelper
 
   def feature_enabled?( feature_name )
     feature = FeatureFlag.find_by( name: feature_name )
-    return false unless feature
 
     return false if feature.blank?
-    return false if feature.off?
-    return true  if feature.on?
 
-    return false unless current_user&.admin?
+    return feature.enabled? unless current_user&.admin?
 
-    feature.admin_only?
+    feature.enabled? || feature.enabled_for_admins?
   end
 end
