@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin: Page Templates', type: :request do
+  before :each do
+    admin = create :admin_user
+    sign_in admin
+  end
+
   describe 'GET /admin/pages/templates' do
     it 'fetches the list of templates in the admin area' do
       template = create :page_template

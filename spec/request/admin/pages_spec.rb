@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin: Pages', type: :request do
+  before :each do
+    admin = create :admin_user
+    sign_in admin
+  end
+
   describe 'GET /admin/pages' do
     it 'fetches the list of pages in the admin area' do
       create :page
