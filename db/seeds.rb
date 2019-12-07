@@ -19,10 +19,10 @@ seed Setting, { name: I18n.t( 'setting.default_section' ) }, {
   description: 'Default top-level section (either its name or its slug)'
 }
 
-# Feature flags
+# Feature Flags (to turn on/off areas of site functionality)
 seed FeatureFlag, { name: I18n.t( 'feature.user_login' ) }, {
   description: 'Allow users to log in',
-  enabled: true,
+  enabled: false,
   enabled_for_admins: true,
 }
 seed FeatureFlag, { name: I18n.t( 'feature.user_profiles' ) }, {
@@ -59,3 +59,13 @@ seed Capability, { name: I18n.t( 'capability.edit_users'  ) }, {
 seed Capability, { name: I18n.t( 'capability.edit_admins' ) }, {
   category_id: users_cc.id,
 }
+
+# One Admin To Rule Them All
+admin = seed User, { username: 'admin' }, {
+  password: 'I should change this password before I do anything else!!',
+  email: 'admin@example.com'
+}
+admin.confirm
+Capability.all.each do |c|
+  admin.user_capabilities.create( capability_id: c.id )
+end
