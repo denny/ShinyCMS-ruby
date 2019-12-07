@@ -8,7 +8,7 @@ class Admin::DefaultPolicy < DefaultPolicy
   end
 
   def index?
-    user.admin?
+    false
   end
 
   def show?

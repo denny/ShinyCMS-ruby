@@ -8,7 +8,7 @@ class Admin::UsersPolicy < Admin::DefaultPolicy
   end
 
   def index?
-    user.admin? # && user.has_permission( 'list_users' )
+    user.can( I18n.t( 'capability.list_users' ) )
   end
 
   def show?
@@ -16,7 +16,7 @@ class Admin::UsersPolicy < Admin::DefaultPolicy
   end
 
   def create?
-    false
+    user.can( I18n.t( 'capability.add_users' ) )
   end
 
   def new?
@@ -24,15 +24,15 @@ class Admin::UsersPolicy < Admin::DefaultPolicy
   end
 
   def update?
-    false
+    user.can( I18n.t( 'capability.edit_users' ) )
   end
 
   def edit?
     update?
   end
 
-  def destroy?
-    false
+  def delete?
+    user.can( I18n.t( 'capability.delete_users' ) )
   end
 
   # Add scoping to the top-level pundit policy
