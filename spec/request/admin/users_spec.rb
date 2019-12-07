@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin: Users', type: :request do
+  before :each do
+    admin = create :admin_user
+    sign_in admin
+  end
+
   describe 'GET /admin/users' do
     it 'fetches the list of users in the admin area' do
       create :user

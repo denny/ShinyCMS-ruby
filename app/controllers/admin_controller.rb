@@ -3,7 +3,7 @@ class AdminController < ApplicationController
   include Pundit
 
   before_action :check_admin_ip_list
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   layout 'admin/layouts/admin_area'
 

@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin: Shared Content', type: :request do
+  before :each do
+    admin = create :admin_user
+    sign_in admin
+  end
+
   describe 'GET /admin/shared-content' do
     it 'fetches the shared content page in the admin area' do
       get admin_shared_content_path

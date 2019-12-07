@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin: Site Settings', type: :request do
+  before :each do
+    admin = create :admin_user
+    sign_in admin
+  end
+
   describe 'GET /admin/settings' do
     it 'fetches the site settings page in the admin area' do
       get admin_settings_path
