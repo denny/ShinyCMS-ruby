@@ -2,11 +2,11 @@
 class ApplicationController < ActionController::Base
   include FeaturesHelper
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   # Use the layout from the theme that was set in the shinycms_theme initializer
   theme_name = Rails.application.config.theme_name
   layout "themes/#{theme_name}/layouts/#{theme_name}"
-
-  before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 
