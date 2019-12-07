@@ -4,7 +4,7 @@ module FeaturesHelper
     return if feature_enabled?( feature_name )
 
     redirect_to root_path, alert:
-      I18n.t( 'features.off_alert', feature_name: feature_name )
+      I18n.t( 'feature.off_alert', feature_name: feature_name )
   end
 
   def feature_enabled?( feature_name )

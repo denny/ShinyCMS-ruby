@@ -24,10 +24,10 @@ en:
 
   # ========== ( Main Site ) ==========
 
-  pages:
+  page:
     template_file_missing: Unable to display page; its template file is missing.
 
-  users:
+  user:
     edit_profile: Edit profile
     log_in: Log in
     log_out: Log out
@@ -36,7 +36,7 @@ en:
 
   # ========== ( Feature Flags ) ==========
 
-  features:
+  feature:
     off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
     user_login: User Login
