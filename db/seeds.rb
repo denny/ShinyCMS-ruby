@@ -20,25 +20,42 @@ seed Setting, { name: I18n.t( 'settings.default_section' ) }, {
 }
 
 # Feature flags
-seed FeatureFlag, { name: I18n.t( 'admin.features.user_login' ) }, {
+seed FeatureFlag, { name: I18n.t( 'features.user_login' ) }, {
   description: 'Allow users to log in',
   enabled: true,
   enabled_for_admins: true,
 }
-seed FeatureFlag, { name: I18n.t( 'admin.features.user_profiles' ) }, {
+seed FeatureFlag, { name: I18n.t( 'features.user_profiles' ) }, {
   description: 'Allow viewing of user profiles',
   enabled: true,
   enabled_for_admins: true,
 }
-seed FeatureFlag, { name: I18n.t( 'admin.features.user_registration' ) }, {
+seed FeatureFlag, { name: I18n.t( 'features.user_registration' ) }, {
   description: 'Allow users to create accounts',
   enabled: true,
   enabled_for_admins: true,
 }
 
 # Capabilities (for user authorisation)
-cc = seed CapabilityCategory, { name: 'Admin' }
-
-seed Capability, { name: 'View admin area' }, {
-  category_id: cc.id,
+general_cc = seed CapabilityCategory, { name: 'capability.general_category' }
+users_cc   = seed CapabilityCategory, { name: 'capability.users_category'   }
+# General
+seed Capability, { name: I18n.t( 'capability.view_admin_area'    ) }, {
+  category_id: general_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.view_admin_toolbar' ) }, {
+  category_id: general_cc.id,
+}
+# Users
+seed Capability, { name: I18n.t( 'capability.list_users'  ) }, {
+  category_id: users_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.add_users'   ) }, {
+  category_id: users_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.edit_users'  ) }, {
+  category_id: users_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.edit_admins' ) }, {
+  category_id: users_cc.id,
 }
