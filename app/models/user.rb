@@ -26,11 +26,7 @@ class User < ApplicationRecord
                           dependent: :restrict_with_error
 
   def can?( capability )
-    capabilities.pluck( :name ).include?( capability )
-  end
-
-  def admin?
-    can? 'View admin area'
+    capabilities.exists? name: capability
   end
 
   # Configure default count-per-page for pagination
