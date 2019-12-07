@@ -35,3 +35,10 @@ seed FeatureFlag, { name: I18n.t( 'admin.features.user_registration' ) }, {
   enabled: true,
   enabled_for_admins: true,
 }
+
+# Capabilities (for user authorisation)
+cc = seed CapabilityCategory, { name: 'Admin' }
+
+seed Capability, { name: 'View admin area' }, {
+  category_id: cc.id,
+}

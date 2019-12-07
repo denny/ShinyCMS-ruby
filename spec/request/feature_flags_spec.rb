@@ -27,8 +27,7 @@ RSpec.describe 'Feature Flags', type: :request do
   end
 
   describe 'GET /user/{username}' do
-    it "fails for non-admin user with 'User Profiles = Admin Only'" do
-      skip 'Need admin users to test this'
+    it 'fails for non-admin user with User Profiles feature only enabled for admins' do
       page = create :top_level_page
       user = create :user
       sign_in user
@@ -44,12 +43,13 @@ RSpec.describe 'Feature Flags', type: :request do
       expect( response.body ).to have_title page.title
     end
 
-    it "succeeds for admin user with 'User Profiles = Admin Only'" do
+    it 'succeeds for admin user with User Profiles feature only enabled for admins' do
       user = create :user
+      cape = create :capability, name: 'View admin area'
+      create :user_capability, user_id: user.id, capability_id: cape.id
       sign_in user
 
       create :feature_flag, name: 'User Profiles', enabled_for_admins: true
-
       get user_profile_path( user.username )
 
       expect( response      ).to have_http_status :ok
