@@ -15,3 +15,8 @@ exclude_patterns:
 - "spec/"
 - "tmp/"
 - "vendor/"
+
+# Enable Brakeman security analysis
+plugins:
+  brakeman:
+    enabled: true
