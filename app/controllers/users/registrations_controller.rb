@@ -17,6 +17,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_feature_flags
-    enforce_feature_flags I18n.t( 'features.user_registration' )
+    enforce_feature_flags I18n.t( 'feature.user_registration' )
   end
 end

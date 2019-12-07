@@ -67,7 +67,7 @@ class PagesController < ApplicationController
   def show_page
     unless @page.template.file_exists?
       render status: :failed_dependency,
-             inline: I18n.t( 'pages.template_file_missing' )
+             inline: I18n.t( 'page.template_file_missing' )
       return
     end
 
