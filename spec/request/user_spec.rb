@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe 'User', type: :request do
   before :each do
     FeatureFlag.find_or_create_by!(
-      name: I18n.t( 'admin.features.user_login' )
+      name: I18n.t( 'features.user_login' )
     ).update!( enabled: true )
     FeatureFlag.find_or_create_by!(
-      name: I18n.t( 'admin.features.user_profiles' )
+      name: I18n.t( 'features.user_profiles' )
     ).update!( enabled: true )
   end
 
@@ -24,7 +24,7 @@ RSpec.describe 'User', type: :request do
   describe 'GET /user/register' do
     it 'renders the user registration page if user registrations are enabled' do
       FeatureFlag.find_or_create_by!(
-        name: I18n.t( 'admin.features.user_registration' )
+        name: I18n.t( 'features.user_registration' )
       ).update!( enabled: true )
 
       get user_registration_path
@@ -37,7 +37,7 @@ RSpec.describe 'User', type: :request do
       create :page
 
       FeatureFlag.find_or_create_by!(
-        name: I18n.t( 'admin.features.user_registration' )
+        name: I18n.t( 'features.user_registration' )
       ).update!( enabled: false )
 
       get user_registration_path
@@ -50,7 +50,7 @@ RSpec.describe 'User', type: :request do
         '#alerts',
         text: I18n.t(
           'features.off_alert',
-          feature_name: I18n.t( 'admin.features.user_registration' )
+          feature_name: I18n.t( 'features.user_registration' )
         )
       )
       expect( response.body ).not_to have_button I18n.t( 'users.register' )
@@ -69,7 +69,7 @@ RSpec.describe 'User', type: :request do
       create :page
 
       FeatureFlag.find_or_create_by!(
-        name: I18n.t( 'admin.features.user_login' )
+        name: I18n.t( 'features.user_login' )
       ).update!( enabled: false )
 
       get user_login_path
@@ -82,7 +82,7 @@ RSpec.describe 'User', type: :request do
         '#alerts',
         text: I18n.t(
           'features.off_alert',
-          feature_name: I18n.t( 'admin.features.user_login' )
+          feature_name: I18n.t( 'features.user_login' )
         )
       )
       expect( response.body ).not_to have_button I18n.t( 'users.log_in' )
@@ -91,7 +91,7 @@ RSpec.describe 'User', type: :request do
     it 'defaults to assuming that user logins are not enabled' do
       create :page
 
-      FeatureFlag.delete_by( name: I18n.t( 'admin.features.user_login' ) )
+      FeatureFlag.delete_by( name: I18n.t( 'features.user_login' ) )
 
       get user_login_path
 
@@ -103,7 +103,7 @@ RSpec.describe 'User', type: :request do
         '#alerts',
         text: I18n.t(
           'features.off_alert',
-          feature_name: I18n.t( 'admin.features.user_login' )
+          feature_name: I18n.t( 'features.user_login' )
         )
       )
       expect( response.body ).not_to have_button I18n.t( 'users.log_in' )
@@ -187,7 +187,7 @@ RSpec.describe 'User', type: :request do
   describe 'POST /user/register' do
     it 'creates a new user' do
       FeatureFlag.find_or_create_by!(
-        name: I18n.t( 'admin.features.user_registration' )
+        name: I18n.t( 'features.user_registration' )
       ).update!( enabled: true )
 
       create :page

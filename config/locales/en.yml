@@ -24,9 +24,6 @@ en:
 
   # ========== ( Main Site ) ==========
 
-  features:
-    off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
-
   pages:
     template_file_missing: Unable to display page; its template file is missing.
 
@@ -35,6 +32,30 @@ en:
     log_in: Log in
     log_out: Log out
     register: Register
+
+
+  # ========== ( Feature Flags ) ==========
+
+  features:
+    off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
+
+    user_login: User Login
+    user_profiles: User Profiles
+    user_registration: User Registration
+
+
+  # ========== ( User Capabilities ) ==========
+
+  capability:
+    general_category: General
+    view_admin_area: View admin area
+    view_admin_toolbar: View admin toolbar
+
+    users_category: Users
+    list_users: View the user list
+    add_users: Add new users
+    edit_users: Edit existing users
+    edit_admins: Edit other admin users
 
 
   # ========== ( Admin Area ) ==========
@@ -48,15 +69,6 @@ en:
       long_text: Long Text
       image: Image
       html: HTML
-
-    features:
-      feature_on:  'On'
-      feature_off: 'Off'
-      admin_only:  Admin Only
-
-      user_login: User Login
-      user_profiles: User Profiles
-      user_registration: User Registration
 
     pages:
       list_pages: List pages
