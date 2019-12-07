@@ -23,5 +23,7 @@ end
 use_theme 'shinycms' if Rails.application.config.theme_name.nil?
 
 if Rails.application.config.theme_name.nil?
+  # :nocov:
   raise ShinyCMSError, 'Default templates missing'
+  # :nocov:
 end
