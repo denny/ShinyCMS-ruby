@@ -11,11 +11,10 @@ module FeaturesHelper
     feature = FeatureFlag.find_by( name: feature_name )
 
     return false if feature.blank?
+    return true  if feature.enabled?
 
-    unless current_user&.can? I18n.t( 'capability.view_admin_area' )
-      return feature.enabled?
-    end
+    return false unless current_user&.can? 'view_admin_area'
 
-    feature.enabled? || feature.enabled_for_admins?
+    feature.enabled_for_admins?
   end
 end

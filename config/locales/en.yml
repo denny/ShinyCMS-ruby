@@ -47,11 +47,22 @@ en:
   # ========== ( User Capabilities ) ==========
 
   capability:
-    general_category: General
+    general: General
     view_admin_area: View admin area
     view_admin_toolbar: View admin toolbar
 
-    users_category: Users
+    pages: Pages
+    list_pages: View the list of pages and sections
+    add_pages: Add new pages
+    edit_pages: Edit existing pages
+    delete_pages: Delete pages
+
+    shared_content: Shared Content
+    list_shared_content: List shared content
+    edit_shared_content: Edit shared content
+    delete_shared_content: Delete shared content
+
+    users: Users
     list_users: View the user list
     add_users: Add new users
     edit_users: Edit existing users

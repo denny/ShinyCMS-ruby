@@ -8,11 +8,11 @@ class Admin::UsersPolicy < Admin::DefaultPolicy
   end
 
   def index?
-    user.can( I18n.t( 'capability.list_users' ) )
+    user.can? 'list_users'
   end
 
   def create?
-    user.can( I18n.t( 'capability.add_users' ) )
+    user.can? 'add_users'
   end
 
   def new?
@@ -20,7 +20,7 @@ class Admin::UsersPolicy < Admin::DefaultPolicy
   end
 
   def update?
-    user.can( I18n.t( 'capability.edit_users' ) )
+    user.can? 'edit_users'
   end
 
   def edit?
@@ -28,6 +28,6 @@ class Admin::UsersPolicy < Admin::DefaultPolicy
   end
 
   def delete?
-    user.can( I18n.t( 'capability.delete_users' ) )
+    user.can? 'delete_users'
   end
 end

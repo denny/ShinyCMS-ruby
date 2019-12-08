@@ -3,7 +3,7 @@ module MainSiteHelper
   def current_user_can?( capability )
     return false if current_user.blank?
 
-    current_user.can? I18n.t( "capability.#{capability}" )
+    current_user.can? capability
   end
 
   def shared_content( name )
