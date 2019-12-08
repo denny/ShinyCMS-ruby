@@ -26,7 +26,7 @@ class User < ApplicationRecord
                           dependent: :restrict_with_error
 
   def can?( capability )
-    capabilities.exists? name: capability
+    t_can? I18n.t( "capability.#{capability}" )
   end
 
   # Configure default count-per-page for pagination
@@ -51,5 +51,11 @@ class User < ApplicationRecord
     login = conditions.delete( :login )
     where_clause = 'lower( username ) = :value OR lower( email ) = :value'
     where( conditions ).find_by( [ where_clause, { value: login.downcase } ] )
+  end
+
+  private
+
+  def t_can?( capability )
+    capabilities.exists? name: capability
   end
 end

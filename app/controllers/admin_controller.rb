@@ -8,12 +8,10 @@ class AdminController < ApplicationController
   layout 'admin/layouts/admin_area'
 
   # TODO: Add a user-setting so admins can set their preferred landing page
-  # TODO: If no preference is set, redirect based on their access:
-  #       can( 'List blog posts' ) to Blog admin section, etc
+  # TODO: If no preference is set, redirect based on user's ACL:
+  #       user.can?( 'list_blog_posts' ) to Blog admin section, etc
   def index
-    unless current_user.can? I18n.t( 'capability.view_admin_area' )
-      redirect_to root_path
-    end
+    # authorize ???
 
     redirect_to admin_pages_path
   end

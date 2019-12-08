@@ -37,8 +37,10 @@ seed FeatureFlag, { name: I18n.t( 'feature.user_registration' ) }, {
 }
 
 # Capabilities (for user authorisation)
-general_cc = seed CapabilityCategory, { name: 'capability.general_category' }
-users_cc   = seed CapabilityCategory, { name: 'capability.users_category'   }
+general_cc = seed CapabilityCategory, { name: 'capability.general'        }
+pages_cc   = seed CapabilityCategory, { name: 'capability.pages'          }
+shared_cc  = seed CapabilityCategory, { name: 'capability.shared_content' }
+users_cc   = seed CapabilityCategory, { name: 'capability.users'          }
 # General
 seed Capability, { name: I18n.t( 'capability.view_admin_area'    ) }, {
   category_id: general_cc.id,
@@ -46,17 +48,46 @@ seed Capability, { name: I18n.t( 'capability.view_admin_area'    ) }, {
 seed Capability, { name: I18n.t( 'capability.view_admin_toolbar' ) }, {
   category_id: general_cc.id,
 }
+# Pages
+seed Capability, { name: I18n.t( 'capability.list_pages'   ) }, {
+  category_id: pages_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.add_pages'    ) }, {
+  category_id: pages_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.edit_pages'   ) }, {
+  category_id: pages_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.delete_pages' ) }, {
+  category_id: pages_cc.id,
+}
+# Shared Content
+seed Capability, { name: I18n.t( 'capability.list_shared_content'   ) }, {
+  category_id: shared_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.add_shared_content'    ) }, {
+  category_id: shared_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.edit_shared_content'   ) }, {
+  category_id: shared_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.delete_shared_content' ) }, {
+  category_id: shared_cc.id,
+}
 # Users
-seed Capability, { name: I18n.t( 'capability.list_users'  ) }, {
+seed Capability, { name: I18n.t( 'capability.list_users'   ) }, {
   category_id: users_cc.id,
 }
-seed Capability, { name: I18n.t( 'capability.add_users'   ) }, {
+seed Capability, { name: I18n.t( 'capability.add_users'    ) }, {
   category_id: users_cc.id,
 }
-seed Capability, { name: I18n.t( 'capability.edit_users'  ) }, {
+seed Capability, { name: I18n.t( 'capability.edit_users'   ) }, {
   category_id: users_cc.id,
 }
-seed Capability, { name: I18n.t( 'capability.edit_admins' ) }, {
+seed Capability, { name: I18n.t( 'capability.delete_users' ) }, {
+  category_id: users_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.edit_admins'  ) }, {
   category_id: users_cc.id,
 }
 
