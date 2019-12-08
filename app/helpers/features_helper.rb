@@ -1,7 +1,7 @@
 # Helper methods for turning CMS features on/off selectively
 module FeaturesHelper
   def enforce_feature_flags( feature_name )
-    return if feature_enabled?( feature_name )
+    return if feature_enabled? feature_name
 
     redirect_to root_path, alert:
       I18n.t( 'feature.off_alert', feature_name: feature_name )
@@ -12,7 +12,9 @@ module FeaturesHelper
 
     return false if feature.blank?
 
-    return feature.enabled? unless current_user&.admin?
+    unless current_user&.can? I18n.t( 'capability.view_admin_area' )
+      return feature.enabled?
+    end
 
     feature.enabled? || feature.enabled_for_admins?
   end
