@@ -56,9 +56,7 @@ RSpec.describe 'Feature Flags', type: :request do
     end
 
     it 'succeeds for admin user with User Profiles feature only enabled for admins' do
-      user = create :user
-      cape = create :capability, name: I18n.t( 'capability.view_admin_area' )
-      create :user_capability, user_id: user.id, capability_id: cape.id
+      user = create :admin_user
       sign_in user
 
       create :feature_flag, name: I18n.t( 'feature.user_profiles' ), enabled_for_admins: true
