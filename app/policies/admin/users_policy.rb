@@ -11,10 +11,6 @@ class Admin::UsersPolicy < Admin::DefaultPolicy
     user.can( I18n.t( 'capability.list_users' ) )
   end
 
-  def show?
-    false
-  end
-
   def create?
     user.can( I18n.t( 'capability.add_users' ) )
   end
@@ -33,19 +29,5 @@ class Admin::UsersPolicy < Admin::DefaultPolicy
 
   def delete?
     user.can( I18n.t( 'capability.delete_users' ) )
-  end
-
-  # Add scoping to the top-level pundit policy
-  class Scope
-    attr_reader :user, :scope
-
-    def initialize( user, scope )
-      @user = user
-      @scope = scope
-    end
-
-    def resolve
-      scope.all
-    end
   end
 end
