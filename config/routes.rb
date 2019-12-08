@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       get 'user/:username', to: 'users#show', as: :user_profile,
                             constraints: { username: User::USERNAME_REGEX }
     end
-    devise_for :user
+    devise_for :users
 
     # ========== ( Admin area ) ==========
     get 'admin', to: 'admin#index'
