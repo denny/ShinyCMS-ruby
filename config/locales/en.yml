@@ -55,6 +55,7 @@ en:
     list_users: View the user list
     add_users: Add new users
     edit_users: Edit existing users
+    delete_users: Delete users
     edit_admins: Edit other admin users
 
 
