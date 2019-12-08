@@ -11,7 +11,10 @@ class AdminController < ApplicationController
   # TODO: If no preference is set, redirect based on their access:
   #       can( 'List blog posts' ) to Blog admin section, etc
   def index
-    # redirect_to root_path unless current_user.can? 'View admin area'
+    unless current_user.can? I18n.t( 'capability.view_admin_area' )
+      redirect_to root_path
+    end
+
     redirect_to admin_pages_path
   end
 
