@@ -1,7 +1,7 @@
 # Methods that might be useful in templates on the main site
 module MainSiteHelper
   def current_user_can?( capability )
-    return false unless current_user
+    return false if current_user.blank?
 
     current_user.can? I18n.t( "capability.#{capability}" )
   end
