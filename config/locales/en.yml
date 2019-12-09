@@ -68,6 +68,7 @@ en:
     edit_users: Edit existing users
     delete_users: Delete users
     edit_admins: Edit other admin users
+    delete_admins: Delete other admin users
 
 
   # ========== ( Admin Area ) ==========

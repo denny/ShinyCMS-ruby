@@ -20,6 +20,8 @@ class Admin::UsersPolicy < Admin::DefaultPolicy
   end
 
   def update?
+    return user.can?( 'edit_admins' ) if record.can? 'view_admin_area'
+
     user.can? 'edit_users'
   end
 
@@ -28,6 +30,8 @@ class Admin::UsersPolicy < Admin::DefaultPolicy
   end
 
   def delete?
+    return user.can?( 'delete_admins' ) if record.can? 'view_admin_area'
+
     user.can? 'delete_users'
   end
 end
