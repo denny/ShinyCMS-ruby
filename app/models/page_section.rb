@@ -58,7 +58,7 @@ class PageSection < ApplicationRecord
 
   # Return the default top-level section
   def self.default_section
-    name_or_slug = Setting.get I18n.t( 'settings.default_section' )
+    name_or_slug = Setting.get I18n.t( 'admin.settings.default_section' )
     top_level_sections.where( name: name_or_slug )
                       .or( top_level_sections
                       .where( slug: name_or_slug ) )
