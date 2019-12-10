@@ -20,17 +20,17 @@ seed Setting, { name: I18n.t( 'setting.default_section' ) }, {
 }
 
 # Feature Flags (to turn on/off areas of site functionality)
-seed FeatureFlag, { name: I18n.t( 'feature.user_login' ) }, {
+seed FeatureFlag, { name: I18n.t( 'feature_flags.user_login' ) }, {
   description: 'Allow users to log in',
   enabled: false,
   enabled_for_admins: true,
 }
-seed FeatureFlag, { name: I18n.t( 'feature.user_profiles' ) }, {
+seed FeatureFlag, { name: I18n.t( 'feature_flags.user_profiles' ) }, {
   description: 'Allow viewing of user profiles',
   enabled: true,
   enabled_for_admins: true,
 }
-seed FeatureFlag, { name: I18n.t( 'feature.user_registration' ) }, {
+seed FeatureFlag, { name: I18n.t( 'feature_flags.user_registration' ) }, {
   description: 'Allow users to create accounts',
   enabled: true,
   enabled_for_admins: true,
