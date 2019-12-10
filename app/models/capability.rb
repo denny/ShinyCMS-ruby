@@ -1,0 +1,2 @@
+class Capability < ApplicationRecord
+end

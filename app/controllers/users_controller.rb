@@ -17,6 +17,6 @@ class UsersController < ApplicationController
   private
 
   def check_feature_flags
-    enforce_feature_flags I18n.t( 'admin.features.user_profiles' )
+    enforce_feature_flags 'user_profiles'
   end
 end

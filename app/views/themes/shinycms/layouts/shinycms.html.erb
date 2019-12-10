@@ -21,8 +21,8 @@
       <%= render partial: 'themes/shinycms/includes/footer' %>
     </footer>
 
-    <%# if user.is_admin? %>
-    <%= render partial: 'admin/includes/admin_toolbar' %>
-    <%# end %>
+    <% if current_user_can? 'view_admin_toolbar' %>
+      <%= render partial: 'admin/includes/admin_toolbar' %>
+    <% end %>
   </body>
 </html>

@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_27_225110) do
+ActiveRecord::Schema.define(version: 2019_12_06_184835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "capabilities", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "category_id"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "capability_categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "feature_flags", force: :cascade do |t|
     t.string "name", null: false
@@ -110,6 +124,13 @@ ActiveRecord::Schema.define(version: 2019_11_27_225110) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_capabilities", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "capability_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "email", default: "", null: false
@@ -145,9 +166,12 @@ ActiveRecord::Schema.define(version: 2019_11_27_225110) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "capabilities", "capability_categories", column: "category_id"
   add_foreign_key "page_elements", "pages"
   add_foreign_key "page_sections", "page_sections", column: "section_id"
   add_foreign_key "page_template_elements", "page_templates", column: "template_id"
   add_foreign_key "pages", "page_sections", column: "section_id"
   add_foreign_key "pages", "page_templates", column: "template_id"
+  add_foreign_key "user_capabilities", "capabilities"
+  add_foreign_key "user_capabilities", "users"
 end

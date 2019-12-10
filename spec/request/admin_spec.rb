@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin', type: :request do
+  before :each do
+    admin = create :page_admin
+    sign_in admin
+  end
+
   describe 'GET /admin' do
     it 'redirects to the page admin area' do
       get admin_path
