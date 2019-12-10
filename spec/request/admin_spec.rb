@@ -19,7 +19,7 @@ RSpec.describe 'Admin', type: :request do
 
     it 'still works with an admin IP list set' do
       Setting.find_or_create_by!(
-        name: I18n.t( 'settings.admin_ip_list' )
+        name: I18n.t( 'admin.settings.admin_ip_list' )
       ).update!( value: '127.0.0.1' )
 
       get admin_path
@@ -33,7 +33,7 @@ RSpec.describe 'Admin', type: :request do
 
     it 'fails with a blocking admin IP list set' do
       Setting.find_or_create_by!(
-        name: I18n.t( 'settings.admin_ip_list' )
+        name: I18n.t( 'admin.settings.admin_ip_list' )
       ).update!( value: '10.10.10.10' )
 
       get admin_path
