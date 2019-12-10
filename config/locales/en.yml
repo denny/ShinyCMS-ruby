@@ -36,7 +36,7 @@ en:
 
   # ========== ( Feature Flags ) ==========
 
-  feature:
+  feature_flags:
     off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
     user_login: User Login
@@ -52,13 +52,20 @@ en:
     view_admin_toolbar: View admin toolbar
 
     pages: Pages
-    list_pages: View the list of pages and sections
-    add_pages: Add new pages
-    edit_pages: Edit existing pages
-    delete_pages: Delete pages
+    list_pages: List pages and sections
+    add_pages: Add new pages and sections
+    edit_pages: Edit existing pages and sections
+    delete_pages: Delete pages and sections
+
+    pages: Page Templates
+    list_page_templates: List page templates
+    add_page_templates: Add new page templates
+    edit_page_templates: Edit existing page templates
+    delete_page_templates: Delete page templates
 
     shared_content: Shared Content
     list_shared_content: List shared content
+    add_shared_content: Add shared content
     edit_shared_content: Edit shared content
     delete_shared_content: Delete shared content
 
@@ -67,8 +74,11 @@ en:
     add_users: Add new users
     edit_users: Edit existing users
     delete_users: Delete users
-    edit_admins: Edit other admin users
-    delete_admins: Delete other admin users
+
+    list_admins: Include admin users in user list
+    add_admins: Add new admin users
+    edit_admins: Edit admin users
+    delete_admins: Delete admin users
 
 
   # ========== ( Admin Area ) ==========

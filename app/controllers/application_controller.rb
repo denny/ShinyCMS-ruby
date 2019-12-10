@@ -1,6 +1,6 @@
 # Base class for main site controllers
 class ApplicationController < ActionController::Base
-  include FeaturesHelper
+  include FeatureFlagsHelper
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 

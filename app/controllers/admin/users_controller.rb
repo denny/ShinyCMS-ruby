@@ -1,14 +1,20 @@
 # Controller for user administration features
 class Admin::UsersController < AdminController
+  after_action :verify_authorized
+
   def index
     page_num = params[ :page ] || 1
     @users = User.order( :username ).page( page_num )
+    authorise @users
   end
 
-  def new; end
+  def new
+    authorise User
+  end
 
   def create
     @user = User.new( user_params )
+    authorise @user
 
     if @user.save
       flash[ :notice ] = I18n.t 'admin.users.user_created'
@@ -21,10 +27,12 @@ class Admin::UsersController < AdminController
 
   def edit
     @user = User.find( params[:id] )
+    authorise @user
   end
 
   def update
     @user = User.find( params[:id] )
+    authorise @user
 
     if @user.update( user_params )
       flash[ :notice ] = I18n.t 'admin.users.user_updated'
@@ -36,13 +44,17 @@ class Admin::UsersController < AdminController
   end
 
   def delete
-    if User.destroy( params[ :id ] )
+    user = User.find( params[:id] )
+    authorise user
+
+    if user.destroy
       flash[ :notice ] = I18n.t 'admin.users.user_deleted'
+    else
+      flash[ :alert ] = I18n.t 'admin.users.user_delete_failed'
     end
     redirect_to admin_users_path
-  rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    flash[ :alert ] = I18n.t 'admin.users.user_delete_failed'
-    redirect_to admin_users_path
+  rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
+    handle_delete_exceptions
   end
 
   private
@@ -51,5 +63,14 @@ class Admin::UsersController < AdminController
     params.require( :user ).permit(
       :username, :password, :email, :display_name, :display_email
     )
+  end
+
+  def handle_delete_exceptions
+    flash[ :alert ] = t( 'user_delete_failed' )
+    redirect_to admin_users_path
+  end
+
+  def t( key )
+    I18n.t( "admin.users.#{key}" )
   end
 end

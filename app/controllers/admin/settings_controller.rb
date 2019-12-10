@@ -1,11 +1,11 @@
 # Admin controller for CMS settings
 class Admin::SettingsController < AdminController
-  # Display site settings form
+  # after_action :verify_authorized
+
   def index
     @settings = Setting.order( :name )
   end
 
-  # Add a new setting item
   def create
     setting = Setting.new( setting_params )
 
@@ -30,7 +30,6 @@ class Admin::SettingsController < AdminController
     redirect_to admin_settings_path
   end
 
-  # Delete an existing settings item
   def delete
     if Setting.destroy( params[ :id ] )
       flash[ :notice ] = I18n.t 'admin.settings.setting_deleted'
