@@ -12,8 +12,7 @@ class AdminController < ApplicationController
   # TODO: If no preference is set, redirect based on user's ACL:
   #       user.can?( 'list_blog_posts' ) to Blog admin section, etc
   def index
-    # authorise ???
-    redirect_to root_path unless current_user.can? 'view_admin_area'
+    authorize :admin
 
     redirect_to admin_pages_path
   end

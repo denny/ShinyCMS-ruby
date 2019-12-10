@@ -8,6 +8,6 @@ class AdminPolicy
   end
 
   def index?
-    @user.can? I18n.t( 'view_admin_area' )
+    @user.can? 'view_admin_area'
   end
 end
