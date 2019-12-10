@@ -16,10 +16,9 @@ class Admin::SharedContentController < AdminController
     authorise @new_element
 
     if @new_element.save
-      flash[ :notice ] = I18n.t 'admin.shared_content.shared_content_created'
+      flash[ :notice ] = t( 'shared_content_created' )
     else
-      flash[ :alert ] =
-        I18n.t 'admin.shared_content.shared_content_create_failed'
+      flash[ :alert ] = t( 'shared_content_create_failed' )
     end
     redirect_to admin_shared_content_path
   end
@@ -33,7 +32,7 @@ class Admin::SharedContentController < AdminController
 
     @shared_content.elements_attributes = shared_content_params
 
-    flash[ :notice ] = I18n.t 'admin.shared_content.shared_content_updated'
+    flash[ :notice ] = t( 'shared_content_updated' )
     redirect_to admin_shared_content_path
   end
 
@@ -42,9 +41,7 @@ class Admin::SharedContentController < AdminController
 
     authorise element
 
-    if element.destroy
-      flash[ :notice ] = I18n.t 'admin.shared_content.shared_content_deleted'
-    end
+    flash[ :notice ] = t( 'shared_content_deleted' ) if element.destroy
     redirect_to admin_shared_content_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
     handle_delete_exceptions
@@ -68,6 +65,6 @@ class Admin::SharedContentController < AdminController
   end
 
   def t( key )
-    I18n.t( "admin.users.#{key}" )
+    I18n.t( "admin.shared_content.#{key}" )
   end
 end

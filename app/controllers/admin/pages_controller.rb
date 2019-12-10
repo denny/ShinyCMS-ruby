@@ -53,11 +53,7 @@ class Admin::PagesController < AdminController
     page = Page.find( params[:id] )
     authorise page
 
-    if page.destroy
-      flash[ :notice ] = t( 'page_deleted' )
-    else
-      flash[ :alert ] = t( 'page_delete_failed' )
-    end
+    flash[ :notice ] = t( 'page_deleted' ) if page.destroy
     redirect_to admin_pages_path
   rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
     handle_delete_exceptions
