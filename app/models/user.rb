@@ -1,4 +1,4 @@
-# User model - Devise powered
+# User model (powered by Devise)
 class User < ApplicationRecord
   # Allowed characters for usernames: a-z A-Z 0-9 . _ -
   USERNAME_REGEX = %r{[-_\.a-zA-Z0-9]+}.freeze
@@ -19,6 +19,16 @@ class User < ApplicationRecord
   # Restrict the character set for usernames to letters, numbers, and - . _
   validates :username, format: ANCHORED_USERNAME_REGEX
 
+  # Authorisation (powered by Pundit)
+  has_many :user_capabilities, dependent: :restrict_with_error
+
+  has_many :capabilities, through: :user_capabilities,
+                          dependent: :restrict_with_error
+
+  def can?( capability )
+    t_can? I18n.t( "capability.#{capability}" )
+  end
+
   # Configure default count-per-page for pagination
   paginates_per 20
 
@@ -26,11 +36,6 @@ class User < ApplicationRecord
   attr_writer :login
   def login
     @login || username || email
-  end
-
-  # TODO
-  def admin?
-    true
   end
 
   # Queue email sends
@@ -46,5 +51,11 @@ class User < ApplicationRecord
     login = conditions.delete( :login )
     where_clause = 'lower( username ) = :value OR lower( email ) = :value'
     where( conditions ).find_by( [ where_clause, { value: login.downcase } ] )
+  end
+
+  private
+
+  def t_can?( capability )
+    capabilities.exists? name: capability
   end
 end

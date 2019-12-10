@@ -1,3 +1,4 @@
+<% if current_user&.can? t( 'capability.view_admin_toolbar' ) %>
 <nav id="admin-toolbar">
   <%= link_to image_tag( 'shinycms/admin-toolbar-logo.png', alt: 'ShinyCMS' ),
       'http://shinycms.org/' %>
@@ -40,3 +41,4 @@
     <%= link_to t( 'admin.admin_area' ), admin_path %>
   </div>
 </nav>
+<% end %>

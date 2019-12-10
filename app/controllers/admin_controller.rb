@@ -1,12 +1,20 @@
 # Base class for admin controllers
 class AdminController < ApplicationController
-  layout 'admin/layouts/admin_area'
+  include Pundit
+  include AdminAreaHelper
 
   before_action :check_admin_ip_list
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
-  # TODO: Redirect admins based on their ACL; 'Can edit news posts' to News, etc
+  layout 'admin/layouts/admin_area'
+
+  # TODO: Add a user-setting so admins can set their preferred landing page
+  # TODO: If no preference is set, redirect based on user's ACL:
+  #       user.can?( 'list_blog_posts' ) to Blog admin section, etc
   def index
+    # authorise ???
+    redirect_to root_path unless current_user.can? 'view_admin_area'
+
     redirect_to admin_pages_path
   end
 

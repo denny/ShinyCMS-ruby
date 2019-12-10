@@ -1,18 +1,18 @@
 # Admin controller for CMS settings
 class Admin::SettingsController < AdminController
-  # Display site settings form
+  # after_action :verify_authorized
+
   def index
     @settings = Setting.order( :name )
   end
 
-  # Add a new setting item
   def create
     setting = Setting.new( setting_params )
 
     if setting.save
-      flash[ :notice ] = I18n.t 'admin.settings.setting_created'
+      flash[ :notice ] = t( 'setting_created' )
     else
-      flash[ :alert ] = I18n.t 'admin.settings.setting_create_failed'
+      flash[ :alert ] = t( 'setting_create_failed' )
     end
     redirect_to admin_settings_path
   end
@@ -23,22 +23,20 @@ class Admin::SettingsController < AdminController
     updated_settings = update_settings( updated_settings )
     flash[ :notice ] =
       if updated_settings
-        I18n.t 'admin.settings.settings_updated'
+        t( 'settings_updated' )
       else
-        I18n.t 'admin.settings.settings_unchanged'
+        t( 'settings_unchanged' )
       end
     redirect_to admin_settings_path
   end
 
-  # Delete an existing settings item
   def delete
-    if Setting.destroy( params[ :id ] )
-      flash[ :notice ] = I18n.t 'admin.settings.setting_deleted'
-    end
+    setting = Setting.find( params[:id] )
+
+    flash[ :notice ] = t( 'setting_deleted' ) if setting.destroy
     redirect_to admin_settings_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    flash[ :alert ] = I18n.t 'admin.settings.setting_delete_failed'
-    redirect_to admin_settings_path
+    handle_delete_exceptions
   end
 
   private
@@ -66,5 +64,14 @@ class Admin::SettingsController < AdminController
 
   def settings_params
     params.permit( :authenticity_token, :commit, settings: {} )
+  end
+
+  def handle_delete_exceptions
+    flash[ :alert ] = t( 'setting_delete_failed' )
+    redirect_to admin_settings_path
+  end
+
+  def t( key )
+    I18n.t( "admin.settings.#{key}" )
   end
 end

@@ -1,18 +1,24 @@
 # Admin controller for shared content (globally-reusable text/HTML fragments)
 class Admin::SharedContentController < AdminController
+  after_action :verify_authorized
+
+  # Display the main form, containing all shared content ready to edit
   def index
     elements = SharedContentElement.order( :name )
     @shared_content = SharedContent.new( elements: elements )
+
+    authorise @shared_content
   end
 
   def create
     @new_element = SharedContentElement.new( new_element_params )
 
+    authorise @new_element
+
     if @new_element.save
-      flash[ :notice ] = I18n.t 'admin.shared_content.shared_content_created'
+      flash[ :notice ] = t( 'shared_content_created' )
     else
-      flash[ :alert ] =
-        I18n.t 'admin.shared_content.shared_content_create_failed'
+      flash[ :alert ] = t( 'shared_content_create_failed' )
     end
     redirect_to admin_shared_content_path
   end
@@ -21,21 +27,24 @@ class Admin::SharedContentController < AdminController
   def update
     elements = SharedContentElement.order( :name )
     @shared_content = SharedContent.new( elements: elements )
+
+    authorise @shared_content
+
     @shared_content.elements_attributes = shared_content_params
 
-    flash[ :notice ] = I18n.t 'admin.shared_content.shared_content_updated'
+    flash[ :notice ] = t( 'shared_content_updated' )
     redirect_to admin_shared_content_path
   end
 
-  # Delete an existing shared content element
   def delete
-    if SharedContentElement.destroy( params[ :id ] )
-      flash[ :notice ] = I18n.t 'admin.shared_content.shared_content_deleted'
-    end
+    element = SharedContentElement.find( params[ :id ] )
+
+    authorise element
+
+    flash[ :notice ] = t( 'shared_content_deleted' ) if element.destroy
     redirect_to admin_shared_content_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    flash[ :alert ] = I18n.t 'admin.shared_content.shared_content_delete_failed'
-    redirect_to admin_shared_content_path
+    handle_delete_exceptions
   end
 
   private
@@ -48,5 +57,14 @@ class Admin::SharedContentController < AdminController
   def shared_content_params
     params.require( :shared_content ).permit( elements_attributes: {} )
           .require( :elements_attributes )
+  end
+
+  def handle_delete_exceptions
+    flash[ :alert ] = t( 'shared_content_delete_failed' )
+    redirect_to admin_shared_content_path
+  end
+
+  def t( key )
+    I18n.t( "admin.shared_content.#{key}" )
   end
 end

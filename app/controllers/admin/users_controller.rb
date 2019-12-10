@@ -1,48 +1,56 @@
 # Controller for user administration features
 class Admin::UsersController < AdminController
+  after_action :verify_authorized
+
   def index
     page_num = params[ :page ] || 1
     @users = User.order( :username ).page( page_num )
+    authorise @users
   end
 
-  def new; end
+  def new
+    authorise User
+  end
 
   def create
     @user = User.new( user_params )
+    authorise @user
 
     if @user.save
-      flash[ :notice ] = I18n.t 'admin.users.user_created'
+      flash[ :notice ] = t( 'user_created' )
       redirect_to action: :edit, id: @user.id
     else
-      flash.now[ :alert ] = I18n.t 'admin.users.user_create_failed'
+      flash.now[ :alert ] = t( 'user_create_failed' )
       render action: :new
     end
   end
 
   def edit
     @user = User.find( params[:id] )
+    authorise @user
   end
 
   def update
     @user = User.find( params[:id] )
+    authorise @user
 
     if @user.update( user_params )
-      flash[ :notice ] = I18n.t 'admin.users.user_updated'
+      flash[ :notice ] = t( 'user_updated' )
       redirect_to action: :edit, id: @user.id
     else
-      flash.now[ :alert ] = I18n.t 'admin.users.user_update_failed'
+      flash.now[ :alert ] = t( 'user_update_failed' )
       render action: :edit
     end
   end
 
   def delete
-    if User.destroy( params[ :id ] )
-      flash[ :notice ] = I18n.t 'admin.users.user_deleted'
-    end
+    user = User.find( params[:id] )
+    authorise user
+
+    flash[ :notice ] = t( 'user_deleted' ) if user.destroy
     redirect_to admin_users_path
-  rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    flash[ :alert ] = I18n.t 'admin.users.user_delete_failed'
-    redirect_to admin_users_path
+  rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
+    handle_delete_exceptions
   end
 
   private
@@ -51,5 +59,14 @@ class Admin::UsersController < AdminController
     params.require( :user ).permit(
       :username, :password, :email, :display_name, :display_email
     )
+  end
+
+  def handle_delete_exceptions
+    flash[ :alert ] = t( 'user_delete_failed' )
+    redirect_to admin_users_path
+  end
+
+  def t( key )
+    I18n.t( "admin.users.#{key}" )
   end
 end
