@@ -2,6 +2,7 @@
 class DefaultPolicy
   attr_reader :user, :record
 
+  # :nocov:
   def initialize( user, record )
     @user = user
     @record = record
@@ -48,4 +49,5 @@ class DefaultPolicy
       scope.all
     end
   end
+  # :nocov:
 end

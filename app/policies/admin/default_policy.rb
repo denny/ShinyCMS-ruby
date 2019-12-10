@@ -2,6 +2,7 @@
 class Admin::DefaultPolicy < DefaultPolicy
   attr_reader :user, :record
 
+  # :nocov:
   def initialize( user, record )
     @user = user
     @record = record
@@ -34,4 +35,5 @@ class Admin::DefaultPolicy < DefaultPolicy
   def destroy?
     false
   end
+  # :nocov:
 end
