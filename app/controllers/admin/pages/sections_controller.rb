@@ -47,11 +47,7 @@ class Admin::Pages::SectionsController < AdminController
     section = PageSection.find( params[:id] )
     authorise section
 
-    if section.destroy
-      flash[ :notice ] = t( 'section_deleted' )
-    else
-      flash[ :alert ] = t( 'section_delete_failed' )
-    end
+    flash[ :notice ] = t( 'section_deleted' ) if section.destroy
     redirect_to admin_pages_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
     handle_delete_exceptions
