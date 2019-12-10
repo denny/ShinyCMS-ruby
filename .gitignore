@@ -26,6 +26,7 @@ yarn-debug.log*
 
 # Used by dotenv library to load environment variables.
 .env
+.env.development
 
 # Unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
