@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Admin', type: :request do
   before :each do
-    admin = create :admin_user
+    admin = create :page_admin
     sign_in admin
   end
 

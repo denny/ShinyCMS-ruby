@@ -1,10 +1,16 @@
 # Helper methods for turning CMS features on/off selectively
-module FeaturesHelper
-  def enforce_feature_flags( feature_name )
+module FeatureFlagsHelper
+  def enforce_feature_flags( feature_key )
+    feature_name = I18n.t( "feature_flags.#{feature_key}" )
+
     return if feature_enabled? feature_name
 
-    redirect_to root_path, alert:
-      I18n.t( 'feature.off_alert', feature_name: feature_name )
+    flash[ :alert ] = I18n.t(
+      'feature_flags.off_alert',
+      feature_name: feature_name
+    )
+    # redirect_back( fallback_location: root_path )
+    redirect_to root_path
   end
 
   def feature_enabled?( feature_name )

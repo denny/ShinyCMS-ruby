@@ -14,8 +14,4 @@ class Admin::SharedContentPolicy < Admin::DefaultPolicy
   def update?
     user.can? 'edit_shared_content'
   end
-
-  def elements?
-    update?
-  end
 end

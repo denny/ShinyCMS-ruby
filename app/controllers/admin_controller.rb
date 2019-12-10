@@ -1,6 +1,7 @@
 # Base class for admin controllers
 class AdminController < ApplicationController
   include Pundit
+  include AdminAreaHelper
 
   before_action :check_admin_ip_list
   before_action :authenticate_user!
@@ -11,7 +12,8 @@ class AdminController < ApplicationController
   # TODO: If no preference is set, redirect based on user's ACL:
   #       user.can?( 'list_blog_posts' ) to Blog admin section, etc
   def index
-    # authorize ???
+    # authorise ???
+    redirect_to root_path unless current_user.can? 'view_admin_area'
 
     redirect_to admin_pages_path
   end

@@ -5,6 +5,6 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def check_feature_flags
-    enforce_feature_flags I18n.t( 'feature.user_login' )
+    enforce_feature_flags 'user_login'
   end
 end

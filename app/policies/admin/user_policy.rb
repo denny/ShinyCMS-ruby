@@ -1,5 +1,5 @@
 # Pundit policy for users
-class Admin::UsersPolicy < Admin::DefaultPolicy
+class Admin::UserPolicy < Admin::DefaultPolicy
   attr_reader :user, :record
 
   def initialize( user, record )
@@ -12,6 +12,8 @@ class Admin::UsersPolicy < Admin::DefaultPolicy
   end
 
   def create?
+    # return user.can?( 'add_admins' ) if record.can? 'view_admin_area'
+
     user.can? 'add_users'
   end
 

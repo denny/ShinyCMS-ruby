@@ -17,6 +17,11 @@ AllCops:
     - tmp/**/*
     - tools/**/*
 
+# TODO: see if I can make this method happy at some point
+Metrics/AbcSize:
+  Exclude:
+    - app/helpers/admin_area_helper.rb
+
 # Spec files and the routes file are supposed to be one long block. Shush.
 Metrics/BlockLength:
   Exclude:
