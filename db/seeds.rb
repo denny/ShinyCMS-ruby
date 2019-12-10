@@ -61,6 +61,32 @@ seed Capability, { name: I18n.t( 'capability.edit_pages'   ) }, {
 seed Capability, { name: I18n.t( 'capability.delete_pages' ) }, {
   category_id: pages_cc.id,
 }
+# Page Sections
+seed Capability, { name: I18n.t( 'capability.list_page_sections'   ) }, {
+  category_id: pages_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.add_page_sections'    ) }, {
+  category_id: pages_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.edit_page_sections'   ) }, {
+  category_id: pages_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.delete_page_sections' ) }, {
+  category_id: pages_cc.id,
+}
+# Page Templates
+seed Capability, { name: I18n.t( 'capability.list_page_templates'   ) }, {
+  category_id: pages_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.add_page_templates'    ) }, {
+  category_id: pages_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.edit_page_templates'   ) }, {
+  category_id: pages_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.delete_page_templates' ) }, {
+  category_id: pages_cc.id,
+}
 # Shared Content
 seed Capability, { name: I18n.t( 'capability.list_shared_content'   ) }, {
   category_id: shared_cc.id,

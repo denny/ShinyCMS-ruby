@@ -1,4 +1,4 @@
-# Pundit policy for page admin
+# Pundit policy for page section admin
 class Admin::PageSectionPolicy < Admin::DefaultPolicy
   attr_reader :user, :record
 
@@ -8,11 +8,11 @@ class Admin::PageSectionPolicy < Admin::DefaultPolicy
   end
 
   def index?
-    user.can? 'list_pages'
+    user.can? 'list_page_sections'
   end
 
   def create?
-    user.can? 'add_pages'
+    user.can? 'add_page_sections'
   end
 
   def new?
@@ -20,7 +20,7 @@ class Admin::PageSectionPolicy < Admin::DefaultPolicy
   end
 
   def update?
-    user.can? 'edit_pages'
+    user.can? 'edit_page_sections'
   end
 
   def edit?
@@ -28,6 +28,6 @@ class Admin::PageSectionPolicy < Admin::DefaultPolicy
   end
 
   def delete?
-    user.can? 'delete_pages'
+    user.can? 'delete_page_sections'
   end
 end
