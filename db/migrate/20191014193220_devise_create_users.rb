@@ -11,7 +11,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
 
       t.string :display_name
       t.string :display_email
-      t.string :profile_pic
       t.text   :bio
       t.string :website
       t.string :location

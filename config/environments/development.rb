@@ -33,6 +33,8 @@ Rails.application.configure do
 
   # Store uploaded files on local file system (config/storage.yml for options)
   # config.active_storage.service = :local
+  # Use AWS S3 to store files
+  config.active_storage.service = :amazon
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

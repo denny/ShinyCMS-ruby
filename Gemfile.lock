@@ -115,6 +115,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
+    image_magick (0.1.9)
     jaro_winkler (1.5.4)
     json (2.2.0)
     kaminari (1.1.1)
@@ -292,6 +293,7 @@ DEPENDENCIES
   devise-pwned_password!
   factory_bot_rails!
   faker!
+  image_magick!
   kaminari!
   listen (>= 3.0.5, < 3.3)!
   pg (>= 0.18, < 2.0)!

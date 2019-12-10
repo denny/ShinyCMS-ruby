@@ -9,6 +9,7 @@
     <%= f.label :display_name %>
     <br><%= f.text_field :display_name %>
   </p>
+
   <p>
     <%= f.label :email %>
     <br><%= f.text_field :email %>
@@ -17,9 +18,15 @@
     <%= f.label :display_email %>
     <br><%= f.text_field :display_email %>
   </p>
+
   <p>
     <%= f.label :password %>
-    <br><%= f.text_field :password %>
+    <br><%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= f.label :profile_pic %>
+    <br><%= f.file_field :profile_pic %>
   </p>
 
   <p>
