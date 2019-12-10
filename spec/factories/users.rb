@@ -25,10 +25,10 @@ FactoryBot.define do
       create :user_capability, user_id: admin.id, capability_id: edit.id
       create :user_capability, user_id: admin.id, capability_id: delete.id
 
-      list   = create :capability, name: I18n.t( 'capability.list_sections'   )
-      add    = create :capability, name: I18n.t( 'capability.add_sections'    )
-      edit   = create :capability, name: I18n.t( 'capability.edit_sections'   )
-      delete = create :capability, name: I18n.t( 'capability.delete_sections' )
+      list   = create :capability, name: I18n.t( 'capability.list_page_sections'   )
+      add    = create :capability, name: I18n.t( 'capability.add_page_sections'    )
+      edit   = create :capability, name: I18n.t( 'capability.edit_page_sections'   )
+      delete = create :capability, name: I18n.t( 'capability.delete_page_sections' )
 
       create :user_capability, user_id: admin.id, capability_id: list.id
       create :user_capability, user_id: admin.id, capability_id: add.id
