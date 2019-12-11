@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 2019_12_10_211946) do
     t.string "website"
     t.string "location"
     t.string "postcode"
+    t.text "admin_notes"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

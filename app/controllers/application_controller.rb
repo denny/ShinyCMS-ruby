@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   protected
 
   # Strong params config for Devise
+  # rubocop:disable Layout/MultilineArrayLineBreaks
   SIGN_UP_PARAMS = %i[
     username email password password_confirmation
   ].freeze
@@ -20,9 +21,11 @@ class ApplicationController < ActionController::Base
   ].freeze
   private_constant :SIGN_IN_PARAMS
   ACCOUNT_UPDATE_PARAMS = %i[
-    username email password password_confirmation current_password display_name
+    username email password password_confirmation current_password
+    display_name display_email profile_pic bio website location postcode
   ].freeze
   private_constant :ACCOUNT_UPDATE_PARAMS
+  # rubocop:enable Layout/MultilineArrayLineBreaks
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit( :sign_up ) do |user_params|

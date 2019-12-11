@@ -30,6 +30,25 @@
   </p>
 
   <p>
+    <%= f.label :bio %>
+    <br><%= f.text_area :bio %>
+  </p>
+
+  <p>
+    <%= f.label :location %>
+    <br><%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.label :postcode %>
+    <br><%= f.text_field :postcode %>
+  </p>
+
+  <p>
+    <%= f.label :admin_notes %>
+    <br><%= f.text_area :admin_notes %>
+  </p>
+
+  <p>
     <%= submit_tag t( 'update' ) %>
   </p>
 <% end %>
