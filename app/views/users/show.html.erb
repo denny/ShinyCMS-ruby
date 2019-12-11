@@ -1,5 +1,5 @@
-<% @page_title = @user_profile.display_name || @user_profile.username %>
+<% @page_title = user_display_name( @user_profile ) %>
 
 <h1>
-  Welcome back, <%= @page_title %>!
+  <%= user_display_name( @user_profile ) %>
 </h1>
