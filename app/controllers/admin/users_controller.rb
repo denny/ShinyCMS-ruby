@@ -34,7 +34,7 @@ class Admin::UsersController < AdminController
     @user = User.find( params[:id] )
     authorise @user
 
-    if @user.update( user_params )
+    if @user.update_without_password( user_params )
       flash[ :notice ] = t( 'user_updated' )
       redirect_to action: :edit, id: @user.id
     else
@@ -57,8 +57,12 @@ class Admin::UsersController < AdminController
 
   def user_params
     params.require( :user ).permit(
-      :username, :password, :email,
-      :display_name, :display_email, :profile_pic
+      # rubocop:disable Layout/MultilineArrayLineBreaks
+      %i[
+        username email password display_name display_email profile_pic bio
+        website location postcode admin_notes
+      ]
+      # rubocop:enable Layout/MultilineArrayLineBreaks
     )
   end
 

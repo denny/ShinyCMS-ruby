@@ -66,6 +66,22 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
     awesome_print (1.8.0)
+    aws-eventstream (1.0.3)
+    aws-partitions (1.252.0)
+    aws-sdk-core (3.85.0)
+      aws-eventstream (~> 1.0, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.239.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sdk-kms (1.27.0)
+      aws-sdk-core (~> 3, >= 3.71.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.59.0)
+      aws-sdk-core (~> 3, >= 3.83.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.1)
+    aws-sigv4 (1.1.0)
+      aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.13)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
@@ -117,6 +133,7 @@ GEM
       concurrent-ruby (~> 1.0)
     image_magick (0.1.9)
     jaro_winkler (1.5.4)
+    jmespath (1.4.0)
     json (2.2.0)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
@@ -282,6 +299,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-session_store!
   awesome_print!
+  aws-sdk-s3!
   bcrypt (~> 3.1.7)!
   bootsnap (>= 1.4.2)!
   bundler-audit!

@@ -27,7 +27,9 @@ source 'https://rubygems.org' do
 
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'
-  # Image storage for CKEditor
+
+  # Image storage on S3
+  gem 'aws-sdk-s3'
   gem 'image_magick'
 
   # Pagination
