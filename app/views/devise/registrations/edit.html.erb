@@ -9,13 +9,21 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
+      <%= f.label :username %><br>
+      <%= f.text_field :username %>
+    </div>
+    <div class="field">
       <%= f.label :email %><br>
       <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
     </div>
 
     <div class="field">
-      <%= f.label :username %><br>
-      <%= f.text_field :username %>
+      <%= f.label :display_name %><br>
+      <%= f.text_field :display_name %>
+    </div>
+    <div class="field">
+      <%= f.label :display_email %>
+      <br><%= f.text_field :display_email %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -23,8 +31,25 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :display_name %><br>
-      <%= f.text_field :display_name %>
+      <%= f.label :profile_pic %>
+      <br><%= f.file_field :profile_pic %>
+      <% if resource.profile_pic.present? %>
+      <br><%= image_tag resource.profile_pic.variant( resize: '200x200!' ).processed.service_url, class: 'user_icon' %>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :bio %>
+      <br><%= f.text_area :bio %>
+    </div>
+
+    <div class="field">
+      <%= f.label :location %>
+      <br><%= f.text_field :location %>
+    </div>
+    <div class="field">
+      <%= f.label :postcode %>
+      <br><%= f.text_field :postcode %>
     </div>
 
     <div class="field">
@@ -50,7 +75,9 @@
       <%= f.submit "Update" %>
     </div>
   <% end %>
+</section>
 
+<section>
   <h3>Cancel my account</h3>
 
   <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
