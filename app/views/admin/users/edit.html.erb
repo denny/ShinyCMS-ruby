@@ -47,8 +47,6 @@
   </p>
 
   <p>
-<<<<<<< Updated upstream
-=======
   <% CapabilityCategory.all.each do |category| %>
     <b><%= category.name %></b></br>
     <% category.capabilities.each do |cape| %>
@@ -59,16 +57,11 @@
   </p>
 
   <p>
->>>>>>> Stashed changes
     <%= f.label :admin_notes %>
     <br><%= f.text_area :admin_notes %>
   </p>
 
-<<<<<<< Updated upstream
-  <p>
-=======
   <p class="form_buttons">
->>>>>>> Stashed changes
     <%= submit_tag t( 'update' ) %>
   </p>
 <% end %>
