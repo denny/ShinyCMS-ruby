@@ -57,6 +57,20 @@ footer#footer {
 }
 
 
+/* ========== ( user profile pics ) ========== */
+
+img.user_profile_pic {
+  float:                right;
+  max-width:            80%;
+  border-radius:        5px;
+}
+
+img.user_icon {
+  max-width:            200px;
+  border-radius:        3px;
+}
+
+
 /* ========== ( utility styles ) ========== */
 
 .clearboth {
