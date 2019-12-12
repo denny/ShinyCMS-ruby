@@ -41,7 +41,7 @@
 </section>
 <% end %>
 
-<% if current_user_can? 'view_user_admin_notes' && @user_profile.admin_notes.present? %>
+<% if current_user_can?( 'view_user_admin_notes' ) && @user_profile.admin_notes.present? %>
 <section>
   <header>
     <h3>
