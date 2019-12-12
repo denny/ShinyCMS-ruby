@@ -1,7 +1,7 @@
 <% @page_title = t( 'admin.shared_content.shared_content' ) %>
 
 <%= form_with model: @shared_content, name: 'shared_content', url: admin_shared_content_path, method: :post do |f| %>
-<table class="list">
+<table class="table table-responsive-sm table-striped">
   <%= f.fields_for :elements do |fields| %>
     <%= render partial: 'element', locals: {
       fields: fields,
@@ -11,7 +11,7 @@
     } %>
   <% end %>
 </table>
-<p>
+<p class="form_buttons">
   <%= submit_tag t( 'update' ) %>
 </p>
 <% end %>

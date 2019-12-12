@@ -63,6 +63,14 @@
   padding-bottom:       0 !important;
 }
 
+input {
+  padding:              0 0.3em;
+}
+
+form div {
+  margin:               0.5em 0;
+}
+
 
 /* ========== ( user profile pics ) ========== */
 
