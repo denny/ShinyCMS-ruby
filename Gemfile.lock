@@ -131,6 +131,9 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
+    image_processing (1.9.3)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.13, < 3)
     jaro_winkler (1.5.4)
     jmespath (1.4.0)
     json (2.2.0)
@@ -253,6 +256,8 @@ GEM
       rack (>= 1.1)
       rubocop (>= 0.72.0)
     ruby-progressbar (1.10.1)
+    ruby-vips (2.0.16)
+      ffi (~> 1.9)
     sassc (2.2.1)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -311,6 +316,7 @@ DEPENDENCIES
   devise-pwned_password!
   factory_bot_rails!
   faker!
+  image_processing (~> 1.2)!
   kaminari!
   listen (>= 3.0.5, < 3.3)!
   mini_magick!
