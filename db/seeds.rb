@@ -113,7 +113,14 @@ seed Capability, { name: I18n.t( 'capability.edit_users'   ) }, {
 seed Capability, { name: I18n.t( 'capability.delete_users' ) }, {
   category_id: users_cc.id,
 }
+# Admins
+seed Capability, { name: I18n.t( 'capability.view_user_admin_notes' ) }, {
+  category_id: users_cc.id,
+}
 seed Capability, { name: I18n.t( 'capability.edit_admins'  ) }, {
+  category_id: users_cc.id,
+}
+seed Capability, { name: I18n.t( 'capability.delete_admins'  ) }, {
   category_id: users_cc.id,
 }
 

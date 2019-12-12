@@ -91,28 +91,28 @@ body {
   height:           47px;
 }
 
-nav#menu a.c-sidebar-nav-link {
+#menu a.c-sidebar-nav-link {
   color:            $white;
   padding:          0.8em;
 }
 
-nav#menu a.c-sidebar-nav-link:hover {
+#menu a.c-sidebar-nav-link:hover {
   background:       $highlight_colour !important;
 }
 
-nav#menu a.c-sidebar-nav-link.c-active {
+#menu a.c-sidebar-nav-link.c-active {
   color:            $highlight_colour !important;
 }
 
-nav#menu a.c-sidebar-nav-link.c-active .c-sidebar-nav-icon {
+#menu a.c-sidebar-nav-link.c-active .c-sidebar-nav-icon {
   fill:             $highlight_colour !important;
 }
 
-nav#menu a.c-sidebar-nav-link.c-active:hover {
+#menu a.c-sidebar-nav-link.c-active:hover {
   color:            $white !important;
 }
 
-nav#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
+#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
   fill:             $white !important;
 }
 
@@ -263,9 +263,8 @@ nav#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
   background:       $input_bg;
   border:           1px solid $input_border;
   color:            $input_fg;
-  margin-bottom:    0.5em;
   min-width:        800px;
-  padding:          0 0.5em;
+  padding:          0.3em 0.5em;
 }
 
 #main input[type=text] {
@@ -293,12 +292,9 @@ nav#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
   width:            40em;
 }
 
-#main textarea {
-  width:            40em;
-}
-
 #main input[type=checkbox] {
-  margin-top:       0;
+  margin:           0;
+  padding:          0;
 }
 
 #main input[type=button],
@@ -313,6 +309,10 @@ nav#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
 #main input[type=reset]:hover {
   background:       $input_border;
   color:            $input_bg;
+}
+
+#main p.form_buttons {
+  margin-top:       1.5em;
 }
 
 /* fieldset for bottom-of-page 'add new element' forms */
