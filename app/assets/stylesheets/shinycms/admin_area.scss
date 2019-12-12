@@ -70,9 +70,9 @@ $row_highlight:     $white;
 /* ==================== ( global styles ) ==================== */
 
 body {
+  color:            $dark_colour;
   font-family:      'Roboto', sans-serif;
   font-size:        11pt;
-  color:            $dark_colour;
 }
 
 
@@ -92,8 +92,8 @@ body {
 }
 
 nav#menu a.c-sidebar-nav-link {
-  padding:          0.8em;
   color:            $white;
+  padding:          0.8em;
 }
 
 nav#menu a.c-sidebar-nav-link:hover {
@@ -117,6 +117,7 @@ nav#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
 }
 
 .c-sidebar-footer {
+  align-items:      center;
   height:           48px;
 }
 
@@ -126,27 +127,26 @@ nav#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
 
 .c-sidebar-footer a:hover {
   color:            $white;
-  align-items:      center;
 }
 
 
 /* ==================== ( header ) ==================== */
 
-header nav#breadcrumbs {
+#breadcrumbs {
   font-family:      'Roboto Condensed', sans-serif;
   font-size:        1.3em;
 }
 
-header nav#breadcrumbs a {
+#breadcrumbs a {
   color:            $dark_colour;
 }
 
-header nav#breadcrumbs a:hover {
+#breadcrumbs a:hover {
   color:            $highlight_colour;
   text-decoration:  none;
 }
 
-header nav#breadcrumbs .active {
+#breadcrumbs .active {
   color:            $dark_grey;
 }
 
@@ -157,18 +157,18 @@ header nav#breadcrumbs .active {
   margin-left:      14em !important;
 }
 
-main#main {
-  padding:          1em 2em;
+#main {
   min-width:        60%;
+  padding:          1em 2em;
 }
 
-main#main p {
+#main p {
   margin:           0.5em 0 0 0.5em;
 }
 
 .alert {
-  color:             $dark_grey;
   border:            1px solid $grey;
+  color:             $dark_grey;
   font-size:         1.1em;
   padding:           0.5em 1em;
 }
@@ -176,158 +176,158 @@ main#main p {
 
 /* ==================== ( index/list pages ) ==================== */
 
-main#main table.table-striped {
+#main table.table-striped {
   color:            $dark_colour;
 }
 
-main#main table.table-striped th {
+#main table.table-striped th {
   border-top:       none;
 }
 
-main#main table .hidden {
+#main table .hidden {
   color:            $grey;
 }
 
-main#main table td.actions {
+#main table td.actions {
   text-align:       right;
   vertical-align:   middle;
 }
 
-main#main table td.actions a {
-  color:            $button_text;
-  text-decoration:  none;
+#main table td.actions a {
   background:       $input_bg;
   border:           1px solid $input_border;
   border-radius:    0.2em;
+  color:            $button_text;
   height:           2em;
   padding:          0.3em 0.5em;
-}
-
-main#main table td.actions a:hover {
   text-decoration:  none;
-  color:            $input_bg;
-  background:       $input_border;
 }
 
-main#main #pager {
+#main table td.actions a:hover {
+  background:       $input_border;
+  color:            $input_bg;
+  text-decoration:  none;
+}
+
+#main #pager {
   font-size:        0.8em;
   margin-top:       2em;
 }
 
-main#main #pager .page-link {
+#main #pager .page-link {
   color:            $dark_colour;
   background:       none;
 }
 
-main#main #pager .active .page-link {
-  color:            $white;
+#main #pager .active .page-link {
   background:       $dark_colour;
   border-color:     $dark_colour;
+  color:            $white;
 }
 
-main#main #pager-info {
-  text-align:       center;
+#main #pager-info {
   font-size:        0.8em;
+  text-align:       center;
 }
 
 
 /* ==================== ( new/edit pages ) ==================== */
 
-main#main label {
+#main label {
   color:            $dark_colour;
   margin:           0.5em 1px 0.1em 1px;
   padding-bottom:   0;
 }
 
-main#main input {
-  color:            $input_fg;
+#main input {
   background:       $input_bg;
   border:           1px solid $input_border;
+  color:            $input_fg;
   height:           2em;
+  line-height:      1.5;
   margin:           0.2em 0.2em 0.2em 0;
   padding-left:     0.5em;
-  line-height:      1.5;
 }
 
-main#main select {
-  color:            $input_fg;
+#main select {
   background:       $input_bg;
   border:           1px solid $input_border;
+  color:            $input_fg;
   height:           2em;
-  min-width:        10em;
   margin-bottom:    0.5em;
+  min-width:        10em;
   padding:          0.3em;
 }
 
-main#main textarea {
-  color:            $input_fg;
+#main textarea {
   background:       $input_bg;
   border:           1px solid $input_border;
-  min-width:        800px;
+  color:            $input_fg;
   margin-bottom:    0.5em;
+  min-width:        800px;
   padding:          0 0.5em;
 }
 
-main#main input[type=text] {
+#main input[type=text] {
   width:            20em;
 }
 
-main#main input.textnumber {
-  width:            3em;
+#main input.textnumber {
   text-align:       right;
+  width:            3em;
 }
 
-main#main input.textveryshort {
+#main input.textveryshort {
   width:            5em;
 }
 
-main#main input.textshort {
+#main input.textshort {
   width:            10em;
 }
 
-main#main input.textlong {
+#main input.textlong {
   width:            30em;
 }
 
-main#main input.textverylong {
+#main input.textverylong {
   width:            40em;
 }
 
-main#main textarea {
+#main textarea {
   width:            40em;
 }
 
-main#main input[type=checkbox] {
+#main input[type=checkbox] {
   margin-top:       0;
 }
 
-main#main input[type=button],
-main#main input[type=submit],
-main#main input[type=reset] {
-  color:            $button_text;
+#main input[type=button],
+#main input[type=submit],
+#main input[type=reset] {
   border-radius:    0.2em;
+  color:            $button_text;
 }
 
-main#main input[type=button]:hover,
-main#main input[type=submit]:hover,
-main#main input[type=reset]:hover {
-  color:            $input_bg;
+#main input[type=button]:hover,
+#main input[type=submit]:hover,
+#main input[type=reset]:hover {
   background:       $input_border;
+  color:            $input_bg;
 }
 
 /* fieldset for bottom-of-page 'add new element' forms */
-main#main fieldset {
+#main fieldset {
+  border:           1px solid $input_border;
+  border-radius:    3px;
   display:          inline-block;
   margin:           2em 0 0 0;
   padding:          0 0.5em 1em 0.5em;
-  border:           1px solid $input_border;
-  border-radius:    3px;
 }
 
-main#main fieldset legend {
+#main fieldset legend {
   color:            $dark_colour;
-  margin:           0 0 0 0.5em;
   font-size:        1em;
+  margin:           0 0 0 0.5em;
   width:            initial;
 }
 
@@ -335,9 +335,9 @@ main#main fieldset legend {
 /* ==================== ( footer ) ==================== */
 
 .c-footer {
-  height:           48px;
-  flex:             0 0 48px;
   background:       $near_white;
+  flex:             0 0 48px;
+  height:           48px;
 }
 
 footer a {

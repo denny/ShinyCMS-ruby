@@ -10,55 +10,76 @@
 \* ================================================================ */
 
 #header nav ul {
-  margin:             0;
+  margin:               0;
 }
 
 #header nav li {
-  list-style-type:    none;
-  display:            inline;
+  display:              inline;
+  list-style-type:      none;
 }
 
 #header #alerts {
-  color:              #111111;
-  background:         #ffdddd;
-  padding:            0.5em;
-  margin:             0.5em !important;
-  border-radius:      3px;
-  text-shadow:        none;
+  background:           #ffdddd;
+  border-radius:        3px;
+  color:                #111111;
+  margin:               0.5em !important;
+  padding:              0.5em;
+  text-shadow:          none;
 }
 
 #header #notices {
-  color:              #111111;
-  background:         #ddffdd;
-  padding:            0.5em;
-  margin:             0.5em !important;
-  border-radius:      3px;
-  text-shadow:        none;
+  background:           #ddffdd;
+  border-radius:        3px;
+  color:                #111111;
+  margin:               0.5em !important;
+  padding:              0.5em;
+  text-shadow:          none;
 }
 
-div#banner p a {
-  text-decoration:    none;
-  color:              #aaeeff;
+#banner p a {
+  color:                #aaeeff;
+  text-decoration:      none;
 }
-div#banner p a:visited {
-  color:              #99ddff;
+#banner p a:visited {
+  color:                #99ddff;
 }
-div#banner .button-large a {
-  text-decoration:    none;
-  color:              #ffffff;
+#banner .button-large a {
+  color:                #ffffff;
+  text-decoration:      none;
 }
 
 .sidebar li {
-  padding: 0.2em 0 0.2em 0;
-  border-bottom: solid 1px #e2e6e8;
+  border-bottom:        solid 1px #e2e6e8;
+  padding:              0.2em 0 0.2em 0;
 }
 
 .sidebar li:first-child {
-  padding-top: 0 !important;
-  border-top: 0 !important;
+  border-top:           0 !important;
+  padding-top:          0 !important;
 }
 
 .sidebar li:last-child {
-  padding-bottom: 0 !important;
-  border-bottom: 0 !important;
+  border-bottom:        0 !important;
+  padding-bottom:       0 !important;
+}
+
+
+/* ========== ( user profile pics ) ========== */
+
+.user_profile_pic {
+  border-radius:        5px;
+  float:                right;
+  max-width:            80%;
+}
+
+.user_icon {
+  border-radius:        3px;
+  max-width:            200px;
+}
+
+
+/* ========== ( utility styles ) ========== */
+
+.clearboth {
+  clear:                both;
 }

@@ -1,10 +1,19 @@
 <% if user_signed_in? %>
 <ul class="c-header-nav ml-auto mr-4">
-  <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-      <div class="c-avatar"><img class="c-avatar-img" src="/assets/coreui/img/avatars/6.jpg" alt="user@email.com"></div>
+  <li class="c-header-nav-item dropdown">
+    <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      <% if current_user.profile_pic.present? %>
+      <div class="c-avatar">
+        <%= image_tag current_user.profile_pic.variant( resize: '36x36!' ).processed.service_url, alt: user_display_name, class: 'c-avatar-img' %>
+      </div>
+      <% else %>
+      <svg class="c-icon mr-2">
+        <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-user"></use>
+      </svg>
+      <% end %>
     </a>
     <div class="dropdown-menu dropdown-menu-right pt-0">
-      <div class="dropdown-header bg-light py-2"><strong><%= current_user.username %></strong></div>
+      <div class="dropdown-header bg-light py-2"><strong><%= user_display_name %></strong></div>
       <a class="dropdown-item" href="<%= user_profile_path( current_user.username ) %>">
         <svg class="c-icon mr-2">
           <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-user"></use>

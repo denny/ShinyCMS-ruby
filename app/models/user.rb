@@ -19,11 +19,13 @@ class User < ApplicationRecord
   # Restrict the character set for usernames to letters, numbers, and - . _
   validates :username, format: ANCHORED_USERNAME_REGEX
 
+  # User profile pic (powered by ActiveStorage)
+  has_one_attached :profile_pic
+
   # Authorisation (powered by Pundit)
   has_many :user_capabilities, dependent: :restrict_with_error
-
-  has_many :capabilities, through: :user_capabilities,
-                          dependent: :restrict_with_error
+  has_many :capabilities,      dependent: :restrict_with_error,
+                               through: :user_capabilities
 
   def can?( capability )
     t_can? I18n.t( "capability.#{capability}" )
