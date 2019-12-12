@@ -180,3 +180,12 @@ en:
         previous: "&lsaquo; Prev"
         next: "Next &rsaquo;"
         truncate: "&hellip;"
+
+  ckeditor:
+    page_title: 'CKEditor File Manager'
+    confirm_delete: 'Delete file?'
+    buttons:
+      upload: 'Upload'
+      cancel: 'Cancel'
+      delete: 'Delete'
+      next: 'Next'

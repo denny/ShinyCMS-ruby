@@ -1,22 +1,18 @@
 require_relative 'boot'
 
-# Replace this:
-# require 'rails/all'
-# ... with this stack of individual require statements (so I can get selective)
-
+# Load Rails components selectively
 require 'rails'
-
 # require 'action_cable/engine'
-require 'action_controller/railtie' # Pretty sure we need this though
-# require 'action_mailbox/engine'   # Won't need for a long time: inbound email
-require 'action_mailer/railtie'     # Registration emails, etc
+require 'action_controller/railtie'
+# require 'action_mailbox/engine'   # Won't need for a long time (inbound email)
+require 'action_mailer/railtie'     # Outbound email (registration, etc)
 # require 'action_text/engine'
-require 'action_view/railtie'       # Also seems quite fundamental
+require 'action_view/railtie'
 require 'active_job/railtie'        # Queue (for mailer tasks)
 require 'active_record/railtie'
-# require 'active_storage/engine'   # Will need soon: user profile pics, etc
+require 'active_storage/engine'     # File storage (CKEditor image uploads, etc)
 # require 'rails/test_unit/railtie'
-# require 'sprockets/railtie'
+require 'sprockets/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -32,15 +28,6 @@ module ShinyCMS
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-
-    # Remove routes for Active Storage
-    initializer(
-      :remove_activestorage_routes, after: :add_routing_paths
-    ) do |app|
-      app.routes_reloader.paths.delete_if do |path|
-        path =~ /activestorage/
-      end
-    end
 
     # Remote routes for Action Mailbox
     initializer(

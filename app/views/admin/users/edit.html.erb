@@ -9,6 +9,7 @@
     <%= f.label :display_name %>
     <br><%= f.text_field :display_name %>
   </p>
+
   <p>
     <%= f.label :email %>
     <br><%= f.text_field :email %>
@@ -17,9 +18,37 @@
     <%= f.label :display_email %>
     <br><%= f.text_field :display_email %>
   </p>
+
   <p>
     <%= f.label :password %>
     <br><%= f.text_field :password %>
+  </p>
+
+  <p>
+    <%= f.label :profile_pic %>
+    <br><%= f.file_field :profile_pic %>
+    <% if @user.profile_pic.present? %>
+    <br><%= image_tag @user.profile_pic.variant( resize: '200x200!' ).processed.service_url, class: 'user_icon' %>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label :bio %>
+    <br><%= f.text_area :bio %>
+  </p>
+
+  <p>
+    <%= f.label :location %>
+    <br><%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.label :postcode %>
+    <br><%= f.text_field :postcode %>
+  </p>
+
+  <p>
+    <%= f.label :admin_notes %>
+    <br><%= f.text_area :admin_notes %>
   </p>
 
   <p>
