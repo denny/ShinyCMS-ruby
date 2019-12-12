@@ -9,35 +9,35 @@
    modify it under the terms of the GPL (version 2 or later).
 \* ================================================================ */
 
-nav#admin-toolbar {
+#admin-toolbar {
+  background:		#dddddd image-url( 'shinycms/admin-toolbar-bg.png' ) left top repeat-x;
+  bottom:			  0;
+  color:			  #000000;
   font-family:	'Poppins', sans-serif;
   font-size:		13pt;
-  z-index:		  999;
+  height:			  32px;
   position:		  fixed;
-  bottom:			  0;
   width:			  100%;
-	height:			  32px;
-  color:			  #000000;
-	background:		#dddddd image-url( 'shinycms/admin-toolbar-bg.png' ) left top repeat-x;
+  z-index:		  999;
 }
 
-nav#admin-toolbar #admin-toolbar-logo {
-  float:        left;
+#admin-toolbar #admin-toolbar-logo {
   border:       none;
+  float:        left;
 }
 
-nav#admin-toolbar #admin-toolbar-links {
+#admin-toolbar #admin-toolbar-links {
   float:        right;
-  padding:      0 20px 4px 0;
   font-size:    0.8em;
+  padding:      0 20px 4px 0;
 }
 
-nav#admin-toolbar #admin-toolbar-links a {
+#admin-toolbar #admin-toolbar-links a {
   color:            #005a7e;
   text-decoration:  none;
 }
 
-nav#admin-toolbar #admin-toolbar-links a:hover {
+#admin-toolbar #admin-toolbar-links a:hover {
   color:            #005a7e;
   text-decoration:  underline;
 }
