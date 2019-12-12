@@ -18,7 +18,6 @@
   <p>
     Member since: <%= @user_profile.created_at.to_s( :time ) %>
     on <%= @user_profile.created_at.to_date.to_s( :rfc822 ) %>
-    <%# TODO: human-readable date format %>
   </p>
 
   <% if @user_profile.profile_pic.present? %>
@@ -37,7 +36,6 @@
   <p>
     Last login: <%= @user_profile.last_sign_in_at.to_s( :time ) %>
     on <%= @user_profile.last_sign_in_at.to_date.to_s( :rfc822 ) %>,
-    <%# TODO: human-readable date format %>
     from <%= @user_profile.last_sign_in_ip_was %>
   </p>
 </section>
