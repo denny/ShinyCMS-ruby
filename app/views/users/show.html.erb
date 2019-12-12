@@ -16,7 +16,8 @@
   <% end %>
 
   <p>
-    Member since: <%= @user_profile.created_at %>
+    Member since: <%= @user_profile.created_at.to_s( :time ) %>
+    on <%= @user_profile.created_at.to_date.to_s( :rfc822 ) %>
     <%# TODO: human-readable date format %>
   </p>
 
@@ -34,7 +35,8 @@
   </header>
 
   <p>
-    Last login: <%= @user_profile.last_sign_in_at %>,
+    Last login: <%= @user_profile.last_sign_in_at.to_s( :time ) %>
+    on <%= @user_profile.last_sign_in_at.to_date.to_s( :rfc822 ) %>,
     <%# TODO: human-readable date format %>
     from <%= @user_profile.last_sign_in_ip_was %>
   </p>
