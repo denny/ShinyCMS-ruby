@@ -1,5 +1,54 @@
 <% @page_title = user_display_name( @user_profile ) %>
 
-<h1>
-  <%= user_display_name( @user_profile ) %>
-</h1>
+<section>
+  <% if @user_profile.profile_pic.present? %>
+  <%= image_tag @user_profile.profile_pic.variant( resize: '400x400!' ).processed.service_url, class: 'user_profile_pic' %>
+  <% end %>
+
+  <header>
+    <h2>
+      <%= user_display_name( @user_profile ) %>
+    </h2>
+  </header>
+
+  <% if @user_profile.bio.present? %>
+  <%= simple_format @user_profile.bio %>
+  <% end %>
+
+  <p>
+    Member since: <%= @user_profile.created_at %>
+    <%# TODO: human-readable date format %>
+  </p>
+
+  <% if @user_profile.profile_pic.present? %>
+  <div class="clearboth"></div>
+  <% end %>
+</section>
+
+<% if @user_profile == current_user %>
+<section>
+  <header>
+    <h3>
+      Private information (only visible to you)
+    </h3>
+  </header>
+
+  <p>
+    Last login: <%= @user_profile.last_sign_in_at %>,
+    <%# TODO: human-readable date format %>
+    from <%= @user_profile.last_sign_in_ip_was %>
+  </p>
+</section>
+<% end %>
+
+<% if current_user_can? 'view_user_admin_notes' && @user_profile.admin_notes.present? %>
+<section>
+  <header>
+    <h3>
+      Admin notes
+    </h3>
+  </header>
+
+  <%= simple_format @user_profile.admin_notes %>
+</section>
+<% end %>
