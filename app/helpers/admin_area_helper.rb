@@ -1,6 +1,9 @@
 # Helper methods for admin area
 module AdminAreaHelper
   def authorise( record )
+    if record.nil?
+      Rails.logger.warn 'ShinyCMSError: nil record passed to authorise() method'
+    end
     record_class_name = class_name( record )
     policy_class_name = "Admin::#{record_class_name}Policy"
 

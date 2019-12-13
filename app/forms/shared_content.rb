@@ -2,6 +2,8 @@
 class SharedContent
   include ActiveModel::Model
 
+  delegate :first, :last, :all, to: :elements
+
   attr_accessor :elements
   attr_reader   :elements_attributes
 

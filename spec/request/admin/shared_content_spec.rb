@@ -94,7 +94,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.shared_content.shared_content_deleted' )
       expect( response.body ).to     include s1.name
       expect( response.body ).to     include s3.name
-      expect( response.body ).not_to include s2.name
+      expect( response.body ).not_to include 'do_not_want'
     end
 
     it 'fails gracefully when attempting to delete a non-existent setting' do
@@ -111,7 +111,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
   end
 
   describe 'POST /admin/shared-content' do
-    it 'updates any settings that were changed' do
+    it 'updates any shared content that was changed' do
       create :shared_content_element
       s2 = create :shared_content_element, content: 'Original content'
       create :shared_content_element

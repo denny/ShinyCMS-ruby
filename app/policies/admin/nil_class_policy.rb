@@ -6,8 +6,4 @@ class Admin::NilClassPolicy < Admin::DefaultPolicy
       raise Pundit::NotDefinedError, 'Cannot scope NilClass'
     end
   end
-
-  def delete?
-    true # trying (and failing) to avoid explosions
-  end
 end

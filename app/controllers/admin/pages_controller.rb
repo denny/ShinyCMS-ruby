@@ -4,7 +4,7 @@ class Admin::PagesController < AdminController
 
   def index
     authorise Page
-    authorise PageSection
+    # authorise PageSection
 
     @tl_pages = Page.top_level_pages + Page.top_level_hidden_pages
     authorise @tl_pages if @tl_pages.present?
@@ -15,7 +15,8 @@ class Admin::PagesController < AdminController
   end
 
   def new
-    authorise Page
+    @page = Page.new
+    authorise @page
   end
 
   def create

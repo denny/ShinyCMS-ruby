@@ -9,7 +9,8 @@ class Admin::Pages::SectionsController < AdminController
   end
 
   def new
-    authorise PageSection
+    @section = PageSection.new
+    authorise @section
   end
 
   def create

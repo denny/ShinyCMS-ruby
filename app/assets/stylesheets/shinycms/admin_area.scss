@@ -180,20 +180,38 @@ body {
   color:            $dark_colour;
 }
 
-#main table.table-striped th {
+#main .table-striped tr {
+  vertical-align:   middle;
+}
+
+#main .table-striped th {
   border-top:       none;
 }
 
-#main table .hidden {
+#main .table-striped .hidden {
   color:            $grey;
 }
 
-#main table td.actions {
+#main .table-striped td {
+  vertical-align:   middle;
+}
+
+#main .table-striped td.actions {
   text-align:       right;
   vertical-align:   middle;
 }
 
-#main table td.actions a {
+#main .table-striped td input[type=checkbox] {
+  height:           1em;
+  vertical-align:   middle;
+}
+
+#main .table-striped td label {
+  margin:           0;
+  padding:          0;
+}
+
+#main .table-striped td.actions a {
   background:       $input_bg;
   border:           1px solid $input_border;
   border-radius:    0.2em;
@@ -203,29 +221,29 @@ body {
   text-decoration:  none;
 }
 
-#main table td.actions a:hover {
+#main .table-striped td.actions a:hover {
   background:       $input_border;
   color:            $input_bg;
   text-decoration:  none;
 }
 
-#main #pager {
+#pager {
   font-size:        0.8em;
   margin-top:       2em;
 }
 
-#main #pager .page-link {
+#pager .page-link {
   color:            $dark_colour;
   background:       none;
 }
 
-#main #pager .active .page-link {
+#pager .active .page-link {
   background:       $dark_colour;
   border-color:     $dark_colour;
   color:            $white;
 }
 
-#main #pager-info {
+#pager-info {
   font-size:        0.8em;
   text-align:       center;
 }
