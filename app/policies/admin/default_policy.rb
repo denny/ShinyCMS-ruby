@@ -19,10 +19,6 @@ class Admin::DefaultPolicy < DefaultPolicy
     @this_user.can? :list, calling_class.to_sym
   end
 
-  def show?
-    false
-  end
-
   def create?
     @this_user.can? :add, @record.class.name.to_sym
   end
