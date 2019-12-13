@@ -8,8 +8,6 @@ RSpec.describe 'Admin', type: :request do
 
   describe 'GET /admin' do
     it 'redirects to the page admin area' do
-      create :top_level_page
-
       get admin_path
 
       expect( response      ).to have_http_status :found
@@ -20,8 +18,6 @@ RSpec.describe 'Admin', type: :request do
     end
 
     it 'still works with an admin IP list set' do
-      create :top_level_page
-
       Setting.find_or_create_by!(
         name: I18n.t( 'admin.settings.admin_ip_list' )
       ).update!( value: '127.0.0.1' )
