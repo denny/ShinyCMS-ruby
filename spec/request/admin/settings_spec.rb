@@ -95,7 +95,6 @@ RSpec.describe 'Admin: Site Settings', type: :request do
     end
 
     it 'fails gracefully when attempting to delete a non-existent setting' do
-      skip 'Figure out Pundit issue'
       delete admin_setting_delete_path( 999 )
 
       expect( response      ).to have_http_status :found

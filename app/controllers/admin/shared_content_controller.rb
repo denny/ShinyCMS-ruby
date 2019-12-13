@@ -60,6 +60,7 @@ class Admin::SharedContentController < AdminController
   end
 
   def handle_delete_exceptions
+    skip_authorization
     flash[ :alert ] = t( 'shared_content_delete_failed' )
     redirect_to admin_shared_content_path
   end

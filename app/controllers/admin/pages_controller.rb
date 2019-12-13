@@ -71,6 +71,7 @@ class Admin::PagesController < AdminController
   end
 
   def handle_delete_exceptions
+    skip_authorization
     flash[ :alert ] = t( 'page_delete_failed' )
     redirect_to admin_pages_path
   end

@@ -98,7 +98,6 @@ RSpec.describe 'Admin: Shared Content', type: :request do
     end
 
     it 'fails gracefully when attempting to delete non-existent shared content' do
-      skip 'Figure out Pundit issue'
       delete admin_shared_content_delete_path( 999 )
 
       expect( response      ).to have_http_status :found

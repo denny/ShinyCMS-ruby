@@ -67,6 +67,7 @@ class Admin::SettingsController < AdminController
   end
 
   def handle_delete_exceptions
+    skip_authorization
     flash[ :alert ] = t( 'setting_delete_failed' )
     redirect_to admin_settings_path
   end

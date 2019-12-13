@@ -66,6 +66,7 @@ class Admin::Pages::TemplatesController < AdminController
   end
 
   def handle_delete_exceptions
+    skip_authorization
     flash[ :alert ] = t( 'template_delete_failed' )
     redirect_to admin_pages_templates_path
   end
