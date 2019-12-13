@@ -6,6 +6,7 @@ class Admin::DefaultPolicy < DefaultPolicy
     @this_user.can? :list, @record.first.class.name.to_sym
   end
 
+  # Handle the case where a list page has no content yet
   def can_list_nil?
     calling_class = self.class.ancestors[0].to_s
     calling_class.remove! 'Admin::'
