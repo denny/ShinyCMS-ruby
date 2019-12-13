@@ -54,7 +54,8 @@ class Admin::Pages::TemplatesController < AdminController
     flash[ :notice ] = t( 'template_deleted' ) if template.destroy
     redirect_to admin_pages_templates_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    handle_delete_exceptions
+    handle_delete_exceptions t( 'template_delete_failed' ),
+                             admin_pages_templates_path
   end
 
   private
@@ -63,12 +64,6 @@ class Admin::Pages::TemplatesController < AdminController
     params.require( :page_template ).permit(
       :name, :description, :filename, elements_attributes: {}
     )
-  end
-
-  def handle_delete_exceptions
-    skip_authorization
-    flash[ :alert ] = t( 'template_delete_failed' )
-    redirect_to admin_pages_templates_path
   end
 
   def t( key )

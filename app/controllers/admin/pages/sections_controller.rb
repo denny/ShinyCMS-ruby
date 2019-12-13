@@ -51,7 +51,7 @@ class Admin::Pages::SectionsController < AdminController
     flash[ :notice ] = t( 'section_deleted' ) if section.destroy
     redirect_to admin_pages_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    handle_delete_exceptions
+    handle_delete_exceptions t( 'section_delete_failed' ), admin_pages_path
   end
 
   private
@@ -61,12 +61,6 @@ class Admin::Pages::SectionsController < AdminController
       :name, :description, :title, :slug, :section_id,
       :sort_order, :hidden, :hidden_from_menu
     )
-  end
-
-  def handle_delete_exceptions
-    skip_authorization
-    flash[ :alert ] = t( 'section_delete_failed' )
-    redirect_to admin_pages_path
   end
 
   def t( key )

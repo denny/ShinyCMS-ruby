@@ -57,7 +57,7 @@ class Admin::PagesController < AdminController
     flash[ :notice ] = t( 'page_deleted' ) if page.destroy
     redirect_to admin_pages_path
   rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-    handle_delete_exceptions
+    handle_delete_exceptions t( 'page_delete_failed' ), admin_pages_path
   end
 
   private
@@ -68,12 +68,6 @@ class Admin::PagesController < AdminController
       :sort_order, :hidden, :hidden_from_menu,
       elements_attributes: {}
     )
-  end
-
-  def handle_delete_exceptions
-    skip_authorization
-    flash[ :alert ] = t( 'page_delete_failed' )
-    redirect_to admin_pages_path
   end
 
   def t( key )
