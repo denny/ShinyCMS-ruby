@@ -97,7 +97,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       expect( response.body ).not_to include 'do_not_want'
     end
 
-    it 'fails gracefully when attempting to delete a non-existent setting' do
+    it 'fails gracefully when attempting to delete non-existent shared content' do
       skip 'Figure out Pundit issue'
       delete admin_shared_content_delete_path( 999 )
 
