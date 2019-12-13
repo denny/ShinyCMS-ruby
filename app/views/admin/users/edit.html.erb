@@ -46,15 +46,45 @@
     <br><%= f.text_field :postcode %>
   </p>
 
-  <p>
-  <% CapabilityCategory.all.each do |category| %>
-    <b><%= category.name %></b></br>
-    <% category.capabilities.each do |cape| %>
-      <label><input type="checkbox" name="<%= cape.id %>"> <%= cape.name %></label>&nbsp;
+  <% if current_user_can? :edit_admins, :admin_users %>
+  <table class="table table-responsive-sm table-striped">
+    <tr>
+      <th></th>
+      <th>
+        List
+      </th>
+      <th>
+        Add
+      </th>
+      <th>
+        Edit
+      </th>
+      <th>
+        Delete
+      </th>
+    </tr>
+    <% CapabilityCategory.all.order( :name ).each do |category| %>
+    <tr>
+      <td>
+        <%= t( category.name ) %>
+      </td>
+      <% %i[ List Add Edit Delete ].each do |verb| %>
+        <% verb = 'Add new' if verb == 'Add' %>
+        <% capability_name = "#{verb} #{category.name.downcase}" %>
+      <td>
+        <% c = Capability.find_by( name: capability_name ) %>
+        <% if c.present? %>
+        <label>
+          <input type="checkbox" name="capabilities" value="<%= c.id %>"
+          <% if @user.can?( c.name.underscore ) %> checked="checked"<% end %>> <%= c.name %>
+        </label>
+        <% end %>
+      </td>
+      <% end %>
+    </tr>
     <% end %>
-    <br>
+  </table>
   <% end %>
-  </p>
 
   <p>
     <%= f.label :admin_notes %>

@@ -12,7 +12,8 @@ class Admin::Pages::TemplatesController < AdminController
   end
 
   def new
-    authorise PageTemplate
+    @template = PageTemplate.new
+    authorise @template
   end
 
   def create

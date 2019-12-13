@@ -8,103 +8,118 @@ FactoryBot.define do
 
   factory :admin_user, parent: :user do
     after :create do |admin|
-      view = create :capability, name: I18n.t( 'capability.view_admin_area' )
-      create :user_capability, user_id: admin.id, capability_id: view.id
+      general_category = create :capability_category, name: 'general'
+      view = create :capability, name: 'view_admin_area', category: general_category
+      create :user_capability, user: admin, capability: view
     end
   end
 
   factory :page_admin, parent: :admin_user do
     after :create do |admin|
-      list   = create :capability, name: I18n.t( 'capability.list_pages'   )
-      add    = create :capability, name: I18n.t( 'capability.add_pages'    )
-      edit   = create :capability, name: I18n.t( 'capability.edit_pages'   )
-      delete = create :capability, name: I18n.t( 'capability.delete_pages' )
+      pages_category = create :capability_category, name: 'pages'
 
-      create :user_capability, user_id: admin.id, capability_id: list.id
-      create :user_capability, user_id: admin.id, capability_id: add.id
-      create :user_capability, user_id: admin.id, capability_id: edit.id
-      create :user_capability, user_id: admin.id, capability_id: delete.id
+      list   = create :capability, name: 'list',   category: pages_category
+      add    = create :capability, name: 'add',    category: pages_category
+      edit   = create :capability, name: 'edit',   category: pages_category
+      delete = create :capability, name: 'delete', category: pages_category
 
-      list   = create :capability, name: I18n.t( 'capability.list_page_sections'   )
-      add    = create :capability, name: I18n.t( 'capability.add_page_sections'    )
-      edit   = create :capability, name: I18n.t( 'capability.edit_page_sections'   )
-      delete = create :capability, name: I18n.t( 'capability.delete_page_sections' )
+      create :user_capability, user: admin, capability: list
+      create :user_capability, user: admin, capability: add
+      create :user_capability, user: admin, capability: edit
+      create :user_capability, user: admin, capability: delete
 
-      create :user_capability, user_id: admin.id, capability_id: list.id
-      create :user_capability, user_id: admin.id, capability_id: add.id
-      create :user_capability, user_id: admin.id, capability_id: edit.id
-      create :user_capability, user_id: admin.id, capability_id: delete.id
+      sections_category = create :capability_category, name: 'page_sections'
+
+      list   = create :capability, name: 'list',   category: sections_category
+      add    = create :capability, name: 'add',    category: sections_category
+      edit   = create :capability, name: 'edit',   category: sections_category
+      delete = create :capability, name: 'delete', category: sections_category
+
+      create :user_capability, user: admin, capability: list
+      create :user_capability, user: admin, capability: add
+      create :user_capability, user: admin, capability: edit
+      create :user_capability, user: admin, capability: delete
     end
   end
 
   factory :page_template_admin, parent: :page_admin do
     after :create do |admin|
-      list   = create :capability, name: I18n.t( 'capability.list_page_templates'   )
-      add    = create :capability, name: I18n.t( 'capability.add_page_templates'    )
-      edit   = create :capability, name: I18n.t( 'capability.edit_page_templates'   )
-      delete = create :capability, name: I18n.t( 'capability.delete_page_templates' )
+      category = create :capability_category, name: 'page_templates'
 
-      create :user_capability, user_id: admin.id, capability_id: list.id
-      create :user_capability, user_id: admin.id, capability_id: add.id
-      create :user_capability, user_id: admin.id, capability_id: edit.id
-      create :user_capability, user_id: admin.id, capability_id: delete.id
+      list   = create :capability, name: 'list',   category: category
+      add    = create :capability, name: 'add',    category: category
+      edit   = create :capability, name: 'edit',   category: category
+      delete = create :capability, name: 'delete', category: category
+
+      create :user_capability, user: admin, capability: list
+      create :user_capability, user: admin, capability: add
+      create :user_capability, user: admin, capability: edit
+      create :user_capability, user: admin, capability: delete
     end
   end
 
   # TODO: user factory you can pass an array of admin types into (see below)
   factory :settings_admin, parent: :admin_user do
     after :create do |admin|
-      list   = create :capability, name: I18n.t( 'capability.list_settings'   )
-      add    = create :capability, name: I18n.t( 'capability.add_settings'    )
-      edit   = create :capability, name: I18n.t( 'capability.edit_settings'   )
-      delete = create :capability, name: I18n.t( 'capability.delete_settings' )
+      category = create :capability_category, name: 'settings'
 
-      create :user_capability, user_id: admin.id, capability_id: list.id
-      create :user_capability, user_id: admin.id, capability_id: add.id
-      create :user_capability, user_id: admin.id, capability_id: edit.id
-      create :user_capability, user_id: admin.id, capability_id: delete.id
+      list   = create :capability, name: 'list',   category: category
+      add    = create :capability, name: 'add',    category: category
+      edit   = create :capability, name: 'edit',   category: category
+      delete = create :capability, name: 'delete', category: category
+
+      create :user_capability, user: admin, capability: list
+      create :user_capability, user: admin, capability: add
+      create :user_capability, user: admin, capability: edit
+      create :user_capability, user: admin, capability: delete
     end
   end
 
   factory :shared_content_admin, parent: :admin_user do
     after :create do |admin|
-      list   = create :capability, name: I18n.t( 'capability.list_shared_content'   )
-      add    = create :capability, name: I18n.t( 'capability.add_shared_content'    )
-      edit   = create :capability, name: I18n.t( 'capability.edit_shared_content'   )
-      delete = create :capability, name: I18n.t( 'capability.delete_shared_content' )
+      category = create :capability_category, name: 'shared_content'
 
-      create :user_capability, user_id: admin.id, capability_id: list.id
-      create :user_capability, user_id: admin.id, capability_id: add.id
-      create :user_capability, user_id: admin.id, capability_id: edit.id
-      create :user_capability, user_id: admin.id, capability_id: delete.id
+      list   = create :capability, name: 'list',   category: category
+      add    = create :capability, name: 'add',    category: category
+      edit   = create :capability, name: 'edit',   category: category
+      delete = create :capability, name: 'delete', category: category
+
+      create :user_capability, user: admin, capability: list
+      create :user_capability, user: admin, capability: add
+      create :user_capability, user: admin, capability: edit
+      create :user_capability, user: admin, capability: delete
     end
   end
 
   factory :user_admin, parent: :admin_user do
     after :create do |admin|
-      list   = create :capability, name: I18n.t( 'capability.list_users'   )
-      add    = create :capability, name: I18n.t( 'capability.add_users'    )
-      edit   = create :capability, name: I18n.t( 'capability.edit_users'   )
-      delete = create :capability, name: I18n.t( 'capability.delete_users' )
+      category = create :capability_category, name: 'users'
 
-      create :user_capability, user_id: admin.id, capability_id: list.id
-      create :user_capability, user_id: admin.id, capability_id: add.id
-      create :user_capability, user_id: admin.id, capability_id: edit.id
-      create :user_capability, user_id: admin.id, capability_id: delete.id
+      list   = create :capability, name: 'list',   category: category
+      add    = create :capability, name: 'add',    category: category
+      edit   = create :capability, name: 'edit',   category: category
+      delete = create :capability, name: 'delete', category: category
+
+      create :user_capability, user: admin, capability: list
+      create :user_capability, user: admin, capability: add
+      create :user_capability, user: admin, capability: edit
+      create :user_capability, user: admin, capability: delete
     end
   end
 
   factory :super_admin, parent: :user_admin do
     after :create do |admin|
-      list   = create :capability, name: I18n.t( 'capability.list_admins'   )
-      add    = create :capability, name: I18n.t( 'capability.add_admins'    )
-      edit   = create :capability, name: I18n.t( 'capability.edit_admins'   )
-      delete = create :capability, name: I18n.t( 'capability.delete_admins' )
+      category = create :capability_category, name: 'admin_users'
 
-      create :user_capability, user_id: admin.id, capability_id: list.id
-      create :user_capability, user_id: admin.id, capability_id: add.id
-      create :user_capability, user_id: admin.id, capability_id: edit.id
-      create :user_capability, user_id: admin.id, capability_id: delete.id
+      list   = create :capability, name: 'list',   category: category
+      add    = create :capability, name: 'add',    category: category
+      edit   = create :capability, name: 'edit',   category: category
+      delete = create :capability, name: 'delete', category: category
+
+      create :user_capability, user: admin, capability: list
+      create :user_capability, user: admin, capability: add
+      create :user_capability, user: admin, capability: edit
+      create :user_capability, user: admin, capability: delete
     end
   end
 end

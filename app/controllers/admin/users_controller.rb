@@ -9,7 +9,8 @@ class Admin::UsersController < AdminController
   end
 
   def new
-    authorise User
+    @user = User.new
+    authorise @user
   end
 
   def create

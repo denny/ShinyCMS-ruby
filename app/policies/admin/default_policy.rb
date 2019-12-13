@@ -1,15 +1,21 @@
 # Top-level pundit policy for admin area
 class Admin::DefaultPolicy < DefaultPolicy
-  attr_reader :user, :record
+  def index?
+    return can_list_nil? if @record.nil? || @record.first.nil?
 
-  # :nocov:
-  def initialize( user, record )
-    @user = user
-    @record = record
+    @this_user.can? :list, @record.first.class.name.to_sym
   end
 
-  def index?
-    false
+  def can_list_nil?
+    calling_class = self.class.ancestors[0].to_s
+    calling_class.remove! 'Admin::'
+    calling_class.remove! 'Policy'
+    Rails.logger.debug <<~LOG
+      [ShinyCMS] A nil @record was passed to authorise()
+      [ShinyCMS] (this probably just means that there's nothing to list yet)
+      [ShinyCMS] Making best guess and checking auth for #{calling_class}
+    LOG
+    @this_user.can? :list, calling_class.to_sym
   end
 
   def show?
@@ -17,7 +23,7 @@ class Admin::DefaultPolicy < DefaultPolicy
   end
 
   def create?
-    false
+    @this_user.can? :add, @record.class.name.to_sym
   end
 
   def new?
@@ -25,15 +31,14 @@ class Admin::DefaultPolicy < DefaultPolicy
   end
 
   def update?
-    false
+    @this_user.can? :edit, @record.class.name.to_sym
   end
 
   def edit?
     update?
   end
 
-  def destroy?
-    false
+  def delete?
+    @this_user.can? :delete, @record.class.name.to_sym
   end
-  # :nocov:
 end

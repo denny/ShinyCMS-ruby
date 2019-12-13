@@ -8,6 +8,8 @@ RSpec.describe 'Admin: Page Sections', type: :request do
 
   describe 'GET /admin/pages/sections' do
     it 'redirects to the combined pages+sections list' do
+      create :top_level_page
+
       get admin_pages_sections_path
 
       expect( response      ).to have_http_status :found
@@ -109,6 +111,8 @@ RSpec.describe 'Admin: Page Sections', type: :request do
 
   describe 'DELETE /admin/pages/section/delete/:id' do
     it 'deletes the specified section' do
+      create :top_level_page
+
       s1 = create :page_section
       s2 = create :page_section
       s3 = create :page_section
