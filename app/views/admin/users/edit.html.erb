@@ -69,14 +69,13 @@
         <%= t( category.name ) %>
       </td>
       <% %i[ List Add Edit Delete ].each do |verb| %>
-        <% verb = 'Add new' if verb == 'Add' %>
-        <% capability_name = "#{verb} #{category.name.downcase}" %>
       <td>
         <% c = Capability.find_by( name: capability_name ) %>
         <% if c.present? %>
         <label>
-          <input type="checkbox" name="capabilities" value="<%= c.id %>"
-          <% if @user.can?( c.name.underscore ) %> checked="checked"<% end %>> <%= c.name %>
+          <input type="checkbox" name="capabilities" value="<%= c.id %>"<% if @user.can?(
+            c.name.to_sym, c.category.name.to_sym
+          ) %> checked="checked"<% end %>> <%= c.name %>
         </label>
         <% end %>
       </td>
