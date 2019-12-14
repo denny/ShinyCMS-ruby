@@ -70,7 +70,7 @@
       </td>
       <% %i[ List Add Edit Delete ].each do |verb| %>
       <td>
-        <% c = Capability.find_by( name: capability_name ) %>
+        <% c = Capability.find_by( name: verb.downcase, category: category ) %>
         <% if c.present? %>
         <label>
           <input type="checkbox" name="capabilities" value="<%= c.id %>"<% if @user.can?(
