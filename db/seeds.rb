@@ -4,7 +4,7 @@
 # It is used to populate the databse when you create it with `rake db:setup`
 # You can also load it (and reload it) at any time using `rake db:seed`
 
-# Add some (unset) settings, to prompt people to set them
+# Settings (unset; just here to let people know that they're available)
 # TODO: replace this with the half-planned site/admin/user overrideable thing
 seed Setting, { name: I18n.t( 'admin.settings.admin_ip_list' ) }, {
   value: '',
@@ -20,17 +20,17 @@ seed Setting, { name: I18n.t( 'admin.settings.default_section' ) }, {
 }
 
 # Feature Flags (to turn on/off areas of site functionality)
-seed FeatureFlag, { name: I18n.t( 'feature_flags.user_login' ) }, {
+seed FeatureFlag, { name: 'user_login' }, {
   description: 'Allow users to log in',
   enabled: false,
   enabled_for_admins: true,
 }
-seed FeatureFlag, { name: I18n.t( 'feature_flags.user_profiles' ) }, {
+seed FeatureFlag, { name: 'user_profiles' }, {
   description: 'Allow viewing of user profiles',
   enabled: true,
   enabled_for_admins: true,
 }
-seed FeatureFlag, { name: I18n.t( 'feature_flags.user_registration' ) }, {
+seed FeatureFlag, { name: 'user_registration' }, {
   description: 'Allow users to create accounts',
   enabled: true,
   enabled_for_admins: true,
@@ -48,34 +48,34 @@ admins_cc    = seed CapabilityCategory, { name: 'admin_users'    }
 seed Capability, { name: 'view_admin_area'    }, { category: general_cc }
 seed Capability, { name: 'view_admin_toolbar' }, { category: general_cc }
 # Pages
-seed Capability, { name: 'list'   }, { category: pages_cc }
-seed Capability, { name: 'add'    }, { category: pages_cc }
-seed Capability, { name: 'edit'   }, { category: pages_cc }
-seed Capability, { name: 'delete' }, { category: pages_cc }
+seed Capability, { name: 'list',   category: pages_cc }
+seed Capability, { name: 'add',    category: pages_cc }
+seed Capability, { name: 'edit',   category: pages_cc }
+seed Capability, { name: 'delete', category: pages_cc }
 # Page Sections
-seed Capability, { name: 'list'   }, { category: sections_cc }
-seed Capability, { name: 'add'    }, { category: sections_cc }
-seed Capability, { name: 'edit'   }, { category: sections_cc }
-seed Capability, { name: 'delete' }, { category: sections_cc }
+seed Capability, { name: 'list',   category: sections_cc }
+seed Capability, { name: 'add',    category: sections_cc }
+seed Capability, { name: 'edit',   category: sections_cc }
+seed Capability, { name: 'delete', category: sections_cc }
 # Page Templates
-seed Capability, { name: 'list_page_templates'   }, { category_id: templates_cc.id }
-seed Capability, { name: 'add_page_templates'    }, { category_id: templates_cc.id }
-seed Capability, { name: 'edit_page_templates'   }, { category_id: templates_cc.id }
-seed Capability, { name: 'delete_page_templates' }, { category_id: templates_cc.id }
+seed Capability, { name: 'list',   category: templates_cc }
+seed Capability, { name: 'add',    category: templates_cc }
+seed Capability, { name: 'edit',   category: templates_cc }
+seed Capability, { name: 'delete', category: templates_cc }
 # Shared Content
-seed Capability, { name: 'list_shared_content'   }, { category_id: shared_cc.id }
-seed Capability, { name: 'add_shared_content'    }, { category_id: shared_cc.id }
-seed Capability, { name: 'edit_shared_content'   }, { category_id: shared_cc.id }
-seed Capability, { name: 'delete_shared_content' }, { category_id: shared_cc.id }
+seed Capability, { name: 'list',   category: shared_cc }
+seed Capability, { name: 'add',    category: shared_cc }
+seed Capability, { name: 'edit',   category: shared_cc }
+seed Capability, { name: 'delete', category: shared_cc }
 # Users
-seed Capability, { name: 'list_users'   }, { category_id: users_cc.id }
-seed Capability, { name: 'add_users'    }, { category_id: users_cc.id }
-seed Capability, { name: 'edit_users'   }, { category_id: users_cc.id }
-seed Capability, { name: 'delete_users' }, { category_id: users_cc.id }
-seed Capability, { name: 'view_user_admin_notes' }, { category_id: users_cc.id }
+seed Capability, { name: 'list',   category: users_cc }
+seed Capability, { name: 'add',    category: users_cc }
+seed Capability, { name: 'edit',   category: users_cc }
+seed Capability, { name: 'delete', category: users_cc }
+seed Capability, { name: 'view_admin_notes', category: users_cc }
 # Admin Users
-seed Capability, { name: 'edit_admins'    }, { category_id: admins_cc.id }
-seed Capability, { name: 'delete_admins'  }, { category_id: admins_cc.id }
+seed Capability, { name: 'edit',   category: admins_cc }
+seed Capability, { name: 'delete', category: admins_cc }
 
 # One Admin To Rule Them All
 admin = seed User, { username: 'admin' }, {
