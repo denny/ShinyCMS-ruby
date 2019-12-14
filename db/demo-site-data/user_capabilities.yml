@@ -1,0 +1,602 @@
+---
+UserCapability_1:
+  id: 1
+  user_id: 1
+  capability_id: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-12-14 03:42:05.698590000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2019-12-14 03:42:05.698590000 Z
+    zone: *2
+    time: *3
+UserCapability_2:
+  id: 2
+  user_id: 1
+  capability_id: 2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2019-12-14 03:42:05.706506000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2019-12-14 03:42:05.706506000 Z
+    zone: *2
+    time: *5
+UserCapability_3:
+  id: 3
+  user_id: 1
+  capability_id: 3
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2019-12-14 03:42:05.714107000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2019-12-14 03:42:05.714107000 Z
+    zone: *2
+    time: *7
+UserCapability_4:
+  id: 4
+  user_id: 1
+  capability_id: 4
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2019-12-14 03:42:05.721838000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2019-12-14 03:42:05.721838000 Z
+    zone: *2
+    time: *9
+UserCapability_5:
+  id: 5
+  user_id: 1
+  capability_id: 5
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2019-12-14 03:42:05.729247000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2019-12-14 03:42:05.729247000 Z
+    zone: *2
+    time: *11
+UserCapability_6:
+  id: 6
+  user_id: 1
+  capability_id: 6
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2019-12-14 03:42:05.736662000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2019-12-14 03:42:05.736662000 Z
+    zone: *2
+    time: *13
+UserCapability_7:
+  id: 7
+  user_id: 1
+  capability_id: 7
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2019-12-14 03:42:05.743620000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2019-12-14 03:42:05.743620000 Z
+    zone: *2
+    time: *15
+UserCapability_8:
+  id: 8
+  user_id: 1
+  capability_id: 8
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2019-12-14 03:42:05.750342000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2019-12-14 03:42:05.750342000 Z
+    zone: *2
+    time: *17
+UserCapability_9:
+  id: 9
+  user_id: 1
+  capability_id: 9
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2019-12-14 03:42:05.757559000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2019-12-14 03:42:05.757559000 Z
+    zone: *2
+    time: *19
+UserCapability_10:
+  id: 10
+  user_id: 1
+  capability_id: 10
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2019-12-14 03:42:05.764585000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2019-12-14 03:42:05.764585000 Z
+    zone: *2
+    time: *21
+UserCapability_11:
+  id: 11
+  user_id: 1
+  capability_id: 11
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2019-12-14 03:42:05.776562000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2019-12-14 03:42:05.776562000 Z
+    zone: *2
+    time: *23
+UserCapability_12:
+  id: 12
+  user_id: 1
+  capability_id: 12
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2019-12-14 03:42:05.786729000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2019-12-14 03:42:05.786729000 Z
+    zone: *2
+    time: *25
+UserCapability_13:
+  id: 13
+  user_id: 1
+  capability_id: 13
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2019-12-14 03:42:05.794459000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2019-12-14 03:42:05.794459000 Z
+    zone: *2
+    time: *27
+UserCapability_14:
+  id: 14
+  user_id: 1
+  capability_id: 14
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2019-12-14 03:42:05.807148000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2019-12-14 03:42:05.807148000 Z
+    zone: *2
+    time: *29
+UserCapability_15:
+  id: 15
+  user_id: 1
+  capability_id: 15
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2019-12-14 03:42:05.817566000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2019-12-14 03:42:05.817566000 Z
+    zone: *2
+    time: *31
+UserCapability_16:
+  id: 16
+  user_id: 1
+  capability_id: 16
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2019-12-14 03:42:05.825665000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2019-12-14 03:42:05.825665000 Z
+    zone: *2
+    time: *33
+UserCapability_17:
+  id: 17
+  user_id: 1
+  capability_id: 17
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2019-12-14 03:42:05.833600000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2019-12-14 03:42:05.833600000 Z
+    zone: *2
+    time: *35
+UserCapability_18:
+  id: 18
+  user_id: 1
+  capability_id: 18
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2019-12-14 03:42:05.840751000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2019-12-14 03:42:05.840751000 Z
+    zone: *2
+    time: *37
+UserCapability_19:
+  id: 19
+  user_id: 1
+  capability_id: 19
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2019-12-14 03:42:05.847667000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2019-12-14 03:42:05.847667000 Z
+    zone: *2
+    time: *39
+UserCapability_20:
+  id: 20
+  user_id: 1
+  capability_id: 20
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2019-12-14 03:42:05.854585000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2019-12-14 03:42:05.854585000 Z
+    zone: *2
+    time: *41
+UserCapability_21:
+  id: 21
+  user_id: 1
+  capability_id: 21
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &42 2019-12-14 03:42:05.861504000 Z
+    zone: *2
+    time: *42
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &43 2019-12-14 03:42:05.861504000 Z
+    zone: *2
+    time: *43
+UserCapability_22:
+  id: 22
+  user_id: 1
+  capability_id: 22
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &44 2019-12-14 03:42:05.874891000 Z
+    zone: *2
+    time: *44
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &45 2019-12-14 03:42:05.874891000 Z
+    zone: *2
+    time: *45
+UserCapability_23:
+  id: 23
+  user_id: 1
+  capability_id: 23
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &46 2019-12-14 03:42:05.885346000 Z
+    zone: *2
+    time: *46
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &47 2019-12-14 03:42:05.885346000 Z
+    zone: *2
+    time: *47
+UserCapability_24:
+  id: 24
+  user_id: 1
+  capability_id: 24
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &48 2019-12-14 03:42:05.893284000 Z
+    zone: *2
+    time: *48
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &49 2019-12-14 03:42:05.893284000 Z
+    zone: *2
+    time: *49
+UserCapability_25:
+  id: 25
+  user_id: 1
+  capability_id: 25
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &50 2019-12-14 03:42:05.900963000 Z
+    zone: *2
+    time: *50
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &51 2019-12-14 03:42:05.900963000 Z
+    zone: *2
+    time: *51
+UserCapability_26:
+  id: 26
+  user_id: 1
+  capability_id: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &52 2019-12-14 03:42:12.310281000 Z
+    zone: *2
+    time: *52
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &53 2019-12-14 03:42:12.310281000 Z
+    zone: *2
+    time: *53
+UserCapability_27:
+  id: 27
+  user_id: 1
+  capability_id: 2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &54 2019-12-14 03:42:12.318027000 Z
+    zone: *2
+    time: *54
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &55 2019-12-14 03:42:12.318027000 Z
+    zone: *2
+    time: *55
+UserCapability_28:
+  id: 28
+  user_id: 1
+  capability_id: 3
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &56 2019-12-14 03:42:12.352664000 Z
+    zone: *2
+    time: *56
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &57 2019-12-14 03:42:12.352664000 Z
+    zone: *2
+    time: *57
+UserCapability_29:
+  id: 29
+  user_id: 1
+  capability_id: 4
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &58 2019-12-14 03:42:12.361052000 Z
+    zone: *2
+    time: *58
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &59 2019-12-14 03:42:12.361052000 Z
+    zone: *2
+    time: *59
+UserCapability_30:
+  id: 30
+  user_id: 1
+  capability_id: 5
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &60 2019-12-14 03:42:12.368617000 Z
+    zone: *2
+    time: *60
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &61 2019-12-14 03:42:12.368617000 Z
+    zone: *2
+    time: *61
+UserCapability_31:
+  id: 31
+  user_id: 1
+  capability_id: 6
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &62 2019-12-14 03:42:12.380421000 Z
+    zone: *2
+    time: *62
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &63 2019-12-14 03:42:12.380421000 Z
+    zone: *2
+    time: *63
+UserCapability_32:
+  id: 32
+  user_id: 1
+  capability_id: 7
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &64 2019-12-14 03:42:12.390508000 Z
+    zone: *2
+    time: *64
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &65 2019-12-14 03:42:12.390508000 Z
+    zone: *2
+    time: *65
+UserCapability_33:
+  id: 33
+  user_id: 1
+  capability_id: 8
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &66 2019-12-14 03:42:12.398927000 Z
+    zone: *2
+    time: *66
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &67 2019-12-14 03:42:12.398927000 Z
+    zone: *2
+    time: *67
+UserCapability_34:
+  id: 34
+  user_id: 1
+  capability_id: 9
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &68 2019-12-14 03:42:12.406289000 Z
+    zone: *2
+    time: *68
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &69 2019-12-14 03:42:12.406289000 Z
+    zone: *2
+    time: *69
+UserCapability_35:
+  id: 35
+  user_id: 1
+  capability_id: 10
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &70 2019-12-14 03:42:12.412991000 Z
+    zone: *2
+    time: *70
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &71 2019-12-14 03:42:12.412991000 Z
+    zone: *2
+    time: *71
+UserCapability_36:
+  id: 36
+  user_id: 1
+  capability_id: 11
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &72 2019-12-14 03:42:12.419982000 Z
+    zone: *2
+    time: *72
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &73 2019-12-14 03:42:12.419982000 Z
+    zone: *2
+    time: *73
+UserCapability_37:
+  id: 37
+  user_id: 1
+  capability_id: 12
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &74 2019-12-14 03:42:12.426550000 Z
+    zone: *2
+    time: *74
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &75 2019-12-14 03:42:12.426550000 Z
+    zone: *2
+    time: *75
+UserCapability_38:
+  id: 38
+  user_id: 1
+  capability_id: 13
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &76 2019-12-14 03:42:12.433203000 Z
+    zone: *2
+    time: *76
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &77 2019-12-14 03:42:12.433203000 Z
+    zone: *2
+    time: *77
+UserCapability_39:
+  id: 39
+  user_id: 1
+  capability_id: 14
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &78 2019-12-14 03:42:12.440085000 Z
+    zone: *2
+    time: *78
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &79 2019-12-14 03:42:12.440085000 Z
+    zone: *2
+    time: *79
+UserCapability_40:
+  id: 40
+  user_id: 1
+  capability_id: 15
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &80 2019-12-14 03:42:12.446795000 Z
+    zone: *2
+    time: *80
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &81 2019-12-14 03:42:12.446795000 Z
+    zone: *2
+    time: *81
+UserCapability_41:
+  id: 41
+  user_id: 1
+  capability_id: 16
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &82 2019-12-14 03:42:12.453767000 Z
+    zone: *2
+    time: *82
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &83 2019-12-14 03:42:12.453767000 Z
+    zone: *2
+    time: *83
+UserCapability_42:
+  id: 42
+  user_id: 1
+  capability_id: 17
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &84 2019-12-14 03:42:12.460356000 Z
+    zone: *2
+    time: *84
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &85 2019-12-14 03:42:12.460356000 Z
+    zone: *2
+    time: *85
+UserCapability_43:
+  id: 43
+  user_id: 1
+  capability_id: 18
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &86 2019-12-14 03:42:12.466986000 Z
+    zone: *2
+    time: *86
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &87 2019-12-14 03:42:12.466986000 Z
+    zone: *2
+    time: *87
+UserCapability_44:
+  id: 44
+  user_id: 1
+  capability_id: 19
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &88 2019-12-14 03:42:12.473290000 Z
+    zone: *2
+    time: *88
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &89 2019-12-14 03:42:12.473290000 Z
+    zone: *2
+    time: *89
+UserCapability_45:
+  id: 45
+  user_id: 1
+  capability_id: 20
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &90 2019-12-14 03:42:12.480097000 Z
+    zone: *2
+    time: *90
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &91 2019-12-14 03:42:12.480097000 Z
+    zone: *2
+    time: *91
+UserCapability_46:
+  id: 46
+  user_id: 1
+  capability_id: 21
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &92 2019-12-14 03:42:12.487061000 Z
+    zone: *2
+    time: *92
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &93 2019-12-14 03:42:12.487061000 Z
+    zone: *2
+    time: *93
+UserCapability_47:
+  id: 47
+  user_id: 1
+  capability_id: 22
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &94 2019-12-14 03:42:12.493705000 Z
+    zone: *2
+    time: *94
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &95 2019-12-14 03:42:12.493705000 Z
+    zone: *2
+    time: *95
+UserCapability_48:
+  id: 48
+  user_id: 1
+  capability_id: 23
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &96 2019-12-14 03:42:12.500453000 Z
+    zone: *2
+    time: *96
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &97 2019-12-14 03:42:12.500453000 Z
+    zone: *2
+    time: *97
+UserCapability_49:
+  id: 49
+  user_id: 1
+  capability_id: 24
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &98 2019-12-14 03:42:12.506978000 Z
+    zone: *2
+    time: *98
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &99 2019-12-14 03:42:12.506978000 Z
+    zone: *2
+    time: *99
+UserCapability_50:
+  id: 50
+  user_id: 1
+  capability_id: 25
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &100 2019-12-14 03:42:12.513730000 Z
+    zone: *2
+    time: *100
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &101 2019-12-14 03:42:12.513730000 Z
+    zone: *2
+    time: *101
