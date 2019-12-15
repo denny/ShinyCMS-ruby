@@ -2,12 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'User', type: :request do
   before :each do
-    FeatureFlag.find_or_create_by!(
-      name: I18n.t( 'feature_flags.user_login' )
-    ).update!( enabled: true )
-    FeatureFlag.find_or_create_by!(
-      name: I18n.t( 'feature_flags.user_profiles' )
-    ).update!( enabled: true )
+    FeatureFlag.find_or_create_by!( name: 'user_login' )
+               .update!( enabled: true )
+    FeatureFlag.find_or_create_by!( name: 'user_profiles' )
+               .update!( enabled: true )
   end
 
   describe 'GET /user/:username' do
@@ -23,9 +21,8 @@ RSpec.describe 'User', type: :request do
 
   describe 'GET /user/register' do
     it 'renders the user registration page if user registrations are enabled' do
-      FeatureFlag.find_or_create_by!(
-        name: I18n.t( 'feature_flags.user_registration' )
-      ).update!( enabled: true )
+      FeatureFlag.find_or_create_by!( name: 'user_registration' )
+                 .update!( enabled: true )
 
       get user_registration_path
 
@@ -36,9 +33,8 @@ RSpec.describe 'User', type: :request do
     it 'redirects to the site homepage if user registrations are not enabled' do
       create :page
 
-      FeatureFlag.find_or_create_by!(
-        name: I18n.t( 'feature_flags.user_registration' )
-      ).update!( enabled: false )
+      FeatureFlag.find_or_create_by!( name: 'user_registration' )
+                 .update!( enabled: false )
 
       get user_registration_path
 
@@ -68,9 +64,8 @@ RSpec.describe 'User', type: :request do
     it 'redirects to the site homepage if user logins are not enabled' do
       create :page
 
-      FeatureFlag.find_or_create_by!(
-        name: I18n.t( 'feature_flags.user_login' )
-      ).update!( enabled: false )
+      FeatureFlag.find_or_create_by!( name: 'user_login' )
+                 .update!( enabled: false )
 
       get user_login_path
 
@@ -91,7 +86,7 @@ RSpec.describe 'User', type: :request do
     it 'defaults to assuming that user logins are not enabled' do
       create :page
 
-      FeatureFlag.delete_by( name: I18n.t( 'feature_flags.user_login' ) )
+      FeatureFlag.delete_by( name: 'user_login' )
 
       get user_login_path
 
@@ -186,9 +181,8 @@ RSpec.describe 'User', type: :request do
 
   describe 'POST /user/register' do
     it 'creates a new user' do
-      FeatureFlag.find_or_create_by!(
-        name: I18n.t( 'feature_flags.user_registration' )
-      ).update!( enabled: true )
+      FeatureFlag.find_or_create_by!( name: 'user_registration' )
+                 .update!( enabled: true )
 
       create :page
 

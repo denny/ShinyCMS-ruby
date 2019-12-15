@@ -16,8 +16,7 @@ class User < ApplicationRecord
   validates :username, presence:   true
   validates :username, uniqueness: true, case_sensitive: false
   validates :username, length:     { maximum: 50 }
-  # Restrict the character set for usernames to letters, numbers, and - . _
-  validates :username, format: ANCHORED_USERNAME_REGEX
+  validates :username, format:     ANCHORED_USERNAME_REGEX
 
   # User profile pic (powered by ActiveStorage)
   has_one_attached :profile_pic
@@ -27,8 +26,11 @@ class User < ApplicationRecord
   has_many :capabilities,      dependent: :restrict_with_error,
                                through: :user_capabilities
 
-  def can?( capability )
-    t_can? I18n.t( "capability.#{capability}" )
+  def can?( capability_name, category_name = :general )
+    name = category_name.to_s.underscore
+    name = name.pluralize unless %w[ general shared_content ].include? name
+    category = CapabilityCategory.find_by( name: name )
+    capabilities.exists? name: capability_name.to_s, category: category
   end
 
   # Configure default count-per-page for pagination
@@ -53,11 +55,5 @@ class User < ApplicationRecord
     login = conditions.delete( :login )
     where_clause = 'lower( username ) = :value OR lower( email ) = :value'
     where( conditions ).find_by( [ where_clause, { value: login.downcase } ] )
-  end
-
-  private
-
-  def t_can?( capability )
-    capabilities.exists? name: capability
   end
 end

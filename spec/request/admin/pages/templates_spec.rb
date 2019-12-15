@@ -129,7 +129,6 @@ RSpec.describe 'Admin: Page Templates', type: :request do
     end
 
     it 'fails gracefully when attempting to delete a non-existent template' do
-      skip 'Need to resolve issue with Pundit'
       delete admin_pages_template_delete_path( 999 )
 
       expect( response      ).to have_http_status :found
