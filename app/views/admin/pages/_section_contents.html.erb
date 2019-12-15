@@ -8,9 +8,9 @@
       <b><%= section.name %></b>
     </td>
     <td class="actions">
-      <%= link_to t( 'admin.view' ), url_for( view_path ) %>
-      <%= link_to t( 'admin.edit' ), url_for( admin_pages_section_path( section ) ) %>
-      <%= link_to t( 'admin.delete' ), admin_pages_section_delete_path( section ),
+      <%= link_to t( 'view'   ), view_path %>
+      <%= link_to t( 'edit'   ), admin_pages_section_path( section ) %>
+      <%= link_to t( 'delete' ), admin_pages_section_delete_path( section ),
           method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
     </td>
   </tr>
@@ -25,9 +25,9 @@
       <%= page.name %>
     </td>
     <td class="actions">
-      <%= link_to t( 'admin.view' ), url_for( "#{view_path}/#{page.slug}" ) %>
-      <%= link_to t( 'admin.edit' ), url_for( admin_page_path( page ) ) %>
-      <%= link_to t( 'admin.delete' ), admin_page_delete_path( page ),
+      <%= link_to t( 'view'   ), "#{view_path}/#{page.slug}" %>
+      <%= link_to t( 'edit'   ), admin_page_path( page ) %>
+      <%= link_to t( 'delete' ), admin_page_delete_path( page ),
           method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
     </td>
   </tr>

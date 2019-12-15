@@ -17,9 +17,7 @@ en:
   update: Update
   delete: Delete
 
-  yes: Yes
-  no: No
-  are_you_sure: Are you sure?
+  are_you_sure: Are you sure? [y/N]
 
 
   # ========== ( Main Site ) ==========
@@ -173,19 +171,20 @@ en:
       user_deleted: user deleted
       user_delete_failed: Failed to delete user
 
-    views:
-      pagination:
-        first: "&laquo; First"
-        last: "Last &raquo;"
-        previous: "&lsaquo; Prev"
-        next: "Next &rsaquo;"
-        truncate: "&hellip;"
+#    # Strings used in kaminari-generated pager blocks on admin list pages
+#    views:
+#      pagination:
+#        first: "&laquo; First"
+#        last: "Last &raquo;"
+#        previous: "&lsaquo; Prev"
+#        next: "Next &rsaquo;"
+#        truncate: "&hellip;"
 
-  ckeditor:
-    page_title: 'CKEditor File Manager'
-    confirm_delete: 'Delete file?'
-    buttons:
-      upload: 'Upload'
-      cancel: 'Cancel'
-      delete: 'Delete'
-      next: 'Next'
+#  ckeditor:
+#    page_title: 'CKEditor File Manager'
+#    confirm_delete: 'Delete file?'
+#    buttons:
+#      upload: 'Upload'
+#      cancel: 'Cancel'
+#      delete: 'Delete'
+#      next: 'Next'
