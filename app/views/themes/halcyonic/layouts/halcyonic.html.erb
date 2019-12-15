@@ -31,7 +31,7 @@
 
       <%= render partial: 'themes/halcyonic/includes/footer' %>
 
-      <% if current_user_can? 'view_admin_toolbar' %>
+      <% if current_user_can? :view_admin_toolbar %>
         <%= render partial: 'admin/includes/admin_toolbar' %>
       <% end %>
 

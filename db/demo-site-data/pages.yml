@@ -6,6 +6,7 @@ Page_1:
   title: Home
   slug: home
   template_id: 1
+  hidden_from_menu: false
   hidden: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: &1 2019-11-13 23:02:20.365551000 Z
@@ -23,6 +24,7 @@ Page_2:
   title: No Sidebars
   slug: no-sidebars
   template_id: 2
+  hidden_from_menu: false
   hidden: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: &4 2019-11-15 14:06:17.063354000 Z
@@ -39,6 +41,7 @@ Page_3:
   title: Right Sidebar
   slug: right-sidebar
   template_id: 3
+  hidden_from_menu: false
   hidden: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: &6 2019-11-15 14:06:43.040014000 Z
@@ -55,6 +58,7 @@ Page_4:
   title: Left Sidebar
   slug: left-sidebar
   template_id: 4
+  hidden_from_menu: false
   hidden: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: &8 2019-11-15 14:07:01.638743000 Z
@@ -71,6 +75,7 @@ Page_5:
   title: Double Sidebars
   slug: double-sidebars
   template_id: 5
+  hidden_from_menu: false
   hidden: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: &10 2019-11-15 14:07:44.629697000 Z

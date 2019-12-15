@@ -1,13 +1,13 @@
 # Default pundit policy for main site
 class DefaultPolicy
-  attr_reader :user, :record
+  attr_reader :this_user, :record
 
-  # :nocov:
-  def initialize( user, record )
-    @user = user
+  def initialize( this_user, record )
+    @this_user = this_user
     @record = record
   end
 
+  # :nocov:
   def index?
     false
   end
