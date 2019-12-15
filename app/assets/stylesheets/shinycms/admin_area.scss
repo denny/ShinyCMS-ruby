@@ -91,28 +91,28 @@ body {
   height:           47px;
 }
 
-nav#menu a.c-sidebar-nav-link {
+#menu a.c-sidebar-nav-link {
   color:            $white;
   padding:          0.8em;
 }
 
-nav#menu a.c-sidebar-nav-link:hover {
+#menu a.c-sidebar-nav-link:hover {
   background:       $highlight_colour !important;
 }
 
-nav#menu a.c-sidebar-nav-link.c-active {
+#menu a.c-sidebar-nav-link.c-active {
   color:            $highlight_colour !important;
 }
 
-nav#menu a.c-sidebar-nav-link.c-active .c-sidebar-nav-icon {
+#menu a.c-sidebar-nav-link.c-active .c-sidebar-nav-icon {
   fill:             $highlight_colour !important;
 }
 
-nav#menu a.c-sidebar-nav-link.c-active:hover {
+#menu a.c-sidebar-nav-link.c-active:hover {
   color:            $white !important;
 }
 
-nav#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
+#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
   fill:             $white !important;
 }
 
@@ -180,20 +180,38 @@ nav#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
   color:            $dark_colour;
 }
 
-#main table.table-striped th {
+#main .table-striped tr {
+  vertical-align:   middle;
+}
+
+#main .table-striped th {
   border-top:       none;
 }
 
-#main table .hidden {
+#main .table-striped .hidden {
   color:            $grey;
 }
 
-#main table td.actions {
+#main .table-striped td {
+  vertical-align:   middle;
+}
+
+#main .table-striped td.actions {
   text-align:       right;
   vertical-align:   middle;
 }
 
-#main table td.actions a {
+#main .table-striped td input[type=checkbox] {
+  height:           1em;
+  vertical-align:   middle;
+}
+
+#main .table-striped td label {
+  margin:           0;
+  padding:          0;
+}
+
+#main .table-striped td.actions a {
   background:       $input_bg;
   border:           1px solid $input_border;
   border-radius:    0.2em;
@@ -203,29 +221,29 @@ nav#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
   text-decoration:  none;
 }
 
-#main table td.actions a:hover {
+#main .table-striped td.actions a:hover {
   background:       $input_border;
   color:            $input_bg;
   text-decoration:  none;
 }
 
-#main #pager {
+#pager {
   font-size:        0.8em;
   margin-top:       2em;
 }
 
-#main #pager .page-link {
+#pager .page-link {
   color:            $dark_colour;
   background:       none;
 }
 
-#main #pager .active .page-link {
+#pager .active .page-link {
   background:       $dark_colour;
   border-color:     $dark_colour;
   color:            $white;
 }
 
-#main #pager-info {
+#pager-info {
   font-size:        0.8em;
   text-align:       center;
 }
@@ -263,9 +281,8 @@ nav#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
   background:       $input_bg;
   border:           1px solid $input_border;
   color:            $input_fg;
-  margin-bottom:    0.5em;
   min-width:        800px;
-  padding:          0 0.5em;
+  padding:          0.3em 0.5em;
 }
 
 #main input[type=text] {
@@ -293,12 +310,9 @@ nav#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
   width:            40em;
 }
 
-#main textarea {
-  width:            40em;
-}
-
 #main input[type=checkbox] {
-  margin-top:       0;
+  margin:           0;
+  padding:          0;
 }
 
 #main input[type=button],
@@ -313,6 +327,10 @@ nav#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
 #main input[type=reset]:hover {
   background:       $input_border;
   color:            $input_bg;
+}
+
+#main p.form_buttons {
+  margin-top:       1.5em;
 }
 
 /* fieldset for bottom-of-page 'add new element' forms */

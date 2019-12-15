@@ -9,7 +9,8 @@ class Admin::UsersController < AdminController
   end
 
   def new
-    authorise User
+    @user = User.new
+    authorise @user
   end
 
   def create
@@ -50,26 +51,21 @@ class Admin::UsersController < AdminController
     flash[ :notice ] = t( 'user_deleted' ) if user.destroy
     redirect_to admin_users_path
   rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-    handle_delete_exceptions
+    handle_delete_exceptions t( 'user_delete_failed' ), admin_users_path
   end
 
   private
 
+  # rubocop:disable Layout/MultilineArrayLineBreaks
   def user_params
     params.require( :user ).permit(
-      # rubocop:disable Layout/MultilineArrayLineBreaks
       %i[
-        username email password display_name display_email profile_pic bio
-        website location postcode admin_notes
+        username email password display_name display_email
+        profile_pic bio website location postcode admin_notes
       ]
-      # rubocop:enable Layout/MultilineArrayLineBreaks
     )
   end
-
-  def handle_delete_exceptions
-    flash[ :alert ] = t( 'user_delete_failed' )
-    redirect_to admin_users_path
-  end
+  # rubocop:enable Layout/MultilineArrayLineBreaks
 
   def t( key )
     I18n.t( "admin.users.#{key}" )

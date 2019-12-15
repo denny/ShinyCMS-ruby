@@ -200,7 +200,6 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
 
     it 'fails gracefully when attempting to delete a non-existent page' do
-      skip 'So far I have failed to get this to co-operate with Pundit'
       delete admin_page_delete_path( 999 )
 
       expect( response      ).to have_http_status :found

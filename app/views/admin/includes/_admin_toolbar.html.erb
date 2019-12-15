@@ -1,4 +1,4 @@
-<% if current_user_can? 'view_admin_toolbar' %>
+<% if current_user_can? :view_admin_toolbar %>
 <nav id="admin-toolbar">
   <%= link_to image_tag( 'shinycms/admin-toolbar-logo.png', alt: 'ShinyCMS' ),
       'http://shinycms.org/' %>

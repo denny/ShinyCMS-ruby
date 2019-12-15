@@ -1,0 +1,302 @@
+---
+Capability_1:
+  id: 1
+  name: view_admin_area
+  category_id: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-12-14 03:29:42.042075000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2019-12-14 03:29:42.042075000 Z
+    zone: *2
+    time: *3
+Capability_2:
+  id: 2
+  name: view_admin_toolbar
+  category_id: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2019-12-14 03:29:42.048959000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2019-12-14 03:29:42.048959000 Z
+    zone: *2
+    time: *5
+Capability_3:
+  id: 3
+  name: list
+  category_id: 2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2019-12-14 03:29:42.070087000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2019-12-14 03:29:42.070087000 Z
+    zone: *2
+    time: *7
+Capability_4:
+  id: 4
+  name: add
+  category_id: 2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2019-12-14 03:29:42.080966000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2019-12-14 03:29:42.080966000 Z
+    zone: *2
+    time: *9
+Capability_5:
+  id: 5
+  name: edit
+  category_id: 2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2019-12-14 03:29:42.089220000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2019-12-14 03:29:42.089220000 Z
+    zone: *2
+    time: *11
+Capability_6:
+  id: 6
+  name: delete
+  category_id: 2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2019-12-14 03:29:42.096920000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2019-12-14 03:29:42.096920000 Z
+    zone: *2
+    time: *13
+Capability_7:
+  id: 7
+  name: list
+  category_id: 3
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2019-12-14 03:29:42.104558000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2019-12-14 03:29:42.104558000 Z
+    zone: *2
+    time: *15
+Capability_8:
+  id: 8
+  name: add
+  category_id: 3
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2019-12-14 03:29:42.111762000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2019-12-14 03:29:42.111762000 Z
+    zone: *2
+    time: *17
+Capability_9:
+  id: 9
+  name: edit
+  category_id: 3
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2019-12-14 03:29:42.118754000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2019-12-14 03:29:42.118754000 Z
+    zone: *2
+    time: *19
+Capability_10:
+  id: 10
+  name: delete
+  category_id: 3
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2019-12-14 03:29:42.125624000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2019-12-14 03:29:42.125624000 Z
+    zone: *2
+    time: *21
+Capability_11:
+  id: 11
+  name: list
+  category_id: 4
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2019-12-14 03:29:42.132907000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2019-12-14 03:29:42.132907000 Z
+    zone: *2
+    time: *23
+Capability_12:
+  id: 12
+  name: add
+  category_id: 4
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2019-12-14 03:29:42.140490000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2019-12-14 03:29:42.140490000 Z
+    zone: *2
+    time: *25
+Capability_13:
+  id: 13
+  name: edit
+  category_id: 4
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2019-12-14 03:29:42.148071000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2019-12-14 03:29:42.148071000 Z
+    zone: *2
+    time: *27
+Capability_14:
+  id: 14
+  name: delete
+  category_id: 4
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2019-12-14 03:29:42.155441000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2019-12-14 03:29:42.155441000 Z
+    zone: *2
+    time: *29
+Capability_15:
+  id: 15
+  name: list
+  category_id: 5
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2019-12-14 03:29:42.162765000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2019-12-14 03:29:42.162765000 Z
+    zone: *2
+    time: *31
+Capability_16:
+  id: 16
+  name: add
+  category_id: 5
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2019-12-14 03:29:42.169859000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2019-12-14 03:29:42.169859000 Z
+    zone: *2
+    time: *33
+Capability_17:
+  id: 17
+  name: edit
+  category_id: 5
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2019-12-14 03:29:42.177516000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2019-12-14 03:29:42.177516000 Z
+    zone: *2
+    time: *35
+Capability_18:
+  id: 18
+  name: delete
+  category_id: 5
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2019-12-14 03:29:42.185153000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2019-12-14 03:29:42.185153000 Z
+    zone: *2
+    time: *37
+Capability_19:
+  id: 19
+  name: list
+  category_id: 6
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2019-12-14 03:29:42.192601000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2019-12-14 03:29:42.192601000 Z
+    zone: *2
+    time: *39
+Capability_20:
+  id: 20
+  name: add
+  category_id: 6
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2019-12-14 03:29:42.200107000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2019-12-14 03:29:42.200107000 Z
+    zone: *2
+    time: *41
+Capability_21:
+  id: 21
+  name: edit
+  category_id: 6
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &42 2019-12-14 03:29:42.207605000 Z
+    zone: *2
+    time: *42
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &43 2019-12-14 03:29:42.207605000 Z
+    zone: *2
+    time: *43
+Capability_22:
+  id: 22
+  name: delete
+  category_id: 6
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &44 2019-12-14 03:29:42.214988000 Z
+    zone: *2
+    time: *44
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &45 2019-12-14 03:29:42.214988000 Z
+    zone: *2
+    time: *45
+Capability_23:
+  id: 23
+  name: view_admin_notes
+  category_id: 6
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &46 2019-12-14 03:29:42.222744000 Z
+    zone: *2
+    time: *46
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &47 2019-12-14 03:29:42.222744000 Z
+    zone: *2
+    time: *47
+Capability_24:
+  id: 24
+  name: edit
+  category_id: 7
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &48 2019-12-14 03:29:42.250380000 Z
+    zone: *2
+    time: *48
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &49 2019-12-14 03:29:42.250380000 Z
+    zone: *2
+    time: *49
+Capability_25:
+  id: 25
+  name: delete
+  category_id: 7
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &50 2019-12-14 03:29:42.263608000 Z
+    zone: *2
+    time: *50
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &51 2019-12-14 03:29:42.263608000 Z
+    zone: *2
+    time: *51
