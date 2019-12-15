@@ -1,0 +1,79 @@
+---
+CapabilityCategory_1:
+  id: 1
+  name: general
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-12-14 03:29:41.967147000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2019-12-14 03:29:41.967147000 Z
+    zone: *2
+    time: *3
+CapabilityCategory_2:
+  id: 2
+  name: pages
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2019-12-14 03:29:41.973580000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2019-12-14 03:29:41.973580000 Z
+    zone: *2
+    time: *5
+CapabilityCategory_3:
+  id: 3
+  name: page_sections
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2019-12-14 03:29:41.984615000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2019-12-14 03:29:41.984615000 Z
+    zone: *2
+    time: *7
+CapabilityCategory_4:
+  id: 4
+  name: page_templates
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2019-12-14 03:29:41.995972000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2019-12-14 03:29:41.995972000 Z
+    zone: *2
+    time: *9
+CapabilityCategory_5:
+  id: 5
+  name: shared_content
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2019-12-14 03:29:42.007313000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2019-12-14 03:29:42.007313000 Z
+    zone: *2
+    time: *11
+CapabilityCategory_6:
+  id: 6
+  name: users
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2019-12-14 03:29:42.017482000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2019-12-14 03:29:42.017482000 Z
+    zone: *2
+    time: *13
+CapabilityCategory_7:
+  id: 7
+  name: admin_users
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2019-12-14 03:29:42.025047000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2019-12-14 03:29:42.025047000 Z
+    zone: *2
+    time: *15

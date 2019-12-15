@@ -36,7 +36,7 @@ class Admin::SettingsController < AdminController
     flash[ :notice ] = t( 'setting_deleted' ) if setting.destroy
     redirect_to admin_settings_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    handle_delete_exceptions
+    handle_delete_exceptions t( 'setting_delete_failed' ), admin_settings_path
   end
 
   private
@@ -58,17 +58,14 @@ class Admin::SettingsController < AdminController
     flag
   end
 
+  # Permitted params for single-item operations
   def setting_params
     params.require( :setting ).permit( :name, :value, :description )
   end
 
+  # Permitted params for multi-item operations
   def settings_params
     params.permit( :authenticity_token, :commit, settings: {} )
-  end
-
-  def handle_delete_exceptions
-    flash[ :alert ] = t( 'setting_delete_failed' )
-    redirect_to admin_settings_path
   end
 
   def t( key )

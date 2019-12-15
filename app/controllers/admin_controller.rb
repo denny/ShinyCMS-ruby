@@ -12,7 +12,9 @@ class AdminController < ApplicationController
   # TODO: If no preference is set, redirect based on user's ACL:
   #       user.can?( 'list_blog_posts' ) to Blog admin section, etc
   def index
-    authorize :admin
+    skip_authorization
+
+    redirect_to root_path unless current_user.can? :view_admin_area
 
     redirect_to admin_pages_path
   end
@@ -28,5 +30,12 @@ class AdminController < ApplicationController
     return if allowed.strip.split( /\s*,\s*|\s+/ ).include? request.remote_ip
 
     redirect_to root_path
+  end
+
+  # Handle not null/not found exceptions when trying to delete stuff
+  # TODO: separate these two, add a more helpful error for the first one
+  def handle_delete_exceptions( alert_message, redirect_path )
+    skip_authorization
+    redirect_to redirect_path, alert: alert_message
   end
 end
