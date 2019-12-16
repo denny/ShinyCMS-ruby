@@ -146,9 +146,9 @@ en:
       edit_user: Edit user
       user_created: New user added
       user_create_failed: Failed to add new user
-      user_updated: user details updated
+      user_updated: User details updated
       user_update_failed: Failed to update user details
-      user_deleted: user deleted
+      user_deleted: User deleted
       user_delete_failed: Failed to delete user
 
   # Strings used in kaminari-generated pager blocks on admin list pages
