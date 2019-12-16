@@ -179,7 +179,6 @@ en:
 
     users:
       list_users: List users
-      top_level_users: Top-level users
       new_user: Add new user
       edit_user: Edit user
       user_created: New user added
