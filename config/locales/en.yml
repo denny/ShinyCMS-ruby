@@ -48,11 +48,6 @@ en:
   capability:
     capabilities: Admin Capabilities
 
-    list: List
-    add: Add
-    edit: Edit
-    delete: Delete
-
     category:
       general: General
       pages: Pages
@@ -66,41 +61,8 @@ en:
       view_admin_area: View admin area
       view_admin_toolbar: View admin toolbar
 
-    pages:
-      list: List pages
-      add: Add new pages
-      edit: Edit pages
-      delete: Delete pages
-
-    page_sections:
-      list: List page sections
-      add: Add new page sections
-      edit: Edit page sections
-      delete: Delete page sections
-
-    page_templates:
-      list: List page templates
-      add: Add new page templates
-      edit: Edit page templates
-      delete: Delete page templates
-
-    shared_content:
-      list: List shared content
-      add: Add new shared content
-      edit: Edit shared content
-      delete: Delete shared content
-
     users:
-      list: List users
-      add: Add new users
-      edit: Edit users
-      delete: Delete users
       view_admin_notes: View admin notes
-
-    admin_users:
-      add: Add new admin users
-      edit: Edit admin users
-      delete: Delete admin users
 
 
   # ========== ( Admin Area ) ==========
