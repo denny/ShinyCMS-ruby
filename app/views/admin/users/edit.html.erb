@@ -65,15 +65,15 @@
         <% if c.present? %>
         <label>
           <input type="checkbox" name="capabilities" value="<%= c.id %>"<% if @user.can?(
-            c.name.to_sym, :general ) %> checked="checked"<% end %>> 
-            <%= t( "capability.general.#{c.name}" ) %>
+            c.name.to_sym, c.category.name.to_sym ) %> checked="checked"<% end %>>
+          <%= t( "capability.general.#{c.name}" ) %>
         </label>
         <% end %>
       </td>
       <% end %>
     </tr>
     <% CapabilityCategory.all.order( :id ).each do |category| %>
-    <% next if category.name == 'general' %>
+    <% next if %w[ general admin_users ].include? category.name %>
     <tr>
       <td>
         <%= t( "capability.category.#{category.name}" ) %>
@@ -85,13 +85,47 @@
         <label>
           <input type="checkbox" name="capabilities" value="<%= c.id %>"<% if @user.can?(
             c.name.to_sym, c.category.name.to_sym ) %> checked="checked"<% end %>>
-          <%= t( "capability.#{c.name}" ) %>
+          <%= t( c.name ) %>
         </label>
         <% end %>
       </td>
       <% end %>
     </tr>
     <% end %>
+    <% category = CapabilityCategory.find_by( name: 'users' ) %>
+    <tr>
+      <td>
+      </td>
+      <% capability = 'view_admin_notes' %>
+      <td colspan="4">
+        <% c = Capability.find_by( name: capability, category: category ) %>
+        <% if c.present? %>
+        <label>
+          <input type="checkbox" name="capabilities" value="<%= c.id %>"<% if @user.can?(
+            c.name.to_sym, c.category.name.to_sym ) %> checked="checked"<% end %>>
+          <%= t( "capability.users.#{c.name}" ) %>
+        </label>
+        <% end %>
+      </td>
+    </tr>
+    <% category = CapabilityCategory.find_by( name: 'admin_users' ) %>
+    <tr>
+      <td>
+        <%= t( "capability.category.#{category.name}" ) %>
+      </td>
+      <% %i[ list add edit delete ].each do |capability| %>
+      <td>
+        <% c = Capability.find_by( name: capability, category: category ) %>
+        <% if c.present? %>
+        <label>
+          <input type="checkbox" name="capabilities" value="<%= c.id %>"<% if @user.can?(
+            c.name.to_sym, c.category.name.to_sym ) %> checked="checked"<% end %>>
+          <%= t( c.name ) %>
+        </label>
+        <% end %>
+      </td>
+      <% end %>
+    </tr>
   </table>
   <% end %>
 
