@@ -10,9 +10,9 @@ class Admin::SettingsController < AdminController
     setting = Setting.new( setting_params )
 
     if setting.save
-      flash[ :notice ] = t( 'setting_created' )
+      flash[ :notice ] = t( '.setting_created' )
     else
-      flash[ :alert ] = t( 'setting_create_failed' )
+      flash[ :alert ] = t( '.setting_create_failed' )
     end
     redirect_to admin_settings_path
   end
@@ -21,22 +21,21 @@ class Admin::SettingsController < AdminController
   def update
     updated_settings = false
     updated_settings = update_settings( updated_settings )
-    flash[ :notice ] =
-      if updated_settings
-        t( 'settings_updated' )
-      else
-        t( 'settings_unchanged' )
-      end
+    if updated_settings
+      flash[ :notice ] = t( '.settings_updated' )
+    else
+      flash[ :alert ] = t( '.settings_update_failed' )
+    end
     redirect_to admin_settings_path
   end
 
   def delete
     setting = Setting.find( params[:id] )
 
-    flash[ :notice ] = t( 'setting_deleted' ) if setting.destroy
+    flash[ :notice ] = t( '.setting_deleted' ) if setting.destroy
     redirect_to admin_settings_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    handle_delete_exceptions t( 'setting_delete_failed' ), admin_settings_path
+    handle_delete_exceptions t( '.setting_delete_failed' ), admin_settings_path
   end
 
   private
@@ -66,9 +65,5 @@ class Admin::SettingsController < AdminController
   # Permitted params for multi-item operations
   def settings_params
     params.permit( :authenticity_token, :commit, settings: {} )
-  end
-
-  def t( key )
-    I18n.t( "admin.settings.#{key}" )
   end
 end
