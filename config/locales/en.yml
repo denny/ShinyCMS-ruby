@@ -46,21 +46,21 @@ en:
   # ========== ( User Capabilities ) ==========
 
   capability:
+    capabilities: Admin Capabilities
+
     list: List
     add: Add
     edit: Edit
     delete: Delete
 
     category:
+      general: General
       pages: Pages
       page_sections: Page Sections
       page_templates: Page Templates
       shared_content: Shared Content
       users: Users
-      admins: Admin Users
-
-    odd_category:
-      general: General
+      admin_users: Admin Users
 
     general:
       view_admin_area: View admin area
@@ -68,36 +68,37 @@ en:
 
     pages:
       list: List pages
-      add: Add pages
+      add: Add new pages
       edit: Edit pages
       delete: Delete pages
 
     page_sections:
       list: List page sections
-      add: Add page sections
+      add: Add new page sections
       edit: Edit page sections
       delete: Delete page sections
 
     page_templates:
       list: List page templates
-      add: Add page templates
+      add: Add new page templates
       edit: Edit page templates
       delete: Delete page templates
 
     shared_content:
       list: List shared content
-      add: Add shared content
+      add: Add new shared content
       edit: Edit shared content
       delete: Delete shared content
 
     users:
       list: List users
-      add: Add users
+      add: Add new users
       edit: Edit users
       delete: Delete users
       view_admin_notes: View admin notes
 
     admin_users:
+      add: Add new admin users
       edit: Edit admin users
       delete: Delete admin users
 
