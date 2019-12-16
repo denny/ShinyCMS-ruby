@@ -13,6 +13,7 @@ en:
 
   add: Add
   view: View
+  list: List
   edit: Edit
   update: Update
   delete: Delete
@@ -188,14 +189,14 @@ en:
       user_deleted: user deleted
       user_delete_failed: Failed to delete user
 
-#    # Strings used in kaminari-generated pager blocks on admin list pages
-#    views:
-#      pagination:
-#        first: "&laquo; First"
-#        last: "Last &raquo;"
-#        previous: "&lsaquo; Prev"
-#        next: "Next &rsaquo;"
-#        truncate: "&hellip;"
+  # Strings used in kaminari-generated pager blocks on admin list pages
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
+      truncate: "&hellip;"
 
 #  ckeditor:
 #    page_title: 'CKEditor File Manager'
