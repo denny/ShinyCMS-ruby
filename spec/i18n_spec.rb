@@ -8,7 +8,6 @@ RSpec.describe 'I18n' do
   let(:unused_keys) { i18n.unused_keys }
 
   it 'does not have missing keys' do
-    skip 'Not coping well with constructed keys in admin controllers :('
     error_message = "Missing #{missing_keys.leaves.count} i18n keys, " \
                     "run `i18n-tasks missing' to show them"
 
