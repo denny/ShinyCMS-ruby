@@ -16,7 +16,6 @@ RSpec.describe 'I18n' do
   end
 
   it 'does not have unused keys' do
-    skip 'Not coping well with constructed keys in capabilities code :('
     error_message = "#{unused_keys.leaves.count} unused i18n keys, " \
                     "run `i18n-tasks unused' to show them"
 
