@@ -58,8 +58,8 @@ class User < ApplicationRecord
     old_capabilities = user_capabilities.pluck( :capability_id ).sort
     new_capabilities = capability_set.keys.map( &:to_i ).sort
 
-    remove = ( old_capabilities - new_capabilities )
-    add    = ( new_capabilities - old_capabilities )
+    remove = old_capabilities - new_capabilities
+    add    = new_capabilities - old_capabilities
 
     add.each do |capability_id|
       user_capabilities.create!( capability_id: capability_id )
