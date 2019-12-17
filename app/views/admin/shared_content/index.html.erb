@@ -1,4 +1,4 @@
-<% @page_title = t( 'admin.shared_content.shared_content' ) %>
+<% @page_title = t( '.shared_content' ) %>
 
 <%= form_with model: @shared_content, name: 'shared_content', url: admin_shared_content_path, method: :post do |f| %>
 <table class="table table-responsive-sm table-striped">
@@ -22,9 +22,9 @@
       Add new shared content
     </legend>
     <p>
-      <%= f2.text_field :name, placeholder: t( 'admin.shared_content.name_placeholder' ), class: 'textshort' %>
+      <%= f2.text_field :name, placeholder: t( '.name_placeholder' ), class: 'textshort' %>
       <%= f2.select :content_type, content_types %>
-      <br><%= f2.text_field :content, placeholder: t( 'admin.shared_content.content_placeholder' ), class: 'textlong' %>
+      <br><%= f2.text_field :content, placeholder: t( '.content_placeholder' ), class: 'textlong' %>
     </p>
     <p>
       <%= f2.submit t( 'add' ) %>

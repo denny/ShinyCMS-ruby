@@ -11,14 +11,15 @@
 en:
   home: Home
 
+  # Generic CRUD verbs that are usually wanted for both main site and admin area
   add: Add
   view: View
+  list: List
   edit: Edit
   update: Update
   delete: Delete
 
-  yes: Yes
-  no: No
+  # Confirmation dialogue
   are_you_sure: Are you sure?
 
 
@@ -47,60 +48,23 @@ en:
   # ========== ( User Capabilities ) ==========
 
   capability:
-    list: List
-    add: Add
-    edit: Edit
-    delete: Delete
+    capabilities: Admin Capabilities
 
     category:
+      general: General
       pages: Pages
       page_sections: Page Sections
       page_templates: Page Templates
       shared_content: Shared Content
       users: Users
-      admins: Admin Users
-
-    odd_category:
-      general: General
+      admin_users: Admin Users
 
     general:
       view_admin_area: View admin area
       view_admin_toolbar: View admin toolbar
 
-    pages:
-      list: List pages
-      add: Add pages
-      edit: Edit pages
-      delete: Delete pages
-
-    page_sections:
-      list: List page sections
-      add: Add page sections
-      edit: Edit page sections
-      delete: Delete page sections
-
-    page_templates:
-      list: List page templates
-      add: Add page templates
-      edit: Edit page templates
-      delete: Delete page templates
-
-    shared_content:
-      list: List shared content
-      add: Add shared content
-      edit: Edit shared content
-      delete: Delete shared content
-
     users:
-      list: List users
-      add: Add users
-      edit: Edit users
-      delete: Delete users
       view_admin_notes: View admin notes
-
-    admin_users:
-      edit: Edit admin users
-      delete: Delete admin users
 
 
   # ========== ( Admin Area ) ==========
@@ -116,93 +80,130 @@ en:
       html: HTML
 
     pages:
-      list_pages: List pages
-      top_level_pages: Top-level pages
-      new_page: Add new page
-      edit_page: Edit page
-      page_created: New page added
-      page_create_failed: Failed to add new page
-      page_updated: Page details updated
-      page_update_failed: Failed to update page details
-      page_deleted: Page deleted
-      page_delete_failed: Failed to delete page
+      index:
+        list_pages: List pages
+        top_level_pages: Top-level pages
+      new:
+        new_page: Add new page
+      edit:
+        edit_page: Edit page
+      create:
+        page_created: New page added
+        page_create_failed: Failed to add new page
+      update:
+        page_updated: Page details updated
+        page_update_failed: Failed to update page details
+      delete:
+        page_deleted: Page deleted
+        page_delete_failed: Failed to delete page
 
-      new_section: Add new section
-      edit_section: Edit section
-      section_created: New section added
-      section_create_failed: Failed to add new section
-      section_updated: Section details updated
-      section_update_failed: Failed to update section details
-      section_deleted: Section deleted
-      section_delete_failed: Failed to section page
+      sections:
+        new:
+          new_section: Add new section
+        edit:
+          edit_section: Edit section
+        create:
+          section_created: New section added
+          section_create_failed: Failed to add new section
+        update:
+          section_updated: Section details updated
+          section_update_failed: Failed to update section details
+        delete:
+          section_deleted: Section deleted
+          section_delete_failed: Failed to section page
 
-      list_templates: List templates
-      new_template: Add new template
-      edit_template: Edit template
-      template_created: New template added
-      template_create_failed: Failed to add new template
-      template_updated: Template details updated
-      template_update_failed: Failed to update template details
-      template_deleted: Template deleted
-      template_delete_failed: Failed to delete template
-
-      # Used in models (or concerns)
-      slug_must_be_unique: The slug must be unique within its section
-      template_file_must_exist: The template file must be in 'app/views/pages/templates'
+      templates:
+        index:
+          list_templates: List templates
+        new:
+          new_template: Add new template
+        edit:
+          edit_template: Edit template
+        create:
+          template_created: New template added
+          template_create_failed: Failed to add new template
+        update:
+          template_updated: Template details updated
+          template_update_failed: Failed to update template details
+        delete:
+          template_deleted: Template deleted
+          template_delete_failed: Failed to delete template
 
     settings:
-      site_settings: Site Settings
       admin_ip_list: Admin IP list
       default_page: Default page
       default_section: Default section
-      name_placeholder: Setting name
-      value_placeholder: Setting value (can be blank)
-      description_placeholder: Description (optional)
-      setting_created: New setting added
-      setting_create_failed: Failed to add new setting
-      settings_updated: Settings updated
-      settings_unchanged: Settings unchanged
-      settings_update_failed: Failed to update settings
-      setting_deleted: Setting deleted
-      setting_delete_failed: Failed to delete setting
+      index:
+        site_settings: Site Settings
+        name_placeholder: Setting name
+        value_placeholder: Setting value (can be blank)
+        description_placeholder: Description (optional)
+      create:
+        setting_created: New setting added
+        setting_create_failed: Failed to add new setting
+      update:
+        settings_updated: Settings updated
+        # settings_unchanged: Settings unchanged
+        settings_update_failed: Failed to update settings
+      delete:
+        setting_deleted: Setting deleted
+        setting_delete_failed: Failed to delete setting
 
     shared_content:
-      shared_content: Shared content
-      name_placeholder: Name
-      content_placeholder: Content (can be blank)
-      shared_content_created: New shared content added
-      shared_content_create_failed: Failed to add new shared content
-      shared_content_updated: Shared content updated
-      shared_content_unchanged: Shared content unchanged
-      shared_content_update_failed: Failed to update shared content
-      shared_content_deleted: Specified shared content deleted
-      shared_content_delete_failed: Failed to delete specified shared content
+      index:
+        shared_content: Shared content
+        name_placeholder: Name
+        content_placeholder: Content (can be blank)
+      create:
+        shared_content_created: New shared content added
+        shared_content_create_failed: Failed to add new shared content
+      update:
+        shared_content_updated: Shared content updated
+        # shared_content_unchanged: Shared content unchanged
+        shared_content_update_failed: Failed to update shared content
+      delete:
+        shared_content_deleted: Specified shared content deleted
+        shared_content_delete_failed: Failed to delete specified shared content
 
     users:
-      list_users: List users
-      top_level_users: Top-level users
-      new_user: Add new user
-      edit_user: Edit user
-      user_created: New user added
-      user_create_failed: Failed to add new user
-      user_updated: user details updated
-      user_update_failed: Failed to update user details
-      user_deleted: user deleted
-      user_delete_failed: Failed to delete user
+      index:
+        list_users: List users
+      new:
+        new_user: Add new user
+      edit:
+        edit_user: Edit user
+      create:
+        user_created: New user added
+        user_create_failed: Failed to add new user
+      update:
+        user_updated: User details updated
+        user_update_failed: Failed to update user details
+      delete:
+        user_deleted: User deleted
+        user_delete_failed: Failed to delete user
 
-    views:
-      pagination:
-        first: "&laquo; First"
-        last: "Last &raquo;"
-        previous: "&lsaquo; Prev"
-        next: "Next &rsaquo;"
-        truncate: "&hellip;"
+  models:
+    page_template:
+      template_file_must_exist: The template file must be in 'app/views/pages/templates'
 
-  ckeditor:
-    page_title: 'CKEditor File Manager'
-    confirm_delete: 'Delete file?'
-    buttons:
-      upload: 'Upload'
-      cancel: 'Cancel'
-      delete: 'Delete'
-      next: 'Next'
+    concerns:
+      name_title_slug:
+        slug_must_be_unique: The slug must be unique within its section
+
+  # Pagination blocks on admin list pages (generated by kaminari)
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
+      truncate: "&hellip;"
+
+#  ckeditor:
+#    page_title: 'CKEditor File Manager'
+#    confirm_delete: 'Delete file?'
+#    buttons:
+#      upload: 'Upload'
+#      cancel: 'Cancel'
+#      delete: 'Delete'
+#      next: 'Next'

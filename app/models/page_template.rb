@@ -56,7 +56,7 @@ class PageTemplate < ApplicationRecord
   # Add another validation here, because it uses the class method above
   validates :filename, inclusion: {
     in: PageTemplate.available_templates,
-    message: I18n.t( 'admin.pages.template_file_must_exist' )
+    message: I18n.t( 'models.page_template.template_file_must_exist' )
   }
 
   private

@@ -1,4 +1,4 @@
-<% @page_title = t( 'admin.pages.list_pages' ) %>
+<% @page_title = t( '.list_pages' ) %>
 
 <% if @tl_pages.present? || @tl_sections.present? %>
 <table class="table table-responsive-sm table-striped">
@@ -15,7 +15,7 @@
   <% if @tl_pages.any? %>
   <tr>
 		<th colspan="2">
-			<%= t( 'admin.pages.top_level_pages' ) %>
+			<%= t( '.top_level_pages' ) %>
 		</th>
 	</tr>
   <% @tl_pages.each do |page| %>

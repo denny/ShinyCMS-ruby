@@ -21,10 +21,10 @@ class Admin::Pages::TemplatesController < AdminController
     authorise @template
 
     if @template.save
-      flash[ :notice ] = t( 'template_created' )
+      flash[ :notice ] = t( '.template_created' )
       redirect_to action: :edit, id: @template.id
     else
-      flash.now[ :alert ] = t( 'template_create_failed' )
+      flash.now[ :alert ] = t( '.template_create_failed' )
       render action: :new
     end
   end
@@ -39,10 +39,10 @@ class Admin::Pages::TemplatesController < AdminController
     authorise @template
 
     if @template.update( template_params )
-      flash[ :notice ] = t( 'template_updated' )
+      flash[ :notice ] = t( '.template_updated' )
       redirect_to action: :edit, id: @template.id
     else
-      flash.now[ :alert ] = t( 'template_update_failed' )
+      flash.now[ :alert ] = t( '.template_update_failed' )
       render :edit
     end
   end
@@ -51,10 +51,10 @@ class Admin::Pages::TemplatesController < AdminController
     template = PageTemplate.find( params[:id] )
     authorise template
 
-    flash[ :notice ] = t( 'template_deleted' ) if template.destroy
+    flash[ :notice ] = t( '.template_deleted' ) if template.destroy
     redirect_to admin_pages_templates_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    handle_delete_exceptions t( 'template_delete_failed' ),
+    handle_delete_exceptions t( '.template_delete_failed' ),
                              admin_pages_templates_path
   end
 
@@ -64,9 +64,5 @@ class Admin::Pages::TemplatesController < AdminController
     params.require( :page_template ).permit(
       :name, :description, :filename, elements_attributes: {}
     )
-  end
-
-  def t( key )
-    I18n.t( "admin.pages.#{key}" )
   end
 end
