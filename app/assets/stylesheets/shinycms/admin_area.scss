@@ -167,10 +167,10 @@ body {
 }
 
 .alert {
-  border:            1px solid $grey;
-  color:             $dark_grey;
-  font-size:         1.1em;
-  padding:           0.5em 1em;
+  border:           1px solid $grey;
+  color:            $dark_grey;
+  font-size:        1.1em;
+  padding:          0.5em 1em;
 }
 
 
@@ -188,6 +188,19 @@ body {
   border-top:       none;
 }
 
+#main .table-striped th a.collapse-toggle {
+  color:            $dark_blue;
+  display:          block;
+  text-decoration:  none;
+}
+
+#main .table-striped th a.collapse-toggle svg {
+  fill:             $dark_blue;
+  height:           1em;
+  vertical-align:   top;
+  width:            2em;
+}
+
 #main .table-striped .hidden {
   color:            $grey;
 }
@@ -197,11 +210,11 @@ body {
 }
 
 #main .table-striped td.shorter {
-  width: 16%;
+  width:            16%;
 }
 
 #main .table-striped td.longer {
-  width: 21%;
+  width:            21%;
 }
 
 #main .table-striped td.actions {
