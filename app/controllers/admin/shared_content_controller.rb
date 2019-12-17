@@ -34,12 +34,12 @@ class Admin::SharedContentController < AdminController
 
     @shared_content.elements_attributes = shared_content_params
 
-    if @shared_content.valid?
-      flash[ :notice ] = t( '.shared_content_updated' )
-    else
-      flash[ :alert ] = t( '.shared_content_update_failed' )
-    end
+    flash[ :notice ] = t( '.shared_content_updated' ) if @shared_content.valid?
     redirect_to admin_shared_content_path
+  rescue ActiveRecord::RecordNotUnique
+    skip_authorization
+    redirect_to admin_shared_content_path,
+                alert: t( '.shared_content_update_failed' )
   end
 
   def delete
