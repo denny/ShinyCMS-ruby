@@ -24,10 +24,10 @@ class Admin::PagesController < AdminController
     authorise @page
 
     if @page.save
-      flash[ :notice ] = t( 'page_created' )
+      flash[ :notice ] = t( '.page_created' )
       redirect_to action: :edit, id: @page.id
     else
-      flash.now[ :alert ] = t( 'page_create_failed' )
+      flash.now[ :alert ] = t( '.page_create_failed' )
       render action: :new
     end
   end
@@ -42,10 +42,10 @@ class Admin::PagesController < AdminController
     authorise @page
 
     if @page.update( page_params )
-      flash[ :notice ] = t( 'page_updated' )
+      flash[ :notice ] = t( '.page_updated' )
       redirect_to action: :edit, id: @page.id
     else
-      flash.now[ :alert ] = t( 'page_update_failed' )
+      flash.now[ :alert ] = t( '.page_update_failed' )
       render action: :edit
     end
   end
@@ -54,10 +54,10 @@ class Admin::PagesController < AdminController
     page = Page.find( params[:id] )
     authorise page
 
-    flash[ :notice ] = t( 'page_deleted' ) if page.destroy
+    flash[ :notice ] = t( '.page_deleted' ) if page.destroy
     redirect_to admin_pages_path
   rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-    handle_delete_exceptions t( 'page_delete_failed' ), admin_pages_path
+    handle_delete_exceptions t( '.page_delete_failed' ), admin_pages_path
   end
 
   private
@@ -68,9 +68,5 @@ class Admin::PagesController < AdminController
       :sort_order, :hidden, :hidden_from_menu,
       elements_attributes: {}
     )
-  end
-
-  def t( key )
-    I18n.t( "admin.pages.#{key}" )
   end
 end
