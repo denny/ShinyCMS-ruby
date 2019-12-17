@@ -74,6 +74,7 @@ seed Capability, { name: 'edit',   category: users_cc }
 seed Capability, { name: 'delete', category: users_cc }
 seed Capability, { name: 'view_admin_notes', category: users_cc }
 # Admin Users
+seed Capability, { name: 'add',    category: admins_cc }
 seed Capability, { name: 'edit',   category: admins_cc }
 seed Capability, { name: 'delete', category: admins_cc }
 
