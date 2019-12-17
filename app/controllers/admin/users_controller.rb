@@ -56,14 +56,11 @@ class Admin::UsersController < AdminController
 
   private
 
-  # rubocop:disable Layout/MultilineArrayLineBreaks
   def user_params
     params.require( :user ).permit(
-      %i[
-        username email password display_name display_email
-        profile_pic bio website location postcode admin_notes
-      ]
+      :username, :email, :password, :display_name, :display_email,
+      :profile_pic, :bio, :website, :location, :postcode, :admin_notes,
+      capabilities: {}
     )
   end
-  # rubocop:enable Layout/MultilineArrayLineBreaks
 end
