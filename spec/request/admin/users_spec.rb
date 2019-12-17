@@ -164,7 +164,7 @@ RSpec.describe 'Admin: Users', type: :request do
     it 'updates the admin capabilities when the form is submitted' do
       user = create :user
 
-      capability_id = Capability.first.id
+      capability_id = Capability.where( name: 'view_admin_area').pick( :id )
       field_name = "user[capabilities[#{capability_id}]]"
 
       expect( user.capabilities.length ).to eq 0
@@ -181,6 +181,7 @@ RSpec.describe 'Admin: Users', type: :request do
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.users.update.user_updated' )
       expect( response.body ).to have_field field_name, with: 'on'
       user.reload
+      expect( user.capabilities.length ).to eq 1
       expect( user.capabilities.first.name ).to eq 'view_admin_area'
     end
   end
