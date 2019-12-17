@@ -51,7 +51,7 @@
     <br><%= f.text_area :admin_notes %>
   </p>
 
-  <% if current_user_can? :edit, :admin_users %>
+  <% if @user.capabilities.present? || current_user_can?( :add, :admin_users ) %>
     <%= render partial: 'edit_capabilities', locals: { f: f } %>
   <% end %>
 
