@@ -31,10 +31,13 @@ Rails.application.configure do
   # Blow up for unexpected user auth params in dev
   config.action_controller.action_on_unpermitted_parameters = :raise
 
-  # Store uploaded files on local file system (config/storage.yml for options)
-  # config.active_storage.service = :local
-  # Use AWS S3 to store files
-  config.active_storage.service = :amazon
+  # Check whether we're pushing files up to AWS or storing them on local disk
+  config.active_storage.service =
+    if ENV['AWS_BUCKET'].present?
+      :amazon
+    else
+      :local
+    end
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -60,7 +63,7 @@ Rails.application.configure do
   config.assets.quiet = true
 
   # Raises error for missing translations.
-  # config.action_view.raise_on_missing_translations = true
+  config.action_view.raise_on_missing_translations = true
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.

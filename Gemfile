@@ -21,6 +21,9 @@ source 'https://rubygems.org' do
   gem 'devise-pwned_password'
   gem 'pundit'
 
+  # Utils for working with translation strings
+  gem 'i18n-tasks', '~> 0.9.29'
+
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'
 

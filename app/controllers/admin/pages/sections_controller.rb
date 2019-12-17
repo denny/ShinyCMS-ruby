@@ -2,9 +2,9 @@
 class Admin::Pages::SectionsController < AdminController
   after_action :verify_authorized
 
+  # Redirect to the combined page+section list
   def index
-    authorise Page
-    # Redirect to the combined page+section list
+    skip_authorization
     redirect_to admin_pages_path
   end
 
@@ -18,10 +18,10 @@ class Admin::Pages::SectionsController < AdminController
     authorise @section
 
     if @section.save
-      flash[ :notice ] = t( 'section_created' )
+      flash[ :notice ] = t( '.section_created' )
       redirect_to action: :edit, id: @section.id
     else
-      flash.now[ :alert ] = t( 'section_create_failed' )
+      flash.now[ :alert ] = t( '.section_create_failed' )
       render action: :new
     end
   end
@@ -36,10 +36,10 @@ class Admin::Pages::SectionsController < AdminController
     authorise @section
 
     if @section.update( section_params )
-      flash[ :notice ] = t( 'section_updated' )
+      flash[ :notice ] = t( '.section_updated' )
       redirect_to action: :edit, id: @section.id
     else
-      flash.now[ :alert ] = t( 'section_update_failed' )
+      flash.now[ :alert ] = t( '.section_update_failed' )
       render :edit
     end
   end
@@ -48,10 +48,10 @@ class Admin::Pages::SectionsController < AdminController
     section = PageSection.find( params[:id] )
     authorise section
 
-    flash[ :notice ] = t( 'section_deleted' ) if section.destroy
+    flash[ :notice ] = t( '.section_deleted' ) if section.destroy
     redirect_to admin_pages_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    handle_delete_exceptions t( 'section_delete_failed' ), admin_pages_path
+    handle_delete_exceptions t( '.section_delete_failed' ), admin_pages_path
   end
 
   private
@@ -61,9 +61,5 @@ class Admin::Pages::SectionsController < AdminController
       :name, :description, :title, :slug, :section_id,
       :sort_order, :hidden, :hidden_from_menu
     )
-  end
-
-  def t( key )
-    I18n.t( "admin.pages.#{key}" )
   end
 end
