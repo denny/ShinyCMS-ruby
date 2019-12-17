@@ -278,7 +278,7 @@ Capability_23:
     time: *47
 Capability_24:
   id: 24
-  name: edit
+  name: add
   category_id: 7
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: &48 2019-12-14 03:29:42.250380000 Z
@@ -290,7 +290,7 @@ Capability_24:
     time: *49
 Capability_25:
   id: 25
-  name: delete
+  name: edit
   category_id: 7
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: &50 2019-12-14 03:29:42.263608000 Z
@@ -300,3 +300,15 @@ Capability_25:
     utc: &51 2019-12-14 03:29:42.263608000 Z
     zone: *2
     time: *51
+Capability_26:
+  id: 26
+  name: delete
+  category_id: 7
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &52 2019-12-17 01:31:32.733423000 Z
+    zone: *2
+    time: *52
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &53 2019-12-17 01:31:32.733423000 Z
+    zone: *2
+    time: *53

@@ -158,7 +158,7 @@ body {
 }
 
 #main {
-  min-width:        60%;
+  width:            100%;
   padding:          1em 2em;
 }
 
@@ -176,7 +176,7 @@ body {
 
 /* ==================== ( index/list pages ) ==================== */
 
-#main table.table-striped {
+#main .table-striped {
   color:            $dark_colour;
 }
 
@@ -196,9 +196,16 @@ body {
   vertical-align:   middle;
 }
 
+#main .table-striped td.shorter {
+  width: 16%;
+}
+
+#main .table-striped td.longer {
+  width: 21%;
+}
+
 #main .table-striped td.actions {
   text-align:       right;
-  vertical-align:   middle;
 }
 
 #main .table-striped td input[type=checkbox] {
