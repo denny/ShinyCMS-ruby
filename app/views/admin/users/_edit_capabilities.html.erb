@@ -2,13 +2,26 @@
 <table class="table table-responsive-sm table-striped">
   <tr>
     <th colspan="5">
-      <%= t( 'capability.capabilities' ) %>
+      <a class="collapse-toggle" role="button" href="#" data-toggle="collapse" data-target=".collapse_capabilities" aria-expanded="true" aria-controls="collapse_capabilities">
+        <%= t( 'capability.capabilities' ) %>
+        <% if @user.capabilities.present? %>
+        <% show = 'show ' %>
+        <span class="toggle-icon-top">
+          <svg><use xlink:href="<%= image_path 'coreui/icons/coreui/free-symbol-defs.svg' %>#cui-chevron-top"></use></svg>
+        </span>
+        <% else %>
+        <% show = '' %>
+        <span class="toggle-icon-bottom">
+          <svg><use xlink:href="<%= image_path 'coreui/icons/coreui/free-symbol-defs.svg' %>#cui-chevron-bottom"></use></svg>
+        </span>
+        <% end %>
+      </a>
     </th>
   </tr>
 
   <% category = CapabilityCategory.find_by( name: 'general' ) %>
   <% category_capabilities = %i[ view_admin_area view_admin_toolbar skip skip ] %>
-  <tr>
+  <tr class="<%= show %>collapse collapse_capabilities">
     <td class="shorter">
       <%= t( "capability.category.#{category.name}" ) %>
     </td>
@@ -22,7 +35,7 @@
   <% CapabilityCategory.where.not( name: [ 'general', 'admin_users' ] )
     .order( :id ).each do |category| %>
   <% category_capabilities = %i[ list add edit delete ] %>
-  <tr>
+  <tr class="<%= show %>collapse collapse_capabilities">
     <td>
       <%= t( "capability.category.#{category.name}" ) %>
     </td>
@@ -36,7 +49,7 @@
 
   <% category = CapabilityCategory.find_by( name: 'users' ) %>
   <% category_capabilities = %i[ view_admin_notes skip skip skip ] %>
-  <tr>
+  <tr class="<%= show %>collapse collapse_capabilities">
     <td>
     </td>
     <% category_capabilities.each do |capability| %>
@@ -48,7 +61,7 @@
 
   <% category = CapabilityCategory.find_by( name: 'admin_users' ) %>
   <% category_capabilities = %i[ list add edit delete ] %>
-  <tr>
+  <tr class="<%= show %>collapse collapse_capabilities">
     <td>
       <%= t( "capability.category.#{category.name}" ) %>
     </td>
