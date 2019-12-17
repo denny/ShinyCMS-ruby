@@ -160,5 +160,28 @@ RSpec.describe 'Admin: Users', type: :request do
         expect( response.body ).to have_css 'th', text: I18n.t( 'capability.capabilities' )
       end
     end
+
+    it 'updates the admin capabilities when the form is submitted' do
+      user = create :user
+
+      capability_id = Capability.first.id
+      field_name = "user[capabilities[#{capability_id}]]"
+
+      expect( user.capabilities.length ).to eq 0
+
+      post admin_user_path( user ), params: {
+        "#{field_name}": 'on'
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_user_path( user )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.users.edit.edit_user' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.users.update.user_updated' )
+      expect( response.body ).to have_field field_name, with: 'on'
+      user.reload
+      expect( user.capabilities.first.name ).to eq 'view_admin_area'
+    end
   end
 end
