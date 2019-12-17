@@ -130,5 +130,26 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       expect( response.body ).not_to include 'Original content'
       expect( response.body ).to     include 'Updated content'
     end
+
+    it 'shows an error message if shared content names collide' do
+      s1 = create :shared_content_element, content: 'Original content'
+      s2 = create :shared_content_element
+
+      post admin_shared_content_path, params: {
+        "shared_content[elements_attributes][1][id]": s1.id,
+        "shared_content[elements_attributes][1][name]": s2.name,
+        "shared_content[elements_attributes][1][content]": 'Updated content',
+        "shared_content[elements_attributes][1][content_type]": s1.content_type
+      }
+
+      expect( response      ).to     have_http_status :found
+      expect( response      ).to     redirect_to admin_shared_content_path
+      follow_redirect!
+      expect( response      ).to     have_http_status :ok
+      expect( response.body ).to     have_title I18n.t( 'admin.shared_content.index.shared_content' ).titlecase
+      expect( response.body ).to     have_css '.alert-danger', text: I18n.t( 'admin.shared_content.update.shared_content_update_failed' )
+      expect( response.body ).to     include 'Original content'
+      expect( response.body ).not_to include 'Updated content'
+    end
   end
 end
