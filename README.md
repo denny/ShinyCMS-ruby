@@ -26,7 +26,7 @@ it's not a small project. Here's the feature list I'm trying to duplicate:
 * Polls
 * 'Shared content' - store text and HTML fragments for re-use throughout a site
 
-Ideally I'll be improving on each of these as I re-implement them. :)
+Ideally I'll be improving on most of these as I re-implement them. :)
 
 
 ## Ruby and Rails versions
@@ -50,8 +50,12 @@ Currently just the contents of the Gemfile and a Postgres database, I think.
 
 ## Configuration
 
-For a standard local development setup, it should Just Work [tm] as far as I'm
-aware.
+For a local development setup, it should Just Work [tm] as far as I'm aware.
+
+If you want to use S3 to host images then you'll need to set that up on AWS and
+put the relevant API keys etc in your .env and/or your Heroku config vars. S3
+hosting is used automatically in development and production if AWS_BUCKET is
+set, otherwise local storage is used.
 
 
 ## Database
@@ -72,8 +76,8 @@ To run the linter: `rubocop`
 
 To run the test suite: `rspec`
 
-To install git hooks to check these automatically when you commit/push, run
-`tools/install-git-hooks`
+To install git hooks to check these automatically when you commit/push, install
+Overcommit (https://github.com/sds/overcommit) - a config file is included.
 
 You can view test history on CircleCI and Travis CI:  
 https://circleci.com/gh/denny/ShinyCMS-ruby  
@@ -81,6 +85,9 @@ https://travis-ci.org/denny/ShinyCMS-ruby
 
 And test coverage information on CodeCov:  
 https://codecov.io/gh/denny/ShinyCMS-ruby
+
+And various 'code quality' information on Code Climate:  
+https://codeclimate.com/github/denny/ShinyCMS-ruby
 
 
 ## Current Status
@@ -90,15 +97,23 @@ https://codecov.io/gh/denny/ShinyCMS-ruby
 
 ## Services
 
-None currently. Probably needs an outgoing email queue soon, to send user
-registration confirmations, and I intend to use S3 for image hosting.
+I use:
+* Heroku for hosting the webapp and the database
+* AWS S3 for hosting image uploads
+
+(Other hosting services are available, and as far as I'm aware changing any/all
+of these servies for alternatives should only require config changes.)
+
+The user registration and login features use Devise::PwnedPassword to check
+user's passwords against https://haveibeenpwned.com/Passwords and warn the user
+if they find a match, but this doesn't require any setup.
 
 
 ## Deployment
 
-There's a Procfile for easy deployment to Heroku. You can run a basic install of
-ShinyCMS on there for free, using a Free Dyno for web and a Postgres add-on at
-the Hobby Dev level.
+There's a Procfile for easy deployment to Heroku. You can run a test/demo
+install of ShinyCMS on there for free, using a Free Dyno for web and a
+Postgres add-on at the Hobby Dev level.
 
 
 ## Licensing
