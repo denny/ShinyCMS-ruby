@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-GIT_DIR=$(git rev-parse --git-dir)
-
-echo "Installing git hooks in $GIT_DIR ..."
-ln -s ../../tools/git-hooks/pre-commit $GIT_DIR/hooks/
-ln -s ../../tools/git-hooks/pre-push $GIT_DIR/hooks/
-echo "Done!"
