@@ -21,23 +21,23 @@
   z-index:		  999;
 }
 
-#admin-toolbar #admin-toolbar-logo {
+#admin-toolbar-logo {
   border:       none;
   float:        left;
 }
 
-#admin-toolbar #admin-toolbar-links {
+#admin-toolbar-links {
   float:        right;
   font-size:    0.8em;
   padding:      0 20px 4px 0;
 }
 
-#admin-toolbar #admin-toolbar-links a {
+#admin-toolbar-links a {
   color:            #005a7e;
   text-decoration:  none;
 }
 
-#admin-toolbar #admin-toolbar-links a:hover {
+#admin-toolbar-links a:hover {
   color:            #005a7e;
   text-decoration:  underline;
 }
