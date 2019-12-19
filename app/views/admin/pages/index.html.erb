@@ -4,20 +4,16 @@
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
-      <th>
+      <th class="width25pc">
         Page / Section
       </th>
-      <th>
-        &nbsp;
+      <th class="width50pc">
+      </th>
+      <th class="width25pc">
       </th>
     </tr>
   </thead>
-  <% if @tl_pages.any? %>
-  <tr>
-		<th colspan="2">
-			<%= t( '.top_level_pages' ) %>
-		</th>
-	</tr>
+
   <% @tl_pages.each do |page| %>
 	<tr class="showfocus">
     <% if page.hidden %>
@@ -27,6 +23,9 @@
     <% end %>
 			<%= page.name %>
 		</td>
+    <td>
+      <%= page.description %>
+    </td>
 		<td class="actions">
       <%= link_to t( 'view' ), url_for( "/pages/#{page.slug}" )   %>
       <%= link_to t( 'edit' ), url_for( admin_page_path( page ) ) %>
@@ -34,7 +33,6 @@
           method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
 		</td>
 	</tr>
-  <% end %>
   <% end %>
 
 	<% @tl_sections.each do |section| %>

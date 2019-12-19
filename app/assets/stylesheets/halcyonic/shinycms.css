@@ -18,7 +18,7 @@
   list-style-type:      none;
 }
 
-#header #alerts {
+#alerts {
   background:           #ffdddd;
   border-radius:        3px;
   color:                #111111;
@@ -27,7 +27,7 @@
   text-shadow:          none;
 }
 
-#header #notices {
+#notices {
   background:           #ddffdd;
   border-radius:        3px;
   color:                #111111;

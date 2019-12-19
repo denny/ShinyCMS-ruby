@@ -1,9 +1,9 @@
 <% if current_user_can? :view_admin_toolbar %>
-<nav id="admin-toolbar">
+<nav class="shinycms-admin-toolbar">
   <%= link_to image_tag( 'shinycms/admin-toolbar-logo.png', alt: 'ShinyCMS' ),
       'http://shinycms.org/' %>
 
-  <div id="admin-toolbar-links">
+  <div class="shinycms-admin-toolbar-links">
     <% if controller_name == 'pages' %>
     Page:
     <%= link_to t( 'add'  ), admin_page_new_path %> /

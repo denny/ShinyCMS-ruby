@@ -1,22 +1,19 @@
-/* ================================================================ *\
-   Project:   ShinyCMS (Ruby version)
-   File:      app/assets/admin/stylsheets/admin_area.scss
-   Purpose:   Extra styles for admin area, to tweak or fit into CoreUI
+// ============================================================================
+// Project:   ShinyCMS (Ruby version)
+// File:      app/assets/admin/stylsheets/admin_area.scss
+// Purpose:   Extra styles for admin area, including minor tweaks to CoreUI
+//
+// Copyright: (c) 2009-2019 Denny de la Haye https://denny.me
+//
+// ShinyCMS is free software; you can redistribute it and/or
+// modify it under the terms of the GPL (version 2 or later).
+// ============================================================================
 
-   Copyright: (c) 2009-2019 Denny de la Haye https://denny.me
-
-   ShinyCMS is free software; you can redistribute it and/or
-   modify it under the terms of the GPL (version 2 or later).
-\* ================================================================ */
-
-
-/* ==================== ( colours ) ==================== */
-
-$very_light_blue:   #63c2de;
-$lighter_blue:      #5da8b7;
-$light_blue:        #3399ff;
+$very-light-blue:   #63c2de;
+$lighter-blue:      #5da8b7;
+$light-blue:        #3399fe;
 $blue:              #20a8d8;
-$dark_blue:         #0e5c75;
+$dark-blue:         #0e5c75;
 
 $indigo:            #6610f2;
 $cyan:              #17a2b8;
@@ -27,56 +24,55 @@ $yellow:            #ffc107;
 $orange:            #f8cb00;
 $red:               #f86c6b;
 
-$light_green:       #ddffdd;
-$light_red:         #ffdddd;
+$light-green:       #dfd;
+$light-red:         #fdd;
 
 $purple:            #6f42c1;
 $pink:              #e83e8c;
 
-$white:             #ffffff;
-$near_white:        #eeeeee;
-$light_grey:        #c0c0c0;
-$grey:              #777777;
-$dark_grey:         #404040;
-$near_black:        #111111;
-$black:             #000000;
+$white:             #fff;
+$near-white:        #eee;
+$light-grey:        #c0c0c0;
+$grey:              #777;
+$dark-grey:         #404040;
+$near-black:        #111;
+$black:             #000;
 
-$near_white2:       #f0f3f5;
-$light_grey2:       #c8ced3;
-$light_grey3:       #d8dbe0;
+$near-white2:       #f0f3f5;
+$light-grey2:       #c8ced3;
+$light-grey3:       #d8dbe0;
 $grey2:             #73818f;
-$dark_grey2:        #2f353a;
+$dark-grey2:        #2f353a;
 
 $success:           $green;
 $info:              $blue;
 $warning:           $yellow;
 $danger:            $red;
 
-$alert_bg:          $light_red;
-$notice_bg:         $light_green;
+$alert-bg:          $light-red;
+$notice-bg:         $light-green;
 
-$highlight_colour:  $very_light_blue;
-$lighter_colour:    $lighter_blue;
-$light_colour:      $light_blue;
-$dark_colour:       $dark_blue;
+$highlight-colour:  $very-light-blue;
+$lighter-colour:    $lighter-blue;
+$light-colour:      $light-blue;
+$dark-colour:       $dark-blue;
 
-$button_text:       $dark_colour;
-$input_border:      $lighter_colour;
-$input_fg:          $dark_grey;
-$input_bg:          $white;
-$row_highlight:     $white;
+$button-text:       $dark-colour;
+$input-border:      $lighter-colour;
+$input-fg:          $dark-grey;
+$input-bg:          $white;
 
 
-/* ==================== ( global styles ) ==================== */
+// ==================== ( global styles ) ====================
 
 body {
-  color:            $dark_colour;
+  color:            $dark-colour;
   font-family:      'Roboto', sans-serif;
   font-size:        11pt;
 }
 
 
-/* ==================== ( sidebar ) =================== */
+// ==================== ( sidebar ) ===================
 
 .c-sidebar {
   width:            14em;
@@ -84,35 +80,35 @@ body {
 
 .c-sidebar-brand {
   background:       $white !important;
-  border-bottom:    1px solid $light_grey3;
+  border-bottom:    1px solid $light-grey3;
 }
 
 .c-sidebar-brand img {
   height:           47px;
 }
 
-#menu a.c-sidebar-nav-link {
+.c-sidebar-nav-link {
   color:            $white;
   padding:          0.8em;
 }
 
-#menu a.c-sidebar-nav-link:hover {
-  background:       $highlight_colour !important;
+.c-sidebar-nav-link:hover {
+  background:       $highlight-colour !important;
 }
 
-#menu a.c-sidebar-nav-link.c-active {
-  color:            $highlight_colour !important;
+.c-sidebar-nav-link.c-active {
+  color:            $highlight-colour !important;
 }
 
-#menu a.c-sidebar-nav-link.c-active .c-sidebar-nav-icon {
-  fill:             $highlight_colour !important;
+.c-sidebar-nav-link.c-active .c-sidebar-nav-icon {
+  fill:             $highlight-colour !important;
 }
 
-#menu a.c-sidebar-nav-link.c-active:hover {
+.c-sidebar-nav-link.c-active:hover {
   color:            $white !important;
 }
 
-#menu a.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
+.c-sidebar-nav-link.c-active:hover .c-sidebar-nav-icon {
   fill:             $white !important;
 }
 
@@ -122,7 +118,7 @@ body {
 }
 
 .c-sidebar-footer a {
-  color:            $light_colour;
+  color:            $light-colour;
 }
 
 .c-sidebar-footer a:hover {
@@ -130,259 +126,267 @@ body {
 }
 
 
-/* ==================== ( header ) ==================== */
+// ==================== ( header ) ====================
 
-#breadcrumbs {
+.breadcrumbs {
   font-family:      'Roboto Condensed', sans-serif;
   font-size:        1.3em;
 }
 
-#breadcrumbs a {
-  color:            $dark_colour;
+.breadcrumbs a {
+  color:            $dark-colour;
 }
 
-#breadcrumbs a:hover {
-  color:            $highlight_colour;
+.breadcrumbs a:hover {
+  color:            $highlight-colour;
   text-decoration:  none;
 }
 
-#breadcrumbs .active {
-  color:            $dark_grey;
+.breadcrumbs .active {
+  color:            $dark-grey;
 }
 
 
-/* ==================== ( main content area ) ==================== */
+// ==================== ( main content area ) ====================
 
 .c-wrapper {
   margin-left:      14em !important;
 }
 
-#main {
+main {
   padding:          1em 2em;
   width:            100%;
 }
 
-#main p {
+main p {
   margin:           0.5em 0 0 0.5em;
 }
 
 .alert {
   border:           1px solid $grey;
-  color:            $dark_grey;
+  color:            $dark-grey;
   font-size:        1.1em;
   padding:          0.5em 1em;
 }
 
 
-/* ==================== ( index/list pages ) ==================== */
+// ==================== ( index/list pages ) ====================
 
-#main .table-striped {
-  color:            $dark_colour;
+.table-striped {
+  color:            $dark-colour;
 }
 
-#main .table-striped tr {
+.table-striped tr {
   vertical-align:   middle;
 }
 
-#main .table-striped th {
-  border-top:       none;
+.table-striped th {
+  border-top:       0;
 }
 
-#main .table-striped th a.collapse-toggle {
-  color:            $dark_blue;
+.table-striped .width25pc {
+  width:            25%;
+}
+
+.table-striped .width50pc {
+  width:            50%;
+}
+
+.table-striped .collapse-toggle {
+  color:            $dark-blue;
   display:          block;
   text-decoration:  none;
 }
 
-#main .table-striped th a.collapse-toggle svg {
-  fill:             $dark_blue;
+.table-striped .collapse-toggle svg {
+  fill:             $dark-blue;
   height:           1em;
   vertical-align:   top;
   width:            2em;
 }
 
-#main .table-striped .hidden {
+.table-striped .hidden {
   color:            $grey;
 }
 
-#main .table-striped td {
+.table-striped td {
   vertical-align:   middle;
 }
 
-#main .table-striped td.shorter {
+.table-striped .shorter {
   width:            16%;
 }
 
-#main .table-striped td.longer {
+.table-striped .longer {
   width:            21%;
 }
 
-#main .table-striped td.actions {
+.table-striped .actions {
   text-align:       right;
 }
 
-#main .table-striped td input[type=checkbox] {
+.table-striped td [type=checkbox] {
   height:           1em;
   vertical-align:   middle;
 }
 
-#main .table-striped td label {
+.table-striped td label {
   margin:           0;
   padding:          0;
 }
 
-#main .table-striped td.actions a {
-  background:       $input_bg;
-  border:           1px solid $input_border;
+.table-striped .actions a {
+  background:       $input-bg;
+  border:           1px solid $input-border;
   border-radius:    0.2em;
-  color:            $button_text;
+  color:            $button-text;
   height:           2em;
   padding:          0.3em 0.5em;
   text-decoration:  none;
 }
 
-#main .table-striped td.actions a:hover {
-  background:       $input_border;
-  color:            $input_bg;
+.table-striped .actions a:hover {
+  background:       $input-border;
+  color:            $input-bg;
   text-decoration:  none;
 }
 
-#pager {
+.pager {
   font-size:        0.8em;
   margin-top:       2em;
 }
 
-#pager .page-link {
-  color:            $dark_colour;
+.pager .page-link {
   background:       none;
+  color:            $dark-colour;
 }
 
-#pager .active .page-link {
-  background:       $dark_colour;
-  border-color:     $dark_colour;
+.pager .active .page-link {
+  background:       $dark-colour;
+  border-color:     $dark-colour;
   color:            $white;
 }
 
-#pager-info {
+.pager-info {
   font-size:        0.8em;
   text-align:       center;
 }
 
 
-/* ==================== ( new/edit pages ) ==================== */
+// ==================== ( new/edit pages ) ====================
 
-#main label {
-  color:            $dark_colour;
+main label {
+  color:            $dark-colour;
   margin:           0.5em 1px 0.1em 1px;
   padding-bottom:   0;
 }
 
-#main input {
-  background:       $input_bg;
-  border:           1px solid $input_border;
-  color:            $input_fg;
+main input {
+  background:       $input-bg;
+  border:           1px solid $input-border;
+  color:            $input-fg;
   height:           2em;
   line-height:      1.5;
   margin:           0.2em 0.2em 0.2em 0;
   padding-left:     0.5em;
 }
 
-#main select {
-  background:       $input_bg;
-  border:           1px solid $input_border;
-  color:            $input_fg;
+main select {
+  background:       $input-bg;
+  border:           1px solid $input-border;
+  color:            $input-fg;
   height:           2em;
   margin-bottom:    0.5em;
   min-width:        10em;
   padding:          0.3em;
 }
 
-#main textarea {
-  background:       $input_bg;
-  border:           1px solid $input_border;
-  color:            $input_fg;
+main textarea {
+  background:       $input-bg;
+  border:           1px solid $input-border;
+  color:            $input-fg;
   min-width:        800px;
   padding:          0.3em 0.5em;
 }
 
-#main input[type=text] {
+main [type=text] {
   width:            20em;
 }
 
-#main input.textnumber {
+main .textnumber {
   text-align:       right;
   width:            3em;
 }
 
-#main input.textveryshort {
+main .textveryshort {
   width:            5em;
 }
 
-#main input.textshort {
+main .textshort {
   width:            10em;
 }
 
-#main input.textlong {
+main .textlong {
   width:            30em;
 }
 
-#main input.textverylong {
+main .textverylong {
   width:            40em;
 }
 
-#main input[type=checkbox] {
+main [type=checkbox] {
   margin:           0;
   padding:          0;
 }
 
-#main input[type=button],
-#main input[type=submit],
-#main input[type=reset] {
+main [type=button],
+main [type=submit],
+main [type=reset] {
   border-radius:    0.2em;
-  color:            $button_text;
+  color:            $button-text;
 }
 
-#main input[type=button]:hover,
-#main input[type=submit]:hover,
-#main input[type=reset]:hover {
-  background:       $input_border;
-  color:            $input_bg;
+main [type=button]:hover,
+main [type=submit]:hover,
+main [type=reset]:hover {
+  background:       $input-border;
+  color:            $input-bg;
 }
 
-#main p.form_buttons {
+main .top-margin {
   margin-top:       1.5em;
 }
 
-/* fieldset for bottom-of-page 'add new element' forms */
-#main fieldset {
-  border:           1px solid $input_border;
+// fieldset for bottom-of-page 'add new element' forms
+main fieldset {
+  border:           1px solid $input-border;
   border-radius:    3px;
   display:          inline-block;
   margin:           2em 0 0 0;
   padding:          0 0.5em 1em 0.5em;
 }
 
-#main fieldset legend {
-  color:            $dark_colour;
+main fieldset legend {
+  color:            $dark-colour;
   font-size:        1em;
   margin:           0 0 0 0.5em;
   width:            initial;
 }
 
 
-/* ==================== ( footer ) ==================== */
+// ==================== ( footer ) ====================
 
 .c-footer {
-  background:       $near_white;
+  background:       $near-white;
   flex:             0 0 48px;
   height:           48px;
 }
 
 footer a {
-  color:            $dark_colour;
+  color:            $dark-colour;
 }
 
 footer a:hover {
-  color:            $light_colour;
+  color:            $light-colour;
   text-decoration:  none;
 }

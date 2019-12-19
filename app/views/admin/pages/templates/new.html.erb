@@ -13,7 +13,7 @@
     <%= f.label :filename, 'Template file' %>
     <br><%= f.select :filename, PageTemplate.available_templates %>
   </p>
-  <p class="form_buttons">
+  <p class="top-margin">
     <%= submit_tag t( 'add' ) %>
   </p>
 <% end %>

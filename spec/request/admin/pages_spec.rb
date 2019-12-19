@@ -22,7 +22,6 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.index.list_pages' ).titlecase
 
-      expect( response.body ).to include I18n.t( 'admin.pages.index.top_level_pages' )
       expect( response.body ).to include page.name
       expect( response.body ).to include subpage.name
       expect( response.body ).to include subpage.section.name

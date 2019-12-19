@@ -1,6 +1,6 @@
 /* ================================================================ *\
    Project:   ShinyCMS (Ruby version)
-   File:      app/assets/stylsheets/shinycms/main_site.css
+   File:      app/assets/stylsheets/shinycms/shinycms.css
    Purpose:   Default styles for main (user-facing) website
 
    Copyright: (c) 2009-2019 Denny de la Haye https://denny.me
@@ -17,12 +17,12 @@ body {
   margin:       0;
 }
 
-#header #alerts {
+#alerts {
   background:   #ffdddd;
   padding:      0.5em;
 }
 
-#header #notices {
+#notices {
   background:   #ddffdd;
   padding:      0.5em;
 }
@@ -56,13 +56,13 @@ body {
 
 /* ========== ( user profile pics ) ========== */
 
-img.user_profile_pic {
+.user_profile_pic {
   border-radius:        5px;
   float:                right;
   max-width:            80%;
 }
 
-img.user_icon {
+.user_icon {
   border-radius:        3px;
   max-width:            200px;
 }

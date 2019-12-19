@@ -7,6 +7,9 @@
     <% end %>
       <b><%= section.name %></b>
     </td>
+    <td>
+      <%= section.description %>
+    </td>
     <td class="actions">
       <%= link_to t( 'view'   ), view_path %>
       <%= link_to t( 'edit'   ), admin_pages_section_path( section ) %>
@@ -23,6 +26,9 @@
     <td style="padding-left: <%= indent + 2 %>em;">
     <% end %>
       <%= page.name %>
+    </td>
+    <td>
+      <%= page.description %>
     </td>
     <td class="actions">
       <%= link_to t( 'view'   ), "#{view_path}/#{page.slug}" %>
