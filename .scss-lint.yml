@@ -1,0 +1,17 @@
+---
+exclude:
+  - app/assets/stylesheets/halcyonic/main.scss
+  - node_modules/*
+linters:
+  ImportantRule:
+    enabled: false
+  LeadingZero:
+    enabled: false
+  MergeableSelector:
+    enabled: false
+  Shorthand:
+    enabled: false
+  SpaceAfterPropertyColon:
+    enabled: false
+  SpaceBetweenParens:
+    enabled: false

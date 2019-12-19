@@ -1,18 +1,23 @@
-/* ================================================================ *\
-   Project:   ShinyCMS (Ruby version)
-   File:      app/assets/stylesheets/shinycms/admin_toolbar.scss
-   Purpose:   Styling for the admin toolbar
+// ============================================================================
+// Project:   ShinyCMS (Ruby version)
+// File:      app/assets/stylesheets/shinycms/admin_toolbar.scss
+// Purpose:   Styling for the admin toolbar
+//
+// Copyright: (c) 2009-2019 Denny de la Haye https://denny.me
+//
+// ShinyCMS is free software; you can redistribute it and/or
+// modify it under the terms of the GPL (version 2 or later).
+// ============================================================================
 
-   Copyright: (c) 2009-2019 Denny de la Haye https://denny.me
+$black:         #000;
+$grey:          #ddd;
+$dark-blue:     #005a7e;
+$dark-colour:   $dark-blue;
 
-   ShinyCMS is free software; you can redistribute it and/or
-   modify it under the terms of the GPL (version 2 or later).
-\* ================================================================ */
-
-#admin-toolbar {
-  background:		#dddddd image-url( 'shinycms/admin-toolbar-bg.png' ) left top repeat-x;
+.shinycms-admin-toolbar {
+  background:		$grey image-url( 'shinycms/admin-toolbar-bg.png' ) left top repeat-x;
   bottom:			  0;
-  color:			  #000000;
+  color:			  $black;
   font-family:	'Poppins', sans-serif;
   font-size:		13pt;
   height:			  32px;
@@ -21,23 +26,23 @@
   z-index:		  999;
 }
 
-#admin-toolbar-logo {
-  border:       none;
+.shinycms-admin-toolbar-logo {
+  border:       0;
   float:        left;
 }
 
-#admin-toolbar-links {
+.shinycms-admin-toolbar-links {
   float:        right;
   font-size:    0.8em;
   padding:      0 20px 4px 0;
 }
 
-#admin-toolbar-links a {
-  color:            #005a7e;
+.shinycms-admin-toolbar-links a {
+  color:            $dark-colour;
   text-decoration:  none;
 }
 
-#admin-toolbar-links a:hover {
-  color:            #005a7e;
+.shinycms-admin-toolbar-links a:hover {
+  color:            $dark-colour;
   text-decoration:  underline;
 }

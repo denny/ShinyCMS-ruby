@@ -37,7 +37,7 @@
   <%= f.fields_for :elements do |fields| %>
     <%= render partial: 'admin/pages/page_element', locals: { fields: fields, content: :content, name: @page.elements[fields.index].name, content_type: @page.elements[fields.index].content_type, filenames: select_filenames } %>
   <% end %>
-  <p class="form_buttons">
+  <p class="top-margin">
     <%= submit_tag t( 'update' ) %>
   </p>
 <% end %>
