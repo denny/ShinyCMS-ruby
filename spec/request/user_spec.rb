@@ -19,12 +19,12 @@ RSpec.describe 'User', type: :request do
     end
   end
 
-  describe 'GET /user/register' do
+  describe 'new user registration' do
     it 'renders the user registration page if user registrations are enabled' do
       FeatureFlag.find_or_create_by!( name: 'user_registration' )
                  .update!( enabled: true )
 
-      get user_registration_path
+      get new_user_registration_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_button I18n.t( 'user.register' )
@@ -36,7 +36,7 @@ RSpec.describe 'User', type: :request do
       FeatureFlag.find_or_create_by!( name: 'user_registration' )
                  .update!( enabled: false )
 
-      get user_registration_path
+      get new_user_registration_path
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path
@@ -55,7 +55,7 @@ RSpec.describe 'User', type: :request do
 
   describe 'GET /login' do
     it 'renders the user login page if user logins are enabled' do
-      get user_login_path
+      get new_user_session_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_button I18n.t( 'user.log_in' )
@@ -67,7 +67,7 @@ RSpec.describe 'User', type: :request do
       FeatureFlag.find_or_create_by!( name: 'user_login' )
                  .update!( enabled: false )
 
-      get user_login_path
+      get new_user_session_path
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path
@@ -88,7 +88,7 @@ RSpec.describe 'User', type: :request do
 
       FeatureFlag.delete_by( name: 'user_login' )
 
-      get user_login_path
+      get new_user_session_path
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path
@@ -110,7 +110,7 @@ RSpec.describe 'User', type: :request do
       get '/users'
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_login_path
+      expect( response      ).to redirect_to new_user_session_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_button I18n.t( 'user.log_in' )
@@ -122,7 +122,7 @@ RSpec.describe 'User', type: :request do
       get '/user'
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_login_path
+      expect( response      ).to redirect_to new_user_session_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_button I18n.t( 'user.log_in' )
@@ -211,7 +211,7 @@ RSpec.describe 'User', type: :request do
       user = create :user
       sign_in user
 
-      get user_edit_path
+      get edit_user_registration_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'Edit User'
@@ -224,13 +224,13 @@ RSpec.describe 'User', type: :request do
       sign_in user
 
       new_name = Faker::Science.unique.scientist
-      put user_update_path, params: {
+      put user_registration_path, params: {
         'user[display_name]': new_name,
         'user[current_password]': user.password
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_edit_path
+      expect( response      ).to redirect_to edit_user_registration_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '#notices', text: I18n.t( 'devise.registrations.updated' )
