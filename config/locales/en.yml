@@ -82,7 +82,6 @@ en:
     pages:
       index:
         list_pages: List pages
-        top_level_pages: Top-level pages
       new:
         new_page: Add new page
       edit:
