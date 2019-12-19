@@ -5,7 +5,7 @@ RSpec.describe 'Feature Flags', type: :request do
     it "succeeds with 'User Login = On'" do
       create :feature_flag, name: 'user_login', enabled: true
 
-      get user_login_path
+      get new_user_session_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include I18n.t( 'user.log_in' )
@@ -16,7 +16,7 @@ RSpec.describe 'Feature Flags', type: :request do
 
       create :feature_flag, name: 'user_login', enabled: false
 
-      get user_login_path
+      get new_user_session_path
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path

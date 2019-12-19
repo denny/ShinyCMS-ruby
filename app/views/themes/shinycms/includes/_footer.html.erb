@@ -1,11 +1,11 @@
 <p>
 	<% if user_signed_in? %>
 	Welcome back <%= link_to user_display_name, user_profile_path( current_user.username ) %>!
-	( <%= link_to t( 'edit' ).downcase, user_edit_path %> |
-    <%= link_to t( 'user.log_out' ).downcase, user_logout_path   %> )
+	( <%= link_to t( 'edit' ).downcase, edit_user_registration_path %> |
+    <%= link_to t( 'user.log_out' ).downcase, destroy_user_session_path %> )
 	<% else %>
-	<%= link_to t( 'user.log_in'   ), user_login_path %> /
-	<%= link_to t( 'user.register' ), user_registration_path %>
+	<%= link_to t( 'user.log_in'   ), new_user_session_path %> /
+	<%= link_to t( 'user.register' ), new_user_registration_path %>
 	<% end %>
 </p>
 <p>

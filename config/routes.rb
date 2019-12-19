@@ -10,26 +10,26 @@ Rails.application.routes.draw do
     get 'pages/*path', to: 'pages#show'
 
     # Users
-    devise_scope :user do
-      get  'user',          to: 'users#index'
-      get  'users',         to: 'users#index'
-
-      get  'login',         to: 'users/sessions#new',     as: :user_login
-      get  'logout',        to: 'users/sessions#destroy', as: :user_logout
-
-      get  'user/login',    to: 'users/sessions#new'
-      get  'user/logout',   to: 'users/sessions#destroy'
-
-      get 'user/register', to: 'users/registrations#new', as: :user_registration
-      post 'user/register', to: 'users/registrations#create'
-
-      get  'user/edit',     to: 'users/registrations#edit',   as: :user_edit
-      put  'user/update',   to: 'users/registrations#update', as: :user_update
-
-      get 'user/:username', to: 'users#show', as: :user_profile,
-                            constraints: { username: User::USERNAME_REGEX }
-    end
-    devise_for :users
+    devise_for  :users,
+                path: '',
+                controllers: {
+                  registrations: 'users/registrations',
+                  sessions: 'users/sessions'
+                },
+                path_names: {
+                  sign_in: '/login',
+                  sign_out: '/logout',
+                  registration: '/user/account',
+                  sign_up: 'register',
+                  confirmation: '/user/account/confirm',
+                  password: '/user/account/password',
+                  unlock: '/user/account/unlock'
+                }
+    get 'user',            to: 'users#index'
+    get 'users',           to: 'users#index'
+    get 'user/:username',  to: 'users#show',
+                           as: :user_profile,
+                           constraints: { username: User::USERNAME_REGEX }
 
     # ========== ( Admin area ) ==========
     get 'admin', to: 'admin#index'
