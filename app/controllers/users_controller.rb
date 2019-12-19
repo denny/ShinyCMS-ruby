@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if user_signed_in?
       redirect_to user_profile_path( current_user.username )
     else
-      redirect_to user_login_path
+      redirect_to new_user_session_path
     end
   end
 

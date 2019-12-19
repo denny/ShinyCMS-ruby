@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_update_path_for( _resource )
-    user_edit_path
+    edit_user_registration_path
   end
 
   def check_feature_flags
