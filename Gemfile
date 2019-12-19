@@ -29,7 +29,7 @@ source 'https://rubygems.org' do
 
   # Image storage on S3, image processing (resizing)
   gem 'aws-sdk-s3'
-  gem 'image_processing', '~> 1.2'
+  gem 'image_processing', '~> 1.10'
   gem 'mini_magick'
 
   # Pagination
