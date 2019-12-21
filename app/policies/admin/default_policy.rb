@@ -1,9 +1,11 @@
 # Top-level pundit policy for admin area
 class Admin::DefaultPolicy < DefaultPolicy
   def index?
-    return can_list_nil? if @record.nil? || @record.first.nil?
-
-    @this_user.can? :list, @record.first.class.name.to_sym
+    if @record.class.method_defined?( :first ) && @record.first.present?
+      @this_user.can? :list, @record.first.class.name.to_sym
+    else
+      can_list_nil?
+    end
   end
 
   # Handle the case where a list page has no content yet
