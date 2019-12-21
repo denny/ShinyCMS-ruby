@@ -14,7 +14,7 @@
                             <% if user_signed_in? %>
                             <li>Welcome back <%= link_to user_display_name, user_profile_path( current_user.username ) %>!</li>
                             <li><%= link_to t( 'user.edit_profile' ), edit_user_registration_path %></li>
-                            <li><%= link_to t( 'user.log_out' ), destroy_user_session_path %></li>
+                            <li><%= link_to t( 'user.log_out' ), destroy_user_session_path, data: {}, method: :delete %></li>
                             <% else %>
                             <li>Click here to <%= link_to t( 'user.log_in'   ).downcase, new_user_session_path %></li>
                             <li>Click here to <%= link_to t( 'user.register' ).downcase, new_user_registration_path %></li>

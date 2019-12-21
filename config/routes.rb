@@ -25,8 +25,8 @@ Rails.application.routes.draw do
                   password: '/user/account/password',
                   unlock: '/user/account/unlock'
                 }
-    get 'user',            to: 'users#index'
     get 'users',           to: 'users#index'
+    get 'user',            to: 'users#index'
     get 'user/:username',  to: 'users#show',
                            as: :user_profile,
                            constraints: { username: User::USERNAME_REGEX }
