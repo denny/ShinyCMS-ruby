@@ -11,11 +11,13 @@ Rails.application.routes.draw do
 
     # Blogs
     if Rails.application.config.multiple_blogs_mode
+      # :nocov:
       get 'blogs',                               to: 'blogs#index'
       get 'blog/:blog_slug',                     to: 'blogs#recent'
       get 'blog/:blog_slug/:year/:month/:slug',  to: 'blogs#show'
       get 'blog/:blog_slug/:year/:month',        to: 'blogs#month'
       get 'blog/:blog_slug/:year',               to: 'blogs#year'
+      # :nocov:
     else
       get 'blog',                     to: 'blogs#recent', as: :blog
       get 'blog/:year/:month/:slug',  to: 'blogs#show',   as: :blog_post
