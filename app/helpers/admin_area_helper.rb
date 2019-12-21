@@ -7,19 +7,19 @@ module AdminAreaHelper
     authorize record, policy_class: policy_class_name.constantize
   end
 
+  # Handle not null/not found exceptions when trying to delete stuff
+  # TODO: separate these two, add a more helpful error for the first one
+  def handle_delete_exceptions( alert_message, redirect_path )
+    skip_authorization
+    redirect_to redirect_path, alert: alert_message
+  end
+
   def render_capability_checkbox( form, capability, capability_category )
     render partial: 'capability_checkbox', locals: {
       f: form,
       capability: capability,
       category: capability_category
     }
-  end
-
-  # Handle not null/not found exceptions when trying to delete stuff
-  # TODO: separate these two, add a more helpful error for the first one
-  def handle_delete_exceptions( alert_message, redirect_path )
-    skip_authorization
-    redirect_to redirect_path, alert: alert_message
   end
 
   private
