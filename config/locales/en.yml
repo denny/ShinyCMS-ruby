@@ -79,6 +79,28 @@ en:
       image: Image
       html: HTML
 
+    blogs:
+      create:
+        created: New blog created
+        create_failed: Failed to create new blog
+      update:
+        updated: Blog details updated
+        update_failed: Failed to update blog details
+      delete:
+        deleted: Blog deleted
+        delete_failed: Failed to delete blog
+    blog:
+      posts:
+        delete:
+          deleted: Blog post deleted
+          delete_failed: Failed to delete blog post
+        create:
+          created: New blog post created
+          create_failed: Failed to create new blog post
+        update:
+          updated: Blog post updated
+          update_failed: Failed to update blog post
+
     pages:
       index:
         list_pages: List pages

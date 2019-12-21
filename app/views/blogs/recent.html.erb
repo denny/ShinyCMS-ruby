@@ -1,0 +1,14 @@
+<% @page_title = @blog.title || 'Recent blog posts' %>
+
+<table>
+  <% @posts.each do |post| %>
+  <tr>
+    <td> <%= post.title     %> </td>
+    <td> <%= post.author    %> </td>
+    <td> <%= post.posted_at %> </td>
+  </tr>
+  <tr>
+    <td colspan="3"> <%= post.body %> </td>
+  </tr>
+  <% end %>
+</table>

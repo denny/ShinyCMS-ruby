@@ -42,6 +42,8 @@ pages_cc     = seed CapabilityCategory, { name: 'pages'          }
 sections_cc  = seed CapabilityCategory, { name: 'page_sections'  }
 templates_cc = seed CapabilityCategory, { name: 'page_templates' }
 shared_cc    = seed CapabilityCategory, { name: 'shared_content' }
+blogs_cc     = seed CapabilityCategory, { name: 'blogs'          }
+blogposts_cc = seed CapabilityCategory, { name: 'blog_posts'     }
 users_cc     = seed CapabilityCategory, { name: 'users'          }
 admins_cc    = seed CapabilityCategory, { name: 'admin_users'    }
 # General
@@ -67,6 +69,16 @@ seed Capability, { name: 'list',   category: shared_cc }
 seed Capability, { name: 'add',    category: shared_cc }
 seed Capability, { name: 'edit',   category: shared_cc }
 seed Capability, { name: 'delete', category: shared_cc }
+# Blogs
+seed Capability, { name: 'list',   category: blogs_cc }
+seed Capability, { name: 'add',    category: blogs_cc }
+seed Capability, { name: 'edit',   category: blogs_cc }
+seed Capability, { name: 'delete', category: blogs_cc }
+# Blog Posts
+seed Capability, { name: 'list',   category: blogposts_cc }
+seed Capability, { name: 'add',    category: blogposts_cc }
+seed Capability, { name: 'edit',   category: blogposts_cc }
+seed Capability, { name: 'delete', category: blogposts_cc }
 # Users
 seed Capability, { name: 'list',   category: users_cc }
 seed Capability, { name: 'add',    category: users_cc }
