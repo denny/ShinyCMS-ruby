@@ -36,10 +36,6 @@ class Blog < ApplicationRecord
 
   # Class methods
 
-  def self.single_blog_mode
-    !multiple_blogs_mode
-  end
-
   def self.multiple_blogs_mode
     Rails.application.config.multiple_blogs_mode == true
   end
