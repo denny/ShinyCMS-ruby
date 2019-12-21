@@ -39,7 +39,7 @@ Layout/LineLength:
 # This test is for a feature involving a list of IP addresses
 Style/IpAddresses:
   Exclude:
-    - spec/request/admin_spec.rb
+    - spec/requests/admin_spec.rb
 
 # Whitespace Considered Helpful
 Layout/ExtraSpacing:
