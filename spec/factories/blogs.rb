@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :blog do
-    name   { 'Blog name'  }
-    title  { 'Blog Title' }
-    slug   { 'slug'       }
+    name   { Faker::Lorem.unique.sentence }
+    title  { name.dup.titlecase }
+    slug   { Faker::Lorem.unique.word.downcase }
 
     hidden_from_menu { false }
     hidden { false }
