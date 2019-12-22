@@ -2,5 +2,6 @@
 RSpec.configure do |config|
   config.before :each do
     Faker::UniqueGenerator.clear
+    Faker::Lorem.unique.exclude :word, nil, %w[ ut ]
   end
 end
