@@ -48,7 +48,7 @@ class Admin::BlogsController < AdminController
 
   def set_blog
     @blog =
-      if Setting.get( 'Blog mode' ) == 'Multiple'
+      if Blog.multiple_blogs_mode
         Blog.find( params[:id] )
       else
         Blog.all.first
