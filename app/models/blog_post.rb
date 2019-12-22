@@ -10,7 +10,9 @@ class BlogPost < ApplicationRecord
 
   def view_path
     if Blog.multiple_blogs_mode
+      # :nocov:
       "/blog/#{blog.slug}/#{year}/#{month}/#{slug}"
+      # :nocov:
     else
       "/blog/#{year}/#{month}/#{slug}"
     end
