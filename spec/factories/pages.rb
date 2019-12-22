@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :page, aliases: [ :top_level_page ] do
-    name   { Faker::Loren.unique.sentence }
+    name   { Faker::Lorem.unique.sentence }
     title  { name.dup.titlecase }
     slug   { name.dup.downcase.gsub( /\s+/, '-' ) }
     hidden { false }
