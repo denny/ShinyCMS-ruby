@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :feature_flag do
-    name  { Faker::Science.unique.scientist }
+    name { Faker::Lorem.unique.word }
   end
 end

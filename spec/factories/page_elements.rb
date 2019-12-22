@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :page_element do
-    name { Faker::Science.unique.element }
+    name { Faker::Lorem.unique.word.downcase }
   end
 
   factory :short_text_page_element, parent: :page_element do
