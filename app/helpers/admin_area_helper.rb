@@ -22,6 +22,20 @@ module AdminAreaHelper
     }
   end
 
+  def render_admin_menu_section_start( text, icon = nil )
+    render partial: 'admin/menu/menu__section_start',
+           locals: { text: text, icon: icon }
+  end
+
+  def render_admin_menu_item( text, link, icon = nil )
+    render partial: 'admin/menu/menu__item',
+           locals: { text: text, link: link, icon: icon }
+  end
+
+  def render_admin_menu_section_end
+    render partial: 'admin/menu/menu__section_end'
+  end
+
   private
 
   def class_name( this )
