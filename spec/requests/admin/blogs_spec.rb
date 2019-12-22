@@ -11,6 +11,7 @@ RSpec.describe 'Admin::Blogs', type: :request do
   describe 'GET /admin/blogs' do
     it 'fetches the list of blogs' do
       get admin_blogs_path
+
       expect( response ).to have_http_status :ok
     end
   end
