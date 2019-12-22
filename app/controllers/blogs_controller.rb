@@ -3,7 +3,9 @@ class BlogsController < ApplicationController
   before_action :set_blog, except: :index
 
   def index
+    # :nocov:
     @blogs = Blog.all
+    # :nocov:
   end
 
   def recent
