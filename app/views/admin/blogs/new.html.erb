@@ -1,0 +1,29 @@
+<% @page_title = 'Add new blog' %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Title</th>
+      <th>Slug</th>
+      <th>Hidden from menu</th>
+      <th>Hidden</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <% form_for @blog, url: blog_path, method: :post do |f| %>
+      <td><%= f.text_field :name %></td>
+      <td><%= f.text_field :description %></td>
+      <td><%= f.text_field :title %></td>
+      <td><%= f.text_field :slug %></td>
+      <td><%= f.check_box  :hidden_from_menu %></td>
+      <td><%= f.check_box  :hidden %></td>
+      <td><%= f.submit %>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
