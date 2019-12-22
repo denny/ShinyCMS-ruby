@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :page_section, aliases: [ :top_level_section ] do
-    name   { Faker::Science.unique.element }
+    name   { Faker::Lorem.unique.sentence }
     title  { name.dup.titlecase }
     slug   { name.dup.downcase.gsub( /\s+/, '-' ) }
     hidden { false }
