@@ -18,8 +18,10 @@ class BlogsController < ApplicationController
 
   def set_blog
     @blog =
-      if Setting.get( 'Blog mode' ) == 'Multiple'
+      if Blog.multiple_blogs_mode
+        # :nocov:
         Blog.find( params[:blog_slug] )
+        # :nocov:
       else
         Blog.first
       end
