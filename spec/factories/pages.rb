@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :page, aliases: [ :top_level_page ] do
-    name   { Faker::Lorem.unique.sentence }
+    name   { Faker::Science.unique.scientist }
     title  { name.dup.titlecase }
-    slug   { name.dup.downcase.gsub( /\s+/, '-' ) }
+    slug   { name.dup.downcase.gsub( /[^\w\s]/, '' ).gsub( /\s+/, '-' ) }
     hidden { false }
     association :template, factory: :page_template
 

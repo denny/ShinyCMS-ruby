@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :setting do
-    name  { Faker::Lorem.unique.word }
-    value { Faker::Lorem.unique.word }
+    name  { "#{Faker::Science.unique.element}_#{Faker::Science.unique.element}".downcase }
+    value { Faker::Science.unique.scientist }
   end
 end
