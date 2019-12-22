@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Blogs', type: :request do
   before :each do
     @blog = create :blog
+    create :feature_flag, name: 'blogs', enabled: true
   end
 
   describe 'GET #recent' do
