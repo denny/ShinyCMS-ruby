@@ -1,5 +1,6 @@
 # Main site controller for blogs (view blog, view blog post, etc)
 class BlogsController < ApplicationController
+  before_action :check_feature_flags
   before_action :set_blog, except: :index
 
   def index
@@ -27,5 +28,9 @@ class BlogsController < ApplicationController
       else
         Blog.first
       end
+  end
+
+  def check_feature_flags
+    enforce_feature_flags :blogs
   end
 end

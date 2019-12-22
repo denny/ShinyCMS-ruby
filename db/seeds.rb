@@ -1,8 +1,8 @@
 # This file contains any data which is either necessary to get ShinyCMS running,
 # or which might provide useful hints for configuration after that.
 #
-# It is used to populate the databse when you create it with `rake db:setup`
-# You can also load it (and reload it) at any time using `rake db:seed`
+# It is used to populate the databse when you create it with `rails db:setup`
+# You can also load it (and reload it) at any time using `rails db:seed`
 
 # Settings (unset; just here to let people know that they're available)
 # TODO: replace this with the half-planned site/admin/user overrideable thing
@@ -20,20 +20,25 @@ seed Setting, { name: I18n.t( 'admin.settings.default_section' ) }, {
 }
 
 # Feature Flags (to turn on/off areas of site functionality)
+seed FeatureFlag, { name: 'blogs' }, {
+  description: '',
+  enabled: true,
+  enabled_for_admins: true
+}
 seed FeatureFlag, { name: 'user_login' }, {
   description: 'Allow users to log in',
   enabled: false,
-  enabled_for_admins: true,
+  enabled_for_admins: true
 }
 seed FeatureFlag, { name: 'user_profiles' }, {
   description: 'Allow viewing of user profiles',
   enabled: true,
-  enabled_for_admins: true,
+  enabled_for_admins: true
 }
 seed FeatureFlag, { name: 'user_registration' }, {
   description: 'Allow users to create accounts',
   enabled: true,
-  enabled_for_admins: true,
+  enabled_for_admins: true
 }
 
 # Capabilities (for user authorisation via Pundit)
@@ -97,5 +102,5 @@ admin = seed User, { username: 'admin' }, {
 }
 admin.confirm
 Capability.all.each do |c|
-  admin.user_capabilities.create( capability_id: c.id )
+  admin.user_capabilities.find_or_create_by( capability_id: c.id )
 end
