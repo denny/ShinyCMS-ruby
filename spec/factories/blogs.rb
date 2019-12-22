@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :blog do
-    name   { Faker::Lorem.unique.sentence }
+    name   { Faker::Science.unique.scientist }
     title  { name.dup.titlecase }
-    slug   { Faker::Lorem.unique.word.downcase }
+    slug   { name.dup.downcase.gsub( /[^\w\s]/, '' ).gsub( /\s+/, '-' ) }
 
     hidden_from_menu { false }
     hidden { false }
