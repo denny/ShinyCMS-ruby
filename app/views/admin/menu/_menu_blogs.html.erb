@@ -6,7 +6,7 @@
   <% elsif Blog.count == 0 %>
   <%= render_admin_menu_item( 'Create blog', new_admin_blog_path, 'library-add' ) %>
   <% else %>
-  <%= render_admin_menu_item( 'Edit blog details', edit_admin_blog_path, 'library' ) %>
+  <%= render_admin_menu_item( 'Edit blog details', edit_admin_blog_path( Blog.first ), 'library' ) %>
   <% end %>
 
   <% if Blog.count > 0 %>
