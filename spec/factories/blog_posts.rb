@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :blog_post, class: 'BlogPost' do
-    title  { Faker::Lorem.unique.sentence.titlecase }
-    slug   { Faker::Lorem.unique.word.downcase  }
+    title  { Faker::Science.unique.scientist.titlecase }
+    slug   { name.dup.downcase.gsub( /[^\w\s]/, '' ).gsub( /\s+/, '-' ) }
     body   { Faker::Lorem.paragraph }
     hidden { false }
     posted_at { Time.zone.now }
