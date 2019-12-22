@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :feature_flag do
-    name { Faker::Lorem.unique.word }
+    name { "#{Faker::Science.unique.element}_#{Faker::Science.unique.element}".downcase }
   end
 end
