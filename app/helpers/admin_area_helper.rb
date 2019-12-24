@@ -1,5 +1,6 @@
 # Helper methods for admin area
 module AdminAreaHelper
+  # Invoke Pundit
   def authorise( record )
     record_class_name = class_name( record )
     policy_class_name = "Admin::#{record_class_name}Policy"
@@ -12,6 +13,13 @@ module AdminAreaHelper
   def handle_delete_exceptions( alert_message, redirect_path )
     skip_authorization
     redirect_to redirect_path, alert: alert_message
+  end
+
+  # Return true if the page we're on might need a WYSIWYG HTML editor
+  def html_editor_needed?
+    controller_name == 'shared_content' ||
+      ( controller_name =~ /^blog/ && %w[ new edit ].include?( action_name )) ||
+      ( controller_name =~ /^page/ && %w[     edit ].include?( action_name ) )
   end
 
   def render_capability_checkbox( form, capability, capability_category )
