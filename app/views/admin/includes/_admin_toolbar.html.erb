@@ -2,7 +2,25 @@
   <%= link_to image_tag( 'shinycms/admin-toolbar-logo.png', alt: 'ShinyCMS' ), 'http://shinycms.org/' %>
 
   <div class="shinycms-admin-toolbar-links">
-<% if controller_name == 'pages' %>
+<% if controller_name == 'blogs' %>
+    Blog:
+  <% if current_user_can?( :edit, :blogs ) %>
+    <%= link_to t( 'edit' ), admin_blog_path( @blog ) %>
+    |
+  <% end %>
+    Post:
+  <% if current_user_can? :add, :blog_posts %>
+    <%= link_to t( 'add' ), new_admin_blog_post_path %> /
+  <% end %>
+  <% if current_user_can?( :edit, :blog_posts ) && @post.present? %>
+    <%= link_to t( 'edit' ), admin_blog_post_path( @post ) %> /
+  <% end %>
+  <% if current_user_can? :list, :pages %>
+    <%= link_to t( 'list' ), admin_blog_posts_path %>
+  <% end %>
+    |
+
+<% elsif controller_name == 'pages' %>
     Page:
   <% if current_user_can? :add, :pages %>
     <%= link_to t( 'add'  ), admin_page_new_path %> /
@@ -33,6 +51,7 @@
     <%= link_to t( 'list' ), admin_pages_templates_path %>
   <% end %>
     |
+
 <% elsif controller_name == 'users' %>
     User:
   <% if current_user_can? :add, :users %>
@@ -45,8 +64,8 @@
     <%= link_to t( 'list' ), admin_users_path %>
   <% end %>
     |
-<% end %>
 
+<% end %>
     <% if current_user_can? :view_admin_area %>
     <%= link_to t( 'admin.admin_area' ), admin_path %>
     <% end %>
