@@ -1,27 +1,25 @@
-<section id="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-9 col-12-medium">
-        <section>
+<% @page_title = @post.title %>
 
-          <header>
-            <h2>
-              <%= @post.title %>
-            </h2>
-            <h3>
-              Posted by <%= user_display_name( @post.user ) %>
-              at <%= @post.posted_at.to_s( :time ) %>
-              on <%= @post.posted_at.to_s( :shinydate ) %>
-            </h3>
-          </header>
+<% @sidebar_position = 'right' %>
 
-          <%= sanitize @post.body %>
+<section>
 
-        </section>
-      </div>
-      <div class="col-3 col-12-medium sidebar">
-        <%= render partial: 'sidebar' %>
-      </div>
-    </div>
-  </div>
+  <header>
+    <h2>
+      <%= link_to @post.title, view_blog_post_path( @post ) %>
+    </h2>
+    <h3>
+      Posted by <%= link_to user_display_name( @post.user ), user_profile_path( @post.user.username ) %>
+      at <%= @post.posted_at.to_s( :time ) %>
+      on <%= @post.posted_at.to_s( :shinydate ) %>
+    </h3>
+  </header>
+
+  <p>
+    <%= sanitize @post.body %>
+  </p>
+
 </section>
+
+<%= render partial: 'right_sidebar_join' %>
+<%= render partial: 'sidebar' %>
