@@ -51,13 +51,18 @@ en:
     capabilities: Admin Capabilities
 
     category:
+      admin_users: Admin Users
+      blogs: Blogs
+      blog_posts: Blog Posts
       general: General
       pages: Pages
       page_sections: Page Sections
       page_templates: Page Templates
       shared_content: Shared Content
       users: Users
-      admin_users: Admin Users
+
+    blog_posts:
+      change_author: Change author
 
     general:
       view_admin_area: View admin area
