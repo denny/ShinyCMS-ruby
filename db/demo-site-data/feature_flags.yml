@@ -1,44 +1,58 @@
 ---
 FeatureFlag_1:
   id: 1
+  name: blogs
+  description: ''
+  enabled: true
+  enabled_for_admins: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-12-24 01:05:27.511080000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2019-12-24 01:05:27.511080000 Z
+    zone: *2
+    time: *3
+FeatureFlag_2:
+  id: 2
   name: user_login
   description: Allow users to log in
   enabled: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-14 03:29:41.940088000 Z
-    zone: &2 !ruby/object:ActiveSupport::TimeZone
-      name: Etc/UTC
-    time: *1
-  updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-14 03:37:16.663491000 Z
+    utc: &4 2019-12-24 01:05:27.529939000 Z
     zone: *2
-    time: *3
-FeatureFlag_2:
-  id: 2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2019-12-24 01:05:27.529939000 Z
+    zone: *2
+    time: *5
+FeatureFlag_3:
+  id: 3
   name: user_profiles
   description: Allow viewing of user profiles
   enabled: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &4 2019-12-14 03:29:41.947604000 Z
+    utc: &6 2019-12-24 01:05:27.549873000 Z
     zone: *2
-    time: *4
+    time: *6
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &5 2019-12-14 03:29:41.947604000 Z
+    utc: &7 2019-12-24 01:05:27.549873000 Z
     zone: *2
-    time: *5
-FeatureFlag_3:
-  id: 3
+    time: *7
+FeatureFlag_4:
+  id: 4
   name: user_registration
   description: Allow users to create accounts
   enabled: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &6 2019-12-14 03:29:41.954756000 Z
+    utc: &8 2019-12-24 01:05:27.567040000 Z
     zone: *2
-    time: *6
+    time: *8
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &7 2019-12-14 03:29:41.954756000 Z
+    utc: &9 2019-12-24 01:05:27.567040000 Z
     zone: *2
-    time: *7
+    time: *9
