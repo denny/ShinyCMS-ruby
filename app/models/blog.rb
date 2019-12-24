@@ -26,7 +26,7 @@ class Blog < ApplicationRecord
   end
 
   def find_post( year, month, slug )
-    unless year =~ %r{\d\d\d\d} && month =~ %r{\d\d}
+    unless year.match( %r{^\d\d\d\d$} ) && month.match( %r{^\d\d$} )
       raise ShinyCMSError, 'Bad date range'
     end
 
