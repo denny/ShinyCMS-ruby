@@ -29,6 +29,12 @@ class User < ApplicationRecord
                                through: :user_capabilities,
                                dependent: :restrict_with_error
 
+  # "Content, content, content..."
+  has_many :blogs,      inverse_of: 'user',
+                        dependent: :restrict_with_error
+  has_many :blog_posts, inverse_of: 'user',
+                        dependent: :restrict_with_error
+
   # Configure default count-per-page for pagination
   paginates_per 20
 
@@ -69,6 +75,15 @@ class User < ApplicationRecord
   end
 
   # Class methods
+
+  # Return all users that have the specified capability
+  def self.that_can( capability, category )
+    CapabilityCategory.find_by( name: category.to_s )
+                      .capabilities
+                      .find_by( name: capability.to_s )
+                      .user_capabilities
+                      .map( &:user )
+  end
 
   # Override find method to search by username as well as email
   def self.find_first_by_auth_conditions( warden_conditions )
