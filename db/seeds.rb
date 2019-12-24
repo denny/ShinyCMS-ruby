@@ -84,6 +84,7 @@ seed Capability, { name: 'list',   category: blogposts_cc }
 seed Capability, { name: 'add',    category: blogposts_cc }
 seed Capability, { name: 'edit',   category: blogposts_cc }
 seed Capability, { name: 'delete', category: blogposts_cc }
+seed Capability, { name: 'change_author', category: blogposts_cc }
 # Users
 seed Capability, { name: 'list',   category: users_cc }
 seed Capability, { name: 'add',    category: users_cc }
@@ -91,6 +92,7 @@ seed Capability, { name: 'edit',   category: users_cc }
 seed Capability, { name: 'delete', category: users_cc }
 seed Capability, { name: 'view_admin_notes', category: users_cc }
 # Admin Users
+seed Capability, { name: 'list',   category: admins_cc }
 seed Capability, { name: 'add',    category: admins_cc }
 seed Capability, { name: 'edit',   category: admins_cc }
 seed Capability, { name: 'delete', category: admins_cc }
