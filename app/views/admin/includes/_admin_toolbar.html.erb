@@ -13,7 +13,7 @@
     <%= link_to t( 'add' ), new_admin_blog_post_path %> /
   <% end %>
   <% if current_user_can?( :edit, :blog_posts ) && @post.present? %>
-    <%= link_to t( 'edit' ), admin_blog_post_path( @post ) %> /
+    <%= link_to t( 'edit' ), edit_admin_blog_post_path( @post ) %> /
   <% end %>
   <% if current_user_can? :list, :pages %>
     <%= link_to t( 'list' ), admin_blog_posts_path %>
