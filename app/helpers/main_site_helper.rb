@@ -11,4 +11,14 @@ module MainSiteHelper
   def user_display_name( user = current_user )
     user.display_name.presence || user.username
   end
+
+  def view_blog_post_path( post )
+    if Blog.multiple_blogs_mode
+      # :nocov:
+      "/blog/#{post.blog.slug}/#{post.year}/#{post.month}/#{post.slug}"
+      # :nocov:
+    else
+      "/blog/#{post.year}/#{post.month}/#{post.slug}"
+    end
+  end
 end
