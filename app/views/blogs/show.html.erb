@@ -1,14 +1,27 @@
-<p>
-  <strong>Title:</strong>
-  <%= @blog.title %>
-</p>
+<section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-9 col-12-medium">
+        <section>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @blog.slug %>
-</p>
+          <header>
+            <h2>
+              <%= @post.title %>
+            </h2>
+            <h3>
+              Posted by <%= user_display_name( @post.user ) %>
+              at <%= @post.posted_at.to_s( :time ) %>
+              on <%= @post.posted_at.to_s( :shinydate ) %>
+            </h3>
+          </header>
 
-<p>
-  <strong>Hidden:</strong>
-  <%= @blog.hidden %>
-</p>
+          <%= sanitize @post.body %>
+
+        </section>
+      </div>
+      <div class="col-3 col-12-medium sidebar">
+        <%= render partial: 'sidebar' %>
+      </div>
+    </div>
+  </div>
+</section>

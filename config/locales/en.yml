@@ -26,6 +26,12 @@ en:
 
   # ========== ( Main Site ) ==========
 
+  blogs:
+    sidebar:
+      recent_posts: Recent Posts
+      links: Links
+      links_blurb: Recommended reading from around the web
+
   page:
     template_file_missing: Unable to display page; its template file is missing.
 

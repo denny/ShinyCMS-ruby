@@ -13,7 +13,7 @@
     <div id="page-wrapper">
       <%= render partial: 'themes/halcyonic/includes/header' %>
 
-      <% unless controller_name == 'pages' %>
+      <% unless %w[ blogs pages ].include? controller_name %>
       <section id="content">
         <div class="container">
           <div class="row">
