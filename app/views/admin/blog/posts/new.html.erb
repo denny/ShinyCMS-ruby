@@ -1,0 +1,47 @@
+<% @page_title = 'New blog post' %>
+
+<%= form_for @post, url: admin_blog_posts_path, method: :post do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
+  </p>
+<!-- TODO: tags (use :acts_as_taggable)
+  <p>
+    <%#= f.label :tags %><br>
+    <%#= f.text_field :tags %>
+  </p>
+-->
+  <p>
+    <%= f.label :posted_at %><br>
+    <%= f.text_field :posted_at %>
+  </p>
+  <p>
+    <%= f.label :hidden %><br>
+    <%= f.check_box :hidden %>
+  </p>
+<!-- TODO: comment threads! (write or find :acts_as_commentable??)
+  <p>
+    <%#= f.label :has_comments %><br>
+    <%#= f.check_box :allow_comments %>
+  </p>
+  <p>
+    <%#= f.label :freeze_comments %><br>
+    <%#= f.check_box :allow_comments %>
+  </p>
+  <p>
+    <%#= f.label :hide_comments %><br>
+    <%#= f.check_box :allow_comments %>
+  </p>
+-->
+  <p>
+    <%= f.label :body %><br>
+    <%= f.cktext_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

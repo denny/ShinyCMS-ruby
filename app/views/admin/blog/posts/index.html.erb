@@ -1,6 +1,7 @@
 <% @page_title = 'Blog Posts' %>
 
-<table>
+<% if @posts.present? %>
+<table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
       <th class="longer">
@@ -30,7 +31,7 @@
         <%= post.posted_at %>
       </td>
       <td class="actions">
-        <%= link_to t( 'view'   ), post.view_path %>
+        <%= link_to t( 'view'   ), view_blog_post_path( post ) %>
         <%= link_to t( 'edit'   ), edit_admin_blog_post_path( post ) %>
         <%= link_to t( 'delete' ), admin_blog_post_path( post ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
@@ -39,3 +40,14 @@
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @posts, window: 3, views_prefix: 'admin' %>
+<p id="pager-info">
+  <%= page_entries_info @posts %>
+</p>
+
+<% else %>
+<p>
+  There are currently no blog posts to display.
+</p>
+<% end %>
