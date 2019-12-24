@@ -13,6 +13,7 @@ en:
 
   # Generic CRUD verbs that are usually wanted for both main site and admin area
   add: Add
+  post: Post
   view: View
   list: List
   edit: Edit

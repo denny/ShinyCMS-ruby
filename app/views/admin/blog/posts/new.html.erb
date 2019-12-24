@@ -9,12 +9,12 @@
     <%= f.label :slug %><br>
     <%= f.text_field :slug %>
   </p>
-<!-- TODO: tags (use :acts_as_taggable)
+  <!-- TODO: tags (use :acts_as_taggable)
   <p>
     <%#= f.label :tags %><br>
     <%#= f.text_field :tags %>
   </p>
--->
+  -->
   <p>
     <%= f.label :posted_at %><br>
     <%= f.text_field :posted_at %>
@@ -23,7 +23,7 @@
     <%= f.label :hidden %><br>
     <%= f.check_box :hidden %>
   </p>
-<!-- TODO: comment threads! (write or find :acts_as_commentable??)
+  <!-- TODO: comment threads! (write or find :acts_as_commentable??)
   <p>
     <%#= f.label :has_comments %><br>
     <%#= f.check_box :allow_comments %>
@@ -36,12 +36,12 @@
     <%#= f.label :hide_comments %><br>
     <%#= f.check_box :allow_comments %>
   </p>
--->
+  -->
   <p>
     <%= f.label :body %><br>
     <%= f.cktext_area :body %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit t( 'post' ) %>
   </p>
 <% end %>
