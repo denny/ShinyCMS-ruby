@@ -15,6 +15,14 @@
   </li>
   <% end %>
 <% end %>
+
+<% if feature_enabled? :blogs %>
+  <% Blog.all.each do |blog| %>
+  <li>
+    <%= link_to blog.name, blog_path( blog ) %>
+  </li>
+  <% end %>
+<% end %>
 </ul>
 
 <%# TODO: Pretty sure this is all broken within sections/subsections %>
