@@ -8,6 +8,19 @@ class Blog < ApplicationRecord
            inverse_of: 'blog',
            dependent: :restrict_with_error
 
+  # Allowed characters for slugs: a-z A-Z 0-9 . _ -
+  SLUG_REGEX = %r{[-_\.a-zA-Z0-9]+}.freeze
+  private_constant :SLUG_REGEX
+  ANCHORED_SLUG_REGEX = %r{\A#{SLUG_REGEX}\z}.freeze
+  private_constant :ANCHORED_SLUG_REGEX
+
+  validates :title, presence: true
+  validates :slug,  presence: true
+  validates :slug,  format:   ANCHORED_SLUG_REGEX
+
+  before_validation :generate_title, if: -> { title.blank? && name.present? }
+  before_validation :generate_slug,  if: -> { slug.blank?  && name.present? }
+
   # Configure default count-per-page for pagination
   paginates_per 20
 
@@ -34,6 +47,14 @@ class Blog < ApplicationRecord
       end_date.to_s,
       slug
     )
+  end
+
+  def generate_title
+    self.title = name.titlecase
+  end
+
+  def generate_slug
+    self.slug = name.parameterize
   end
 
   # Class methods
