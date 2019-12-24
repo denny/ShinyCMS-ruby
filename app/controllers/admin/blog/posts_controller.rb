@@ -1,21 +1,25 @@
 # Admin controller for blog posts
 class Admin::Blog::PostsController < AdminController
+  before_action :set_blog
   before_action :set_blog_post, only: %i[ edit update delete ]
   after_action :verify_authorized
 
   def index
     page_num = params[ :page ] || 1
-    @posts = BlogPost.order( :created_at ).page( page_num )
+    @posts = @blog.all_posts.order( :created_at ).page( page_num )
     authorise @posts
   end
 
   def new
-    @post = BlogPost.new
+    @post = @blog.posts.new
     authorise @post
   end
 
   def create
-    @post = BlogPost.new( blog_params )
+    params = blog_post_params
+    params[ :user_id ] = current_user.id
+
+    @post = @blog.posts.new( params )
     authorise @post
 
     if @post.save
@@ -29,7 +33,12 @@ class Admin::Blog::PostsController < AdminController
   def edit; end
 
   def update
-    if @post.update( blog_post_params )
+    params = blog_post_params
+    unless current_user.can? :change_author, :blog_posts
+      params.delete( :user_id )
+    end
+
+    if @post.update( params )
       redirect_to action: :edit, id: @post.id, notice: t( '.updated' )
     else
       flash.now[ :alert ] = t( '.update_failed' )
@@ -47,8 +56,17 @@ class Admin::Blog::PostsController < AdminController
 
   private
 
+  def set_blog
+    @blog =
+      if Blog.multiple_blogs_mode
+        Blog.find( params[:id] )
+      else
+        Blog.all.first
+      end
+  end
+
   def set_blog_post
-    @post = BlogPost.find( params[:id] )
+    @post = @blog.posts.find( params[:id] )
     authorise @post
   end
 

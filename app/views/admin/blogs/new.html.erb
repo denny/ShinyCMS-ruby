@@ -1,29 +1,35 @@
-<% @page_title = 'Add new blog' %>
+<% @page_title = 'Add a new blog' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Title</th>
-      <th>Slug</th>
-      <th>Hidden from menu</th>
-      <th>Hidden</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <% form_for @blog, url: blog_path, method: :post do |f| %>
-      <td><%= f.text_field :name %></td>
-      <td><%= f.text_field :description %></td>
-      <td><%= f.text_field :title %></td>
-      <td><%= f.text_field :slug %></td>
-      <td><%= f.check_box  :hidden_from_menu %></td>
-      <td><%= f.check_box  :hidden %></td>
-      <td><%= f.submit %>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
+<%= form_for @blog, url: admin_blogs_path, method: :post do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
+  </p>
+  <p>
+    <%= f.label :user_id, 'Owner' %><br>
+    <%= f.select :user_id, User.that_can( :add, :blogs ).pluck( :username, :id ) %>
+  </p>
+  <p>
+    <%= f.label :hidden_from_menu %><br>
+    <%= f.check_box :hidden_from_menu %>
+  </p>
+  <p>
+    <%= f.label :hidden %><br>
+    <%= f.check_box :hidden %>
+  </p>
+  <p>
+    <%= f.submit t( 'add' ) %>
+  </p>
+<% end %>
