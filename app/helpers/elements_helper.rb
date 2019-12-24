@@ -16,6 +16,8 @@ module ElementsHelper
 
   # Return true if the page we're on might need a WYSIWYG HTML editor
   def html_editor_needed?
-    action_name == 'edit' || controller_name == 'shared_content'
+    controller_name == 'shared_content' ||
+      ( controller_name =~ /^blog/ && %w[ new edit ].include?( action_name )) ||
+      ( controller_name =~ /^page/ && %w[     edit ].include?( action_name ) )
   end
 end
