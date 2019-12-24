@@ -10,7 +10,8 @@ class BlogsController < ApplicationController
   end
 
   def recent
-    @posts = @blog.recent_posts
+    page_num = params[:page] || 1
+    @posts = @blog.recent_posts.page( page_num )
   end
 
   def show
