@@ -26,9 +26,11 @@ class Blog < ApplicationRecord
   end
 
   def find_post( year, month, slug )
+    raise ShinyCMSError, 'Bad date range' unless year.integer? && month.integer?
+
     start_date = "#{year}-#{month}-01".to_date
     end_date = start_date.clone + 1.month
-    posts.where(
+    posts.find_by(
       "created_at between '#{start_date}' and '#{end_date}'",
       slug: slug
     )
