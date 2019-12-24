@@ -49,7 +49,9 @@ class Admin::BlogsController < AdminController
   def set_blog
     @blog =
       if Blog.multiple_blogs_mode
+        # :nocov:
         Blog.find( params[:id] )
+        # :nocov:
       else
         Blog.all.first
       end
