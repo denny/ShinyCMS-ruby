@@ -33,14 +33,16 @@ FactoryBot.define do
 
       category = create :capability_category, name: 'blog_posts'
 
-      list   = create :capability, name: 'list',   category: category
-      add    = create :capability, name: 'add',    category: category
-      edit   = create :capability, name: 'edit',   category: category
-      delete = create :capability, name: 'delete', category: category
+      list   = create :capability, name: 'list',          category: category
+      add    = create :capability, name: 'add',           category: category
+      edit   = create :capability, name: 'edit',          category: category
+      author = create :capability, name: 'change_author', category: category
+      delete = create :capability, name: 'delete',        category: category
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
+      create :user_capability, user: admin, capability: author
       create :user_capability, user: admin, capability: delete
     end
   end
@@ -129,11 +131,13 @@ FactoryBot.define do
       add    = create :capability, name: 'add',    category: category
       edit   = create :capability, name: 'edit',   category: category
       delete = create :capability, name: 'delete', category: category
+      notes  = create :capability, name: 'view_admin_notes', category: category
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
       create :user_capability, user: admin, capability: delete
+      create :user_capability, user: admin, capability: notes
     end
   end
 
