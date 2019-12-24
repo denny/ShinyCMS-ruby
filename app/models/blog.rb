@@ -26,7 +26,9 @@ class Blog < ApplicationRecord
   end
 
   def find_post( year, month, slug )
-    raise ShinyCMSError, 'Bad date range' unless year.integer? && month.integer?
+    unless year =~ %r{\d\d\d\d} && month =~ %r{\d\d}
+      raise ShinyCMSError, 'Bad date range'
+    end
 
     start_date = "#{year}-#{month}-01".to_date
     end_date = start_date.clone + 1.month
