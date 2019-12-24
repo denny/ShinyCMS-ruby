@@ -28,7 +28,7 @@
         <%= user_display_name( post.user ) %>
       </td>
       <td>
-        <%= post.posted_at %>
+        <%= post.posted_at.to_s( :time ) %> on <%= post.posted_at.to_s( :shinydate ) %>
       </td>
       <td class="actions">
         <%= link_to t( 'view'   ), view_blog_post_path( post ) %>
