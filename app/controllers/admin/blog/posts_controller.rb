@@ -73,7 +73,7 @@ class Admin::Blog::PostsController < AdminController
 
   def blog_post_params
     params.require( :blog_post ).permit(
-      :blog_id, :user_id, :title, :slug, :body, :hidden
+      :blog_id, :user_id, :title, :slug, :posted_at, :body, :hidden
     )
   end
 end
