@@ -20,6 +20,10 @@
     <%= f.text_field :posted_at %>
   </p>
   <p>
+    <%= f.label :body %><br>
+    <%= f.cktext_area :body, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
+  </p>
+  <p>
     <%= f.label :hidden %><br>
     <%= f.check_box :hidden %>
   </p>
@@ -37,10 +41,6 @@
     <%#= f.check_box :allow_comments %>
   </p>
   -->
-  <p>
-    <%= f.label :body %><br>
-    <%= f.cktext_area :body %>
-  </p>
   <p>
     <%= f.submit t( 'post' ) %>
   </p>
