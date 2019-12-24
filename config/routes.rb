@@ -20,9 +20,18 @@ Rails.application.routes.draw do
       # :nocov:
     else
       get 'blog',                     to: 'blogs#recent', as: :blog
-      get 'blog/:year/:month/:slug',  to: 'blogs#show',   as: :blog_post
-      get 'blog/:year/:month',        to: 'blogs#month',  as: :blog_month
-      get 'blog/:year',               to: 'blogs#year',   as: :blog_year
+      get 'blog/:year/:month/:slug',  to: 'blogs#show',   as: :blog_post,
+                                      constraints: {
+                                        year: %r{\d\d\d\d},
+                                        month: %r{\d\d}
+                                      }
+      get 'blog/:year/:month',        to: 'blogs#month',  as: :blog_month,
+                                      constraints: {
+                                        year: %r{\d\d\d\d},
+                                        month: %r{\d\d}
+                                      }
+      get 'blog/:year',               to: 'blogs#year',   as: :blog_year,
+                                      constraints: { year: %r{\d\d\d\d} }
     end
 
     # Users
