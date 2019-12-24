@@ -22,19 +22,17 @@ class Blog < ApplicationRecord
   end
 
   def recent_posts
-    posts.order( posted_at: :desc ).reverse
+    posts.order( posted_at: :desc )
   end
 
   def find_post( year, month, slug )
-    unless year.match( %r{^\d\d\d\d$} ) && month.match( %r{^\d\d$} )
-      raise ShinyCMSError, 'Bad date range'
-    end
-
     start_date = "#{year}-#{month}-01".to_date
     end_date = start_date.clone + 1.month
     posts.find_by(
-      "created_at between '#{start_date}' and '#{end_date}'",
-      slug: slug
+      'created_at between ? and ? and slug = ?',
+      start_date.to_s,
+      end_date.to_s,
+      slug
     )
   end
 
