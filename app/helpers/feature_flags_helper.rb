@@ -12,7 +12,7 @@ module FeatureFlagsHelper
   end
 
   def feature_enabled?( feature_name )
-    feature = FeatureFlag.find_by( name: feature_name )
+    feature = FeatureFlag.find_by( name: feature_name.to_s )
 
     return false if feature.blank?
     return true  if feature.enabled?
