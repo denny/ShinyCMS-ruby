@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_201453) do
     t.boolean "hidden", null: false
     t.integer "blog_id", null: false
     t.integer "user_id", null: false
-    t.datetime "posted_at", null: false
+    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
