@@ -17,14 +17,12 @@ class Admin::Blog::PostsController < AdminController
   end
 
   def create
-    params = blog_post_params
-    params[ :user_id ] = current_user.id
-
-    @post = @blog.posts.new( params )
+    @post = @blog.posts.new( new_blog_post_params )
     authorise @post
 
     if @post.save
-      redirect_to action: :edit, id: @post.id, notice: t( '.created' )
+      flash[ :notice ] = t( '.created' )
+      redirect_to action: :edit, id: @post.id
     else
       flash.now[ :alert ] = t( '.create_failed' )
       render action: :new
@@ -34,13 +32,9 @@ class Admin::Blog::PostsController < AdminController
   def edit; end
 
   def update
-    params = blog_post_params
-    unless current_user.can? :change_author, :blog_posts
-      params.delete( :user_id )
-    end
-
-    if @post.update( params )
-      redirect_to action: :edit, id: @post.id, notice: t( '.updated' )
+    if @post.update( blog_post_params )
+      flash[ :notice ] = t( '.updated' )
+      redirect_to action: :edit, id: @post.id
     else
       flash.now[ :alert ] = t( '.update_failed' )
       render action: :edit
@@ -49,10 +43,11 @@ class Admin::Blog::PostsController < AdminController
 
   def delete
     if @post.destroy
-      redirect_to admin_blog_posts_path, notice: t( '.deleted')
+      flash[ :notice ] = t( '.deleted' )
     else
-      redirect_to admin_blog_posts_path, alert: t( '.delete_failed' )
+      flash[ :alert ] = t( '.delete_failed' )
     end
+    redirect_to admin_blog_posts_path
   end
 
   private
@@ -73,7 +68,21 @@ class Admin::Blog::PostsController < AdminController
     authorise @post
   end
 
+  def new_blog_post_params
+    unless current_user.can? :change_author, :blog_posts
+      params[ :blog_post ][ :user_id ] = current_user.id
+    end
+
+    params.require( :blog_post ).permit(
+      :blog_id, :user_id, :title, :slug, :posted_at, :body, :hidden
+    )
+  end
+
   def blog_post_params
+    unless current_user.can? :change_author, :blog_posts
+      params[ :blog_post ][ :user_id ].delete
+    end
+
     params.require( :blog_post ).permit(
       :blog_id, :user_id, :title, :slug, :posted_at, :body, :hidden
     )
