@@ -93,22 +93,31 @@ en:
       html: HTML
 
     blogs:
+      index:
+        title: List blogs
+      new:
+        title: Create new blog
       create:
         created: New blog created
         create_failed: Failed to create new blog
+      edit:
+        title: Edit blog details
       update:
         updated: Blog details updated
         update_failed: Failed to update blog details
       delete:
         deleted: Blog deleted
         delete_failed: Failed to delete blog
+
     blog:
       posts:
+        index:
+          title: List blog posts
         new:
           title: Add new blog post
         create:
-          created: New blog post created
-          create_failed: Failed to create new blog post
+          created: New blog post added
+          create_failed: Failed to add new blog post
         edit:
           title: Edit blog post
         update:
