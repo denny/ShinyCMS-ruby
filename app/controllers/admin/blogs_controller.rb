@@ -18,7 +18,8 @@ class Admin::BlogsController < AdminController
     authorise @blog
 
     if @blog.save
-      redirect_to action: :edit, id: @blog.id, notice: t( '.created' )
+      flash[ :notice ] = t( '.created' )
+      redirect_to action: :edit, id: @blog.id
     else
       flash.now[ :alert ] = t( '.create_failed' )
       render action: :new
@@ -29,7 +30,8 @@ class Admin::BlogsController < AdminController
 
   def update
     if @blog.update( blog_params )
-      redirect_to action: :edit, id: @blog.id, notice: t( '.updated' )
+      flash[ :notice ] = t( '.updated' )
+      redirect_to action: :edit, id: @blog.id
     else
       flash.now[ :alert ] = t( '.update_failed' )
       render action: :edit
@@ -38,10 +40,11 @@ class Admin::BlogsController < AdminController
 
   def delete
     if @blog.destroy
-      redirect_to admin_blogs_path, notice: t( '.deleted')
+      flash[ :notice ] = t( '.deleted' )
     else
-      redirect_to admin_blogs_path, alert: t( '.delete_failed' )
+      flash[ :alert ] = t( '.delete_failed' )
     end
+    redirect_to admin_blogs_path
   end
 
   private
