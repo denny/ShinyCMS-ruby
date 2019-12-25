@@ -47,6 +47,7 @@ en:
   feature_flags:
     off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
+    blogs: Blogs
     user_login: User Login
     user_profiles: User Profiles
     user_registration: User Registration
@@ -103,15 +104,19 @@ en:
         delete_failed: Failed to delete blog
     blog:
       posts:
-        delete:
-          deleted: Blog post deleted
-          delete_failed: Failed to delete blog post
+        new:
+          title: Add new blog post
         create:
           created: New blog post created
           create_failed: Failed to create new blog post
+        edit:
+          title: Edit blog post
         update:
           updated: Blog post updated
           update_failed: Failed to update blog post
+        delete:
+          deleted: Blog post deleted
+          delete_failed: Failed to delete blog post
 
     pages:
       index:
