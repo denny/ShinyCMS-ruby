@@ -98,16 +98,16 @@ en:
       new:
         title: Create new blog
       create:
-        created: New blog created
-        create_failed: Failed to create new blog
+        success: New blog created
+        failure: Failed to create new blog
       edit:
         title: Edit blog details
       update:
-        updated: Blog details updated
-        update_failed: Failed to update blog details
+        success: Blog details updated
+        failure: Failed to update blog details
       delete:
-        deleted: Blog deleted
-        delete_failed: Failed to delete blog
+        success: Blog deleted
+        failure: Failed to delete blog
 
     blog:
       posts:
@@ -116,8 +116,8 @@ en:
         new:
           title: Add new blog post
         create:
-          created: New blog post added
-          create_failed: Failed to add new blog post
+          success: New blog post added
+          failure: Failed to add new blog post
         edit:
           title: Edit blog post
         update:
