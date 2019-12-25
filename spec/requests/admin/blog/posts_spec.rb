@@ -4,8 +4,8 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
   before :each do
     @blog = create :blog
 
-    admin = create :blog_admin
-    sign_in admin
+    @admin = create :blog_admin
+    sign_in @admin
   end
 
   describe 'GET /admin/blog/posts' do
@@ -21,6 +21,27 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       get new_admin_blog_post_path
 
       expect( response ).to have_http_status :ok
+    end
+  end
+
+  describe 'POST /admin/blog/posts' do
+    it 'creates a new blog post when the form is submitted' do
+      post admin_blog_posts_path, params: {
+        blog_post: {
+          blog_id: @blog.id,
+          user_id: @admin.id,
+          title: Faker::Science.unique.scientist,
+          body: Faker::Lorem.paragraph
+        }
+      }
+
+      post = BlogPost.last
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to edit_admin_blog_post_path( post )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.blog.posts.edit.title' ).titlecase
     end
   end
 
