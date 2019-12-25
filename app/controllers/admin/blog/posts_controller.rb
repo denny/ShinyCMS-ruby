@@ -21,10 +21,10 @@ class Admin::Blog::PostsController < AdminController
     authorise @post
 
     if @post.save
-      flash[ :notice ] = t( '.created' )
+      flash[ :notice ] = t( '.success' )
       redirect_to action: :edit, id: @post.id
     else
-      flash.now[ :alert ] = t( '.create_failed' )
+      flash.now[ :alert ] = t( '.failure' )
       render action: :new
     end
   end
@@ -33,19 +33,19 @@ class Admin::Blog::PostsController < AdminController
 
   def update
     if @post.update( blog_post_params )
-      flash[ :notice ] = t( '.updated' )
+      flash[ :notice ] = t( '.success' )
       redirect_to action: :edit, id: @post.id
     else
-      flash.now[ :alert ] = t( '.update_failed' )
+      flash.now[ :alert ] = t( '.failure' )
       render action: :edit
     end
   end
 
   def delete
     if @post.destroy
-      flash[ :notice ] = t( '.deleted' )
+      flash[ :notice ] = t( '.success' )
     else
-      flash[ :alert ] = t( '.delete_failed' )
+      flash[ :alert ] = t( '.failure' )
     end
     redirect_to admin_blog_posts_path
   end
