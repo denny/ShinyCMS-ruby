@@ -5,7 +5,8 @@ class Admin::BlogsController < AdminController
 
   def index
     @blogs = Blog.all
-    authorise @blogs
+    # authorise @blogs
+    skip_authorization # TODO: FIXME
   end
 
   def new
@@ -26,9 +27,13 @@ class Admin::BlogsController < AdminController
     end
   end
 
-  def edit; end
+  def edit
+    authorise @blog
+  end
 
   def update
+    authorise @blog
+
     if @blog.update( blog_params )
       flash[ :notice ] = t( '.success' )
       redirect_to action: :edit, id: @blog.id
@@ -39,6 +44,8 @@ class Admin::BlogsController < AdminController
   end
 
   def destroy
+    authorise @blog
+
     if @blog.destroy
       flash[ :notice ] = t( '.success' )
     else
@@ -58,7 +65,6 @@ class Admin::BlogsController < AdminController
       else
         Blog.all.first
       end
-    authorise @blog
   end
 
   def blog_params
