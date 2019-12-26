@@ -12,9 +12,12 @@ class BlogPost < ApplicationRecord
   ANCHORED_SLUG_REGEX = %r{\A#{SLUG_REGEX}\z}.freeze
   private_constant :ANCHORED_SLUG_REGEX
 
-  validates :title, presence: true
-  validates :slug,  presence: true
-  validates :slug,  format:   ANCHORED_SLUG_REGEX
+  validates :blog_id, presence: true
+  validates :user_id, presence: true
+  validates :title,   presence: true
+  validates :slug,    presence: true
+  validates :slug,    format:   ANCHORED_SLUG_REGEX
+  validates :body,    presence: true
 
   before_validation :generate_slug, if: -> { slug.blank? && title.present? }
 
