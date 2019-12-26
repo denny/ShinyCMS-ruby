@@ -15,6 +15,21 @@ RSpec.describe 'Blogs', type: :request do
       # Version from scaffold controller spec
       expect( response ).to be_successful
     end
+
+    it 'throws an appropriate error if no blog exists' do
+      create :page
+      Blog.all.destroy_all
+
+      get blog_path
+
+      expect( response ).to have_http_status :found
+      expect( response ).to redirect_to root_path
+      follow_redirect!
+      expect( response.body ).to have_css '#alerts', text: I18n.t( 'blogs.set_blog.failure' )
+
+      # Version from scaffold controller spec
+      expect( response ).to be_successful
+    end
   end
 
   describe 'GET #show' do

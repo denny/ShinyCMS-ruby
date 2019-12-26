@@ -46,25 +46,17 @@ class Admin::BlogsController < AdminController
   def destroy
     authorise @blog
 
-    if @blog.destroy
-      flash[ :notice ] = t( '.success' )
-    else
-      flash[ :alert ] = t( '.failure' )
-    end
-    redirect_to admin_blogs_path
+    flash[ :notice ] = t( '.success' ) if @blog.destroy
+    redirect_to action: :index
   end
 
   private
 
   def set_blog
-    @blog =
-      if Blog.multiple_blogs_mode
-        # :nocov:
-        Blog.find( params[:id] )
-        # :nocov:
-      else
-        Blog.all.first
-      end
+    @blog = Blog.find( params[:id] )
+  rescue ActiveRecord::RecordNotFound
+    skip_authorization
+    redirect_with_alert admin_blogs_path, t( '.failure' )
   end
 
   def blog_params

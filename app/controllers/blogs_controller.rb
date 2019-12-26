@@ -29,6 +29,10 @@ class BlogsController < ApplicationController
       else
         Blog.first
       end
+    return if @blog.present?
+
+    flash[ :alert ] = t( 'blogs.set_blog.failure' )
+    redirect_to root_path
   end
 
   def check_feature_flags

@@ -27,6 +27,8 @@ en:
   # ========== ( Main Site ) ==========
 
   blogs:
+    set_blog:
+      failure: Blog not found
     sidebar:
       recent_posts: Recent Posts
       links: Links
@@ -109,6 +111,8 @@ en:
       destroy:
         success: Blog deleted
         failure: Failed to delete blog
+      set_blog:
+        failure: Couldn't find specified blog
 
     blog:
       posts:
