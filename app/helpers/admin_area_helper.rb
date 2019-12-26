@@ -8,18 +8,16 @@ module AdminAreaHelper
     authorize record, policy_class: policy_class_name.constantize
   end
 
-  # Handle not null/not found exceptions when trying to delete stuff
-  # TODO: separate these two, add a more helpful error for the first one
-  def handle_delete_exceptions( alert_message, redirect_path )
-    skip_authorization
-    redirect_to redirect_path, alert: alert_message
-  end
-
   # Return true if the page we're on might need a WYSIWYG HTML editor
   def html_editor_needed?
     controller_name == 'shared_content' ||
       ( controller_name =~ /^blog/ && %w[ new edit ].include?( action_name )) ||
       ( controller_name =~ /^page/ && %w[     edit ].include?( action_name ) )
+  end
+
+  def redirect_with_alert( redirect_path, alert_message )
+    skip_authorization
+    redirect_to redirect_path, alert: alert_message
   end
 
   def render_capability_checkbox( form, capability, capability_category )
