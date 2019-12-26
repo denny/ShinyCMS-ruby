@@ -4,7 +4,7 @@ class CreateBlogPosts < ActiveRecord::Migration[6.0]
       t.string :title, null: false
       t.string :slug, null: false
       t.text :body, null: false
-      t.boolean :hidden, null: false
+      t.boolean :hidden, null: false, default: false
       t.integer :blog_id, null: false
       t.integer :user_id, null: false
       t.timestamp :posted_at, null: false, default: -> { 'current_timestamp' }

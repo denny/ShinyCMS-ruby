@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_201453) do
     t.string "title", null: false
     t.string "slug", null: false
     t.text "body", null: false
-    t.boolean "hidden", null: false
+    t.boolean "hidden", default: false, null: false
     t.integer "blog_id", null: false
     t.integer "user_id", null: false
     t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 2019_12_19_201453) do
     t.text "description"
     t.string "title", null: false
     t.string "slug", null: false
-    t.boolean "hidden_from_menu", null: false
-    t.boolean "hidden", null: false
+    t.boolean "hidden_from_menu", default: false, null: false
+    t.boolean "hidden", default: false, null: false
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
