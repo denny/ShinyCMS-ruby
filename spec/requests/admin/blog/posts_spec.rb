@@ -35,9 +35,6 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
         }
       }
 
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to new_admin_blog_post_path
-      follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.blog.posts.new.title' ).titlecase
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.blog.posts.create.failure' )
@@ -87,9 +84,6 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
         }
       }
 
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to edit_admin_blog_post_path( post )
-      follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.blog.posts.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.blog.posts.update.failure' )
@@ -115,6 +109,37 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.blog.posts.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.blog.posts.update.success' )
+    end
+  end
+
+  describe 'DELETE /admin/blog/posts/:id' do
+    it 'deletes the specified user' do
+      p1 = create :blog_post, blog: @blog
+      p2 = create :blog_post, blog: @blog
+      p3 = create :blog_post, blog: @blog
+
+      delete admin_blog_post_path( p2 )
+
+      expect( response      ).to     have_http_status :found
+      expect( response      ).to     redirect_to admin_blog_posts_path
+      follow_redirect!
+      expect( response      ).to     have_http_status :ok
+      expect( response.body ).to     have_title I18n.t( 'admin.blog.posts.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.blog.posts.destroy.success' )
+      expect( response.body ).to     include p1.title
+      expect( response.body ).not_to include p2.title
+      expect( response.body ).to     include p3.title
+    end
+
+    it 'fails gracefully when attempting to delete a non-existent user' do
+      delete admin_blog_post_path( 999 )
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_blog_posts_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.blog.posts.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.blog.posts.destroy.failure' )
     end
   end
 end
