@@ -9,7 +9,7 @@ class Admin::Blog::PostsController < AdminController
     page_num = params[ :page ] || 1
     @posts = @blog.all_posts.order( :created_at ).page( page_num )
     # authorise @posts
-    skip_authorization  # TODO: whyyyyyy?
+    skip_authorization  # TODO: FIXME
   end
 
   def new
