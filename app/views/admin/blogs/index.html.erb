@@ -1,28 +1,45 @@
 <% @page_title = t( '.title' ) %>
 
-<table>
+<% if @blogs.present? %>
+<table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Title</th>
-      <th>Slug</th>
-      <th>Hidden from menu</th>
-      <th>Hidden</th>
-      <th colspan="3"></th>
+      <th>
+        Name
+      </th>
+      <th class="longer">
+        Description
+      </th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @blogs.each do |blog| %>
-      <tr>
-        <td><%= blog.name %></td>
-        <td><%= blog.description %></td>
-        <td><%= blog.title %></td>
-        <td><%= blog.slug %></td>
-        <td><%= blog.hidden_from_menu %></td>
-        <td><%= blog.hidden %></td>
-      </tr>
+    <tr>
+      <td>
+        <%= blog.name %>
+      </td>
+      <td>
+        <%= blog.description %>
+      </td>
+      <td class="actions">
+        <% if Blog.multiple_blogs_mode %>
+        <%= link_to t( 'view'   ), blog_path( blog ) %>
+        <% else %>
+        <%= link_to t( 'view'   ), blog_path %>
+        <% end %>
+        <%= link_to t( 'edit'   ), edit_admin_blog_path( blog ) %>
+        <%= link_to t( 'delete' ), admin_blog_path( blog ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
     <% end %>
   </tbody>
 </table>
+
+<% else %>
+<p>
+  <%= t( '.empty' ) %>
+</p>
+<% end %>
