@@ -34,8 +34,8 @@ class Blog < ApplicationRecord
     all_posts.where( hidden: true )
   end
 
-  def recent_posts
-    posts.order( posted_at: :desc )
+  def recent_posts( page_num = 1 )
+    posts.order( posted_at: :desc ).page( page_num )
   end
 
   def find_post( year, month, slug )
