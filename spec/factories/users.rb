@@ -21,29 +21,29 @@ FactoryBot.define do
     after :create do |admin|
       category = create :capability_category, name: 'blogs'
 
-      list   = create :capability, name: 'list',   category: category
-      add    = create :capability, name: 'add',    category: category
-      edit   = create :capability, name: 'edit',   category: category
-      delete = create :capability, name: 'delete', category: category
+      list    = create :capability, name: 'list',    category: category
+      add     = create :capability, name: 'add',     category: category
+      edit    = create :capability, name: 'edit',    category: category
+      destroy = create :capability, name: 'destroy', category: category
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
-      create :user_capability, user: admin, capability: delete
+      create :user_capability, user: admin, capability: destroy
 
       category = create :capability_category, name: 'blog_posts'
 
-      list   = create :capability, name: 'list',          category: category
-      add    = create :capability, name: 'add',           category: category
-      edit   = create :capability, name: 'edit',          category: category
-      author = create :capability, name: 'change_author', category: category
-      delete = create :capability, name: 'delete',        category: category
+      list    = create :capability, name: 'list',           category: category
+      add     = create :capability, name: 'add',            category: category
+      edit    = create :capability, name: 'edit',           category: category
+      author  = create :capability, name: 'change_author',  category: category
+      destroy = create :capability, name: 'destroy',        category: category
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
       create :user_capability, user: admin, capability: author
-      create :user_capability, user: admin, capability: delete
+      create :user_capability, user: admin, capability: destroy
     end
   end
 

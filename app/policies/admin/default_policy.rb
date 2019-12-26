@@ -40,4 +40,8 @@ class Admin::DefaultPolicy < DefaultPolicy
   def delete?
     @this_user.can? :delete, @record.class.name.to_sym
   end
+
+  def destroy?
+    @this_user.can? :destroy, @record.class.name.to_sym
+  end
 end

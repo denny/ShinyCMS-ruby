@@ -106,7 +106,7 @@ en:
       update:
         success: Blog details updated
         failure: Failed to update blog details
-      delete:
+      destroy:
         success: Blog deleted
         failure: Failed to delete blog
 
@@ -125,9 +125,11 @@ en:
         update:
           success: Blog post updated
           failure: Failed to update blog post
-        delete:
+        destroy:
           success: Blog post deleted
           failure: Failed to delete blog post
+        set_post:
+          failure: Couldn't find specified blog post
 
     pages:
       index:
