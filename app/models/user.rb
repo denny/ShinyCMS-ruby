@@ -49,15 +49,12 @@ class User < ApplicationRecord
   def can?( capability_name, category_name = :general )
     name = category_name.to_s.underscore
     name = name.pluralize unless %w[ general shared_content ].include? name
-    category = CapabilityCategory.find_by( name: name )
-    capabilities.exists? name: capability_name.to_s, category: category
-  end
+    cc = CapabilityCategory.find_by( name: name )
+    return true if capabilities.exists? name: capability_name.to_s, category: cc
 
-  # Queue email sends
-  def send_devise_notification( notification, *args )
-    # :nocov:
-    devise_mailer.public_send( notification, self, *args ).deliver_later
-    # :nocov:
+    Rails.logger.debug  "Capability check failed: '#{username}' " \
+                        "cannot '#{capability_name}' '#{name}'"
+    false
   end
 
   def capabilities=( capability_set )
@@ -72,6 +69,13 @@ class User < ApplicationRecord
     end
 
     user_capabilities.where( capability_id: remove ).delete_all
+  end
+
+  # Queue email sends
+  def send_devise_notification( notification, *args )
+    # :nocov:
+    devise_mailer.public_send( notification, self, *args ).deliver_later
+    # :nocov:
   end
 
   # Class methods
