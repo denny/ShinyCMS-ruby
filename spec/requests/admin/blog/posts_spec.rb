@@ -89,7 +89,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.blog.posts.update.failure' )
     end
 
-    it 'creates a new blog post when a complete form is submitted' do
+    it 'updates the blog post when a complete form is submitted' do
       post = create :blog_post, blog: @blog
 
       put admin_blog_post_path( post ), params: {
