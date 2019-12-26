@@ -7,6 +7,9 @@
 /public/packs
 /public/packs-test
 
+# ActiveStorage
+/storage/
+
 # Test output
 /coverage/
 /spec/reports/

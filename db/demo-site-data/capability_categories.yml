@@ -57,23 +57,45 @@ CapabilityCategory_5:
     time: *11
 CapabilityCategory_6:
   id: 6
-  name: users
+  name: blogs
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &12 2019-12-14 03:29:42.017482000 Z
+    utc: &12 2019-12-24 01:05:27.673496000 Z
     zone: *2
     time: *12
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &13 2019-12-14 03:29:42.017482000 Z
+    utc: &13 2019-12-24 01:05:27.673496000 Z
     zone: *2
     time: *13
 CapabilityCategory_7:
   id: 7
-  name: admin_users
+  name: blog_posts
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &14 2019-12-14 03:29:42.025047000 Z
+    utc: &14 2019-12-24 01:05:27.698813000 Z
     zone: *2
     time: *14
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &15 2019-12-14 03:29:42.025047000 Z
+    utc: &15 2019-12-24 01:05:27.698813000 Z
     zone: *2
     time: *15
+CapabilityCategory_8:
+  id: 8
+  name: users
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2019-12-24 01:05:27.714889000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2019-12-24 01:05:27.714889000 Z
+    zone: *2
+    time: *17
+CapabilityCategory_9:
+  id: 9
+  name: admin_users
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2019-12-24 01:05:27.733840000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2019-12-24 01:05:27.733840000 Z
+    zone: *2
+    time: *19

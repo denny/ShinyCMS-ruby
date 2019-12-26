@@ -1,0 +1,19 @@
+  <%= render_admin_menu_section_start( 'Blogs', 'rss' ) %>
+
+  <% if Blog.multiple_blogs_mode %>
+  <%= render_admin_menu_item( 'List blogs', admin_blogs_path, 'library' ) %>
+  <%= render_admin_menu_item( 'Add new blog', new_admin_blog_path, 'library-add' ) %>
+  <% elsif Blog.count == 0 %>
+  <%= render_admin_menu_item( 'Create blog', new_admin_blog_path, 'library-add' ) %>
+  <% else %>
+  <%= render_admin_menu_item( 'Edit blog details', edit_admin_blog_path( Blog.first ), 'library' ) %>
+  <% end %>
+
+  <% if Blog.count > 0 %>
+  <% if BlogPost.count > 0 %>
+  <%= render_admin_menu_item( 'List blog posts', admin_blog_posts_path, 'list' ) %>
+  <% end %>
+  <%= render_admin_menu_item( 'Add new blog post', new_admin_blog_post_path, 'pencil' ) %>
+  <% end %>
+
+  <%= render_admin_menu_section_end %>

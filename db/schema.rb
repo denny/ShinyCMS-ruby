@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_17_175907) do
+ActiveRecord::Schema.define(version: 2019_12_19_201453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,30 @@ ActiveRecord::Schema.define(version: 2019_12_17_175907) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "blog_posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "slug", null: false
+    t.text "body", null: false
+    t.boolean "hidden", default: false, null: false
+    t.integer "blog_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "blogs", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "title", null: false
+    t.string "slug", null: false
+    t.boolean "hidden_from_menu", default: false, null: false
+    t.boolean "hidden", default: false, null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "capabilities", force: :cascade do |t|
@@ -190,6 +214,9 @@ ActiveRecord::Schema.define(version: 2019_12_17_175907) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blog_posts", "blogs"
+  add_foreign_key "blog_posts", "users"
+  add_foreign_key "blogs", "users"
   add_foreign_key "capabilities", "capability_categories", column: "category_id"
   add_foreign_key "page_elements", "pages"
   add_foreign_key "page_sections", "page_sections", column: "section_id"

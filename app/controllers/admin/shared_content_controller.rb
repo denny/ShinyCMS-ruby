@@ -50,8 +50,7 @@ class Admin::SharedContentController < AdminController
     flash[ :notice ] = t( '.success' ) if element.destroy
     redirect_to admin_shared_content_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    handle_delete_exceptions t( '.failure' ),
-                             admin_shared_content_path
+    redirect_with_alert admin_shared_content_path, t( '.failure' )
   end
 
   private

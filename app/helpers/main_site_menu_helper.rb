@@ -5,12 +5,13 @@ module MainSiteMenuHelper
     menu = {}
 
     menu[ :pages ] = {}
-    menu[ :pages ][ :top_sections ] = PageSection.top_level_sections
-    menu[ :pages ][ :top_pages    ] = Page.top_level_pages
+    menu[ :pages ][ :top_sections ] = PageSection.top_level_menu_sections
+    menu[ :pages ][ :top_pages    ] = Page.top_level_menu_pages
     return menu unless section
 
     menu[ :pages ][ :sections ] = section.sections
-    menu[ :pages ][ :pages    ] = section.pages
+                                         .where( hidden_from_menu: false )
+    menu[ :pages ][ :pages    ] = section.pages.where( hidden_from_menu: false )
 
     menu
   end
