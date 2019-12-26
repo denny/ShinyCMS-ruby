@@ -95,6 +95,7 @@ en:
     blogs:
       index:
         title: List blogs
+        empty: There are no blogs to display
       new:
         title: Create new blog
       create:
@@ -113,6 +114,7 @@ en:
       posts:
         index:
           title: List blog posts
+          empty: There are no blog posts to display
         new:
           title: Add new blog post
         create:
@@ -121,11 +123,11 @@ en:
         edit:
           title: Edit blog post
         update:
-          updated: Blog post updated
-          update_failed: Failed to update blog post
+          success: Blog post updated
+          failure: Failed to update blog post
         delete:
-          deleted: Blog post deleted
-          delete_failed: Failed to delete blog post
+          success: Blog post deleted
+          failure: Failed to delete blog post
 
     pages:
       index:
