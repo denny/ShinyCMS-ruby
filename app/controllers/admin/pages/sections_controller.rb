@@ -18,10 +18,10 @@ class Admin::Pages::SectionsController < AdminController
     authorise @section
 
     if @section.save
-      flash[ :notice ] = t( '.section_created' )
+      flash[ :notice ] = t( '.success' )
       redirect_to action: :edit, id: @section.id
     else
-      flash.now[ :alert ] = t( '.section_create_failed' )
+      flash.now[ :alert ] = t( '.failure' )
       render action: :new
     end
   end
@@ -36,10 +36,10 @@ class Admin::Pages::SectionsController < AdminController
     authorise @section
 
     if @section.update( section_params )
-      flash[ :notice ] = t( '.section_updated' )
+      flash[ :notice ] = t( '.success' )
       redirect_to action: :edit, id: @section.id
     else
-      flash.now[ :alert ] = t( '.section_update_failed' )
+      flash.now[ :alert ] = t( '.failure' )
       render :edit
     end
   end
@@ -48,10 +48,10 @@ class Admin::Pages::SectionsController < AdminController
     section = PageSection.find( params[:id] )
     authorise section
 
-    flash[ :notice ] = t( '.section_deleted' ) if section.destroy
+    flash[ :notice ] = t( '.success' ) if section.destroy
     redirect_to admin_pages_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    redirect_with_alert admin_pages_path, t( '.section_delete_failed' )
+    redirect_with_alert admin_pages_path, t( '.failure' )
   end
 
   private

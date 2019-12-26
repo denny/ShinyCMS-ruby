@@ -10,9 +10,9 @@ class Admin::SettingsController < AdminController
     setting = Setting.new( setting_params )
 
     if setting.save
-      flash[ :notice ] = t( '.setting_created' )
+      flash[ :notice ] = t( '.success' )
     else
-      flash[ :alert ] = t( '.setting_create_failed' )
+      flash[ :alert ] = t( '.failure' )
     end
     redirect_to admin_settings_path
   end
@@ -22,9 +22,9 @@ class Admin::SettingsController < AdminController
     updated_settings = false
     updated_settings = update_settings( updated_settings )
     if updated_settings
-      flash[ :notice ] = t( '.settings_updated' )
+      flash[ :notice ] = t( '.success' )
     else
-      flash[ :alert ] = t( '.settings_update_failed' )
+      flash[ :alert ] = t( '.failure' )
     end
     redirect_to admin_settings_path
   end
@@ -32,10 +32,10 @@ class Admin::SettingsController < AdminController
   def delete
     setting = Setting.find( params[:id] )
 
-    flash[ :notice ] = t( '.setting_deleted' ) if setting.destroy
+    flash[ :notice ] = t( '.success' ) if setting.destroy
     redirect_to admin_settings_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    redirect_with_alert admin_settings_path, t( '.setting_delete_failed' )
+    redirect_with_alert admin_settings_path, t( '.failure' )
   end
 
   private

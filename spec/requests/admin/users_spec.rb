@@ -14,7 +14,7 @@ RSpec.describe 'Admin: Users', type: :request do
         get admin_users_path
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.index.list_users' ).titlecase
+        expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
         expect( response.body ).to include user.username
       end
     end
@@ -24,7 +24,7 @@ RSpec.describe 'Admin: Users', type: :request do
         get admin_user_new_path
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.new.new_user' ).titlecase
+        expect( response.body ).to have_title I18n.t( 'admin.users.new.title' ).titlecase
       end
     end
 
@@ -35,8 +35,8 @@ RSpec.describe 'Admin: Users', type: :request do
         }
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.new.new_user' ).titlecase
-        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.create.user_create_failed' )
+        expect( response.body ).to have_title I18n.t( 'admin.users.new.title' ).titlecase
+        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.create.failure' )
       end
 
       it 'fails when the username collides with an existing username' do
@@ -49,8 +49,8 @@ RSpec.describe 'Admin: Users', type: :request do
         }
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.new.new_user' ).titlecase
-        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.create.user_create_failed' )
+        expect( response.body ).to have_title I18n.t( 'admin.users.new.title' ).titlecase
+        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.create.failure' )
       end
 
       it 'adds a new user when the form is submitted' do
@@ -64,8 +64,8 @@ RSpec.describe 'Admin: Users', type: :request do
         expect( response      ).to redirect_to admin_user_path( User.last )
         follow_redirect!
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.edit.edit_user' ).titlecase
-        expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.users.create.user_created' )
+        expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
+        expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.users.create.success' )
       end
     end
 
@@ -76,7 +76,7 @@ RSpec.describe 'Admin: Users', type: :request do
         get admin_user_path( user )
 
         expect( response      ).to     have_http_status :ok
-        expect( response.body ).to     have_title I18n.t( 'admin.users.edit.edit_user' ).titlecase
+        expect( response.body ).to     have_title I18n.t( 'admin.users.edit.title' ).titlecase
         expect( response.body ).not_to have_css 'th', text: I18n.t( 'capability.capabilities' )
       end
     end
@@ -90,8 +90,8 @@ RSpec.describe 'Admin: Users', type: :request do
         }
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.edit.edit_user' ).titlecase
-        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.update.user_update_failed' )
+        expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
+        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.update.failure' )
       end
 
       it 'updates the user when the form is submitted' do
@@ -105,8 +105,8 @@ RSpec.describe 'Admin: Users', type: :request do
         expect( response      ).to redirect_to admin_user_path( user )
         follow_redirect!
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.edit.edit_user' ).titlecase
-        expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.users.update.user_updated' )
+        expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
+        expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.users.update.success' )
         expect( response.body ).to include 'new_username'
       end
     end
@@ -123,8 +123,8 @@ RSpec.describe 'Admin: Users', type: :request do
         expect( response      ).to     redirect_to admin_users_path
         follow_redirect!
         expect( response      ).to     have_http_status :ok
-        expect( response.body ).to     have_title I18n.t( 'admin.users.index.list_users' ).titlecase
-        expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.users.delete.user_deleted' )
+        expect( response.body ).to     have_title I18n.t( 'admin.users.index.title' ).titlecase
+        expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.users.delete.success' )
         expect( response.body ).to     include u1.username
         expect( response.body ).not_to include u2.username
         expect( response.body ).to     include u3.username
@@ -137,8 +137,8 @@ RSpec.describe 'Admin: Users', type: :request do
         expect( response      ).to redirect_to admin_users_path
         follow_redirect!
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.index.list_users' ).titlecase
-        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.delete.user_delete_failed' )
+        expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
+        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.delete.failure' )
       end
     end
   end
@@ -156,7 +156,7 @@ RSpec.describe 'Admin: Users', type: :request do
         get admin_user_path( user )
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.edit.edit_user' ).titlecase
+        expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
         expect( response.body ).to have_css 'th', text: I18n.t( 'capability.capabilities' )
       end
     end
@@ -177,8 +177,8 @@ RSpec.describe 'Admin: Users', type: :request do
       expect( response      ).to redirect_to admin_user_path( user )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.users.edit.edit_user' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.users.update.user_updated' )
+      expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.users.update.success' )
       expect( response.body ).to have_field field_name, with: 'on'
       user.reload
       expect( user.capabilities.length ).to eq 1
