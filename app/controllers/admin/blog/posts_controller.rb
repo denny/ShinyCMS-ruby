@@ -18,6 +18,8 @@ class Admin::Blog::PostsController < AdminController
   end
 
   def create
+    authorise @post
+
     if @post.save
       flash[ :notice ] = t( '.success' )
       redirect_to action: :edit, id: @post.id
@@ -27,9 +29,13 @@ class Admin::Blog::PostsController < AdminController
     end
   end
 
-  def edit; end
+  def edit
+    authorise @post
+  end
 
   def update
+    authorise @post
+
     if @post.update( post_params )
       flash[ :notice ] = t( '.success' )
       redirect_to action: :edit, id: @post.id
@@ -40,10 +46,10 @@ class Admin::Blog::PostsController < AdminController
   end
 
   def destroy
+    authorise @post
+
     flash[ :notice ] = t( '.success' ) if @post.destroy
     redirect_to action: :index
-  rescue ActiveRecord::NotNullViolation
-    redirect_with_alert admin_blog_posts_path, t( '.failure' )
   end
 
   private
@@ -61,19 +67,14 @@ class Admin::Blog::PostsController < AdminController
 
   def set_post
     @post = @blog.posts.find( params[:id] )
-    authorise @post
   rescue ActiveRecord::RecordNotFound
+    skip_authorization
     redirect_with_alert admin_blog_posts_path, t( '.failure' )
   end
 
-  def set_post_for_create
-    @post = @blog.posts.new( new_post_params )
-    authorise @post
-  end
-
-  def new_post_params
+  def post_params
     unless current_user.can? :change_author, :blog_posts
-      params[ :blog_post ][ :user_id ] = current_user.id
+      params[ :blog_post ].delete( :user_id )
     end
 
     params.require( :blog_post ).permit(
@@ -81,9 +82,13 @@ class Admin::Blog::PostsController < AdminController
     )
   end
 
-  def post_params
+  def set_post_for_create
+    @post = @blog.posts.new( post_params_for_create )
+  end
+
+  def post_params_for_create
     unless current_user.can? :change_author, :blog_posts
-      params[ :blog_post ].delete( :user_id )
+      params[ :blog_post ][ :user_id ] = current_user.id
     end
 
     params.require( :blog_post ).permit(
