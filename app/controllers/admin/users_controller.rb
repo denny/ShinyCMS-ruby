@@ -18,10 +18,10 @@ class Admin::UsersController < AdminController
     authorise @user
 
     if @user.save
-      flash[ :notice ] = t( '.user_created' )
+      flash[ :notice ] = t( '.success' )
       redirect_to action: :edit, id: @user.id
     else
-      flash.now[ :alert ] = t( '.user_create_failed' )
+      flash.now[ :alert ] = t( '.failure' )
       render action: :new
     end
   end
@@ -36,10 +36,10 @@ class Admin::UsersController < AdminController
     authorise @user
 
     if @user.update_without_password( user_params )
-      flash[ :notice ] = t( '.user_updated' )
+      flash[ :notice ] = t( '.success' )
       redirect_to action: :edit, id: @user.id
     else
-      flash.now[ :alert ] = t( '.user_update_failed' )
+      flash.now[ :alert ] = t( '.failure' )
       render action: :edit
     end
   end
@@ -48,10 +48,10 @@ class Admin::UsersController < AdminController
     user = User.find( params[:id] )
     authorise user
 
-    flash[ :notice ] = t( '.user_deleted' ) if user.destroy
+    flash[ :notice ] = t( '.success' ) if user.destroy
     redirect_to admin_users_path
   rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-    redirect_with_alert admin_users_path, t( '.user_delete_failed' )
+    redirect_with_alert admin_users_path, t( '.failure' )
   end
 
   private
