@@ -113,7 +113,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
   end
 
   describe 'DELETE /admin/blog/posts/:id' do
-    it 'deletes the specified user' do
+    it 'deletes the specified blog post' do
       p1 = create :blog_post, blog: @blog
       p2 = create :blog_post, blog: @blog
       p3 = create :blog_post, blog: @blog
@@ -131,7 +131,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       expect( response.body ).to     include p3.title
     end
 
-    it 'fails gracefully when attempting to delete a non-existent user' do
+    it 'fails gracefully when attempting to delete a non-existent blog post' do
       delete admin_blog_post_path( 999 )
 
       expect( response      ).to have_http_status :found
