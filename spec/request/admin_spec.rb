@@ -14,7 +14,7 @@ RSpec.describe 'Admin', type: :request do
       expect( response      ).to redirect_to admin_pages_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.index.list_pages' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
     end
 
     it 'still works with an admin IP list set' do
@@ -28,7 +28,7 @@ RSpec.describe 'Admin', type: :request do
       expect( response      ).to redirect_to admin_pages_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.index.list_pages' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
     end
 
     it 'fails with a blocking admin IP list set' do
