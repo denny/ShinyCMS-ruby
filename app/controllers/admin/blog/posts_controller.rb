@@ -2,7 +2,7 @@
 class Admin::Blog::PostsController < AdminController
   before_action :set_blog
   before_action :set_post_for_create, only: %i[ create ]
-  before_action :set_post, only: %i[ edit update delete ]
+  before_action :set_post, only: %i[ edit update destroy ]
   after_action :verify_authorized
 
   def index
@@ -25,8 +25,6 @@ class Admin::Blog::PostsController < AdminController
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
     end
-  rescue ActiveRecord::NotNullViolation
-    redirect_with_alert new_admin_blog_post_path, t( '.failure' )
   end
 
   def edit; end
@@ -39,13 +37,12 @@ class Admin::Blog::PostsController < AdminController
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit
     end
-  rescue ActiveRecord::NotNullViolation
-    redirect_with_alert edit_admin_blog_post_path( @post ), t( '.failure' )
   end
 
-  def delete
+  def destroy
     flash[ :notice ] = t( '.success' ) if @post.destroy
-  rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
+    redirect_to action: :index
+  rescue ActiveRecord::NotNullViolation
     redirect_with_alert admin_blog_posts_path, t( '.failure' )
   end
 
@@ -65,6 +62,8 @@ class Admin::Blog::PostsController < AdminController
   def set_post
     @post = @blog.posts.find( params[:id] )
     authorise @post
+  rescue ActiveRecord::RecordNotFound
+    redirect_with_alert admin_blog_posts_path, t( '.failure' )
   end
 
   def set_post_for_create

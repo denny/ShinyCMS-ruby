@@ -1,6 +1,6 @@
 # Admin controller for blogs (whole blogs, not individual blog posts)
 class Admin::BlogsController < AdminController
-  before_action :set_blog, only: %i[ edit update delete ]
+  before_action :set_blog, only: %i[ edit update destroy ]
   after_action :verify_authorized
 
   def index
@@ -38,7 +38,7 @@ class Admin::BlogsController < AdminController
     end
   end
 
-  def delete
+  def destroy
     if @blog.destroy
       flash[ :notice ] = t( '.success' )
     else
