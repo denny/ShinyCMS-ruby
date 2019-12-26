@@ -54,8 +54,8 @@ class Admin::Pages::TemplatesController < AdminController
     flash[ :notice ] = t( '.template_deleted' ) if template.destroy
     redirect_to admin_pages_templates_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    handle_delete_exceptions t( '.template_delete_failed' ),
-                             admin_pages_templates_path
+    redirect_with_alert admin_pages_templates_path,
+                        t( '.template_delete_failed' )
   end
 
   private
