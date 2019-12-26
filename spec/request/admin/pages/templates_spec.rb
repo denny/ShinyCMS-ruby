@@ -13,7 +13,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       get admin_pages_templates_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.index.list_templates' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.index.title' ).titlecase
       expect( response.body ).to include template.name
     end
   end
@@ -23,7 +23,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       get admin_pages_template_new_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.new.new_template' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.new.title' ).titlecase
     end
   end
 
@@ -34,8 +34,8 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.new.new_template' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.templates.create.template_create_failed' )
+      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.templates.create.failure' )
     end
 
     it 'adds a new template when the form is submitted' do
@@ -47,8 +47,8 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response      ).to have_http_status :found
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.edit.edit_template' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.templates.create.template_created' )
+      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.templates.create.success' )
     end
 
     it 'adds the right number of elements to the new template' do
@@ -60,8 +60,8 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response      ).to have_http_status :found
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.edit.edit_template' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.templates.create.template_created' )
+      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.templates.create.success' )
       expect( PageTemplateElement.count ).to eq 4
     end
   end
@@ -73,7 +73,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       get admin_pages_template_path( template )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.edit.edit_template' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.edit.title' ).titlecase
     end
   end
 
@@ -86,8 +86,8 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.edit.edit_template' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.templates.update.template_update_failed' )
+      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.templates.update.failure' )
     end
 
     it 'updates the template when the form is submitted' do
@@ -104,8 +104,8 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response      ).to have_http_status :found
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.edit.edit_template' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.templates.update.template_updated' )
+      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.templates.update.success' )
       expect( response.body ).to include 'Updated by test'
     end
   end
@@ -122,8 +122,8 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response      ).to     redirect_to admin_pages_templates_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.pages.templates.index.list_templates' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.templates.delete.template_deleted' )
+      expect( response.body ).to     have_title I18n.t( 'admin.pages.templates.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.templates.delete.success' )
       expect( response.body ).to     include t1.name
       expect( response.body ).not_to include t2.name
     end
@@ -135,8 +135,8 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response      ).to redirect_to admin_pages_templates_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.index.list_templates' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.templates.delete.template_delete_failed' )
+      expect( response.body ).to have_title I18n.t( 'admin.pages.templates.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.templates.delete.failure' )
     end
   end
 end
