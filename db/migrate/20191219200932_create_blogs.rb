@@ -5,8 +5,8 @@ class CreateBlogs < ActiveRecord::Migration[6.0]
       t.text :description
       t.string :title, null: false
       t.string :slug, null: false
-      t.boolean :hidden_from_menu, null: false
-      t.boolean :hidden, null: false
+      t.boolean :hidden_from_menu, null: false, default: false
+      t.boolean :hidden, null: false, default: false
       t.integer :user_id, null: false
 
       t.timestamps
