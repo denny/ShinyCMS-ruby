@@ -83,7 +83,7 @@ class Admin::Blog::PostsController < AdminController
 
   def post_params
     unless current_user.can? :change_author, :blog_posts
-      params[ :blog_post ][ :user_id ].delete
+      params[ :blog_post ].delete( :user_id )
     end
 
     params.require( :blog_post ).permit(
