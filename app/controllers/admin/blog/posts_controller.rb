@@ -1,7 +1,8 @@
 # Admin controller for blog posts
 class Admin::Blog::PostsController < AdminController
   before_action :set_blog
-  before_action :set_blog_post, only: %i[ edit update delete ]
+  before_action :set_post_for_create, only: %i[ create ]
+  before_action :set_post, only: %i[ edit update delete ]
   after_action :verify_authorized
 
   def index
@@ -17,9 +18,6 @@ class Admin::Blog::PostsController < AdminController
   end
 
   def create
-    @post = @blog.posts.new( new_blog_post_params )
-    authorise @post
-
     if @post.save
       flash[ :notice ] = t( '.success' )
       redirect_to action: :edit, id: @post.id
@@ -27,12 +25,14 @@ class Admin::Blog::PostsController < AdminController
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
     end
+  rescue ActiveRecord::NotNullViolation
+    redirect_with_alert new_admin_blog_post_path, t( '.failure' )
   end
 
   def edit; end
 
   def update
-    if @post.update( blog_post_params )
+    if @post.update( post_params )
       flash[ :notice ] = t( '.success' )
       redirect_to action: :edit, id: @post.id
     else
@@ -42,12 +42,9 @@ class Admin::Blog::PostsController < AdminController
   end
 
   def delete
-    if @post.destroy
-      flash[ :notice ] = t( '.success' )
-    else
-      flash[ :alert ] = t( '.failure' )
-    end
-    redirect_to admin_blog_posts_path
+    flash[ :notice ] = t( '.success' ) if @post.destroy
+  rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
+    redirect_with_alert admin_blog_posts_path, t( '.failure' )
   end
 
   private
@@ -63,12 +60,17 @@ class Admin::Blog::PostsController < AdminController
       end
   end
 
-  def set_blog_post
+  def set_post
     @post = @blog.posts.find( params[:id] )
     authorise @post
   end
 
-  def new_blog_post_params
+  def set_post_for_create
+    @post = @blog.posts.new( new_post_params )
+    authorise @post
+  end
+
+  def new_post_params
     unless current_user.can? :change_author, :blog_posts
       params[ :blog_post ][ :user_id ] = current_user.id
     end
@@ -78,7 +80,7 @@ class Admin::Blog::PostsController < AdminController
     )
   end
 
-  def blog_post_params
+  def post_params
     unless current_user.can? :change_author, :blog_posts
       params[ :blog_post ][ :user_id ].delete
     end
