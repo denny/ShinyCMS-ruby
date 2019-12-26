@@ -17,10 +17,16 @@
       <section id="content">
         <div class="container">
           <div class="row">
+            <% if @sidebar_position == 'left' || @sidebar_position == 'both' %>
+            <div class="col-3 col-12-medium">
+            <% elsif @sidebar_position == 'right' %>
+            <div class="col-9 col-12-medium">
+            <% else %>
             <div class="col-12">
+            <% end %>
       <% end %>
 
-      <%= yield %>
+<%= yield %>
 
       <% unless controller_name == 'pages' %>
             </div>

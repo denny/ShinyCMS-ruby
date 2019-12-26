@@ -15,22 +15,25 @@
       </th>
     </tr>
   </thead>
-  <% @users.each do |user| %>
-	<tr class="showfocus">
-    <td>
-			<%= user.username %>
-		</td>
-    <td>
-			<%= user.email %>
-		</td>
-		<td class="actions">
-      <%= link_to t( 'view'   ), user_profile_path( user.username ) %>
-      <%= link_to t( 'edit'   ), admin_user_path( user ) %>
-      <%= link_to t( 'delete' ), admin_user_delete_path( user ),
-          method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
-		</td>
-	</tr>
-  <% end %>
+
+  <tbody>
+    <% @users.each do |user| %>
+  	<tr>
+      <td>
+  			<%= user.username %>
+  		</td>
+      <td>
+  			<%= user.email %>
+  		</td>
+  		<td class="actions">
+        <%= link_to t( 'view'   ), user_profile_path( user.username ) %>
+        <%= link_to t( 'edit'   ), admin_user_path( user ) %>
+        <%= link_to t( 'delete' ), admin_user_delete_path( user ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+  		</td>
+  	</tr>
+    <% end %>
+  <tbody>
 </table>
 
 <%= paginate @users, window: 3, views_prefix: 'admin' %>

@@ -1,9 +1,12 @@
 # Top-level pundit policy for admin area
 class Admin::DefaultPolicy < DefaultPolicy
   def index?
-    return can_list_nil? if @record.nil? || @record.first.nil?
-
-    @this_user.can? :list, @record.first.class.name.to_sym
+    if @record.class.method_defined?( :first ) && @record.first.present?
+      @this_user.can? :list, @record.first.class.name
+                                    .underscore.pluralize.to_sym
+    else
+      can_list_nil?
+    end
   end
 
   # Handle the case where a list page has no content yet
@@ -16,11 +19,11 @@ class Admin::DefaultPolicy < DefaultPolicy
       [ShinyCMS] (this probably just means that there's nothing to list yet)
       [ShinyCMS] Making best guess and checking auth for #{calling_class}
     LOG
-    @this_user.can? :list, calling_class.to_sym
+    @this_user.can? :list, calling_class.underscore.pluralize.to_sym
   end
 
   def create?
-    @this_user.can? :add, @record.class.name.to_sym
+    @this_user.can? :add, @record.class.name.underscore.pluralize.to_sym
   end
 
   def new?
@@ -28,7 +31,7 @@ class Admin::DefaultPolicy < DefaultPolicy
   end
 
   def update?
-    @this_user.can? :edit, @record.class.name.to_sym
+    @this_user.can? :edit, @record.class.name.underscore.pluralize.to_sym
   end
 
   def edit?
@@ -36,6 +39,10 @@ class Admin::DefaultPolicy < DefaultPolicy
   end
 
   def delete?
-    @this_user.can? :delete, @record.class.name.to_sym
+    @this_user.can? :delete, @record.class.name.underscore.pluralize.to_sym
+  end
+
+  def destroy?
+    @this_user.can? :destroy, @record.class.name.underscore.pluralize.to_sym
   end
 end

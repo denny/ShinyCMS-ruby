@@ -56,6 +56,10 @@ class PageSection < ApplicationRecord
     PageSection.where( section: nil, hidden: true )
   end
 
+  def self.top_level_menu_sections
+    PageSection.where( section: nil, hidden: false, hidden_from_menu: false )
+  end
+
   # Return the default top-level section
   def self.default_section
     name_or_slug = Setting.get I18n.t( 'admin.settings.default_section' )

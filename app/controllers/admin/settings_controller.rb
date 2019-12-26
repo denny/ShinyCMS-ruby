@@ -35,7 +35,7 @@ class Admin::SettingsController < AdminController
     flash[ :notice ] = t( '.success' ) if setting.destroy
     redirect_to admin_settings_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    handle_delete_exceptions t( '.failure' ), admin_settings_path
+    redirect_with_alert admin_settings_path, t( '.failure' )
   end
 
   private

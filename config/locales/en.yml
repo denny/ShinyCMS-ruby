@@ -13,6 +13,7 @@ en:
 
   # Generic CRUD verbs that are usually wanted for both main site and admin area
   add: Add
+  post: Post
   view: View
   list: List
   edit: Edit
@@ -24,6 +25,14 @@ en:
 
 
   # ========== ( Main Site ) ==========
+
+  blogs:
+    set_blog:
+      failure: Blog not found
+    sidebar:
+      recent_posts: Recent Posts
+      links: Links
+      links_blurb: Recommended reading from around the web
 
   page:
     template_file_missing: Unable to display page; its template file is missing.
@@ -40,6 +49,7 @@ en:
   feature_flags:
     off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
+    blogs: Blogs
     user_login: User Login
     user_profiles: User Profiles
     user_registration: User Registration
@@ -51,13 +61,18 @@ en:
     capabilities: Admin Capabilities
 
     category:
+      admin_users: Admin Users
+      blogs: Blogs
+      blog_posts: Blog Posts
       general: General
       pages: Pages
       page_sections: Page Sections
       page_templates: Page Templates
       shared_content: Shared Content
       users: Users
-      admin_users: Admin Users
+
+    blog_posts:
+      change_author: Change author
 
     general:
       view_admin_area: View admin area
@@ -78,6 +93,47 @@ en:
       long_text: Long Text
       image: Image
       html: HTML
+
+    blogs:
+      index:
+        title: List blogs
+        empty: There are no blogs to display
+      new:
+        title: Create new blog
+      edit:
+        title: Edit blog details
+      create:
+        success: New blog created
+        failure: Failed to create new blog
+      update:
+        success: Blog details updated
+        failure: Failed to update blog details
+      destroy:
+        success: Blog deleted
+        failure: Failed to delete blog
+      set_blog:
+        failure: Couldn't find specified blog
+
+    blog:
+      posts:
+        index:
+          title: List blog posts
+          empty: There are no blog posts to display
+        new:
+          title: Add new blog post
+        edit:
+          title: Edit blog post
+        create:
+          success: New blog post added
+          failure: Failed to add new blog post
+        update:
+          success: Blog post updated
+          failure: Failed to update blog post
+        destroy:
+          success: Blog post deleted
+          failure: Failed to delete blog post
+        set_post:
+          failure: Couldn't find specified blog post
 
     pages:
       index:

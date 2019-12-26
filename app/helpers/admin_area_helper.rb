@@ -1,10 +1,23 @@
 # Helper methods for admin area
 module AdminAreaHelper
+  # Invoke Pundit
   def authorise( record )
     record_class_name = class_name( record )
     policy_class_name = "Admin::#{record_class_name}Policy"
 
     authorize record, policy_class: policy_class_name.constantize
+  end
+
+  # Return true if the page we're on might need a WYSIWYG HTML editor
+  def html_editor_needed?
+    controller_name == 'shared_content' ||
+      ( controller_name =~ /^blog/ && %w[ new edit ].include?( action_name )) ||
+      ( controller_name =~ /^page/ && %w[     edit ].include?( action_name ) )
+  end
+
+  def redirect_with_alert( redirect_path, alert_message )
+    skip_authorization
+    redirect_to redirect_path, alert: alert_message
   end
 
   def render_capability_checkbox( form, capability, capability_category )
@@ -15,11 +28,18 @@ module AdminAreaHelper
     }
   end
 
-  # Handle not null/not found exceptions when trying to delete stuff
-  # TODO: separate these two, add a more helpful error for the first one
-  def handle_delete_exceptions( alert_message, redirect_path )
-    skip_authorization
-    redirect_to redirect_path, alert: alert_message
+  def render_admin_menu_section_start( text, icon = nil )
+    render partial: 'admin/menu/menu__section_start',
+           locals: { text: text, icon: icon }
+  end
+
+  def render_admin_menu_item( text, link, icon = nil )
+    render partial: 'admin/menu/menu__item',
+           locals: { text: text, link: link, icon: icon }
+  end
+
+  def render_admin_menu_section_end
+    render partial: 'admin/menu/menu__section_end'
   end
 
   private

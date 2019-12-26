@@ -51,7 +51,7 @@ class Admin::UsersController < AdminController
     flash[ :notice ] = t( '.success' ) if user.destroy
     redirect_to admin_users_path
   rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-    handle_delete_exceptions t( '.failure' ), admin_users_path
+    redirect_with_alert admin_users_path, t( '.failure' )
   end
 
   private

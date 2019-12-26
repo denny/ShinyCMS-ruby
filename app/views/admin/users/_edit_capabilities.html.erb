@@ -6,12 +6,12 @@
         <%= t( 'capability.capabilities' ) %>
         <% if @user.capabilities.present? %>
         <% show = 'show ' %>
-        <span class="toggle-icon-top">
+        <span class="toggle-icon-top collapse show">
           <svg><use xlink:href="<%= image_path 'coreui/icons/coreui/free-symbol-defs.svg' %>#cui-chevron-top"></use></svg>
         </span>
         <% else %>
         <% show = '' %>
-        <span class="toggle-icon-bottom">
+        <span class="toggle-icon-bottom collapse">
           <svg><use xlink:href="<%= image_path 'coreui/icons/coreui/free-symbol-defs.svg' %>#cui-chevron-bottom"></use></svg>
         </span>
         <% end %>
@@ -31,10 +31,14 @@
     </td>
     <% end %>
   </tr>
-
-  <% CapabilityCategory.where.not( name: [ 'general', 'admin_users' ] )
-    .order( :id ).each do |category| %>
+<!--
+  users = User.arel_table
+  User.where(users[:name].matches("%#{user_name}%"))
+-->
   <% category_capabilities = %i[ list add edit delete ] %>
+  <% CapabilityCategory.where(
+      name: %i[ pages page_sections page_templates blogs blog_posts ]
+    ).each do |category| %>
   <tr class="<%= show %>collapse collapse_capabilities">
     <td>
       <%= t( "capability.category.#{category.name}" ) %>
@@ -47,7 +51,30 @@
   </tr>
   <% end %>
 
+  <% category_capabilities = %i[ change_author skip skip skip ] %>
+  <% category = CapabilityCategory.find_by( name: 'blog_posts' ) %>
+  <tr class="<%= show %>collapse collapse_capabilities">
+    <td>
+    </td>
+    <% category_capabilities.each do |capability| %>
+    <td>
+      <%= render_capability_checkbox( f, capability, category ) %>
+    </td>
+    <% end %>
+  </tr>
+
+  <% category_capabilities = %i[ list add edit delete ] %>
   <% category = CapabilityCategory.find_by( name: 'users' ) %>
+  <tr class="<%= show %>collapse collapse_capabilities">
+    <td>
+      <%= t( "capability.category.#{category.name}" ) %>
+    </td>
+    <% category_capabilities.each do |capability| %>
+    <td>
+      <%= render_capability_checkbox( f, capability, category ) %>
+    </td>
+    <% end %>
+  </tr>
   <% category_capabilities = %i[ view_admin_notes skip skip skip ] %>
   <tr class="<%= show %>collapse collapse_capabilities">
     <td>
@@ -59,8 +86,8 @@
     <% end %>
   </tr>
 
-  <% category = CapabilityCategory.find_by( name: 'admin_users' ) %>
   <% category_capabilities = %i[ list add edit delete ] %>
+  <% category = CapabilityCategory.find_by( name: 'admin_users' ) %>
   <tr class="<%= show %>collapse collapse_capabilities">
     <td>
       <%= t( "capability.category.#{category.name}" ) %>

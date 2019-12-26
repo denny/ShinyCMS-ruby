@@ -9,6 +9,31 @@ Rails.application.routes.draw do
     get 'pages',       to: 'pages#index'
     get 'pages/*path', to: 'pages#show'
 
+    # Blogs
+    if Rails.application.config.multiple_blogs_mode
+      # :nocov:
+      get 'blogs',                               to: 'blogs#index'
+      get 'blog/:blog_slug',                     to: 'blogs#recent'
+      get 'blog/:blog_slug/:year/:month/:slug',  to: 'blogs#show'
+      get 'blog/:blog_slug/:year/:month',        to: 'blogs#month'
+      get 'blog/:blog_slug/:year',               to: 'blogs#year'
+      # :nocov:
+    else
+      get 'blog',                     to: 'blogs#recent', as: :blog
+      get 'blog/:year/:month/:slug',  to: 'blogs#show',   as: :blog_post,
+                                      constraints: {
+                                        year: %r{\d\d\d\d},
+                                        month: %r{\d\d}
+                                      }
+      get 'blog/:year/:month',        to: 'blogs#month',  as: :blog_month,
+                                      constraints: {
+                                        year: %r{\d\d\d\d},
+                                        month: %r{\d\d}
+                                      }
+      get 'blog/:year',               to: 'blogs#year',   as: :blog_year,
+                                      constraints: { year: %r{\d\d\d\d} }
+    end
+
     # Users
     devise_for  :users,
                 path: '',
@@ -62,6 +87,12 @@ Rails.application.routes.draw do
         get    'template/:id', to: 'templates#edit',   as: :template
         post   'template/:id', to: 'templates#update'
         delete 'template/:id', to: 'templates#delete', as: :template_delete
+      end
+
+      # Blogs
+      resources :blogs
+      namespace :blog do
+        resources :posts
       end
 
       # Shared Content
