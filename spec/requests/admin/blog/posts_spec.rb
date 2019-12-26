@@ -25,7 +25,25 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
   end
 
   describe 'POST /admin/blog/posts' do
-    it 'creates a new blog post when the form is submitted' do
+    it 'fails to create a new blog post when an incomplete form is submitted' do
+      post admin_blog_posts_path, params: {
+        blog_post: {
+          blog_id: @blog.id,
+          user_id: @admin.id,
+          title: Faker::Science.unique.scientist,
+          body: nil
+        }
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to new_admin_blog_post_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.blog.posts.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.blog.posts.create.failure' )
+    end
+
+    it 'creates a new blog post when a complete form is submitted' do
       post admin_blog_posts_path, params: {
         blog_post: {
           blog_id: @blog.id,
@@ -42,6 +60,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.blog.posts.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.blog.posts.create.success' )
     end
   end
 
