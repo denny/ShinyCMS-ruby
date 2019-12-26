@@ -18,6 +18,11 @@ class BlogPost < ApplicationRecord
 
   before_validation :generate_slug, if: -> { slug.blank? && title.present? }
 
+  # Configure default count-per-page for pagination
+  paginates_per 20
+
+  # Instance methods
+
   def generate_slug
     self.slug = title.parameterize
   end
