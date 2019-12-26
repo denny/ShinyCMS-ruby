@@ -39,6 +39,8 @@ class Admin::Blog::PostsController < AdminController
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit
     end
+  rescue ActiveRecord::NotNullViolation
+    redirect_with_alert edit_admin_blog_post_path( @post ), t( '.failure' )
   end
 
   def delete

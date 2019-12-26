@@ -73,4 +73,48 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       expect( response ).to have_http_status :ok
     end
   end
+
+  describe 'POST /admin/blog/posts' do
+    it 'fails to update the blog post when an incomplete form is submitted' do
+      post = create :blog_post, blog: @blog
+
+      put admin_blog_post_path( post ), params: {
+        blog_post: {
+          blog_id: @blog.id,
+          user_id: @admin.id,
+          title: Faker::Science.unique.scientist,
+          body: nil
+        }
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to edit_admin_blog_post_path( post )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.blog.posts.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.blog.posts.update.failure' )
+    end
+
+    it 'creates a new blog post when a complete form is submitted' do
+      post = create :blog_post, blog: @blog
+
+      put admin_blog_post_path( post ), params: {
+        blog_post: {
+          blog_id: @blog.id,
+          user_id: @admin.id,
+          title: Faker::Science.unique.scientist,
+          body: Faker::Lorem.paragraph
+        }
+      }
+
+      post = BlogPost.last
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to edit_admin_blog_post_path( post )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.blog.posts.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.blog.posts.update.success' )
+    end
+  end
 end
