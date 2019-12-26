@@ -47,13 +47,11 @@ class User < ApplicationRecord
   # Instance methods
 
   def can?( capability_name, category_name = :general )
-    name = category_name.to_s.underscore
-    name = name.pluralize unless %w[ general shared_content ].include? name
-    cc = CapabilityCategory.find_by( name: name )
+    cc = CapabilityCategory.find_by( name: category_name.to_s )
     return true if capabilities.exists? name: capability_name.to_s, category: cc
 
     Rails.logger.debug  "Capability check failed: '#{username}' " \
-                        "cannot '#{capability_name}' '#{name}'"
+                        "cannot '#{capability_name}' '#{category_name}'"
     false
   end
 
