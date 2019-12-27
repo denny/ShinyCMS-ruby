@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_with model: @shared_content, name: 'shared_content', url: admin_shared_content_path, method: :post do |f| %>
+<%= form_with model: @shared_content, name: 'shared_content', url: shared_content_path, method: :put do |f| %>
 <table class="table table-responsive-sm table-striped">
   <%= f.fields_for :elements do |fields| %>
     <%= render partial: 'element', locals: {
@@ -16,7 +16,7 @@
 </p>
 <% end %>
 
-<%= form_for :shared_content_element, name: 'new_element', url: admin_shared_content_create_path, method: :post do |f2| %>
+<%= form_for :shared_content_element, name: 'new_element', url: shared_content_path, method: :post do |f2| %>
   <fieldset>
     <legend>
       Add new shared content

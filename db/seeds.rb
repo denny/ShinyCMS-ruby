@@ -66,36 +66,36 @@ seed Capability, { name: 'edit',          category: blog_posts_cc }
 seed Capability, { name: 'destroy',       category: blog_posts_cc }
 seed Capability, { name: 'change_author', category: blog_posts_cc }
 # Pages
-seed Capability, { name: 'list',   category: pages_cc }
-seed Capability, { name: 'add',    category: pages_cc }
-seed Capability, { name: 'edit',   category: pages_cc }
-seed Capability, { name: 'delete', category: pages_cc }
+seed Capability, { name: 'list',    category: pages_cc }
+seed Capability, { name: 'add',     category: pages_cc }
+seed Capability, { name: 'edit',    category: pages_cc }
+seed Capability, { name: 'destroy', category: pages_cc }
 # Page Sections
-seed Capability, { name: 'list',   category: sections_cc }
-seed Capability, { name: 'add',    category: sections_cc }
-seed Capability, { name: 'edit',   category: sections_cc }
-seed Capability, { name: 'delete', category: sections_cc }
+seed Capability, { name: 'list',    category: sections_cc }
+seed Capability, { name: 'add',     category: sections_cc }
+seed Capability, { name: 'edit',    category: sections_cc }
+seed Capability, { name: 'destroy', category: sections_cc }
 # Page Templates
-seed Capability, { name: 'list',   category: templates_cc }
-seed Capability, { name: 'add',    category: templates_cc }
-seed Capability, { name: 'edit',   category: templates_cc }
-seed Capability, { name: 'delete', category: templates_cc }
+seed Capability, { name: 'list',    category: templates_cc }
+seed Capability, { name: 'add',     category: templates_cc }
+seed Capability, { name: 'edit',    category: templates_cc }
+seed Capability, { name: 'destroy', category: templates_cc }
 # Shared Content
-seed Capability, { name: 'list',   category: shared_cc }
-seed Capability, { name: 'add',    category: shared_cc }
-seed Capability, { name: 'edit',   category: shared_cc }
-seed Capability, { name: 'delete', category: shared_cc }
+seed Capability, { name: 'list',    category: shared_cc }
+seed Capability, { name: 'add',     category: shared_cc }
+seed Capability, { name: 'edit',    category: shared_cc }
+seed Capability, { name: 'destroy', category: shared_cc }
 # Users
-seed Capability, { name: 'list',   category: users_cc }
-seed Capability, { name: 'add',    category: users_cc }
-seed Capability, { name: 'edit',   category: users_cc }
-seed Capability, { name: 'delete', category: users_cc }
+seed Capability, { name: 'list',    category: users_cc }
+seed Capability, { name: 'add',     category: users_cc }
+seed Capability, { name: 'edit',    category: users_cc }
+seed Capability, { name: 'destroy', category: users_cc }
 seed Capability, { name: 'view_admin_notes', category: users_cc }
 # Admin Users
-seed Capability, { name: 'list',   category: admins_cc }
-seed Capability, { name: 'add',    category: admins_cc }
-seed Capability, { name: 'edit',   category: admins_cc }
-seed Capability, { name: 'delete', category: admins_cc }
+seed Capability, { name: 'list',    category: admins_cc }
+seed Capability, { name: 'add',     category: admins_cc }
+seed Capability, { name: 'edit',    category: admins_cc }
+seed Capability, { name: 'destroy', category: admins_cc }
 
 # One Admin To Rule Them All
 admin = seed User, { username: 'admin' }, {

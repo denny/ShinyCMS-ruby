@@ -22,7 +22,7 @@ class Admin::SharedContentController < AdminController
     else
       flash[ :alert ] = t( '.failure' )
     end
-    redirect_to admin_shared_content_path
+    redirect_to shared_content_path
   end
 
   # Main form submitted; update existing shared content
@@ -35,22 +35,22 @@ class Admin::SharedContentController < AdminController
     @shared_content.elements_attributes = shared_content_params
 
     flash[ :notice ] = t( '.success' ) if @shared_content.valid?
-    redirect_to admin_shared_content_path
+    redirect_to shared_content_path
   rescue ActiveRecord::RecordNotUnique
     skip_authorization
-    redirect_to admin_shared_content_path,
+    redirect_to shared_content_path,
                 alert: t( '.failure' )
   end
 
-  def delete
+  def destroy
     element = SharedContentElement.find( params[ :id ] )
 
     authorise element
 
     flash[ :notice ] = t( '.success' ) if element.destroy
-    redirect_to admin_shared_content_path
+    redirect_to shared_content_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    redirect_with_alert admin_shared_content_path, t( '.failure' )
+    redirect_with_alert shared_content_path, t( '.failure' )
   end
 
   private
