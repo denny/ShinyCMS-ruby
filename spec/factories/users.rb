@@ -49,29 +49,29 @@ FactoryBot.define do
 
   factory :page_admin, parent: :admin_user do
     after :create do |admin|
-      pages_category = create :capability_category, name: 'pages'
+      category = create :capability_category, name: 'pages'
 
-      list   = create :capability, name: 'list',   category: pages_category
-      add    = create :capability, name: 'add',    category: pages_category
-      edit   = create :capability, name: 'edit',   category: pages_category
-      delete = create :capability, name: 'delete', category: pages_category
-
-      create :user_capability, user: admin, capability: list
-      create :user_capability, user: admin, capability: add
-      create :user_capability, user: admin, capability: edit
-      create :user_capability, user: admin, capability: delete
-
-      sections_category = create :capability_category, name: 'page_sections'
-
-      list   = create :capability, name: 'list',   category: sections_category
-      add    = create :capability, name: 'add',    category: sections_category
-      edit   = create :capability, name: 'edit',   category: sections_category
-      delete = create :capability, name: 'delete', category: sections_category
+      list    = create :capability, name: 'list',    category: category
+      add     = create :capability, name: 'add',     category: category
+      edit    = create :capability, name: 'edit',    category: category
+      destroy = create :capability, name: 'destroy', category: category
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
-      create :user_capability, user: admin, capability: delete
+      create :user_capability, user: admin, capability: destroy
+
+      category = create :capability_category, name: 'page_sections'
+
+      list    = create :capability, name: 'list',    category: category
+      add     = create :capability, name: 'add',     category: category
+      edit    = create :capability, name: 'edit',    category: category
+      destroy = create :capability, name: 'destroy', category: category
+
+      create :user_capability, user: admin, capability: list
+      create :user_capability, user: admin, capability: add
+      create :user_capability, user: admin, capability: edit
+      create :user_capability, user: admin, capability: destroy
     end
   end
 
@@ -79,15 +79,15 @@ FactoryBot.define do
     after :create do |admin|
       category = create :capability_category, name: 'page_templates'
 
-      list   = create :capability, name: 'list',   category: category
-      add    = create :capability, name: 'add',    category: category
-      edit   = create :capability, name: 'edit',   category: category
-      delete = create :capability, name: 'delete', category: category
+      list    = create :capability, name: 'list',    category: category
+      add     = create :capability, name: 'add',     category: category
+      edit    = create :capability, name: 'edit',    category: category
+      destroy = create :capability, name: 'destroy', category: category
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
-      create :user_capability, user: admin, capability: delete
+      create :user_capability, user: admin, capability: destroy
     end
   end
 
@@ -127,16 +127,16 @@ FactoryBot.define do
     after :create do |admin|
       category = create :capability_category, name: 'users'
 
-      list   = create :capability, name: 'list',   category: category
-      add    = create :capability, name: 'add',    category: category
-      edit   = create :capability, name: 'edit',   category: category
-      delete = create :capability, name: 'delete', category: category
-      notes  = create :capability, name: 'view_admin_notes', category: category
+      list    = create :capability, name: 'list',             category: category
+      add     = create :capability, name: 'add',              category: category
+      edit    = create :capability, name: 'edit',             category: category
+      destroy = create :capability, name: 'destroy',          category: category
+      notes   = create :capability, name: 'view_admin_notes', category: category
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
-      create :user_capability, user: admin, capability: delete
+      create :user_capability, user: admin, capability: destroy
       create :user_capability, user: admin, capability: notes
     end
   end
