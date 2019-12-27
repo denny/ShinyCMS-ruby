@@ -44,14 +44,14 @@ class Admin::UsersController < AdminController
     end
   end
 
-  def delete
+  def destroy
     user = User.find( params[:id] )
     authorise user
 
     flash[ :notice ] = t( '.success' ) if user.destroy
-    redirect_to admin_users_path
+    redirect_to users_path
   rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-    redirect_with_alert admin_users_path, t( '.failure' )
+    redirect_with_alert users_path, t( '.failure' )
   end
 
   private
