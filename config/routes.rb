@@ -85,18 +85,18 @@ Rails.application.routes.draw do
       post 'pages/template',  to: 'pages/templates#create',
                               as: :create_page_template
 
+      # Site settings
+      get    'settings',    to: 'settings#index'
+      put    'settings',    to: 'settings#update'
+      post   'setting',     to: 'settings#create'
+      delete 'setting/:id', to: 'settings#destroy', as: :delete_setting
+
       # Shared Content
       get    'shared-content',      to: 'shared_content#index'
       put    'shared-content',      to: 'shared_content#update'
       post   'shared-content',      to: 'shared_content#create'
       delete 'shared-content/:id',  to: 'shared_content#destroy',
                                     as: :delete_shared_content
-
-      # Site settings
-      get    'settings',           to: 'settings#index'
-      post   'settings',           to: 'settings#update', as: :update_settings
-      post   'setting/create',     to: 'settings#create', as: :create_setting
-      delete 'setting/delete/:id', to: 'settings#delete', as: :delete_setting
 
       # Users
       get  :users, to: 'users#index'

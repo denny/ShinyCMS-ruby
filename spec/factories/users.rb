@@ -95,15 +95,15 @@ FactoryBot.define do
     after :create do |admin|
       category = create :capability_category, name: 'settings'
 
-      list   = create :capability, name: 'list',   category: category
-      add    = create :capability, name: 'add',    category: category
-      edit   = create :capability, name: 'edit',   category: category
-      delete = create :capability, name: 'delete', category: category
+      list    = create :capability, name: 'list',    category: category
+      add     = create :capability, name: 'add',     category: category
+      edit    = create :capability, name: 'edit',    category: category
+      destroy = create :capability, name: 'destroy', category: category
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
-      create :user_capability, user: admin, capability: delete
+      create :user_capability, user: admin, capability: destroy
     end
   end
 
@@ -145,15 +145,15 @@ FactoryBot.define do
     after :create do |admin|
       category = create :capability_category, name: 'admin_users'
 
-      list   = create :capability, name: 'list',   category: category
-      add    = create :capability, name: 'add',    category: category
-      edit   = create :capability, name: 'edit',   category: category
-      delete = create :capability, name: 'delete', category: category
+      list    = create :capability, name: 'list',    category: category
+      add     = create :capability, name: 'add',     category: category
+      edit    = create :capability, name: 'edit',    category: category
+      destroy = create :capability, name: 'destroy', category: category
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
-      create :user_capability, user: admin, capability: delete
+      create :user_capability, user: admin, capability: destroy
     end
   end
 end

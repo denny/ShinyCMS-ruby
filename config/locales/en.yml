@@ -200,7 +200,7 @@ en:
         success: Settings updated
         # unchanged: Settings unchanged
         failure: Failed to update settings
-      delete:
+      destroy:
         success: Setting deleted
         failure: Failed to delete setting
 
