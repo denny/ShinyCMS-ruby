@@ -216,7 +216,7 @@ en:
         success: Shared content updated
         # unchanged: Shared content unchanged
         failure: Failed to update shared content
-      delete:
+      destroy:
         success: Specified shared content deleted
         failure: Failed to delete specified shared content
 
