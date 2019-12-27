@@ -8,16 +8,28 @@ class AdminController < ApplicationController
 
   layout 'admin/layouts/admin_area'
 
-  # TODO: Add a user-setting so admins can set their preferred landing page
-  # TODO: If no preference is set, redirect based on user's ACL:
-  #       user.can?( 'list_blog_posts' ) to Blog admin section, etc
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
   def index
     skip_authorization
 
     redirect_to root_path unless current_user.can? :view_admin_area
 
-    redirect_to admin_pages_path
+    # Redirect user based on which admin features they have access to (in order
+    # of which one seems most likely to be useful if they have access to many)
+    # TODO: Add a user-setting so admins can set their preferred landing page
+    if current_user.can? :list, :pages
+      redirect_to admin_pages_path
+    elsif current_user.can? :list, :blogs
+      redirect_to admin_blogs_path
+    elsif current_user.can? :list, :users
+      redirect_to admin_users_path
+    elsif current_user.can? :list, :settings
+      redirect_to admin_settings_path
+    end
   end
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/AbcSize
 
   private
 
