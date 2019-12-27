@@ -8,7 +8,6 @@ class AdminController < ApplicationController
 
   layout 'admin/layouts/admin_area'
 
-  # TODO: Add a user-setting so admins can set their preferred landing page
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/MethodLength
   def index
@@ -17,6 +16,7 @@ class AdminController < ApplicationController
     redirect_to root_path unless current_user.can? :view_admin_area
 
     # Redirect user based on which admin features they have access to
+    # TODO: Add a user-setting so admins can set their preferred landing page
     if current_user.can? :list, :pages
       redirect_to admin_pages_path
     elsif current_user.can? :list, :blog_posts
