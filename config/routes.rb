@@ -59,9 +59,13 @@ Rails.application.routes.draw do
 
     scope path: 'admin', module: 'admin' do
       # Blogs
-      resources :blog
-      resources :blog do
-        resources :posts
+      get  :blogs, to: 'blogs#index'
+      post :blog,  to: 'blogs#create'
+
+      resources :blog, controller: :blogs, except: %w[ index show create ] do
+        get  :posts, to: 'posts#index'
+        post :post,  to: 'posts#create'
+        resources :post, controller: :posts, except: %w[ index show create ]
       end
 
       # Pages
