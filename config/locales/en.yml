@@ -148,7 +148,7 @@ en:
       update:
         success: Page details updated
         failure: Failed to update page details
-      delete:
+      destroy:
         success: Page deleted
         failure: Failed to delete page
 
@@ -163,7 +163,7 @@ en:
         update:
           success: Section details updated
           failure: Failed to update section details
-        delete:
+        destroy:
           success: Section deleted
           failure: Failed to section page
 
@@ -180,7 +180,7 @@ en:
         update:
           success: Template details updated
           failure: Failed to update template details
-        delete:
+        destroy:
           success: Template deleted
           failure: Failed to delete template
 
@@ -233,7 +233,7 @@ en:
       update:
         success: User details updated
         failure: Failed to update user details
-      delete:
+      destroy:
         success: User deleted
         failure: Failed to delete user
 
