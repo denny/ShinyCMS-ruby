@@ -19,13 +19,13 @@ class AdminController < ApplicationController
     # of which one seems most likely to be useful if they have access to many)
     # TODO: Add a user-setting so admins can set their preferred landing page
     if current_user.can? :list, :pages
-      redirect_to admin_pages_path
+      redirect_to pages_path
     elsif current_user.can? :list, :blogs
-      redirect_to admin_blogs_path
+      redirect_to blogs_path
     elsif current_user.can? :list, :users
-      redirect_to admin_users_path
+      redirect_to users_path
     elsif current_user.can? :list, :settings
-      redirect_to admin_settings_path
+      redirect_to settings_path
     end
   end
   # rubocop:enable Metrics/MethodLength
