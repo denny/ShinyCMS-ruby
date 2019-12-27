@@ -27,8 +27,8 @@
   		</td>
   		<td class="actions">
         <%= link_to t( 'view'   ), user_profile_path( user.username ) %>
-        <%= link_to t( 'edit'   ), admin_user_path( user ) %>
-        <%= link_to t( 'delete' ), admin_user_delete_path( user ),
+        <%= link_to t( 'edit'   ), user_path( user ) %>
+        <%= link_to t( 'delete' ), user_path( user ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
   		</td>
   	</tr>
