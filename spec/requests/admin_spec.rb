@@ -1,23 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin', type: :request do
-  before :each do
-    admin = create :page_admin
-    sign_in admin
-  end
-
   describe 'GET /admin' do
-    it 'redirects to the page admin area' do
-      get admin_path
+    it 'redirects to admin area when a matching admin IP list is set' do
+      admin = create :page_admin
+      sign_in admin
 
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_pages_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
-    end
-
-    it 'still works with an admin IP list set' do
       Setting.find_or_create_by!(
         name: I18n.t( 'admin.settings.admin_ip_list' )
       ).update!( value: '127.0.0.1' )
@@ -31,7 +19,10 @@ RSpec.describe 'Admin', type: :request do
       expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
     end
 
-    it 'fails with a blocking admin IP list set' do
+    it 'refuses to redirect to admin area when a non-matching admin IP list is set' do
+      admin = create :page_admin
+      sign_in admin
+
       Setting.find_or_create_by!(
         name: I18n.t( 'admin.settings.admin_ip_list' )
       ).update!( value: '10.10.10.10' )
@@ -43,6 +34,60 @@ RSpec.describe 'Admin', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'This site does not have any content'
+    end
+  end
+
+  describe 'GET /admin redirects to the appropriate admin area for a:' do
+    it 'blog admin' do
+      admin = create :blog_admin
+      sign_in admin
+
+      get admin_path
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_blogs_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.blogs.index.title' ).titlecase
+    end
+
+    it 'page admin' do
+      admin = create :page_admin
+      sign_in admin
+
+      get admin_path
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_pages_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
+    end
+
+    it 'settings admin' do
+      admin = create :settings_admin
+      sign_in admin
+
+      get admin_path
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_settings_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.settings.index.title' ).titlecase
+    end
+
+    it 'user admin' do
+      admin = create :user_admin
+      sign_in admin
+
+      get admin_path
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_users_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
     end
   end
 end
