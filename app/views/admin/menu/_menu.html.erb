@@ -1,19 +1,16 @@
 <%# NTS: CoreUI free icons: https://coreui.io/icons/free/ %>
 <ul class="c-sidebar-nav">
-  <%= render partial: 'admin/menu/menu__item', locals:
-      { text: 'Dashboard', link: admin_path, icon: 'speedometer' } %>
+  <%= render_admin_menu_item( 'Dashboard', admin_path, 'speedometer' ) %>
 
   <%= render partial: 'admin/menu/menu_pages' %>
 
-  <%= render partial: 'admin/menu/menu__item', locals:
-      { text: 'Shared content', link: admin_shared_content_path, icon: 'list' } %>
+  <%= render_admin_menu_item( 'Shared content', shared_content_path, 'list' ) %>
 
   <%= render partial: 'admin/menu/menu_blogs' %>
 
   <%= render partial: 'admin/menu/menu_users' %>
 
-  <%= render partial: 'admin/menu/menu__item', locals:
-      { text: 'Settings', link: admin_settings_path, icon: 'settings' } %>
+  <%= render_admin_menu_item( 'Settings', settings_path, 'settings' ) %>
 </ul>
 
 <script>
