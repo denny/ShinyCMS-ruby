@@ -15,12 +15,13 @@ class AdminController < ApplicationController
 
     redirect_to root_path unless current_user.can? :view_admin_area
 
-    # Redirect user based on which admin features they have access to
+    # Redirect user based on which admin features they have access to (in order
+    # of which one seems most likely to be useful if they have access to many)
     # TODO: Add a user-setting so admins can set their preferred landing page
     if current_user.can? :list, :pages
       redirect_to admin_pages_path
-    elsif current_user.can? :list, :blog_posts
-      redirect_to admin_blog_posts_path
+    elsif current_user.can? :list, :blogs
+      redirect_to admin_blogs_path
     elsif current_user.can? :list, :users
       redirect_to admin_users_path
     elsif current_user.can? :list, :settings
