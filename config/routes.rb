@@ -57,31 +57,33 @@ Rails.application.routes.draw do
     # CKEditor (WYSIWYG editor used on various admin pages)
     mount Ckeditor::Engine => '/admin/ckeditor'
 
+    EXCEPT = %w[ index show create ].freeze
+
     scope path: 'admin', module: 'admin' do
       # Blogs
       get  :blogs, to: 'blogs#index'
-      post :blog,  to: 'blogs#create'
+      post :blog,  to: 'blogs#create', as: :create_blog
 
-      resources :blog, controller: :blogs, except: %w[ index show create ] do
-        get  :posts, to: 'posts#index'
-        post :post,  to: 'posts#create'
-        resources :post, controller: :posts, except: %w[ index show create ]
+      resources :blog, controller: :blogs, except: EXCEPT do
+        get :posts, to: 'posts#index'
+        resources :post, controller: :posts, except: EXCEPT
       end
+      post 'blog/:id/post', to: 'blog/posts#create', as: :create_blog_post
 
       # Pages
       get  :pages, to: 'pages#index'
-      post :page,  to: 'pages#create'
-      resources :page, controller: :pages, except: %w[ index show create ]
+      post :page,  to: 'pages#create', as: :create_page
+      resources :page, controller: :pages, except: EXCEPT
 
       scope path: :pages, module: :pages, as: :page do
-        post :section,   to: 'sections#create'
-        resources :section,  controller: :sections,
-                             except: %w[ index show create ]
-        get  :templates, to: 'templates#index'
-        post :template,  to: 'templates#create'
-        resources :template, controller: :templates,
-                             except: %w[ index show create ]
+        resources :section,  controller: :sections, except: EXCEPT
+        get :templates, to: 'templates#index'
+        resources :template, controller: :templates, except: EXCEPT
       end
+      post 'pages/section',   to: 'pages/sections#create',
+                              as: :create_page_section
+      post 'pages/template',  to: 'pages/templates#create',
+                              as: :create_page_template
 
       # Shared Content
       get    'shared-content',        to: 'shared_content#index',
@@ -94,14 +96,14 @@ Rails.application.routes.draw do
 
       # Site settings
       get    'settings',           to: 'settings#index'
-      post   'settings',           to: 'settings#update'
-      post   'setting/create',     to: 'settings#create', as: :setting_create
-      delete 'setting/delete/:id', to: 'settings#delete', as: :setting_delete
+      post   'settings',           to: 'settings#update', as: :update_settings
+      post   'setting/create',     to: 'settings#create', as: :create_setting
+      delete 'setting/delete/:id', to: 'settings#delete', as: :delete_setting
 
       # Users
       get  :users, to: 'users#index'
-      post :user,  to: 'users#create'
-      resources :user, controller: :users, except: %w[ index show create ]
+      post :user,  to: 'users#create', as: :create_user
+      resources :user, controller: :users, except: EXCEPT
     end
 
     # The Ultimate Catch-All Route! Passes through to page handler,
