@@ -11,7 +11,7 @@ RSpec.describe 'Admin: Users', type: :request do
       it 'fetches the list of users in the admin area' do
         user = create :user
 
-        get admin_users_path
+        get users_path
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
@@ -21,7 +21,7 @@ RSpec.describe 'Admin: Users', type: :request do
 
     describe 'GET /admin/user/new' do
       it 'loads the form to add a new user' do
-        get admin_user_new_path
+        get new_user_path
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.new.title' ).titlecase
@@ -30,7 +30,7 @@ RSpec.describe 'Admin: Users', type: :request do
 
     describe 'POST /admin/user/new' do
       it 'fails when the form is submitted without all the details' do
-        post admin_user_new_path, params: {
+        post create_user_path, params: {
           'user[username]': Faker::Internet.unique.username
         }
 
@@ -42,7 +42,7 @@ RSpec.describe 'Admin: Users', type: :request do
       it 'fails when the username collides with an existing username' do
         create :user, username: 'test'
 
-        post admin_user_new_path, params: {
+        post create_user_path, params: {
           'user[username]': 'test',
           'user[password]': Faker::Internet.unique.password,
           'user[email]': Faker::Internet.unique.email
@@ -54,14 +54,14 @@ RSpec.describe 'Admin: Users', type: :request do
       end
 
       it 'adds a new user when the form is submitted' do
-        post admin_user_new_path, params: {
+        post create_user_path, params: {
           'user[username]': Faker::Internet.unique.username,
           'user[password]': Faker::Internet.unique.password,
           'user[email]': Faker::Internet.unique.email
         }
 
         expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to admin_user_path( User.last )
+        expect( response      ).to redirect_to edit_user_path( User.last )
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
@@ -73,7 +73,7 @@ RSpec.describe 'Admin: Users', type: :request do
       it 'loads the form to edit an existing user, without the section for editing abilities' do
         user = create :user
 
-        get admin_user_path( user )
+        get edit_user_path( user )
 
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'admin.users.edit.title' ).titlecase
@@ -85,7 +85,7 @@ RSpec.describe 'Admin: Users', type: :request do
       it 'fails to update the user when submitted with a blank username' do
         user = create :user
 
-        post admin_user_path( user ), params: {
+        put user_path( user ), params: {
           'user[username]': ''
         }
 
@@ -97,12 +97,12 @@ RSpec.describe 'Admin: Users', type: :request do
       it 'updates the user when the form is submitted' do
         user = create :user
 
-        post admin_user_path( user ), params: {
+        put user_path( user ), params: {
           'user[username]': 'new_username'
         }
 
         expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to admin_user_path( user )
+        expect( response      ).to redirect_to edit_user_path( user )
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
@@ -117,28 +117,28 @@ RSpec.describe 'Admin: Users', type: :request do
         u2 = create :user
         u3 = create :user
 
-        delete admin_user_delete_path( u2 )
+        delete user_path( u2 )
 
         expect( response      ).to     have_http_status :found
-        expect( response      ).to     redirect_to admin_users_path
+        expect( response      ).to     redirect_to users_path
         follow_redirect!
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'admin.users.index.title' ).titlecase
-        expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.users.delete.success' )
+        expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.users.destroy.success' )
         expect( response.body ).to     include u1.username
         expect( response.body ).not_to include u2.username
         expect( response.body ).to     include u3.username
       end
 
       it 'fails gracefully when attempting to delete a non-existent user' do
-        delete admin_user_delete_path( 999 )
+        delete user_path( 999 )
 
         expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to admin_users_path
+        expect( response      ).to redirect_to users_path
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
-        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.delete.failure' )
+        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.destroy.failure' )
       end
     end
   end
@@ -153,7 +153,7 @@ RSpec.describe 'Admin: Users', type: :request do
       it "includes section for editing user's admin capabilities" do
         user = create :user
 
-        get admin_user_path( user )
+        get edit_user_path( user )
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
@@ -169,12 +169,12 @@ RSpec.describe 'Admin: Users', type: :request do
 
       expect( user.capabilities.length ).to eq 0
 
-      post admin_user_path( user ), params: {
+      put user_path( user ), params: {
         "#{field_name}": 'on'
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_user_path( user )
+      expect( response      ).to redirect_to edit_user_path( user )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
