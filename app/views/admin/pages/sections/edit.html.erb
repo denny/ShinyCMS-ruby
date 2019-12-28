@@ -1,7 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-
-<%= form_for @section, url: admin_pages_section_path( @section ), method: :post do |f| %>
+<%= form_for @section, url: page_section_path( @section ), method: :put do |f| %>
   <p>
     <%= f.label :name %>
     <br><%= f.text_field :name %>

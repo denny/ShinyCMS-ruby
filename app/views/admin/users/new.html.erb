@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_for :user, url: admin_user_new_path, method: :post do |f| %>
+<%= form_for :user, url: create_user_path, method: :post do |f| %>
   <p>
     <%= f.label :username %>
     <br><%= f.text_field :username %>

@@ -4,7 +4,7 @@ class Admin::SharedContentElementPolicy < Admin::DefaultPolicy
     @this_user.can? :add, :shared_content
   end
 
-  def delete?
-    @this_user.can? :delete, :shared_content
+  def destroy?
+    @this_user.can? :destroy, :shared_content
   end
 end

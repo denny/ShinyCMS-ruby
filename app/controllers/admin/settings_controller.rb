@@ -14,7 +14,7 @@ class Admin::SettingsController < AdminController
     else
       flash[ :alert ] = t( '.failure' )
     end
-    redirect_to admin_settings_path
+    redirect_to settings_path
   end
 
   # Main form submitted; update any changed settings and report back
@@ -26,16 +26,16 @@ class Admin::SettingsController < AdminController
     else
       flash[ :alert ] = t( '.failure' )
     end
-    redirect_to admin_settings_path
+    redirect_to settings_path
   end
 
-  def delete
+  def destroy
     setting = Setting.find( params[:id] )
 
     flash[ :notice ] = t( '.success' ) if setting.destroy
-    redirect_to admin_settings_path
+    redirect_to settings_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    redirect_with_alert admin_settings_path, t( '.failure' )
+    redirect_with_alert settings_path, t( '.failure' )
   end
 
   private

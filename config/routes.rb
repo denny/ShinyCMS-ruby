@@ -5,32 +5,30 @@ Rails.application.routes.draw do
     # ========== ( Main site ) ==========
     root to: 'pages#index'
 
-    # Pages
-    get 'pages',       to: 'pages#index'
-    get 'pages/*path', to: 'pages#show'
-
     # Blogs
     if Rails.application.config.multiple_blogs_mode
       # :nocov:
-      get 'blogs',                               to: 'blogs#index'
-      get 'blog/:blog_slug',                     to: 'blogs#recent'
-      get 'blog/:blog_slug/:year/:month/:slug',  to: 'blogs#show'
-      get 'blog/:blog_slug/:year/:month',        to: 'blogs#month'
-      get 'blog/:blog_slug/:year',               to: 'blogs#year'
+      get 'blogs',                              to: 'blogs#index',
+                                                as: :view_blogs
+      get 'blog/:blog_slug',                    to: 'blogs#recent',
+                                                as: :view_blog
+      get 'blog/:blog_slug/:year/:month/:slug', to: 'blogs#show',  as: :ignore1
+      get 'blog/:blog_slug/:year/:month',       to: 'blogs#month', as: :ignore2
+      get 'blog/:blog_slug/:year',              to: 'blogs#year',  as: :ignore3
       # :nocov:
     else
-      get 'blog',                     to: 'blogs#recent', as: :blog
-      get 'blog/:year/:month/:slug',  to: 'blogs#show',   as: :blog_post,
+      get 'blog',                     to: 'blogs#recent', as: :view_blog
+      get 'blog/:year/:month/:slug',  to: 'blogs#show',   as: :ignore1,
                                       constraints: {
                                         year: %r{\d\d\d\d},
                                         month: %r{\d\d}
                                       }
-      get 'blog/:year/:month',        to: 'blogs#month',  as: :blog_month,
+      get 'blog/:year/:month',        to: 'blogs#month',  as: :ignore2,
                                       constraints: {
                                         year: %r{\d\d\d\d},
                                         month: %r{\d\d}
                                       }
-      get 'blog/:year',               to: 'blogs#year',   as: :blog_year,
+      get 'blog/:year',               to: 'blogs#year',   as: :ignore3,
                                       constraints: { year: %r{\d\d\d\d} }
     end
 
@@ -50,11 +48,10 @@ Rails.application.routes.draw do
                   password: '/user/account/password',
                   unlock: '/user/account/unlock'
                 }
-    get 'users',           to: 'users#index'
-    get 'user',            to: 'users#index'
-    get 'user/:username',  to: 'users#show',
-                           as: :user_profile,
+    get 'user/:username',  to: 'users#show',  as: :user_profile,
                            constraints: { username: User::USERNAME_REGEX }
+    get 'user',            to: 'users#index', as: :user_redirect
+    get 'users',           to: 'users#index', as: :users_redirect
 
     # ========== ( Admin area ) ==========
     get 'admin', to: 'admin#index'
@@ -62,64 +59,56 @@ Rails.application.routes.draw do
     # CKEditor (WYSIWYG editor used on various admin pages)
     mount Ckeditor::Engine => '/admin/ckeditor'
 
-    namespace :admin do
-      # Pages
-      get    'pages',          to: 'pages#index'
-      get    'page/new',       to: 'pages#new'
-      post   'page/new',       to: 'pages#create'
-      get    'page/:id',       to: 'pages#edit',       as: :page
-      post   'page/:id',       to: 'pages#update'
-      delete 'page/:id',       to: 'pages#delete',     as: :page_delete
+    EXCEPT = %w[ index show create ].freeze
 
-      namespace :pages do
-        # Page sections
-        get    'sections',     to: 'sections#index'
-        get    'section/new',  to: 'sections#new'
-        post   'section/new',  to: 'sections#create'
-        get    'section/:id',  to: 'sections#edit',    as: :section
-        post   'section/:id',  to: 'sections#update'
-        delete 'section/:id',  to: 'sections#delete',  as: :section_delete
-
-        # Page templates
-        get    'templates',    to: 'templates#index'
-        get    'template/new', to: 'templates#new'
-        post   'template/new', to: 'templates#create'
-        get    'template/:id', to: 'templates#edit',   as: :template
-        post   'template/:id', to: 'templates#update'
-        delete 'template/:id', to: 'templates#delete', as: :template_delete
-      end
-
+    scope path: 'admin', module: 'admin' do
       # Blogs
-      resources :blogs
-      namespace :blog do
-        resources :posts
-      end
+      get  :blogs, to: 'blogs#index'
+      post :blog,  to: 'blogs#create', as: :create_blog
 
-      # Shared Content
-      get    'shared-content',            to: 'shared_content#index',
-                                          as: :shared_content
-      post   'shared-content',            to: 'shared_content#update'
-      post   'shared-content/create',     to: 'shared_content#create',
-                                          as: :shared_content_create
-      delete 'shared-content/delete/:id', to: 'shared_content#delete',
-                                          as: :shared_content_delete
+      resources :blog, controller: :blogs, as: :blog, except: EXCEPT do
+        get :posts, to: 'blog/posts#index'
+        resources :post, controller: 'blog/posts', except: EXCEPT
+      end
+      post 'blog/:id/post', to: 'blog/posts#create', as: :create_blog_post
+
+      # Pages
+      get  :pages, to: 'pages#index'
+      post :page,  to: 'pages#create', as: :create_page
+      resources :page, controller: :pages, except: EXCEPT
+
+      scope path: :pages, module: :pages, as: :page do
+        get :sections,  to: 'sections#index'
+        resources :section,  controller: :sections, except: EXCEPT
+        get :templates, to: 'templates#index'
+        resources :template, controller: :templates, except: EXCEPT
+      end
+      post 'pages/section',   to: 'pages/sections#create',
+                              as: :create_page_section
+      post 'pages/template',  to: 'pages/templates#create',
+                              as: :create_page_template
 
       # Site settings
-      get    'settings',           to: 'settings#index'
-      post   'settings',           to: 'settings#update'
-      post   'setting/create',     to: 'settings#create', as: :setting_create
-      delete 'setting/delete/:id', to: 'settings#delete', as: :setting_delete
+      get    'settings',    to: 'settings#index'
+      put    'settings',    to: 'settings#update'
+      post   'setting',     to: 'settings#create'
+      delete 'setting/:id', to: 'settings#destroy', as: :delete_setting
+
+      # Shared Content
+      get    'shared-content',      to: 'shared_content#index'
+      put    'shared-content',      to: 'shared_content#update'
+      post   'shared-content',      to: 'shared_content#create'
+      delete 'shared-content/:id',  to: 'shared_content#destroy',
+                                    as: :delete_shared_content
 
       # Users
-      get    'users',    to: 'users#index'
-      get    'user/new', to: 'users#new'
-      post   'user/new', to: 'users#create'
-      get    'user/:id', to: 'users#edit',   as: :user
-      post   'user/:id', to: 'users#update'
-      delete 'user/:id', to: 'users#delete', as: :user_delete
+      get  :users, to: 'users#index'
+      post :user,  to: 'users#create', as: :create_user
+      resources :user, controller: :users, except: EXCEPT
     end
 
-    # The Ultimate Catch-All Route - passes through to page handler
+    # The Ultimate Catch-All Route! Passes through to page handler,
+    # so that we can have top-level pages - /foo instead of /pages/foo
     get '*path', to: 'pages#show'
   end
 end

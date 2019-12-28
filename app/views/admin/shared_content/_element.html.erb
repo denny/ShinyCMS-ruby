@@ -14,7 +14,7 @@
     <% end %>
   </td>
   <td class="actions">
-    <%= link_to t( 'delete' ), admin_shared_content_delete_path( fields.object ),
+    <%= link_to t( 'delete' ), delete_shared_content_path( fields.object ),
         method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
   </td>
 </tr>

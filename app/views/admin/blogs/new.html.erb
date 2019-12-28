@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_for @blog, url: admin_blogs_path, method: :post do |f| %>
+<%= form_for @blog, url: create_blog_path, method: :post do |f| %>
   <p>
     <%= f.label :name %><br>
     <%= f.text_field :name %>

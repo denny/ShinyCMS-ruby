@@ -25,12 +25,12 @@
       </td>
       <td class="actions">
         <% if Blog.multiple_blogs_mode %>
-        <%= link_to t( 'view'   ), blog_path( blog ) %>
+        <%= link_to t( 'view'   ), view_blog_path( blog ) %>
         <% else %>
-        <%= link_to t( 'view'   ), blog_path %>
+        <%= link_to t( 'view'   ), view_blog_path %>
         <% end %>
-        <%= link_to t( 'edit'   ), edit_admin_blog_path( blog ) %>
-        <%= link_to t( 'delete' ), admin_blog_path( blog ),
+        <%= link_to t( 'edit'   ), edit_blog_path( blog ) %>
+        <%= link_to t( 'delete' ), blog_path( blog ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>

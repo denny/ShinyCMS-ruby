@@ -5,7 +5,7 @@ class Admin::Pages::SectionsController < AdminController
   # Redirect to the combined page+section list
   def index
     skip_authorization
-    redirect_to admin_pages_path
+    redirect_to pages_path
   end
 
   def new
@@ -44,14 +44,14 @@ class Admin::Pages::SectionsController < AdminController
     end
   end
 
-  def delete
+  def destroy
     section = PageSection.find( params[:id] )
     authorise section
 
     flash[ :notice ] = t( '.success' ) if section.destroy
-    redirect_to admin_pages_path
+    redirect_to pages_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    redirect_with_alert admin_pages_path, t( '.failure' )
+    redirect_with_alert pages_path, t( '.failure' )
   end
 
   private
