@@ -74,7 +74,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_page_path( Page.last )
+      expect( response      ).to redirect_to edit_page_path( Page.last )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit.title' ).titlecase
@@ -92,7 +92,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_page_path( Page.last )
+      expect( response      ).to redirect_to edit_page_path( Page.last )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit.title' ).titlecase
@@ -134,7 +134,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     it 'fails to update the page when submitted with a blank name' do
       page = create :page
 
-      post page_path( page ), params: {
+      put page_path( page ), params: {
         'page[name]': ''
       }
 
@@ -146,12 +146,12 @@ RSpec.describe 'Admin: Pages', type: :request do
     it 'updates the page when the form is submitted' do
       page = create :page
 
-      post page_path( page ), params: {
+      put page_path( page ), params: {
         'page[name]': 'Updated by test'
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_page_path( page )
+      expect( response      ).to redirect_to edit_page_path( page )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit.title' ).titlecase
@@ -163,13 +163,13 @@ RSpec.describe 'Admin: Pages', type: :request do
       page = create :page
       old_slug = page.slug
 
-      post page_path( page ), params: {
+      put page_path( page ), params: {
         'page[name]': 'Updated by test',
         'page[slug]': ''
       }
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to admin_page_path( page )
+      expect( response      ).to     redirect_to edit_page_path( page )
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.pages.edit.title' ).titlecase
@@ -188,11 +188,11 @@ RSpec.describe 'Admin: Pages', type: :request do
       delete page_path( p2 )
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to admin_pages_path
+      expect( response      ).to     redirect_to pages_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.pages.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.delete.success' )
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.destroy.success' )
       expect( response.body ).to     include p1.name
       expect( response.body ).not_to include p2.name
       expect( response.body ).to     include p3.name
@@ -202,11 +202,11 @@ RSpec.describe 'Admin: Pages', type: :request do
       delete page_path( 999 )
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_pages_path
+      expect( response      ).to redirect_to pages_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.delete.failure' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.destroy.failure' )
     end
   end
 end

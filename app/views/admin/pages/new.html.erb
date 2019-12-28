@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_for :page, url: admin_page_new_path, method: :post do |f| %>
+<%= form_for :page, url: create_page_path, method: :post do |f| %>
   <p>
     <%= f.label :name %>
     <br><%= f.text_field :name %>
@@ -35,6 +35,6 @@
     <br><%= f.check_box :hidden %>
   </p>
   <p class="top-margin">
-    <%= submit_tag t( 'add' ) %>
+    <%= f.submit t( 'add' ) %>
   </p>
 <% end %>
