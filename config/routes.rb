@@ -78,6 +78,7 @@ Rails.application.routes.draw do
       resources :page, controller: :pages, except: EXCEPT
 
       scope path: :pages, module: :pages, as: :page do
+        get :sections,  to: 'sections#index'
         resources :section,  controller: :sections, except: EXCEPT
         get :templates, to: 'templates#index'
         resources :template, controller: :templates, except: EXCEPT
