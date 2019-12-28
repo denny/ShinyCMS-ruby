@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_for @template, url: admin_pages_template_path( @template ), method: :put do |f| %>
+<%= form_for @template, url: page_template_path( @template ), method: :put do |f| %>
   <p>
     <%= f.label :name %>
     <br><%= f.text_field :name %>
