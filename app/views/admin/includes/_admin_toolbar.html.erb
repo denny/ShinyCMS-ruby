@@ -42,7 +42,7 @@
     |
     Template:
   <% if current_user_can? :add, :page_templates %>
-    <%= link_to t( 'add'  ), new_pages_template_path %> /
+    <%= link_to t( 'add'  ), new_page_template_path %> /
   <% end %>
   <% if current_user_can?( :edit, :page_templates ) && @page.present? %>
     <%= link_to t( 'edit' ), edit_page_template_path( @page.template ) %> /
