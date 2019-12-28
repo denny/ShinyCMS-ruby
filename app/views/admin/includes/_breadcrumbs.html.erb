@@ -5,8 +5,14 @@
 
     <%# TODO: handle nested controllers, e.g. Pages::Sections %>
 
+    <% if controller_name == 'posts' %> <%# SO MuCH BODGE :( %>
+    <li class="breadcrumb-item"><%= link_to 'Blog',  blogs_path %></li>
+    <li class="breadcrumb-item"><%= link_to 'Posts', blog_posts_path( @blog ) %></li>
+    <li class="breadcrumb-item active"><%= @page_title.titlecase %></li>
+    <% else %>
     <li class="breadcrumb-item"><%= link_to controller_name.titlecase,
         url_for( controller: controller_name, only_path: false ) %></li>
     <li class="breadcrumb-item active"><%= @page_title.titlecase %></li>
+    <% end %>
   </ol>
 </nav>

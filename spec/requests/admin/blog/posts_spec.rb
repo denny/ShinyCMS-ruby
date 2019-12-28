@@ -8,27 +8,26 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
     sign_in @admin
   end
 
-  describe 'GET /admin/blog/posts' do
+  describe 'GET /admin/blog/1/posts' do
     it 'fetches the list of blog posts' do
-      get admin_blog_posts_path
+      get blog_posts_path( @blog )
 
       expect( response ).to have_http_status :ok
     end
   end
 
-  describe 'GET /admin/blog/posts/new' do
+  describe 'GET /admin/blog/1/posts/new' do
     it 'loads the form to create a new blog post' do
-      get new_admin_blog_post_path
+      get new_blog_post_path( @blog )
 
       expect( response ).to have_http_status :ok
     end
   end
 
-  describe 'POST /admin/blog/posts' do
+  describe 'POST /admin/blog/1/post' do
     it 'fails to create a new blog post when an incomplete form is submitted' do
-      post admin_blog_posts_path, params: {
+      post create_blog_post_path( @blog ), params: {
         blog_post: {
-          blog_id: @blog.id,
           user_id: @admin.id,
           title: Faker::Science.unique.scientist,
           body: nil
@@ -41,9 +40,8 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
     end
 
     it 'creates a new blog post when a complete form is submitted' do
-      post admin_blog_posts_path, params: {
+      post create_blog_post_path( @blog ), params: {
         blog_post: {
-          blog_id: @blog.id,
           user_id: @admin.id,
           title: Faker::Science.unique.scientist,
           body: Faker::Lorem.paragraph
@@ -53,7 +51,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       post = BlogPost.last
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to edit_admin_blog_post_path( post )
+      expect( response      ).to redirect_to edit_blog_post_path( @blog, post )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.blog.posts.edit.title' ).titlecase
@@ -61,23 +59,22 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
     end
   end
 
-  describe 'GET /admin/blog/posts/:id/edit' do
+  describe 'GET /admin/blog/1/posts/:id/edit' do
     it 'loads the form to edit an existing blog post' do
       post = create :blog_post, blog: @blog
 
-      get edit_admin_blog_post_path( post )
+      get edit_blog_post_path( @blog, post )
 
       expect( response ).to have_http_status :ok
     end
   end
 
-  describe 'POST /admin/blog/posts' do
+  describe 'POST /admin/blog/1/posts' do
     it 'fails to update the blog post when an incomplete form is submitted' do
       post = create :blog_post, blog: @blog
 
-      put admin_blog_post_path( post ), params: {
+      put blog_post_path( @blog, post ), params: {
         blog_post: {
-          blog_id: @blog.id,
           user_id: @admin.id,
           title: Faker::Science.unique.scientist,
           body: nil
@@ -92,9 +89,8 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
     it 'updates the blog post when a complete form is submitted' do
       post = create :blog_post, blog: @blog
 
-      put admin_blog_post_path( post ), params: {
+      put blog_post_path( @blog, post ), params: {
         blog_post: {
-          blog_id: @blog.id,
           user_id: @admin.id,
           title: Faker::Science.unique.scientist,
           body: Faker::Lorem.paragraph
@@ -104,7 +100,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       post = BlogPost.last
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to edit_admin_blog_post_path( post )
+      expect( response      ).to redirect_to edit_blog_post_path( @blog, post )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.blog.posts.edit.title' ).titlecase
@@ -112,16 +108,16 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
     end
   end
 
-  describe 'DELETE /admin/blog/posts/:id' do
+  describe 'DELETE /admin/blog/1/posts/:id' do
     it 'deletes the specified blog post' do
       p1 = create :blog_post, blog: @blog
       p2 = create :blog_post, blog: @blog
       p3 = create :blog_post, blog: @blog
 
-      delete admin_blog_post_path( p2 )
+      delete blog_post_path( @blog, p2 )
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to admin_blog_posts_path
+      expect( response      ).to     redirect_to blog_posts_path( @blog )
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.blog.posts.index.title' ).titlecase
@@ -132,10 +128,10 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
     end
 
     it 'fails gracefully when attempting to delete a non-existent blog post' do
-      delete admin_blog_post_path( 999 )
+      delete blog_post_path( @blog, 999 )
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_blog_posts_path
+      expect( response      ).to redirect_to blog_posts_path( @blog )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.blog.posts.index.title' ).titlecase

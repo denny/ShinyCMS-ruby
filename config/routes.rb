@@ -8,25 +8,27 @@ Rails.application.routes.draw do
     # Blogs
     if Rails.application.config.multiple_blogs_mode
       # :nocov:
-      get 'blogs',                               to: 'blogs#index'
-      get 'blog/:blog_slug',                     to: 'blogs#recent'
-      get 'blog/:blog_slug/:year/:month/:slug',  to: 'blogs#show'
-      get 'blog/:blog_slug/:year/:month',        to: 'blogs#month'
-      get 'blog/:blog_slug/:year',               to: 'blogs#year'
+      get 'blogs',                              to: 'blogs#index',
+                                                as: :view_blogs
+      get 'blog/:blog_slug',                    to: 'blogs#recent',
+                                                as: :view_blog
+      get 'blog/:blog_slug/:year/:month/:slug', to: 'blogs#show',  as: :ignore1
+      get 'blog/:blog_slug/:year/:month',       to: 'blogs#month', as: :ignore2
+      get 'blog/:blog_slug/:year',              to: 'blogs#year',  as: :ignore3
       # :nocov:
     else
-      get 'blog',                     to: 'blogs#recent', as: :blog
-      get 'blog/:year/:month/:slug',  to: 'blogs#show',   as: :blog_post,
+      get 'blog',                     to: 'blogs#recent', as: :view_blog
+      get 'blog/:year/:month/:slug',  to: 'blogs#show',   as: :ignore1,
                                       constraints: {
                                         year: %r{\d\d\d\d},
                                         month: %r{\d\d}
                                       }
-      get 'blog/:year/:month',        to: 'blogs#month',  as: :blog_month,
+      get 'blog/:year/:month',        to: 'blogs#month',  as: :ignore2,
                                       constraints: {
                                         year: %r{\d\d\d\d},
                                         month: %r{\d\d}
                                       }
-      get 'blog/:year',               to: 'blogs#year',   as: :blog_year,
+      get 'blog/:year',               to: 'blogs#year',   as: :ignore3,
                                       constraints: { year: %r{\d\d\d\d} }
     end
 
@@ -46,10 +48,10 @@ Rails.application.routes.draw do
                   password: '/user/account/password',
                   unlock: '/user/account/unlock'
                 }
-    get 'users',           to: 'users#index', as: :main_site_users_redirect
-    get 'user',            to: 'users#index', as: :main_site_user_redirect
     get 'user/:username',  to: 'users#show',  as: :user_profile,
                            constraints: { username: User::USERNAME_REGEX }
+    get 'user',            to: 'users#index', as: :user_redirect
+    get 'users',           to: 'users#index', as: :users_redirect
 
     # ========== ( Admin area ) ==========
     get 'admin', to: 'admin#index'
@@ -64,9 +66,9 @@ Rails.application.routes.draw do
       get  :blogs, to: 'blogs#index'
       post :blog,  to: 'blogs#create', as: :create_blog
 
-      resources :blog, controller: :blogs, except: EXCEPT do
-        get :posts, to: 'posts#index'
-        resources :post, controller: :posts, except: EXCEPT
+      resources :blog, controller: :blogs, as: :blog, except: EXCEPT do
+        get :posts, to: 'blog/posts#index'
+        resources :post, controller: 'blog/posts', except: EXCEPT
       end
       post 'blog/:id/post', to: 'blog/posts#create', as: :create_blog_post
 
