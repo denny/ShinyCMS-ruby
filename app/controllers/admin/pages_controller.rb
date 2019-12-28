@@ -50,14 +50,14 @@ class Admin::PagesController < AdminController
     end
   end
 
-  def delete
+  def destroy
     page = Page.find( params[:id] )
     authorise page
 
     flash[ :notice ] = t( '.success' ) if page.destroy
-    redirect_to admin_pages_path
+    redirect_to pages_path
   rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-    redirect_with_alert admin_pages_path, t( '.failure' )
+    redirect_with_alert pages_path, t( '.failure' )
   end
 
   private

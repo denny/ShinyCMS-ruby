@@ -38,10 +38,6 @@ class Admin::DefaultPolicy < DefaultPolicy
     update?
   end
 
-  def delete?
-    @this_user.can? :delete, @record.class.name.underscore.pluralize.to_sym
-  end
-
   def destroy?
     @this_user.can? :destroy, @record.class.name.underscore.pluralize.to_sym
   end

@@ -8,7 +8,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
 
   describe 'GET /admin/shared-content' do
     it 'fetches the shared content page in the admin area' do
-      get admin_shared_content_path
+      get shared_content_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.shared_content.index.title' ).titlecase
@@ -17,14 +17,14 @@ RSpec.describe 'Admin: Shared Content', type: :request do
 
   describe 'POST /admin/shared-content/create' do
     it 'adds a new Short Text element' do
-      post admin_shared_content_create_path, params: {
+      post shared_content_path, params: {
         'shared_content_element[name]': 'new_shared_content',
         'shared_content_element[content]': 'NEW AND IMPROVED!',
         'shared_content_element[content_type]': I18n.t( 'admin.elements.short_text' )
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_shared_content_path
+      expect( response      ).to redirect_to shared_content_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.shared_content.index.title' ).titlecase
@@ -33,14 +33,14 @@ RSpec.describe 'Admin: Shared Content', type: :request do
     end
 
     it 'adds a new element, with an empty content string' do
-      post admin_shared_content_create_path, params: {
+      post shared_content_path, params: {
         'shared_content_element[name]': 'shared_content_is_empty',
         'shared_content_element[content]': '',
         'shared_content_element[content_type]': I18n.t( 'admin.elements.short_text' )
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_shared_content_path
+      expect( response      ).to redirect_to shared_content_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.shared_content.index.title' ).titlecase
@@ -49,14 +49,14 @@ RSpec.describe 'Admin: Shared Content', type: :request do
     end
 
     it 'adds a new element, with a NULL content string' do
-      post admin_shared_content_create_path, params: {
+      post shared_content_path, params: {
         'shared_content_element[name]': 'shared_content_is_null',
         'shared_content_element[content]': nil,
         'shared_content_element[content_type]': I18n.t( 'admin.elements.short_text' )
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_shared_content_path
+      expect( response      ).to redirect_to shared_content_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.shared_content.index.title' ).titlecase
@@ -65,12 +65,12 @@ RSpec.describe 'Admin: Shared Content', type: :request do
     end
 
     it 'attempting to add a new shared_content element with no name fails gracefully' do
-      post admin_shared_content_create_path, params: {
+      post shared_content_path, params: {
         'shared_content_element[content]': 'MADE OF FAIL!'
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_shared_content_path
+      expect( response      ).to redirect_to shared_content_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.shared_content.index.title' ).titlecase
@@ -84,28 +84,28 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       s2 = create :shared_content_element, name: 'do_not_want'
       s3 = create :shared_content_element
 
-      delete admin_shared_content_delete_path( s2 )
+      delete delete_shared_content_path( s2 )
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to admin_shared_content_path
+      expect( response      ).to     redirect_to shared_content_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.shared_content.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.shared_content.delete.success' )
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.shared_content.destroy.success' )
       expect( response.body ).to     include s1.name
       expect( response.body ).to     include s3.name
       expect( response.body ).not_to include 'do_not_want'
     end
 
     it 'fails gracefully when attempting to delete non-existent shared content' do
-      delete admin_shared_content_delete_path( 999 )
+      delete delete_shared_content_path( 999 )
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_shared_content_path
+      expect( response      ).to redirect_to shared_content_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.shared_content.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.shared_content.delete.failure' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.shared_content.destroy.failure' )
     end
   end
 
@@ -115,14 +115,14 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       s2 = create :shared_content_element, content: 'Original content'
       create :shared_content_element
 
-      post admin_shared_content_path, params: {
+      put shared_content_path, params: {
         "shared_content[elements_attributes][1][id]": s2.id,
         "shared_content[elements_attributes][1][content]": 'Updated content',
         "shared_content[elements_attributes][1][content_type]": 'Short Text'
       }
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to admin_shared_content_path
+      expect( response      ).to     redirect_to shared_content_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.shared_content.index.title' ).titlecase
@@ -135,7 +135,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       s1 = create :shared_content_element, content: 'Original content'
       s2 = create :shared_content_element
 
-      post admin_shared_content_path, params: {
+      put shared_content_path, params: {
         "shared_content[elements_attributes][1][id]": s1.id,
         "shared_content[elements_attributes][1][name]": s2.name,
         "shared_content[elements_attributes][1][content]": 'Updated content',
@@ -143,7 +143,7 @@ RSpec.describe 'Admin: Shared Content', type: :request do
       }
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to admin_shared_content_path
+      expect( response      ).to     redirect_to shared_content_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.shared_content.index.title' ).titlecase

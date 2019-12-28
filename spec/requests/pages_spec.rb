@@ -39,37 +39,8 @@ RSpec.describe 'Pages', type: :request do
       end
     end
 
-    describe 'GET /pages' do
-      it 'fetches the default page' do
-        get '/pages'
-
-        expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title @page.title
-      end
-    end
-
-    describe 'GET /pages/page-name' do
-      it 'fetches the specified top-level page' do
-        get "/pages/#{@page.slug}"
-
-        expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title @page.title
-      end
-    end
-
-    describe 'GET /pages/section-name/page-name' do
-      it 'fetches the specified page from the specified section' do
-        page = create :page_in_section
-
-        get "/pages/#{page.section.slug}/#{page.slug}"
-
-        expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title page.title
-      end
-    end
-
     describe 'GET /page-name' do
-      it 'fetches the specified top-level page without /pages in the path' do
+      it 'fetches the specified top-level page' do
         get "/#{@page.slug}"
 
         expect( response      ).to have_http_status :ok
@@ -78,7 +49,7 @@ RSpec.describe 'Pages', type: :request do
     end
 
     describe 'GET /section-name/page-name' do
-      it 'fetches a page in a section without /pages in the path' do
+      it 'fetches the specified page from the specified section' do
         page = create :page_in_section
 
         get "/#{page.section.slug}/#{page.slug}"
@@ -88,14 +59,14 @@ RSpec.describe 'Pages', type: :request do
       end
     end
 
-    describe 'GET /pages/section-name' do
+    describe 'GET /section-name' do
       it 'fetches the first page from the specified section' do
         section = create :page_section
         create :page_in_section, title: '1st Page', section: section
         create :page_in_section, title: '2nd Page', section: section
         create :page_in_section, title: '3rd Page', section: section
 
-        get "/pages/#{section.slug}"
+        get "/#{section.slug}"
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title '1st Page'
@@ -108,38 +79,38 @@ RSpec.describe 'Pages', type: :request do
         page003 = create :page_in_section, title: '3rd Page', section: section
         page001.section.update! default_page_id: page003.id
 
-        get "/pages/#{page002.section.slug}"
+        get "/#{page002.section.slug}"
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title '3rd Page'
       end
     end
 
-    describe 'GET /pages/section-name/subsection-name/page-name' do
+    describe 'GET /section-name/subsection-name/page-name' do
       it 'fetches the specified page from the specified subsection' do
         p = create :page_in_subsection
 
-        get "/pages/#{p.section.section.slug}/#{p.section.slug}/#{p.slug}"
+        get "/#{p.section.section.slug}/#{p.section.slug}/#{p.slug}"
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title p.title
       end
     end
 
-    describe 'GET /pages/non-existent-slug' do
+    describe 'GET /non-existent-slug' do
       it 'returns a 404 if no matching page or section is found at top-level' do
-        get '/pages/non-existent-slug'
+        get '/non-existent-slug'
 
         expect( response      ).to have_http_status :not_found
         expect( response.body ).to include 'a page that does not exist'
       end
     end
 
-    describe 'GET /pages/existing-section/non-existent-slug' do
+    describe 'GET /existing-section/non-existent-slug' do
       it 'returns a 404 if no matching page or sub-section is found in section' do
         page = create :page_in_section
 
-        get "/pages/#{page.section.slug}/non-existent-slug"
+        get "/#{page.section.slug}/non-existent-slug"
 
         expect( response      ).to have_http_status :not_found
         expect( response.body ).to include 'a page that does not exist'

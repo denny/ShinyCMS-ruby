@@ -13,7 +13,7 @@ RSpec.describe 'Admin', type: :request do
       get admin_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_pages_path
+      expect( response      ).to redirect_to pages_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
@@ -45,7 +45,7 @@ RSpec.describe 'Admin', type: :request do
       get admin_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_blogs_path
+      expect( response      ).to redirect_to blogs_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.blogs.index.title' ).titlecase
@@ -58,7 +58,7 @@ RSpec.describe 'Admin', type: :request do
       get admin_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_pages_path
+      expect( response      ).to redirect_to pages_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
@@ -71,7 +71,7 @@ RSpec.describe 'Admin', type: :request do
       get admin_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_settings_path
+      expect( response      ).to redirect_to settings_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.settings.index.title' ).titlecase
@@ -84,7 +84,7 @@ RSpec.describe 'Admin', type: :request do
       get admin_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_users_path
+      expect( response      ).to redirect_to users_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase

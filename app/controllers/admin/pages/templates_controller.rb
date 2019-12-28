@@ -47,14 +47,14 @@ class Admin::Pages::TemplatesController < AdminController
     end
   end
 
-  def delete
+  def destroy
     template = PageTemplate.find( params[:id] )
     authorise template
 
     flash[ :notice ] = t( '.success' ) if template.destroy
-    redirect_to admin_pages_templates_path
+    redirect_to page_templates_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    redirect_with_alert admin_pages_templates_path, t( '.failure' )
+    redirect_with_alert page_templates_path, t( '.failure' )
   end
 
   private
