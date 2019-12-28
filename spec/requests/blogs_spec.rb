@@ -8,7 +8,7 @@ RSpec.describe 'Blogs', type: :request do
 
   describe 'GET #recent' do
     it 'returns a success response' do
-      get blog_path
+      get view_blog_path
 
       expect( response ).to have_http_status :ok
 
@@ -20,7 +20,7 @@ RSpec.describe 'Blogs', type: :request do
       create :page
       Blog.all.destroy_all
 
-      get blog_path
+      get view_blog_path
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to root_path
@@ -36,6 +36,7 @@ RSpec.describe 'Blogs', type: :request do
     it 'returns a success response' do
       post = create :blog_post, blog: @blog
 
+      # get view_blog_post_path( post )
       get "/blog/#{post.posted_at.year}/#{post.posted_at.month}/#{post.slug}"
 
       expect( response ).to have_http_status :ok

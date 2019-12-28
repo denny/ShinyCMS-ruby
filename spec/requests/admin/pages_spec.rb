@@ -17,7 +17,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       hidden_section = create :page_section, :hidden
       create :page, section: hidden_section
 
-      get admin_pages_path
+      get pages_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
@@ -32,7 +32,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
   describe 'GET /admin/page/new' do
     it 'loads the form to add a new page' do
-      get admin_page_new_path
+      get new_page_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.new.title' ).titlecase
@@ -41,7 +41,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
   describe 'POST /admin/page/new' do
     it 'fails when the form is submitted without all the details' do
-      post admin_page_new_path, params: {
+      post create_page_path, params: {
         'page[title]': 'Test'
       }
 
@@ -53,7 +53,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     it 'fails when the page slug collides with a controller namespace' do
       template = create :page_template
 
-      post admin_page_new_path, params: {
+      post create_page_path, params: {
         'page[name]': 'Test',
         'page[title]': 'Test',
         'page[slug]': 'user',
@@ -68,7 +68,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     it 'adds a new page when the form is submitted' do
       template = create :page_template
 
-      post admin_page_new_path, params: {
+      post create_page_path, params: {
         'page[name]': 'Test',
         'page[template_id]': template.id
       }
@@ -84,7 +84,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     it 'adds a new page with elements from template' do
       template = create :page_template
 
-      post admin_page_new_path, params: {
+      post create_page_path, params: {
         'page[name]': 'Test',
         'page[title]': 'Test',
         'page[slug]': 'test',
@@ -106,10 +106,27 @@ RSpec.describe 'Admin: Pages', type: :request do
     it 'loads the form to edit an existing page' do
       page = create :page
 
-      get admin_page_path( page )
+      get edit_page_path( page )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit.title' ).titlecase
+    end
+
+    it 'shows the appropriate input type for each element type' do
+      page = create :page_with_one_of_each_element_type
+
+      get edit_page_path( page )
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.pages.edit.title' ).titlecase
+
+      expect( response.body ).to match %r{<input [^>]*value="SHORT!"[^>]*>}
+      expect( response.body ).to match %r{<textarea [^>]+>\nLONG!</textarea>}
+      expect( response.body ).to match %r{<option [^>]+>spiral.png</option>}
+
+      CKE_REGEX = %r{<textarea [^>]*id="(?<cke_id>page_elements_attributes_\d+_content)"[^>]*>\nHTML!</textarea>}.freeze
+      matches = response.body.match CKE_REGEX
+      expect( response.body ).to include "CKEDITOR.replace('#{matches[:cke_id]}'"
     end
   end
 
@@ -117,7 +134,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     it 'fails to update the page when submitted with a blank name' do
       page = create :page
 
-      post admin_page_path( page ), params: {
+      post page_path( page ), params: {
         'page[name]': ''
       }
 
@@ -129,7 +146,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     it 'updates the page when the form is submitted' do
       page = create :page
 
-      post admin_page_path( page ), params: {
+      post page_path( page ), params: {
         'page[name]': 'Updated by test'
       }
 
@@ -146,7 +163,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       page = create :page
       old_slug = page.slug
 
-      post admin_page_path( page ), params: {
+      post page_path( page ), params: {
         'page[name]': 'Updated by test',
         'page[slug]': ''
       }
@@ -160,23 +177,6 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response.body ).to     include 'updated-by-test'
       expect( response.body ).not_to include old_slug
     end
-
-    it 'shows the appropriate input type for each element type' do
-      page = create :page_with_one_of_each_element_type
-
-      get admin_page_path( page )
-
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.edit.title' ).titlecase
-
-      expect( response.body ).to match %r{<input [^>]*value="SHORT!"[^>]*>}
-      expect( response.body ).to match %r{<textarea [^>]+>\nLONG!</textarea>}
-      expect( response.body ).to match %r{<option [^>]+>spiral.png</option>}
-
-      CKE_REGEX = %r{<textarea [^>]*id="(?<cke_id>page_elements_attributes_\d+_content)"[^>]*>\nHTML!</textarea>}.freeze
-      matches = response.body.match CKE_REGEX
-      expect( response.body ).to include "CKEDITOR.replace('#{matches[:cke_id]}'"
-    end
   end
 
   describe 'DELETE /admin/page/delete/:id' do
@@ -185,7 +185,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       p2 = create :page
       p3 = create :page
 
-      delete admin_page_delete_path( p2 )
+      delete page_path( p2 )
 
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to admin_pages_path
@@ -199,7 +199,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
 
     it 'fails gracefully when attempting to delete a non-existent page' do
-      delete admin_page_delete_path( 999 )
+      delete page_path( 999 )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to admin_pages_path

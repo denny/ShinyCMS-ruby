@@ -56,7 +56,7 @@ class Admin::BlogsController < AdminController
     @blog = Blog.find( params[:id] )
   rescue ActiveRecord::RecordNotFound
     skip_authorization
-    redirect_with_alert admin_blogs_path, t( '.failure' )
+    redirect_with_alert blogs_path, t( '.failure' )
   end
 
   def blog_params
