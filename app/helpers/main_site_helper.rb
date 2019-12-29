@@ -15,10 +15,11 @@ module MainSiteHelper
   def view_blog_post_path( post )
     if Blog.multiple_blogs_mode
       # :nocov:
-      "/blog/#{post.blog.slug}/#{post.year}/#{post.month}/#{post.slug}"
+      blog_slug = post.blog.slug
+      "/blog/#{blog_slug}/#{post.posted_year}/#{post.posted_month}/#{post.slug}"
       # :nocov:
     else
-      "/blog/#{post.year}/#{post.month}/#{post.slug}"
+      "/blog/#{post.posted_year}/#{post.posted_month}/#{post.slug}"
     end
   end
 end

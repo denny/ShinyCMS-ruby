@@ -29,25 +29,40 @@ class Blog < ApplicationRecord
 
   def posts
     all_posts.where( hidden: false )
+    # TODO: figure out why this is b0rked
+    # .where( 'posted_at <= current_timestamp' )
   end
 
   def hidden_posts
     all_posts.where( hidden: true )
   end
 
-  def recent_posts( page_num = 1 )
-    posts.order( posted_at: :desc ).page( page_num )
+  def find_post( year, month, slug )
+    posts_for_month( year, month ).find_by( slug: slug )
   end
 
-  def find_post( year, month, slug )
+  def posts_for_month( year, month )
     start_date = "#{year}-#{month}-01".to_date
     end_date = start_date.clone + 1.month
-    posts.find_by(
-      'created_at between ? and ? and slug = ?',
+    posts.where(
+      'posted_at between ? and ?',
       start_date.to_s,
-      end_date.to_s,
-      slug
-    )
+      end_date.to_s
+    ).order( :posted_at )
+  end
+
+  def posts_for_year( year )
+    start_date = "#{year}-01-01".to_date
+    end_date = start_date.clone + 1.year
+    posts.where(
+      'posted_at between ? and ?',
+      start_date.to_s,
+      end_date.to_s
+    ).order( :posted_at )
+  end
+
+  def recent_posts( page_num = 1 )
+    posts.order( posted_at: :desc ).page( page_num )
   end
 
   def generate_title
