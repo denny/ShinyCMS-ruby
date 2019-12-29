@@ -1,30 +1,31 @@
-<p id="notice"><%= notice %></p>
+<% @page_title = "Blog posts in #{@posts.first.posted_at.year}"  %>
 
-<h1>Blogs</h1>
+<% @sidebar_position = 'right' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Title</th>
-      <th>Slug</th>
-      <th>Hidden from menu</th>
-      <th>Hidden</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% current_month = '' %>
+<% @posts.each do |post| %>
+  <% unless post.posted_at.month == current_month %>
+  <h3>
+    <%= post.posted_at.month %>
+  </h3>
+  <% current_month = post.posted_at.month %>
+  <% end %>
 
-  <tbody>
-    <% @blogs.each do |blog| %>
-      <tr>
-        <td><%= blog.name %></td>
-        <td><%= blog.description %></td>
-        <td><%= blog.title %></td>
-        <td><%= blog.slug %></td>
-        <td><%= blog.hidden_from_menu %></td>
-        <td><%= blog.hidden %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <section>
+
+    <header>
+      <h2>
+        <%= link_to post.title, view_blog_post_path( post ) %>
+      </h2>
+      <h3>
+        Posted by <%= link_to user_display_name( post.user ), user_profile_path( post.user.username ) %>
+        at <%= post.posted_at.to_s( :time ) %>
+        on <%= post.posted_at.to_s( :shinydate ) %>
+      </h3>
+    </header>
+
+  </section>
+<% end %>
+
+<%= render partial: 'right_sidebar_join' %>
+<%= render partial: 'sidebar' %>
