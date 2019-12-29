@@ -39,10 +39,7 @@ module AdminAreaHelper
   end
 
   def render_admin_menu_item_if( condition, text, link, icon = nil )
-    return unless condition
-
-    render partial: 'admin/menu/menu__item',
-           locals: { text: text, link: link, icon: icon }
+    render_admin_menu_item( text, link, icon ) if condition
   end
 
   def render_admin_menu_section_end
