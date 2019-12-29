@@ -1,16 +1,25 @@
 <%# NTS: CoreUI free icons: https://coreui.io/icons/free/ %>
 <ul class="c-sidebar-nav">
-  <%= render_admin_menu_item( 'Dashboard', admin_path, 'speedometer' ) %>
+  <%= render_admin_menu_item_if( current_user.can?( :view_admin_dashboard ),
+      t( 'admin.dashboard.title' ), admin_path, 'speedometer' ) %>
 
+  <% if current_user.can?( :list, :pages          ) ||
+        current_user.can?( :list, :page_templates ) %>
   <%= render partial: 'admin/menu/menu_pages' %>
+  <% end %>
 
-  <%= render_admin_menu_item( 'Shared content', shared_content_path, 'list' ) %>
-
+  <% if current_user.can? :list, :blog_posts %>
   <%= render partial: 'admin/menu/menu_blogs' %>
+  <% end %>
 
+  <% if current_user.can? :list, :users %>
   <%= render partial: 'admin/menu/menu_users' %>
+  <% end %>
 
-  <%= render_admin_menu_item( 'Settings', settings_path, 'settings' ) %>
+  <% if current_user.can?( :list, :shared_content ) ||
+        current_user.can?( :list, :settings       ) %>
+  <%= render partial: 'admin/menu/menu_other' %>
+  <% end %>
 </ul>
 
 <script>

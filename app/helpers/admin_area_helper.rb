@@ -38,6 +38,10 @@ module AdminAreaHelper
            locals: { text: text, link: link, icon: icon }
   end
 
+  def render_admin_menu_item_if( condition, text, link, icon = nil )
+    render_admin_menu_item( text, link, icon ) if condition
+  end
+
   def render_admin_menu_section_end
     render partial: 'admin/menu/menu__section_end'
   end

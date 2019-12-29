@@ -1,6 +1,5 @@
 <% @page_title = t( '.title' ) %>
 
-<% if @users.present? %>
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
@@ -40,9 +39,3 @@
 <p id="pager-info">
   <%= page_entries_info @users %>
 </p>
-
-<% else %>
-<p>
-  There are currently no users to display.
-</p>
-<% end %>

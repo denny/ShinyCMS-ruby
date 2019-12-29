@@ -3,12 +3,12 @@
 
   <div class="shinycms-admin-toolbar-links">
 <% if controller_name == 'blogs' %>
-    Blog:
+    <%= t( 'admin.blogs.title' ).singularize %>:
   <% if current_user_can?( :edit, :blogs ) %>
     <%= link_to t( 'edit' ), edit_blog_path( @blog ) %>
     |
   <% end %>
-    Post:
+    <%= t( 'admin.blog.posts.title' ).singularize %>:
   <% if current_user_can? :add, :blog_posts %>
     <%= link_to t( 'add' ), new_blog_post_path %> /
   <% end %>
@@ -21,7 +21,7 @@
     |
 
 <% elsif controller_name == 'pages' %>
-    Page:
+    <%= t( 'admin.pages.title' ).singularize %>:
   <% if current_user_can? :add, :pages %>
     <%= link_to t( 'add'  ), new_page_path %> /
   <% end %>
@@ -32,15 +32,15 @@
     <%= link_to t( 'list' ), pages_path %>
   <% end %>
     |
-    Section:
+    <%= t( 'admin.pages.sections.title' ).singularize %>:
   <% if current_user_can? :add, :page_sections %>
     <%= link_to t( 'add' ), new_page_section_path %> /
   <% end %>
   <% if current_user_can?( :edit, :page_sections ) && @page&.section.present? %>
-    <%= link_to t( 'edit' ), edit_page_section_path( @page.section ) %> /
+    <%= link_to t( 'edit' ), edit_page_section_path( @page.section ) %>
   <% end %>
     |
-    Template:
+    <%= t( 'admin.pages.templates.title' ).singularize %>:
   <% if current_user_can? :add, :page_templates %>
     <%= link_to t( 'add'  ), new_page_template_path %> /
   <% end %>
@@ -53,7 +53,7 @@
     |
 
 <% elsif controller_name == 'users' %>
-    User:
+    <%= t( 'admin.users.title' ).singularize %>:
   <% if current_user_can? :add, :users %>
     <%= link_to t( 'add'  ), new_user_path %> /
   <% end %>
