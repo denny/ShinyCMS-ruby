@@ -14,6 +14,14 @@ class BlogsController < ApplicationController
     @posts = @blog.recent_posts.page( page_num )
   end
 
+  def month
+    @posts = @blog.posts_for_month( params[:year], params[:month] )
+  end
+
+  def year
+    @posts = @blog.posts_for_year( params[:year] )
+  end
+
   def show
     @post = @blog.find_post( params[:year], params[:month], params[:slug] )
   end

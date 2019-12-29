@@ -7,7 +7,7 @@
 
   <% @site_name ||= 'ShinySite' %>
   <title>
-    <%= "#{@page_title} - " if @page_title %><%= @site_name %>
+    <%= @page_title %><% ' - ' if @page_title.present? %><%= @site_name %>
   </title>
 
   <%= favicon_link_tag %>
