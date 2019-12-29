@@ -77,26 +77,22 @@ To run the linter: `rubocop`
 To run the test suite: `rspec`
 
 To install git hooks to check these automatically when you commit/push, install
-Overcommit (https://github.com/sds/overcommit) - a config file is included.
+[Overcommit](https://github.com/sds/overcommit) (a config file is included).
 
-You can view test history on CircleCI and Travis CI:  
-https://circleci.com/gh/denny/ShinyCMS-ruby  
-https://travis-ci.org/denny/ShinyCMS-ruby
-
-And test coverage information on CodeCov:  
-https://codecov.io/gh/denny/ShinyCMS-ruby
-
-And various 'code quality' information on Code Climate:  
-https://codeclimate.com/github/denny/ShinyCMS-ruby
+You can view test results on
+[CircleCI](https://circleci.com/gh/denny/ShinyCMS-ruby) and
+[Travis CI](https://travis-ci.org/denny/ShinyCMS-ruby), and test coverage
+information on [CodeCov](https://codecov.io/gh/denny/ShinyCMS-ruby).
 
 
 ## Services
 
 I use:
-* Heroku for hosting the webapp and the database
-* AWS S3 for hosting image uploads
+* Heroku to host the webapp
+* Heroku Postgres to host the database
+* AWS S3 to host image uploads
 
-(Other hosting services are available, and as far as I'm aware changing any/all
+(Other hosting services are available; as far as I'm aware changing any/all
 of these servies for alternatives should only require config changes.)
 
 The user registration and login features use Devise::PwnedPassword to check
@@ -117,8 +113,8 @@ Postgres add-on at the Hobby Dev level.
 
 [![CircleCI](https://circleci.com/gh/denny/ShinyCMS-ruby.svg?style=svg&circle-token=5d3c249b624bd720b7481eb606893737ba65a0ce)](https://circleci.com/gh/denny/ShinyCMS-ruby) - CircleCI  
 [![Travis CI](https://travis-ci.org/denny/ShinyCMS-ruby.svg?branch=master)](https://travis-ci.org/denny/ShinyCMS-ruby) - Travis CI  
-
 [![codecov](https://codecov.io/gh/denny/ShinyCMS-ruby/branch/master/graph/badge.svg?token=Pm6x6VcQ81)](https://codecov.io/gh/denny/ShinyCMS-ruby)  
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/944f9f96599145fdea77/maintainability)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)  
 [![codebeat badge](https://codebeat.co/badges/cbd8fc61-241a-4701-9716-d4264cb6d9d9)](https://codebeat.co/projects/github-com-denny-shinycms-ruby-master)  
 [![Inline docs](http://inch-ci.org/github/denny/ShinyCMS-ruby.svg?branch=master)](http://inch-ci.org/github/denny/ShinyCMS-ruby)
