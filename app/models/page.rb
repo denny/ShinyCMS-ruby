@@ -69,13 +69,14 @@ class Page < ApplicationRecord
   # Return the configured default page, or one of a few fallback options, or nil
   def self.default_page
     name_or_slug = Setting.get I18n.t( 'admin.settings.default_page' )
-    page = top_level_pages
-           .where( name: name_or_slug )
-           .or( top_level_pages
-           .where( slug: name_or_slug ) )
-           .first
-    page ||= PageSection.default_section&.default_page
-    page ||= Page.top_level_pages.min
-    page
+    top_level_pages
+      .where( name: name_or_slug )
+      .or( top_level_pages
+      .where( slug: name_or_slug ) )
+      .first ||
+
+      PageSection.default_section&.default_page ||
+
+      Page.top_level_pages.min
   end
 end
