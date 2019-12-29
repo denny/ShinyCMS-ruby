@@ -38,6 +38,13 @@ module AdminAreaHelper
            locals: { text: text, link: link, icon: icon }
   end
 
+  def render_admin_menu_item_if( condition, text, link, icon = nil )
+    return unless condition
+
+    render partial: 'admin/menu/menu__item',
+           locals: { text: text, link: link, icon: icon }
+  end
+
   def render_admin_menu_section_end
     render partial: 'admin/menu/menu__section_end'
   end
