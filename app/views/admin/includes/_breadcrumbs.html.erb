@@ -1,18 +1,27 @@
 <nav class="breadcrumbs">
   <ol class="breadcrumb border-0 m-0">
     <li class="breadcrumb-item"><%= link_to t( 'home'        ), root_path  %></li>
-    <li class="breadcrumb-item"><%= link_to t( 'admin.admin' ), admin_path %></li>
+    <li class="breadcrumb-item"><%= link_to t( 'admin.title' ), admin_path %></li>
 
-    <%# TODO: handle nested controllers, e.g. Pages::Sections %>
+    <%# TODO: handle nested controllers: Blog::Posts, Pages::Sections, etc %>
+    <%# For now, here is a terrible cheap bodge, which I genuinely feel bad about. %>
+    <% if controller_name == 'posts' %>
+    <li class="breadcrumb-item"><%= link_to t( 'admin.blogs.title'      ), blogs_path %></li>
+    <li class="breadcrumb-item"><%= link_to t( 'admin.blog.posts.title' ), blog_posts_path( @blog ) %></li>
 
-    <% if controller_name == 'posts' %> <%# SO MuCH BODGE :( %>
-    <li class="breadcrumb-item"><%= link_to 'Blog',  blogs_path %></li>
-    <li class="breadcrumb-item"><%= link_to 'Posts', blog_posts_path( @blog ) %></li>
-    <li class="breadcrumb-item active"><%= @page_title.titlecase %></li>
+    <% elsif controller_name == 'sections' %>
+    <li class="breadcrumb-item"><%= link_to t( 'admin.pages.title'          ), pages_path %></li>
+    <li class="breadcrumb-item"><%= link_to t( 'admin.pages.sections.title' ), pages_path %></li>
+
+    <% elsif controller_name == 'templates' %>
+    <li class="breadcrumb-item"><%= link_to t( 'admin.pages.title'           ), pages_path %></li>
+    <li class="breadcrumb-item"><%= link_to t( 'admin.pages.templates.title' ), page_templates_path %></li>
+
     <% else %>
-    <li class="breadcrumb-item"><%= link_to controller_name.titlecase,
-        url_for( controller: controller_name, only_path: false ) %></li>
-    <li class="breadcrumb-item active"><%= @page_title.titlecase %></li>
+    <li class="breadcrumb-item"><%= link_to t( "admin.#{controller_name}.title" ),
+                                    controller: controller_name, action: :index %></li>
     <% end %>
+
+    <li class="breadcrumb-item active"><%= @page_title.titlecase %></li>
   </ol>
 </nav>

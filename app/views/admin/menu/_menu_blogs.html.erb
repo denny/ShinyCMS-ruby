@@ -1,17 +1,34 @@
-  <%= render_admin_menu_section_start( 'Blogs', 'rss' ) %>
+  <%= render_admin_menu_section_start( t( 'admin.blogs.title' ), 'rss' ) %>
     <% if Blog.multiple_blogs_mode %>
-    <%= render_admin_menu_item( 'List blogs', blogs_path, 'library' ) %>
-    <%= render_admin_menu_item( 'Add new blog', new_blog_path, 'library-add' ) %>
-    <% elsif Blog.count == 0 %>
-    <%= render_admin_menu_item( 'Create blog', new_blog_path, 'library-add' ) %>
+
+      <%= render_admin_menu_item_if( current_user.can?( :list, :blogs ),
+          t( 'admin.blogs.index.title' ), blogs_path, 'library' ) %>
+
+      <%= render_admin_menu_item_if( current_user.can?( :add, :blogs ),
+          t( 'admin.blogs.new.title' ), new_blog_path, 'library-add' ) %>
+
     <% else %>
-    <%= render_admin_menu_item( 'Edit blog details', edit_blog_path( Blog.first ), 'library' ) %>
+      <% if Blog.count == 0 %>
+
+      <%= render_admin_menu_item_if( current_user.can?( :add, :blogs ),
+          t( 'admin.blogs.new.title' ), new_blog_path, 'library-add' ) %>
+
+      <% else %>
+
+      <%= render_admin_menu_item_if( current_user.can?( :edit, :blogs ),
+          t( 'admin.blogs.edit.title' ), edit_blog_path( Blog.first ), 'library' ) %>
+
+      <% end %>
     <% end %>
 
     <% if Blog.count > 0 %>
-    <% if BlogPost.count > 0 %>
-    <%= render_admin_menu_item( 'List blog posts', blog_posts_path, 'list' ) %>
-    <% end %>
-    <%= render_admin_menu_item( 'Add new blog post', new_blog_post_path( Blog.first ), 'pencil' ) %>
+      <%# TODO: How do these links work for multi-blog sites? How do we know which blog to post to? %>
+
+      <%= render_admin_menu_item_if( current_user.can?( :list, :blog_posts ),
+          t( 'admin.blog.posts.index.title' ), blog_posts_path( Blog.first ), 'list' ) %>
+
+      <%= render_admin_menu_item_if( current_user.can?( :add, :blog_posts ),
+          t( 'admin.blog.posts.new.title' ), new_blog_post_path( Blog.first ), 'pencil' ) %>
+
     <% end %>
   <%= render_admin_menu_section_end %>

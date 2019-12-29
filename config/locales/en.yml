@@ -76,6 +76,7 @@ en:
 
     general:
       view_admin_area: View admin area
+      view_admin_dashboard: View admin dashboard
       view_admin_toolbar: View admin toolbar
 
     users:
@@ -85,8 +86,8 @@ en:
   # ========== ( Admin Area ) ==========
 
   admin:
+    title: Admin
     admin_area: Admin area
-    admin: Admin
 
     elements:
       short_text: Short Text
@@ -95,6 +96,7 @@ en:
       html: HTML
 
     blogs:
+      title: Blogs
       index:
         title: List blogs
         empty: There are no blogs to display
@@ -116,6 +118,7 @@ en:
 
     blog:
       posts:
+        title: Posts
         index:
           title: List blog posts
           empty: There are no blog posts to display
@@ -135,7 +138,11 @@ en:
         set_post:
           failure: Couldn't find specified blog post
 
+    dashboard:
+      title: Dashboard
+
     pages:
+      title: Pages
       index:
         title: List pages
       new:
@@ -153,6 +160,7 @@ en:
         failure: Failed to delete page
 
       sections:
+        title: Sections
         new:
           title: Add new section
         edit:
@@ -168,6 +176,7 @@ en:
           failure: Failed to section page
 
       templates:
+        title: Templates
         index:
           title: List templates
         new:
@@ -184,7 +193,28 @@ en:
           success: Template deleted
           failure: Failed to delete template
 
+    other:
+      title: Other
+
+    shared_content:
+      title: Shared Content
+      index:
+        title: Shared content
+        name_placeholder: Name
+        content_placeholder: Content (can be blank)
+      create:
+        success: New shared content added
+        failure: Failed to add new shared content
+      update:
+        success: Shared content updated
+        # unchanged: Shared content unchanged
+        failure: Failed to update shared content
+      destroy:
+        success: Specified shared content deleted
+        failure: Failed to delete specified shared content
+
     settings:
+      title: Settings
       admin_ip_list: Admin IP list
       default_page: Default page
       default_section: Default section
@@ -204,23 +234,8 @@ en:
         success: Setting deleted
         failure: Failed to delete setting
 
-    shared_content:
-      index:
-        title: Shared content
-        name_placeholder: Name
-        content_placeholder: Content (can be blank)
-      create:
-        success: New shared content added
-        failure: Failed to add new shared content
-      update:
-        success: Shared content updated
-        # unchanged: Shared content unchanged
-        failure: Failed to update shared content
-      destroy:
-        success: Specified shared content deleted
-        failure: Failed to delete specified shared content
-
     users:
+      title: Users
       index:
         title: List users
       new:

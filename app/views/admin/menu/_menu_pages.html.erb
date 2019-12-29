@@ -1,7 +1,21 @@
-  <%= render_admin_menu_section_start( 'Pages', 'list-rich' ) %>
-    <%= render_admin_menu_item( 'List pages', pages_path, 'list-rich' ) %>
-    <%= render_admin_menu_item( 'New page', new_page_path, 'playlist-add' ) %>
-    <%= render_admin_menu_item( 'New section', new_page_section_path, 'playlist-add' ) %>
-    <%= render_admin_menu_item( 'List page templates', page_templates_path, 'library' ) %>
-    <%= render_admin_menu_item( 'New page template', new_page_template_path, 'library-add' ) %>
+  <%= render_admin_menu_section_start( t( 'admin.pages.title' ), 'list-rich' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :list, :page_templates ),
+        t( 'admin.pages.index.title' ), pages_path, 'list-rich' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :add, :pages ),
+        t( 'admin.pages.new.title' ), new_page_path, 'playlist-add' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :add, :page_sections ),
+        t( 'admin.pages.sections.new.title' ), new_page_section_path, 'playlist-add' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :list, :page_templates ),
+        t( 'admin.pages.templates.index.title' ), page_templates_path, 'library' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :add, :page_templates ),
+        t( 'admin.pages.templates.new.title' ), new_page_template_path, 'library-add' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :add, :page_templates ),
+        t( 'admin.pages.templates.new.title' ), new_page_template_path, 'library-add' ) %>
+
   <%= render_admin_menu_section_end %>
