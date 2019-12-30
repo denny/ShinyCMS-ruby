@@ -10,10 +10,10 @@
   <% end %>
     <%= t( 'admin.blog.posts.title' ).singularize %>:
   <% if current_user_can? :add, :blog_posts %>
-    <%= link_to t( 'add' ), new_blog_post_path %> /
+    <%= link_to t( 'add' ), new_blog_post_path( @blog ) %> /
   <% end %>
   <% if current_user_can?( :edit, :blog_posts ) && @post.present? %>
-    <%= link_to t( 'edit' ), edit_blog_post_path( @post ) %> /
+    <%= link_to t( 'edit' ), edit_blog_post_path( @blog, @post ) %> /
   <% end %>
   <% if current_user_can? :list, :blog_posts %>
     <%= link_to t( 'list' ), blog_posts_path( @blog ) %>
