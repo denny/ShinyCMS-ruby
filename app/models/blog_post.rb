@@ -34,4 +34,14 @@ class BlogPost < ApplicationRecord
   def posted_year
     posted_at.strftime( '%Y' )
   end
+
+  def teaser( paragraphs = 3 )
+    paras = body.split %r{</p>[^<]*<p>}i
+    return paras[ 0..( paragraphs - 1 ) ].join( "</p>\n<p>" ) if paras.size > 1
+
+    paras = body.split %r{<br ?/?><br ?/?>}i
+    return paras[ 0..( paragraphs - 1 ) ].join "\n<br><br>\n" if paras.size > 1
+
+    body
+  end
 end

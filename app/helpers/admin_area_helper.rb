@@ -11,13 +11,15 @@ module AdminAreaHelper
   # Return true if the page we're on might need a WYSIWYG HTML editor
   def html_editor_needed?
     controller_name == 'shared_content' ||
-      ( controller_name =~ /^blog/ && %w[ new edit ].include?( action_name )) ||
-      ( controller_name =~ /^page/ && %w[     edit ].include?( action_name ) )
+      ( action_name == 'new'  && controller_name == 'posts' ) ||
+      ( action_name == 'edit' &&
+        %w[ posts pages templates ].include?( controller_name ) )
   end
 
   def redirect_with_alert( redirect_path, alert_message )
     skip_authorization
-    redirect_to redirect_path, alert: alert_message
+    flash[ :alert ] = alert_message
+    redirect_to redirect_path
   end
 
   def render_capability_checkbox( form, capability, capability_category )
