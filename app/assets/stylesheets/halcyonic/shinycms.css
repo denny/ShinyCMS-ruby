@@ -9,6 +9,7 @@
    modify it under the terms of the GPL (version 2 or later).
 \* ================================================================ */
 
+
 #header nav ul {
   margin:               0;
 }
@@ -69,6 +70,18 @@ input {
 
 form div {
   margin:               0.5em 0;
+}
+
+
+/* ========== ( blog posts ) ========== */
+
+section header a {
+  color:                #2668ac !important;
+  text-decoration:      none;
+}
+
+section header a:hover {
+  color:                #368aee !important;
 }
 
 
