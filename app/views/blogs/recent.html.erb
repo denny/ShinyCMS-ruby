@@ -16,10 +16,7 @@
     </h3>
   </header>
 
-  <p>
-    <%= sanitize post.body %>
-    <%# TODO: post.teaser (first few paragraphs of longer posts) %>
-  </p>
+  <%= sanitize post.teaser( 3 ) %>
 
 </section>
 <% end %>
