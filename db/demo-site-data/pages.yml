@@ -6,7 +6,7 @@ Page_1:
   title: Home
   slug: home
   template_id: 1
-  hidden_from_menu: false
+  hidden_from_menu: true
   hidden: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: &1 2019-11-13 23:02:20.365551000 Z
