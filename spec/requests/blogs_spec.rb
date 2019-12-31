@@ -10,12 +10,44 @@ RSpec.describe 'Blogs', type: :request do
 
   describe 'GET #recent' do
     it 'returns a success response' do
+      post1 = create :blog_post, blog: @blog, body: <<~BODY1
+        <p>
+          First paragraph is the hook...
+        </p>
+
+        <p>
+          Second is the intro...
+        </p>
+
+        <p>
+          Third is the details...
+        </p>
+
+        <p>
+          Fourth shouldn't appear in the teaser!
+        </p>
+      BODY1
+
+      post2 = create :blog_post, blog: @blog, body: <<~BODY2
+        Not sure about this approach
+        <br><br>
+        Alternative way of doing paragraphs, basically.
+      BODY2
+
+      post3 = create :blog_post, blog: @blog
+
       get view_blog_path
 
+      # Version from my other request specs
       expect( response ).to have_http_status :ok
-
       # Version from scaffold controller spec
       expect( response ).to be_successful
+
+      expect( response.body ).to     include post1.title
+      expect( response.body ).to     include post1.teaser
+      expect( response.body ).not_to include "shouldn't appear in the teaser!"
+      expect( response.body ).to     include post2.title
+      expect( response.body ).to     include post3.title
     end
 
     it 'throws an appropriate error if no blog exists' do
