@@ -75,12 +75,14 @@ form div {
 
 /* ========== ( blog posts ) ========== */
 
-section header a {
+#content header a,
+.sidebar a {
   color:                #2668ac !important;
   text-decoration:      none;
 }
 
-section header a:hover {
+#content header a:hover,
+.sidebar a:hover {
   color:                #368aee !important;
 }
 
