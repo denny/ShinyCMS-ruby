@@ -15,6 +15,14 @@
     <%#= f.text_field :tags %>
   </p>
   -->
+  <% if current_user.can? :change_author, :blog_posts %>
+  <p>
+    <%= f.label :user_id, 'Author' %><br>
+    <%= f.select :user_id, User.that_can( :add, :blog_posts ).pluck( :username, :id ) %>
+  </p>
+  <% else %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <% end %>
   <p>
     <%= f.label :posted_at %><br>
     <%= f.text_field :posted_at %>

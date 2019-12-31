@@ -19,7 +19,7 @@
 <% if feature_enabled? :blogs %>
   <% Blog.all.each do |blog| %>
   <li>
-    <%= link_to blog.name, blog_path( blog ) %>
+    <%= link_to blog.name, view_blog_path( blog ) %>
   </li>
   <% end %>
 <% end %>
