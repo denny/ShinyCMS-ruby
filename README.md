@@ -32,7 +32,7 @@ Ideally I'll be improving on most of these as I re-implement them. :)
 ## Ruby and Rails versions
 
 I'm aiming to track latest stable Ruby and Rails, which means I started with
-Ruby 2.6.4 and Rails 6.0.0, and I'm currently on Ruby 2.6.5 and Rails 6.0.2
+Ruby 2.6.4 and Rails 6.0.0, and I'm currently on Ruby 2.7.0 and Rails 6.0.2.1
 
 I believe there are some Rails-6-isms in the code which mean it won't run on
 rails 5.x without at least minor modifications; I don't intend to put any effort
