@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Install Ruby gems
           command: |
-            bundle config set path 'vendor/bundle'
+            bundle config --local set path 'vendor/bundle'
             bundle config set deployment 'true'
             bundle check
             bundle install --jobs=4 --retry=3
