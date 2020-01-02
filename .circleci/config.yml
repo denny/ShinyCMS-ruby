@@ -5,7 +5,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.5-node-browsers
+      - image: circleci/ruby:2.7.0-node-browsers
         environment:
         - RACK_ENV=test
         - NODE_ENV=test
@@ -30,7 +30,10 @@ jobs:
 
       - run:
           name: Install Ruby gems
-          command: bundle check --path vendor/bundle || bundle install --deployment --jobs=4 --retry=3 --path vendor/bundle
+          command: |
+            bundle config --local set path 'vendor/bundle'
+            bundle config set deployment 'true'
+            bundle check || bundle install --jobs=4 --retry=3
 
       - save_cache:
           key: bundler-cache-v0.1-{{ checksum "Gemfile.lock" }}
@@ -65,7 +68,7 @@ jobs:
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
 
-            bundle exec rspec \
+            RUBYOPT='-W:no-deprecated' bundle exec rspec \
               --format progress \
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
