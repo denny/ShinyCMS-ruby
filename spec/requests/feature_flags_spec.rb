@@ -23,7 +23,7 @@ RSpec.describe 'Feature Flags', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css(
-        '#alerts',
+        '.alerts',
         text: I18n.t(
           'feature_flags.off_alert',
           feature_name: I18n.t( 'feature_flags.user_login' )
@@ -47,7 +47,7 @@ RSpec.describe 'Feature Flags', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css(
-        '#alerts',
+        '.alerts',
         text: I18n.t(
           'feature_flags.off_alert',
           feature_name: I18n.t( 'feature_flags.user_profiles' )
