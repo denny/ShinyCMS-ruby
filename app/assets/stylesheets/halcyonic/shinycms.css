@@ -1,25 +1,26 @@
-/* ================================================================ *\
-   Project:   ShinyCMS (Ruby version)
-   File:      app/assets/stylesheets/halcyonic/shinycms.css
-   Purpose:   Style overrides for applying Halcyonic to ShinyCMS
+/* ======================================================================== *\
+   Project:  ShinyCMS (Ruby version)
+   File:     app/assets/stylesheets/halcyonic/shinycms.css
+   Purpose:  Additional styles & overrides for the ShinyCMS Halcyonic theme
 
-   Copyright: (c) 2009-2019 Denny de la Haye https://denny.me
+   Copyright (c) 2009-2019 Denny de la Haye https://denny.me
 
    ShinyCMS is free software; you can redistribute it and/or
    modify it under the terms of the GPL (version 2 or later).
-\* ================================================================ */
+\* ======================================================================== */
 
 
-#header nav ul {
-  margin:               0;
+/* ===== ( main menu ) ===== */
+
+nav .sm {
+  background: none;
+  font-size: 0.875em;
 }
 
-#header nav li {
-  display:              inline;
-  list-style-type:      none;
-}
 
-#alerts {
+/* ===== ( alerts / notices ) ===== */
+
+.header .alerts {
   background:           #ffdddd;
   border-radius:        3px;
   color:                #111111;
@@ -28,7 +29,7 @@
   text-shadow:          none;
 }
 
-#notices {
+.header .notices {
   background:           #ddffdd;
   border-radius:        3px;
   color:                #111111;
@@ -37,17 +38,23 @@
   text-shadow:          none;
 }
 
-#banner p a {
+
+/* ===== ( homepage banner ) ===== */
+
+.banner p a {
   color:                #aaeeff;
   text-decoration:      none;
 }
-#banner p a:visited {
+.banner p a:visited {
   color:                #99ddff;
 }
-#banner .button-large a {
+.banner .button-large a {
   color:                #ffffff;
   text-decoration:      none;
 }
+
+
+/* ===== ( sidebars ) ===== */
 
 .sidebar li {
   border-bottom:        solid 1px #e2e6e8;
@@ -75,13 +82,13 @@ form div {
 
 /* ========== ( blog posts ) ========== */
 
-#content header a,
+.content header a,
 .sidebar a {
   color:                #2668ac !important;
   text-decoration:      none;
 }
 
-#content header a:hover,
+.content header a:hover,
 .sidebar a:hover {
   color:                #368aee !important;
 }
@@ -89,13 +96,13 @@ form div {
 
 /* ========== ( user profile pics ) ========== */
 
-.user_profile_pic {
+.user-profile-pic {
   border-radius:        5px;
   float:                right;
   max-width:            80%;
 }
 
-.user_icon {
+.user-icon {
   border-radius:        3px;
   max-width:            200px;
 }
