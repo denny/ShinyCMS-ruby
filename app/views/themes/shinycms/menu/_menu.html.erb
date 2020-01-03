@@ -1,47 +1,16 @@
-<% menu_data = build_menu_data( @page&.section ) %>
-<ul>
-<% unless menu_data[ :pages ][ :top_sections ].blank? %>
-  <% menu_data[ :pages ][ :top_sections ].each do |menu_top_section| %>
-  <li>
-    <%= link_to menu_top_section.name, url_for( "/#{menu_top_section.slug}" ) %>
-  </li>
-  <% end %>
-<% end %>
+<ul id="menu" class="sm sm-clean">
+  <%= render partial: 'themes/shinycms/menu/pages' %>
 
-<% unless menu_data[ :pages ][ :top_pages ].blank? %>
-  <% menu_data[ :pages ][ :top_pages ].each do |menu_top_page| %>
-  <li>
-    <%= link_to menu_top_page.name, url_for( "/#{menu_top_page.slug}" ) %>
-  </li>
+  <% if feature_enabled? :blogs %>
+  <%= render partial: 'themes/shinycms/menu/blog' %>
   <% end %>
-<% end %>
-
-<% if feature_enabled? :blogs %>
-  <% Blog.all.each do |blog| %>
-  <li>
-    <%= link_to blog.name, view_blog_path( blog ) %>
-  </li>
-  <% end %>
-<% end %>
 </ul>
 
-<%# TODO: Pretty sure this is all broken within sections/subsections %>
-<% unless menu_data[ :pages ][ :sections ].blank? %>
-<ul>
-  <% menu_data[ :pages ][ :sections ].each do |menu_section| %>
-  <li>
-    <%= link_to menu_section.name, url_for( "/pages/#{menu_section.slug}" ) %>
-  </li>
-  <% end %>
-</ul>
-<% end %>
-
-<% unless menu_data[ :pages ][ :pages ].blank? %>
-<ul>
-  <% menu_data[ :pages ][ :pages ].each do |menu_page| %>
-  <li>
-    <%= link_to menu_page.name, url_for( "/pages/#{menu_page.slug}" ) %>
-  </li>
-  <% end %>
-</ul>
-<% end %>
+<script>
+$(function() {
+    $('#menu').smartmenus({
+        subMenusSubOffsetX: 3,
+        subMenusSubOffsetY: -7
+    });
+});
+</script>
