@@ -1,16 +1,7 @@
-<ul id="menu" class="sm sm-clean">
+<ul id="menu" class="sm sm-mint">
   <%= render partial: 'themes/shinycms/menu/pages' %>
 
   <% if feature_enabled? :blogs %>
   <%= render partial: 'themes/shinycms/menu/blog' %>
   <% end %>
 </ul>
-
-<script>
-$(function() {
-    $('#menu').smartmenus({
-        subMenusSubOffsetX: 3,
-        subMenusSubOffsetY: -7
-    });
-});
-</script>
