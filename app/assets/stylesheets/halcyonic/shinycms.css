@@ -13,8 +13,30 @@
 /* ===== ( main menu ) ===== */
 
 nav .sm {
-  background: none;
-  font-size: 0.8em;
+  background:           none;
+  font-size:            1.1em;
+  padding-right:        0;
+}
+
+nav .sm a {
+  margin:               0 !important;
+}
+
+nav .sm li {
+  margin:               0 2em 0 0 !important;
+}
+
+nav .sm li:last-child {
+  margin:               0 !important;
+}
+
+nav .sm li li a {
+  color:                #444 !important;
+  text-shadow:          none;
+}
+
+nav .sm li li a:hover {
+  color:                #666 !important;
 }
 
 
