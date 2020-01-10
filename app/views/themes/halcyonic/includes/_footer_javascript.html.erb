@@ -1,11 +1,15 @@
 <%= javascript_pack_tag 'application' %>
-<%= javascript_pack_tag 'halcyonic' %>
+<%= javascript_pack_tag 'halcyonic'   %>
+<%#= javascript_pack_tag 'smartmenus'  %>
 
+<script src="js/smartmenus/jquery.smartmenus.min.js"></script>
 <script>
 $(function() {
-  $('#menu').SmartMenus({
-    subMenusSubOffsetX: 6,
-    subMenusSubOffsetY: -8
+  $('#menu').smartmenus({
+    mainMenuSubOffsetX: 10,
+    mainMenuSubOffsetY: 0,
+    // subMenusSubOffsetX: 6,
+    // subMenusSubOffsetY: -6
   });
 });
 </script>
