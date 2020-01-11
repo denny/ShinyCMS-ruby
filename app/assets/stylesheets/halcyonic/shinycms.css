@@ -14,7 +14,7 @@
 
 nav .sm {
   background:           none;
-  font-size:            1.1em;
+  font-size:            1.2em;
   padding-right:        0;
 }
 
@@ -30,13 +30,17 @@ nav .sm li:last-child {
   margin:               0 !important;
 }
 
-nav .sm li li a {
-  color:                #444 !important;
+nav .sm li li {
+  font-size:            0.9em;
   text-shadow:          none;
 }
 
+nav .sm li li a {
+  color:                #444 !important;
+}
+
 nav .sm li li a:hover {
-  color:                #666 !important;
+  color:                #2668ac !important;
 }
 
 
