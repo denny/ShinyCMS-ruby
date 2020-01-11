@@ -9,5 +9,7 @@
 // ========== Main Site themes ==========
 //= link shinycms.css
 //= link_tree ../images/shinycms
+
 //= link halcyonic.css
+//= link smartmenus.css
 //= link_tree ../images/halcyonic
