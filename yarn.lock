@@ -3787,6 +3787,11 @@ jest-worker@^24.9.0:
     merge-stream "^2.0.0"
     supports-color "^6.1.0"
 
+jquery@>=1.7.0, jquery@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+  integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
+
 js-base64@^2.1.8:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.5.1.tgz#1efa39ef2c5f7980bb1784ade4a8af2de3291121"
@@ -6376,6 +6381,13 @@ simple-swizzle@^0.2.2:
   integrity sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
   dependencies:
     is-arrayish "^0.3.1"
+
+smartmenus@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/smartmenus/-/smartmenus-1.1.0.tgz#19da8c61e02f7148d21510a7e5a70cd54cf4f1c7"
+  integrity sha1-GdqMYeAvcUjSFRCn5acM1Uz08cc=
+  dependencies:
+    jquery ">=1.7.0"
 
 snapdragon-node@^2.0.1:
   version "2.1.1"

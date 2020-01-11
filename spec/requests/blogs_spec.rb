@@ -59,7 +59,7 @@ RSpec.describe 'Blogs', type: :request do
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to root_path
       follow_redirect!
-      expect( response.body ).to have_css '#alerts', text: I18n.t( 'blogs.set_blog.failure' )
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'blogs.set_blog.failure' )
 
       # Version from scaffold controller spec
       expect( response ).to be_successful
@@ -86,10 +86,11 @@ RSpec.describe 'Blogs', type: :request do
       # get view_blog_month_path( blog, year, month )
       get "/blog/#{post1.posted_year}/#{post1.posted_month}"
 
-      expect( response ).to have_http_status :ok
-      # expect two blog posts
-      expect( response.body ).to     include post2.title
-      expect( response.body ).not_to include post3.title
+      expect( response      ).to     have_http_status :ok
+      # TODO: expect( response.body ).to include 'February'
+      expect( response.body ).to     have_css 'h2', text: post1.title
+      expect( response.body ).to     have_css 'h2', text: post2.title
+      expect( response.body ).not_to have_css 'h2', text: post3.title
     end
   end
 
@@ -102,10 +103,12 @@ RSpec.describe 'Blogs', type: :request do
       # get view_blog_year_path( blog, year )
       get "/blog/#{post1.posted_year}"
 
-      expect( response ).to have_http_status :ok
-      # expect two month headings, and a total of three blog posts
-      expect( response.body ).to include post2.title
-      expect( response.body ).to include post3.title
+      expect( response      ).to have_http_status :ok
+      # TODO: expect( response.body ).to include 'February'
+      # TODO: expect( response.body ).to include 'September'
+      expect( response.body ).to have_css 'h2', text: post1.title
+      expect( response.body ).to have_css 'h2', text: post2.title
+      expect( response.body ).to have_css 'h2', text: post3.title
     end
   end
 end

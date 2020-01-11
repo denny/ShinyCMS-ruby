@@ -1,5 +1,4 @@
 <% menu_data = build_menu_data( @page&.section ) %>
-<ul>
 <% unless menu_data[ :pages ][ :top_sections ].blank? %>
   <% menu_data[ :pages ][ :top_sections ].each do |menu_top_section| %>
   <li>
@@ -16,16 +15,9 @@
   <% end %>
 <% end %>
 
-<% if feature_enabled? :blogs %>
-  <% Blog.all.each do |blog| %>
-  <li>
-    <%= link_to blog.name, view_blog_path( blog ) %>
-  </li>
-  <% end %>
-<% end %>
-</ul>
 
 <%# TODO: Pretty sure this is all broken within sections/subsections %>
+
 <% unless menu_data[ :pages ][ :sections ].blank? %>
 <ul>
   <% menu_data[ :pages ][ :sections ].each do |menu_section| %>
