@@ -10,11 +10,11 @@
     <% elsif content_type == t( 'admin.elements.html' ) %>
     <%= fields.cktext_area content %>
     <% else %>
-    [ UNKNOWN ELEMENT TYPE IN SHARED CONTENT ]
+    [ <%= t( '.unknown_element_type' ) %> ]
     <% end %>
   </td>
   <td class="actions">
-    <%= link_to t( 'delete' ), delete_shared_content_path( fields.object ),
+    <%= link_to t( 'delete' ), insert_path( fields.object ),
         method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
   </td>
 </tr>

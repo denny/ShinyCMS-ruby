@@ -4,8 +4,12 @@ module MainSiteHelper
     current_user&.can? capability, category
   end
 
-  def shared_content( name )
-    SharedContentElement.where( name: name ).pick( :content )
+  def insert( name )
+    InsertSet.first.elements.where( name: name ).pick( :content )
+  end
+
+  def insert_type?( name, type )
+    InsertSet.first.elements.where( name: name ).pick( :content_type ) == type
   end
 
   def user_display_name( user = current_user )

@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_with model: @shared_content, name: 'shared_content', url: shared_content_path, method: :put do |f| %>
+<%= form_with model: @insert_set, name: 'insert_set', url: inserts_path, method: :put do |f| %>
 <table class="table table-responsive-sm table-striped">
   <%= f.fields_for :elements do |fields| %>
     <%= render partial: 'element', locals: {
@@ -12,14 +12,14 @@
   <% end %>
 </table>
 <p class="top-margin">
-  <%= submit_tag t( 'update' ) %>
+  <%= f.submit t( 'update' ) %>
 </p>
 <% end %>
 
-<%= form_for :shared_content_element, name: 'new_element', url: shared_content_path, method: :post do |f2| %>
+<%= form_for :insert_element, name: 'new_element', url: create_insert_path, method: :post do |f2| %>
   <fieldset>
     <legend>
-      Add new shared content
+      Add new insert
     </legend>
     <p>
       <%= f2.text_field :name, placeholder: t( '.name_placeholder' ), class: 'textshort' %>

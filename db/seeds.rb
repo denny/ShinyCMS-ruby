@@ -19,6 +19,9 @@ seed Setting, { name: I18n.t( 'admin.settings.default_section' ) }, {
   description: 'Default top-level section (either its name or its slug)'
 }
 
+# Inserts - these just need an empty InsertSet to group them
+seed InsertSet, { id: 1 }
+
 # Feature Flags (to turn on/off areas of site functionality)
 seed FeatureFlag, { name: 'blogs' }, {
   description: '',
@@ -45,12 +48,12 @@ seed FeatureFlag, { name: 'user_registration' }, {
 general_cc    = seed CapabilityCategory, { name: 'general'        }
 blogs_cc      = seed CapabilityCategory, { name: 'blogs'          }
 blog_posts_cc = seed CapabilityCategory, { name: 'blog_posts'     }
+inserts_cc    = seed CapabilityCategory, { name: 'inserts'        }
 pages_cc      = seed CapabilityCategory, { name: 'pages'          }
 sections_cc   = seed CapabilityCategory, { name: 'page_sections'  }
 templates_cc  = seed CapabilityCategory, { name: 'page_templates' }
 users_cc      = seed CapabilityCategory, { name: 'users'          }
 admins_cc     = seed CapabilityCategory, { name: 'admin_users'    }
-shared_cc     = seed CapabilityCategory, { name: 'shared_content' }
 settings_cc   = seed CapabilityCategory, { name: 'settings'       }
 # General
 seed Capability, { name: 'view_admin_area'      }, { category: general_cc }
@@ -67,6 +70,11 @@ seed Capability, { name: 'add',           category: blog_posts_cc }
 seed Capability, { name: 'edit',          category: blog_posts_cc }
 seed Capability, { name: 'destroy',       category: blog_posts_cc }
 seed Capability, { name: 'change_author', category: blog_posts_cc }
+# Inserts
+seed Capability, { name: 'list',    category: inserts_cc }
+seed Capability, { name: 'add',     category: inserts_cc }
+seed Capability, { name: 'edit',    category: inserts_cc }
+seed Capability, { name: 'destroy', category: inserts_cc }
 # Pages
 seed Capability, { name: 'list',    category: pages_cc }
 seed Capability, { name: 'add',     category: pages_cc }
@@ -93,11 +101,6 @@ seed Capability, { name: 'list',    category: admins_cc }
 seed Capability, { name: 'add',     category: admins_cc }
 seed Capability, { name: 'edit',    category: admins_cc }
 seed Capability, { name: 'destroy', category: admins_cc }
-# Shared Content
-seed Capability, { name: 'list',    category: shared_cc }
-seed Capability, { name: 'add',     category: shared_cc }
-seed Capability, { name: 'edit',    category: shared_cc }
-seed Capability, { name: 'destroy', category: shared_cc }
 # Site Settings
 seed Capability, { name: 'list',    category: settings_cc }
 seed Capability, { name: 'add',     category: settings_cc }
