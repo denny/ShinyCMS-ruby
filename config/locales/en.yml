@@ -68,7 +68,7 @@ en:
       pages: Pages
       page_sections: Page Sections
       page_templates: Page Templates
-      shared_content: Shared Content
+      inserts: Inserts
       users: Users
 
     blog_posts:
@@ -141,6 +141,25 @@ en:
     dashboard:
       title: Dashboard
 
+    inserts:
+      title: Inserts
+      index:
+        title: Inserts
+        name_placeholder: Name
+        content_placeholder: Content (can be blank)
+      element:
+        unknown_element_type: UNKNOWN ELEMENT TYPE IN INSERTS
+      create:
+        success: New insert added
+        failure: Failed to add new insert
+      update:
+        success: Inserts updated
+        # unchanged: Inserts unchanged
+        failure: Failed to update inserts
+      destroy:
+        success: Insert deleted
+        failure: Failed to delete insert
+
     pages:
       title: Pages
       index:
@@ -195,23 +214,6 @@ en:
 
     other:
       title: Other
-
-    shared_content:
-      title: Shared Content
-      index:
-        title: Shared content
-        name_placeholder: Name
-        content_placeholder: Content (can be blank)
-      create:
-        success: New shared content added
-        failure: Failed to add new shared content
-      update:
-        success: Shared content updated
-        # unchanged: Shared content unchanged
-        failure: Failed to update shared content
-      destroy:
-        success: Specified shared content deleted
-        failure: Failed to delete specified shared content
 
     settings:
       title: Settings

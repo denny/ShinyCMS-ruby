@@ -10,7 +10,7 @@ module AdminAreaHelper
 
   # Return true if the page we're on might need a WYSIWYG HTML editor
   def html_editor_needed?
-    controller_name == 'shared_content' ||
+    controller_name == 'inserts' ||
       ( action_name == 'new'  && controller_name == 'posts' ) ||
       ( action_name == 'edit' &&
         %w[ posts pages templates ].include?( controller_name ) )

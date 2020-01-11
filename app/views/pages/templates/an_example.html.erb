@@ -20,5 +20,8 @@
 <%= sanitize html_text %>
 
 <p class="small">
-  Contact: <%= shared_content( 'the_email' ) %>
+  Contact:
+  <% if insert_type?( 'the_email', 'Short Text' ) %>
+    <a href="mailto:<%= insert( 'the_email' ) %>"><%= insert( 'the_email' ) %></a>
+  <% end %>
 </p>
