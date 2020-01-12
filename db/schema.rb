@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_11_024723) do
+ActiveRecord::Schema.define(version: 2020_01_11_221111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,15 +175,6 @@ ActiveRecord::Schema.define(version: 2020_01_11_024723) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "shared_content_elements", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "content"
-    t.string "content_type", default: "Short Text", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_shared_content_elements_on_name", unique: true
   end
 
   create_table "user_capabilities", force: :cascade do |t|
