@@ -90,7 +90,7 @@ CapabilityCategory_8:
     time: *17
 CapabilityCategory_9:
   id: 9
-  name: shared_content
+  name: inserts
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: &18 2019-12-28 21:35:41.949579000 Z
     zone: *2

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_19_201453) do
+ActiveRecord::Schema.define(version: 2020_01_11_221111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,22 @@ ActiveRecord::Schema.define(version: 2019_12_19_201453) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_feature_flags_on_name", unique: true
+  end
+
+  create_table "insert_elements", force: :cascade do |t|
+    t.integer "set_id", null: false
+    t.string "name", null: false
+    t.string "content"
+    t.string "content_type", default: "Short Text", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_insert_elements_on_name", unique: true
+    t.index ["set_id"], name: "index_insert_elements_on_set_id"
+  end
+
+  create_table "insert_sets", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "page_elements", force: :cascade do |t|
@@ -161,15 +177,6 @@ ActiveRecord::Schema.define(version: 2019_12_19_201453) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "shared_content_elements", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "content"
-    t.string "content_type", default: "Short Text", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_shared_content_elements_on_name", unique: true
-  end
-
   create_table "user_capabilities", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "capability_id", null: false
@@ -218,6 +225,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_201453) do
   add_foreign_key "blog_posts", "users"
   add_foreign_key "blogs", "users"
   add_foreign_key "capabilities", "capability_categories", column: "category_id"
+  add_foreign_key "insert_elements", "insert_sets", column: "set_id"
   add_foreign_key "page_elements", "pages"
   add_foreign_key "page_sections", "page_sections", column: "section_id"
   add_foreign_key "page_template_elements", "page_templates", column: "template_id"

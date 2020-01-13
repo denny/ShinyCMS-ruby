@@ -72,6 +72,12 @@ Rails.application.routes.draw do
       end
       post 'blog/:id/post', to: 'blog/posts#create', as: :create_blog_post
 
+      # Inserts
+      get    'inserts',    to: 'inserts#index'
+      put    'inserts',    to: 'inserts#update'
+      post   'insert',     to: 'inserts#create',  as: :create_insert
+      delete 'insert/:id', to: 'inserts#destroy', as: :insert
+
       # Pages
       get  :pages, to: 'pages#index'
       post :page,  to: 'pages#create', as: :create_page
@@ -93,13 +99,6 @@ Rails.application.routes.draw do
       put    'settings',    to: 'settings#update'
       post   'setting',     to: 'settings#create'
       delete 'setting/:id', to: 'settings#destroy', as: :delete_setting
-
-      # Shared Content
-      get    'shared-content',      to: 'shared_content#index'
-      put    'shared-content',      to: 'shared_content#update'
-      post   'shared-content',      to: 'shared_content#create'
-      delete 'shared-content/:id',  to: 'shared_content#destroy',
-                                    as: :delete_shared_content
 
       # Users
       get  :users, to: 'users#index'
