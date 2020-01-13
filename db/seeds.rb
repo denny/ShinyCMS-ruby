@@ -4,24 +4,83 @@
 # It is used to populate the databse when you create it with `rails db:setup`
 # You can also load it (and reload it) at any time using `rails db:seed`
 
-# Settings (unset; just here to let people know that they're available)
-# TODO: replace this with the half-planned site/admin/user overrideable thing
-seed Setting, { name: I18n.t( 'admin.settings.admin_ip_list' ) }, {
-  value: '',
-  description: 'Comma/space-separated list of IP addresses allowed to access admin area'
+# Capabilities (for user authorisation, via Pundit)
+general_cc    = seed CapabilityCategory, { name: 'general'        }
+blogs_cc      = seed CapabilityCategory, { name: 'blogs'          }
+blog_posts_cc = seed CapabilityCategory, { name: 'blog_posts'     }
+inserts_cc    = seed CapabilityCategory, { name: 'inserts'        }
+pages_cc      = seed CapabilityCategory, { name: 'pages'          }
+sections_cc   = seed CapabilityCategory, { name: 'page_sections'  }
+templates_cc  = seed CapabilityCategory, { name: 'page_templates' }
+settings_cc   = seed CapabilityCategory, { name: 'settings'       }
+users_cc      = seed CapabilityCategory, { name: 'users'          }
+admins_cc     = seed CapabilityCategory, { name: 'admin_users'    }
+# General
+seed Capability, { name: 'view_admin_area'      }, { category: general_cc }
+seed Capability, { name: 'view_admin_dashboard' }, { category: general_cc }
+seed Capability, { name: 'view_admin_toolbar'   }, { category: general_cc }
+# Blogs
+seed Capability, { name: 'list',    category: blogs_cc }
+seed Capability, { name: 'add',     category: blogs_cc }
+seed Capability, { name: 'edit',    category: blogs_cc }
+seed Capability, { name: 'destroy', category: blogs_cc }
+# Blog Posts
+seed Capability, { name: 'list',          category: blog_posts_cc }
+seed Capability, { name: 'add',           category: blog_posts_cc }
+seed Capability, { name: 'edit',          category: blog_posts_cc }
+seed Capability, { name: 'destroy',       category: blog_posts_cc }
+seed Capability, { name: 'change_author', category: blog_posts_cc }
+# Inserts
+seed Capability, { name: 'list',    category: inserts_cc }
+seed Capability, { name: 'add',     category: inserts_cc }
+seed Capability, { name: 'edit',    category: inserts_cc }
+seed Capability, { name: 'destroy', category: inserts_cc }
+# Pages
+seed Capability, { name: 'list',    category: pages_cc }
+seed Capability, { name: 'add',     category: pages_cc }
+seed Capability, { name: 'edit',    category: pages_cc }
+seed Capability, { name: 'destroy', category: pages_cc }
+# Page Sections
+seed Capability, { name: 'list',    category: sections_cc }
+seed Capability, { name: 'add',     category: sections_cc }
+seed Capability, { name: 'edit',    category: sections_cc }
+seed Capability, { name: 'destroy', category: sections_cc }
+# Page Templates
+seed Capability, { name: 'list',    category: templates_cc }
+seed Capability, { name: 'add',     category: templates_cc }
+seed Capability, { name: 'edit',    category: templates_cc }
+seed Capability, { name: 'destroy', category: templates_cc }
+# Site Settings
+seed Capability, { name: 'list',    category: settings_cc }
+seed Capability, { name: 'add',     category: settings_cc }
+seed Capability, { name: 'edit',    category: settings_cc }
+seed Capability, { name: 'destroy', category: settings_cc }
+# Users
+seed Capability, { name: 'list',    category: users_cc }
+seed Capability, { name: 'add',     category: users_cc }
+seed Capability, { name: 'edit',    category: users_cc }
+seed Capability, { name: 'destroy', category: users_cc }
+seed Capability, { name: 'view_admin_notes', category: users_cc }
+# Admin Users
+seed Capability, { name: 'list',    category: admins_cc }
+seed Capability, { name: 'add',     category: admins_cc }
+seed Capability, { name: 'edit',    category: admins_cc }
+seed Capability, { name: 'destroy', category: admins_cc }
+
+# One Admin To Rule Them All
+# TODO: replace this with a rake task and/or an install script
+admin = seed User, { username: 'admin' }, {
+  email: 'admin@example.com',
+  password: 'I should change this password before I do anything else!'
 }
-seed Setting, { name: I18n.t( 'admin.settings.default_page' ) }, {
-  value: '',
-  description: 'Default top-level page (either its name or its slug)'
-}
-seed Setting, { name: I18n.t( 'admin.settings.default_section' ) }, {
-  value: '',
-  description: 'Default top-level section (either its name or its slug)'
-}
+admin.confirm
+Capability.all.each do |c|
+  admin.user_capabilities.find_or_create_by( capability_id: c.id )
+end
 
 # Feature Flags (to turn on/off areas of site functionality)
 seed FeatureFlag, { name: 'blogs' }, {
-  description: '',
+  description: 'Enable blog (or blogs) feature',
   enabled: true,
   enabled_for_admins: true
 }
@@ -41,75 +100,20 @@ seed FeatureFlag, { name: 'user_registration' }, {
   enabled_for_admins: true
 }
 
-# Capabilities (for user authorisation via Pundit)
-general_cc    = seed CapabilityCategory, { name: 'general'        }
-blogs_cc      = seed CapabilityCategory, { name: 'blogs'          }
-blog_posts_cc = seed CapabilityCategory, { name: 'blog_posts'     }
-pages_cc      = seed CapabilityCategory, { name: 'pages'          }
-sections_cc   = seed CapabilityCategory, { name: 'page_sections'  }
-templates_cc  = seed CapabilityCategory, { name: 'page_templates' }
-users_cc      = seed CapabilityCategory, { name: 'users'          }
-admins_cc     = seed CapabilityCategory, { name: 'admin_users'    }
-shared_cc     = seed CapabilityCategory, { name: 'shared_content' }
-settings_cc   = seed CapabilityCategory, { name: 'settings'       }
-# General
-seed Capability, { name: 'view_admin_area'      }, { category: general_cc }
-seed Capability, { name: 'view_admin_dashboard' }, { category: general_cc }
-seed Capability, { name: 'view_admin_toolbar'   }, { category: general_cc }
-# Blogs
-seed Capability, { name: 'list',    category: blogs_cc }
-seed Capability, { name: 'add',     category: blogs_cc }
-seed Capability, { name: 'edit',    category: blogs_cc }
-seed Capability, { name: 'destroy', category: blogs_cc }
-# Blog Posts
-seed Capability, { name: 'list',          category: blog_posts_cc }
-seed Capability, { name: 'add',           category: blog_posts_cc }
-seed Capability, { name: 'edit',          category: blog_posts_cc }
-seed Capability, { name: 'destroy',       category: blog_posts_cc }
-seed Capability, { name: 'change_author', category: blog_posts_cc }
-# Pages
-seed Capability, { name: 'list',    category: pages_cc }
-seed Capability, { name: 'add',     category: pages_cc }
-seed Capability, { name: 'edit',    category: pages_cc }
-seed Capability, { name: 'destroy', category: pages_cc }
-# Page Sections
-seed Capability, { name: 'list',    category: sections_cc }
-seed Capability, { name: 'add',     category: sections_cc }
-seed Capability, { name: 'edit',    category: sections_cc }
-seed Capability, { name: 'destroy', category: sections_cc }
-# Page Templates
-seed Capability, { name: 'list',    category: templates_cc }
-seed Capability, { name: 'add',     category: templates_cc }
-seed Capability, { name: 'edit',    category: templates_cc }
-seed Capability, { name: 'destroy', category: templates_cc }
-# Users
-seed Capability, { name: 'list',    category: users_cc }
-seed Capability, { name: 'add',     category: users_cc }
-seed Capability, { name: 'edit',    category: users_cc }
-seed Capability, { name: 'destroy', category: users_cc }
-seed Capability, { name: 'view_admin_notes', category: users_cc }
-# Admin Users
-seed Capability, { name: 'list',    category: admins_cc }
-seed Capability, { name: 'add',     category: admins_cc }
-seed Capability, { name: 'edit',    category: admins_cc }
-seed Capability, { name: 'destroy', category: admins_cc }
-# Shared Content
-seed Capability, { name: 'list',    category: shared_cc }
-seed Capability, { name: 'add',     category: shared_cc }
-seed Capability, { name: 'edit',    category: shared_cc }
-seed Capability, { name: 'destroy', category: shared_cc }
-# Site Settings
-seed Capability, { name: 'list',    category: settings_cc }
-seed Capability, { name: 'add',     category: settings_cc }
-seed Capability, { name: 'edit',    category: settings_cc }
-seed Capability, { name: 'destroy', category: settings_cc }
+# Inserts (these just need an InsertSet to exist, to tie them together)
+InsertSet.create! if InsertSet.first.blank?
 
-# One Admin To Rule Them All
-admin = seed User, { username: 'admin' }, {
-  email: 'admin@example.com',
-  password: 'I should change this password before I do anything else!'
+# Settings (unset; just here to let people know that they're available)
+# TODO: replace this with the half-planned site/admin/user overrideable thing
+seed Setting, { name: I18n.t( 'admin.settings.admin_ip_list' ) }, {
+  value: '',
+  description: 'Comma/space-separated list of IP addresses allowed to access admin area'
 }
-admin.confirm
-Capability.all.each do |c|
-  admin.user_capabilities.find_or_create_by( capability_id: c.id )
-end
+seed Setting, { name: I18n.t( 'admin.settings.default_page' ) }, {
+  value: '',
+  description: 'Default top-level page (either its name or its slug)'
+}
+seed Setting, { name: I18n.t( 'admin.settings.default_section' ) }, {
+  value: '',
+  description: 'Default top-level section (either its name or its slug)'
+}

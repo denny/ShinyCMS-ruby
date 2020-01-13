@@ -91,9 +91,9 @@ FactoryBot.define do
     end
   end
 
-  factory :shared_content_admin, parent: :admin_user do
+  factory :insert_admin, parent: :admin_user do
     after :create do |admin|
-      category = create :capability_category, name: 'shared_content'
+      category = create :capability_category, name: 'inserts'
 
       list    = create :capability, name: 'list',    category: category
       add     = create :capability, name: 'add',     category: category
