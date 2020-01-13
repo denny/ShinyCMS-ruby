@@ -114,12 +114,15 @@ RSpec.describe 'Admin: Inserts', type: :request do
   describe 'POST /admin/inserts' do
     it 'updates any insert that was changed' do
       create :insert_element, set: @set
-      create :insert_element, set: @set, content: 'Original content'
+      s2 = create :insert_element, set: @set, content: 'Original content'
       create :insert_element, set: @set
 
       # Note: the [1] here means 'the second item on the form'; it's not a db id
       put inserts_path, params: {
-        "insert_set[elements_attributes][1][content]": 'Updated content'
+        "insert_set[elements_attributes][1][id]": s2.id,
+        "insert_set[elements_attributes][1][name]": s2.name,
+        "insert_set[elements_attributes][1][content]": 'Updated content',
+        "insert_set[elements_attributes][1][content_type]": s2.content_type
       }
 
       expect( response      ).to     have_http_status :found
@@ -127,20 +130,22 @@ RSpec.describe 'Admin: Inserts', type: :request do
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.inserts.index.title' ).titlecase
-      # TODO: FIXME: had to comment these tests out temporarily so I could commit the rest
-      # expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.inserts.update.success' )
-      # expect( response.body ).not_to include 'Original content'
-      # expect( response.body ).to     include 'Updated content'
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.inserts.update.success' )
+      expect( response.body ).not_to include 'Original content'
+      expect( response.body ).to     include 'Updated content'
     end
 
     it 'shows an error message if insert names collide' do
-      create :insert_element, set: @set, content: 'Original content'
-      insert = create :insert_element, set: @set
+      s1 = create :insert_element, set: @set
+      s2 = create :insert_element, set: @set, content: 'Original content'
+      create :insert_element, set: @set
 
       # Note: the [0] here means 'the first item on the form'; it's not a db id
       put inserts_path, params: {
-        "insert_set[elements_attributes][0][name]": insert.name,
-        "insert_set[elements_attributes][0][content]": 'Updated content'
+        "insert_set[elements_attributes][1][id]": s2.id,
+        "insert_set[elements_attributes][1][name]": s1.name,
+        "insert_set[elements_attributes][1][content]": 'Updated content',
+        "insert_set[elements_attributes][1][content_type]": s2.content_type
       }
 
       expect( response      ).to     have_http_status :found

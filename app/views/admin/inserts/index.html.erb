@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_with model: @insert_set, name: 'insert_set', url: inserts_path, method: :put do |f| %>
+<%= form_for @insert_set, url: inserts_path, method: :put do |f| %>
 <table class="table table-responsive-sm table-striped">
   <%= f.fields_for :elements do |fields| %>
     <%= render partial: 'element', locals: {
