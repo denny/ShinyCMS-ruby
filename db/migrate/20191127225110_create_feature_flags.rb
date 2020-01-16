@@ -4,6 +4,7 @@ class CreateFeatureFlags < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.text :description
       t.boolean :enabled, null: false, default: false
+      t.boolean :enabled_for_logged_in, null: false, default: false
       t.boolean :enabled_for_admins, null: false, default: false
 
       t.timestamps
