@@ -1,7 +1,9 @@
 # Model class for blog posts
 class BlogPost < ApplicationRecord
-  belongs_to :user
   belongs_to :blog
+  belongs_to :author, class_name: 'User',
+                      foreign_key: 'user_id',
+                      inverse_of: 'blog_posts'
 
   # Allowed characters for slugs: a-z A-Z 0-9 . _ -
   SLUG_REGEX = %r{[-_\.a-zA-Z0-9]+}.freeze

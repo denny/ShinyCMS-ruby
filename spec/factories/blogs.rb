@@ -7,6 +7,6 @@ FactoryBot.define do
     hidden_from_menu { false }
     hidden { false }
 
-    association :user, factory: :user
+    association :owner, factory: :user
   end
 end
