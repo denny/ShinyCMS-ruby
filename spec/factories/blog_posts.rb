@@ -6,7 +6,7 @@ FactoryBot.define do
     hidden { false }
     posted_at { Time.zone.now }
 
-    association :blog, factory: :blog
-    association :user, factory: :user
+    association :blog,   factory: :blog
+    association :author, factory: :user
   end
 end
