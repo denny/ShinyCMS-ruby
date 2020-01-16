@@ -1,4 +1,4 @@
-  <%= render_admin_menu_section_start( t( 'admin.pages.title' ), 'list-rich' ) %>
+  <%= render_admin_menu_section( t( 'admin.pages.title' ), 'list-rich' ) do %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :page_templates ),
         t( 'admin.pages.index.title' ), pages_path, 'list-rich' ) %>
@@ -18,4 +18,4 @@
     <%= render_admin_menu_item_if( current_user.can?( :add, :page_templates ),
         t( 'admin.pages.templates.new.title' ), new_page_template_path, 'library-add' ) %>
 
-  <%= render_admin_menu_section_end %>
+  <% end %>
