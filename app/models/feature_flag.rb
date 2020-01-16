@@ -4,16 +4,20 @@ class FeatureFlag < ApplicationRecord
 
   # Class methods
 
+  # Returns true if all valid, else false
   def self.update_all_flags( params )
+    all_valid = true
     params['flags'].keys.map do |flag_id|
       flag = find( flag_id )
       flag_params = params['flags'][flag_id]
-      _f = flag.update(
+      valid = flag.update(
         enabled: flag_params['enabled'],
         enabled_for_logged_in: flag_params['enabled_for_logged_in'],
         enabled_for_admins: flag_params['enabled_for_admins']
       )
+      all_valid = false if !valid
       flag
     end
+    all_valid
   end
 end
