@@ -19,14 +19,12 @@ RSpec.describe 'Admin: Feature Flags', type: :request do
 
   describe 'PUT /admin/feature-flags' do
     it 'updates any feature flags that were changed' do
-      create :feature_flag, name: 'user_login'
-      s2 = create :feature_flag, name: 'user_profiles'
-      create :feature_flag, name: 'user_registration'
+      flag = create :feature_flag, name: 'user_profiles'
 
       put feature_flags_path, params: {
-        "features[flags][#{s2.id}][enabled]": true,
-        "features[flags][#{s2.id}][enabled_for_logged_in]": true,
-        "features[flags][#{s2.id}][enabled_for_admins]": true
+        "features[flags][#{flag.id}][enabled]": true,
+        "features[flags][#{flag.id}][enabled_for_logged_in]": true,
+        "features[flags][#{flag.id}][enabled_for_admins]": true
       }
 
       expect( response      ).to     have_http_status :found
@@ -38,14 +36,10 @@ RSpec.describe 'Admin: Feature Flags', type: :request do
     end
 
     it 'fails gracefully if an update is invalid' do
-      create :feature_flag, name: 'user_login'
-      s2 = create :feature_flag, name: 'user_profiles'
-      create :feature_flag, name: 'user_registration'
+      flag = create :feature_flag, name: 'user_profiles'
 
       put feature_flags_path, params: {
-        "features[flags][#{s2.id}][enabled]": true,
-        "features[flags][#{s2.id}][enabled_for_logged_in]": true,
-        "features[flags][#{s2.id}][enabled_for_admins]": true
+        "features[flags][#{flag.id}][enabled]": nil
       }
 
       expect( response      ).to     have_http_status :found
@@ -53,7 +47,7 @@ RSpec.describe 'Admin: Feature Flags', type: :request do
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.feature_flags.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.feature_flags.update.success' )
+      expect( response.body ).to     have_css '.alert-danger', text: I18n.t( 'admin.feature_flags.update.failure' )
     end
   end
 end
