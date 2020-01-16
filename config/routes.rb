@@ -72,6 +72,10 @@ Rails.application.routes.draw do
       end
       post 'blog/:id/post', to: 'blog/posts#create', as: :create_blog_post
 
+      # Feature Flags
+      get 'feature-flags', to: 'feature_flags#index'
+      put 'feature-flags', to: 'feature_flags#update'
+
       # Inserts
       get    'inserts',    to: 'inserts#index'
       put    'inserts',    to: 'inserts#update'

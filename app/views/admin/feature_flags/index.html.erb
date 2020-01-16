@@ -1,0 +1,35 @@
+<% @page_title = t( '.title' ) %>
+
+<%= form_with name: 'feature_flags', url: feature_flags_path, method: :put, local: true do |f| %>
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        <%= t( '.feature' ) %>
+      </th>
+      <th colspan="3">
+        <%= t( '.enabled_for' ) %>
+      </th>
+    </tr>
+  </thead>
+  <% @flags.each do |flag| %>
+	<tr>
+		<td>
+      <%= t( ".#{flag.name}" ) %>
+		</td>
+    <td>
+      <label><%= f.check_box "features[flags][#{flag.id}][enabled]", checked: flag.enabled? %> <%= t( '.everybody' ) %></label>
+    </td>
+    <td>
+      <label><%= f.check_box "features[flags][#{flag.id}][enabled_for_logged_in]", checked: flag.enabled_for_logged_in? %> <%= t( '.logged_in' ) %></label>
+    </td>
+    <td>
+      <label><%= f.check_box "features[flags][#{flag.id}][enabled_for_admins]", checked: flag.enabled_for_admins? %> <%= t( '.admins' ) %></label>
+    </td>
+	</tr>
+  <% end %>
+</table>
+<p class="top-margin">
+  <%= f.submit t( 'update' ) %>
+</p>
+<% end %>

@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_01_11_221111) do
     t.string "name", null: false
     t.text "description"
     t.boolean "enabled", default: false, null: false
+    t.boolean "enabled_for_logged_in", default: false, null: false
     t.boolean "enabled_for_admins", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

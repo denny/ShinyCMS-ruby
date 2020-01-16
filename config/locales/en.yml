@@ -11,7 +11,7 @@
 en:
   home: Home
 
-  # Generic CRUD verbs that are usually wanted for both main site and admin area
+  # Generic verbs, used by buttons etc, both on main site and in admin area
   add: Add
   post: Post
   view: View
@@ -140,6 +140,23 @@ en:
 
     dashboard:
       title: Dashboard
+
+    feature_flags:
+      title: Feature Flags
+      index:
+        title: Feature Flags
+        feature: Feature
+        enabled_for: Enabled for...
+        everybody: Everybody
+        logged_in: Logged-in users
+        admins: Admins
+        blogs: Blogs
+        user_login: User login
+        user_profiles: User profiles
+        user_registration: User registration
+      update:
+        success: Feature flags updated
+        failure: Failed to update feature flags
 
     inserts:
       title: Inserts
