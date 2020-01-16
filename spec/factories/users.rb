@@ -47,6 +47,22 @@ FactoryBot.define do
     end
   end
 
+  factory :feature_flags_admin, parent: :admin_user do
+    after :create do |admin|
+      category = create :capability_category, name: 'feature_flags'
+
+      list    = create :capability, name: 'list',    category: category
+      add     = create :capability, name: 'add',     category: category
+      edit    = create :capability, name: 'edit',    category: category
+      destroy = create :capability, name: 'destroy', category: category
+
+      create :user_capability, user: admin, capability: list
+      create :user_capability, user: admin, capability: add
+      create :user_capability, user: admin, capability: edit
+      create :user_capability, user: admin, capability: destroy
+    end
+  end
+
   factory :page_admin, parent: :admin_user do
     after :create do |admin|
       category = create :capability_category, name: 'pages'
