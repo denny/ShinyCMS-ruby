@@ -8,6 +8,7 @@
 general_cc    = seed CapabilityCategory, { name: 'general'        }
 blogs_cc      = seed CapabilityCategory, { name: 'blogs'          }
 blog_posts_cc = seed CapabilityCategory, { name: 'blog_posts'     }
+features_cc   = seed CapabilityCategory, { name: 'feature_flags'  }
 inserts_cc    = seed CapabilityCategory, { name: 'inserts'        }
 pages_cc      = seed CapabilityCategory, { name: 'pages'          }
 sections_cc   = seed CapabilityCategory, { name: 'page_sections'  }
@@ -30,6 +31,9 @@ seed Capability, { name: 'add',           category: blog_posts_cc }
 seed Capability, { name: 'edit',          category: blog_posts_cc }
 seed Capability, { name: 'destroy',       category: blog_posts_cc }
 seed Capability, { name: 'change_author', category: blog_posts_cc }
+# Feature Flags
+seed Capability, { name: 'list',    category: features_cc }
+seed Capability, { name: 'edit',    category: features_cc }
 # Inserts
 seed Capability, { name: 'list',    category: inserts_cc }
 seed Capability, { name: 'add',     category: inserts_cc }
@@ -82,22 +86,26 @@ end
 seed FeatureFlag, { name: 'blogs' }, {
   description: 'Enable blog (or blogs) feature',
   enabled: true,
+  enabled_for_logged_in: true,
   enabled_for_admins: true
 }
 seed FeatureFlag, { name: 'user_login' }, {
   description: 'Allow users to log in',
   enabled: false,
-  enabled_for_admins: true
+  enabled_for_logged_in: false,
+  enabled_for_admins: false
 }
 seed FeatureFlag, { name: 'user_profiles' }, {
   description: 'Allow viewing of user profiles',
   enabled: true,
+  enabled_for_logged_in: true,
   enabled_for_admins: true
 }
 seed FeatureFlag, { name: 'user_registration' }, {
   description: 'Allow users to create accounts',
-  enabled: true,
-  enabled_for_admins: true
+  enabled: false,
+  enabled_for_logged_in: false,
+  enabled_for_admins: false
 }
 
 # Inserts (these just need an InsertSet to exist, to tie them together)
