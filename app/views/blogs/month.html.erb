@@ -10,7 +10,7 @@
       <%= link_to post.title, view_blog_post_path( post ) %>
     </h2>
     <h3>
-      Posted by <%= link_to user_display_name( post.user ), user_profile_path( post.user.username ) %>
+      Posted by <%= link_to user_display_name( post.author ), user_profile_path( post.author.username ) %>
       at <%= post.posted_at.to_s( :time ) %>
       on <%= post.posted_at.to_s( :shinydate ) %>
     </h3>

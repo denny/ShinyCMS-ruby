@@ -25,7 +25,7 @@
         <%= post.title %>
       </td>
       <td>
-        <%= user_display_name( post.user ) %>
+        <%= user_display_name( post.author ) %>
       </td>
       <td>
         <%= post.posted_at.to_s( :time ) %> on <%= post.posted_at.to_s( :shinydate ) %>
