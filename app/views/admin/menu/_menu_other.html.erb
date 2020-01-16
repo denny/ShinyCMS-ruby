@@ -1,4 +1,4 @@
-  <%= render_admin_menu_section_start( t( 'admin.other.title' ), 'settings' ) %>
+  <%= render_admin_menu_section( t( 'admin.other.title' ), 'settings' ) do %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :inserts ),
         t( 'admin.inserts.title' ), inserts_path, 'list' ) %>
@@ -6,4 +6,4 @@
     <%= render_admin_menu_item_if( current_user.can?( :list, :settings ),
         t( 'admin.settings.title' ), settings_path, 'settings' ) %>
 
-  <%= render_admin_menu_section_end %>
+  <% end %>
