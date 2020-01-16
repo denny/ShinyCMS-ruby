@@ -18,5 +18,25 @@ RSpec.describe BlogPost, type: :model do
       post.generate_slug
       expect( post.slug ).to match %r{[-\w]+}
     end
+
+    it 'can create a teaser with default number of paragraphs' do
+      paras = Faker::Lorem.paragraphs( number: 5 )
+      text  = paras.join( "\n</p>\n<p>" )
+      body  = "<p>#{text}\n</p>"
+      post  = create :blog_post, body: body
+
+      expect( post.teaser ).to     match %r{<p>.+<p>.+<p>}m
+      expect( post.teaser ).not_to match %r{<p>.+<p>.+<p>.+<p>}m
+    end
+
+    it 'can create a teaser with specified number of paragraphs' do
+      paras = Faker::Lorem.paragraphs( number: 5 )
+      text  = paras.join( "\n</p>\n<p>" )
+      body  = "<p>#{text}\n</p>"
+      post  = create :blog_post, body: body
+
+      expect( post.teaser( paragraphs: 4 ) ).to     match %r{<p>.+<p>.+<p>.+<p>}m
+      expect( post.teaser( paragraphs: 4 ) ).not_to match %r{<p>.+<p>.+<p>.+<p>.+<p>}m
+    end
   end
 end
