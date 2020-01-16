@@ -9,9 +9,8 @@ class Admin::FeatureFlagsController < AdminController
 
   def update
     authorise FeatureFlag
-    @flags = FeatureFlag.update_all_flags( feature_flag_params )
 
-    if @flags.all?( &:valid? )
+    if FeatureFlag.update_all_flags( feature_flag_params )
       flash[ :notice ] = t( '.success' )
     else
       flash[ :alert  ] = t( '.failure' )
