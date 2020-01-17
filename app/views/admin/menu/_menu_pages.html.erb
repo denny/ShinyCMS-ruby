@@ -15,7 +15,4 @@
     <%= render_admin_menu_item_if( current_user.can?( :add, :page_templates ),
         t( 'admin.pages.templates.new.title' ), new_page_template_path, 'library-add' ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :add, :page_templates ),
-        t( 'admin.pages.templates.new.title' ), new_page_template_path, 'library-add' ) %>
-
   <%= render_admin_menu_section_end %>
