@@ -40,9 +40,11 @@ module AdminAreaHelper
   end
 
   def render_admin_menu_section( text, icon = nil )
-    render_admin_menu_section_start( text, icon )
-    yield
-    render_admin_menu_section_end
+    capture do
+      render_admin_menu_section_start( text, icon )
+      yield
+      render_admin_menu_section_end
+    end
   end
 
   def render_admin_menu_item( text, link, icon = nil )
