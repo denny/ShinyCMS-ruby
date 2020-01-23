@@ -26,13 +26,6 @@ require 'faker'
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  # Before hook to set up theme cruft
-  config.before( :suite ) do
-    # Make sure tests go through the 'bad theme' code in config/application.rb
-    ENV['SHINYCMS_THEME'] ||= 'TEST'
-    Dir.mkdir 'app/views/themes/TEST' unless Dir.exist? 'app/views/themes/TEST'
-  end
-
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
