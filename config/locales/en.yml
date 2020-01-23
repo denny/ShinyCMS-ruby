@@ -30,9 +30,9 @@ en:
     set_blog:
       failure: Blog not found
     sidebar:
-      recent_posts: Recent Posts
       links: Links
       links_blurb: Recommended reading from around the web
+      recent_posts: Recent Posts
 
   page:
     template_file_missing: Unable to display page; its template file is missing.
@@ -273,7 +273,7 @@ en:
 
   models:
     page_template:
-      template_file_must_exist: The template file must be in 'app/views/pages/templates'
+      template_file_must_exist: The template file must be in pages/templates
 
     concerns:
       name_title_slug:
