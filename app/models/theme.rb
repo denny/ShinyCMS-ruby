@@ -15,7 +15,7 @@ class Theme
   end
 
   # Check if the base directory matching a theme name exists on disk
-  def self.theme_exists?( theme_name )
+  def self.files_exist?( theme_name )
     return false if theme_name.blank?
 
     FileTest.directory?( Rails.root.join( 'app/views/themes', theme_name ) )
@@ -23,10 +23,10 @@ class Theme
 
   # Find the current theme, if any
   def self.current
-    theme_name = Setting.get( 'theme_name' )
-    return Theme.new( theme_name ) if theme_exists?( theme_name )
+    name = Setting.get( 'theme_name' )
+    return Theme.new( name ) if files_exist?( name )
 
-    theme_name = ENV['SHINYCMS_THEME']
-    return Theme.new( theme_name ) if theme_exists?( theme_name )
+    name = ENV['SHINYCMS_THEME']
+    return Theme.new( name ) if files_exist?( name )
   end
 end
