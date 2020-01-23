@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :set_view_paths
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  layout 'layouts/main_site.html.erb'
+  layout 'layouts/main_site'
 
   protected
 
