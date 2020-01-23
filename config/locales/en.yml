@@ -273,7 +273,7 @@ en:
 
   models:
     page_template:
-      template_file_must_exist: The template file must be in 'app/views/shinycms/pages/templates'
+      template_file_must_exist: The template file must be in pages/templates
 
     concerns:
       name_title_slug:
