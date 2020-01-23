@@ -6,6 +6,8 @@ class AdminController < ApplicationController
   before_action :check_admin_ip_list
   before_action :authenticate_user!
 
+  skip_before_action :set_view_paths
+
   layout 'admin/layouts/admin_area'
 
   # rubocop:disable Metrics/AbcSize

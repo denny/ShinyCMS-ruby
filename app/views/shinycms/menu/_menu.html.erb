@@ -1,0 +1,9 @@
+<ul id="menu" class="sm sm-clean">
+
+  <%= render partial: 'menu/pages' %>
+
+  <% if feature_enabled? :blogs %>
+  <%= render partial: 'menu/blog' %>
+  <% end %>
+
+</ul>
