@@ -43,12 +43,10 @@ class PageTemplate < ApplicationRecord
   # Class methods
 
   def self.template_dir
-    theme_name = '' # 'halcyonic' # TODO
-    if theme_name.present? # TODO
-      Rails.root.join "app/views/themes/#{theme_name}/pages/templates"
-    else
-      Rails.root.join 'app/views/shinycms/pages/templates'
-    end
+    theme = Theme.current
+    return Rails.root.join( theme.page_templates_path ) if theme
+
+    Rails.root.join 'app/views/shinycms/pages/templates'
   end
 
   # Get a list of available template files from the disk
