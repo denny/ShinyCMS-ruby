@@ -8,3 +8,6 @@
   <%= flash[ :notice ] %>
 </div>
 <% end %>
+<div class="notices">
+  <%= controller.view_paths.to_ary.join('<br>').html_safe %>
+</div>

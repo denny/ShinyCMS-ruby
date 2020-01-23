@@ -2,9 +2,9 @@ require 'rails_helper'
 require 'fileutils'
 
 RSpec.describe PageTemplate, type: :model do
-  # orig_dir = Rails.root.join( 'app', 'views', 'pages', 'templates' )
-  # temp_dir = Rails.root.join( 'app', 'views', 'pages', 'temp' )
-  # test_dir = Rails.root.join( 'spec', 'fixtures', 'templates' )
+  # orig_dir = Rails.root.join( 'app/views/shinycms/pages/templates' )
+  # temp_dir = Rails.root.join( 'app/views/shinycms/pages/temp' )
+  # test_dir = Rails.root.join( 'spec/fixtures/templates' )
 
   # before :all do
   #   FileUtils.mv orig_dir, temp_dir
@@ -39,7 +39,7 @@ RSpec.describe PageTemplate, type: :model do
 
   context 'PageTemplate.available_templates' do
     it 'returns the names of the template files in pages/templates' do
-      expect( PageTemplate.available_templates.size  ).to eq 6
+      expect( PageTemplate.available_templates.size  ).to eq 1
       expect( PageTemplate.available_templates.first ).to eq 'an_example'
     end
   end
