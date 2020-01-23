@@ -1,21 +1,6 @@
 require 'rails_helper'
-require 'fileutils'
 
 RSpec.describe PageTemplate, type: :model do
-  # orig_dir = Rails.root.join( 'app/views/shinycms/pages/templates' )
-  # temp_dir = Rails.root.join( 'app/views/shinycms/pages/temp' )
-  # test_dir = Rails.root.join( 'spec/fixtures/templates' )
-
-  # before :all do
-  #   FileUtils.mv orig_dir, temp_dir
-  #   FileUtils.mv test_dir, orig_dir
-  # end
-
-  # after :all do
-  #   FileUtils.mv orig_dir, test_dir
-  #   FileUtils.mv temp_dir, orig_dir
-  # end
-
   context '.pages' do
     it 'returns the associated pages' do
       template = create :page_template
