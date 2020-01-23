@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= render partial: 'themes/shinycms/includes/head' %>
+    <%= render partial: 'includes/head' %>
   </head>
 
   <body>
@@ -10,7 +10,7 @@
     </header>
 
     <nav id="top-nav">
-      <%= render partial: 'themes/shinycms/menu/menu' %>
+      <%= render partial: 'menu/menu' %>
     </nav>
 
     <main id="main" role="main">
@@ -18,13 +18,13 @@
     </main>
 
     <footer id="footer" class="container">
-      <%= render partial: 'themes/shinycms/includes/footer' %>
+      <%= render partial: 'includes/footer' %>
     </footer>
 
     <% if current_user_can? :view_admin_toolbar %>
       <%= render partial: 'admin/includes/admin_toolbar' %>
     <% end %>
 
-    <%= render partial: 'themes/shinycms/includes/footer_javascript' %>
+    <%= render partial: 'includes/footer_javascript' %>
   </body>
 </html>

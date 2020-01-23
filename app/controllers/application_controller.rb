@@ -2,11 +2,11 @@
 class ApplicationController < ActionController::Base
   include FeatureFlagsHelper
 
+  before_action :set_default_view_path
+  before_action :apply_theme
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # Use the layout from the theme that was set in the shinycms_theme initializer
-  theme_name = Rails.application.config.theme_name
-  layout "themes/#{theme_name}/layouts/#{theme_name}"
+  layout 'layouts/main_site.html.erb'
 
   protected
 
@@ -51,5 +51,45 @@ class ApplicationController < ActionController::Base
 
     # Override post-login redirect to take us to user's profile page
     user_profile_path( resource.username )
+  end
+
+  def set_default_view_path
+    # Set the default view path for the main site to the base ShinyCMS
+    # templates, which themes can then override, wrap, or fall back to
+    # TODO: this should probably be done in config rather than here?
+    # TODO: FIXME: this should remove default path (app/views)
+
+    # FIXME: this is horrible, and doesn't work anyway!
+    # paths_to_keep = view_paths.to_ary
+    # paths_to_keep.shift
+    # tmp_paths = prepend_view_path 'app/views/shinycms'
+    # new_path = tmp_paths.shift
+    # new_paths = [ new_path, *paths_to_keep ]
+    # view_paths = new_paths
+    # view_paths
+
+    # FIXME: this adds the new path but doesn't remove the default one
+    prepend_view_path 'app/views/shinycms'
+  end
+
+  # Check if the base directory matching a theme name exists on disk
+  def theme_exists?( theme_name )
+    return false if theme_name.blank?
+
+    FileTest.directory?( Rails.root.join( 'app/views/themes', theme_name ) )
+  end
+
+  # Apply the configured theme, if any, by adding it to front of view paths
+  def apply_theme
+    theme_name = Setting.get( 'theme_name' )
+    if theme_exists?( theme_name )
+      prepend_view_path "app/views/themes/#{theme_name}"
+      return
+    end
+
+    theme_name = ENV['SHINYCMS_THEME']
+    return unless theme_exists?( theme_name )
+
+    prepend_view_path "app/views/themes/#{theme_name}"
   end
 end

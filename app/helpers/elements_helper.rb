@@ -5,11 +5,9 @@ module ElementsHelper
     I18n.t( 'admin.elements' ).values
   end
 
-  # Provide filenames for use in select inputs for filename elements
+  # Provide filenames for use in select inputs for image elements
   def select_filenames( path = nil )
-    path ||= Rails.root.join(
-      'public', 'images', Rails.application.config.theme_name
-    )
+    path ||= Rails.root.join( 'public/images' )
     filenames = Dir.glob '*?.?*', base: path
     filenames.sort
   end
