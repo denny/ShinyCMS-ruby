@@ -97,6 +97,7 @@ search:
 ## Do not consider these keys missing:
 ignore_missing:
   # jQuery
+  - date.month_names
   - error
 #  - errors.messages.not_saved
 # - 'errors.messages.{accepted,blank,invalid,too_short,too_long}'
