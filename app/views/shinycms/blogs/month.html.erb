@@ -1,4 +1,4 @@
-<% @page_title = "Blog posts in #{@posts.first.posted_at.month} #{@posts.first.posted_at.year}"  %>
+<% @page_title = "Blog posts in #{I18n.t("date.month_names")[@posts.first.posted_at.month]} #{@posts.first.posted_at.year}"  %>
 
 <% @sidebar_position = 'right' %>
 
