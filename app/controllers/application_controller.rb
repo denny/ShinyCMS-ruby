@@ -54,8 +54,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for( resource )
     check_for_pwnage( resource )
 
-    if request.referer.present?
-      return request.referer unless request.referer == new_user_session_url
+    if request.referer.present? && request.referer != new_user_session_url
+      return request.referer
     end
 
     return admin_path if resource.can? :view_admin_area
