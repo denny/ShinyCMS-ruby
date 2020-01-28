@@ -9,6 +9,14 @@
    modify it under the terms of the GPL (version 2 or later).
 \* ======================================================================== */
 
+/* ===== ( Halcyonic's stylesheet seems to hide all checkboxes? ) ===== */
+
+input[type="checkbox"] {
+  -moz-appearance:      checkbox;
+  -webkit-appearance:   checkbox;
+  appearance:           auto;
+}
+
 
 /* ===== ( main menu ) ===== */
 

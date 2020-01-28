@@ -38,7 +38,8 @@ en:
     template_file_missing: Unable to display page; its template file is missing.
 
   user:
-    edit_profile: Edit profile
+    view_profile: View your profile
+    edit_profile: Edit your profile
     log_in: Log in
     log_out: Log out
     register: Register
