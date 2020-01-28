@@ -2,6 +2,7 @@
 class ApplicationController < ActionController::Base
   include FeatureFlagsHelper
 
+  before_action :store_return_to
   before_action :set_view_paths
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -48,8 +49,14 @@ class ApplicationController < ActionController::Base
       # :nocov:
     end
 
-    # Override post-login redirect to take us to user's profile page
+    # Override post-login redirect
+    return request.referer if request.referer && request.referer != new_user_session_url
+    return admin_path      if resource.can? :view_admin_area
     user_profile_path( resource.username )
+  end
+
+  def store_return_to
+    session[ :return_to ] = request.url
   end
 
   def set_view_paths
