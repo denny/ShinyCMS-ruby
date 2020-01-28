@@ -6,7 +6,7 @@
 <% @posts.each do |post| %>
   <% unless post.posted_at.month == current_month %>
   <h3>
-    <%= post.posted_at.month %>
+    <%= I18n.t('date.month_names')[post.posted_at.month] %>
   </h3>
   <% current_month = post.posted_at.month %>
   <% end %>
