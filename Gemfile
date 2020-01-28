@@ -56,7 +56,7 @@ source 'https://rubygems.org' do
   group :test do
     # Integration tests (request specs)
     gem 'capybara', '>= 2.15'
-    # Analyse and report on test coverage via CodeCov.io
+    # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     gem 'rspec_junit_formatter'
   end
