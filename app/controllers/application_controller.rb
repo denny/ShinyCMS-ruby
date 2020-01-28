@@ -2,7 +2,6 @@
 class ApplicationController < ActionController::Base
   include FeatureFlagsHelper
 
-  before_action :store_return_to
   before_action :set_view_paths
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -61,10 +60,6 @@ class ApplicationController < ActionController::Base
     return admin_path if resource.can? :view_admin_area
 
     user_profile_path( resource.username )
-  end
-
-  def store_return_to
-    session[ :return_to ] = request.url
   end
 
   def set_view_paths
