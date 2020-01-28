@@ -41,17 +41,23 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Check user's password against pwned password service and warn if necessary
+  def check_for_pwnage( resource )
+    return unless resource.respond_to?( :pwned? ) && resource.pwned?
+
+    set_flash_message! :alert, :warn_pwned
+  end
+
+  # Override post-login redirect
   def after_sign_in_path_for( resource )
-    # Check user's password against pwned password service and warn if necessary
-    if resource.respond_to?( :pwned? ) && resource.pwned?
-      # :nocov:
-      set_flash_message! :alert, :warn_pwned
-      # :nocov:
+    check_for_pwnage( resource )
+
+    if request.referer.present?
+      return request.referer unless request.referer == new_user_session_url
     end
 
-    # Override post-login redirect
-    return request.referer if request.referer && request.referer != new_user_session_url
-    return admin_path      if resource.can? :view_admin_area
+    return admin_path if resource.can? :view_admin_area
+
     user_profile_path( resource.username )
   end
 
