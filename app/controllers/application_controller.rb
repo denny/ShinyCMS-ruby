@@ -45,7 +45,9 @@ class ApplicationController < ActionController::Base
   def check_for_pwnage( resource )
     return unless resource.respond_to?( :pwned? ) && resource.pwned?
 
+    # :nocov:
     set_flash_message! :alert, :warn_pwned
+    # :nocov:
   end
 
   # Override post-login redirect
