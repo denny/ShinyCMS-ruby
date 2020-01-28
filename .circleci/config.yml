@@ -5,7 +5,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.7.0-node-browsers
+      - image: circleci/ruby:2.6.5-node-browsers
         environment:
         - RACK_ENV=test
         - NODE_ENV=test
@@ -68,7 +68,7 @@ jobs:
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
 
-            RUBYOPT='-W:no-deprecated' bundle exec rspec \
+            bundle exec rspec \
               --format progress \
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
