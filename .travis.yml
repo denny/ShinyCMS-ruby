@@ -24,4 +24,4 @@ before_script:
   - bundle exec rails db:schema:load
 
 script:
-  - RUBYOPT='-W:no-deprecated' bundle exec rspec
+  - bundle exec rspec
