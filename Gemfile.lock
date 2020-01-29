@@ -62,6 +62,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2)
+    acts-as-taggable-on (6.5.0)
+      activerecord (>= 5.0, < 6.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
@@ -319,6 +321,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-session_store!
+  acts-as-taggable-on!
   awesome_print!
   aws-sdk-s3!
   bcrypt (~> 3.1.7)!
@@ -350,4 +353,4 @@ DEPENDENCIES
   webpacker (~> 4.2)!
 
 BUNDLED WITH
-   2.1.2
+   2.1.4
