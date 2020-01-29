@@ -15,7 +15,7 @@
                   <h2>Log in</h2>
                   <%= form_for( :user, url: user_session_path, method: :post ) do |f| %>
                     <div class="field">
-                      <%= f.text_field :login, autofocus: true, autocomplete: 'email', placeholder: 'Username or email' %>
+                      <%= f.text_field :login, autocomplete: 'email', placeholder: 'Username or email' %>
                     </div>
                     <div class="field">
                       <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Password' %>
