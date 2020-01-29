@@ -89,6 +89,12 @@ seed FeatureFlag, { name: 'blogs' }, {
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
+seed FeatureFlag, { name: 'tags' }, {
+  description: 'Enable tag features',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
 seed FeatureFlag, { name: 'user_login' }, {
   description: 'Allow users to log in',
   enabled: false,

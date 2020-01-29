@@ -1,5 +1,7 @@
 # Methods that might be useful in templates on the main site
 module MainSiteHelper
+  include ActsAsTaggableOn::TagsHelper
+
   def current_user_can?( capability, category = :general )
     current_user&.can? capability, category
   end
