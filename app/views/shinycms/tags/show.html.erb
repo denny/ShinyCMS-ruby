@@ -1,0 +1,8 @@
+<h2>
+  Blog posts tagged with '<%= @tag %>'
+</h2>
+<ul>
+  <% @posts.each do |post| %>
+  <li><%= link_to post.title, view_blog_post_path( post ) %></li>
+  <% end %>
+</ul>

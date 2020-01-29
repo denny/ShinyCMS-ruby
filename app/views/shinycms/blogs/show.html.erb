@@ -17,6 +17,9 @@
 
   <%= sanitize @post.body %>
 
+  <footer>
+    Tags: <% @post.tag_list.each do |tag| %><%= link_to tag, tag_path( tag ) %> <% end %>
+  </footer>
 </section>
 
 <%= render partial: 'right_sidebar_join' %>
