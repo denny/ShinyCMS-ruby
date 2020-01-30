@@ -18,6 +18,10 @@ module MainSiteHelper
     user.display_name.presence || user.username
   end
 
+  def user_profile_link( user = current_user )
+    link_to user_display_name( user ), user_profile_path( user.username )
+  end
+
   def view_blog_post_path( post )
     if Blog.multiple_blogs_mode
       # :nocov:
