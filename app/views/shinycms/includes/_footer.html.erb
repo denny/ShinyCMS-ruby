@@ -1,6 +1,6 @@
 <p>
 	<% if user_signed_in? %>
-	Welcome back <%= link_to user_display_name, user_profile_path( current_user.username ) %>!
+	Welcome back <%= user_profile_link %>!
 	( <%= link_to t( 'edit' ).downcase, edit_user_registration_path %> |
     <%= link_to t( 'user.log_out' ).downcase, destroy_user_session_path, method: :delete %> )
 	<% else %>

@@ -9,7 +9,7 @@
       <%= link_to @post.title, view_blog_post_path( @post ) %>
     </h2>
     <h3>
-      Posted by <%= link_to user_display_name( @post.author ), user_profile_path( @post.author.username ) %>
+      Posted by <%= user_profile_link( @post.author ) %>
       at <%= @post.posted_at.to_s( :time ) %>
       on <%= @post.posted_at.to_s( :shinydate ) %>
     </h3>
@@ -17,6 +17,9 @@
 
   <%= sanitize @post.body %>
 
+  <footer>
+    Tags: <% @post.tag_list.each do |tag| %><%= link_to tag, tag_path( tag ) %> <% end %>
+  </footer>
 </section>
 
 <%= render partial: 'right_sidebar_join' %>
