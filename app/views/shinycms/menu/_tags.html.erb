@@ -1,0 +1,13 @@
+<li>
+  <%= link_to t( 'tags.index.title' ), tags_path %>
+  <% menu_tags = ActsAsTaggableOn::Tag.most_used( 5 ) %>
+  <% if menu_tags.present? %>
+  <ul>
+    <% menu_tags.each do |menu_tag| %>
+    <li>
+      <%= link_to menu_tag.name, tag_path( menu_tag.name ) %>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
+</li>

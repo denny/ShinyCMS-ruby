@@ -37,6 +37,10 @@ en:
   page:
     template_file_missing: Unable to display page; its template file is missing.
 
+  tags:
+    index:
+      title: Tags
+
   user:
     view_profile: View your profile
     edit_profile: Edit your profile
@@ -51,6 +55,7 @@ en:
     off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
     blogs: Blogs
+    tags: Tags
     user_login: User Login
     user_profiles: User Profiles
     user_registration: User Registration

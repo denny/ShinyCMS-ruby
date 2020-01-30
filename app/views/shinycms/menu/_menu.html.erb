@@ -6,4 +6,8 @@
   <%= render partial: 'menu/blog' %>
   <% end %>
 
+  <% if feature_enabled? :tags %>
+  <%= render partial: 'menu/tags' %>
+  <% end %>
+
 </ul>

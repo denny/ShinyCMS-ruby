@@ -23,6 +23,9 @@ class BlogPost < ApplicationRecord
   # Configure default count-per-page for pagination
   paginates_per 20
 
+  # Add tagging features
+  acts_as_taggable
+
   # Instance methods
 
   def generate_slug

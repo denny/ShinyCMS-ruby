@@ -35,6 +35,9 @@ source 'https://rubygems.org' do
   # Pagination
   gem 'kaminari'
 
+  # Tags
+  gem 'acts-as-taggable-on'
+
   group :development, :test do
     gem 'awesome_print'
     gem 'bundler-audit', require: false
