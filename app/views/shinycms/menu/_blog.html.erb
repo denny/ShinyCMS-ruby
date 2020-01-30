@@ -1,8 +1,8 @@
-<% Blog.all.each do |blog| %>
+<% Blog.all.each do |menu_blog| %>
 <li>
-  <%= link_to blog.name, view_blog_path( blog ) %>
+  <%= link_to menu_blog.name, view_blog_path( menu_blog ) %>
   <ul>
-    <% menu_posts = blog.recent_posts %>
+    <% menu_posts = menu_blog.recent_posts %>
     <% menu_posts[0..4].each do |menu_post| %>
     <li>
       <%= link_to menu_post.title, view_blog_post_path( menu_post ) %>

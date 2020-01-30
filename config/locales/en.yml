@@ -37,6 +37,10 @@ en:
   page:
     template_file_missing: Unable to display page; its template file is missing.
 
+  tags:
+    index:
+      title: Tags
+
   user:
     view_profile: View your profile
     edit_profile: Edit your profile

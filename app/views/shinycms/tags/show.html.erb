@@ -1,8 +1,14 @@
-<h2>
-  Blog posts tagged with '<%= @tag %>'
-</h2>
-<ul>
-  <% @posts.each do |post| %>
-  <li><%= link_to post.title, view_blog_post_path( post ) %></li>
-  <% end %>
-</ul>
+<% @content_types.each do |type| %>
+  <h2>
+    <%= type.pluralize.underscore.humanize %> tagged with '<%= @tag %>'
+  </h2>
+  <ul>
+    <% @tagged_items[ type ].each do |item| %>
+    <li>
+      <% if type == 'BlogPost' %>
+      <%= link_to item.title, view_blog_post_path( item ) %>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
