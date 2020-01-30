@@ -3,6 +3,13 @@
   <% menu_data[ :pages ][ :top_sections ].each do |menu_top_section| %>
   <li>
     <%= link_to menu_top_section.name, url_for( "/#{menu_top_section.slug}" ) %>
+    <% if menu_top_section.sections.present? || menu_top_section.pages.present? %>
+      <%= render partial: 'menu/pages_section', locals: {
+        menu_section: menu_top_section,
+        submenu_sections: menu_top_section.sections,
+        submenu_pages: menu_top_section.pages
+      } %>
+    <% end %>
   </li>
   <% end %>
 <% end %>
@@ -13,27 +20,4 @@
     <%= link_to menu_top_page.name, url_for( "/#{menu_top_page.slug}" ) %>
   </li>
   <% end %>
-<% end %>
-
-
-<%# TODO: Pretty sure this is all broken within sections/subsections %>
-
-<% unless menu_data[ :pages ][ :sections ].blank? %>
-<ul>
-  <% menu_data[ :pages ][ :sections ].each do |menu_section| %>
-  <li>
-    <%= link_to menu_section.name, url_for( "/pages/#{menu_section.slug}" ) %>
-  </li>
-  <% end %>
-</ul>
-<% end %>
-
-<% unless menu_data[ :pages ][ :pages ].blank? %>
-<ul>
-  <% menu_data[ :pages ][ :pages ].each do |menu_page| %>
-  <li>
-    <%= link_to menu_page.name, url_for( "/pages/#{menu_page.slug}" ) %>
-  </li>
-  <% end %>
-</ul>
 <% end %>
