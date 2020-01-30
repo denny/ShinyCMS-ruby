@@ -13,7 +13,6 @@ class TagsController < ApplicationController
     @tagged_items = {}
     @content_types.each do |type|
       @tagged_items[ type ] = type.constantize.tagged_with( @tag.name )
-      # @tagged_items[ 'BlogPost' ] = BlogPost.tagged_with( @tag.name )
     end
   end
 
