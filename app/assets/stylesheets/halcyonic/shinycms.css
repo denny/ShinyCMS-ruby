@@ -130,10 +130,10 @@ form div {
 
 /* ===== ( styles for tag clouds ) ===== */
 
-.tagsize1 { font-size: 1.0em; }
-.tagsize2 { font-size: 1.2em; }
-.tagsize3 { font-size: 1.4em; }
-.tagsize4 { font-size: 1.6em; }
+.tagsize1 { font-size: 1em; }
+.tagsize2 { font-size: 2em; }
+.tagsize3 { font-size: 3em; }
+.tagsize4 { font-size: 4em; }
 
 
 /* ========== ( user profile pics ) ========== */

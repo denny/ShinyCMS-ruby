@@ -1,3 +1,5 @@
-<% tag_cloud( @tags, %w[ tagsize1 tagsize2 tagsize3 tagsize4 ] ) do |tag, css_class| %>
-  <%= link_to tag.name, tag_path( tag.name ), :class => css_class %>
+<% @page_title = t( '.title' ) %>
+
+<% tag_cloud( @tags.shuffle, %w[ tagsize1 tagsize2 tagsize3 tagsize4 ] ) do |tag, css_class| %>
+  <%= link_to tag.name, tag_path( tag.name ), :class => css_class %>&nbsp;
 <% end %>
