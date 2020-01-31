@@ -1,7 +1,5 @@
 # Admin controller for feature flags
 class Admin::FeatureFlagsController < AdminController
-  after_action :verify_authorized
-
   def index
     @flags = FeatureFlag.all.order( :name )
     authorise @flags
