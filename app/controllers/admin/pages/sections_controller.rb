@@ -1,7 +1,5 @@
 # Admin controller for page sections
 class Admin::Pages::SectionsController < AdminController
-  after_action :verify_authorized
-
   # Redirect to the combined page+section list
   def index
     skip_authorization
