@@ -177,6 +177,29 @@ RSpec.describe 'User', type: :request do
       expect( response.body ).to have_link user.username, href: "/user/#{user.username}"
       expect( response.body ).to have_link I18n.t( 'user.log_out' ).downcase
     end
+
+    it 'redirects back to the referring page after login, if it knows it' do
+      password = 'shinycms unimaginative test passphrase'
+      user = create :user, password: password
+      page = create :top_level_page
+
+      should_go_here = "http://example.com/#{page.slug}"
+
+      post user_session_path,
+           params: {
+             'user[login]': user.username,
+             'user[password]': password
+           },
+           headers: {
+             'HTTP_REFERER': should_go_here
+           }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to should_go_here
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css 'h1', text: page.title
+    end
   end
 
   describe 'POST /user/register' do

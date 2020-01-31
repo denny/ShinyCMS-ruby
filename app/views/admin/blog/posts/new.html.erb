@@ -9,12 +9,10 @@
     <%= f.label :slug %><br>
     <%= f.text_field :slug %>
   </p>
-  <!-- TODO: tags (use :acts_as_taggable)
   <p>
-    <%#= f.label :tags %><br>
-    <%#= f.text_field :tags %>
+    <%= f.label :tag_list, 'Tags' %><br>
+    <%= f.text_field :tag_list %>
   </p>
-  -->
   <% if current_user.can? :change_author, :blog_posts %>
   <p>
     <%= f.label :user_id, 'Author' %><br>
