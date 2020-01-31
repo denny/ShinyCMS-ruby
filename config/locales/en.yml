@@ -253,7 +253,6 @@ en:
         failure: Failed to add new setting
       update:
         success: Settings updated
-        # unchanged: Settings unchanged
         failure: Failed to update settings
       destroy:
         success: Setting deleted

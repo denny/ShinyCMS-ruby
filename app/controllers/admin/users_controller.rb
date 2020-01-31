@@ -1,7 +1,5 @@
 # Controller for user administration features
 class Admin::UsersController < AdminController
-  after_action :verify_authorized
-
   def index
     page_num = params[ :page ] || 1
     @users = User.order( :username ).page( page_num )

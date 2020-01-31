@@ -1,13 +1,13 @@
 # Admin controller for CMS settings
 class Admin::SettingsController < AdminController
-  # after_action :verify_authorized
-
   def index
     @settings = Setting.order( :name )
+    authorise @settings
   end
 
   def create
     setting = Setting.new( setting_params )
+    authorise setting
 
     if setting.save
       flash[ :notice ] = t( '.success' )
@@ -19,6 +19,8 @@ class Admin::SettingsController < AdminController
 
   # Main form submitted; update any changed settings and report back
   def update
+    skip_authorization # TODO: this is obviously bad; refactoring v. soon!
+
     updated_settings = false
     updated_settings = update_settings( updated_settings )
     if updated_settings
@@ -31,6 +33,7 @@ class Admin::SettingsController < AdminController
 
   def destroy
     setting = Setting.find( params[:id] )
+    authorise setting
 
     flash[ :notice ] = t( '.success' ) if setting.destroy
     redirect_to settings_path

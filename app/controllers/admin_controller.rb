@@ -8,6 +8,8 @@ class AdminController < ApplicationController
 
   skip_before_action :set_view_paths
 
+  after_action :verify_authorized
+
   layout 'admin/layouts/admin_area'
 
   # rubocop:disable Metrics/AbcSize
