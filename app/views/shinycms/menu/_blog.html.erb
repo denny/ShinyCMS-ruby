@@ -1,0 +1,13 @@
+<% Blog.all.each do |menu_blog| %>
+<li>
+  <%= link_to menu_blog.name, view_blog_path( menu_blog ) %>
+  <ul>
+    <% menu_posts = menu_blog.recent_posts.per( 5 ) %>
+    <% menu_posts.each do |menu_post| %>
+    <li>
+      <%= link_to menu_post.title, view_blog_post_path( menu_post ) %>
+    </li>
+    <% end %>
+  </ul>
+</li>
+<% end %>

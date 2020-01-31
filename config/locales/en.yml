@@ -30,15 +30,20 @@ en:
     set_blog:
       failure: Blog not found
     sidebar:
-      recent_posts: Recent Posts
       links: Links
       links_blurb: Recommended reading from around the web
+      recent_posts: Recent Posts
 
   page:
     template_file_missing: Unable to display page; its template file is missing.
 
+  tags:
+    index:
+      title: Tags
+
   user:
-    edit_profile: Edit profile
+    view_profile: View your profile
+    edit_profile: Edit your profile
     log_in: Log in
     log_out: Log out
     register: Register
@@ -50,6 +55,7 @@ en:
     off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
     blogs: Blogs
+    tags: Tags
     user_login: User Login
     user_profiles: User Profiles
     user_registration: User Registration
@@ -247,7 +253,6 @@ en:
         failure: Failed to add new setting
       update:
         success: Settings updated
-        # unchanged: Settings unchanged
         failure: Failed to update settings
       destroy:
         success: Setting deleted
@@ -273,7 +278,7 @@ en:
 
   models:
     page_template:
-      template_file_must_exist: The template file must be in 'app/views/pages/templates'
+      template_file_must_exist: The template file must be in pages/templates
 
     concerns:
       name_title_slug:

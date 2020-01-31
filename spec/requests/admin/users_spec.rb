@@ -125,9 +125,9 @@ RSpec.describe 'Admin: Users', type: :request do
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'admin.users.index.title' ).titlecase
         expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.users.destroy.success' )
-        expect( response.body ).to     include u1.username
-        expect( response.body ).not_to include u2.username
-        expect( response.body ).to     include u3.username
+        expect( response.body ).to     have_css 'td', text: u1.username
+        expect( response.body ).not_to have_css 'td', text: u2.username
+        expect( response.body ).to     have_css 'td', text: u3.username
       end
 
       it 'fails gracefully when attempting to delete a non-existent user' do

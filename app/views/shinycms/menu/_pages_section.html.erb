@@ -1,0 +1,19 @@
+<% unless submenu_sections.blank? %>
+<ul>
+  <% submenu_sections.each do |submenu_section| %>
+  <li>
+    <%= link_to submenu_section.name, url_for( "/#{menu_section.slug}/#{submenu_section.slug}" ) %>
+  </li>
+  <% end %>
+</ul>
+<% end %>
+
+<% unless submenu_pages.blank? %>
+<ul>
+  <% submenu_pages.each do |submenu_page| %>
+  <li>
+    <%= link_to submenu_page.name, url_for( "/#{menu_section.slug}/#{submenu_page.slug}" ) %>
+  </li>
+  <% end %>
+</ul>
+<% end %>

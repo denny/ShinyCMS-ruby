@@ -1,7 +1,5 @@
 # Admin controller for CMS-controlled 'brochure' pages
 class Admin::PagesController < AdminController
-  after_action :verify_authorized
-
   def index
     authorise Page
     # authorise PageSection

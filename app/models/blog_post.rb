@@ -1,7 +1,9 @@
 # Model class for blog posts
 class BlogPost < ApplicationRecord
-  belongs_to :user
   belongs_to :blog
+  belongs_to :author, class_name: 'User',
+                      foreign_key: 'user_id',
+                      inverse_of: 'blog_posts'
 
   # Allowed characters for slugs: a-z A-Z 0-9 . _ -
   SLUG_REGEX = %r{[-_\.a-zA-Z0-9]+}.freeze
@@ -21,6 +23,9 @@ class BlogPost < ApplicationRecord
   # Configure default count-per-page for pagination
   paginates_per 20
 
+  # Add tagging features
+  acts_as_taggable
+
   # Instance methods
 
   def generate_slug
@@ -35,7 +40,7 @@ class BlogPost < ApplicationRecord
     posted_at.strftime( '%Y' )
   end
 
-  def teaser( paragraphs = 3 )
+  def teaser( paragraphs: 3 )
     paras = body.split %r{</p>[^<]*<p>}i
     return paras[ 0..( paragraphs - 1 ) ].join( "</p>\n<p>" ) if paras.size > 1
 

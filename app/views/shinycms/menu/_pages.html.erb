@@ -1,0 +1,23 @@
+<% menu_data = build_menu_data( @page&.section ) %>
+<% unless menu_data[ :pages ][ :top_sections ].blank? %>
+  <% menu_data[ :pages ][ :top_sections ].each do |menu_top_section| %>
+  <li>
+    <%= link_to menu_top_section.name, url_for( "/#{menu_top_section.slug}" ) %>
+    <% if menu_top_section.sections.present? || menu_top_section.pages.present? %>
+      <%= render partial: 'menu/pages_section', locals: {
+        menu_section: menu_top_section,
+        submenu_sections: menu_top_section.sections,
+        submenu_pages: menu_top_section.pages
+      } %>
+    <% end %>
+  </li>
+  <% end %>
+<% end %>
+
+<% unless menu_data[ :pages ][ :top_pages ].blank? %>
+  <% menu_data[ :pages ][ :top_pages ].each do |menu_top_page| %>
+  <li>
+    <%= link_to menu_top_page.name, url_for( "/#{menu_top_page.slug}" ) %>
+  </li>
+  <% end %>
+<% end %>
