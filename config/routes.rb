@@ -32,6 +32,9 @@ Rails.application.routes.draw do
                                       constraints: { year: %r{\d\d\d\d} }
     end
 
+    get 'tags',      to: 'tags#index', as: :tags
+    get 'tags/:tag', to: 'tags#show',  as: :tag
+
     # Users
     devise_for  :users,
                 path: '',

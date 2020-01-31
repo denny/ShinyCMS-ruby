@@ -3,7 +3,6 @@ class Admin::Blog::PostsController < AdminController
   before_action :set_blog
   before_action :set_post_for_create, only: %i[ create ]
   before_action :set_post, only: %i[ edit update destroy ]
-  after_action :verify_authorized
 
   def index
     page_num = params[ :page ] || 1
@@ -78,7 +77,7 @@ class Admin::Blog::PostsController < AdminController
     end
 
     params.require( :blog_post ).permit(
-      :blog_id, :user_id, :title, :slug, :posted_at, :body, :hidden
+      :blog_id, :user_id, :title, :slug, :tag_list, :posted_at, :body, :hidden
     )
   end
 
@@ -92,7 +91,7 @@ class Admin::Blog::PostsController < AdminController
     end
 
     params.require( :blog_post ).permit(
-      :blog_id, :user_id, :title, :slug, :posted_at, :body, :hidden
+      :blog_id, :user_id, :title, :slug, :tag_list, :posted_at, :body, :hidden
     )
   end
 end

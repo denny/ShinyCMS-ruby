@@ -2,11 +2,10 @@
 class ApplicationController < ActionController::Base
   include FeatureFlagsHelper
 
+  before_action :set_view_paths
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # Use the layout from the theme that was set in the shinycms_theme initializer
-  theme_name = Rails.application.config.theme_name
-  layout "themes/#{theme_name}/layouts/#{theme_name}"
+  layout 'layouts/main_site'
 
   protected
 
@@ -41,15 +40,32 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Check user's password against pwned password service and warn if necessary
+  def check_for_pwnage( resource )
+    return unless resource.respond_to?( :pwned? ) && resource.pwned?
+
+    # :nocov:
+    set_flash_message! :alert, :warn_pwned
+    # :nocov:
+  end
+
+  # Override post-login redirect
   def after_sign_in_path_for( resource )
-    # Check user's password against pwned password service and warn if necessary
-    if resource.respond_to?( :pwned? ) && resource.pwned?
-      # :nocov:
-      set_flash_message! :alert, :warn_pwned
-      # :nocov:
+    check_for_pwnage( resource )
+
+    if request.referer.present? && request.referer != new_user_session_url
+      return request.referer
     end
 
-    # Override post-login redirect to take us to user's profile page
+    return admin_path if resource.can? :view_admin_area
+
     user_profile_path( resource.username )
+  end
+
+  def set_view_paths
+    # Add the default templates directory to the top of view_paths
+    prepend_view_path 'app/views/shinycms'
+    # Apply the configured theme, if any, by adding it above the defaults
+    prepend_view_path Theme.current.view_path if Theme.current
   end
 end

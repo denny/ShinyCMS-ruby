@@ -1,7 +1,5 @@
 # Admin controller for inserts (globally-reusable text/HTML fragments)
 class Admin::InsertsController < AdminController
-  after_action :verify_authorized
-
   # Displays main form, for updating/deleting the existing insert,
   # and a second form at the bottom of the page to add new insert.
   def index

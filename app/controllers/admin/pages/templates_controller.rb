@@ -1,7 +1,5 @@
 # Admin controller for page templates
 class Admin::Pages::TemplatesController < AdminController
-  after_action :verify_authorized
-
   def index
     authorise PageTemplate
 

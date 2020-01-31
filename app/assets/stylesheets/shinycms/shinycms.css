@@ -54,6 +54,14 @@ body {
 }
 
 
+/* ===== ( styles for tag clouds ) ===== */
+
+.tagsize1 { font-size: 1.0em; }
+.tagsize2 { font-size: 1.2em; }
+.tagsize3 { font-size: 1.4em; }
+.tagsize4 { font-size: 1.6em; }
+
+
 /* ========== ( user profile pics ) ========== */
 
 .user_profile_pic {

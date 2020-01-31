@@ -1,6 +1,8 @@
 # Model class for blogs (which are a collection of blog posts)
 class Blog < ApplicationRecord
-  belongs_to :user
+  belongs_to :owner,  class_name: 'User',
+                      foreign_key: 'user_id',
+                      inverse_of: 'blogs'
 
   has_many :all_posts,
            class_name: 'BlogPost',
@@ -43,22 +45,14 @@ class Blog < ApplicationRecord
 
   def posts_for_month( year, month )
     start_date = "#{year}-#{month}-01".to_date
-    end_date = start_date.clone + 1.month
-    posts.where(
-      'posted_at between ? and ?',
-      start_date.to_s,
-      end_date.to_s
-    ).order( :posted_at )
+    end_date = start_date + 1.month
+    posts.where( posted_at: start_date..end_date ).order( :posted_at )
   end
 
   def posts_for_year( year )
     start_date = "#{year}-01-01".to_date
-    end_date = start_date.clone + 1.year
-    posts.where(
-      'posted_at between ? and ?',
-      start_date.to_s,
-      end_date.to_s
-    ).order( :posted_at )
+    end_date = start_date + 1.year
+    posts.where( posted_at: start_date..end_date ).order( :posted_at )
   end
 
   def recent_posts( page_num = 1 )
