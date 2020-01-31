@@ -183,7 +183,7 @@ RSpec.describe 'User', type: :request do
       user = create :user, password: password
       page = create :top_level_page
 
-      should_go_here = "http://example.com/#{page.slug}"
+      should_go_here = "http://www.example.com/#{page.slug}"
 
       post user_session_path,
            params: {
