@@ -2,6 +2,10 @@
 
 <% @sidebar_position = 'right' %>
 
+<h3>
+  Blog posts in <%= I18n.t('date.month_names')[@posts.first.posted_at.month] %>
+</h3>
+
 <% @posts.each do |post| %>
 <section>
 
