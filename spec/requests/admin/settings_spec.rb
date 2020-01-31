@@ -8,6 +8,8 @@ RSpec.describe 'Admin: Site Settings', type: :request do
 
   describe 'GET /admin/settings' do
     it 'fetches the site settings page in the admin area' do
+      create :setting
+
       get settings_path
 
       expect( response      ).to have_http_status :ok
@@ -62,6 +64,8 @@ RSpec.describe 'Admin: Site Settings', type: :request do
     end
 
     it 'attempting to add a new setting with no name fails gracefully' do
+      create :setting
+
       post setting_path, params: {
         'setting[value]': 'MADE OF FAIL!'
       }
@@ -95,6 +99,8 @@ RSpec.describe 'Admin: Site Settings', type: :request do
     end
 
     it 'fails gracefully when attempting to delete a non-existent setting' do
+      create :setting
+
       delete delete_setting_path( 999 )
 
       expect( response      ).to have_http_status :found
@@ -127,12 +133,12 @@ RSpec.describe 'Admin: Site Settings', type: :request do
     end
 
     it "doesn't update settings if they weren't changed" do
-      create :setting
+      s1 = create :setting
       s2 = create :setting
       create :setting
 
       put settings_path, params: {
-        "settings[setting_value_#{s2.id}]": s2.value
+        "settings[setting_name_#{s2.id}]": s1.name
       }
 
       expect( response      ).to have_http_status :found

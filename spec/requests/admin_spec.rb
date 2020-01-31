@@ -65,6 +65,7 @@ RSpec.describe 'Admin', type: :request do
     end
 
     it 'settings admin' do
+      create :setting
       admin = create :settings_admin
       sign_in admin
 

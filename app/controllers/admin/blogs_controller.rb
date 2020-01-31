@@ -1,7 +1,6 @@
 # Admin controller for blogs (whole blogs, not individual blog posts)
 class Admin::BlogsController < AdminController
   before_action :set_blog, only: %i[ edit update destroy ]
-  after_action :verify_authorized
 
   def index
     @blogs = Blog.all

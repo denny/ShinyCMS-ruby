@@ -31,7 +31,7 @@ class PageTemplate < ApplicationRecord
   def add_elements
     return unless file_exists?
 
-    file = Rails.root.join "app/views/pages/templates/#{filename}.html.erb"
+    file = "#{PageTemplate.template_dir}/#{filename}.html.erb"
     erb = File.read file
     erb.scan(
       %r{<%=\s+(sanitize|simple_format)?\(?\s*(\w+)\s*\)?\s+%>}
@@ -42,9 +42,12 @@ class PageTemplate < ApplicationRecord
 
   # Class methods
 
+  def self.template_dir
+    Rails.root.join Theme.current.page_templates_path
+  end
+
   # Get a list of available template files from the disk
   def self.available_templates
-    template_dir = Rails.root.join 'app/views/pages/templates'
     filenames = Dir.glob '*.html.erb', base: template_dir
     template_names = []
     filenames.each do |filename|
