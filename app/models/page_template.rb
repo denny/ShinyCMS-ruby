@@ -29,14 +29,15 @@ class PageTemplate < ApplicationRecord
 
   # Create template elements, based on the content of the template file
   def add_elements
-    return unless file_exists?
+    raise ActiveRecord::Rollback unless file_exists?
 
     file = "#{PageTemplate.template_dir}/#{filename}.html.erb"
     erb = File.read file
     erb.scan(
       %r{<%=\s+(sanitize|simple_format)?\(?\s*(\w+)\s*\)?\s+%>}
     ).uniq.each do |result|
-      add_element result[0], result[1]
+      added = add_element result[0], result[1]
+      raise ActiveRecord::Rollback unless added
     end
   end
 
@@ -77,25 +78,25 @@ class PageTemplate < ApplicationRecord
   end
 
   def add_default_element( name )
-    elements.create!( name: name )
+    elements.create( name: name )
   end
 
   def add_image_element( name )
-    elements.create!(
+    elements.create(
       name: name,
       content_type: I18n.t( 'admin.elements.image' )
     )
   end
 
   def add_html_element( name )
-    elements.create!(
+    elements.create(
       name: name,
       content_type: I18n.t( 'admin.elements.html' )
     )
   end
 
   def add_long_text_element( name )
-    elements.create!(
+    elements.create(
       name: name,
       content_type: I18n.t( 'admin.elements.long_text' )
     )
