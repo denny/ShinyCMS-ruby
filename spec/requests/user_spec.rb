@@ -17,6 +17,18 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include user.username
     end
+
+    it "gives a helpful error message if the username doesn't exist" do
+      create :page
+
+      get user_profile_path( 'syzygy' )
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to root_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'user.not_found' )
+    end
   end
 
   describe 'new user registration' do
