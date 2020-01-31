@@ -44,13 +44,13 @@ class Blog < ApplicationRecord
   end
 
   def posts_for_month( year, month )
-    start_date = Date.new(year, month, 1)
+    start_date = Date.new( year.to_i, month.to_i, 1 )
     end_date = start_date + 1.month
     posts.where( posted_at: start_date..end_date ).order( :posted_at )
   end
 
   def posts_for_year( year )
-    start_date = Date.new(year, 1, 1)
+    start_date = Date.new( year.to_i, 1, 1 )
     end_date = start_date + 1.year
     posts.where( posted_at: start_date..end_date ).order( :posted_at )
   end
