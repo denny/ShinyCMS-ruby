@@ -46,6 +46,22 @@ class PageSection < ApplicationRecord
     pages.min
   end
 
+  def menu_pages
+    pages.where( hidden_from_menu: false )
+  end
+
+  def menu_sections
+    sections.where( hidden_from_menu: false )
+  end
+
+  def menu_items
+    [ *menu_pages.to_a, *menu_sections.to_a ].sort_by( &:sort_order )
+  end
+
+  def submenu?
+    menu_pages.present? || menu_sections.present?
+  end
+
   # Class methods
 
   def self.top_level_sections
@@ -57,7 +73,7 @@ class PageSection < ApplicationRecord
   end
 
   def self.top_level_menu_sections
-    PageSection.where( section: nil, hidden: false, hidden_from_menu: false )
+    PageSection.top_level_sections.where( hidden_from_menu: false )
   end
 
   # Return the default top-level section
