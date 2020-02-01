@@ -51,15 +51,22 @@ class Page < ApplicationRecord
   # Class methods
 
   def self.top_level_pages
-    Page.where( section: nil, hidden: false )
+    Page.where( section: nil, hidden: false ).order( :sort_order )
   end
 
   def self.top_level_hidden_pages
-    Page.where( section: nil, hidden: true )
+    Page.where( section: nil, hidden: true ).order( :sort_order )
   end
 
   def self.top_level_menu_pages
-    Page.top_level_pages.where( hidden_from_menu: false )
+    Page.top_level_pages.where( hidden_from_menu: false ).order( :sort_order )
+  end
+
+  def self.top_level_menu_items
+    pages = Page.top_level_menu_pages.to_a
+    sections = PageSection.top_level_menu_sections.to_a
+
+    [ *pages, *sections ].sort_by( &:sort_order )
   end
 
   def self.are_there_any_hidden_pages?
