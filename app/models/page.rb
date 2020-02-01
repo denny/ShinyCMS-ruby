@@ -54,12 +54,12 @@ class Page < ApplicationRecord
     Page.where( section: nil, hidden: false )
   end
 
-  def self.top_level_menu_pages
-    Page.where( section: nil, hidden: false, hidden_from_menu: false )
-  end
-
   def self.top_level_hidden_pages
     Page.where( section: nil, hidden: true )
+  end
+
+  def self.top_level_menu_pages
+    Page.top_level_pages.where( hidden_from_menu: false )
   end
 
   def self.are_there_any_hidden_pages?
