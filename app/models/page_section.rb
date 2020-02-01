@@ -55,7 +55,10 @@ class PageSection < ApplicationRecord
   end
 
   def menu_items
-    [ *menu_pages.to_a, *menu_sections.to_a ].sort_by( &:sort_order )
+    pages = menu_pages.to_a
+    sections = menu_sections.to_a
+
+    [ *pages, *sections ].sort_by( &:sort_order )
   end
 
   def submenu?
