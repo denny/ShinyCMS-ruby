@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<% if @tl_pages.present? || @tl_sections.present? %>
+<% if @top_level_items.present? %>
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
@@ -14,34 +14,13 @@
     </tr>
   </thead>
 
-  <% @tl_pages.each do |page| %>
-	<tr class="showfocus">
-    <% if page.hidden %>
-    <td class="hidden">
-    <% else %>
-    <td>
-    <% end %>
-			<%= page.name %>
-		</td>
-    <td>
-      <%= page.description %>
-    </td>
-		<td class="actions">
-      <%= link_to t( 'view' ), url_for( "/pages/#{page.slug}" )   %>
-      <%= link_to t( 'edit' ), url_for( edit_page_path( page ) ) %>
-      <%= link_to t( 'delete' ), page_path( page ),
-          method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
-		</td>
-	</tr>
-  <% end %>
-
-	<% @tl_sections.each do |section| %>
-    <%= render partial: 'section_contents', locals: {
-      section: section,
-      view_path: '/pages',
+  <% @top_level_items.each do |top_level_item| %>
+    <%= render partial: 'page_item', locals: {
+      page_item: top_level_item,
+      view_path: '',
       indent: 0.5
     } %>
-	<% end %>
+  <% end %>
 </table>
 
 <% else %>
