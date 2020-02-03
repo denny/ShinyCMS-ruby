@@ -1,0 +1,35 @@
+  <% item_is_section = page_item.class.name == 'PageSection' ? true : false %>
+  <tr>
+    <% if page_item.hidden %>
+    <td style="padding-left: <%= indent %>em;" class="hidden">
+    <% else %>
+    <td style="padding-left: <%= indent %>em;">
+    <% end %>
+      <% if item_is_section %><b><% end %><%= page_item.name %><% if item_is_section %></b><% end %>
+    </td>
+    <td>
+      <%= page_item.description %>
+    </td>
+    <td class="actions">
+      <%= link_to t( 'view'   ), "#{view_path}/#{page_item.slug}" %>
+      <% if item_is_section %>
+      <%= link_to t( 'edit'   ), edit_page_section_path( page_item ) %>
+      <%= link_to t( 'delete' ), page_section_path( page_item ),
+          method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      <% else %>
+      <%= link_to t( 'edit'   ), edit_page_path( page_item ) %>
+      <%= link_to t( 'delete' ), page_path( page_item ),
+          method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      <% end %>
+    </td>
+  </tr>
+
+  <% if item_is_section && page_item.all_page_items.present? %>
+    <% page_item.all_page_items.each do |subsection_item| %>
+      <%= render partial: 'page_item', locals: {
+        page_item: subsection_item,
+        view_path: "#{view_path}/#{page_item.slug}",
+        indent: indent + 2
+      } %>
+    <% end %>
+  <% end %>
