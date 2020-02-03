@@ -29,6 +29,7 @@ Metrics/BlockLength:
     - spec/**/*.rb
     - config/routes.rb
     - config/environments/development.rb
+    - lib/tasks/*.rake
 
 # Also, spec files with I18n strings in them are more readable with slightly
 # long lines than they would be with lots of split lines. Again, shush.
