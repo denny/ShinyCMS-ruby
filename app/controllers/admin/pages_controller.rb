@@ -2,14 +2,12 @@
 class Admin::PagesController < AdminController
   def index
     authorise Page
-    # authorise PageSection
+    authorise PageSection
 
-    @tl_pages = Page.top_level_pages + Page.top_level_hidden_pages
-    authorise @tl_pages if @tl_pages.present?
-
-    @tl_sections =
-      PageSection.top_level_sections + PageSection.top_level_hidden_sections
-    authorise @tl_sections if @tl_sections.present?
+    @top_level_items = Page.all_top_level_items
+    @top_level_items.each do |item|
+      authorise item
+    end
   end
 
   def new

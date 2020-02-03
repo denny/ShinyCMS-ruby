@@ -47,6 +47,7 @@ en:
     log_in: Log in
     log_out: Log out
     register: Register
+    not_found: User not found
 
 
   # ========== ( Feature Flags ) ==========
