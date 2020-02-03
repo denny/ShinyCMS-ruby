@@ -12,9 +12,9 @@ class UsersController < ApplicationController
 
   def show
     @user_profile = User.find_by( username: params[ :username ] )
-    return if @user_profile
+    return if @user_profile.present?
 
-    flash[ :alert ] = 'User not found'
+    flash[ :alert ] = t( 'user.not_found' )
     redirect_to root_path
   end
 
