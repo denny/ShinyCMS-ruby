@@ -97,11 +97,8 @@ class PageSection < ApplicationRecord
   end
 
   def self.top_level_sections
-    PageSection.where( section: nil, hidden: false ).order( :sort_order )
-  end
-
-  def self.top_level_hidden_sections
-    PageSection.where( section: nil, hidden: true ).order( :sort_order )
+    PageSection.all_top_level_sections.where( hidden: false )
+               .order( :sort_order )
   end
 
   def self.top_level_menu_sections
