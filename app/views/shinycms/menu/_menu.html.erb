@@ -1,6 +1,7 @@
 <ul id="menu" class="sm sm-clean">
 
-  <%= render partial: 'menu/pages' %>
+  <%= render partial: 'menu/pages', locals: {
+    items: Page.top_level_menu_items, path: '/' } %>
 
   <% if feature_enabled? :blogs %>
   <%= render partial: 'menu/blog' %>
