@@ -19,6 +19,7 @@ en:
   edit: Edit
   update: Update
   delete: Delete
+  destroy: Delete
 
   # Confirmation dialogue
   are_you_sure: Are you sure?
@@ -158,6 +159,7 @@ en:
         logged_in: Logged-in users
         admins: Admins
         blogs: Blogs
+        tags: Tags
         user_login: User login
         user_profiles: User profiles
         user_registration: User registration
