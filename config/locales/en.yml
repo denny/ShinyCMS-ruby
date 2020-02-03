@@ -242,10 +242,7 @@ en:
       title: Other
 
     settings:
-      title: Settings
-      admin_ip_list: Admin IP list
-      default_page: Default page
-      default_section: Default section
+      title: Site Settings
       index:
         title: Site Settings
         name_placeholder: Setting name

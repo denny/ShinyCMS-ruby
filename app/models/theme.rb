@@ -23,7 +23,7 @@ class Theme
 
   # Find the current theme, if any
   def self.current
-    name = Setting.get( 'theme_name' )
+    name = Setting.get :theme_name
     return Theme.new( name ) if files_exist?( name )
 
     name = ENV['SHINYCMS_THEME']
