@@ -108,6 +108,7 @@ ignore_unused:
   # Devise
   - devise.*
   - errors.messages.*
+  - destroy
 # - 'activerecord.attributes.*'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'
