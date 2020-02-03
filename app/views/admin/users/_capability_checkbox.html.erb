@@ -1,3 +1,4 @@
+<%= 'SKIP' if capability == 'skip' %>
 <% unless capability == 'skip' %>
   <% c = Capability.find_by( name: capability, category: category ) %>
   <% if c.present? %>

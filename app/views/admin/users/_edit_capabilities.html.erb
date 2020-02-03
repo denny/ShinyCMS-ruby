@@ -35,10 +35,9 @@
   users = User.arel_table
   User.where(users[:name].matches("%#{user_name}%"))
 -->
-  <% category_capabilities = %i[ list add edit delete ] %>
+  <% category_capabilities = %i[ list add edit destroy ] %>
   <% CapabilityCategory.where(
-      name: %i[ pages page_sections page_templates blogs blog_posts ]
-    ).each do |category| %>
+      name: %i[ blogs blog_posts ] ).each do |category| %>
   <tr class="<%= show %>collapse collapse_capabilities">
     <td>
       <%= t( "capability.category.#{category.name}" ) %>
@@ -63,8 +62,10 @@
     <% end %>
   </tr>
 
-  <% category_capabilities = %i[ list add edit delete ] %>
-  <% category = CapabilityCategory.find_by( name: 'users' ) %>
+  <% category_capabilities = %i[ list add edit destroy ] %>
+  <% CapabilityCategory.where(
+      name: %i[ pages page_sections page_templates users ]
+    ).each do |category| %>
   <tr class="<%= show %>collapse collapse_capabilities">
     <td>
       <%= t( "capability.category.#{category.name}" ) %>
@@ -75,7 +76,10 @@
     </td>
     <% end %>
   </tr>
+  <% end %>
+
   <% category_capabilities = %i[ view_admin_notes skip skip skip ] %>
+  <% category = CapabilityCategory.find_by( name: 'users' ) %>
   <tr class="<%= show %>collapse collapse_capabilities">
     <td>
     </td>
@@ -86,7 +90,7 @@
     <% end %>
   </tr>
 
-  <% category_capabilities = %i[ list add edit delete ] %>
+  <% category_capabilities = %i[ list add edit destroy ] %>
   <% category = CapabilityCategory.find_by( name: 'admin_users' ) %>
   <tr class="<%= show %>collapse collapse_capabilities">
     <td>
