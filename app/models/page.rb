@@ -50,8 +50,12 @@ class Page < ApplicationRecord
 
   # Class methods
 
+  def self.all_top_level_pages
+    Page.where( section: nil ).order( :sort_order )
+  end
+
   def self.top_level_pages
-    Page.where( section: nil, hidden: false ).order( :sort_order )
+    Page.all_top_level_pages.where( hidden: false ).order( :sort_order )
   end
 
   def self.top_level_menu_pages
@@ -65,10 +69,6 @@ class Page < ApplicationRecord
     [ *pages, *sections ].sort_by do |item|
       [ item.sort_order ? 0 : 1, item.sort_order || 0 ]
     end
-  end
-
-  def self.all_top_level_pages
-    Page.where( section: nil ).order( :sort_order )
   end
 
   def self.all_top_level_items
