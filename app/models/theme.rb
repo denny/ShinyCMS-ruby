@@ -22,7 +22,10 @@ class Theme
   end
 
   # Find the current theme, if any
-  def self.current
+  def self.current( user = nil )
+    theme_name = Setting.get :theme_name, user
+    return Theme.new( theme_name ) if files_exist?( theme_name )
+
     theme_name = Setting.get :theme_name
     return Theme.new( theme_name ) if files_exist?( theme_name )
 
