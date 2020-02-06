@@ -1,48 +1,48 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_with url: settings_path, method: :put do |f| %>
+<%= form_with url: settings_path, method: :put do %>
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
       <th class="shorter">
-        t( '.name' )
+        <%= t( '.name' ) %>
       </th>
       <th class="longer">
-        t( '.value' )
+        <%= t( '.value' ) %>
       </th>
       <th class="shorter">
-        t( '.level' )
+        <%= t( '.level' ) %>
       </th>
     </tr>
   </thead>
-  <% @settings.each do |s| %>
+  <% @settings.each do |setting| %>
 	<tr class="showfocus">
     <td>
-      <%= f.label "value_#{s.id}", t( "settings.#{s.name}" ) %>
+      <%= label :settings, "value_#{setting.id}", t( "settings.#{setting.name}" ) %>
     </td>
     <td>
-      <%= f.text_field "value_#{s.id}", value: s.site_value %>
+      <%= text_field :settings, "value_#{setting.id}", value: setting.site_value %>
     </td>
     <td>
-      <% if s.locked %>
-      <%= f.radio_button "level_#{s.id}", value: 'site',  disabled: true %>  <%= t( '.site'  ) %>
-      <%= f.radio_button "level_#{s.id}", value: 'user',  disabled: true %>  <%= t( '.user'  ) %>
-      <%= f.radio_button "level_#{s.id}", value: 'admin', disabled: true %>  <%= t( '.admin' ) %>
+      <% if setting.locked %>
+      <%= radio_button :settings, "level_#{setting.id}", 'user',  checked: ( setting.level == 'user'  ), disabled: true %> <%= t( '.user'  ) %> &nbsp;
+      <%= radio_button :settings, "level_#{setting.id}", 'admin', checked: ( setting.level == 'admin' ), disabled: true %> <%= t( '.admin' ) %> &nbsp;
+      <%= radio_button :settings, "level_#{setting.id}", 'site',  checked: ( setting.level == 'site'  ), disabled: true %> <%= t( '.site'  ) %>
       <% else %>
-      <%= f.radio_button "level_#{s.id}", value: 'site'  %> <%= t( '.site'  ) %>
-      <%= f.radio_button "level_#{s.id}", value: 'user'  %> <%= t( '.user'  ) %>
-      <%= f.radio_button "level_#{s.id}", value: 'admin' %> <%= t( '.admin' ) %>
+      <%= radio_button :settings, "level_#{setting.id}", 'user',  checked: ( setting.level == 'user'  ) %> <%= t( '.user'  ) %> &nbsp;
+      <%= radio_button :settings, "level_#{setting.id}", 'admin', checked: ( setting.level == 'admin' ) %> <%= t( '.admin' ) %> &nbsp;
+      <%= radio_button :settings, "level_#{setting.id}", 'site',  checked: ( setting.level == 'site'  ) %> <%= t( '.site'  ) %>
       <% end %>
     </td>
 	</tr>
 	<tr>
     <td colspan="3">
-      <%= text_field :settings, "setting_description_#{s.id}", value: s.description, class: 'textlong' %>
+      <%= setting.description %>
     </td>
 	</tr>
   <% end %>
 </table>
 <p class="top-margin">
-  <%= f.submit t( 'update' ) %>
+  <%= submit_tag t( 'update' ) %>
 </p>
 <% end %>
