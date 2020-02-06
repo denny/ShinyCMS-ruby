@@ -261,15 +261,9 @@ en:
         user: User
         admin: Admin
         site: Site
-      create:
-        success: New setting added
-        failure: Failed to add new setting
       update:
         success: Settings updated
         failure: Failed to update settings
-      destroy:
-        success: Setting deleted
-        failure: Failed to delete setting
 
     users:
       title: Users
