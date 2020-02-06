@@ -39,10 +39,10 @@ class Setting < ApplicationRecord
   def self.get( name, user = nil )
     return unless ( setting = find_by( name: name.to_s ) )
 
-    value = setting.user_value( current_user ) if user.present?
+    value = setting.user_value( user ) if user.present?
     return value if value.present?
 
-    value = setting.admin_value( current_user ) if user.present?
+    value = setting.admin_value( user ) if user.present?
     return value if value.present?
 
     setting.site_value

@@ -5,7 +5,16 @@ RSpec.describe Setting, type: :model do
     it 'returns the specified setting' do
       setting = create :setting, name: 'foo'
       create :setting_value, setting_id: setting.id, value: 'bar'
+
       expect( Setting.get( :foo ) ).to eq 'bar'
+    end
+
+    it 'returns the specified admin setting if user is an admin' do
+      setting = create :setting, name: 'foo', level: 'admin'
+      create :setting_value, setting_id: setting.id, value: 'bar'
+      user = create :admin_user
+
+      expect( Setting.get( :foo, user ) ).to eq 'bar'
     end
   end
 
@@ -21,6 +30,7 @@ RSpec.describe Setting, type: :model do
     setting = create :setting, name: 'foo', level: 'site', locked: true
 
     setting.level = 'user'
+
     expect { setting.save( validate: false ) }
       .to raise_error Setting::CannotUpdateLocked, 'Attempted to update a locked setting'
   end
