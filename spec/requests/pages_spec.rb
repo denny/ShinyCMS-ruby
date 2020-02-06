@@ -30,7 +30,8 @@ RSpec.describe 'Pages', type: :request do
         # rubocop:disable Rails/SkipsModelValidations
         page.template.update_column( :filename, 'no-such-file' )
         # rubocop:enable Rails/SkipsModelValidations
-        create :setting, name: 'default_page', value: page.slug
+        setting = create :setting, name: 'default_page'
+        create :setting_value, setting_id: setting.id, value: page.slug
 
         get '/'
 

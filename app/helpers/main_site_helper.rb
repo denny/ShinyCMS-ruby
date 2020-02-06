@@ -14,6 +14,17 @@ module MainSiteHelper
     InsertSet.first.elements.where( name: name ).pick( :content_type ) == type
   end
 
+  def setting( name )
+    return unless ( setting = Setting.find_by( name: name.to_s ) )
+
+    return setting.site_value if setting.level == 'site'
+    return setting.site_value unless user_signed_in?
+
+    setting.user_value(    current_user ) ||
+      setting.admin_value( current_user ) ||
+      setting.site_value
+  end
+
   def user_display_name( user = current_user )
     user.display_name.presence || user.username
   end

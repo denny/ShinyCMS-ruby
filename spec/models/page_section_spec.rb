@@ -25,7 +25,8 @@ RSpec.describe PageSection, type: :model do
       create :page_section
       section2 = create :page_section, slug: 'default'
 
-      Setting.create! name: 'default_section', value: 'default'
+      setting = create :setting, name: 'default_section'
+      create :setting_value, setting_id: setting.id, value: 'default'
 
       expect( PageSection.default_section ).to eq section2
     end
