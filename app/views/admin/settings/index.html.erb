@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_with url: settings_path, method: :put do %>
+<%= form_with url: settings_path, method: :put, local: true do %>
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
