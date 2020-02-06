@@ -1,58 +1,48 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_with name: 'all_settings', url: settings_path, method: :put do %>
+<%= form_with url: settings_path, method: :put do |f| %>
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
-      <th>
-        Setting name
+      <th class="shorter">
+        t( '.name' )
       </th>
-      <th>
-        Value
+      <th class="longer">
+        t( '.value' )
       </th>
-      <th>
-        Description
-      </th>
-      <th>
-        &nbsp;
+      <th class="shorter">
+        t( '.level' )
       </th>
     </tr>
   </thead>
   <% @settings.each do |s| %>
 	<tr class="showfocus">
-		<td>
-      <label for="settings[setting_value_<%= s.id %>]"><%= s.name %></label>
-		</td>
     <td>
-      <%= text_field :settings, "setting_value_#{s.id}", value: s.value %>
+      <%= f.label "value_#{s.id}", t( "settings.#{s.name}" ) %>
     </td>
     <td>
+      <%= f.text_field "value_#{s.id}", value: s.site_value %>
+    </td>
+    <td>
+      <% if s.locked %>
+      <%= f.radio_button "level_#{s.id}", value: 'site',  disabled: true %>  <%= t( '.site'  ) %>
+      <%= f.radio_button "level_#{s.id}", value: 'user',  disabled: true %>  <%= t( '.user'  ) %>
+      <%= f.radio_button "level_#{s.id}", value: 'admin', disabled: true %>  <%= t( '.admin' ) %>
+      <% else %>
+      <%= f.radio_button "level_#{s.id}", value: 'site'  %> <%= t( '.site'  ) %>
+      <%= f.radio_button "level_#{s.id}", value: 'user'  %> <%= t( '.user'  ) %>
+      <%= f.radio_button "level_#{s.id}", value: 'admin' %> <%= t( '.admin' ) %>
+      <% end %>
+    </td>
+	</tr>
+	<tr>
+    <td colspan="3">
       <%= text_field :settings, "setting_description_#{s.id}", value: s.description, class: 'textlong' %>
     </td>
-		<td class="actions">
-      <%= link_to t( 'delete' ), delete_setting_path( s ),
-          method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
-		</td>
 	</tr>
-  <% end  # settings %>
+  <% end %>
 </table>
 <p class="top-margin">
-  <%= submit_tag t( 'update' ) %>
+  <%= f.submit t( 'update' ) %>
 </p>
-<% end  # form %>
-
-<%= form_for :setting, name: 'new_setting', url: setting_path, method: :post do |f2| %>
-  <fieldset>
-    <legend>
-      Add new setting
-    </legend>
-    <p>
-      <%= f2.text_field :name,        placeholder: t( '.name_placeholder'        ), class: 'textshort' %>
-      <%= f2.text_field :value,       placeholder: t( '.value_placeholder'       )                     %>
-      <%= f2.text_field :description, placeholder: t( '.description_placeholder' ), class: 'textlong'  %>
-    </p>
-    <p>
-      <%= f2.submit t( 'add' ) %>
-    </p>
-  </fieldset>
 <% end %>
