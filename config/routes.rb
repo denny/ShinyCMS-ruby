@@ -102,10 +102,8 @@ Rails.application.routes.draw do
                               as: :create_page_template
 
       # Site settings
-      get    'settings',    to: 'settings#index'
-      put    'settings',    to: 'settings#update'
-      post   'setting',     to: 'settings#create'
-      delete 'setting/:id', to: 'settings#destroy', as: :delete_setting
+      get 'site-settings', to: 'site_settings#index', as: :site_settings
+      put 'site-settings', to: 'site_settings#update'
 
       # Users
       get  :users, to: 'users#index'

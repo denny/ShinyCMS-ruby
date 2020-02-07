@@ -14,6 +14,10 @@ module MainSiteHelper
     InsertSet.first.elements.where( name: name ).pick( :content_type ) == type
   end
 
+  def setting( name )
+    Setting.get( name, current_user )
+  end
+
   def user_display_name( user = current_user )
     user.display_name.presence || user.username
   end
