@@ -33,7 +33,7 @@ class Admin::SettingsController < AdminController
     setting = Setting.find( id )
     level = params[ "level_#{id}" ]
 
-    unless level.present? && setting.level == level
+    unless level.blank? || setting.level == level
       return false unless setting.update( level: level )
     end
 
