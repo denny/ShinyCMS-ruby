@@ -56,9 +56,7 @@ seed Capability, { name: 'edit',    category: templates_cc }
 seed Capability, { name: 'destroy', category: templates_cc }
 # Site Settings
 seed Capability, { name: 'list',    category: settings_cc }
-seed Capability, { name: 'add',     category: settings_cc }
 seed Capability, { name: 'edit',    category: settings_cc }
-seed Capability, { name: 'destroy', category: settings_cc }
 # Users
 seed Capability, { name: 'list',    category: users_cc }
 seed Capability, { name: 'add',     category: users_cc }
@@ -117,17 +115,45 @@ seed FeatureFlag, { name: 'user_registration' }, {
 # Inserts (these just need an InsertSet to exist, to tie them together)
 InsertSet.create! if InsertSet.first.blank?
 
-# Settings (unset; just here to let people know that they're available)
-# TODO: replace this with the half-planned site/admin/user overrideable thing
-seed Setting, { name: I18n.t( 'admin.settings.admin_ip_list' ) }, {
-  value: '',
-  description: 'Comma/space-separated list of IP addresses allowed to access admin area'
+# Settings
+setting = seed Setting, { name: 'admin_ip_list' }, {
+  description: 'Comma/space-separated list of IP addresses allowed to access admin area',
+  level: 'site',
+  locked: true
 }
-seed Setting, { name: I18n.t( 'admin.settings.default_page' ) }, {
-  value: '',
-  description: 'Default top-level page (either its name or its slug)'
+setting.values.create_or_find_by!( value: '' )
+
+setting = seed Setting, { name: 'default_page' }, {
+  description: 'Default top-level page (either its name or its slug)',
+  level: 'site',
+  locked: false
 }
-seed Setting, { name: I18n.t( 'admin.settings.default_section' ) }, {
-  value: '',
-  description: 'Default top-level section (either its name or its slug)'
+setting.values.create_or_find_by!( value: '' )
+
+setting = seed Setting, { name: 'default_section' }, {
+  description: 'Default top-level section (either its name or its slug)',
+  level: 'site',
+  locked: false
 }
+setting.values.create_or_find_by!( value: '' )
+
+setting = seed Setting, { name: 'post_login_redirect' }, {
+  description: 'Where people are redirected after login, if no referer header',
+  level: 'admin',
+  locked: false
+}
+setting.values.create_or_find_by!( value: '/' )
+
+setting = seed Setting, { name: 'tag_view' }, {
+  description: "('cloud' or 'list')",
+  level: 'user',
+  locked: false
+}
+setting.values.create_or_find_by!( value: 'cloud' )
+
+setting = seed Setting, { name: 'theme_name' }, {
+  description: '',
+  level: 'site',
+  locked: false
+}
+setting.values.create_or_find_by!( value: 'halcyonic' )

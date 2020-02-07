@@ -38,6 +38,16 @@ en:
   page:
     template_file_missing: Unable to display page; its template file is missing.
 
+  settings:
+    admin_ip_list: Admin IP list
+    default_page: Default page
+    default_section: Default section
+    post_login_redirect: Post-login redirect
+    tag_view: Default tag view
+    theme_name: Theme name
+    # NB, the above strings are all here to keep them together, but not all of
+    # them would make sense as user settings. Particularly not the first one!!
+
   tags:
     index:
       title: Tags
@@ -205,7 +215,7 @@ en:
         failure: Failed to delete page
 
       sections:
-        title: Sections
+        title: Page sections
         new:
           title: Add new section
         edit:
@@ -221,7 +231,7 @@ en:
           failure: Failed to section page
 
       templates:
-        title: Templates
+        title: Page templates
         index:
           title: List templates
         new:
@@ -241,25 +251,19 @@ en:
     other:
       title: Other
 
-    settings:
-      title: Settings
-      admin_ip_list: Admin IP list
-      default_page: Default page
-      default_section: Default section
+    site_settings:
+      title: Site Settings
       index:
         title: Site Settings
-        name_placeholder: Setting name
-        value_placeholder: Setting value (can be blank)
-        description_placeholder: Description (optional)
-      create:
-        success: New setting added
-        failure: Failed to add new setting
+        name: Name
+        value: Value
+        level: Level
+        user: User
+        admin: Admin
+        site: Site
       update:
         success: Settings updated
-        failure: Failed to update settings
-      destroy:
-        success: Setting deleted
-        failure: Failed to delete setting
+        failure: Failed to update some settings
 
     users:
       title: Users

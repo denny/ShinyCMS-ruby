@@ -6,9 +6,8 @@ RSpec.describe 'Admin', type: :request do
       admin = create :page_admin
       sign_in admin
 
-      Setting.find_or_create_by!(
-        name: I18n.t( 'admin.settings.admin_ip_list' )
-      ).update!( value: '127.0.0.1' )
+      setting = create :setting, name: 'admin_ip_list'
+      create :setting_value, setting_id: setting.id, value: '127.0.0.1'
 
       get admin_path
 
@@ -23,9 +22,8 @@ RSpec.describe 'Admin', type: :request do
       admin = create :page_admin
       sign_in admin
 
-      Setting.find_or_create_by!(
-        name: I18n.t( 'admin.settings.admin_ip_list' )
-      ).update!( value: '10.10.10.10' )
+      setting = create :setting, name: 'admin_ip_list'
+      create :setting_value, setting_id: setting.id, value: '10.10.10.10'
 
       get admin_path
 
@@ -65,17 +63,17 @@ RSpec.describe 'Admin', type: :request do
     end
 
     it 'settings admin' do
-      create :setting
+      create :setting, name: 'theme_name'
       admin = create :settings_admin
       sign_in admin
 
       get admin_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to settings_path
+      expect( response      ).to redirect_to site_settings_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.settings.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'admin.site_settings.index.title' ).titlecase
     end
 
     it 'user admin' do
