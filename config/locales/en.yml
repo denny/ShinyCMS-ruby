@@ -251,7 +251,7 @@ en:
     other:
       title: Other
 
-    settings:
+    site_settings:
       title: Site Settings
       index:
         title: Site Settings

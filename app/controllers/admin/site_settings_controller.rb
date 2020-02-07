@@ -1,12 +1,12 @@
-# Admin controller for CMS settings
-class Admin::SettingsController < AdminController
+# Admin controller for site settings
+class Admin::SiteSettingsController < AdminController
   def index
     @settings = Setting.order( :name )
-    authorise @settings
+    authorise @settings.first
   end
 
   def update
-    skip_authorization # TODO: this is obviously bad; refactoring v. soon!
+    authorise Setting.all.first
 
     all_updated = update_settings( settings_params )
     if all_updated
@@ -14,7 +14,7 @@ class Admin::SettingsController < AdminController
     else
       flash[ :alert ] = t( '.failure' )
     end
-    redirect_to settings_path
+    redirect_to site_settings_path
   end
 
   private
@@ -31,6 +31,7 @@ class Admin::SettingsController < AdminController
 
   def update_setting( id, params )
     setting = Setting.find( id )
+    authorise setting
     level = params[ "level_#{id}" ]
 
     unless level.blank? || setting.level == level

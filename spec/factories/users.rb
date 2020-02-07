@@ -52,14 +52,10 @@ FactoryBot.define do
       category = create :capability_category, name: 'feature_flags'
 
       list    = create :capability, name: 'list',    category: category
-      add     = create :capability, name: 'add',     category: category
       edit    = create :capability, name: 'edit',    category: category
-      destroy = create :capability, name: 'destroy', category: category
 
       create :user_capability, user: admin, capability: list
-      create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
-      create :user_capability, user: admin, capability: destroy
     end
   end
 
@@ -128,14 +124,10 @@ FactoryBot.define do
       category = create :capability_category, name: 'settings'
 
       list    = create :capability, name: 'list',    category: category
-      add     = create :capability, name: 'add',     category: category
       edit    = create :capability, name: 'edit',    category: category
-      destroy = create :capability, name: 'destroy', category: category
 
       create :user_capability, user: admin, capability: list
-      create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
-      create :user_capability, user: admin, capability: destroy
     end
   end
 
