@@ -263,7 +263,7 @@ en:
         site: Site
       update:
         success: Settings updated
-        failure: Failed to update settings
+        failure: Failed to update some settings
 
     users:
       title: Users
