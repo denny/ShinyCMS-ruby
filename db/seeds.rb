@@ -56,9 +56,7 @@ seed Capability, { name: 'edit',    category: templates_cc }
 seed Capability, { name: 'destroy', category: templates_cc }
 # Site Settings
 seed Capability, { name: 'list',    category: settings_cc }
-seed Capability, { name: 'add',     category: settings_cc }
 seed Capability, { name: 'edit',    category: settings_cc }
-seed Capability, { name: 'destroy', category: settings_cc }
 # Users
 seed Capability, { name: 'list',    category: users_cc }
 seed Capability, { name: 'add',     category: users_cc }
