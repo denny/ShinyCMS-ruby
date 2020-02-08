@@ -55,6 +55,11 @@ class User < ApplicationRecord
     false
   end
 
+  def admin?
+    general = CapabilityCategory.find_by( name: 'general' )
+    capabilities.exists? name: 'view_admin_area', category: general
+  end
+
   def capabilities=( capability_set )
     old_capabilities = user_capabilities.pluck( :capability_id ).sort
     new_capabilities = capability_set.keys.map( &:to_i ).sort

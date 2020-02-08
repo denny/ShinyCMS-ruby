@@ -29,7 +29,7 @@ class Setting < ApplicationRecord
 
   def admin_value( user )
     return unless level == 'admin'
-    return unless user.can? :view_admin_area
+    return unless user.admin?
 
     values.where( user_id: user.id ).pick( :value )
   end
@@ -46,6 +46,14 @@ class Setting < ApplicationRecord
     return value if value.present?
 
     setting.site_value
+  end
+
+  def self.user_settings
+    where( level: 'user' ).order( :name )
+  end
+
+  def self.admin_settings
+    where( level: 'user' ).or( where( level: 'admin' ) ).order( :name )
   end
 
   private

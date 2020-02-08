@@ -1,8 +1,10 @@
 <p>
 	<% if user_signed_in? %>
-	Welcome back <%= user_profile_link %>!
-	( <%= link_to t( 'edit' ).downcase, edit_user_registration_path %> |
-    <%= link_to t( 'user.log_out' ).downcase, destroy_user_session_path, method: :delete %> )
+	Welcome back <%= user_profile_link %>! &nbsp;
+	[ <%= link_to t( 'user.edit_profile' ), edit_user_registration_path %>
+  | <%= link_to t( 'site_settings.index.title' ), site_settings_path %>
+  | <%= link_to t( 'user.log_out' ), destroy_user_session_path, data: {}, method: :delete %>
+	]
 	<% else %>
 	<%= link_to t( 'user.log_in'   ), new_user_session_path %> /
 	<%= link_to t( 'user.register' ), new_user_registration_path %>
