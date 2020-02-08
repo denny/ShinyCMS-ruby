@@ -50,7 +50,7 @@ en:
 
   site_settings:
     index:
-      title: Site Settings
+      title: Site settings
     update:
       success: Settings updated
       unchanged: No settings were changed
@@ -259,9 +259,9 @@ en:
       title: Other
 
     site_settings:
-      title: Site Settings
+      title: Site settings
       index:
-        title: Site Settings
+        title: Site settings
         name: Name
         value: Value
         level: Level
