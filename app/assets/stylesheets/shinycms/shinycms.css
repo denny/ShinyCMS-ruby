@@ -17,36 +17,36 @@ body {
   margin:       0;
 }
 
-#alerts {
+.alerts {
   background:   #ffdddd;
   padding:      0.5em;
 }
 
-#notices {
+.notices {
   background:   #ddffdd;
   padding:      0.5em;
 }
 
-#top-nav {
+.top-nav {
   border-bottom:  1px solid #dddddd;
   padding:        0.5em;
 }
 
-#top-nav ul {
+.top-nav ul {
   padding-left:     0;
 }
 
-#top-nav li {
+.top-nav li {
   display:          inline;
   list-style-type:  none;
   padding:          0.2em;
 }
 
-#main {
+.main {
   padding:      0.5em;
 }
 
-#footer {
+.footer {
   border-top:   #dddddd solid 1px;
   font-size:    0.8em;
   padding:      0.5em;
