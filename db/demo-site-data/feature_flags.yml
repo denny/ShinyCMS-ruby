@@ -2,57 +2,76 @@
 FeatureFlag_1:
   id: 1
   name: blogs
-  description: ''
+  description: Enable blog (or blogs) feature
   enabled: true
+  enabled_for_logged_in: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-24 01:05:27.511080000 Z
+    utc: &1 2020-02-08 06:14:42.510547000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-24 01:05:27.511080000 Z
+    utc: &3 2020-02-08 06:14:42.510547000 Z
     zone: *2
     time: *3
 FeatureFlag_2:
   id: 2
-  name: user_login
-  description: Allow users to log in
+  name: tags
+  description: Enable tag features
   enabled: true
+  enabled_for_logged_in: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &4 2019-12-24 01:05:27.529939000 Z
+    utc: &4 2020-02-08 06:14:42.519410000 Z
     zone: *2
     time: *4
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &5 2019-12-24 01:05:27.529939000 Z
+    utc: &5 2020-02-08 06:14:42.519410000 Z
     zone: *2
     time: *5
 FeatureFlag_3:
   id: 3
-  name: user_profiles
-  description: Allow viewing of user profiles
-  enabled: true
-  enabled_for_admins: true
+  name: user_login
+  description: Allow users to log in
+  enabled: false
+  enabled_for_logged_in: false
+  enabled_for_admins: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &6 2019-12-24 01:05:27.549873000 Z
+    utc: &6 2020-02-08 06:14:42.527763000 Z
     zone: *2
     time: *6
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &7 2019-12-24 01:05:27.549873000 Z
+    utc: &7 2020-02-08 06:14:42.527763000 Z
     zone: *2
     time: *7
 FeatureFlag_4:
   id: 4
-  name: user_registration
-  description: Allow users to create accounts
+  name: user_profiles
+  description: Allow viewing of user profiles
   enabled: true
+  enabled_for_logged_in: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &8 2019-12-24 01:05:27.567040000 Z
+    utc: &8 2020-02-08 06:14:42.536521000 Z
     zone: *2
     time: *8
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &9 2019-12-24 01:05:27.567040000 Z
+    utc: &9 2020-02-08 06:14:42.536521000 Z
     zone: *2
     time: *9
+FeatureFlag_5:
+  id: 5
+  name: user_registration
+  description: Allow users to create accounts
+  enabled: false
+  enabled_for_logged_in: false
+  enabled_for_admins: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2020-02-08 06:14:42.545304000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2020-02-08 06:14:42.545304000 Z
+    zone: *2
+    time: *11
