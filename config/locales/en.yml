@@ -50,6 +50,13 @@ en:
     # NB, the above strings are all here to keep them together, but not all of
     # them would make sense as user settings. Particularly not the first one!!
 
+  site_settings:
+    index:
+      title: Site settings
+    update:
+      success: Settings updated
+      unchanged: No settings were changed
+
   tags:
     index:
       title: Tags
@@ -254,9 +261,9 @@ en:
       title: Other
 
     site_settings:
-      title: Site Settings
+      title: Site settings
       index:
-        title: Site Settings
+        title: Site settings
         name: Name
         value: Value
         level: Level
@@ -266,6 +273,7 @@ en:
       update:
         success: Settings updated
         failure: Failed to update some settings
+        unchanged: No settings were changed
 
     users:
       title: Users

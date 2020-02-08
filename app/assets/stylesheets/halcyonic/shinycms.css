@@ -18,6 +18,29 @@ input[type="checkbox"] {
 }
 
 
+/* ===== ( styles that aren't specific to one section ) ===== */
+
+form div {
+  margin:               0.5em 0;
+}
+
+input {
+  padding:              0 0.3em;
+}
+
+.above-section {
+  padding-left:         39px;
+}
+
+.content tr {
+  height:               3em;
+}
+
+.content td {
+  padding:              0.5em;
+}
+
+
 /* ===== ( main menu ) ===== */
 
 nav .sm {
@@ -103,14 +126,6 @@ nav .sm li li a:hover {
 .sidebar li:last-child {
   border-bottom:        0 !important;
   padding-bottom:       0 !important;
-}
-
-input {
-  padding:              0 0.3em;
-}
-
-form div {
-  margin:               0.5em 0;
 }
 
 
