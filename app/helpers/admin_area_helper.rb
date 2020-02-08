@@ -22,7 +22,19 @@ module AdminAreaHelper
     redirect_to redirect_path
   end
 
+  def render_capability_category( form, category, capblts, show, skip = false )
+    render partial: 'capability_category', locals: {
+      f: form,
+      category: category,
+      category_capabilities: capblts,
+      show: show,
+      skip_name: skip
+    }
+  end
+
   def render_capability_checkbox( form, capability, capability_category )
+    return if capability == 'skip'
+
     render partial: 'capability_checkbox', locals: {
       f: form,
       capability: capability,
