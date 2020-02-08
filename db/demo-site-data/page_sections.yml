@@ -1,0 +1,19 @@
+---
+PageSection_1:
+  id: 1
+  name: Two column
+  description: ''
+  title: Two Column
+  slug: two
+  sort_order: 3
+  hidden_from_menu: false
+  hidden: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2020-02-08 07:07:31.570282000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2020-02-08 07:07:31.570282000 Z
+    zone: *2
+    time: *3
