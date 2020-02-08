@@ -170,7 +170,7 @@ RSpec.describe 'User', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_link user.username, href: "/user/#{user.username}"
-      expect( response.body ).to have_link I18n.t( 'user.log_out' ).downcase
+      expect( response.body ).to have_link I18n.t( 'user.log_out' )
     end
 
     it 'logs the user in using their username' do
@@ -187,7 +187,7 @@ RSpec.describe 'User', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_link user.username, href: "/user/#{user.username}"
-      expect( response.body ).to have_link I18n.t( 'user.log_out' ).downcase
+      expect( response.body ).to have_link I18n.t( 'user.log_out' )
     end
 
     it 'redirects back to the referring page after login, if it knows it' do
