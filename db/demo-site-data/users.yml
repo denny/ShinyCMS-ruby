@@ -3,7 +3,7 @@ User_1:
   id: 1
   username: admin
   email: admin@example.com
-  encrypted_password: "$2a$11$BuIQa84a0DBc9vAuJ.PubOb3K7L8.UlMcOPltxRGU9j2FfIQkNolC"
+  encrypted_password: "$2a$11$4NhY/QjSyayOMRgVyJgO4uWiL5MhZDjezOhihQXDQK5SkGM4zS1X2"
   sign_in_count: 0
   confirmation_token: zr1F-PYVWcY-zry8tqFy
   confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
