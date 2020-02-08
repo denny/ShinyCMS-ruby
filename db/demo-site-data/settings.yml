@@ -1,42 +1,87 @@
 ---
 Setting_1:
   id: 1
-  name: Admin IP list
-  value: ''
+  name: admin_ip_list
   description: Comma/space-separated list of IP addresses allowed to access admin
     area
+  level: site
+  locked: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-11-13 19:24:38.896314000 Z
+    utc: &1 2020-02-08 06:14:42.585196000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-11-13 19:24:38.896314000 Z
+    utc: &3 2020-02-08 06:14:42.585196000 Z
     zone: *2
     time: *3
 Setting_2:
   id: 2
-  name: Default page
-  value: home
+  name: default_page
   description: Default top-level page (either its name or its slug)
+  level: site
+  locked: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &4 2019-11-13 19:24:38.904200000 Z
+    utc: &4 2020-02-08 06:14:42.613485000 Z
     zone: *2
     time: *4
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &5 2019-11-13 23:50:57.136526000 Z
+    utc: &5 2020-02-08 06:14:42.613485000 Z
     zone: *2
     time: *5
 Setting_3:
   id: 3
-  name: Default section
-  value: ''
+  name: default_section
   description: Default top-level section (either its name or its slug)
+  level: site
+  locked: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &6 2019-11-13 19:24:38.910978000 Z
+    utc: &6 2020-02-08 06:14:42.627264000 Z
     zone: *2
     time: *6
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &7 2019-11-13 19:24:38.910978000 Z
+    utc: &7 2020-02-08 06:14:42.627264000 Z
     zone: *2
     time: *7
+Setting_4:
+  id: 4
+  name: post_login_redirect
+  description: Where people are redirected after login, if no referer header
+  level: admin
+  locked: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2020-02-08 06:14:42.659694000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2020-02-08 06:14:42.659694000 Z
+    zone: *2
+    time: *9
+Setting_5:
+  id: 5
+  name: tag_view
+  description: "('cloud' or 'list')"
+  level: user
+  locked: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2020-02-08 06:14:42.674004000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2020-02-08 06:14:42.674004000 Z
+    zone: *2
+    time: *11
+Setting_6:
+  id: 6
+  name: theme_name
+  description: ''
+  level: site
+  locked: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2020-02-08 06:14:42.688375000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2020-02-08 06:14:42.688375000 Z
+    zone: *2
+    time: *13
