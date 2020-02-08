@@ -5,14 +5,13 @@
 <% current_month = '' %>
 <% @posts.each do |post| %>
   <% unless post.posted_at.month == current_month %>
-  <h3>
+  <h2>
     <%= I18n.t('date.month_names')[post.posted_at.month] %>
-  </h3>
+  </h2>
   <% current_month = post.posted_at.month %>
   <% end %>
 
   <section>
-
     <header>
       <h2>
         <%= link_to post.title, view_blog_post_path( post ) %>
@@ -23,7 +22,6 @@
         on <%= post.posted_at.to_s( :shinydate ) %>
       </h3>
     </header>
-
   </section>
 <% end %>
 

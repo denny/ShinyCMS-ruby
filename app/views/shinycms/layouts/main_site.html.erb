@@ -5,19 +5,19 @@
   </head>
 
   <body>
-    <header id="header">
+    <header class="header">
       <%= render partial: 'includes/messages' %>
     </header>
 
-    <nav id="top-nav">
+    <nav class="top-nav">
       <%= render partial: 'menu/menu' %>
     </nav>
 
-    <main id="main" role="main">
+    <main class="main" role="main">
       <%= yield %>
     </main>
 
-    <footer id="footer" class="container">
+    <footer class="footer" class="container">
       <%= render partial: 'includes/footer' %>
     </footer>
 

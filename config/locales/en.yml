@@ -28,6 +28,8 @@ en:
   # ========== ( Main Site ) ==========
 
   blogs:
+    index:
+      title: Blogs
     set_blog:
       failure: Blog not found
     sidebar:

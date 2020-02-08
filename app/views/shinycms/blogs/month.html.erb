@@ -2,13 +2,12 @@
 
 <% @sidebar_position = 'right' %>
 
-<h3>
+<h2 class="above-section">
   Blog posts in <%= I18n.t('date.month_names')[@posts.first.posted_at.month] %>
-</h3>
+</h2>
 
 <% @posts.each do |post| %>
 <section>
-
   <header>
     <h2>
       <%= link_to post.title, view_blog_post_path( post ) %>
@@ -21,7 +20,6 @@
   </header>
 
   <%= sanitize post.teaser( paragraphs: 3 ) %>
-
 </section>
 <% end %>
 
