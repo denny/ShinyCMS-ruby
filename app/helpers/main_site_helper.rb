@@ -6,6 +6,14 @@ module MainSiteHelper
     current_user&.can? capability, category
   end
 
+  def current_user_is_admin?
+    current_user&.admin?
+  end
+
+  def current_user_is_not_admin?
+    !current_user_is_admin?
+  end
+
   def insert( name )
     InsertSet.first.elements.where( name: name ).pick( :content )
   end

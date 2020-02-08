@@ -29,7 +29,7 @@ class AdminController < ApplicationController
     elsif current_user.can? :list, :users
       redirect_to users_path
     elsif current_user.can? :list, :settings
-      redirect_to site_settings_path
+      redirect_to admin_site_settings_path
     end
   end
   # rubocop:enable Metrics/MethodLength

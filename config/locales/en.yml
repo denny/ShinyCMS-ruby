@@ -28,6 +28,8 @@ en:
   # ========== ( Main Site ) ==========
 
   blogs:
+    index:
+      title: Blogs
     set_blog:
       failure: Blog not found
     sidebar:
@@ -47,6 +49,13 @@ en:
     theme_name: Theme name
     # NB, the above strings are all here to keep them together, but not all of
     # them would make sense as user settings. Particularly not the first one!!
+
+  site_settings:
+    index:
+      title: Site Settings
+    update:
+      success: Settings updated
+      unchanged: No settings were changed
 
   tags:
     index:
@@ -264,6 +273,7 @@ en:
       update:
         success: Settings updated
         failure: Failed to update some settings
+        unchanged: No settings were changed
 
     users:
       title: Users
