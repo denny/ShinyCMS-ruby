@@ -17,7 +17,8 @@ module FeatureFlagsHelper
     return false if feature.blank?
     return true  if feature.enabled?
 
-    return false unless current_user&.can? :view_admin_area
+    # return false unless current_user&.can? :view_admin_area
+    return false unless current_user&.admin?
 
     feature.enabled_for_admins?
   end

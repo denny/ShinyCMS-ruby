@@ -32,6 +32,9 @@ Rails.application.routes.draw do
                                       constraints: { year: %r{\d\d\d\d} }
     end
 
+    get 'site-settings', to: 'site_settings#index'
+    put 'site-settings', to: 'site_settings#update'
+
     get 'tags',      to: 'tags#index', as: :tags
     get 'tags/:tag', to: 'tags#show',  as: :tag
 
@@ -102,7 +105,7 @@ Rails.application.routes.draw do
                               as: :create_page_template
 
       # Site settings
-      get 'site-settings', to: 'site_settings#index', as: :site_settings
+      get 'site-settings', to: 'site_settings#index', as: :admin_site_settings
       put 'site-settings', to: 'site_settings#update'
 
       # Users
