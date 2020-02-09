@@ -24,7 +24,7 @@ RSpec.describe 'User', type: :request do
       get user_profile_path( 'syzygy' )
 
       expect( response      ).to have_http_status :not_found
-      expect( response.body ).to have_css 'h2', text: I18n.t( 'errors.not_found.title' )
+      expect( response.body ).to have_css 'h2', text: I18n.t( 'errors.not_found.title', resource_type: 'User' )
     end
   end
 
