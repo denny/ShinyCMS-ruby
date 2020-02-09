@@ -178,12 +178,18 @@ nav .sm li li a:hover {
 }
 
 
-/* ===== ( styles for tag clouds ) ===== */
+/* ===== ( styles for tag clouds and tag lists ) ===== */
 
 .tagsize1 { font-size: 1em; }
 .tagsize2 { font-size: 2em; }
 .tagsize3 { font-size: 3em; }
 .tagsize4 { font-size: 4em; }
+
+.twelve-columns {
+  column-count: 12;
+  column-fill: balance;
+  width: 100%;
+}
 
 
 /* ========== ( user profile pics ) ========== */
