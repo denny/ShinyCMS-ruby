@@ -18,16 +18,13 @@ RSpec.describe 'User', type: :request do
       expect( response.body ).to include user.username
     end
 
-    it "gives a helpful error message if the username doesn't exist" do
+    it "renders the CMS 404 page if the username doesn't exist" do
       create :page
 
       get user_profile_path( 'syzygy' )
 
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.alerts', text: I18n.t( 'user.not_found' )
+      expect( response      ).to have_http_status :not_found
+      expect( response.body ).to have_css 'h2', text: I18n.t( 'errors.not_found.title' )
     end
   end
 
