@@ -37,6 +37,11 @@ en:
       links_blurb: Recommended reading from around the web
       recent_posts: Recent Posts
 
+  errors:
+    not_found:
+      title: "%{resource_type} not found"
+      explanation: The URL you have reached is for a %{resource_type} that does not exist.
+
   page:
     template_file_missing: Unable to display page; its template file is missing.
 
@@ -67,7 +72,7 @@ en:
     log_in: Log in
     log_out: Log out
     register: Register
-    not_found: User not found
+    site_settings: Site settings
 
 
   # ========== ( Feature Flags ) ==========
@@ -91,11 +96,13 @@ en:
       admin_users: Admin Users
       blogs: Blogs
       blog_posts: Blog Posts
+      feature_flags: Feature Flags
       general: General
+      inserts: Inserts
       pages: Pages
       page_sections: Page Sections
       page_templates: Page Templates
-      inserts: Inserts
+      site_settings: Site Settings
       users: Users
 
     blog_posts:
