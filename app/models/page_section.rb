@@ -4,42 +4,15 @@ class PageSection < ApplicationRecord
 
   validates :hidden, inclusion:  { in: [ true, false ] }
 
-  has_many  :pages,
-            -> { where( hidden: false ).order( :sort_order ) },
-            foreign_key: 'section_id',
-            inverse_of: 'section',
-            dependent: :restrict_with_error
-
-  has_many  :hidden_pages,
-            -> { where( hidden: true ).order( :sort_order ) },
-            class_name: 'Page',
-            foreign_key: 'section_id',
-            inverse_of: 'section',
-            dependent: :restrict_with_error
+  default_scope { order( :sort_order ) }
 
   has_many  :all_pages,
-            -> { order( :sort_order ) },
             class_name: 'Page',
-            foreign_key: 'section_id',
-            inverse_of: 'section',
-            dependent: :restrict_with_error
-
-  has_many  :sections,
-            -> { where( hidden: false ).order( :sort_order ) },
-            class_name: 'PageSection',
-            foreign_key: 'section_id',
-            inverse_of: 'section',
-            dependent: :restrict_with_error
-
-  has_many  :hidden_sections,
-            -> { where( hidden: true ).order( :sort_order ) },
-            class_name: 'PageSection',
             foreign_key: 'section_id',
             inverse_of: 'section',
             dependent: :restrict_with_error
 
   has_many  :all_sections,
-            -> { order( :sort_order ) },
             class_name: 'PageSection',
             foreign_key: 'section_id',
             inverse_of: 'section',
@@ -47,7 +20,7 @@ class PageSection < ApplicationRecord
 
   belongs_to  :section,
               class_name: 'PageSection',
-              inverse_of: 'sections',
+              inverse_of: 'all_sections',
               optional: true
 
   # Instance methods
@@ -69,9 +42,25 @@ class PageSection < ApplicationRecord
     end
   end
 
+  def pages
+    all_pages.where( hidden: false )
+  end
+
+  # def hidden_pages
+  #  all_pages.where( hidden: true )
+  # end
+
   def menu_pages
     pages.where( hidden_from_menu: false )
   end
+
+  def sections
+    all_sections.where( hidden: false )
+  end
+
+  # def hidden_sections
+  #  all_sections.where( hidden: true )
+  # end
 
   def menu_sections
     sections.where( hidden_from_menu: false )
@@ -93,17 +82,15 @@ class PageSection < ApplicationRecord
   # Class methods
 
   def self.all_top_level_sections
-    PageSection.where( section: nil ).order( :sort_order )
+    PageSection.where( section: nil )
   end
 
   def self.top_level_sections
     PageSection.all_top_level_sections.where( hidden: false )
-               .order( :sort_order )
   end
 
   def self.top_level_menu_sections
     PageSection.top_level_sections.where( hidden_from_menu: false )
-               .order( :sort_order )
   end
 
   # Return the default top-level section
