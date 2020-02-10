@@ -35,8 +35,11 @@ Rails.application.routes.draw do
     get 'site-settings', to: 'site_settings#index'
     put 'site-settings', to: 'site_settings#update'
 
-    get 'tags',      to: 'tags#index', as: :tags
-    get 'tags/:tag', to: 'tags#show',  as: :tag
+    get 'tags',       to: 'tags#index', as: :tags
+    get 'tags/cloud', to: 'tags#cloud', as: :tag_cloud
+    get 'tags/list',  to: 'tags#list',  as: :tag_list
+    get 'tag/:tag',   to: 'tags#show',  as: :tag
+    get 'tags/:tags', to: 'tags#show',  as: :show_tags
 
     # Users
     devise_for  :users,
