@@ -132,4 +132,4 @@ https://opensource.org/licenses/gpl-2.0
 https://opensource.org/licenses/gpl-3.0
 
 ShinyCMS uses code from other open source and free software projects, which
-have their own licensing terms; see docs/LICENSES.md for details.
+have their own licensing terms; see docs/licenses.md for details.
