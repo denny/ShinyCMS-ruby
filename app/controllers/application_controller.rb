@@ -68,6 +68,6 @@ class ApplicationController < ActionController::Base
     # Add the default templates directory to the top of view_paths
     prepend_view_path 'app/views/shinycms'
     # Apply the configured theme, if any, by adding it above the defaults
-    prepend_view_path Theme.current.view_path if Theme.current
+    prepend_view_path Theme.current.view_path if Theme.current( current_user )
   end
 end

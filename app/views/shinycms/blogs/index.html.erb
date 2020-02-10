@@ -1,7 +1,13 @@
-<% @page_title = 'Blogs' %>
+<% @page_title = t( '.title' ) %>
 
-<% @blogs.each do |blog| %>
-<p>
-  <%= link_to blog.title, view_blog_path( blog ) %> - <%= blog.description %>
-</p>
-<% end %>
+<h2 class="above-section">
+  <%= @page_title %>
+</h2>
+
+<section>
+  <% @blogs.each do |blog| %>
+  <p>
+    <%= link_to blog.title, view_blog_path( blog ) %> - <%= blog.description %>
+  </p>
+  <% end %>
+</section>

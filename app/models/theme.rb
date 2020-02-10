@@ -22,11 +22,14 @@ class Theme
   end
 
   # Find the current theme, if any
-  def self.current
-    name = Setting.get( 'theme_name' )
-    return Theme.new( name ) if files_exist?( name )
+  def self.current( user = nil )
+    theme_name = Setting.get :theme_name, user
+    return Theme.new( theme_name ) if files_exist?( theme_name )
 
-    name = ENV['SHINYCMS_THEME']
-    return Theme.new( name ) if files_exist?( name )
+    theme_name = Setting.get :theme_name
+    return Theme.new( theme_name ) if files_exist?( theme_name )
+
+    theme_name = ENV['SHINYCMS_THEME']
+    return Theme.new( theme_name ) if files_exist?( theme_name )
   end
 end

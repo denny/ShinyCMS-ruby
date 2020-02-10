@@ -1,8 +1,23 @@
 # Controller for tag features
 class TagsController < ApplicationController
+  include MainSiteHelper
+
   before_action :check_feature_flags
 
   def index
+    @tags = ActsAsTaggableOn::Tag.all
+    if setting( :tag_view ) == 'list'
+      render :list
+    else
+      render :cloud
+    end
+  end
+
+  def cloud
+    @tags = ActsAsTaggableOn::Tag.all
+  end
+
+  def list
     @tags = ActsAsTaggableOn::Tag.all
   end
 

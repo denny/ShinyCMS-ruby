@@ -14,8 +14,7 @@ class UsersController < ApplicationController
     @user_profile = User.find_by( username: params[ :username ] )
     return if @user_profile.present?
 
-    flash[ :alert ] = t( 'user.not_found' )
-    redirect_to root_path
+    render 'errors/404', status: :not_found
   end
 
   private

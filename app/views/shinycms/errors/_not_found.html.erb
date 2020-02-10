@@ -1,0 +1,52 @@
+<% @empty_layout = true %>
+<% @resource_type ||= controller.class.name.remove( 'Controller' ).underscore.humanize.singularize %>
+
+<section>
+  <header>
+    <h2>
+      <%= t( '.title', { resource_type: @resource_type } ) %>
+    </h2>
+  </header>
+
+  <p>
+    <%= t( '.explanation', { resource_type: @resource_type.downcase } ) %>
+  </p>
+  <p>
+    You can use the search form
+    <% if feature_enabled? :tags %>and the tag list <% end %>
+    below to try to find what you were looking for,
+    or to explore the other content on this site.
+  </p>
+</section>
+
+<section>
+  <header>
+    <h2>
+      Search the site
+    </h2>
+  </header>
+
+  <p>
+    <%# TODO: search feature %>
+    <%= form_with name: 'search', url: root_path, method: :post do |f| %>
+      <%= f.text_field 'q' %> <%= f.submit 'Search', class: 'button' %>
+    <% end %>
+  </p>
+</section>
+
+<% if feature_enabled? :tags %>
+<% tags = ActsAsTaggableOn::Tag.order( :name ) %>
+<section>
+  <header>
+    <h2>
+      Tags
+    </h2>
+  </header>
+
+  <div class="twelve-columns">
+    <% tags.each do |tag| %>
+      <%= link_to tag.name, tag_path( tag.name ) %> (<%= tag.taggings_count %>)<br>
+    <% end %>
+  </div>
+</section>
+<% end %>

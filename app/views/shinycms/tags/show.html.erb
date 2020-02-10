@@ -2,16 +2,19 @@
   <h2>
     <%= type.underscore.pluralize.humanize %> tagged with '<%= @tag %>'
   </h2>
-  <ul>
-    <% @tagged_items[ type ].each do |item| %>
-    <li>
-      <% if type == 'BlogPost' %>
-      <%= link_to item.title, view_blog_post_path( item ) %>
-        posted by <%= user_profile_link( item.author ) %>
-        at <%= item.posted_at.to_s( :time ) %>
-        on <%= item.posted_at.to_s( :shinydate ) %>
+
+  <section>
+    <ul>
+      <% @tagged_items[ type ].each do |item| %>
+      <li>
+        <% if type == 'BlogPost' %>
+        <%= link_to item.title, view_blog_post_path( item ) %>
+          posted by <%= user_profile_link( item.author ) %>
+          at <%= item.posted_at.to_s( :time ) %>
+          on <%= item.posted_at.to_s( :shinydate ) %>
+        <% end %>
+      </li>
       <% end %>
-    </li>
-    <% end %>
-  </ul>
+    </ul>
+  </section>
 <% end %>

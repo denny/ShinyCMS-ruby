@@ -18,20 +18,27 @@
         <svg class="c-icon mr-2">
           <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-user"></use>
         </svg>
-        View profile
+        <%= t( 'user.view_profile' ) %>
       </a>
       <a class="dropdown-item" href="<%= edit_user_registration_path( current_user.username ) %>">
         <svg class="c-icon mr-2">
           <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-pencil"></use>
         </svg>
-        Edit profile
+        <%= t( 'user.edit_profile' ) %>
       </a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="<%= destroy_user_session_path %>">
+      <a class="dropdown-item" href="<%= site_settings_path %>">
+        <svg class="c-icon mr-2">
+          <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-settings"></use>
+        </svg>
+        <%= t( 'user.site_settings' ) %>
+      </a>
+      <div class="dropdown-divider"></div>
+      <a rel="nofollow" data-method="delete" class="dropdown-item" href="<%= destroy_user_session_path %>">
         <svg class="c-icon mr-2">
           <use xlink:href="/assets/coreui/icons/coreui/free-symbol-defs.svg#cui-account-logout"></use>
         </svg>
-        Log out
+        <%= t( 'user.log_out' ) %>
       </a>
     </div>
   </li>
