@@ -1,0 +1,12 @@
+  <tr class="<%= show %>collapse collapse_capabilities">
+    <td class="shorter">
+      <% unless skip_name %>
+      <%= t( "capability.category.#{category.name}" ) %>
+      <% end %>
+    </td>
+    <% category_capabilities.each do |capability_name| %>
+    <td class="longer">
+      <%= render_capability_checkbox( f, capability_name, category ) %>
+    </td>
+    <% end %>
+  </tr>

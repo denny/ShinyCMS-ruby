@@ -91,11 +91,13 @@ en:
       admin_users: Admin Users
       blogs: Blogs
       blog_posts: Blog Posts
+      feature_flags: Feature Flags
       general: General
+      inserts: Inserts
       pages: Pages
       page_sections: Page Sections
       page_templates: Page Templates
-      inserts: Inserts
+      settings: Site Settings
       users: Users
 
     blog_posts:
