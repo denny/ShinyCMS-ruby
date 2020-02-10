@@ -1,24 +1,38 @@
 # Getting Started
 
-## Installing
+## Deployment
 
-...
+You can deploy ShinyCMS to Heroku using the included Procfile, after setting
+your config vars (see Configuration) and (optionally) adding a theme to
+customise the appearance of your site.
+
 
 ## Configuration
 
-...
+You can configure your site via ENV vars in dev, or config vars on Heroku. See
+.env.example for a list of the available config options.
 
-## Creating your site
+You can also change some site settings in the admin area once ShinyCMS is
+running.
 
-### Themes
+
+## Themes
 
 The recommended way to start building a site on ShinyCMS is to create a theme
-for it. The ShinyCMS theme engine falls back to the default template set if a
-template is not present in the current theme, which means that you can start
-building your own theme by simply creating a subdirectory for it in 
-`app/views/themes`. Then you can copy any template that you wish to edit or
-override from `app/views/shinycms` into your new theme directory and ShinyCMS
-will pick up your modified version whenever you tell it to use your theme.
+for it. You can read more about creating themes in docs/themes.md
 
-The current theme can be set in ENV['SHINYCMS_THEME'] and on the Settings page
-in the admin area. If both are set, the latter takes priority.
+The default theme can be set in ENV['SHINYCMS_THEME'] and on the Settings page
+in the admin area. If both are set, the latter takes priority. You can also
+choose to make this setting user-overridable, in which case a user's setting
+will take priority for them.
+
+
+## Demo site
+
+There is some demo data included, which will allow you to try out most ShinyCMS
+features without having to create your own test data first. You can load it with
+the utility script `tools/insert-demo-site-data`.
+
+NB: This script will wipe most of the tables in the database before populating
+them with the demo site data; notably, this includes the `users` table. Back up
+any data that you don't want to lose!
