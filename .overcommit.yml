@@ -9,6 +9,9 @@
 # https://github.com/sds/overcommit#configuration
 
 PreCommit:
+  CaseConflicts:
+    enabled: false
+
   RuboCop:
     enabled: true
     on_warn: fail
