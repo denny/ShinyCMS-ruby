@@ -6,7 +6,7 @@ class Page < ApplicationRecord
   validates :hidden,      inclusion:  { in: [ true, false ] }
 
   belongs_to :section,  class_name: 'PageSection', optional: true,
-                        inverse_of: 'pages'
+                        inverse_of: 'all_pages'
 
   belongs_to :template, class_name: 'PageTemplate',
                         inverse_of: 'pages'
@@ -20,6 +20,8 @@ class Page < ApplicationRecord
   accepts_nested_attributes_for :elements
 
   after_create :add_elements
+
+  default_scope { order( :sort_order ) }
 
   # Instance methods
 
@@ -51,15 +53,15 @@ class Page < ApplicationRecord
   # Class methods
 
   def self.all_top_level_pages
-    Page.where( section: nil ).order( :sort_order )
+    Page.where( section: nil )
   end
 
   def self.top_level_pages
-    Page.all_top_level_pages.where( hidden: false ).order( :sort_order )
+    Page.all_top_level_pages.where( hidden: false )
   end
 
   def self.top_level_menu_pages
-    Page.top_level_pages.where( hidden_from_menu: false ).order( :sort_order )
+    Page.top_level_pages.where( hidden_from_menu: false )
   end
 
   def self.top_level_menu_items

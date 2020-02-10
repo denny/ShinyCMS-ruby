@@ -87,6 +87,6 @@ class PagesController < ApplicationController
 
   # 404 handler
   def not_found
-    render status: :not_found, template: 'errors/404.html.erb'
+    render status: :not_found, template: 'errors/404'
   end
 end

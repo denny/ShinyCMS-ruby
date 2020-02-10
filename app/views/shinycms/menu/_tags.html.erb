@@ -5,7 +5,7 @@
   <ul>
     <% menu_tags.each do |menu_tag| %>
     <li>
-      <%= link_to menu_tag.name, tag_path( menu_tag.name ) %>
+      <%= link_to "#{menu_tag.name} (#{menu_tag.taggings_count})", tag_path( menu_tag.name ) %>
     </li>
     <% end %>
   </ul>
