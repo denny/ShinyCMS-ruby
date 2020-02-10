@@ -1,0 +1,13 @@
+<% @page_title = t( '.title' ) %>
+
+<h2>
+  <%= t( '.title' ) %>
+</h2>
+
+<section>
+  <div class="twelve-columns">
+    <% @tags.order( :name ).each do |tag| %>
+      <%= link_to tag.name, tag_path( tag.name ) %> (<%= tag.taggings_count %>)<br>
+    <% end %>
+  </div>
+</section>

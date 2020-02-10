@@ -18,6 +18,64 @@ input[type="checkbox"] {
 }
 
 
+/* ===== ( styles that aren't specific to one section ) ===== */
+
+form div {
+  margin:               0.5em 0;
+}
+
+input {
+  padding:              0 0.3em;
+}
+
+.above-section {
+  padding-left:         39px;
+}
+
+.content tr {
+  height:               3em;
+}
+
+.content td {
+  padding:              0.5em;
+}
+
+.button {
+  background-color: #ed391b;
+  background-image: -moz-linear-gradient(top, #ed391b, #ce1a00);
+  background-image: -webkit-linear-gradient(top, #ed391b, #ce1a00);
+  background-image: -ms-linear-gradient(top, #ed391b, #ce1a00);
+  background-image: linear-gradient(top, #ed391b, #ce1a00);
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.75), inset 0px 2px 0px 0px rgba(255, 192, 192, 0.5), inset 0px 0px 0px 2px rgba(255, 96, 96, 0.85), 3px 3px 3px 1px rgba(0, 0, 0, 0.15);
+  color: #fff;
+  display: inline-block;
+  font-weight: 300;
+  outline: 0;
+  padding: 0 1em;
+  text-decoration: none;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.button:hover {
+  background-color: #fd492b;
+  background-image: -moz-linear-gradient(top, #fd492b, #de2a10);
+  background-image: -webkit-linear-gradient(top, #fd492b, #de2a10);
+  background-image: -ms-linear-gradient(top, #fd492b, #de2a10);
+  background-image: linear-gradient(top, #fd492b, #de2a10);
+  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.75), inset 0px 2px 0px 0px rgba(255, 192, 192, 0.5), inset 0px 0px 0px 2px rgba(255, 96, 96, 0.85), 3px 3px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+.button:active {
+  background-color: #ce1a00;
+  background-image: -moz-linear-gradient(top, #ce1a00, #ed391b);
+  background-image: -webkit-linear-gradient(top, #ce1a00, #ed391b);
+  background-image: -ms-linear-gradient(top, #ce1a00, #ed391b);
+  background-image: linear-gradient(top, #ce1a00, #ed391b);
+  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.75), inset 0px 2px 0px 0px rgba(255, 192, 192, 0.5), inset 0px 0px 0px 2px rgba(255, 96, 96, 0.85), 3px 3px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+
 /* ===== ( main menu ) ===== */
 
 nav .sm {
@@ -105,14 +163,6 @@ nav .sm li li a:hover {
   padding-bottom:       0 !important;
 }
 
-input {
-  padding:              0 0.3em;
-}
-
-form div {
-  margin:               0.5em 0;
-}
-
 
 /* ========== ( blog posts ) ========== */
 
@@ -128,12 +178,18 @@ form div {
 }
 
 
-/* ===== ( styles for tag clouds ) ===== */
+/* ===== ( styles for tag clouds and tag lists ) ===== */
 
 .tagsize1 { font-size: 1em; }
 .tagsize2 { font-size: 2em; }
 .tagsize3 { font-size: 3em; }
 .tagsize4 { font-size: 4em; }
+
+.twelve-columns {
+  column-count: 12;
+  column-fill: balance;
+  width: 100%;
+}
 
 
 /* ========== ( user profile pics ) ========== */

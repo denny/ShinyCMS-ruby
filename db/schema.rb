@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_202527) do
+ActiveRecord::Schema.define(version: 2020_02_05_211726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,10 +170,19 @@ ActiveRecord::Schema.define(version: 2020_01_29_202527) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
+  create_table "setting_values", force: :cascade do |t|
+    t.integer "setting_id", null: false
+    t.integer "user_id"
+    t.string "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "settings", force: :cascade do |t|
     t.string "name", null: false
-    t.string "value"
     t.string "description"
+    t.string "level", default: "site", null: false
+    t.boolean "locked", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -259,6 +268,8 @@ ActiveRecord::Schema.define(version: 2020_01_29_202527) do
   add_foreign_key "page_template_elements", "page_templates", column: "template_id"
   add_foreign_key "pages", "page_sections", column: "section_id"
   add_foreign_key "pages", "page_templates", column: "template_id"
+  add_foreign_key "setting_values", "settings"
+  add_foreign_key "setting_values", "users"
   add_foreign_key "taggings", "tags"
   add_foreign_key "user_capabilities", "capabilities"
   add_foreign_key "user_capabilities", "users"

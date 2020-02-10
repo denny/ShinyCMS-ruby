@@ -1,0 +1,30 @@
+<% @page_title = t( '.title' ).titlecase %>
+
+<h2 class="above-section">
+  <%= t( '.title' ) %>
+</h2>
+
+<section>
+  <%= form_with url: site_settings_path, method: :put, local: true do %>
+  <table>
+    <% @settings.each do |setting| %>
+    <tr>
+      <td>
+        <%= label :settings, "value_#{setting.id}", t( "settings.#{setting.name}" ) %>
+      </td>
+      <td>
+        <%= text_field :settings, "value_#{setting.id}", value: setting( setting.name ) %>
+      </td>
+      <td>
+        <%= setting.description %>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td colspan="3">
+        <%= submit_tag t( 'update' ) %>
+      </td>
+    </tr>
+  </table>
+  <% end %>
+</section>

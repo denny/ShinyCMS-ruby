@@ -3,110 +3,121 @@ CapabilityCategory_1:
   id: 1
   name: general
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-28 21:35:41.900314000 Z
+    utc: &1 2020-02-08 06:14:40.882011000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-28 21:35:41.900314000 Z
+    utc: &3 2020-02-08 06:14:40.882011000 Z
     zone: *2
     time: *3
 CapabilityCategory_2:
   id: 2
   name: blogs
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &4 2019-12-28 21:35:41.906780000 Z
+    utc: &4 2020-02-08 06:14:40.889782000 Z
     zone: *2
     time: *4
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &5 2019-12-28 21:35:41.906780000 Z
+    utc: &5 2020-02-08 06:14:40.889782000 Z
     zone: *2
     time: *5
 CapabilityCategory_3:
   id: 3
   name: blog_posts
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &6 2019-12-28 21:35:41.912918000 Z
+    utc: &6 2020-02-08 06:14:40.896292000 Z
     zone: *2
     time: *6
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &7 2019-12-28 21:35:41.912918000 Z
+    utc: &7 2020-02-08 06:14:40.896292000 Z
     zone: *2
     time: *7
 CapabilityCategory_4:
   id: 4
-  name: pages
+  name: feature_flags
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &8 2019-12-28 21:35:41.919498000 Z
+    utc: &8 2020-02-08 06:14:40.903049000 Z
     zone: *2
     time: *8
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &9 2019-12-28 21:35:41.919498000 Z
+    utc: &9 2020-02-08 06:14:40.903049000 Z
     zone: *2
     time: *9
 CapabilityCategory_5:
   id: 5
-  name: page_sections
+  name: inserts
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &10 2019-12-28 21:35:41.925446000 Z
+    utc: &10 2020-02-08 06:14:40.909662000 Z
     zone: *2
     time: *10
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &11 2019-12-28 21:35:41.925446000 Z
+    utc: &11 2020-02-08 06:14:40.909662000 Z
     zone: *2
     time: *11
 CapabilityCategory_6:
   id: 6
-  name: page_templates
+  name: pages
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &12 2019-12-28 21:35:41.931745000 Z
+    utc: &12 2020-02-08 06:14:40.916383000 Z
     zone: *2
     time: *12
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &13 2019-12-28 21:35:41.931745000 Z
+    utc: &13 2020-02-08 06:14:40.916383000 Z
     zone: *2
     time: *13
 CapabilityCategory_7:
   id: 7
-  name: users
+  name: page_sections
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &14 2019-12-28 21:35:41.937811000 Z
+    utc: &14 2020-02-08 06:14:40.923019000 Z
     zone: *2
     time: *14
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &15 2019-12-28 21:35:41.937811000 Z
+    utc: &15 2020-02-08 06:14:40.923019000 Z
     zone: *2
     time: *15
 CapabilityCategory_8:
   id: 8
-  name: admin_users
+  name: page_templates
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &16 2019-12-28 21:35:41.943872000 Z
+    utc: &16 2020-02-08 06:14:40.943793000 Z
     zone: *2
     time: *16
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &17 2019-12-28 21:35:41.943872000 Z
+    utc: &17 2020-02-08 06:14:40.943793000 Z
     zone: *2
     time: *17
 CapabilityCategory_9:
   id: 9
-  name: inserts
+  name: settings
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &18 2019-12-28 21:35:41.949579000 Z
+    utc: &18 2020-02-08 06:14:40.950300000 Z
     zone: *2
     time: *18
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &19 2019-12-28 21:35:41.949579000 Z
+    utc: &19 2020-02-08 06:14:40.950300000 Z
     zone: *2
     time: *19
 CapabilityCategory_10:
   id: 10
-  name: settings
+  name: users
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &20 2019-12-28 21:35:41.955489000 Z
+    utc: &20 2020-02-08 06:14:40.956720000 Z
     zone: *2
     time: *20
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &21 2019-12-28 21:35:41.955489000 Z
+    utc: &21 2020-02-08 06:14:40.956720000 Z
     zone: *2
     time: *21
+CapabilityCategory_11:
+  id: 11
+  name: admin_users
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2020-02-08 06:14:40.963282000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2020-02-08 06:14:40.963282000 Z
+    zone: *2
+    time: *23

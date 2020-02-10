@@ -29,7 +29,7 @@ class AdminController < ApplicationController
     elsif current_user.can? :list, :users
       redirect_to users_path
     elsif current_user.can? :list, :settings
-      redirect_to settings_path
+      redirect_to admin_site_settings_path
     end
   end
   # rubocop:enable Metrics/MethodLength
@@ -40,7 +40,7 @@ class AdminController < ApplicationController
   # Check whether a list of permitted admin IP addresses has been defined,
   # and if one has, then redirect anybody not coming from one of those IPs.
   def check_admin_ip_list
-    allowed = Setting.get I18n.t( 'admin.settings.admin_ip_list' )
+    allowed = Setting.get :admin_ip_list
     return if allowed.blank?
 
     return if allowed.strip.split( /\s*,\s*|\s+/ ).include? request.remote_ip

@@ -19,87 +19,45 @@
     </th>
   </tr>
 
+  <% category_capabilities = %w[ view_admin_area view_admin_toolbar skip skip ] %>
   <% category = CapabilityCategory.find_by( name: 'general' ) %>
-  <% category_capabilities = %i[ view_admin_area view_admin_toolbar skip skip ] %>
-  <tr class="<%= show %>collapse collapse_capabilities">
-    <td class="shorter">
-      <%= t( "capability.category.#{category.name}" ) %>
-    </td>
-    <% category_capabilities.each do |capability| %>
-    <td class="longer">
-      <%= render_capability_checkbox( f, capability, category ) %>
-    </td>
-    <% end %>
-  </tr>
-<!--
-  users = User.arel_table
-  User.where(users[:name].matches("%#{user_name}%"))
--->
-  <% category_capabilities = %i[ list add edit destroy ] %>
-  <% CapabilityCategory.where(
-      name: %i[ blogs blog_posts ] ).each do |category| %>
-  <tr class="<%= show %>collapse collapse_capabilities">
-    <td>
-      <%= t( "capability.category.#{category.name}" ) %>
-    </td>
-    <% category_capabilities.each do |capability| %>
-    <td>
-      <%= render_capability_checkbox( f, capability, category ) %>
-    </td>
-    <% end %>
-  </tr>
-  <% end %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
 
-  <% category_capabilities = %i[ change_author skip skip skip ] %>
-  <% category = CapabilityCategory.find_by( name: 'blog_posts' ) %>
-  <tr class="<%= show %>collapse collapse_capabilities">
-    <td>
-    </td>
-    <% category_capabilities.each do |capability| %>
-    <td>
-      <%= render_capability_checkbox( f, capability, category ) %>
-    </td>
-    <% end %>
-  </tr>
-
-  <% category_capabilities = %i[ list add edit destroy ] %>
+  <% category_capabilities = %w[ list add edit destroy ] %>
   <% CapabilityCategory.where(
-      name: %i[ pages page_sections page_templates users ]
+      name: %w[ blogs blog_posts ]
     ).each do |category| %>
-  <tr class="<%= show %>collapse collapse_capabilities">
-    <td>
-      <%= t( "capability.category.#{category.name}" ) %>
-    </td>
-    <% category_capabilities.each do |capability| %>
-    <td>
-      <%= render_capability_checkbox( f, capability, category ) %>
-    </td>
-    <% end %>
-  </tr>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
   <% end %>
 
-  <% category_capabilities = %i[ view_admin_notes skip skip skip ] %>
-  <% category = CapabilityCategory.find_by( name: 'users' ) %>
-  <tr class="<%= show %>collapse collapse_capabilities">
-    <td>
-    </td>
-    <% category_capabilities.each do |capability| %>
-    <td>
-      <%= render_capability_checkbox( f, capability, category ) %>
-    </td>
-    <% end %>
-  </tr>
+  <% category_capabilities = %w[ change_author skip skip skip ] %>
+  <% category = CapabilityCategory.find_by( name: 'blog_posts' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show, true ) %>
 
-  <% category_capabilities = %i[ list add edit destroy ] %>
+  <% category_capabilities = %w[ list skip edit skip ] %>
+  <% category = CapabilityCategory.find_by( name: 'feature_flags' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category_capabilities = %w[ list add edit destroy ] %>
+  <% CapabilityCategory.where(
+      name: %w[ inserts pages page_sections page_templates ]
+    ).each do |category| %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+  <% end %>
+
+  <% category_capabilities = %w[ list skip edit skip ] %>
+  <% category = CapabilityCategory.find_by( name: 'settings' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category_capabilities = %w[ list add edit destroy ] %>
+  <% category = CapabilityCategory.find_by( name: 'users' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category_capabilities = %w[ view_admin_notes skip skip skip ] %>
+  <% category = CapabilityCategory.find_by( name: 'users' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show, true ) %>
+
+  <% category_capabilities = %w[ list add edit destroy ] %>
   <% category = CapabilityCategory.find_by( name: 'admin_users' ) %>
-  <tr class="<%= show %>collapse collapse_capabilities">
-    <td>
-      <%= t( "capability.category.#{category.name}" ) %>
-    </td>
-    <% category_capabilities.each do |capability| %>
-    <td>
-      <%= render_capability_checkbox( f, capability, category ) %>
-    </td>
-    <% end %>
-  </tr>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
 </table>

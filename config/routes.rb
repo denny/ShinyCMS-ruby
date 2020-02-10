@@ -32,8 +32,14 @@ Rails.application.routes.draw do
                                       constraints: { year: %r{\d\d\d\d} }
     end
 
-    get 'tags',      to: 'tags#index', as: :tags
-    get 'tags/:tag', to: 'tags#show',  as: :tag
+    get 'site-settings', to: 'site_settings#index'
+    put 'site-settings', to: 'site_settings#update'
+
+    get 'tags',       to: 'tags#index', as: :tags
+    get 'tags/cloud', to: 'tags#cloud', as: :tag_cloud
+    get 'tags/list',  to: 'tags#list',  as: :tag_list
+    get 'tag/:tag',   to: 'tags#show',  as: :tag
+    get 'tags/:tags', to: 'tags#show',  as: :show_tags
 
     # Users
     devise_for  :users,
@@ -102,10 +108,8 @@ Rails.application.routes.draw do
                               as: :create_page_template
 
       # Site settings
-      get    'settings',    to: 'settings#index'
-      put    'settings',    to: 'settings#update'
-      post   'setting',     to: 'settings#create'
-      delete 'setting/:id', to: 'settings#destroy', as: :delete_setting
+      get 'site-settings', to: 'site_settings#index', as: :admin_site_settings
+      put 'site-settings', to: 'site_settings#update'
 
       # Users
       get  :users, to: 'users#index'

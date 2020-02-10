@@ -6,12 +6,24 @@ module MainSiteHelper
     current_user&.can? capability, category
   end
 
+  def current_user_is_admin?
+    current_user&.admin?
+  end
+
+  def current_user_is_not_admin?
+    !current_user_is_admin?
+  end
+
   def insert( name )
     InsertSet.first.elements.where( name: name ).pick( :content )
   end
 
   def insert_type?( name, type )
     InsertSet.first.elements.where( name: name ).pick( :content_type ) == type
+  end
+
+  def setting( name )
+    Setting.get( name, current_user )
   end
 
   def user_display_name( user = current_user )
