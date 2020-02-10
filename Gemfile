@@ -8,11 +8,11 @@ source 'https://rubygems.org' do
   # Use Active Model has_secure_password
   gem 'bcrypt', '~> 3.1.7'
 
-  # Reduces boot times through caching; required in config/boot.rb
+  # Reduce boot times through caching; required in config/boot.rb
   gem 'bootsnap', '>= 1.4.2', require: false
   # Use faster SCSS gem for stylesheets
   gem 'sassc-rails'
-  # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+  # Transpile app-like JavaScript. More info: https://github.com/rails/webpacker
   gem 'webpacker', '~> 4.2'
 
   # Sessions, authentication, and authorisation
@@ -21,16 +21,8 @@ source 'https://rubygems.org' do
   gem 'devise-pwned_password'
   gem 'pundit'
 
-  # Utils for working with translation strings
-  gem 'i18n-tasks', '~> 0.9.30'
-
-  # CKEditor: WYSIWYG editor for admin area
-  gem 'ckeditor'
-
-  # Image storage on S3, image processing (resizing)
-  gem 'aws-sdk-s3'
-  gem 'image_processing', '~> 1.10'
-  gem 'mini_magick'
+  # Bot detection to protect forms (including registration, comments, etc)
+  gem 'recaptcha'
 
   # Pagination
   gem 'kaminari'
@@ -38,13 +30,30 @@ source 'https://rubygems.org' do
   # Tags
   gem 'acts-as-taggable-on'
 
+  # Image storage on S3, image processing (resizing)
+  gem 'aws-sdk-s3'
+  gem 'image_processing', '~> 1.10'
+  gem 'mini_magick'
+
+  # CKEditor: WYSIWYG editor for admin area
+  gem 'ckeditor'
+
   group :development, :test do
+    # Better-looking console output
     gem 'awesome_print'
+    # Check gems for security issues
     gem 'bundler-audit', require: false
+    # Create test objects
     gem 'factory_bot_rails'
+    # Fill test objects with fake data
     gem 'faker'
+    # Utils for working with translation strings
+    gem 'i18n-tasks', '~> 0.9.30'
+    # Debugging tool
     gem 'pry-rails'
+    # Tests are good, m'kay?
     gem 'rspec-rails'
+    # Linter
     gem 'rubocop'
     gem 'rubocop-rails'
   end
