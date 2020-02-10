@@ -35,6 +35,7 @@
 </section>
 
 <% if feature_enabled? :tags %>
+<% tags = ActsAsTaggableOn::Tag.order( :name ) %>
 <section>
   <header>
     <h2>
@@ -43,9 +44,8 @@
   </header>
 
   <div class="twelve-columns">
-    <% tags = ActsAsTaggableOn::Tag.order( :name ) %>
     <% tags.each do |tag| %>
-      <%= link_to tag.name, tag_path( tag.name ) %><br>
+      <%= link_to tag.name, tag_path( tag.name ) %> (<%= tag.taggings_count %>)<br>
     <% end %>
   </div>
 </section>

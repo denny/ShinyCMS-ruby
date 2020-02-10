@@ -65,6 +65,10 @@ en:
   tags:
     index:
       title: Tags
+    cloud:
+      title: Tag Cloud
+    list:
+      title: Tag List
 
   user:
     view_profile: View your profile
