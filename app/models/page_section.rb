@@ -46,9 +46,9 @@ class PageSection < ApplicationRecord
     all_pages.where( hidden: false )
   end
 
-  def hidden_pages
-    all_pages.where( hidden: true )
-  end
+  # def hidden_pages
+  #  all_pages.where( hidden: true )
+  # end
 
   def menu_pages
     pages.where( hidden_from_menu: false )
@@ -58,9 +58,9 @@ class PageSection < ApplicationRecord
     all_sections.where( hidden: false )
   end
 
-  def hidden_sections
-    all_sections.where( hidden: true )
-  end
+  # def hidden_sections
+  #  all_sections.where( hidden: true )
+  # end
 
   def menu_sections
     sections.where( hidden_from_menu: false )
