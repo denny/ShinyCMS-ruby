@@ -30,6 +30,8 @@ RSpec.describe 'User', type: :request do
 
   describe 'new user registration' do
     it 'renders the user registration page if user registrations are enabled' do
+      ENV[ 'RECAPTCHA_V3_SITE_KEY' ] = 'abcdefg1234bleurgh'
+
       FeatureFlag.find_or_create_by!( name: 'user_registration' )
                  .update!( enabled: true )
 
@@ -222,11 +224,13 @@ RSpec.describe 'User', type: :request do
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
+      ENV['OVERRIDE_RAILS_ENV'] = 'fail'
       post user_registration_path, params: {
         'user[username]': username,
         'user[password]': password,
         'user[email]': email
       }
+      ENV['OVERRIDE_RAILS_ENV'] = nil
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path

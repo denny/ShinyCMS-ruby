@@ -31,6 +31,12 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
+    <% if @recaptcha_v2_key.present? %>
+      <%= recaptcha_tags site_key: @recaptcha_v2_key %>
+    <% else %>
+      <%= recaptcha_v3 action: 'registration', site_key: @recaptcha_v3_key %>
+    <% end %>
+
     <div class="actions">
       <%= f.submit "Register" %>
     </div>
