@@ -224,13 +224,13 @@ RSpec.describe 'User', type: :request do
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
-      ENV['OVERRIDE_RAILS_ENV'] = 'fail'
+      ENV['FAIL_RECAPTCHA'] = 'FAIL'
       post user_registration_path, params: {
         'user[username]': username,
         'user[password]': password,
         'user[email]': email
       }
-      ENV['OVERRIDE_RAILS_ENV'] = nil
+      ENV['FAIL_RECAPTCHA'] = nil
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path
