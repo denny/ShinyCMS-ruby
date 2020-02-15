@@ -214,7 +214,7 @@ RSpec.describe 'User', type: :request do
   end
 
   describe 'POST /user/register' do
-    it 'creates a new user' do
+    it 'creates a new user, using V3 reCAPTCHA if given the option' do
       FeatureFlag.find_or_create_by!( name: 'user_registration' )
                  .update!( enabled: true )
 
@@ -224,6 +224,69 @@ RSpec.describe 'User', type: :request do
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
+      v2_stash = ENV['RECAPTCHA_V2_SITE_KEY']
+      v3_stash = ENV['RECAPTCHA_V3_SITE_KEY']
+      ENV['RECAPTCHA_V2_SITE_KEY'] = 'V2-KEY-IS-SET'
+      ENV['RECAPTCHA_V3_SITE_KEY'] = 'V3-KEY-IS-SET'
+      post user_registration_path, params: {
+        'user[username]': username,
+        'user[password]': password,
+        'user[email]': email
+      }
+      ENV['RECAPTCHA_V2_SITE_KEY'] = v2_stash
+      ENV['RECAPTCHA_V3_SITE_KEY'] = v3_stash
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to root_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include(
+        'a confirmation link has been sent to your email address'
+      )
+    end
+
+    it 'creates a new user, using V2 invisible reCAPTCHA if no V3 key present' do
+      FeatureFlag.find_or_create_by!( name: 'user_registration' )
+                 .update!( enabled: true )
+
+      create :page
+
+      username = Faker::Science.unique.element.downcase
+      password = 'shinycms unimaginative test passphrase'
+      email = "#{username}@example.com"
+
+      v2_stash = ENV['RECAPTCHA_V2_SITE_KEY']
+      v3_stash = ENV['RECAPTCHA_V3_SITE_KEY']
+      ENV['RECAPTCHA_V2_SITE_KEY'] = 'V2-KEY-IS-SET'
+      ENV['RECAPTCHA_V3_SITE_KEY'] = nil
+      post user_registration_path, params: {
+        'user[username]': username,
+        'user[password]': password,
+        'user[email]': email
+      }
+      ENV['RECAPTCHA_V2_SITE_KEY'] = v2_stash
+      ENV['RECAPTCHA_V3_SITE_KEY'] = v3_stash
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to root_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to include(
+        'a confirmation link has been sent to your email address'
+      )
+    end
+
+    it 'falls back to checkbox reCAPTCHA if invisible reCAPTCHA fails' do
+      FeatureFlag.find_or_create_by!( name: 'user_registration' )
+                 .update!( enabled: true )
+
+      create :page
+
+      username = Faker::Science.unique.element.downcase
+      password = 'shinycms unimaginative test passphrase'
+      email = "#{username}@example.com"
+
+      ENV['RECAPTCHA_V2_SITE_KEY'] ||= 'ZZ'
       ENV['FAIL_RECAPTCHA'] = 'FAIL'
       post user_registration_path, params: {
         'user[username]': username,
@@ -231,6 +294,7 @@ RSpec.describe 'User', type: :request do
         'user[email]': email
       }
       ENV['FAIL_RECAPTCHA'] = nil
+      ENV['RECAPTCHA_V2_SITE_KEY'] = nil if ENV['RECAPTCHA_V2_SITE_KEY'] == 'ZZ'
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path
