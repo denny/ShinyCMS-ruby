@@ -11,7 +11,7 @@ number of clients during 10 years of working as a freelance web developer, so
 it's not a small project. Here's the feature list I'm trying to duplicate:
 
 * Content-managed pages, page templates, and form handlers
-* 'Inserts' - text and HTML fragments that can be re-used in all parts of a site
+* Inserts - text and HTML fragments that can be re-used in all parts of a site
 * User accounts, profiles and administration
 * reCAPTCHA bot protection for registration and comment forms
 * Blog
@@ -20,7 +20,7 @@ it's not a small project. Here's the feature list I'm trying to duplicate:
 * Online shop
 * Access control system which can be used to control access to file downloads and
   secure whole pages, but also to show/hide individual pieces of page content
-* Payment handling system, including recurring subscriptions (linked to access control)
+* Payment handling plugins, including recurring subscriptions (linked to access control)
 * Tags on blog posts, news posts, forum posts, and shop items
 * Nested comment threads on blog posts, news posts, forum posts, and shop items
 * Akismet spam filtering for comments, with moderation page
