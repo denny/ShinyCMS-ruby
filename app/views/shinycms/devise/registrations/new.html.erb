@@ -31,7 +31,7 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
-    <% if @show_checkbox_recaptcha %>
+    <% if flash[ :show_checkbox_recaptcha ] %>
       <%= recaptcha_tags site_key: @recaptcha_v2_key %>
     <% elsif @recaptcha_v3_key.present? %>
       <%= recaptcha_v3 action: 'registration', site_key: @recaptcha_v3_key %>

@@ -29,18 +29,6 @@ RSpec.describe 'User', type: :request do
   end
 
   describe 'new user registration' do
-    it 'renders the user registration page if user registrations are enabled' do
-      ENV[ 'RECAPTCHA_V3_SITE_KEY' ] = 'abcdefg1234bleurgh'
-
-      FeatureFlag.find_or_create_by!( name: 'user_registration' )
-                 .update!( enabled: true )
-
-      get new_user_registration_path
-
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_button I18n.t( 'user.register' )
-    end
-
     it 'redirects to the site homepage if user registrations are not enabled' do
       create :page
 
@@ -61,6 +49,42 @@ RSpec.describe 'User', type: :request do
         )
       )
       expect( response.body ).not_to have_button I18n.t( 'user.register' )
+    end
+
+    it 'renders the user registration page if user registrations are enabled' do
+      FeatureFlag.find_or_create_by!( name: 'user_registration' )
+                 .update!( enabled: true )
+
+      get new_user_registration_path
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_button I18n.t( 'user.register' )
+    end
+
+    it 'includes the V3 reCAPTCHA code if a V3 key was set' do
+      ENV[ 'RECAPTCHA_V3_SITE_KEY' ] = 'abcdefg1234bleurgh'
+
+      FeatureFlag.find_or_create_by!( name: 'user_registration' )
+                 .update!( enabled: true )
+
+      get new_user_registration_path
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_button I18n.t( 'user.register' )
+      # TODO: look for V3 html
+    end
+
+    it 'includes the V2 reCAPTCHA code if only a V2 key was set' do
+      ENV[ 'RECAPTCHA_V2_SITE_KEY' ] = 'abcdefg1234bleurgh'
+
+      FeatureFlag.find_or_create_by!( name: 'user_registration' )
+                 .update!( enabled: true )
+
+      get new_user_registration_path
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_button I18n.t( 'user.register' )
+      # TODO: look for V2 html
     end
   end
 
@@ -214,7 +238,7 @@ RSpec.describe 'User', type: :request do
   end
 
   describe 'POST /user/register' do
-    it 'creates a new user, using V3 reCAPTCHA if given the option' do
+    it 'creates a new user, checking V3 reCAPTCHA if a V3 key is set' do
       FeatureFlag.find_or_create_by!( name: 'user_registration' )
                  .update!( enabled: true )
 
@@ -224,17 +248,18 @@ RSpec.describe 'User', type: :request do
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
-      v2_stash = ENV['RECAPTCHA_V2_SITE_KEY']
-      v3_stash = ENV['RECAPTCHA_V3_SITE_KEY']
-      ENV['RECAPTCHA_V2_SITE_KEY'] = 'V2-KEY-IS-SET'
+      v3 = ENV.delete( 'RECAPTCHA_V3_SITE_KEY' )
+
       ENV['RECAPTCHA_V3_SITE_KEY'] = 'V3-KEY-IS-SET'
+
       post user_registration_path, params: {
         'user[username]': username,
         'user[password]': password,
         'user[email]': email
       }
-      ENV['RECAPTCHA_V2_SITE_KEY'] = v2_stash
-      ENV['RECAPTCHA_V3_SITE_KEY'] = v3_stash
+
+      ENV.delete( 'RECAPTCHA_V3_SITE_KEY' ) if v3.nil?
+      ENV['RECAPTCHA_V3_SITE_KEY'] = v3 unless v3.nil?
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path
@@ -245,7 +270,7 @@ RSpec.describe 'User', type: :request do
       )
     end
 
-    it 'creates a new user, using V2 invisible reCAPTCHA if no V3 key present' do
+    it 'creates a new user, checking V2 invisible reCAPTCHA if no V3 key present' do
       FeatureFlag.find_or_create_by!( name: 'user_registration' )
                  .update!( enabled: true )
 
@@ -255,17 +280,20 @@ RSpec.describe 'User', type: :request do
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
-      v2_stash = ENV['RECAPTCHA_V2_SITE_KEY']
-      v3_stash = ENV['RECAPTCHA_V3_SITE_KEY']
+      v2 = ENV.delete( 'RECAPTCHA_V2_SITE_KEY' )
+      v3 = ENV.delete( 'RECAPTCHA_V3_SITE_KEY' )
+
       ENV['RECAPTCHA_V2_SITE_KEY'] = 'V2-KEY-IS-SET'
-      ENV['RECAPTCHA_V3_SITE_KEY'] = nil
+
       post user_registration_path, params: {
         'user[username]': username,
         'user[password]': password,
         'user[email]': email
       }
-      ENV['RECAPTCHA_V2_SITE_KEY'] = v2_stash
-      ENV['RECAPTCHA_V3_SITE_KEY'] = v3_stash
+
+      ENV.delete( 'RECAPTCHA_V2_SITE_KEY' ) if v2.nil?
+      ENV['RECAPTCHA_V2_SITE_KEY'] = v2 unless v2.nil?
+      ENV['RECAPTCHA_V3_SITE_KEY'] = v3 unless v3.nil?
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path
@@ -280,29 +308,34 @@ RSpec.describe 'User', type: :request do
       FeatureFlag.find_or_create_by!( name: 'user_registration' )
                  .update!( enabled: true )
 
-      create :page
-
       username = Faker::Science.unique.element.downcase
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
-      ENV['RECAPTCHA_V2_SITE_KEY'] ||= 'ZZ'
-      ENV['FAIL_RECAPTCHA'] = 'FAIL'
+      v2 = ENV.delete( 'RECAPTCHA_V2_SITE_KEY' )
+      v3 = ENV.delete( 'RECAPTCHA_V3_SITE_KEY' )
+
+      ENV['RECAPTCHA_V2_SITE_KEY'] = 'V2-KEY-IS-SET'
+
+      ENV['FAIL_RECAPTCHA'] = 'TRUE'
+
       post user_registration_path, params: {
         'user[username]': username,
         'user[password]': password,
         'user[email]': email
       }
-      ENV['FAIL_RECAPTCHA'] = nil
-      ENV['RECAPTCHA_V2_SITE_KEY'] = nil if ENV['RECAPTCHA_V2_SITE_KEY'] == 'ZZ'
+
+      ENV.delete( 'FAIL_RECAPTCHA' )
+
+      ENV.delete( 'RECAPTCHA_V2_SITE_KEY' ) if v2.nil?
+      ENV['RECAPTCHA_V2_SITE_KEY'] = v2 unless v2.nil?
+      ENV['RECAPTCHA_V3_SITE_KEY'] = v3 unless v3.nil?
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to new_user_registration_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include(
-        'a confirmation link has been sent to your email address'
-      )
+      expect( response.body ).to have_css 'textarea.g-recaptcha-response'
     end
   end
 
