@@ -1,13 +1,25 @@
+<a name="<%= comment.number %>">
 <section style="margin-left: <%= depth %>em;">
-  <p>
-    <%= comment.title %>
-  </p>
+  <header>
+    <h2>
+      <%= comment.title %>
+    </h2>
+    <%= link_to comment.number, "#{request.fullpath}##{comment.number}" %>
+  </header>
+
   <p>
     <%= comment.body %>
   </p>
-</section>
 
-<% depth = depth + 2 %>
-<% comment.comments.each do |comment| %>
-  <%= render partial: 'discussions/comment', locals: { comment: comment, depth: depth } %>
-<% end %>
+  <% if current_user_can?( :moderate, :comments ) %>
+  <footer>
+    <p>
+      <%#= link_to t( 'discussions.hide_comment' ), hide_comment_path( comment ) %>
+      <%#= link_to t( 'discussions.lock_comment' ), lock_comment_path( comment ) %>
+      <% if current_user_can?( :delete, :comments ) %>
+      <%#= link_to t( 'discussions.delete_comment' ), delete_comment_path( comment ) %>
+      <% end %>
+    </p>
+  </footer>
+  <% end %>
+</section>

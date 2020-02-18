@@ -22,8 +22,8 @@
   </footer>
 </section>
 
-<% if @post.discussion %>
-  <%= render partial: 'discussions/thread', locals: { resource: @post } %>
+<% if @post.discussion.present? %>
+  <%= render partial: 'discussions/discussion', locals: { resource: @post } %>
 <% end %>
 
 <%= render partial: 'right_sidebar_join' %>

@@ -8,8 +8,10 @@ class Comment < ApplicationRecord
                       dependent: :destroy
 
   validates :discussion_id, presence: true
-  # body OR title ?
-  # validates :body, presence: true
+  validates :number, uniqueness: { scope: :discussion_id }
+
+  validates :body,  presence: true, unless: -> { title.present? }
+  validates :title, presence: true, unless: -> { body.present?  }
 
   # Instance methods
 
