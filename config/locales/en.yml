@@ -37,8 +37,9 @@ en:
       links_blurb: Recommended reading from around the web
       recent_posts: Recent Posts
 
-  comments:
-    title: Comments
+  discussions:
+    comments: Comments
+    zero_comments: There are no comments to display
 
   errors:
     not_found:
