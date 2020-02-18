@@ -1,0 +1,13 @@
+<section style="margin-left: <%= depth %>em;">
+  <p>
+    <%= comment.title %>
+  </p>
+  <p>
+    <%= comment.body %>
+  </p>
+</section>
+
+<% depth = depth + 2 %>
+<% comment.comments.each do |comment| %>
+  <%= render partial: 'discussions/comment', locals: { comment: comment, depth: depth } %>
+<% end %>

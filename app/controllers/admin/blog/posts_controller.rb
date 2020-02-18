@@ -35,13 +35,23 @@ class Admin::Blog::PostsController < AdminController
   def update
     authorise @post
 
-    if @post.update( post_params )
+    if @post.update( post_params ) && update_discussion_flags
       flash[ :notice ] = t( '.success' )
       redirect_to action: :edit, id: @post.id
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit
     end
+  end
+
+  def update_discussion_flags
+    discussion = @post.discussion
+    return true if discussion.blank?
+
+    hidden = params[ :blog_post][ :discussion_hidden ].present?
+    locked = params[ :blog_post][ :discussion_hidden ].present?
+
+    discussion.update( hidden: hidden ) && discussion.update( locked: locked )
   end
 
   def destroy

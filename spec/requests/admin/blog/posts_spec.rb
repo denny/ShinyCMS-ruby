@@ -69,7 +69,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
     end
   end
 
-  describe 'POST /admin/blog/1/posts' do
+  describe 'PUT /admin/blog/1/posts' do
     it 'fails to update the blog post when an incomplete form is submitted' do
       post = create :blog_post, blog: @blog
 
@@ -105,6 +105,28 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.blog.posts.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.blog.posts.update.success' )
+    end
+
+    it 'updates the discussion hidden/locked status successfully' do
+      post = create :blog_post, blog: @blog
+      create :discussion, resource: post
+
+      put blog_post_path( @blog, post ), params: {
+        blog_post: {
+          discussion_hidden: true,
+          discussion_locked: true
+        }
+      }
+
+      post = BlogPost.last
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to edit_blog_post_path( @blog, post )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.blog.posts.update.success' )
+      expect( post.discussion.hidden ).to be true
+      expect( post.discussion.locked ).to be true
     end
   end
 

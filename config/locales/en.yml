@@ -37,6 +37,9 @@ en:
       links_blurb: Recommended reading from around the web
       recent_posts: Recent Posts
 
+  comments:
+    title: Comments
+
   errors:
     not_found:
       title: "%{resource_type} not found"
