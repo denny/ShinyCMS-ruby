@@ -22,5 +22,9 @@
   </footer>
 </section>
 
+<% if @post.discussion %>
+  <%= render partial: 'discussions/thread', locals: { resource: @post } %>
+<% end %>
+
 <%= render partial: 'right_sidebar_join' %>
 <%= render partial: 'sidebar' %>

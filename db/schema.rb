@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_05_211726) do
+ActiveRecord::Schema.define(version: 2020_02_18_172035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_02_05_211726) do
     t.boolean "hidden", default: false, null: false
     t.integer "blog_id", null: false
     t.integer "user_id", null: false
+    t.integer "discussion_id"
     t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -72,6 +73,35 @@ ActiveRecord::Schema.define(version: 2020_02_05_211726) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "discussion_id", null: false
+    t.integer "number", null: false
+    t.integer "parent_id"
+    t.string "author_type"
+    t.integer "author_id"
+    t.string "author_name"
+    t.string "author_email"
+    t.string "author_url"
+    t.string "title"
+    t.text "body"
+    t.boolean "locked", default: false, null: false
+    t.boolean "hidden", default: false, null: false
+    t.boolean "spam", default: false, null: false
+    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "discussions", force: :cascade do |t|
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.boolean "locked", default: false, null: false
+    t.boolean "hidden", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_type", "resource_id"], name: "index_discussions_on_resource_type_and_resource_id"
   end
 
   create_table "feature_flags", force: :cascade do |t|
@@ -262,6 +292,8 @@ ActiveRecord::Schema.define(version: 2020_02_05_211726) do
   add_foreign_key "blog_posts", "users"
   add_foreign_key "blogs", "users"
   add_foreign_key "capabilities", "capability_categories", column: "category_id"
+  add_foreign_key "comments", "comments", column: "parent_id"
+  add_foreign_key "comments", "discussions"
   add_foreign_key "insert_elements", "insert_sets", column: "set_id"
   add_foreign_key "page_elements", "pages"
   add_foreign_key "page_sections", "page_sections", column: "section_id"
