@@ -77,6 +77,13 @@ Rails.application.configure do
   # raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }
+  config.action_mailer.smtp_settings = {
+    address: ENV['MAILER_ADDRESS'],
+    port: ENV['MAILER_PORT'],
+    domain: ENV['MAILER_DOMAIN'],
+    user_name: ENV['MAILER_USER_NAME'],
+    password: ENV['MAILER_PASSWORD']
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
