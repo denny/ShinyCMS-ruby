@@ -47,6 +47,28 @@ FactoryBot.define do
     end
   end
 
+  factory :comment_admin, parent: :admin_user do
+    after :create do |admin|
+      category = create :capability_category, name: 'comments'
+
+      hide   = create :capability, name: 'hide',   category: category
+      lock   = create :capability, name: 'lock',   category: category
+      delete = create :capability, name: 'delete', category: category
+
+      create :user_capability, user: admin, capability: hide
+      create :user_capability, user: admin, capability: lock
+      create :user_capability, user: admin, capability: delete
+
+      category = create :capability_category, name: 'discussions'
+
+      hide = create :capability, name: 'hide', category: category
+      lock = create :capability, name: 'lock', category: category
+
+      create :user_capability, user: admin, capability: hide
+      create :user_capability, user: admin, capability: lock
+    end
+  end
+
   factory :feature_flags_admin, parent: :admin_user do
     after :create do |admin|
       category = create :capability_category, name: 'feature_flags'
