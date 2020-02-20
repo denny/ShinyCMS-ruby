@@ -1,5 +1,14 @@
 <section style="margin-left: <%= depth %>em;">
   <p>
-    <i>This comment was removed by a moderator.</i>
+    <i><%= t( 'discussions.hidden_comment' ) %></i>
   </p>
+
+  <% if current_user_can?( :moderate, :comments ) %>
+  <footer>
+    <p>
+      <%= render partial: 'discussions/comment_moderation_links',
+                 locals: { comment: comment } %>
+    </p>
+  </footer>
+  <% end %>
 </section>
