@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     # ========== ( Main site ) ==========
     root to: 'pages#index'
 
-    # Blogs
     if Rails.application.config.multiple_blogs_mode
       # :nocov:
       get 'blogs',                              to: 'blogs#index',
@@ -32,6 +31,11 @@ Rails.application.routes.draw do
                                       constraints: { year: %r{\d\d\d\d} }
     end
 
+    get 'discussions',            to: 'discussions#index', as: :discussions
+    get 'discussion/:id',         to: 'discussions#show',  as: :discussion
+    get 'discussion/:id/:number', to: 'discussions#show_thread',
+                                  as: :show_thread
+
     get 'site-settings', to: 'site_settings#index'
     put 'site-settings', to: 'site_settings#update'
 
@@ -41,7 +45,6 @@ Rails.application.routes.draw do
     get 'tag/:tag',   to: 'tags#show',  as: :tag
     get 'tags/:tags', to: 'tags#show',  as: :show_tags
 
-    # Users
     devise_for  :users,
                 path: '',
                 controllers: {
@@ -80,6 +83,25 @@ Rails.application.routes.draw do
         resources :post, controller: 'blog/posts', except: EXCEPT
       end
       post 'blog/:id/post', to: 'blog/posts#create', as: :create_blog_post
+
+      # Discussion and comment moderation
+      scope path: 'discussion' do
+        get ':id/hide',   to: 'discussions#hide',   as: :hide_discussion
+        get ':id/unhide', to: 'discussions#unhide', as: :unhide_discussion
+        get ':id/lock',   to: 'discussions#lock',   as: :lock_discussion
+        get ':id/unlock', to: 'discussions#unlock', as: :unlock_discussion
+
+        get    ':id/hide/:number',    to: 'discussions#hide_comment',
+                                      as: :hide_comment
+        get    ':id/unhide/:number',  to: 'discussions#unhide_comment',
+                                      as: :unhide_comment
+        get    ':id/lock/:number',    to: 'discussions#lock_comment',
+                                      as: :lock_comment
+        get    ':id/unlock/:number',  to: 'discussions#unlock_comment',
+                                      as: :unlock_comment
+        delete ':id/delete/:number',  to: 'discussions#delete_comment',
+                                      as: :delete_comment
+      end
 
       # Feature Flags
       get 'feature-flags', to: 'feature_flags#index'
