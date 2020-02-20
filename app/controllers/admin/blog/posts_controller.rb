@@ -3,6 +3,7 @@ class Admin::Blog::PostsController < AdminController
   before_action :set_blog
   before_action :set_post_for_create, only: %i[ create ]
   before_action :set_post, only: %i[ edit update destroy ]
+  before_action :update_discussion_flags, only: %i[ create update ]
 
   def index
     page_num = params[ :page ] || 1
@@ -35,7 +36,7 @@ class Admin::Blog::PostsController < AdminController
   def update
     authorise @post
 
-    if @post.update( post_params ) && update_discussion_flags
+    if @post.update( post_params )
       flash[ :notice ] = t( '.success' )
       redirect_to action: :edit, id: @post.id
     else
@@ -48,8 +49,8 @@ class Admin::Blog::PostsController < AdminController
     discussion = @post.discussion
     return true if discussion.blank?
 
-    hidden = params[ :blog_post][ :discussion_hidden ].present?
-    locked = params[ :blog_post][ :discussion_hidden ].present?
+    hidden = params[ :blog_post].delete( :discussion_hidden ) || 0
+    locked = params[ :blog_post].delete( :discussion_locked ) || 0
 
     discussion.update( hidden: hidden ) && discussion.update( locked: locked )
   end
@@ -75,7 +76,7 @@ class Admin::Blog::PostsController < AdminController
   end
 
   def set_post
-    @post = @blog.posts.find( params[:id] )
+    @post = @blog.all_posts.find( params[:id] )
   rescue ActiveRecord::RecordNotFound
     skip_authorization
     redirect_with_alert blog_posts_path, t( '.failure' )
@@ -87,7 +88,8 @@ class Admin::Blog::PostsController < AdminController
     end
 
     params.require( :blog_post ).permit(
-      :blog_id, :user_id, :title, :slug, :tag_list, :posted_at, :body, :hidden
+      :blog_id, :user_id, :title, :slug, :tag_list, :posted_at, :body,
+      :hidden, :discussion_hidden, :discussion_locked
     )
   end
 
@@ -101,7 +103,8 @@ class Admin::Blog::PostsController < AdminController
     end
 
     params.require( :blog_post ).permit(
-      :blog_id, :user_id, :title, :slug, :tag_list, :posted_at, :body, :hidden
+      :blog_id, :user_id, :title, :slug, :tag_list, :posted_at, :body,
+      :hidden, :discussion_hidden, :discussion_locked
     )
   end
 end

@@ -1,24 +1,25 @@
 <a name="<%= comment.number %>">
 <section style="margin-left: <%= depth %>em;">
   <header>
+    <% if comment.title.present? %>
     <h2>
       <%= comment.title %>
     </h2>
+    <% end %>
+    <h3>
+      <%= render partial: 'discussions/comment_posted_by',
+                 locals: { comment: comment } %>
+    </h3>
     <%= link_to comment.number, "#{request.fullpath}##{comment.number}" %>
   </header>
 
-  <p>
-    <%= comment.body %>
-  </p>
+  <%= sanitize comment.body %>
 
   <% if current_user_can?( :moderate, :comments ) %>
   <footer>
     <p>
-      <%#= link_to t( 'discussions.hide_comment' ), hide_comment_path( comment ) %>
-      <%#= link_to t( 'discussions.lock_comment' ), lock_comment_path( comment ) %>
-      <% if current_user_can?( :delete, :comments ) %>
-      <%#= link_to t( 'discussions.delete_comment' ), delete_comment_path( comment ) %>
-      <% end %>
+      <%= render partial: 'discussions/comment_moderation_links',
+                 locals: { comment: comment } %>
     </p>
   </footer>
   <% end %>

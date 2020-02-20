@@ -19,23 +19,32 @@
     </th>
   </tr>
 
-  <% category_capabilities = %w[ view_admin_area view_admin_toolbar skip skip ] %>
   <% category = CapabilityCategory.find_by( name: 'general' ) %>
+  <% category_capabilities = %w[ view_admin_area view_admin_toolbar skip skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
+  <% category = CapabilityCategory.find_by( name: 'blogs' ) %>
   <% category_capabilities = %w[ list add edit destroy ] %>
-  <% CapabilityCategory.where(
-      name: %w[ blogs blog_posts ]
-    ).each do |category| %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
-  <% end %>
 
-  <% category_capabilities = %w[ change_author skip skip skip ] %>
   <% category = CapabilityCategory.find_by( name: 'blog_posts' ) %>
+  <% category_capabilities = %w[ list add edit destroy ] %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+  <% category_capabilities = %w[ change_author skip skip skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show, true ) %>
 
-  <% category_capabilities = %w[ list skip edit skip ] %>
+  <% category = CapabilityCategory.find_by( name: 'discussions' ) %>
+  <% category_capabilities = %w[ hide unhide lock unlock ] %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category = CapabilityCategory.find_by( name: 'comments' ) %>
+  <% category_capabilities = %w[ hide unhide lock unlock ] %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+  <% category_capabilities = %w[ skip skip skip delete ] %>
+  <%= render_capability_category( f, category, category_capabilities, show, true ) %>
+
   <% category = CapabilityCategory.find_by( name: 'feature_flags' ) %>
+  <% category_capabilities = %w[ list skip edit skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category_capabilities = %w[ list add edit destroy ] %>
@@ -45,19 +54,17 @@
   <%= render_capability_category( f, category, category_capabilities, show ) %>
   <% end %>
 
-  <% category_capabilities = %w[ list skip edit skip ] %>
   <% category = CapabilityCategory.find_by( name: 'settings' ) %>
+  <% category_capabilities = %w[ list skip edit skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
+  <% category = CapabilityCategory.find_by( name: 'users' ) %>
   <% category_capabilities = %w[ list add edit destroy ] %>
-  <% category = CapabilityCategory.find_by( name: 'users' ) %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
-
   <% category_capabilities = %w[ view_admin_notes skip skip skip ] %>
-  <% category = CapabilityCategory.find_by( name: 'users' ) %>
   <%= render_capability_category( f, category, category_capabilities, show, true ) %>
 
-  <% category_capabilities = %w[ list add edit destroy ] %>
   <% category = CapabilityCategory.find_by( name: 'admin_users' ) %>
+  <% category_capabilities = %w[ list add edit destroy ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 </table>

@@ -113,6 +113,9 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
 
       put blog_post_path( @blog, post ), params: {
         blog_post: {
+          user_id: @admin.id,
+          title: Faker::Science.unique.scientist,
+          body: Faker::Lorem.paragraph,
           discussion_hidden: true,
           discussion_locked: true
         }
