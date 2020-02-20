@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
     end
 
     it "finds the user if we submit the 'username' param" do
-      result = User.find_first_by_auth_conditions( login: @user.username )
+      result = User.find_first_by_auth_conditions( username: @user.username )
 
       expect( result.id ).to eq @user.id
     end
