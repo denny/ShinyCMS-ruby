@@ -17,6 +17,10 @@ en:
   view: View
   list: List
   edit: Edit
+  hide: Hide
+  lock: Lock
+  unhide: Unhide
+  unlock: Unlock
   update: Update
   delete: Delete
   destroy: Delete
@@ -36,6 +40,16 @@ en:
       links: Links
       links_blurb: Recommended reading from around the web
       recent_posts: Recent Posts
+
+  discussions:
+    comments: Comments
+    zero_comments: There are no comments to display
+    hidden_comment: This comment was removed by a moderator.
+    hide_comment: Hide comment
+    unhide_comment: Unhide comment
+    lock_comment: Lock comment
+    unlock_comment: Unlock comment
+    delete_comment: Delete comment
 
   errors:
     not_found:
@@ -85,6 +99,7 @@ en:
     off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
     blogs: Blogs
+    comments: Comments
     tags: Tags
     user_login: User Login
     user_profiles: User Profiles
@@ -100,6 +115,8 @@ en:
       admin_users: Admin Users
       blogs: Blogs
       blog_posts: Blog Posts
+      comments: Comments
+      discussions: Discussions
       feature_flags: Feature Flags
       general: General
       inserts: Inserts
@@ -178,6 +195,9 @@ en:
 
     dashboard:
       title: Dashboard
+
+    discussion:
+      title: Discussion
 
     feature_flags:
       title: Feature Flags
