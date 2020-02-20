@@ -8,12 +8,15 @@ module RecaptchaHelper
   end
 
   def verify_checkbox_recaptcha
+    # Used in spec/requests/user_spec.rb, to test fallback to checkbox
+    return false if ENV[ 'FAIL_RECAPTCHA' ].present?
+
     verify_recaptcha_v2
   end
 
   def verify_invisible_recaptcha( action )
     # Used in spec/requests/user_spec.rb, to test fallback to checkbox
-    return false if ENV[ 'FAIL_RECAPTCHA' ]
+    return false if ENV[ 'FAIL_RECAPTCHA' ].present?
 
     return verify_recaptcha_v3( action ) if ENV[ 'RECAPTCHA_V3_SITE_KEY' ]
 
