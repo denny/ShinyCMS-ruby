@@ -18,10 +18,6 @@ class DiscussionsController < ApplicationController
 
   private
 
-  def stash_discussion
-    @discussion = Discussion.find( params[ :id ] )
-  end
-
   def check_feature_flags
     enforce_feature_flags :comments
   end
