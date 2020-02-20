@@ -17,10 +17,16 @@
 
   <%= sanitize @post.body %>
 
+  <% if @post.tag_list.present? %>
   <footer>
     Tags: <% @post.tag_list.each do |tag| %><%= link_to tag, tag_path( tag ) %> <% end %>
   </footer>
+  <% end %>
 </section>
+
+<% if @post.discussion.present? %>
+  <%= render partial: 'discussions/discussion', locals: { resource: @post } %>
+<% end %>
 
 <%= render partial: 'right_sidebar_join' %>
 <%= render partial: 'sidebar' %>

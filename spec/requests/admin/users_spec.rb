@@ -147,7 +147,10 @@ RSpec.describe 'Admin: Users', type: :request do
     before :each do
       admin = create :super_admin
       sign_in admin
+      create :capability_category, name: 'blogs'
       create :capability_category, name: 'blog_posts'
+      create :capability_category, name: 'discussions'
+      create :capability_category, name: 'comments'
       create :capability_category, name: 'feature_flags'
       create :capability_category, name: 'settings'
       create :capability_category, name: 'users'
