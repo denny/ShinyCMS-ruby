@@ -16,8 +16,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if invisible_success || checkbox_success
       super
     else
-      @show_checkbox_recaptcha = true
-      render :new
+      flash[ :show_checkbox_recaptcha ] = true
+      flash[ :username ] = params[ :username ]
+      flash[ :email    ] = params[ :email    ]
+      redirect_to action: :new
     end
   end
 
