@@ -9,7 +9,7 @@ class FeatureFlag < ApplicationRecord
   # Class methods
 
   def self.update_all_flags( params )
-    params['flags'].keys.each do |flag_id|
+    params['flags'].each_key do |flag_id|
       flag = find( flag_id )
       flag_params = params['flags'][flag_id]
       return false unless flag.update(
