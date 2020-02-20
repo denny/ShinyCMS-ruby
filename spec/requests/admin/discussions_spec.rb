@@ -8,21 +8,79 @@ RSpec.describe 'Discussion and comment moderation', type: :request do
     create :feature_flag, name: 'comments', enabled: true
 
     post = create :blog_post
-    discussion = create :discussion, resource: post
+    @discussion = create :discussion, resource: post
 
-    @comment1 = create :top_level_comment, discussion: discussion
-    @comment2 = create :top_level_comment, discussion: discussion
-    create :top_level_comment, discussion: discussion
+    @comment1 = create :top_level_comment, discussion: @discussion
+    @comment2 = create :top_level_comment, discussion: @discussion
+    create :top_level_comment, discussion: @discussion
 
-    @nested = create :nested_comment, discussion: discussion, parent: @comment1
+    @nested = create :nested_comment, discussion: @discussion, parent: @comment1
+  end
+
+  describe 'GET /admin/discussion/1/hide' do
+    it 'hides the discussion' do
+      get hide_discussion_path( @discussion )
+
+      expect( response      ).to     have_http_status :found
+      expect( response      ).to     redirect_to discussion_path( @discussion )
+      follow_redirect!
+      expect( response      ).to     have_http_status :ok
+      expect( response.body ).not_to have_css 'h2', text: @nested.title
+      expect( response.body ).not_to have_css 'h2', text: @comment2.title
+    end
+  end
+
+  describe 'GET /admin/discussion/1/unhide' do
+    it 'unhides the discussion' do
+      @discussion.hide
+      expect( @discussion.reload.hidden? ).to be true
+
+      get unhide_discussion_path( @discussion )
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to discussion_path( @discussion )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css 'h2', text: @comment1.title
+      expect( response.body ).to have_css 'h2', text: @nested.title
+    end
+  end
+
+  describe 'GET /admin/discussion/1/lock' do
+    it 'locks the discussion' do
+      get lock_discussion_path( @discussion )
+
+      expect( response ).to have_http_status :found
+      expect( response ).to redirect_to discussion_path( @discussion )
+      follow_redirect!
+      expect( response ).to have_http_status :ok
+
+      expect( @discussion.reload.locked? ).to be true
+    end
+  end
+
+  describe 'GET /admin/discussion/1/unlock' do
+    it 'unlocks the discussion' do
+      @discussion.lock
+      expect( @discussion.reload.locked? ).to be true
+
+      get unlock_discussion_path( @discussion )
+
+      expect( response ).to have_http_status :found
+      expect( response ).to redirect_to discussion_path( @discussion )
+      follow_redirect!
+      expect( response ).to have_http_status :ok
+
+      expect( @discussion.reload.locked? ).to be false
+    end
   end
 
   describe 'GET /admin/discussion/1/hide/1' do
     it 'hides the comment' do
-      get hide_comment_path( @comment2.discussion_id, @comment2.number )
+      get hide_comment_path( @discussion.id, @comment2.number )
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to discussion_path( @comment2.discussion )
+      expect( response      ).to     redirect_to discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested.title
@@ -36,10 +94,10 @@ RSpec.describe 'Discussion and comment moderation', type: :request do
       @comment2.hide
       expect( @comment2.hidden? ).to be true
 
-      get unhide_comment_path( @comment2.discussion_id, @comment2.number )
+      get unhide_comment_path( @discussion.id, @comment2.number )
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to discussion_path( @comment2.discussion )
+      expect( response      ).to     redirect_to discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested.title
@@ -50,10 +108,10 @@ RSpec.describe 'Discussion and comment moderation', type: :request do
 
   describe 'GET /admin/discussion/1/lock/1' do
     it 'locks the comment' do
-      get lock_comment_path( @comment2.discussion_id, @comment2.number )
+      get lock_comment_path( @discussion.id, @comment2.number )
 
       expect( response ).to have_http_status :found
-      expect( response ).to redirect_to discussion_path( @comment2.discussion )
+      expect( response ).to redirect_to discussion_path( @discussion )
       follow_redirect!
       expect( response ).to have_http_status :ok
 
@@ -66,10 +124,10 @@ RSpec.describe 'Discussion and comment moderation', type: :request do
       @comment2.lock
       expect( @comment2.reload.locked? ).to be true
 
-      get unlock_comment_path( @comment2.discussion_id, @comment2.number )
+      get unlock_comment_path( @discussion.id, @comment2.number )
 
       expect( response ).to have_http_status :found
-      expect( response ).to redirect_to discussion_path( @comment2.discussion )
+      expect( response ).to redirect_to discussion_path( @discussion )
       follow_redirect!
       expect( response ).to have_http_status :ok
 
@@ -79,10 +137,10 @@ RSpec.describe 'Discussion and comment moderation', type: :request do
 
   describe 'DELETE /admin/discussion/1/delete/1' do
     it 'removes the comment' do
-      delete delete_comment_path( @comment2.discussion_id, @comment2.number )
+      delete delete_comment_path( @discussion.id, @comment2.number )
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to discussion_path( @comment2.discussion )
+      expect( response      ).to redirect_to discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).not_to include @comment2.title

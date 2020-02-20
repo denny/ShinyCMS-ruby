@@ -1,11 +1,11 @@
 # Pundit policy for administration of discussions
-class Admin::DiscussionsPolicy < Admin::DefaultPolicy
+class Admin::DiscussionPolicy < Admin::DefaultPolicy
   def hide?
     @this_user.can? :hide, :discussions
   end
 
   def unhide?
-    @this_user.can? :unhide, :discussions
+    @this_user.can? :hide, :discussions
   end
 
   def lock?
@@ -13,6 +13,6 @@ class Admin::DiscussionsPolicy < Admin::DefaultPolicy
   end
 
   def unlock?
-    @this_user.can? :unlock, :discussions
+    @this_user.can? :lock, :discussions
   end
 end
