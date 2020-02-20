@@ -7,4 +7,34 @@ RSpec.describe User, type: :model do
       expect( user.username ).to match( /\w+/ )
     end
   end
+
+  context 'overridden find_first_by_auth_conditions method' do
+    before :each do
+      @user = create :user
+    end
+
+    it "finds the user if we submit a username as the 'login' param" do
+      result = User.find_first_by_auth_conditions( login: @user.username )
+
+      expect( result.id ).to eq @user.id
+    end
+
+    it "finds the user if we submit an email address as the 'login' param" do
+      result = User.find_first_by_auth_conditions( login: @user.email )
+
+      expect( result.id ).to eq @user.id
+    end
+
+    it "finds the user if we submit the 'email' param" do
+      result = User.find_first_by_auth_conditions( email: @user.email )
+
+      expect( result.id ).to eq @user.id
+    end
+
+    it "finds the user if we submit the 'username' param" do
+      result = User.find_first_by_auth_conditions( login: @user.username )
+
+      expect( result.id ).to eq @user.id
+    end
+  end
 end
