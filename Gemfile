@@ -61,6 +61,8 @@ source 'https://rubygems.org' do
   group :development do
     # Used to create demo site data
     gem 'db_fixtures_dump'
+    # Open emails sent by the system in a browser tab
+    gem 'letter_opener'
     # Reload dev server when files change
     gem 'listen', '>= 3.0.5', '< 3.3'
   end

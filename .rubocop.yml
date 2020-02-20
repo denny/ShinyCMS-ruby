@@ -28,7 +28,7 @@ Metrics/BlockLength:
     - Gemfile
     - spec/**/*.rb
     - config/routes.rb
-    - config/environments/development.rb
+    - config/environments/*
     - lib/tasks/*.rake
 
 # Also, spec files with I18n strings in them are more readable with slightly
