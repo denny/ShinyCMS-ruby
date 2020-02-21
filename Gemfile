@@ -38,6 +38,9 @@ source 'https://rubygems.org' do
   # Tags
   gem 'acts-as-taggable-on'
 
+  # MJML emails
+  gem 'mjml-rails'
+
   group :development, :test do
     gem 'awesome_print'
     gem 'bundler-audit', require: false
