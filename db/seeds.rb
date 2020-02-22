@@ -163,6 +163,13 @@ setting = seed Setting, { name: 'post_login_redirect' }, {
 }
 setting.values.create_or_find_by!( value: '/' )
 
+setting = seed Setting, { name: 'recaptcha_v3_registration_score' }, {
+  description: 'Minimum score for reCAPTCHA V3 on user registration',
+  level: 'admin',
+  locked: true
+}
+setting.values.create_or_find_by!( value: '0.5' )
+
 setting = seed Setting, { name: 'tag_view' }, {
   description: "('cloud' or 'list')",
   level: 'user',

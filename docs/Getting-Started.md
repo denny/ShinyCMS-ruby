@@ -21,8 +21,8 @@ running.
 The recommended way to start building a site on ShinyCMS is to create a theme
 for it. You can read more about creating themes in docs/themes.md
 
-The default theme can be set in ENV['SHINYCMS_THEME'] and on the Settings page
-in the admin area. If both are set, the latter takes priority. You can also
+The default theme can be set in ENV['SHINYCMS_THEME'] and on the Site Settings
+page in the admin area. If both are set, the latter takes priority. You can also
 choose to make this setting user-overridable, in which case a user's setting
 will take priority for them.
 
