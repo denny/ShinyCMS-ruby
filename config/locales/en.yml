@@ -93,6 +93,20 @@ en:
     site_settings: Site settings
 
 
+  # ========== ( Mailers ) ==========
+
+  discussion_mailer:
+    reply_to_comment:
+      site_name: ShinySite
+      subject: "[%{site_name}] %{reply_author_name} replied to your comment"
+      they_said: They said
+      you_said: You said
+
+  user_mailer:
+    registration:
+      subject: "[%{site_name}] Please confirm your registration"
+
+
   # ========== ( Feature Flags ) ==========
 
   feature_flags:
@@ -100,6 +114,7 @@ en:
 
     blogs: Blogs
     comments: Comments
+    comment_notifications: Comment notifications
     tags: Tags
     user_login: User Login
     user_profiles: User Profiles

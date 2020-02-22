@@ -1,0 +1,16 @@
+<%= @reply.author_name %> has replied to your comment on <%= @site_name %>:
+
+<%= t( '.you_said' ) %>:
+<% if @parent.body.present? %>
+> <%= @parent.body %>
+<% else %>
+> <%= @parent.title %>
+<% end %>
+
+
+<%= t( '.they_said' ) %>:
+<% if @reply.body.present? %>
+<%= @reply.body %>
+<% else %>
+<%= @reply.title %>
+<% end %>

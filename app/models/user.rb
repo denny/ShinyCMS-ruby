@@ -46,6 +46,11 @@ class User < ApplicationRecord
 
   # Instance methods
 
+  def admin?
+    general = CapabilityCategory.find_by( name: 'general' )
+    capabilities.exists? name: 'view_admin_area', category: general
+  end
+
   def can?( capability_name, category_name = :general )
     cc = CapabilityCategory.find_by( name: category_name.to_s )
     return true if capabilities.exists? name: capability_name.to_s, category: cc
@@ -53,11 +58,6 @@ class User < ApplicationRecord
     Rails.logger.debug  "Capability check failed: '#{username}' " \
                         "cannot '#{capability_name}' '#{category_name}'"
     false
-  end
-
-  def admin?
-    general = CapabilityCategory.find_by( name: 'general' )
-    capabilities.exists? name: 'view_admin_area', category: general
   end
 
   def capabilities=( capability_set )
@@ -72,6 +72,10 @@ class User < ApplicationRecord
     end
 
     user_capabilities.where( capability_id: remove ).delete_all
+  end
+
+  def display_name_or_username
+    display_name.presence || username
   end
 
   # Queue email sends
