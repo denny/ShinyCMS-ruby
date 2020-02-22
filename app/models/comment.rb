@@ -14,33 +14,33 @@ class Comment < ApplicationRecord
   validates :body,  presence: true, unless: -> { title.present? }
   validates :title, presence: true, unless: -> { body.present?  }
 
+  after_create :send_notifications
+
   # Instance methods
 
   def send_notifications
-    parent = parent.notification_email
-    owner  = discussion.notification_email
-    all    = SiteSetting.get :all_comment_notifications_email
+    parent_email = parent.notification_email if parent.present?
+    to_parent_comment_author if parent_email.present?
 
-    to_parent_comment_author( parent )
-    to_discussion_owner( owner ) unless owner == parent
-    to_overview_address( all   ) unless all   == parent || all == owner
+    to_discussion_owner unless discussion.notification_email == parent_email
+
+    all_notifications_email = Setting.get :all_comment_notifications_email
+    return if all_notifications_email.blank?
+    return if all_notifications_email == parent_email
+    return if all_notifications_email == discussion.notification_email
+
+    to_all_comment_notifications_email
   end
 
-  def to_parent_comment_author( email )
-    return if email.blank?
-
+  def to_parent_comment_author
     DiscussionMailer.parent_comment_notification( self )
   end
 
-  def to_discussion_owner( email )
-    return if email.blank?
-
+  def to_discussion_owner
     DiscussionMailer.discussion_notification( self )
   end
 
-  def to_overview_address( email )
-    return if email.blank?
-
+  def to_all_comment_notifications_email
     DiscussionMailer.overview_notification( self )
   end
 

@@ -18,6 +18,12 @@ class Discussion < ApplicationRecord
     locked
   end
 
+  def notification_email
+    return if resource.blank?
+
+    resource.author.email || resource.owner.email || resource.user.email || nil
+  end
+
   def top_level_comments
     comments.where( parent: nil )
   end

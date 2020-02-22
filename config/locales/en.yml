@@ -102,13 +102,16 @@ en:
       subject: "[%{site_name}] %{reply_author_name} replied to your comment"
       you_said: You said
     discussion_notification:
-      subject: "[%{site_name}] %{reply_author_name} commented on your %{content_type}"
+      subject: "[%{site_name}] %{comment_author_name} commented on your %{content_type}"
     overview_notification:
-      subject: "[%{site_name}] %{reply_author_name} commented on your site"
+      subject: "[%{site_name}] %{comment_author_name} commented on your site"
 
   user_mailer:
     registration:
       subject: "[%{site_name}] Please confirm your registration"
+
+  content_types:
+    blog_post: blog post
 
 
   # ========== ( Feature Flags ) ==========
