@@ -8,6 +8,7 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 // require("channels") // Only needed if actioncable enabled
 require("jquery")
+require("mjml")
 
 // require("smartmenus")
 

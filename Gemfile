@@ -38,6 +38,9 @@ source 'https://rubygems.org' do
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'
 
+  # MJML emails
+  gem 'mjml-rails'
+
   group :development, :test do
     # Better-looking console output
     gem 'awesome_print'
