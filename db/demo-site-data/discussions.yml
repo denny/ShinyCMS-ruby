@@ -1,0 +1,16 @@
+---
+Discussion_1:
+  id: 1
+  resource_type: BlogPost
+  resource_id: 1
+  locked: false
+  hidden: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2020-02-19 20:22:30.021699000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2020-02-19 20:22:30.021699000 Z
+    zone: *2
+    time: *3

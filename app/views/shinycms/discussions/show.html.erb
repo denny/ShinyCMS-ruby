@@ -1,0 +1,16 @@
+<% unless @discussion.hidden %>
+
+<% if @discussion.top_level_comments.size > 0 %>
+  <%= render partial: 'discussions/top_level',
+             locals: { comments: @discussion.top_level_comments } %>
+<% else %>
+  <section>
+    <p>
+      <%= t( 'discussions.zero_comments' ) %>
+    </p>
+  </section>
+<% end %>
+
+<%#= link_to t( 'add_comment' ), new_comment_path %>
+
+<% end %>

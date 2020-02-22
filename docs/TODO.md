@@ -2,9 +2,7 @@
 
 ## Features in ShinyCMS (Perl) that aren't implemented in ShinyCMS (Ruby) yet
 
-* Content-managed pages, page templates, and form handlers [in progress]
-* User accounts, profiles and administration [started, just about]
-* Blog
+* Form handlers (e.g. contact forms)
 * News/PR section
 * Newsletters (HTML mailshots)
 * Online shop
@@ -16,7 +14,6 @@
 * Event listings
 * Forums
 * Polls
-* 'Shared content' - store text and HTML fragments for re-use throughout a site [in progress]
 
 
 ## Smaller new features and/or improvements over the Perl version
