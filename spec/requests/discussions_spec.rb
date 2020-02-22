@@ -11,8 +11,9 @@ RSpec.describe 'Discussions/Comments', type: :request do
     discussion = create :discussion, resource: @post
     @post.update!( discussion: discussion )
 
+    cmntr = create :user
     create :top_level_comment, discussion: discussion
-    @comment = create :top_level_comment, discussion: discussion
+    @comment = create :top_level_comment, discussion: discussion, author: cmntr
     create :top_level_comment, discussion: discussion
 
     @nested = create :nested_comment, discussion: discussion, parent: @comment

@@ -11,7 +11,7 @@ class DiscussionMailer < ApplicationMailer
     @reply  = comment
     @parent = comment.parent
 
-    subject = parent_comment_notification_subject( @reply.author_name_any )
+    subject = parent_comment_notification_subject( @reply )
 
     mail to: @parent.notification_email, subject: subject do |format|
       format.html
@@ -23,12 +23,12 @@ class DiscussionMailer < ApplicationMailer
     return if comment.blank?
     return if comment.discussion.notification_email.blank?
 
-    @comment = comment
+    @comment  = comment
     @resource = comment.discussion.resource
 
     subject = discussion_notification_subject( @comment, @resource )
 
-    mail to: @resource.notification_email, subject: subject do |format|
+    mail to: comment.discussion.notification_email, subject: subject do |format|
       format.html
       format.text
     end
@@ -37,12 +37,12 @@ class DiscussionMailer < ApplicationMailer
   def overview_notification( comment )
     return if comment.blank?
 
-    email = SiteSetting.get :all_comment_notifications_email
+    email = Setting.get :all_comment_notifications_email
     return if email.blank?
 
     @comment = comment
 
-    subject = overview_notification_subject( @comment.author_name_any )
+    subject = overview_notification_subject( @comment )
 
     mail to: email, subject: subject do |format|
       format.html
@@ -52,29 +52,27 @@ class DiscussionMailer < ApplicationMailer
 
   private
 
-  def parent_comment_notification_subject( author_name )
+  def parent_comment_notification_subject( reply )
     I18n.t(
       'discussion_mailer.parent_comment_notification.subject',
-      reply_author_name: author_name,
+      reply_author_name: reply.author_name_any,
       site_name: @site_name
     )
   end
 
   def discussion_notification_subject( comment, resource )
-    author_name  = comment.author_name_any
-    content_type = resource.class.name.underscore.humanize
     I18n.t(
       'discussion_mailer.discussion_notification.subject',
-      reply_author_name: author_name,
-      content_type: content_type,
+      comment_author_name: comment.author_name_any,
+      content_type: resource.human_name,
       site_name: @site_name
     )
   end
 
-  def overview_notification_subject( author_name )
+  def overview_notification_subject( comment )
     I18n.t(
       'discussion_mailer.overview_notification.subject',
-      reply_author_name: author_name,
+      comment_author_name: comment.author_name_any,
       site_name: @site_name
     )
   end
