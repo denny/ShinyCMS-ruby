@@ -1,14 +1,19 @@
 ---
 BlogPost_1:
   id: 1
-  title: First Post
-  slug: first
-  body: "<p>First post!</p>\r\n"
+  title: Demo content
+  slug: demo-content
+  body: "<p>I&#39;m never sure what to do about demo content for ShinyCMS. The Perl
+    version ended up with a weird mixture of content about the CMS, extracts from
+    a book with suitably friendly licensing, and word salad from the Futurama Lorem
+    Ipsum generator.</p>\r\n\r\n<p>Now here we are with the Ruby version, and apparently
+    I haven&#39;t learned my lesson - so I&#39;m starting with content about the CMS
+    again. Or in this case, meta-content.</p>\r\n"
   hidden: false
   blog_id: 1
   user_id: 1
   posted_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2020-02-08 07:24:27.242382000 Z
+    utc: &1 2020-02-08 07:24:27.000000000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
@@ -17,6 +22,6 @@ BlogPost_1:
     zone: *2
     time: *3
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &4 2020-02-08 07:24:27.246059000 Z
+    utc: &4 2020-02-19 18:43:39.829059000 Z
     zone: *2
     time: *4
