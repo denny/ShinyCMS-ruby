@@ -142,6 +142,13 @@ setting = seed Setting, { name: 'admin_ip_list' }, {
 }
 setting.values.create_or_find_by!( value: '' )
 
+setting = seed Setting, { name: 'all_comment_notifications_email' }, {
+  description: 'Set this to an email address to receive a notification for every comment posted on the site',
+  level: 'site',
+  locked: true
+}
+setting.values.create_or_find_by!( value: '' )
+
 setting = seed Setting, { name: 'default_page' }, {
   description: 'Default top-level page (either its name or its slug)',
   level: 'site',

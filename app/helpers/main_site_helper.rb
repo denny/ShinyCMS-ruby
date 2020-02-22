@@ -27,7 +27,7 @@ module MainSiteHelper
   end
 
   def user_display_name( user = current_user )
-    user.display_name.presence || user.username
+    user.display_name_or_username
   end
 
   def user_profile_link( user = current_user )
