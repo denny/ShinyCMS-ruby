@@ -37,7 +37,7 @@ class DiscussionMailer < ApplicationMailer
   def overview_notification( comment )
     return if comment.blank?
 
-    email = SiteSetting.get :all_comments_email
+    email = SiteSetting.get :all_comment_notifications_email
     return if email.blank?
 
     @comment = comment

@@ -17,13 +17,13 @@ class Comment < ApplicationRecord
   # Instance methods
 
   def send_notifications
-    p = parent.notification_email
-    d = discussion.notification_email
-    a = SiteSetting.get :all_comments_email
+    parent = parent.notification_email
+    owner  = discussion.notification_email
+    all    = SiteSetting.get :all_comment_notifications_email
 
-    to_parent_comment_author( p )
-    to_discussion_owner( d ) unless d == p
-    to_overview_address( a ) unless a == d || a == p
+    to_parent_comment_author( parent )
+    to_discussion_owner( owner ) unless owner == parent
+    to_overview_address( all   ) unless all   == parent || all == owner
   end
 
   def to_parent_comment_author( email )
