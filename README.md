@@ -11,51 +11,87 @@ number of clients during 10 years of working as a freelance web developer, so
 it's not a small project. Here's the feature list I'm trying to duplicate:
 
 * Content-managed pages, page templates, and form handlers
+* Inserts - text and HTML fragments that can be re-used in all parts of a site
 * User accounts, profiles and administration
+* reCAPTCHA bot protection for registration and comment forms
 * Blog
 * News/PR section
 * Newsletters (HTML mailshots)
 * Online shop
-* Access control system which can be used to change page content, allow downloads, etc
-* Payment handling system, including recurring subscriptions (linked to access control)
+* Access control system which can be used to control access to file downloads and
+  secure whole pages, but also to show/hide individual pieces of page content
+* Payment handling plugins, including recurring subscriptions (linked to access control)
 * Tags on blog posts, news posts, forum posts, and shop items
 * Nested comment threads on blog posts, news posts, forum posts, and shop items
+* Akismet spam filtering for comments, with moderation page
 * 'Likes' on blog posts, shop items, and comments
 * Event listings
 * Forums
 * Polls
-* 'Shared content' - store text and HTML fragments for re-use throughout a site
 
-Ideally I'll be improving on most of these as I re-implement them. :)
+Ideally I'll be improving on most of these as I re-implement them, as well as
+making them more consistent in structure and naming conventions.
 
 
 ## Ruby and Rails versions
 
-I'm aiming to track latest stable Ruby and Rails, which means I started with
-Ruby 2.6.4 and Rails 6.0.0, and I'm currently on Ruby 2.7.0 and Rails 6.0.2.1
+I'm aiming to keep up to date with the current/latest stable versions of Ruby
+and Rails, which means I started with Ruby 2.6.4 and Rails 6.0.0, and I'm
+currently on Ruby 2.6.5 and Rails 6.0.2.1 (I did update to Ruby 2.7.0 briefly,
+but I got fed up with all the deprecation warnings; I've moved back to 2.6.5
+until 2.7.0 support settles down a bit).
 
 I believe there are some Rails-6-isms in the code which mean it won't run on
 rails 5.x without at least minor modifications; I don't intend to put any effort
-into supporting earlier versions of Rails for now.
+into supporting earlier versions of Rails, and any patches to add that support
+will need to be convincingly clean.
 
-I don't know of any reason that it shouldn't run on older Ruby versions, but I
-haven't tested it and I don't know how much older; if I get any feedback on what
-does or doesn't work then I'll include it here in future.
+I don't know of any reason that ShinyCMS shouldn't run on older Ruby versions,
+but I haven't tested it yet so I don't know how much older; when I run those
+tests, or if if I get any feedback on what does or doesn't work, then I'll
+update this doc.
 
 
 ## System dependencies
 
-Currently just the contents of the Gemfile and a Postgres database, I think.
+* A webserver
+  * I use `foreman run rails s` for dev, and Heroku for staging and production
+* A database
+  * For now this assumes Postgres, although I intend to work toward being
+    database agnostic eventually (the Perl version works with MySQL, Postgres,
+    and quite probably anything else that the DBIx::Class ORM supports).
 
+To enable certain features, you will need keys from or accounts on various
+external services...
 
-## Configuration
+## Services
 
-For a local development setup, it should Just Work [tm] as far as I'm aware.
+External services are mostly optional. If you add config settings for them
+(via ENV vars on the command line, or via a .env file (see .env.example),
+or via your Config Vars on Heroku) then they will be enabled, otherwise
+those features will be skipped or a fallback will take their place.
 
-If you want to use S3 to host images then you'll need to set that up on AWS and
-put the relevant API keys etc in your .env and/or your Heroku config vars. S3
-hosting is used automatically in development and production if AWS_BUCKET is
-set, otherwise local storage is used.
+### AWS S3 for file storage
+
+User uploaded files can be stored on AWS S3 instead of locally. To enable this
+feature you will need to have an an AWS account, create an S3 bucket, and add
+the relevant keys to the ENV/config.
+
+### reCAPTCHA for bot protection
+
+User registration (and in future, posting comments) can be protected from bots
+using Google's reCAPTCHA service. To enable this feature you will need to obtain
+keys and add them to your ENV/config. You will get the best results with a pair
+of V3 keys and a pair of V2 keys (this allows you to set a minimum score for
+each protected feature in your Site Setings area). At first reCAPTCHA tries an
+'invisible' (non-interactive) check (V3 with score if configured, V2 otherwise),
+falling back to a V2 checkbox if that fails.
+
+### Have I Been Pwned for password leak checking
+
+The user registration and login features use Devise::PwnedPassword to check
+user's passwords against https://haveibeenpwned.com/Passwords and warn the
+user if they find a match, but this doesn't require any setup on your part.
 
 
 ## Database
@@ -66,8 +102,7 @@ To load seed data: `rails db:seed`
 
 To do all three in one command: `rails db:setup`
 
-To load the demo site data: `tools/insert-demo-site-data` (and set
-SHINYCMS_THEME=halcyonic in your ENV to use the relevant templates)
+To load the demo site data: `tools/insert-demo-site-data`
 
 
 ## Tests
@@ -83,21 +118,6 @@ You can view test results on
 [CircleCI](https://circleci.com/gh/denny/ShinyCMS-ruby) and
 [Travis CI](https://travis-ci.org/denny/ShinyCMS-ruby), and test coverage
 information on [CodeCov](https://codecov.io/gh/denny/ShinyCMS-ruby).
-
-
-## Services
-
-I use:
-* Heroku to host the webapp
-* Heroku Postgres to host the database
-* AWS S3 to host image uploads
-
-(Other hosting services are available; as far as I'm aware changing any/all
-of these servies for alternatives should only require config changes.)
-
-The user registration and login features use Devise::PwnedPassword to check
-user's passwords against https://haveibeenpwned.com/Passwords and warn the user
-if they find a match, but this doesn't require any setup.
 
 
 ## Deployment
