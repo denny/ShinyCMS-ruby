@@ -17,15 +17,31 @@ class Comment < ApplicationRecord
   # Instance methods
 
   def send_notifications
-    send_notification_to_parent_author if parent.notification_email.present?
-    if discussion.resource.notification_email.present?
-      send_reply_to_content_author
-    end
-    send_site_admin if SiteSetting.get( :all_notifications_email ).present?
+    p = parent.notification_email
+    d = discussion.notification_email
+    a = SiteSetting.get :all_comments_email
+
+    to_parent_comment_author( p )
+    to_discussion_owner( d ) unless d == p
+    to_overview_address( a ) unless a == d || a == p
   end
 
-  def send_notification_to_parent_author
-    DiscussionMailer.reply_to_comment( self )
+  def to_parent_comment_author( email )
+    return if email.blank?
+
+    DiscussionMailer.parent_comment_notification( self )
+  end
+
+  def to_discussion_owner( email )
+    return if email.blank?
+
+    DiscussionMailer.discussion_notification( self )
+  end
+
+  def to_overview_address( email )
+    return if email.blank?
+
+    DiscussionMailer.overview_notification( self )
   end
 
   def author_name_any
