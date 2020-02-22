@@ -12,7 +12,7 @@
     <%= render partial: 'comment', locals: { comment: @parent, indent: '> ' } %>
 
     <mj-text>
-      <%= t( '.they_said' ) %>:
+      <%= t( 'discussion_mailer.they_said' ) %>:
     </mj-text>
 
     <%= render partial: 'comment', locals: { comment: @reply } %>

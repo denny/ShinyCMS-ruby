@@ -96,11 +96,15 @@ en:
   # ========== ( Mailers ) ==========
 
   discussion_mailer:
-    reply_to_comment:
-      site_name: ShinySite
+    site_name: ShinySite
+    they_said: They said
+    parent_comment_notification:
       subject: "[%{site_name}] %{reply_author_name} replied to your comment"
-      they_said: They said
       you_said: You said
+    discussion_notification:
+      subject: "[%{site_name}] %{reply_author_name} commented on your %{content_type}"
+    overview_notification:
+      subject: "[%{site_name}] %{reply_author_name} commented on your site"
 
   user_mailer:
     registration:
