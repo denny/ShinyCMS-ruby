@@ -19,15 +19,14 @@ class Comment < ApplicationRecord
   # Instance methods
 
   def send_notifications
-    if parent.present? && parent.notification_email.present?
-      to_parent_comment_author
-      p = parent.notification_email
-    end
+    p = parent.notification_email if parent.present?
+    to_parent_comment_author if p.present?
 
-    to_discussion_owner unless discussion.notification_email == p
+    d = discussion.notification_email
+    to_discussion_owner unless d == p
 
-    return if [ discussion.notification_email, p ]
-              .include? Setting.get :all_comment_notifications_email
+    a = Setting.get :all_comment_notifications_email
+    return if a.blank? || [ d, p ].include?( a )
 
     to_all_comment_notifications_email
   end
