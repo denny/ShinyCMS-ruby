@@ -3,34 +3,63 @@
 I'm re-implementing [ShinyCMS](https://shinycms.org/) in
 [Ruby](https://ruby-lang.org/), as an educational exercise...
 
-[The original version](https://github.com/denny/ShinyCMS)
-is written in [Perl](https://perl.org/).
+The original, [Perl version of ShinyCMS](https://github.com/denny/ShinyCMS) was
+built to satisfy the varied requirements of a number of clients during 10 years
+of working as a freelance web developer, so it's not a small project.
 
-The Perl version of ShinyCMS was built to satisfy the varied requirements of a
-number of clients during 10 years of working as a freelance web developer, so
-it's not a small project. Here's the feature list I'm trying to duplicate:
+As well as this project allowing me to gain more familiarity with the full Ruby
+on Rails project lifecycle, I also intend to make improvements to many of the
+features as I re-implement them, with the benefit of hindsight - and an extra
+decade of professional experience since the original project started.
 
-* Content-managed pages, page templates, and form handlers
-* Inserts - text and HTML fragments that can be re-used in all parts of a site
-* User accounts, profiles and administration
+
+## Progress
+
+Features that currently exist in the Ruby version (noting improvements from
+the Perl version, if any):
+
+* Pages, with page templates, page sections, and dynamically-generated menus
+  * Improvements: the Perl version required all pages to be in a section, and
+    you could only nest sections two levels deep. The Ruby version allows you
+    to have pages at the top-level of your site, and to nest sections to any
+    depth.
+* Inserts
+  * Improvements: snappier name? ;) (Renamed from Shared Content to Inserts)
+* User accounts and administration
+  * Improvements: the Perl version has role-based authorisation. The Ruby
+    version has more flexible ACL-based authorisation.
 * reCAPTCHA bot protection for registration and comment forms
+  * Improvements: supports reCAPTCHA v3 with scores. Tries an invisible
+    CAPTCHA first, falling back to an interactive CAPTCHA if that fails.
 * Blog
-* News/PR section
+* Tags on blog posts (and ready to add to any other content type)
+* Nested comment threads on blog posts (ready to add to any other content type)
+  * Improvements: Perl's main ORM doesn't have native support for polymorphism,
+    so I ended up writing my own version of it (although I didn't know the term
+    'polymorphism' at the time). The Ruby version of the Discussions feature
+    was considerably easier to implement, and is hopefully easier for other
+    developers to understand, as it uses the native support for polymorphism
+    in ActiveRecord.
+
+
+## TODO
+
+Features the Perl version has, which the Ruby version doesn't. Yet.
+
+* Form handlers (contact page, etc)
+* User profile pages
+* News section
 * Newsletters (HTML mailshots)
 * Online shop
-* Access control system which can be used to control access to file downloads and
-  secure whole pages, but also to show/hide individual pieces of page content
+* Access control system
+  * Can be used to control access to file downloads and secure whole pages,
+    but also to show/hide individual pieces of page content
 * Payment handling plugins, including recurring subscriptions (linked to access control)
-* Tags on blog posts, news posts, forum posts, and shop items
-* Nested comment threads on blog posts, news posts, forum posts, and shop items
 * Akismet spam filtering for comments, with moderation page
 * 'Likes' on blog posts, shop items, and comments
 * Event listings
 * Forums
 * Polls
-
-Ideally I'll be improving on most of these as I re-implement them, as well as
-making them more consistent in structure and naming conventions.
 
 
 ## Ruby and Rails versions
@@ -64,6 +93,7 @@ update this doc.
 To enable certain features, you will need keys from or accounts on various
 external services...
 
+
 ## Services
 
 External services are mostly optional. If you add config settings for them
@@ -71,23 +101,23 @@ External services are mostly optional. If you add config settings for them
 or via your Config Vars on Heroku) then they will be enabled, otherwise
 either those features will be disabled or a fallback will take their place.
 
-#### AWS S3 for file storage
+#### AWS S3 - file storage
 
 User uploaded files can be stored on AWS S3 instead of locally. To enable this
 feature you will need to have an an AWS account, create an S3 bucket, and add
 the relevant keys to the ENV/config.
 
-#### reCAPTCHA for bot protection
+#### reCAPTCHA - bot protection
 
-User registration (and in future, posting comments) can be protected from bots
-using Google's reCAPTCHA service. To enable this feature you will need to obtain
-keys and add them to your ENV/config. You will get the best results with a pair
-of V3 keys and a pair of V2 keys (this allows you to set a minimum score for
-each protected feature in your Site Setings area). At first reCAPTCHA tries an
-'invisible' (non-interactive) check (V3 with score if configured, V2 otherwise),
-falling back to a V2 checkbox if that fails.
+User registration and posting comments can be protected from bots using Google's
+reCAPTCHA service. To enable this feature you will need to obtain keys and add
+them to your ENV/config. You will get the best results with a pair of V3 keys
+and a pair of V2 keys (this allows you to set a minimum score for each protected
+feature in your Site Settings area). At first reCAPTCHA tries an 'invisible'
+(non-interactive) check (V3 with score if configured, V2 otherwise), falling
+back to a V2 checkbox if that fails.
 
-#### Have I Been Pwned for password leak checking
+#### Have I Been Pwned - password leak checking
 
 The user registration and login features use Devise::PwnedPassword to check
 user's passwords against https://haveibeenpwned.com/Passwords and warn the
@@ -116,8 +146,8 @@ To install git hooks to check these automatically when you commit/push, install
 
 You can view test results on
 [CircleCI](https://circleci.com/gh/denny/ShinyCMS-ruby) and
-[Travis CI](https://travis-ci.org/denny/ShinyCMS-ruby), and test coverage
-information on [CodeCov](https://codecov.io/gh/denny/ShinyCMS-ruby).
+[Travis CI](https://travis-ci.org/denny/ShinyCMS-ruby), and test coverage on
+[CodeCov](https://codecov.io/gh/denny/ShinyCMS-ruby).
 
 
 ## Deployment
@@ -129,18 +159,11 @@ Postgres add-on at the Hobby Dev level.
 
 ## Current Status
 
-(AKA: My Badge Collection, Let Me Show You It)
+[![CircleCI](https://circleci.com/gh/denny/ShinyCMS-ruby.svg?style=svg&circle-token=5d3c249b624bd720b7481eb606893737ba65a0ce)](https://circleci.com/gh/denny/ShinyCMS-ruby)  [![Travis CI](https://travis-ci.org/denny/ShinyCMS-ruby.svg?branch=master)](https://travis-ci.org/denny/ShinyCMS-ruby)  [![codecov](https://codecov.io/gh/denny/ShinyCMS-ruby/branch/master/graph/badge.svg?token=Pm6x6VcQ81)](https://codecov.io/gh/denny/ShinyCMS-ruby)  
 
-[![CircleCI](https://circleci.com/gh/denny/ShinyCMS-ruby.svg?style=svg&circle-token=5d3c249b624bd720b7481eb606893737ba65a0ce)](https://circleci.com/gh/denny/ShinyCMS-ruby) - CircleCI  
-[![Travis CI](https://travis-ci.org/denny/ShinyCMS-ruby.svg?branch=master)](https://travis-ci.org/denny/ShinyCMS-ruby) - Travis CI  
-[![codecov](https://codecov.io/gh/denny/ShinyCMS-ruby/branch/master/graph/badge.svg?token=Pm6x6VcQ81)](https://codecov.io/gh/denny/ShinyCMS-ruby)  
+[![Maintainability](https://api.codeclimate.com/v1/badges/944f9f96599145fdea77/maintainability)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)  [![codebeat badge](https://codebeat.co/badges/cbd8fc61-241a-4701-9716-d4264cb6d9d9)](https://codebeat.co/projects/github-com-denny-shinycms-ruby-master)  [![Inline docs](http://inch-ci.org/github/denny/ShinyCMS-ruby.svg?branch=master)](http://inch-ci.org/github/denny/ShinyCMS-ruby)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/944f9f96599145fdea77/maintainability)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)  
-[![codebeat badge](https://codebeat.co/badges/cbd8fc61-241a-4701-9716-d4264cb6d9d9)](https://codebeat.co/projects/github-com-denny-shinycms-ruby-master)  
-[![Inline docs](http://inch-ci.org/github/denny/ShinyCMS-ruby.svg?branch=master)](http://inch-ci.org/github/denny/ShinyCMS-ruby)
-
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=denny/ShinyCMS-ruby)](https://dependabot.com)  
-[![Security](https://hakiri.io/github/denny/ShinyCMS-ruby/master.svg)](https://hakiri.io/github/denny/ShinyCMS-ruby/master)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=denny/ShinyCMS-ruby)](https://dependabot.com)  [![Security](https://hakiri.io/github/denny/ShinyCMS-ruby/master.svg)](https://hakiri.io/github/denny/ShinyCMS-ruby/master)
 
 
 ## Licensing
@@ -151,5 +174,5 @@ and v3 of the GPL in the docs folder, or you can read them online:
 https://opensource.org/licenses/gpl-2.0  
 https://opensource.org/licenses/gpl-3.0
 
-ShinyCMS uses code from other open source and free software projects, which
-have their own licensing terms; see docs/licenses.md for details.
+ShinyCMS uses code from other open source and free software projects, which have
+their own licensing terms; see docs/licenses.md for details.
