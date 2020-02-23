@@ -9,12 +9,13 @@ jobs:
         environment:
         - RACK_ENV=test
         - NODE_ENV=test
-        - DATABASE_URL=postgres://shinyuser:@127.0.0.1:5432/shinycms_test
+        - DATABASE_URL=postgres://shinyuser:shinytest@127.0.0.1:5432/shinycms_test
         - SHINYCMS_THEME=TEST
 
-      - image: circleci/postgres:10.0
+      - image: circleci/postgres:10-ram
         environment:
         - POSTGRES_USER=shinyuser
+        - POSTGRES_PASSWORD=shinytest
         - POSTGRES_DB=shinycms_test
 
     working_directory: ~/ShinyCMS
