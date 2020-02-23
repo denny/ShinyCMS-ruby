@@ -1,0 +1,29 @@
+<% @page_title = "Blog posts in #{@posts.first.posted_at.year}"  %>
+
+<% @sidebar_position = 'right' %>
+
+<% current_month = '' %>
+<% @posts.each do |post| %>
+  <% unless post.posted_at.month == current_month %>
+  <h2>
+    <%= I18n.t('date.month_names')[post.posted_at.month] %>
+  </h2>
+  <% current_month = post.posted_at.month %>
+  <% end %>
+
+  <section>
+    <header>
+      <h2>
+        <%= link_to post.title, view_blog_post_path( post ) %>
+      </h2>
+      <h3>
+        Posted by <%= user_profile_link( post.author ) %>
+        at <%= post.posted_at.to_s( :time ) %>
+        on <%= post.posted_at.to_s( :shinydate ) %>
+      </h3>
+    </header>
+  </section>
+<% end %>
+
+<%= render partial: 'right_sidebar_join' %>
+<%= render partial: 'sidebar' %>

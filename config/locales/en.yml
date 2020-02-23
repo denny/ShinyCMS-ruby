@@ -59,11 +59,21 @@ en:
   page:
     template_file_missing: Unable to display page; its template file is missing.
 
+  news:
+    index:
+      title: Recent news
+      zero_posts: There are no news posts to display here.
+    sidebar:
+      links: Links
+      links_blurb: Recommended reading from around the web
+      recent_posts: Recent Posts
+
   settings:
     admin_ip_list: Admin IP list
     default_page: Default page
     default_section: Default section
     post_login_redirect: Post-login redirect
+    recaptcha_v3_registration_score: 'reCAPTCHA: Minimum score for user registration'
     tag_view: Default tag view
     theme_name: Theme name
     # NB, the above strings are all here to keep them together, but not all of
@@ -93,6 +103,27 @@ en:
     site_settings: Site settings
 
 
+  # ========== ( Mailers ) ==========
+
+  discussion_mailer:
+    site_name: ShinySite
+    they_said: They said
+    parent_comment_notification:
+      subject: "[%{site_name}] %{reply_author_name} replied to your comment"
+      you_said: You said
+    discussion_notification:
+      subject: "[%{site_name}] %{comment_author_name} commented on your %{content_type}"
+    overview_notification:
+      subject: "[%{site_name}] %{comment_author_name} commented on your site"
+
+  user_mailer:
+    registration:
+      subject: "[%{site_name}] Please confirm your registration"
+
+  content_types:
+    blog_post: blog post
+
+
   # ========== ( Feature Flags ) ==========
 
   feature_flags:
@@ -100,6 +131,7 @@ en:
 
     blogs: Blogs
     comments: Comments
+    comment_notifications: Comment notifications
     tags: Tags
     user_login: User Login
     user_profiles: User Profiles
@@ -235,6 +267,27 @@ en:
       destroy:
         success: Insert deleted
         failure: Failed to delete insert
+
+    news:
+      title: News
+      index:
+        title: List news posts
+        empty: There are no news posts to display
+      new:
+        title: Add news post
+      edit:
+        title: Edit news post
+      create:
+        success: News post added
+        failure: Failed to add news post
+      update:
+        success: News post updated
+        failure: Failed to update news post
+      destroy:
+        success: News post deleted
+        failure: Failed to delete news post
+      set_post:
+        failure: Couldn't find specified blog post
 
     pages:
       title: Pages

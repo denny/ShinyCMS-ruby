@@ -1,0 +1,15 @@
+<mj-section>
+  <mj-column>
+
+    <mj-text>
+      <%= @comment.author_name_any %> commented on your <%= @content_type %> on <%= @site_name %>:
+    </mj-text>
+
+    <mj-text>
+      <%= t( 'discussion_mailer.they_said' ) %>:
+    </mj-text>
+
+    <%= render partial: 'comment', locals: { comment: @comment } %>
+
+  </mj-column>
+</mj-section>

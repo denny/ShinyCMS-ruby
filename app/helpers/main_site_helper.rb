@@ -27,7 +27,7 @@ module MainSiteHelper
   end
 
   def user_display_name( user = current_user )
-    user.display_name.presence || user.username
+    user.display_name_or_username
   end
 
   def user_profile_link( user = current_user )
@@ -43,5 +43,9 @@ module MainSiteHelper
     else
       "/blog/#{post.posted_year}/#{post.posted_month}/#{post.slug}"
     end
+  end
+
+  def view_news_post_path( post )
+    "/news/#{post.posted_year}/#{post.posted_month}/#{post.slug}"
   end
 end
