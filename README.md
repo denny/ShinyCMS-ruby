@@ -8,12 +8,12 @@ built to satisfy the varied requirements of a number of clients during 10 years
 of working as a freelance web developer, so it's not a small project.
 
 As well as this project allowing me to gain more familiarity with the full Ruby
-on Rails project lifecycle, I also intend to make improvements to many of the
+on Rails project lifecycle, I also hope to make improvements to many of the
 features as I re-implement them, with the benefit of hindsight - and an extra
-decade of professional experience since the original project started.
+decade of professional experience since the original project started. :)
 
 
-## Progress
+## Progress, AKA Current Features
 
 Features that currently exist in the Ruby version (noting improvements from
 the Perl version, if any):
@@ -25,21 +25,26 @@ the Perl version, if any):
     depth.
 * Inserts (re-usable content fragments that can be pulled into any template)
   * Improvements: snappier name? ;) (Renamed from Shared Content to Inserts)
+* Blog
+* News section
+* Tags
+  * Currently on blog posts and news posts
+  * Ready to add to any other content type going forward
+  * Improvements: more generic implementation (uses ActAsTaggableOn)
+* Nested comment threads
+  * Currently on blog posts and news posts
+  * Ready to add to any other content type going forward
+  * Improvements: Perl's main ORM doesn't have native support for polymorphism,
+    and in fact I'd never heard of it at the time, but I ended up writing my own
+    version of it to get the Discussions feature working the way I wanted it to.
+    The Ruby version was considerably easier to implement, and should be more
+    standard, as it just uses ActiveRecord's native support for polymorphism.
 * User accounts and administration
   * Improvements: the Perl version has role-based authorisation. The Ruby
-    version has more flexible ACL-based authorisation.
+    version has more flexible ACL-based authorisation (uses Pundit).
 * reCAPTCHA bot protection for registration and comment forms
   * Improvements: supports reCAPTCHA v3 with scores. Tries an invisible
     CAPTCHA first, falling back to an interactive CAPTCHA if that fails.
-* Blog
-* Tags on blog posts (and ready to add to any other content type)
-* Nested comment threads on blog posts (ready to add to any other content type)
-  * Improvements: Perl's main ORM doesn't have native support for polymorphism,
-    so I ended up writing my own version of it (although I didn't know the term
-    'polymorphism' at the time). The Ruby version of the Discussions feature
-    was considerably easier to implement, and is hopefully easier for other
-    developers to understand, as it uses the native support for polymorphism
-    in ActiveRecord.
 
 
 ## TODO
@@ -47,15 +52,15 @@ the Perl version, if any):
 Features the Perl version has, which the Ruby version doesn't. Yet.
 
 * Form handlers (contact page, etc)
-* News section
 * Newsletters (HTML mailshots)
 * Akismet spam filtering for comments, with moderation page
 * 'Likes' on blog posts, shop items, and comments
 * User profile pages (with content such as recent comments, recent posts, etc)
-* Access control system
+* Access control groups
   * Can be used to control access to file downloads and secure whole pages,
     but also to show/hide individual pieces of page content
-* Payment handling plugins, including recurring subscriptions (linked to access control)
+* Payment handling plugins
+  * Options include recurring subscriptions to access control groups (AKA paid membership)
 * Online shop
 * Event listings
 * Forums
