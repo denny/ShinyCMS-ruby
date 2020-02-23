@@ -23,7 +23,7 @@ the Perl version, if any):
     you could only nest sections two levels deep. The Ruby version allows you
     to have pages at the top-level of your site, and to nest sections to any
     depth.
-* Inserts
+* Inserts (re-usable content fragments that can be pulled into any template)
   * Improvements: snappier name? ;) (Renamed from Shared Content to Inserts)
 * User accounts and administration
   * Improvements: the Perl version has role-based authorisation. The Ruby
@@ -47,16 +47,16 @@ the Perl version, if any):
 Features the Perl version has, which the Ruby version doesn't. Yet.
 
 * Form handlers (contact page, etc)
-* User profile pages
 * News section
 * Newsletters (HTML mailshots)
-* Online shop
+* Akismet spam filtering for comments, with moderation page
+* 'Likes' on blog posts, shop items, and comments
+* User profile pages (with content such as recent comments, recent posts, etc)
 * Access control system
   * Can be used to control access to file downloads and secure whole pages,
     but also to show/hide individual pieces of page content
 * Payment handling plugins, including recurring subscriptions (linked to access control)
-* Akismet spam filtering for comments, with moderation page
-* 'Likes' on blog posts, shop items, and comments
+* Online shop
 * Event listings
 * Forums
 * Polls
