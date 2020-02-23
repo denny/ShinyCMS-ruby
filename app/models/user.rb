@@ -34,6 +34,8 @@ class User < ApplicationRecord
                         dependent: :restrict_with_error
   has_many :blog_posts, inverse_of: 'author',
                         dependent: :restrict_with_error
+  has_many :news_posts, inverse_of: 'author',
+                        dependent: :restrict_with_error
 
   # Configure default count-per-page for pagination
   paginates_per 20

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_18_172035) do
+ActiveRecord::Schema.define(version: 2020_02_23_184000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,18 @@ ActiveRecord::Schema.define(version: 2020_02_18_172035) do
   end
 
   create_table "insert_sets", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "news_posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "slug", null: false
+    t.text "body", null: false
+    t.boolean "hidden", default: false, null: false
+    t.integer "user_id", null: false
+    t.integer "discussion_id"
+    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -295,6 +307,8 @@ ActiveRecord::Schema.define(version: 2020_02_18_172035) do
   add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "discussions"
   add_foreign_key "insert_elements", "insert_sets", column: "set_id"
+  add_foreign_key "news_posts", "discussions"
+  add_foreign_key "news_posts", "users"
   add_foreign_key "page_elements", "pages"
   add_foreign_key "page_sections", "page_sections", column: "section_id"
   add_foreign_key "page_template_elements", "page_templates", column: "template_id"
