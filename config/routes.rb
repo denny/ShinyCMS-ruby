@@ -36,6 +36,20 @@ Rails.application.routes.draw do
     get 'discussion/:id/:number', to: 'discussions#show_thread',
                                   as: :show_thread
 
+    get 'news',                     to: 'news#index', as: :view_news
+    get 'news/:year/:month/:slug',  to: 'news#show',  as: :ignore4,
+                                    constraints: {
+                                      year: %r{\d\d\d\d},
+                                      month: %r{\d\d}
+                                    }
+    get 'news/:year/:month',        to: 'news#month', as: :ignore5,
+                                    constraints: {
+                                      year: %r{\d\d\d\d},
+                                      month: %r{\d\d}
+                                    }
+    get 'news/:year',               to: 'news#year',  as: :ignore6,
+                                    constraints: { year: %r{\d\d\d\d} }
+
     get 'site-settings', to: 'site_settings#index'
     put 'site-settings', to: 'site_settings#update'
 
@@ -83,6 +97,10 @@ Rails.application.routes.draw do
         resources :post, controller: 'blog/posts', except: EXCEPT
       end
       post 'blog/:id/post', to: 'blog/posts#create', as: :create_blog_post
+
+      get  :news, to: 'news#index'
+      post :news, to: 'news#create', as: :create_news_post
+      resources :news, as: :news_post, except: EXCEPT
 
       # Discussion and comment moderation
       scope path: 'discussion' do

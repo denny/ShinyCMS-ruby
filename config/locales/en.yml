@@ -59,6 +59,15 @@ en:
   page:
     template_file_missing: Unable to display page; its template file is missing.
 
+  news:
+    index:
+      title: Recent news
+      zero_posts: There are no news posts to display here.
+    sidebar:
+      links: Links
+      links_blurb: Recommended reading from around the web
+      recent_posts: Recent Posts
+
   settings:
     admin_ip_list: Admin IP list
     default_page: Default page
@@ -258,6 +267,27 @@ en:
       destroy:
         success: Insert deleted
         failure: Failed to delete insert
+
+    news:
+      title: News
+      index:
+        title: List news posts
+        empty: There are no news posts to display
+      new:
+        title: Add news post
+      edit:
+        title: Edit news post
+      create:
+        success: News post added
+        failure: Failed to add news post
+      update:
+        success: News post updated
+        failure: Failed to update news post
+      destroy:
+        success: News post deleted
+        failure: Failed to delete news post
+      set_post:
+        failure: Couldn't find specified blog post
 
     pages:
       title: Pages
