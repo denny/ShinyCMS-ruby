@@ -1,0 +1,53 @@
+<% @page_title = t( '.title' ) %>
+
+<%= form_for @post, url: create_news_post_path( @post ), method: :post do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
+  </p>
+  <p>
+    <%= f.label :tag_list, 'Tags' %><br>
+    <%= f.text_field :tag_list %>
+  </p>
+  <% if current_user.can? :change_author, :news_posts %>
+  <p>
+    <%= f.label :user_id, 'Author' %><br>
+    <%= f.select :user_id, User.that_can( :add, :news_posts ).pluck( :username, :id ) %>
+  </p>
+  <% else %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <% end %>
+  <p>
+    <%= f.label :posted_at %><br>
+    <%= f.text_field :posted_at %>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.cktext_area :body, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
+  </p>
+  <p>
+    <%= f.label :hidden %><br>
+    <%= f.check_box :hidden %>
+  </p>
+  <!-- TODO: comment threads! (write or find :acts_as_commentable??)
+  <p>
+    <%#= f.label :has_comments %><br>
+    <%#= f.check_box :allow_comments %>
+  </p>
+  <p>
+    <%#= f.label :freeze_comments %><br>
+    <%#= f.check_box :allow_comments %>
+  </p>
+  <p>
+    <%#= f.label :hide_comments %><br>
+    <%#= f.check_box :allow_comments %>
+  </p>
+  -->
+  <p>
+    <%= f.submit t( 'post' ) %>
+  </p>
+<% end %>

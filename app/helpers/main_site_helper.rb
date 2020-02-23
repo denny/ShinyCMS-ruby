@@ -44,4 +44,8 @@ module MainSiteHelper
       "/blog/#{post.posted_year}/#{post.posted_month}/#{post.slug}"
     end
   end
+
+  def view_news_post_path( post )
+    "/news/#{post.posted_year}/#{post.posted_month}/#{post.slug}"
+  end
 end
