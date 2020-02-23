@@ -1,0 +1,21 @@
+<mj-section>
+  <mj-column>
+
+    <mj-text>
+      <%= @reply.author_name_any %> replied to your comment on <%= @site_name %>:
+    </mj-text>
+
+    <mj-text>
+      <%= t( '.you_said' ) %>:
+    <mj-text>
+
+    <%= render partial: 'comment', locals: { comment: @parent, indent: '> ' } %>
+
+    <mj-text>
+      <%= t( 'discussion_mailer.they_said' ) %>:
+    </mj-text>
+
+    <%= render partial: 'comment', locals: { comment: @reply } %>
+
+  </mj-column>
+</mj-section>

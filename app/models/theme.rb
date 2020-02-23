@@ -23,12 +23,15 @@ class Theme
 
   # Find the current theme, if any
   def self.current( user = nil )
+    # User-level setting
     theme_name = Setting.get :theme_name, user
     return Theme.new( theme_name ) if files_exist?( theme_name )
 
+    # Site-wide/default setting
     theme_name = Setting.get :theme_name
     return Theme.new( theme_name ) if files_exist?( theme_name )
 
+    # Fallback default setting in ENV / .env / Heroku config
     theme_name = ENV['SHINYCMS_THEME']
     return Theme.new( theme_name ) if files_exist?( theme_name )
   end

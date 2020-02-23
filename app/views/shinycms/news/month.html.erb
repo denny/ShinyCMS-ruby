@@ -1,0 +1,27 @@
+<% @page_title = "Blog posts in #{I18n.t("date.month_names")[@posts.first.posted_at.month]} #{@posts.first.posted_at.year}"  %>
+
+<% @sidebar_position = 'right' %>
+
+<h2 class="above-section">
+  Blog posts in <%= I18n.t('date.month_names')[@posts.first.posted_at.month] %>
+</h2>
+
+<% @posts.each do |post| %>
+<section>
+  <header>
+    <h2>
+      <%= link_to post.title, view_blog_post_path( post ) %>
+    </h2>
+    <h3>
+      Posted by <%= user_profile_link( post.author ) %>
+      at <%= post.posted_at.to_s( :time ) %>
+      on <%= post.posted_at.to_s( :shinydate ) %>
+    </h3>
+  </header>
+
+  <%= sanitize post.teaser( paragraphs: 3 ) %>
+</section>
+<% end %>
+
+<%= render partial: 'right_sidebar_join' %>
+<%= render partial: 'sidebar' %>
