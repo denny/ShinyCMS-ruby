@@ -69,15 +69,15 @@ external services...
 External services are mostly optional. If you add config settings for them
 (via ENV vars on the command line, or via a .env file (see .env.example),
 or via your Config Vars on Heroku) then they will be enabled, otherwise
-those features will be skipped or a fallback will take their place.
+either those features will be disabled or a fallback will take their place.
 
-### AWS S3 for file storage
+#### AWS S3 for file storage
 
 User uploaded files can be stored on AWS S3 instead of locally. To enable this
 feature you will need to have an an AWS account, create an S3 bucket, and add
 the relevant keys to the ENV/config.
 
-### reCAPTCHA for bot protection
+#### reCAPTCHA for bot protection
 
 User registration (and in future, posting comments) can be protected from bots
 using Google's reCAPTCHA service. To enable this feature you will need to obtain
@@ -87,7 +87,7 @@ each protected feature in your Site Setings area). At first reCAPTCHA tries an
 'invisible' (non-interactive) check (V3 with score if configured, V2 otherwise),
 falling back to a V2 checkbox if that fails.
 
-### Have I Been Pwned for password leak checking
+#### Have I Been Pwned for password leak checking
 
 The user registration and login features use Devise::PwnedPassword to check
 user's passwords against https://haveibeenpwned.com/Passwords and warn the
