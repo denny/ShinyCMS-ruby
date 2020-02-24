@@ -5,23 +5,16 @@
 <% current_month = '' %>
 <% @posts.each do |post| %>
   <% unless post.posted_at.month == current_month %>
-  <h2>
-    <%= I18n.t('date.month_names')[post.posted_at.month] %>
-  </h2>
+  <section>
+    <h2>
+      Posts in <%= I18n.t('date.month_names')[post.posted_at.month] %> <%= post.posted_at.year %>
+    </h2>
+  </section>
   <% current_month = post.posted_at.month %>
   <% end %>
 
   <section>
-    <header>
-      <h2>
-        <%= link_to post.title, view_blog_post_path( post ) %>
-      </h2>
-      <h3>
-        Posted by <%= user_profile_link( post.author ) %>
-        at <%= post.posted_at.to_s( :time ) %>
-        on <%= post.posted_at.to_s( :shinydate ) %>
-      </h3>
-    </header>
+    <%= render partial: 'blogs/post_in_list_header', locals: { post: post } %>
   </section>
 <% end %>
 
