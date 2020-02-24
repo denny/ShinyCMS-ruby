@@ -50,6 +50,10 @@ en:
     lock_comment: Lock comment
     unlock_comment: Unlock comment
     delete_comment: Delete comment
+    comment_form:
+      title: Post a comment
+      reply_title: Post a reply
+      comment: Comment
     add_comment:
       success: New comment posted
       failure: Failed to post new comment

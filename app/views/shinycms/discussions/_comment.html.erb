@@ -24,3 +24,6 @@
   </footer>
   <% end %>
 </section>
+
+<%= render partial: 'discussions/comment_form', locals: {
+  discussion: comment.discussion, comment: comment, depth: depth } %>
