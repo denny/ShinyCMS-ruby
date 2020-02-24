@@ -24,9 +24,7 @@ class DiscussionsController < ApplicationController
   end
 
   def save_comment
-    comment = @parent.comments.new(
-      comment_params.merge( discussion: @discussion )
-    )
+    comment = @parent.comments.new( comment_params )
 
     if comment.save
       flash[ :notice ] = t( '.success' )
@@ -50,7 +48,7 @@ class DiscussionsController < ApplicationController
   def comment_params
     params.require( :comment ).permit(
       %i[ title body author_type author_name author_email author_link ]
-    )
+    ).merge( discussion: @discussion )
   end
 
   def check_feature_flags
