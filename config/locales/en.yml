@@ -50,6 +50,15 @@ en:
     lock_comment: Lock comment
     unlock_comment: Unlock comment
     delete_comment: Delete comment
+    add_comment:
+      success: New comment posted
+      failure: Failed to post new comment
+    add_reply:
+      success: New comment posted
+      failure: Failed to post new comment
+    save_comment:
+      success: New comment posted
+      failure: Failed to post new comment
 
   errors:
     not_found:

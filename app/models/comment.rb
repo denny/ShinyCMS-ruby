@@ -14,9 +14,14 @@ class Comment < ApplicationRecord
   validates :body,  presence: true, unless: -> { title.present? }
   validates :title, presence: true, unless: -> { body.present?  }
 
-  after_create :send_notifications
+  before_create :set_number
+  after_create  :send_notifications
 
   # Instance methods
+
+  def set_number
+    self.number = ( discussion.comments.maximum( :number ) || 0 ) + 1
+  end
 
   def send_notifications
     p = parent.notification_email if parent.present?
