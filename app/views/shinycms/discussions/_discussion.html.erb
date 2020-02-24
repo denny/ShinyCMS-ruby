@@ -1,6 +1,9 @@
 <% unless resource.discussion.hidden %>
 
-<%= render partial: 'discussions/comment_form', locals: { discussion: resource.discussion } %>
+<a onclick="toggleHidden('comment_form')"><%= t( 'discussions.comment' ) %></a>
+<div id="comment_form" hidden>
+  <%= render partial: 'discussions/comment_form', locals: { discussion: resource.discussion } %>
+</div>
 
 <h3>
   <%= t( 'discussions.comments' ) %>
@@ -16,5 +19,16 @@
     </p>
   </section>
 <% end %>
+
+<script>
+function toggleHidden( wrapper_id ) {
+  var wrapper = document.getElementById( wrapper_id );
+  if ( wrapper.hidden ) {
+    wrapper.hidden = false;
+  } else {
+    wrapper.hidden = true;
+  }
+}
+</script>
 
 <% end %>

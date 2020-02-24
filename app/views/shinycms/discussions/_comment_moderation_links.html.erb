@@ -1,14 +1,17 @@
+|
 <% if comment.hidden? %>
   <%= link_to t( 'discussions.unhide_comment' ), unhide_comment_path( comment ) %>
 <% else %>
   <%= link_to t( 'discussions.hide_comment' ), hide_comment_path( comment ) %>
 <% end %>
+|
 <% if comment.locked? %>
   <%= link_to t( 'discussions.unlock_comment' ), unlock_comment_path( comment ) %>
 <% else %>
   <%= link_to t( 'discussions.lock_comment' ), lock_comment_path( comment ) %>
 <% end %>
 <% if current_user_can?( :delete, :comments ) %>
+|
   <%= link_to t( 'discussions.delete_comment' ), delete_comment_path( comment ),
       method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
 <% end %>

@@ -7,23 +7,25 @@
     </h2>
     <% end %>
     <h3>
-      <%= render partial: 'discussions/comment_posted_by',
-                 locals: { comment: comment } %>
+      <%= render partial: 'discussions/comment_posted_by', locals: { comment: comment } %>
     </h3>
     <%= link_to comment.number, "#{request.fullpath}##{comment.number}" %>
   </header>
 
   <%= sanitize comment.body %>
 
-  <% if current_user_can?( :moderate, :comments ) %>
   <footer>
-    <p>
-      <%= render partial: 'discussions/comment_moderation_links',
-                 locals: { comment: comment } %>
-    </p>
+    <br>
+    <a onclick="toggleHidden('reply_form_<%= comment.id %>')"><%= t( 'discussions.reply' ) %></a>
+    <% if current_user_can?( :moderate, :comments ) %>
+    <%= render partial: 'discussions/comment_moderation_links',
+               locals: { comment: comment } %>
+    <% end %>
   </footer>
-  <% end %>
-</section>
 
-<%= render partial: 'discussions/comment_form', locals: {
-  discussion: comment.discussion, comment: comment, depth: depth } %>
+  <div id="reply_form_<%= comment.id %>" hidden>
+    <br>
+    <%= render partial: 'discussions/comment_form',
+               locals: { discussion: comment.discussion, comment: comment } %>
+  </div>
+</section>
