@@ -4,9 +4,7 @@ class DiscussionMailer < ApplicationMailer
   before_action :set_site_name
 
   def parent_comment_notification( comment )
-    return if comment.blank?
-    return if comment.parent.blank?
-    return if comment.parent.notification_email.blank?
+    return unless comment&.parent&.notification_email&.present?
 
     @reply  = comment
     @parent = comment.parent
@@ -20,8 +18,7 @@ class DiscussionMailer < ApplicationMailer
   end
 
   def discussion_notification( comment )
-    return if comment.blank?
-    return if comment.discussion.notification_email.blank?
+    return unless comment&.discussion&.notification_email&.present?
 
     @comment  = comment
     @resource = comment.discussion.resource
@@ -37,10 +34,10 @@ class DiscussionMailer < ApplicationMailer
   def overview_notification( comment )
     return if comment.blank?
 
+    @comment = comment
+
     email = Setting.get :all_comment_notifications_email
     return if email.blank?
-
-    @comment = comment
 
     subject = overview_notification_subject( @comment )
 
