@@ -4,7 +4,7 @@ RSpec.describe 'Discussion mailer', type: :mailer do
   before :each do
     create :feature_flag, name: 'comment_notifications', enabled: true
 
-    @site_name = I18n.t( 'discussion_mailer.site_name' )
+    @site_name = I18n.t( 'site_name' )
 
     blogger     = create :blog_admin
     blog_post   = create :blog_post, author: blogger

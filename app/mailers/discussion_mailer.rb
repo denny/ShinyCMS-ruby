@@ -75,7 +75,7 @@ class DiscussionMailer < ApplicationMailer
   end
 
   def set_site_name
-    @site_name = I18n.t( 'discussion_mailer.site_name' )
+    @site_name = I18n.t( 'site_name' )
   end
 
   def check_feature_flags

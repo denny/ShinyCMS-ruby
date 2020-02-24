@@ -9,6 +9,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  site_name: ShinySite
+
   home: Home
 
   # Generic verbs, used by buttons etc, both on main site and in admin area
@@ -119,7 +121,6 @@ en:
   # ========== ( Mailers ) ==========
 
   discussion_mailer:
-    site_name: ShinySite
     they_said: They said
     parent_comment_notification:
       subject: "[%{site_name}] %{reply_author_name} replied to your comment"
