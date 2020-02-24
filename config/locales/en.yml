@@ -12,11 +12,11 @@ en:
   home: Home
 
   # Generic verbs, used by buttons etc, both on main site and in admin area
-  add: Add
-  post: Post
   view: View
   list: List
+  add: Add
   edit: Edit
+  post: Post
   hide: Hide
   lock: Lock
   unhide: Unhide
@@ -36,6 +36,8 @@ en:
       title: Blogs
     set_blog:
       failure: Blog not found
+    show:
+      reply: Reply to this post
     sidebar:
       links: Links
       links_blurb: Recommended reading from around the web
@@ -45,15 +47,13 @@ en:
     comments: Comments
     zero_comments: There are no comments to display
     hidden_comment: This comment was removed by a moderator.
+    reply: Reply to this comment
     hide_comment: Hide comment
     unhide_comment: Unhide comment
     lock_comment: Lock comment
     unlock_comment: Unlock comment
     delete_comment: Delete comment
-    comment_form:
-      title: Post a comment
-      reply_title: Post a reply
-      comment: Comment
+    comment: Comment
     add_comment:
       success: New comment posted
       failure: Failed to post new comment
