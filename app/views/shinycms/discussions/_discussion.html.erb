@@ -1,5 +1,7 @@
 <% unless resource.discussion.hidden %>
 
+<%= render partial: 'discussions/comment_form', locals: { discussion: resource.discussion } %>
+
 <h3>
   <%= t( 'discussions.comments' ) %>
 </h3>
@@ -14,7 +16,5 @@
     </p>
   </section>
 <% end %>
-
-<%#= link_to t( 'add_comment' ), new_comment_path %>
 
 <% end %>

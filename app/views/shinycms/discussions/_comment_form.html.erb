@@ -1,0 +1,32 @@
+<% depth ||= 0 %>
+<section style="margin-left: <%= depth %>em;">
+  <header>
+    <h4>
+      <% comment ||= nil %>
+      <% if comment.present? %>
+      <%= t( '.reply_title' ) %>
+      <% else %>
+      <%= t( '.title' ) %>
+      <% end %>
+    </h4>
+  </header>
+
+  <% if comment.present? %>
+    <% form_url = comment_path( discussion, comment ) %>
+  <% else %>
+    <% form_url = discussion_path( discussion ) %>
+  <% end %>
+  <%= form_for Comment.new, url: form_url do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <%= f.label :body, t( '.comment' ) %><br>
+  <%= f.text_area :body %>
+
+  <p>
+    <%= f.submit t( 'post' ) %>
+  </p>
+  <% end %>
+</section>

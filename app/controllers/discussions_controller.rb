@@ -48,7 +48,9 @@ class DiscussionsController < ApplicationController
   end
 
   def comment_params
-    params.require( :comment ).permit( :title, :body )
+    params.require( :comment ).permit(
+      %i[ title body author_type author_name author_email author_link ]
+    )
   end
 
   def check_feature_flags
