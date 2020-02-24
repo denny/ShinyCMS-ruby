@@ -1,0 +1,9 @@
+<section>
+  <%= render partial: 'blogs/post_in_list_header', locals: { post: post } %>
+
+  <%= sanitize post.teaser( paragraphs: 3 ) %>
+
+  <footer>
+    <%= post.discussion.comments.count %> <%= t( 'discussions.comments' ).downcase %>
+  </footer>
+</section>
