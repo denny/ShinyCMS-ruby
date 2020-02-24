@@ -11,7 +11,12 @@ class DiscussionsController < ApplicationController
 
   def show; end
 
-  def show_thread; end
+  def show_thread
+    return if @comment.present?
+
+    @resource_type = 'Comment'
+    render 'errors/404', status: :not_found
+  end
 
   def add_comment
     @parent = @discussion
@@ -28,7 +33,7 @@ class DiscussionsController < ApplicationController
 
     if comment.save
       flash[ :notice ] = t( '.success' )
-      redirect_to action: :show
+      redirect_back fallback_location: discussion_path( @discussion )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :show
@@ -39,10 +44,12 @@ class DiscussionsController < ApplicationController
 
   def stash_discussion
     @discussion = Discussion.find( params[ :id ] )
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/404', status: :not_found
   end
 
   def stash_comment
-    @comment = @discussion.comments.find_by( number: params[ :number ] )
+    @comment = @discussion.comments.find_by( number: params[ :number ] ) || nil
   end
 
   def comment_params

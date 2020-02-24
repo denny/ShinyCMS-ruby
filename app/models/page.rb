@@ -82,10 +82,6 @@ class Page < ApplicationRecord
     end
   end
 
-  def self.are_there_any_hidden_pages?
-    Page.exists?( hidden: true )
-  end
-
   # Return the configured default page, or one of a few fallback options, or nil
   def self.default_page
     name_or_slug = Setting.get :default_page

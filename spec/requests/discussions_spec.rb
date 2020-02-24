@@ -68,6 +68,15 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response.body ).to have_css 'h2', text: @comment.title
       expect( response.body ).to have_css 'h2', text: @nested.title
     end
+
+    it "renders the 404 page if the discussion doesn't exist" do
+      get discussion_path( 999 )
+
+      expect( response      ).to have_http_status :not_found
+      expect( response.body ).to have_css 'h2', text: I18n.t(
+        'errors.not_found.title', { resource_type: 'Discussion' }
+      )
+    end
   end
 
   describe 'GET /discussion/1/1' do
@@ -77,6 +86,15 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'h2', text: @comment.title
       expect( response.body ).to have_css 'h2', text: @nested.title
+    end
+
+    it "renders the 404 page if the comment doesn't exist" do
+      get comment_path( @discussion, 999 )
+
+      expect( response      ).to have_http_status :not_found
+      expect( response.body ).to have_css 'h2', text: I18n.t(
+        'errors.not_found.title', { resource_type: 'Comment' }
+      )
     end
   end
 
