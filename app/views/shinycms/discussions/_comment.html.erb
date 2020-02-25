@@ -12,10 +12,11 @@
     <%= link_to comment.number, "#{request.fullpath}##{comment.number}" %>
   </header>
 
-  <%= sanitize comment.body %>
+  <p>
+    <%= sanitize comment.body %>
+  </p>
 
-  <footer>
-    <br>
+  <footer style="margin: 0; padding: 0;">
     <a onclick="toggleHidden('reply_form_<%= comment.id %>')"><%= t( 'discussions.reply' ) %></a>
     <% if current_user_can?( :moderate, :comments ) %>
     <%= render partial: 'discussions/comment_moderation_links',
@@ -23,8 +24,7 @@
     <% end %>
   </footer>
 
-  <div id="reply_form_<%= comment.id %>" hidden>
-    <br>
+  <div id="reply_form_<%= comment.id %>" style="margin: 0; padding: 0;" hidden>
     <%= render partial: 'discussions/comment_form',
                locals: { discussion: comment.discussion, comment: comment } %>
   </div>

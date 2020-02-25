@@ -9,11 +9,17 @@
    modify it under the terms of the GPL (version 2 or later).
 \* ======================================================================== */
 
-/* ===== ( Halcyonic's stylesheet seems to hide all checkboxes? ) ===== */
+/* ===== ( Halcyonic's stylesheet seems to hide various input types ) ===== */
 
 input[type="checkbox"] {
   -moz-appearance:      checkbox;
   -webkit-appearance:   checkbox;
+  appearance:           auto;
+}
+
+input[type="radio"] {
+  -moz-appearance:      radio;
+  -webkit-appearance:   radio;
   appearance:           auto;
 }
 
@@ -28,8 +34,17 @@ input {
   padding:              0 0.3em;
 }
 
+a {
+  text-decoration:      none;
+}
+
+a:hover {
+  cursor:               grabbing;
+  text-decoration:      underline;
+}
+
 .above-section {
-  padding-left:         39px;
+  padding-left:         1em;
 }
 
 .content tr {
@@ -178,6 +193,32 @@ nav .sm li li a:hover {
 }
 
 
+/* ========== ( comments ) ========== */
+
+.comment_form {
+  font-size:            0.9em;
+}
+
+.comment_form p {
+  margin:               0.5em 0 0 0;
+  padding:              0;
+}
+
+.comment_form input[type="text"] {
+  width:                62%;
+}
+
+.comment_form input[type="text"].twenty {
+  width:                20%;
+
+}
+.comment_form textarea {
+  padding:              0 5px;
+  width:                100%;
+  height:               6em;
+}
+
+
 /* ===== ( styles for tag clouds and tag lists ) ===== */
 
 .tagsize1 { font-size: 1em; }
@@ -186,9 +227,9 @@ nav .sm li li a:hover {
 .tagsize4 { font-size: 4em; }
 
 .twelve-columns {
-  column-count: 12;
-  column-fill: balance;
-  width: 100%;
+  column-count:         12;
+  column-fill:          balance;
+  width:                100%;
 }
 
 

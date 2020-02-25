@@ -6,16 +6,35 @@
   <% form_url = discussion_path( discussion ) %>
 <% end %>
 
-<%= form_for Comment.new, url: form_url, html: { id: "comment#{num}_form" } do |f| %>
+<%= form_for Comment.new, url: form_url, html: { id: "comment#{num}_form", class: 'comment_form' } do |f| %>
+  <p>
+    <%= f.label 'Post as: ' %>
+    <% if setting( :allowed_to_comment ) == 'Anonymous' %>
+    <%= f.radio_button :author_type, 'anonymous' %> <%= t( '.anonymous' ) %> &nbsp;
+    <% end %>
+    <% if [ 'Anonymous', 'Pseudonymous' ].include? setting( :allowed_to_comment ) %>
+    <%= f.radio_button :author_type, 'pseudonymous' %> <%= t( '.pseudonymous' ) %> &nbsp;
+    <% end %>
+    <% if setting( :allowed_to_comment ) == 'Authenticated' %>
+    <input type="hidden" name="author_type" value="Authenticated">
+    <% else %>
+    <%= f.radio_button :author_type, 'authenticated' %> <%= user_display_name %>
+    <% end %>
+  </p>
+  <p id="comment#{num}_form">
+    <%= f.text_field :author_name,  id: "comment#{num}_author_name",  placeholder: t( '.name'  ), class: 'twenty' %> &nbsp;
+    <%= f.text_field :author_email, id: "comment#{num}_author_email", placeholder: t( '.email' ), class: 'twenty' %> &nbsp;
+    <%= f.text_field :author_url,   id: "comment#{num}_author_url",   placeholder: t( '.url'   ), class: 'twenty' %>
+  </p>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title, id: "comment#{num}_title" %>
   </p>
-
-  <%= f.label :body, t( 'discussions.comment' ) %><br>
-  <%= f.text_area :body, id: "comment#{num}_body" %>
-
   <p>
-    <%= f.submit t( 'post' ) %>
+    <%= f.label :body, t( 'discussions.comment' ) %><br>
+    <%= f.text_area :body, id: "comment#{num}_body" %>
+  </p>
+  <p>
+    <%= f.submit t( 'post' ), class: 'button' %>
   </p>
 <% end %>
