@@ -22,7 +22,7 @@ admins_cc     = seed CapabilityCategory, { name: 'admin_users'    }
 seed Capability, { name: 'view_admin_area'      }, { category: general_cc }
 seed Capability, { name: 'view_admin_dashboard' }, { category: general_cc }
 seed Capability, { name: 'view_admin_toolbar'   }, { category: general_cc }
-# Blogs
+# Blogs#
 seed Capability, { name: 'list',    category: blogs_cc }
 seed Capability, { name: 'add',     category: blogs_cc }
 seed Capability, { name: 'edit',    category: blogs_cc }
@@ -148,6 +148,13 @@ setting = seed Setting, { name: 'all_comment_notifications_email' }, {
   locked: true
 }
 setting.values.create_or_find_by!( value: '' )
+
+setting = seed Setting, { name: 'allowed_to_comment' }, {
+  description: 'Lowest-ranking user-type (Anonymous/Pseudonymous/Authenticated/None) that is allowed to post comments',
+  level: 'site',
+  locked: true
+}
+setting.values.create_or_find_by!( value: 'Anonymous' )
 
 setting = seed Setting, { name: 'default_page' }, {
   description: 'Default top-level page (either its name or its slug)',

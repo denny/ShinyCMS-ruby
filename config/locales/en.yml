@@ -47,15 +47,23 @@ en:
 
   discussions:
     comments: Comments
+    comment: Comment
     zero_comments: There are no comments to display
-    hidden_comment: This comment was removed by a moderator.
+    new_comment: Add a new comment
     reply: Reply to this comment
+    hidden_comment: This comment was removed by a moderator.
     hide_comment: Hide comment
     unhide_comment: Unhide comment
     lock_comment: Lock comment
     unlock_comment: Unlock comment
     delete_comment: Delete comment
-    comment: Comment
+    comment_form:
+      anonymous: Anonymous
+      pseudonymous: Pseudonymous
+      # authenticated: Authenticated
+      name: Name
+      email: Email
+      url: URL
     add_comment:
       success: New comment posted
       failure: Failed to post new comment
