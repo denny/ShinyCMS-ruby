@@ -1,6 +1,9 @@
 <a name="<%= comment.number %>"></a>
 <section style="margin-left: <%= depth %>em;">
   <header>
+    <span style="float: right;">
+      <%= link_to "##{comment.number}", "#{request.fullpath}##{comment.number}" %>
+    </span>
     <% if comment.title.present? %>
     <h2>
       <%= comment.title %>
@@ -9,7 +12,6 @@
     <h3>
       <%= render partial: 'discussions/comment_posted_by', locals: { comment: comment } %>
     </h3>
-    <%= link_to comment.number, "#{request.fullpath}##{comment.number}" %>
   </header>
 
   <p>
