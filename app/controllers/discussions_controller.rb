@@ -54,7 +54,7 @@ class DiscussionsController < ApplicationController
 
   def comment_params
     p = params.require( :comment ).permit(
-      %i[ title body author_type author_name author_email author_link ]
+      %i[ title body author_type author_name author_email author_url ]
     )
     p = p.merge( author_id: current_user.id ) if user_signed_in?
     p.merge( discussion_id: @discussion.id )
