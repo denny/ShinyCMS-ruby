@@ -60,7 +60,7 @@ en:
     comment_form:
       anonymous: Anonymous
       pseudonymous: Pseudonymous
-      # authenticated: Authenticated
+      log_in_to_post: Log in to post a comment
       name: Name
       email: Email
       url: URL
