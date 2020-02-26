@@ -55,6 +55,11 @@ a:hover {
   padding:              0.5em;
 }
 
+.twenty {
+  width:                20%;
+
+}
+
 .button {
   background-color: #ed391b;
   background-image: -moz-linear-gradient(top, #ed391b, #ce1a00);
@@ -208,14 +213,10 @@ nav .sm li li a:hover {
   width:                62%;
 }
 
-.comment_form input[type="text"].twenty {
-  width:                20%;
-
-}
 .comment_form textarea {
+  height:               6em;
   padding:              0 5px;
   width:                100%;
-  height:               6em;
 }
 
 
