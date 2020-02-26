@@ -82,17 +82,6 @@ seed Capability, { name: 'add',     category: admins_cc }
 seed Capability, { name: 'edit',    category: admins_cc }
 seed Capability, { name: 'destroy', category: admins_cc }
 
-# One Admin To Rule Them All
-# TODO: replace this with a rake task and/or an install script
-admin = seed User, { username: 'admin' }, {
-  email: 'admin@example.com',
-  password: 'I should change this password before I do anything else!'
-}
-admin.confirm
-Capability.all.each do |c|
-  admin.user_capabilities.find_or_create_by( capability_id: c.id )
-end
-
 # Feature Flags (to turn on/off areas of site functionality)
 seed FeatureFlag, { name: 'blogs' }, {
   description: 'Enable blog (or blogs) feature',
@@ -131,7 +120,7 @@ seed FeatureFlag, { name: 'user_registration' }, {
   enabled_for_admins: false
 }
 
-# Inserts (these just need an InsertSet to exist, to tie them together)
+# InsertSet, to tie any insert elements together
 InsertSet.create! if InsertSet.first.blank?
 
 # Settings
@@ -190,3 +179,6 @@ setting = seed Setting, { name: 'theme_name' }, {
   locked: false
 }
 setting.values.create_or_find_by!( value: 'halcyonic' )
+
+# Let people know how to set up an admin user
+puts 'To generate a ShinyCMS super-admin user: rails shiny:admin:create'
