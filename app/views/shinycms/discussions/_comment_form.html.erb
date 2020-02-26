@@ -6,20 +6,40 @@
   <% form_url = discussion_path( discussion ) %>
 <% end %>
 
+<% if setting( :allowed_to_comment ) == 'Authenticated' && !user_signed_in? %>
+  <p>
+    <%= link_to t( '.log_in_to_post' ), new_user_session_path %>
+  </p>
+<% else %>
+
 <%= form_for Comment.new, url: form_url, html: { id: "comment#{num}_form", class: 'comment_form' } do |f| %>
   <p>
-    <%= f.label 'Post as: ' %>
+    Post as:
+    &nbsp;
     <% if setting( :allowed_to_comment ) == 'Anonymous' %>
-    <%= f.radio_button :author_type, 'anonymous' %> <%= t( '.anonymous' ) %> &nbsp;
+    <label><%= f.radio_button :author_type, 'anonymous',
+      onclick: "hide('comment#{num}_author_details')" %>
+    <%= t( '.anonymous' ) %></label> &nbsp;
     <% end %>
+
     <% if [ 'Anonymous', 'Pseudonymous' ].include? setting( :allowed_to_comment ) %>
-    <%= f.radio_button :author_type, 'pseudonymous', checked: !user_signed_in?,
-      html: { onChange: "toggleHidden('comment#{num}_author_details')" } %> <%= t( '.pseudonymous' ) %> &nbsp;
+    <label><%= f.radio_button :author_type, 'pseudonymous', checked: !user_signed_in?,
+      onclick: "show('comment#{num}_author_details')" %>
+    <%= t( '.pseudonymous' ) %></label> &nbsp;
     <% end %>
-    <% if user_signed_in? %>
-    <%= f.radio_button :author_type, 'authenticated', checked: true %> <%= user_display_name %>
+
+    <% if setting( :allowed_to_comment ) == 'Authenticated' %>
+      <%= user_display_name %>
+      <%= f.radio_button :author_type, 'authenticated', checked: true, hidden: true %>
     <% else %>
-    <%= f.radio_button :author_type, 'authenticated', disabled: true %> ( <%= link_to t( 'user.log_in' ), new_user_session_path %> )
+      <% if user_signed_in? %>
+        <label><%= f.radio_button :author_type, 'authenticated', checked: true,
+          onclick: "hide('comment#{num}_author_details')" %>
+        <%= user_display_name %></label>
+      <% else %>
+        <%= f.radio_button :author_type, 'authenticated', disabled: true %>
+        <%= link_to t( 'user.log_in' ), new_user_session_path %>
+      <% end %>
     <% end %>
   </p>
   <p id="comment<%= num %>_author_details" <% if user_signed_in? %>hidden<% end %>>
@@ -38,4 +58,6 @@
   <p>
     <%= f.submit t( 'post' ), class: 'button' %>
   </p>
+<% end %>
+
 <% end %>
