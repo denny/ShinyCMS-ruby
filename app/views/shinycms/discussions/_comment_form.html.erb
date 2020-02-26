@@ -13,15 +13,16 @@
     <%= f.radio_button :author_type, 'anonymous' %> <%= t( '.anonymous' ) %> &nbsp;
     <% end %>
     <% if [ 'Anonymous', 'Pseudonymous' ].include? setting( :allowed_to_comment ) %>
-    <%= f.radio_button :author_type, 'pseudonymous' %> <%= t( '.pseudonymous' ) %> &nbsp;
+    <%= f.radio_button :author_type, 'pseudonymous', checked: !user_signed_in?,
+      html: { onChange: "toggleHidden('comment#{num}_author_details')" } %> <%= t( '.pseudonymous' ) %> &nbsp;
     <% end %>
-    <% if setting( :allowed_to_comment ) == 'Authenticated' %>
-    <input type="hidden" name="author_type" value="Authenticated">
+    <% if user_signed_in? %>
+    <%= f.radio_button :author_type, 'authenticated', checked: true %> <%= user_display_name %>
     <% else %>
-    <%= f.radio_button :author_type, 'authenticated' %> <%= user_display_name %>
+    <%= f.radio_button :author_type, 'authenticated', disabled: true %> ( <%= link_to t( 'user.log_in' ), new_user_session_path %> )
     <% end %>
   </p>
-  <p id="comment#{num}_form">
+  <p id="comment<%= num %>_author_details" <% if user_signed_in? %>hidden<% end %>>
     <%= f.text_field :author_name,  id: "comment#{num}_author_name",  placeholder: t( '.name'  ), class: 'twenty' %> &nbsp;
     <%= f.text_field :author_email, id: "comment#{num}_author_email", placeholder: t( '.email' ), class: 'twenty' %> &nbsp;
     <%= f.text_field :author_url,   id: "comment#{num}_author_url",   placeholder: t( '.url'   ), class: 'twenty' %>
