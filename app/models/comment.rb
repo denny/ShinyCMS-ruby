@@ -9,6 +9,7 @@ class Comment < ApplicationRecord
                       dependent: :destroy
 
   validates :discussion_id, presence: true
+  validates :author_type, presence: true
   validates :number, uniqueness: { scope: :discussion_id }
 
   validates :body,  presence: true, unless: -> { title.present? }

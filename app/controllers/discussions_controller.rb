@@ -53,9 +53,11 @@ class DiscussionsController < ApplicationController
   end
 
   def comment_params
-    params.require( :comment ).permit(
+    p = params.require( :comment ).permit(
       %i[ title body author_type author_name author_email author_link ]
-    ).merge( discussion: @discussion )
+    )
+    p = p.merge( author_id: current_user.id ) if user_signed_in?
+    p.merge( discussion_id: @discussion.id )
   end
 
   def check_feature_flags
