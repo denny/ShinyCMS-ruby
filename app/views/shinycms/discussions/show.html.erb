@@ -11,6 +11,16 @@
   </section>
 <% end %>
 
-<%#= link_to t( 'add_comment' ), new_comment_path %>
+<p>
+  <button class="button" onclick="toggleHidden('comment_form')" style="font-size: 1em; height: 2em;">
+    <%= t( 'discussions.new_comment' ) %>
+  </button>
+</p>
+
+<div id="comment_form" class="comment_form" hidden>
+  <section>
+    <%= render partial: 'discussions/comment_form', locals: { discussion: @discussion } %>
+  </section>
+</div>
 
 <% end %>

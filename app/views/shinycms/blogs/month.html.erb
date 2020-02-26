@@ -2,25 +2,16 @@
 
 <% @sidebar_position = 'right' %>
 
-<h2 class="above-section">
-  Blog posts in <%= I18n.t('date.month_names')[@posts.first.posted_at.month] %>
-</h2>
+<section>
+  <% post_date = @posts.first.posted_at %>
+  <h2>
+    Blog posts in <%= I18n.t('date.month_names')[post_date.month] %>
+    <% unless post_date.year == Time.zone.now.year %><%= post_date.year %><% end %>
+  </h2>
+</section>
 
 <% @posts.each do |post| %>
-<section>
-  <header>
-    <h2>
-      <%= link_to post.title, view_blog_post_path( post ) %>
-    </h2>
-    <h3>
-      Posted by <%= user_profile_link( post.author ) %>
-      at <%= post.posted_at.to_s( :time ) %>
-      on <%= post.posted_at.to_s( :shinydate ) %>
-    </h3>
-  </header>
-
-  <%= sanitize post.teaser( paragraphs: 3 ) %>
-</section>
+  <%= render partial: 'blogs/post_in_list', locals: { post: post } %>
 <% end %>
 
 <%= render partial: 'right_sidebar_join' %>

@@ -2,27 +2,8 @@
 
 <% @sidebar_position = 'right' %>
 
-<h2 class="above-section">
-  <%= @page_title %>
-</h2>
-
 <% @posts.each do |post| %>
-<section>
-
-  <header>
-    <h2>
-      <%= link_to post.title, view_blog_post_path( post ) %>
-    </h2>
-    <h3>
-      Posted by <%= user_profile_link( post.author ) %>
-      at <%= post.posted_at.to_s( :time ) %>
-      on <%= post.posted_at.to_s( :shinydate ) %>
-    </h3>
-  </header>
-
-  <%= sanitize post.teaser( paragraphs: 3 ) %>
-
-</section>
+  <%= render partial: 'blogs/post_in_list', locals: { post: post } %>
 <% end %>
 
 <%= render partial: 'right_sidebar_join' %>
