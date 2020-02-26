@@ -31,10 +31,11 @@ Rails.application.routes.draw do
                                       constraints: { year: %r{\d\d\d\d} }
     end
 
-    get 'discussions',            to: 'discussions#index', as: :discussions
-    get 'discussion/:id',         to: 'discussions#show',  as: :discussion
-    get 'discussion/:id/:number', to: 'discussions#show_thread',
-                                  as: :show_thread
+    get  'discussions',            to: 'discussions#index', as: :discussions
+    get  'discussion/:id',         to: 'discussions#show',  as: :discussion
+    get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
+    post 'discussion/:id',         to: 'discussions#add_comment'
+    post 'discussion/:id/:number', to: 'discussions#add_reply'
 
     get 'news',                     to: 'news#index', as: :view_news
     get 'news/:year/:month/:slug',  to: 'news#show',  as: :ignore4,

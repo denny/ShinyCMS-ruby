@@ -4,6 +4,7 @@ FactoryBot.define do
     title   { Faker::Science.unique.scientist }
     body    { Faker::Lorem.paragraph }
     hidden  { false }
+    author_type { 'anonymous' }
   end
 
   factory :top_level_comment, parent: :comment do

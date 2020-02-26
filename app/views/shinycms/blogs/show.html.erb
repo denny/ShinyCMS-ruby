@@ -4,23 +4,25 @@
 
 <section>
 
-  <header>
-    <h2>
-      <%= link_to @post.title, view_blog_post_path( @post ) %>
-    </h2>
-    <h3>
-      Posted by <%= user_profile_link( @post.author ) %>
-      at <%= @post.posted_at.to_s( :time ) %>
-      on <%= @post.posted_at.to_s( :shinydate ) %>
-    </h3>
-  </header>
+  <%= render partial: 'blogs/post_in_list_header', locals: { post: @post } %>
 
   <%= sanitize @post.body %>
 
   <% if @post.tag_list.present? %>
-  <footer>
+  <p>
     Tags: <% @post.tag_list.each do |tag| %><%= link_to tag, tag_path( tag ) %> <% end %>
-  </footer>
+  </p>
+  <% end %>
+
+  <% if @post.discussion.present? %>
+  <footer>
+    <a onclick="toggleHidden('comment_form')"><%= t( '.reply' ) %></a>
+    (<%= @post.discussion.comments.count %> <%= t( 'discussions.comments' ).downcase %>)
+  <footer>
+
+  <div id="comment_form" class="comment_form" hidden>
+    <%= render partial: 'discussions/comment_form', locals: { discussion: @post.discussion } %>
+  </div>
   <% end %>
 </section>
 

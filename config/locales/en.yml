@@ -9,14 +9,16 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  site_name: ShinySite
+
   home: Home
 
   # Generic verbs, used by buttons etc, both on main site and in admin area
-  add: Add
-  post: Post
   view: View
   list: List
+  add: Add
   edit: Edit
+  post: Post
   hide: Hide
   lock: Lock
   unhide: Unhide
@@ -36,6 +38,8 @@ en:
       title: Blogs
     set_blog:
       failure: Blog not found
+    show:
+      reply: Reply to this post
     sidebar:
       links: Links
       links_blurb: Recommended reading from around the web
@@ -43,13 +47,32 @@ en:
 
   discussions:
     comments: Comments
+    comment: Comment
     zero_comments: There are no comments to display
+    new_comment: Add a new comment
+    reply: Reply to this comment
     hidden_comment: This comment was removed by a moderator.
     hide_comment: Hide comment
     unhide_comment: Unhide comment
     lock_comment: Lock comment
     unlock_comment: Unlock comment
     delete_comment: Delete comment
+    comment_form:
+      anonymous: Anonymous
+      pseudonymous: Pseudonymous
+      log_in_to_post: Log in to post a comment
+      name: Name
+      email: Email
+      url: URL
+    add_comment:
+      success: New comment posted
+      failure: Failed to post new comment
+    add_reply:
+      success: New comment posted
+      failure: Failed to post new comment
+    save_comment:
+      success: New comment posted
+      failure: Failed to post new comment
 
   errors:
     not_found:
@@ -106,7 +129,6 @@ en:
   # ========== ( Mailers ) ==========
 
   discussion_mailer:
-    site_name: ShinySite
     they_said: They said
     parent_comment_notification:
       subject: "[%{site_name}] %{reply_author_name} replied to your comment"

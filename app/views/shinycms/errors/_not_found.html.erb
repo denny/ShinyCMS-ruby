@@ -13,7 +13,10 @@
   </p>
   <p>
     You can use the search form
-    <% if feature_enabled? :tags %>and the tag list <% end %>
+    <% if feature_enabled? :tags %>
+    <% tags = ActsAsTaggableOn::Tag.order( :name ) %>
+    <% if tags.size > 0 %> and the tag list <% end %>
+    <% end %>
     below to try to find what you were looking for,
     or to explore the other content on this site.
   </p>
@@ -34,8 +37,7 @@
   </p>
 </section>
 
-<% if feature_enabled? :tags %>
-<% tags = ActsAsTaggableOn::Tag.order( :name ) %>
+<% if tags.present? && tags.size > 0 %>
 <section>
   <header>
     <h2>

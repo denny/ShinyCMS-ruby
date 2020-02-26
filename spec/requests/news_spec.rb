@@ -63,6 +63,15 @@ RSpec.describe 'News', type: :request do
 
       expect( response ).to have_http_status :ok
     end
+
+    it "displays the 404 page if the post doesn't exist" do
+      post = create :news_post
+
+      # get view_news_post_path( post )
+      get "/news/#{post.posted_year}/#{post.posted_month}/NOPE"
+
+      expect( response ).to have_http_status :not_found
+    end
   end
 
   describe 'GET /news/1999/12' do

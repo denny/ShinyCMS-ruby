@@ -60,14 +60,11 @@ RSpec.describe 'Blogs', type: :request do
       expect( response ).to redirect_to root_path
       follow_redirect!
       expect( response.body ).to have_css '.alerts', text: I18n.t( 'blogs.set_blog.failure' )
-
-      # Version from scaffold controller spec
-      expect( response ).to be_successful
     end
   end
 
   describe 'GET #show' do
-    it 'returns a success response' do
+    it 'displays the specified blog post' do
       post = create :blog_post, blog: @blog
 
       # get view_blog_post_path( post )
@@ -75,10 +72,18 @@ RSpec.describe 'Blogs', type: :request do
 
       expect( response ).to have_http_status :ok
     end
+
+    it 'displays the 404 page if the blog post does not exist' do
+      post = create :blog_post, blog: @blog
+
+      get "/blog/#{post.posted_year}/#{post.posted_month}/NOPE"
+
+      expect( response ).to have_http_status :not_found
+    end
   end
 
   describe 'GET #month' do
-    it 'returns a success response' do
+    it 'displays the blog posts from the specified month' do
       post1 = create :blog_post, blog: @blog, posted_at: '2000-02-20'
       post2 = create :blog_post, blog: @blog, posted_at: '2000-02-29'
       post3 = create :blog_post, blog: @blog, posted_at: '2000-09-03'
@@ -95,7 +100,7 @@ RSpec.describe 'Blogs', type: :request do
   end
 
   describe 'GET #year' do
-    it 'returns a success response' do
+    it 'displays the blog posts from the specified year' do
       post1 = create :blog_post, blog: @blog, posted_at: '2000-02-20'
       post2 = create :blog_post, blog: @blog, posted_at: '2000-02-29'
       post3 = create :blog_post, blog: @blog, posted_at: '2000-09-03'
