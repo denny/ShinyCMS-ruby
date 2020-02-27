@@ -66,6 +66,10 @@ Features the Perl version has, which the Ruby version doesn't. Yet.
 * Forums
 * Polls
 
+For a 'Phase 2' TODO list - features that I'd like to build which don't already
+exist in the Perl version, and features that I'd like to completely rebuild -
+see docs/TODO.md
+
 
 ## Ruby and Rails versions
 
