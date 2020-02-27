@@ -305,8 +305,16 @@ RSpec.describe 'User', type: :request do
     end
 
     it 'falls back to checkbox reCAPTCHA if invisible reCAPTCHA fails' do
+      allow_any_instance_of( RecaptchaHelper )
+        .to receive( :verify_invisible_recaptcha ).and_return( false )
+
+      allow_any_instance_of( RecaptchaHelper )
+        .to receive( :verify_checkbox_recaptcha ).and_return( false )
+
       FeatureFlag.find_or_create_by!( name: 'user_registration' )
                  .update!( enabled: true )
+
+      create :top_level_page
 
       username = Faker::Science.unique.element.downcase
       password = 'shinycms unimaginative test passphrase'
@@ -317,7 +325,20 @@ RSpec.describe 'User', type: :request do
 
       ENV['RECAPTCHA_V2_SITE_KEY'] = 'V2-KEY-IS-SET'
 
-      ENV['FAIL_RECAPTCHA'] = 'TRUE'
+      post user_registration_path, params: {
+        'user[username]': username,
+        'user[password]': password,
+        'user[email]': email
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to new_user_registration_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css 'textarea.g-recaptcha-response'
+
+      allow_any_instance_of( RecaptchaHelper )
+        .to receive( :verify_checkbox_recaptcha ).and_return( true )
 
       post user_registration_path, params: {
         'user[username]': username,
@@ -325,17 +346,17 @@ RSpec.describe 'User', type: :request do
         'user[email]': email
       }
 
-      ENV.delete( 'FAIL_RECAPTCHA' )
-
       ENV.delete( 'RECAPTCHA_V2_SITE_KEY' ) if v2.nil?
       ENV['RECAPTCHA_V2_SITE_KEY'] = v2 unless v2.nil?
       ENV['RECAPTCHA_V3_SITE_KEY'] = v3 unless v3.nil?
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to new_user_registration_path
+      expect( response      ).to redirect_to root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css 'textarea.g-recaptcha-response'
+      expect( response.body ).to include(
+        'a confirmation link has been sent to your email address'
+      )
     end
   end
 
