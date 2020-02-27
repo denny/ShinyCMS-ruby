@@ -9,14 +9,22 @@ class Comment < ApplicationRecord
                       dependent: :destroy
 
   validates :discussion_id, presence: true
+  validates :author_type, presence: true
+  validates :author_id, presence: true, if: -> { author_type == 'authenticated'}
+
   validates :number, uniqueness: { scope: :discussion_id }
 
   validates :body,  presence: true, unless: -> { title.present? }
   validates :title, presence: true, unless: -> { body.present?  }
 
-  after_create :send_notifications
+  before_create :set_number
+  after_create  :send_notifications
 
   # Instance methods
+
+  def set_number
+    self.number = ( discussion.comments.maximum( :number ) || 0 ) + 1
+  end
 
   def send_notifications
     p = parent.notification_email if parent.present?
@@ -43,16 +51,17 @@ class Comment < ApplicationRecord
     DiscussionMailer.overview_notification( self )
   end
 
+  # Used by mailer
   def author_name_any
-    return author.display_name_or_username if author.present?
+    return author.display_name_or_username if author_type == 'authenticated'
 
     author_name || 'Anonymous'
   end
 
   def notification_email
-    return author.email if author.present?
+    return author_email if author_email.present?
 
-    author_email
+    author.email if author.present?
   end
 
   def lock

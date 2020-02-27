@@ -17,6 +17,10 @@ class NewsController < ApplicationController
 
   def show
     @post = NewsPost.find_post( params[:year], params[:month], params[:slug] )
+    return if @post.present?
+
+    @resource_type = 'News post'
+    render 'errors/404', status: :not_found
   end
 
   private

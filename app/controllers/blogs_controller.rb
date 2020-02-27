@@ -24,6 +24,10 @@ class BlogsController < ApplicationController
 
   def show
     @post = @blog.find_post( params[:year], params[:month], params[:slug] )
+    return if @post.present?
+
+    @resource_type = 'Blog post'
+    render 'errors/404', status: :not_found
   end
 
   private
