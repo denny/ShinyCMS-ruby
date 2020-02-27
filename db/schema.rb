@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_23_184000) do
+ActiveRecord::Schema.define(version: 2020_02_27_220410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_02_23_184000) do
     t.integer "blog_id", null: false
     t.integer "user_id", null: false
     t.integer "discussion_id"
-    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "posted_at", default: -> { "now()" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2020_02_23_184000) do
     t.integer "number", null: false
     t.integer "parent_id"
     t.string "author_type"
-    t.integer "author_id"
+    t.integer "user_id"
     t.string "author_name"
     t.string "author_email"
     t.string "author_url"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2020_02_23_184000) do
     t.boolean "locked", default: false, null: false
     t.boolean "hidden", default: false, null: false
     t.boolean "spam", default: false, null: false
-    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "posted_at", default: -> { "now()" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 2020_02_23_184000) do
     t.boolean "hidden", default: false, null: false
     t.integer "user_id", null: false
     t.integer "discussion_id"
-    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "posted_at", default: -> { "now()" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
