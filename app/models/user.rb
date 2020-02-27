@@ -13,11 +13,13 @@ class User < ApplicationRecord
   ANCHORED_USERNAME_REGEX = %r{\A#{USERNAME_REGEX}\z}.freeze
   private_constant :ANCHORED_USERNAME_REGEX
 
-  # Validations for username field
   validates :username, presence:   true
   validates :username, uniqueness: true, case_sensitive: false
   validates :username, length:     { maximum: 50 }
   validates :username, format:     ANCHORED_USERNAME_REGEX
+
+  validates :email, presence: true
+  validates_with EmailAddress::ActiveRecordValidator
 
   # User profile pic (powered by ActiveStorage)
   has_one_attached :profile_pic
@@ -35,6 +37,8 @@ class User < ApplicationRecord
   has_many :blog_posts, inverse_of: 'author',
                         dependent: :restrict_with_error
   has_many :news_posts, inverse_of: 'author',
+                        dependent: :restrict_with_error
+  has_many :comments,   inverse_of: 'author',
                         dependent: :restrict_with_error
 
   # Configure default count-per-page for pagination
