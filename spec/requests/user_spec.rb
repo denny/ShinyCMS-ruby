@@ -6,6 +6,23 @@ RSpec.describe 'User', type: :request do
                .update!( enabled: true )
     FeatureFlag.find_or_create_by!( name: 'user_profiles' )
                .update!( enabled: true )
+
+    @v2_secret = ENV.delete( 'RECAPTCHA_V2_SECRET_KEY' )
+    @v2_site   = ENV.delete( 'RECAPTCHA_V2_SITE_KEY'   )
+    @v3_secret = ENV.delete( 'RECAPTCHA_V3_SECRET_KEY' )
+    @v3_site   = ENV.delete( 'RECAPTCHA_V3_SITE_KEY'   )
+  end
+
+  after :each do
+    ENV.delete( 'RECAPTCHA_V2_SECRET_KEY' ) if @v2_secret.nil?
+    ENV.delete( 'RECAPTCHA_V2_SITE_KEY'   ) if @v2_site.nil?
+    ENV.delete( 'RECAPTCHA_V3_SECRET_KEY' ) if @v3_secret.nil?
+    ENV.delete( 'RECAPTCHA_V3_SITE_KEY'   ) if @v3_site.nil?
+
+    ENV['RECAPTCHA_V2_SECRET_KEY'] = @v2_secret unless @v2_site.nil?
+    ENV['RECAPTCHA_V2_SITE_KEY'  ] = @v2_site   unless @v2_site.nil?
+    ENV['RECAPTCHA_V3_SECRET_KEY'] = @v3_secret unless @v3_site.nil?
+    ENV['RECAPTCHA_V3_SITE_KEY'  ] = @v3_site   unless @v3_site.nil?
   end
 
   describe 'GET /user/:username' do
@@ -248,18 +265,14 @@ RSpec.describe 'User', type: :request do
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
-      v3 = ENV.delete( 'RECAPTCHA_V3_SITE_KEY' )
-
-      ENV['RECAPTCHA_V3_SITE_KEY'] = 'V3-KEY-IS-SET'
+      ENV['RECAPTCHA_V3_SECRET_KEY'] = 'ABC'
+      ENV['RECAPTCHA_V3_SITE_KEY']   = 'XZY'
 
       post user_registration_path, params: {
         'user[username]': username,
         'user[password]': password,
         'user[email]': email
       }
-
-      ENV.delete( 'RECAPTCHA_V3_SITE_KEY' ) if v3.nil?
-      ENV['RECAPTCHA_V3_SITE_KEY'] = v3 unless v3.nil?
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path
@@ -280,20 +293,14 @@ RSpec.describe 'User', type: :request do
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
-      v2 = ENV.delete( 'RECAPTCHA_V2_SITE_KEY' )
-      v3 = ENV.delete( 'RECAPTCHA_V3_SITE_KEY' )
-
-      ENV['RECAPTCHA_V2_SITE_KEY'] = 'V2-KEY-IS-SET'
+      ENV['RECAPTCHA_V2_SECRET_KEY'] = 'ABC'
+      ENV['RECAPTCHA_V2_SITE_KEY']   = 'XZY'
 
       post user_registration_path, params: {
         'user[username]': username,
         'user[password]': password,
         'user[email]': email
       }
-
-      ENV.delete( 'RECAPTCHA_V2_SITE_KEY' ) if v2.nil?
-      ENV['RECAPTCHA_V2_SITE_KEY'] = v2 unless v2.nil?
-      ENV['RECAPTCHA_V3_SITE_KEY'] = v3 unless v3.nil?
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path
@@ -320,10 +327,8 @@ RSpec.describe 'User', type: :request do
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
-      v2 = ENV.delete( 'RECAPTCHA_V2_SITE_KEY' )
-      v3 = ENV.delete( 'RECAPTCHA_V3_SITE_KEY' )
-
-      ENV['RECAPTCHA_V2_SITE_KEY'] = 'V2-KEY-IS-SET'
+      ENV['RECAPTCHA_V2_SECRET_KEY'] = 'ABC'
+      ENV['RECAPTCHA_V2_SITE_KEY']   = 'XZY'
 
       post user_registration_path, params: {
         'user[username]': username,
@@ -345,10 +350,6 @@ RSpec.describe 'User', type: :request do
         'user[password]': password,
         'user[email]': email
       }
-
-      ENV.delete( 'RECAPTCHA_V2_SITE_KEY' ) if v2.nil?
-      ENV['RECAPTCHA_V2_SITE_KEY'] = v2 unless v2.nil?
-      ENV['RECAPTCHA_V3_SITE_KEY'] = v3 unless v3.nil?
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path
