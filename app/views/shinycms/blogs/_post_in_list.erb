@@ -1,0 +1,13 @@
+<section>
+  <%= render partial: 'blogs/post_in_list_header', locals: { post: post } %>
+
+  <%= sanitize post.teaser( paragraphs: 3 ) %>
+
+  <footer>
+  <% if post.discussion.present? %>
+    <%= post.discussion.comments.count %> <%= t( 'discussions.comments' ).downcase %>
+  <% else %>
+    <i>Comments have been disabled on this post</i>
+  <% end %>
+  </footer>
+</section>

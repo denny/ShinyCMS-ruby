@@ -27,6 +27,8 @@ module MainSiteHelper
   end
 
   def user_display_name( user = current_user )
+    return if user.blank?
+
     user.display_name_or_username
   end
 

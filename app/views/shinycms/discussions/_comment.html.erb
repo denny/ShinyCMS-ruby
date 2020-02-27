@@ -1,26 +1,33 @@
-<a name="<%= comment.number %>">
+<a name="<%= comment.number %>"></a>
 <section style="margin-left: <%= depth %>em;">
   <header>
+    <span style="float: right;">
+      <%= link_to "##{comment.number}", "#{request.fullpath}##{comment.number}" %>
+    </span>
     <% if comment.title.present? %>
     <h2>
       <%= comment.title %>
     </h2>
     <% end %>
     <h3>
-      <%= render partial: 'discussions/comment_posted_by',
-                 locals: { comment: comment } %>
+      <%= render partial: 'discussions/comment_posted_by', locals: { comment: comment } %>
     </h3>
-    <%= link_to comment.number, "#{request.fullpath}##{comment.number}" %>
   </header>
 
-  <%= sanitize comment.body %>
+  <p>
+    <%= sanitize comment.body %>
+  </p>
 
-  <% if current_user_can?( :moderate, :comments ) %>
-  <footer>
-    <p>
-      <%= render partial: 'discussions/comment_moderation_links',
-                 locals: { comment: comment } %>
-    </p>
+  <footer style="margin: 0; padding: 0;">
+    <a onclick="toggleHidden('reply_form_<%= comment.id %>')"><%= t( 'discussions.reply' ) %></a>
+    <% if current_user_can?( :moderate, :comments ) %>
+    <%= render partial: 'discussions/comment_moderation_links',
+               locals: { comment: comment } %>
+    <% end %>
   </footer>
-  <% end %>
+
+  <div id="reply_form_<%= comment.id %>" style="margin: 0; padding: 0;" hidden>
+    <%= render partial: 'discussions/comment_form',
+               locals: { discussion: comment.discussion, comment: comment } %>
+  </div>
 </section>
