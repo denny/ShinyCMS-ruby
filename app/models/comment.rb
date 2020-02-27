@@ -17,6 +17,9 @@ class Comment < ApplicationRecord
   validates :body,  presence: true, unless: -> { title.present? }
   validates :title, presence: true, unless: -> { body.present?  }
 
+  validates_with EmailAddress::ActiveRecordValidator,
+                 field: :author_email, if: -> { author_email.present? }
+
   before_create :set_number
   after_create  :send_notifications
 

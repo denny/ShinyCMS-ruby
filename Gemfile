@@ -38,6 +38,9 @@ source 'https://rubygems.org' do
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'
 
+  # Validate email addresses
+  gem 'email_address'
+
   # MJML emails
   gem 'mjml-rails'
 
