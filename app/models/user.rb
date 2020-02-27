@@ -13,11 +13,13 @@ class User < ApplicationRecord
   ANCHORED_USERNAME_REGEX = %r{\A#{USERNAME_REGEX}\z}.freeze
   private_constant :ANCHORED_USERNAME_REGEX
 
-  # Validations for username field
   validates :username, presence:   true
   validates :username, uniqueness: true, case_sensitive: false
   validates :username, length:     { maximum: 50 }
   validates :username, format:     ANCHORED_USERNAME_REGEX
+
+  validates :email, presence: true
+  validates_with EmailAddress::ActiveRecordValidator
 
   # User profile pic (powered by ActiveStorage)
   has_one_attached :profile_pic
