@@ -52,11 +52,11 @@ module AdminAreaHelper
   end
 
   def render_admin_menu_section( text, icon = nil )
-    capture do
-      render_admin_menu_section_start( text, icon )
+    section = render_admin_menu_section_start( text, icon )
+    section << capture do
       yield
-      render_admin_menu_section_end
     end
+    section << render_admin_menu_section_end
   end
 
   def render_admin_menu_item( text, link, icon = nil )
