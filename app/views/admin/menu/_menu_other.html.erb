@@ -1,4 +1,4 @@
-  <%= render_admin_menu_section_start( t( 'admin.other.title' ), 'applications' ) %>
+  <%= render_admin_menu_section( t( 'admin.other.title' ), 'settings' ) do %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :inserts ),
         t( 'admin.inserts.title' ), inserts_path, 'list' ) %>
@@ -9,4 +9,4 @@
     <%= render_admin_menu_item_if( current_user.can?( :list, :feature_flags ),
         t( 'admin.feature_flags.title' ), feature_flags_path, 'toggle-off' ) %>
 
-  <%= render_admin_menu_section_end %>
+  <% end %>
