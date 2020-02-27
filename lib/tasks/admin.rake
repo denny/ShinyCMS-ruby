@@ -5,7 +5,7 @@
 namespace :shiny do
   namespace :admin do
     desc 'Create a super-admin user, with the full set of capabilities'
-    task :create, %i[ u p e ] => [ :environment ] do |_t, args|
+    task :create, %i[ u p e ] => :environment do |_t, args|
       username    = args[ :u ]
       password    = args[ :p ]
       email       = args[ :e ]
@@ -49,8 +49,8 @@ namespace :shiny do
         admin.valid?
       end
 
+      admin.skip_confirmation!
       admin.save!
-      admin.confirm
 
       Capability.all.each do |capability|
         admin.user_capabilities.find_or_create_by! capability_id: capability.id
