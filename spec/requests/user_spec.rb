@@ -312,12 +312,6 @@ RSpec.describe 'User', type: :request do
     end
 
     it 'falls back to checkbox reCAPTCHA if invisible reCAPTCHA fails' do
-      allow_any_instance_of( RecaptchaHelper )
-        .to receive( :verify_invisible_recaptcha ).and_return( false )
-
-      allow_any_instance_of( RecaptchaHelper )
-        .to receive( :verify_checkbox_recaptcha ).and_return( false )
-
       FeatureFlag.find_or_create_by!( name: 'user_registration' )
                  .update!( enabled: true )
 
@@ -327,10 +321,8 @@ RSpec.describe 'User', type: :request do
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
-      ENV['RECAPTCHA_V2_SECRET_KEY'] = 'ABC'
-      ENV['RECAPTCHA_V2_SITE_KEY']   = 'ZYX'
-      ENV['RECAPTCHA_V3_SECRET_KEY'] = 'DEF'
-      ENV['RECAPTCHA_V3_SITE_KEY']   = 'WVU'
+      ENV['RECAPTCHA_V3_SITE_KEY'] = 'WVU'
+      ENV['RECAPTCHA_V2_SITE_KEY'] = 'ZYX'
 
       post user_registration_path, params: {
         'user[username]': username,
@@ -344,9 +336,7 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'textarea.g-recaptcha-response'
 
-      allow_any_instance_of( RecaptchaHelper )
-        .to receive( :verify_checkbox_recaptcha ).and_return( true )
-      # .to receive( :verify_checkbox_recaptcha ).and_call_original
+      ENV['RECAPTCHA_V2_SECRET_KEY'] = 'ABC'
 
       post user_registration_path, params: {
         'user[username]': username,
