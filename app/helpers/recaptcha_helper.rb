@@ -15,7 +15,7 @@ module RecaptchaHelper
 
     verify_recaptcha(
       secret_key: ENV['RECAPTCHA_V2_SECRET_KEY'],
-      site_key: ENV['RECAPTCHA_V2_SITE_KEY']
+      env: Rails.env
     )
   end
 
@@ -29,7 +29,7 @@ module RecaptchaHelper
       action: action,
       minimum_score: min_score,
       secret_key: ENV['RECAPTCHA_V3_SECRET_KEY'],
-      site_key: ENV['RECAPTCHA_V3_SITE_KEY']
+      env: Rails.env
     )
   end
 
