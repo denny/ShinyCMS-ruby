@@ -1,6 +1,6 @@
 <% comment ||= nil %>
 <% if comment.present? %>
-  <% form_url = comment_path( discussion, comment ) %>
+  <% form_url = comment_path( discussion, comment.number ) %>
   <% num = "_#{comment.number}" %>
 <% else %>
   <% form_url = discussion_path( discussion ) %>
@@ -43,18 +43,30 @@
     <% end %>
   </p>
   <p id="comment<%= num %>_author_details" <% if user_signed_in? %>hidden<% end %>>
-    <%= f.text_field :author_name,  id: "comment#{num}_author_name",  placeholder: t( '.name'  ), class: 'twenty' %> &nbsp;
-    <%= f.text_field :author_email, id: "comment#{num}_author_email", placeholder: t( '.email' ), class: 'twenty' %> &nbsp;
-    <%= f.text_field :author_url,   id: "comment#{num}_author_url",   placeholder: t( '.url'   ), class: 'twenty' %>
+    <%= f.text_field :author_name,  id: "comment#{num}_author_name",  placeholder: t( '.name'  ), class: 'author' %> &nbsp;
+    <%= f.text_field :author_email, id: "comment#{num}_author_email", placeholder: t( '.email' ), class: 'author' %> &nbsp;
+    <%= f.text_field :author_url,   id: "comment#{num}_author_url",   placeholder: t( '.url'   ), class: 'author' %>
   </p>
+
   <p>
     <%= f.label :title %><br>
-    <%= f.text_field :title, id: "comment#{num}_title" %>
+    <%= f.text_field :title, id: "comment#{num}_title", class: 'title' %>
   </p>
   <p>
     <%= f.label :body, t( 'discussions.comment' ) %><br>
     <%= f.text_area :body, id: "comment#{num}_body" %>
   </p>
+
+  <% unless user_signed_in? %>
+    <% if flash[ :show_checkbox_recaptcha ] %>
+      <%= recaptcha_tags site_key: @recaptcha_v2_key, id: "g-recaptcha-response#{num}" %>
+    <% elsif @recaptcha_v3_key.present? %>
+      <%= recaptcha_v3 action: 'comment', site_key: @recaptcha_v3_key, id: "g-recaptcha-response#{num}" %>
+    <% else %>
+      <%= recaptcha_tags site_key: @recaptcha_v2_key, id: "g-recaptcha-response#{num}" %>
+    <% end %>
+  <% end %>
+
   <p>
     <%= f.submit t( 'post' ), class: 'button' %>
   </p>

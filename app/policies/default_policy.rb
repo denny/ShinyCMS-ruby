@@ -35,11 +35,13 @@ class DefaultPolicy
   def destroy?
     false
   end
+  # :nocov:
 
   # Add scoping to the top-level pundit policy
   class Scope
     attr_reader :user, :scope
 
+    # :nocov:
     def initialize( user, scope )
       @user = user
       @scope = scope
@@ -48,6 +50,6 @@ class DefaultPolicy
     def resolve
       scope.all
     end
+    # :nocov:
   end
-  # :nocov:
 end

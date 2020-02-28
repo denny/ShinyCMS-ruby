@@ -17,6 +17,20 @@ RSpec.describe 'Discussions/Comments', type: :request do
     create :top_level_comment, discussion: @discussion
 
     @nested = create :nested_comment, discussion: @discussion, parent: @comment
+
+    @v3_secret = ENV.delete( 'RECAPTCHA_V3_SECRET_KEY' )
+    @v3_site   = ENV.delete( 'RECAPTCHA_V3_SITE_KEY'   )
+
+    ENV['RECAPTCHA_V3_SECRET_KEY'] = 'XYZ'
+    ENV['RECAPTCHA_V3_SITE_KEY'  ] = 'ZYX'
+  end
+
+  after :each do
+    ENV.delete( 'RECAPTCHA_V3_SECRET_KEY' ) if @v3_secret.nil?
+    ENV.delete( 'RECAPTCHA_V3_SITE_KEY'   ) if @v3_site.nil?
+
+    ENV['RECAPTCHA_V3_SECRET_KEY'] = @v3_secret unless @v3_site.nil?
+    ENV['RECAPTCHA_V3_SITE_KEY'  ] = @v3_site   unless @v3_site.nil?
   end
 
   describe 'GET /blog/1999/12/testing' do
