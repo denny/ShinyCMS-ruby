@@ -12,6 +12,10 @@
   <%= render partial: 'admin/menu/menu_blogs' %>
   <% end %>
 
+  <% if current_user.can? :list, :news %>
+  <%= render partial: 'admin/menu/menu_news' %>
+  <% end %>
+
   <% if current_user.can? :list, :users %>
   <%= render partial: 'admin/menu/menu_users' %>
   <% end %>

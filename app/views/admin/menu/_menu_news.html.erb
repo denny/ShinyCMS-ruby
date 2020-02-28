@@ -1,0 +1,9 @@
+  <%= render_admin_menu_section( t( 'admin.news.title' ), 'rss' ) do %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :list, :news ),
+        t( 'admin.news.index.title' ), news_path, 'list' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :add, :news ),
+        t( 'admin.news.new.title' ), new_news_post_path, 'pencil' ) %>
+
+  <% end %>
