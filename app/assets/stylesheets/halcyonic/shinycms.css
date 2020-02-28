@@ -55,11 +55,6 @@ a:hover {
   padding:              0.5em;
 }
 
-.twenty {
-  width:                20%;
-
-}
-
 .button {
   background-color: #ed391b;
   background-image: -moz-linear-gradient(top, #ed391b, #ce1a00);
@@ -200,6 +195,14 @@ nav .sm li li a:hover {
 
 /* ========== ( comments ) ========== */
 
+.comment h2 {
+  font-size:            1.2em;
+}
+
+.comment h3 {
+  font-size:            0.8em;
+}
+
 .comment_form {
   font-size:            0.9em;
 }
@@ -209,8 +212,12 @@ nav .sm li li a:hover {
   padding:              0;
 }
 
-.comment_form input[type="text"] {
+.comment_form .title {
   width:                62%;
+}
+
+.comment_form .author {
+  width:                20%;
 }
 
 .comment_form textarea {
