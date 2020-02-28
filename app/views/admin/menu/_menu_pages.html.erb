@@ -1,6 +1,6 @@
   <%= render_admin_menu_section( t( 'admin.pages.title' ), 'list-rich' ) do %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :list, :page_templates ),
+    <%= render_admin_menu_item_if( current_user.can?( :list, :pages ),
         t( 'admin.pages.index.title' ), pages_path, 'list-rich' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :add, :pages ),

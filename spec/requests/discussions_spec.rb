@@ -135,7 +135,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response.body ).to have_css 'h2', text: title
       expect( response.body ).to have_css 'h3', text: user.username
 
-      expect( Comment.last.author_id ).to eq user.id
+      expect( Comment.last.user_id ).to eq user.id
     end
 
     it 'adds a new comment by a logged-in user posting anonymously' do
@@ -158,7 +158,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response.body ).to     have_css 'h3', text: 'Anonymous'
       expect( response.body ).not_to have_css 'h3', text: user.username
 
-      expect( Comment.last.author_id ).to eq user.id
+      expect( Comment.last.user_id ).to eq user.id
     end
 
     it 'adds a new comment by a logged-in user posting pseudonymously' do
@@ -187,7 +187,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response.body ).to     have_css 'h3', text: name
       expect( response.body ).not_to have_css 'h3', text: user.username
 
-      expect( Comment.last.author_id ).to eq user.id
+      expect( Comment.last.user_id ).to eq user.id
     end
 
     it 'fails to post a top-level comment with missing fields' do

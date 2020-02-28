@@ -12,6 +12,7 @@ comments_cc   = seed CapabilityCategory, { name: 'comments'       }
 discussion_cc = seed CapabilityCategory, { name: 'discussions'    }
 features_cc   = seed CapabilityCategory, { name: 'feature_flags'  }
 inserts_cc    = seed CapabilityCategory, { name: 'inserts'        }
+news_cc       = seed CapabilityCategory, { name: 'news'           }
 pages_cc      = seed CapabilityCategory, { name: 'pages'          }
 sections_cc   = seed CapabilityCategory, { name: 'page_sections'  }
 templates_cc  = seed CapabilityCategory, { name: 'page_templates' }
@@ -52,6 +53,12 @@ seed Capability, { name: 'list',    category: inserts_cc }
 seed Capability, { name: 'add',     category: inserts_cc }
 seed Capability, { name: 'edit',    category: inserts_cc }
 seed Capability, { name: 'destroy', category: inserts_cc }
+# News
+seed Capability, { name: 'list',          category: news_cc }
+seed Capability, { name: 'add',           category: news_cc }
+seed Capability, { name: 'edit',          category: news_cc }
+seed Capability, { name: 'destroy',       category: news_cc }
+seed Capability, { name: 'change_author', category: news_cc }
 # Pages
 seed Capability, { name: 'list',    category: pages_cc }
 seed Capability, { name: 'add',     category: pages_cc }
@@ -91,6 +98,12 @@ seed FeatureFlag, { name: 'blogs' }, {
 }
 seed FeatureFlag, { name: 'comments' }, {
   description: 'Enable comments features',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
+seed FeatureFlag, { name: 'news' }, {
+  description: 'Enable news feature',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true
