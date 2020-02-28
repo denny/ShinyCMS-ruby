@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :user do
-    email        { Faker::Internet.email( name: username ) }
     username     { Faker::Internet.unique.username }
-    password     { Faker::Internet.password        }
-    confirmed_at { Time.current                    }
+    password     { Faker::Internet.unique.password }
+    email        { Faker::Internet.unique.email( name: username ) }
+    confirmed_at { Time.current }
   end
 
   factory :admin_user, parent: :user do

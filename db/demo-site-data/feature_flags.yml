@@ -7,12 +7,12 @@ FeatureFlag_1:
   enabled_for_logged_in: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2020-02-20 02:31:54.350117000 Z
+    utc: &1 2020-02-28 01:04:35.584754000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2020-02-20 02:31:54.350117000 Z
+    utc: &3 2020-02-28 01:04:35.584754000 Z
     zone: *2
     time: *3
 FeatureFlag_2:
@@ -23,70 +23,85 @@ FeatureFlag_2:
   enabled_for_logged_in: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &4 2020-02-20 02:31:54.356915000 Z
+    utc: &4 2020-02-28 01:04:35.591034000 Z
     zone: *2
     time: *4
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &5 2020-02-20 02:31:54.356915000 Z
+    utc: &5 2020-02-28 01:04:35.591034000 Z
     zone: *2
     time: *5
 FeatureFlag_3:
   id: 3
+  name: news
+  description: Enable news feature
+  enabled: true
+  enabled_for_logged_in: true
+  enabled_for_admins: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2020-02-28 01:04:35.602678000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2020-02-28 01:04:35.602678000 Z
+    zone: *2
+    time: *7
+FeatureFlag_4:
+  id: 4
   name: tags
   description: Enable tag features
   enabled: true
   enabled_for_logged_in: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &6 2020-02-20 02:31:54.363097000 Z
+    utc: &8 2020-02-28 01:04:35.611673000 Z
     zone: *2
-    time: *6
+    time: *8
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &7 2020-02-20 02:31:54.363097000 Z
+    utc: &9 2020-02-28 01:04:35.611673000 Z
     zone: *2
-    time: *7
-FeatureFlag_4:
-  id: 4
+    time: *9
+FeatureFlag_5:
+  id: 5
   name: user_login
   description: Allow users to log in
   enabled: false
   enabled_for_logged_in: false
   enabled_for_admins: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &8 2020-02-20 02:31:54.373603000 Z
+    utc: &10 2020-02-28 01:04:35.623621000 Z
     zone: *2
-    time: *8
+    time: *10
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &9 2020-02-20 02:31:54.373603000 Z
+    utc: &11 2020-02-28 01:04:35.623621000 Z
     zone: *2
-    time: *9
-FeatureFlag_5:
-  id: 5
+    time: *11
+FeatureFlag_6:
+  id: 6
   name: user_profiles
   description: Allow viewing of user profiles
   enabled: true
   enabled_for_logged_in: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &10 2020-02-20 02:31:54.383512000 Z
+    utc: &12 2020-02-28 01:04:35.632328000 Z
     zone: *2
-    time: *10
+    time: *12
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &11 2020-02-20 02:31:54.383512000 Z
+    utc: &13 2020-02-28 01:04:35.632328000 Z
     zone: *2
-    time: *11
-FeatureFlag_6:
-  id: 6
+    time: *13
+FeatureFlag_7:
+  id: 7
   name: user_registration
   description: Allow users to create accounts
   enabled: false
   enabled_for_logged_in: false
   enabled_for_admins: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &12 2020-02-20 02:31:54.391605000 Z
+    utc: &14 2020-02-28 01:04:35.640066000 Z
     zone: *2
-    time: *12
+    time: *14
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &13 2020-02-20 02:31:54.391605000 Z
+    utc: &15 2020-02-28 01:04:35.640066000 Z
     zone: *2
-    time: *13
+    time: *15

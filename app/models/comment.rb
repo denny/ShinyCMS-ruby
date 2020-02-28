@@ -1,8 +1,9 @@
 # Model class for comments
 class Comment < ApplicationRecord
   belongs_to :discussion
-  belongs_to :author, class_name: 'User',    optional: true
   belongs_to :parent, class_name: 'Comment', optional: true
+  belongs_to :author, class_name: 'User', inverse_of: :comments,
+                      foreign_key: :user_id, optional: true
 
   has_many :comments, inverse_of: :parent,
                       foreign_key: :parent_id,
@@ -10,12 +11,15 @@ class Comment < ApplicationRecord
 
   validates :discussion_id, presence: true
   validates :author_type, presence: true
-  validates :author_id, presence: true, if: -> { author_type == 'authenticated'}
+  validates :user_id, presence: true, if: -> { author_type == 'authenticated'}
 
   validates :number, uniqueness: { scope: :discussion_id }
 
   validates :body,  presence: true, unless: -> { title.present? }
   validates :title, presence: true, unless: -> { body.present?  }
+
+  validates_with EmailAddress::ActiveRecordValidator,
+                 field: :author_email, if: -> { author_email.present? }
 
   before_create :set_number
   after_create  :send_notifications
