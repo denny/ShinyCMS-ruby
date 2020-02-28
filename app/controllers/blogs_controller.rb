@@ -2,6 +2,7 @@
 class BlogsController < ApplicationController
   before_action :check_feature_flags
   before_action :set_blog, except: :index
+  before_action :stash_recaptcha_keys, only: %i[ show ]
 
   def index
     # :nocov:
@@ -45,6 +46,11 @@ class BlogsController < ApplicationController
 
     flash[ :alert ] = t( 'blogs.set_blog.failure' )
     redirect_to root_path
+  end
+
+  def stash_recaptcha_keys
+    @recaptcha_v3_key = ENV[ 'RECAPTCHA_V3_SITE_KEY' ]
+    @recaptcha_v2_key = ENV[ 'RECAPTCHA_V2_SITE_KEY' ]
   end
 
   def check_feature_flags
