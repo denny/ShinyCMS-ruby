@@ -31,10 +31,8 @@ class DiscussionsController < ApplicationController
     save_comment
   end
 
-  private
-
   def save_comment
-    if @new_comment.save && recaptcha_pass
+    if recaptcha_pass && @new_comment.save
       flash[ :notice ] = t( '.success' )
       redirect_back fallback_location: discussion_path( @discussion )
     else
@@ -42,6 +40,8 @@ class DiscussionsController < ApplicationController
       render action: :show
     end
   end
+
+  private
 
   def stash_discussion
     @discussion = Discussion.find( params[ :id ] )
