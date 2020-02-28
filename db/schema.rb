@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_02_27_220410) do
     t.integer "blog_id", null: false
     t.integer "user_id", null: false
     t.integer "discussion_id"
-    t.datetime "posted_at", default: -> { "now()" }, null: false
+    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2020_02_27_220410) do
     t.boolean "locked", default: false, null: false
     t.boolean "hidden", default: false, null: false
     t.boolean "spam", default: false, null: false
-    t.datetime "posted_at", default: -> { "now()" }, null: false
+    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 2020_02_27_220410) do
     t.boolean "hidden", default: false, null: false
     t.integer "user_id", null: false
     t.integer "discussion_id"
-    t.datetime "posted_at", default: -> { "now()" }, null: false
+    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
