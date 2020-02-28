@@ -47,6 +47,7 @@
     <%= f.text_field :author_email, id: "comment#{num}_author_email", placeholder: t( '.email' ), class: 'author' %> &nbsp;
     <%= f.text_field :author_url,   id: "comment#{num}_author_url",   placeholder: t( '.url'   ), class: 'author' %>
   </p>
+
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title, id: "comment#{num}_title", class: 'title' %>
@@ -55,6 +56,17 @@
     <%= f.label :body, t( 'discussions.comment' ) %><br>
     <%= f.text_area :body, id: "comment#{num}_body" %>
   </p>
+
+  <% unless user_signed_in? %>
+    <% if flash[ :show_checkbox_recaptcha ] %>
+      <%= recaptcha_tags site_key: @recaptcha_v2_key %>
+    <% elsif @recaptcha_v3_key.present? %>
+      <%= recaptcha_v3 action: 'comment', site_key: @recaptcha_v3_key %>
+    <% else %>
+      <%= recaptcha_tags site_key: @recaptcha_v2_key %>
+    <% end %>
+  <% end %>
+
   <p>
     <%= f.submit t( 'post' ), class: 'button' %>
   </p>

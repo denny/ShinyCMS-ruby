@@ -1,8 +1,11 @@
 # Main site controller for discussions and comments
 class DiscussionsController < ApplicationController
+  include RecaptchaHelper
+
   before_action :check_feature_flags
   before_action :stash_discussion, except: :index
   before_action :stash_comment, except: %i[ index show add_comment ]
+  before_action :stash_recaptcha_keys, except: %i[ index ]
 
   def index
     # TODO: list of recently active discussions etc
@@ -19,19 +22,19 @@ class DiscussionsController < ApplicationController
   end
 
   def add_comment
-    @parent = @discussion
+    @new_comment = @discussion.comments.new( comment_params )
     save_comment
   end
 
   def add_reply
-    @parent = @comment
+    @new_comment = @comment.comments.new( comment_params )
     save_comment
   end
 
-  def save_comment
-    comment = @parent.comments.new( comment_params )
+  private
 
-    if comment.save
+  def save_comment
+    if @new_comment.save && recaptcha_pass
       flash[ :notice ] = t( '.success' )
       redirect_back fallback_location: discussion_path( @discussion )
     else
@@ -39,8 +42,6 @@ class DiscussionsController < ApplicationController
       render action: :show
     end
   end
-
-  private
 
   def stash_discussion
     @discussion = Discussion.find( params[ :id ] )
@@ -52,12 +53,34 @@ class DiscussionsController < ApplicationController
     @comment = @discussion.comments.find_by( number: params[ :number ] ) || nil
   end
 
+  def recaptcha_pass
+    return true if @new_comment.user_id.present?
+
+    verify_invisible_recaptcha( 'comment' ) || verify_checkbox_recaptcha
+  end
+
   def comment_params
-    p = params.require( :comment ).permit(
-      %i[ title body author_type author_name author_email author_url ]
-    )
+    p = params.require( :comment ).permit( permitted_param_names )
     p = p.merge( user_id: current_user.id ) if user_signed_in?
     p.merge( discussion_id: @discussion.id )
+  end
+
+  def permitted_param_names
+    %i[
+      title
+      body
+      author_type
+      author_name
+      author_email
+      author_url
+      g-recaptcha-response[comment]
+      g-recaptcha-response
+    ]
+  end
+
+  def stash_recaptcha_keys
+    @recaptcha_v3_key = ENV[ 'RECAPTCHA_V3_SITE_KEY' ]
+    @recaptcha_v2_key = ENV[ 'RECAPTCHA_V2_SITE_KEY' ]
   end
 
   def check_feature_flags
