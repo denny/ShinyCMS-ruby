@@ -1,6 +1,6 @@
   <%= render_admin_menu_section( t( 'admin.users.title' ), 'people' ) do %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :list, :users ),
+    <%= render_admin_menu_item(
         t( 'admin.users.index.title' ), users_path, 'people' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :add, :users ),
