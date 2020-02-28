@@ -86,9 +86,7 @@ class User < ApplicationRecord
 
   # Queue email sends
   def send_devise_notification( notification, *args )
-    # :nocov:
     devise_mailer.public_send( notification, self, *args ).deliver_later
-    # :nocov:
   end
 
   # Class methods
