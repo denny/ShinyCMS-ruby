@@ -33,6 +33,9 @@ There is some demo data included, which will allow you to try out most ShinyCMS
 features without having to create your own test data first. You can load it with
 the utility script `tools/insert-demo-site-data`.
 
+The demo user's username is: admin
+And the password is: I should change this password before I do anything else!
+
 NB: This script will wipe most of the tables in the database before populating
 them with the demo site data; notably, this includes the `users` table. Back up
 any data that you don't want to lose!
