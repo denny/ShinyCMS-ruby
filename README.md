@@ -1,16 +1,15 @@
 # ShinyCMS (Ruby version)
 
-I'm re-implementing [ShinyCMS](https://shinycms.org/) in
-[Ruby](https://ruby-lang.org/), as an educational exercise...
+I'm reimplementing [ShinyCMS](https://shinycms.org/) in Ruby, as an educational
+exercise for myself...
 
 The original, [Perl version of ShinyCMS](https://github.com/denny/ShinyCMS) was
 built to satisfy the varied requirements of a number of clients during 10 years
 of working as a freelance web developer, so it's not a small project.
 
-As well as this project allowing me to gain more familiarity with the full Ruby
-on Rails project lifecycle, I also hope to make improvements to many of the
-features as I re-implement them, with the benefit of hindsight - and an extra
-decade of professional experience since the original project started. :)
+As well as this project allowing me to build a Ruby on Rails application from
+scratch and largely by myself, it's also nice to have time for proper testing,
+regular refactoring, and all the other things I rarely get to do at work. :)
 
 
 ## Progress, AKA Current Features
@@ -30,7 +29,7 @@ the Perl version, if any):
 * Tags
   * Currently on blog posts and news posts
   * Ready to add to any other content type going forward
-  * Improvements: more generic implementation (uses ActAsTaggableOn)
+  * Improvements: more generic implementation (powered by ActAsTaggableOn)
 * Nested comment threads
   * Currently on blog posts and news posts
   * Ready to add to any other content type going forward
@@ -41,7 +40,7 @@ the Perl version, if any):
     standard, as it just uses ActiveRecord's native support for polymorphism.
 * User accounts and administration
   * Improvements: the Perl version has role-based authorisation. The Ruby
-    version has more flexible ACL-based authorisation (uses Pundit).
+    version has more flexible ACL-based authorisation (powered by Pundit).
 * reCAPTCHA bot protection for registration and comment forms
   * Improvements: supports reCAPTCHA v3 with scores. Tries an invisible
     CAPTCHA first, falling back to an interactive CAPTCHA if that fails.
