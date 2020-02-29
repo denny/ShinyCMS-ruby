@@ -1,4 +1,13 @@
-# Controller for user features not provided by Devise - profile pages, etc
+# ============================================================================
+# Project:   ShinyCMS (Ruby version)
+# File:      app/controllers/users_controller.rb
+# Purpose:   Controller for user profile pages on a ShinyCMS-powered site
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
 class UsersController < ApplicationController
   before_action :check_feature_flags, only: %i[ show ]
 

@@ -1,7 +1,7 @@
 # ============================================================================
 # Project:   ShinyCMS (Ruby version)
 # File:      app/controllers/blog_controller.rb
-# Purpose:   Blog controller for ShinyCMS
+# Purpose:   Controller for blog features on a ShinyCMS-powered site
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
 #
