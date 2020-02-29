@@ -1,4 +1,13 @@
-# Base class for main site controllers
+# ============================================================================
+# Project:   ShinyCMS (Ruby version)
+# File:      app/controllers/application_controller.rb
+# Purpose:   Base controller for ShinyCMS
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
 class ApplicationController < ActionController::Base
   include FeatureFlagsHelper
 

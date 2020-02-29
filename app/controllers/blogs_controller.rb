@@ -1,4 +1,13 @@
-# Main site controller for blogs (view blog, view blog post, etc)
+# ============================================================================
+# Project:   ShinyCMS (Ruby version)
+# File:      app/controllers/blog_controller.rb
+# Purpose:   Blog controller for ShinyCMS
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
 class BlogsController < ApplicationController
   before_action :check_feature_flags
   before_action :set_blog, except: :index
