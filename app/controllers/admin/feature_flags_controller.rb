@@ -1,4 +1,13 @@
-# Admin controller for feature flags
+# ============================================================================
+# Project:   ShinyCMS (Ruby version)
+# File:      app/controllers/admin/feature_flags_controller.rb
+# Purpose:   Controller for feature flags section of ShinyCMS admin area
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
 class Admin::FeatureFlagsController < AdminController
   def index
     @flags = FeatureFlag.all.order( :name )

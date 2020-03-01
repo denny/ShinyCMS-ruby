@@ -1,4 +1,13 @@
-# Admin controller for CMS-controlled 'brochure' pages
+# ============================================================================
+# Project:   ShinyCMS (Ruby version)
+# File:      app/controllers/admin/pages_controller.rb
+# Purpose:   Controller for pages section of ShinyCMS admin area
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
 class Admin::PagesController < AdminController
   def index
     authorise Page

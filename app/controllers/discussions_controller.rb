@@ -1,4 +1,13 @@
-# Main site controller for discussions and comments
+# ============================================================================
+# Project:   ShinyCMS (Ruby version)
+# File:      app/controllers/discussion_controller.rb
+# Purpose:   Controller for discussion and comment features on a ShinyCMS site
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
 class DiscussionsController < ApplicationController
   include RecaptchaHelper
 

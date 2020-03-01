@@ -1,4 +1,13 @@
-# Controller to tweak Devise-based user registration features
+# ============================================================================
+# Project:   ShinyCMS (Ruby version)
+# File:      app/controllers/users/registrations_controller.rb
+# Purpose:   Controller to override or augment Devise user account features
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
 class Users::RegistrationsController < Devise::RegistrationsController
   include RecaptchaHelper
 

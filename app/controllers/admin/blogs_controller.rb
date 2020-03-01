@@ -1,4 +1,13 @@
-# Admin controller for blogs (whole blogs, not individual blog posts)
+# ============================================================================
+# Project:   ShinyCMS (Ruby version)
+# File:      app/controllers/admin/blogs_controller.rb
+# Purpose:   Controller for blogs section of ShinyCMS admin area
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
 class Admin::BlogsController < AdminController
   before_action :set_blog, only: %i[ edit update destroy ]
 
