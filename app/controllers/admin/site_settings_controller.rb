@@ -1,4 +1,13 @@
-# Admin controller for site settings
+# ============================================================================
+# Project:   ShinyCMS (Ruby version)
+# File:      app/controllers/admin/site_settings_controller.rb
+# Purpose:   Controller for site-settings section of ShinyCMS admin area
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
 class Admin::SiteSettingsController < AdminController
   def index
     @settings = Setting.order( :name )

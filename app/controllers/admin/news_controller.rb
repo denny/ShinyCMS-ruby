@@ -1,4 +1,13 @@
-# Admin controller for news section
+# ============================================================================
+# Project:   ShinyCMS (Ruby version)
+# File:      app/controllers/admin/news_controller.rb
+# Purpose:   Controller for news section of ShinyCMS admin area
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
 class Admin::NewsController < AdminController
   before_action :set_post_for_create, only: :create
   before_action :set_post, only: %i[ edit update destroy ]
