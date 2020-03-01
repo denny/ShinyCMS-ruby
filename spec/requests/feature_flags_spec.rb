@@ -1,10 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe 'Feature Flags', type: :request do
+  before :each do
+    FeatureFlag.find_or_create_by!( name: 'user_login' )
+               .update!( enabled: true )
+    FeatureFlag.find_or_create_by!( name: 'user_profiles' )
+               .update!( enabled: true )
+  end
+
   describe 'GET /login' do
     it "succeeds with 'User Login = On'" do
-      create :feature_flag, name: 'user_login', enabled: true
-
       get new_user_session_path
 
       expect( response      ).to have_http_status :ok
@@ -14,7 +19,8 @@ RSpec.describe 'Feature Flags', type: :request do
     it "fails with 'User Login = Off'" do
       create :top_level_page
 
-      create :feature_flag, name: 'user_login', enabled: false
+      FeatureFlag.find_or_create_by!( name: 'user_login' )
+                 .update!( enabled: false )
 
       get new_user_session_path
 
@@ -32,13 +38,14 @@ RSpec.describe 'Feature Flags', type: :request do
     end
   end
 
-  describe 'GET /user/{username}' do
+  describe 'GET /profile/{username}' do
     it 'fails for non-admin user with User Profiles feature only enabled for admins' do
       create :top_level_page
       user = create :user
       sign_in user
 
-      create :feature_flag, name: 'user_profiles', enabled_for_admins: true
+      FeatureFlag.find_or_create_by!( name: 'user_profiles' )
+                 .update!( enabled: false, enabled_for_admins: true )
 
       get user_profile_path( user.username )
 
@@ -59,7 +66,9 @@ RSpec.describe 'Feature Flags', type: :request do
       user = create :admin_user
       sign_in user
 
-      create :feature_flag, name: 'user_profiles', enabled_for_admins: true
+      FeatureFlag.find_or_create_by!( name: 'user_profiles' )
+                 .update!( enabled: false, enabled_for_admins: true )
+
       get user_profile_path( user.username )
 
       expect( response      ).to have_http_status :ok

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'User', type: :request do
+RSpec.describe 'User accounts', type: :request do
   before :each do
     FeatureFlag.find_or_create_by!( name: 'user_login' )
                .update!( enabled: true )
@@ -23,26 +23,6 @@ RSpec.describe 'User', type: :request do
     ENV['RECAPTCHA_V2_SITE_KEY'  ] = @v2_site   unless @v2_site.nil?
     ENV['RECAPTCHA_V3_SECRET_KEY'] = @v3_secret unless @v3_site.nil?
     ENV['RECAPTCHA_V3_SITE_KEY'  ] = @v3_site   unless @v3_site.nil?
-  end
-
-  describe 'GET /user/:username' do
-    it "renders the user's profile page" do
-      user = create :user
-
-      get user_profile_path( user.username )
-
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to include user.username
-    end
-
-    it "renders the CMS 404 page if the username doesn't exist" do
-      create :page
-
-      get user_profile_path( 'syzygy' )
-
-      expect( response      ).to have_http_status :not_found
-      expect( response.body ).to have_css 'h2', text: I18n.t( 'errors.not_found.title', resource_type: 'User' )
-    end
   end
 
   describe 'new user registration' do
@@ -157,43 +137,6 @@ RSpec.describe 'User', type: :request do
     end
   end
 
-  describe 'GET /users' do
-    it 'redirects to the user login page if user logins are enabled' do
-      get '/users'
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to new_user_session_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_button I18n.t( 'user.log_in' )
-    end
-  end
-
-  describe 'GET /user' do
-    it 'redirects to the user login page if user logins are enabled' do
-      get '/user'
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to new_user_session_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_button I18n.t( 'user.log_in' )
-    end
-
-    it "redirects to the user's profile page when user is already logged in" do
-      user = create :user
-      sign_in user
-
-      get '/user'
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_profile_path( user.username )
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to include user.username
-    end
-  end
-
   describe 'POST /user/login' do
     it 'logs the user in using their email address' do
       create :page
@@ -209,7 +152,7 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to redirect_to user_profile_path( user.username )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_link user.username, href: "/user/#{user.username}"
+      expect( response.body ).to have_link user.username, href: "/profile/#{user.username}"
       expect( response.body ).to have_link I18n.t( 'user.log_out' )
     end
 
@@ -226,7 +169,7 @@ RSpec.describe 'User', type: :request do
       expect( response      ).to redirect_to user_profile_path( user.username )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_link user.username, href: "/user/#{user.username}"
+      expect( response.body ).to have_link user.username, href: "/profile/#{user.username}"
       expect( response.body ).to have_link I18n.t( 'user.log_out' )
     end
 

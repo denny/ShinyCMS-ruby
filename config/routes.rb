@@ -51,6 +51,11 @@ Rails.application.routes.draw do
     get 'news/:year',               to: 'news#year',  as: :ignore6,
                                     constraints: { year: %r{\d\d\d\d} }
 
+    get 'profile/:username',  to: 'profiles#show',  as: :user_profile,
+                              constraints: { username: User::USERNAME_REGEX }
+    get 'profile',            to: 'profiles#profile_redirect'
+    get 'profiles',           to: 'profiles#index', as: :user_profiles
+
     get 'site-settings', to: 'site_settings#index'
     put 'site-settings', to: 'site_settings#update'
 
@@ -69,16 +74,12 @@ Rails.application.routes.draw do
                 path_names: {
                   sign_in: '/login',
                   sign_out: '/logout',
-                  registration: '/user/account',
+                  registration: '/account',
                   sign_up: 'register',
-                  confirmation: '/user/account/confirm',
-                  password: '/user/account/password',
-                  unlock: '/user/account/unlock'
+                  confirmation: '/account/confirm',
+                  password: '/account/password',
+                  unlock: '/account/unlock'
                 }
-    get 'user/:username',  to: 'users#show',  as: :user_profile,
-                           constraints: { username: User::USERNAME_REGEX }
-    get 'user',            to: 'users#index', as: :user_redirect
-    get 'users',           to: 'users#index', as: :users_redirect
 
     # ========== ( Admin area ) ==========
     get 'admin', to: 'admin#index'
