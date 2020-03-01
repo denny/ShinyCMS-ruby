@@ -1,4 +1,4 @@
-# Controller for user features not provided by Devise - profile pages, etc
+# Check whether user login feature is enabled before passing to Devise
 class Users::SessionsController < Devise::SessionsController
   before_action :check_feature_flags
 
