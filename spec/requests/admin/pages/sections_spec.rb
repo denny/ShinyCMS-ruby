@@ -42,7 +42,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       post create_page_section_path, params: {
         'page_section[name]': 'Test',
         'page_section[title]': 'Test',
-        'page_section[slug]': 'user'
+        'page_section[slug]': 'profile'
       }
 
       expect( response      ).to have_http_status :ok

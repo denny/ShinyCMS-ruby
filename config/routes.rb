@@ -74,11 +74,11 @@ Rails.application.routes.draw do
                 path_names: {
                   sign_in: '/login',
                   sign_out: '/logout',
-                  registration: '/user/account',
+                  registration: '/account',
                   sign_up: 'register',
-                  confirmation: '/user/account/confirm',
-                  password: '/user/account/password',
-                  unlock: '/user/account/unlock'
+                  confirmation: '/account/confirm',
+                  password: '/account/password',
+                  unlock: '/account/unlock'
                 }
 
     # ========== ( Admin area ) ==========
