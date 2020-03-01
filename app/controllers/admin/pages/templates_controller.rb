@@ -1,4 +1,13 @@
-# Admin controller for page templates
+# ============================================================================
+# Project:   ShinyCMS (Ruby version)
+# File:      app/controllers/admin/pages/templates_controller.rb
+# Purpose:   Controller for page templates in ShinyCMS admin area
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
 class Admin::Pages::TemplatesController < AdminController
   def index
     authorise PageTemplate

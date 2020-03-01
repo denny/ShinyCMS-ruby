@@ -1,4 +1,13 @@
-# Admin controller for inserts (globally-reusable text/HTML fragments)
+# ============================================================================
+# Project:   ShinyCMS (Ruby version)
+# File:      app/controllers/admin/inserts_controller.rb
+# Purpose:   Controller for 'inserts' section of ShinyCMS admin area
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
 class Admin::InsertsController < AdminController
   # Displays main form, for updating/deleting the existing insert,
   # and a second form at the bottom of the page to add new insert.

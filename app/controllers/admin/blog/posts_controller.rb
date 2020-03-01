@@ -1,4 +1,13 @@
-# Admin controller for blog posts
+# ============================================================================
+# Project:   ShinyCMS (Ruby version)
+# File:      app/controllers/admin/blog/posts_controller.rb
+# Purpose:   Controller for blog posts in ShinyCMS admin area
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
 class Admin::Blog::PostsController < AdminController
   before_action :set_blog
   before_action :set_post_for_create, only: %i[ create ]
