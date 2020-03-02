@@ -21,14 +21,17 @@ source 'https://rubygems.org' do
   gem 'devise-pwned_password'
   gem 'pundit'
 
-  # Bot detection to protect forms (including registration, comments, etc)
-  gem 'recaptcha'
+  # Tags
+  gem 'acts-as-taggable-on'
 
   # Pagination
   gem 'kaminari'
 
-  # Tags
-  gem 'acts-as-taggable-on'
+  # Bot detection to protect forms (including registration, comments, etc)
+  gem 'recaptcha'
+
+  # Spam comment detection
+  gem 'akismet'
 
   # Image storage on S3, image processing (resizing)
   gem 'aws-sdk-s3'
