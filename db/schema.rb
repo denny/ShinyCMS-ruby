@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_27_220410) do
+ActiveRecord::Schema.define(version: 2020_03_02_203545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2020_02_27_220410) do
     t.string "author_url"
     t.string "title"
     t.text "body"
+    t.string "ip_address"
     t.boolean "locked", default: false, null: false
     t.boolean "hidden", default: false, null: false
     t.boolean "spam", default: false, null: false
