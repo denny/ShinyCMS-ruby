@@ -39,6 +39,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def stash_recaptcha_keys
+    return unless feature_enabled? :recaptcha_on_registration
+
     @recaptcha_v3_key = ENV[ 'RECAPTCHA_V3_SITE_KEY' ]
     @recaptcha_v2_key = ENV[ 'RECAPTCHA_V2_SITE_KEY' ]
   end
