@@ -41,7 +41,7 @@ class DiscussionsController < ApplicationController
   end
 
   def save_comment
-    if recaptcha_pass && @new_comment.save
+    if akismet_check && recaptcha_pass && @new_comment.save
       flash[ :notice ] = t( '.success' )
       redirect_back fallback_location: discussion_path( @discussion )
     else
@@ -68,6 +68,46 @@ class DiscussionsController < ApplicationController
     verify_invisible_recaptcha( 'comment' ) || verify_checkbox_recaptcha
   end
 
+  def akismet_check
+    return true unless feature_enabled? :akismet_on_comments
+    return true unless ENV[ 'AKISMET_API_KEY' ]
+
+    Akismet.api_key = ENV[ 'AKISMET_API_KEY' ]
+    Akismet.app_url = root_url
+
+    # TODO: "Akismet::Error: unknown error" - helpful.
+    # binding.pry
+    spam, blatant = Akismet.check request.ip, request.user_agent, akismet_params
+    return false if blatant && setting( :akismet_blatant_spam ) != 'Keep'
+
+    @new_comment.spam = spam
+  end
+
+  def akismet_params
+    params = {
+      text: "#{@new_comment.title} #{@new_comment.body}",
+      author: akismet_author_name,
+      created_at: Time.zone.now,
+      referrer: request.referer,
+      type: 'comment'
+    }
+    params[ :author_email ] = akismet_author_email if akismet_author_email
+    params[ :author_url   ] = akismet_author_url   if akismet_author_url
+    params
+  end
+
+  def akismet_author_name
+    @new_comment.author_name || @new_comment.author&.username || 'Anonymous'
+  end
+
+  def akismet_author_email
+    @new_comment.author_email || @new_comment.author&.email
+  end
+
+  def akismet_author_url
+    @new_comment.author_url || @new_comment.author&.website
+  end
+
   def comment_params
     p = params.require( :comment ).permit( permitted_param_names )
     p = p.merge( user_id: current_user.id ) if user_signed_in?
@@ -88,6 +128,8 @@ class DiscussionsController < ApplicationController
   end
 
   def stash_recaptcha_keys
+    return unless feature_enabled? :recaptcha_on_comments
+
     @recaptcha_v3_key = ENV[ 'RECAPTCHA_V3_SITE_KEY' ]
     @recaptcha_v2_key = ENV[ 'RECAPTCHA_V2_SITE_KEY' ]
   end

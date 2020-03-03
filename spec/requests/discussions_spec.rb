@@ -212,6 +212,37 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.alerts', text: I18n.t( 'discussions.add_comment.failure' )
     end
+
+    it 'classifies a new comment as spam after checking Akismet' do
+      skip 'TODO: broken code - DO NOT MERGE until fixed'
+
+      create :feature_flag, name: 'akismet_on_comments', enabled: true
+
+      ENV[ 'AKISMET_API_KEY' ] = 'TESTING'
+
+      always_fail_author_name = 'viagra-test-123'
+      title = Faker::Science.scientist
+      body  = Faker::Lorem.paragraph
+
+      post discussion_path( @discussion ), params: {
+        comment: {
+          title: title,
+          body: body,
+          author_type: 'pseudonymous',
+          author_name: always_fail_author_name
+        }
+      }
+
+      expect( response ).to have_http_status :found
+      expect( response ).to redirect_to discussion_path( @discussion )
+      follow_redirect!
+      expect( response ).to have_http_status :ok
+
+      expect( Comment.last.spam ).to be true
+
+      expect( response.body ).not_to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
+      expect( response.body ).not_to have_css 'h2', text: title
+    end
   end
 
   describe 'POST /discussion/1/1' do
