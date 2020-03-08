@@ -32,7 +32,7 @@ class User < ApplicationRecord
                                dependent: :restrict_with_error
 
   # Web stats (powered by Ahoy)
-  has_many :visits, class_name: 'Ahoy::Visit', dependent: :destroy
+  has_many :visits, class_name: 'Ahoy::Visit', dependent: :nullify
 
   # End-user content: destroy it along with their account
   has_many :comments, inverse_of: 'author', dependent: :destroy
