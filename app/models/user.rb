@@ -31,14 +31,18 @@ class User < ApplicationRecord
                                through: :user_capabilities,
                                dependent: :restrict_with_error
 
-  # "Content, content, content..."
+  # Web stats (powered by Ahoy)
+  has_many :visits, class_name: 'Ahoy::Visit', dependent: :nullify
+
+  # End-user content: destroy it along with their account
+  has_many :comments, inverse_of: 'author', dependent: :destroy
+
+  # Admin content: throw an error if it hasn't been removed or reassigned
   has_many :blogs,      inverse_of: 'owner',
                         dependent: :restrict_with_error
   has_many :blog_posts, inverse_of: 'author',
                         dependent: :restrict_with_error
   has_many :news_posts, inverse_of: 'author',
-                        dependent: :restrict_with_error
-  has_many :comments,   inverse_of: 'author',
                         dependent: :restrict_with_error
 
   # Configure default count-per-page for pagination

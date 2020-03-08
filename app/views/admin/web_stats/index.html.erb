@@ -1,0 +1,51 @@
+<% @page_title = t( '.title' ) %>
+
+<% if @visits.present? %>
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Visit started
+      </th>
+      <th>
+        IP address
+      </th>
+      <th>
+        Username
+      </th>
+      <th>
+        Landing page
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @visits.each do |visit| %>
+    <tr>
+      <td>
+        <%= visit.started_at %>
+      </td>
+      <td>
+        <%= visit.ip %>
+      </td>
+      <td>
+        <% if visit.user_id %><%= link_to visit.user.username, user_web_stats_path( visit.user ) %><% end %>
+      </td>
+      <td>
+        <%= visit.landing_page %>
+  		</td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @visits, window: 3, views_prefix: 'admin' %>
+<p id="pager-info">
+  <%= page_entries_info @visits %>
+</p>
+
+<% else %>
+<p>
+  <%= t( '.empty' ) %>
+</p>
+<% end %>

@@ -1,0 +1,5 @@
+  <%= render_admin_menu_section( t( 'admin.stats.title' ), 'chart' ) do %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :list, :web_stats ),
+        t( 'admin.web_stats.title' ), web_stats_path, 'chart' ) %>
+  <% end %>

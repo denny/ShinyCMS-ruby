@@ -33,6 +33,9 @@ source 'https://rubygems.org' do
   # Spam comment detection
   gem 'akismet'
 
+  # Web stats
+  gem 'ahoy_matey'
+
   # Image storage on S3, image processing (resizing)
   gem 'aws-sdk-s3'
   gem 'image_processing', '~> 1.10'
