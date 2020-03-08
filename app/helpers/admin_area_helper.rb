@@ -3,6 +3,7 @@ module AdminAreaHelper
   # Invoke Pundit
   def authorise( record )
     record_class_name = class_name( record )
+    record_class_name = 'Ahoy' if record_class_name.start_with? 'Ahoy::'
     policy_class_name = "Admin::#{record_class_name}Policy"
 
     authorize record, policy_class: policy_class_name.constantize
