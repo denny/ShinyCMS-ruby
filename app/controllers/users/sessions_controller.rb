@@ -11,6 +11,8 @@
 class Users::SessionsController < Devise::SessionsController
   before_action :check_feature_flags
 
+  skip_after_action :track_ahoy_visit
+
   private
 
   def check_feature_flags

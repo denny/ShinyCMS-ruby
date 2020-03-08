@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   layout 'layouts/main_site'
 
-  after_action :track_action
+  after_action :track_ahoy_visit
 
   protected
 
@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
   end
 
   # Track all actions with Ahoy
-  def track_action
+  def track_ahoy_visit
     ahoy.track 'Ran action', request.path_parameters
   end
 
