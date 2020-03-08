@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
 
   layout 'layouts/main_site'
 
+  after_action :track_ahoy_visit
+
   protected
 
   # Strong params config for Devise
@@ -71,6 +73,11 @@ class ApplicationController < ActionController::Base
     return admin_path if resource.can? :view_admin_area
 
     user_profile_path( resource.username )
+  end
+
+  # Track all actions with Ahoy
+  def track_ahoy_visit
+    ahoy.track 'Ran action', request.path_parameters
   end
 
   def set_view_paths

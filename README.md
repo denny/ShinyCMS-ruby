@@ -44,6 +44,8 @@ the Perl version, if any):
 * reCAPTCHA bot protection for registration and comment forms
   * Improvements: supports reCAPTCHA v3 with scores. Tries an invisible
     CAPTCHA first, falling back to an interactive CAPTCHA if that fails.
+* Built-in web stats (powered by Ahoy)
+  * Improvements: the Perl version doesn't have this feature at all.
 
 
 ## TODO

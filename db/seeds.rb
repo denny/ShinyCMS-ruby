@@ -17,6 +17,7 @@ pages_cc      = seed CapabilityCategory, { name: 'pages'          }
 sections_cc   = seed CapabilityCategory, { name: 'page_sections'  }
 templates_cc  = seed CapabilityCategory, { name: 'page_templates' }
 settings_cc   = seed CapabilityCategory, { name: 'settings'       }
+web_stats_cc  = seed CapabilityCategory, { name: 'web_stats'      }
 users_cc      = seed CapabilityCategory, { name: 'users'          }
 admins_cc     = seed CapabilityCategory, { name: 'admin_users'    }
 # General
@@ -77,6 +78,8 @@ seed Capability, { name: 'destroy', category: templates_cc }
 # Site Settings
 seed Capability, { name: 'list',    category: settings_cc }
 seed Capability, { name: 'edit',    category: settings_cc }
+# Stats
+seed Capability, { name: 'list',    category: web_stats_cc }
 # Users
 seed Capability, { name: 'list',    category: users_cc }
 seed Capability, { name: 'add',     category: users_cc }

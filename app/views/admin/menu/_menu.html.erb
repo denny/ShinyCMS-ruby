@@ -25,6 +25,10 @@
         current_user.can?( :list, :feature_flags ) %>
   <%= render partial: 'admin/menu/menu_other' %>
   <% end %>
+
+  <% if current_user.can? :list, :web_stats %>
+  <%= render partial: 'admin/menu/menu_stats' %>
+  <% end %>
 </ul>
 
 <script>

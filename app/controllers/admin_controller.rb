@@ -16,6 +16,7 @@ class AdminController < ApplicationController
   before_action :authenticate_user!
 
   skip_before_action :set_view_paths
+  skip_after_action  :track_ahoy_visit
 
   after_action :verify_authorized
 

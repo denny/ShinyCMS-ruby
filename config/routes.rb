@@ -153,6 +153,10 @@ Rails.application.routes.draw do
       get 'site-settings', to: 'site_settings#index', as: :admin_site_settings
       put 'site-settings', to: 'site_settings#update'
 
+      # Web stats
+      get 'web-stats',               to: 'web_stats#index'
+      get 'web-stats/user/:user_id', to: 'web_stats#index', as: :user_web_stats
+
       # Users
       get  :users, to: 'users#index'
       post :user,  to: 'users#create', as: :create_user

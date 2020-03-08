@@ -399,6 +399,15 @@ en:
         success: User deleted
         failure: Failed to delete user
 
+    stats:
+      title: Stats
+
+    web_stats:
+      title: Web stats
+      index:
+        title: Web stats
+        empty: No stats to display
+
   models:
     page_template:
       template_file_must_exist: The template file must be in pages/templates
