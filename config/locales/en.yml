@@ -399,6 +399,9 @@ en:
         success: User deleted
         failure: Failed to delete user
 
+    stats:
+      title: Stats
+
     web_stats:
       title: Web stats
       index:
