@@ -10,19 +10,10 @@ plugins:
     enabled: true
   fixme:
     enabled: true
-  flog:
-    enabled: true
-    exclude_patterns:
-    - "spec/"
   markdownlint:
     enabled: true
   nodesecurity:
     enabled: true
-  reek:
-    enabled: true
-    exclude_patterns:
-    - "spec/"
-    - "db/migrate/"
   sass-lint:
     enabled: true
   spellcheck:
