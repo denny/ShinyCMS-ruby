@@ -116,9 +116,9 @@ RSpec.describe 'Admin::Blogs', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.blogs.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.blogs.destroy.success' )
-      expect( response.body ).to     include b1.name
-      expect( response.body ).not_to include b2.name
-      expect( response.body ).to     include b3.name
+      expect( response.body ).to     have_css 'td', text: b1.name
+      expect( response.body ).not_to have_css 'td', text: b2.name
+      expect( response.body ).to     have_css 'td', text: b3.name
     end
 
     it 'fails gracefully when attempting to delete a non-existent blog' do

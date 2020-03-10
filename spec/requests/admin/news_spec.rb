@@ -145,9 +145,9 @@ RSpec.describe 'Admin::News', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.news.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.news.destroy.success' )
-      expect( response.body ).to     include p1.title
-      expect( response.body ).not_to include p2.title
-      expect( response.body ).to     include p3.title
+      expect( response.body ).to     have_css 'td', text: p1.title
+      expect( response.body ).not_to have_css 'td', text: p2.title
+      expect( response.body ).to     have_css 'td', text: p3.title
     end
 
     it 'fails gracefully when attempting to delete a non-existent news post' do

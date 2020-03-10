@@ -22,11 +22,11 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
 
-      expect( response.body ).to include page.name
-      expect( response.body ).to include subpage.name
-      expect( response.body ).to include subpage.section.name
-      expect( response.body ).to include hidden_subpage.name
-      expect( response.body ).to include hidden_section.name
+      expect( response.body ).to have_css 'td', text: page.name
+      expect( response.body ).to have_css 'td', text: subpage.name
+      expect( response.body ).to have_css 'td', text: subpage.section.name
+      expect( response.body ).to have_css 'td', text: hidden_subpage.name
+      expect( response.body ).to have_css 'td', text: hidden_section.name
     end
   end
 
@@ -193,9 +193,9 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.pages.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.destroy.success' )
-      expect( response.body ).to     include p1.name
-      expect( response.body ).not_to include p2.name
-      expect( response.body ).to     include p3.name
+      expect( response.body ).to     have_css 'td', text: p1.name
+      expect( response.body ).not_to have_css 'td', text: p2.name
+      expect( response.body ).to     have_css 'td', text: p3.name
     end
 
     it 'fails gracefully when attempting to delete a non-existent page' do
