@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :blog do
-    name   { Faker::Science.unique.scientist }
-    title  { name.dup.titlecase }
-    slug   { name.dup.parameterize }
+    name  { Faker::Books::CultureSeries.unique.culture_ship }
+    title { name.dup.titlecase    }
+    slug  { name.dup.parameterize }
 
     hidden_from_menu { false }
     hidden { false }
