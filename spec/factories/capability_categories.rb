@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :capability_category do
-    name { "#{Faker::Science.unique.element}_#{Faker::Science.unique.element}".downcase }
+    name { Faker::Books::CultureSeries.unique.civs.parameterize }
   end
 end
