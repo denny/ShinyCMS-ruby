@@ -16,6 +16,9 @@ PreCommit:
     enabled: true
     on_warn: fail
 
+  Brakeman:
+    enabled: true
+
   TrailingWhitespace:
     enabled: true
     exclude:

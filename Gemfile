@@ -62,18 +62,22 @@ source 'https://rubygems.org' do
     gem 'pry-rails'
     # Tests are good, m'kay?
     gem 'rspec-rails'
-    # Linter
-    gem 'rubocop'
-    gem 'rubocop-rails'
   end
 
   group :development do
+    # Scans for security vulnerabilities
+    gem 'brakeman', require: false
     # Used to create demo site data
-    gem 'db_fixtures_dump'
+    gem 'db_fixtures_dump', require: false
     # Open emails sent by the system in a browser tab
     gem 'letter_opener'
     # Reload dev server when files change
     gem 'listen', '>= 3.0.5', '< 3.3'
+    # Helps you manage your git hooks
+    gem 'overcommit', require: false
+    # Linter
+    gem 'rubocop', require: false
+    gem 'rubocop-rails', require: false
   end
 
   group :test do
