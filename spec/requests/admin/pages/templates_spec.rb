@@ -124,8 +124,8 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.pages.templates.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.templates.destroy.success' )
-      expect( response.body ).to     include t1.name
-      expect( response.body ).not_to include t2.name
+      expect( response.body ).to     have_css 'td', text: t1.name
+      expect( response.body ).not_to have_css 'td', text: t2.name
     end
 
     it 'fails gracefully when attempting to delete a non-existent template' do

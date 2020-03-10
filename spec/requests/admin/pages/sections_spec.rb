@@ -121,9 +121,9 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.pages.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.sections.destroy.success' )
-      expect( response.body ).to     include s1.name
-      expect( response.body ).not_to include s2.name
-      expect( response.body ).to     include s3.name
+      expect( response.body ).to     have_css 'td', text: s1.name
+      expect( response.body ).not_to have_css 'td', text: s2.name
+      expect( response.body ).to     have_css 'td', text: s3.name
     end
 
     it 'fails gracefully when attempting to delete a non-existent section' do
