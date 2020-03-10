@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_08_113704) do
+ActiveRecord::Schema.define(version: 2020_03_10_005657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 2020_03_08_113704) do
     t.string "author_url"
     t.string "title"
     t.text "body"
+    t.string "ip_address"
     t.boolean "locked", default: false, null: false
     t.boolean "hidden", default: false, null: false
     t.boolean "spam", default: false, null: false
@@ -169,6 +170,13 @@ ActiveRecord::Schema.define(version: 2020_03_08_113704) do
   end
 
   create_table "insert_sets", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "mailing_lists", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "is_public", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -267,6 +275,22 @@ ActiveRecord::Schema.define(version: 2020_03_08_113704) do
     t.string "description"
     t.string "level", default: "site", null: false
     t.boolean "locked", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "subscribers", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.uuid "token", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "list_id", null: false
+    t.integer "subscriber_id", null: false
+    t.string "subscriber_type", default: "Subscriber", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
