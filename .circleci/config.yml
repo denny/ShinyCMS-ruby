@@ -3,32 +3,27 @@
 version: 2
 
 jobs:
-  build:
+  setup:
     docker:
-      - image: circleci/ruby:2.6.5-node-browsers
+      - image: circleci/ruby:2.6.5-node
         environment:
-        - RACK_ENV=test
-        - NODE_ENV=test
-        - DATABASE_URL=postgres://shinyuser:shinytest@127.0.0.1:5432/shinycms_test
-        - SHINYCMS_THEME=TEST
-
+          DATABASE_URL=postgres://shinyuser:shinypass@127.0.0.1:5432/shinycms_test
+          NODE_ENV=test
+          RAILS_ENV=test
       - image: circleci/postgres:10-ram
         environment:
-        - POSTGRES_USER=shinyuser
-        - POSTGRES_PASSWORD=shinytest
-        - POSTGRES_DB=shinycms_test
-
-    working_directory: ~/ShinyCMS
+          POSTGRES_DB=shinycms_test
+          POSTGRES_USER=shinyuser
+          POSTGRES_PASSWORD=shinypass
 
     steps:
       - checkout
 
-      # Install Ruby dependencies
+      # Restore Ruby dependencies from cache, or install them
       - restore_cache:
           keys:
-            - bundler-cache-v0.1-{{ checksum "Gemfile.lock" }}
-            - bundler-cache-v0.1-
-
+          - bundler-cache-{{ checksum "Gemfile.lock" }}
+          - bundler-cache-
       - run:
           name: Install Ruby gems
           command: |
@@ -36,50 +31,77 @@ jobs:
             bundle config --local set path 'vendor/bundle'
             bundle config set deployment 'true'
             bundle check || bundle install --jobs=4 --retry=3
-
       - save_cache:
-          key: bundler-cache-v0.1-{{ checksum "Gemfile.lock" }}
+          key: bundler-cache-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
-      # Install Node dependencies
+      # Restore Node dependencies from cache, or install them
       - restore_cache:
           keys:
-            - yarn-cache-v0.1-{{ checksum "yarn.lock" }}
-            - yarn-cache-v0.1-
-
+            - yarn-cache-{{ checksum "yarn.lock" }}
+            - yarn-cache-
       - run:
           name: Install Node modules
           command: yarn install --cache-folder ~/.cache/yarn
-
-      - run: bundle exec rake webpacker:compile
-
       - save_cache:
-          key: yarn-cache-v0.1-{{ checksum "yarn.lock" }}
+          key: yarn-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
 
+      # Restore Webpacker assets from cache, or compile them
+      - restore_cache:
+          keys:
+            - webpacker-cache-{{ .Revision }}
+            - webpacker-cache-
+      - run:
+          name: Compile webpacker assets
+          command: bundle exec rake webpacker:compile
+      - save_cache:
+          key: webpacker-cache-{{ .Revision }}
+          paths:
+            - public/packs-test/
+
+  # Test phase
+  test:
+    parallelism: 2
+
+    steps:
+      - checkout
+
       # Database setup
-      - run: bundle exec rake db:schema:load
+      - run:
+          name: Load database schema
+          command: bundle exec rake db:schema:load
+      - run:
+          name: Load system data (Capabilities, Feature Flags, etc)
+          command: bundle exec rake db:seed
 
       # Run tests!
       - run:
-          name: run tests
+          name: Run tests
           command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-              circleci tests split --split-by=timings)"
-
-            bundle exec rspec \
-              --format progress \
+            mkdir test-results
+            mkdir test-results/rspec
+            TEST_FILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            bundle exec rspec $TEST_FILES \
               --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
+              --out test-results/rspec/rspec.xml \
+              --format progress
 
       # Collect test reports for CodeCov
       - store_test_results:
-          path: /tmp/test-results
+          path: test-results
       - store_artifacts:
-          path: /tmp/test-results
+          path: test-results
           destination: test-results
+
+# Tie it all together with a workflow
+workflows:
+  version: 2
+  setup_and_test:
+    jobs:
+    - setup
+    - test:
+        requires:
+        - setup
