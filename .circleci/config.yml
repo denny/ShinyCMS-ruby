@@ -18,10 +18,10 @@ jobs:
       - run:
           name: Install Ruby gems
           command: |
-            gem install bundler
-            bundle config --local set path 'vendor/bundle'
-            bundle config set deployment 'true'
-            bundle check || bundle install --jobs=4 --retry=3
+            BUNDLE_PATH=vendor/bundle
+            BUNDLE_DEPLOYMENT=true
+            bundle check || \
+              bundle install --without-development --jobs=4 --retry=3
       - save_cache:
           key: bundler-cache-{{ checksum "Gemfile.lock" }}
           paths:
