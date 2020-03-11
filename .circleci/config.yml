@@ -8,6 +8,8 @@ jobs:
     docker:
       - image: circleci/ruby:2.6.5-node
         environment:
+        - BUNDLE_PATH=vendor/bundle
+        - BUNDLE_WITHOUT=development
         - DATABASE_URL=postgres://shinyuser:shinypass@127.0.0.1:5432/shinycms_test
         - NODE_ENV=test
         - RAILS_ENV=test
@@ -34,7 +36,7 @@ jobs:
           command: |
             gem install bundler
             bundle check || \
-              bundle install --jobs=4 --retry=3 --without development
+              bundle install --jobs=4 --retry=3
       - save_cache:
           key: bundler-cache-{{ checksum "Gemfile.lock" }}
           paths:
