@@ -21,7 +21,7 @@ jobs:
         - POSTGRES_DB=shinycms_test
 
     working_directory: ~/ShinyCMS
-    parallelism: 4
+    # parallelism: 4
 
     steps:
       - checkout
