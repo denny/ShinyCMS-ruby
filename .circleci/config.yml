@@ -34,7 +34,7 @@ jobs:
           command: |
             gem install bundler
             bundle check || \
-              bundle install --without-development --jobs=4 --retry=3
+              bundle install --jobs=4 --retry=3 --without development
       - save_cache:
           key: bundler-cache-{{ checksum "Gemfile.lock" }}
           paths:
