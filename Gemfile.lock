@@ -113,6 +113,7 @@ GEM
       simplecov
       url
     coderay (1.1.2)
+    colorize (0.8.1)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     db_fixtures_dump (0.1.1)
@@ -140,6 +141,9 @@ GEM
       railties (>= 4.2.0)
     faker (2.10.2)
       i18n (>= 1.6, < 2)
+    fasterer (0.8.2)
+      colorize (~> 0.7)
+      ruby_parser (>= 3.14.1)
     ffi (1.12.1)
     geocoder (1.6.1)
     globalid (0.4.2)
@@ -301,6 +305,8 @@ GEM
     ruby-progressbar (1.10.1)
     ruby-vips (2.0.17)
       ffi (~> 1.9)
+    ruby_parser (3.14.2)
+      sexp_processor (~> 4.9)
     safely_block (0.3.0)
       errbase (>= 0.1.1)
     sassc (2.2.1)
@@ -311,6 +317,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    sexp_processor (4.14.1)
     simplecov (0.18.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11.0)
@@ -371,6 +378,7 @@ DEPENDENCIES
   email_address!
   factory_bot_rails!
   faker!
+  fasterer!
   i18n-tasks (~> 0.9.31)!
   image_processing (~> 1.10)!
   kaminari!
