@@ -2,9 +2,12 @@
 
 version: 2.1
 
-executors:
-  app_and_db:
+jobs:
+  # Setup phase
+  setup:
     working_directory: ~/ShinyCMS
+    parallelism: 4
+
     docker:
       - image: circleci/ruby:2.6.5-node
         environment:
@@ -17,10 +20,6 @@ executors:
           POSTGRES_PASSWORD=shinypass
           POSTGRES_DB=shinycms_test
 
-jobs:
-  # Setup phase
-  setup:
-    executor: app_and_db
     steps:
       - checkout
 
@@ -66,13 +65,6 @@ jobs:
           paths:
             - public/packs-test/
 
-  # Test phase
-  test:
-    executor: app_and_db
-
-    parallelism: 4
-
-    steps:
       # Database setup
       - run:
           name: Create database and load required seed data (Feature Flags, etc)
@@ -96,13 +88,3 @@ jobs:
       - store_artifacts:
           path: test-results
           destination: test-results
-
-# Tie it all together with a workflow
-workflows:
-  version: 2.1
-  setup_and_test:
-    jobs:
-    - setup
-    - test:
-        requires:
-        - setup
