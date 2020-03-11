@@ -2,10 +2,14 @@
 
 version: 2
 
+working_directory: ~/ShinyCMS
+
 jobs:
   setup:
     docker:
       - image: circleci/ruby:2.6.5-node
+        environment:
+        - BUNDLE_PATH=vendor/bundle
 
     steps:
       - checkout
@@ -18,8 +22,7 @@ jobs:
       - run:
           name: Install Ruby gems
           command: |
-            BUNDLE_PATH=vendor/bundle
-            BUNDLE_DEPLOYMENT=true
+            gem install bundler
             bundle check || \
               bundle install --without-development --jobs=4 --retry=3
       - save_cache:
@@ -61,6 +64,7 @@ jobs:
           DATABASE_URL=postgres://shinyuser:shinypass@127.0.0.1:5432/shinycms_test
           NODE_ENV=test
           RAILS_ENV=test
+
       - image: circleci/postgres:10-ram
         environment:
           POSTGRES_DB=shinycms_test
