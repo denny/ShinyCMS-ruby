@@ -1,16 +1,26 @@
 # CircleCI config, for https://circleci.com/gh/denny/ShinyCMS-ruby
 
-version: 2
+version: 2.1
 
-working_directory: ~/ShinyCMS
-
-jobs:
-  setup:
+executors:
+  app_and_db:
+    working_directory: ~/ShinyCMS
     docker:
       - image: circleci/ruby:2.6.5-node
         environment:
-        - BUNDLE_PATH=vendor/bundle
+          DATABASE_URL=postgres://shinyuser:shinypass@127.0.0.1:5432/shinycms_test
+          NODE_ENV=test
+          RAILS_ENV=test
+      - image: circleci/postgres:10-ram
+        environment:
+          POSTGRES_USER=shinyuser
+          POSTGRES_PASSWORD=shinypass
+          POSTGRES_DB=shinycms_test
 
+jobs:
+  # Setup phase
+  setup:
+    executor: app_and_db
     steps:
       - checkout
 
@@ -58,31 +68,15 @@ jobs:
 
   # Test phase
   test:
-    docker:
-      - image: circleci/ruby:2.6.5-node
-        environment:
-          DATABASE_URL=postgres://shinyuser:shinypass@127.0.0.1:5432/shinycms_test
-          NODE_ENV=test
-          RAILS_ENV=test
+    executor: app_and_db
 
-      - image: circleci/postgres:10-ram
-        environment:
-          POSTGRES_DB=shinycms_test
-          POSTGRES_USER=shinyuser
-          POSTGRES_PASSWORD=shinypass
-
-    parallelism: 2
+    parallelism: 4
 
     steps:
-      - checkout
-
       # Database setup
       - run:
-          name: Load database schema
-          command: bundle exec rake db:schema:load
-      - run:
-          name: Load system data (Capabilities, Feature Flags, etc)
-          command: bundle exec rake db:seed
+          name: Create database and load required seed data (Feature Flags, etc)
+          command: bundle exec rails db:setup
 
       # Run tests!
       - run:
@@ -90,7 +84,7 @@ jobs:
           command: |
             mkdir test-results
             mkdir test-results/rspec
-            TEST_FILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            TEST_FILES=$( circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings )
             bundle exec rspec $TEST_FILES \
               --format RspecJunitFormatter \
               --out test-results/rspec/rspec.xml \
@@ -105,7 +99,7 @@ jobs:
 
 # Tie it all together with a workflow
 workflows:
-  version: 2
+  version: 2.1
   setup_and_test:
     jobs:
     - setup
