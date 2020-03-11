@@ -6,15 +6,6 @@ jobs:
   setup:
     docker:
       - image: circleci/ruby:2.6.5-node
-        environment:
-          DATABASE_URL=postgres://shinyuser:shinypass@127.0.0.1:5432/shinycms_test
-          NODE_ENV=test
-          RAILS_ENV=test
-      - image: circleci/postgres:10-ram
-        environment:
-          POSTGRES_DB=shinycms_test
-          POSTGRES_USER=shinyuser
-          POSTGRES_PASSWORD=shinypass
 
     steps:
       - checkout
@@ -64,6 +55,18 @@ jobs:
 
   # Test phase
   test:
+    docker:
+      - image: circleci/ruby:2.6.5-node
+        environment:
+          DATABASE_URL=postgres://shinyuser:shinypass@127.0.0.1:5432/shinycms_test
+          NODE_ENV=test
+          RAILS_ENV=test
+      - image: circleci/postgres:10-ram
+        environment:
+          POSTGRES_DB=shinycms_test
+          POSTGRES_USER=shinyuser
+          POSTGRES_PASSWORD=shinypass
+
     parallelism: 2
 
     steps:
