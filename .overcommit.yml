@@ -9,8 +9,8 @@
 # https://github.com/sds/overcommit#configuration
 
 PreCommit:
-  CaseConflicts:
-    enabled: false
+  Brakeman:
+    enabled: true
 
   RuboCop:
     enabled: true
@@ -21,6 +21,18 @@ PreCommit:
     exclude:
       - '**/*.md'
 
+  CaseConflicts:
+    enabled: false
+
 PrePush:
+  RailsSchemaUpToDate:
+    enabled: true
+
   RSpec:
+    enabled: true
+
+  BundleAudit:
+    enabled: true
+
+  Fasterer:
     enabled: true
