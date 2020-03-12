@@ -21,10 +21,12 @@ references:
       POSTGRES_DB: shinycms_test
 
 jobs:
+  build:
   # Setup phase
-  setup:
+  # setup:
     docker:
       - *app
+      - *db
 
     working_directory: ~/ShinyCMS
 
@@ -75,36 +77,36 @@ jobs:
             - ~/ShinyCMS/public/packs-test/
 
   # Testing phase
-  test:
-    docker:
-      - *app
-      - *db
-
-    working_directory: ~/ShinyCMS
-    parallelism: 4
-
-    steps:
-      - checkout
-
-      - restore_cache:
-          keys:
-          - bundler-cache-{{ checksum "Gemfile.lock" }}
-          - bundler-cache-
-      - restore_cache:
-          keys:
-            - yarn-cache-{{ checksum "yarn.lock" }}
-            - yarn-cache-
-      - restore_cache:
-          keys:
-            - webpacker-cache-{{ .Revision }}
-            - webpacker-cache-
-
-      # Install bundler (again?) and double-check the gems are all there
-      - run:
-          name: Install bundler
-          command: |
-            gem install bundler
-            bundle check || bundle install
+#  test:
+#    docker:
+#      - *app
+#      - *db
+#
+#    working_directory: ~/ShinyCMS
+#    parallelism: 4
+#
+#    steps:
+#      - checkout
+#
+#      - restore_cache:
+#          keys:
+#          - bundler-cache-{{ checksum "Gemfile.lock" }}
+#          - bundler-cache-
+#      - restore_cache:
+#          keys:
+#            - yarn-cache-{{ checksum "yarn.lock" }}
+#            - yarn-cache-
+#      - restore_cache:
+#          keys:
+#            - webpacker-cache-{{ .Revision }}
+#            - webpacker-cache-
+#
+#      # Install bundler (again?) and double-check the gems are all there
+#      - run:
+#          name: Install bundler
+#          command: |
+#            gem install bundler
+#            bundle check || bundle install
 
       # Install MJML binary
       - run:
@@ -138,11 +140,11 @@ jobs:
           path: /tmp/test-results
           destination: test-results
 
-workflows:
-  version: 2
-  setup_and_test:
-    jobs:
-      - setup
-      - test:
-          requires:
-            - setup
+#workflows:
+#  version: 2
+#  setup_and_test:
+#    jobs:
+#      - setup
+#      - test:
+#          requires:
+#            - setup
