@@ -63,6 +63,8 @@ RSpec.describe 'User accounts', type: :request do
 
       FeatureFlag.find_or_create_by!( name: 'user_registration' )
                  .update!( enabled: true )
+      FeatureFlag.find_or_create_by!( name: 'recaptcha_on_registration' )
+                 .update!( enabled: true )
 
       get new_user_registration_path
 
@@ -75,6 +77,8 @@ RSpec.describe 'User accounts', type: :request do
       ENV[ 'RECAPTCHA_V2_SITE_KEY' ] = 'abcdefg1234bleurgh'
 
       FeatureFlag.find_or_create_by!( name: 'user_registration' )
+                 .update!( enabled: true )
+      FeatureFlag.find_or_create_by!( name: 'recaptcha_on_registration' )
                  .update!( enabled: true )
 
       get new_user_registration_path
