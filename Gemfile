@@ -19,23 +19,23 @@ source 'https://rubygems.org' do
   gem 'devise-pwned_password'
   gem 'pundit'
 
+  # Bot detection to protect forms (including registration, comments, etc)
+  gem 'recaptcha'
+
   # Validate email addresses
   gem 'email_address'
-
-  # Pagination
-  gem 'kaminari'
-
-  # Tags
-  gem 'acts-as-taggable-on'
 
   # MJML emails
   gem 'mjml-rails'
 
+  # Tags
+  gem 'acts-as-taggable-on'
+
+  # Pagination
+  gem 'kaminari'
+
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'
-
-  # Bot detection to protect forms (including registration, comments, etc)
-  gem 'recaptcha'
 
   # Web stats
   gem 'ahoy_matey'
@@ -45,19 +45,21 @@ source 'https://rubygems.org' do
   gem 'image_processing', '~> 1.10'
   gem 'mini_magick'
 
+  # Pry is a debugging tool
+  # Uncomment it here if you want to use it on the Rails console in production
+  # gem 'pry-rails'
+
   group :development, :test do
+    # Debugging tool. Uncomment it here if you commented it out in production.
+    gem 'pry-rails'
     # Better-looking console output
     gem 'awesome_print'
-    # Check gems for security issues
-    gem 'bundler-audit', require: false
     # Create test objects
     gem 'factory_bot_rails'
     # Fill test objects with fake data
     gem 'faker'
     # Utils for working with translation strings
     gem 'i18n-tasks', '~> 0.9.31'
-    # Debugging tool
-    gem 'pry-rails'
     # Tests are good, m'kay?
     gem 'rspec-rails'
   end
@@ -65,10 +67,12 @@ source 'https://rubygems.org' do
   group :development do
     # Scan for security vulnerabilities
     gem 'brakeman', require: false
+    # Check gems for security issues
+    gem 'bundler-audit', require: false
     # Used to create demo site data
     gem 'db_fixtures_dump', require: false
     # Check for slow code
-    gem 'fasterer'
+    gem 'fasterer', require: false
     # Open emails sent by the system in a browser tab
     gem 'letter_opener'
     # Reload dev server when files change
