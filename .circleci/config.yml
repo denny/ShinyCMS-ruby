@@ -103,6 +103,11 @@ jobs:
             gem install bundler
             bundle check || bundle install
 
+      # Install MJML binary
+      - run:
+          name: Install MJML
+          command: npm install mjml
+
       # Database setup
       - run:
           name: Wait for database
