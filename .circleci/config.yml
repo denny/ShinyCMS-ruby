@@ -2,84 +2,149 @@
 
 version: 2
 
+references:
+  app: &app
+    image: circleci/ruby:2.6.5-node
+    environment:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: ~/ShinyCMS/vendor/bundle
+      DATABASE_URL: postgres://shinyuser:shinypass@127.0.0.1:5432/shinycms_test
+      NODE_ENV: test
+      RAILS_ENV: test
+      SHINYCMS_THEME: TEST
+  db: &db
+    image: circleci/postgres:10-ram
+    environment:
+      POSTGRES_USER: shinyuser
+      POSTGRES_PASSWORD: shinypass
+      POSTGRES_DB: shinycms_test
+
 jobs:
   build:
+  # Setup phase
+  # setup:
     docker:
-      - image: circleci/ruby:2.6.5-node-browsers
-        environment:
-        - RACK_ENV=test
-        - NODE_ENV=test
-        - DATABASE_URL=postgres://shinyuser:shinytest@127.0.0.1:5432/shinycms_test
-        - SHINYCMS_THEME=TEST
-
-      - image: circleci/postgres:10-ram
-        environment:
-        - POSTGRES_USER=shinyuser
-        - POSTGRES_PASSWORD=shinytest
-        - POSTGRES_DB=shinycms_test
+      - *app
+      - *db
 
     working_directory: ~/ShinyCMS
 
     steps:
       - checkout
 
-      # Install Ruby dependencies
-      - restore_cache:
-          keys:
-            - bundler-cache-v0.1-{{ checksum "Gemfile.lock" }}
-            - bundler-cache-v0.1-
-
+      # Restore Ruby dependencies from cache, or install them
       - run:
-          name: Install Ruby gems
-          command: |
-            gem install bundler
-            bundle config --local set path 'vendor/bundle'
-            bundle config set deployment 'true'
-            bundle check || bundle install --jobs=4 --retry=3
-
-      - save_cache:
-          key: bundler-cache-v0.1-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-
-      # Install Node dependencies
+          name: Install Bundler
+          command: gem install bundler
       - restore_cache:
           keys:
-            - yarn-cache-v0.1-{{ checksum "yarn.lock" }}
-            - yarn-cache-v0.1-
+          - bundler-cache-{{ checksum "Gemfile.lock" }}
+          - bundler-cache-
+      - run:
+          name: Install gems
+          command: bundle check || bundle install
+      - save_cache:
+          key: bundler-cache-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/ShinyCMS/vendor/bundle
 
+      # Restore Node dependencies from cache, or install them
+      - restore_cache:
+          keys:
+            - yarn-cache-{{ checksum "yarn.lock" }}
+            - yarn-cache-
       - run:
           name: Install Node modules
           command: yarn install --cache-folder ~/.cache/yarn
-
-      - run: bundle exec rake webpacker:compile
-
       - save_cache:
-          key: yarn-cache-v0.1-{{ checksum "yarn.lock" }}
+          key: yarn-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
 
+      # Restore Webpacker assets from cache, or compile them
+      - restore_cache:
+          keys:
+            - webpacker-cache-{{ .Revision }}
+            - webpacker-cache-
+      # run: bundle exec rails assets:precompile
+      - run:
+          name: Compile webpacker assets
+          command: bundle exec rake webpacker:compile
+      - save_cache:
+          key: webpacker-cache-{{ .Revision }}
+          paths:
+            - ~/ShinyCMS/public/packs-test/
+
+  # Testing phase
+#  test:
+#    docker:
+#      - *app
+#      - *db
+#
+#    working_directory: ~/ShinyCMS
+#    parallelism: 4
+#
+#    steps:
+#      - checkout
+#
+#      - restore_cache:
+#          keys:
+#          - bundler-cache-{{ checksum "Gemfile.lock" }}
+#          - bundler-cache-
+#      - restore_cache:
+#          keys:
+#            - yarn-cache-{{ checksum "yarn.lock" }}
+#            - yarn-cache-
+#      - restore_cache:
+#          keys:
+#            - webpacker-cache-{{ .Revision }}
+#            - webpacker-cache-
+#
+#      # Install bundler (again?) and double-check the gems are all there
+#      - run:
+#          name: Install bundler
+#          command: |
+#            gem install bundler
+#            bundle check || bundle install
+
+      # Install MJML binary
+      - run:
+          name: Install MJML
+          command: npm install mjml
+
       # Database setup
-      - run: bundle exec rake db:schema:load
+      - run:
+          name: Wait for database
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Load database schema
+          command: bundle exec rails db:schema:load
 
       # Run tests!
       - run:
-          name: run tests
+          name: Run tests
           command: |
             mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-              circleci tests split --split-by=timings)"
-
-            bundle exec rspec \
-              --format progress \
+            TEST_FILES=$( circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings )
+            bundle exec rspec $TEST_FILES \
+              --profile 10 \
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
+              --format progress
 
-      # Collect test reports for CodeCov
+      # Store test results for CodeCov
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+
+#workflows:
+#  version: 2
+#  setup_and_test:
+#    jobs:
+#      - setup
+#      - test:
+#          requires:
+#            - setup
