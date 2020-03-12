@@ -16,7 +16,7 @@ env:
   - SHINYCMS_THEME=TEST
 
 before_install:
-  - nvm install 8.16
+  - npm install mjml
 
 before_script:
   - bundle exec rails assets:precompile
