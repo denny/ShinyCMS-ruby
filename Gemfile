@@ -47,11 +47,11 @@ source 'https://rubygems.org' do
 
   # Pry is a debugging tool
   # Uncomment it here if you want to use it on the Rails console in production
-  # gem 'pry-rails'
+  gem 'pry-rails'
 
   group :development, :test do
     # Debugging tool. Uncomment it here if you commented it out in production.
-    gem 'pry-rails'
+    # gem 'pry-rails'
     # Better-looking console output
     gem 'awesome_print'
     # Create test objects
