@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :blog_post, class: 'BlogPost' do
-    title  { Faker::Science.unique.scientist.titlecase }
+    title  { Faker::Books::CultureSeries.unique.culture_ship.titlecase }
     slug   { title.dup.parameterize }
     body   { Faker::Lorem.paragraph }
     hidden { false }

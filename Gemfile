@@ -5,9 +5,6 @@ source 'https://rubygems.org' do
 
   gem 'puma', '~> 4.3'
 
-  # Use Active Model has_secure_password
-  gem 'bcrypt', '~> 3.1.7'
-
   # Reduce boot times through caching; required in config/boot.rb
   gem 'bootsnap', '>= 1.4.2', require: false
   # Use faster SCSS gem for stylesheets
@@ -17,21 +14,31 @@ source 'https://rubygems.org' do
 
   # Sessions, authentication, and authorisation
   gem 'activerecord-session_store'
+  gem 'bcrypt', '~> 3.1.7'
   gem 'devise'
   gem 'devise-pwned_password'
   gem 'pundit'
 
-  # Tags
-  gem 'acts-as-taggable-on'
+  # Validate email addresses
+  gem 'email_address'
 
   # Pagination
   gem 'kaminari'
 
-  # Bot detection to protect forms (including registration, comments, etc)
-  gem 'recaptcha'
+  # Tags
+  gem 'acts-as-taggable-on'
 
   # Spam comment detection
   gem 'akismet'
+
+  # MJML emails
+  gem 'mjml-rails'
+
+  # CKEditor: WYSIWYG editor for admin area
+  gem 'ckeditor'
+
+  # Bot detection to protect forms (including registration, comments, etc)
+  gem 'recaptcha'
 
   # Web stats
   gem 'ahoy_matey'
@@ -40,15 +47,6 @@ source 'https://rubygems.org' do
   gem 'aws-sdk-s3'
   gem 'image_processing', '~> 1.10'
   gem 'mini_magick'
-
-  # CKEditor: WYSIWYG editor for admin area
-  gem 'ckeditor'
-
-  # Validate email addresses
-  gem 'email_address'
-
-  # MJML emails
-  gem 'mjml-rails'
 
   group :development, :test do
     # Better-looking console output
@@ -60,23 +58,29 @@ source 'https://rubygems.org' do
     # Fill test objects with fake data
     gem 'faker'
     # Utils for working with translation strings
-    gem 'i18n-tasks', '~> 0.9.30'
+    gem 'i18n-tasks', '~> 0.9.31'
     # Debugging tool
     gem 'pry-rails'
     # Tests are good, m'kay?
     gem 'rspec-rails'
-    # Linter
-    gem 'rubocop'
-    gem 'rubocop-rails'
   end
 
   group :development do
+    # Scan for security vulnerabilities
+    gem 'brakeman', require: false
     # Used to create demo site data
-    gem 'db_fixtures_dump'
+    gem 'db_fixtures_dump', require: false
+    # Check for slow code
+    gem 'fasterer'
     # Open emails sent by the system in a browser tab
     gem 'letter_opener'
     # Reload dev server when files change
     gem 'listen', '>= 3.0.5', '< 3.3'
+    # Helps you manage your git hooks
+    gem 'overcommit', require: false
+    # Linter
+    gem 'rubocop', require: false
+    gem 'rubocop-rails', require: false
   end
 
   group :test do
