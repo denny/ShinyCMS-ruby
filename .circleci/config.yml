@@ -33,15 +33,16 @@ jobs:
       - checkout
 
       # Restore Ruby dependencies from cache, or install them
+      - run:
+          name: Install Bundler
+          command: gem install bundler
       - restore_cache:
           keys:
           - bundler-cache-{{ checksum "Gemfile.lock" }}
           - bundler-cache-
       - run:
-          name: Install Ruby gems
-          command: |
-            gem install bundler
-            bundle check || bundle install
+          name: Install gems
+          command: bundle check || bundle install
       - save_cache:
           key: bundler-cache-{{ checksum "Gemfile.lock" }}
           paths:
