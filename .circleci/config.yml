@@ -13,6 +13,7 @@ jobs:
         - DATABASE_URL=postgres://shinyuser:shinypass@127.0.0.1:5432/shinycms_test
         - NODE_ENV=test
         - RAILS_ENV=test
+        - SHINYCMS_THEME=TEST
 
       - image: circleci/postgres:10-ram
         environment:
@@ -35,8 +36,7 @@ jobs:
           name: Install Ruby gems
           command: |
             gem install bundler
-            bundle check || \
-              bundle install --jobs=4 --retry=3
+            bundle check || bundle install --jobs=4 --retry=3
       - save_cache:
           key: bundler-cache-{{ checksum "Gemfile.lock" }}
           paths:
@@ -70,8 +70,10 @@ jobs:
 
       # Database setup
       - run:
-          name: Create database and load required seed data (Feature Flags, etc)
-          command: bundle exec rails db:setup
+          name: Load database schema and required seed data (Feature Flags, etc)
+          command: |
+            bundle exec rails db:schema:load
+            bundle exec rails db:seed
 
       # Run tests!
       - run:
