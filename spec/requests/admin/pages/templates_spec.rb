@@ -14,7 +14,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.templates.index.title' ).titlecase
-      expect( response.body ).to include template.name
+      expect( response.body ).to have_css 'td', text: template.name
     end
   end
 
