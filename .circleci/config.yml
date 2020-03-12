@@ -8,7 +8,7 @@ references:
     environment:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
-      BUNDLE_PATH: vendor/bundle
+      BUNDLE_PATH: ~/ShinyCMS/vendor/bundle
       DATABASE_URL: postgres://shinyuser:shinypass@127.0.0.1:5432/shinycms_test
       NODE_ENV: test
       RAILS_ENV: test
@@ -46,7 +46,7 @@ jobs:
       - save_cache:
           key: bundler-cache-{{ checksum "Gemfile.lock" }}
           paths:
-            - vendor/bundle
+            - ~/ShinyCMS/vendor/bundle
 
       # Restore Node dependencies from cache, or install them
       - restore_cache:
@@ -72,7 +72,7 @@ jobs:
       - save_cache:
           key: webpacker-cache-{{ .Revision }}
           paths:
-            - public/packs-test/
+            - ~/ShinyCMS/public/packs-test/
 
   # Testing phase
   test:
@@ -120,7 +120,7 @@ jobs:
             bundle exec rspec $TEST_FILES \
               --profile 10 \
               --format RspecJunitFormatter \
-              --out test-results/rspec.xml \
+              --out /tmp/test-results/rspec.xml \
               --format progress
 
       # Store test results for CodeCov
