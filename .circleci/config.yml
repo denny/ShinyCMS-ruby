@@ -95,6 +95,13 @@ jobs:
             - webpacker-cache-{{ .Revision }}
             - webpacker-cache-
 
+      # Install bundler (again?) and double-check the gems are all there
+      - run:
+          name: Install bundler
+          command: |
+            gem install bundler
+            bundle check || bundle install
+
       # Database setup
       - run:
           name: Wait for database
