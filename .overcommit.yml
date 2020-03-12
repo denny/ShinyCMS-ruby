@@ -9,6 +9,9 @@
 # https://github.com/sds/overcommit#configuration
 
 PreCommit:
+  ALL:
+    quiet: false
+
   Brakeman:
     enabled: true
 
@@ -25,6 +28,9 @@ PreCommit:
     enabled: false
 
 PrePush:
+  ALL:
+    quiet: false
+
   RailsSchemaUpToDate:
     enabled: true
 
