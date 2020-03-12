@@ -2,29 +2,40 @@
 
 version: 2
 
+references:
+  app: &app
+    image: circleci/ruby:2.6.5-node
+    environment:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: vendor/bundle
+      DATABASE_URL: postgres://shinyuser:shinypass@127.0.0.1:5432/shinycms_test
+      NODE_ENV: test
+      RAILS_ENV: test
+      SHINYCMS_THEME: TEST
+  db: &db
+    image: circleci/postgres:10-ram
+    environment:
+      POSTGRES_USER: shinyuser
+      POSTGRES_PASSWORD: shinypass
+      POSTGRES_DB: shinycms_test
+
 jobs:
   # Setup phase
-  build:
+  setup:
     docker:
-      - image: circleci/ruby:2.6.5-node
-        environment:
-        - BUNDLE_PATH=vendor/bundle
-        - DATABASE_URL=postgres://shinyuser:shinypass@127.0.0.1:5432/shinycms_test
-        - NODE_ENV=test
-        - RAILS_ENV=test
-        - SHINYCMS_THEME=TEST
-
-      - image: circleci/postgres:10-ram
-        environment:
-        - POSTGRES_USER=shinyuser
-        - POSTGRES_PASSWORD=shinypass
-        - POSTGRES_DB=shinycms_test
+      - *app
 
     working_directory: ~/ShinyCMS
     # parallelism: 4
 
     steps:
       - checkout
+
+      # Let's see which bundler version we're getting
+      - run:
+          name: Bundler version
+          command: bundle -v
 
       # Restore Ruby dependencies from cache, or install them
       - restore_cache:
@@ -67,26 +78,60 @@ jobs:
           paths:
             - public/packs-test/
 
+  # Testing phase
+  test:
+    docker:
+      - *app
+      - *db
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - bundler-cache-{{ checksum "Gemfile.lock" }}
+          - bundler-cache-
+      - restore_cache:
+          keys:
+            - yarn-cache-{{ checksum "yarn.lock" }}
+            - yarn-cache-
+      - restore_cache:
+          keys:
+            - webpacker-cache-{{ .Revision }}
+            - webpacker-cache-
+
       # Database setup
       - run:
-          name: Load database schema and required seed data (Feature Flags, etc)
+          name: Wait for database
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Load database schema
           command: bundle exec rails db:schema:load
 
       # Run tests!
       - run:
           name: Run tests
           command: |
-            mkdir test-results
-            mkdir test-results/rspec
+            mkdir /tmp/test-results
             TEST_FILES=$( circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings )
             bundle exec rspec $TEST_FILES \
+              --profile 10 \
               --format RspecJunitFormatter \
-              --out test-results/rspec/rspec.xml \
+              --out test-results/rspec.xml \
               --format progress
 
-      # Collect test reports for CodeCov
+      # Store test results for CodeCov
       - store_test_results:
-          path: test-results
+          path: /tmp/test-results
       - store_artifacts:
-          path: test-results
+          path: /tmp/test-results
           destination: test-results
+
+workflows:
+  version: 2
+  setup_and_test:
+    jobs:
+      - setup
+      - test:
+          requires:
+            - setup
