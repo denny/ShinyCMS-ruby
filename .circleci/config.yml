@@ -27,7 +27,6 @@ jobs:
       - *app
 
     working_directory: ~/ShinyCMS
-    # parallelism: 4
 
     steps:
       - checkout
@@ -66,6 +65,7 @@ jobs:
           keys:
             - webpacker-cache-{{ .Revision }}
             - webpacker-cache-
+      # run: bundle exec rails assets:precompile
       - run:
           name: Compile webpacker assets
           command: bundle exec rake webpacker:compile
@@ -79,6 +79,9 @@ jobs:
     docker:
       - *app
       - *db
+
+    working_directory: ~/ShinyCMS
+    # parallelism: 4
 
     steps:
       - checkout
