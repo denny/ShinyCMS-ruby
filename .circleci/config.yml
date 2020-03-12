@@ -32,11 +32,6 @@ jobs:
     steps:
       - checkout
 
-      # Let's see which bundler version we're getting
-      - run:
-          name: Bundler version
-          command: bundle -v
-
       # Restore Ruby dependencies from cache, or install them
       - restore_cache:
           keys:
@@ -46,7 +41,7 @@ jobs:
           name: Install Ruby gems
           command: |
             gem install bundler
-            bundle check || bundle install --jobs=4 --retry=3
+            bundle check || bundle install
       - save_cache:
           key: bundler-cache-{{ checksum "Gemfile.lock" }}
           paths:
