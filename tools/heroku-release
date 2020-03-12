@@ -1,2 +1,2 @@
-rails assets:precompile
-rails db:migrate
+bundle exec rails assets:precompile
+bundle exec rails db:migrate
