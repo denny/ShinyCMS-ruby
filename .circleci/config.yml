@@ -70,9 +70,7 @@ jobs:
       # Database setup
       - run:
           name: Load database schema and required seed data (Feature Flags, etc)
-          command: |
-            bundle exec rails db:schema:load
-            bundle exec rails db:seed
+          command: bundle exec rails db:schema:load
 
       # Run tests!
       - run:
