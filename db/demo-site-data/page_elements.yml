@@ -50,7 +50,7 @@ PageElement_4:
   id: 4
   page_id: 1
   name: banner_image
-  content: banner.jpg
+  content: banner.png
   content_type: Image
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: &8 2019-11-13 23:02:20.400180000 Z
