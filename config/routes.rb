@@ -33,8 +33,8 @@ Rails.application.routes.draw do
 
     get  'discussions',            to: 'discussions#index', as: :discussions
     get  'discussion/:id',         to: 'discussions#show',  as: :discussion
-    get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
     post 'discussion/:id',         to: 'discussions#add_comment'
+    get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
     post 'discussion/:id/:number', to: 'discussions#add_reply'
 
     get 'news',                     to: 'news#index', as: :view_news
