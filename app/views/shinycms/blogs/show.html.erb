@@ -14,7 +14,7 @@
   </p>
   <% end %>
 
-  <% if @post.discussion.present? %>
+  <% unless @post.discussion.blank? || @post.discussion.hidden? || @post.discussion.locked? %>
   <footer>
     <a onclick="toggleHidden('comment_form')"><%= t( '.reply' ) %></a>
     (<%= @post.discussion.comments.count %> <%= t( 'discussions.comments' ).downcase %>)
@@ -26,7 +26,7 @@
   <% end %>
 </section>
 
-<% if @post.discussion.present? %>
+<% unless @post.discussion.blank? || @post.discussion.hidden? %>
   <%= render partial: 'discussions/discussion', locals: { resource: @post } %>
 <% end %>
 
