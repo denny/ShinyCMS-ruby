@@ -14,9 +14,29 @@ class ApplicationController < ActionController::Base
   before_action :set_view_paths
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  layout 'layouts/main_site'
+  after_action  :track_ahoy_visit
 
-  after_action :track_ahoy_visit
+  helper_method :recaptcha_v2_site_key,
+                :recaptcha_v3_site_key,
+                :recaptcha_checkbox_site_key
+
+  def self.recaptcha_v3_secret_key
+    ENV[ 'RECAPTCHA_V3_SECRET_KEY' ]
+  end
+
+  def self.recaptcha_v2_secret_key
+    ENV[ 'RECAPTCHA_V2_SECRET_KEY' ]
+  end
+
+  def self.recaptcha_checkbox_secret_key
+    ENV[ 'RECAPTCHA_CHECKBOX_SECRET_KEY' ]
+  end
+
+  def self.akismet_api_key
+    ENV[ 'AKISMET_API_KEY' ]
+  end
+
+  layout 'layouts/main_site'
 
   protected
 
@@ -51,6 +71,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_in_path_for( resource )
+    check_for_pwnage( resource )
+
+    return URI( request.referer ).path if can_redirect_to_referer_after_login?
+
+    return admin_path if resource.can? :view_admin_area
+
+    user_profile_path( resource.username )
+  end
+
+  private
+
   # Check user's password against pwned password service and warn if necessary
   def check_for_pwnage( resource )
     return unless resource.try( :pwned? )
@@ -62,17 +94,6 @@ class ApplicationController < ActionController::Base
 
   def can_redirect_to_referer_after_login?
     request.referer.present? && request.referer != new_user_session_url
-  end
-
-  # Override post-login redirect
-  def after_sign_in_path_for( resource )
-    check_for_pwnage( resource )
-
-    return URI( request.referer ).path if can_redirect_to_referer_after_login?
-
-    return admin_path if resource.can? :view_admin_area
-
-    user_profile_path( resource.username )
   end
 
   # Track all actions with Ahoy
@@ -88,5 +109,17 @@ class ApplicationController < ActionController::Base
     return unless Theme.current( current_user )
 
     prepend_view_path Theme.current( current_user ).view_path
+  end
+
+  def recaptcha_v3_site_key
+    ENV[ 'RECAPTCHA_V3_SITE_KEY' ]
+  end
+
+  def recaptcha_v2_site_key
+    ENV[ 'RECAPTCHA_V2_SITE_KEY' ]
+  end
+
+  def recaptcha_checkbox_site_key
+    ENV[ 'RECAPTCHA_CHECKBOX_SITE_KEY' ]
   end
 end

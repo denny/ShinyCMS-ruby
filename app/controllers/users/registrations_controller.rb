@@ -12,17 +12,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   include RecaptchaHelper
 
   before_action :check_feature_flags, only: %i[ new create ]
-  before_action :stash_recaptcha_keys
 
   def new
     super
   end
 
   def create
-    invisible_success = verify_invisible_recaptcha( 'registration' )
-    checkbox_success  = verify_checkbox_recaptcha unless invisible_success
-
-    if invisible_success || checkbox_success
+    if pass_recaptcha
       super
     else
       flash[ :show_checkbox_recaptcha ] = true
@@ -38,11 +34,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
     edit_user_registration_path
   end
 
-  def stash_recaptcha_keys
-    return unless feature_enabled? :recaptcha_on_registration
+  private
 
-    @recaptcha_v3_key = ENV[ 'RECAPTCHA_V3_SITE_KEY' ]
-    @recaptcha_v2_key = ENV[ 'RECAPTCHA_V2_SITE_KEY' ]
+  def pass_recaptcha
+    return true if no_recaptcha_keys
+    return true if verify_invisible_recaptcha( 'registration' )
+
+    verify_checkbox_recaptcha || false
+  end
+
+  def no_recaptcha_keys
+    recaptcha_checkbox_site_key.blank? &&
+      recaptcha_v2_site_key.blank? && recaptcha_v3_site_key.blank?
   end
 
   def check_feature_flags
