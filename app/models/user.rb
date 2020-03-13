@@ -18,18 +18,16 @@ class User < ApplicationRecord
   validates :username, length:     { maximum: 50 }
   validates :username, format:     ANCHORED_USERNAME_REGEX
 
-  validates :email, presence: true
+  validates :email, presence:   true
+  validates :email, uniqueness: true, case_sensitive: false
   validates_with EmailAddress::ActiveRecordValidator
 
   # User profile pic (powered by ActiveStorage)
   has_one_attached :profile_pic
 
   # Authorisation (powered by Pundit)
-  has_many :user_capabilities, inverse_of: 'user',
-                               dependent: :restrict_with_error
-  has_many :capabilities,      inverse_of: 'users',
-                               through: :user_capabilities,
-                               dependent: :restrict_with_error
+  has_many :user_capabilities, dependent: :destroy
+  has_many :capabilities, through: :user_capabilities, inverse_of: :users
 
   # Web stats (powered by Ahoy)
   has_many :visits, class_name: 'Ahoy::Visit', dependent: :nullify
@@ -38,12 +36,9 @@ class User < ApplicationRecord
   has_many :comments, inverse_of: 'author', dependent: :destroy
 
   # Admin content: throw an error if it hasn't been removed or reassigned
-  has_many :blogs,      inverse_of: 'owner',
-                        dependent: :restrict_with_error
-  has_many :blog_posts, inverse_of: 'author',
-                        dependent: :restrict_with_error
-  has_many :news_posts, inverse_of: 'author',
-                        dependent: :restrict_with_error
+  has_many :blogs,      inverse_of: :owner,  dependent: :restrict_with_error
+  has_many :blog_posts, inverse_of: :author, dependent: :restrict_with_error
+  has_many :news_posts, inverse_of: :author, dependent: :restrict_with_error
 
   # Configure default count-per-page for pagination
   paginates_per 20
