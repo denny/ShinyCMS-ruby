@@ -17,20 +17,6 @@ RSpec.describe 'Discussions/Comments', type: :request do
     create :top_level_comment, discussion: @discussion
 
     @nested = create :nested_comment, discussion: @discussion, parent: @comment
-
-    @v3_secret = ENV.delete( 'RECAPTCHA_V3_SECRET_KEY' )
-    @v3_site   = ENV.delete( 'RECAPTCHA_V3_SITE_KEY'   )
-
-    ENV['RECAPTCHA_V3_SECRET_KEY'] = 'XYZ'
-    ENV['RECAPTCHA_V3_SITE_KEY'  ] = 'ZYX'
-  end
-
-  after :each do
-    ENV.delete( 'RECAPTCHA_V3_SECRET_KEY' ) if @v3_secret.nil?
-    ENV.delete( 'RECAPTCHA_V3_SITE_KEY'   ) if @v3_site.nil?
-
-    ENV['RECAPTCHA_V3_SECRET_KEY'] = @v3_secret unless @v3_site.nil?
-    ENV['RECAPTCHA_V3_SITE_KEY'  ] = @v3_site   unless @v3_site.nil?
   end
 
   describe 'GET /blog/1999/12/testing' do
@@ -211,6 +197,61 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.alerts', text: I18n.t( 'discussions.add_comment.failure' )
+    end
+
+    it 'adds a new top-level comment to the discussion, with a recaptcha check' do
+      allow_any_instance_of( DiscussionsController )
+        .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
+      allow( DiscussionsController )
+        .to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
+
+      create :feature_flag, name: 'recaptcha_on_comments', enabled: true
+
+      title = Faker::Science.scientist
+      body  = Faker::Lorem.paragraph
+
+      post discussion_path( @discussion ), params: {
+        comment: { title: title, body: body, author_type: 'anonymous' }
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to discussion_path( @discussion )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
+      expect( response.body ).to have_css 'h2', text: title
+      expect( response.body ).to include body
+    end
+
+    it 'classifies a new comment as spam after checking Akismet' do
+      create :feature_flag, name: 'akismet_on_comments', enabled: true
+
+      # TODO: put Akismet key in CI ENV short-term, stub this longer-term?
+      # allow( DiscussionsController )
+      #  .to receive( :akismet_api_key ).and_return( 'A_VALID_KEY :-\' )
+
+      always_fail_author_name = 'viagra-test-123'
+      title = Faker::Science.scientist
+      body  = Faker::Lorem.paragraph
+
+      post discussion_path( @discussion ), params: {
+        comment: {
+          title: title,
+          body: body,
+          author_type: 'pseudonymous',
+          author_name: always_fail_author_name
+        }
+      }
+
+      expect( response ).to have_http_status :found
+      expect( response ).to redirect_to discussion_path( @discussion )
+      follow_redirect!
+      expect( response ).to have_http_status :ok
+
+      expect( Comment.last.spam ).to be true
+
+      expect( response.body ).not_to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
+      expect( response.body ).not_to have_css 'h2', text: title
     end
   end
 

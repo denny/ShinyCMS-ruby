@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 2020_03_08_113704) do
     t.string "author_url"
     t.string "title"
     t.text "body"
+    t.string "ip_address"
     t.boolean "locked", default: false, null: false
     t.boolean "hidden", default: false, null: false
     t.boolean "spam", default: false, null: false
