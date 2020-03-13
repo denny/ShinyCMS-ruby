@@ -1,2 +1,3 @@
-rails assets:precompile
-rails db:migrate
+gem uninstall bundler --version 1.17.2
+bundle exec rails assets:precompile
+bundle exec rails db:migrate

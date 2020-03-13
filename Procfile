@@ -1,2 +1,2 @@
 release: ./tools/heroku-release
-web: rails s
+web: bundle exec rails s

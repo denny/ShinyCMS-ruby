@@ -6,7 +6,26 @@ class FeatureFlag < ApplicationRecord
   validates :enabled_for_logged_in, inclusion: { in: [ true, false ] }
   validates :enabled_for_admins,    inclusion: { in: [ true, false ] }
 
+  # Instance methods
+
+  def enable
+    update! enabled: true, enabled_for_logged_in: true, enabled_for_admins: true
+  end
+
+  def disable
+    update! enabled: false, enabled_for_logged_in: false,
+            enabled_for_admins: false
+  end
+
   # Class methods
+
+  def self.enable( name )
+    find_by!( name: name.to_s ).enable
+  end
+
+  def self.disable( name )
+    find_by!( name: name.to_s ).disable
+  end
 
   def self.update_all_flags( params )
     params['flags'].each_key do |flag_id|

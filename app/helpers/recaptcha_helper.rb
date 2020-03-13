@@ -3,32 +3,36 @@ module RecaptchaHelper
   include MainSiteHelper
 
   def verify_checkbox_recaptcha
-    verify_recaptcha_v2
-  end
-
-  def verify_invisible_recaptcha( action = nil )
-    verify_recaptcha_v3( action ) || verify_recaptcha_v2
-  end
-
-  def verify_recaptcha_v2
-    return if ENV['RECAPTCHA_V2_SECRET_KEY'].blank?
+    return if self.class.recaptcha_checkbox_secret_key.blank?
 
     verify_recaptcha(
-      secret_key: ENV['RECAPTCHA_V2_SECRET_KEY'],
+      secret_key: self.class.recaptcha_checkbox_secret_key,
       env: Rails.env
     )
   end
 
-  def verify_recaptcha_v3( action )
-    return if action.blank?
-    return if ENV['RECAPTCHA_V3_SECRET_KEY'].blank?
+  def verify_invisible_recaptcha( action = nil )
+    verify_invisible_recaptcha_v3( action ) || verify_invisible_recaptcha_v2
+  end
+
+  def verify_invisible_recaptcha_v2
+    return if self.class.recaptcha_v2_secret_key.blank?
+
+    verify_recaptcha(
+      secret_key: self.class.recaptcha_v2_secret_key,
+      env: Rails.env
+    )
+  end
+
+  def verify_invisible_recaptcha_v3( action )
+    return if self.class.recaptcha_v3_secret_key.blank?
 
     min_score = minimum_score( action ).to_f
 
     verify_recaptcha(
       action: action,
       minimum_score: min_score,
-      secret_key: ENV['RECAPTCHA_V3_SECRET_KEY'],
+      secret_key: self.class.recaptcha_v3_secret_key,
       env: Rails.env
     )
   end

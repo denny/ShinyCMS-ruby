@@ -22,6 +22,9 @@ source 'https://rubygems.org' do
   # Bot detection to protect forms (including registration, comments, etc)
   gem 'recaptcha'
 
+  # Spam comment detection
+  gem 'akismet'
+
   # Validate email addresses
   gem 'email_address'
 
