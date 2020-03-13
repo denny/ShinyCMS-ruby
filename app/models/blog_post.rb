@@ -7,8 +7,8 @@ class BlogPost < ApplicationRecord
 
   has_one :discussion, as: :resource, dependent: :destroy
 
-  delegate :discussion_hidden, to: :discussion, allow_nil: true
-  delegate :discussion_locked, to: :discussion, allow_nil: true
+  delegate :hidden, to: :discussion, allow_nil: true, prefix: true
+  delegate :locked, to: :discussion, allow_nil: true, prefix: true
 
   # Allowed characters for slugs: a-z A-Z 0-9 . _ -
   SLUG_REGEX = %r{[-_\.a-zA-Z0-9]+}.freeze
