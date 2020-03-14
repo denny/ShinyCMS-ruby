@@ -29,6 +29,10 @@ class User < ApplicationRecord
   has_many :user_capabilities, dependent: :destroy
   has_many :capabilities, through: :user_capabilities, inverse_of: :users
 
+  # User's custom site settings
+  has_many :settings, class_name: 'SettingValue', inverse_of: :user,
+                      dependent: :destroy
+
   # Web stats (powered by Ahoy)
   has_many :visits, class_name: 'Ahoy::Visit', dependent: :nullify
 
