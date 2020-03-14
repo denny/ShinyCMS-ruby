@@ -24,6 +24,8 @@ class AdminController < ApplicationController
 
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def index
     skip_authorization
 
@@ -36,14 +38,18 @@ class AdminController < ApplicationController
       redirect_to pages_path
     elsif current_user.can? :list, :blogs
       redirect_to blogs_path
+    elsif current_user.can? :list, :news
+      redirect_to news_path
     elsif current_user.can? :list, :users
       redirect_to users_path
     elsif current_user.can? :list, :settings
       redirect_to admin_site_settings_path
     end
   end
-  # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
   private
 
