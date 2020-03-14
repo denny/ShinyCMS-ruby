@@ -98,7 +98,8 @@ en:
     default_page: Default page
     default_section: Default section
     post_login_redirect: Post-login redirect
-    recaptcha_v3_registration_score: 'reCAPTCHA: Minimum score for user registration'
+    recaptcha_comment_score: 'reCAPTCHA: Minimum score for comments'
+    recaptcha_registration_score: 'reCAPTCHA: Minimum score for user registration'
     tag_view: Default tag view
     theme_name: Theme name
     # NB, the above strings are all here to keep them together, but not all of

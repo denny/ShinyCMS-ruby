@@ -117,6 +117,18 @@ seed FeatureFlag, { name: 'news' }, {
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
+seed FeatureFlag, { name: 'recaptcha_on_comments' }, {
+  description: 'Protect comment forms with reCAPTCHA',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
+seed FeatureFlag, { name: 'recaptcha_on_registrations' }, {
+  description: 'Protect user registration form with reCAPTCHA',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
 seed FeatureFlag, { name: 'tags' }, {
   description: 'Turn on site-wide tag features',
   enabled: true,
@@ -191,12 +203,20 @@ setting = seed Setting, { name: 'post_login_redirect' }, {
 }
 setting.values.create_or_find_by!( value: '/' )
 
-setting = seed Setting, { name: 'recaptcha_v3_registration_score' }, {
+setting = seed Setting, { name: 'recaptcha_comment_score' }, {
+  description: 'Minimum score for reCAPTCHA V3 on anon/pseudonymous comments',
+  level: 'admin',
+  locked: false
+}
+setting.values.create_or_find_by!( value: '0.6' )
+setting.update( locked: true )
+
+setting = seed Setting, { name: 'recaptcha_registration_score' }, {
   description: 'Minimum score for reCAPTCHA V3 on user registration',
   level: 'admin',
   locked: false
 }
-setting.values.create_or_find_by!( value: '0.5' )
+setting.values.create_or_find_by!( value: '0.4' )
 setting.update( locked: true )
 
 setting = seed Setting, { name: 'tag_view' }, {
