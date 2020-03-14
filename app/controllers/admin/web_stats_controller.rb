@@ -11,7 +11,8 @@
 class Admin::WebStatsController < AdminController
   def index
     @visits = filtered_visits
-    authorise @visits
+    authorise Ahoy
+    authorise @visits if @visits.present?
   end
 
   def filtered_visits

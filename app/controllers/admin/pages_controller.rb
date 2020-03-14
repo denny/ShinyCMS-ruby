@@ -10,10 +10,10 @@
 # ============================================================================
 class Admin::PagesController < AdminController
   def index
+    @top_level_items = Page.all_top_level_items
+
     authorise Page
     authorise PageSection
-
-    @top_level_items = Page.all_top_level_items
     @top_level_items.each do |item|
       authorise item
     end

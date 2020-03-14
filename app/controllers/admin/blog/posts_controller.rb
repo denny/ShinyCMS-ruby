@@ -17,8 +17,8 @@ class Admin::Blog::PostsController < AdminController
   def index
     page_num = params[ :page ] || 1
     @posts = @blog.all_posts.order( :created_at ).page( page_num )
-    # authorise @posts
-    skip_authorization  # TODO: FIXME
+    authorise BlogPost
+    authorise @posts.first if @posts.present?
   end
 
   def new
