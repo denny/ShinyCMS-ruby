@@ -167,18 +167,16 @@ InsertSet.create! if InsertSet.first.blank?
 setting = seed Setting, { name: 'admin_ip_list' }, {
   description: 'IP addresses allowed to access admin area (comma-separated)',
   level: 'site',
-  locked: false
+  locked: true
 }
 setting.values.create_or_find_by!( value: '' )
-setting.update( locked: true )
 
 setting = seed Setting, { name: 'all_comment_notifications_email' }, {
   description: 'Set this to an email address to receive a notification for every comment posted on the site',
   level: 'site',
-  locked: false
+  locked: true
 }
 setting.values.create_or_find_by!( value: '' )
-setting.update( locked: true )
 
 setting = seed Setting, { name: 'allowed_to_comment' }, {
   description: 'Lowest-ranking user-type (Anonymous/Pseudonymous/Authenticated/None) that is allowed to post comments',
@@ -212,18 +210,16 @@ setting.values.create_or_find_by!( value: '/' )
 setting = seed Setting, { name: 'recaptcha_comment_score' }, {
   description: 'Minimum score for reCAPTCHA V3 on anon/pseudonymous comments',
   level: 'admin',
-  locked: false
+  locked: true
 }
 setting.values.create_or_find_by!( value: '0.6' )
-setting.update( locked: true )
 
 setting = seed Setting, { name: 'recaptcha_registration_score' }, {
   description: 'Minimum score for reCAPTCHA V3 on user registration',
   level: 'admin',
-  locked: false
+  locked: true
 }
 setting.values.create_or_find_by!( value: '0.4' )
-setting.update( locked: true )
 
 setting = seed Setting, { name: 'tag_view' }, {
   description: "('cloud' or 'list')",
