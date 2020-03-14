@@ -117,6 +117,12 @@ seed FeatureFlag, { name: 'news' }, {
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
+seed FeatureFlag, { name: 'akismet_on_comments' }, {
+  description: 'Detect spam comments with Akismet',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
 seed FeatureFlag, { name: 'recaptcha_on_comment_form' }, {
   description: 'Protect comment forms with reCAPTCHA',
   enabled: true,
