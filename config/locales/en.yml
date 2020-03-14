@@ -93,6 +93,8 @@ en:
 
   settings:
     admin_ip_list: Admin IP list
+    all_comment_notifications_email: Email to notify of ALL comments
+    allowed_to_comment: Allowed to comment
     default_page: Default page
     default_section: Default section
     post_login_redirect: Post-login redirect
@@ -154,6 +156,7 @@ en:
     blogs: Blogs
     comments: Comments
     comment_notifications: Comment notifications
+    news: News
     tags: Tags
     user_login: User Login
     user_profiles: User Profiles
@@ -262,11 +265,6 @@ en:
         everybody: Everybody
         logged_in: Logged-in users
         admins: Admins
-        blogs: Blogs
-        tags: Tags
-        user_login: User login
-        user_profiles: User profiles
-        user_registration: User registration
       update:
         success: Feature flags updated
         failure: Failed to update feature flags
@@ -411,6 +409,9 @@ en:
   models:
     page_template:
       template_file_must_exist: The template file must be in pages/templates
+
+    setting_value:
+      one_per_user: You can only have one setting per value per user
 
     concerns:
       name_title_slug:
