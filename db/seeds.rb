@@ -94,25 +94,31 @@ seed Capability, { name: 'destroy', category: admins_cc }
 
 # Feature Flags (to turn on/off areas of site functionality)
 seed FeatureFlag, { name: 'blogs' }, {
-  description: 'Enable blog (or blogs) feature',
+  description: 'Turn this on if you want a blog on your site',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
 seed FeatureFlag, { name: 'comments' }, {
-  description: 'Enable comments features',
+  description: 'Enable comment and discussion features site-wide',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
+seed FeatureFlag, { name: 'comment_notifications' }, {
+  description: 'Send notification emails to people who get comments',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
 seed FeatureFlag, { name: 'news' }, {
-  description: 'Enable news feature',
+  description: 'Add a news section to your site',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
 seed FeatureFlag, { name: 'tags' }, {
-  description: 'Enable tag features',
+  description: 'Turn on site-wide tag features',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true
@@ -130,7 +136,7 @@ seed FeatureFlag, { name: 'user_profiles' }, {
   enabled_for_admins: true
 }
 seed FeatureFlag, { name: 'user_registration' }, {
-  description: 'Allow users to create accounts',
+  description: 'Allow new users to create an account',
   enabled: false,
   enabled_for_logged_in: false,
   enabled_for_admins: false
@@ -141,25 +147,28 @@ InsertSet.create! if InsertSet.first.blank?
 
 # Settings
 setting = seed Setting, { name: 'admin_ip_list' }, {
-  description: 'Comma/space-separated list of IP addresses allowed to access admin area',
+  description: 'IP addresses allowed to access admin area (comma-separated)',
   level: 'site',
-  locked: true
+  locked: false
 }
 setting.values.create_or_find_by!( value: '' )
+setting.update( locked: true )
 
 setting = seed Setting, { name: 'all_comment_notifications_email' }, {
   description: 'Set this to an email address to receive a notification for every comment posted on the site',
   level: 'site',
-  locked: true
+  locked: false
 }
 setting.values.create_or_find_by!( value: '' )
+setting.update( locked: true )
 
 setting = seed Setting, { name: 'allowed_to_comment' }, {
   description: 'Lowest-ranking user-type (Anonymous/Pseudonymous/Authenticated/None) that is allowed to post comments',
   level: 'site',
-  locked: true
+  locked: false
 }
 setting.values.create_or_find_by!( value: 'Anonymous' )
+setting.update( locked: true )
 
 setting = seed Setting, { name: 'default_page' }, {
   description: 'Default top-level page (either its name or its slug)',
@@ -185,9 +194,10 @@ setting.values.create_or_find_by!( value: '/' )
 setting = seed Setting, { name: 'recaptcha_v3_registration_score' }, {
   description: 'Minimum score for reCAPTCHA V3 on user registration',
   level: 'admin',
-  locked: true
+  locked: false
 }
 setting.values.create_or_find_by!( value: '0.5' )
+setting.update( locked: true )
 
 setting = seed Setting, { name: 'tag_view' }, {
   description: "('cloud' or 'list')",
@@ -201,7 +211,9 @@ setting = seed Setting, { name: 'theme_name' }, {
   level: 'site',
   locked: false
 }
-setting.values.create_or_find_by!( value: 'halcyonic' )
+setting.values.create_or_find_by!( value: '' )
 
 # Let people know how to set up an admin user
-puts 'To generate a ShinyCMS super-admin user: rails shiny:admin:create'
+unless Rails.env.test? || User.that_can( :add, :admin_users ).present?
+  puts 'To generate a ShinyCMS super-admin user: rails shiny:admin:create'
+end
