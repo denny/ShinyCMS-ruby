@@ -237,7 +237,7 @@ setting.values.create_or_find_by!( value: '' )
 
 # Let people know how to set up an admin user
 unless Rails.env.test? || User.that_can( :add, :admin_users ).present?
-  # ::nocov::
+  # :nocov:
   puts 'To generate a ShinyCMS super-admin user: rails shiny:admin:create'
-  # ::nocov::
+  # :nocov:
 end
