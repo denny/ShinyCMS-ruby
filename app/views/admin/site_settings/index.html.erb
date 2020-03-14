@@ -21,7 +21,7 @@
       <%= label :settings, "value_#{setting.id}", t( "settings.#{setting.name}" ) %>
     </td>
     <td>
-      <%= text_field :settings, "value_#{setting.id}", value: setting.site_value %>
+      <%= text_field :settings, "value_#{setting.id}", value: setting.value %>
     </td>
     <td>
       <% if setting.locked %>

@@ -24,26 +24,35 @@ class AdminController < ApplicationController
 
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def index
     skip_authorization
-
     redirect_to root_path unless current_user.can? :view_admin_area
 
-    # Redirect user based on which admin features they have access to (in order
-    # of which one seems most likely to be useful if they have access to many)
-    # TODO: Add a user-setting so admins can set their preferred landing page
-    if current_user.can? :list, :pages
+    # If user has set a post_login_redirect, use it here
+    custom = Setting.find_by( name: 'post_login_redirect' )
+                    .values.find_by( user: current_user )&.value
+    if custom.present? && custom.start_with?('/')
+      redirect_to custom
+    # Otherwise, redirect based on which admin features they have access to
+    # (in approximate order of most 'useful' ones first)
+    elsif current_user.can? :list, :pages
       redirect_to pages_path
     elsif current_user.can? :list, :blogs
       redirect_to blogs_path
+    elsif current_user.can? :list, :news_posts
+      redirect_to news_path
     elsif current_user.can? :list, :users
       redirect_to users_path
     elsif current_user.can? :list, :settings
       redirect_to admin_site_settings_path
     end
   end
-  # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
   private
 

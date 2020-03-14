@@ -5,7 +5,7 @@ RSpec.describe 'Discussion and comment moderation', type: :request do
     @admin = create :comment_admin
     sign_in @admin
 
-    create :feature_flag, name: 'comments', enabled: true
+    FeatureFlag.enable :comments
 
     post = create :blog_post
     @discussion = create :discussion, resource: post

@@ -8,8 +8,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
 
   describe 'GET /admin/site-settings' do
     it 'fetches the site settings page in the admin area' do
-      s1 = create :setting, name: 'theme_name'
-      create :setting_value, setting_id: s1.id, value: 'thematic'
+      Setting.set( :theme_name ).to 'thematic'
 
       get admin_site_settings_path
 
@@ -20,12 +19,11 @@ RSpec.describe 'Admin: Site Settings', type: :request do
 
   describe 'PUT /admin/site-settings' do
     it 'updates any setting levels that were changed' do
-      s1 = create :setting, name: 'theme_name'
-      v1 = create :setting_value, setting_id: s1.id
+      s1 = Setting.set( :theme_name ).to 'thematic'
 
       put admin_site_settings_path, params: {
         "settings[level_#{s1.id}]": 'user',
-        "settings[value_#{s1.id}]": v1.value
+        "settings[value_#{s1.id}]": 'thematic'
       }
 
       expect( response      ).to     have_http_status :found
@@ -43,8 +41,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
     end
 
     it 'updates any setting values that were changed' do
-      s1 = create :setting, name: 'theme_name'
-      create :setting_value, setting_id: s1.id, value: 'Original'
+      s1 = Setting.set( :theme_name ).to 'Original'
 
       put admin_site_settings_path, params: {
         "settings[level_#{s1.id}]": s1.level,
@@ -62,8 +59,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
     end
 
     it "doesn't update settings if they weren't changed" do
-      s1 = create :setting, name: 'theme_name'
-      create :setting_value, setting_id: s1.id, value: 'Unchanging'
+      s1 = Setting.set( :theme_name ).to 'Unchanging'
 
       put admin_site_settings_path, params: {
         "settings[level_#{s1.id}]": s1.level,
@@ -80,12 +76,11 @@ RSpec.describe 'Admin: Site Settings', type: :request do
     end
 
     it "won't update the level of a locked setting" do
-      s1 = create :setting, name: 'admin_ip_list', locked: true
-      v1 = create :setting_value, setting_id: s1.id, value: '127.0.0.1, 1.2.3.4'
+      s1 = Setting.set( :admin_ip_list ).to '127.0.0.1, 1.2.3.4'
 
       put admin_site_settings_path, params: {
         "settings[level_#{s1.id}]": 'user',
-        "settings[value_#{s1.id}]": v1.value
+        "settings[value_#{s1.id}]": '127.0.0.1, 1.2.3.4'
       }
 
       expect( response      ).to     have_http_status :found
@@ -105,8 +100,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
     end
 
     it 'will update the value of a locked setting' do
-      s1 = create :setting, name: 'admin_ip_list', locked: true
-      create :setting_value, setting_id: s1.id, value: '127.0.0.1, 1.2.3.4'
+      s1 = Setting.set( :admin_ip_list ).to '127.0.0.1, 1.2.3.4'
 
       put admin_site_settings_path, params: {
         "settings[level_#{s1.id}]": s1.level,

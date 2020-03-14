@@ -20,11 +20,15 @@ class FeatureFlag < ApplicationRecord
   # Class methods
 
   def self.enable( name )
-    find_by!( name: name.to_s ).enable
+    flag = find_by!( name: name.to_s )
+    flag.enable
+    flag
   end
 
   def self.disable( name )
-    find_by!( name: name.to_s ).disable
+    flag = find_by!( name: name.to_s )
+    flag.disable
+    flag
   end
 
   def self.update_all_flags( params )

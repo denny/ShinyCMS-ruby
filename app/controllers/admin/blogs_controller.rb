@@ -13,8 +13,8 @@ class Admin::BlogsController < AdminController
 
   def index
     @blogs = Blog.all
-    # authorise @blogs
-    skip_authorization # TODO: FIXME
+    authorise Blog
+    authorise @blogs if @blogs.present?
   end
 
   def new

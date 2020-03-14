@@ -9,43 +9,47 @@ class Setting < ApplicationRecord
 
   validate :validate_not_locked, on: :update
 
-  has_many :values, class_name: 'SettingValue',
-                    inverse_of: 'setting',
+  has_many :values, class_name: 'SettingValue', inverse_of: 'setting',
                     dependent: :destroy
 
   before_update :enforce_locking
 
   # Instance methods
 
-  def site_value
-    values.where( user_id: nil ).pick( :value )
+  def setting_value
+    values.find_by( user_id: nil )
   end
 
-  def user_value( user )
-    return unless level == 'user'
-
-    values.where( user_id: user.id ).pick( :value )
+  def value
+    setting_value&.value
   end
 
-  def admin_value( user )
-    return unless level == 'admin'
-    return unless user.admin?
+  def setting_value_for( user )
+    return if level.nil?
 
-    values.where( user_id: user.id ).pick( :value )
+    return if level == 'admin' && user.not_admin?
+
+    values.find_by( user_id: user )
+  end
+
+  def value_for( user )
+    setting_value_for( user )&.value
   end
 
   # Class methods
 
+  def self.set( name )
+    find_by!( name: name.to_s ).setting_value
+  end
+
   def self.get( name, user = nil )
-    return unless ( setting = find_by( name: name.to_s ) )
+    setting = find_by name: name.to_s
+    return if setting.blank?
 
-    value = setting.user_value( user ) if user.present?
+    value = setting.value_for( user ) if user.present?
     return value if value.present?
 
-    value = setting.admin_value( user ) if user.present?
-    return value if value.present?
-
-    setting.site_value
+    setting.value
   end
 
   def self.user_settings
@@ -59,7 +63,7 @@ class Setting < ApplicationRecord
   private
 
   def validate_not_locked
-    return unless locked
+    return unless locked?
 
     errors.add :base, 'Attempted to update a locked setting'
   end

@@ -2,14 +2,13 @@
 class Page < ApplicationRecord
   include NameTitleSlug
 
-  validates :template_id, presence:  true
+  validates :template_id, presence:   true
   validates :hidden,      inclusion:  { in: [ true, false ] }
 
-  belongs_to :section,  class_name: 'PageSection', optional: true,
-                        inverse_of: 'all_pages'
+  belongs_to :section,  class_name: 'PageSection', inverse_of: 'all_pages',
+                        optional: true
 
-  belongs_to :template, class_name: 'PageTemplate',
-                        inverse_of: 'pages'
+  belongs_to :template, class_name: 'PageTemplate', inverse_of: 'pages'
 
   has_many :elements, -> { order( id: :asc ) },
            class_name: 'PageElement',

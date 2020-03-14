@@ -5,6 +5,7 @@
 namespace :shiny do
   namespace :admin do
     desc 'Create a super-admin user, with the full set of capabilities'
+    # :nocov:
     task :create, %i[ u p e ] => :environment do |_t, args|
       username    = args[ :u ]
       password    = args[ :p ]
@@ -58,5 +59,6 @@ namespace :shiny do
 
       puts "ShinyCMS admin user '#{username}' created! You can log in now."
     end
+    # :nocov:
   end
 end

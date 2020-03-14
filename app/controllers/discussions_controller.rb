@@ -62,7 +62,7 @@ class DiscussionsController < ApplicationController
   end
 
   def recaptcha_pass
-    return true unless feature_enabled? :recaptcha_on_comments
+    return true unless feature_enabled? :recaptcha_on_comment_form
     return true if     @new_comment.user_id.present?
 
     verify_invisible_recaptcha( 'comment' ) || verify_checkbox_recaptcha
