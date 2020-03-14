@@ -5,6 +5,9 @@ RSpec.describe 'Discussions/Comments', type: :request do
     FeatureFlag.enable :blogs
     FeatureFlag.enable :comments
 
+    FeatureFlag.disable :recaptcha_on_comment_form
+    FeatureFlag.disable :akismet_on_comments
+
     blog = create :blog
     @post = create :blog_post, blog: blog
 
