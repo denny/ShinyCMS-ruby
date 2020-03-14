@@ -14,5 +14,6 @@ class SettingValue < ApplicationRecord
   # Pairs with Setting.set to give you Setting.set( :foo ).to( 'bar' )
   def to( new_value )
     update!( value: new_value )
+    setting
   end
 end
