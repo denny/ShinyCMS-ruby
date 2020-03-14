@@ -1,5 +1,6 @@
 # Rails-specific test setup/config
 require 'spec_helper'
+require 'database_cleaner'
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
@@ -36,11 +37,11 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
-InsertSet.create! if InsertSet.first.blank?
-
 RSpec.configure do |config|
   config.before( :suite ) do
-    # Load the seed data (feature flags, capability categories, etc)
+    # Wipe the test database, then load the required seed data
+    # (feature flags, capabilities and their categories, etc)
+    DatabaseCleaner.clean_with :truncation
     ShinyCMS::Application.load_tasks
     Rake::Task['db:seed'].invoke
   end

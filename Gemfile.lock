@@ -117,6 +117,10 @@ GEM
     colorize (0.8.1)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
+    database_cleaner (1.8.3)
+    database_cleaner-active_record (1.8.0)
+      activerecord
+      database_cleaner (~> 1.8.0)
     db_fixtures_dump (0.1.1)
     device_detector (1.0.3)
     devise (4.7.1)
@@ -374,6 +378,7 @@ DEPENDENCIES
   capybara (>= 2.15)!
   ckeditor!
   codecov!
+  database_cleaner-active_record!
   db_fixtures_dump!
   devise!
   devise-pwned_password!
@@ -403,4 +408,4 @@ DEPENDENCIES
   webpacker (~> 4.2)!
 
 BUNDLED WITH
-  2.1.4
+   2.1.4
