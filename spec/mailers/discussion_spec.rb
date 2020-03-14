@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Discussion mailer', type: :mailer do
   before :each do
-    create :feature_flag, name: 'comment_notifications', enabled: true
+    FeatureFlag.enable :comment_notifications
 
     @site_name = I18n.t( 'site_name' )
 
@@ -66,8 +66,8 @@ RSpec.describe 'Discussion mailer', type: :mailer do
 
   describe '.overview_notification' do
     it 'generates notification email to comment overview address' do
-      setting = create :setting, name: 'all_comment_notifications_email'
-      create :setting_value, setting: setting, value: 'test@example.com'
+      Setting.set( :all_comment_notifications_email ).to( 'test@example.com' )
+
       comment = create :top_level_comment, discussion: @discussion
 
       email = DiscussionMailer.overview_notification( comment )

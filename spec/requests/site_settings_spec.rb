@@ -4,13 +4,14 @@ RSpec.describe 'Site Settings', type: :request do
   before :each do
     @user = create :user
     sign_in @user
+
+    @setting = Setting.find_by( name: 'theme_name' )
+    @setting.update!( level: 'user' )
+    @value = @setting.values.create_or_find_by!( value: 'One', user_id: @user.id )
   end
 
   describe 'GET /site-settings' do
     it 'fetches the site settings page' do
-      s1 = create :setting, name: 'theme_name', level: 'user'
-      create :setting_value, setting_id: s1.id, user_id: @user.id, value: 'One'
-
       get site_settings_path
 
       expect( response      ).to have_http_status :ok
@@ -20,11 +21,8 @@ RSpec.describe 'Site Settings', type: :request do
 
   describe 'PUT /site-settings' do
     it 'updates any setting values that were changed' do
-      s1 = create :setting, name: 'theme_name', level: 'user'
-      create :setting_value, setting_id: s1.id, user_id: @user.id, value: 'One'
-
       put site_settings_path, params: {
-        "settings[value_#{s1.id}]": 'Two'
+        "settings[value_#{@setting.id}]": 'Two'
       }
 
       expect( response      ).to     have_http_status :found
@@ -40,11 +38,12 @@ RSpec.describe 'Site Settings', type: :request do
     it 'updates the value of an admin-only setting' do
       admin = create :admin_user
       sign_in admin
-      s1 = create :setting, name: 'theme_name', level: 'admin'
-      create :setting_value, setting_id: s1.id, user_id: admin.id, value: 'One'
+
+      @setting.update! level: 'admin'
+      @value.update! user: admin
 
       put site_settings_path, params: {
-        "settings[value_#{s1.id}]": 'Two'
+        "settings[value_#{@setting.id}]": 'Two'
       }
 
       expect( response      ).to     have_http_status :found
@@ -58,11 +57,8 @@ RSpec.describe 'Site Settings', type: :request do
     end
 
     it "doesn't update settings if they weren't changed" do
-      s1 = create :setting, name: 'theme_name', level: 'user'
-      create :setting_value, setting_id: s1.id, user_id: @user.id, value: 'One'
-
       put site_settings_path, params: {
-        "settings[value_#{s1.id}]": 'One'
+        "settings[value_#{@setting.id}]": 'One'
       }
 
       expect( response      ).to have_http_status :found
@@ -71,15 +67,15 @@ RSpec.describe 'Site Settings', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'site_settings.index.title' ).titlecase
       expect( response.body ).to have_css '.notices', text: I18n.t( 'site_settings.update.unchanged' )
-      expect( response.body ).to have_field "settings[value_#{s1.id}]", with: 'One'
+      expect( response.body ).to have_field "settings[value_#{@setting.id}]", with: 'One'
     end
 
     it 'will update the value of a locked setting' do
-      s1 = create :setting, name: 'theme_name', level: 'user', locked: true
-      create :setting_value, setting_id: s1.id, user_id: @user.id, value: 'One'
+      s1 = Setting.find_by( name: 'recaptcha_comment_score' )
+      s1.values.create_or_find_by!( user_id: @user.id, value: 'One' )
 
       put site_settings_path, params: {
-        "settings[value_#{s1.id}]": 'Two'
+        "settings[value_#{@setting.id}]": 'Two'
       }
 
       expect( response      ).to     have_http_status :found
@@ -88,8 +84,8 @@ RSpec.describe 'Site Settings', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'site_settings.index.title' ).titlecase
       expect( response.body ).to     have_css '.notices', text: I18n.t( 'site_settings.update.success' )
-      expect( response.body ).to     have_field "settings[value_#{s1.id}]", with: 'Two'
-      expect( response.body ).not_to have_field "settings[value_#{s1.id}]", with: 'One'
+      expect( response.body ).to     have_field "settings[value_#{@setting.id}]", with: 'Two'
+      expect( response.body ).not_to have_field "settings[value_#{@setting.id}]", with: 'One'
     end
   end
 end

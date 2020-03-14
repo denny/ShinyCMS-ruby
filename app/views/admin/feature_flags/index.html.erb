@@ -15,7 +15,7 @@
   <% @flags.each do |flag| %>
 	<tr>
 		<td>
-      <%= t( ".#{flag.name}" ) %>
+      <%= t( "feature_flags.#{flag.name}" ) %>
 		</td>
     <td>
       <label><%= f.check_box "features[flags][#{flag.id}][enabled]", checked: flag.enabled? %> <%= t( '.everybody' ) %></label>

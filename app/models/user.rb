@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :username, length:     { maximum: 50 }
   validates :username, format:     ANCHORED_USERNAME_REGEX
 
-  validates :email, presence: true
+  validates :email, presence:   true
   validates :email, uniqueness: true, case_sensitive: false
   validates_with EmailAddress::ActiveRecordValidator
 
@@ -28,6 +28,10 @@ class User < ApplicationRecord
   # Authorisation (powered by Pundit)
   has_many :user_capabilities, dependent: :destroy
   has_many :capabilities, through: :user_capabilities, inverse_of: :users
+
+  # User's custom site settings
+  has_many :settings, class_name: 'SettingValue', inverse_of: :user,
+                      dependent: :destroy
 
   # Web stats (powered by Ahoy)
   has_many :visits, class_name: 'Ahoy::Visit', dependent: :nullify
@@ -56,6 +60,10 @@ class User < ApplicationRecord
   def admin?
     general = CapabilityCategory.find_by( name: 'general' )
     capabilities.exists? name: 'view_admin_area', category: general
+  end
+
+  def not_admin?
+    !admin?
   end
 
   def can?( capability_name, category_name = :general )

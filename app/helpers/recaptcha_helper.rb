@@ -38,8 +38,8 @@ module RecaptchaHelper
   end
 
   def minimum_score( action )
-    score_for_action = "RECAPTCHA_V3_#{action.capitalize}_SCORE"
-    general_score    = 'RECAPTCHA_V3_SCORE'
+    score_for_action = "RECAPTCHA_#{action.capitalize}_SCORE"
+    general_score    = 'RECAPTCHA_SCORE'
 
     setting( score_for_action.downcase.to_sym ) ||
       ENV[ score_for_action ]                   ||

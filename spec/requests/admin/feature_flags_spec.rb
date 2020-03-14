@@ -8,8 +8,7 @@ RSpec.describe 'Admin: Feature Flags', type: :request do
 
   describe 'GET /admin/feature-flags' do
     it 'fetches the feature flags page in the admin area' do
-      flag = FeatureFlag.find_or_create_by!( name: 'user_login' )
-      flag.update!( enabled: true )
+      FeatureFlag.enable :user_login
 
       get feature_flags_path
 
@@ -20,8 +19,7 @@ RSpec.describe 'Admin: Feature Flags', type: :request do
 
   describe 'PUT /admin/feature-flags' do
     it 'updates any feature flags that were changed' do
-      flag = FeatureFlag.find_or_create_by!( name: 'user_profiles' )
-      flag.update!( enabled: true )
+      flag = FeatureFlag.enable :user_profiles
 
       put feature_flags_path, params: {
         "features[flags][#{flag.id}][enabled]": true,
@@ -38,8 +36,7 @@ RSpec.describe 'Admin: Feature Flags', type: :request do
     end
 
     it 'fails gracefully if an update is invalid' do
-      flag = FeatureFlag.find_or_create_by!( name: 'user_profiles' )
-      flag.update!( enabled: true )
+      flag = FeatureFlag.enable :user_profiles
 
       put feature_flags_path, params: {
         "features[flags][#{flag.id}][enabled]": nil

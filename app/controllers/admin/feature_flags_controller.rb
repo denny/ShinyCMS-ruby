@@ -11,7 +11,8 @@
 class Admin::FeatureFlagsController < AdminController
   def index
     @flags = FeatureFlag.all.order( :name )
-    authorise @flags
+    authorise FeatureFlag
+    authorise @flags if @flags.present?
   end
 
   def update

@@ -8,7 +8,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
   describe 'GET /admin/pages' do
     it 'fetches the list of pages in the admin area' do
-      create :page
+      create :top_level_page
       page = create :page, :hidden
       subpage = create :page_in_section
       create :page_in_section, :hidden
@@ -104,7 +104,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
   describe 'GET /admin/page/:id' do
     it 'loads the form to edit an existing page' do
-      page = create :page
+      page = create :top_level_page
 
       get edit_page_path( page )
 
@@ -132,7 +132,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
   describe 'POST /admin/page/:id' do
     it 'fails to update the page when submitted with a blank name' do
-      page = create :page
+      page = create :top_level_page
 
       put page_path( page ), params: {
         'page[name]': ''
@@ -144,7 +144,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
 
     it 'updates the page when the form is submitted' do
-      page = create :page
+      page = create :top_level_page
 
       put page_path( page ), params: {
         'page[name]': 'Updated by test'
@@ -160,7 +160,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
 
     it 'recreates the slug if it is wiped before submitting an update' do
-      page = create :page
+      page = create :top_level_page
       old_slug = page.slug
 
       put page_path( page ), params: {
@@ -181,9 +181,9 @@ RSpec.describe 'Admin: Pages', type: :request do
 
   describe 'DELETE /admin/page/delete/:id' do
     it 'deletes the specified page' do
-      p1 = create :page
-      p2 = create :page
-      p3 = create :page
+      p1 = create :top_level_page
+      p2 = create :top_level_page
+      p3 = create :top_level_page
 
       delete page_path( p2 )
 

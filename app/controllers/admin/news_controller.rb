@@ -15,9 +15,9 @@ class Admin::NewsController < AdminController
 
   def index
     page_num = params[ :page ] || 1
-    @posts = NewsPost.all.order( :created_at ).page( page_num )
-    # authorise @posts
-    skip_authorization # TODO: FIXME!
+    @posts = NewsPost.order( :created_at ).page( page_num )
+    authorise NewsPost
+    authorise @posts if @posts.present?
   end
 
   def new

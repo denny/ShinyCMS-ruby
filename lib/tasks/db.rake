@@ -11,8 +11,10 @@ namespace :db do
       if record.update( update_with )
         record
       else
+        # :nocov:
         raise RuntimeError "Couldn't save #{record.class} " \
               "(#{record.errors.full_messages.join(', ')})"
+        # :nocov:
       end
     end
   end

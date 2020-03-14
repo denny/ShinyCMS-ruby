@@ -2,9 +2,14 @@
 class Theme
   attr_accessor :name
 
-  def initialize( name )
-    self.name = name
+  def initialize( theme_name )
+    return unless Theme.files_exist?( theme_name )
+
+    self.name = theme_name
   end
+
+  delegate :present?, to: :name
+  delegate :blank?,   to: :name
 
   def view_path
     "app/views/themes/#{name}"
@@ -21,18 +26,28 @@ class Theme
     FileTest.directory?( Rails.root.join( 'app/views/themes', theme_name ) )
   end
 
-  # Find the current theme, if any
+  # Find and return the current theme (if any)
   def self.current( user = nil )
-    # User-level setting
+    user_theme( user ) || site_theme || default_theme
+  end
+
+  def self.user_theme( user )
+    return if user.blank?
+
     theme_name = Setting.get :theme_name, user
-    return Theme.new( theme_name ) if files_exist?( theme_name )
+    Theme.new( theme_name ).presence
+  end
 
-    # Site-wide/default setting
+  def self.site_theme
     theme_name = Setting.get :theme_name
-    return Theme.new( theme_name ) if files_exist?( theme_name )
+    Theme.new( theme_name ).presence
+  end
 
-    # Fallback default setting in ENV / .env / Heroku config
-    theme_name = ENV['SHINYCMS_THEME']
-    return Theme.new( theme_name ) if files_exist?( theme_name )
+  def self.default_theme
+    Theme.new( env_shinycms_theme ).presence
+  end
+
+  def self.env_shinycms_theme
+    ENV['SHINYCMS_THEME']
   end
 end

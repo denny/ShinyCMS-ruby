@@ -11,6 +11,7 @@ RSpec.describe 'Admin::News', type: :request do
       get news_path
 
       expect( response ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.news.index.title' ).titlecase
     end
   end
 
