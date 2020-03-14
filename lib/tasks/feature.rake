@@ -5,6 +5,7 @@
 
 namespace :shiny do
   namespace :feature do
+    # :nocov:
     desc 'Toggle a feature flag on'
     task :on, [ :name ] => [ :environment ] do |_t, args|
       flag = FeatureFlag.enable args[:name]
@@ -16,5 +17,6 @@ namespace :shiny do
       flag = FeatureFlag.disable args[:name]
       puts "Set enabled=false for #{args[:name]}" if flag.valid?
     end
+    # :nocov:
   end
 end
