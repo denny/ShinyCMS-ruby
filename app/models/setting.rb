@@ -63,7 +63,7 @@ class Setting < ApplicationRecord
   private
 
   def validate_not_locked
-    return unless locked
+    return unless locked?
 
     errors.add :base, 'Attempted to update a locked setting'
   end
