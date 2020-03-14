@@ -12,7 +12,7 @@ comments_cc   = seed CapabilityCategory, { name: 'comments'       }
 discussion_cc = seed CapabilityCategory, { name: 'discussions'    }
 features_cc   = seed CapabilityCategory, { name: 'feature_flags'  }
 inserts_cc    = seed CapabilityCategory, { name: 'inserts'        }
-news_cc       = seed CapabilityCategory, { name: 'news'           }
+news_cc       = seed CapabilityCategory, { name: 'news_posts'     }
 pages_cc      = seed CapabilityCategory, { name: 'pages'          }
 sections_cc   = seed CapabilityCategory, { name: 'page_sections'  }
 templates_cc  = seed CapabilityCategory, { name: 'page_templates' }
@@ -24,7 +24,7 @@ admins_cc     = seed CapabilityCategory, { name: 'admin_users'    }
 seed Capability, { name: 'view_admin_area'      }, { category: general_cc }
 seed Capability, { name: 'view_admin_dashboard' }, { category: general_cc }
 seed Capability, { name: 'view_admin_toolbar'   }, { category: general_cc }
-# Blogs#
+# Blogs
 seed Capability, { name: 'list',    category: blogs_cc }
 seed Capability, { name: 'add',     category: blogs_cc }
 seed Capability, { name: 'edit',    category: blogs_cc }
@@ -237,5 +237,7 @@ setting.values.create_or_find_by!( value: '' )
 
 # Let people know how to set up an admin user
 unless Rails.env.test? || User.that_can( :add, :admin_users ).present?
+  # ::nocov::
   puts 'To generate a ShinyCMS super-admin user: rails shiny:admin:create'
+  # ::nocov::
 end
