@@ -39,6 +39,12 @@ end
 InsertSet.create! if InsertSet.first.blank?
 
 RSpec.configure do |config|
+  config.before( :suite ) do
+    # Load the seed data (feature flags, capability categories, etc)
+    ShinyCMS::Application.load_tasks
+    Rake::Task['db:seed'].invoke
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

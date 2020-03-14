@@ -8,9 +8,9 @@ FactoryBot.define do
 
   factory :admin_user, parent: :user do
     after :create do |admin|
-      general_category = create :capability_category, name: 'general'
-      view = create :capability, name: 'view_admin_area', category: general_category
-      create :user_capability, user: admin, capability: view
+      category = CapabilityCategory.find_by( name: 'general' )
+      capability = category.capabilities.find_by( name: 'view_admin_area' )
+      create :user_capability, user: admin, capability: capability
     end
   end
 
@@ -19,25 +19,25 @@ FactoryBot.define do
 
   factory :blog_admin, parent: :admin_user do
     after :create do |admin|
-      category = create :capability_category, name: 'blogs'
+      category = CapabilityCategory.find_by( name: 'blogs' )
 
-      list    = create :capability, name: 'list',    category: category
-      add     = create :capability, name: 'add',     category: category
-      edit    = create :capability, name: 'edit',    category: category
-      destroy = create :capability, name: 'destroy', category: category
+      list    = category.capabilities.find_by( name: 'list'    )
+      add     = category.capabilities.find_by( name: 'add'     )
+      edit    = category.capabilities.find_by( name: 'edit'    )
+      destroy = category.capabilities.find_by( name: 'destroy' )
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
       create :user_capability, user: admin, capability: destroy
 
-      category = create :capability_category, name: 'blog_posts'
+      category = CapabilityCategory.find_by( name: 'blog_posts' )
 
-      list    = create :capability, name: 'list',    category: category
-      add     = create :capability, name: 'add',     category: category
-      edit    = create :capability, name: 'edit',    category: category
-      destroy = create :capability, name: 'destroy', category: category
-      # author  = create :capability, name: 'change_author', category: category
+      list    = category.capabilities.find_by( name: 'list'    )
+      add     = category.capabilities.find_by( name: 'add'     )
+      edit    = category.capabilities.find_by( name: 'edit'    )
+      destroy = category.capabilities.find_by( name: 'destroy' )
+      # author  = category.capabilities.find_by( name: 'author' )
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
@@ -49,20 +49,20 @@ FactoryBot.define do
 
   factory :comment_admin, parent: :admin_user do
     after :create do |admin|
-      category = create :capability_category, name: 'comments'
+      category = CapabilityCategory.find_by( name: 'comments' )
 
-      hide   = create :capability, name: 'hide',   category: category
-      lock   = create :capability, name: 'lock',   category: category
-      delete = create :capability, name: 'delete', category: category
+      hide   = category.capabilities.find_by( name: 'hide'   )
+      lock   = category.capabilities.find_by( name: 'lock'   )
+      delete = category.capabilities.find_by( name: 'delete' )
 
       create :user_capability, user: admin, capability: hide
       create :user_capability, user: admin, capability: lock
       create :user_capability, user: admin, capability: delete
 
-      category = create :capability_category, name: 'discussions'
+      category = CapabilityCategory.find_by( name: 'discussions' )
 
-      hide = create :capability, name: 'hide', category: category
-      lock = create :capability, name: 'lock', category: category
+      hide   = category.capabilities.find_by( name: 'hide'   )
+      lock   = category.capabilities.find_by( name: 'lock'   )
 
       create :user_capability, user: admin, capability: hide
       create :user_capability, user: admin, capability: lock
@@ -71,10 +71,10 @@ FactoryBot.define do
 
   factory :feature_flags_admin, parent: :admin_user do
     after :create do |admin|
-      category = create :capability_category, name: 'feature_flags'
+      category = CapabilityCategory.find_by( name: 'feature_flags' )
 
-      list    = create :capability, name: 'list',    category: category
-      edit    = create :capability, name: 'edit',    category: category
+      list    = category.capabilities.find_by( name: 'list'    )
+      edit    = category.capabilities.find_by( name: 'edit'    )
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: edit
@@ -83,13 +83,13 @@ FactoryBot.define do
 
   factory :news_admin, parent: :admin_user do
     after :create do |admin|
-      category = create :capability_category, name: 'news_posts'
+      category = CapabilityCategory.find_by( name: 'news' )
 
-      list    = create :capability, name: 'list',    category: category
-      add     = create :capability, name: 'add',     category: category
-      edit    = create :capability, name: 'edit',    category: category
-      destroy = create :capability, name: 'destroy', category: category
-      # author  = create :capability, name: 'change_author', category: category
+      list    = category.capabilities.find_by( name: 'list'    )
+      add     = category.capabilities.find_by( name: 'add'     )
+      edit    = category.capabilities.find_by( name: 'edit'    )
+      destroy = category.capabilities.find_by( name: 'destroy' )
+      # author  = category.capabilities.find_by( name: 'author' )
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
@@ -101,24 +101,24 @@ FactoryBot.define do
 
   factory :page_admin, parent: :admin_user do
     after :create do |admin|
-      category = create :capability_category, name: 'pages'
+      category = CapabilityCategory.find_by( name: 'pages' )
 
-      list    = create :capability, name: 'list',    category: category
-      add     = create :capability, name: 'add',     category: category
-      edit    = create :capability, name: 'edit',    category: category
-      destroy = create :capability, name: 'destroy', category: category
+      list    = category.capabilities.find_by( name: 'list'    )
+      add     = category.capabilities.find_by( name: 'add'     )
+      edit    = category.capabilities.find_by( name: 'edit'    )
+      destroy = category.capabilities.find_by( name: 'destroy' )
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
       create :user_capability, user: admin, capability: destroy
 
-      category = create :capability_category, name: 'page_sections'
+      category = CapabilityCategory.find_by( name: 'page_sections' )
 
-      list    = create :capability, name: 'list',    category: category
-      add     = create :capability, name: 'add',     category: category
-      edit    = create :capability, name: 'edit',    category: category
-      destroy = create :capability, name: 'destroy', category: category
+      list    = category.capabilities.find_by( name: 'list'    )
+      add     = category.capabilities.find_by( name: 'add'     )
+      edit    = category.capabilities.find_by( name: 'edit'    )
+      destroy = category.capabilities.find_by( name: 'destroy' )
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
@@ -129,12 +129,12 @@ FactoryBot.define do
 
   factory :page_template_admin, parent: :page_admin do
     after :create do |admin|
-      category = create :capability_category, name: 'page_templates'
+      category = CapabilityCategory.find_by( name: 'page_templates' )
 
-      list    = create :capability, name: 'list',    category: category
-      add     = create :capability, name: 'add',     category: category
-      edit    = create :capability, name: 'edit',    category: category
-      destroy = create :capability, name: 'destroy', category: category
+      list    = category.capabilities.find_by( name: 'list'    )
+      add     = category.capabilities.find_by( name: 'add'     )
+      edit    = category.capabilities.find_by( name: 'edit'    )
+      destroy = category.capabilities.find_by( name: 'destroy' )
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
@@ -145,12 +145,12 @@ FactoryBot.define do
 
   factory :insert_admin, parent: :admin_user do
     after :create do |admin|
-      category = create :capability_category, name: 'inserts'
+      category = CapabilityCategory.find_by( name: 'inserts' )
 
-      list    = create :capability, name: 'list',    category: category
-      add     = create :capability, name: 'add',     category: category
-      edit    = create :capability, name: 'edit',    category: category
-      destroy = create :capability, name: 'destroy', category: category
+      list    = category.capabilities.find_by( name: 'list'    )
+      add     = category.capabilities.find_by( name: 'add'     )
+      edit    = category.capabilities.find_by( name: 'edit'    )
+      destroy = category.capabilities.find_by( name: 'destroy' )
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
@@ -161,10 +161,10 @@ FactoryBot.define do
 
   factory :settings_admin, parent: :admin_user do
     after :create do |admin|
-      category = create :capability_category, name: 'settings'
+      category = CapabilityCategory.find_by( name: 'settings' )
 
-      list    = create :capability, name: 'list',    category: category
-      edit    = create :capability, name: 'edit',    category: category
+      list    = category.capabilities.find_by( name: 'list'    )
+      edit    = category.capabilities.find_by( name: 'edit'    )
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: edit
@@ -173,13 +173,13 @@ FactoryBot.define do
 
   factory :user_admin, parent: :admin_user do
     after :create do |admin|
-      category = create :capability_category, name: 'users'
+      category = CapabilityCategory.find_by( name: 'users' )
 
-      list    = create :capability, name: 'list',             category: category
-      add     = create :capability, name: 'add',              category: category
-      edit    = create :capability, name: 'edit',             category: category
-      destroy = create :capability, name: 'destroy',          category: category
-      notes   = create :capability, name: 'view_admin_notes', category: category
+      list    = category.capabilities.find_by( name: 'list'    )
+      add     = category.capabilities.find_by( name: 'add'     )
+      edit    = category.capabilities.find_by( name: 'edit'    )
+      destroy = category.capabilities.find_by( name: 'destroy' )
+      notes   = category.capabilities.find_by( name: 'view_admin_notes' )
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
@@ -191,12 +191,12 @@ FactoryBot.define do
 
   factory :super_admin, parent: :user_admin do
     after :create do |admin|
-      category = create :capability_category, name: 'admin_users'
+      category = CapabilityCategory.find_by( name: 'admin_users' )
 
-      list    = create :capability, name: 'list',    category: category
-      add     = create :capability, name: 'add',     category: category
-      edit    = create :capability, name: 'edit',    category: category
-      destroy = create :capability, name: 'destroy', category: category
+      list    = category.capabilities.find_by( name: 'list'    )
+      add     = category.capabilities.find_by( name: 'add'     )
+      edit    = category.capabilities.find_by( name: 'edit'    )
+      destroy = category.capabilities.find_by( name: 'destroy' )
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
