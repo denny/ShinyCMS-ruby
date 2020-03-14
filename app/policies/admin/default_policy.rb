@@ -1,12 +1,11 @@
 # Top-level pundit policy for admin area
 class Admin::DefaultPolicy < DefaultPolicy
   def index?
-    if @record.class.method_defined?( :first ) && @record.first.present?
-      @this_user.can? :list, @record.first.class.name
-                                    .underscore.pluralize.to_sym
-    else
-      can_list_nil?
+    unless @record.class.method_defined?( :first ) && @record.first.present?
+      return can_list_nil?
     end
+
+    @this_user.can? :list, @record.first.class.name.underscore.pluralize.to_sym
   end
 
   # Handle the case where a list page has no content yet
