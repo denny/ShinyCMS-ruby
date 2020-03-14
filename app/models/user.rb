@@ -56,6 +56,10 @@ class User < ApplicationRecord
     capabilities.exists? name: 'view_admin_area', category: general
   end
 
+  def not_admin?
+    !admin?
+  end
+
   def can?( capability_name, category_name = :general )
     cc = CapabilityCategory.find_by( name: category_name.to_s )
     return true if capabilities.exists? name: capability_name.to_s, category: cc
