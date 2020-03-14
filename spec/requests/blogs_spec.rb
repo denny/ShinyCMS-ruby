@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Blogs', type: :request do
   before :each do
+    FeatureFlag.enable :blogs
     @blog = create :blog
-    create :feature_flag, name: 'blogs', enabled: true
   end
 
   describe 'GET #recent' do
@@ -47,7 +47,7 @@ RSpec.describe 'Blogs', type: :request do
     end
 
     it 'throws an appropriate error if no blog exists' do
-      create :page
+      create :top_level_page
       Blog.all.destroy_all
 
       get view_blog_path

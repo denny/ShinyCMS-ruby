@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'News', type: :request do
   before :each do
-    create :feature_flag, name: 'news', enabled: true
+    FeatureFlag.enable :news
   end
 
   describe 'GET /news' do
@@ -44,7 +44,7 @@ RSpec.describe 'News', type: :request do
     end
 
     it 'throws an appropriate error if no news exists' do
-      create :page
+      create :top_level_page
       NewsPost.all.destroy_all
 
       get view_news_path

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Discussions/Comments', type: :request do
   before :each do
-    create :feature_flag, name: 'blogs',    enabled: true
-    create :feature_flag, name: 'comments', enabled: true
+    FeatureFlag.enable :blogs
+    FeatureFlag.enable :comments
 
     blog = create :blog
     @post = create :blog_post, blog: blog
@@ -205,7 +205,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       allow( DiscussionsController )
         .to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
 
-      create :feature_flag, name: 'recaptcha_on_comments', enabled: true
+      FeatureFlag.enable :recaptcha_on_comments
 
       title = Faker::Science.scientist
       body  = Faker::Lorem.paragraph
@@ -224,7 +224,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'classifies a new comment as spam after checking Akismet' do
-      create :feature_flag, name: 'akismet_on_comments', enabled: true
+      FeatureFlag.enable :akismet_on_comments
 
       # TODO: put Akismet key in CI ENV short-term, stub this longer-term?
       # allow( DiscussionsController )

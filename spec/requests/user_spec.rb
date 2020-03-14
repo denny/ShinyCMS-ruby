@@ -8,10 +8,9 @@ RSpec.describe 'User accounts', type: :request do
 
   describe 'GET /account/register' do
     it 'redirects to the site homepage if user registrations are not enabled' do
-      create :page
+      create :top_level_page
 
-      create :feature_flag, name: 'user_registration', enabled: false
-      # FeatureFlag.disable :user_registration
+      FeatureFlag.disable :user_registration
 
       get new_user_registration_path
 
@@ -30,8 +29,7 @@ RSpec.describe 'User accounts', type: :request do
     end
 
     it 'renders the user registration page if user registrations are enabled' do
-      create :feature_flag, name: 'user_registration', enabled: true
-      # FeatureFlag.enable :user_registration
+      FeatureFlag.enable :user_registration
 
       get new_user_registration_path
 
@@ -43,10 +41,8 @@ RSpec.describe 'User accounts', type: :request do
       allow_any_instance_of( Users::RegistrationsController )
         .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
 
-      create :feature_flag, name: 'user_registration', enabled: true
-      create :feature_flag, name: 'recaptcha_on_registration', enabled: true
-      # FeatureFlag.enable :user_registration
-      # FeatureFlag.enable :recaptcha_on_registration
+      FeatureFlag.enable :user_registration
+      FeatureFlag.enable :recaptcha_on_registration
 
       get new_user_registration_path
 
@@ -59,10 +55,8 @@ RSpec.describe 'User accounts', type: :request do
       allow_any_instance_of( Users::RegistrationsController )
         .to receive( :recaptcha_v2_site_key ).and_return( 'A_KEY' )
 
-      create :feature_flag, name: 'user_registration', enabled: true
-      create :feature_flag, name: 'recaptcha_on_registration', enabled: true
-      # FeatureFlag.enable :user_registration
-      # FeatureFlag.enable :recaptcha_on_registration
+      FeatureFlag.enable :user_registration
+      FeatureFlag.enable :recaptcha_on_registration
 
       get new_user_registration_path
 
@@ -75,10 +69,8 @@ RSpec.describe 'User accounts', type: :request do
       allow_any_instance_of( Users::RegistrationsController )
         .to receive( :recaptcha_checkbox_site_key ).and_return( 'A_KEY' )
 
-      create :feature_flag, name: 'user_registration', enabled: true
-      create :feature_flag, name: 'recaptcha_on_registration', enabled: true
-      # FeatureFlag.enable :user_registration
-      # FeatureFlag.enable :recaptcha_on_registration
+      FeatureFlag.enable :user_registration
+      FeatureFlag.enable :recaptcha_on_registration
 
       get new_user_registration_path
 
@@ -120,7 +112,7 @@ RSpec.describe 'User accounts', type: :request do
     it 'defaults to assuming that user logins are not enabled' do
       create :top_level_page
 
-      FeatureFlag.delete_by( name: 'user_login' )
+      FeatureFlag.find_by( name: 'user_login' ).update!( name: 'test' )
 
       get new_user_session_path
 
@@ -136,6 +128,8 @@ RSpec.describe 'User accounts', type: :request do
         )
       )
       expect( response.body ).not_to have_button I18n.t( 'user.log_in' )
+
+      FeatureFlag.find_by( name: 'test' ).update!( name: 'user_login' )
     end
   end
 
@@ -200,7 +194,7 @@ RSpec.describe 'User accounts', type: :request do
 
   describe 'POST /account/register' do
     it 'creates a new user, checking V3 reCAPTCHA if a V3 key is set' do
-      create :feature_flag, name: 'user_registration', enabled: true
+      FeatureFlag.enable :user_registration
 
       create :top_level_page
 
@@ -229,9 +223,9 @@ RSpec.describe 'User accounts', type: :request do
     end
 
     it 'creates a new user, checking V2 invisible reCAPTCHA if no V3 key present' do
-      create :feature_flag, name: 'user_registration', enabled: true
+      FeatureFlag.enable :user_registration
 
-      create :page
+      create :top_level_page
 
       username = Faker::Science.unique.element.downcase
       password = 'shinycms unimaginative test passphrase'
@@ -258,7 +252,7 @@ RSpec.describe 'User accounts', type: :request do
     end
 
     it 'falls back to checkbox reCAPTCHA if invisible reCAPTCHA fails' do
-      create :feature_flag, name: 'user_registration', enabled: true
+      FeatureFlag.enable :user_registration
 
       create :top_level_page
 
