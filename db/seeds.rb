@@ -117,13 +117,13 @@ seed FeatureFlag, { name: 'news' }, {
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
-seed FeatureFlag, { name: 'recaptcha_on_comments' }, {
+seed FeatureFlag, { name: 'recaptcha_on_comment_form' }, {
   description: 'Protect comment forms with reCAPTCHA',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
-seed FeatureFlag, { name: 'recaptcha_on_registrations' }, {
+seed FeatureFlag, { name: 'recaptcha_on_registration_form' }, {
   description: 'Protect user registration form with reCAPTCHA',
   enabled: true,
   enabled_for_logged_in: true,

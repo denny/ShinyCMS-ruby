@@ -205,7 +205,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       allow( DiscussionsController )
         .to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
 
-      FeatureFlag.enable :recaptcha_on_comments
+      FeatureFlag.enable :recaptcha_on_comment_form
 
       title = Faker::Science.scientist
       body  = Faker::Lorem.paragraph
