@@ -33,7 +33,7 @@ class AdminController < ApplicationController
     # If user has set a post_login_redirect, use it here
     custom = Setting.find_by( name: 'post_login_redirect' )
                     .values.find_by( user: current_user )&.value
-    if custom.present? && custom.begins_with('/')
+    if custom.present? && custom.start_with?('/')
       redirect_to custom
     # Otherwise, redirect based on which admin features they have access to
     # (in approximate order of most 'useful' ones first)

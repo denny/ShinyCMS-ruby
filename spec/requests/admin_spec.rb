@@ -33,6 +33,24 @@ RSpec.describe 'Admin controller:', type: :request do
     end
   end
 
+  describe 'GET /admin' do
+    it 'redirects to the user-configured post_login_redirect, if one is set' do
+      admin = create :page_admin
+      sign_in admin
+
+      Setting.find_by( name: 'post_login_redirect' )
+             .values.create!( user_id: admin.id, value: '/admin/page/new' )
+
+      get admin_path
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to new_page_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.pages.new.title' ).titlecase
+    end
+  end
+
   describe 'GET /admin redirects to the appropriate admin area for:' do
     include_examples '/admin redirect', 'blog_admin', '/admin/blogs', 'blogs'
     include_examples '/admin redirect', 'news_admin', '/admin/news',  'news'
