@@ -154,12 +154,13 @@ en:
   feature_flags:
     off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
+    akismet_on_comments: Detect spam comments with Akismet
     blogs: Blogs
     comments: Comments
     comment_notifications: Comment notifications
     news: News
-    recaptcha_on_comment_form: Protect comment form with reCAPTCHA
     recaptcha_on_registration_form: Protect registration form with reCAPTCHA
+    recaptcha_on_comment_form: Protect comment form with reCAPTCHA
     tags: Tags
     user_login: User Login
     user_profiles: User Profiles
