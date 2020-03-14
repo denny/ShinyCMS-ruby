@@ -83,7 +83,7 @@ FactoryBot.define do
 
   factory :news_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'news' )
+      category = CapabilityCategory.find_by( name: 'news_posts' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )
