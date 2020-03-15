@@ -4,12 +4,12 @@ SettingValue_1:
   setting_id: 1
   value: ''
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2020-02-25 18:06:37.521563000 Z
+    utc: &1 2020-03-15 17:01:39.066643000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2020-02-25 18:06:37.521563000 Z
+    utc: &3 2020-03-15 17:01:39.066643000 Z
     zone: *2
     time: *3
 SettingValue_2:
@@ -17,11 +17,11 @@ SettingValue_2:
   setting_id: 2
   value: ''
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &4 2020-02-25 18:06:37.536632000 Z
+    utc: &4 2020-03-15 17:01:39.109539000 Z
     zone: *2
     time: *4
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &5 2020-02-25 18:06:37.536632000 Z
+    utc: &5 2020-03-15 17:01:39.109539000 Z
     zone: *2
     time: *5
 SettingValue_3:
@@ -29,11 +29,11 @@ SettingValue_3:
   setting_id: 3
   value: Anonymous
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &6 2020-02-25 18:06:37.550706000 Z
+    utc: &6 2020-03-15 17:01:39.127306000 Z
     zone: *2
     time: *6
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &7 2020-02-25 18:06:37.550706000 Z
+    utc: &7 2020-03-15 17:01:39.127306000 Z
     zone: *2
     time: *7
 SettingValue_4:
@@ -41,11 +41,11 @@ SettingValue_4:
   setting_id: 4
   value: ''
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &8 2020-02-25 18:06:37.564325000 Z
+    utc: &8 2020-03-15 17:01:39.145470000 Z
     zone: *2
     time: *8
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &9 2020-02-25 18:06:37.564325000 Z
+    utc: &9 2020-03-15 17:01:39.145470000 Z
     zone: *2
     time: *9
 SettingValue_5:
@@ -53,11 +53,11 @@ SettingValue_5:
   setting_id: 5
   value: ''
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &10 2020-02-25 18:06:37.577954000 Z
+    utc: &10 2020-03-15 17:01:39.163086000 Z
     zone: *2
     time: *10
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &11 2020-02-25 18:06:37.577954000 Z
+    utc: &11 2020-03-15 17:01:39.163086000 Z
     zone: *2
     time: *11
 SettingValue_6:
@@ -65,46 +65,58 @@ SettingValue_6:
   setting_id: 6
   value: "/"
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &12 2020-02-25 18:06:37.592346000 Z
+    utc: &12 2020-03-15 17:01:39.180033000 Z
     zone: *2
     time: *12
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &13 2020-02-25 18:06:37.592346000 Z
+    utc: &13 2020-03-15 17:01:39.180033000 Z
     zone: *2
     time: *13
 SettingValue_7:
   id: 7
   setting_id: 7
-  value: '0.5'
+  value: '0.6'
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &14 2020-02-25 18:06:37.629031000 Z
+    utc: &14 2020-03-15 17:01:39.197894000 Z
     zone: *2
     time: *14
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &15 2020-02-25 18:06:37.629031000 Z
+    utc: &15 2020-03-15 17:01:39.197894000 Z
     zone: *2
     time: *15
 SettingValue_8:
   id: 8
   setting_id: 8
-  value: cloud
+  value: '0.4'
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &16 2020-02-25 18:06:37.642941000 Z
+    utc: &16 2020-03-15 17:01:39.215050000 Z
     zone: *2
     time: *16
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &17 2020-02-25 18:06:37.642941000 Z
+    utc: &17 2020-03-15 17:01:39.215050000 Z
     zone: *2
     time: *17
 SettingValue_9:
   id: 9
   setting_id: 9
-  value: halcyonic
+  value: cloud
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &18 2020-02-25 18:06:37.657463000 Z
+    utc: &18 2020-03-15 17:01:39.232125000 Z
     zone: *2
     time: *18
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &19 2020-02-25 18:06:37.657463000 Z
+    utc: &19 2020-03-15 17:01:39.232125000 Z
     zone: *2
     time: *19
+SettingValue_10:
+  id: 10
+  setting_id: 10
+  value: ''
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2020-03-15 17:01:39.249697000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2020-03-15 17:01:39.249697000 Z
+    zone: *2
+    time: *21
