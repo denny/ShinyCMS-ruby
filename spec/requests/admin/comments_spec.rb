@@ -32,7 +32,7 @@ RSpec.describe 'Comment moderation', type: :request do
       get comments_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.spam_comments.title' )
+      expect( response.body ).to have_title I18n.t( 'admin.comments.title' )
     end
   end
 
