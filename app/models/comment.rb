@@ -83,4 +83,8 @@ class Comment < ApplicationRecord
   def unhide
     update( hidden: false )
   end
+
+  def self.all_spam
+    where( spam: true )
+  end
 end

@@ -36,6 +36,19 @@ module MainSiteHelper
     link_to user_display_name( user ), user_profile_path( user.username )
   end
 
+  # Returns the path to a comment's parent resource, anchored to the comment
+  # rubocop:disable Metrics/AbcSize
+  def comment_in_context_path( comment )
+    if comment.discussion.resource.blank?
+      discussion_path( comment.discussion ) + "##{comment.number}"
+    elsif comment.discussion.resource_type == 'BlogPost'
+      view_blog_post_path( comment.discussion.resource ) + "##{comment.number}"
+    elsif comment.discussion.resource_type == 'NewPost'
+      view_news_post_path( comment.discussion.resource ) + "##{comment.number}"
+    end
+  end
+  # rubocop:enable Metrics/AbcSize
+
   def view_blog_post_path( post )
     if Blog.multiple_blogs_mode
       # :nocov:

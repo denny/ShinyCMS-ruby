@@ -1,6 +1,6 @@
 // ============================================================================
 // Project:   ShinyCMS (Ruby version)
-// File:      app/assets/admin/stylsheets/admin_area.scss
+// File:      app/assets/admin/stylesheets/admin_area.scss
 // Purpose:   Extra styles for admin area, including minor tweaks to CoreUI
 //
 // Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
@@ -190,6 +190,14 @@ main p {
 
 .table-striped .width50pc {
   width:            50%;
+}
+
+.table-striped .width20pc {
+  width:            20%;
+}
+
+.table-striped .width16pc {
+  width:            16%;
 }
 
 .table-striped .collapse-toggle {

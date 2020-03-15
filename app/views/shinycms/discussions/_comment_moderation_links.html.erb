@@ -11,7 +11,9 @@
   <%= link_to t( 'discussions.lock_comment' ), lock_comment_path( comment ) %>
 <% end %>
 <% if current_user_can?( :delete, :comments ) %>
-|
-  <%= link_to t( 'discussions.delete_comment' ), delete_comment_path( comment ),
+/
+  <%= link_to t( 'discussions.spam' ), mark_comment_as_spam_path( comment.discussion.id, comment.number ) %>
+/
+  <%= link_to t( 'delete' ), delete_comment_path( comment.discussion.id, comment.number ),
       method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
 <% end %>
