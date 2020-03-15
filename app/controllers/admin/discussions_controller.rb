@@ -66,6 +66,12 @@ class Admin::DiscussionsController < AdminController
     redirect_to request.referer || discussion_path( @discussion )
   end
 
+  def mark_comment_as_spam
+    authorise @comment
+    @comment.mark_as_spam
+    redirect_to request.referer || discussion_path( @discussion )
+  end
+
   private
 
   def stash_discussion

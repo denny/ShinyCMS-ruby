@@ -11,6 +11,8 @@ Comment:
 <% else %>
   <%= link_to t( 'lock' ), lock_comment_path( comment.discussion.id, comment.number ) %>
 <% end %>
+/
+  <%= link_to t( 'discussions.spam' ), mark_comment_as_spam_path( comment.discussion.id, comment.number ) %>
 <% if current_user_can?( :delete, :comments ) %>
 /
   <%= link_to t( 'delete' ), delete_comment_path( comment.discussion.id, comment.number ),
