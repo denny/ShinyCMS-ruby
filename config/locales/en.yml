@@ -381,8 +381,11 @@ en:
         failure: Failed to update some settings
         unchanged: No settings were changed
 
-    spam_comments:
-      title: Spam Comments
+    comments:
+      title: Spam comments
+      index:
+        title: Spam comment moderation
+        empty: There are currently no comments marked as spam
 
     users:
       title: Users
