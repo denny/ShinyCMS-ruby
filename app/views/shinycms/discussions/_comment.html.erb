@@ -20,7 +20,7 @@
 
   <footer style="margin: 0; padding: 0;">
     <a onclick="toggleHidden('reply_form_<%= comment.id %>')"><%= t( 'discussions.reply' ) %></a>
-    <% if current_user_can?( :hide, :comments ) || current_user.can?( :lock, :comments ) %>
+    <% if current_user_can?( :hide, :comments ) || current_user_can?( :lock, :comments ) %>
     <%= render partial: 'discussions/comment_moderation_links',
                locals: { comment: comment } %>
     <% end %>
