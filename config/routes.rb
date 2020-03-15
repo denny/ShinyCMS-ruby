@@ -84,8 +84,11 @@ Rails.application.routes.draw do
     # ========== ( Admin area ) ==========
     get 'admin', to: 'admin#index'
 
+    # Blazer (web stats dashboard)
+    mount Blazer::Engine, at: '/admin/stats'
+
     # CKEditor (WYSIWYG editor used on various admin pages)
-    mount Ckeditor::Engine => '/admin/ckeditor'
+    mount Ckeditor::Engine, at: '/admin/ckeditor'
 
     EXCEPT = %w[ index show create ].freeze
 
