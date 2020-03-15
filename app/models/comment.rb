@@ -83,4 +83,14 @@ class Comment < ApplicationRecord
   def unhide
     update( hidden: false )
   end
+
+  def mark_as_spam
+    update( spam: true )
+  end
+
+  # Class methods
+
+  def self.all_spam
+    where( spam: true ).order( :created_at )
+  end
 end
