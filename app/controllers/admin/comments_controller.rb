@@ -9,6 +9,8 @@
 # modify it under the terms of the GPL (version 2 or later).
 # ============================================================================
 class Admin::CommentsController < AdminController
+  include MainSiteHelper
+
   before_action :stash_comment, except: %i[ index ]
 
   # Display spam comment moderation page
@@ -60,13 +62,13 @@ class Admin::CommentsController < AdminController
   def delete
     authorise @comment
     @comment.delete
-    redirect_to request.referer || discussion_path( @comment.discussion )
+    redirect_to request.referer || comment_in_context_path( @comment )
   end
 
   def mark_as_spam
     authorise @comment
     @comment.mark_as_spam
-    redirect_to request.referer || discussion_path( @comment.discussion )
+    redirect_to request.referer || comment_in_context_path( @comment )
   end
 
   private

@@ -37,17 +37,29 @@ module MainSiteHelper
   end
 
   # Returns the path to a comment's parent resource, anchored to the comment
+  # Tries to fall back gracefully if comment is deleted/marked as spam
   # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/PerceivedComplexity
   def comment_in_context_path( comment )
     if comment.discussion.resource.blank?
       discussion_path( comment.discussion ) + "##{comment.number}"
-    elsif comment.discussion.resource_type == 'BlogPost'
-      view_blog_post_path( comment.discussion.resource ) + "##{comment.number}"
+    end
+    num =
+      if comment.blank? || comment.spam?
+        'comments'
+      else
+        comment.number
+      end
+    if comment.discussion.resource_type == 'BlogPost'
+      view_blog_post_path( comment.discussion.resource ) + "##{num}"
     elsif comment.discussion.resource_type == 'NewPost'
-      view_news_post_path( comment.discussion.resource ) + "##{comment.number}"
+      view_news_post_path( comment.discussion.resource ) + "##{num}"
     end
   end
   # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/PerceivedComplexity
 
   def view_blog_post_path( post )
     if Blog.multiple_blogs_mode

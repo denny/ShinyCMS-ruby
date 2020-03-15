@@ -112,7 +112,7 @@ Rails.application.routes.draw do
         get    'unhide/:id',  to: 'comments#unhide', as: :unhide_comment
         get    'lock/:id',    to: 'comments#lock',   as: :lock_comment
         get    'unlock/:id',  to: 'comments#unlock', as: :unlock_comment
-        get    ':id/is-spam', to: 'commentss#mark_as_spam'
+        get    ':id/is-spam', to: 'commentss#mark_as_spam', as: :spam_comment
         delete 'delete/:id',  to: 'comments#delete', as: :delete_comment
       end
       scope path: 'discussion' do
