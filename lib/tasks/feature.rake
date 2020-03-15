@@ -1,19 +1,42 @@
-# Turn ShinyCMS feature flags on/off
+# ShinyCMS feature flag administration tasks
 
-# rails shiny:feature:on  - turns a feature on  (for all user types)
-# rails shiny:feature:off - turns a feature off (for all user types)
+require 'dotenv/tasks'
+
+# List feature flags and status
+# rails shiny:features:list
+
+# Turn a feature on (for all user types)
+# rails shiny:feature:on[user_login]
+
+# Turn a feature off (for all user types)
+# rails shiny:feature:off[user_profiles]
 
 namespace :shiny do
+  namespace :features do
+    # :nocov:
+    desc 'ShinyCMS: list feature flags and status'
+    task list: %i[ environment dotenv ] do
+      FeatureFlag.order( :name ).each do |flag|
+        a = flag.enabled_for_admins?    ? '+' : '-'
+        l = flag.enabled_for_logged_in? ? '+' : '-'
+        e = flag.enabled?               ? '+' : '-'
+        puts "#{a}#{l}#{e} #{flag.name}"
+      end
+      puts '^^^'
+      puts 'ALE [ Admin / Logged-in / Everybody ]'
+    end
+    # :nocov:
+  end
   namespace :feature do
     # :nocov:
-    desc 'Toggle a feature flag on'
-    task :on, [ :name ] => [ :environment ] do |_t, args|
+    desc 'ShinyCMS: toggle a feature flag on'
+    task :on, [ :name ] => %i[ environment dotenv ] do |_t, args|
       flag = FeatureFlag.enable args[:name]
       puts "Set enabled=true for #{args[:name]}" if flag.valid?
     end
 
-    desc 'Toggle a feature flag off'
-    task :off, [ :name ] => [ :environment ] do |_t, args|
+    desc 'ShinyCMS: toggle a feature flag off'
+    task :off, [ :name ] => %i[ environment dotenv ] do |_t, args|
       flag = FeatureFlag.disable args[:name]
       puts "Set enabled=false for #{args[:name]}" if flag.valid?
     end

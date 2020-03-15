@@ -1,18 +1,20 @@
 # ShinyCMS admin user administration tasks
 
+require 'dotenv/tasks'
+
 # rails shiny:admin:create - creates a new superadmin user, with full privs
+# You can pass in details on the command line:
+# rails shiny:admin:create username=admin password=nope email=you@example.com
+# Otherwise, it picks them up from your .env/ENV, or prompts for them
 
 namespace :shiny do
   namespace :admin do
-    desc 'Create a super-admin user, with the full set of capabilities'
+    desc 'ShinyCMS: create a new super-admin user (all capabilities enabled)'
     # :nocov:
-    task :create, %i[ u p e ] => :environment do |_t, args|
-      username    = args[ :u ]
-      password    = args[ :p ]
-      email       = args[ :e ]
-      username  ||= ENV[ 'SHINYCMS_ADMIN_USERNAME' ]
-      password  ||= ENV[ 'SHINYCMS_ADMIN_PASSWORD' ]
-      email     ||= ENV[ 'SHINYCMS_ADMIN_EMAIL'    ]
+    task create: %i[ environment dotenv ] do
+      username = ENV['username'] || ENV['SHINYCMS_ADMIN_USERNAME']
+      password = ENV['password'] || ENV['SHINYCMS_ADMIN_PASSWORD']
+      email    = ENV['email'   ] || ENV['SHINYCMS_ADMIN_EMAIL'   ]
 
       admin = User.new( username: username, password: password, email: email )
       admin.valid?
