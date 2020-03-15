@@ -30,7 +30,7 @@ class Admin::CommentsController < AdminController
       # Open a connection to Akismet
       # Loop through the selected comments
     else
-      # And clear their spam flag
+      # Clear the spam flag on the selected comments
       Comment.where( id: ids ).update!( spam: false )
     end
   end
