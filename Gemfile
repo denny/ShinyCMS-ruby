@@ -57,6 +57,8 @@ source 'https://rubygems.org' do
     # gem 'pry-rails'
     # Better-looking console output
     gem 'awesome_print'
+    # Load ENV from .env
+    gem 'dotenv-rails'
     # Create test objects
     gem 'factory_bot_rails'
     # Fill test objects with fake data
