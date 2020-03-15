@@ -1,6 +1,9 @@
 Rails.application.configure do
   # Settings here will take precedence over those in config/application.rb
 
+  # The forgery protection seems to false positive a lot around proxies...
+  config.action_controller.forgery_protection_origin_check = false
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
