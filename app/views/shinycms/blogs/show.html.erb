@@ -26,6 +26,8 @@
   <% end %>
 </section>
 
+<a name="comments"></a>
+
 <% unless @post.discussion.blank? || @post.discussion.hidden? %>
   <%= render partial: 'discussions/discussion', locals: { resource: @post } %>
 <% end %>
