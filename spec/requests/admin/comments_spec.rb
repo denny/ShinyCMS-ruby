@@ -20,11 +20,10 @@ RSpec.describe 'Comment moderation', type: :request do
   # TODO: Can I use the real helper method here instead of this nasty copypasta?
   def comment_in_context_path( comment )
     if comment.blank? || comment.spam?
-      return "/blog/#{post.posted_year}/#{post.posted_month}/#{post.slug}#comments"
+      return "/blog/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}#comments"
     end
 
-    post = comment.discussion.resource
-    "/blog/#{post.posted_year}/#{post.posted_month}/#{post.slug}##{comment.number}"
+    "/blog/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}##{comment.number}"
   end
 
   describe 'GET /admin/comments' do
@@ -99,13 +98,14 @@ RSpec.describe 'Comment moderation', type: :request do
   describe 'GET /admin/comment/1/is-spam' do
     it 'marks the comment as spam' do
       get spam_comment_path( @comment2 )
+      @comment2.reload
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to comment_in_context_path( @comment2 )
       follow_redirect!
       expect( response ).to have_http_status :ok
 
-      expect( @comment2.reload.spam? ).to be true
+      expect( @comment2.spam? ).to be true
     end
   end
 
