@@ -17,7 +17,7 @@ RSpec.describe 'Comment moderation', type: :request do
     @nested = create :nested_comment, discussion: @discussion, parent: @comment1
   end
 
-  # TODO: Can I access the helper method from here instead of doing a cheap clone?
+  # TODO: Can I use the real helper method here instead of this nasty copypasta?
   def comment_in_context_path( comment )
     if comment.blank?
       return "/blog/#{post.posted_year}/#{post.posted_month}/#{post.slug}#comments"
@@ -25,6 +25,15 @@ RSpec.describe 'Comment moderation', type: :request do
 
     post = comment.discussion.resource
     "/blog/#{post.posted_year}/#{post.posted_month}/#{post.slug}##{comment.number}"
+  end
+
+  describe 'GET /admin/comments' do
+    it 'fetches the spam comment moderation page' do
+      get comments_path
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.spam_comments.title' )
+    end
   end
 
   describe 'GET /admin/comment/hide/1' do

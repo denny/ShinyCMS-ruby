@@ -1,0 +1,32 @@
+<% @page_title = t( '.title' ) %>
+
+<% if @comments.present? %>
+<%= form_for @comments, method: :put do |f| %>
+<table class="table table-responsive-sm table-striped">
+  <tbody>
+    <% @comments.each do |comment| %>
+    <tr>
+      <td>
+        <b><%= post.title %></b>
+        <%= user_display_name( comment.author ) %>
+        <%= post.posted_at.to_s( :time ) %> on <%= post.posted_at.to_s( :shinydate ) %>
+      </td>
+      <td>
+        <%= f.check_box  %>
+  		</td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
+<%= paginate @comments, window: 3, views_prefix: 'admin' %>
+<p id="pager-info">
+  <%= page_entries_info @comment %>
+</p>
+
+<% else %>
+<p>
+  <%= t( '.empty' ) %>
+</p>
+<% end %>
