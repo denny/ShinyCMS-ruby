@@ -5,6 +5,9 @@ source 'https://rubygems.org' do
 
   gem 'puma', '~> 4.3'
 
+  # Load ENV from .env(.*) files
+  gem 'dotenv-rails'
+
   # Reduce boot times through caching; required in config/boot.rb
   gem 'bootsnap', '>= 1.4.2', require: false
   # Use faster SCSS gem for stylesheets
@@ -48,6 +51,9 @@ source 'https://rubygems.org' do
   gem 'image_processing', '~> 1.10'
   gem 'mini_magick'
 
+  # Better-looking console output
+  gem 'awesome_print'
+
   # Pry is a debugging tool
   # Uncomment it here if you want to use it on the Rails console in production
   gem 'pry-rails'
@@ -55,10 +61,6 @@ source 'https://rubygems.org' do
   group :development, :test do
     # Debugging tool. Uncomment it here if you commented it out in production.
     # gem 'pry-rails'
-    # Better-looking console output
-    gem 'awesome_print'
-    # Load ENV from .env
-    gem 'dotenv-rails'
     # Create test objects
     gem 'factory_bot_rails'
     # Fill test objects with fake data
