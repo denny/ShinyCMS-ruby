@@ -49,23 +49,39 @@ FactoryBot.define do
 
   factory :comment_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'comments' )
-
-      hide   = category.capabilities.find_by( name: 'hide'   )
-      lock   = category.capabilities.find_by( name: 'lock'   )
-      delete = category.capabilities.find_by( name: 'delete' )
-
-      create :user_capability, user: admin, capability: hide
-      create :user_capability, user: admin, capability: lock
-      create :user_capability, user: admin, capability: delete
-
       category = CapabilityCategory.find_by( name: 'discussions' )
 
       hide   = category.capabilities.find_by( name: 'hide'   )
+      unhide = category.capabilities.find_by( name: 'unhide' )
       lock   = category.capabilities.find_by( name: 'lock'   )
+      unlock = category.capabilities.find_by( name: 'unlock' )
 
       create :user_capability, user: admin, capability: hide
+      create :user_capability, user: admin, capability: unhide
       create :user_capability, user: admin, capability: lock
+      create :user_capability, user: admin, capability: unlock
+
+      category = CapabilityCategory.find_by( name: 'comments' )
+
+      hide   = category.capabilities.find_by( name: 'hide'   )
+      unhide = category.capabilities.find_by( name: 'unhide' )
+      lock   = category.capabilities.find_by( name: 'lock'   )
+      unlock = category.capabilities.find_by( name: 'unlock' )
+      delete = category.capabilities.find_by( name: 'delete' )
+
+      create :user_capability, user: admin, capability: hide
+      create :user_capability, user: admin, capability: unhide
+      create :user_capability, user: admin, capability: lock
+      create :user_capability, user: admin, capability: unlock
+      create :user_capability, user: admin, capability: delete
+
+      category = CapabilityCategory.find_by( name: 'spam_comments' )
+
+      list    = category.capabilities.find_by( name: 'list'    )
+      edit    = category.capabilities.find_by( name: 'edit'    )
+
+      create :user_capability, user: admin, capability: list
+      create :user_capability, user: admin, capability: edit
     end
   end
 
