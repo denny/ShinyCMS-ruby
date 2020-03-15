@@ -21,3 +21,6 @@ Ahoy.cookies = false if ENV['AHOY_COOKIES'].presence == 'false'
 
 # Set to true for JavaScript tracking
 Ahoy.api = false
+
+# Disable geocoding until I figure out the geolite database licensing stuff
+Ahoy.geocode = false
