@@ -2,17 +2,16 @@
 Setting_1:
   id: 1
   name: admin_ip_list
-  description: Comma/space-separated list of IP addresses allowed to access admin
-    area
+  description: IP addresses allowed to access admin area (comma-separated)
   level: site
   locked: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2020-02-25 18:06:37.503426000 Z
+    utc: &1 2020-03-15 17:01:38.837487000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2020-02-25 18:06:37.503426000 Z
+    utc: &3 2020-03-15 17:01:38.837487000 Z
     zone: *2
     time: *3
 Setting_2:
@@ -23,11 +22,11 @@ Setting_2:
   level: site
   locked: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &4 2020-02-25 18:06:37.528954000 Z
+    utc: &4 2020-03-15 17:01:39.076756000 Z
     zone: *2
     time: *4
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &5 2020-02-25 18:06:37.528954000 Z
+    utc: &5 2020-03-15 17:01:39.076756000 Z
     zone: *2
     time: *5
 Setting_3:
@@ -36,13 +35,13 @@ Setting_3:
   description: Lowest-ranking user-type (Anonymous/Pseudonymous/Authenticated/None)
     that is allowed to post comments
   level: site
-  locked: true
+  locked: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &6 2020-02-25 18:06:37.544722000 Z
+    utc: &6 2020-03-15 17:01:39.116922000 Z
     zone: *2
     time: *6
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &7 2020-02-25 18:06:37.544722000 Z
+    utc: &7 2020-03-15 17:01:39.116922000 Z
     zone: *2
     time: *7
 Setting_4:
@@ -52,11 +51,11 @@ Setting_4:
   level: site
   locked: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &8 2020-02-25 18:06:37.558805000 Z
+    utc: &8 2020-03-15 17:01:39.134764000 Z
     zone: *2
     time: *8
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &9 2020-02-25 18:06:37.558805000 Z
+    utc: &9 2020-03-15 17:01:39.134764000 Z
     zone: *2
     time: *9
 Setting_5:
@@ -66,11 +65,11 @@ Setting_5:
   level: site
   locked: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &10 2020-02-25 18:06:37.571970000 Z
+    utc: &10 2020-03-15 17:01:39.152691000 Z
     zone: *2
     time: *10
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &11 2020-02-25 18:06:37.571970000 Z
+    utc: &11 2020-03-15 17:01:39.152691000 Z
     zone: *2
     time: *11
 Setting_6:
@@ -80,52 +79,66 @@ Setting_6:
   level: admin
   locked: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &12 2020-02-25 18:06:37.585838000 Z
+    utc: &12 2020-03-15 17:01:39.169858000 Z
     zone: *2
     time: *12
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &13 2020-02-25 18:06:37.585838000 Z
+    utc: &13 2020-03-15 17:01:39.169858000 Z
     zone: *2
     time: *13
 Setting_7:
   id: 7
-  name: recaptcha_v3_registration_score
-  description: Minimum score for reCAPTCHA V3 on user registration
+  name: recaptcha_comment_score
+  description: Minimum score for reCAPTCHA V3 on anon/pseudonymous comments
   level: admin
   locked: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &14 2020-02-25 18:06:37.622940000 Z
+    utc: &14 2020-03-15 17:01:39.187307000 Z
     zone: *2
     time: *14
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &15 2020-02-25 18:06:37.622940000 Z
+    utc: &15 2020-03-15 17:01:39.187307000 Z
     zone: *2
     time: *15
 Setting_8:
   id: 8
+  name: recaptcha_registration_score
+  description: Minimum score for reCAPTCHA V3 on user registration
+  level: admin
+  locked: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2020-03-15 17:01:39.204632000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2020-03-15 17:01:39.204632000 Z
+    zone: *2
+    time: *17
+Setting_9:
+  id: 9
   name: tag_view
   description: "('cloud' or 'list')"
   level: user
   locked: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &16 2020-02-25 18:06:37.637140000 Z
+    utc: &18 2020-03-15 17:01:39.221611000 Z
     zone: *2
-    time: *16
+    time: *18
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &17 2020-02-25 18:06:37.637140000 Z
+    utc: &19 2020-03-15 17:01:39.221611000 Z
     zone: *2
-    time: *17
-Setting_9:
-  id: 9
+    time: *19
+Setting_10:
+  id: 10
   name: theme_name
   description: ''
   level: site
   locked: false
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &18 2020-02-25 18:06:37.650856000 Z
+    utc: &20 2020-03-15 17:01:39.238997000 Z
     zone: *2
-    time: *18
+    time: *20
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &19 2020-02-25 18:06:37.650856000 Z
+    utc: &21 2020-03-15 17:01:39.238997000 Z
     zone: *2
-    time: *19
+    time: *21
