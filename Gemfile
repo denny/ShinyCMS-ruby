@@ -79,7 +79,7 @@ source 'https://rubygems.org' do
     # Check gems for security issues
     gem 'bundler-audit', require: false
     # Used to create demo site data
-    gem 'db_fixtures_dump', require: false
+    gem 'db_fixtures_dump'
     # Check for slow code
     gem 'fasterer', require: false
     # Open emails sent by the system in a browser tab
