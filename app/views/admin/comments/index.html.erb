@@ -1,13 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
 <% if @comments.present? %>
-<script>
-function toggle_select_all() {
-//  if $('#select_all').value {
-    alert( 'ding' ) //$('#select_all').value )
-//  }
-});
-</script>
 <%= form_for 'spam_comments', method: :put do |f| %>
 <table class="table table-responsive-sm table-striped">
   <tbody>
@@ -21,7 +14,7 @@ function toggle_select_all() {
         <br><%= comment.body %>
       </td>
       <td style="text-align: right;">
-        <%= f.check_box 'ids', value: comment.id %>
+        <%= f.check_box 'ids', value: comment.id, class: 'itembox' %>
   		</td>
     </tr>
     <% end %>
@@ -31,7 +24,7 @@ function toggle_select_all() {
       <td style="text-align: right;">
         <label>
           Select all:
-          <input type="checkbox" id="select_all" onChange="toggle_select_all();">
+          <input type="checkbox" id="select_all" onClick="toggle_select_all();">
         </label>
         <br>
         <label>
@@ -49,6 +42,17 @@ function toggle_select_all() {
     </tr>
   </tbody>
 </table>
+<script>
+function toggle_select_all() {
+    var checked  = document.getElementById( 'select_all' ).checked;
+    var boxes    = document.getElementsByClassName( 'itembox' );
+    var boxcount = boxes.length;
+
+    for ( var i = 0; i < boxcount; i++ ) {
+        boxes[i].checked = checked;
+    }
+}
+</script>
 <% end %>
 
 <%= paginate @comments, window: 3, views_prefix: 'admin' %>
