@@ -1,28 +1,59 @@
 <% @page_title = t( '.title' ) %>
 
 <% if @comments.present? %>
-<%= form_for @comments, method: :put do |f| %>
+<script>
+function toggle_select_all() {
+//  if $('#select_all').value {
+    alert( 'ding' ) //$('#select_all').value )
+//  }
+});
+</script>
+<%= form_for 'spam_comments', method: :put do |f| %>
 <table class="table table-responsive-sm table-striped">
   <tbody>
     <% @comments.each do |comment| %>
     <tr>
       <td>
-        <b><%= post.title %></b>
-        <%= user_display_name( comment.author ) %>
-        <%= post.posted_at.to_s( :time ) %> on <%= post.posted_at.to_s( :shinydate ) %>
+        <b><%= comment.title %></b>
+        <br>Posted by <%= user_display_name( comment.author ) || comment.author_name || 'Anonymous' %>
+        at <%= comment.posted_at.to_s( :time ) %>
+        on <%= comment.posted_at.to_s( :shinydate ) %>
+        <br><%= comment.body %>
       </td>
-      <td>
-        <%= f.check_box  %>
+      <td style="text-align: right;">
+        <%= f.check_box 'ids', value: comment.id %>
   		</td>
     </tr>
     <% end %>
+    <tr>
+      <td>
+      </td>
+      <td style="text-align: right;">
+        <label>
+          Select all:
+          <input type="checkbox" id="select_all" onChange="toggle_select_all();">
+        </label>
+        <br>
+        <label>
+          Confirm as spam:
+          <input type="radio" name="spam_or_ham" value="spam">
+        </label>
+        <br>
+        <label>
+          Remove spam flag:
+          <input type="radio" name="spam_or_ham" value="spam">
+        </label>
+        <br>
+        <%= f.submit t( 'update' ) %>
+      </td>
+    </tr>
   </tbody>
 </table>
 <% end %>
 
 <%= paginate @comments, window: 3, views_prefix: 'admin' %>
 <p id="pager-info">
-  <%= page_entries_info @comment %>
+  <%= page_entries_info @comments %>
 </p>
 
 <% else %>
