@@ -87,6 +87,15 @@ class User < ApplicationRecord
     user_capabilities.where( capability_id: remove ).delete_all
   end
 
+  def grant_all_capabilities
+    User.transaction do
+      Capability.all.find_each do |capability|
+        user_capabilities.find_or_create_by! capability: capability
+      end
+    end
+    self
+  end
+
   def display_name_or_username
     display_name.presence || username
   end
