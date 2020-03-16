@@ -55,11 +55,11 @@ class Comment < ApplicationRecord
     DiscussionMailer.overview_notification( self )
   end
 
-  # Used by mailer
   def author_name_any
     return author.display_name_or_username if author_type == 'authenticated'
+    return author_name if author_type == 'pseudonymous' && author_name.present?
 
-    author_name || 'Anonymous'
+    'Anonymous'
   end
 
   def notification_email
