@@ -5,9 +5,9 @@ class Comment < ApplicationRecord
   belongs_to :author, class_name: 'User', inverse_of: :comments,
                       foreign_key: :user_id, optional: true
 
-  has_many :comments, inverse_of: :parent,
-                      foreign_key: :parent_id,
-                      dependent: :destroy
+  has_many :comments, -> { where( spam: false ) }, inverse_of: :parent,
+                                                   foreign_key: :parent_id,
+                                                   dependent: :destroy
 
   validates :discussion_id, presence: true
   validates :author_type, presence: true
