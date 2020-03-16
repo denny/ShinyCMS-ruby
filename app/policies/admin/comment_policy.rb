@@ -4,6 +4,14 @@ class Admin::CommentPolicy < Admin::DefaultPolicy
     @this_user.can? :list, :spam_comments
   end
 
+  def mark_as_spam?
+    @this_user.can? :add, :spam_comments
+  end
+
+  def update?
+    @this_user.can? :destroy, :spam_comments
+  end
+
   def hide?
     @this_user.can? :hide, :comments
   end
@@ -20,11 +28,7 @@ class Admin::CommentPolicy < Admin::DefaultPolicy
     @this_user.can? :lock, :comments
   end
 
-  def mark_as_spam?
-    @this_user.can? :delete, :comments
-  end
-
   def delete?
-    @this_user.can? :delete, :comments
+    @this_user.can? :destroy, :comments
   end
 end

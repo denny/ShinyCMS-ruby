@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Comment moderation', type: :request do
   before :each do
-    @admin = create :comment_admin
+    @admin = create :discussion_admin
     sign_in @admin
 
     FeatureFlag.enable :comments

@@ -46,10 +46,11 @@ seed Capability, { name: 'hide',    category: comments_cc }
 seed Capability, { name: 'unhide',  category: comments_cc }
 seed Capability, { name: 'lock',    category: comments_cc }
 seed Capability, { name: 'unlock',  category: comments_cc }
-seed Capability, { name: 'delete',  category: comments_cc }
+seed Capability, { name: 'destroy', category: comments_cc }
 # Spam Comments
 seed Capability, { name: 'list',    category: spam_cc }
-seed Capability, { name: 'edit',    category: spam_cc }
+seed Capability, { name: 'add',     category: spam_cc }
+seed Capability, { name: 'destroy', category: spam_cc }
 # Feature Flags
 seed Capability, { name: 'list',    category: features_cc }
 seed Capability, { name: 'edit',    category: features_cc }

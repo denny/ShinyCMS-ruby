@@ -10,9 +10,12 @@
         <%= f.check_box "comment_#{comment.id}", id: "comment_#{comment.id}", class: 'itembox' %>
       </td>
       <td>
-        <small><i>Posted by <%= comment.author_name_any %>
+        <small>
+            Posted by <%= comment.author_name_any %>
             at <%= comment.posted_at.to_s( :time ) %>
-            on <%= comment.posted_at.to_s( :shinydate ) %></i></small>
+            on <%= comment.posted_at.to_s( :shinydate ) %>
+            <% if comment.author_url.present? %> - <%= comment.author_url %><% end %>
+        </small>
         <% if comment.title.present? %><br><%= comment.title %><% end %>
         <% if comment.body.present? %><br><%= comment.body %><% end %>
       </td>
@@ -21,17 +24,17 @@
     <tr>
       <td style="line-height: 1.5em; vertical-align: middle;" colspan="2">
         <input type="checkbox" id="select_all" onClick="toggle_select_all();">
-        <label for="select_all">Select all</label>
+        <label for="select_all"><%= t( '.select_all' ) %></label>
         <br><br>
         <span style="display: inline-block; vertical-align: middle;">
           <input type="radio" id="spam" name="spam_or_ham" value="spam">
         </span>
-        <label for="spam">Confirm as spam</label>
+        <label for="spam"><%= t( '.confirm_spam' ) %></label>
         <br>
         <span style="display: inline-block; vertical-align: middle;">
-          <input type="radio" id="ham" name="spam_or_ham" value="spam">
+          <input type="radio" id="ham" name="spam_or_ham" value="ham">
         </span>
-        <label for="ham">Remove spam flag</label>
+        <label for="ham"><%= t( '.remove_flag' ) %></label>
         <br><br>
         <%= f.submit t( 'update' ) %>
       </td>

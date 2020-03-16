@@ -11,7 +11,7 @@
 class Admin::CommentsController < AdminController
   include MainSiteHelper
 
-  before_action :stash_comment, except: %i[ index ]
+  before_action :stash_comment, except: %i[ index update ]
 
   # Display spam comment moderation page
   def index
@@ -23,16 +23,15 @@ class Admin::CommentsController < AdminController
 
   # Process submission of spam comment moderation page
   def update
-    # Get the IDs of all the selected comments
-    ids = param[ :id ]
-    # Are we rescuing ham, or confirming spam?
-    if param[ :spam_or_ham ] == 'spam'
-      # Open a connection to Akismet
-      # Loop through the selected comments
+    authorise Comment
+    if request.params[ :spam_or_ham ] == 'spam'
+      process_spam_comments
+    elsif request.params[ :spam_or_ham ] == 'ham'
+      process_ham_comments
     else
-      # Clear the spam flag on the selected comments
-      Comment.where( id: ids ).update!( spam: false )
+      flash[ :alert ] = t( '.spam_or_ham' )
     end
+    redirect_to action: :index
   end
 
   def hide
@@ -75,5 +74,46 @@ class Admin::CommentsController < AdminController
 
   def stash_comment
     @comment = Comment.find( params[ :id ] )
+  end
+
+  def process_spam_comments
+    tell_akismet_about_spam
+    if Comment.where( id: selected_comment_ids ).destroy
+      flash[ :notice ] = t( '.success' )
+    else
+      flash[ :alert ] = t( '.failure' )
+    end
+  end
+
+  def process_ham_comments
+    tell_akismet_about_ham
+    if Comment.where( id: selected_comment_ids ).update( spam: false )
+      flash[ :notice ] = t( '.success' )
+    else
+      flash[ :alert ] = t( '.failure' )
+    end
+  end
+
+  def tell_akismet_about_spam
+    # comment_ids = selected_comment_ids
+    # TODO: Open a connection to Akismet
+    # Loop through the selected comments telling Akismet that they are spam
+  end
+
+  def tell_akismet_about_ham
+    # comment_ids = selected_comment_ids
+    # TODO: Open a connection to Akismet
+    # Loop through the selected comments telling Akismet that they are not spam
+  end
+
+  def selected_comment_ids
+    comment_ids = []
+    request.params.each_key do |name|
+      next unless name.match? %r{comment_(\d+)}
+      next unless request.params[ name ] == '1'
+
+      comment_ids << matchdata[1]
+    end
+    comment_ids
   end
 end
