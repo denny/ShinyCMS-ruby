@@ -10,10 +10,11 @@
         <%= f.check_box "comment_#{comment.id}", id: "comment_#{comment.id}", class: 'itembox' %>
       </td>
       <td>
-        <%= comment.title %> - <small><i>Posted by <%= comment.author_name_any %>
+        <small><i>Posted by <%= comment.author_name_any %>
             at <%= comment.posted_at.to_s( :time ) %>
             on <%= comment.posted_at.to_s( :shinydate ) %></i></small>
-        <br><%= comment.body %>
+        <% if comment.title.present? %><br><%= comment.title %><% end %>
+        <% if comment.body.present? %><br><%= comment.body %><% end %>
       </td>
     </tr>
     <% end %>
