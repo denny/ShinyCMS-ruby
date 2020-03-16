@@ -7,38 +7,32 @@
     <% @comments.each do |comment| %>
     <tr>
       <td>
+        <%= f.check_box "comment_#{comment.id}", id: "comment_#{comment.id}", class: 'itembox' %>
+      </td>
+      <td>
         <%= comment.title %> - <small><i>Posted by <%= comment.author_name_any %>
             at <%= comment.posted_at.to_s( :time ) %>
             on <%= comment.posted_at.to_s( :shinydate ) %></i></small>
         <br><%= comment.body %>
       </td>
-      <td style="text-align: right; width: 20em;">
-        <%= f.check_box 'ids', value: comment.id, class: 'itembox' %>
-  		</td>
     </tr>
     <% end %>
     <tr>
-      <td>
-      </td>
-      <td style="text-align: right; line-height: 1.5em; vertical-align: middle;">
-        <p>
-          <label for="select_all">Select all:</label>
-          <input type="checkbox" id="select_all" onClick="toggle_select_all();">
-        </p>
-        <p>
-          <label for="spam">Confirm as spam:</label>
-          <span style="display: inline-block; vertical-align: middle;">
-          <input type="radio" id="spam" name="spam_or_ham" value="spam" style="margin-right: 0;">
-          </span>
-          <br>
-          <label for="ham">Remove spam flag:</label>
-          <span style="display: inline-block; vertical-align: middle;">
-            <input type="radio" id="ham" name="spam_or_ham" value="spam" style="margin-right: 0;">
-          </span>
-        </p>
-        <p>
-          <%= f.submit t( 'update' ) %>
-        </p>
+      <td style="line-height: 1.5em; vertical-align: middle;" colspan="2">
+        <input type="checkbox" id="select_all" onClick="toggle_select_all();">
+        <label for="select_all">Select all</label>
+        <br><br>
+        <span style="display: inline-block; vertical-align: middle;">
+          <input type="radio" id="spam" name="spam_or_ham" value="spam">
+        </span>
+        <label for="spam">Confirm as spam</label>
+        <br>
+        <span style="display: inline-block; vertical-align: middle;">
+          <input type="radio" id="ham" name="spam_or_ham" value="spam">
+        </span>
+        <label for="ham">Remove spam flag</label>
+        <br><br>
+        <%= f.submit t( 'update' ) %>
       </td>
     </tr>
   </tbody>
