@@ -33,17 +33,17 @@ class TagsController < ApplicationController
   def show
     @tag_name = params[ :tag ]
     @tag = ActsAsTaggableOn::Tag.find_by( name: @tag_name )
-    @content_types = tagged_content_types
     @tagged_items = {}
-    @content_types.each do |type|
-      @tagged_items[ type ] = type.constantize.tagged_with( @tag.name )
+    taggable_models.each do |resource|
+      @tagged_items[ resource.name ] = resource.tagged_with( @tag_name )
     end
+    @content_types = @tagged_items.keys.sort
   end
 
   private
 
-  def tagged_content_types
-    %w[ BlogPost ]
+  def taggable_models
+    ApplicationRecord.descendants.select( &:taggable? )
   end
 
   def check_feature_flags
