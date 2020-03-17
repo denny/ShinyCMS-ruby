@@ -40,11 +40,7 @@ module MainSiteHelper
   # Tries to fall back gracefully if comment is deleted/marked as spam
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/PerceivedComplexity
   def comment_in_context_path( comment )
-    if comment.discussion.resource.blank?
-      discussion_path( comment.discussion ) + "##{comment.number}"
-    end
     num =
       if comment.blank? || comment.spam?
         'comments'
@@ -59,7 +55,6 @@ module MainSiteHelper
   end
   # rubocop:enable Metrics/AbcSize
   # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/PerceivedComplexity
 
   def view_blog_post_path( post )
     if Blog.multiple_blogs_mode
