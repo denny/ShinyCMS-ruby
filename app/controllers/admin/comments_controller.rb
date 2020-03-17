@@ -24,13 +24,15 @@ class Admin::CommentsController < AdminController
   # Process submission of spam comment moderation page
   def update
     authorise Comment
-    if request.params[ :spam_or_ham ] == 'spam'
+    the_params = update_params
+    if the_params[ :spam_or_ham ] == 'spam'
       process_spam_comments
-    elsif request.params[ :spam_or_ham ] == 'ham'
+    elsif the_params[ :spam_or_ham ] == 'ham'
       process_ham_comments
     else
       flash[ :alert ] = t( '.spam_or_ham' )
     end
+
     redirect_to action: :index
   end
 
@@ -60,8 +62,9 @@ class Admin::CommentsController < AdminController
 
   def delete
     authorise @comment
+    contextual_path = comment_in_context_path( @comment )
     @comment.delete
-    redirect_to request.referer || comment_in_context_path( @comment )
+    redirect_to request.referer || contextual_path
   end
 
   def mark_as_spam
@@ -76,21 +79,27 @@ class Admin::CommentsController < AdminController
     @comment = Comment.find( params[ :id ] )
   end
 
+  def update_params
+    params.permit(
+      :authenticity_token, :commit, :_method, spam_comments: {}
+    )[ :spam_comments ] || {}
+  end
+
   def process_spam_comments
     tell_akismet_about_spam
     if Comment.where( id: selected_comment_ids ).destroy
-      flash[ :notice ] = t( '.success' )
+      flash[ :notice ] = t( 'admin.comments.process_ham_comments.success' )
     else
-      flash[ :alert ] = t( '.failure' )
+      flash[ :alert ] = t( 'admin.comments.process_ham_comments.failure' )
     end
   end
 
   def process_ham_comments
     tell_akismet_about_ham
     if Comment.where( id: selected_comment_ids ).update( spam: false )
-      flash[ :notice ] = t( '.success' )
+      flash[ :notice ] = t( 'admin.comments.process_ham_comments.success' )
     else
-      flash[ :alert ] = t( '.failure' )
+      flash[ :alert ] = t( 'admin.comments.process_ham_comments.failure' )
     end
   end
 
@@ -108,11 +117,12 @@ class Admin::CommentsController < AdminController
 
   def selected_comment_ids
     comment_ids = []
-    request.params.each_key do |name|
-      next unless name.match? %r{comment_(\d+)}
-      next unless request.params[ name ] == '1'
+    the_params = update_params
+    the_params.each_key do |name|
+      comment_id = name.match %r{comment_(\d+)}
+      next if comment_id.nil?
 
-      comment_ids << matchdata[1]
+      comment_ids << comment_id[1].to_i if update_params[ name ] == '1'
     end
     comment_ids
   end
