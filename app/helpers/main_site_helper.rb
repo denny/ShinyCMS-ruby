@@ -49,7 +49,7 @@ module MainSiteHelper
       end
     if comment.discussion.resource_type == 'BlogPost'
       view_blog_post_path( comment.discussion.resource ) + "##{num}"
-    elsif comment.discussion.resource_type == 'NewPost'
+    elsif comment.discussion.resource_type == 'NewsPost'
       view_news_post_path( comment.discussion.resource ) + "##{num}"
     end
   end
