@@ -87,20 +87,26 @@ class Admin::CommentsController < AdminController
 
   def process_spam_comments
     tell_akismet_about_spam
-    if Comment.where( id: selected_comment_ids ).destroy
-      flash[ :notice ] = t( 'admin.comments.process_ham_comments.success' )
-    else
-      flash[ :alert ] = t( 'admin.comments.process_ham_comments.failure' )
-    end
+    Comment.where( id: selected_comment_ids ).destroy_all
+    flash[ :notice ] = t( 'admin.comments.process_spam_comments.success' )
+    # if Comment.where( id: selected_comment_ids ).destroy
+    #  flash[ :notice ] = t( 'admin.comments.process_spam_comments.success' )
+    # else
+    #   flash[ :alert ] = t( 'admin.comments.process_spam_comments.failure' )
+    # end
   end
 
   def process_ham_comments
     tell_akismet_about_ham
-    if Comment.where( id: selected_comment_ids ).update( spam: false )
-      flash[ :notice ] = t( 'admin.comments.process_ham_comments.success' )
-    else
-      flash[ :alert ] = t( 'admin.comments.process_ham_comments.failure' )
-    end
+    # rubocop:disable Rails/SkipsModelValidations
+    Comment.where( id: selected_comment_ids ).update_all( spam: false )
+    # rubocop:enable Rails/SkipsModelValidations
+    flash[ :notice ] = t( 'admin.comments.process_ham_comments.success' )
+    # if Comment.where( id: selected_comment_ids ).update( spam: false )
+    #  flash[ :notice ] = t( 'admin.comments.process_ham_comments.success' )
+    # else
+    #   flash[ :alert ] = t( 'admin.comments.process_ham_comments.failure' )
+    # end
   end
 
   def tell_akismet_about_spam
