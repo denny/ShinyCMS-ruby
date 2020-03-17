@@ -21,7 +21,7 @@ namespace :shiny do
 
       while admin.errors.messages.keys.include? :username
         admin.errors[:username].each do |error|
-          puts "Username #{error}" unless username.nil?
+          puts "Username: #{error}" unless username.nil?
         end
         puts 'Please specify a username for your new admin account:'
         username = STDIN.gets.strip
@@ -32,7 +32,7 @@ namespace :shiny do
 
       while admin.errors.messages.keys.include? :password
         admin.errors[:password].each do |error|
-          puts "Password #{error}" unless password.nil?
+          puts "Password: #{error}" unless password.nil?
         end
         puts 'Please specify a password for your new admin account:'
         password = STDIN.gets.strip
@@ -43,7 +43,7 @@ namespace :shiny do
 
       while admin.errors.messages.keys.include? :email
         admin.errors[:email].each do |error|
-          puts "Email #{error}" unless email.nil?
+          puts "Email: #{error}" unless email.nil?
         end
         puts 'Please specify the email address of your new admin account:'
         email = STDIN.gets.strip
@@ -54,12 +54,9 @@ namespace :shiny do
 
       admin.skip_confirmation!
       admin.save!
+      admin.grant_all_capabilities
 
-      Capability.all.each do |capability|
-        admin.user_capabilities.find_or_create_by! capability_id: capability.id
-      end
-
-      puts "ShinyCMS admin user '#{username}' created! You can log in now."
+      puts "ShinyCMS super-admin created! You can log in as '#{username}' now."
     end
     # :nocov:
   end
