@@ -1,6 +1,10 @@
+<% no_tagged_content = true %>
+
 <% @content_types.each do |type| %>
+  <% next unless @tagged_items[ type ].present? %>
+  <% no_tagged_content = false %>
   <h2>
-    <%= type.underscore.pluralize.humanize %> tagged with '<%= @tag %>'
+    <%= type.underscore.pluralize.humanize %> tagged with '<%= @tag_name %>'
   </h2>
 
   <section>
@@ -17,4 +21,10 @@
       <% end %>
     </ul>
   </section>
+<% end %>
+
+<% if no_tagged_content %>
+<p>
+  There is currently no content tagged with '<%= @tag_name %>'
+</p>
 <% end %>
