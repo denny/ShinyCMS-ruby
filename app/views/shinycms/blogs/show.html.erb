@@ -14,17 +14,29 @@
   </p>
   <% end %>
 
-  <% unless @post.discussion.blank? || @post.discussion.hidden? || @post.discussion.locked? %>
+  <% if @post.discussion.present? %>
   <footer>
+    <% unless @post.discussion.locked? %>
     <a onclick="toggleHidden('comment_form')"><%= t( '.reply' ) %></a>
+    <% unless @post.discussion.hidden? %>
     (<%= @post.discussion.comments.count %> <%= t( 'discussions.comments' ).downcase %>)
+    <% end %>
+    <% end %>
+
+    <% if current_user_can?( :hide, :discussions ) || current_user_can?( :lock, :discussions ) %>
+    <%= render partial: 'discussions/moderation_links', locals: { discussion: @post.discussion } %>
+    <% end %>
   <footer>
 
+  <% unless @post.discussion.hidden? || @post.discussion.locked? %>
   <div id="comment_form" class="comment_form" hidden>
     <%= render partial: 'discussions/comment_form', locals: { discussion: @post.discussion } %>
   </div>
   <% end %>
+  <% end %>
 </section>
+
+<a name="comments"></a>
 
 <% unless @post.discussion.blank? || @post.discussion.hidden? %>
   <%= render partial: 'discussions/discussion', locals: { resource: @post } %>

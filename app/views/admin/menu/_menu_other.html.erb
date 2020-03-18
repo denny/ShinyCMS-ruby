@@ -3,6 +3,9 @@
     <%= render_admin_menu_item_if( current_user.can?( :list, :inserts ),
         t( 'admin.inserts.title' ), inserts_path, 'list' ) %>
 
+    <%= render_admin_menu_item_if( current_user.can?( :delete, :comments ),
+        t( 'admin.comments.title' ), comments_path, 'trash' ) %>
+
     <%= render_admin_menu_item_if( current_user.can?( :list, :settings ),
         t( 'admin.site_settings.title' ), admin_site_settings_path, 'settings' ) %>
 

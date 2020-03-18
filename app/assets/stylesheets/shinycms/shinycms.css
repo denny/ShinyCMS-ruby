@@ -78,6 +78,14 @@ body {
 
 /* ========== ( utility styles ) ========== */
 
-.clearboth {
+.clear-both {
   clear:        both;
+}
+
+.float-right {
+  float:        right;
+}
+
+.smaller {
+  font-size:    smaller;
 }

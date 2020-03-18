@@ -257,6 +257,14 @@ nav .sm li li a:hover {
 
 /* ========== ( utility styles ) ========== */
 
-.clearboth {
-  clear:                both;
+.clear-both {
+  clear:        both;
+}
+
+.float-right {
+  float:        right;
+}
+
+.smaller {
+  font-size:    smaller;
 }
