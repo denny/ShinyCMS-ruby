@@ -5,9 +5,9 @@ class Comment < ApplicationRecord
   belongs_to :author, class_name: 'User', inverse_of: :comments,
                       foreign_key: :user_id, optional: true
 
-  has_many :comments, inverse_of: :parent,
-                      foreign_key: :parent_id,
-                      dependent: :destroy
+  has_many :comments, -> { where( spam: false ) }, inverse_of: :parent,
+                                                   foreign_key: :parent_id,
+                                                   dependent: :destroy
 
   validates :discussion_id, presence: true
   validates :author_type, presence: true
@@ -55,11 +55,11 @@ class Comment < ApplicationRecord
     DiscussionMailer.overview_notification( self )
   end
 
-  # Used by mailer
   def author_name_any
     return author.display_name_or_username if author_type == 'authenticated'
+    return author_name if author_type == 'pseudonymous' && author_name.present?
 
-    author_name || 'Anonymous'
+    'Anonymous'
   end
 
   def notification_email
@@ -82,5 +82,15 @@ class Comment < ApplicationRecord
 
   def unhide
     update( hidden: false )
+  end
+
+  def mark_as_spam
+    update( spam: true )
+  end
+
+  # Class methods
+
+  def self.all_spam
+    where( spam: true ).order( :created_at )
   end
 end

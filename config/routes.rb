@@ -105,22 +105,21 @@ Rails.application.routes.draw do
       resources :news, as: :news_post, except: EXCEPT
 
       # Discussion and comment moderation
+      get :comments, to: 'comments#index'
+      put :comments, to: 'comments#update'
+      scope path: 'comment' do
+        get    'hide/:id',    to: 'comments#hide',   as: :hide_comment
+        get    'unhide/:id',  to: 'comments#unhide', as: :unhide_comment
+        get    'lock/:id',    to: 'comments#lock',   as: :lock_comment
+        get    'unlock/:id',  to: 'comments#unlock', as: :unlock_comment
+        get    ':id/is-spam', to: 'comments#mark_as_spam', as: :spam_comment
+        delete 'delete/:id',  to: 'comments#delete', as: :delete_comment
+      end
       scope path: 'discussion' do
         get ':id/hide',   to: 'discussions#hide',   as: :hide_discussion
         get ':id/unhide', to: 'discussions#unhide', as: :unhide_discussion
         get ':id/lock',   to: 'discussions#lock',   as: :lock_discussion
         get ':id/unlock', to: 'discussions#unlock', as: :unlock_discussion
-
-        get    ':id/hide/:number',    to: 'discussions#hide_comment',
-                                      as: :hide_comment
-        get    ':id/unhide/:number',  to: 'discussions#unhide_comment',
-                                      as: :unhide_comment
-        get    ':id/lock/:number',    to: 'discussions#lock_comment',
-                                      as: :lock_comment
-        get    ':id/unlock/:number',  to: 'discussions#unlock_comment',
-                                      as: :unlock_comment
-        delete ':id/delete/:number',  to: 'discussions#delete_comment',
-                                      as: :delete_comment
       end
 
       # Feature Flags
