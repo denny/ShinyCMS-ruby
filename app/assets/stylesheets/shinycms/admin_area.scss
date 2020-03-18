@@ -1,6 +1,6 @@
 // ============================================================================
 // Project:   ShinyCMS (Ruby version)
-// File:      app/assets/admin/stylesheets/admin_area.scss
+// File:      app/assets/stylesheets/shinycms/admin_area.scss
 // Purpose:   Extra styles for admin area, including minor tweaks to CoreUI
 //
 // Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
@@ -297,6 +297,12 @@ main input {
   line-height:      1.5;
   margin:           0.2em 0.2em 0.2em 0;
   padding-left:     0.5em;
+}
+
+main [type=file] {
+  background: none;
+  border: 0;
+  text-indent: -7px;
 }
 
 main select {
