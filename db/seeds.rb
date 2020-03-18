@@ -8,8 +8,9 @@
 general_cc    = seed CapabilityCategory, { name: 'general'        }
 blogs_cc      = seed CapabilityCategory, { name: 'blogs'          }
 blog_posts_cc = seed CapabilityCategory, { name: 'blog_posts'     }
-comments_cc   = seed CapabilityCategory, { name: 'comments'       }
 discussion_cc = seed CapabilityCategory, { name: 'discussions'    }
+comments_cc   = seed CapabilityCategory, { name: 'comments'       }
+spam_cc       = seed CapabilityCategory, { name: 'spam_comments'  }
 features_cc   = seed CapabilityCategory, { name: 'feature_flags'  }
 inserts_cc    = seed CapabilityCategory, { name: 'inserts'        }
 news_cc       = seed CapabilityCategory, { name: 'news_posts'     }
@@ -35,17 +36,21 @@ seed Capability, { name: 'add',           category: blog_posts_cc }
 seed Capability, { name: 'edit',          category: blog_posts_cc }
 seed Capability, { name: 'destroy',       category: blog_posts_cc }
 seed Capability, { name: 'change_author', category: blog_posts_cc }
-# Comments
-seed Capability, { name: 'hide',    category: comments_cc }
-seed Capability, { name: 'unhide',  category: comments_cc }
-seed Capability, { name: 'lock',    category: comments_cc }
-seed Capability, { name: 'unlock',  category: comments_cc }
-seed Capability, { name: 'delete',  category: comments_cc }
 # Discussions
 seed Capability, { name: 'hide',    category: discussion_cc }
 seed Capability, { name: 'unhide',  category: discussion_cc }
 seed Capability, { name: 'lock',    category: discussion_cc }
 seed Capability, { name: 'unlock',  category: discussion_cc }
+# Comments
+seed Capability, { name: 'hide',    category: comments_cc }
+seed Capability, { name: 'unhide',  category: comments_cc }
+seed Capability, { name: 'lock',    category: comments_cc }
+seed Capability, { name: 'unlock',  category: comments_cc }
+seed Capability, { name: 'destroy', category: comments_cc }
+# Spam Comments
+seed Capability, { name: 'list',    category: spam_cc }
+seed Capability, { name: 'add',     category: spam_cc }
+seed Capability, { name: 'destroy', category: spam_cc }
 # Feature Flags
 seed Capability, { name: 'list',    category: features_cc }
 seed Capability, { name: 'edit',    category: features_cc }

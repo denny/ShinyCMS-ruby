@@ -1,7 +1,7 @@
 <br>
 <table class="table table-responsive-sm table-striped">
   <tr>
-    <th colspan="5">
+    <th colspan="6">
       <a class="collapse-toggle" role="button" href="#" data-toggle="collapse" data-target=".collapse_capabilities" aria-expanded="true" aria-controls="collapse_capabilities">
         <%= t( 'capability.capabilities' ) %>
         <% if @user.capabilities.present? %>
@@ -20,34 +20,34 @@
   </tr>
 
   <% category = CapabilityCategory.find_by( name: 'general' ) %>
-  <% category_capabilities = %w[ view_admin_area view_admin_toolbar skip skip ] %>
+  <% category_capabilities = %w[ view_admin_area view_admin_toolbar skip skip skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category = CapabilityCategory.find_by( name: 'blogs' ) %>
-  <% category_capabilities = %w[ list add edit destroy ] %>
+  <% category_capabilities = %w[ list add edit destroy skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category = CapabilityCategory.find_by( name: 'blog_posts' ) %>
-  <% category_capabilities = %w[ list add edit destroy ] %>
+  <% category_capabilities = %w[ list add edit destroy change_author ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
-  <% category_capabilities = %w[ change_author skip skip skip ] %>
-  <%= render_capability_category( f, category, category_capabilities, show, true ) %>
 
   <% category = CapabilityCategory.find_by( name: 'discussions' ) %>
-  <% category_capabilities = %w[ hide unhide lock unlock ] %>
+  <% category_capabilities = %w[ hide unhide lock unlock skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category = CapabilityCategory.find_by( name: 'comments' ) %>
-  <% category_capabilities = %w[ hide unhide lock unlock ] %>
+  <% category_capabilities = %w[ hide unhide lock unlock destroy ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
-  <% category_capabilities = %w[ skip skip skip delete ] %>
-  <%= render_capability_category( f, category, category_capabilities, show, true ) %>
+
+  <% category = CapabilityCategory.find_by( name: 'spam_comments' ) %>
+  <% category_capabilities = %w[ list skip skip destroy skip ] %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category = CapabilityCategory.find_by( name: 'feature_flags' ) %>
-  <% category_capabilities = %w[ list skip edit skip ] %>
+  <% category_capabilities = %w[ list skip edit skip skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
-  <% category_capabilities = %w[ list add edit destroy ] %>
+  <% category_capabilities = %w[ list add edit destroy skip ] %>
   <% CapabilityCategory.where(
       name: %w[ inserts pages page_sections page_templates ]
     ).each do |category| %>
@@ -55,16 +55,14 @@
   <% end %>
 
   <% category = CapabilityCategory.find_by( name: 'settings' ) %>
-  <% category_capabilities = %w[ list skip edit skip ] %>
+  <% category_capabilities = %w[ list skip edit skip skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category = CapabilityCategory.find_by( name: 'users' ) %>
-  <% category_capabilities = %w[ list add edit destroy ] %>
+  <% category_capabilities = %w[ list add edit destroy view_admin_notes ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
-  <% category_capabilities = %w[ view_admin_notes skip skip skip ] %>
-  <%= render_capability_category( f, category, category_capabilities, show, true ) %>
 
   <% category = CapabilityCategory.find_by( name: 'admin_users' ) %>
-  <% category_capabilities = %w[ list add edit destroy ] %>
+  <% category_capabilities = %w[ list add edit destroy skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 </table>
