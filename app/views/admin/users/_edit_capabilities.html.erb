@@ -20,7 +20,7 @@
   </tr>
 
   <% category = CapabilityCategory.find_by( name: 'general' ) %>
-  <% category_capabilities = %w[ view_admin_area view_admin_toolbar skip skip skip ] %>
+  <% category_capabilities = %w[ view_admin_area view_admin_dashboard view_admin_toolbar skip skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category = CapabilityCategory.find_by( name: 'blogs' ) %>
@@ -40,7 +40,7 @@
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category = CapabilityCategory.find_by( name: 'spam_comments' ) %>
-  <% category_capabilities = %w[ list skip skip destroy skip ] %>
+  <% category_capabilities = %w[ list add skip destroy skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category = CapabilityCategory.find_by( name: 'feature_flags' ) %>
@@ -64,5 +64,9 @@
 
   <% category = CapabilityCategory.find_by( name: 'admin_users' ) %>
   <% category_capabilities = %w[ list add edit destroy skip ] %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category = CapabilityCategory.find_by( name: 'web_stats' ) %>
+  <% category_capabilities = %w[ list skip skip skip skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 </table>
