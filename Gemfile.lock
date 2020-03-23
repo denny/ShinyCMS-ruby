@@ -326,6 +326,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    semantic_range (2.3.0)
     sexp_processor (4.14.1)
     simplecov (0.18.0)
       docile (~> 1.1)
@@ -354,10 +355,11 @@ GEM
     url (0.3.2)
     warden (1.2.8)
       rack (>= 2.0.6)
-    webpacker (4.2.2)
-      activesupport (>= 4.2)
+    webpacker (5.0.0)
+      activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
-      railties (>= 4.2)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
@@ -410,7 +412,7 @@ DEPENDENCIES
   rubocop!
   rubocop-rails!
   sassc-rails!
-  webpacker (~> 4.2)!
+  webpacker (~> 5.0)!
 
 BUNDLED WITH
    2.1.4
