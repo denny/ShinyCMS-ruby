@@ -1,9 +1,9 @@
+# frozen_string_literal: true
+
 # Model class for setting values (site-wide and per-user config settings)
 class SettingValue < ApplicationRecord
   validates :setting_id, presence: true
-
-  # Without a comment on this line, Rubocop fails the line below o.O
-  validates :user_id, uniqueness: {
+  validates :user_id,    uniqueness: {
     scope: :setting,
     message: I18n.t( 'models.setting_value.one_per_user' )
   }
