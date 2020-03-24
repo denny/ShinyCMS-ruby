@@ -85,10 +85,9 @@ rails 5.x without at least minor modifications; I don't intend to put any effort
 into supporting earlier versions of Rails, and any patches to add that support
 will need to be convincingly clean.
 
-I don't know of any reason that ShinyCMS shouldn't run on older Ruby versions,
-but I haven't tested it yet so I don't know how much older; when I run those
-tests, or if if I get any feedback on what does or doesn't work, then I'll
-update this doc.
+The lowest major version of Ruby that Rails 6 works with is 2.5. I occasionally
+use Travis CI to run the test suite against Ruby 2.5.7, 2.6.5, and 2.7.0, which
+seems to work: https://travis-ci.org/github/denny/ShinyCMS-ruby/builds/664183708
 
 
 ## System dependencies
