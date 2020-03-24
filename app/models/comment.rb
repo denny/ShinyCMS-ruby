@@ -13,6 +13,7 @@ class Comment < ApplicationRecord
   validates :author_type, presence: true
   validates :user_id, presence: true, if: -> { author_type == 'authenticated'}
 
+  # Without a comment on this line, Rubocop fails the line below o.O
   validates :number, uniqueness: { scope: :discussion_id }
 
   validates :body,  presence: true, unless: -> { title.present? }
