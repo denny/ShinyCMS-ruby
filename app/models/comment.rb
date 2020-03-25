@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model class for comments
 class Comment < ApplicationRecord
   belongs_to :discussion

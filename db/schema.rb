@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_15_024923) do
+ActiveRecord::Schema.define(version: 2020_03_24_174637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(version: 2020_03_15_024923) do
     t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["number", "discussion_id"], name: "index_comments_on_number_and_discussion_id", unique: true
   end
 
   create_table "discussions", force: :cascade do |t|
@@ -316,6 +317,7 @@ ActiveRecord::Schema.define(version: 2020_03_15_024923) do
     t.string "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["setting_id", "user_id"], name: "index_setting_values_on_setting_id_and_user_id", unique: true
   end
 
   create_table "settings", force: :cascade do |t|
