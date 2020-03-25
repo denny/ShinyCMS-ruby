@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model class for setting values (site-wide and per-user config settings)
 class SettingValue < ApplicationRecord
   validates :setting_id, presence: true
