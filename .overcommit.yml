@@ -11,34 +11,31 @@
 PreCommit:
   ALL:
     quiet: false
-
   Brakeman:
     enabled: true
-
   RuboCop:
     enabled: true
     on_warn: fail
-
   TrailingWhitespace:
     enabled: true
     exclude:
       - '**/*.md'
-
   CaseConflicts:
     enabled: false
 
 PrePush:
   ALL:
     quiet: false
-
-  RailsSchemaUpToDate:
-    enabled: true
-
   RSpec:
     enabled: true
-
   BundleAudit:
     enabled: true
-
   Fasterer:
     enabled: true
+
+PostMerge:
+  ALL:
+    quiet: false
+  RuboCop:
+    enabled: true
+    on_warn: fail
