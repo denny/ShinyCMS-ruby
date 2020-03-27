@@ -1,5 +1,7 @@
 # User model (powered by Devise)
 class User < ApplicationRecord
+  include Email
+
   # Include default and most extra devise modules
   # (Only :omniauthable not currently used)
   devise :database_authenticatable, :registerable,
@@ -18,10 +20,6 @@ class User < ApplicationRecord
   validates :username, length:     { maximum: 50 }
   validates :username, format:     ANCHORED_USERNAME_REGEX
 
-  validates :email, presence:   true
-  validates :email, uniqueness: true, case_sensitive: false
-  validates_with EmailAddress::ActiveRecordValidator
-
   # User profile pic (powered by ActiveStorage)
   has_one_attached :profile_pic
 
@@ -37,9 +35,9 @@ class User < ApplicationRecord
   has_many :visits, class_name: 'Ahoy::Visit', dependent: :nullify
 
   # End-user content: destroy it along with their account
-  has_many :comments,       inverse_of: :author,     dependent: :destroy
-  has_many :subscriptions,  inverse_of: :subscriber, dependent: :destroy,
-                            foreign_key: :subscriber_id
+  has_many :comments, inverse_of: :author,  dependent: :destroy
+  has_many :subscriptions, as: :subscriber, dependent: :destroy
+  has_many :lists, through: :subscriptions
 
   # Admin content: throw an error if it hasn't been removed or reassigned
   has_many :blogs,      inverse_of: :owner,  dependent: :restrict_with_error
