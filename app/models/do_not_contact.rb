@@ -14,15 +14,15 @@ class DoNotContact < ApplicationRecord
   end
 
   def self.canonicalise_and_redact( email )
-    EmailAddress.redact( EmailAddress.canonical( email ) )
+    new_email = EmailAddress.new( email )
+    return email if new_email.redacted?
+
+    EmailAddress.redact( new_email.canonical )
   end
 
   private
 
   def redact_email
-    new_email = EmailAddress.new( email )
-    return email if new_email.redacted?
-
     self.email = DoNotContact.canonicalise_and_redact( email )
   end
 end
