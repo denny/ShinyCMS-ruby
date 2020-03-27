@@ -12,9 +12,6 @@ cache: bundler
 addons:
   postgresql: "10"
 
-before_install:
-  - npm install mjml
-
 before_script:
   - bundle exec rails assets:precompile
   - bundle exec rails db:create
