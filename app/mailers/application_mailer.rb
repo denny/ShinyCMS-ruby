@@ -4,7 +4,7 @@ class ApplicationMailer < ActionMailer::Base
 
   before_action :set_view_paths
 
-  default from: ENV[ 'MAILER_SENDER' ]
+  default from: ENV[ 'MAILER_SENDER' ] || 'shinycms@example.com'
 
   layout 'mailer'
 

@@ -184,6 +184,7 @@ en:
       settings: Site Settings
       spam_comments: Spam Comments
       users: Users
+      web_stats: Web Stats
 
     blog_posts:
       change_author: Change author
