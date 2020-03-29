@@ -80,8 +80,8 @@ source 'https://rubygems.org' do
     gem 'db_fixtures_dump'
     # Check for slow code
     gem 'fasterer', require: false
-    # Open emails sent by the system in a browser tab
-    gem 'letter_opener'
+    # Capture all emails sent by the system and view them in a dev webmail inbox
+    gem 'letter_opener_web', '~> 1.0'
     # Reload dev server when files change
     gem 'listen', '>= 3.0.5', '< 3.3'
     # Helps you manage your git hooks
