@@ -162,6 +162,9 @@ Rails.application.routes.draw do
       resources :user, controller: :users, except: EXCEPT
     end
 
+    # Letter Opener webmail UI for dev environment
+    mount LetterOpenerWeb::Engine, at: 'letter-opener' if Rails.env.development?
+
     # The Ultimate Catch-All Route! Passes through to page handler,
     # so that we can have top-level pages - /foo instead of /pages/foo
     get '*path', to: 'pages#show'
