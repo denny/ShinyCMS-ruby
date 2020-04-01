@@ -278,7 +278,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    recaptcha (5.4.1)
+    recaptcha (5.5.0)
       json
     regexp_parser (1.7.0)
     responders (3.0.0)
