@@ -200,6 +200,19 @@ en:
 
   # ========== ( Admin Area ) ==========
 
+  rails_email_preview:
+    emails:
+      index:
+        list_title: Emails
+      show:
+        breadcrumb_list: Emails
+
+  rep:
+    base:
+      email: Email
+      in: In
+      mailer: Mailer
+
   admin:
     title: Admin
     admin_area: Admin area
@@ -275,6 +288,9 @@ en:
 
     discussion:
       title: Discussion
+
+    emails:
+      title: Emails
 
     feature_flags:
       title: Feature Flags

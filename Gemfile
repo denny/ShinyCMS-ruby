@@ -8,6 +8,9 @@ source 'https://rubygems.org' do
   # Load ENV from .env(.*) files
   gem 'dotenv-rails'
 
+  # Locales for the 'not USA' bits of the world
+  gem 'rails-i18n'
+
   # Reduce boot times through caching; required in config/boot.rb
   gem 'bootsnap', '>= 1.4.2', require: false
   # Use faster SCSS gem for stylesheets
@@ -30,6 +33,9 @@ source 'https://rubygems.org' do
 
   # Validate email addresses
   gem 'email_address'
+
+  # Email preview
+  gem 'rails_email_preview'
 
   # MJML emails
   gem 'mjml-rails'

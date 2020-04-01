@@ -34,26 +34,26 @@ class Comment < ApplicationRecord
 
   def send_notifications
     p = parent.notification_email if parent.present?
-    to_parent_comment_author if p.present?
+    notify_parent_comment_author if p.present?
 
     d = discussion.notification_email
-    to_discussion_owner unless d == p
+    notify_discussion_owner unless d == p
 
     a = Setting.get :all_comment_notifications_email
     return if a.blank? || [ d, p ].include?( a )
 
-    to_all_comment_notifications_email
+    notify_all_comment_notifications_email
   end
 
-  def to_parent_comment_author
+  def notify_parent_comment_author
     DiscussionMailer.parent_comment_notification( self )
   end
 
-  def to_discussion_owner
+  def notify_discussion_owner
     DiscussionMailer.discussion_notification( self )
   end
 
-  def to_all_comment_notifications_email
+  def notify_all_comment_notifications_email
     DiscussionMailer.overview_notification( self )
   end
 

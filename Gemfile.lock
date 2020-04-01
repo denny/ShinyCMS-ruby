@@ -267,6 +267,11 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
+    rails_email_preview (2.2.1)
+      rails (>= 4.2)
+      request_store
+      sassc-rails (>= 2.0.0)
+      turbolinks
     railties (6.0.2.2)
       actionpack (= 6.0.2.2)
       activesupport (= 6.0.2.2)
@@ -281,6 +286,8 @@ GEM
     recaptcha (5.4.1)
       json
     regexp_parser (1.6.0)
+    request_store (1.5.0)
+      rack (>= 1.4)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -351,6 +358,9 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    turbolinks (5.2.1)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
     unf (0.1.4)
@@ -411,6 +421,8 @@ DEPENDENCIES
   puma (~> 4.3)!
   pundit!
   rails (~> 6.0.2)!
+  rails-i18n!
+  rails_email_preview!
   recaptcha!
   rspec-rails!
   rspec_junit_formatter!

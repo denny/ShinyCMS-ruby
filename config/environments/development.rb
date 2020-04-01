@@ -39,17 +39,19 @@ Rails.application.configure do
       :local
     end
 
-  # Don't care if the mailer can't send.
+  # If we've defined an extra hostname in the ENV, allow it
+  config.hosts << ENV['SHINYCMS_HOSTNAME'] if ENV['SHINYCMS_HOSTNAME'].present?
+
+  # Mailer settings
+  # We use letter_opener to catch all emails sent in dev
+  # You can view them at http://example.com/letter-opener
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  config.action_mailer.perform_caching = false
-  # config.action_mailer.raise_delivery_errors = false
-
-  # Use letter_opener to open emails in a browser tab
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.perform_deliveries = true
-
-  # Print deprecation notices to the Rails logger.
+  # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
   # Raise an error on page load if there are pending migrations.

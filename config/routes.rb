@@ -85,7 +85,10 @@ Rails.application.routes.draw do
     get 'admin', to: 'admin#index'
 
     # CKEditor (WYSIWYG editor used on various admin pages)
-    mount Ckeditor::Engine => '/admin/ckeditor'
+    mount Ckeditor::Engine, at: '/admin/ckeditor'
+
+    # Mailer preview features
+    mount RailsEmailPreview::Engine, at: '/admin/emails'
 
     EXCEPT = %w[ index show create ].freeze
 
