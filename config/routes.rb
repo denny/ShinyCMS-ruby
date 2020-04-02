@@ -84,12 +84,6 @@ Rails.application.routes.draw do
     # ========== ( Admin area ) ==========
     get 'admin', to: 'admin#index'
 
-    # CKEditor (WYSIWYG editor used on various admin pages)
-    mount Ckeditor::Engine, at: '/admin/ckeditor'
-
-    # Mailer preview features
-    mount RailsEmailPreview::Engine, at: '/admin/emails'
-
     EXCEPT = %w[ index show create ].freeze
 
     scope path: 'admin', module: 'admin' do
@@ -164,6 +158,12 @@ Rails.application.routes.draw do
       post :user,  to: 'users#create', as: :create_user
       resources :user, controller: :users, except: EXCEPT
     end
+
+    # CKEditor (WYSIWYG editor used on various admin pages)
+    mount Ckeditor::Engine, at: '/admin/ckeditor'
+
+    # Mailer preview features
+    mount RailsEmailPreview::Engine, at: '/admin/email-previews'
 
     # Letter Opener webmail UI for dev environment
     mount LetterOpenerWeb::Engine, at: 'letter-opener' if Rails.env.development?

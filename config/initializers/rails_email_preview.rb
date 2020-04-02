@@ -17,7 +17,7 @@ RailsEmailPreview.setup do |config|
   # You can specify a controller for RailsEmailPreview::ApplicationController
   # to inherit from (default: '::ApplicationController'):
   # config.parent_controller = 'Admin::ApplicationController'
-  config.parent_controller = 'Admin::EmailsController'
+  config.parent_controller = 'Admin::EmailPreviewsController'
 end
 
 # Enable Comfortable Mexican Sofa integration:
