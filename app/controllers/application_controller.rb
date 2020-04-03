@@ -13,12 +13,16 @@ class ApplicationController < ActionController::Base
 
   before_action :set_view_paths
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :inline_shinycms_routes,
+                if: -> { controller_name.start_with? 'Blazer' }
 
   after_action  :track_ahoy_visit
 
   helper_method :recaptcha_v2_site_key,
                 :recaptcha_v3_site_key,
                 :recaptcha_checkbox_site_key
+
+  @inlined_routes = false if @inlined_routes.nil?
 
   def self.recaptcha_v3_secret_key
     ENV[ 'RECAPTCHA_V3_SECRET_KEY' ]
@@ -82,6 +86,20 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def inline_shinycms_routes
+    # Adapted from RailsEmailPreview:
+    # https://github.com/glebm/rails_email_preview/blob/master/lib/rails_email_preview.rb#L64
+    # https://github.com/glebm/rails_email_preview/blob/master/lib/rails_email_preview/main_app_route_delegator.rb
+    # unless ::REP::EmailsController.instance_variable_get(:@inlined_routes)
+    #  ::REP::EmailsController.helper ::RailsEmailPreview::MainAppRouteDelegator
+    #  ::REP::EmailsController.instance_variable_set(:@inlined_routes, true)
+    # end
+    return if @inlined_routes
+
+    Blazer::BaseController.helper ShinyRouteDelegator
+    @inlined_routes = true
+  end
 
   # Check user's password against pwned password service and warn if necessary
   def check_for_pwnage( resource )
