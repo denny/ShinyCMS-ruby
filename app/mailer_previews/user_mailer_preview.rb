@@ -1,7 +1,7 @@
 # Rails Email Preview controller for previewing Devise-powered user emails
 class UserMailerPreview
   def registration
-    DeviseMailer.registration fetch_user
+    UserMailer.registration fetch_user
   end
 
   private
