@@ -1,0 +1,19 @@
+<mj-section>
+  <mj-column>
+
+    <mj-text>
+      <%= t( 'user_mailer.hello', name: @resource.username ) %>,
+    </mj-text>
+
+    <mj-text>
+      <% if @resource.try( :unconfirmed_email? ) %>
+        <%= t( 'user_mailer.email_changed.email_changing' ) %>:
+        <%= @resource.unconfirmed_email %>
+      <% else %>
+        <%= t( 'user_mailer.email_changed.email_changed' ) %>:
+        <%= @resource.email %>
+      <% end %>
+    </mj-text>
+
+  </mj-column>
+</mj-section>

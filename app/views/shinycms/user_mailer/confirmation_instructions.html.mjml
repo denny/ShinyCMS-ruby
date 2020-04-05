@@ -1,0 +1,18 @@
+<mj-section>
+  <mj-column>
+
+    <mj-text>
+      <%= t( 'user_mailer.welcome', name: @resource.username ) %>,
+    </mj-text>
+
+    <mj-text>
+      <%= t( 'user_mailer.confirmation.instructions' ) %>:
+    </mj-text>
+
+    <mj-text>
+      <%= link_to t( 'user_mailer.confirmation.link_text' ),
+          confirmation_url( @resource, confirmation_token: @token ) %>
+    </mj-text>
+
+  </mj-column>
+</mj-section>

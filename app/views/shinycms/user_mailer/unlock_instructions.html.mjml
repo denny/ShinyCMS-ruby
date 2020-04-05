@@ -1,0 +1,22 @@
+<mj-section>
+  <mj-column>
+
+    <mj-text>
+      <%= t( 'user_mailer.hello', name: @resource.username ) %>,
+    </mj-text>
+
+    <mj-text>
+      <%= t( 'user_mailer.unlock_instructions.explanation' ) %>
+    </mj-text>
+
+    <mj-text>
+      <%= t( 'user_mailer.unlock_instructions.instructions' ) %>:
+    </mj-text>
+
+    <mj-text>
+      <%= link_to t( 'user_mailer.unlock_instructions.link_text' ),
+          unlock_url( @resource, unlock_token: @token ) %>
+    </mj-text>
+
+  </mj-column>
+</mj-section>
