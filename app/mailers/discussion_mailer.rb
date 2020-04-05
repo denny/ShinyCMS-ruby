@@ -1,7 +1,6 @@
 # Mailer for discussion-related emails - reply notifications etc
 class DiscussionMailer < ApplicationMailer
   before_action :check_feature_flags
-  before_action :set_site_name
 
   def parent_comment_notification( comment )
     return unless comment&.parent&.notification_email&.present?
@@ -72,10 +71,6 @@ class DiscussionMailer < ApplicationMailer
       comment_author_name: comment.author_name_any,
       site_name: @site_name
     )
-  end
-
-  def set_site_name
-    @site_name = I18n.t( 'site_name' )
   end
 
   def check_feature_flags
