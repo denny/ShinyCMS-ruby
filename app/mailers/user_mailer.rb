@@ -8,7 +8,7 @@ class UserMailer < Devise::Mailer
   default from: ->(*) { default_from_address }
   default template_path: 'user_mailer'
 
-  def confirmation( user, token )
+  def confirmation_instructions( user, token )
     @resource = user
     @token = token
 
@@ -16,7 +16,7 @@ class UserMailer < Devise::Mailer
       to: user.email,
       subject: t( '.subject' )
     ) do |format|
-      format.mjml
+      format.html
       format.text
     end
   end
@@ -29,7 +29,7 @@ class UserMailer < Devise::Mailer
       to: user.email,
       subject: t( '.subject' )
     ) do |format|
-      format.mjml
+      format.html
       format.text
     end
   end
@@ -41,7 +41,7 @@ class UserMailer < Devise::Mailer
       to: user.email,
       subject: t( '.subject' )
     ) do |format|
-      format.mjml
+      format.html
       format.text
     end
   end
@@ -53,7 +53,7 @@ class UserMailer < Devise::Mailer
       to: user.email,
       subject: t( '.subject' )
     ) do |format|
-      format.mjml
+      format.html
       format.text
     end
   end
@@ -66,9 +66,13 @@ class UserMailer < Devise::Mailer
       to: user.email,
       subject: t( '.subject' )
     ) do |format|
-      format.mjml
+      format.html
       format.text
     end
+  end
+
+  def self.default_url_options
+    { host: ENV[ 'MAILER_HOST' ] }
   end
 
   private
