@@ -87,6 +87,18 @@ FactoryBot.define do
     end
   end
 
+  factory :email_admin, parent: :admin_user do
+    after :create do |admin|
+      category = CapabilityCategory.find_by( name: 'email_previews' )
+
+      list = category.capabilities.find_by( name: 'list' )
+      show = category.capabilities.find_by( name: 'show' )
+
+      create :user_capability, user: admin, capability: list
+      create :user_capability, user: admin, capability: show
+    end
+  end
+
   factory :feature_flags_admin, parent: :admin_user do
     after :create do |admin|
       category = CapabilityCategory.find_by( name: 'feature_flags' )

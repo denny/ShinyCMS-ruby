@@ -11,6 +11,7 @@ blog_posts_cc = seed CapabilityCategory, { name: 'blog_posts'     }
 discussion_cc = seed CapabilityCategory, { name: 'discussions'    }
 comments_cc   = seed CapabilityCategory, { name: 'comments'       }
 spam_cc       = seed CapabilityCategory, { name: 'spam_comments'  }
+emails_cc     = seed CapabilityCategory, { name: 'email_previews' }
 features_cc   = seed CapabilityCategory, { name: 'feature_flags'  }
 inserts_cc    = seed CapabilityCategory, { name: 'inserts'        }
 news_cc       = seed CapabilityCategory, { name: 'news_posts'     }
@@ -51,6 +52,9 @@ seed Capability, { name: 'destroy', category: comments_cc }
 seed Capability, { name: 'list',    category: spam_cc }
 seed Capability, { name: 'add',     category: spam_cc }
 seed Capability, { name: 'destroy', category: spam_cc }
+# Email Previews
+seed Capability, { name: 'list',    category: emails_cc }
+seed Capability, { name: 'show',    category: emails_cc }
 # Feature Flags
 seed Capability, { name: 'list',    category: features_cc }
 seed Capability, { name: 'edit',    category: features_cc }
