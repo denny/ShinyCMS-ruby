@@ -1,7 +1,7 @@
 # Rails Email Preview controller for previewing Devise-powered user emails
 class UserMailerPreview
-  def confirmation
-    UserMailer.registration fetch_user, fake_token
+  def confirmation_instructions
+    UserMailer.confirmation_instructions fetch_user, fake_token
   end
 
   def reset_password

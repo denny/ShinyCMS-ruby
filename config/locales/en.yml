@@ -141,7 +141,7 @@ en:
   user_mailer:
     welcome: Welcome, %{name}!
     hello: Hello %{name},
-    confirmation:
+    confirmation_instructions:
       subject: "[%{site_name}] Please confirm your registration"
       instructions: You can confirm your email address by clicking the link below
       link_text: Confirm my address
