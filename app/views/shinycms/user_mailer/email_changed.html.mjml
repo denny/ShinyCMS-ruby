@@ -7,10 +7,10 @@
 
     <mj-text>
       <% if @resource.try( :unconfirmed_email? ) %>
-        <%= t( 'user_mailer.email_changed.email_changing' ) %>:
+        <%= t( '.email_changing' ) %>:
         <%= @resource.unconfirmed_email %>
       <% else %>
-        <%= t( 'user_mailer.email_changed.email_changed' ) %>:
+        <%= t( '.email_changed' ) %>:
         <%= @resource.email %>
       <% end %>
     </mj-text>
