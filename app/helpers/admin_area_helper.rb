@@ -4,7 +4,6 @@ module AdminAreaHelper
   def authorise( record )
     if record.is_a? Symbol
       policy_class_name = "Admin::#{record.to_s.camelize}Policy"
-      warn policy_class_name
     else
       record_class_name = class_name( record )
       record_class_name = 'Ahoy' if record_class_name.start_with? 'Ahoy::'
