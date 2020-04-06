@@ -150,7 +150,7 @@ GEM
       railties (>= 4.2.0)
     faker (2.11.0)
       i18n (>= 1.6, < 2)
-    fasterer (0.8.2)
+    fasterer (0.8.3)
       colorize (~> 0.7)
       ruby_parser (>= 3.14.1)
     ffi (1.12.1)
