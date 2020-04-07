@@ -20,6 +20,6 @@ class DiscussionMailerPreview
 
   def mock_comment
     # TODO: Use factory?
-    Comment.first
+    Comment.where.not( parent: nil ).first || Comment.first
   end
 end
