@@ -79,6 +79,7 @@ module AdminAreaHelper
     return this.first.class.name if this.class.name == 'ActiveRecord::Relation'
     return this.first.class.name if this.class.name == 'Array'
     return this.name             if this.class.name == 'Class'
+    return this.name             if this.class.name == 'Module'
     return this.to_s.classify    if this.class.name == 'Symbol'
 
     this.class.name
