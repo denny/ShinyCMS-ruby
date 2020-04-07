@@ -14,12 +14,12 @@
     <% end %>
 
     <%= with_show_hook :headers_and_nav do %>
-      <%= render 'rails_email_preview/emails/headers_and_nav' %>
+      <%= render partial: 'rails_email_preview/emails/headers_and_nav' %>
     <% end %>
 
     <%= with_show_hook :email_body do %>
       <%- # actual email content, rendered in an iframe to prevent browser styles from interfering   -%>
-      <%= render 'rails_email_preview/emails/email_iframe' %>
+      <%= render partial: 'rails_email_preview/emails/email_iframe' %>
     <% end %>
   </div>
 </div>

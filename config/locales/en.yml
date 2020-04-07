@@ -231,9 +231,14 @@ en:
 
   rep:
     base:
-      email: Email
-      in: In
-      mailer: Mailer
+      email:
+        one: 1 email
+        other: "%{count} emails"
+      in: in
+      mailer:
+        one: 1 mailer
+        other: "%{count} mailers"
+      loading: Loading...
 
   admin:
     title: Admin
