@@ -15,6 +15,8 @@ class Admin::WebStatsController < AdminController
     authorise @visits if @visits.present?
   end
 
+  private
+
   def filtered_visits
     page_num = params[ :page ] || 1
     visits = Ahoy::Visit
@@ -23,6 +25,5 @@ class Admin::WebStatsController < AdminController
       visits = visits.where( user: @user )
     end
     @visits = visits.order( 'started_at desc' ).page( page_num )
-    authorise @visits
   end
 end
