@@ -227,11 +227,9 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'classifies a new comment as spam after checking Akismet' do
-      FeatureFlag.enable :akismet_on_comments
+      skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
 
-      # TODO: put Akismet key in CI ENV short-term, stub this longer-term?
-      # allow( DiscussionsController )
-      #  .to receive( :akismet_api_key ).and_return( 'A_VALID_KEY :-\' )
+      FeatureFlag.enable :akismet_on_comments
 
       always_fail_author_name = 'viagra-test-123'
       title = Faker::Science.scientist
