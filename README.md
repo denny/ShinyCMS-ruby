@@ -87,7 +87,7 @@ will need to be convincingly clean.
 
 The lowest major version of Ruby that Rails 6 works with is 2.5. I occasionally
 use Travis CI to run the test suite against Ruby 2.5, 2.6, and 2.7, which seems
-to work: https://travis-ci.org/github/denny/ShinyCMS-ruby/builds/664183708
+to work: https://travis-ci.org/github/denny/ShinyCMS-ruby/builds/672223883
 
 
 ## System dependencies
