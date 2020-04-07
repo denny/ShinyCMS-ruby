@@ -76,9 +76,9 @@ see docs/TODO.md
 
 I'm aiming to keep up to date with the current/latest stable versions of Ruby
 and Rails, which means I started with Ruby 2.6.4 and Rails 6.0.0, and I'm
-currently on Ruby 2.6.5 and Rails 6.0.2.1 (I did update to Ruby 2.7.0 briefly,
-but I got fed up with all the deprecation warnings; I've moved back to 2.6.5
-until 2.7.0 support settles down a bit).
+currently on Ruby 2.6.6 and Rails 6.0.2.2 (I've updated to Ruby 2.7.x twice,
+but got fed up with all the deprecation warnings each time and moved back to
+2.6.x until 2.7.x support settles down a bit).
 
 I believe there are some Rails-6-isms in the code which mean it won't run on
 rails 5.x without at least minor modifications; I don't intend to put any effort
@@ -86,8 +86,8 @@ into supporting earlier versions of Rails, and any patches to add that support
 will need to be convincingly clean.
 
 The lowest major version of Ruby that Rails 6 works with is 2.5. I occasionally
-use Travis CI to run the test suite against Ruby 2.5.7, 2.6.5, and 2.7.0, which
-seems to work: https://travis-ci.org/github/denny/ShinyCMS-ruby/builds/664183708
+use Travis CI to run the test suite against Ruby 2.5, 2.6, and 2.7, which seems
+to work: https://travis-ci.org/github/denny/ShinyCMS-ruby/builds/664183708
 
 
 ## System dependencies
