@@ -1,4 +1,5 @@
-# Load ShinyCMS routes inside engines
+# Load ShinyCMS routes inside engines (e.g. Blazer)
+# (Approach copied from RailsEmailPreview, which has this feature built in)
 module MainAppRouteDelegator
   def method_missing( method, *args, &block )
     if main_app_route_method?( method )
