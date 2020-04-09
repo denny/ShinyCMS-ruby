@@ -1,10 +1,10 @@
 # Pundit policy for web stats (powered by ahoy)
 class Admin::AhoyPolicy < Admin::DefaultPolicy
   def index?
-    @this_user.can? :list, :web_stats
-  end
-
-  def show?
-    @this_user.can? :show, :web_stats
+    if controller_name == 'web_stats'
+      @this_user.can? :web, :stats
+    elsif controller_name == 'email_stats'
+      @this_user.can? :email, :stats
+    end
   end
 end

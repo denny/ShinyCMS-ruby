@@ -181,10 +181,10 @@ en:
       pages: Pages
       page_sections: Page Sections
       page_templates: Page Templates
+      stats: Stats
       settings: Site Settings
       spam_comments: Spam Comments
       users: Users
-      web_stats: Web Stats
 
     blog_posts:
       change_author: Change author
@@ -193,6 +193,11 @@ en:
       view_admin_area: View admin area
       view_admin_dashboard: View admin dashboard
       view_admin_toolbar: View admin toolbar
+
+    stats:
+      view_web: View web stats
+      email_stats: View email stats
+      make_charts: Make charts (Blazer)
 
     users:
       view_admin_notes: View admin notes
@@ -275,6 +280,12 @@ en:
 
     discussion:
       title: Discussion
+
+    email_stats:
+      title: Email stats
+      index:
+        title: Email stats
+        empty: No stats to display
 
     feature_flags:
       title: Feature Flags

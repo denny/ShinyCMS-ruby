@@ -177,6 +177,20 @@ FactoryBot.define do
     end
   end
 
+  factory :stats_admin, parent: :admin_user do
+    after :create do |admin|
+      category = CapabilityCategory.find_by( name: 'stats' )
+
+      web    = category.capabilities.find_by( name: 'view_web'    )
+      email  = category.capabilities.find_by( name: 'view_email'  )
+      charts = category.capabilities.find_by( name: 'make_charts' )
+
+      create :user_capability, user: admin, capability: web
+      create :user_capability, user: admin, capability: email
+      create :user_capability, user: admin, capability: charts
+    end
+  end
+
   factory :settings_admin, parent: :admin_user do
     after :create do |admin|
       category = CapabilityCategory.find_by( name: 'settings' )
