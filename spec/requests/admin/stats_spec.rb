@@ -11,6 +11,7 @@ RSpec.describe 'Stats', type: :request do
       get blazer_path
 
       expect( response      ).to have_http_status :ok
+      # TODO: such test, wow
       # expect( response.body ).to have_title I18n.t( 'admin.stats.title' )
     end
   end
