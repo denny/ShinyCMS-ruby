@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
 
   before_action :set_view_paths
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :inline_shinycms_routes
 
   after_action  :track_ahoy_visit
 
