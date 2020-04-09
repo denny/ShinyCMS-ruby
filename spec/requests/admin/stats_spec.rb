@@ -8,11 +8,20 @@ RSpec.describe 'Stats', type: :request do
 
   describe 'GET /stats' do
     it 'succeeds' do
-      # binding.pry
       get blazer_path
 
       expect( response      ).to have_http_status :ok
       # expect( response.body ).to have_title I18n.t( 'admin.stats.title' )
+    end
+  end
+
+  describe 'GET /stats' do
+    it 'generates the correct button link' do
+      get blazer_path
+
+      # binding.pry
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_link 'New Query', href: '/admin/stats/queries/new'
     end
   end
 end
