@@ -6,12 +6,12 @@
         <%= t( 'capability.capabilities' ) %>
         <% if @user.capabilities.present? %>
         <% show = 'show ' %>
-        <span class="toggle-icon-top collapse show">
-          <i class="cil-chevron-top"></i>
+        <span class="collapse show">
+          <i class="cil-chevron-right"></i>
         </span>
         <% else %>
         <% show = '' %>
-        <span class="toggle-icon-bottom collapse">
+        <span class="collapse">
           <i class="cil-chevron-bottom"></i>
         </span>
         <% end %>
