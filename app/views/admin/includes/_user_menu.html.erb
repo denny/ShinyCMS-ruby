@@ -7,24 +7,24 @@
         <%= image_tag current_user.profile_pic.variant( resize: '36x36!' ).processed.service_url, alt: user_display_name, class: 'c-avatar-img' %>
       </div>
       <% else %>
-      <i class="cil-user"></i>
+      <i class="cil-user user-menu-icon"></i>
       <% end %>
     </a>
     <div class="dropdown-menu dropdown-menu-right pt-0">
       <div class="dropdown-header bg-light py-2"><strong><%= user_display_name %></strong></div>
       <a class="dropdown-item" href="<%= user_profile_path( current_user.username ) %>">
-        <i class="cil-user"></i> <%= t( 'user.view_profile' ) %>
+        <i class="cil-user user-menu-icon"></i> <%= t( 'user.view_profile' ) %>
       </a>
       <a class="dropdown-item" href="<%= edit_user_registration_path( current_user.username ) %>">
-        <i class="cil-pencil"></i> <%= t( 'user.edit_profile' ) %>
+        <i class="cil-pencil user-menu-icon"></i> <%= t( 'user.edit_profile' ) %>
       </a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="<%= site_settings_path %>">
-        <i class="cil-settings"></i> <%= t( 'user.site_settings' ) %>
+        <i class="cil-settings user-menu-icon"></i> <%= t( 'user.site_settings' ) %>
       </a>
       <div class="dropdown-divider"></div>
       <a rel="nofollow" data-method="delete" class="dropdown-item" href="<%= destroy_user_session_path %>">
-        <i class="cil-account-logout"></i> <%= t( 'user.log_out' ) %>
+        <i class="cil-account-logout user-menu-icon"></i> <%= t( 'user.log_out' ) %>
       </a>
     </div>
   </li>
