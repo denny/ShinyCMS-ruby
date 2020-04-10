@@ -87,9 +87,17 @@ body {
   height:           47px;
 }
 
+.c-sidebar-nav-item i {
+  padding:          0.2em 0.6em 0.2em 0.2em;
+}
+
+.c-sidebar-nav-dropdown-items .c-sidebar-nav-item i {
+  padding:          0.2em 0.6em 0.2em 1.0em;
+}
+
 .c-sidebar-nav-link {
   color:            $white;
-  padding:          0.8em;
+  padding:          0.4em !important;
 }
 
 .c-sidebar-nav-link:hover {
