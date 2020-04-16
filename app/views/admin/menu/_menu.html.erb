@@ -26,7 +26,9 @@
   <%= render partial: 'admin/menu/menu_other' %>
   <% end %>
 
-  <% if current_user.can? :list, :web_stats %>
+  <% if current_user.can?( :view_web,   :stats ) ||
+        current_user.can?( :view_email, :stats ) ||
+        current_user.can?( :use_blazer, :stats ) %>
   <%= render partial: 'admin/menu/menu_stats' %>
   <% end %>
 </ul>
