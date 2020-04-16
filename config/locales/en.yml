@@ -196,8 +196,8 @@ en:
 
     stats:
       view_web: View web stats
-      email_stats: View email stats
-      make_charts: Make charts (Blazer)
+      view_email: View email stats
+      use_blazer: Make charts (Blazer)
 
     users:
       view_admin_notes: View admin notes

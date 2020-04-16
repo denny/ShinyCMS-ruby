@@ -183,7 +183,7 @@ FactoryBot.define do
 
       web    = category.capabilities.find_by( name: 'view_web'    )
       email  = category.capabilities.find_by( name: 'view_email'  )
-      charts = category.capabilities.find_by( name: 'make_charts' )
+      charts = category.capabilities.find_by( name: 'use_blazer' )
 
       create :user_capability, user: admin, capability: web
       create :user_capability, user: admin, capability: email
