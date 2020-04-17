@@ -34,6 +34,9 @@ source 'https://rubygems.org' do
   # MJML emails
   gem 'mjml-rails'
 
+  # Search service
+  gem 'algoliasearch-rails'
+
   # Tags
   gem 'acts-as-taggable-on'
 
