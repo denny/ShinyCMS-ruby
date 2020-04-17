@@ -2,7 +2,13 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
+  def self.use_algolia?
+    ENV['ALGOLIASEARCH_APPLICATION_ID'].present?
+  end
+
   def self.algolia_searchable
+    return unless use_algolia?
+
     include AlgoliaSearch
 
     algoliasearch unless: :hidden?, per_environment: true do
