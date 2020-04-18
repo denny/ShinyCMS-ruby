@@ -168,13 +168,12 @@ Rails.application.routes.draw do
     # Letter Opener webmail UI for dev environment
     mount LetterOpenerWeb::Engine, at: 'letter-opener' if Rails.env.development?
 
-    # The Ultimate Catch-All Route! Passes through to page handler,
-    # so that we can have top-level pages, e.g. /foo instead of /pages/foo
-    # We have to have an exception for /ahoy paths because that engine appends
-    # its click-tracking routes which means this would steal them otherwise.
-    # rubocop:disable Style/Lambda
-    get '*path',  to: 'pages#show',
-                  constraints: lambda { |req| req.fullpath !~ %r{^/ahoy/} }
-    # rubocop:enable Style/Lambda
+    # This catch-all route passes through to the Pages controller, allowing
+    # sites to have top-level pages (e.g. /foo instead of /pages/foo).
+    # The constraint here is to avoid also catching the open and click tracking
+    # routes which are appended by the Ahoy::Email engine.
+    get '*path', to: 'pages#show', constraints: lambda do |request|
+      request.fullpath !~ %r{^/ahoy/message/}
+    end
   end
 end
