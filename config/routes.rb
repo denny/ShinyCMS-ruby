@@ -169,7 +169,12 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: 'letter-opener' if Rails.env.development?
 
     # The Ultimate Catch-All Route! Passes through to page handler,
-    # so that we can have top-level pages - /foo instead of /pages/foo
-    get '*path', to: 'pages#show'
+    # so that we can have top-level pages, e.g. /foo instead of /pages/foo
+    # We have to have an exception for /ahoy paths because that engine appends
+    # its click-tracking routes which means this would steal them otherwise.
+    # rubocop:disable Style/Lambda
+    get '*path',  to: 'pages#show',
+                  constraints: lambda { |req| req.fullpath !~ %r{^/ahoy/} }
+    # rubocop:enable Style/Lambda
   end
 end
