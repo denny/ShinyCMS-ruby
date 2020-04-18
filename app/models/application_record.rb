@@ -12,7 +12,8 @@ class ApplicationRecord < ActiveRecord::Base
     include AlgoliaSearch
 
     algoliasearch unless: :hidden?, per_environment: true do
-      # all attributes will be sent
+      # TODO: all attributes will be sent - is that what we want?
+      # TODO: what happens here when the value of .hidden changes?
     end
   end
 
