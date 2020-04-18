@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Top-level pundit policy for admin area
 class Admin::DefaultPolicy < DefaultPolicy
   def index?

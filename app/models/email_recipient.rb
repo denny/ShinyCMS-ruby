@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Store details of mailing list subscribers who aren't authenticated users
 class EmailRecipient < ApplicationRecord
   include Email

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model class for news posts
 class NewsPost < ApplicationRecord
   belongs_to :author, class_name: 'User',

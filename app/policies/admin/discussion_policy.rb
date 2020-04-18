@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Pundit policy for administration of discussions
 class Admin::DiscussionPolicy < Admin::DefaultPolicy
   def hide?

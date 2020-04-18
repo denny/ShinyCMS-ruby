@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model for mailing lists
 class MailingList < ApplicationRecord
   validates :name,  presence: true

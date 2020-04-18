@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model class for discussions (used to group comments)
 class Discussion < ApplicationRecord
   belongs_to :resource, inverse_of: :discussion, polymorphic: true

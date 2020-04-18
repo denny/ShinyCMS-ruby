@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Mailer for discussion-related emails - reply notifications etc
 class DiscussionMailer < ApplicationMailer
   before_action :check_feature_flags

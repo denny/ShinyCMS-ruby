@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Initialiser for Ahoy web stats; picks up various privacy-related settings
 # from ENV which are potentially useful for complying with GDPR.
 

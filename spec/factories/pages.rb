@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :page, aliases: [ :top_level_page ] do
     name   { Faker::Books::CultureSeries.unique.culture_ship }

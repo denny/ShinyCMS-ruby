@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Rails routing guide: http://guides.rubyonrails.org/routing.html
 
 Rails.application.routes.draw do

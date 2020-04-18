@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Pundit policy for web stats (powered by ahoy)
 class Admin::AhoyPolicy < Admin::DefaultPolicy
   def index?

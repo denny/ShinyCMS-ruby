@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Mailer for user-related emails
 class UserMailer < ApplicationMailer
   def registration( user )

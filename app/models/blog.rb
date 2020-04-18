@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model class for blogs (which are a collection of blog posts)
 class Blog < ApplicationRecord
   belongs_to :owner,  class_name: 'User',

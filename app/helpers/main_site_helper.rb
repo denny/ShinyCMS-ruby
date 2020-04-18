@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Methods that might be useful in templates on the main site
 module MainSiteHelper
   include ActsAsTaggableOn::TagsHelper

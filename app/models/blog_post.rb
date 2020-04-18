@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model class for blog posts
 class BlogPost < ApplicationRecord
   belongs_to :blog

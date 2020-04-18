@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Helper methods for using Google reCAPTCHA
 module RecaptchaHelper
   include MainSiteHelper

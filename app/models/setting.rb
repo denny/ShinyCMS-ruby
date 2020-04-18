@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Class for settings items (definitions)
 class Setting < ApplicationRecord
   # Error class
