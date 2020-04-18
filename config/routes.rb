@@ -172,8 +172,8 @@ Rails.application.routes.draw do
     # sites to have top-level pages (e.g. /foo instead of /pages/foo).
     # The constraint here is to avoid also catching the open and click tracking
     # routes which are appended by the Ahoy::Email engine.
-    get '*path', to: 'pages#show', constraints: lambda do |request|
-      request.fullpath !~ %r{^/ahoy/message/}
-    end
+    get '*path', to: 'pages#show', constraints: lambda { |request|
+      request.fullpath !~ %r{^/ahoy/messages/}
+    }
   end
 end
