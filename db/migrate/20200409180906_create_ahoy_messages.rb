@@ -5,7 +5,11 @@ class CreateAhoyMessages < ActiveRecord::Migration[6.0]
       t.text :to
       t.string :mailer
       t.text :subject
+      t.string :token
       t.timestamp :sent_at
+      t.timestamp :opened_at
+      t.timestamp :clicked_at
     end
+    add_index :ahoy_messages, :token
   end
 end

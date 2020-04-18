@@ -4,6 +4,8 @@ class ApplicationMailer < ActionMailer::Base
 
   before_action :set_view_paths
 
+  track open: true, click: true
+
   default from: ENV[ 'MAILER_SENDER' ] || 'shinycms@example.com'
 
   layout 'mailer'

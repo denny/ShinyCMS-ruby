@@ -1,10 +1,12 @@
 # Pundit policy for web stats (powered by ahoy)
 class Admin::AhoyPolicy < Admin::DefaultPolicy
   def index?
-    if controller_name == 'web_stats'
-      @this_user.can? :web, :stats
-    elsif controller_name == 'email_stats'
-      @this_user.can? :email, :stats
+    if @record.class.name == 'Ahoy::Visit'
+      @this_user.can? :view_web, :stats
+    elsif @record.class.name == 'Ahoy::Message'
+      @this_user.can? :view_email, :stats
+    else
+      @this_user.can? :view_email, :stats
     end
   end
 end

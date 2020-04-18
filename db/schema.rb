@@ -54,7 +54,11 @@ ActiveRecord::Schema.define(version: 2020_04_09_180906) do
     t.text "to"
     t.string "mailer"
     t.text "subject"
+    t.string "token"
     t.datetime "sent_at"
+    t.datetime "opened_at"
+    t.datetime "clicked_at"
+    t.index ["token"], name: "index_ahoy_messages_on_token"
     t.index ["user_type", "user_id"], name: "index_ahoy_messages_on_user_type_and_user_id"
   end
 
