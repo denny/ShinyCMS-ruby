@@ -6,13 +6,13 @@
         <%= t( 'capability.capabilities' ) %>
         <% if @user.capabilities.present? %>
         <% show = 'show ' %>
-        <span class="toggle-icon-top collapse show">
-          <svg><use xlink:href="<%= image_path 'coreui/icons/coreui/free-symbol-defs.svg' %>#cui-chevron-top"></use></svg>
+        <span class="collapse show">
+          <i class="cil-chevron-right"></i>
         </span>
         <% else %>
         <% show = '' %>
-        <span class="toggle-icon-bottom collapse">
-          <svg><use xlink:href="<%= image_path 'coreui/icons/coreui/free-symbol-defs.svg' %>#cui-chevron-bottom"></use></svg>
+        <span class="collapse">
+          <i class="cil-chevron-bottom"></i>
         </span>
         <% end %>
       </a>

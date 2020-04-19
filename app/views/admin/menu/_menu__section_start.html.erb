@@ -5,12 +5,7 @@
 <li class="c-sidebar-nav-item c-sidebar-nav-dropdown<%= expand %>" id="<%= section_id %>">
   <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#<%= section_id %>">
     <% icon ||= false %>
-    <% if icon %>
-    <svg class="c-sidebar-nav-icon">
-      <use xlink:href="<%= image_path 'coreui/icons/coreui/free-symbol-defs.svg' %>#cui-<%= icon %>"></use>
-    </svg>
-    <% end %>
-    <b><%= text %></b>
+    <% if icon %><i class="cil-<%= icon %>"></i><% end %> <b><%= text %></b>
     <% badge ||= false %>
     <% if badge %>
     <% badge_style ||= 'info' %>
