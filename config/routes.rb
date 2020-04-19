@@ -173,7 +173,7 @@ Rails.application.routes.draw do
     # The constraint here is to avoid also catching the open and click tracking
     # routes which are appended by the Ahoy::Email engine.
     get '*path', to: 'pages#show', constraints: lambda { |request|
-      request.fullpath !~ %r{^/ahoy/messages/}
+      !request.fullpath.start_with? '/ahoy/messages/'
     }
   end
 end
