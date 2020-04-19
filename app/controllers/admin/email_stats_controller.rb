@@ -17,7 +17,7 @@ class Admin::EmailStatsController < AdminController
     messages = messages.where( user: @ahoy_user ) if @ahoy_user
     @messages = messages.order( 'sent_at desc' ).page( page_num )
 
-    authorise Ahoy
+    authorise Ahoy::Message
     authorise @messages if @messages.present?
   end
 
