@@ -1,0 +1,12 @@
+<div id="rep-src-iframe-container">
+  <div id="email-progress-bar" class="progress"
+       style="display: none; position: absolute; z-index: -1; width: 100%; text-align: center">
+    <div class="progress-bar progress-bar-striped active">
+      <%= t 'rep.base.loading' %>
+    </div>
+  </div>
+
+  <iframe id="rep-src-iframe" srcdoc="<%= @mail_body_html.to_str %>" seamless="seamless"></iframe>
+  <%= javascript_tag render(template: 'rails_email_preview/emails/email_iframe.js'),
+                     **(RailsEmailPreview.rails_supports_csp_nonce? ? {nonce: true} : {}) %>
+</div>

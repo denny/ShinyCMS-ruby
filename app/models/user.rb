@@ -39,14 +39,14 @@ class User < ApplicationRecord
   has_many :messages, class_name: 'Ahoy::Message', dependent: :nullify
 
   # End-user content: destroy it along with their account
-  has_many :comments, inverse_of: :author,  dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :subscriptions, as: :subscriber, dependent: :destroy
   has_many :lists, through: :subscriptions
 
   # Admin content: throw an error if it hasn't been removed or reassigned
-  has_many :blogs,      inverse_of: :owner,  dependent: :restrict_with_error
-  has_many :blog_posts, inverse_of: :author, dependent: :restrict_with_error
-  has_many :news_posts, inverse_of: :author, dependent: :restrict_with_error
+  has_many :blogs,      dependent: :restrict_with_error
+  has_many :blog_posts, dependent: :restrict_with_error
+  has_many :news_posts, dependent: :restrict_with_error
 
   # Configure default count-per-page for pagination
   paginates_per 20

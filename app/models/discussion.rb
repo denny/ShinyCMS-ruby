@@ -11,10 +11,14 @@ class Discussion < ApplicationRecord
 
   # Instance methods
 
-  def notification_email
-    return if resource.blank?
+  def notifiable?
+    resource&.user&.email&.present? ? true : false
+  end
 
-    resource.author.email || resource.owner.email || resource.user.email || nil
+  def notification_email
+    return unless notifiable?
+
+    resource.user.email
   end
 
   def top_level_comments

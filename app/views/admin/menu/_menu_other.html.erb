@@ -6,10 +6,7 @@
     <%= render_admin_menu_item_if( current_user.can?( :delete, :comments ),
         t( 'admin.comments.title' ), comments_path, 'trash' ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :list, :settings ),
-        t( 'admin.site_settings.title' ), admin_site_settings_path, 'settings' ) %>
-
-    <%= render_admin_menu_item_if( current_user.can?( :list, :feature_flags ),
-        t( 'admin.feature_flags.title' ), feature_flags_path, 'toggle-off' ) %>
+    <%= render_admin_menu_item_if( current_user.can?( :list, :email_previews ),
+        t( 'admin.emails.title' ), rails_email_preview_path, 'envelope-letter' ) %>
 
   <% end %>

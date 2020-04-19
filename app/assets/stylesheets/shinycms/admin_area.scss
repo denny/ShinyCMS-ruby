@@ -9,6 +9,13 @@
 // modify it under the terms of the GPL (version 2 or later).
 // ============================================================================
 
+// Import styles for Rails Email Preview (powers /admin/emails feature)
+
+@import 'rails_email_preview/application';
+
+
+// ==================== ( define some colours ) ====================
+
 $very-light-blue:   #63c2de;
 $lighter-blue:      #5da8b7;
 $light-blue:        #3399fe;

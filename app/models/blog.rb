@@ -2,9 +2,8 @@
 
 # Model class for blogs (which are a collection of blog posts)
 class Blog < ApplicationRecord
-  belongs_to :owner,  class_name: 'User',
-                      foreign_key: 'user_id',
-                      inverse_of: 'blogs'
+  belongs_to :user, inverse_of: :blogs
+  alias_attribute :owner, :user
 
   has_many :all_posts,
            class_name: 'BlogPost',
