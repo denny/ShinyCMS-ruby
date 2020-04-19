@@ -36,8 +36,7 @@ the Perl version, if any):
   * Improvements: Perl's main ORM doesn't have native support for polymorphism,
     and in fact I'd never heard of it at the time, but I ended up writing my own
     version of it to get the Discussions feature working the way I wanted it to.
-    The Ruby version was considerably easier to implement, and should be more
-    standard, as it just uses ActiveRecord's native support for polymorphism.
+    The Ruby version uses ActiveRecord's native support for polymorphism.
 * User accounts and administration
   * Improvements: the Perl version has role-based authorisation. The Ruby
     version has more flexible ACL-based authorisation (powered by Pundit).
@@ -45,7 +44,8 @@ the Perl version, if any):
   * Improvements: supports reCAPTCHA v3 with scores. Tries an invisible
     CAPTCHA first, falling back to an interactive CAPTCHA if that fails.
 * Built-in web stats (powered by Ahoy)
-  * Improvements: the Perl version doesn't have this feature at all.
+  * Improvements: the Perl version doesn't produce stats at all, this is a new
+    feature in the Ruby version.
 
 
 ## TODO

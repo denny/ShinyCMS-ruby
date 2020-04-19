@@ -66,6 +66,11 @@ GEM
       activerecord (>= 5.0, < 6.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ahoy_email (1.1.0)
+      actionmailer (>= 5)
+      addressable (>= 2.3.2)
+      nokogiri
+      safely_block (>= 0.1.1)
     ahoy_matey (3.0.2)
       activesupport (>= 5)
       device_detector
@@ -91,6 +96,11 @@ GEM
     aws-sigv4 (1.1.1)
       aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.13)
+    blazer (2.2.1)
+      activerecord (>= 5)
+      chartkick (>= 3.2)
+      railties (>= 5)
+      safely_block (>= 0.1.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
     brakeman (4.8.1)
@@ -106,6 +116,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    chartkick (3.3.1)
     childprocess (3.0.0)
     ckeditor (5.1.0)
       orm_adapter (~> 0.5.0)
@@ -153,10 +164,12 @@ GEM
     fasterer (0.8.3)
       colorize (~> 0.7)
       ruby_parser (>= 3.14.1)
-    ffi (1.12.1)
+    ffi (1.12.2)
     geocoder (1.6.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    groupdate (5.0.0)
+      activesupport (>= 5)
     highline (2.0.3)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
@@ -173,7 +186,7 @@ GEM
     image_processing (1.10.3)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
-    iniparse (1.4.4)
+    iniparse (1.5.0)
     jaro_winkler (1.5.4)
     jmespath (1.4.0)
     json (2.3.0)
@@ -333,10 +346,10 @@ GEM
       tilt
     semantic_range (2.3.0)
     sexp_processor (4.14.1)
-    simplecov (0.18.0)
+    simplecov (0.18.5)
       docile (~> 1.1)
-      simplecov-html (~> 0.11.0)
-    simplecov-html (0.11.0)
+      simplecov-html (~> 0.11)
+    simplecov-html (0.12.2)
     simpleidn (0.1.1)
       unf (~> 0.1.4)
     sprockets (4.0.0)
@@ -378,11 +391,13 @@ PLATFORMS
 DEPENDENCIES
   activerecord-session_store!
   acts-as-taggable-on!
+  ahoy_email!
   ahoy_matey!
   akismet!
   awesome_print!
   aws-sdk-s3!
   bcrypt (~> 3.1.7)!
+  blazer!
   bootsnap (>= 1.4.2)!
   brakeman!
   bundler-audit!
@@ -398,6 +413,7 @@ DEPENDENCIES
   factory_bot_rails!
   faker!
   fasterer!
+  groupdate!
   i18n-tasks (~> 0.9.31)!
   image_processing (~> 1.10)!
   kaminari!

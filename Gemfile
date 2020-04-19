@@ -43,8 +43,12 @@ source 'https://rubygems.org' do
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'
 
+  # Email stats
+  gem 'ahoy_email'
   # Web stats
   gem 'ahoy_matey'
+  gem 'blazer'
+  gem 'groupdate'
 
   # Image storage on S3, image processing (resizing)
   gem 'aws-sdk-s3'
