@@ -64,10 +64,14 @@ class Comment < ApplicationRecord
     'Anonymous'
   end
 
-  def notification_email
-    return author_email if author_email.present?
+  def notifiable?
+    author_email.present? || author.present?
+  end
 
-    author.email if author.present?
+  def notification_email
+    return unless notifiable?
+
+    author_email.presence || author.email
   end
 
   def lock

@@ -10,7 +10,7 @@ class DiscussionMailer < ApplicationMailer
 
     subject = parent_comment_notification_subject( @reply )
 
-    ahoy_user( @parent.notification_email )
+    ahoy_user( @parent.notification_email, @parent.author_name_any )
 
     mail to: @parent.notification_email, subject: subject do |format|
       format.html
@@ -44,7 +44,7 @@ class DiscussionMailer < ApplicationMailer
 
     subject = overview_notification_subject( @comment )
 
-    ahoy_user( email )
+    ahoy_user( email, 'Admin' )
 
     mail to: email, subject: subject do |format|
       format.html

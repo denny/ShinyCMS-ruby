@@ -17,11 +17,14 @@ class ApplicationMailer < ActionMailer::Base
     ENV[ 'MAILER_SENDER' ]
   end
 
-  def ahoy_user( email_address )
+  def ahoy_user( email_address, name = nil )
     @user = User.find_by( email: email_address )
     return if @user.present?
 
-    @user = EmailRecipient.find_or_create_by!( email: email_address )
+    @user = EmailRecipient.find_by( email: email_address )
+    return if @user.present?
+
+    @user = EmailRecipient.create!( name: name, email: email_address )
   end
 
   def set_site_name
