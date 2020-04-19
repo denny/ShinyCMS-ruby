@@ -26,12 +26,14 @@ PreCommit:
 PrePush:
   ALL:
     quiet: false
+  RailsSchemaUpToDate:
+    enabled: true
   RSpec:
     enabled: true
   BundleAudit:
     enabled: true
-  Fasterer:
-    enabled: true
+#  Fasterer:
+#    enabled: true
 
 PostMerge:
   ALL:

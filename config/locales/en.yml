@@ -431,6 +431,9 @@ en:
     stats:
       title: Stats
 
+    queries:
+      title: Queries
+
     web_stats:
       title: Web stats
       index:
