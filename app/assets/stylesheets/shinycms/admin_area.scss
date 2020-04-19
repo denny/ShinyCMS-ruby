@@ -94,9 +94,17 @@ body {
   height:           47px;
 }
 
+.c-sidebar-nav-item i {
+  padding:          0.2em 0.6em 0.2em 0.2em;
+}
+
+.c-sidebar-nav-dropdown-items .c-sidebar-nav-item i {
+  padding:          0.2em 0.6em 0.2em 1em;
+}
+
 .c-sidebar-nav-link {
   color:            $white;
-  padding:          0.8em;
+  padding:          0.4em !important;
 }
 
 .c-sidebar-nav-link:hover {
@@ -151,6 +159,10 @@ body {
 
 .breadcrumbs .active {
   color:            $dark-grey;
+}
+
+.user-menu-icon {
+  padding: 0 0.8em 0 0;
 }
 
 
@@ -211,13 +223,6 @@ main p {
   color:            $dark-blue;
   display:          block;
   text-decoration:  none;
-}
-
-.table-striped .collapse-toggle svg {
-  fill:             $dark-blue;
-  height:           1em;
-  vertical-align:   top;
-  width:            2em;
 }
 
 .table-striped .hidden {

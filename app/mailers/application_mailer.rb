@@ -5,6 +5,8 @@ class ApplicationMailer < ActionMailer::Base
   before_action :set_view_paths
   before_action :set_site_name
 
+  track open: true, click: true
+
   default from: -> { default_from_address }
 
   layout 'mailer'

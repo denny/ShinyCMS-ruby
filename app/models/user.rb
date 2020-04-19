@@ -33,6 +33,8 @@ class User < ApplicationRecord
 
   # Web stats (powered by Ahoy)
   has_many :visits, class_name: 'Ahoy::Visit', dependent: :nullify
+  # Email stats (also powered by Ahoy)
+  has_many :messages, class_name: 'Ahoy::Message', dependent: :nullify
 
   # End-user content: destroy it along with their account
   has_many :comments, inverse_of: :author,  dependent: :destroy

@@ -29,13 +29,23 @@ will take priority for them.
 
 ## Demo site
 
-There is some demo data included, which will allow you to try out most ShinyCMS
-features without having to create your own test data first. You can load it with
-the utility script `tools/insert-demo-site-data`.
+There is a set of demo data available, which will allow you to try out most
+ShinyCMS features without having to create your own test data first. You can
+load it with the utility script `tools/insert-demo-site-data`
 
-The demo user's username is: admin
-And the password is: I should change this password before I do anything else!
+WARNING: DATA LOSS! This script will wipe most of the tables in the database
+before populating them with the demo site data; notably, this includes the
+`users` table. Back up any data that you don't want to lose!
 
-NB: This script will wipe most of the tables in the database before populating
-them with the demo site data; notably, this includes the `users` table. Back up
-any data that you don't want to lose!
+The demo data creates a super-admin user with the login details:
+Username: admin
+Password: I should change this password before I do anything else!
+
+NB: The demo data (a) enables the user_login feature of the site, (b) sets a
+non-secret username and password, and (c) loads the demo page content, which
+will easily identify your site as being based on the demo data. PLEASE change
+the password before you do anything else - and ideally the username too, if
+you're leaving the demo data loaded for any length of time.
+
+You can also easily disable the login feature again when you're not actively
+using the site, with the rake command `rails shiny:feature:off[user_login]`
