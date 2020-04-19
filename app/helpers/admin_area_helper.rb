@@ -6,7 +6,7 @@ module AdminAreaHelper
       policy_class_name = "Admin::#{record.to_s.camelize}Policy"
     else
       record_class_name = class_name( record )
-      record_class_name.remove!( '::' )
+      record_class_name = record_class_name.remove( '::' )
       policy_class_name = "Admin::#{record_class_name}Policy"
     end
 
