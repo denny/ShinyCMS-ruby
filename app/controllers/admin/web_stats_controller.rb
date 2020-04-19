@@ -17,7 +17,7 @@ class Admin::WebStatsController < AdminController
     visits = visits.where( user: @ahoy_user ) if @ahoy_user
     @visits = visits.order( 'started_at desc' ).page( page_num )
 
-    authorise :ahoy_visit
+    authorise Ahoy::Visit
     authorise @visits if @visits.present?
   end
 
