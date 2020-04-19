@@ -10,6 +10,8 @@ class DiscussionMailer < ApplicationMailer
 
     subject = parent_comment_notification_subject( @reply )
 
+    ahoy_user( @parent.notification_email )
+
     mail to: @parent.notification_email, subject: subject do |format|
       format.html
       format.text
@@ -23,6 +25,8 @@ class DiscussionMailer < ApplicationMailer
     @resource = comment.discussion.resource
 
     subject = discussion_notification_subject( @comment, @resource )
+
+    ahoy_user( comment.discussion.notification_email )
 
     mail to: comment.discussion.notification_email, subject: subject do |format|
       format.html
@@ -39,6 +43,8 @@ class DiscussionMailer < ApplicationMailer
     return if email.blank?
 
     subject = overview_notification_subject( @comment )
+
+    ahoy_user( email )
 
     mail to: email, subject: subject do |format|
       format.html
