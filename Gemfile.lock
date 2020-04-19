@@ -66,6 +66,11 @@ GEM
       activerecord (>= 5.0, < 6.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ahoy_email (1.1.0)
+      actionmailer (>= 5)
+      addressable (>= 2.3.2)
+      nokogiri
+      safely_block (>= 0.1.1)
     ahoy_matey (3.0.2)
       activesupport (>= 5)
       device_detector
@@ -378,6 +383,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-session_store!
   acts-as-taggable-on!
+  ahoy_email!
   ahoy_matey!
   akismet!
   awesome_print!

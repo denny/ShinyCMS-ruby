@@ -45,6 +45,8 @@ source 'https://rubygems.org' do
 
   # Web stats
   gem 'ahoy_matey'
+  # Email stats
+  gem 'ahoy_email'
 
   # Image storage on S3, image processing (resizing)
   gem 'aws-sdk-s3'
