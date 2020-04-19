@@ -66,6 +66,11 @@ GEM
       activerecord (>= 5.0, < 6.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ahoy_email (1.1.0)
+      actionmailer (>= 5)
+      addressable (>= 2.3.2)
+      nokogiri
+      safely_block (>= 0.1.1)
     ahoy_matey (3.0.2)
       activesupport (>= 5)
       device_detector
@@ -233,7 +238,7 @@ GEM
       childprocess (>= 0.6.3, < 4)
       iniparse (~> 1.4)
     parallel (1.19.1)
-    parser (2.7.0.5)
+    parser (2.7.1.1)
       ast (~> 2.4.0)
     pg (1.2.3)
     pry (0.12.2)
@@ -312,7 +317,7 @@ GEM
     rspec-support (3.9.2)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (0.81.0)
+    rubocop (0.82.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
@@ -320,7 +325,7 @@ GEM
       rexml
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-rails (2.5.1)
+    rubocop-rails (2.5.2)
       activesupport
       rack (>= 1.1)
       rubocop (>= 0.72.0)
@@ -386,6 +391,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-session_store!
   acts-as-taggable-on!
+  ahoy_email!
   ahoy_matey!
   akismet!
   awesome_print!
