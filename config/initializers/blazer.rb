@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.config.to_prepare do
   # Make Blazer appear inside our admin UI
   # ::Blazer::BaseController.layout 'admin/layouts/admin_area'

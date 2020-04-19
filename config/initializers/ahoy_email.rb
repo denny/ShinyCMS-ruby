@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Track email events with Ahoy
 class EmailSubscriber
   def open( event )
