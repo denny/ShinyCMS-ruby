@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # User model (powered by Devise)
 class User < ApplicationRecord
   include Email

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Validator for top-level slugs (pages and page sections) to make sure they
 # don't collide with controller namespaces
 class SafeSlugValidator < ActiveModel::Validator

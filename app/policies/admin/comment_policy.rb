@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Pundit policy for administration of comments
 class Admin::CommentPolicy < Admin::DefaultPolicy
   def index?

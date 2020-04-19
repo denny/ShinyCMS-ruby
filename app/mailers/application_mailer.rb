@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Application mailer base class (NB: user mailer does not inherit from this)
 class ApplicationMailer < ActionMailer::Base
   include FeatureFlagsHelper

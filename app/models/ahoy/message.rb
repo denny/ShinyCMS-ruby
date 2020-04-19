@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model for tracking emails using ahoy
 class Ahoy::Message < ApplicationRecord
   self.table_name = 'ahoy_messages'

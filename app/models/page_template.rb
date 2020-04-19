@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model for page templates
 class PageTemplate < ApplicationRecord
   validates :name,     presence: true

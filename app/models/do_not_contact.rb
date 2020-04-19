@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Store details of people who have asked you not to contact them at all
 # Uses EmailAddress.redact to store/find addresses as a one-way hash
 class DoNotContact < ApplicationRecord

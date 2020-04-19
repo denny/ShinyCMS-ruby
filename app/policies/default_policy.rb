@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Default pundit policy for main site
 class DefaultPolicy
   attr_reader :this_user, :record

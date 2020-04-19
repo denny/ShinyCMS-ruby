@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ============================================================================
 # Project:   ShinyCMS (Ruby version)
 # File:      app/controllers/blog_controller.rb

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :news_post, class: 'NewsPost' do
     title  { Faker::Books::CultureSeries.unique.culture_ship.titlecase }

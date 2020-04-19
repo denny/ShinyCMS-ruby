@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Make rake db:seed a bit cleverer - allow reloading/refreshing of seed data
 # https://gist.github.com/koffeinfrei/04bbe38f16ff9d49bebd
 

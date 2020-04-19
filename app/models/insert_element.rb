@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model class for Insert Elements (prev: 'shared content elements')
 class InsertElement < ApplicationRecord
   include Element

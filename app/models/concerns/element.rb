@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Common behaviour that all element models might want to use/offer
 # (PageTemplateElement, PageElement, SharedContentElement, ProductElement, etc)
 module Element

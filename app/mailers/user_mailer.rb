@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Mailer for Devise-powered user account emails (password reset, etc)
 class UserMailer < Devise::Mailer
   include Devise::Controllers::UrlHelpers
