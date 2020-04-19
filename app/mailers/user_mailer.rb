@@ -9,7 +9,7 @@ class UserMailer < Devise::Mailer
   default template_path: 'user_mailer'
 
   def confirmation_instructions( user, token )
-    @resource = user
+    @resource = @user = user
     @token = token
 
     mail(
@@ -22,7 +22,7 @@ class UserMailer < Devise::Mailer
   end
 
   def reset_password( user, token )
-    @resource = user
+    @resource = @user = user
     @token = token
 
     mail(
@@ -35,7 +35,7 @@ class UserMailer < Devise::Mailer
   end
 
   def password_changed( user )
-    @resource = user
+    @resource = @user = user
 
     mail(
       to: user.email,
@@ -47,7 +47,7 @@ class UserMailer < Devise::Mailer
   end
 
   def email_changed( user )
-    @resource = user
+    @resource = @user = user
 
     mail(
       to: user.email,
@@ -59,7 +59,7 @@ class UserMailer < Devise::Mailer
   end
 
   def unlock_instructions( user, token )
-    @resource = user
+    @resource = @user = user
     @token = token
 
     mail(

@@ -4,8 +4,8 @@
 class Comment < ApplicationRecord
   belongs_to :discussion
   belongs_to :parent, class_name: 'Comment', optional: true
-  belongs_to :author, class_name: 'User', inverse_of: :comments,
-                      foreign_key: :user_id, optional: true
+  belongs_to :user, inverse_of: :comments, optional: true
+  alias_attribute :author, :user
 
   has_many :comments, -> { where( spam: false ) }, inverse_of: :parent,
                                                    foreign_key: :parent_id,
@@ -64,10 +64,14 @@ class Comment < ApplicationRecord
     'Anonymous'
   end
 
-  def notification_email
-    return author_email if author_email.present?
+  def notifiable?
+    author_email.present? || author.present?
+  end
 
-    author.email if author.present?
+  def notification_email
+    return unless notifiable?
+
+    author_email.presence || author.email
   end
 
   def lock
