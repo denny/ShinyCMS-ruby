@@ -18,7 +18,7 @@ class Admin::SiteSettingsController < AdminController
   end
 
   def update
-    authorise Setting.all.first
+    authorise Setting.first
 
     all_updated = update_settings( settings_params )
     if all_updated.nil?

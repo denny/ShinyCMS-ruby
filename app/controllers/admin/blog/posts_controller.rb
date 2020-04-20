@@ -82,7 +82,7 @@ class Admin::Blog::PostsController < AdminController
         Blog.find( params[:id] )
         # :nocov:
       else
-        Blog.all.first
+        Blog.first
       end
   end
 
