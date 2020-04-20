@@ -45,7 +45,7 @@ class BlogsController < ApplicationController
 
   def set_blog
     @blog =
-      if Blog.multiple_blogs_mode
+      if Blog.multiple_blogs_mode?
         # :nocov:
         Blog.find( params[:blog_slug] )
         # :nocov:

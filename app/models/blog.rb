@@ -70,7 +70,7 @@ class Blog < ApplicationRecord
 
   # Class methods
 
-  def self.multiple_blogs_mode
+  def self.multiple_blogs_mode?
     Rails.application.config.multiple_blogs_mode == true
   end
 end
