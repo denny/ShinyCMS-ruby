@@ -93,7 +93,7 @@ to work: https://travis-ci.org/github/denny/ShinyCMS-ruby/builds/672223883
 ## System dependencies
 
 * A webserver
-  * I use `foreman run rails s` for dev, and Heroku for staging and production
+  * I use `rails s` for dev, and Heroku for staging and production
 * A database
   * For now this assumes Postgres, although I intend to work toward being
     database agnostic eventually (the Perl version works with MySQL, Postgres,
