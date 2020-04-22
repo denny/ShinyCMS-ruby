@@ -1,0 +1,52 @@
+<% @page_title = t( '.title' ) %>
+
+<% if @messages.present? %>
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Sent at
+      </th>
+      <th>
+        Sent to
+      </th>
+      <th>
+        Subject
+      </th>
+      <th>
+        Status
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @messages.each do |message| %>
+    <tr>
+      <td>
+        <%= message.sent_at %>
+      </td>
+      <td>
+        <% if message.user %><%= link_to message.user.email, user_email_stats_path( message.user ) %><% end %>
+      </td>
+      <td>
+        <%= message.subject %>
+      </td>
+      <td>
+        <% if message.opened_at.present? %>Opened: <%= message.opened_at %><% end %>
+        <% if message.clicked_at.present? %><br>Clicked: <%= message.clicked_at %><% end %>
+  		</td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @messages, window: 3, views_prefix: 'admin' %>
+<p id="pager-info">
+  <%= page_entries_info @messages %>
+</p>
+
+<% else %>
+<p>
+  <%= t( '.empty' ) %>
+</p>
+<% end %>

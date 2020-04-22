@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ============================================================================
 # Project:   ShinyCMS (Ruby version)
 # File:      app/controllers/admin/feature_flags_controller.rb

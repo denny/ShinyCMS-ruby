@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Store details of mailing list subscribers who aren't authenticated users
 class EmailRecipient < ApplicationRecord
   include Email
@@ -7,6 +9,10 @@ class EmailRecipient < ApplicationRecord
 
   has_many :subscriptions, inverse_of: :subscriber, dependent: :destroy
   has_many :lists, through: :subscriptions
+
+  # Email stats (powered by Ahoy)
+  has_many :messages, class_name: 'Ahoy::Message', as: :user,
+                      dependent: :nullify
 
   before_validation :generate_token, if: -> { token.blank? }
 

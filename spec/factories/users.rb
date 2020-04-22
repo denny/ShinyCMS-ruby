@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :user do
     username     { Faker::Internet.unique.username }
@@ -84,6 +86,18 @@ FactoryBot.define do
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: destroy
+    end
+  end
+
+  factory :email_admin, parent: :admin_user do
+    after :create do |admin|
+      category = CapabilityCategory.find_by( name: 'email_previews' )
+
+      list = category.capabilities.find_by( name: 'list' )
+      show = category.capabilities.find_by( name: 'show' )
+
+      create :user_capability, user: admin, capability: list
+      create :user_capability, user: admin, capability: show
     end
   end
 
@@ -174,6 +188,20 @@ FactoryBot.define do
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
       create :user_capability, user: admin, capability: destroy
+    end
+  end
+
+  factory :stats_admin, parent: :admin_user do
+    after :create do |admin|
+      category = CapabilityCategory.find_by( name: 'stats' )
+
+      web    = category.capabilities.find_by( name: 'view_web'    )
+      email  = category.capabilities.find_by( name: 'view_email'  )
+      charts = category.capabilities.find_by( name: 'use_blazer' )
+
+      create :user_capability, user: admin, capability: web
+      create :user_capability, user: admin, capability: email
+      create :user_capability, user: admin, capability: charts
     end
   end
 

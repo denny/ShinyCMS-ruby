@@ -1,6 +1,6 @@
   <%= render_admin_menu_section( t( 'admin.blogs.title' ), 'rss' ) do %>
 
-    <% if Blog.multiple_blogs_mode %>
+    <% if Blog.multiple_blogs_mode? %>
 
       <%= render_admin_menu_item_if( current_user.can?( :list, :blogs ),
           t( 'admin.blogs.index.title' ), blogs_path, 'library' ) %>

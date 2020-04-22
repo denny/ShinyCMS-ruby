@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Shared test code, for testing the methods mixed-in by the Element concern
 RSpec.shared_examples Element do
   context 'format_name' do

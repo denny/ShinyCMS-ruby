@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model for tracking website events using ahoy
 class Ahoy::Event < ApplicationRecord
   include Ahoy::QueryMethods

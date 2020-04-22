@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ============================================================================
 # Project:   ShinyCMS (Ruby version)
 # File:      app/controllers/admin/web_stats_controller.rb
@@ -9,20 +11,23 @@
 # modify it under the terms of the GPL (version 2 or later).
 # ============================================================================
 class Admin::WebStatsController < AdminController
+  before_action :set_ahoy_user
+
   def index
-    @visits = filtered_visits
-    authorise Ahoy
+    page_num = params[ :page ] || 1
+    visits = Ahoy::Visit
+    visits = visits.where( user: @ahoy_user ) if @ahoy_user
+    @visits = visits.order( 'started_at desc' ).page( page_num )
+
+    authorise Ahoy::Visit
     authorise @visits if @visits.present?
   end
 
-  def filtered_visits
-    page_num = params[ :page ] || 1
-    visits = Ahoy::Visit
-    if params[:user_id].present?
-      @user = User.find( params[:user_id] )
-      visits = visits.where( user: @user )
-    end
-    @visits = visits.order( 'started_at desc' ).page( page_num )
-    authorise @visits
+  private
+
+  def set_ahoy_user
+    return if params[:user_id].blank?
+
+    @ahoy_user = User.find( params[:user_id] )
   end
 end

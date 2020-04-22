@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model class for template elements
 class PageTemplateElement < ApplicationRecord
   include Element

@@ -1,1 +1,3 @@
-VERSION = '20.1'.freeze
+# frozen_string_literal: true
+
+VERSION = '20.1'

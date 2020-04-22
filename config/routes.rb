@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Rails routing guide: http://guides.rubyonrails.org/routing.html
 
 Rails.application.routes.draw do
@@ -84,9 +86,6 @@ Rails.application.routes.draw do
     # ========== ( Admin area ) ==========
     get 'admin', to: 'admin#index'
 
-    # CKEditor (WYSIWYG editor used on various admin pages)
-    mount Ckeditor::Engine => '/admin/ckeditor'
-
     EXCEPT = %w[ index show create ].freeze
 
     scope path: 'admin', module: 'admin' do
@@ -152,9 +151,12 @@ Rails.application.routes.draw do
       get 'site-settings', to: 'site_settings#index', as: :admin_site_settings
       put 'site-settings', to: 'site_settings#update'
 
-      # Web stats
-      get 'web-stats',               to: 'web_stats#index'
-      get 'web-stats/user/:user_id', to: 'web_stats#index', as: :user_web_stats
+      # Stats
+      get 'web-stats',                to: 'web_stats#index'
+      get 'web-stats/user/:user_id',  to: 'web_stats#index', as: :user_web_stats
+      get 'email-stats',                to: 'email_stats#index'
+      get 'email-stats/user/:user_id',  to: 'email_stats#index',
+                                        as: :user_email_stats
 
       # Users
       get  :users, to: 'users#index'
@@ -162,11 +164,24 @@ Rails.application.routes.draw do
       resources :user, controller: :users, except: EXCEPT
     end
 
+    # Blazer (web stats dashboard)
+    mount Blazer::Engine, at: '/admin/stats'
+
+    # CKEditor (WYSIWYG editor used on various admin pages)
+    mount Ckeditor::Engine, at: '/admin/ckeditor'
+
+    # Mailer preview features
+    mount RailsEmailPreview::Engine, at: '/admin/email-previews'
+
     # Letter Opener webmail UI for dev environment
     mount LetterOpenerWeb::Engine, at: 'letter-opener' if Rails.env.development?
 
-    # The Ultimate Catch-All Route! Passes through to page handler,
-    # so that we can have top-level pages - /foo instead of /pages/foo
-    get '*path', to: 'pages#show'
+    # This catch-all route passes through to the Pages controller, allowing
+    # sites to have top-level pages (e.g. /foo instead of /pages/foo).
+    # The constraint here is to avoid also catching the open and click tracking
+    # routes which are appended by the Ahoy::Email engine.
+    get '*path', to: 'pages#show', constraints: lambda { |request|
+      !request.fullpath.start_with? '/ahoy/messages/'
+    }
   end
 end

@@ -4,8 +4,8 @@
 class Comment < ApplicationRecord
   belongs_to :discussion
   belongs_to :parent, class_name: 'Comment', optional: true
-  belongs_to :author, class_name: 'User', inverse_of: :comments,
-                      foreign_key: :user_id, optional: true
+  belongs_to :user, inverse_of: :comments, optional: true
+  alias_attribute :author, :user
 
   has_many :comments, -> { where( spam: false ) }, inverse_of: :parent,
                                                    foreign_key: :parent_id,
@@ -34,26 +34,26 @@ class Comment < ApplicationRecord
 
   def send_notifications
     p = parent.notification_email if parent.present?
-    to_parent_comment_author if p.present?
+    notify_parent_comment_author if p.present?
 
     d = discussion.notification_email
-    to_discussion_owner unless d == p
+    notify_discussion_owner unless d == p
 
     a = Setting.get :all_comment_notifications_email
     return if a.blank? || [ d, p ].include?( a )
 
-    to_all_comment_notifications_email
+    notify_all_comment_notifications_email
   end
 
-  def to_parent_comment_author
+  def notify_parent_comment_author
     DiscussionMailer.parent_comment_notification( self )
   end
 
-  def to_discussion_owner
+  def notify_discussion_owner
     DiscussionMailer.discussion_notification( self )
   end
 
-  def to_all_comment_notifications_email
+  def notify_all_comment_notifications_email
     DiscussionMailer.overview_notification( self )
   end
 
@@ -64,10 +64,14 @@ class Comment < ApplicationRecord
     'Anonymous'
   end
 
-  def notification_email
-    return author_email if author_email.present?
+  def notifiable?
+    author_email.present? || author.present?
+  end
 
-    author.email if author.present?
+  def notification_email
+    return unless notifiable?
+
+    author_email.presence || author.email
   end
 
   def lock

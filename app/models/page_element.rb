@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model class for page elements
 class PageElement < ApplicationRecord
   include Element

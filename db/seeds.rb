@@ -11,14 +11,15 @@ blog_posts_cc = seed CapabilityCategory, { name: 'blog_posts'     }
 discussion_cc = seed CapabilityCategory, { name: 'discussions'    }
 comments_cc   = seed CapabilityCategory, { name: 'comments'       }
 spam_cc       = seed CapabilityCategory, { name: 'spam_comments'  }
+emails_cc     = seed CapabilityCategory, { name: 'email_previews' }
 features_cc   = seed CapabilityCategory, { name: 'feature_flags'  }
 inserts_cc    = seed CapabilityCategory, { name: 'inserts'        }
 news_cc       = seed CapabilityCategory, { name: 'news_posts'     }
 pages_cc      = seed CapabilityCategory, { name: 'pages'          }
 sections_cc   = seed CapabilityCategory, { name: 'page_sections'  }
 templates_cc  = seed CapabilityCategory, { name: 'page_templates' }
+stats_cc      = seed CapabilityCategory, { name: 'stats'          }
 settings_cc   = seed CapabilityCategory, { name: 'settings'       }
-web_stats_cc  = seed CapabilityCategory, { name: 'web_stats'      }
 users_cc      = seed CapabilityCategory, { name: 'users'          }
 admins_cc     = seed CapabilityCategory, { name: 'admin_users'    }
 # General
@@ -51,6 +52,9 @@ seed Capability, { name: 'destroy', category: comments_cc }
 seed Capability, { name: 'list',    category: spam_cc }
 seed Capability, { name: 'add',     category: spam_cc }
 seed Capability, { name: 'destroy', category: spam_cc }
+# Email Previews
+seed Capability, { name: 'list',    category: emails_cc }
+seed Capability, { name: 'show',    category: emails_cc }
 # Feature Flags
 seed Capability, { name: 'list',    category: features_cc }
 seed Capability, { name: 'edit',    category: features_cc }
@@ -80,11 +84,13 @@ seed Capability, { name: 'list',    category: templates_cc }
 seed Capability, { name: 'add',     category: templates_cc }
 seed Capability, { name: 'edit',    category: templates_cc }
 seed Capability, { name: 'destroy', category: templates_cc }
+# Stats
+seed Capability, { name: 'view_web',   category: stats_cc }
+seed Capability, { name: 'view_email', category: stats_cc }
+seed Capability, { name: 'use_blazer', category: stats_cc }
 # Site Settings
 seed Capability, { name: 'list',    category: settings_cc }
 seed Capability, { name: 'edit',    category: settings_cc }
-# Stats
-seed Capability, { name: 'list',    category: web_stats_cc }
 # Users
 seed Capability, { name: 'list',    category: users_cc }
 seed Capability, { name: 'add',     category: users_cc }

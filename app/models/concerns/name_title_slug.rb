@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Common behaviour for names, titles, and slugs, for pages and page sections
 module NameTitleSlug
   extend ActiveSupport::Concern

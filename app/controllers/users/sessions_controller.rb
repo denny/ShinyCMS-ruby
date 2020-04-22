@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ============================================================================
 # Project:   ShinyCMS (Ruby version)
 # File:      app/controllers/users/sessions_controller.rb

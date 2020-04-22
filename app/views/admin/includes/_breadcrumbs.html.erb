@@ -17,6 +17,10 @@
     <li class="breadcrumb-item"><%= link_to t( 'admin.pages.title'           ), pages_path %></li>
     <li class="breadcrumb-item"><%= link_to t( 'admin.pages.templates.title' ), page_templates_path %></li>
 
+    <% elsif controller_name == 'queries' %>
+    <% @page_title = 'Queries' %>
+    <li class="breadcrumb-item"><%= link_to t( 'admin.stats.title' ), blazer.root_path %></li>
+
     <% else %>
     <li class="breadcrumb-item"><%= link_to t( "admin.#{controller_name}.title" ),
                                     controller: controller_name, action: :index %></li>

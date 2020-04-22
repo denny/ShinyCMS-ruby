@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 # Model class for news posts
 class NewsPost < ApplicationRecord
-  belongs_to :author, class_name: 'User',
-                      foreign_key: :user_id,
-                      inverse_of: :news_posts
+  belongs_to :user, inverse_of: :news_posts
+  alias_attribute :author, :user
 
   has_one :discussion, as: :resource, dependent: :destroy
 

@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 # Mailer for discussion-related emails - reply notifications etc
 class DiscussionMailer < ApplicationMailer
   before_action :check_feature_flags
-  before_action :set_site_name
 
   def parent_comment_notification( comment )
     return unless comment&.parent&.notification_email&.present?
@@ -10,6 +11,8 @@ class DiscussionMailer < ApplicationMailer
     @parent = comment.parent
 
     subject = parent_comment_notification_subject( @reply )
+
+    ahoy_user( @parent.notification_email, @parent.author_name_any )
 
     mail to: @parent.notification_email, subject: subject do |format|
       format.html
@@ -24,6 +27,8 @@ class DiscussionMailer < ApplicationMailer
     @resource = comment.discussion.resource
 
     subject = discussion_notification_subject( @comment, @resource )
+
+    ahoy_user( comment.discussion.notification_email )
 
     mail to: comment.discussion.notification_email, subject: subject do |format|
       format.html
@@ -40,6 +45,8 @@ class DiscussionMailer < ApplicationMailer
     return if email.blank?
 
     subject = overview_notification_subject( @comment )
+
+    ahoy_user( email, 'Admin' )
 
     mail to: email, subject: subject do |format|
       format.html
@@ -72,10 +79,6 @@ class DiscussionMailer < ApplicationMailer
       comment_author_name: comment.author_name_any,
       site_name: @site_name
     )
-  end
-
-  def set_site_name
-    @site_name = I18n.t( 'site_name' )
   end
 
   def check_feature_flags

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :page_template_element do
     name { Faker::Books::CultureSeries.unique.civs.parameterize }

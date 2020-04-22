@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Reusable spec to check that each admin type gets redirected correctly on login
 RSpec.shared_examples '/admin redirect' do |type, path, section|
   it "redirects a #{type.titlecase} correctly" do
