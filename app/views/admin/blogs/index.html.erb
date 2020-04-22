@@ -24,7 +24,7 @@
         <%= blog.description %>
       </td>
       <td class="actions">
-        <% if Blog.multiple_blogs_mode %>
+        <% if Blog.multiple_blogs_mode? %>
         <%= link_to t( 'view'   ), view_blog_path( blog ) %>
         <% else %>
         <%= link_to t( 'view'   ), view_blog_path %>

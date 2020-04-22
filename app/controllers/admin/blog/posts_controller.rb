@@ -77,12 +77,12 @@ class Admin::Blog::PostsController < AdminController
 
   def set_blog
     @blog =
-      if Blog.multiple_blogs_mode
+      if Blog.multiple_blogs_mode?
         # :nocov:
         Blog.find( params[:id] )
         # :nocov:
       else
-        Blog.all.first
+        Blog.first
       end
   end
 
