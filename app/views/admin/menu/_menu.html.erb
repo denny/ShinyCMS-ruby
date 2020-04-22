@@ -21,7 +21,7 @@
   <% end %>
 
   <% if current_user.can?( :list, :inserts  ) ||
-        current_user.can?( :delete, :comments ) ||
+        current_user.can?( :list, :spam_comments ) ||
         current_user.can?( :list, :email_previews ) %>
   <%= render partial: 'admin/menu/menu_other' %>
   <% end %>
