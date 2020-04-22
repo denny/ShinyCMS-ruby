@@ -1,7 +1,7 @@
 while true; do
   read -p "This will wipe your database; are you sure? (y/n) " yn
   case $yn in
-    [Yy]* ) FIXTURES_PATH=db/demo-site-data rails db:fixtures:load; break;;
+    [Yy]* ) THEME_NAME=halcyonic FIXTURES_PATH=db/demo-site-data rails db:fixtures:load; break;;
     [Nn]* ) exit;;
     * ) echo "Please answer Yes or No (y/n)";;
   esac
