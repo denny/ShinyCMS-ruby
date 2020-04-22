@@ -46,6 +46,9 @@ source 'https://rubygems.org' do
   # Pagination
   gem 'kaminari'
 
+  # Search (NB: pg_search only works in postgres, obvs)
+  gem 'pg_search'
+
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'
 

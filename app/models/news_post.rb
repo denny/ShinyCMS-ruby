@@ -2,6 +2,9 @@
 
 # Model class for news posts
 class NewsPost < ApplicationRecord
+  include PgSearch::Model
+  multisearchable against: %i[ title slug body ], unless: :hidden?
+
   belongs_to :user, inverse_of: :news_posts
   alias_attribute :author, :user
 
