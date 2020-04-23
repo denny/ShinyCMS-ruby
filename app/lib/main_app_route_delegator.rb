@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Load ShinyCMS routes inside engines (e.g. Blazer)
 # (Approach copied from RailsEmailPreview, which has this feature built in)
 module MainAppRouteDelegator
