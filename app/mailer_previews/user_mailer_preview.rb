@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Rails Email Preview controller for previewing Devise-powered user emails
 class UserMailerPreview
   def confirmation_instructions
