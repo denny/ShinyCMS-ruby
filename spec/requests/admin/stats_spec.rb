@@ -18,7 +18,6 @@ RSpec.describe 'Stats', type: :request do
 
   describe 'GET /stats' do
     it 'generates the correct button link' do
-      skip 'TODO: This test passes when run alone, but not as part of the suite'
       get blazer_path
 
       expect( response      ).to have_http_status :ok
