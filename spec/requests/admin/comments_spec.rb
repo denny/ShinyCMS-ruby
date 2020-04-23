@@ -57,7 +57,7 @@ RSpec.describe 'Comment moderation', type: :request do
       expect( response.body ).to     have_css '.alert-danger', text: I18n.t( 'admin.comments.update.spam_or_ham' )
     end
 
-    it 'removes the selected comments if you say they are spam' do
+    it 'deletes the selected comments if you say they are spam' do
       @nested1.mark_as_spam
       @comment2.mark_as_spam
       expect( @nested1.reload.spam?  ).to be true
