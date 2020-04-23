@@ -182,10 +182,5 @@ Rails.application.routes.draw do
     # This catch-all route passes through to the Pages controller, allowing
     # sites to have top-level pages (e.g. /foo instead of /pages/foo).
     get '*path', to: 'pages#show'
-    # The constraint here is to avoid also catching the open and click tracking
-    # routes which are appended by the Ahoy::Email engine.
-    # get '*path', to: 'pages#show', constraints: lambda { |request|
-    #  !request.fullpath.start_with? '/ahoy/messages/'
-    # }
   end
 end
