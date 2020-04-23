@@ -90,18 +90,14 @@ class Admin::CommentsController < AdminController
 
   def process_spam_comments
     akismet_confirm_spam( selected_comment_ids )
-
-    if Comment.where( id: selected_comment_ids ).destroy_all
-      flash[ :notice ] = t( 'admin.comments.process_spam_comments.success' )
-    else
-      flash[ :alert ] = t( 'admin.comments.process_spam_comments.failure' )
-    end
+    Comment.destroy_by( id: selected_comment_ids )
+    flash[ :notice ] = t( 'admin.comments.process_spam_comments.success' )
   end
 
   def process_ham_comments
     akismet_flag_as_ham( selected_comment_ids )
 
-    if Comment.where( id: selected_comment_ids ).update( spam: false )
+    if Comment.mark_all_as_ham( selected_comment_ids )
       flash[ :notice ] = t( 'admin.comments.process_ham_comments.success' )
     else
       flash[ :alert ] = t( 'admin.comments.process_ham_comments.failure' )
