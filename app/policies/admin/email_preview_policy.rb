@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Pundit policy for email previews
 class Admin::EmailPreviewPolicy < Admin::DefaultPolicy
   def index?

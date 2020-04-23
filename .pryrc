@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use awesome print to format console output
 require 'awesome_print'
 AwesomePrint.pry!
