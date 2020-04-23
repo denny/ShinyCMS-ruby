@@ -17,6 +17,9 @@ AllCops:
     - tmp/**/*
     - tools/**/*
 
+Style/DisableCopsWithinSourceCodeDirective:
+  Enabled: false
+
 # TODO: see if I can make this method happy at some point
 Metrics/AbcSize:
   Exclude:

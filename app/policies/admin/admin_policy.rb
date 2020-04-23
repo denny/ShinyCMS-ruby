@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Pundit policy for admin index controller
 class Admin::AdminPolicy < DefaultPolicy
   def index?

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ShinyCMS feature flag administration tasks
 
 require 'dotenv/tasks'

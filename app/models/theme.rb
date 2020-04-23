@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Theme model, to group some repeated code
 class Theme
   attr_accessor :name

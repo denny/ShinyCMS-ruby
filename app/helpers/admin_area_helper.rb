@@ -1,10 +1,16 @@
+# frozen_string_literal: true
+
 # Helper methods for admin area
 module AdminAreaHelper
   # Invoke Pundit
   def authorise( record )
-    record_class_name = class_name( record )
-    record_class_name = 'Ahoy' if record_class_name.start_with? 'Ahoy::'
-    policy_class_name = "Admin::#{record_class_name}Policy"
+    if record.is_a? Symbol
+      policy_class_name = "Admin::#{record.to_s.camelize}Policy"
+    else
+      record_class_name = class_name( record )
+      record_class_name = record_class_name.remove( '::' )
+      policy_class_name = "Admin::#{record_class_name}Policy"
+    end
 
     authorize record, policy_class: policy_class_name.constantize
   end

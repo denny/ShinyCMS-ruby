@@ -4,7 +4,6 @@
 
 // ========== Admin Area ==========
 //= link shinycms/admin_area.css
-//= link_tree ../images/coreui
 
 // ========== Main Site themes ==========
 //= link shinycms.css

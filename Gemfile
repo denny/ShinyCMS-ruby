@@ -8,12 +8,15 @@ source 'https://rubygems.org' do
   # Load ENV from .env(.*) files
   gem 'dotenv-rails'
 
+  # Locales for the 'not USA' bits of the world
+  gem 'rails-i18n'
+
   # Reduce boot times through caching; required in config/boot.rb
   gem 'bootsnap', '>= 1.4.2', require: false
   # Use faster SCSS gem for stylesheets
   gem 'sassc-rails'
   # Transpile app-like JavaScript. More info: https://github.com/rails/webpacker
-  gem 'webpacker', '~> 5.0'
+  gem 'webpacker', '~> 5.1'
 
   # Sessions, authentication, and authorisation
   gem 'activerecord-session_store'
@@ -31,6 +34,9 @@ source 'https://rubygems.org' do
   # Validate email addresses
   gem 'email_address'
 
+  # Email preview
+  gem 'rails_email_preview'
+
   # MJML emails
   gem 'mjml-rails'
 
@@ -43,6 +49,8 @@ source 'https://rubygems.org' do
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'
 
+  # Email stats
+  gem 'ahoy_email'
   # Web stats
   gem 'ahoy_matey'
   gem 'blazer'

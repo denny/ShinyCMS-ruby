@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ShinyCMS admin user administration tasks
 
 require 'dotenv/tasks'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model for 'brochure' pages
 class Page < ApplicationRecord
   include NameTitleSlug

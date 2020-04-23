@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Stuff that has to be set before we're up and running
 if ENV['SHINYCMS_MULTIPLE_BLOGS_MODE'].present?
   # :nocov:

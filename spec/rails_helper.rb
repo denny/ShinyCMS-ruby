@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Rails-specific test setup/config
 require 'spec_helper'
 require 'database_cleaner'

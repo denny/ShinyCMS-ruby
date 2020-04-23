@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Common behaviour for models that store email addresses
 module Email
   extend ActiveSupport::Concern

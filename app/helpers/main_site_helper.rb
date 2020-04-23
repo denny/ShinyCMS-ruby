@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Methods that might be useful in templates on the main site
 module MainSiteHelper
   include ActsAsTaggableOn::TagsHelper
@@ -57,7 +59,7 @@ module MainSiteHelper
   # rubocop:enable Metrics/MethodLength
 
   def view_blog_post_path( post )
-    if Blog.multiple_blogs_mode
+    if Blog.multiple_blogs_mode?
       # :nocov:
       blog_slug = post.blog.slug
       "/blog/#{blog_slug}/#{post.posted_year}/#{post.posted_month}/#{post.slug}"

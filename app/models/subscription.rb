@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model for mailing list subscriptions
 class Subscription < ApplicationRecord
   validates :subscriber, presence: true

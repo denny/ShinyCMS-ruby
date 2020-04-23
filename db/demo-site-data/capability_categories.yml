@@ -3,176 +3,187 @@ CapabilityCategory_1:
   id: 1
   name: general
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2020-03-17 12:57:25.944493000 Z
+    utc: &1 2020-04-22 18:52:21.958349000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2020-03-17 12:57:25.944493000 Z
+    utc: &3 2020-04-22 18:52:21.958349000 Z
     zone: *2
     time: *3
 CapabilityCategory_2:
   id: 2
   name: blogs
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &4 2020-03-17 12:57:25.953882000 Z
+    utc: &4 2020-04-22 18:52:21.968624000 Z
     zone: *2
     time: *4
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &5 2020-03-17 12:57:25.953882000 Z
+    utc: &5 2020-04-22 18:52:21.968624000 Z
     zone: *2
     time: *5
 CapabilityCategory_3:
   id: 3
   name: blog_posts
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &6 2020-03-17 12:57:25.962837000 Z
+    utc: &6 2020-04-22 18:52:21.977234000 Z
     zone: *2
     time: *6
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &7 2020-03-17 12:57:25.962837000 Z
+    utc: &7 2020-04-22 18:52:21.977234000 Z
     zone: *2
     time: *7
 CapabilityCategory_4:
   id: 4
   name: discussions
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &8 2020-03-17 12:57:25.969611000 Z
+    utc: &8 2020-04-22 18:52:21.984066000 Z
     zone: *2
     time: *8
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &9 2020-03-17 12:57:25.969611000 Z
+    utc: &9 2020-04-22 18:52:21.984066000 Z
     zone: *2
     time: *9
 CapabilityCategory_5:
   id: 5
   name: comments
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &10 2020-03-17 12:57:25.975568000 Z
+    utc: &10 2020-04-22 18:52:21.992724000 Z
     zone: *2
     time: *10
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &11 2020-03-17 12:57:25.975568000 Z
+    utc: &11 2020-04-22 18:52:21.992724000 Z
     zone: *2
     time: *11
 CapabilityCategory_6:
   id: 6
   name: spam_comments
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &12 2020-03-17 12:57:25.984965000 Z
+    utc: &12 2020-04-22 18:52:22.000677000 Z
     zone: *2
     time: *12
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &13 2020-03-17 12:57:25.984965000 Z
+    utc: &13 2020-04-22 18:52:22.000677000 Z
     zone: *2
     time: *13
 CapabilityCategory_7:
   id: 7
-  name: feature_flags
+  name: email_previews
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &14 2020-03-17 12:57:25.994663000 Z
+    utc: &14 2020-04-22 18:52:22.007874000 Z
     zone: *2
     time: *14
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &15 2020-03-17 12:57:25.994663000 Z
+    utc: &15 2020-04-22 18:52:22.007874000 Z
     zone: *2
     time: *15
 CapabilityCategory_8:
   id: 8
-  name: inserts
+  name: feature_flags
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &16 2020-03-17 12:57:26.001697000 Z
+    utc: &16 2020-04-22 18:52:22.014734000 Z
     zone: *2
     time: *16
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &17 2020-03-17 12:57:26.001697000 Z
+    utc: &17 2020-04-22 18:52:22.014734000 Z
     zone: *2
     time: *17
 CapabilityCategory_9:
   id: 9
-  name: news_posts
+  name: inserts
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &18 2020-03-17 12:57:26.008290000 Z
+    utc: &18 2020-04-22 18:52:22.021686000 Z
     zone: *2
     time: *18
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &19 2020-03-17 12:57:26.008290000 Z
+    utc: &19 2020-04-22 18:52:22.021686000 Z
     zone: *2
     time: *19
 CapabilityCategory_10:
   id: 10
-  name: pages
+  name: news_posts
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &20 2020-03-17 12:57:26.016209000 Z
+    utc: &20 2020-04-22 18:52:22.028570000 Z
     zone: *2
     time: *20
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &21 2020-03-17 12:57:26.016209000 Z
+    utc: &21 2020-04-22 18:52:22.028570000 Z
     zone: *2
     time: *21
 CapabilityCategory_11:
   id: 11
-  name: page_sections
+  name: pages
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &22 2020-03-17 12:57:26.023354000 Z
+    utc: &22 2020-04-22 18:52:22.035402000 Z
     zone: *2
     time: *22
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &23 2020-03-17 12:57:26.023354000 Z
+    utc: &23 2020-04-22 18:52:22.035402000 Z
     zone: *2
     time: *23
 CapabilityCategory_12:
   id: 12
-  name: page_templates
+  name: page_sections
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &24 2020-03-17 12:57:26.030842000 Z
+    utc: &24 2020-04-22 18:52:22.042385000 Z
     zone: *2
     time: *24
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &25 2020-03-17 12:57:26.030842000 Z
+    utc: &25 2020-04-22 18:52:22.042385000 Z
     zone: *2
     time: *25
 CapabilityCategory_13:
   id: 13
-  name: settings
+  name: page_templates
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &26 2020-03-17 12:57:26.038595000 Z
+    utc: &26 2020-04-22 18:52:22.049120000 Z
     zone: *2
     time: *26
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &27 2020-03-17 12:57:26.038595000 Z
+    utc: &27 2020-04-22 18:52:22.049120000 Z
     zone: *2
     time: *27
 CapabilityCategory_14:
   id: 14
-  name: web_stats
+  name: stats
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &28 2020-03-17 12:57:26.046210000 Z
+    utc: &28 2020-04-22 18:52:22.057091000 Z
     zone: *2
     time: *28
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &29 2020-03-17 12:57:26.046210000 Z
+    utc: &29 2020-04-22 18:52:22.057091000 Z
     zone: *2
     time: *29
 CapabilityCategory_15:
   id: 15
-  name: users
+  name: settings
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &30 2020-03-17 12:57:26.054550000 Z
+    utc: &30 2020-04-22 18:52:22.063769000 Z
     zone: *2
     time: *30
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &31 2020-03-17 12:57:26.054550000 Z
+    utc: &31 2020-04-22 18:52:22.063769000 Z
     zone: *2
     time: *31
 CapabilityCategory_16:
   id: 16
-  name: admin_users
+  name: users
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &32 2020-03-17 12:57:26.062204000 Z
+    utc: &32 2020-04-22 18:52:22.070521000 Z
     zone: *2
     time: *32
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &33 2020-03-17 12:57:26.062204000 Z
+    utc: &33 2020-04-22 18:52:22.070521000 Z
     zone: *2
     time: *33
+CapabilityCategory_17:
+  id: 17
+  name: admin_users
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2020-04-22 18:52:22.077568000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2020-04-22 18:52:22.077568000 Z
+    zone: *2
+    time: *35

@@ -66,7 +66,12 @@ GEM
       activerecord (>= 5.0, < 6.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    ahoy_matey (3.0.2)
+    ahoy_email (1.1.0)
+      actionmailer (>= 5)
+      addressable (>= 2.3.2)
+      nokogiri
+      safely_block (>= 0.1.1)
+    ahoy_matey (3.0.3)
       activesupport (>= 5)
       device_detector
       geocoder (>= 1.4.5)
@@ -74,24 +79,24 @@ GEM
     akismet (3.0.0)
     ast (2.4.0)
     awesome_print (1.8.0)
-    aws-eventstream (1.0.3)
-    aws-partitions (1.294.0)
-    aws-sdk-core (3.92.0)
-      aws-eventstream (~> 1.0, >= 1.0.2)
+    aws-eventstream (1.1.0)
+    aws-partitions (1.301.0)
+    aws-sdk-core (3.94.0)
+      aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
     aws-sdk-kms (1.30.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.61.2)
+    aws-sdk-s3 (1.63.0)
       aws-sdk-core (~> 3, >= 3.83.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
-    aws-sigv4 (1.1.1)
+    aws-sigv4 (1.1.2)
       aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.13)
-    blazer (2.2.1)
+    blazer (2.2.2)
       activerecord (>= 5)
       chartkick (>= 3.2)
       railties (>= 5)
@@ -208,7 +213,7 @@ GEM
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    loofah (2.4.0)
+    loofah (2.5.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -233,7 +238,7 @@ GEM
       childprocess (>= 0.6.3, < 4)
       iniparse (~> 1.4)
     parallel (1.19.1)
-    parser (2.7.1.0)
+    parser (2.7.1.1)
       ast (~> 2.4.0)
     pg (1.2.3)
     pry (0.12.2)
@@ -275,6 +280,11 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
+    rails_email_preview (2.2.1)
+      rails (>= 4.2)
+      request_store
+      sassc-rails (>= 2.0.0)
+      turbolinks
     railties (6.0.2.2)
       actionpack (= 6.0.2.2)
       activesupport (= 6.0.2.2)
@@ -289,6 +299,8 @@ GEM
     recaptcha (5.5.0)
       json
     regexp_parser (1.7.0)
+    request_store (1.5.0)
+      rack (>= 1.4)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -312,7 +324,7 @@ GEM
     rspec-support (3.9.2)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (0.81.0)
+    rubocop (0.82.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
@@ -320,7 +332,7 @@ GEM
       rexml
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-rails (2.5.1)
+    rubocop-rails (2.5.2)
       activesupport
       rack (>= 1.1)
       rubocop (>= 0.72.0)
@@ -359,6 +371,9 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    turbolinks (5.2.1)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unf (0.1.4)
@@ -368,7 +383,7 @@ GEM
     url (0.3.2)
     warden (1.2.8)
       rack (>= 2.0.6)
-    webpacker (5.0.1)
+    webpacker (5.1.1)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
@@ -386,6 +401,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-session_store!
   acts-as-taggable-on!
+  ahoy_email!
   ahoy_matey!
   akismet!
   awesome_print!
@@ -421,13 +437,15 @@ DEPENDENCIES
   puma (~> 4.3)!
   pundit!
   rails (~> 6.0.2)!
+  rails-i18n!
+  rails_email_preview!
   recaptcha!
   rspec-rails!
   rspec_junit_formatter!
   rubocop!
   rubocop-rails!
   sassc-rails!
-  webpacker (~> 5.0)!
+  webpacker (~> 5.1)!
 
 BUNDLED WITH
    2.1.4

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Helper methods for turning CMS features on/off selectively
 module FeatureFlagsHelper
   def enforce_feature_flags( feature_name )

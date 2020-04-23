@@ -34,18 +34,17 @@ the Perl version, if any):
   * Currently on blog posts and news posts
   * Ready to add to any other content type going forward
   * Improvements: Perl's main ORM doesn't have native support for polymorphism,
-    and in fact I'd never heard of it at the time, but I ended up writing my own
-    version of it to get the Discussions feature working the way I wanted it to.
-    The Ruby version uses ActiveRecord's native support for polymorphism.
+    so I rolled my own. The Ruby version uses ActiveRecord's native support for
+    polymorphism.
+  * Akismet spam filtering for comments, with moderation page
 * User accounts and administration
   * Improvements: the Perl version has role-based authorisation. The Ruby
     version has more flexible ACL-based authorisation (powered by Pundit).
 * reCAPTCHA bot protection for registration and comment forms
   * Improvements: supports reCAPTCHA v3 with scores. Tries an invisible
     CAPTCHA first, falling back to an interactive CAPTCHA if that fails.
-* Built-in web stats (powered by Ahoy)
-  * Improvements: the Perl version doesn't produce stats at all, this is a new
-    feature in the Ruby version.
+* Built-in web stats (powered by Ahoy) and email stats (powered by Ahoy::Email)
+  * Improvements: these are new features.
 
 
 ## TODO
@@ -54,7 +53,6 @@ Features the Perl version has, which the Ruby version doesn't. Yet.
 
 * Form handlers (contact page, etc)
 * Newsletters (HTML mailshots)
-* Akismet spam filtering for comments, with moderation page
 * 'Likes' on blog posts, shop items, and comments
 * User profile pages (with content such as recent comments, recent posts, etc)
 * Access control groups
@@ -87,13 +85,13 @@ will need to be convincingly clean.
 
 The lowest major version of Ruby that Rails 6 works with is 2.5. I occasionally
 use Travis CI to run the test suite against Ruby 2.5, 2.6, and 2.7, which seems
-to work: https://travis-ci.org/github/denny/ShinyCMS-ruby/builds/672223883
+to work: https://travis-ci.org/github/denny/ShinyCMS-ruby/builds/677015096
 
 
 ## System dependencies
 
 * A webserver
-  * I use `foreman run rails s` for dev, and Heroku for staging and production
+  * I use `rails s` for dev, and Heroku for staging and production
 * A database
   * For now this assumes Postgres, although I intend to work toward being
     database agnostic eventually (the Perl version works with MySQL, Postgres,

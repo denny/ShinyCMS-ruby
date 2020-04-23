@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model for page sections
 class PageSection < ApplicationRecord
   include NameTitleSlug

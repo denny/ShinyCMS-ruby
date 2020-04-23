@@ -21,13 +21,20 @@
   <% end %>
 
   <% if current_user.can?( :list, :inserts  ) ||
-        current_user.can?( :list, :settings ) ||
-        current_user.can?( :list, :feature_flags ) %>
+        current_user.can?( :list, :spam_comments ) ||
+        current_user.can?( :list, :email_previews ) %>
   <%= render partial: 'admin/menu/menu_other' %>
   <% end %>
 
-  <% if current_user.can? :list, :web_stats %>
+  <% if current_user.can?( :view_web,   :stats ) ||
+        current_user.can?( :view_email, :stats ) ||
+        current_user.can?( :use_blazer, :stats ) %>
   <%= render partial: 'admin/menu/menu_stats' %>
+  <% end %>
+
+  <% if current_user.can?( :list, :settings ) ||
+        current_user.can?( :list, :feature_flags ) %>
+  <%= render partial: 'admin/menu/menu_settings' %>
   <% end %>
 </ul>
 

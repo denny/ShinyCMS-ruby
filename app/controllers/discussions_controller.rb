@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ============================================================================
 # Project:   ShinyCMS (Ruby version)
 # File:      app/controllers/discussion_controller.rb
@@ -9,6 +11,7 @@
 # modify it under the terms of the GPL (version 2 or later).
 # ============================================================================
 class DiscussionsController < ApplicationController
+  include AkismetHelper
   include RecaptchaHelper
 
   before_action :check_feature_flags
@@ -40,7 +43,7 @@ class DiscussionsController < ApplicationController
   end
 
   def save_comment
-    if akismet_check && recaptcha_pass && @new_comment.save
+    if passes_akismet_check? && passes_recaptcha? && @new_comment.save
       flash[ :notice ] = t( '.success' ) unless @new_comment.spam?
       redirect_back fallback_location: discussion_path( @discussion )
     else
@@ -61,53 +64,21 @@ class DiscussionsController < ApplicationController
     @comment = @discussion.comments.find_by( number: params[ :number ] ) || nil
   end
 
-  def recaptcha_pass
-    return true unless feature_enabled? :recaptcha_on_comment_form
-    return true if     @new_comment.user_id.present?
+  def passes_akismet_check?
+    return true unless akismet_enabled? && akismet_api_key_is_set?
 
-    verify_invisible_recaptcha( 'comment' ) || verify_checkbox_recaptcha
-  end
-
-  def akismet_check
-    return true unless feature_enabled? :akismet_on_comments
-
-    key = self.class.akismet_api_key
-    return true if key.blank?
-
-    Akismet.api_key = key
-    Akismet.app_url = root_url
-
-    # Akismet.check throws "Akismet::Error: unknown error" for invalid API keys!
-    spam, blatant = Akismet.check request.ip, request.user_agent, akismet_params
-    return false if blatant && setting( :akismet_blatant_spam ) != 'Keep'
+    spam, blatant = akismet_check( request, @new_comment )
+    return false if blatant && drop_blatant_spam?
 
     @new_comment.spam = spam
     true
   end
 
-  def akismet_params
-    params = {
-      text: "#{@new_comment.title} #{@new_comment.body}",
-      author: akismet_author_name,
-      created_at: Time.zone.now,
-      referrer: request.referer,
-      type: 'comment'
-    }
-    params[ :author_email ] = akismet_author_email if akismet_author_email
-    params[ :author_url   ] = akismet_author_url   if akismet_author_url
-    params
-  end
+  def passes_recaptcha?
+    return true unless feature_enabled? :recaptcha_on_comment_form
+    return true if     @new_comment.user_id.present?
 
-  def akismet_author_name
-    @new_comment.author_name || @new_comment.author&.username || 'Anonymous'
-  end
-
-  def akismet_author_email
-    @new_comment.author_email || @new_comment.author&.email
-  end
-
-  def akismet_author_url
-    @new_comment.author_url || @new_comment.author&.website
+    verify_invisible_recaptcha( 'comment' ) || verify_checkbox_recaptcha
   end
 
   def comment_params

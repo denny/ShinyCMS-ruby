@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Model for tracking website visits using ahoy
 class Ahoy::Visit < ApplicationRecord
   self.table_name = 'ahoy_visits'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ============================================================================
 # Project:   ShinyCMS (Ruby version)
 # File:      app/controllers/application_controller.rb
@@ -30,10 +32,6 @@ class ApplicationController < ActionController::Base
 
   def self.recaptcha_checkbox_secret_key
     ENV[ 'RECAPTCHA_CHECKBOX_SECRET_KEY' ]
-  end
-
-  def self.akismet_api_key
-    ENV[ 'AKISMET_API_KEY' ]
   end
 
   layout 'layouts/main_site'

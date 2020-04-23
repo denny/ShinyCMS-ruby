@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Pundit policy for inserts (prev: 'shared content')
 class Admin::InsertElementPolicy < Admin::DefaultPolicy
   def create?
