@@ -34,10 +34,6 @@ class ApplicationController < ActionController::Base
     ENV[ 'RECAPTCHA_CHECKBOX_SECRET_KEY' ]
   end
 
-  def self.akismet_api_key
-    ENV[ 'AKISMET_API_KEY' ]
-  end
-
   layout 'layouts/main_site'
 
   protected

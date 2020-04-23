@@ -3,7 +3,7 @@
 # ============================================================================
 # Project:   ShinyCMS (Ruby version)
 # File:      app/controllers/admin/comments_controller.rb
-# Purpose:   Controller for ShinyCMS comment/discussion admin features
+# Purpose:   Controller for ShinyCMS comment admin features
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
 #
@@ -11,6 +11,7 @@
 # modify it under the terms of the GPL (version 2 or later).
 # ============================================================================
 class Admin::CommentsController < AdminController
+  include AkismetHelper
   include MainSiteHelper
 
   before_action :stash_comment, except: %i[ index update ]
@@ -88,39 +89,23 @@ class Admin::CommentsController < AdminController
   end
 
   def process_spam_comments
-    tell_akismet_about_spam
-    Comment.where( id: selected_comment_ids ).destroy_all
-    flash[ :notice ] = t( 'admin.comments.process_spam_comments.success' )
-    # if Comment.where( id: selected_comment_ids ).destroy
-    #  flash[ :notice ] = t( 'admin.comments.process_spam_comments.success' )
-    # else
-    #   flash[ :alert ] = t( 'admin.comments.process_spam_comments.failure' )
-    # end
+    akismet_confirm_spam( selected_comment_ids )
+
+    if Comment.where( id: selected_comment_ids ).destroy_all
+      flash[ :notice ] = t( 'admin.comments.process_spam_comments.success' )
+    else
+      flash[ :alert ] = t( 'admin.comments.process_spam_comments.failure' )
+    end
   end
 
   def process_ham_comments
-    tell_akismet_about_ham
-    # rubocop:disable Rails/SkipsModelValidations
-    Comment.where( id: selected_comment_ids ).update_all( spam: false )
-    # rubocop:enable Rails/SkipsModelValidations
-    flash[ :notice ] = t( 'admin.comments.process_ham_comments.success' )
-    # if Comment.where( id: selected_comment_ids ).update( spam: false )
-    #  flash[ :notice ] = t( 'admin.comments.process_ham_comments.success' )
-    # else
-    #   flash[ :alert ] = t( 'admin.comments.process_ham_comments.failure' )
-    # end
-  end
+    akismet_flag_as_ham( selected_comment_ids )
 
-  def tell_akismet_about_spam
-    # comment_ids = selected_comment_ids
-    # TODO: Open a connection to Akismet
-    # Loop through the selected comments telling Akismet that they are spam
-  end
-
-  def tell_akismet_about_ham
-    # comment_ids = selected_comment_ids
-    # TODO: Open a connection to Akismet
-    # Loop through the selected comments telling Akismet that they are not spam
+    if Comment.where( id: selected_comment_ids ).update( spam: false )
+      flash[ :notice ] = t( 'admin.comments.process_ham_comments.success' )
+    else
+      flash[ :alert ] = t( 'admin.comments.process_ham_comments.failure' )
+    end
   end
 
   def selected_comment_ids
