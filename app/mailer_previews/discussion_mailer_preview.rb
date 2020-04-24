@@ -21,7 +21,7 @@ class DiscussionMailerPreview
   end
 
   def mock_comment
-    # TODO: Use factory?
-    Comment.where.not( parent: nil ).first || Comment.first
+    comments = Comment.where( hidden: false, spam: false )
+    comments.not( parent: nil ).last || comments.last
   end
 end
