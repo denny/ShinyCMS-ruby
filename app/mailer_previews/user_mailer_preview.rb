@@ -33,7 +33,6 @@ class UserMailerPreview
   end
 
   def mock_user
-    # TODO: Use factory?
-    User.first
+    current_user
   end
 end
