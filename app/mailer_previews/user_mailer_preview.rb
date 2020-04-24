@@ -33,6 +33,9 @@ class UserMailerPreview
   end
 
   def mock_user
-    current_user
+    User.new(
+      username: 'preview_user',
+      email: 'preview_user@example.com'
+    )
   end
 end
