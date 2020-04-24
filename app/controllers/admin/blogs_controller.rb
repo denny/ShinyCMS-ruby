@@ -14,8 +14,8 @@ class Admin::BlogsController < AdminController
   before_action :set_blog, only: %i[ edit update destroy ]
 
   def index
-    @blogs = Blog.all
     authorise Blog
+    @blogs = Blog.all
     authorise @blogs if @blogs.present?
   end
 

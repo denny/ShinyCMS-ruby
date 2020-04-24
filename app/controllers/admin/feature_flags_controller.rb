@@ -12,8 +12,8 @@
 # ============================================================================
 class Admin::FeatureFlagsController < AdminController
   def index
-    @flags = FeatureFlag.all.order( :name )
     authorise FeatureFlag
+    @flags = FeatureFlag.all.order( :name )
     authorise @flags if @flags.present?
   end
 
