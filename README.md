@@ -26,23 +26,28 @@ the Perl version, if any):
   * Improvements: snappier name? ;) (Renamed from Shared Content to Inserts)
 * Blog
 * News section
+* Nested comment threads
+  * Currently on blog posts and news posts
+  * Ready to add to any other content type going forward
+  * Uses Akismet to flag potential spam comments
+    * Moderation queue in admin area
+    * Confirming/removing flag sends ham/spam training data to Akismet
+  * Improvements:
+    * The Perl version doesn't feed back to Akismet yet (although it will soon)
+    * Perl's main ORM doesn't have native support for polymorphism, so I had to
+      roll my own. The Ruby version uses ActiveRecord's native polymorphism.
 * Tags
   * Currently on blog posts and news posts
   * Ready to add to any other content type going forward
   * Improvements: more generic implementation (powered by ActAsTaggableOn)
-* Nested comment threads
-  * Currently on blog posts and news posts
-  * Ready to add to any other content type going forward
-  * Improvements: Perl's main ORM doesn't have native support for polymorphism,
-    so I rolled my own. The Ruby version uses ActiveRecord's native support for
-    polymorphism.
-  * Akismet spam filtering for comments, with moderation page
 * User accounts and administration
   * Improvements: the Perl version has role-based authorisation. The Ruby
     version has more flexible ACL-based authorisation (powered by Pundit).
 * reCAPTCHA bot protection for registration and comment forms
   * Improvements: supports reCAPTCHA v3 with scores. Tries an invisible
     CAPTCHA first, falling back to an interactive CAPTCHA if that fails.
+* Support for themes
+  * Improvements: this is a new feature.
 * Built-in web stats (powered by Ahoy) and email stats (powered by Ahoy::Email)
   * Improvements: these are new features.
 
