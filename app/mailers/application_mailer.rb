@@ -7,13 +7,21 @@ class ApplicationMailer < ActionMailer::Base
   before_action :set_view_paths
   before_action :set_site_name
 
-  track open: true, click: true
+  track open: -> { track_opens? }, click: -> { track_clicks? }
 
   default from: -> { default_from_address }
 
   layout 'mailer'
 
   private
+
+  def track_opens?
+    Setting.get( :track_opens )&.downcase == 'yes'
+  end
+
+  def track_clicks?
+    Setting.get( :track_clicks )&.downcase == 'yes'
+  end
 
   def default_from_address
     ENV[ 'MAILER_SENDER' ]
