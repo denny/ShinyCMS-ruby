@@ -13,7 +13,7 @@
 class Admin::Pages::SectionsController < AdminController
   # Redirect to the combined page+section list
   def index
-    skip_authorization
+    authorise PageSection
     redirect_to pages_path
   end
 

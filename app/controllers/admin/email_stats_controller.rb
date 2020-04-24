@@ -14,12 +14,13 @@ class Admin::EmailStatsController < AdminController
   before_action :set_ahoy_user
 
   def index
+    authorise Ahoy::Message
+
     page_num = params[ :page ] || 1
     messages = Ahoy::Message
     messages = messages.where( user: @ahoy_user ) if @ahoy_user
     @messages = messages.order( 'sent_at desc' ).page( page_num )
 
-    authorise Ahoy::Message
     authorise @messages if @messages.present?
   end
 

@@ -18,9 +18,9 @@ class Admin::CommentsController < AdminController
 
   # Display spam comment moderation page
   def index
+    authorise Comment
     page_num = params[ :page ] || 1
     @comments = Comment.all_spam.page( page_num )
-    authorise Comment
     authorise @comments if @comments.present?
   end
 
