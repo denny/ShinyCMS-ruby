@@ -22,6 +22,6 @@ class DiscussionMailerPreview
 
   def mock_comment
     comments = Comment.where( hidden: false, spam: false )
-    comments.not( parent: nil ).last || comments.last
+    comments.where.not( parent: nil ).last || comments.last
   end
 end
