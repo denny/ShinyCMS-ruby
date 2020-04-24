@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Mailer for discussion-related emails - reply notifications etc
+# Mailer for discussion-related emails (reply notifications, etc)
 class DiscussionMailer < ApplicationMailer
   before_action :check_feature_flags
 
@@ -12,7 +12,7 @@ class DiscussionMailer < ApplicationMailer
 
     subject = parent_comment_notification_subject( @reply )
 
-    ahoy_user( @parent.notification_email, @parent.author_name_any )
+    @user = notified_user( @parent.notification_email, @parent.author_name_any )
 
     mail to: @parent.notification_email, subject: subject do |format|
       format.html
@@ -28,7 +28,7 @@ class DiscussionMailer < ApplicationMailer
 
     subject = discussion_notification_subject( @comment, @resource )
 
-    ahoy_user( comment.discussion.notification_email )
+    @user = comment.discussion.resource.user
 
     mail to: comment.discussion.notification_email, subject: subject do |format|
       format.html
@@ -46,7 +46,7 @@ class DiscussionMailer < ApplicationMailer
 
     subject = overview_notification_subject( @comment )
 
-    ahoy_user( email, 'Admin' )
+    @user = notified_user( email, 'Admin' )
 
     mail to: email, subject: subject do |format|
       format.html

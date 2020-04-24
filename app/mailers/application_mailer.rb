@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Application mailer base class (NB: user mailer does not inherit from this)
+# Base class for Mailers
 class ApplicationMailer < ActionMailer::Base
   include FeatureFlagsHelper
 
@@ -19,14 +19,10 @@ class ApplicationMailer < ActionMailer::Base
     ENV[ 'MAILER_SENDER' ]
   end
 
-  def ahoy_user( email_address, name = nil )
-    @user = User.find_by( email: email_address )
-    return if @user.present?
-
-    @user = EmailRecipient.find_by( email: email_address )
-    return if @user.present?
-
-    @user = EmailRecipient.create!( name: name, email: email_address )
+  def notified_user( email_address, name = nil )
+    User.find_by( email: email_address ) ||
+      EmailRecipient.find_by( email: email_address ) ||
+      EmailRecipient.create!( email: email_address, name: name )
   end
 
   def set_site_name

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Mailer for Devise-powered user account emails (password reset, etc)
+# Mailer for user account related emails (password reset, etc) (uses Devise)
 class UserMailer < ApplicationMailer
   include Devise::Controllers::UrlHelpers
 
