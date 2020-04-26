@@ -5,18 +5,20 @@
 ### Small-ish
 
 * 'Deploy to Heroku' button
-	* https://devcenter.heroku.com/articles/heroku-button
+  * https://devcenter.heroku.com/articles/heroku-button
 * 2FA
   * https://github.com/tinfoil/devise-two-factor
+* Configurable (per-site and per-user) menu order in admin area
 * In admin area, load the full dataset for user capabilities, feature flags,
-	and possibly site settings, and stick them in a hash somewhere - the menu
-	makes a crazy amount of hits on the db and I haven't even implemented half
-	of the 'feature hidden by flag/capability/etc' conditionals yet.
+  and possibly site settings, and stick them in some hashes, with some helper
+  methods to check them. The menu already makes a crazy amount of hits on the
+  db and there are still a load of 'feature hidden by flag/capability/etc'
+  conditionals to implement.
 
 ### Medium-ish
 
 * Tests for rake tasks
-	* https://thoughtbot.com/blog/test-rake-tasks-like-a-boss ? (old)
+  * https://thoughtbot.com/blog/test-rake-tasks-like-a-boss ? (old)
 * Improve UX for slug auto-generation
   * Look at Fae CMS slugger: https://www.faecms.com/documentation/features-slugger
 * A/B testing
@@ -32,7 +34,7 @@
 ### Large-ish
 
 * GDPR compliance
-	* https://github.com/prey/gdpr_rails
+  * https://github.com/prey/gdpr_rails
 * Switch from ERB to handlebars or similar for main site templates
 * Allow Page templates to be stored in database and edited in admin UI
 * Allow in-situ editing of Page (and other?) content
