@@ -283,7 +283,7 @@ en:
           title: List blog posts
           empty: There are no blog posts to display
         new:
-          title: Add new blog post
+          title: Add blog post
         edit:
           title: Edit blog post
         create:

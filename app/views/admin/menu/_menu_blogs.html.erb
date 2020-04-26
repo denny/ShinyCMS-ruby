@@ -1,3 +1,5 @@
+<% return unless current_user.can? :list, :blog_posts %>
+
   <%= render_admin_menu_section( t( 'admin.blogs.title' ), 'rss' ) do %>
 
     <% if Blog.multiple_blogs_mode? %>
