@@ -3,39 +3,19 @@
   <%= render_admin_menu_item_if( current_user.can?( :view_admin_dashboard ),
       t( 'admin.dashboard.title' ), admin_path, 'speedometer' ) %>
 
-  <% if current_user.can?( :list, :pages          ) ||
-        current_user.can?( :list, :page_templates ) %>
-  <%= render partial: 'admin/menu/menu_pages' %>
-  <% end %>
+  <%= render partial: 'admin/menu/menu_pages'    %>
 
-  <% if current_user.can? :list, :blog_posts %>
-  <%= render partial: 'admin/menu/menu_blogs' %>
-  <% end %>
+  <%= render partial: 'admin/menu/menu_blogs'    %>
 
-  <% if current_user.can? :list, :news %>
-  <%= render partial: 'admin/menu/menu_news' %>
-  <% end %>
+  <%= render partial: 'admin/menu/menu_news'     %>
 
-  <% if current_user.can? :list, :users %>
-  <%= render partial: 'admin/menu/menu_users' %>
-  <% end %>
+  <%= render partial: 'admin/menu/menu_other'    %>
 
-  <% if current_user.can?( :list, :inserts  ) ||
-        current_user.can?( :list, :spam_comments ) ||
-        current_user.can?( :list, :email_previews ) %>
-  <%= render partial: 'admin/menu/menu_other' %>
-  <% end %>
+  <%= render partial: 'admin/menu/menu_users'    %>
 
-  <% if current_user.can?( :view_web,   :stats ) ||
-        current_user.can?( :view_email, :stats ) ||
-        current_user.can?( :use_blazer, :stats ) %>
-  <%= render partial: 'admin/menu/menu_stats' %>
-  <% end %>
+  <%= render partial: 'admin/menu/menu_stats'    %>
 
-  <% if current_user.can?( :list, :settings ) ||
-        current_user.can?( :list, :feature_flags ) %>
   <%= render partial: 'admin/menu/menu_settings' %>
-  <% end %>
 </ul>
 
 <script>
