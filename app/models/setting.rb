@@ -3,13 +3,13 @@
 # Class for settings items (definitions)
 class Setting < ApplicationRecord
   # Error class
-  class CannotUpdateLocked < StandardError; end
+  class CannotUpdateLockedSetting < StandardError; end
 
   validates :name,   presence: true
   validates :level,  presence: true
   validates :locked, inclusion: { in: [ true, false ] }
 
-  validate :validate_not_locked, on: :update
+  validate :validate_not_locked, on: %i[ update destroy ]
 
   has_many :values, class_name: 'SettingValue', inverse_of: 'setting',
                     dependent: :destroy
@@ -73,6 +73,6 @@ class Setting < ApplicationRecord
   def enforce_locking
     return unless locked
 
-    raise CannotUpdateLocked, 'Attempted to update a locked setting'
+    raise CannotUpdateLockedSetting, 'Attempted to update a locked setting'
   end
 end
