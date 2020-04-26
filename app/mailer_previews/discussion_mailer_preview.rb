@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Rails Email Preview controller for previewing Discussion-related emails
 class DiscussionMailerPreview
   def parent_comment_notification

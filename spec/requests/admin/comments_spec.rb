@@ -57,7 +57,9 @@ RSpec.describe 'Comment moderation', type: :request do
       expect( response.body ).to     have_css '.alert-danger', text: I18n.t( 'admin.comments.update.spam_or_ham' )
     end
 
-    it 'removes the selected comments if you say they are spam' do
+    it 'deletes the selected comments if you say they are spam' do
+      skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
+
       @nested1.mark_as_spam
       @comment2.mark_as_spam
       expect( @nested1.reload.spam?  ).to be true
@@ -83,6 +85,8 @@ RSpec.describe 'Comment moderation', type: :request do
     end
 
     it 'removes spam flags from the selected comments if you say they are not spam' do
+      skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
+
       @nested1.mark_as_spam
       @comment2.mark_as_spam
       expect( @nested1.reload.spam?  ).to be true
@@ -105,6 +109,28 @@ RSpec.describe 'Comment moderation', type: :request do
 
       expect( @nested1.reload.spam?  ).to be false
       expect( @comment2.reload.spam? ).to be true
+    end
+
+    it 'reports an error if it fails to remove spam flags' do
+      skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
+
+      allow( Comment ).to receive( :mark_all_as_ham ).and_return( false )
+
+      @nested1.mark_as_spam
+      @comment2.mark_as_spam
+
+      put comments_path, params: {
+        'spam_comments[spam_or_ham]': 'ham',
+        "spam_comments[comment_#{@nested1.id}]": 1,
+        "spam_comments[comment_#{@comment2.id}]": 0
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to comments_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.comments.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.comments.process_ham_comments.failure' )
     end
   end
 

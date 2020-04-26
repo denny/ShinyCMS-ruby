@@ -9,35 +9,37 @@
 # https://github.com/sds/overcommit#configuration
 
 PreCommit:
-  ALL:
-    quiet: false
+  CaseConflicts:
+    enabled: false
   Brakeman:
     enabled: true
+    quiet: false
   RuboCop:
     enabled: true
+    quiet: false
     on_warn: fail
   TrailingWhitespace:
     enabled: true
+    quiet: false
     exclude:
       - '**/*.md'
-  CaseConflicts:
-    enabled: false
 
 PrePush:
-  ALL:
-    quiet: false
   RailsSchemaUpToDate:
     enabled: true
+    quiet: false
   RSpec:
     enabled: true
+    quiet: false
   BundleAudit:
     enabled: true
-#  Fasterer:
-#    enabled: true
+    quiet: false
+  Fasterer:
+    enabled: true
+    quiet: false
 
 PostMerge:
-  ALL:
-    quiet: false
   RuboCop:
     enabled: true
+    quiet: false
     on_warn: fail

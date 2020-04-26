@@ -1,61 +1,52 @@
 # ShinyCMS (Ruby version)
 
-I'm reimplementing [ShinyCMS](https://shinycms.org/) in Ruby, as an educational
-exercise for myself...
+[ShinyCMS](https://shinycms.org/) is an open-source content management system
+intended for use by web designers and web developers who want to keep a clear
+distinction between the markup they create and the content their clients can
+edit.
 
-The original, [Perl version of ShinyCMS](https://github.com/denny/ShinyCMS) was
-built to satisfy the varied requirements of a number of clients during 10 years
-of working as a freelance web developer, so it's not a small project.
+This version is built in Ruby on Rails, and has support for cloud hosting
+(Heroku, AWS, etc).
 
-As well as this project allowing me to build a Ruby on Rails application from
-scratch and largely by myself, it's also nice to have time for proper testing,
-regular refactoring, and all the other things I rarely get to do at work. :)
+This started out as as an educational exercise, giving me an opportunity to
+build a Ruby on Rails application from scratch and largely by myself. It's
+also been nice to have time for proper testing (100% coverage!), regular
+refactoring, and all the other things I don't get to do enough of at work. :)
 
 
-## Progress, AKA Current Features
+## Current Features
 
-Features that currently exist in the Ruby version (noting improvements from
-the Perl version, if any):
-
-* Pages, with page templates, page sections, and dynamically-generated menus
-  * Improvements: the Perl version required all pages to be in a section, and
-    you could only nest sections two levels deep. The Ruby version allows you
-    to have pages at the top-level of your site, and to nest sections to any
-    depth.
+* Pages and Page Sections
+  * Can be added / edited / removed by site admins
+  * Page layout controlled by Page Templates (can be provided by a theme,
+    or custom-built by web designer/developer)
+  * Dynamically generated menus
 * Inserts (re-usable content fragments that can be pulled into any template)
-  * Improvements: snappier name? ;) (Renamed from Shared Content to Inserts)
 * Blog
 * News section
+* Comments (currently enabled on blog posts and news posts)
+  * Fully nested, so you can easily see who is replying to who at any level
+  * Email notifications
+  * Uses reCAPTCHA to block comments from bots
+  * Uses Akismet to flag potential spam comments for moderation
+    * Confirming/removing spam flag sends spam/ham training data to Akismet
 * Tags
-  * Currently on blog posts and news posts
-  * Ready to add to any other content type going forward
-  * Improvements: more generic implementation (powered by ActAsTaggableOn)
-* Nested comment threads
-  * Currently on blog posts and news posts
-  * Ready to add to any other content type going forward
-  * Improvements: Perl's main ORM doesn't have native support for polymorphism,
-    and in fact I'd never heard of it at the time, but I ended up writing my own
-    version of it to get the Discussions feature working the way I wanted it to.
-    The Ruby version uses ActiveRecord's native support for polymorphism.
+  * Currently on blog posts and news posts, ready to add to new content types
 * User accounts and administration
-  * Improvements: the Perl version has role-based authorisation. The Ruby
-    version has more flexible ACL-based authorisation (powered by Pundit).
-* reCAPTCHA bot protection for registration and comment forms
-  * Improvements: supports reCAPTCHA v3 with scores. Tries an invisible
-    CAPTCHA first, falling back to an interactive CAPTCHA if that fails.
-* Built-in web stats (powered by Ahoy)
-  * Improvements: the Perl version doesn't produce stats at all, this is a new
-    feature in the Ruby version.
+  * ACL-based authorisation system (powered by Pundit)
+  * Uses reCAPTCHA to block registration by bots
+* Built-in web stats (powered by Ahoy) and email stats (powered by Ahoy::Email)
+* Support for themes
+
+(For notes on improvements from the Perl version of ShinyCMS, see docs/Progress.md)
 
 
-## TODO
-
-Features the Perl version has, which the Ruby version doesn't. Yet.
+## Planned features
 
 * Form handlers (contact page, etc)
 * Newsletters (HTML mailshots)
-* Akismet spam filtering for comments, with moderation page
-* 'Likes' on blog posts, shop items, and comments
+* Stats charts / dashboards
+* 'Likes' on posts, comments, etc
 * User profile pages (with content such as recent comments, recent posts, etc)
 * Access control groups
   * Can be used to control access to file downloads and secure whole pages,
@@ -67,9 +58,7 @@ Features the Perl version has, which the Ruby version doesn't. Yet.
 * Forums
 * Polls
 
-For a 'Phase 2' TODO list - features that I'd like to build which don't already
-exist in the Perl version, and features that I'd like to completely rebuild -
-see docs/TODO.md
+(For more details, see docs/Progress.md and docs/TODO.md)
 
 
 ## Ruby and Rails versions
@@ -87,7 +76,7 @@ will need to be convincingly clean.
 
 The lowest major version of Ruby that Rails 6 works with is 2.5. I occasionally
 use Travis CI to run the test suite against Ruby 2.5, 2.6, and 2.7, which seems
-to work: https://travis-ci.org/github/denny/ShinyCMS-ruby/builds/672223883
+to work: https://travis-ci.org/github/denny/ShinyCMS-ruby/builds/677015096
 
 
 ## System dependencies

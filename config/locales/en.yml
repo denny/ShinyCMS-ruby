@@ -102,6 +102,12 @@ en:
     tag_view: Default tag view
     theme_name: Theme name
 
+  search:
+    index:
+      title: "Search results for '%{query}'"
+    new:
+      title: Search the site
+
   site_settings:
     index:
       title: Site settings
@@ -310,10 +316,9 @@ en:
         spam_or_ham: Please choose either 'confirm as spam' or 'remove spam flag'
       process_spam_comments:
         success: Spam comments deleted
-        # failure: Failed to delete spam comments
       process_ham_comments:
         success: Spam flags removed (comments should now be visible on site)
-        # failure: Failed to remove spam flags
+        failure: Failed to remove spam flags
 
     dashboard:
       title: Dashboard

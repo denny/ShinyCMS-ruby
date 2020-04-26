@@ -16,9 +16,9 @@ class Admin::NewsController < AdminController
   before_action :update_discussion_flags, only: %i[ create update ]
 
   def index
+    authorise NewsPost
     page_num = params[ :page ] || 1
     @posts = NewsPost.order( :created_at ).page( page_num )
-    authorise NewsPost
     authorise @posts if @posts.present?
   end
 
