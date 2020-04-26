@@ -4,12 +4,19 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
-  def self.use_algolia?
-    ENV['ALGOLIASEARCH_APPLICATION_ID'].present?
+  def human_name
+    name = self.class.name.underscore
+    return name.humanize.downcase unless I18n.exists?( "content_types.#{name}" )
+
+    I18n.t( "content_types.#{name}" )
+  end
+
+  def self.algolia_is_enabled?
+    AlgoliaSearch&.configuration&.present?
   end
 
   def self.algolia_searchable
-    return unless use_algolia?
+    return unless algolia_is_enabled?
 
     include AlgoliaSearch
 
@@ -17,12 +24,5 @@ class ApplicationRecord < ActiveRecord::Base
       # TODO: all attributes will be sent - is that what we want?
       # TODO: what happens here when the value of .hidden changes?
     end
-  end
-
-  def human_name
-    name = self.class.name.underscore
-    return name.humanize.downcase unless I18n.exists?( "content_types.#{name}" )
-
-    I18n.t( "content_types.#{name}" )
   end
 end
