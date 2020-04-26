@@ -3,7 +3,7 @@
     <%= render_admin_menu_item_if( current_user.can?( :list, :inserts ),
         t( 'admin.inserts.title' ), inserts_path, 'list' ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :delete, :comments ),
+    <%= render_admin_menu_item_if( current_user.can?( :list, :spam_comments ),
         t( 'admin.comments.title' ), comments_path, 'trash' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :email_previews ),

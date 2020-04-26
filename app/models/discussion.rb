@@ -12,7 +12,7 @@ class Discussion < ApplicationRecord
   # Instance methods
 
   def notifiable?
-    resource&.user&.email&.present? ? true : false
+    resource&.user&.email.present?
   end
 
   def notification_email

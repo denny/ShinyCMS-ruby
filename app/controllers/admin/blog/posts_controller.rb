@@ -17,9 +17,9 @@ class Admin::Blog::PostsController < AdminController
   before_action :update_discussion_flags, only: %i[ create update ]
 
   def index
+    authorise BlogPost
     page_num = params[ :page ] || 1
     @posts = @blog.all_posts.order( :created_at ).page( page_num )
-    authorise BlogPost
     authorise @posts.first if @posts.present?
   end
 
@@ -68,7 +68,6 @@ class Admin::Blog::PostsController < AdminController
 
   def destroy
     authorise @post
-
     flash[ :notice ] = t( '.success' ) if @post.destroy
     redirect_to action: :index
   end

@@ -70,10 +70,6 @@ Style/ClassAndModuleChildren:
 Style/RegexpLiteral:
   Enabled: false
 
-# I have no idea what this is but it was annoying me.
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
 # ... nah
 Bundler/GemComment:
   Enabled: false

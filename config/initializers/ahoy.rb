@@ -15,11 +15,11 @@ end
 
 # Set AHOY_MASK_IPS to the string 'true' to mask IP addresses
 # (sets the last part of the address to zeros before storing it)
-Ahoy.mask_ips = true if ENV['AHOY_MASK_IPS'].presence == 'true'
+Ahoy.mask_ips = ( ENV['AHOY_MASK_IPS'].presence == 'true' )
 
 # Set AHOY_COOKIES to the string 'false' to use anonymity sets instead
 # https://privacypatterns.org/patterns/Anonymity-set
-Ahoy.cookies = false if ENV['AHOY_COOKIES'].presence == 'false'
+Ahoy.cookies = ( ENV['AHOY_COOKIES'].presence != 'false' )
 
 # Set to true for JavaScript tracking
 Ahoy.api = false

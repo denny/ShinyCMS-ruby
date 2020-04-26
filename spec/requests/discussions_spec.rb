@@ -256,6 +256,33 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response.body ).not_to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
       expect( response.body ).not_to have_css 'h2', text: title
     end
+
+    it "doesn't save a new comment if Akismet classifies it as 'blatant' spam" do
+      skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
+
+      FeatureFlag.enable :akismet_on_comments
+      allow_any_instance_of( Akismet::Client ).to receive( :check ).and_return( [ true, true ] )
+
+      title = Faker::Science.scientist
+      body  = Faker::Lorem.paragraph
+
+      comment_count = Comment.count
+
+      post discussion_path( @discussion ), params: {
+        comment: {
+          title: title,
+          body: body,
+          author_type: 'anonymous'
+        }
+      }
+
+      expect( response ).to have_http_status :ok
+
+      expect( Comment.count ).to eq comment_count
+
+      expect( response.body ).not_to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
+      expect( response.body ).not_to have_css 'h2', text: title
+    end
   end
 
   describe 'POST /discussion/1/1' do

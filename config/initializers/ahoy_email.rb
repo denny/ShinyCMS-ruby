@@ -15,6 +15,6 @@ end
 
 AhoyEmail.subscribers << EmailSubscriber.new
 
-AhoyEmail.api = true
+AhoyEmail.api = false
 AhoyEmail.default_options[:open] = true
 AhoyEmail.default_options[:click] = true
