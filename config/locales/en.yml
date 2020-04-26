@@ -364,7 +364,7 @@ en:
     news:
       title: News
       index:
-        title: List news postsapp/models/comment.rb
+        title: List news posts
         empty: There are no news posts to display
       new:
         title: Add news post
