@@ -1,0 +1,32 @@
+<%# frozen_string_literal: true %>
+
+<% @page_title = t( '.title', { query: @query } ) %>
+
+<section>
+  <header>
+    <h2>
+      <%= @page_title %>
+    </h2>
+  </header>
+  <% @results.each do |result| %>
+  <p>
+    <%# TODO: real code also required here %>
+    <%= link_to result.display_name, user_profile_path( result.username ) %>
+    <small>
+      Last updated at <%= result.updated_at.to_s( :time ) %>
+      on <%= result.updated_at.to_s( :shinydate ) %>
+    </small>
+  </p>
+  <% end %>
+  <% if @results.blank? %>
+  <p>
+    <%= t( '.no_results' ) %>
+  </p>
+  <% end %>
+</section>
+<% if algolia_is_enabled? && using_free_algolia_plan? %>
+<p>
+  Search powered by
+  <%= link_to image_tag( 'shinycms/algolia-logo' ), 'https://www.algolia.com/' %>
+</p>
+<% end %>
