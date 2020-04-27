@@ -51,6 +51,14 @@ class User < ApplicationRecord
   # Configure default count-per-page for pagination
   paginates_per 20
 
+  def hidden?
+    false
+  end
+
+  searchable_attributes = %i[ username display_name display_email ]
+  algolia_search_on( searchable_attributes )
+  pg_search_on( searchable_attributes )
+
   # Virtual attribute to allow authenticating by either username or email
   attr_writer :login
   def login
