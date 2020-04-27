@@ -105,10 +105,11 @@ en:
     track_opens: Track if emails are opened
 
   search:
-    index:
-      title: "Search results for '%{query}'"
-    new:
+    form:
       title: Search the site
+    results:
+      no_results: No results found.
+      title: "Search results for '%{query}'"
 
   site_settings:
     index:
@@ -188,6 +189,7 @@ en:
     news: News
     recaptcha_on_registration_form: Protect registration form with reCAPTCHA
     recaptcha_on_comment_form: Protect comment form with reCAPTCHA
+    search: Search
     tags: Tags
     user_login: User Login
     user_profiles: User Profiles

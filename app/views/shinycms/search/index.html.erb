@@ -1,35 +1,7 @@
-<% frozen_string_literal: true %>
+<%# frozen_string_literal: true %>
 
-<% @page_title = t( '.title', @query ) %>
-
-<h2 class="above-section">
-  <%= @page_title %>
-</h2>
-
-<% if @sections.present? %>
-<% @sections.each do |section| %>
-<section>
-  <header>
-    <h2>
-      <% section.title %>
-    </h2>
-    <% @sections.results.each do |result| %>
-    <p>
-      Posted by <%= user_profile_link( result.user ) %>
-      <small>(last updated at <%= post.posted_at.to_s( :time ) %>
-      on <%= post.posted_at.to_s( :shinydate ) %>)</small>
-    </p>
-    <% end %>
-  </header>
-</section>
-<% end %>
-<% if algolia_is_enabled? && using_free_algolia_plan? %>
-<p>
-  Search powered by
-  <%= link_to image_tag( 'algolia-logo' ), 'https://www.algolia.com/' %>
-</p>
+<% if @query.present? %>
+  <%= render partial: 'search/results' %>
 <% else %>
-<p>
-  No results found for '<%= @query %>'.
-</p>
+  <%= render partial: 'search/form' %>
 <% end %>
