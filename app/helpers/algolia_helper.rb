@@ -14,6 +14,6 @@ module AlgoliaHelper
   end
 
   def using_free_algolia_plan?
-    !using_paid_algolia_plan
+    !using_paid_algolia_plan?
   end
 end
