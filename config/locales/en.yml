@@ -104,6 +104,12 @@ en:
     track_clicks: Track if links in emails are clicked
     track_opens: Track if emails are opened
 
+  search:
+    index:
+      title: "Search results for '%{query}'"
+    new:
+      title: Search the site
+
   site_settings:
     index:
       title: Site settings
