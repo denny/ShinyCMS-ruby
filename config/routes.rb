@@ -58,6 +58,8 @@ Rails.application.routes.draw do
     get 'profile',            to: 'profiles#profile_redirect'
     get 'profiles',           to: 'profiles#index', as: :user_profiles
 
+    get 'search', to: 'search#index'
+
     get 'site-settings', to: 'site_settings#index'
     put 'site-settings', to: 'site_settings#update'
 
