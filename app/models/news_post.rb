@@ -13,6 +13,8 @@ class NewsPost < ApplicationRecord
   delegate :hidden, to: :discussion, allow_nil: true, prefix: true
   delegate :locked, to: :discussion, allow_nil: true, prefix: true
 
+  algolia_searchable
+
   # TODO: lots of duplication going on here/blog posts/pages; to be concerned
   # Allowed characters for slugs: a-z A-Z 0-9 . _ -
   SLUG_REGEX = %r{[-_\.a-zA-Z0-9]+}.freeze

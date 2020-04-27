@@ -77,6 +77,12 @@ GEM
       geocoder (>= 1.4.5)
       safely_block (>= 0.2.1)
     akismet (3.0.0)
+    algoliasearch (1.27.1)
+      httpclient (~> 2.8, >= 2.8.3)
+      json (>= 1.5.1)
+    algoliasearch-rails (1.24.0)
+      algoliasearch (>= 1.26.0, < 2.0.0)
+      json (>= 1.5.1)
     ast (2.4.0)
     awesome_print (1.8.0)
     aws-eventstream (1.1.0)
@@ -171,6 +177,7 @@ GEM
     groupdate (5.0.0)
       activesupport (>= 5)
     highline (2.0.3)
+    httpclient (2.8.3)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.31)
@@ -407,6 +414,7 @@ DEPENDENCIES
   ahoy_email!
   ahoy_matey!
   akismet!
+  algoliasearch-rails!
   awesome_print!
   aws-sdk-s3!
   bcrypt (~> 3.1.7)!
