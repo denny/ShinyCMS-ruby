@@ -33,7 +33,9 @@ class UserMailerPreview
   end
 
   def mock_user
-    # TODO: Use factory?
-    User.first
+    User.new(
+      username: 'preview_user',
+      email: 'preview_user@example.com'
+    )
   end
 end
