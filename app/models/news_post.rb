@@ -2,9 +2,6 @@
 
 # Model class for news posts
 class NewsPost < ApplicationRecord
-  include PgSearch::Model
-  multisearchable against: %i[ title slug body ], unless: :hidden?
-
   belongs_to :user, inverse_of: :news_posts
   alias_attribute :author, :user
 
@@ -13,9 +10,7 @@ class NewsPost < ApplicationRecord
   delegate :hidden, to: :discussion, allow_nil: true, prefix: true
   delegate :locked, to: :discussion, allow_nil: true, prefix: true
 
-  algolia_searchable
-
-  # TODO: lots of duplication going on here/blog posts/pages; to be concerned
+  # TODO: lots of duplication going on here/blog posts/pages
   # Allowed characters for slugs: a-z A-Z 0-9 . _ -
   SLUG_REGEX = %r{[-_\.a-zA-Z0-9]+}.freeze
   private_constant :SLUG_REGEX
