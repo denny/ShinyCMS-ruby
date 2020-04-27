@@ -107,61 +107,76 @@ FeatureFlag_7:
     time: *15
 FeatureFlag_8:
   id: 8
+  name: search
+  description: Enable search feature
+  enabled: true
+  enabled_for_logged_in: true
+  enabled_for_admins: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2020-04-27 19:31:22.358936000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2020-04-27 19:31:22.358936000 Z
+    zone: *2
+    time: *17
+FeatureFlag_9:
+  id: 9
   name: tags
   description: Turn on site-wide tag features
   enabled: true
   enabled_for_logged_in: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &16 2020-03-17 12:57:26.885963000 Z
+    utc: &18 2020-03-17 12:57:26.885963000 Z
     zone: *2
-    time: *16
+    time: *18
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &17 2020-03-17 12:57:26.885963000 Z
+    utc: &19 2020-03-17 12:57:26.885963000 Z
     zone: *2
-    time: *17
-FeatureFlag_9:
-  id: 9
+    time: *19
+FeatureFlag_10:
+  id: 10
   name: user_login
   description: Allow users to log in
   enabled: true
   enabled_for_logged_in: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &18 2020-03-17 12:57:26.893734000 Z
+    utc: &20 2020-03-17 12:57:26.893734000 Z
     zone: *2
-    time: *18
+    time: *20
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &19 2020-03-17 13:09:17.178988000 Z
+    utc: &21 2020-03-17 13:09:17.178988000 Z
     zone: *2
-    time: *19
-FeatureFlag_10:
-  id: 10
+    time: *21
+FeatureFlag_11:
+  id: 11
   name: user_profiles
   description: Allow viewing of user profiles
   enabled: true
   enabled_for_logged_in: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &20 2020-03-17 12:57:26.903031000 Z
+    utc: &22 2020-03-17 12:57:26.903031000 Z
     zone: *2
-    time: *20
+    time: *22
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &21 2020-03-17 13:10:02.941913000 Z
+    utc: &23 2020-03-17 13:10:02.941913000 Z
     zone: *2
-    time: *21
-FeatureFlag_11:
-  id: 11
+    time: *23
+FeatureFlag_12:
+  id: 12
   name: user_registration
   description: Allow new users to create an account
   enabled: true
   enabled_for_logged_in: true
   enabled_for_admins: true
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &22 2020-03-17 12:57:26.910223000 Z
+    utc: &24 2020-03-17 12:57:26.910223000 Z
     zone: *2
-    time: *22
+    time: *24
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &23 2020-03-17 13:10:20.904198000 Z
+    utc: &25 2020-03-17 13:10:20.904198000 Z
     zone: *2
-    time: *23
+    time: *25

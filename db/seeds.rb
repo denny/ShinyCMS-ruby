@@ -146,6 +146,12 @@ seed FeatureFlag, { name: 'recaptcha_on_registration_form' }, {
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
+seed FeatureFlag, { name: 'search' }, {
+  description: 'Turn on search feature',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
 seed FeatureFlag, { name: 'tags' }, {
   description: 'Turn on site-wide tag features',
   enabled: true,
