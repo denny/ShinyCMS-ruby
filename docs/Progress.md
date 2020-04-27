@@ -67,22 +67,29 @@ Plus the occasional sneaky new feature that's crept in along the way. :)
 ## In progress
 
 Features from the Perl version that I'm currently re-implementing in the Ruby
-version (with notes on useful docs, where I'm up to, what I'm stuck on, etc)
+version (with notes on useful docs, things I'm stuck on, etc)
 
 * Newsletters (HTML mailshots)
   * MJML templates - https://mjml.io/documentation
-  * Mailing lists
+    * Basic MJML support is in, but plenty left to do
+    * NTS: put the templates where REP can get at them
+  * Mailing lists / groups / something
+    * Some conceptual overlap with access groups here ??
+  * Create a new newsletter instance/edition/whatever
+    * Send samples / Send / Schedule
+  * "If you can't read this, click here to view in your browser"
+    * ... with tokenised URLs, so you can only see what you were sent
 
 * Dashboards / charts / better views of stats
-  * Blazer ?
-    * https://github.com/ankane/blazer
+  * Blazer - https://github.com/ankane/blazer
     * CSS conflicts rendering inside ShinyCMS admin area layout
       * Investigate Shadow DOM ?
+    * Need to create a default dashboard with a useful set of charts on it
 
 * Search feature
 	* pg_search: https://github.com/Casecommons/pg_search/blob/master/README.md
     * Ties me to Postgres :-\
-	* algolia: https://devcenter.heroku.com/articles/algoliasearch#using-with-rails
+	* Algolia: https://devcenter.heroku.com/articles/algoliasearch#using-with-rails
     * NB: Not free to non-commercial sites using the CMS!
   * Potentially useful Ruby feature: excerpt()
 		* https://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html#method-i-excerpt
