@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Rails Email Preview controller for previewing Discussion-related emails
 class DiscussionMailerPreview
   def parent_comment_notification
@@ -19,7 +21,7 @@ class DiscussionMailerPreview
   end
 
   def mock_comment
-    # TODO: Use factory?
-    Comment.where.not( parent: nil ).first || Comment.first
+    comments = Comment.where( hidden: false, spam: false )
+    comments.where.not( parent: nil ).last || comments.last
   end
 end

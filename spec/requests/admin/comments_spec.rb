@@ -58,6 +58,8 @@ RSpec.describe 'Comment moderation', type: :request do
     end
 
     it 'deletes the selected comments if you say they are spam' do
+      skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
+
       @nested1.mark_as_spam
       @comment2.mark_as_spam
       expect( @nested1.reload.spam?  ).to be true
@@ -83,6 +85,8 @@ RSpec.describe 'Comment moderation', type: :request do
     end
 
     it 'removes spam flags from the selected comments if you say they are not spam' do
+      skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
+
       @nested1.mark_as_spam
       @comment2.mark_as_spam
       expect( @nested1.reload.spam?  ).to be true
@@ -108,6 +112,8 @@ RSpec.describe 'Comment moderation', type: :request do
     end
 
     it 'reports an error if it fails to remove spam flags' do
+      skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
+
       allow( Comment ).to receive( :mark_all_as_ham ).and_return( false )
 
       @nested1.mark_as_spam

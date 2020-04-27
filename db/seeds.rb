@@ -246,6 +246,20 @@ setting = seed Setting, { name: 'theme_name' }, {
 }
 setting.values.create_or_find_by!( value: '' )
 
+setting = seed Setting, { name: 'track_opens' }, {
+  description: 'Track email opens',
+  level: 'site',
+  locked: true
+}
+setting.values.create_or_find_by!( value: 'No' )
+
+setting = seed Setting, { name: 'track_clicks' }, {
+  description: 'Track email link-clicks',
+  level: 'site',
+  locked: true
+}
+setting.values.create_or_find_by!( value: 'No' )
+
 # Let people know how to set up an admin user
 unless Rails.env.test? || User.that_can( :add, :admin_users ).present?
   # :nocov:

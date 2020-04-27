@@ -12,8 +12,8 @@
 # ============================================================================
 class Admin::SiteSettingsController < AdminController
   def index
-    @settings = Setting.order( :name )
     authorise Setting
+    @settings = Setting.order( :name )
     authorise @settings if @settings.present?
   end
 

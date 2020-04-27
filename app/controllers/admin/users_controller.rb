@@ -12,9 +12,9 @@
 # ============================================================================
 class Admin::UsersController < AdminController
   def index
+    authorise User
     page_num = params[ :page ] || 1
     @users = User.order( :username ).page( page_num )
-    authorise User
     authorise @users if @users.present?
   end
 

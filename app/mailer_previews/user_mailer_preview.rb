@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Rails Email Preview controller for previewing Devise-powered user emails
 class UserMailerPreview
   def confirmation_instructions
@@ -31,7 +33,9 @@ class UserMailerPreview
   end
 
   def mock_user
-    # TODO: Use factory?
-    User.first
+    User.new(
+      username: 'preview_user',
+      email: 'preview_user@example.com'
+    )
   end
 end
