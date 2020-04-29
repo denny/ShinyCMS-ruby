@@ -30,7 +30,7 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def self.algolia_search_is_enabled?
-    AlgoliaSearch&.configuration&.present?
+    ENV['ALGOLIASEARCH_APPLICATION_ID'].present?
   end
 
   def self.pg_search_is_enabled?

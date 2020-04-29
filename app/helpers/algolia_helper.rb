@@ -2,8 +2,8 @@
 
 # Utility functions for dealing with Algolia (Search as a Service provider)
 module AlgoliaHelper
-  def algolia_is_enabled?
-    AlgoliaSearch&.configuration&.present?
+  def algolia_search_is_enabled?
+    ENV['ALGOLIASEARCH_APPLICATION_ID'].present?
   end
 
   # Algolia have a free plan for low-usage non-commercial sites. It requires you
