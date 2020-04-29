@@ -1,22 +1,128 @@
-# Getting Started
+# ShinyCMS: Getting Started
 
-## Deployment
+## TL,DR
 
-You can deploy ShinyCMS to Heroku using the included Procfile, after setting
-your config vars (see Configuration) and (optionally) adding a theme to
-customise the appearance of your site.
+`git clone https://github.com/denny/ShinyCMS-ruby.git`  
+`cd ShinyCMS-ruby`  
+[ copy docs/env.sample to .env.development.local and edit it ]  
+`bundle install`  
+`yarn install`  
+`rails db:setup`  
+`tools/insert-demo-site-data` # if you want the demo data loaded  
+`rails shiny:admin:create`    # if you didn't load the demo data  
+`rails s`
+
+You should now have a ShinyCMS site at http://localhost:3000,
+with an admin area at http://localhost:3000/admin
+
+If you loaded the demo data, please read the security note below.
 
 
-## Configuration
+## The longer version
 
-You can configure your site via ENV vars in dev, or config vars on Heroku. See
-.env.example for a list of the available config options.
+### Database
 
-You can also change some site settings in the admin area once ShinyCMS is
-running.
+To create the database: `rails db:create`  
+To load the database schema: `rails db:schema:load`  
+To load seed data: `rails db:seed`
+
+To do all three in one command: `rails db:setup`
 
 
-## Themes
+### Demo data
+
+There is a set of demo data available, which will allow you to try out most
+ShinyCMS features without having to create your own test data first. You can
+load it with the utility script `tools/insert-demo-site-data`
+
+WARNING: DATA LOSS!  
+This script will wipe most of the tables in the database before populating them
+with the demo site data; notably, this includes the `users` table. Back up any
+data that you don't want to lose!
+
+The demo data creates a super-admin user with the following login details:  
+Username: admin  
+Password: I should change this password before I do anything else!
+
+WARNING: SECURITY RISK!  
+The demo data:  
+(a) enables the user_login feature of the site  
+(b) creates a super-admin user with a publicly-published username and password  
+(c) loads the demo page content, which will make it easy to search for and
+identify sites based on the demo data  
+PLEASE change the admin password before you do anything else - and ideally the
+username too, if you're leaving the demo data loaded for any length of time.
+
+For extra security you could completely disable the login feature when you're
+not using the demo site: `rails shiny:feature:off[user_login]`
+
+
+### Deployment
+
+There's a Procfile for easy deployment to Heroku. You can run a test/demo
+install of ShinyCMS on there for free, using a Free Dyno for web and a
+Postgres add-on at the Hobby Dev level.
+
+To load the demo data on Heroku, first load it locally using the instructions
+above, then use the following command to upload it to your Heroku Postgres
+add-on database (NB: the first command wipes the Heroku database):  
+`heroku pg:reset postgresql-whatever-99999 --app my-shinycms --confirm my-shinycms`  
+`heroku pg:push shinycms postgresql-whatever-99999 --app my-shinycms`
+
+
+### Configuration
+
+Configuration is split between the following locations:
+
+#### ENV vars
+
+* Mostly used for secrets (database details, API keys etc)
+* Usually loaded from .env* files, or from Settings > Config Vars on Heroku
+* See docs/env.sample for a full list of possible ENV settings
+
+#### Feature Flags
+
+* Turn CMS features on (or off) for all users, logged-in only, or admin only
+* Controlled in the CMS admin area - /admin/feature-flags
+* Can also be turned on/off from the command line: `rails shiny:feature:on[tags]`
+
+#### Site Settings
+
+* Configuration of CMS options and features
+* Controlled in the CMS admin area - /admin/site-settings
+
+
+### Services
+
+External services are mostly optional. If you add config settings for them
+(via ENV vars on the command line, or via a .env file (see .env.example),
+or via your Config Vars on Heroku) then they will be enabled, otherwise
+either those features will be disabled or a fallback will take their place.
+
+#### AWS S3 - file storage
+
+User uploaded files can be stored on AWS S3 instead of locally. To enable this
+feature you will need to have an an AWS account, create an S3 bucket, and add
+the relevant keys to the ENV/config.
+
+#### reCAPTCHA - bot protection
+
+User registration and posting comments can be protected from bots using Google's
+reCAPTCHA service. To enable this feature you will need to obtain keys and add
+them to your ENV/config. You will get the best results with a pair of V3 keys
+and a pair of V2 keys (this allows you to set a minimum score for each protected
+feature in your Site Settings area). At first reCAPTCHA tries an 'invisible'
+(non-interactive) check (V3 with score if configured, V2 otherwise), falling
+back to a V2 checkbox if that fails.
+
+#### Have I Been Pwned - password leak checking
+
+The user registration and login features use Devise::PwnedPassword to check
+user's passwords against https://haveibeenpwned.com/Passwords and warn the
+user if they find a match, but this doesn't require any setup on your part.
+
+
+### Themes
 
 The recommended way to start building a site on ShinyCMS is to create a theme
 for it. You can read more about creating themes in docs/themes.md
@@ -25,27 +131,3 @@ The default theme can be set in ENV['SHINYCMS_THEME'] and on the Site Settings
 page in the admin area. If both are set, the latter takes priority. You can also
 choose to make this setting user-overridable, in which case a user's setting
 will take priority for them.
-
-
-## Demo site
-
-There is a set of demo data available, which will allow you to try out most
-ShinyCMS features without having to create your own test data first. You can
-load it with the utility script `tools/insert-demo-site-data`
-
-WARNING: DATA LOSS! This script will wipe most of the tables in the database
-before populating them with the demo site data; notably, this includes the
-`users` table. Back up any data that you don't want to lose!
-
-The demo data creates a super-admin user with the login details:
-Username: admin
-Password: I should change this password before I do anything else!
-
-NB: The demo data (a) enables the user_login feature of the site, (b) sets a
-non-secret username and password, and (c) loads the demo page content, which
-will easily identify your site as being based on the demo data. PLEASE change
-the password before you do anything else - and ideally the username too, if
-you're leaving the demo data loaded for any length of time.
-
-You can also easily disable the login feature again when you're not actively
-using the site, with the rake command `rails shiny:feature:off[user_login]`
