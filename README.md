@@ -8,10 +8,10 @@ edit.
 This version is built in Ruby on Rails, and has support for cloud hosting
 (Heroku, AWS, etc).
 
-This started out as as an educational exercise, giving me an opportunity to
-build a Ruby on Rails application from scratch and largely by myself. It's
+This rewrite started out as as an educational exercise, giving me an opportunity
+to build a Ruby on Rails application from scratch and largely by myself. It's
 also been nice to have time for proper testing (100% coverage!), regular
-refactoring, and all the other things I don't get to do enough of at work. :)
+refactoring, and all the other things I don't get to do enough of at work :)
 
 
 ## Current Features
@@ -38,8 +38,6 @@ refactoring, and all the other things I don't get to do enough of at work. :)
 * Built-in web stats (powered by Ahoy) and email stats (powered by Ahoy::Email)
 * Support for themes
 
-(For notes on improvements from the Perl version of ShinyCMS, see docs/Progress.md)
-
 
 ## Planned features
 
@@ -58,79 +56,52 @@ refactoring, and all the other things I don't get to do enough of at work. :)
 * Forums
 * Polls
 
-(For more details, see docs/Progress.md and docs/TODO.md)
+For more details - including which features are currently being worked on, which
+planned features are new rather than rewrites, and notes on any improvements to
+the features already reimplemented - see docs/Progress.md and docs/TODO.md
+
+
+## Installation and configuration
+
+See docs/Getting-Started.md
 
 
 ## Ruby and Rails versions
 
 I'm aiming to keep up to date with the current/latest stable versions of Ruby
 and Rails, which means I started with Ruby 2.6.4 and Rails 6.0.0, and I'm
-currently on Ruby 2.6.6 and Rails 6.0.2.2 (I've updated to Ruby 2.7.x twice,
-but got fed up with all the deprecation warnings each time and moved back to
-2.6.x until 2.7.x support settles down a bit).
+currently on Ruby 2.6.6 and Rails 6.0.2.2
+
+(I've updated to Ruby 2.7.x twice, but got fed up with all the deprecation
+warnings each time and moved back to 2.6 until 2.7 support in AR improves)
 
 I believe there are some Rails-6-isms in the code which mean it won't run on
-rails 5.x without at least minor modifications; I don't intend to put any effort
+Rails 5.x without at least minor modifications. I don't intend to put any effort
 into supporting earlier versions of Rails, and any patches to add that support
-will need to be convincingly clean.
+will need to be convincingly minimal.
 
-The lowest major version of Ruby that Rails 6 works with is 2.5. I occasionally
-use Travis CI to run the test suite against Ruby 2.5, 2.6, and 2.7, which seems
-to work: https://travis-ci.org/github/denny/ShinyCMS-ruby/builds/677015096
+The lowest major version of Ruby that Rails 6 works with is 2.5, so I use
+Travis CI to run the test suite against Ruby 2.5, 2.6, and 2.7 occasionally:  
+https://travis-ci.org/github/denny/ShinyCMS-ruby/builds/677015096
 
 
 ## System dependencies
 
 * A webserver
-  * I use `rails s` for dev, and Heroku for staging and production
+  * I use `rails s` locally for dev, and on Heroku for staging and production
 * A database
   * For now this assumes Postgres, although I intend to work toward being
-    database agnostic eventually (the Perl version works with MySQL, Postgres,
-    and quite probably anything else that the DBIx::Class ORM supports).
-
-To enable certain features, you will need keys from or accounts on various
-external services...
+    database agnostic eventually
+* An email server or service
+  * Anything that ActionMailer supports
 
 
 ## Services
 
 External services are mostly optional. If you add config settings for them
-(via ENV vars on the command line, or via a .env file (see .env.example),
-or via your Config Vars on Heroku) then they will be enabled, otherwise
+(via ENV vars on the command line, or via .env* files (see docs/env.sample),
+or via Settings > Config Vars on Heroku) then they will be enabled, otherwise
 either those features will be disabled or a fallback will take their place.
-
-#### AWS S3 - file storage
-
-User uploaded files can be stored on AWS S3 instead of locally. To enable this
-feature you will need to have an an AWS account, create an S3 bucket, and add
-the relevant keys to the ENV/config.
-
-#### reCAPTCHA - bot protection
-
-User registration and posting comments can be protected from bots using Google's
-reCAPTCHA service. To enable this feature you will need to obtain keys and add
-them to your ENV/config. You will get the best results with a pair of V3 keys
-and a pair of V2 keys (this allows you to set a minimum score for each protected
-feature in your Site Settings area). At first reCAPTCHA tries an 'invisible'
-(non-interactive) check (V3 with score if configured, V2 otherwise), falling
-back to a V2 checkbox if that fails.
-
-#### Have I Been Pwned - password leak checking
-
-The user registration and login features use Devise::PwnedPassword to check
-user's passwords against https://haveibeenpwned.com/Passwords and warn the
-user if they find a match, but this doesn't require any setup on your part.
-
-
-## Database
-
-To create the database: `rails db:create`  
-To load the database schema: `rails db:schema:load`  
-To load seed data: `rails db:seed`
-
-To do all three in one command: `rails db:setup`
-
-To load the demo site data: `tools/insert-demo-site-data`
 
 
 ## Tests
@@ -148,16 +119,9 @@ You can view test results on
 [CodeCov](https://codecov.io/gh/denny/ShinyCMS-ruby).
 
 
-## Deployment
-
-There's a Procfile for easy deployment to Heroku. You can run a test/demo
-install of ShinyCMS on there for free, using a Free Dyno for web and a
-Postgres add-on at the Hobby Dev level.
-
-
 ## Current Status
 
-[![CircleCI](https://circleci.com/gh/denny/ShinyCMS-ruby.svg?style=svg&circle-token=5d3c249b624bd720b7481eb606893737ba65a0ce)](https://circleci.com/gh/denny/ShinyCMS-ruby)  [![Travis CI](https://travis-ci.org/denny/ShinyCMS-ruby.svg?branch=master)](https://travis-ci.org/denny/ShinyCMS-ruby)  [![codecov](https://codecov.io/gh/denny/ShinyCMS-ruby/branch/master/graph/badge.svg?token=Pm6x6VcQ81)](https://codecov.io/gh/denny/ShinyCMS-ruby)  
+[![CircleCI](https://circleci.com/gh/denny/ShinyCMS-ruby.svg?style=svg&circle-token=5d3c249b624bd720b7481eb606893737ba65a0ce)](https://circleci.com/gh/denny/ShinyCMS-ruby)  [![Travis CI](https://travis-ci.org/denny/ShinyCMS-ruby.svg?branch=master)](https://travis-ci.org/denny/ShinyCMS-ruby)  [![codecov](https://codecov.io/gh/denny/ShinyCMS-ruby/branch/master/graph/badge.svg?token=Pm6x6VcQ81)](https://codecov.io/gh/denny/ShinyCMS-ruby)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/944f9f96599145fdea77/maintainability)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)  [![codebeat badge](https://codebeat.co/badges/cbd8fc61-241a-4701-9716-d4264cb6d9d9)](https://codebeat.co/projects/github-com-denny-shinycms-ruby-master)  [![Inline docs](http://inch-ci.org/github/denny/ShinyCMS-ruby.svg?branch=master)](http://inch-ci.org/github/denny/ShinyCMS-ruby)
 
