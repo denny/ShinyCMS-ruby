@@ -42,17 +42,15 @@ source 'https://rubygems.org' do
   # MJML emails
   gem 'mjml-rails'
 
-  # Search service
+  # Search
   gem 'algoliasearch-rails'
+  gem 'pg_search'
 
   # Tags
   gem 'acts-as-taggable-on'
 
   # Pagination
   gem 'kaminari'
-
-  # Search (NB: pg_search only works in postgres, obvs)
-  gem 'pg_search'
 
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'
