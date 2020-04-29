@@ -241,6 +241,14 @@ nav .sm li li a:hover {
 }
 
 
+
+/* ========== ( search page ) ========== */
+
+.algolia-logo img {
+  width:                100px;
+}
+
+
 /* ========== ( user profile pics ) ========== */
 
 .user-profile-pic {
@@ -257,14 +265,18 @@ nav .sm li li a:hover {
 
 /* ========== ( utility styles ) ========== */
 
-.clear-both {
-  clear:        both;
+.right {
+  text-align:   right;
+}
+
+.smaller {
+  font-size:    smaller;
 }
 
 .float-right {
   float:        right;
 }
 
-.smaller {
-  font-size:    smaller;
+.clear-both {
+  clear:        both;
 }

@@ -54,6 +54,13 @@ body {
 }
 
 
+/* ========== ( search page ) ========== */
+
+.algolia-logo img {
+  width:                100px;
+}
+
+
 /* ===== ( styles for tag clouds ) ===== */
 
 .tagsize1 { font-size: 1.0em; }
@@ -78,14 +85,18 @@ body {
 
 /* ========== ( utility styles ) ========== */
 
-.clear-both {
-  clear:        both;
+.right {
+  text-align:   right;
+}
+
+.smaller {
+  font-size:    smaller;
 }
 
 .float-right {
   float:        right;
 }
 
-.smaller {
-  font-size:    smaller;
+.clear-both {
+  clear:        both;
 }
