@@ -1,14 +1,7 @@
 <%# frozen_string_literal: true %>
 
-<% @page_title = t( '.title' ) %>
-
-<section>
-  <header>
-    <h2>
-      <%= @page_title %>
-    </h2>
-    <p>
-      TODO: search form :)
-    </p>
-  </header>
-</section>
+<% name ||= 'search_form' %>
+<%= form_with name: name, url: search_path, method: :get, local: true do |f| %>
+  <%= f.text_field 'query' %>&nbsp;
+  <%= f.submit 'Search', name: nil, class: 'button' %>
+<% end %>

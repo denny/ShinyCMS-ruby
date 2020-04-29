@@ -105,11 +105,14 @@ en:
     track_opens: Track if emails are opened
 
   search:
-    form:
+    new:
       title: Search the site
     results:
-      no_results: No results found.
       title: "Search results for '%{query}'"
+    no_results:
+      no_results: No results found.
+      try_again: "Please try another search:"
+      try_tags: "Or, you can explore our tags section:"
 
   site_settings:
     index:

@@ -19,13 +19,12 @@
   </p>
   <% end %>
   <% if @results.blank? %>
-  <p>
-    <%= t( '.no_results' ) %>
-  </p>
+    <%= render partial: 'search/no_results' %>
   <% end %>
 </section>
+
 <% if algolia_search_is_enabled? && using_free_algolia_plan? %>
-<p>
+<p class="right algolia-logo">
   Search powered by
   <%= link_to image_tag( 'shinycms/algolia-logo' ), 'https://www.algolia.com/' %>
 </p>
