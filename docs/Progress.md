@@ -1,6 +1,6 @@
 # ShinyCMS: Project Progress
 
-The origial, [Perl version of ShinyCMS](https://github.com/denny/ShinyCMS) was
+The original, [Perl version of ShinyCMS](https://github.com/denny/ShinyCMS) was
 built to satisfy the varied requirements of a number of clients during 10 years
 of working as a freelance web developer, so it's not a small project. Even
 though I built the vast majority of it, I was still quite surprised at the
