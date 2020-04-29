@@ -15,7 +15,6 @@ class SearchController < ApplicationController
   before_action :stash_query_string
 
   def index
-    warn ">>>>>>>>>>>>>>>>>>>>>#{@query}<<<<"
     return unless @query
 
     # TODO: write some code ;)
