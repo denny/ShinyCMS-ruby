@@ -261,5 +261,6 @@ setting = seed Setting, { name: 'track_clicks' }, {
 setting.values.create_or_find_by!( value: 'No' )
 
 # Let people know how to create an admin user
-skip = User.super_admins_exist? || Rails.env.test?
+demo = ( Rake.application.top_level_tasks.first == 'shiny:demo:load' )
+skip = User.super_admins_exist? || demo || Rails.env.test?
 puts 'To generate a ShinyCMS admin user: rails shiny:admin:create' unless skip
