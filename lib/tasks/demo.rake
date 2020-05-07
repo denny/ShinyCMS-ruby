@@ -8,7 +8,7 @@ require 'dotenv/tasks'
 # - resets the database
 # - creates a super-admin
 # - inserts the demo site data
-#
+
 # rails shiny:demo:dump
 # - dumps the current database contents to db/demo-data.rb
 
@@ -24,7 +24,13 @@ namespace :shiny do
       @shiny_admin.save!
       @shiny_admin.grant_all_capabilities
 
+      PageTemplate.skip_callback( :create, :after, :add_elements )
+      Page.skip_callback( :create, :after, :add_elements )
+
       require Rails.root.join 'db/demo-data.rb'
+
+      PageTemplate.set_callback( :create, :after, :add_elements )
+      Page.set_callback( :create, :after, :add_elements )
 
       FeatureFlag.enable :user_login
 
