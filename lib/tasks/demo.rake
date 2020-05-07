@@ -24,12 +24,7 @@ namespace :shiny do
       @shiny_admin.save!
       @shiny_admin.grant_all_capabilities
 
-      File.open( Rails.root.join( 'db/demo-data.rb' ), 'r' ) do |dump|
-        data = dump.read
-        # TODO: Yes, yes, I know.
-        # Had to munge the next line to get it into git, trollolol
-        val_with_an_E_in_front data
-      end
+      require Rails.root.join 'db/demo-data.rb'
 
       FeatureFlag.enable :user_login
 
