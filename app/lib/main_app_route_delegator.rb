@@ -12,7 +12,9 @@ module MainAppRouteDelegator
   end
 
   def respond_to_missing?( method )
+    # :nocov:
     super || main_app_route_method?( method )
+    # :nocov:
   end
 
   private
