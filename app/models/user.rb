@@ -120,6 +120,11 @@ class User < ApplicationRecord
                       .map( &:user )
   end
 
+  # Check whether we have at least one admin who can create more admins
+  def self.super_admins_exist?
+    that_can( :add, :admin_users ).present?
+  end
+
   # Override find method to search by username as well as email
   def self.find_first_by_auth_conditions( warden_conditions )
     conditions = warden_conditions.dup

@@ -1,14 +1,13 @@
 # ShinyCMS: Project Progress
 
-The [Perl version of ShinyCMS](https://github.com/denny/ShinyCMS) was built
-to satisfy the varied requirements of a number of clients during 10 years of
-working as a freelance web developer, so it's not a small project.
-
-Even though I built the vast majority of it, I was quite surprised at the
+The original, [Perl version of ShinyCMS](https://github.com/denny/ShinyCMS) was
+built to satisfy the varied requirements of a number of clients during 10 years
+of working as a freelance web developer, so it's not a small project. Even
+though I built the vast majority of it, I was still quite surprised at the
 length of the feature list when I wrote it out at the start of this project.
 
-Here's my progress so far on reimplementing features from the Perl version.
-Plus the occasional sneaky new feature that's crept in along the way. :)
+Below are notes on my progress so far on reimplementing features from the Perl
+version. Plus the occasional sneaky new feature that's crept in along the way :)
 
 
 ## Done
@@ -83,7 +82,7 @@ version (with notes on useful docs, where I'm up to, what I'm stuck on, etc)
 	* pg_search: https://github.com/Casecommons/pg_search/blob/master/README.md
     * Ties me to Postgres :-\
 	* algolia: https://devcenter.heroku.com/articles/algoliasearch#using-with-rails
-    * NB: Not free to non-commercial sites using the CMS!
+    * NB: Not free to non-commercial sites using the CMS :(
   * Potentially useful Ruby feature: excerpt()
 		* https://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html#method-i-excerpt
 
