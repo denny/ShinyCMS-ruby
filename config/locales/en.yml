@@ -474,7 +474,12 @@ en:
 
     stats:
       title: Stats
-
+    blazer:
+      title: Charts
+    checks:
+      title: Checks
+    dashboards:
+      title: Dashboards
     queries:
       title: Queries
 
