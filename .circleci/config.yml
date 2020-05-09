@@ -14,7 +14,7 @@ references:
       RAILS_ENV: test
       SHINYCMS_THEME: TEST
   db: &db
-    image: circleci/postgres:10-ram
+    image: circleci/postgres:10-alpine-ram
     environment:
       POSTGRES_USER: shinyuser
       POSTGRES_PASSWORD: shinypass
