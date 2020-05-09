@@ -4,7 +4,7 @@ version: 2
 
 references:
   app: &app
-    image: circleci/ruby:2.6.6-node
+    image: circleci/ruby:2.7.1-node
     environment:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
