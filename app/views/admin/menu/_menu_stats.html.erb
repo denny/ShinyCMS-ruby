@@ -10,6 +10,6 @@
     <%= render_admin_menu_item_if( current_user.can?( :view_email, :stats ),
         t( 'admin.email_stats.title' ), email_stats_path, 'chart' ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :use_blazer, :stats ),
-        t( 'admin.blazer.title' ), blazer_path, 'chart' ) %>
+    <%= render_admin_menu_item_if( current_user.can?( :make_charts, :stats ),
+        t( 'admin.charts.title' ), blazer_path, 'chart' ) %>
   <% end %>

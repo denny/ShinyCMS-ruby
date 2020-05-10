@@ -195,13 +195,15 @@ FactoryBot.define do
     after :create do |admin|
       category = CapabilityCategory.find_by( name: 'stats' )
 
-      web    = category.capabilities.find_by( name: 'view_web'    )
-      email  = category.capabilities.find_by( name: 'view_email'  )
-      charts = category.capabilities.find_by( name: 'use_blazer' )
+      web     = category.capabilities.find_by( name: 'view_web'    )
+      email   = category.capabilities.find_by( name: 'view_email'  )
+      charts1 = category.capabilities.find_by( name: 'view_charts' )
+      charts2 = category.capabilities.find_by( name: 'make_charts' )
 
       create :user_capability, user: admin, capability: web
       create :user_capability, user: admin, capability: email
-      create :user_capability, user: admin, capability: charts
+      create :user_capability, user: admin, capability: charts1
+      create :user_capability, user: admin, capability: charts2
     end
   end
 

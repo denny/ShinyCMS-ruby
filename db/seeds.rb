@@ -85,9 +85,10 @@ seed Capability, { name: 'add',     category: templates_cc }
 seed Capability, { name: 'edit',    category: templates_cc }
 seed Capability, { name: 'destroy', category: templates_cc }
 # Stats
-seed Capability, { name: 'view_web',   category: stats_cc }
-seed Capability, { name: 'view_email', category: stats_cc }
-seed Capability, { name: 'use_blazer', category: stats_cc }
+seed Capability, { name: 'view_web',    category: stats_cc }
+seed Capability, { name: 'view_email',  category: stats_cc }
+seed Capability, { name: 'view_charts', category: stats_cc }
+seed Capability, { name: 'make_charts', category: stats_cc }
 # Site Settings
 seed Capability, { name: 'list',    category: settings_cc }
 seed Capability, { name: 'edit',    category: settings_cc }
