@@ -70,10 +70,7 @@ See docs/Getting-Started.md
 
 I'm aiming to keep up to date with the current/latest stable versions of Ruby
 and Rails, which means I started with Ruby 2.6.4 and Rails 6.0.0, and I'm
-currently on Ruby 2.6.6 and Rails 6.0.2.2
-
-(I've updated to Ruby 2.7.x twice, but got fed up with all the deprecation
-warnings each time and moved back to 2.6 until 2.7 support in AR improves)
+currently on Ruby 2.7.1 and Rails 6.0.3
 
 I believe there are some Rails-6-isms in the code which mean it won't run on
 Rails 5.x without at least minor modifications. I don't intend to put any effort
