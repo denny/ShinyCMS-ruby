@@ -79,7 +79,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
       expect( response      ).to have_http_status :not_found
       expect( response.body ).to have_css 'h2', text: I18n.t(
-        'errors.not_found.title', { resource_type: 'Discussion' }
+        'errors.not_found.title', resource_type: 'Discussion'
       )
     end
   end
@@ -98,7 +98,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
       expect( response      ).to have_http_status :not_found
       expect( response.body ).to have_css 'h2', text: I18n.t(
-        'errors.not_found.title', { resource_type: 'Comment' }
+        'errors.not_found.title', resource_type: 'Comment'
       )
     end
   end

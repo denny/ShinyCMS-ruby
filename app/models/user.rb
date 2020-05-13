@@ -61,6 +61,7 @@ class User < ApplicationRecord
 
   # Virtual attribute to allow authenticating by either username or email
   attr_writer :login
+
   def login
     @login || username || email
   end
@@ -126,6 +127,11 @@ class User < ApplicationRecord
                       .find_by( name: capability.to_s )
                       .user_capabilities
                       .map( &:user )
+  end
+
+  # Check whether we have at least one admin who can create more admins
+  def self.super_admins_exist?
+    that_can( :add, :admin_users ).present?
   end
 
   # Override find method to search by username as well as email

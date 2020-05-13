@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org' do
-  gem 'rails', '~> 6.0.2'
+  gem 'rails', '~> 6.0.3'
 
   gem 'pg', '>= 0.18', '< 2.0'
 
@@ -92,8 +92,6 @@ source 'https://rubygems.org' do
     gem 'brakeman', require: false
     # Check gems for security issues
     gem 'bundler-audit', require: false
-    # Used to create demo site data
-    gem 'db_fixtures_dump'
     # Check for slow code
     gem 'fasterer', require: false
     # Capture all emails sent by the system and view them in a dev webmail inbox
@@ -105,6 +103,8 @@ source 'https://rubygems.org' do
     # Linter
     gem 'rubocop', require: false
     gem 'rubocop-rails', require: false
+    # Used to generate demo site data
+    gem 'seed_dump'
   end
 
   group :test do

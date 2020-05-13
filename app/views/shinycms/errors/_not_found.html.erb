@@ -4,12 +4,12 @@
 <section>
   <header>
     <h2>
-      <%= t( '.title', { resource_type: @resource_type } ) %>
+      <%= t( '.title', resource_type: @resource_type ) %>
     </h2>
   </header>
 
   <p>
-    <%= t( '.explanation', { resource_type: @resource_type.downcase } ) %>
+    <%= t( '.explanation', resource_type: @resource_type.downcase ) %>
   </p>
   <p>
     You can use the search form
