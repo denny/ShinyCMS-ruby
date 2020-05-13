@@ -7,7 +7,11 @@ language: ruby
 rvm:
   - 2.7.1
 
-cache: bundler
+cache:
+  bundler: true
+  directories:
+    - node_modules
+  yarn: true
 
 addons:
   postgresql: "10"
