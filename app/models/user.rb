@@ -53,6 +53,7 @@ class User < ApplicationRecord
 
   # Virtual attribute to allow authenticating by either username or email
   attr_writer :login
+
   def login
     @login || username || email
   end
