@@ -40,4 +40,14 @@ class Discussion < ApplicationRecord
   def unhide
     update( hidden: false )
   end
+
+  # Class methods
+
+  def self.most_active( days: 7, size: 10 )
+    left_joins( :comments )
+      .where( 'comments.created_at > ?', days.days.ago )
+      .group( :id )
+      .order( 'count(comments.id) desc' )
+      .limit( size )
+  end
 end
