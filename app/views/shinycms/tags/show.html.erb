@@ -12,7 +12,7 @@
       <% @tagged_items[ type ].each do |item| %>
       <li>
         <% if type == 'BlogPost' %>
-        <%= link_to item.title, view_blog_post_path( item ) %>
+        <%= link_to item.title, item.path %>
           posted by <%= user_profile_link( item.author ) %>
           at <%= item.posted_at.to_s( :time ) %>
           on <%= item.posted_at.to_s( :shinydate ) %>
