@@ -9,6 +9,12 @@ class Discussion < ApplicationRecord
                                                     inverse_of: :discussion,
                                                     dependent: :destroy
 
+  has_many :visible_comments, -> { where( spam: false, hidden: false ) },
+           class_name: 'Comment',
+           foreign_key: :discussion_id,
+           inverse_of: :discussion,
+           dependent: :destroy
+
   # Instance methods
 
   def notifiable?
@@ -23,6 +29,10 @@ class Discussion < ApplicationRecord
 
   def top_level_comments
     comments.where( parent: nil )
+  end
+
+  def visible_comment_count
+    visible_comments.count
   end
 
   def lock
@@ -43,11 +53,11 @@ class Discussion < ApplicationRecord
 
   # Class methods
 
-  def self.most_active( days: 7, size: 10 )
+  def self.most_active( days: 7, count: 10 )
     left_joins( :comments )
-      .where( 'comments.created_at > ?', days.days.ago )
+      .where( 'comments.posted_at > ?', days.days.ago )
       .group( :id )
-      .order( 'count(comments.id) desc' )
-      .limit( size )
+      .order( 'count(comments) desc' )
+      .limit( count )
   end
 end
