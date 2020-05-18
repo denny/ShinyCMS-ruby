@@ -9,12 +9,6 @@ class Discussion < ApplicationRecord
                                                     inverse_of: :discussion,
                                                     dependent: :destroy
 
-  has_many :visible_comments, -> { where( spam: false, hidden: false ) },
-           class_name: 'Comment',
-           foreign_key: :discussion_id,
-           inverse_of: :discussion,
-           dependent: :destroy
-
   # Instance methods
 
   def notifiable?
@@ -29,6 +23,10 @@ class Discussion < ApplicationRecord
 
   def top_level_comments
     comments.where( parent: nil )
+  end
+
+  def visible_comments
+    comments.where( hidden: false )
   end
 
   def visible_comment_count

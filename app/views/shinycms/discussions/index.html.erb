@@ -8,7 +8,7 @@
   <section>
     <p>
       <%= link_to discussion.resource.title, discussion.resource.path %>
-      (<%= t( 'discussions.n_comments', count: discussion.visible_comments.count ) %>)
+      (<%= t( 'discussions.n_comments', count: discussion.visible_comment_count ) %>)
     </p>
   </section>
 <% end %>
