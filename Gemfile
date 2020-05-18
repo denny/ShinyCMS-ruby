@@ -60,7 +60,7 @@ source 'https://rubygems.org' do
 
   # Image storage on S3, image processing (resizing)
   gem 'aws-sdk-s3'
-  gem 'image_processing', '~> 1.10'
+  gem 'image_processing', '~> 1.11'
   gem 'mini_magick'
 
   # Better-looking console output
