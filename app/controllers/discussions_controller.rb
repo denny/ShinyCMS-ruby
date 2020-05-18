@@ -19,8 +19,7 @@ class DiscussionsController < ApplicationController
   before_action :stash_comment,    except: %i[ index show add_comment ]
 
   def index
-    # TODO: list of recently-active discussions etc
-    redirect_to root_path
+    @most_active = Discussion.most_active
   end
 
   def show; end

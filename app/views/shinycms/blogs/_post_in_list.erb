@@ -5,11 +5,8 @@
 
   <footer>
   <% if post.discussion.present? %>
-    <% comment_count = post.discussion.comments.count %>
-    <% comments_word = t( 'discussions.comments' ).downcase %>
-    <% comment_word.singularize if comment_count == 1 %>
-    <%= link_to "#{comment_count} #{comments_word}", post.path( anchor: 'comments' ) %>
-
+    <%= link_to t( 'discussions.n_comments', count: post.discussion.visible_comments.count ),
+                post.path( anchor: 'comments' ) %>
   <% else %>
     <i>Comments have been disabled on this post</i>
   <% end %>

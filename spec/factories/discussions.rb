@@ -28,6 +28,7 @@ FactoryBot.define do
       end
     end
 
+    factory :discussion_with_0to4_comments, traits: [ :with_0to4_comments ]
     factory :discussion_with_four_comments, traits: [ :with_four_comments ]
     factory :discussion_with_five_comments, traits: [ :with_five_comments ]
     factory :discussion_with_6old_comments, traits: [ :with_6old_comments ]

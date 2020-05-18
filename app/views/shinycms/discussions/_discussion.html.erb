@@ -4,13 +4,13 @@
   <%= t( 'discussions.comments' ) %>
 </h3>
 
-<% if resource.discussion.top_level_comments.size > 0 %>
+<% if resource.discussion.top_level_comments.present? %>
   <%= render partial: 'discussions/top_level',
              locals: { comments: resource.discussion.top_level_comments } %>
 <% else %>
   <section>
     <p>
-      <%= t( 'discussions.zero_comments' ) %>
+      <%= t( 'discussions.no_comments_to_display' ) %>
     </p>
   </section>
 <% end %>

@@ -4,14 +4,13 @@ require 'rails_helper'
 
 RSpec.describe 'Discussions/Comments', type: :request do
   before :each do
-    FeatureFlag.enable :blogs
+    FeatureFlag.enable :news
     FeatureFlag.enable :comments
 
     FeatureFlag.disable :recaptcha_on_comment_form
     FeatureFlag.disable :akismet_on_comments
 
-    blog = create :blog
-    @post = create :blog_post, blog: blog
+    @post = create :news_post
 
     @discussion = create :discussion, resource: @post
     @post.update!( discussion: @discussion )
@@ -24,9 +23,19 @@ RSpec.describe 'Discussions/Comments', type: :request do
     @nested = create :nested_comment, discussion: @discussion, parent: @comment
   end
 
-  describe 'GET /blog/1999/12/testing' do
-    it 'loads a blog post and its comments' do
-      get "/blog/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}"
+  describe 'GET /discussions' do
+    it 'displays the current most active discussions' do
+      get discussions_path
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'discussions.index.title' )
+      expect( response.body ).to have_css 'h2', text: I18n.t( 'discussions.index.most_active' )
+    end
+  end
+
+  describe 'GET /news/1999/12/testing' do
+    it 'loads a news post and its comments' do
+      get "/news/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}"
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'h3', text: I18n.t( 'discussions.comments' )
@@ -34,34 +43,23 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response.body ).to have_css 'h2', text: @nested.title
     end
 
-    it 'loads a blog post with an empty discussion' do
+    it 'loads a news post with an empty discussion' do
       @discussion.comments.delete_all
 
-      get "/blog/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}"
+      get "/news/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}"
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'h3', text: I18n.t( 'discussions.comments' )
-      expect( response.body ).to have_css 'p',  text: I18n.t( 'discussions.zero_comments' )
+      expect( response.body ).to have_css 'p',  text: I18n.t( 'discussions.no_comments_to_display' )
     end
 
-    it 'loads a blog post with no discussion attached' do
+    it 'loads a news post with no discussion attached' do
       @post.update!( discussion: nil )
 
-      get "/blog/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}"
+      get "/news/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}"
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).not_to have_css 'h3', text: I18n.t( 'discussions.comments' )
-    end
-  end
-
-  describe 'GET /discussions' do
-    it 'redirects to the homepage, for now' do
-      get discussions_path
-
-      expect( response ).to have_http_status :found
-      expect( response ).to redirect_to root_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
     end
   end
 
