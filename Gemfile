@@ -78,6 +78,7 @@ source 'https://rubygems.org' do
     # Fill test objects with fake data
     gem 'faker'
     # Utils for working with translation strings
+    # gem 'i18n-debug'
     gem 'i18n-tasks', '~> 0.9.31'
     # Tests are good, m'kay?
     gem 'rspec-rails'
