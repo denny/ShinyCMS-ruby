@@ -82,13 +82,10 @@ class Admin::NewsController < AdminController
   end
 
   def post_params
-    unless current_user.can? :change_author, :news_posts
-      params[ :news_post ].delete( :user_id )
-    end
+    params[ :news_post ].delete( :user_id ) unless current_user.can? :change_author, :news_posts
 
     params.require( :news_post ).permit(
-      :user_id, :title, :slug, :tag_list, :posted_at, :body,
-      :hidden, :discussion_hidden, :discussion_locked
+      :user_id, :title, :slug, :tag_list, :posted_at, :body, :hidden, :discussion_hidden, :discussion_locked
     )
   end
 
@@ -97,13 +94,10 @@ class Admin::NewsController < AdminController
   end
 
   def post_params_for_create
-    unless current_user.can? :change_author, :news_posts
-      params[ :news_post ][ :user_id ] = current_user.id
-    end
+    params[ :news_post ][ :user_id ] = current_user.id unless current_user.can? :change_author, :news_posts
 
     params.require( :news_post ).permit(
-      :user_id, :title, :slug, :tag_list, :posted_at, :body,
-      :hidden, :discussion_hidden, :discussion_locked
+      :user_id, :title, :slug, :tag_list, :posted_at, :body, :hidden, :discussion_hidden, :discussion_locked
     )
   end
 end
