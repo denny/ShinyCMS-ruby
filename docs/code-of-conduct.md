@@ -1,13 +1,13 @@
-# Contributor Covenant Code of Conduct
+# ShinyCMS: Code of Conduct
 
 ## Our Pledge
 
 In the interest of fostering an open and welcoming environment, we as
 contributors and maintainers pledge to make participation in our project and
-our community a harassment-free experience for everyone, regardless of age, body
-size, disability, ethnicity, sex characteristics, gender identity and expression,
-level of experience, education, socio-economic status, nationality, personal
-appearance, race, religion, or sexual identity and orientation.
+our community a harassment-free experience for everyone, regardless of age,
+body size, disability, ethnicity, sex characteristics, gender identity and
+expression, level of experience, education, socio-economic status, nationality,
+personal appearance, race, religion, or sexual identity and orientation.
 
 ## Our Standards
 
@@ -63,8 +63,9 @@ Further details of specific enforcement policies may be posted separately.
 
 ## Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
-available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
+This Code of Conduct is adapted from the [Contributor Covenant][homepage],
+version 1.4, available at
+https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
 
 [homepage]: https://www.contributor-covenant.org
 
