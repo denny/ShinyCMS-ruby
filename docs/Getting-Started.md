@@ -15,8 +15,6 @@
 You should now have a ShinyCMS site at http://localhost:3000,
 with an admin area at http://localhost:3000/admin
 
-If you loaded the demo data, please read the security note below.
-
 
 ## The longer version
 
@@ -33,28 +31,11 @@ To do all three in one command: `rails db:setup`
 
 There is a set of demo data available, which will allow you to try out most
 ShinyCMS features without having to create your own test data first. You can
-load it with the utility script `tools/insert-demo-site-data`
+load it with the rake task `rails shiny:demo:load`
 
 WARNING: DATA LOSS!  
-This script will wipe most of the tables in the database before populating them
-with the demo site data; notably, this includes the `users` table. Back up any
-data that you don't want to lose!
-
-The demo data creates a super-admin user with the following login details:  
-Username: admin  
-Password: I should change this password before I do anything else!
-
-WARNING: SECURITY RISK!  
-The demo data:  
-(a) enables the user_login feature of the site  
-(b) creates a super-admin user with a publicly-published username and password  
-(c) loads the demo page content, which will make it easy to search for and
-identify sites based on the demo data  
-PLEASE change the admin password before you do anything else - and ideally the
-username too, if you're leaving the demo data loaded for any length of time.
-
-For extra security you could completely disable the login feature when you're
-not using the demo site: `rails shiny:feature:off[user_login]`
+Loading the demo data will wipe the database as its first step. Before you run
+this task, back up any data that you don't want to lose!
 
 
 ### Deployment
@@ -125,7 +106,7 @@ user if they find a match, but this doesn't require any setup on your part.
 ### Themes
 
 The recommended way to start building a site on ShinyCMS is to create a theme
-for it. You can read more about creating themes in docs/themes.md
+for it. You can read more about creating themes in [docs/Themes](Themes.md)
 
 The default theme can be set in ENV['SHINYCMS_THEME'] and on the Site Settings
 page in the admin area. If both are set, the latter takes priority. You can also

@@ -1,6 +1,38 @@
 # ShinyCMS: TODO
 
-## New features that I'd like to add / features that I'd like to rebuild
+## Features the Perl version has, which the Ruby version doesn't. Yet. :)
+
+### Small-ish
+
+* Some sort of file-picker (for image elements, CKEditor, etc)
+  * https://ckeditor.com/docs/ckeditor5/latest/features/image-upload/ckfinder.html
+* Site map
+* Affiliate cookie
+
+### Medium-ish
+
+* Form handlers (contact page, etc)
+* 'Likes' on blog posts, shop items, and comments
+* User profile pages (with content such as recent comments, recent posts, etc)
+* Access control groups
+  * Can be used to control access to file downloads and secure whole pages,
+    but also to show/hide individual pieces of page content
+
+### Large-ish
+
+* Payment handling plugins
+  * Options include recurring subscriptions to access control groups (AKA paid membership)
+* Online shop
+* Forums
+* Autoresponders
+	* Check out Heya - may or may not be useful to use / build on top of
+	* https://github.com/honeybadger-io/heya
+	* Oh, except the licence doesn't look great. Investigate that first.
+* Event listings
+* Polls
+
+
+## New features that I'd like to add / features that I'd like to totally rebuild
 
 ### Small-ish
 
