@@ -3,9 +3,7 @@
 # Top-level pundit policy for admin area
 class Admin::DefaultPolicy < DefaultPolicy
   def index?
-    unless @record.class.method_defined?( :first ) && @record.first.present?
-      return can_list_nil?
-    end
+    return can_list_nil? unless @record.class.method_defined?( :first ) && @record.first.present?
 
     @this_user.can? :list, @record.first.class.name.underscore.pluralize.to_sym
   end
