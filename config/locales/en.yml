@@ -78,6 +78,8 @@ en:
       failure: Failed to post new comment
 
   errors:
+    messages:
+      slug_taken: cannot be used as a top-level slug
     not_found:
       title: "%{resource_type} not found"
       explanation: The URL you have reached is for a %{resource_type} that does not exist.
