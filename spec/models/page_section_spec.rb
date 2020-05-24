@@ -30,7 +30,7 @@ RSpec.describe 'PageSection model:', type: :model do
       create :page_section
       section2 = create :page_section, slug: 'default'
 
-      Setting.set( :default_section ).to 'default'
+      Setting.set( :default_section, to: 'default' )
 
       expect( PageSection.default_section ).to eq section2
     end

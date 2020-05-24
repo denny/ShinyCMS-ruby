@@ -8,7 +8,7 @@ RSpec.describe 'Admin controller:', type: :request do
       admin = create :page_admin
       sign_in admin
 
-      Setting.set( :admin_ip_list ).to '127.0.0.1'
+      Setting.set( :admin_ip_list, to: '127.0.0.1' )
 
       get admin_path
 
@@ -23,7 +23,7 @@ RSpec.describe 'Admin controller:', type: :request do
       admin = create :page_admin
       sign_in admin
 
-      Setting.set( :admin_ip_list ).to '10.10.10.10'
+      Setting.set( :admin_ip_list, to: '10.10.10.10' )
 
       get admin_path
 

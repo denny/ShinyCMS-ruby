@@ -33,8 +33,7 @@ class AdminController < ApplicationController
     redirect_to root_path unless current_user.can? :view_admin_area
 
     # If user has set a post_login_redirect, use it here
-    custom = Setting.find_by( name: 'post_login_redirect' )
-                    .values.find_by( user: current_user )&.value
+    custom = Setting.find_by( name: :post_login_redirect ).value_for current_user
     if custom.present? && custom.start_with?('/')
       redirect_to custom
     # Otherwise, redirect based on which admin features they have access to

@@ -18,38 +18,36 @@ class Setting < ApplicationRecord
 
   # Instance methods
 
-  def setting_value
-    values.find_by( user_id: nil )
-  end
-
   def value
-    setting_value&.value
-  end
-
-  def setting_value_for( user )
-    return if level.nil?
-
-    return if level == 'admin' && user.not_admin?
-
-    values.find_by( user_id: user )
+    default_setting_value&.value
   end
 
   def value_for( user )
-    setting_value_for( user )&.value
+    return unless user && level
+
+    return if level == 'admin' && user.not_admin?
+
+    values.find_by( user_id: user )&.value
+  end
+
+  def default_setting_value
+    values.find_by( user_id: nil )
   end
 
   # Class methods
 
-  def self.set( name )
-    find_by!( name: name.to_s ).setting_value
+  def self.set( name, to: )
+    setting = find_by!( name: name.to_s )
+    setting.default_setting_value&.update!( value: to )
+    setting
   end
 
   def self.get( name, user = nil )
     setting = find_by name: name.to_s
     return if setting.blank?
 
-    value = setting.value_for( user ) if user.present?
-    return value if value.present?
+    user_value = setting.value_for( user ) if user.present?
+    return user_value if user_value.present?
 
     setting.value
   end

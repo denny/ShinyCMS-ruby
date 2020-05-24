@@ -14,7 +14,7 @@ RSpec.describe 'DiscussionMailerPreview', type: :request do
     create :top_level_comment, discussion: d
     create :nested_comment, discussion: d, parent: c
 
-    Setting.set( :all_comment_notifications_email ).to( 'test@example.com' )
+    Setting.set( :all_comment_notifications_email, to: 'test@example.com' )
   end
 
   describe '.overview_notification' do

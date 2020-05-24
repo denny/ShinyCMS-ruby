@@ -68,7 +68,7 @@ RSpec.describe 'Discussion mailer', type: :mailer do
 
   describe '.overview_notification' do
     it 'generates notification email to comment overview address' do
-      Setting.set( :all_comment_notifications_email ).to( 'test@example.com' )
+      Setting.set( :all_comment_notifications_email, to: 'test@example.com' )
 
       comment = create :top_level_comment, discussion: @discussion
 
