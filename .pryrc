@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Use awesome print to format console output
+# Use Amazing Print gem to format console output
 require 'amazing_print'
 AmazingPrint.pry!
 
