@@ -15,7 +15,7 @@ RSpec.describe 'Page model:', type: :model do
       create :page, slug: 'first'
       page2 = create :page, slug: 'default'
 
-      Setting.set( :default_page ).to 'default'
+      Setting.set( :default_page, to: 'default' )
 
       expect( Page.default_page ).to eq page2
     end

@@ -10,12 +10,4 @@ class SettingValue < ApplicationRecord
 
   belongs_to :setting, inverse_of: 'values'
   belongs_to :user,    inverse_of: 'settings', optional: true
-
-  # Instance methods
-
-  # Pairs with Setting.set to give you Setting.set( :foo ).to( 'bar' )
-  def to( new_value )
-    update!( value: new_value )
-    setting
-  end
 end
