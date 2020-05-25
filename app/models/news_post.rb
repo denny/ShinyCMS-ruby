@@ -70,16 +70,16 @@ class NewsPost < ApplicationRecord
   def self.posts_for_year( year )
     start_date = Date.new( year.to_i, 1, 1 )
     end_date = start_date + 1.year
-    where( posted_at: start_date..end_date ).order( :posted_at )
+    where( posted_at: start_date..end_date ).order( :posted_at ).readonly
   end
 
   def self.posts_for_month( year, month )
     start_date = Date.new( year.to_i, month.to_i, 1 )
     end_date = start_date + 1.month
-    where( posted_at: start_date..end_date ).order( :posted_at )
+    where( posted_at: start_date..end_date ).order( :posted_at ).readonly
   end
 
   def self.recent_posts( page_num = 1 )
-    where( hidden: false ).order( posted_at: :desc ).page( page_num )
+    where( hidden: false ).order( posted_at: :desc ).readonly.page( page_num )
   end
 end
