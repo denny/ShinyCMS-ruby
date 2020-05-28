@@ -39,37 +39,37 @@ jobs:
           command: gem install bundler
       - restore_cache:
           keys:
-          - bundler-cache-{{ checksum "Gemfile.lock" }}
+          - bundler-cache-v20.5-{{ checksum "Gemfile.lock" }}
       - run:
           name: Install gems
           command: bundle check || bundle install
       - save_cache:
-          key: bundler-cache-{{ checksum "Gemfile.lock" }}
+          key: bundler-cache-v20.5-{{ checksum "Gemfile.lock" }}
           paths:
             - ~/ShinyCMS/vendor/bundle
 
       # Restore Node dependencies from cache, or install them
       - restore_cache:
           keys:
-            - yarn-cache-{{ checksum "yarn.lock" }}
+            - yarn-cache-v20.5-{{ checksum "yarn.lock" }}
       - run:
           name: Install Node modules
           command: yarn install --cache-folder ~/.cache/yarn
       - save_cache:
-          key: yarn-cache-{{ checksum "yarn.lock" }}
+          key: yarn-cache-v20.5-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
 
       # Restore Webpacker assets from cache, or compile them
       - restore_cache:
           keys:
-            - webpacker-cache-{{ .Revision }}
+            - webpacker-cache-v20.5-{{ .Revision }}
       # run: bundle exec rails assets:precompile
       - run:
           name: Compile webpacker assets
           command: bundle exec rake webpacker:compile
       - save_cache:
-          key: webpacker-cache-{{ .Revision }}
+          key: webpacker-cache-v20.5-{{ .Revision }}
           paths:
             - ~/ShinyCMS/public/packs-test/
 
