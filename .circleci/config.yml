@@ -40,7 +40,6 @@ jobs:
       - restore_cache:
           keys:
           - bundler-cache-{{ checksum "Gemfile.lock" }}
-          - bundler-cache-
       - run:
           name: Install gems
           command: bundle check || bundle install
@@ -53,7 +52,6 @@ jobs:
       - restore_cache:
           keys:
             - yarn-cache-{{ checksum "yarn.lock" }}
-            - yarn-cache-
       - run:
           name: Install Node modules
           command: yarn install --cache-folder ~/.cache/yarn
@@ -66,7 +64,6 @@ jobs:
       - restore_cache:
           keys:
             - webpacker-cache-{{ .Revision }}
-            - webpacker-cache-
       # run: bundle exec rails assets:precompile
       - run:
           name: Compile webpacker assets
