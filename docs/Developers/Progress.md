@@ -89,35 +89,5 @@ version (with notes on useful docs, where I'm up to, what I'm stuck on, etc)
 
 ## To Do
 
-Features the Perl version has, which the Ruby version doesn't. Yet. :)
-
-### Small-ish
-
-* Some sort of file-picker (for image elements, CKEditor, etc)
-  * https://ckeditor.com/docs/ckeditor5/latest/features/image-upload/ckfinder.html
-* Site map
-* Affiliate cookie
-
-### Medium-ish
-
-* Form handlers (contact page, etc)
-* 'Likes' on blog posts, shop items, and comments
-* User profile pages (with content such as recent comments, recent posts, etc)
-* Access control groups
-  * Can be used to control access to file downloads and secure whole pages,
-    but also to show/hide individual pieces of page content
-
-### Large-ish
-
-* Payment handling plugins
-  * Options include recurring subscriptions to access control groups (AKA paid membership)
-* Online shop
-* Forums
-* Autoresponders
-	* Check out Heya - may or may not be useful to use / build on top of
-	* https://github.com/honeybadger-io/heya
-	* Oh, except the licence doesn't look great. Investigate that first.
-* Event listings
-* Polls
-
-(For notes on potential features that aren't in the Perl version, see docs/TODO.md)
+See [the TODO list](TODO.md) for features from the original ShinyCMS that I
+haven't started implementing in this version yet, as well as some new ideas.

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# Use awesome print to format console output
-require 'awesome_print'
-AwesomePrint.pry!
+# Use Amazing Print gem to format console output
+require 'amazing_print'
+AmazingPrint.pry!
 
 # Show app name and current environment in console prompt.
 # Environment shown in RED CAPITALS if it's not dev or test :)

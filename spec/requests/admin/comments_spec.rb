@@ -23,19 +23,6 @@ RSpec.describe 'Comment moderation', type: :request do
     @comment2 = create :top_level_comment, discussion: @discussion2
   end
 
-  # TODO: Can I use the real helper method here instead of this nasty copypasta?
-  def comment_in_context_path( comment )
-    post = comment.discussion.resource
-    type = 'blog'
-    type = 'news' if comment.discussion.resource_type == 'NewsPost'
-
-    if comment.blank? || comment.spam?
-      return "/#{type}/#{post.posted_year}/#{post.posted_month}/#{post.slug}#comments"
-    end
-
-    "/#{type}/#{post.posted_year}/#{post.posted_month}/#{post.slug}##{comment.number}"
-  end
-
   describe 'GET /admin/comments' do
     it 'fetches the spam comment moderation page' do
       get comments_path
@@ -139,7 +126,7 @@ RSpec.describe 'Comment moderation', type: :request do
       get hide_comment_path( @comment1 )
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to comment_in_context_path( @comment1 )
+      expect( response      ).to     redirect_to @comment1.anchored_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested1.title
@@ -156,7 +143,7 @@ RSpec.describe 'Comment moderation', type: :request do
       get unhide_comment_path( @comment1 )
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to comment_in_context_path( @comment1 )
+      expect( response      ).to     redirect_to @comment1.anchored_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested1.title
@@ -170,7 +157,7 @@ RSpec.describe 'Comment moderation', type: :request do
       get lock_comment_path( @comment2 )
 
       expect( response ).to have_http_status :found
-      expect( response ).to redirect_to comment_in_context_path( @comment2 )
+      expect( response ).to redirect_to @comment2.anchored_path
       follow_redirect!
       expect( response ).to have_http_status :ok
 
@@ -186,7 +173,7 @@ RSpec.describe 'Comment moderation', type: :request do
       get unlock_comment_path( @comment2 )
 
       expect( response ).to have_http_status :found
-      expect( response ).to redirect_to comment_in_context_path( @comment2 )
+      expect( response ).to redirect_to @comment2.anchored_path
       follow_redirect!
       expect( response ).to have_http_status :ok
 
@@ -200,7 +187,7 @@ RSpec.describe 'Comment moderation', type: :request do
       @comment1.reload
 
       expect( response ).to have_http_status :found
-      expect( response ).to redirect_to comment_in_context_path( @comment1 )
+      expect( response ).to redirect_to @comment1.anchored_path
       follow_redirect!
       expect( response ).to have_http_status :ok
 
@@ -213,7 +200,7 @@ RSpec.describe 'Comment moderation', type: :request do
       delete delete_comment_path( @comment2 )
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to comment_in_context_path( @comment2 )
+      expect( response      ).to redirect_to @news.path( anchor: 'comments' )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).not_to include @comment2.title

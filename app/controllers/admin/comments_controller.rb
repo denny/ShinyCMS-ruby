@@ -42,38 +42,37 @@ class Admin::CommentsController < AdminController
   def hide
     authorise @comment
     @comment.hide
-    redirect_to request.referer || comment_in_context_path( @comment )
+    redirect_back fallback_location: @comment.anchored_path
   end
 
   def unhide
     authorise @comment
     @comment.unhide
-    redirect_to request.referer || comment_in_context_path( @comment )
+    redirect_back fallback_location: @comment.anchored_path
   end
 
   def lock
     authorise @comment
     @comment.lock
-    redirect_to request.referer || comment_in_context_path( @comment )
+    redirect_back fallback_location: @comment.anchored_path
   end
 
   def unlock
     authorise @comment
     @comment.unlock
-    redirect_to request.referer || comment_in_context_path( @comment )
+    redirect_back fallback_location: @comment.anchored_path
   end
 
   def delete
     authorise @comment
-    contextual_path = comment_in_context_path( @comment )
-    @comment.delete
-    redirect_to request.referer || contextual_path
+    @comment.destroy!
+    redirect_back fallback_location: @comment.anchored_path
   end
 
   def mark_as_spam
     authorise @comment
     @comment.mark_as_spam
-    redirect_to request.referer || comment_in_context_path( @comment )
+    redirect_back fallback_location: @comment.anchored_path
   end
 
   private

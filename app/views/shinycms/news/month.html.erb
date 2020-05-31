@@ -10,7 +10,7 @@
 <section>
   <header>
     <h2>
-      <%= link_to post.title, view_news_post_path( post ) %>
+      <%= link_to post.title, post.path %>
     </h2>
     <h3>
       Posted by <%= user_profile_link( post.author ) %>
