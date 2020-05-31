@@ -10,7 +10,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
 
   describe 'GET /admin/site-settings' do
     it 'fetches the site settings page in the admin area' do
-      Setting.set( :theme_name ).to 'thematic'
+      Setting.set( :theme_name, to: 'thematic' )
 
       get admin_site_settings_path
 
@@ -21,7 +21,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
 
   describe 'PUT /admin/site-settings' do
     it 'updates any setting levels that were changed' do
-      s1 = Setting.set( :theme_name ).to 'thematic'
+      s1 = Setting.set( :theme_name, to: 'thematic' )
 
       put admin_site_settings_path, params: {
         "settings[level_#{s1.id}]": 'user',
@@ -43,7 +43,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
     end
 
     it 'updates any setting values that were changed' do
-      s1 = Setting.set( :theme_name ).to 'Original'
+      s1 = Setting.set( :theme_name, to: 'Original' )
 
       put admin_site_settings_path, params: {
         "settings[level_#{s1.id}]": s1.level,
@@ -61,7 +61,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
     end
 
     it "doesn't update settings if they weren't changed" do
-      s1 = Setting.set( :theme_name ).to 'Unchanging'
+      s1 = Setting.set( :theme_name, to: 'Unchanging' )
 
       put admin_site_settings_path, params: {
         "settings[level_#{s1.id}]": s1.level,
@@ -78,7 +78,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
     end
 
     it "won't update the level of a locked setting" do
-      s1 = Setting.set( :admin_ip_list ).to '127.0.0.1, 1.2.3.4'
+      s1 = Setting.set( :admin_ip_list, to: '127.0.0.1, 1.2.3.4' )
 
       put admin_site_settings_path, params: {
         "settings[level_#{s1.id}]": 'user',
@@ -102,7 +102,7 @@ RSpec.describe 'Admin: Site Settings', type: :request do
     end
 
     it 'will update the value of a locked setting' do
-      s1 = Setting.set( :admin_ip_list ).to '127.0.0.1, 1.2.3.4'
+      s1 = Setting.set( :admin_ip_list, to: '127.0.0.1, 1.2.3.4' )
 
       put admin_site_settings_path, params: {
         "settings[level_#{s1.id}]": s1.level,

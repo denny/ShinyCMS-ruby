@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       # :nocov:
     else
       get 'blog',                     to: 'blogs#recent', as: :view_blog
-      get 'blog/:year/:month/:slug',  to: 'blogs#show',   as: :ignore1,
+      get 'blog/:year/:month/:slug',  to: 'blogs#show',   as: :view_blog_post,
                                       constraints: {
                                         year: %r{\d\d\d\d},
                                         month: %r{\d\d}
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     post 'discussion/:id/:number', to: 'discussions#add_reply'
 
     get 'news',                     to: 'news#index', as: :view_news
-    get 'news/:year/:month/:slug',  to: 'news#show',  as: :ignore4,
+    get 'news/:year/:month/:slug',  to: 'news#show',  as: :view_news_post,
                                     constraints: {
                                       year: %r{\d\d\d\d},
                                       month: %r{\d\d}

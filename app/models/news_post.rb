@@ -37,6 +37,12 @@ class NewsPost < ApplicationRecord
     self.slug = title.parameterize
   end
 
+  def path( anchor: nil )
+    url_helpers.view_news_post_path(
+      posted_year, posted_month, slug, anchor: anchor
+    )
+  end
+
   def posted_month
     posted_at.strftime( '%m' )
   end

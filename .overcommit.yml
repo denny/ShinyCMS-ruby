@@ -18,6 +18,11 @@ PreCommit:
     enabled: true
     quiet: false
     on_warn: fail
+  TextWidth:
+    enabled: true
+    quiet: false
+    max_subject_width: 72
+    min_subject_width: 1
   TrailingWhitespace:
     enabled: true
     quiet: false

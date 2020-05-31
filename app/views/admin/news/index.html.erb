@@ -31,7 +31,7 @@
         <%= post.posted_at.to_s( :time ) %> on <%= post.posted_at.to_s( :shinydate ) %>
       </td>
       <td class="actions">
-        <%= link_to t( 'view'   ), view_news_post_path( post ) %>
+        <%= link_to t( 'view'   ), post.path %>
         <%= link_to t( 'edit'   ), edit_news_post_path( post ) %>
         <%= link_to t( 'delete' ), news_post_path( post ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>

@@ -4,13 +4,17 @@
 # don't collide with controller namespaces
 class SafeSlugValidator < ActiveModel::Validator
   def validate( record )
-    return unless record.section.nil?
+    return if record.section.present?
 
-    Rails.application.routes.routes.each do |route|
+    record.errors.add( :slug, :slug_taken ) if unsafe?( record.slug )
+  end
+
+  private
+
+  def unsafe?( slug )
+    Rails.application.routes.routes.any? do |route|
       route.path.spec.to_s.match( %r{\A/(?<part>[^/]+)/} ) do |m|
-        if record.slug == m[ :part ]
-          record.errors.add( :slug, 'cannot be used as a top-level slug' )
-        end
+        slug == m[ :part ]
       end
     end
   end

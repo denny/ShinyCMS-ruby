@@ -5,7 +5,7 @@
     <% menu_posts = menu_blog.recent_posts.per( 5 ) %>
     <% menu_posts.each do |menu_post| %>
     <li>
-      <%= link_to menu_post.title, view_blog_post_path( menu_post ) %>
+      <%= link_to menu_post.title, menu_post.path %>
     </li>
     <% end %>
   </ul>

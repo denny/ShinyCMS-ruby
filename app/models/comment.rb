@@ -32,6 +32,15 @@ class Comment < ApplicationRecord
     self.number = ( discussion.comments.maximum( :number ) || 0 ) + 1
   end
 
+  # Returns the path to a comment's parent resource, anchored to the comment
+  # Tries to fall back gracefully if comment is deleted/marked as spam
+  def anchored_path
+    anchor = number
+    anchor = 'comments' if destroyed? || spam?
+
+    discussion.resource.path( anchor: anchor )
+  end
+
   def send_notifications
     p = parent.notification_email if parent.present?
     notify_parent_comment_author if p.present?
