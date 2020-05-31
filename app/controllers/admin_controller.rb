@@ -24,37 +24,16 @@ class AdminController < ApplicationController
 
   layout 'admin/layouts/admin_area'
 
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/CyclomaticComplexity
-  # rubocop:disable Metrics/PerceivedComplexity
   def index
     skip_authorization
-    redirect_to root_path unless current_user.can? :view_admin_area
-
-    # If user has set a post_login_redirect, use it here
-    custom = Setting.find_by( name: 'post_login_redirect' )
-                    .values.find_by( user: current_user )&.value
-    if custom.present? && custom.start_with?('/')
-      redirect_to custom
-    # Otherwise, redirect based on which admin features they have access to
-    # (in approximate order of most 'useful' ones first)
-    elsif current_user.can? :list, :pages
-      redirect_to pages_path
-    elsif current_user.can? :list, :blogs
-      redirect_to blogs_path
-    elsif current_user.can? :list, :news_posts
-      redirect_to news_path
-    elsif current_user.can? :list, :users
-      redirect_to users_path
-    elsif current_user.can? :list, :settings
-      redirect_to admin_site_settings_path
+    if current_user.not_admin?
+      redirect_to root_path
+    elsif user_redirect.present?
+      redirect_to user_redirect
+    else
+      redirect_to path_for( current_user.primary_admin_area )
     end
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/CyclomaticComplexity
-  # rubocop:enable Metrics/PerceivedComplexity
 
   private
 
@@ -67,5 +46,18 @@ class AdminController < ApplicationController
     return if allowed.strip.split( /\s*,\s*|\s+/ ).include? request.remote_ip
 
     redirect_to root_path
+  end
+
+  def user_redirect
+    custom = Setting.find_by( name: :post_login_redirect ).value_for current_user
+    return custom if custom&.start_with? '/'
+  end
+
+  def path_for( area = nil )
+    area = :root if area.blank?
+    area = :news if area == :news_posts
+    area = :admin_site_settings if area == :settings
+
+    public_send "#{area}_path"
   end
 end
