@@ -52,6 +52,10 @@ en:
       zero: No comments
       one: 1 comment
       other: '%{count} comments'
+    n_total: '%{count} total'
+    n_recent_comments:
+      one: 1 recent comment
+      other: '%{count} recent comments'
     no_comments_to_display: There are no comments to display
     new_comment: Add a new comment
     reply: Reply to this comment
@@ -73,8 +77,8 @@ en:
       failure: Failed to post new comment
     index:
       title: Discussions
-      most_active: Most active discussions
-      none_found: There are no recently-active discussions.
+      recently_active: Recently active discussions
+      none_found: There are no discussions with recent comments.
     save_comment:
       success: New comment posted
       failure: Failed to post new comment

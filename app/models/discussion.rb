@@ -55,12 +55,12 @@ class Discussion < ApplicationRecord
 
   # Class methods
 
-  def self.most_active( days: 7, count: 10 )
-    left_joins( :all_comments )
-      .where( 'comments.spam = false AND comments.hidden = false' )
-      .where( 'comments.posted_at > ?', days.days.ago )
-      .group( :id )
-      .order( 'count(comments) desc' )
-      .limit( count )
+  def self.recently_active( days: 7, count: 10 )
+    counts = Comment.visible.since( days.days.ago ).group( :discussion_id )
+                    .order( 'count(id) desc' ).limit( count ).count
+
+    discussions = where( id: counts.keys )
+
+    [ discussions, counts ]
   end
 end

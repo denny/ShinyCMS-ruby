@@ -1,20 +1,33 @@
-<% @page_title = 'Discussions' %>
+<% @page_title = t( '.title' ) %>
 
 <section>
   <header>
     <h2>
-      <%= t( '.most_active' ) %>
+      <%= t( '.recently_active' ) %>
     </h2>
   </header>
 
-  <% @most_active.each do |discussion| %>
-  <p>
-    <%= link_to discussion.resource.title, discussion.resource.path %>
-    (<%= t( 'discussions.n_comments', count: discussion.visible_comment_count ) %>)
-  </p>
-  <% end %>
+  <table>
+    <% @recent_comment_counts.each do |discussion_id, recent_count| %>
+    <% discussion = @active_discussions.find( discussion_id ) %>
+    <tr>
+      <td>
+        <%= link_to discussion.resource.title, discussion.resource.path %>
+      </td>
+      <td>
+        <%= t( 'discussions.n_recent_comments', count: recent_count ) %>
+      </td>
+      <td>
+        (<%= t( 'discussions.n_total', count: discussion.visible_comment_count ) %>)
+      </td>
+      <td>
+        <%= discussion.resource.human_name.capitalize %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
 
-  <% if @most_active.blank? %>
+  <% if @active_discussions.blank? %>
     <p>
       <%= t( '.none_found' ) %>
     </p>

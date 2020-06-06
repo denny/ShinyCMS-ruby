@@ -19,7 +19,7 @@ class DiscussionsController < ApplicationController
   before_action :stash_comment,    except: %i[ index show add_comment ]
 
   def index
-    @most_active = Discussion.most_active
+    @active_discussions, @recent_comment_counts = Discussion.readonly.recently_active
   end
 
   def show; end

@@ -29,7 +29,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'discussions.index.title' )
-      expect( response.body ).to have_css 'h2', text: I18n.t( 'discussions.index.most_active' )
+      expect( response.body ).to have_css 'h2', text: I18n.t( 'discussions.index.recently_active' )
     end
   end
 
