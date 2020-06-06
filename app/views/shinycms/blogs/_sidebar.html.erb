@@ -4,11 +4,13 @@
 						<%= t( '.recent_posts' ) %>
 					</h2>
 				</header>
+				<% sidebar_posts = @blog.recent_posts.per( 5 ) %>
 				<ul>
-					<li><a href="#">A list</a></li>
-					<li><a href="#">Of links</a></li>
-					<li><a href="#">To recent</a></li>
-					<li><a href="#">Blog posts</a></li>
+					<% sidebar_posts.each do |sidebar_post| %>
+			    <li>
+			      <%= link_to sidebar_post.title, sidebar_post.path %>
+			    </li>
+			    <% end %>
 				</ul>
 			</section>
 

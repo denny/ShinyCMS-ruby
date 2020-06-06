@@ -12,7 +12,7 @@ class NewsPost < ApplicationRecord
 
   # TODO: lots of duplication going on here/blog posts/pages; to be concerned
   # Allowed characters for slugs: a-z A-Z 0-9 . _ -
-  SLUG_REGEX = %r{[-_\.a-zA-Z0-9]+}.freeze
+  SLUG_REGEX = %r{[-_.a-zA-Z0-9]+}.freeze
   private_constant :SLUG_REGEX
   ANCHORED_SLUG_REGEX = %r{\A#{SLUG_REGEX}\z}.freeze
   private_constant :ANCHORED_SLUG_REGEX

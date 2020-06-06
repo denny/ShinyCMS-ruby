@@ -1,5 +1,5 @@
 <a name="<%= comment.number %>"></a>
-<section style="margin-left: <%= depth %>em;">
+<section class="comment" style="margin-left: <%= depth %>em;">
   <header>
     <span class="float-right">
       <%= link_to "##{comment.number}", "#{request.fullpath}##{comment.number}" %>
@@ -9,7 +9,7 @@
       <%= comment.title %>
     </h2>
     <% end %>
-    <h3>
+    <h3 class="byline">
       <%= render partial: 'discussions/comment_posted_by', locals: { comment: comment } %>
     </h3>
   </header>
@@ -18,16 +18,22 @@
     <%= sanitize comment.body %>
   </p>
 
-  <footer style="margin: 0; padding: 0;">
+  <footer>
+    <% if comment.locked? %>
+    <span class="locked"><%= t('discussions.comment_locked' ) %></span>
+    <% else %>
     <a onclick="toggleHidden('reply_form_<%= comment.id %>')"><%= t( 'discussions.reply' ) %></a>
+    <% end %>
     <% if current_user_can?( :hide, :comments ) || current_user_can?( :lock, :comments ) %>
     <%= render partial: 'discussions/comment_moderation_links',
                locals: { comment: comment } %>
     <% end %>
   </footer>
 
+  <% unless comment.locked? %>
   <div id="reply_form_<%= comment.id %>" style="margin: 0; padding: 0;" hidden>
     <%= render partial: 'discussions/comment_form',
                locals: { discussion: comment.discussion, comment: comment } %>
   </div>
+  <% end %>
 </section>

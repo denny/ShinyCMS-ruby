@@ -2,9 +2,9 @@
 
 <% @sidebar_position = 'right' %>
 
-<section>
+<section class="post">
 
-  <%= render partial: 'blogs/post_in_list_header', locals: { post: @post } %>
+  <%= render partial: 'blogs/post_title_and_byline', locals: { post: @post } %>
 
   <%= sanitize @post.body %>
 
@@ -26,7 +26,7 @@
     <% if current_user_can?( :hide, :discussions ) || current_user_can?( :lock, :discussions ) %>
     <%= render partial: 'discussions/moderation_links', locals: { discussion: @post.discussion } %>
     <% end %>
-  <footer>
+  </footer>
 
   <% unless @post.discussion.hidden? || @post.discussion.locked? %>
   <div id="comment_form" class="comment_form" hidden>
