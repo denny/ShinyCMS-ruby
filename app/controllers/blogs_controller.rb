@@ -16,7 +16,7 @@ class BlogsController < ApplicationController
 
   def index
     # :nocov:
-    @blogs = Blog.all
+    @blogs = Blog.readonly.all
     # :nocov:
   end
 
@@ -47,10 +47,10 @@ class BlogsController < ApplicationController
     @blog =
       if Blog.multiple_blogs_mode?
         # :nocov:
-        Blog.find( params[:blog_slug] )
+        Blog.readonly.find( params[:blog_slug] )
         # :nocov:
       else
-        Blog.first
+        Blog.readonly.first
       end
     return if @blog.present?
 

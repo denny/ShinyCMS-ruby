@@ -18,9 +18,9 @@ class SiteSettingsController < ApplicationController
   def index
     @settings =
       if current_user_is_admin?
-        Setting.admin_settings
+        Setting.readonly.admin_settings
       else
-        Setting.user_settings
+        Setting.readonly.user_settings
       end
   end
 
