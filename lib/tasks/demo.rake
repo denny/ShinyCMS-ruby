@@ -24,6 +24,8 @@ namespace :shiny do
       @shiny_admin.save!
       @shiny_admin.grant_all_capabilities
 
+      Setting.set :theme_name, to: 'halcyonic'
+
       PageTemplate.skip_callback( :create, :after, :add_elements )
       Page.skip_callback( :create, :after, :add_elements )
 
