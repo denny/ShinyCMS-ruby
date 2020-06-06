@@ -19,7 +19,7 @@
     <% unless @post.discussion.locked? %>
     <a onclick="toggleHidden('comment_form')"><%= t( '.reply' ) %></a>
     <% unless @post.discussion.hidden? %>
-    (<%= @post.discussion.comments.count %> <%= t( 'discussions.comments' ).downcase %>)
+    (<%= t( 'discussions.n_comments', count: @post.discussion.visible_comment_count ) %>)
     <% end %>
     <% end %>
 

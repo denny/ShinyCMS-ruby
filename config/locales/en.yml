@@ -46,9 +46,17 @@ en:
       recent_posts: Recent Posts
 
   discussions:
-    comments: Comments
     comment: Comment
-    zero_comments: There are no comments to display
+    comments: Comments
+    n_comments:
+      zero: No comments
+      one: 1 comment
+      other: '%{count} comments'
+    n_total: '%{count} total'
+    n_recent_comments:
+      one: 1 recent comment
+      other: '%{count} recent comments'
+    no_comments_to_display: There are no comments to display
     new_comment: Add a new comment
     reply: Reply to this comment
     hidden_comment: This comment has been hidden by a moderator.
@@ -59,7 +67,7 @@ en:
       pseudonymous: Pseudonymous
       log_in_to_post: Log in to post a comment
       name: Name
-      email: Emailspam_
+      email: Email
       url: URL
     add_comment:
       success: New comment posted
@@ -67,6 +75,10 @@ en:
     add_reply:
       success: New comment posted
       failure: Failed to post new comment
+    index:
+      title: Discussions
+      recently_active: Recently active discussions
+      none_found: There are no discussions with recent comments.
     save_comment:
       success: New comment posted
       failure: Failed to post new comment

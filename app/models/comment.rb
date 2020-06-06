@@ -27,6 +27,12 @@ class Comment < ApplicationRecord
   before_create :set_number
   after_create  :send_notifications
 
+  # Scopes
+
+  scope :visible, -> { where( hidden: false, spam: false ) }
+
+  scope :since, ->( date ) { where( 'posted_at > ?', date ) }
+
   # Instance methods
 
   def comments
