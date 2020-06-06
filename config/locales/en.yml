@@ -74,6 +74,7 @@ en:
     index:
       title: Discussions
       most_active: Most active discussions
+      none_found: There are no recently-active discussions.
     save_comment:
       success: New comment posted
       failure: Failed to post new comment

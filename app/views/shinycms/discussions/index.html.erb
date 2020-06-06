@@ -3,7 +3,7 @@
 <section>
   <header>
     <h2>
-    <%= t( '.most_active' ) %>
+      <%= t( '.most_active' ) %>
     </h2>
   </header>
 
@@ -12,5 +12,11 @@
     <%= link_to discussion.resource.title, discussion.resource.path %>
     (<%= t( 'discussions.n_comments', count: discussion.visible_comment_count ) %>)
   </p>
+  <% end %>
+
+  <% if @most_active.blank? %>
+    <p>
+      <%= t( '.none_found' ) %>
+    </p>
   <% end %>
 </section>
