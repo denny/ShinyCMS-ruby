@@ -7,7 +7,8 @@ class Comment < ApplicationRecord
   belongs_to :user, inverse_of: :comments, optional: true
   alias_attribute :author, :user
 
-  has_many :all_comments, inverse_of: :parent,
+  has_many :all_comments, class_name: 'Comment',
+                          inverse_of: :parent,
                           foreign_key: :parent_id,
                           dependent: :destroy
 
