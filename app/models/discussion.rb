@@ -12,7 +12,19 @@ class Discussion < ApplicationRecord
   # Instance methods
 
   def comments
-    all_comments.where( spam: false )
+    all_comments.where( spam: false ).order( :number )
+  end
+
+  def top_level_comments
+    comments.where( parent: nil )
+  end
+
+  def visible_comments
+    comments.where( hidden: false )
+  end
+
+  def visible_comment_count
+    visible_comments.count
   end
 
   def notifiable?
@@ -23,18 +35,6 @@ class Discussion < ApplicationRecord
     return unless notifiable?
 
     resource.user.email
-  end
-
-  def top_level_comments
-    comments.where( parent: nil ).order( :number )
-  end
-
-  def visible_comments
-    comments.where( hidden: false )
-  end
-
-  def visible_comment_count
-    visible_comments.count
   end
 
   def lock
@@ -56,7 +56,8 @@ class Discussion < ApplicationRecord
   # Class methods
 
   def self.most_active( days: 7, count: 10 )
-    left_joins( :comments )
+    left_joins( :all_comments )
+      .where( 'comments.spam = false AND comments.hidden = false' )
       .where( 'comments.posted_at > ?', days.days.ago )
       .group( :id )
       .order( 'count(comments) desc' )
