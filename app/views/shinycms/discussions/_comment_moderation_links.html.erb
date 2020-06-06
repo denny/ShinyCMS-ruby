@@ -4,15 +4,16 @@ Comment:
   <%= link_to t( 'unhide' ), unhide_comment_path( comment ) %>
 <% else %>
   <%= link_to t( 'hide' ), hide_comment_path( comment ) %>
-<% end %>
-/
-<% if comment.locked? %>
-  <%= link_to t( 'unlock' ), unlock_comment_path( comment ) %>
-<% else %>
-  <%= link_to t( 'lock' ), lock_comment_path( comment.discussion.id, comment.number ) %>
-<% end %>
-/
+  /
+  <% if comment.locked? %>
+    <%= link_to t( 'unlock' ), unlock_comment_path( comment ) %>
+  <% else %>
+    <%= link_to t( 'lock' ), lock_comment_path( comment ) %>
+  <% end %>
+  /
   <%= link_to t( 'discussions.spam' ), spam_comment_path( comment ) %>
+<% end %>
+
 <% if current_user_can?( :delete, :comments ) %>
 /
   <%= link_to t( 'delete' ), delete_comment_path( comment ),

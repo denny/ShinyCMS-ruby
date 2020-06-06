@@ -11,13 +11,17 @@
       </td>
       <td>
         <small>
-            Posted by <%= comment.author_name_any %>
-            at <%= comment.posted_at.to_s( :time ) %>
-            on <%= comment.posted_at.to_s( :shinydate ) %>
-            <% if comment.author_url.present? %> - <%= comment.author_url %><% end %>
+          Posted by <%= comment.author_name_any %>
+          at <%= comment.posted_at.to_s( :time ) %>
+          on <%= comment.posted_at.to_s( :shinydate ) %>
+          <% if comment.author_url.present? %> - <%= comment.author_url %><% end %>
         </small>
-        <% if comment.title.present? %><br><%= comment.title %><% end %>
-        <% if comment.body.present? %><br><%= comment.body %><% end %>
+        <% if comment.title.present? %>
+          <br><%= comment.title %>
+        <% end %>
+        <% if comment.body.present? %>
+          <br><%= truncate( comment.body, length: 450, separator: ' ' ) %>
+        <% end %>
       </td>
     </tr>
     <% end %>

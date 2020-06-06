@@ -55,7 +55,8 @@ en:
     no_comments_to_display: There are no comments to display
     new_comment: Add a new comment
     reply: Reply to this comment
-    hidden_comment: This comment was removed by a moderator.
+    hidden_comment: This comment has been hidden by a moderator.
+    comment_locked: Comment locked
     spam: Spam
     comment_form:
       anonymous: Anonymous

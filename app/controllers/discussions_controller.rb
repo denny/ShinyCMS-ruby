@@ -54,7 +54,7 @@ class DiscussionsController < ApplicationController
   private
 
   def stash_discussion
-    @discussion = Discussion.find( params[ :id ] )
+    @discussion = Discussion.readonly.find( params[ :id ] )
   rescue ActiveRecord::RecordNotFound
     render 'errors/404', status: :not_found
   end
