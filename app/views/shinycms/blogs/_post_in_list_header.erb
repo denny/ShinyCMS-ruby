@@ -2,7 +2,7 @@
     <h2>
       <%= link_to post.title, post.path %>
     </h2>
-    <h3>
+    <h3 class="byline">
       Posted by <%= user_profile_link( post.author ) %>
       at <%= post.posted_at.to_s( :time ) %>
       on <%= post.posted_at.to_s( :shinydate ) %>
