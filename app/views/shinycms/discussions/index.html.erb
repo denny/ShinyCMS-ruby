@@ -1,14 +1,16 @@
 <% @page_title = 'Discussions' %>
 
-<h2>
-  <%= t( '.most_active' ) %>
-</h2>
+<section>
+  <header>
+    <h2>
+    <%= t( '.most_active' ) %>
+    </h2>
+  </header>
 
-<% @most_active.each do |discussion| %>
-  <section>
-    <p>
-      <%= link_to discussion.resource.title, discussion.resource.path %>
-      (<%= t( 'discussions.n_comments', count: discussion.visible_comment_count ) %>)
-    </p>
-  </section>
-<% end %>
+  <% @most_active.each do |discussion| %>
+  <p>
+    <%= link_to discussion.resource.title, discussion.resource.path %>
+    (<%= t( 'discussions.n_comments', count: discussion.visible_comment_count ) %>)
+  </p>
+  <% end %>
+</section>
