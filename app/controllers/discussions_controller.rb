@@ -19,7 +19,10 @@ class DiscussionsController < ApplicationController
   before_action :stash_comment,    except: %i[ index show add_comment ]
 
   def index
-    @active_discussions, @recent_comment_counts = Discussion.readonly.recently_active
+    count = ( params[ :count ] || 10 ).to_i
+    days  = ( params[ :days  ] || 7  ).to_i
+    @active_discussions, @recent_comment_counts =
+      Discussion.readonly.recently_active( days: days, count: count )
   end
 
   def show; end
