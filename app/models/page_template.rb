@@ -46,6 +46,8 @@ class PageTemplate < ApplicationRecord
   # Class methods
 
   def self.template_dir
+    return '' if Theme.current.blank?
+
     Rails.root.join Theme.current.page_templates_path
   end
 
