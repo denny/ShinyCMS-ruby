@@ -15,19 +15,19 @@ class NewsController < ApplicationController
 
   def index
     page_num = params[:page] || 1
-    @posts = NewsPost.recent_posts.page( page_num )
+    @posts = NewsPost.readonly.recent_posts.page( page_num )
   end
 
   def month
-    @posts = NewsPost.posts_for_month( params[:year], params[:month] )
+    @posts = NewsPost.readonly.posts_for_month( params[:year], params[:month] )
   end
 
   def year
-    @posts = NewsPost.posts_for_year( params[:year] )
+    @posts = NewsPost.readonly.posts_for_year( params[:year] )
   end
 
   def show
-    @post = NewsPost.find_post( params[:year], params[:month], params[:slug] )
+    @post = NewsPost.readonly.find_post( params[:year], params[:month], params[:slug] )
     return if @post.present?
 
     @resource_type = 'News post'
