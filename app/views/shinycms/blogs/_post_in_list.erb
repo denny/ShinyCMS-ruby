@@ -5,7 +5,7 @@
 
   <footer>
   <% if post.discussion.present? %>
-    <%= link_to t( 'discussions.n_comments', count: post.discussion.visible_comment_count ),
+    <%= link_to t( 'discussions.n_comments', count: post.discussion.comments.visible.count ),
                 post.path( anchor: 'comments' ) %>
   <% else %>
     <i>Comments have been disabled on this post</i>

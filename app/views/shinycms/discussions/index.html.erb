@@ -18,7 +18,7 @@
         <%= t( 'discussions.n_recent_comments', count: recent_count ) %>
       </td>
       <td>
-        (<%= t( 'discussions.n_total', count: discussion.visible_comment_count ) %>)
+        (<%= t( 'discussions.n_total', count: discussion.comments.visible.count ) %>)
       </td>
       <td>
         <%= discussion.resource.human_name.capitalize %>
