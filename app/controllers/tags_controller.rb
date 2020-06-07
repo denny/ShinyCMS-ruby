@@ -25,19 +25,19 @@ class TagsController < ApplicationController
   end
 
   def cloud
-    @tags = ActsAsTaggableOn::Tag.all
+    @tags = ActsAsTaggableOn::Tag.readonly.all
   end
 
   def list
-    @tags = ActsAsTaggableOn::Tag.all
+    @tags = ActsAsTaggableOn::Tag.readonly.all
   end
 
   def show
     @tag_name = params[ :tag ]
-    @tag = ActsAsTaggableOn::Tag.find_by( name: @tag_name )
+    @tag = ActsAsTaggableOn::Tag.readonly.find_by( name: @tag_name )
     @tagged_items = {}
     taggable_models.each do |resource|
-      @tagged_items[ resource.name ] = resource.tagged_with( @tag_name )
+      @tagged_items[ resource.name ] = resource.readonly.tagged_with( @tag_name )
     end
     @content_types = @tagged_items.keys.sort
   end
@@ -45,6 +45,7 @@ class TagsController < ApplicationController
   private
 
   def taggable_models
+    Rails.application.eager_load! if Rails.env.development?
     ApplicationRecord.descendants.select( &:taggable? )
   end
 

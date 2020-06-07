@@ -57,13 +57,12 @@ class Admin::Blog::PostsController < AdminController
   end
 
   def update_discussion_flags
-    discussion = @post.discussion
-    return true if discussion.blank?
-
     hidden = params[ :blog_post].delete( :discussion_hidden ) || 0
     locked = params[ :blog_post].delete( :discussion_locked ) || 0
 
-    discussion.update( hidden: hidden ) && discussion.update( locked: locked )
+    return true if @post.discussion.blank?
+
+    @post.discussion.update!( hidden: hidden, locked: locked )
   end
 
   def destroy
