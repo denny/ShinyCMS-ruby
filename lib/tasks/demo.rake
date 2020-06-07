@@ -55,6 +55,7 @@ namespace :shiny do
         EmailRecipient MailingList Subscription
         Blog BlogPost NewsPost Discussion Comment InsertElement
         PageTemplate PageTemplateElement PageSection Page PageElement
+        Blazer::Query Blazer::Dashboard Blazer::DashboardQuery
       ]
       # rubocop:enable Layout/MultilineArrayLineBreaks
 

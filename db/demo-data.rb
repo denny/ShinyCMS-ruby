@@ -116,3 +116,17 @@ PageElement.create!([
   {id: 31, page_id: 5, name: "subheading", content: "", content_type: "Short Text"},
   {id: 32, page_id: 5, name: "text_content", content: "", content_type: "Long Text"}
 ])
+
+Blazer::Query.create!([
+  {id: 1, creator_id: 1, name: "New users", description: "", statement: "select date(created_at) as date, count(*) as new_users from users where created_at > ( current_timestamp - interval '7 days' ) group by 1 order by 1;", data_source: "main"},
+  {id: 2, creator_id: 1, name: "Logins", description: "", statement: "select date(created_at) as date, count(*) as logins from sessions where created_at > ( current_timestamp - interval '7 days' ) group by 1 order by 1;", data_source: "main"}
+])
+
+Blazer::Dashboard.create!([
+  {id: 1, creator_id: 1, name: "ShinyStats"}
+])
+
+Blazer::DashboardQuery.create!([
+  {id: 1, dashboard_id: 1, query_id: 1, position: 0},
+  {id: 2, dashboard_id: 1, query_id: 2, position: 1}
+])
