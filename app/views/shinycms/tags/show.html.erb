@@ -13,7 +13,7 @@
     <ul>
       <% @tagged_items[ type ].each do |item| %>
       <li>
-        <% if type == 'BlogPost' %>
+        <% if %w[ BlogPost NewsPost ].include? type %>
         <%= link_to item.title, item.path %>
           posted by <%= user_profile_link( item.author ) %>
           at <%= item.posted_at.to_s( :time ) %>
