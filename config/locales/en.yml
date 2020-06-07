@@ -133,6 +133,8 @@ en:
       title: Tag Cloud
     list:
       title: Tag List
+    show:
+      title: "Tag: '%{tag}'"
 
   user:
     view_profile: View your profile
