@@ -143,6 +143,8 @@ en:
       title: Tag Cloud
     list:
       title: Tag List
+    show:
+      title: "Tag: '%{tag}'"
 
   user:
     view_profile: View your profile
@@ -247,7 +249,8 @@ en:
     stats:
       view_web: View web stats
       view_email: View email stats
-      use_blazer: Make charts (Blazer)
+      view_charts: View charts
+      make_charts: Make charts
 
     users:
       view_admin_notes: View admin notes
@@ -500,7 +503,12 @@ en:
 
     stats:
       title: Stats
-
+    charts:
+      title: Charts
+    checks:
+      title: Checks
+    dashboards:
+      title: Dashboards
     queries:
       title: Queries
 

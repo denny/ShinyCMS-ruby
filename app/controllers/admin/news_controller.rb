@@ -56,13 +56,12 @@ class Admin::NewsController < AdminController
   end
 
   def update_discussion_flags
-    return if @post.discussion.blank?
-
     hidden = params[ :news_post].delete( :discussion_hidden ) || 0
     locked = params[ :news_post].delete( :discussion_locked ) || 0
 
-    @post.discussion.update! hidden: hidden
-    @post.discussion.update! locked: locked
+    return if @post.discussion.blank?
+
+    @post.discussion.update!( hidden: hidden, locked: locked )
   end
 
   def destroy
