@@ -1,12 +1,12 @@
 <% unless @discussion.hidden %>
 
-<% if @discussion.top_level_comments.size > 0 %>
+<% if @discussion.comments.top_level.present? %>
   <%= render partial: 'discussions/top_level',
-             locals: { comments: @discussion.top_level_comments } %>
+             locals: { comments: @discussion.comments.top_level } %>
 <% else %>
   <section>
     <p>
-      <%= t( 'discussions.zero_comments' ) %>
+      <%= t( 'discussions.no_comments_to_display' ) %>
     </p>
   </section>
 <% end %>

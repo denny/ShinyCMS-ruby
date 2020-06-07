@@ -12,7 +12,7 @@ class NewsPost < ApplicationRecord
 
   # TODO: lots of duplication going on here/blog posts/pages; to be concerned
   # Allowed characters for slugs: a-z A-Z 0-9 . _ -
-  SLUG_REGEX = %r{[-_\.a-zA-Z0-9]+}.freeze
+  SLUG_REGEX = %r{[-_.a-zA-Z0-9]+}.freeze
   private_constant :SLUG_REGEX
   ANCHORED_SLUG_REGEX = %r{\A#{SLUG_REGEX}\z}.freeze
   private_constant :ANCHORED_SLUG_REGEX
@@ -70,16 +70,16 @@ class NewsPost < ApplicationRecord
   def self.posts_for_year( year )
     start_date = Date.new( year.to_i, 1, 1 )
     end_date = start_date + 1.year
-    where( posted_at: start_date..end_date ).order( :posted_at )
+    where( posted_at: start_date..end_date ).order( :posted_at ).readonly
   end
 
   def self.posts_for_month( year, month )
     start_date = Date.new( year.to_i, month.to_i, 1 )
     end_date = start_date + 1.month
-    where( posted_at: start_date..end_date ).order( :posted_at )
+    where( posted_at: start_date..end_date ).order( :posted_at ).readonly
   end
 
   def self.recent_posts( page_num = 1 )
-    where( hidden: false ).order( posted_at: :desc ).page( page_num )
+    where( hidden: false ).order( posted_at: :desc ).readonly.page( page_num )
   end
 end

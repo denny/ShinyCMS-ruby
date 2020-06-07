@@ -7,9 +7,10 @@ class Comment < ApplicationRecord
   belongs_to :user, inverse_of: :comments, optional: true
   alias_attribute :author, :user
 
-  has_many :comments, -> { where( spam: false ) }, inverse_of: :parent,
-                                                   foreign_key: :parent_id,
-                                                   dependent: :destroy
+  has_many :comments, -> { where( spam: false ) },
+           inverse_of: :parent,
+           foreign_key: :parent_id,
+           dependent: :destroy
 
   validates :discussion_id, presence: true
   validates :author_type, presence: true
@@ -26,10 +27,17 @@ class Comment < ApplicationRecord
   before_create :set_number
   after_create  :send_notifications
 
+  # Scopes
+
+  scope :top_level, -> { where( parent: nil   ).order( :number ) }
+  scope :visible,   -> { where( hidden: false ) }
+
+  scope :since, ->( date ) { where( 'posted_at > ?', date ) }
+
   # Instance methods
 
   def set_number
-    self.number = ( discussion.comments.maximum( :number ) || 0 ) + 1
+    self.number = ( discussion.all_comments.maximum( :number ) || 0 ) + 1
   end
 
   # Returns the path to a comment's parent resource, anchored to the comment
