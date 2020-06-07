@@ -152,16 +152,30 @@ nav .sm li li a:hover {
   color:                #aaeeff;
   text-decoration:      none;
 }
+
 .banner p a:visited {
   color:                #99ddff;
 }
+
 .banner .button-large a {
   color:                #ffffff;
   text-decoration:      none;
 }
 
+.banner-image {
+    width:              580px;
+}
+
 
 /* ===== ( sidebars ) ===== */
+
+.sidebar section {
+  padding:              1.5em !important;
+}
+
+.sidebar header, p {
+  margin-bottom:        1em !important;
+}
 
 .sidebar li {
   border-bottom:        solid 1px #e2e6e8;
@@ -179,7 +193,7 @@ nav .sm li li a:hover {
 }
 
 
-/* ========== ( blog posts ) ========== */
+/* ========== ( clickable headings ) ========== */
 
 .content header a,
 .sidebar a {
@@ -193,18 +207,52 @@ nav .sm li li a:hover {
 }
 
 
+/* ========== ( blog & news posts ) ========== */
+
+.post {
+  padding:              2em 1.5em 0.5em 1.5em !important;
+}
+
+.post header {
+  margin-bottom:       1em !important;
+}
+
+.post footer {
+  padding-top:          1em !important;
+}
+
+.byline {
+  font-size:            0.9em !important;
+}
+
+
 /* ========== ( comments ) ========== */
 
-.comment h2 {
-  font-size:            1.2em;
+.comment {
+  padding:              2em 1.5em 0.5em 1.5em !important;
 }
 
-.comment h3 {
-  font-size:            0.8em;
+.comment header {
+  margin-bottom:       1em !important;
 }
+
+.comment footer {
+  padding-top:          0.5em !important;
+}
+
+.comment h2 {
+  font-size:            1.3em !important;
+}
+
+.locked {
+  color:    #888888;
+}
+
+
+/* ========== ( comment form ) ========== */
 
 .comment_form {
-  font-size:            0.9em;
+  font-size:            0.9em !important;
 }
 
 .comment_form p {

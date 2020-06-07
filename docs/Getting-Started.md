@@ -8,8 +8,8 @@
 `bundle install`  
 `yarn install`  
 `rails db:setup`  
-`tools/insert-demo-site-data` # if you want the demo data loaded  
-`rails shiny:admin:create`    # if you didn't load the demo data  
+`rails shiny:demo:load`    # if you want the demo data loaded  
+`rails shiny:admin:create` # if you didn't load the demo data  
 `rails s`
 
 You should now have a ShinyCMS site at http://localhost:3000,

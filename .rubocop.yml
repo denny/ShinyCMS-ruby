@@ -48,6 +48,8 @@ Style/IpAddresses:
 # Whitespace Considered Helpful
 Layout/ExtraSpacing:
   Enabled: false
+Layout/SpaceAroundBlockParameters:
+  Enabled: false
 Layout/SpaceInsideArrayLiteralBrackets:
   Enabled: false
 Layout/SpaceInsideBlockBraces:

@@ -19,8 +19,10 @@ class DiscussionsController < ApplicationController
   before_action :stash_comment,    except: %i[ index show add_comment ]
 
   def index
-    # TODO: list of recently-active discussions etc
-    redirect_to root_path
+    count = ( params[ :count ] || 10 ).to_i
+    days  = ( params[ :days  ] || 7  ).to_i
+    @active_discussions, @recent_comment_counts =
+      Discussion.readonly.recently_active( days: days, count: count )
   end
 
   def show; end
@@ -55,7 +57,7 @@ class DiscussionsController < ApplicationController
   private
 
   def stash_discussion
-    @discussion = Discussion.find( params[ :id ] )
+    @discussion = Discussion.readonly.find( params[ :id ] )
   rescue ActiveRecord::RecordNotFound
     render 'errors/404', status: :not_found
   end
