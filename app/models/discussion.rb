@@ -9,23 +9,12 @@ class Discussion < ApplicationRecord
                           inverse_of: :discussion,
                           dependent: :destroy
 
+  has_many :comments, -> { where( spam: false ) },
+           foreign_key: :discussion_id,
+           inverse_of: :discussion,
+           dependent: :destroy
+
   # Instance methods
-
-  def comments
-    all_comments.where( spam: false ).order( :number )
-  end
-
-  def top_level_comments
-    comments.where( parent: nil )
-  end
-
-  def visible_comments
-    comments.where( hidden: false )
-  end
-
-  def visible_comment_count
-    visible_comments.count
-  end
 
   def notifiable?
     resource&.user&.email.present?

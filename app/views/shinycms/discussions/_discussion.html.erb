@@ -4,9 +4,9 @@
   <%= t( 'discussions.comments' ) %>
 </h3>
 
-<% if resource.discussion.top_level_comments.present? %>
+<% if resource.discussion.comments.top_level.present? %>
   <%= render partial: 'discussions/top_level',
-             locals: { comments: resource.discussion.top_level_comments } %>
+             locals: { comments: resource.discussion.comments.top_level } %>
 <% else %>
   <section>
     <p>

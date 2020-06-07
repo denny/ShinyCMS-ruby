@@ -1,8 +1,8 @@
 <% unless @discussion.hidden %>
 
-<% if @discussion.top_level_comments.present? %>
+<% if @discussion.comments.top_level.present? %>
   <%= render partial: 'discussions/top_level',
-             locals: { comments: @discussion.top_level_comments } %>
+             locals: { comments: @discussion.comments.top_level } %>
 <% else %>
   <section>
     <p>
