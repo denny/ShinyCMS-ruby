@@ -45,6 +45,7 @@ class TagsController < ApplicationController
   private
 
   def taggable_models
+    Rails.application.eager_load! if Rails.env.development?
     ApplicationRecord.descendants.select( &:taggable? )
   end
 
