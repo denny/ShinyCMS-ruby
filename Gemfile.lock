@@ -71,7 +71,7 @@ GEM
       addressable (>= 2.3.2)
       nokogiri
       safely_block (>= 0.1.1)
-    ahoy_matey (3.0.3)
+    ahoy_matey (3.0.4)
       activesupport (>= 5)
       device_detector
       geocoder (>= 1.4.5)
@@ -170,7 +170,7 @@ GEM
     groupdate (5.0.0)
       activesupport (>= 5)
     highline (2.0.3)
-    i18n (1.8.2)
+    i18n (1.8.3)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.31)
       activesupport (>= 4.0.2)
