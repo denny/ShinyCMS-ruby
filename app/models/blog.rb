@@ -5,11 +5,9 @@ class Blog < ApplicationRecord
   belongs_to :user, inverse_of: :blogs
   alias_attribute :owner, :user
 
-  has_many :all_posts,
-           class_name: 'BlogPost',
-           foreign_key: 'blog_id',
-           inverse_of: 'blog',
-           dependent: :restrict_with_error
+  has_many :all_posts, class_name: 'BlogPost',
+                       inverse_of: 'blog',
+                       dependent: :restrict_with_error
 
   # Allowed characters for slugs: a-z A-Z 0-9 . _ -
   SLUG_REGEX = %r{[-_.a-zA-Z0-9]+}.freeze
