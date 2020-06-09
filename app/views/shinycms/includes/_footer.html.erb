@@ -1,19 +1,19 @@
 <p>
-	<% if user_signed_in? %>
-	Welcome back <%= user_profile_link %>! &nbsp;
-	[ <%= link_to t( 'user.edit_profile' ), edit_user_registration_path %>
+  <% if user_signed_in? %>
+  Welcome back <%= user_profile_link %>! &nbsp;
+  [ <%= link_to t( 'user.edit_profile' ), edit_user_registration_path %>
   | <%= link_to t( 'site_settings.index.title' ), site_settings_path %>
   | <%= link_to t( 'user.log_out' ), destroy_user_session_path, data: {}, method: :delete %>
-	]
-	<% else %>
-	<%= link_to t( 'user.log_in'   ), new_user_session_path %> /
-	<%= link_to t( 'user.register' ), new_user_registration_path %>
-	<% end %>
+  ]
+  <% else %>
+  <%= link_to t( 'user.log_in'   ), new_user_session_path %> /
+  <%= link_to t( 'user.register' ), new_user_registration_path %>
+  <% end %>
 </p>
 <p>
-	This website is powered by <a href="https://shinycms.org/">ShinyCMS</a>
+  This website is powered by <a href="https://shinycms.org/">ShinyCMS</a>
   (<a href="https://shinycms.org/ruby">Ruby version</a>).
-	ShinyCMS is <a href="http://www.opensource.org/">open source software</a>,
+  ShinyCMS is <a href="http://www.opensource.org/">open source software</a>,
   &copy; 2009-2020 <a href="https://denny.me/">Denny de la Haye</a>. You can
-	<a href="https://github.com/denny/ShinyCMS-ruby">download it from GitHub</a>.
+  <a href="https://github.com/denny/ShinyCMS-ruby">download it from GitHub</a>.
 </p>

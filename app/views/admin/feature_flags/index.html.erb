@@ -13,10 +13,10 @@
     </tr>
   </thead>
   <% @flags.each do |flag| %>
-	<tr>
-		<td>
+  <tr>
+    <td>
       <%= t( "feature_flags.#{flag.name}" ) %>
-		</td>
+    </td>
     <td>
       <label><%= f.check_box "features[flags][#{flag.id}][enabled]", checked: flag.enabled? %> <%= t( '.everybody' ) %></label>
     </td>
@@ -26,7 +26,7 @@
     <td>
       <label><%= f.check_box "features[flags][#{flag.id}][enabled_for_admins]", checked: flag.enabled_for_admins? %> <%= t( '.admins' ) %></label>
     </td>
-	</tr>
+  </tr>
   <% end %>
 </table>
 <p class="top-margin">
