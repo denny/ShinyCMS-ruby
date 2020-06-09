@@ -8,7 +8,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag   %>
 
-    <%= favicon_link_tag %>
+    <%= favicon_link_tag asset_path( 'shinycms/favicon.ico' ) %>
 
     <% if controller.kind_of? Blazer::BaseController %>
     <%# TODO: use Shadow DOM to get rid of styling collisions? %>

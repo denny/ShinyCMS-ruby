@@ -10,9 +10,9 @@
     <%= @page_title %><%= ' - ' if @page_title.present? %><%= @site_name %>
   </title>
 
-  <%= favicon_link_tag %>
+  <%= favicon_link_tag asset_path( 'shinycms/favicon.ico' ) %>
 
   <%= stylesheet_link_tag 'halcyonic'  %>
   <%= stylesheet_link_tag 'smartmenus' %>
-  <%= stylesheet_link_tag 'shinycms/admin_toolbar' %>
+  <%= stylesheet_link_tag 'shinycms/admin_toolbar' if current_user_can? :view_admin_toolbar %>
 </head>
