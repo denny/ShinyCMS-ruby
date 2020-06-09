@@ -1,32 +1,32 @@
-			<section>
-				<header>
-					<h2>
-						<%= t( '.recent_posts' ) %>
-					</h2>
-				</header>
-				<% sidebar_posts = @blog.recent_posts.per( 5 ) %>
-				<ul>
-					<% sidebar_posts.each do |sidebar_post| %>
-			    <li>
-			      <%= link_to sidebar_post.title, sidebar_post.path %>
-			    </li>
-			    <% end %>
-				</ul>
-			</section>
+      <section>
+        <header>
+          <h2>
+            <%= t( '.recent_posts' ) %>
+          </h2>
+        </header>
+        <% sidebar_posts = @blog.recent_posts.per( 5 ) %>
+        <ul>
+          <% sidebar_posts.each do |sidebar_post| %>
+          <li>
+            <%= link_to sidebar_post.title, sidebar_post.path %>
+          </li>
+          <% end %>
+        </ul>
+      </section>
 
-			<section>
-				<header>
-					<h2>
-						<%= t( '.links' ) %>
-					</h2>
-				</header>
-				<p>
-					<%= t( '.links_blurb' ) %>
-				</p>
-				<ul>
-					<li><a href="#">Another list</a></li>
-					<li><a href="#">Of links</a></li>
-					<li><a href="#">To friends and</a></li>
-					<li><a href="#">Affiliated sites</a></li>
-				</ul>
-			</section>
+      <section>
+        <header>
+          <h2>
+            <%= t( '.links' ) %>
+          </h2>
+        </header>
+        <p>
+          <%= t( '.links_blurb' ) %>
+        </p>
+        <ul>
+          <li><a href="#">Another list</a></li>
+          <li><a href="#">Of links</a></li>
+          <li><a href="#">To friends and</a></li>
+          <li><a href="#">Affiliated sites</a></li>
+        </ul>
+      </section>

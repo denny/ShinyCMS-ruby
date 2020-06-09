@@ -13,17 +13,17 @@
     </tr>
   </thead>
   <% @templates.each do |template| %>
-	<tr class="showfocus">
-		<td>
-			<%= template.name %>
-		</td>
-		<td class="actions">
-			<%= link_to t( 'edit' ), edit_page_template_path( template ) %>
+  <tr class="showfocus">
+    <td>
+      <%= template.name %>
+    </td>
+    <td class="actions">
+      <%= link_to t( 'edit' ), edit_page_template_path( template ) %>
       <%= link_to t( 'delete' ), page_template_path( template ),
           method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
-		</td>
-	</tr>
-	<% end %>
+    </td>
+  </tr>
+  <% end %>
 </table>
 
 <%= paginate @templates, window: 3, views_prefix: 'admin' %>
