@@ -2,6 +2,8 @@
 
 # Model class for blog posts
 class BlogPost < ApplicationRecord
+  include Teaser
+
   belongs_to :blog
   belongs_to :user, inverse_of: :blog_posts
   alias_attribute :author, :user
