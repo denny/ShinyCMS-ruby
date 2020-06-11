@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# Slugs that only have to be unique within a section (e.g. page.slug)
+# Extra validator for slugs that only need to be unique within a section
+# e.g. page.slug / page_section.slug / shop_item.slug / etc
 module SlugInSection
   extend ActiveSupport::Concern
   include Slug
@@ -8,7 +9,6 @@ module SlugInSection
   included do
     validates :slug, uniqueness: {
       scope: :section,
-      case_sensitive: false,
       message: I18n.t( 'errors.messages.slug_in_section' )
     }
   end
