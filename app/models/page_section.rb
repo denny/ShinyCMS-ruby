@@ -2,9 +2,11 @@
 
 # Model for page sections
 class PageSection < ApplicationRecord
-  include NameTitleSlug
+  include NameAndTitle
+  include SlugInSection
 
-  validates :hidden, inclusion:  { in: [ true, false ] }
+  validates :slug, unique_at_top_level: true, if: -> { section.blank? }
+  validates :hidden, inclusion: { in: [ true, false ] }
 
   default_scope { order( :sort_order ) }
 

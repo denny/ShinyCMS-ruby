@@ -2,10 +2,12 @@
 
 # Model class for blog posts
 class BlogPost < ApplicationRecord
+  include Slug
   include Teaser
 
   belongs_to :blog
   belongs_to :user, inverse_of: :blog_posts
+
   alias_attribute :author, :user
 
   has_one :discussion, as: :resource, dependent: :destroy
@@ -13,20 +15,11 @@ class BlogPost < ApplicationRecord
   delegate :hidden, to: :discussion, allow_nil: true, prefix: true
   delegate :locked, to: :discussion, allow_nil: true, prefix: true
 
-  # Allowed characters for slugs: a-z A-Z 0-9 . _ -
-  SLUG_REGEX = %r{[-_.a-zA-Z0-9]+}.freeze
-  private_constant :SLUG_REGEX
-  ANCHORED_SLUG_REGEX = %r{\A#{SLUG_REGEX}\z}.freeze
-  private_constant :ANCHORED_SLUG_REGEX
-
   validates :blog_id, presence: true
   validates :user_id, presence: true
   validates :title,   presence: true
-  validates :slug,    presence: true
-  validates :slug,    format:   ANCHORED_SLUG_REGEX
   validates :body,    presence: true
-
-  before_validation :generate_slug, if: -> { slug.blank? && title.present? }
+  # validates :slug,    unique_in_month: true
 
   # Configure default count-per-page for pagination
   paginates_per 20
@@ -35,10 +28,6 @@ class BlogPost < ApplicationRecord
   acts_as_taggable
 
   # Instance methods
-
-  def generate_slug
-    self.slug = title.parameterize
-  end
 
   def path( anchor: nil )
     if Blog.multiple_blogs_mode?
@@ -60,6 +49,12 @@ class BlogPost < ApplicationRecord
 
   def posted_year
     posted_at.strftime( '%Y' )
+  end
+
+  def posts_this_month
+    start_date = posted_at.beginning_of_month
+    end_date = start_date + 1.month
+    self.class.readonly.where( posted_at: start_date..end_date )
   end
 
   def teaser( paragraphs: 3 )

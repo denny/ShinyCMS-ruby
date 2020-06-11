@@ -2,10 +2,12 @@
 
 # Model for 'brochure' pages
 class Page < ApplicationRecord
-  include NameTitleSlug
+  include NameAndTitle
+  include SlugInSection
 
-  validates :template_id, presence:   true
-  validates :hidden,      inclusion:  { in: [ true, false ] }
+  validates :template_id, presence: true
+  validates :slug, unique_at_top_level: true, if: -> { section.blank? }
+  validates :hidden, inclusion: { in: [ true, false ] }
 
   belongs_to :section,  class_name: 'PageSection', inverse_of: 'all_pages',
                         optional: true
