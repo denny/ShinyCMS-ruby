@@ -19,7 +19,9 @@ class NewsPost < ApplicationRecord
   validates :user_id, presence: true
   validates :title,   presence: true
   validates :body,    presence: true
-  # validates :slug,    unique_in_month: true
+  validates :slug,    unique_in_collection: {
+    collection: ->( record ) { record.posts_this_month }
+  }
 
   # Configure default count-per-page for pagination
   paginates_per 20
