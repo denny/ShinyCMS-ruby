@@ -6,7 +6,7 @@ class Page < ApplicationRecord
   include SlugInSection
 
   validates :template_id, presence: true
-  validates :slug, unique_at_top_level: true, if: -> { section.blank? }
+  validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
   validates :hidden, inclusion: { in: [ true, false ] }
 
   belongs_to :section,  class_name: 'PageSection', inverse_of: 'all_pages',

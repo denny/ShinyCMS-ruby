@@ -5,7 +5,7 @@ class PageSection < ApplicationRecord
   include NameAndTitle
   include SlugInSection
 
-  validates :slug, unique_at_top_level: true, if: -> { section.blank? }
+  validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
   validates :hidden, inclusion: { in: [ true, false ] }
 
   default_scope { order( :sort_order ) }
