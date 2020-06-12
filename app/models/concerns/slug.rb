@@ -13,12 +13,14 @@ module Slug
 
     before_validation :generate_slug, if: -> { slug.blank? }
 
+    # rubocop:disable Style/RedundantSelf
     def generate_slug
-      if title.present?
+      if self.respond_to?( :title ) && title.present?
         self.slug = title.parameterize
-      elsif name.present?
+      elsif self.respond_to?( :name ) && name.present?
         self.slug = name.parameterize
       end
     end
+    # rubocop:enable Style/RedundantSelf
   end
 end
