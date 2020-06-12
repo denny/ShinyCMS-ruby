@@ -200,7 +200,7 @@ RSpec.describe 'User accounts', type: :request do
 
       create :top_level_page
 
-      username = Faker::Science.unique.element.downcase
+      username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
@@ -229,7 +229,7 @@ RSpec.describe 'User accounts', type: :request do
 
       create :top_level_page
 
-      username = Faker::Science.unique.element.downcase
+      username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
@@ -258,7 +258,7 @@ RSpec.describe 'User accounts', type: :request do
 
       create :top_level_page
 
-      username = Faker::Science.unique.element.downcase
+      username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
