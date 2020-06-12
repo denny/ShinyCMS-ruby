@@ -2,9 +2,11 @@
 
 # Model class for news posts
 class NewsPost < ApplicationRecord
+  include SlugInMonth
   include Teaser
 
   belongs_to :user, inverse_of: :news_posts
+
   alias_attribute :author, :user
 
   has_one :discussion, as: :resource, dependent: :destroy
@@ -12,20 +14,11 @@ class NewsPost < ApplicationRecord
   delegate :hidden, to: :discussion, allow_nil: true, prefix: true
   delegate :locked, to: :discussion, allow_nil: true, prefix: true
 
-  # TODO: lots of duplication going on here/blog posts/pages; to be concerned
-  # Allowed characters for slugs: a-z A-Z 0-9 . _ -
-  SLUG_REGEX = %r{[-_.a-zA-Z0-9]+}.freeze
-  private_constant :SLUG_REGEX
-  ANCHORED_SLUG_REGEX = %r{\A#{SLUG_REGEX}\z}.freeze
-  private_constant :ANCHORED_SLUG_REGEX
+  before_validation :set_posted_at, if: -> { posted_at.blank? }
 
   validates :user_id, presence: true
   validates :title,   presence: true
-  validates :slug,    presence: true
-  validates :slug,    format:   ANCHORED_SLUG_REGEX
   validates :body,    presence: true
-
-  before_validation :generate_slug, if: -> { slug.blank? && title.present? }
 
   # Configure default count-per-page for pagination
   paginates_per 20
@@ -35,14 +28,14 @@ class NewsPost < ApplicationRecord
 
   # Instance methods
 
-  def generate_slug
-    self.slug = title.parameterize
-  end
-
   def path( anchor: nil )
     url_helpers.view_news_post_path(
       posted_year, posted_month, slug, anchor: anchor
     )
+  end
+
+  def set_posted_at
+    self.posted_at = Time.zone.now if posted_at.blank?
   end
 
   def posted_month
@@ -51,6 +44,12 @@ class NewsPost < ApplicationRecord
 
   def posted_year
     posted_at.strftime( '%Y' )
+  end
+
+  def posts_this_month
+    start_date = posted_at.beginning_of_month
+    end_date = start_date + 1.month
+    self.class.readonly.where( posted_at: start_date..end_date )
   end
 
   # Class methods
