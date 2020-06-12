@@ -42,7 +42,7 @@ RSpec.describe 'Admin::Blogs', type: :request do
       post create_blog_path, params: {
         blog: {
           user_id: @admin.id,
-          name: Faker::Science.unique.scientist
+          name: Faker::Books::CultureSeries.unique.culture_ship
         }
       }
 
@@ -89,7 +89,7 @@ RSpec.describe 'Admin::Blogs', type: :request do
       put blog_path( blog ), params: {
         blog: {
           user_id: @admin.id,
-          name: Faker::Science.unique.scientist
+          name: Faker::Books::CultureSeries.unique.culture_ship
         }
       }
 
