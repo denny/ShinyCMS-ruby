@@ -41,6 +41,24 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.blog.posts.create.failure' )
     end
 
+    it "fails to create a new blog post when the slug isn't unique this month" do
+      item = create :blog_post
+
+      post create_blog_post_path( @blog ), params: {
+        blog_post: {
+          user_id: @admin.id,
+          title: Faker::Science.unique.scientist,
+          body: Faker::Lorem.paragraph,
+          posted_at: item.posted_at.beginning_of_month,
+          slug: item.slug
+        }
+      }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.blog.posts.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.blog.posts.create.failure' )
+    end
+
     it 'creates a new blog post when a complete form is submitted' do
       post create_blog_post_path( @blog ), params: {
         blog_post: {

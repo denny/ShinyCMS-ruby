@@ -15,11 +15,9 @@ module Slug
 
     # rubocop:disable Style/RedundantSelf
     def generate_slug
-      if self.respond_to?( :title ) && title.present?
-        self.slug = title.parameterize
-      elsif self.respond_to?( :name ) && name.present?
-        self.slug = name.parameterize
-      end
+      return unless self.respond_to?( :title ) && title.present?
+
+      self.slug = title.parameterize
     end
     # rubocop:enable Style/RedundantSelf
   end
