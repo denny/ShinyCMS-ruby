@@ -6,7 +6,7 @@ class SafeTopLevelSlugValidator < ActiveModel::Validator
   def validate( record )
     return if record.section.present?
 
-    record.errors.add( :slug, :top_level_slug ) if unsafe?( record.slug )
+    record.errors.add( :slug, :slug_not_safe_at_top_level ) if unsafe?( record.slug )
   end
 
   private
