@@ -103,7 +103,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
   describe 'POST /discussion/1' do
     it 'adds a new top-level comment to the discussion' do
-      title = Faker::Science.scientist
+      title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
 
       post discussion_path( @discussion ), params: {
@@ -123,7 +123,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       user = create :user
       sign_in user
 
-      title = Faker::Science.scientist
+      title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
 
       post discussion_path( @discussion ), params: {
@@ -145,7 +145,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       user = create :user
       sign_in user
 
-      title = Faker::Science.scientist
+      title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
 
       post discussion_path( @discussion ), params: {
@@ -210,7 +210,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
       FeatureFlag.enable :recaptcha_on_comment_form
 
-      title = Faker::Science.scientist
+      title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
 
       post discussion_path( @discussion ), params: {
@@ -232,7 +232,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       FeatureFlag.enable :akismet_on_comments
 
       always_fail_author_name = 'viagra-test-123'
-      title = Faker::Science.scientist
+      title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
 
       post discussion_path( @discussion ), params: {
@@ -261,7 +261,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       FeatureFlag.enable :akismet_on_comments
       allow_any_instance_of( Akismet::Client ).to receive( :check ).and_return( [ true, true ] )
 
-      title = Faker::Science.scientist
+      title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
 
       comment_count = Comment.count
@@ -285,7 +285,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
   describe 'POST /discussion/1/1' do
     it 'adds a new comment as a reply to an existing comment' do
-      title = Faker::Science.scientist
+      title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
 
       post comment_path( @discussion, @comment.number ), params: {
