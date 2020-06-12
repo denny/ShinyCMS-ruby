@@ -168,9 +168,9 @@ RSpec.describe 'Discussions/Comments', type: :request do
       user = create :user
       sign_in user
 
-      title = Faker::Science.unique.scientist
+      title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
-      name  = Faker::Science.unique.scientist
+      name  = Faker::Books::CultureSeries.unique.culture_ship
 
       post discussion_path( @discussion ), params: {
         comment: {

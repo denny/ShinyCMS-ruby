@@ -30,7 +30,7 @@ RSpec.describe 'Admin::News', type: :request do
       post create_news_post_path, params: {
         news_post: {
           user_id: @admin.id,
-          title: Faker::Science.unique.scientist,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph
         }
       }
@@ -49,7 +49,7 @@ RSpec.describe 'Admin::News', type: :request do
       post create_news_post_path, params: {
         news_post: {
           user_id: @admin.id,
-          title: Faker::Science.unique.scientist,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
           body: nil
         }
       }
@@ -65,7 +65,7 @@ RSpec.describe 'Admin::News', type: :request do
       post create_news_post_path, params: {
         news_post: {
           user_id: @admin.id,
-          title: Faker::Science.unique.scientist,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
           posted_at: post1.posted_at.beginning_of_month,
           slug: post1.slug
@@ -83,7 +83,7 @@ RSpec.describe 'Admin::News', type: :request do
       post create_news_post_path, params: {
         news_post: {
           user_id: @admin.id,
-          title: Faker::Science.unique.scientist,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
           posted_at: post1.posted_at - 1.month,
           slug: post1.slug
@@ -118,7 +118,7 @@ RSpec.describe 'Admin::News', type: :request do
       put news_post_path( post ), params: {
         news_post: {
           user_id: @admin.id,
-          title: Faker::Science.unique.scientist,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
           body: nil
         }
       }
@@ -134,7 +134,7 @@ RSpec.describe 'Admin::News', type: :request do
       put news_post_path( post ), params: {
         news_post: {
           user_id: @admin.id,
-          title: Faker::Science.unique.scientist,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph
         }
       }
@@ -156,7 +156,7 @@ RSpec.describe 'Admin::News', type: :request do
       put news_post_path( post ), params: {
         news_post: {
           user_id: @admin.id,
-          title: Faker::Science.unique.scientist,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
           discussion_hidden: true,
           discussion_locked: true

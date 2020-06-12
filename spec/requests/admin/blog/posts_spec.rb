@@ -31,7 +31,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       post create_blog_post_path( @blog ), params: {
         blog_post: {
           user_id: @admin.id,
-          title: Faker::Science.unique.scientist,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
           body: nil
         }
       }
@@ -47,7 +47,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       post create_blog_post_path( @blog ), params: {
         blog_post: {
           user_id: @admin.id,
-          title: Faker::Science.unique.scientist,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
           posted_at: item.posted_at.beginning_of_month,
           slug: item.slug
@@ -63,7 +63,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       post create_blog_post_path( @blog ), params: {
         blog_post: {
           user_id: @admin.id,
-          title: Faker::Science.unique.scientist,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph
         }
       }
@@ -96,7 +96,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       put blog_post_path( @blog, post ), params: {
         blog_post: {
           user_id: @admin.id,
-          title: Faker::Science.unique.scientist,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
           body: nil
         }
       }
@@ -112,7 +112,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       put blog_post_path( @blog, post ), params: {
         blog_post: {
           user_id: @admin.id,
-          title: Faker::Science.unique.scientist,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph
         }
       }
@@ -134,7 +134,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       put blog_post_path( @blog, post ), params: {
         blog_post: {
           user_id: @admin.id,
-          title: Faker::Science.unique.scientist,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
           discussion_hidden: true,
           discussion_locked: true
