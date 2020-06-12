@@ -326,7 +326,7 @@ RSpec.describe 'User accounts', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.notices', text: I18n.t( 'devise.registrations.updated' )
-      expect( response.body ).to include new_name
+      expect( response.body ).to have_css 'a', text: new_name
     end
   end
 end
