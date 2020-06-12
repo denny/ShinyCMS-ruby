@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-# Slugs that only have to be unique within a month (e.g. blog_post, news_post)
+# Validator for slugs that only need to be unique within the month they are posted
+# e.g. blog_post.slug / news_post.slug / etc
 module SlugInMonth
   extend ActiveSupport::Concern
   include Slug
 
   included do
-    validates :slug, uniqueness: {
-      conditions: -> { where( posted_at: :posted_at ) },
-      case_sensitive: false,
-      message: I18n.t( 'errors.messages.slug_in_month' )
+    validates :slug, unique_in_collection: {
+      collection: ->( record ) { record.posts_this_month },
+      message: I18n.t( 'errors.messages.slug_not_unique_in_month' )
     }
   end
 end
