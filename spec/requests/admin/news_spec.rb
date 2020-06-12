@@ -26,6 +26,25 @@ RSpec.describe 'Admin::News', type: :request do
   end
 
   describe 'POST /admin/news' do
+    it 'creates a new news post when a complete form is submitted' do
+      post create_news_post_path, params: {
+        news_post: {
+          user_id: @admin.id,
+          title: Faker::Science.unique.scientist,
+          body: Faker::Lorem.paragraph
+        }
+      }
+
+      post1 = NewsPost.last
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to edit_news_post_path( post1 )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.news.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.news.create.success' )
+    end
+
     it 'fails to create a new news post when an incomplete form is submitted' do
       post create_news_post_path, params: {
         news_post: {
@@ -40,19 +59,41 @@ RSpec.describe 'Admin::News', type: :request do
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.news.create.failure' )
     end
 
-    it 'creates a new news post when a complete form is submitted' do
+    it "fails to create a new news post when the slug isn't unique this month" do
+      post1 = create :news_post
+
       post create_news_post_path, params: {
         news_post: {
           user_id: @admin.id,
           title: Faker::Science.unique.scientist,
-          body: Faker::Lorem.paragraph
+          body: Faker::Lorem.paragraph,
+          posted_at: post1.posted_at.beginning_of_month,
+          slug: post1.slug
         }
       }
 
-      post = NewsPost.last
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.news.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.news.create.failure' )
+    end
+
+    it "doesn't fail when the slug is unique this month but not globally" do
+      post1 = create :news_post
+
+      post create_news_post_path, params: {
+        news_post: {
+          user_id: @admin.id,
+          title: Faker::Science.unique.scientist,
+          body: Faker::Lorem.paragraph,
+          posted_at: post1.posted_at - 1.month,
+          slug: post1.slug
+        }
+      }
+
+      post2 = NewsPost.last
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to edit_news_post_path( post )
+      expect( response      ).to redirect_to edit_news_post_path( post2 )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.news.edit.title' ).titlecase
