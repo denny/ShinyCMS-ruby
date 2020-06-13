@@ -129,7 +129,7 @@ Rails.application.routes.draw do
       get    'inserts',    to: 'inserts#index'
       put    'inserts',    to: 'inserts#update'
       post   'insert',     to: 'inserts#create',  as: :create_insert
-      delete 'insert/:id', to: 'inserts#destroy', as: :insert
+      delete 'insert/:id', to: 'inserts#destroy', as: :destroy_insert
 
       # Pages
       get  :pages, to: 'pages#index'
