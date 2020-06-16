@@ -19,9 +19,9 @@ RSpec.describe Discussion, type: :model do
         @active_this_week = create :news_post
         @active_last_week = create :news_post
 
-        create :discussion, comment_count: rand(5), resource: @less_active_post
-        create :discussion, comment_count: 5, resource: @active_this_week
-        create :discussion, comment_count: 6, comments_posted_at: 8.days.ago, resource: @active_last_week
+        create :discussion, resource: @less_active_post, comment_count: rand(5)
+        create :discussion, resource: @active_this_week, comment_count: 5
+        create :discussion, resource: @active_last_week, comment_count: 6, comments_posted_at: 8.days.ago
       end
 
       describe 'without params' do
