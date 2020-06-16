@@ -14,7 +14,7 @@ RSpec.describe Discussion, type: :model do
 
   context 'methods' do
     context '.recently_active' do
-      before :all do
+      before :each do
         @less_active_post = create :news_post
         @active_this_week = create :news_post
         @active_last_week = create :news_post
