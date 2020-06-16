@@ -1,36 +1,28 @@
 # frozen_string_literal: true
 
 # Validator for attributes that only need to be unique within a collection
-# e.g. page.slug within its section, blog_post.slug within the month of posting
+# e.g. blog_post.slug within the month of posting
 class UniqueInCollectionValidator < ActiveRecord::Validations::UniquenessValidator
   def validate_each( record, attribute, value )
-    @record = record
-    @attribute = attribute
-
-    @existing_error_count = error_count
-
+    existing_error_count = record.errors[ attribute ].size
     super
-    return if globally_unique?
+    updated_error_count = record.errors[ attribute ].size
 
-    remove_irrelevant_errors if unique_in_collection?( value )
+    uniqueness_error_count = updated_error_count - existing_error_count
+    return if uniqueness_error_count.zero? # globally unique
+
+    return unless unique_in_collection?( record, attribute, value )
+
+    remove_irrelevant_errors( record, attribute, uniqueness_error_count )
   end
 
   private
 
-  def error_count
-    @record.errors[ @attribute ].size
+  def unique_in_collection?( record, attribute, value )
+    options[ :collection ].call( record ).where( attribute => value ).where.not( id: record.id ).blank?
   end
 
-  def globally_unique?
-    @existing_error_count == error_count
-  end
-
-  def unique_in_collection?( value )
-    options[ :collection ].call( @record ).where( "#{@attribute} = ?", value ).blank?
-  end
-
-  def remove_irrelevant_errors
-    irrelevant_error_count = error_count - @existing_error_count
-    @record.errors[ @attribute ].pop( irrelevant_error_count )
+  def remove_irrelevant_errors( record, attribute, irrelevant_error_count )
+    record.errors[ attribute ].pop( irrelevant_error_count )
   end
 end
