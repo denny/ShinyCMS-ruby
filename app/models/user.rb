@@ -78,6 +78,12 @@ class User < ApplicationRecord
     false
   end
 
+  def admin_can?( capability, category = :general )
+    return true if admin_capabilities[ category.to_sym ]&.include? capability.to_sym
+
+    false
+  end
+
   def capabilities=( capability_set )
     old_capabilities = user_capabilities.pluck( :capability_id ).sort
     new_capabilities = capability_set.keys.map( &:to_i ).sort
@@ -150,5 +156,21 @@ class User < ApplicationRecord
     else
       find_by( username: conditions[ :username ] )
     end
+  end
+
+  private
+
+  def admin_capabilities
+    return @admin_capabilities if @admin_capabilities.present?
+
+    @admin_capabilities = {}
+
+    capabilities.each do |capability|
+      category = capability.category.name.to_sym
+      @admin_capabilities[ category ] ||= []
+      @admin_capabilities[ category ].push capability.name.to_sym
+    end
+
+    @admin_capabilities
   end
 end
