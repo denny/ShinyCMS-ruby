@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # User model (powered by Devise)
+# rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
   include Email
 
@@ -93,6 +94,7 @@ class User < ApplicationRecord
 
     @all_capabilites =
       capabilities.joins( :category )
+                  .pluck( 'capability_categories.name', :name )
                   .group_by( &:shift )
                   .each_value( &:flatten! )
   end
@@ -171,3 +173,4 @@ class User < ApplicationRecord
     end
   end
 end
+# rubocop:enable Metrics/ClassLength
