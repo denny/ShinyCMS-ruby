@@ -1,11 +1,11 @@
-<% return unless current_user.admin_can? :list, :news_posts %>
+<% return unless current_user.can? :list, :news_posts %>
 
   <%= render_admin_menu_section( t( 'admin.news.title' ), 'rss' ) do %>
 
     <%= render_admin_menu_item(
         t( 'admin.news.index.title' ), news_path, 'list' ) %>
 
-    <%= render_admin_menu_item_if( current_user.admin_can?( :add, :news_posts ),
+    <%= render_admin_menu_item_if( current_user.can?( :add, :news_posts ),
         t( 'admin.news.new.title' ), new_news_post_path, 'pencil' ) %>
 
   <% end %>

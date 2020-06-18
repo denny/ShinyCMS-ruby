@@ -1,16 +1,16 @@
-<% return unless current_user.admin_can?( :list, :inserts        ) ||
-                 current_user.admin_can?( :list, :spam_comments  ) ||
-                 current_user.admin_can?( :list, :email_previews ) %>
+<% return unless current_user.can?( :list, :inserts        ) ||
+                 current_user.can?( :list, :spam_comments  ) ||
+                 current_user.can?( :list, :email_previews ) %>
 
   <%= render_admin_menu_section( t( 'admin.other.title' ), 'settings' ) do %>
 
-    <%= render_admin_menu_item_if( current_user.admin_can?( :list, :inserts ),
+    <%= render_admin_menu_item_if( current_user.can?( :list, :inserts ),
         t( 'admin.inserts.title' ), inserts_path, 'list' ) %>
 
-    <%= render_admin_menu_item_if( current_user.admin_can?( :list, :spam_comments ),
+    <%= render_admin_menu_item_if( current_user.can?( :list, :spam_comments ),
         t( 'admin.comments.title' ), comments_path, 'trash' ) %>
 
-    <%= render_admin_menu_item_if( current_user.admin_can?( :list, :email_previews ),
+    <%= render_admin_menu_item_if( current_user.can?( :list, :email_previews ),
         t( 'admin.emails.title' ), rails_email_preview_path, 'envelope-letter' ) %>
 
   <% end %>

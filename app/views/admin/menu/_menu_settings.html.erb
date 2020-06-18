@@ -1,12 +1,12 @@
-<% return unless current_user.admin_can?( :list, :settings      ) ||
-                 current_user.admin_can?( :list, :feature_flags ) %>
+<% return unless current_user.can?( :list, :settings      ) ||
+                 current_user.can?( :list, :feature_flags ) %>
 
   <%= render_admin_menu_section( t( 'admin.site_settings.title' ), 'settings' ) do %>
 
-    <%= render_admin_menu_item_if( current_user.admin_can?( :list, :settings ),
+    <%= render_admin_menu_item_if( current_user.can?( :list, :settings ),
         t( 'admin.site_settings.title' ), admin_site_settings_path, 'settings' ) %>
 
-    <%= render_admin_menu_item_if( current_user.admin_can?( :list, :feature_flags ),
+    <%= render_admin_menu_item_if( current_user.can?( :list, :feature_flags ),
         t( 'admin.feature_flags.title' ), feature_flags_path, 'toggle-off' ) %>
 
   <% end %>
