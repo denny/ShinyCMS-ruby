@@ -83,7 +83,7 @@ class User < ApplicationRecord
   def admin_can?( capability, category = :general )
     return false if all_capabilities.blank?
 
-    return true  if all_capabilities[ category.to_s ].include? capability.to_s
+    return true if all_capabilities[ category.to_s ]&.include? capability.to_s
 
     false
   end
@@ -93,13 +93,10 @@ class User < ApplicationRecord
 
     @all_capabilites =
       capabilities.joins( :category )
-                  .pluck( :name, 'capability_categories.name' )
-                  .each_with_object( {} ) do |old_array, new_hash|
-                    new_hash[old_array.first] ||= []
-                    new_hash[old_array.first].push old_array.second
-                    new_hash
-                  end
-end
+                  .group( 'capability_categories.name' )
+                  .pluck( 'capability_categories.name', 'array_agg(capabilities.name)' )
+                  .to_h
+  end
 
   def capabilities=( capability_set )
     old_capabilities = user_capabilities.pluck( :capability_id ).sort
