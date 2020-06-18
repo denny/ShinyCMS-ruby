@@ -93,9 +93,8 @@ class User < ApplicationRecord
 
     @all_capabilites =
       capabilities.joins( :category )
-                  .group( 'capability_categories.name' )
-                  .pluck( 'capability_categories.name', 'array_agg(capabilities.name)' )
-                  .to_h
+                  .group_by( &:shift )
+                  .each_value( &:flatten! )
   end
 
   def capabilities=( capability_set )
