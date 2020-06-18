@@ -81,19 +81,25 @@ class User < ApplicationRecord
   end
 
   def admin_can?( capability, category = :general )
-    @current_admin_capabilities ||= all_capabilities
+    return false if all_capabilities.blank?
 
-    return false if @current_admin_capabilities.blank?
-    # binding.pry
-    return true  if @current_admin_capabilities.exists?( :name => category.to_s, 'capabilities.name' => capability.to_s )
+    return true  if all_capabilities[ category.to_s ].include? capability.to_s
 
     false
   end
 
   def all_capabilities
-    binding.pry
-    capabilities.includes( :category )
-  end
+    return @all_capabilities if @all_capabilities.present?
+
+    @all_capabilites =
+      capabilities.joins( :category )
+                  .pluck( :name, 'capability_categories.name' )
+                  .each_with_object( {} ) do |old_array, new_hash|
+                    new_hash[old_array.first] ||= []
+                    new_hash[old_array.first].push old_array.second
+                    new_hash
+                  end
+end
 
   def capabilities=( capability_set )
     old_capabilities = user_capabilities.pluck( :capability_id ).sort
