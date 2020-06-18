@@ -70,6 +70,8 @@ class User < ApplicationRecord
   end
 
   def can?( capability_name, category_name = :general )
+    # return admin_can?( capability_name, category_name ) if viewing_admin_area?
+
     cc = CapabilityCategory.find_by( name: category_name.to_s )
     return true if capabilities.exists? name: capability_name.to_s, category: cc
 
@@ -79,9 +81,18 @@ class User < ApplicationRecord
   end
 
   def admin_can?( capability, category = :general )
-    return true if admin_capabilities[ category.to_sym ]&.include? capability.to_sym
+    @current_admin_capabilities ||= all_capabilities
+
+    return false if @current_admin_capabilities.blank?
+    # binding.pry
+    return true  if @current_admin_capabilities.exists?( :name => category.to_s, 'capabilities.name' => capability.to_s )
 
     false
+  end
+
+  def all_capabilities
+    binding.pry
+    capabilities.includes( :category )
   end
 
   def capabilities=( capability_set )
@@ -156,21 +167,5 @@ class User < ApplicationRecord
     else
       find_by( username: conditions[ :username ] )
     end
-  end
-
-  private
-
-  def admin_capabilities
-    return @admin_capabilities if @admin_capabilities.present?
-
-    @admin_capabilities = {}
-
-    capabilities.each do |capability|
-      category = capability.category.name.to_sym
-      @admin_capabilities[ category ] ||= []
-      @admin_capabilities[ category ].push capability.name.to_sym
-    end
-
-    @admin_capabilities
   end
 end
