@@ -70,7 +70,7 @@ class User < ApplicationRecord
   end
 
   def can?( capability_name, category_name = :general )
-    # return admin_can?( capability_name, category_name ) if viewing_admin_area?
+    return admin_can?( capability_name, category_name ) if @all_capabilities.present?
 
     cc = CapabilityCategory.find_by( name: category_name.to_s )
     return true if capabilities.exists? name: capability_name.to_s, category: cc
