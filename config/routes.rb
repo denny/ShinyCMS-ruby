@@ -13,9 +13,9 @@ Rails.application.routes.draw do
                                                 as: :view_blogs
       get 'blog/:blog_slug',                    to: 'blogs#recent',
                                                 as: :view_blog
-      get 'blog/:blog_slug/:year/:month/:slug', to: 'blogs#show',  as: :ignore1
-      get 'blog/:blog_slug/:year/:month',       to: 'blogs#month', as: :ignore2
-      get 'blog/:blog_slug/:year',              to: 'blogs#year',  as: :ignore3
+      get 'blog/:blog_slug/:year/:month/:slug', to: 'blogs#show',  as: :view_blog_post
+      get 'blog/:blog_slug/:year/:month',       to: 'blogs#month', as: :view_blog_month
+      get 'blog/:blog_slug/:year',              to: 'blogs#year',  as: :view_blog_year
       # :nocov:
     else
       get 'blog',                     to: 'blogs#recent', as: :view_blog
@@ -24,12 +24,12 @@ Rails.application.routes.draw do
                                         year: %r{\d\d\d\d},
                                         month: %r{\d\d}
                                       }
-      get 'blog/:year/:month',        to: 'blogs#month',  as: :ignore2,
+      get 'blog/:year/:month',        to: 'blogs#month',  as: :view_blog_month,
                                       constraints: {
                                         year: %r{\d\d\d\d},
                                         month: %r{\d\d}
                                       }
-      get 'blog/:year',               to: 'blogs#year',   as: :ignore3,
+      get 'blog/:year',               to: 'blogs#year',   as: :view_blog_year,
                                       constraints: { year: %r{\d\d\d\d} }
     end
 
