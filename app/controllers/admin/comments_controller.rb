@@ -63,7 +63,7 @@ class Admin::CommentsController < AdminController
     redirect_back fallback_location: @comment.anchored_path
   end
 
-  def delete
+  def destroy
     authorise @comment
     @comment.destroy!
     redirect_back fallback_location: @comment.anchored_path

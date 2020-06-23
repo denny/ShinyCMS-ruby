@@ -84,7 +84,7 @@ Rails.application.routes.draw do
                 }
 
     # ========== ( Admin area ) ==========
-    get 'admin', to: 'admin#index'
+    get :admin, to: 'admin#index'
 
     EXCEPT = %w[ index show create ].freeze
 
@@ -126,9 +126,9 @@ Rails.application.routes.draw do
       put 'feature-flags', to: 'feature_flags#update'
 
       # Inserts
-      get    'inserts',    to: 'inserts#index'
-      put    'inserts',    to: 'inserts#update'
-      post   'insert',     to: 'inserts#create',  as: :create_insert
+      get    :inserts,     to: 'inserts#index',   as: :inserts
+      put    :inserts,     to: 'inserts#update'
+      post   :insert,      to: 'inserts#create',  as: :create_insert
       delete 'insert/:id', to: 'inserts#destroy', as: :destroy_insert
 
       # Pages
