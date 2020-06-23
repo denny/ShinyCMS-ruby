@@ -84,7 +84,7 @@ Rails.application.routes.draw do
                 }
 
     # ========== ( Admin area ) ==========
-    get 'admin', to: 'admin#index'
+    get :admin, to: 'admin#index'
 
     EXCEPT = %w[ index show create ].freeze
 
@@ -107,18 +107,18 @@ Rails.application.routes.draw do
       get :comments, to: 'comments#index'
       put :comments, to: 'comments#update'
       scope path: 'comment' do
-        get    'hide/:id',    to: 'comments#hide',   as: :hide_comment
-        get    'unhide/:id',  to: 'comments#unhide', as: :unhide_comment
-        get    'lock/:id',    to: 'comments#lock',   as: :lock_comment
-        get    'unlock/:id',  to: 'comments#unlock', as: :unlock_comment
-        get    ':id/is-spam', to: 'comments#mark_as_spam', as: :spam_comment
-        delete 'delete/:id',  to: 'comments#delete', as: :delete_comment
+        put    ':id/hide',    to: 'comments#hide',          as: :hide_comment
+        put    ':id/unhide',  to: 'comments#unhide',        as: :unhide_comment
+        put    ':id/lock',    to: 'comments#lock',          as: :lock_comment
+        put    ':id/unlock',  to: 'comments#unlock',        as: :unlock_comment
+        put    ':id/is-spam', to: 'comments#mark_as_spam',  as: :spam_comment
+        delete ':id/delete',  to: 'comments#destroy',       as: :destroy_comment
       end
       scope path: 'discussion' do
-        get ':id/hide',   to: 'discussions#hide',   as: :hide_discussion
-        get ':id/unhide', to: 'discussions#unhide', as: :unhide_discussion
-        get ':id/lock',   to: 'discussions#lock',   as: :lock_discussion
-        get ':id/unlock', to: 'discussions#unlock', as: :unlock_discussion
+        put ':id/hide',   to: 'discussions#hide',   as: :hide_discussion
+        put ':id/unhide', to: 'discussions#unhide', as: :unhide_discussion
+        put ':id/lock',   to: 'discussions#lock',   as: :lock_discussion
+        put ':id/unlock', to: 'discussions#unlock', as: :unlock_discussion
       end
 
       # Feature Flags
@@ -126,10 +126,10 @@ Rails.application.routes.draw do
       put 'feature-flags', to: 'feature_flags#update'
 
       # Inserts
-      get    'inserts',    to: 'inserts#index'
-      put    'inserts',    to: 'inserts#update'
-      post   'insert',     to: 'inserts#create',  as: :create_insert
-      delete 'insert/:id', to: 'inserts#destroy', as: :insert
+      get    :inserts,     to: 'inserts#index',   as: :inserts
+      put    :inserts,     to: 'inserts#update'
+      post   :insert,      to: 'inserts#create',  as: :create_insert
+      delete 'insert/:id', to: 'inserts#destroy', as: :destroy_insert
 
       # Pages
       get  :pages, to: 'pages#index'

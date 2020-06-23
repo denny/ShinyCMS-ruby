@@ -88,7 +88,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
       s2 = create :insert_element, set: @set, name: 'do_not_want'
       s3 = create :insert_element, set: @set
 
-      delete insert_path( s2 )
+      delete destroy_insert_path( s2 )
 
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to inserts_path
@@ -102,7 +102,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
     end
 
     it 'fails gracefully when attempting to delete non-existent insert' do
-      delete insert_path( 999 )
+      delete destroy_insert_path( 999 )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to inserts_path

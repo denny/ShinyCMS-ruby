@@ -121,9 +121,9 @@ RSpec.describe 'Comment moderation', type: :request do
     end
   end
 
-  describe 'GET /admin/comment/hide/1' do
+  describe 'PUT /admin/comment/1/hide' do
     it 'hides the comment' do
-      get hide_comment_path( @comment1 )
+      put hide_comment_path( @comment1 )
 
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to @comment1.anchored_path
@@ -135,12 +135,12 @@ RSpec.describe 'Comment moderation', type: :request do
     end
   end
 
-  describe 'GET /admin/comment/unhide/1' do
+  describe 'PUT /admin/comment/1/unhide' do
     it 'unhides the comment' do
       @comment1.hide
       expect( @comment1.hidden? ).to be true
 
-      get unhide_comment_path( @comment1 )
+      put unhide_comment_path( @comment1 )
 
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to @comment1.anchored_path
@@ -152,9 +152,9 @@ RSpec.describe 'Comment moderation', type: :request do
     end
   end
 
-  describe 'GET /admin/comment/lock/1' do
+  describe 'PUT /admin/comment/1/lock' do
     it 'locks the comment' do
-      get lock_comment_path( @comment2 )
+      put lock_comment_path( @comment2 )
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to @comment2.anchored_path
@@ -165,12 +165,12 @@ RSpec.describe 'Comment moderation', type: :request do
     end
   end
 
-  describe 'GET /admin/comment/unlock/1' do
+  describe 'PUT /admin/comment/1/unlock' do
     it 'unlocks the comment' do
       @comment2.lock
       expect( @comment2.reload.locked? ).to be true
 
-      get unlock_comment_path( @comment2 )
+      put unlock_comment_path( @comment2 )
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to @comment2.anchored_path
@@ -181,9 +181,9 @@ RSpec.describe 'Comment moderation', type: :request do
     end
   end
 
-  describe 'GET /admin/comment/1/is-spam' do
+  describe 'PUT /admin/comment/1/is-spam' do
     it 'marks the comment as spam' do
-      get spam_comment_path( @comment1 )
+      put spam_comment_path( @comment1 )
       @comment1.reload
 
       expect( response ).to have_http_status :found
@@ -195,9 +195,9 @@ RSpec.describe 'Comment moderation', type: :request do
     end
   end
 
-  describe 'DELETE /admin/comment/delete/1' do
+  describe 'DELETE /admin/comment/1/delete' do
     it 'removes the comment' do
-      delete delete_comment_path( @comment2 )
+      delete destroy_comment_path( @comment2 )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to @news.path( anchor: 'comments' )

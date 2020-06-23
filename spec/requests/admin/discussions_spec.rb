@@ -19,9 +19,9 @@ RSpec.describe 'Discussion moderation', type: :request do
     @nested = create :nested_comment, discussion: @discussion, parent: @comment1
   end
 
-  describe 'GET /admin/discussion/1/hide' do
+  describe 'PUT /admin/discussion/1/hide' do
     it 'hides the discussion' do
-      get hide_discussion_path( @discussion )
+      put hide_discussion_path( @discussion )
 
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to discussion_path( @discussion )
@@ -32,12 +32,12 @@ RSpec.describe 'Discussion moderation', type: :request do
     end
   end
 
-  describe 'GET /admin/discussion/1/unhide' do
+  describe 'PUT /admin/discussion/1/unhide' do
     it 'unhides the discussion' do
       @discussion.hide
       expect( @discussion.reload.hidden? ).to be true
 
-      get unhide_discussion_path( @discussion )
+      put unhide_discussion_path( @discussion )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to discussion_path( @discussion )
@@ -48,9 +48,9 @@ RSpec.describe 'Discussion moderation', type: :request do
     end
   end
 
-  describe 'GET /admin/discussion/1/lock' do
+  describe 'PUT /admin/discussion/1/lock' do
     it 'locks the discussion' do
-      get lock_discussion_path( @discussion )
+      put lock_discussion_path( @discussion )
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to discussion_path( @discussion )
@@ -61,12 +61,12 @@ RSpec.describe 'Discussion moderation', type: :request do
     end
   end
 
-  describe 'GET /admin/discussion/1/unlock' do
+  describe 'PUT /admin/discussion/1/unlock' do
     it 'unlocks the discussion' do
       @discussion.lock
       expect( @discussion.reload.locked? ).to be true
 
-      get unlock_discussion_path( @discussion )
+      put unlock_discussion_path( @discussion )
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to discussion_path( @discussion )
