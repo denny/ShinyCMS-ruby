@@ -77,6 +77,8 @@ Bundler/GemComment:
   Enabled: false
 Layout/MultilineMethodArgumentLineBreaks:
   Enabled: false
+Lint/ConstantResolution:
+  Enabled: false
 Lint/NumberConversion:
   Enabled: false
 Style/Copyright:
