@@ -5,29 +5,52 @@ class PageSection < ApplicationRecord
   include NameAndTitle
   include SlugInSection
 
-  validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
+  # Associations
+
+  belongs_to :section,    class_name: 'PageSection',
+                          inverse_of: 'all_sections',
+                          optional: true
+
+  has_many :all_pages,    class_name: 'Page',
+                          foreign_key: 'section_id',
+                          inverse_of: 'section',
+                          dependent: :restrict_with_error
+
+  has_many :all_sections, class_name: 'PageSection',
+                          foreign_key: 'section_id',
+                          inverse_of: 'section',
+                          dependent: :restrict_with_error
+
+  # Validations
+
   validates :hidden, inclusion: { in: [ true, false ] }
+  validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
+
+  # Scopes
 
   default_scope { order( :sort_order ) }
 
-  has_many  :all_pages,
-            class_name: 'Page',
-            foreign_key: 'section_id',
-            inverse_of: 'section',
-            dependent: :restrict_with_error
-
-  has_many  :all_sections,
-            class_name: 'PageSection',
-            foreign_key: 'section_id',
-            inverse_of: 'section',
-            dependent: :restrict_with_error
-
-  belongs_to  :section,
-              class_name: 'PageSection',
-              inverse_of: 'all_sections',
-              optional: true
+  scope :top_level,        -> { where( section_id: nil ) }
+  scope :visible,          -> { where( hidden: false ) }
+  scope :visible_in_menus, -> { where( hidden: false, hidden_from_menu: false ) }
 
   # Instance methods
+
+  def pages
+    all_pages.visible
+  end
+
+  def sections
+    all_sections.visible
+  end
+
+  def menu_pages
+    pages.visible_in_menus
+  end
+
+  def menu_sections
+    sections.visible_in_menus
+  end
 
   # Return the default page for this section if one is set
   # If the default isn't set, return the first page in this section
@@ -46,30 +69,6 @@ class PageSection < ApplicationRecord
     end
   end
 
-  def pages
-    all_pages.where( hidden: false )
-  end
-
-  # def hidden_pages
-  #  all_pages.where( hidden: true )
-  # end
-
-  def menu_pages
-    pages.where( hidden_from_menu: false )
-  end
-
-  def sections
-    all_sections.where( hidden: false )
-  end
-
-  # def hidden_sections
-  #  all_sections.where( hidden: true )
-  # end
-
-  def menu_sections
-    sections.where( hidden_from_menu: false )
-  end
-
   def menu_items
     pages = menu_pages.to_a
     sections = menu_sections.to_a
@@ -86,15 +85,15 @@ class PageSection < ApplicationRecord
   # Class methods
 
   def self.all_top_level_sections
-    PageSection.where( section: nil )
+    PageSection.top_level
   end
 
   def self.top_level_sections
-    PageSection.all_top_level_sections.where( hidden: false )
+    PageSection.top_level.visible
   end
 
   def self.top_level_menu_sections
-    PageSection.top_level_sections.where( hidden_from_menu: false )
+    PageSection.top_level.visible_in_menus
   end
 
   # Return the default top-level section

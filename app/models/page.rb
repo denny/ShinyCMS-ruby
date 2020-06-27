@@ -5,13 +5,9 @@ class Page < ApplicationRecord
   include NameAndTitle
   include SlugInSection
 
-  validates :template_id, presence: true
-  validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
-  validates :hidden, inclusion: { in: [ true, false ] }
+  # Associations
 
-  belongs_to :section,  class_name: 'PageSection', inverse_of: 'all_pages',
-                        optional: true
-
+  belongs_to :section,  class_name: 'PageSection',  inverse_of: 'all_pages', optional: true
   belongs_to :template, class_name: 'PageTemplate', inverse_of: 'pages'
 
   has_many :elements, -> { order( id: :asc ) },
@@ -22,9 +18,23 @@ class Page < ApplicationRecord
 
   accepts_nested_attributes_for :elements
 
+  # Validations
+
+  validates :hidden, inclusion: { in: [ true, false ] }
+  validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
+  validates :template_id, presence: true
+
+  # Before/after actions
+
   after_create :add_elements
 
+  # Scopes
+
   default_scope { order( :sort_order ) }
+
+  scope :top_level,        -> { where( section_id: nil ) }
+  scope :visible,          -> { where( hidden: false ) }
+  scope :visible_in_menus, -> { where( hidden: false, hidden_from_menu: false ) }
 
   # Instance methods
 
@@ -48,7 +58,6 @@ class Page < ApplicationRecord
     hash
   end
 
-  # Return true if this page is the default page
   def default_page?
     self == Page.default_page
   end
@@ -56,29 +65,29 @@ class Page < ApplicationRecord
   # Class methods
 
   def self.all_top_level_pages
-    Page.where( section: nil )
+    Page.top_level
   end
 
   def self.top_level_pages
-    Page.all_top_level_pages.where( hidden: false )
+    Page.top_level.visible
   end
 
   def self.top_level_menu_pages
-    Page.top_level_pages.where( hidden_from_menu: false )
+    Page.top_level.visible_in_menus
   end
 
-  def self.top_level_menu_items
-    pages = Page.top_level_menu_pages.to_a
-    sections = PageSection.top_level_menu_sections.to_a
+  def self.all_top_level_items
+    pages = Page.all_top_level_pages.to_a
+    sections = PageSection.all_top_level_sections.to_a
 
     [ *pages, *sections ].sort_by do |item|
       [ item.sort_order ? 0 : 1, item.sort_order || 0 ]
     end
   end
 
-  def self.all_top_level_items
-    pages = Page.all_top_level_pages.to_a
-    sections = PageSection.all_top_level_sections.to_a
+  def self.top_level_menu_items
+    pages = Page.top_level_menu_pages.to_a
+    sections = PageSection.top_level_menu_sections.to_a
 
     [ *pages, *sections ].sort_by do |item|
       [ item.sort_order ? 0 : 1, item.sort_order || 0 ]
