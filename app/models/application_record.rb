@@ -14,4 +14,14 @@ class ApplicationRecord < ActiveRecord::Base
 
     I18n.t( "content_types.#{name}" )
   end
+
+  # Updates auto-increment sequence for id after a manual insert (e.g. loading the demo data)
+  def fix_primary_key_sequence
+    ActiveRecord::Base.connection.execute(<<~SQL)
+      BEGIN;
+      LOCK TABLE #{table_name} IN EXCLUSIVE MODE;
+      SELECT setval( '#{table_name}_id_seq', COALESCE( ( SELECT MAX(id)+1 FROM #{table_name} ), 1 ), false );
+      COMMIT;
+    SQL
+  end
 end

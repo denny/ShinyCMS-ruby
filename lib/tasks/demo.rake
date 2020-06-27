@@ -12,6 +12,18 @@ require 'dotenv/tasks'
 # rails shiny:demo:dump
 # - dumps the current database contents to db/demo-data.rb
 
+# rubocop:disable Layout/MultilineArrayLineBreaks
+
+# Big List of Models That Hold Demo Site Data
+MODEL_NAMES = %w[
+  EmailRecipient MailingList Subscription
+  Blog BlogPost NewsPost Discussion Comment
+  PageTemplate PageTemplateElement PageSection Page PageElement InsertElement
+  Blazer::Query Blazer::Dashboard Blazer::DashboardQuery
+].freeze
+
+# rubocop:enable Layout/MultilineArrayLineBreaks
+
 namespace :shiny do
   namespace :demo do
     desc 'ShinyCMS: reset database, create admin user, and load demo site data'
@@ -26,13 +38,11 @@ namespace :shiny do
 
       Setting.set :theme_name, to: 'halcyonic'
 
-      PageTemplate.skip_callback( :create, :after, :add_elements )
-      Page.skip_callback( :create, :after, :add_elements )
-
+      skip_callbacks_on_page_models
       require Rails.root.join 'db/demo-data.rb'
+      set_callbacks_on_page_models
 
-      PageTemplate.set_callback( :create, :after, :add_elements )
-      Page.set_callback( :create, :after, :add_elements )
+      fix_primary_key_sequences
 
       FeatureFlag.enable :user_login
 
@@ -49,18 +59,25 @@ namespace :shiny do
       end
     end
 
-    task dump: %i[ environment dotenv ] do
-      # rubocop:disable Layout/MultilineArrayLineBreaks
-      models = %w[
-        EmailRecipient MailingList Subscription
-        Blog BlogPost NewsPost Discussion Comment InsertElement
-        PageTemplate PageTemplateElement PageSection Page PageElement
-        Blazer::Query Blazer::Dashboard Blazer::DashboardQuery
-      ]
-      # rubocop:enable Layout/MultilineArrayLineBreaks
+    def skip_callbacks_on_page_models
+      Page.skip_callback( :create, :after, :add_elements )
+      PageTemplate.skip_callback( :create, :after, :add_elements )
+    end
 
+    def set_callbacks_on_page_models
+      PageTemplate.set_callback( :create, :after, :add_elements )
+      Page.set_callback( :create, :after, :add_elements )
+    end
+
+    def fix_primary_key_sequences
+      MODEL_NAMES.each do |model|
+        model.constantize.fix_primary_key_sequence
+      end
+    end
+
+    task dump: %i[ environment dotenv ] do
       big_dump = ''
-      models.each do |model|
+      MODEL_NAMES.each do |model|
         puts "Dumping: #{model}"
         dump = SeedDump.dump(
           model.constantize, exclude: %i[created_at updated_at]
