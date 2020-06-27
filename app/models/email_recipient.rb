@@ -4,15 +4,19 @@
 class EmailRecipient < ApplicationRecord
   include Email
 
-  validates :name,  presence: true
-  validates :token, presence: true, uniqueness: true
+  # Associations
+
+  has_many :messages, class_name: 'Ahoy::Message', as: :user, dependent: :nullify
 
   has_many :subscriptions, inverse_of: :subscriber, dependent: :destroy
   has_many :lists, through: :subscriptions
 
-  # Email stats (powered by Ahoy)
-  has_many :messages, class_name: 'Ahoy::Message', as: :user,
-                      dependent: :nullify
+  # Validations
+
+  validates :name,  presence: true
+  validates :token, presence: true, uniqueness: true
+
+  # Before/after actions
 
   before_validation :generate_token, if: -> { token.blank? }
 

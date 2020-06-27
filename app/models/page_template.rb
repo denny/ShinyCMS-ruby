@@ -4,22 +4,21 @@
 class PageTemplate < ApplicationRecord
   # Associations
 
-  has_many :pages, foreign_key: 'template_id',
-                   inverse_of: 'template',
+  has_many :pages, inverse_of: :template, foreign_key: :template_id,
                    dependent: :restrict_with_error
 
-  has_many :elements, -> { order( id: :asc ) },
-           class_name: 'PageTemplateElement',
-           foreign_key: 'template_id',
-           inverse_of: 'template',
-           dependent: :destroy
+  has_many  :elements, -> { order( id: :asc ) },
+            inverse_of: :template,
+            foreign_key: :template_id,
+            class_name: 'PageTemplateElement',
+            dependent: :destroy
 
   accepts_nested_attributes_for :elements
 
   # Validations
 
-  validates :name,     presence: true
   validates :filename, presence: true
+  validates :name,     presence: true
 
   # Plugins
 

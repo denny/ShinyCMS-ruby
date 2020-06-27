@@ -4,7 +4,7 @@
 class PageElement < ApplicationRecord
   include Element
 
-  validates :page, presence: true
+  belongs_to :page, inverse_of: :elements
 
-  belongs_to :page, inverse_of: 'elements'
+  validates :page, presence: true
 end

@@ -7,30 +7,29 @@ class PageSection < ApplicationRecord
 
   # Associations
 
-  belongs_to :section,    class_name: 'PageSection',
-                          inverse_of: 'all_sections',
-                          optional: true
+  belongs_to :section, inverse_of: :all_sections, class_name: 'PageSection',
+                       optional: true
 
-  has_many :all_pages,    class_name: 'Page',
-                          foreign_key: 'section_id',
-                          inverse_of: 'section',
-                          dependent: :restrict_with_error
+  has_many :all_pages,  inverse_of: :section,
+                        foreign_key: :section_id,
+                        class_name: 'Page',
+                        dependent: :restrict_with_error
 
-  has_many :all_sections, class_name: 'PageSection',
-                          foreign_key: 'section_id',
-                          inverse_of: 'section',
+  has_many :all_sections, inverse_of: :section,
+                          foreign_key: :section_id,
+                          class_name: 'PageSection',
                           dependent: :restrict_with_error
 
   # Validations
 
   validates :hidden, inclusion: { in: [ true, false ] }
-  validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
+  validates :slug,   safe_top_level_slug: true, if: -> { section.blank? }
 
   # Scopes
 
   default_scope { order( :sort_order ) }
 
-  scope :top_level,        -> { where( section_id: nil ) }
+  scope :top_level,        -> { where( section: nil  ) }
   scope :visible,          -> { where( hidden: false ) }
   scope :visible_in_menus, -> { where( hidden: false, hidden_from_menu: false ) }
 

@@ -8,10 +8,9 @@ class Comment < ApplicationRecord
   belongs_to :parent, class_name: 'Comment', optional: true
   belongs_to :user,   inverse_of: :comments, optional: true
 
-  has_many :comments, -> { where( spam: false ) },
-           inverse_of: :parent,
-           foreign_key: :parent_id,
-           dependent: :destroy
+  has_many :comments, -> { where( spam: false ) },  inverse_of: :parent,
+                                                    foreign_key: :parent_id,
+                                                    dependent: :destroy
 
   # Validations
 

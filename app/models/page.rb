@@ -7,21 +7,20 @@ class Page < ApplicationRecord
 
   # Associations
 
-  belongs_to :section,  class_name: 'PageSection',  inverse_of: 'all_pages', optional: true
-  belongs_to :template, class_name: 'PageTemplate', inverse_of: 'pages'
+  belongs_to :section,  inverse_of: :all_pages, class_name: 'PageSection', optional: true
+  belongs_to :template, inverse_of: :pages,     class_name: 'PageTemplate'
 
-  has_many :elements, -> { order( id: :asc ) },
-           class_name: 'PageElement',
-           foreign_key: 'page_id',
-           inverse_of: 'page',
-           dependent: :destroy
+  has_many :elements, -> { order( :id ) },  inverse_of: :page,
+                                            foreign_key: :page_id,
+                                            class_name: 'PageElement',
+                                            dependent: :destroy
 
   accepts_nested_attributes_for :elements
 
   # Validations
 
-  validates :hidden, inclusion: { in: [ true, false ] }
-  validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
+  validates :hidden,      inclusion: { in: [ true, false ] }
+  validates :slug,        safe_top_level_slug: true, if: -> { section.blank? }
   validates :template_id, presence: true
 
   # Before/after actions
@@ -32,7 +31,7 @@ class Page < ApplicationRecord
 
   default_scope { order( :sort_order ) }
 
-  scope :top_level,        -> { where( section_id: nil ) }
+  scope :top_level,        -> { where( section: nil ) }
   scope :visible,          -> { where( hidden: false ) }
   scope :visible_in_menus, -> { where( hidden: false, hidden_from_menu: false ) }
 

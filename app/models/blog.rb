@@ -9,7 +9,7 @@ class Blog < ApplicationRecord
 
   belongs_to :user, inverse_of: :blogs
 
-  has_many :all_posts, class_name: 'BlogPost', inverse_of: 'blog', dependent: :restrict_with_error
+  has_many :all_posts, inverse_of: :blog, class_name: 'BlogPost', dependent: :restrict_with_error
 
   # Plugins
 
