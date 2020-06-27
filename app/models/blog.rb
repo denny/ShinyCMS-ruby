@@ -5,27 +5,24 @@ class Blog < ApplicationRecord
   include NameAndTitle
   include Slug
 
+  # Associations
+
   belongs_to :user, inverse_of: :blogs
 
-  alias_attribute :owner, :user
+  has_many :all_posts, class_name: 'BlogPost', inverse_of: 'blog', dependent: :restrict_with_error
 
-  has_many :all_posts, class_name: 'BlogPost',
-                       inverse_of: 'blog',
-                       dependent: :restrict_with_error
+  # Plugins
 
-  # Configure default count-per-page for pagination
   paginates_per 20
+
+  # Aliases
+
+  alias_attribute :owner, :user
 
   # Instance methods
 
   def posts
-    all_posts.where( hidden: false )
-    # TODO: figure out why this is b0rked
-    # .where( 'posted_at <= current_timestamp' )
-  end
-
-  def hidden_posts
-    all_posts.where( hidden: true )
+    all_posts.visible
   end
 
   def find_post( year, month, slug )
@@ -38,10 +35,9 @@ class Blog < ApplicationRecord
     posts.where( posted_at: start_date..end_date ).order( :posted_at )
   end
 
-  def posts_for_year( year )
-    start_date = Date.new( year.to_i, 1, 1 )
-    end_date = start_date + 1.year
-    posts.where( posted_at: start_date..end_date ).order( :posted_at )
+  def posts_for_year( year_string )
+    year = Date.new( year_string.to_i, 1, 1 )
+    posts.where( posted_at: year..year.end_of_year ).order( :posted_at )
   end
 
   def recent_posts( page_num = 1 )
