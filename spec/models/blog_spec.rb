@@ -11,17 +11,8 @@ RSpec.describe Blog, type: :model do
     end
   end
 
-  context 'methods' do
-    it 'can fetch the hidden posts' do
-      blog = create :blog
-      create :blog_post, blog: blog, hidden: true
-      create :blog_post, blog: blog
-      create :blog_post, blog: blog, hidden: true
-
-      expect( blog.hidden_posts.length ).to eq 2
-    end
-
-    it 'can fetch the non-hidden posts' do
+  context 'scopes' do
+    it 'can fetch the visible posts (not hidden, not future-dated)' do
       blog = create :blog
       create :blog_post, blog: blog, hidden: true
       create :blog_post, blog: blog
@@ -38,7 +29,9 @@ RSpec.describe Blog, type: :model do
 
       expect( blog.all_posts.length ).to eq 3
     end
+  end
 
+  context 'scopes' do
     it 'can create a title' do
       blog = create :blog
 

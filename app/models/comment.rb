@@ -2,30 +2,37 @@
 
 # Model class for comments
 class Comment < ApplicationRecord
+  # Associations
+
   belongs_to :discussion
   belongs_to :parent, class_name: 'Comment', optional: true
-  belongs_to :user, inverse_of: :comments, optional: true
-  alias_attribute :author, :user
+  belongs_to :user,   inverse_of: :comments, optional: true
 
-  has_many :comments, -> { where( spam: false ) },
-           inverse_of: :parent,
-           foreign_key: :parent_id,
-           dependent: :destroy
+  has_many :comments, -> { where( spam: false ) },  inverse_of: :parent,
+                                                    foreign_key: :parent_id,
+                                                    dependent: :destroy
 
+  # Validations
+
+  validates :author_type,   presence: true
   validates :discussion_id, presence: true
-  validates :author_type, presence: true
-  validates :user_id, presence: true, if: -> { author_type == 'authenticated'}
+  validates :body,          presence: true, unless: -> { title.present? }
+  validates :title,         presence: true, unless: -> { body.present?  }
+  validates :user_id,       presence: true, if:     -> { author_type == 'authenticated'}
 
   validates :number, uniqueness: { scope: :discussion_id }
-
-  validates :body,  presence: true, unless: -> { title.present? }
-  validates :title, presence: true, unless: -> { body.present?  }
 
   validates_with EmailAddress::ActiveRecordValidator,
                  field: :author_email, if: -> { author_email.present? }
 
+  # Before/after actions
+
   before_create :set_number
   after_create  :send_notifications
+
+  # Aliases
+
+  alias_attribute :author, :user
 
   # Scopes
 

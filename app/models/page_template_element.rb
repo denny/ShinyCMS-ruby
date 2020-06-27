@@ -4,7 +4,7 @@
 class PageTemplateElement < ApplicationRecord
   include Element
 
-  validates :template, presence: true
+  belongs_to :template, inverse_of: :elements, class_name: 'PageTemplate'
 
-  belongs_to :template, class_name: 'PageTemplate', inverse_of: 'elements'
+  validates :template, presence: true
 end

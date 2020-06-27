@@ -2,6 +2,8 @@
 
 # Model for feature flags
 class FeatureFlag < ApplicationRecord
+  # Validations
+
   validates :name, presence: true, uniqueness: true
 
   validates :enabled,               inclusion: { in: [ true, false ] }

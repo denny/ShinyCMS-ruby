@@ -2,29 +2,40 @@
 
 # Model class for blog posts
 class BlogPost < ApplicationRecord
+  include PostedAt
   include SlugInMonth
   include Teaser
+
+  # Associations
 
   belongs_to :blog
   belongs_to :user, inverse_of: :blog_posts
 
-  alias_attribute :author, :user
-
   has_one :discussion, as: :resource, dependent: :destroy
+
+  # Validations
+
+  validates :blog_id, presence: true
+  validates :body,    presence: true
+  validates :title,   presence: true
+  validates :user_id, presence: true
+
+  # Plugins
+
+  acts_as_taggable
+  paginates_per 20
+
+  # Aliases and delegated methods
+
+  alias_attribute :author, :user
 
   delegate :hidden, to: :discussion, allow_nil: true, prefix: true
   delegate :locked, to: :discussion, allow_nil: true, prefix: true
 
-  validates :blog_id, presence: true
-  validates :user_id, presence: true
-  validates :title,   presence: true
-  validates :body,    presence: true
+  # Scopes
 
-  # Configure default count-per-page for pagination
-  paginates_per 20
-
-  # Add tagging features
-  acts_as_taggable
+  scope :visible, -> { where( hidden: false ) }
+  scope :published, -> { visible.merge( not_future_dated ) }
 
   # Instance methods
 
@@ -40,29 +51,5 @@ class BlogPost < ApplicationRecord
         posted_year, posted_month, slug, anchor: anchor
       )
     end
-  end
-
-  def posted_month
-    posted_at.strftime( '%m' )
-  end
-
-  def posted_year
-    posted_at.strftime( '%Y' )
-  end
-
-  def posts_this_month
-    start_date = posted_at.beginning_of_month
-    end_date = start_date + 1.month
-    self.class.readonly.where( posted_at: start_date..end_date )
-  end
-
-  def teaser( paragraphs: 3 )
-    paras = body.split %r{</p>[^<]*<p>}i
-    return paras[ 0..( paragraphs - 1 ) ].join( "</p>\n<p>" ) if paras.size > 1
-
-    paras = body.split %r{<br ?/?><br ?/?>}i
-    return paras[ 0..( paragraphs - 1 ) ].join "\n<br><br>\n" if paras.size > 1
-
-    body
   end
 end
