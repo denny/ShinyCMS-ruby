@@ -56,6 +56,7 @@ class User < ApplicationRecord
 
   # Allow authenticating by either username or email
   attr_writer :login
+
   def login
     @login || username || email
   end
