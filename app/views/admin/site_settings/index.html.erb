@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <% @settings.each do |setting| %>
-	<tr class="showfocus">
+  <tr class="showfocus">
     <td>
       <%= label :settings, "value_#{setting.id}", t( "settings.#{setting.name}" ) %>
     </td>
@@ -34,12 +34,12 @@
       <%= radio_button :settings, "level_#{setting.id}", 'site',  checked: ( setting.level == 'site'  ) %> <%= t( '.site'  ) %>
       <% end %>
     </td>
-	</tr>
-	<tr>
+  </tr>
+  <tr>
     <td colspan="3">
       <%= setting.description %>
     </td>
-	</tr>
+  </tr>
   <% end %>
 </table>
 <p class="top-margin">

@@ -29,8 +29,4 @@ class Admin::CommentPolicy < Admin::DefaultPolicy
   def unlock?
     @this_user.can? :lock, :comments
   end
-
-  def delete?
-    @this_user.can? :destroy, :comments
-  end
 end

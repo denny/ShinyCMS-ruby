@@ -1,29 +1,29 @@
-			<section id="content">
-				<div class="container">
-					<div class="row">
-						<div class="col-3 col-12-medium sidebar">
+      <section id="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-3 col-12-medium sidebar">
 
-							<%= render partial: 'includes/sidebar' %>
+              <%= render partial: 'includes/sidebar' %>
 
-						</div>
-						<div class="col-6 col-12-medium imp-medium">
+            </div>
+            <div class="col-6 col-12-medium imp-medium">
 
-							<section>
-								<header>
-									<h2><%= heading    %></h2>
-									<h3><%= subheading %></h3>
-								</header>
+              <section>
+                <header>
+                  <h2><%= heading    %></h2>
+                  <h3><%= subheading %></h3>
+                </header>
 
-								<%#= sanitize html_content %>
-								<%= simple_format text_content %>
-							</section>
+                <%#= sanitize html_content %>
+                <%= simple_format text_content %>
+              </section>
 
-						</div>
-						<div class="col-3 col-12-medium sidebar">
+            </div>
+            <div class="col-3 col-12-medium sidebar">
 
-							<%= render partial: 'includes/sidebar' %>
+              <%= render partial: 'includes/sidebar' %>
 
-						</div>
-					</div>
-				</div>
-			</section>
+            </div>
+          </div>
+        </div>
+      </section>

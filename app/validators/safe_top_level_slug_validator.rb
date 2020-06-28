@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-# Validator for top-level slugs (pages and page sections) to make sure they
-# don't collide with controller namespaces
-class SafeSlugValidator < ActiveModel::Validator
+# Validator for top-level slugs (possible with pages and page sections)
+# to make sure they don't collide with controller namespaces
+class SafeTopLevelSlugValidator < ActiveModel::Validator
   def validate( record )
     return if record.section.present?
 
-    record.errors.add( :slug, :slug_taken ) if unsafe?( record.slug )
+    record.errors.add( :slug, :slug_not_safe_at_top_level ) if unsafe?( record.slug )
   end
 
   private

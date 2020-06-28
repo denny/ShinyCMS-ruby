@@ -2,17 +2,13 @@
 
 # Model class for discussions (used to group comments)
 class Discussion < ApplicationRecord
+  # Assocations
+
   belongs_to :resource, inverse_of: :discussion, polymorphic: true
 
-  has_many :all_comments, class_name: 'Comment',
-                          foreign_key: :discussion_id,
-                          inverse_of: :discussion,
-                          dependent: :destroy
-
-  has_many :comments, -> { where( spam: false ) },
-           foreign_key: :discussion_id,
-           inverse_of: :discussion,
-           dependent: :destroy
+  has_many :comments, -> { where( spam: false ) }, inverse_of: :discussion, dependent: :destroy
+  has_many :all_comments, class_name: 'Comment',   inverse_of: :discussion, dependent: :destroy
+  # TODO: Get rid of .all_comments; only used to find the next .number when creating a new comment
 
   # Instance methods
 

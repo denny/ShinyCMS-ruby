@@ -15,15 +15,16 @@ $dark-blue:     #005a7e;
 $dark-colour:   $dark-blue;
 
 .shinycms-admin-toolbar {
-  background:		$grey image-url( 'shinycms/admin-toolbar-bg.png' ) left top repeat-x;
-  bottom:			  0;
-  color:			  $black;
-  font-family:	'Poppins', sans-serif;
-  font-size:		13pt;
-  height:			  32px;
-  position:		  fixed;
-  width:			  100%;
-  z-index:		  999;
+  background:   $grey image-url( 'shinycms/admin-toolbar-bg.png' ) left top repeat-x;
+  bottom:       0;
+  color:        $black;
+  font-family:  'Poppins', sans-serif;
+  font-size:    13pt;
+  font-weight:  normal;
+  height:       32px;
+  position:     fixed;
+  width:        100%;
+  z-index:      999;
 }
 
 .shinycms-admin-toolbar-logo {

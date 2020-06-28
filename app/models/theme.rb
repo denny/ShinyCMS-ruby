@@ -5,13 +5,17 @@ class Theme
   attr_accessor :name
 
   def initialize( theme_name )
-    return unless Theme.files_exist?( theme_name )
+    return unless Theme.base_directory_exists?( theme_name )
 
     self.name = theme_name
   end
 
+  # Delegations
+
   delegate :present?, to: :name
   delegate :blank?,   to: :name
+
+  # Instance methods
 
   def view_path
     "app/views/themes/#{name}"
@@ -21,8 +25,9 @@ class Theme
     "#{view_path}/pages/templates"
   end
 
-  # Check if the base directory matching a theme name exists on disk
-  def self.files_exist?( theme_name )
+  # Class methods
+
+  def self.base_directory_exists?( theme_name )
     return false if theme_name.blank?
 
     FileTest.directory?( Rails.root.join( 'app/views/themes', theme_name ) )

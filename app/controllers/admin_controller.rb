@@ -16,6 +16,7 @@ class AdminController < ApplicationController
 
   before_action :check_admin_ip_list
   before_action :authenticate_user!
+  before_action :cache_user_capabilities
 
   skip_before_action :set_view_paths
   skip_after_action  :track_ahoy_visit
@@ -46,6 +47,10 @@ class AdminController < ApplicationController
     return if allowed.strip.split( /\s*,\s*|\s+/ ).include? request.remote_ip
 
     redirect_to root_path
+  end
+
+  def cache_user_capabilities
+    current_user&.cache_capabilities
   end
 
   def user_redirect

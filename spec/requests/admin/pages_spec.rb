@@ -57,7 +57,6 @@ RSpec.describe 'Admin: Pages', type: :request do
 
       post create_page_path, params: {
         'page[name]': 'Test',
-        'page[title]': 'Test',
         'page[slug]': 'profile',
         'page[template_id]': template.id
       }
@@ -158,7 +157,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.update.success' )
-      expect( response.body ).to include 'Updated by test'
+      expect( response.body ).to have_field 'page_name', with: 'Updated by test'
     end
 
     it 'recreates the slug if it is wiped before submitting an update' do
@@ -167,6 +166,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
       put page_path( page ), params: {
         'page[name]': 'Updated by test',
+        'page[title]': '',
         'page[slug]': ''
       }
 
@@ -176,8 +176,8 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.pages.edit.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.update.success' )
-      expect( response.body ).to     include 'updated-by-test'
-      expect( response.body ).not_to include old_slug
+      expect( response.body ).to     have_field 'page_slug', with: 'updated-by-test'
+      expect( response.body ).not_to have_field 'page_slug', with: old_slug
     end
   end
 

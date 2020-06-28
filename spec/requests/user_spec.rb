@@ -200,7 +200,7 @@ RSpec.describe 'User accounts', type: :request do
 
       create :top_level_page
 
-      username = Faker::Science.unique.element.downcase
+      username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
@@ -229,7 +229,7 @@ RSpec.describe 'User accounts', type: :request do
 
       create :top_level_page
 
-      username = Faker::Science.unique.element.downcase
+      username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
@@ -258,7 +258,7 @@ RSpec.describe 'User accounts', type: :request do
 
       create :top_level_page
 
-      username = Faker::Science.unique.element.downcase
+      username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
@@ -315,7 +315,7 @@ RSpec.describe 'User accounts', type: :request do
       user = create :user
       sign_in user
 
-      new_name = Faker::Science.unique.scientist
+      new_name = Faker::Books::CultureSeries.unique.culture_ship
       put user_registration_path, params: {
         'user[display_name]': new_name,
         'user[current_password]': user.password
@@ -326,7 +326,7 @@ RSpec.describe 'User accounts', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.notices', text: I18n.t( 'devise.registrations.updated' )
-      expect( response.body ).to include new_name
+      expect( response.body ).to have_css 'a', text: new_name
     end
   end
 end

@@ -56,10 +56,11 @@ RSpec.describe 'Admin: Users', type: :request do
       end
 
       it 'adds a new user when the form is submitted' do
+        username = Faker::Internet.unique.username
         post create_user_path, params: {
-          'user[username]': Faker::Internet.unique.username,
+          'user[username]': username,
           'user[password]': Faker::Internet.unique.password,
-          'user[email]': Faker::Internet.unique.email
+          'user[email]': Faker::Internet.unique.email( name: username )
         }
 
         expect( response      ).to have_http_status :found

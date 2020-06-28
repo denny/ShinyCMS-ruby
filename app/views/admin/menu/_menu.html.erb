@@ -1,4 +1,3 @@
-<%# NTS: CoreUI free icons: https://coreui.io/icons/free/ %>
 <ul class="c-sidebar-nav">
   <%= render_admin_menu_item_if( current_user.can?( :view_admin_dashboard ),
       t( 'admin.dashboard.title' ), admin_path, 'speedometer' ) %>
@@ -19,5 +18,6 @@
 </ul>
 
 <script>
+  // TODO: FIXME: make admin menu maintain folded/unfolded state accross reloads
   // document.addEventListener( 'onload', persist_menu_state() );
 </script>
