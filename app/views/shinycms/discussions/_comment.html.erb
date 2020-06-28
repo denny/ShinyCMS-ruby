@@ -24,10 +24,8 @@
     <% else %>
     <a onclick="toggleHidden('reply_form_<%= comment.id %>')"><%= t( 'discussions.reply' ) %></a>
     <% end %>
-    <% if current_user_can?( :hide, :comments ) || current_user_can?( :lock, :comments ) %>
     <%= render partial: 'discussions/comment_moderation_links',
                locals: { comment: comment } %>
-    <% end %>
   </footer>
 
   <% unless comment.locked? %>

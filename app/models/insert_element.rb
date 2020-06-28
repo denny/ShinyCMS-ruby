@@ -4,7 +4,7 @@
 class InsertElement < ApplicationRecord
   include Element
 
-  validates :set, presence: true
+  belongs_to :set, inverse_of: :elements, class_name: 'InsertSet'
 
-  belongs_to :set, class_name: 'InsertSet', inverse_of: 'elements'
+  validates :set, presence: true
 end

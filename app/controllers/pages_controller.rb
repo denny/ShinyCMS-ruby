@@ -48,16 +48,26 @@ class PagesController < ApplicationController
   # Handle requests with a single-part path
   # /pages/foo
   def show_top_level( slug )
-    # Is it a top-level page?
-    @page = Page.readonly.top_level_pages&.find_by( slug: slug )
-    show_page && return if @page
+    return if show_top_level_page( slug )
+    return if show_top_level_section( slug )
 
-    # If not, is it a top-level section?
-    @page = PageSection.readonly.top_level_sections&.find_by( slug: slug )&.default_page
-    show_page && return if @page
-
-    # If the slug matches neither, then call the 'not found' handler
     not_found
+  end
+
+  def show_top_level_page( slug )
+    @page = Page.readonly.top_level_pages&.find_by( slug: slug )
+    return unless @page
+
+    show_page
+    true
+  end
+
+  def show_top_level_section( slug )
+    @page = PageSection.readonly.top_level_sections&.find_by( slug: slug )&.default_page
+    return unless @page
+
+    show_page
+    true
   end
 
   # Handle requests with a multi-part path

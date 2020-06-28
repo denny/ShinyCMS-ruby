@@ -2,29 +2,34 @@
 
 # Model for page templates
 class PageTemplate < ApplicationRecord
-  validates :name,     presence: true
-  validates :filename, presence: true
+  # Associations
 
-  has_many :pages, foreign_key: 'template_id',
-                   inverse_of: 'template',
+  has_many :pages, inverse_of: :template, foreign_key: :template_id,
                    dependent: :restrict_with_error
 
-  has_many :elements, -> { order( id: :asc ) },
-           class_name: 'PageTemplateElement',
-           foreign_key: 'template_id',
-           inverse_of: 'template',
-           dependent: :destroy
+  has_many  :elements, -> { order( id: :asc ) },
+            inverse_of: :template,
+            foreign_key: :template_id,
+            class_name: 'PageTemplateElement',
+            dependent: :destroy
 
   accepts_nested_attributes_for :elements
 
-  after_create :add_elements
+  # Validations
 
-  # Configure default count-per-page for pagination
+  validates :filename, presence: true
+  validates :name,     presence: true
+
+  # Plugins
+
   paginates_per 20
+
+  # Before/after actions
+
+  after_create :add_elements
 
   # Instance methods
 
-  # Check whether the template file is present on disk
   def file_exists?
     PageTemplate.available_templates.include? filename
   end

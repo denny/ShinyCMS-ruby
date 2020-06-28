@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
-# Generate a 'teaser' (short preview) from a 'body' field
+# Generate a teaser (short preview) from the text in .body
+# Defaults to three paragraphs
 module Teaser
   extend ActiveSupport::Concern
 
   included do
+    validates :body, presence: true
+
     def teaser( paragraphs: 3 )
       return split_by_p_tags(  paragraphs ) if contains_p_tags
       return split_by_br_tags( paragraphs ) if contains_br_tags
