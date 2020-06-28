@@ -71,8 +71,17 @@ namespace :shiny do
 
     def fix_primary_key_sequences
       MODEL_NAMES.each do |model|
-        model.constantize.fix_primary_key_sequence
+        fix_primary_key_sequence( model.constantize.table_name )
       end
+    end
+
+    def fix_primary_key_sequence( table_name )
+      ActiveRecord::Base.connection.execute(<<~SQL)
+        BEGIN;
+        LOCK TABLE #{table_name} IN EXCLUSIVE MODE;
+        SELECT setval( '#{table_name}_id_seq', COALESCE( ( SELECT MAX(id)+1 FROM #{table_name} ), 1 ), false );
+        COMMIT;
+      SQL
     end
 
     task dump: %i[ environment dotenv ] do
