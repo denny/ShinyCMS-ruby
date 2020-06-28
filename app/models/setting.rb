@@ -39,30 +39,30 @@ class Setting < ApplicationRecord
     values.find_by( user_id: nil )
   end
 
-  # Class methods
+  class << self
+    def set( name, to: )
+      setting = find_by!( name: name.to_s )
+      setting.default_setting_value&.update!( value: to )
+      setting
+    end
 
-  def self.set( name, to: )
-    setting = find_by!( name: name.to_s )
-    setting.default_setting_value&.update!( value: to )
-    setting
-  end
+    def get( name, user = nil )
+      setting = find_by name: name.to_s
+      return if setting.blank?
 
-  def self.get( name, user = nil )
-    setting = find_by name: name.to_s
-    return if setting.blank?
+      user_value = setting.value_for( user ) if user.present?
+      return user_value if user_value.present?
 
-    user_value = setting.value_for( user ) if user.present?
-    return user_value if user_value.present?
+      setting.value
+    end
 
-    setting.value
-  end
+    def user_settings
+      where( level: 'user' ).order( :name )
+    end
 
-  def self.user_settings
-    where( level: 'user' ).order( :name )
-  end
-
-  def self.admin_settings
-    where( level: 'user' ).or( where( level: 'admin' ) ).order( :name )
+    def admin_settings
+      where( level: 'user' ).or( where( level: 'admin' ) ).order( :name )
+    end
   end
 
   private

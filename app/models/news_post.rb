@@ -38,13 +38,13 @@ class NewsPost < ApplicationRecord
     )
   end
 
-  # Class methods
+  class << self
+    def find_post( year, month, slug )
+      posts_for_month( year, month ).find_by( slug: slug )
+    end
 
-  def self.find_post( year, month, slug )
-    posts_for_month( year, month ).find_by( slug: slug )
-  end
-
-  def self.recent_posts( page_num = 1 )
-    where( hidden: false ).order( posted_at: :desc ).readonly.page( page_num )
+    def recent_posts( page_num = 1 )
+      where( hidden: false ).order( posted_at: :desc ).readonly.page( page_num )
+    end
   end
 end

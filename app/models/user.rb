@@ -145,33 +145,33 @@ class User < ApplicationRecord
     end
   end
 
-  # Class methods
+  class << self
+    # Return all users that have the specified capability
+    def that_can( capability, category )
+      CapabilityCategory.find_by( name: category.to_s )
+        .capabilities
+        .find_by( name: capability.to_s )
+        .user_capabilities
+        .map( &:user )
+    end
 
-  # Return all users that have the specified capability
-  def self.that_can( capability, category )
-    CapabilityCategory.find_by( name: category.to_s )
-                      .capabilities
-                      .find_by( name: capability.to_s )
-                      .user_capabilities
-                      .map( &:user )
-  end
+    # Check whether we have at least one admin who can create more admins
+    def super_admins_exist?
+      that_can( :add, :admin_users ).present?
+    end
 
-  # Check whether we have at least one admin who can create more admins
-  def self.super_admins_exist?
-    that_can( :add, :admin_users ).present?
-  end
-
-  # Override find method to search by username as well as email
-  def self.find_first_by_auth_conditions( warden_conditions )
-    conditions = warden_conditions.dup
-    login = conditions.delete( :login )
-    if login
-      where_clause = 'lower( username ) = :value OR lower( email ) = :value'
-      where( conditions ).find_by( [ where_clause, { value: login.downcase } ] )
-    elsif conditions[ :username ].nil?
-      find_by( conditions )
-    else
-      find_by( username: conditions[ :username ] )
+    # Override find method to search by username as well as email
+    def find_first_by_auth_conditions( warden_conditions )
+      conditions = warden_conditions.dup
+      login = conditions.delete( :login )
+      if login
+        where_clause = 'lower( username ) = :value OR lower( email ) = :value'
+        where( conditions ).find_by( [ where_clause, { value: login.downcase } ] )
+      elsif conditions[ :username ].nil?
+        find_by( conditions )
+      else
+        find_by( username: conditions[ :username ] )
+      end
     end
   end
 end

@@ -61,49 +61,49 @@ class Page < ApplicationRecord
     self == Page.default_page
   end
 
-  # Class methods
-
-  def self.all_top_level_pages
-    Page.top_level
-  end
-
-  def self.top_level_pages
-    Page.top_level.visible
-  end
-
-  def self.top_level_menu_pages
-    Page.top_level.visible_in_menus
-  end
-
-  def self.all_top_level_items
-    pages = Page.all_top_level_pages.to_a
-    sections = PageSection.all_top_level_sections.to_a
-
-    [ *pages, *sections ].sort_by do |item|
-      [ item.sort_order ? 0 : 1, item.sort_order || 0 ]
+  class << self
+    def all_top_level_pages
+      Page.top_level
     end
-  end
 
-  def self.top_level_menu_items
-    pages = Page.top_level_menu_pages.to_a
-    sections = PageSection.top_level_menu_sections.to_a
-
-    [ *pages, *sections ].sort_by do |item|
-      [ item.sort_order ? 0 : 1, item.sort_order || 0 ]
+    def top_level_pages
+      Page.top_level.visible
     end
-  end
 
-  # Return the configured default page, or one of a few fallback options, or nil
-  def self.default_page
-    name_or_slug = Setting.get :default_page
-    top_level_pages
-      .where( name: name_or_slug )
-      .or( top_level_pages
-      .where( slug: name_or_slug ) )
-      .first ||
+    def top_level_menu_pages
+      Page.top_level.visible_in_menus
+    end
 
-      PageSection.default_section&.default_page ||
+    def all_top_level_items
+      pages = Page.all_top_level_pages.to_a
+      sections = PageSection.all_top_level_sections.to_a
 
-      Page.top_level_pages.min
+      [ *pages, *sections ].sort_by do |item|
+        [ item.sort_order ? 0 : 1, item.sort_order || 0 ]
+      end
+    end
+
+    def top_level_menu_items
+      pages = Page.top_level_menu_pages.to_a
+      sections = PageSection.top_level_menu_sections.to_a
+
+      [ *pages, *sections ].sort_by do |item|
+        [ item.sort_order ? 0 : 1, item.sort_order || 0 ]
+      end
+    end
+
+    # Return the configured default page, or one of a few fallback options, or nil
+    def default_page
+      name_or_slug = Setting.get :default_page
+      top_level_pages
+        .where( name: name_or_slug )
+        .or( top_level_pages
+               .where( slug: name_or_slug ) )
+        .first ||
+
+        PageSection.default_section&.default_page ||
+
+        Page.top_level_pages.min
+    end
   end
 end

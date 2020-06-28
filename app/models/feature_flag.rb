@@ -21,30 +21,30 @@ class FeatureFlag < ApplicationRecord
             enabled_for_admins: false
   end
 
-  # Class methods
-
-  def self.enable( name )
-    flag = find_by!( name: name.to_s )
-    flag.enable
-    flag
-  end
-
-  def self.disable( name )
-    flag = find_by!( name: name.to_s )
-    flag.disable
-    flag
-  end
-
-  def self.update_all_flags( params )
-    params['flags'].each_key do |flag_id|
-      flag = find( flag_id )
-      flag_params = params['flags'][flag_id]
-      return false unless flag.update(
-        enabled: flag_params['enabled'],
-        enabled_for_logged_in: flag_params['enabled_for_logged_in'],
-        enabled_for_admins: flag_params['enabled_for_admins']
-      )
+  class << self
+    def enable( name )
+      flag = find_by!( name: name.to_s )
+      flag.enable
+      flag
     end
-    true
+
+    def disable( name )
+      flag = find_by!( name: name.to_s )
+      flag.disable
+      flag
+    end
+
+    def update_all_flags( params )
+      params['flags'].each_key do |flag_id|
+        flag = find( flag_id )
+        flag_params = params['flags'][flag_id]
+        return false unless flag.update(
+          enabled: flag_params['enabled'],
+          enabled_for_logged_in: flag_params['enabled_for_logged_in'],
+          enabled_for_admins: flag_params['enabled_for_admins']
+        )
+      end
+      true
+    end
   end
 end

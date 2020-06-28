@@ -118,13 +118,13 @@ class Comment < ApplicationRecord
     update( spam: true )
   end
 
-  # Class methods
+  class << self
+    def mark_all_as_ham( comment_ids )
+      _shut_up_rubocop = where( id: comment_ids ).update( spam: false )
+    end
 
-  def self.mark_all_as_ham( comment_ids )
-    _shut_up_rubocop = where( id: comment_ids ).update( spam: false )
-  end
-
-  def self.all_spam
-    where( spam: true ).order( :created_at )
+    def all_spam
+      where( spam: true ).order( :created_at )
+    end
   end
 end

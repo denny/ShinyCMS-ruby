@@ -48,24 +48,24 @@ class PageTemplate < ApplicationRecord
     end
   end
 
-  # Class methods
+  class << self
+    def template_dir
+      return if Theme.current.blank?
 
-  def self.template_dir
-    return if Theme.current.blank?
-
-    Rails.root.join Theme.current.page_templates_path
-  end
-
-  # Get a list of available template files from the disk
-  def self.available_templates
-    return unless template_dir
-
-    filenames = Dir.glob '*.html.erb', base: template_dir
-    template_names = []
-    filenames.each do |filename|
-      template_names << filename.remove( '.html.erb' )
+      Rails.root.join Theme.current.page_templates_path
     end
-    template_names.sort
+
+    # Get a list of available template files from the disk
+    def available_templates
+      return unless template_dir
+
+      filenames = Dir.glob '*.html.erb', base: template_dir
+      template_names = []
+      filenames.each do |filename|
+        template_names << filename.remove( '.html.erb' )
+      end
+      template_names.sort
+    end
   end
 
   # Add another validation here, because it uses the class method above

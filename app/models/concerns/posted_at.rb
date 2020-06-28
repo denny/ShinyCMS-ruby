@@ -31,16 +31,16 @@ module PostedAt
       self.posted_at = Time.zone.now
     end
 
-    # Class methods
+    module ClassMethods
+      def posts_for_year( year_string )
+        year = Date.new( year_string.to_i, 1, 1 )
+        where( posted_at: year..year.end_of_year ).order( :posted_at ).readonly
+      end
 
-    def self.posts_for_year( year_string )
-      year = Date.new( year_string.to_i, 1, 1 )
-      where( posted_at: year..year.end_of_year ).order( :posted_at ).readonly
-    end
-
-    def self.posts_for_month( year_string, month_string )
-      month = Date.new( year_string.to_i, month_string.to_i, 1 )
-      where( posted_at: month..month.end_of_month ).order( :posted_at ).readonly
+      def posts_for_month( year_string, month_string )
+        month = Date.new( year_string.to_i, month_string.to_i, 1 )
+        where( posted_at: month..month.end_of_month ).order( :posted_at ).readonly
+      end
     end
   end
 end

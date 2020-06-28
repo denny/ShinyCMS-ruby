@@ -81,26 +81,26 @@ class PageSection < ApplicationRecord
     menu_pages.present? || menu_sections.present?
   end
 
-  # Class methods
+  class << self
+    def all_top_level_sections
+      PageSection.top_level
+    end
 
-  def self.all_top_level_sections
-    PageSection.top_level
-  end
+    def top_level_sections
+      PageSection.top_level.visible
+    end
 
-  def self.top_level_sections
-    PageSection.top_level.visible
-  end
+    def top_level_menu_sections
+      PageSection.top_level.visible_in_menus
+    end
 
-  def self.top_level_menu_sections
-    PageSection.top_level.visible_in_menus
-  end
-
-  # Return the default top-level section
-  def self.default_section
-    name_or_slug = Setting.get :default_section
-    top_level_sections.where( name: name_or_slug )
-                      .or( top_level_sections
-                      .where( slug: name_or_slug ) )
-                      .first
+    # Return the default top-level section
+    def default_section
+      name_or_slug = Setting.get :default_section
+      top_level_sections.where( name: name_or_slug )
+        .or( top_level_sections
+               .where( slug: name_or_slug ) )
+        .first
+    end
   end
 end

@@ -11,21 +11,21 @@ class DoNotContact < ApplicationRecord
 
   before_save :redact_email
 
-  # Class methods
+  class << self
+    def include?( email )
+      find_by( email: canonicalise_and_redact( email ) ) ? true : false
+    end
 
-  def self.include?( email )
-    find_by( email: canonicalise_and_redact( email ) ) ? true : false
-  end
+    def includes?( email )
+      include?( email )
+    end
 
-  def self.includes?( email )
-    include?( email )
-  end
+    def canonicalise_and_redact( email )
+      new_email = EmailAddress.new( email )
+      return email if new_email.redacted?
 
-  def self.canonicalise_and_redact( email )
-    new_email = EmailAddress.new( email )
-    return email if new_email.redacted?
-
-    EmailAddress.redact( new_email.canonical )
+      EmailAddress.redact( new_email.canonical )
+    end
   end
 
   private

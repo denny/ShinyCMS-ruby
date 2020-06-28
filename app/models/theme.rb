@@ -25,36 +25,36 @@ class Theme
     "#{view_path}/pages/templates"
   end
 
-  # Class methods
+  class << self
+    def base_directory_exists?( theme_name )
+      return false if theme_name.blank?
 
-  def self.base_directory_exists?( theme_name )
-    return false if theme_name.blank?
+      FileTest.directory?( Rails.root.join( 'app/views/themes', theme_name ) )
+    end
 
-    FileTest.directory?( Rails.root.join( 'app/views/themes', theme_name ) )
-  end
+    # Find and return the current theme (if any)
+    def current( user = nil )
+      user_theme( user ) || site_theme || default_theme
+    end
 
-  # Find and return the current theme (if any)
-  def self.current( user = nil )
-    user_theme( user ) || site_theme || default_theme
-  end
+    def user_theme( user )
+      return if user.blank?
 
-  def self.user_theme( user )
-    return if user.blank?
+      theme_name = Setting.get :theme_name, user
+      Theme.new( theme_name ).presence
+    end
 
-    theme_name = Setting.get :theme_name, user
-    Theme.new( theme_name ).presence
-  end
+    def site_theme
+      theme_name = Setting.get :theme_name
+      Theme.new( theme_name ).presence
+    end
 
-  def self.site_theme
-    theme_name = Setting.get :theme_name
-    Theme.new( theme_name ).presence
-  end
+    def default_theme
+      Theme.new( env_shinycms_theme ).presence
+    end
 
-  def self.default_theme
-    Theme.new( env_shinycms_theme ).presence
-  end
-
-  def self.env_shinycms_theme
-    ENV['SHINYCMS_THEME']
+    def env_shinycms_theme
+      ENV['SHINYCMS_THEME']
+    end
   end
 end
