@@ -5,39 +5,23 @@
 class User < ApplicationRecord
   include Email
 
-  # Include default and most extra devise modules
-  # (Only :omniauthable not currently used)
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :confirmable, :lockable, :timeoutable, :trackable
+  # Enable basically every Devise module except :omniauthable (for now)
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+         :validatable, :confirmable, :lockable, :timeoutable, :trackable
   devise :pwned_password unless Rails.env.test?
 
-  # Allowed characters for usernames: a-z A-Z 0-9 . _ -
-  USERNAME_REGEX = %r{[-_.a-zA-Z0-9]+}.freeze
-  public_constant :USERNAME_REGEX
-  ANCHORED_USERNAME_REGEX = %r{\A#{USERNAME_REGEX}\z}.freeze
-  private_constant :ANCHORED_USERNAME_REGEX
-
-  validates :username, presence:   true
-  validates :username, uniqueness: true, case_sensitive: false
-  validates :username, length:     { maximum: 50 }
-  validates :username, format:     ANCHORED_USERNAME_REGEX
-
-  # User profile pic (powered by ActiveStorage)
-  has_one_attached :profile_pic
+  # Associations
 
   # Authorisation (powered by Pundit)
   has_many :user_capabilities, dependent: :destroy
   has_many :capabilities, through: :user_capabilities, inverse_of: :users
 
-  # User's custom site settings
-  has_many :settings, class_name: 'SettingValue', inverse_of: :user,
-                      dependent: :destroy
-
-  # Web stats (powered by Ahoy)
+  # Web and email stats (powered by Ahoy and Ahoy::Email)
   has_many :visits, class_name: 'Ahoy::Visit', dependent: :nullify
-  # Email stats (also powered by Ahoy)
   has_many :messages, class_name: 'Ahoy::Message', dependent: :nullify
+
+  # User's custom site settings, if any
+  has_many :settings, class_name: 'SettingValue', inverse_of: :user, dependent: :destroy
 
   # End-user content: destroy it along with their account
   has_many :comments, dependent: :destroy
@@ -49,12 +33,29 @@ class User < ApplicationRecord
   has_many :blog_posts, dependent: :restrict_with_error
   has_many :news_posts, dependent: :restrict_with_error
 
-  # Configure default count-per-page for pagination
+  # Validations
+
+  # Allowed characters for usernames: a-z A-Z 0-9 . _ -
+  USERNAME_REGEX = %r{[-_.a-zA-Z0-9]+}.freeze
+  public_constant :USERNAME_REGEX
+  ANCHORED_USERNAME_REGEX = %r{\A#{USERNAME_REGEX}\z}.freeze
+  private_constant :ANCHORED_USERNAME_REGEX
+
+  validates :username, presence: true, uniqueness: true, case_sensitive: false
+  validates :username, length: { maximum: 50 }
+  validates :username, format: ANCHORED_USERNAME_REGEX
+
+  # Plugins
+
   paginates_per 20
 
-  # Virtual attribute to allow authenticating by either username or email
-  attr_writer :login
+  # Virtual attributes
 
+  # User profile pic (powered by ActiveStorage)
+  has_one_attached :profile_pic
+
+  # Allow authenticating by either username or email
+  attr_writer :login
   def login
     @login || username || email
   end
