@@ -4,21 +4,21 @@
 
     <% if Blog.multiple_blogs_mode? %>
 
-      <%= render_admin_menu_item_if( current_user.admin_can?( :list, :blogs ),
+      <%= render_admin_menu_item_if( current_user.can?( :list, :blogs ),
           t( 'admin.blogs.index.title' ), blogs_path, 'library' ) %>
 
-      <%= render_admin_menu_item_if( current_user.admin_can?( :add, :blogs ),
+      <%= render_admin_menu_item_if( current_user.can?( :add, :blogs ),
           t( 'admin.blogs.new.title' ), new_blog_path, 'library-add' ) %>
 
     <% else %>
       <% if Blog.count == 0 %>
 
-      <%= render_admin_menu_item_if( current_user.admin_can?( :add, :blogs ),
+      <%= render_admin_menu_item_if( current_user.can?( :add, :blogs ),
           t( 'admin.blogs.new.title' ), new_blog_path, 'library-add' ) %>
 
       <% else %>
 
-      <%= render_admin_menu_item_if( current_user.admin_can?( :edit, :blogs ),
+      <%= render_admin_menu_item_if( current_user.can?( :edit, :blogs ),
           t( 'admin.blogs.edit.title' ), edit_blog_path( Blog.first ), 'library' ) %>
 
       <% end %>
@@ -30,7 +30,7 @@
       <%= render_admin_menu_item(
           t( 'admin.blog.posts.index.title' ), blog_posts_path( Blog.first ), 'list' ) %>
 
-      <%= render_admin_menu_item_if( current_user.admin_can?( :add, :blog_posts ),
+      <%= render_admin_menu_item_if( current_user.can?( :add, :blog_posts ),
           t( 'admin.blog.posts.new.title' ), new_blog_post_path( Blog.first ), 'pencil' ) %>
 
     <% end %>
