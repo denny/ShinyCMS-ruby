@@ -1,5 +1,5 @@
 <ul class="c-sidebar-nav">
-  <%= render_admin_menu_item_if( current_user.cache_capabilities.can?( :view_admin_dashboard ),
+  <%= render_admin_menu_item_if( current_user.can?( :view_admin_dashboard ),
       t( 'admin.dashboard.title' ), admin_path, 'speedometer' ) %>
 
   <%= render partial: 'admin/menu/menu_pages'    %>
