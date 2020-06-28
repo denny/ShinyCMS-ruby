@@ -78,8 +78,6 @@ class User < ApplicationRecord
     cc = CapabilityCategory.find_by( name: category_name.to_s )
     return true if capabilities.exists? name: capability_name.to_s, category: cc
 
-    Rails.logger.debug  'Capability check failed: ' \
-                        "#{username} cannot #{capability_name} #{category_name}"
     false
   end
 
