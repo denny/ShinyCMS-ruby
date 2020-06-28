@@ -73,32 +73,35 @@ class User < ApplicationRecord
   end
 
   def can?( capability_name, category_name = :general )
-    return admin_can?( capability_name, category_name ) if @all_capabilities.present?
+    return cached_can?( capability_name, category_name ) if @cached_capabilities.present?
 
     cc = CapabilityCategory.find_by( name: category_name.to_s )
     return true if capabilities.exists? name: capability_name.to_s, category: cc
 
-    Rails.logger.debug  'Capability check failed: ' \
-                        "#{username} cannot #{capability_name} #{category_name}"
     false
   end
 
-  def admin_can?( capability, category = :general )
-    return false if all_capabilities.blank?
+  def cached_can?( capability, category = :general )
+    return false if cached_capabilities.blank?
 
-    return true if all_capabilities[ category.to_s ]&.include? capability.to_s
+    return true if cached_capabilities[ category.to_s ]&.include? capability.to_s
 
     false
   end
 
-  def all_capabilities
-    return @all_capabilities if @all_capabilities.present?
+  def cached_capabilities
+    return @cached_capabilities if @cached_capabilities.present?
 
-    @all_capabilites =
+    @cached_capabilities =
       capabilities.joins( :category )
                   .pluck( 'capability_categories.name', :name )
                   .group_by( &:shift )
                   .each_value( &:flatten! )
+  end
+
+  def cache_capabilities
+    cached_capabilities if @cached_capabilities.blank?
+    self
   end
 
   def capabilities=( capability_set )
