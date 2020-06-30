@@ -5,11 +5,6 @@
 class User < ApplicationRecord
   include Email
 
-  # Enable basically every Devise module except :omniauthable (for now)
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :validatable, :confirmable, :lockable, :timeoutable, :trackable
-  devise :pwned_password unless Rails.env.test?
-
   # Associations
 
   # Authorisation (powered by Pundit)
@@ -46,6 +41,13 @@ class User < ApplicationRecord
   validates :username, format: ANCHORED_USERNAME_REGEX
 
   # Plugins
+
+  # Enable basically every Devise module except :omniauthable (for now)
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+         :validatable, :confirmable, :lockable, :timeoutable, :trackable
+  devise :pwned_password unless Rails.env.test?
+
+  acts_as_voter
 
   paginates_per 20
 

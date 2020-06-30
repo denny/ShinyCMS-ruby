@@ -30,6 +30,10 @@ class Comment < ApplicationRecord
   before_create :set_number
   after_create  :send_notifications
 
+  # Plugins
+
+  acts_as_votable
+
   # Aliases
 
   alias_attribute :author, :user
