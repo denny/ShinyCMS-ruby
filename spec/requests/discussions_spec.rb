@@ -310,4 +310,57 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response.body ).to have_css '.alerts', text: I18n.t( 'discussions.add_reply.failure' )
     end
   end
+
+  context 'Votes' do
+    before :each do
+      @voter = create :user
+      sign_in @voter
+    end
+
+    describe 'PUT /discussion/1/1/vote-up' do
+      it 'up-votes the comment' do
+        expect( @comment.get_upvotes.size ).to eq 0
+
+        put create_comment_upvote_path( @discussion, @comment.number )
+
+        expect( response ).to have_http_status :found
+        expect( response ).to redirect_to discussion_path( @discussion )
+        follow_redirect!
+        expect( response ).to have_http_status :ok
+
+        expect( @comment.reload.get_upvotes.size ).to eq 1
+      end
+    end
+
+    describe 'PUT /discussion/1/1/vote-down' do
+      it 'down-votes the comment' do
+        expect( @comment.get_downvotes.size ).to eq 0
+
+        put create_comment_downvote_path( @discussion, @comment.number )
+
+        expect( response ).to have_http_status :found
+        expect( response ).to redirect_to discussion_path( @discussion )
+        follow_redirect!
+        expect( response ).to have_http_status :ok
+
+        expect( @comment.reload.get_downvotes.size ).to eq 1
+      end
+    end
+
+    describe 'PUT /discussion/1/1/vote-undo' do
+      it 'remotes the existing vote from the comment' do
+        @comment.upvote_by @voter
+        expect( @comment.get_upvotes.size ).to eq 1
+
+        put destroy_comment_vote_path( @discussion, @comment.number )
+
+        expect( response ).to have_http_status :found
+        expect( response ).to redirect_to discussion_path( @discussion )
+        follow_redirect!
+        expect( response ).to have_http_status :ok
+
+        expect( @comment.reload.get_upvotes.size ).to eq 0
+      end
+    end
+  end
 end

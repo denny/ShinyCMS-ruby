@@ -1,0 +1,11 @@
+<%= t( 'vote' ) %>:
+
+<% if current_user&.voted_up_on?( comment ) %>
+  <%= link_to t( 'remove_upvote' ),
+              destroy_comment_vote_path( comment.discussion.id, comment.number ), method: :put %>
+<% else %>
+  <%= link_to t( 'add_upvote' ),
+              create_comment_upvote_path( comment.discussion.id, comment.number ), method: :put %>
+<% end %>
+
+(<%= comment.get_upvotes.size %>)

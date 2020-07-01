@@ -30,6 +30,12 @@ en:
   # Confirmation dialogue
   are_you_sure: Are you sure?
 
+  # Votes / Likes
+  vote: Vote
+  add_upvote: '+'
+  add_downvote: '-'
+  remove_upvote: '(+)'
+  remove_downvote: '(-)'
 
   # ========== ( Main Site ) ==========
 
@@ -197,7 +203,9 @@ en:
     akismet_on_comments: Detect spam comments with Akismet
     blogs: Blogs
     comments: Comments
+    comment_downvotes: Comment downvotes ('dislikes')
     comment_notifications: Comment notifications
+    comment_votes: Comment votes ('likes')
     news: News
     recaptcha_on_registration_form: Protect registration form with reCAPTCHA
     recaptcha_on_comment_form: Protect comment form with reCAPTCHA
