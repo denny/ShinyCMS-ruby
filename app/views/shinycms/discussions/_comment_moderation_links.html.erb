@@ -1,6 +1,6 @@
 <% if current_user_can?( :hide, :comments ) || current_user_can?( :lock, :comments ) %>
 
-<div class="float-right smaller">
+<span class="float-right smaller">
   Comment:
 
 <% if current_user_can?( :hide, :comments ) %>
@@ -21,7 +21,7 @@
   /
 <% end %>
 
-  <% if current_user_can?( :delete, :spam_comments ) %>
+  <% if current_user_can?( :destroy, :spam_comments ) %>
     <%= link_to t( 'discussions.spam' ), spam_comment_path( comment ), method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
   /
   <% elsif current_user_can?( :flag, :spam_comments ) %>
@@ -29,9 +29,9 @@
   /
   <% end %>
 
-  <% if current_user_can?( :delete, :comments ) %>
+  <% if current_user_can?( :destroy, :comments ) %>
     <%= link_to t( 'delete' ), destroy_comment_path( comment ), method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
   <% end %>
-</div>
+</span>
 
 <% end %>
