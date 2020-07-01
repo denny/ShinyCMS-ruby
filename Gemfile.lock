@@ -64,6 +64,7 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     acts-as-taggable-on (6.5.0)
       activerecord (>= 5.0, < 6.1)
+    acts_as_votable (0.12.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ahoy_email (1.1.0)
@@ -405,6 +406,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-session_store!
   acts-as-taggable-on!
+  acts_as_votable!
   ahoy_email!
   ahoy_matey!
   akismet!

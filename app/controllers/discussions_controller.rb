@@ -54,6 +54,21 @@ class DiscussionsController < ApplicationController
     end
   end
 
+  def create_comment_upvote
+    @comment.upvote_by current_user
+    redirect_back fallback_location: discussion_path( @discussion )
+  end
+
+  def create_comment_downvote
+    @comment.downvote_by current_user
+    redirect_back fallback_location: discussion_path( @discussion )
+  end
+
+  def destroy_comment_vote
+    @comment.unvote_by current_user
+    redirect_back fallback_location: discussion_path( @discussion )
+  end
+
   private
 
   def stash_discussion

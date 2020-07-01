@@ -23,9 +23,20 @@
     <span class="locked"><%= t('discussions.comment_locked' ) %></span>
     <% else %>
     <a onclick="toggleHidden('reply_form_<%= comment.id %>')"><%= t( 'discussions.reply' ) %></a>
+    <% if feature_enabled?( :comment_votes ) %>
+      <span class="float-right smaller">
+      &nbsp;&nbsp;&nbsp;
+    <% if feature_enabled?( :comment_downvotes ) %>
+      <%= render partial: 'discussions/comment_vote_up_down', locals: { comment: comment } %>
+    <% else %>
+      <%= render partial: 'discussions/comment_vote_up', locals: { comment: comment } %>
+    <% end %>
+    </span>
+    <% end %>
     <% end %>
     <%= render partial: 'discussions/comment_moderation_links',
                locals: { comment: comment } %>
+
   </footer>
 
   <% unless comment.locked? %>

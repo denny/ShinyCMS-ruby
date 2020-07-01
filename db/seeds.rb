@@ -117,6 +117,18 @@ seed FeatureFlag, { name: 'comments' }, {
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
+seed FeatureFlag, { name: 'comment_votes' }, {
+  description: 'Enable votes on comments (likes)',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
+seed FeatureFlag, { name: 'comment_downvotes' }, {
+  description: 'Enable down-votes on comments (dislikes)',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
 seed FeatureFlag, { name: 'comment_notifications' }, {
   description: 'Send notification emails to people who get comments',
   enabled: true,
