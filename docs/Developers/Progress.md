@@ -68,6 +68,10 @@ version. Plus the occasional sneaky new feature that's crept in along the way :)
 Features from the Perl version that I'm currently re-implementing in the Ruby
 version (with notes on useful docs, where I'm up to, what I'm stuck on, etc)
 
+* 'Likes'
+  * Using acts_as_voteable gem
+    * https://github.com/ryanto/acts_as_votable/blob/master/README.md
+
 * Newsletters (HTML mailshots)
   * MJML templates - https://mjml.io/documentation
   * Mailing lists
