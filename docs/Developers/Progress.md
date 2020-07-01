@@ -52,6 +52,8 @@ version. Plus the occasional sneaky new feature that's crept in along the way :)
 ### Features that the Perl version didn't have, but the Ruby version does
 
 * Support for themes
+  * Override the core templates on a per-file, as-needed basis
+  * One theme included
 * Built-in email stats
   * Track opens and/or link-clicks
   * Disabled in default settings (privacy, yay!)
