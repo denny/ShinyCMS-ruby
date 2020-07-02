@@ -60,6 +60,8 @@ class Comment < ApplicationRecord
     discussion.resource.path( anchor: anchor )
   end
 
+  alias path anchored_path
+
   def send_notifications
     p = parent.notification_email if parent.present?
     notify_parent_comment_author if p.present?

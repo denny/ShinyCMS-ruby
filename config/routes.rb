@@ -39,10 +39,6 @@ Rails.application.routes.draw do
     get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
     post 'discussion/:id/:number', to: 'discussions#add_reply'
 
-    put  'discussion/:id/:number/vote-up',   to: 'discussions#create_comment_upvote',   as: :create_comment_upvote
-    put  'discussion/:id/:number/vote-down', to: 'discussions#create_comment_downvote', as: :create_comment_downvote
-    put  'discussion/:id/:number/undo-vote', to: 'discussions#destroy_comment_vote',    as: :destroy_comment_vote
-
     get 'news',                     to: 'news#index', as: :view_news
     get 'news/:year/:month/:slug',  to: 'news#show',  as: :view_news_post,
                                     constraints: {
@@ -86,6 +82,9 @@ Rails.application.routes.draw do
                   password: '/account/password',
                   unlock: '/account/unlock'
                 }
+
+    post   'vote/:type/:id/:flag', to: 'votes#create',  as: :create_vote
+    delete 'vote/:type/:id',       to: 'votes#destroy', as: :destroy_vote
 
     # ========== ( Admin area ) ==========
     get :admin, to: 'admin#index'

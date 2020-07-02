@@ -2,10 +2,10 @@
 
 <% if current_user&.voted_up_on?( comment ) %>
   <%= link_to t( 'remove_upvote' ),
-              destroy_comment_vote_path( comment.discussion.id, comment.number ), method: :put %>
+              destroy_vote_path( 'comment', comment.id ), method: :delete %>
 <% else %>
   <%= link_to t( 'add_upvote' ),
-              create_comment_upvote_path( comment.discussion.id, comment.number ), method: :put %>
+              create_vote_path( 'comment', comment.id, 'up' ), method: :post %>
 <% end %>
 
 (<%= comment.get_upvotes.size %>)
