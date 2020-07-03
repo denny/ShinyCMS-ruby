@@ -44,15 +44,24 @@ en:
       title: Blogs
     set_blog:
       failure: Blog not found
-    show:
-      reply: Reply to this post
+    post:
+      footer:
+        reply: Reply to this post
     sidebar:
       links: Links
       links_blurb: Recommended reading from around the web
       recent_posts: Recent Posts
 
   discussions:
-    comment: Comment
+    comment:
+      form:
+        comment: Comment
+        anonymous: Anonymous
+        pseudonymous: Pseudonymous
+        log_in_to_post: Log in to post a comment
+        name: Name
+        email: Email
+        url: URL
     comments: Comments
     n_comments:
       zero: No comments
@@ -68,13 +77,6 @@ en:
     hidden_comment: This comment has been hidden by a moderator.
     comment_locked: Comment locked
     spam: Spam
-    comment_form:
-      anonymous: Anonymous
-      pseudonymous: Pseudonymous
-      log_in_to_post: Log in to post a comment
-      name: Name
-      email: Email
-      url: URL
     add_comment:
       success: New comment posted
       failure: Failed to post new comment
@@ -105,6 +107,9 @@ en:
     index:
       title: Recent news
       zero_posts: There are no news posts to display here.
+    post:
+      footer:
+        reply: Reply to this post
     sidebar:
       links: Links
       links_blurb: Recommended reading from around the web

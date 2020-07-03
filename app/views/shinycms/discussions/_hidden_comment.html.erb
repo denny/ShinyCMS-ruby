@@ -6,8 +6,7 @@
   <% if current_user_can?( :hide, :comments ) %>
   <footer>
     <p>
-      <%= render partial: 'discussions/comment_moderation_links',
-                 locals: { comment: comment } %>
+      <%= render partial: 'discussions/comment/moderation_links', locals: { comment: comment } %>
     </p>
   </footer>
   <% end %>
