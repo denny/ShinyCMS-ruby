@@ -18,13 +18,27 @@
   <%= sanitize @post.body %>
 
   <% if @post.tag_list.present? %>
-  <footer>
+  <p>
     Tags: <% @post.tag_list.each do |tag| %><%= link_to tag, tag_path( tag ) %> <% end %>
+  </p>
+  <% end %>
+
+  <% if @post.discussion.present? %>
+  <footer>
+    <%= render partial: 'news/post/footer', locals: { post: @post } %>
   </footer>
+
+  <% unless @post.discussion.hidden? || @post.discussion.locked? %>
+  <div id="comment_form" class="comment_form" hidden>
+    <%= render partial: 'discussions/comment/form', locals: { discussion: @post.discussion } %>
+  </div>
+  <% end %>
   <% end %>
 </section>
 
-<% if @post.discussion.present? %>
+<a name="comments"></a>
+
+<% unless @post.discussion.blank? || @post.discussion.hidden? %>
   <%= render partial: 'discussions/discussion', locals: { resource: @post } %>
 <% end %>
 

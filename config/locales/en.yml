@@ -107,6 +107,9 @@ en:
     index:
       title: Recent news
       zero_posts: There are no news posts to display here.
+    post:
+      footer:
+        reply: Reply to this post
     sidebar:
       links: Links
       links_blurb: Recommended reading from around the web
