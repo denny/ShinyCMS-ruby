@@ -44,8 +44,9 @@ en:
       title: Blogs
     set_blog:
       failure: Blog not found
-    show:
-      reply: Reply to this post
+    post:
+      footer:
+        reply: Reply to this post
     sidebar:
       links: Links
       links_blurb: Recommended reading from around the web

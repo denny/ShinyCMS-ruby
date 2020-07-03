@@ -16,26 +16,7 @@
 
   <% if @post.discussion.present? %>
   <footer>
-    <% unless @post.discussion.locked? %>
-    <a onclick="toggleHidden('comment_form')"><%= t( '.reply' ) %></a>
-    <% unless @post.discussion.hidden? %>
-    (<%= t( 'discussions.n_comments', count: @post.discussion.comments.visible.count ) %>)
-    <% end %>
-    <% end %>
-
-    <% if feature_enabled?( :blog_votes ) %>
-    <span class="float-right smaller">
-      &nbsp;&nbsp;&nbsp;
-    <% if feature_enabled?( :blog_downvotes ) %>
-      <%= render partial: 'votable/vote_up_down', locals: { resource: @post } %>
-    <% else %>
-      <%= render partial: 'votable/vote_up', locals: { resource: @post } %>
-    <% end %>
-    </span>
-    <% end %>
-    <% if current_user_can?( :hide, :discussions ) || current_user_can?( :lock, :discussions ) %>
-    <%= render partial: 'discussions/moderation_links', locals: { discussion: @post.discussion } %>
-    <% end %>
+    <%= render partial: 'blogs/post/footer', locals: { post: @post } %>
   </footer>
 
   <% unless @post.discussion.hidden? || @post.discussion.locked? %>
