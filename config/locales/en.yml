@@ -202,10 +202,12 @@ en:
 
     akismet_on_comments: Detect spam comments with Akismet
     blogs: Blogs
+    blog_votes: Votes ('likes') on blog posts
+    blog_downvotes: Down-votes ('dislikes') on blog posts
     comments: Comments
+    comment_votes: Comment votes ('likes')
     comment_downvotes: Comment downvotes ('dislikes')
     comment_notifications: Comment notifications
-    comment_votes: Comment votes ('likes')
     news: News
     recaptcha_on_registration_form: Protect registration form with reCAPTCHA
     recaptcha_on_comment_form: Protect comment form with reCAPTCHA

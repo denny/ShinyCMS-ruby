@@ -23,6 +23,16 @@
     <% end %>
     <% end %>
 
+    <% if feature_enabled?( :blog_votes ) %>
+    <span class="float-right smaller">
+      &nbsp;&nbsp;&nbsp;
+    <% if feature_enabled?( :blog_downvotes ) %>
+      <%= render partial: 'votable/vote_up_down', locals: { resource: @post } %>
+    <% else %>
+      <%= render partial: 'votable/vote_up', locals: { resource: @post } %>
+    <% end %>
+    </span>
+    <% end %>
     <% if current_user_can?( :hide, :discussions ) || current_user_can?( :lock, :discussions ) %>
     <%= render partial: 'discussions/moderation_links', locals: { discussion: @post.discussion } %>
     <% end %>
