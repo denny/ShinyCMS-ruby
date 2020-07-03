@@ -15,8 +15,6 @@ class VotesController < ApplicationController
   before_action :find_voter
 
   def create
-    return unless @resource && @voter
-
     if params[ :flag ] == 'down'
       @resource.downvote_by @voter
     else
@@ -27,8 +25,6 @@ class VotesController < ApplicationController
   end
 
   def destroy
-    return unless @resource && @voter
-
     @resource.unvote_by @voter
 
     redirect_back fallback_location: @resource.path
@@ -37,12 +33,11 @@ class VotesController < ApplicationController
   private
 
   def find_resource
-    type = params[ :type ].capitalize
-    # 400 unless votable_models.include? type
-    return unless votable_models.include? type
+    type = params[ :type ].classify
+    return head( :bad_request ) unless votable_models.include? type
 
     @resource = type.constantize.find( params[ :id ] )
-    # 404 unless @resource.present?
+    return head( :not_found ) if @resource.blank?
   end
 
   def votable_models

@@ -41,4 +41,8 @@ RSpec.describe BlogPost, type: :model do
       expect( post.teaser( paragraphs: 4 ) ).not_to match %r{<p>.+<p>.+<p>.+<p>.+<p>}m
     end
   end
+
+  it_should_behave_like 'Voteable' do
+    let( :item ) { create :blog_post }
+  end
 end

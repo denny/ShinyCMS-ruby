@@ -27,9 +27,9 @@
       <span class="float-right smaller">
       &nbsp;&nbsp;&nbsp;
     <% if feature_enabled?( :comment_downvotes ) %>
-      <%= render partial: 'discussions/comment_vote_up_down', locals: { comment: comment } %>
+      <%= render partial: 'votable/vote_up_down', locals: { resource: comment } %>
     <% else %>
-      <%= render partial: 'discussions/comment_vote_up', locals: { comment: comment } %>
+      <%= render partial: 'votable/vote_up', locals: { resource: comment } %>
     <% end %>
     </span>
     <% end %>

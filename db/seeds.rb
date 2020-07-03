@@ -111,6 +111,18 @@ seed FeatureFlag, { name: 'blogs' }, {
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
+seed FeatureFlag, { name: 'blog_votes' }, {
+  description: 'Enable votes (likes) on blog posts',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
+seed FeatureFlag, { name: 'blog_downvotes' }, {
+  description: 'Enable down-votes (dislikes) on blog posts',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
 seed FeatureFlag, { name: 'comments' }, {
   description: 'Enable comment and discussion features site-wide',
   enabled: true,
@@ -118,13 +130,13 @@ seed FeatureFlag, { name: 'comments' }, {
   enabled_for_admins: true
 }
 seed FeatureFlag, { name: 'comment_votes' }, {
-  description: 'Enable votes on comments (likes)',
+  description: 'Enable votes on comments',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
 seed FeatureFlag, { name: 'comment_downvotes' }, {
-  description: 'Enable down-votes on comments (dislikes)',
+  description: 'Enable down-votes on comments',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true
