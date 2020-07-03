@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file contains any data which is either necessary to get ShinyCMS running,
 # or which might provide useful hints for configuration after that.
 #
@@ -287,5 +289,5 @@ setting.values.create_or_find_by!( value: 'No' )
 
 # Let people know how to create an admin user
 demo = ( Rake.application.top_level_tasks.first == 'shiny:demo:load' )
-skip = User.super_admins_exist? || demo || Rails.env.test?
+skip = demo || Rails.env.test? || User.super_admins_exist?
 puts 'To generate a ShinyCMS admin user: rails shiny:admin:create' unless skip
