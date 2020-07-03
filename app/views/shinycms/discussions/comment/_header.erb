@@ -1,0 +1,11 @@
+    <span class="float-right">
+      <%= link_to "##{comment.number}", "#{request.fullpath}##{comment.number}" %>
+    </span>
+    <% if comment.title.present? %>
+    <h2>
+      <%= comment.title %>
+    </h2>
+    <% end %>
+    <h3 class="byline">
+      <%= render partial: 'discussions/comment/posted_by', locals: { comment: comment } %>
+    </h3>
