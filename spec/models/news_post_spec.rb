@@ -25,7 +25,7 @@ RSpec.describe NewsPost, type: :model do
       paras = Faker::Lorem.paragraphs( number: 5 )
       text  = paras.join( "\n</p>\n<p>" )
       body  = "<p>#{text}\n</p>"
-      post  = create :blog_post, body: body
+      post  = create :news_post, body: body
 
       expect( post.teaser ).to     match %r{<p>.+<p>.+<p>}m
       expect( post.teaser ).not_to match %r{<p>.+<p>.+<p>.+<p>}m
@@ -35,7 +35,7 @@ RSpec.describe NewsPost, type: :model do
       paras = Faker::Lorem.paragraphs( number: 5 )
       text  = paras.join( "\n</p>\n<p>" )
       body  = "<p>#{text}\n</p>"
-      post  = create :blog_post, body: body
+      post  = create :news_post, body: body
 
       expect( post.teaser( paragraphs: 4 ) ).to     match %r{<p>.+<p>.+<p>.+<p>}m
       expect( post.teaser( paragraphs: 4 ) ).not_to match %r{<p>.+<p>.+<p>.+<p>.+<p>}m
