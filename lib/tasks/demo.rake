@@ -10,7 +10,7 @@ require 'dotenv/tasks'
 # - inserts the demo site data
 
 # rails shiny:demo:dump
-# - dumps the current database contents to db/demo-data.rb
+# - dumps the current database contents to db/demo_data.rb
 
 # rubocop:disable Layout/MultilineArrayLineBreaks
 
@@ -39,7 +39,7 @@ namespace :shiny do
       Setting.set :theme_name, to: 'halcyonic'
 
       skip_callbacks_on_page_models
-      require Rails.root.join 'db/demo-data.rb'
+      require Rails.root.join 'db/demo_data.rb'
       set_callbacks_on_page_models
 
       fix_primary_key_sequences
@@ -97,7 +97,7 @@ namespace :shiny do
       end
       result = big_dump.gsub 'user_id: 1', 'user_id: @shiny_admin.id'
 
-      File.open( Rails.root.join( 'db/demo-data.rb' ), 'w' ) do |dump|
+      File.open( Rails.root.join( 'db/demo_data.rb' ), 'w' ) do |dump|
         dump.write result
       end
     end
