@@ -214,6 +214,8 @@ en:
     comment_downvotes: Comment downvotes ('dislikes')
     comment_notifications: Comment notifications
     news: News
+    news_votes: Votes on news posts
+    news_downvotes: Down-votes on news posts
     recaptcha_on_registration_form: Protect registration form with reCAPTCHA
     recaptcha_on_comment_form: Protect comment form with reCAPTCHA
     tags: Tags

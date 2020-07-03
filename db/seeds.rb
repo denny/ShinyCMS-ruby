@@ -153,6 +153,18 @@ seed FeatureFlag, { name: 'news' }, {
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
+seed FeatureFlag, { name: 'news_votes' }, {
+  description: 'Enable votes on news posts',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
+seed FeatureFlag, { name: 'news_downvotes' }, {
+  description: 'Enable down-votes on news posts',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
 seed FeatureFlag, { name: 'akismet_on_comments' }, {
   description: 'Detect spam comments with Akismet',
   enabled: true,
