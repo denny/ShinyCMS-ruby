@@ -37,4 +37,8 @@ module MainSiteHelper
   def user_profile_link( user = current_user )
     link_to user_display_name( user ), user_profile_path( user.username )
   end
+
+  def use_pg_search?
+    ActiveRecord::Base.connection.adapter_name == 'PostgreSQL'
+  end
 end
