@@ -17,11 +17,30 @@ class SearchController < ApplicationController
   def index
     return unless @query
 
-    # TODO: write some code ;)
-    @results = User.where( display_name: @query )
+    @page_num = params[ :page ] || 1
+    @per_page = Setting.get( :search_results_per_page ) || 20
+
+    if use_pg_search?
+      pg_search
+    elsif algolia_search_is_enabled?
+      algolia_search
+    end
   end
 
   private
+
+  def pg_search
+    @pageable = PgSearch.multisearch( @query )
+                        .includes( :searchable )
+                        .page( @page_num )
+                        .per( @per_page )
+    @results = @pageable.map( &:searchable )
+  end
+
+  def algolia_search
+    # TODO: get results from Algolia search API
+    @results = []
+  end
 
   def stash_query_string
     @query = params[:query]

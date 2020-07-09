@@ -1,0 +1,7 @@
+  <p>
+    <%= link_to result.author.display_name, user_profile_path( result.author.username ) %>
+    <small>
+      Last updated at <%= result.updated_at.to_s( :time ) %>
+      on <%= result.updated_at.to_s( :shinydate ) %>
+    </small>
+  </p>

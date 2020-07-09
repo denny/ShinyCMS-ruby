@@ -1,6 +1,6 @@
 <%# frozen_string_literal: true %>
 
-<% @page_title = t( '.title', { query: @query } ) %>
+<% @page_title = t( '.title', query: @query ) %>
 
 <section>
   <header>
@@ -9,17 +9,16 @@
     </h2>
   </header>
   <% @results.each do |result| %>
-  <p>
-    <%# TODO: real code also required here %>
-    <%= link_to result.display_name, user_profile_path( result.username ) %>
-    <small>
-      Last updated at <%= result.updated_at.to_s( :time ) %>
-      on <%= result.updated_at.to_s( :shinydate ) %>
-    </small>
-  </p>
+    <%= render partial: "search/result/#{result.class.name.underscore}", locals: { result: result } %>
   <% end %>
   <% if @results.blank? %>
     <%= render partial: 'search/no_results' %>
+  <% else %>
+    <%= @pageable ||= @results %>
+    <%= paginate @pageable, window: 3 %>
+    <p id="pager-info">
+      <%= page_entries_info @pageable %>
+    </p>
   <% end %>
 </section>
 
