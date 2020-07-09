@@ -25,6 +25,7 @@ class NewsPost < ApplicationRecord
   paginates_per 20
 
   searchable_attributes = %i[ title body slug ] # TODO: author
+  algolia_search_on( searchable_attributes )
   pg_search_on( searchable_attributes )
 
   # Attribute aliases and delegated methods
