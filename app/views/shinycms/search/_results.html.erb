@@ -8,9 +8,14 @@
       <%= @page_title %>
     </h2>
   </header>
+  <ul>
   <% @results.each do |result| %>
-    <%= render partial: "search/result/#{result.class.name.underscore}", locals: { result: result } %>
+    <li>
+      <%= render partial: "search/result/#{result.class.name.underscore}", locals: { result: result } %>
+      <%= render partial: 'search/result/last_updated', locals: { date: result.updated_at } %>
+    </li>
   <% end %>
+  </ul>
   <% if @results.blank? %>
     <%= render partial: 'search/no_results' %>
   <% else %>
