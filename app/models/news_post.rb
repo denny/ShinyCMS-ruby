@@ -24,6 +24,9 @@ class NewsPost < ApplicationRecord
   acts_as_votable
   paginates_per 20
 
+  searchable_attributes = %i[ title body slug ] # TODO: author
+  pg_search_on( searchable_attributes )
+
   # Attribute aliases and delegated methods
 
   alias_attribute :author, :user
