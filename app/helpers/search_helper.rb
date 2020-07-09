@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
-# Utility functions for dealing with Algolia (Search as a Service provider)
-module AlgoliaHelper
+# Utility functions for dealing with pg_multisearch and Algolia (Search as a Service provider)
+module SearchHelper
+  def use_pg_search?
+    ActiveRecord::Base.connection.adapter_name == 'PostgreSQL'
+  end
+
   def algolia_search_is_enabled?
     ENV['ALGOLIASEARCH_APPLICATION_ID'].present?
   end
