@@ -11,6 +11,8 @@
 # modify it under the terms of the GPL (version 2 or later).
 # ============================================================================
 class SearchController < ApplicationController
+  include SearchHelper
+
   before_action :check_feature_flags
   before_action :stash_query_string
 
