@@ -49,6 +49,9 @@ source 'https://rubygems.org' do
   # Tags
   gem 'acts-as-taggable-on'
 
+  # Likes
+  gem 'acts_as_votable'
+
   # Pagination
   gem 'kaminari'
 

@@ -21,6 +21,7 @@ class NewsPost < ApplicationRecord
   # Plugin features
 
   acts_as_taggable
+  acts_as_votable
   paginates_per 20
 
   # Attribute aliases and delegated methods

@@ -16,21 +16,12 @@
 
   <% if @post.discussion.present? %>
   <footer>
-    <% unless @post.discussion.locked? %>
-    <a onclick="toggleHidden('comment_form')"><%= t( '.reply' ) %></a>
-    <% unless @post.discussion.hidden? %>
-    (<%= t( 'discussions.n_comments', count: @post.discussion.comments.visible.count ) %>)
-    <% end %>
-    <% end %>
-
-    <% if current_user_can?( :hide, :discussions ) || current_user_can?( :lock, :discussions ) %>
-    <%= render partial: 'discussions/moderation_links', locals: { discussion: @post.discussion } %>
-    <% end %>
+    <%= render partial: 'blogs/post/footer', locals: { post: @post } %>
   </footer>
 
   <% unless @post.discussion.hidden? || @post.discussion.locked? %>
   <div id="comment_form" class="comment_form" hidden>
-    <%= render partial: 'discussions/comment_form', locals: { discussion: @post.discussion } %>
+    <%= render partial: 'discussions/comment/form', locals: { discussion: @post.discussion } %>
   </div>
   <% end %>
   <% end %>

@@ -23,6 +23,7 @@ class BlogPost < ApplicationRecord
   # Plugins
 
   acts_as_taggable
+  acts_as_votable
   paginates_per 20
 
   # Aliases and delegated methods

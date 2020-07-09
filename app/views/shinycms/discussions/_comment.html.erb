@@ -1,17 +1,7 @@
 <a name="<%= comment.number %>"></a>
 <section class="comment" style="margin-left: <%= depth %>em;">
   <header>
-    <span class="float-right">
-      <%= link_to "##{comment.number}", "#{request.fullpath}##{comment.number}" %>
-    </span>
-    <% if comment.title.present? %>
-    <h2>
-      <%= comment.title %>
-    </h2>
-    <% end %>
-    <h3 class="byline">
-      <%= render partial: 'discussions/comment_posted_by', locals: { comment: comment } %>
-    </h3>
+    <%= render partial: 'discussions/comment/header', locals: { comment: comment } %>
   </header>
 
   <p>
@@ -19,19 +9,12 @@
   </p>
 
   <footer>
-    <% if comment.locked? %>
-    <span class="locked"><%= t('discussions.comment_locked' ) %></span>
-    <% else %>
-    <a onclick="toggleHidden('reply_form_<%= comment.id %>')"><%= t( 'discussions.reply' ) %></a>
-    <% end %>
-    <%= render partial: 'discussions/comment_moderation_links',
-               locals: { comment: comment } %>
+    <%= render partial: 'discussions/comment/footer', locals: { comment: comment } %>
   </footer>
 
   <% unless comment.locked? %>
   <div id="reply_form_<%= comment.id %>" style="margin: 0; padding: 0;" hidden>
-    <%= render partial: 'discussions/comment_form',
-               locals: { discussion: comment.discussion, comment: comment } %>
+    <%= render partial: 'discussions/comment/form', locals: { comment: comment } %>
   </div>
   <% end %>
 </section>

@@ -2,17 +2,17 @@
 
 require 'rails_helper'
 
-RSpec.describe BlogPost, type: :model do
+RSpec.describe NewsPost, type: :model do
   context 'factory' do
-    it 'can create a blog post' do
-      post = create :blog_post
-      expect( BlogPost.first ).to eq post
+    it 'can create a news post' do
+      post = create :news_post
+      expect( NewsPost.first ).to eq post
     end
   end
 
   context 'methods' do
     it 'can create a slug' do
-      post = create :blog_post
+      post = create :news_post
 
       post.slug = nil
       expect( post.slug ).to be_blank
@@ -25,7 +25,7 @@ RSpec.describe BlogPost, type: :model do
       paras = Faker::Lorem.paragraphs( number: 5 )
       text  = paras.join( "\n</p>\n<p>" )
       body  = "<p>#{text}\n</p>"
-      post  = create :blog_post, body: body
+      post  = create :news_post, body: body
 
       expect( post.teaser ).to     match %r{<p>.+<p>.+<p>}m
       expect( post.teaser ).not_to match %r{<p>.+<p>.+<p>.+<p>}m
@@ -35,7 +35,7 @@ RSpec.describe BlogPost, type: :model do
       paras = Faker::Lorem.paragraphs( number: 5 )
       text  = paras.join( "\n</p>\n<p>" )
       body  = "<p>#{text}\n</p>"
-      post  = create :blog_post, body: body
+      post  = create :news_post, body: body
 
       expect( post.teaser( paragraphs: 4 ) ).to     match %r{<p>.+<p>.+<p>.+<p>}m
       expect( post.teaser( paragraphs: 4 ) ).not_to match %r{<p>.+<p>.+<p>.+<p>.+<p>}m
@@ -43,6 +43,6 @@ RSpec.describe BlogPost, type: :model do
   end
 
   it_should_behave_like 'Voteable' do
-    let( :item ) { create :blog_post }
+    let( :item ) { create :news_post }
   end
 end

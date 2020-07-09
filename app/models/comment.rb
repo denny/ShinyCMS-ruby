@@ -30,6 +30,10 @@ class Comment < ApplicationRecord
   before_create :set_number
   after_create  :send_notifications
 
+  # Plugins
+
+  acts_as_votable
+
   # Aliases
 
   alias_attribute :author, :user
@@ -55,6 +59,8 @@ class Comment < ApplicationRecord
 
     discussion.resource.path( anchor: anchor )
   end
+
+  alias path anchored_path
 
   def send_notifications
     p = parent.notification_email if parent.present?

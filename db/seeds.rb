@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file contains any data which is either necessary to get ShinyCMS running,
 # or which might provide useful hints for configuration after that.
 #
@@ -111,8 +113,32 @@ seed FeatureFlag, { name: 'blogs' }, {
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
+seed FeatureFlag, { name: 'blog_votes' }, {
+  description: 'Enable votes (likes) on blog posts',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
+seed FeatureFlag, { name: 'blog_downvotes' }, {
+  description: 'Enable down-votes (dislikes) on blog posts',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
 seed FeatureFlag, { name: 'comments' }, {
   description: 'Enable comment and discussion features site-wide',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
+seed FeatureFlag, { name: 'comment_votes' }, {
+  description: 'Enable votes on comments',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
+seed FeatureFlag, { name: 'comment_downvotes' }, {
+  description: 'Enable down-votes on comments',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true
@@ -125,6 +151,18 @@ seed FeatureFlag, { name: 'comment_notifications' }, {
 }
 seed FeatureFlag, { name: 'news' }, {
   description: 'Add a news section to your site',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
+seed FeatureFlag, { name: 'news_votes' }, {
+  description: 'Enable votes on news posts',
+  enabled: true,
+  enabled_for_logged_in: true,
+  enabled_for_admins: true
+}
+seed FeatureFlag, { name: 'news_downvotes' }, {
+  description: 'Enable down-votes on news posts',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true

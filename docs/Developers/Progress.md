@@ -52,6 +52,8 @@ version. Plus the occasional sneaky new feature that's crept in along the way :)
 ### Features that the Perl version didn't have, but the Ruby version does
 
 * Support for themes
+  * Override the core templates on a per-file, as-needed basis
+  * One theme included
 * Built-in email stats
   * Track opens and/or link-clicks
   * Disabled in default settings (privacy, yay!)
@@ -67,6 +69,10 @@ version. Plus the occasional sneaky new feature that's crept in along the way :)
 
 Features from the Perl version that I'm currently re-implementing in the Ruby
 version (with notes on useful docs, things I'm stuck on, etc)
+
+* 'Likes'
+  * Using acts_as_voteable gem
+    * https://github.com/ryanto/acts_as_votable/blob/master/README.md
 
 * Newsletters (HTML mailshots)
   * MJML templates - https://mjml.io/documentation

@@ -56,8 +56,7 @@ class Admin::NewsController < AdminController
   end
 
   def update_discussion_flags
-    hidden = params[ :news_post].delete( :discussion_hidden ) || 0
-    locked = params[ :news_post].delete( :discussion_locked ) || 0
+    hidden, locked = extract_discussion_flags
 
     return if @post.discussion.blank?
 
@@ -93,10 +92,20 @@ class Admin::NewsController < AdminController
   end
 
   def post_params_for_create
-    params[ :news_post ][ :user_id ] = current_user.id unless current_user.can? :change_author, :news_posts
+    set_current_user_as_author_unless_admin
 
     params.require( :news_post ).permit(
       :user_id, :title, :slug, :tag_list, :posted_at, :body, :hidden, :discussion_hidden, :discussion_locked
     )
+  end
+
+  def extract_discussion_flags
+    hidden = params[ :news_post].delete( :discussion_hidden ) || 0
+    locked = params[ :news_post].delete( :discussion_locked ) || 0
+    [ hidden, locked ]
+  end
+
+  def set_current_user_as_author_unless_admin
+    params[ :news_post ][ :user_id ] = current_user.id unless current_user.can? :change_author, :news_posts
   end
 end

@@ -30,6 +30,12 @@ en:
   # Confirmation dialogue
   are_you_sure: Are you sure?
 
+  # Votes / Likes
+  vote: Vote
+  add_upvote: '+'
+  add_downvote: '-'
+  remove_upvote: '(+)'
+  remove_downvote: '(-)'
 
   # ========== ( Main Site ) ==========
 
@@ -38,15 +44,24 @@ en:
       title: Blogs
     set_blog:
       failure: Blog not found
-    show:
-      reply: Reply to this post
+    post:
+      footer:
+        reply: Reply to this post
     sidebar:
       links: Links
       links_blurb: Recommended reading from around the web
       recent_posts: Recent Posts
 
   discussions:
-    comment: Comment
+    comment:
+      form:
+        comment: Comment
+        anonymous: Anonymous
+        pseudonymous: Pseudonymous
+        log_in_to_post: Log in to post a comment
+        name: Name
+        email: Email
+        url: URL
     comments: Comments
     n_comments:
       zero: No comments
@@ -62,13 +77,6 @@ en:
     hidden_comment: This comment has been hidden by a moderator.
     comment_locked: Comment locked
     spam: Spam
-    comment_form:
-      anonymous: Anonymous
-      pseudonymous: Pseudonymous
-      log_in_to_post: Log in to post a comment
-      name: Name
-      email: Email
-      url: URL
     add_comment:
       success: New comment posted
       failure: Failed to post new comment
@@ -99,6 +107,9 @@ en:
     index:
       title: Recent news
       zero_posts: There are no news posts to display here.
+    post:
+      footer:
+        reply: Reply to this post
     sidebar:
       links: Links
       links_blurb: Recommended reading from around the web
@@ -206,9 +217,15 @@ en:
 
     akismet_on_comments: Detect spam comments with Akismet
     blogs: Blogs
+    blog_votes: Votes ('likes') on blog posts
+    blog_downvotes: Down-votes ('dislikes') on blog posts
     comments: Comments
+    comment_votes: Comment votes ('likes')
+    comment_downvotes: Comment downvotes ('dislikes')
     comment_notifications: Comment notifications
     news: News
+    news_votes: Votes on news posts
+    news_downvotes: Down-votes on news posts
     recaptcha_on_registration_form: Protect registration form with reCAPTCHA
     recaptcha_on_comment_form: Protect comment form with reCAPTCHA
     search: Search

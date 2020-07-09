@@ -86,6 +86,9 @@ Rails.application.routes.draw do
                   unlock: '/account/unlock'
                 }
 
+    post   'vote/:type/:id/:flag', to: 'votes#create',  as: :create_vote
+    delete 'vote/:type/:id',       to: 'votes#destroy', as: :destroy_vote
+
     # ========== ( Admin area ) ==========
     get :admin, to: 'admin#index'
 

@@ -12,7 +12,6 @@
 ### Medium-ish
 
 * Form handlers (contact page, etc)
-* 'Likes' on blog posts, shop items, and comments
 * User profile pages (with content such as recent comments, recent posts, etc)
 * Access control groups
   * Can be used to control access to file downloads and secure whole pages,
