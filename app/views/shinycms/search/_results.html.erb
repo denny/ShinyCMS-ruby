@@ -14,7 +14,7 @@
   <% if @results.blank? %>
     <%= render partial: 'search/no_results' %>
   <% else %>
-    <%= @pageable ||= @results %>
+    <% @pageable ||= @results %>
     <%= paginate @pageable, window: 3 %>
     <p id="pager-info">
       <%= page_entries_info @pageable %>
@@ -22,9 +22,4 @@
   <% end %>
 </section>
 
-<% if algolia_search_is_enabled? && using_free_algolia_plan? %>
-<p class="right algolia-logo">
-  Search powered by
-  <%= link_to image_tag( 'shinycms/algolia-logo' ), 'https://www.algolia.com/' %>
-</p>
-<% end %>
+<%= render partial: 'search/algolia_logo' if algolia_search_is_enabled? && using_free_algolia_plan? %>
