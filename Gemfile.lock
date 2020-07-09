@@ -121,10 +121,10 @@ GEM
     childprocess (4.0.0)
     ckeditor (5.1.0)
       orm_adapter (~> 0.5.0)
-    codecov (0.1.17)
+    codecov (0.1.19)
+      colorize
       json
       simplecov
-      url
     coderay (1.1.2)
     colorize (0.8.1)
     concurrent-ruby (1.1.6)
@@ -188,7 +188,7 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     iniparse (1.5.0)
     jmespath (1.4.0)
-    json (2.3.0)
+    json (2.3.1)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -385,7 +385,6 @@ GEM
       unf_ext
     unf_ext (0.0.7.7)
     unicode-display_width (1.7.0)
-    url (0.3.2)
     warden (1.2.8)
       rack (>= 2.0.6)
     webpacker (5.1.1)
