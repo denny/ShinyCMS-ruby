@@ -19,8 +19,8 @@ RSpec.describe 'Search:', type: :request do
       get "#{search_path}?query=Success"
 
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'search.results.title', { query: 'Success' } )
-      expect( response.body ).to     include "/profile/#{user.username}"
+      expect( response.body ).to     have_title I18n.t( 'search.results.title', query: 'Success' )
+      expect( response.body ).to     have_link user.display_name, href: "/profile/#{user.username}"
       expect( response.body ).not_to have_css 'p', text: I18n.t( 'search.no_results.no_results' )
     end
   end
@@ -32,7 +32,7 @@ RSpec.describe 'Search:', type: :request do
       get "#{search_path}?query=FAIL"
 
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'search.results.title', { query: 'FAIL' } )
+      expect( response.body ).to     have_title I18n.t( 'search.results.title', query: 'FAIL' )
       expect( response.body ).to     have_css 'p', text: I18n.t( 'search.no_results.no_results' )
       expect( response.body ).not_to include "/profile/#{user.username}"
     end
