@@ -3,8 +3,13 @@
 source 'https://rubygems.org' do
   gem 'rails', '~> 6.0.3'
 
+  # ShinyCMS plugins (comment out to disable)
+  gem 'shiny_forms', path: 'plugins/ShinyForms'
+
+  # Database
   gem 'pg', '>= 0.18', '< 2.0'
 
+  # Webserver
   gem 'puma', '~> 4.3'
 
   # Load ENV from .env(.*) files
