@@ -97,7 +97,7 @@ GEM
     aws-sigv4 (1.2.1)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.13)
-    blazer (2.2.5)
+    blazer (2.2.6)
       activerecord (>= 5)
       chartkick (>= 3.2)
       railties (>= 5)
@@ -171,7 +171,7 @@ GEM
     groupdate (5.0.0)
       activesupport (>= 5)
     highline (2.0.3)
-    i18n (1.8.3)
+    i18n (1.8.4)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.31)
       activesupport (>= 4.0.2)
@@ -397,7 +397,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.3.1)
+    zeitwerk (2.4.0)
 
 PLATFORMS
   ruby
