@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_204022) do
+ActiveRecord::Schema.define(version: 2020_07_24_210954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -155,9 +153,8 @@ ActiveRecord::Schema.define(version: 2020_07_02_204022) do
     t.string "slug", null: false
     t.text "body", null: false
     t.boolean "hidden", default: false, null: false
-    t.integer "blog_id", null: false
-    t.integer "user_id", null: false
-    t.integer "discussion_id"
+    t.bigint "blog_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -170,14 +167,14 @@ ActiveRecord::Schema.define(version: 2020_07_02_204022) do
     t.string "slug", null: false
     t.boolean "hidden_from_menu", default: false, null: false
     t.boolean "hidden", default: false, null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "capabilities", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "category_id"
+    t.bigint "category_id"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -192,9 +189,9 @@ ActiveRecord::Schema.define(version: 2020_07_02_204022) do
   create_table "comments", force: :cascade do |t|
     t.integer "discussion_id", null: false
     t.integer "number", null: false
-    t.integer "parent_id"
+    t.bigint "parent_id"
     t.string "author_type"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "author_name"
     t.string "author_email"
     t.string "author_url"
@@ -212,7 +209,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_204022) do
 
   create_table "consents", force: :cascade do |t|
     t.string "purpose_type", null: false
-    t.integer "purpose_id", null: false
+    t.bigint "purpose_id", null: false
     t.string "action", null: false
     t.text "wording", null: false
     t.string "url"
@@ -260,7 +257,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_204022) do
   end
 
   create_table "insert_elements", force: :cascade do |t|
-    t.integer "set_id", null: false
+    t.bigint "set_id", null: false
     t.string "name", null: false
     t.string "content"
     t.string "content_type", default: "Short Text", null: false
@@ -288,15 +285,14 @@ ActiveRecord::Schema.define(version: 2020_07_02_204022) do
     t.string "slug", null: false
     t.text "body", null: false
     t.boolean "hidden", default: false, null: false
-    t.integer "user_id", null: false
-    t.integer "discussion_id"
+    t.bigint "user_id", null: false
     t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "page_elements", force: :cascade do |t|
-    t.integer "page_id", null: false
+    t.bigint "page_id", null: false
     t.string "name", null: false
     t.string "content"
     t.string "content_type", default: "Short Text", null: false
@@ -310,8 +306,8 @@ ActiveRecord::Schema.define(version: 2020_07_02_204022) do
     t.text "description"
     t.string "title", null: false
     t.string "slug", null: false
-    t.integer "default_page_id"
-    t.integer "section_id"
+    t.bigint "default_page_id"
+    t.bigint "section_id"
     t.integer "sort_order"
     t.boolean "hidden_from_menu", default: false, null: false
     t.boolean "hidden", default: false, null: false
@@ -322,7 +318,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_204022) do
   end
 
   create_table "page_template_elements", force: :cascade do |t|
-    t.integer "template_id", null: false
+    t.bigint "template_id", null: false
     t.string "name", null: false
     t.string "content"
     t.string "content_type", default: "Short Text", null: false
@@ -344,8 +340,8 @@ ActiveRecord::Schema.define(version: 2020_07_02_204022) do
     t.text "description"
     t.string "title", null: false
     t.string "slug", null: false
-    t.integer "template_id", null: false
-    t.integer "section_id"
+    t.bigint "template_id", null: false
+    t.bigint "section_id"
     t.integer "sort_order"
     t.boolean "hidden_from_menu", default: false, null: false
     t.boolean "hidden", default: false, null: false
@@ -365,8 +361,8 @@ ActiveRecord::Schema.define(version: 2020_07_02_204022) do
   end
 
   create_table "setting_values", force: :cascade do |t|
-    t.integer "setting_id", null: false
-    t.integer "user_id"
+    t.bigint "setting_id", null: false
+    t.bigint "user_id"
     t.string "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -383,8 +379,8 @@ ActiveRecord::Schema.define(version: 2020_07_02_204022) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer "list_id", null: false
-    t.integer "subscriber_id", null: false
+    t.bigint "list_id", null: false
+    t.bigint "subscriber_id", null: false
     t.string "subscriber_type", default: "EmailRecipient", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -418,8 +414,8 @@ ActiveRecord::Schema.define(version: 2020_07_02_204022) do
   end
 
   create_table "user_capabilities", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "capability_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "capability_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "capability_id"], name: "index_user_capabilities_on_user_id_and_capability_id", unique: true
@@ -491,7 +487,6 @@ ActiveRecord::Schema.define(version: 2020_07_02_204022) do
   add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "discussions"
   add_foreign_key "insert_elements", "insert_sets", column: "set_id"
-  add_foreign_key "news_posts", "discussions"
   add_foreign_key "news_posts", "users"
   add_foreign_key "page_elements", "pages"
   add_foreign_key "page_sections", "page_sections", column: "section_id"
