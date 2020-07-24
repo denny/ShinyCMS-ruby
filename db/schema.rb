@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_24_182808) do
+ActiveRecord::Schema.define(version: 2020_07_24_210954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -155,7 +155,6 @@ ActiveRecord::Schema.define(version: 2020_07_24_182808) do
     t.boolean "hidden", default: false, null: false
     t.bigint "blog_id", null: false
     t.bigint "user_id", null: false
-    t.integer "discussion_id"
     t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -287,7 +286,6 @@ ActiveRecord::Schema.define(version: 2020_07_24_182808) do
     t.text "body", null: false
     t.boolean "hidden", default: false, null: false
     t.bigint "user_id", null: false
-    t.integer "discussion_id"
     t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -489,7 +487,6 @@ ActiveRecord::Schema.define(version: 2020_07_24_182808) do
   add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "discussions"
   add_foreign_key "insert_elements", "insert_sets", column: "set_id"
-  add_foreign_key "news_posts", "discussions"
   add_foreign_key "news_posts", "users"
   add_foreign_key "page_elements", "pages"
   add_foreign_key "page_sections", "page_sections", column: "section_id"
