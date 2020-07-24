@@ -29,9 +29,7 @@ class Page < ApplicationRecord
 
   # Scopes
 
-  # rubocop:disable Rails/DefaultScope
-  default_scope { order( :sort_order ) }
-  # rubocop:enable Rails/DefaultScope
+  self.implicit_order_column = 'sort_order'
 
   scope :top_level,        -> { where( section: nil ) }
   scope :visible,          -> { where( hidden: false ) }
