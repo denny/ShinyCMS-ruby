@@ -27,10 +27,10 @@ class Admin::CommentsController < AdminController
   # Process submission of spam comment moderation page
   def update
     authorise Comment
-    the_params = update_params
-    if the_params[ :spam_or_ham ] == 'spam'
+    case update_params[ :spam_or_ham ]
+    when 'spam'
       process_spam_comments
-    elsif the_params[ :spam_or_ham ] == 'ham'
+    when 'ham'
       process_ham_comments
     else
       flash[ :alert ] = t( '.spam_or_ham' )
