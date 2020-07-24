@@ -19,6 +19,7 @@ class PagesController < ApplicationController
       show_page
       return
     end
+    # rubocop:disable Rails/RenderInline
     render inline: <<~HTML
       <p>
         This site does not have any content yet. Please try again later.
@@ -30,6 +31,7 @@ class PagesController < ApplicationController
         </i>
       </p>
     HTML
+    # rubocop:enable Rails/RenderInline
   end
 
   # Figure out whether we're at top level or going deeper
@@ -86,8 +88,10 @@ class PagesController < ApplicationController
   # Render the page with the appropriate template
   def show_page
     unless @page.template.file_exists?
+      # rubocop:disable Rails/RenderInline
       render status: :failed_dependency,
              inline: I18n.t( 'page.template_file_missing' )
+      # rubocop:enable Rails/RenderInline
       return
     end
 
