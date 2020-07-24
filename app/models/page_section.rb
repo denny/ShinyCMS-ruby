@@ -27,7 +27,9 @@ class PageSection < ApplicationRecord
 
   # Scopes
 
+  # rubocop:disable Rails/DefaultScope
   default_scope { order( :sort_order ) }
+  # rubocop:enable Rails/DefaultScope
 
   scope :top_level,        -> { where( section: nil  ) }
   scope :visible,          -> { where( hidden: false ) }
