@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module ShinyForms
+  # Load the engine that powers the plugin
   class Engine < ::Rails::Engine
     isolate_namespace ShinyForms
 

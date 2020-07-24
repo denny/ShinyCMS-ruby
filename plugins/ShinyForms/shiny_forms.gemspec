@@ -12,17 +12,17 @@ Gem::Specification.new do |spec|
   spec.authors     = ['Denny de la Haye']
   spec.email       = ['2020@denny.me']
   spec.homepage    = 'https://shinycms.com'
-  spec.summary     = 'Forms for ShinyCMS.'
-  spec.description = 'Forms plugin for ShinyCMS.'
-  spec.license     = 'GPL 2.0+'
+  spec.summary     = 'ShinyCMS form handlers plugin'
+  spec.description = 'ShinyCMS plugin that provides a few handlers for a HTML form POST.'
+  spec.license     = 'GPL'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://rubygems.org' in some notional future"
-  else
+  unless spec.respond_to?(:metadata)
     raise StandardError, 'RubyGems 2.0 or newer is required to protect against public gem pushes.'
   end
+
+  spec.metadata['allowed_push_host'] = "TODO: Set to 'http://rubygems.org' in some notional future"
 
   spec.files = Dir['{app,config,db,lib}/**/*', 'Rakefile', 'README.md']
 

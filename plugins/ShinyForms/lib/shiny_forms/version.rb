@@ -2,4 +2,5 @@
 
 module ShinyForms
   VERSION = '20.7'
+  public_constant :VERSION
 end
