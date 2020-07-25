@@ -27,7 +27,7 @@ class PageSection < ApplicationRecord
 
   # Scopes
 
-  default_scope { order( :sort_order ) }
+  self.implicit_order_column = 'sort_order'
 
   scope :top_level,        -> { where( section: nil  ) }
   scope :visible,          -> { where( hidden: false ) }
