@@ -3,7 +3,7 @@
 # Model class for news posts
 class NewsPost < ApplicationRecord
   include PostedAt
-  include SlugInMonth
+  include ShinySlugInMonth
   include Teaser
 
   # Associations

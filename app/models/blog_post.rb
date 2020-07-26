@@ -3,7 +3,7 @@
 # Model class for blog posts
 class BlogPost < ApplicationRecord
   include PostedAt
-  include SlugInMonth
+  include ShinySlugInMonth
   include Teaser
 
   # Associations

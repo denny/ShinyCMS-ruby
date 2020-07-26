@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Common behaviour for URL slugs
-module Slug
+module ShinySlug
   extend ActiveSupport::Concern
 
   # Allowed characters for slugs: a-z A-Z 0-9 . _ -

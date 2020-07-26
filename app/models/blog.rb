@@ -3,7 +3,7 @@
 # Model class for blogs (which are a collection of blog posts)
 class Blog < ApplicationRecord
   include NameAndTitle
-  include Slug
+  include ShinySlug
 
   # Associations
 

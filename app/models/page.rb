@@ -3,7 +3,7 @@
 # Model for 'brochure' pages
 class Page < ApplicationRecord
   include NameAndTitle
-  include SlugInSection
+  include ShinySlugInSection
 
   # Associations
 

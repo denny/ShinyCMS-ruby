@@ -3,7 +3,7 @@
 # Model for page sections
 class PageSection < ApplicationRecord
   include NameAndTitle
-  include SlugInSection
+  include ShinySlugInSection
 
   # Associations
 
