@@ -2,7 +2,7 @@
 
 # Generate a teaser (short preview) from the text in .body
 # Defaults to three paragraphs
-module Teaser
+module ShinyTeaser
   extend ActiveSupport::Concern
 
   included do

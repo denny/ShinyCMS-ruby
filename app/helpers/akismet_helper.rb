@@ -60,7 +60,7 @@ module AkismetHelper
   def akismet_comment_details( comment, referer = nil )
     details = {
       text: "#{comment.title} #{comment.body}",
-      created_at: comment.created_at || Time.zone.now,
+      created_at: comment.created_at || Time.zone.now.iso8601,
       type: 'comment'
     }
     details[ :referer ] = referer if referer.present?

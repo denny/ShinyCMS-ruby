@@ -2,9 +2,7 @@
 
 # Model class for blog posts
 class BlogPost < ApplicationRecord
-  include PostedAt
-  include ShinySlugInMonth
-  include Teaser
+  include ShinyPost
 
   # Associations
 
@@ -16,27 +14,6 @@ class BlogPost < ApplicationRecord
   # Validations
 
   validates :blog_id, presence: true
-  validates :body,    presence: true
-  validates :title,   presence: true
-  validates :user_id, presence: true
-
-  # Plugins
-
-  acts_as_taggable
-  acts_as_votable
-  paginates_per 20
-
-  # Aliases and delegated methods
-
-  alias_attribute :author, :user
-
-  delegate :hidden, to: :discussion, allow_nil: true, prefix: true
-  delegate :locked, to: :discussion, allow_nil: true, prefix: true
-
-  # Scopes
-
-  scope :visible, -> { where( hidden: false ) }
-  scope :published, -> { visible.merge( not_future_dated ) }
 
   # Instance methods
 
