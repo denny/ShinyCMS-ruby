@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Autogenerate content titles from content names (if not explicitly set)
-module NameAndTitle
+module ShinyTitle
   extend ActiveSupport::Concern
 
   included do

@@ -2,7 +2,7 @@
 
 # Common behaviour that all element models might want to use/offer
 # (PageTemplateElement, PageElement, SharedContentElement, ProductElement, etc)
-module Element
+module ShinyElement
   extend ActiveSupport::Concern
 
   # Allowed characters for element names: a-z A-Z 0-9 _

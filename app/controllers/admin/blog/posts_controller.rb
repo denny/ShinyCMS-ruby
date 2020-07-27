@@ -49,7 +49,7 @@ class Admin::Blog::PostsController < AdminController
 
     if @post.update( post_params )
       flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @post.id
+      redirect_to action: :edit, blog_id: @blog.id, id: @post.id
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit

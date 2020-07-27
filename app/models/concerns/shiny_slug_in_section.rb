@@ -2,9 +2,9 @@
 
 # Validator for slugs that only need to be unique within a section
 # e.g. page.slug / page_section.slug / shop_item.slug / etc
-module SlugInSection
+module ShinySlugInSection
   extend ActiveSupport::Concern
-  include Slug
+  include ShinySlug
 
   included do
     validates :slug, uniqueness: {

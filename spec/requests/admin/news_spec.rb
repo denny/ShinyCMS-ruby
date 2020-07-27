@@ -60,15 +60,14 @@ RSpec.describe 'Admin::News', type: :request do
     end
 
     it "fails to create a new news post when the slug isn't unique this month" do
-      post1 = create :news_post
+      post_from_this_month = create :news_post, posted_at: Time.zone.now.beginning_of_month
 
       post create_news_post_path, params: {
         news_post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
-          posted_at: post1.posted_at.beginning_of_month,
-          slug: post1.slug
+          slug: post_from_this_month.slug
         }
       }
 
@@ -78,22 +77,21 @@ RSpec.describe 'Admin::News', type: :request do
     end
 
     it "doesn't fail when the slug is unique this month but not globally" do
-      post1 = create :news_post
+      post_from_last_month = create :blog_post, posted_at: 1.month.ago
 
       post create_news_post_path, params: {
         news_post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
-          posted_at: post1.posted_at - 1.month,
-          slug: post1.slug
+          slug: post_from_last_month.slug
         }
       }
 
-      post2 = NewsPost.last
+      new_post = NewsPost.last
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to edit_news_post_path( post2 )
+      expect( response      ).to redirect_to edit_news_post_path( new_post )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.news.edit.title' ).titlecase

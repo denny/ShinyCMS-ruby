@@ -27,6 +27,25 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
   end
 
   describe 'POST /admin/blog/1/post' do
+    it 'creates a new blog post when a complete form is submitted' do
+      post create_blog_post_path( @blog ), params: {
+        blog_post: {
+          user_id: @admin.id,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
+          body: Faker::Lorem.paragraph
+        }
+      }
+
+      post = BlogPost.last
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to edit_blog_post_path( @blog, post )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.blog.posts.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.blog.posts.create.success' )
+    end
+
     it 'fails to create a new blog post when an incomplete form is submitted' do
       post create_blog_post_path( @blog ), params: {
         blog_post: {
@@ -42,15 +61,14 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
     end
 
     it "fails to create a new blog post when the slug isn't unique this month" do
-      item = create :blog_post
+      post_from_this_month = create :blog_post, posted_at: Time.zone.now.beginning_of_month
 
       post create_blog_post_path( @blog ), params: {
         blog_post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
-          posted_at: item.posted_at.beginning_of_month,
-          slug: item.slug
+          slug: post_from_this_month.slug
         }
       }
 
@@ -59,19 +77,22 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.blog.posts.create.failure' )
     end
 
-    it 'creates a new blog post when a complete form is submitted' do
+    it "doesn't fail when the slug is unique this month but not globally" do
+      post_from_last_month = create :blog_post, posted_at: 1.month.ago
+
       post create_blog_post_path( @blog ), params: {
         blog_post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: Faker::Lorem.paragraph
+          body: Faker::Lorem.paragraph,
+          slug: post_from_last_month.slug
         }
       }
 
-      post = BlogPost.last
+      new_post = BlogPost.last
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to edit_blog_post_path( @blog, post )
+      expect( response      ).to redirect_to edit_blog_post_path( @blog, new_post )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.blog.posts.edit.title' ).titlecase
