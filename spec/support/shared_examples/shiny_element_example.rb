@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Shared test code, for testing the methods mixed-in by the Element concern
-RSpec.shared_examples Element do
+RSpec.shared_examples ShinyElement do
   context 'format_name' do
     it 'returns a valid element name' do
       # rubocop:disable Rails/SkipsModelValidations
