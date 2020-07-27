@@ -15,5 +15,4 @@ already halfway through reimplementing, or one that's on the original feature
 list but not yet started in this version of the CMS, please have a quick chat
 with me first (and I'll probably say "Great, thanks!")
 
-For more information, you can look at my [progress so far](Progress.md),
-and what's still on [the to-do list](TODO.md).
+For more information, you can look the [project progress docs](Progress.md).

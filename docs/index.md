@@ -14,12 +14,14 @@
 * [Themes](Themes.md)
 
 
-## ShinyCMS Development
+## Contributing to ShinyCMS
 
 * [Developer documentation](Developers/index.md)
   * [Roadmap](Developers/Roadmap.md)
-  * [Progress](Developers/Progress.md)
-  * [TODO](Developers/TODO.md)
+  * [Project goals and progress](Developers/Progress.md)
+    * [Done](Developers/done.md)
+    * [In progress](Developers/in-progress.md)
+    * [Still to do](Developers/TODO.md)
   * [Testing](Developers/Testing.md)
 
 
