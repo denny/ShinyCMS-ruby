@@ -3,7 +3,7 @@
 # User model (powered by Devise)
 # rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
-  include Email
+  include ShinyEmail
 
   # Associations
 
