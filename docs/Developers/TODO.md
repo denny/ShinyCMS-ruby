@@ -1,5 +1,14 @@
 # ShinyCMS: TODO
 
+## Small fixes, to do next/soon
+
+* Add exact_text option to capybara matcher calls in request specs
+  * expect(bar).to have_[field/whatever], text: 'foo', exact_text: true
+  * NB: Try one first; might fail on whitespace differences :eyeroll:
+
+* Check for and add missing indexes - https://pawelurbanek.com/rails-postgres-join-indexes
+
+
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
 ### Small-ish
@@ -8,27 +17,31 @@
   * https://ckeditor.com/docs/ckeditor5/latest/features/image-upload/ckfinder.html
 * Site map
 * Affiliate cookie
+* Split comment_author details off of comments, as a polymorphic (similar to email_recipients)
 
 ### Medium-ish
 
-* Form handlers (contact page, etc)
 * User profile pages (with content such as recent comments, recent posts, etc)
+* Create a sortable concern to replace page[_section].sort_order
+  * Or, just use https://github.com/itmammoth/rails_sortable ?
+  * make elements sortable (go via the concern, so they all get it)
+    * Stretch goal, draggable UI in admin area - https://github.com/DuroSoft/rails_bootstrap_sortable ?
 * Access control groups
   * Can be used to control access to file downloads and secure whole pages,
     but also to show/hide individual pieces of page content
+* Polls
 
 ### Large-ish
 
+* Online shop
 * Payment handling plugins
   * Options include recurring subscriptions to access control groups (AKA paid membership)
-* Online shop
 * Forums
 * Autoresponders
 	* Check out Heya - may or may not be useful to use / build on top of
 	* https://github.com/honeybadger-io/heya
 	* Oh, except the licence doesn't look great. Investigate that first.
 * Event listings
-* Polls
 
 
 ## New features that I'd like to add / features that I'd like to totally rebuild
@@ -77,6 +90,8 @@
 
 ### Large-ish
 
+* Surveys / Questionnaires
+
 * GDPR compliance
   * https://github.com/prey/gdpr_rails
 
@@ -89,3 +104,13 @@
 
 * Replace hand-rolled trees and recursion (page sections, etc) with ClosureTree ?
   * https://github.com/ClosureTree/closure_tree
+
+
+## Done / In Progress
+
+See the [done](done.md) list for features from the original ShinyCMS that I have already implemented
+in this version - as well as a few new ones that snuck in along the way - with notes on improvements
+from the Perl version where applicable.
+
+See the [in-progress](in-progress.md) list for features that I am currently working on
+(with notes on where I'm up to, and links to useful docs).
