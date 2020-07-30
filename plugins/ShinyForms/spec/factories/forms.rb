@@ -6,11 +6,14 @@ module ShinyForms
       name { Faker::Books::CultureSeries.unique.culture_ship }
       internal_name  { name.dup.titlecase }
       slug { name.dup.parameterize }
-      association :template, factory: :template
 
       trait :hidden do
         show_on_site { false }
       end
+    end
+
+    factory :plain_text_email_form, parent: :form do
+      handler { 'plain text email' }
     end
   end
 end
