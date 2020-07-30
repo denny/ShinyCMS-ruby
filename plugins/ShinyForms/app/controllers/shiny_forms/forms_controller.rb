@@ -14,14 +14,19 @@ module ShinyForms
 
     # POST /forms/slug
     def process
-      # TODO
+      if ShinyForms::FormHandler.respond_to? @form.handler
+        ShinyForms::FormHandler.public_send( @form.handler.symbolize, params )
+      else
+        Rails.logger.warn "Unknown form handler (form ID: #{@form.id})"
+        head :bad_request
+      end
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
     def set_form
-      @form = Form.find(params[:id])
+      @form = Form.find_by( params[:slug] )
     end
   end
 end
