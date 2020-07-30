@@ -2,8 +2,8 @@
 
 # Model for 'brochure' pages
 class Page < ApplicationRecord
-  include NameAndTitle
-  include SlugInSection
+  include ShinyTitle
+  include ShinySlugInSection
 
   # Associations
 
@@ -27,13 +27,13 @@ class Page < ApplicationRecord
 
   after_create :add_elements
 
-  # Scopes
-
-  self.implicit_order_column = 'sort_order'
+  # Scopes and default sort order
 
   scope :top_level,        -> { where( section: nil ) }
   scope :visible,          -> { where( hidden: false ) }
   scope :visible_in_menus, -> { where( hidden: false, hidden_from_menu: false ) }
+
+  self.implicit_order_column = 'sort_order'
 
   # Instance methods
 

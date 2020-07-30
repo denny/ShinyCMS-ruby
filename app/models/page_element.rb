@@ -2,7 +2,7 @@
 
 # Model class for page elements
 class PageElement < ApplicationRecord
-  include Element
+  include ShinyElement
 
   belongs_to :page, inverse_of: :elements
 

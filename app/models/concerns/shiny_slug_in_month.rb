@@ -2,9 +2,9 @@
 
 # Validator for slugs that only need to be unique within the month they are posted
 # e.g. blog_post.slug / news_post.slug / etc
-module SlugInMonth
+module ShinySlugInMonth
   extend ActiveSupport::Concern
-  include Slug
+  include ShinySlug
 
   included do
     validates :slug, unique_in_collection: {

@@ -2,8 +2,8 @@
 
 # Model class for blogs (which are a collection of blog posts)
 class Blog < ApplicationRecord
-  include NameAndTitle
-  include Slug
+  include ShinyTitle
+  include ShinySlug
 
   # Associations
 
@@ -22,11 +22,7 @@ class Blog < ApplicationRecord
   # Instance methods
 
   def posts
-    all_posts.visible
-  end
-
-  def find_post( year, month, slug )
-    posts_for_month( year, month ).find_by( slug: slug )
+    all_posts.readonly.published
   end
 
   def posts_for_month( year, month )
@@ -38,6 +34,10 @@ class Blog < ApplicationRecord
   def posts_for_year( year_string )
     year = Date.new( year_string.to_i, 1, 1 )
     posts.where( posted_at: year..year.end_of_year ).order( :posted_at )
+  end
+
+  def find_post( year, month, slug )
+    posts_for_month( year, month ).find_by( slug: slug )
   end
 
   def recent_posts( page_num = 1 )

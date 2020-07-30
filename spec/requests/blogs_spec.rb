@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-# Note: these tests all assume single blog mode, currently.
+# FIXME: these tests all assume single blog mode, currently.
 
 RSpec.describe 'Blogs', type: :request do
   before :each do
