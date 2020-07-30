@@ -2,6 +2,16 @@
 
 ## Small fixes, to do next/soon
 
+* Rename title and name to name and internal_name (respectively) on all models,
+  fix helpers and other code appropriately
+
+* Rename hidden to show_on_site, rename hidden_from_menus to show_on_menus,
+  rewrite all the related code to flip its meaning, moving as much as possible
+  into 'Hideable' (?) helpers and concerns
+
+* Rename [foo]_element.[foo]_id to [foo]_element.parent_id for all element types,
+  and see if this makes it possible to pull more stuff into concerns/helpers
+
 * Add exact_text option to capybara matcher calls in request specs
   * expect(bar).to have_[field/whatever], text: 'foo', exact_text: true
   * NB: Try one first; might fail on whitespace differences :eyeroll:
@@ -64,6 +74,8 @@
   db and there are still a load of 'feature hidden by flag/capability/etc'
   conditionals to implement.
 
+* Add a polymorphic metatags model(s?)+concern+helper that can be added to anything
+  that might want them for SEO (pages/sections, shop items/categories, etc)
 
 ### Medium-ish
 

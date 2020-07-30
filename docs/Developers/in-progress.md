@@ -7,13 +7,15 @@ Features from the Perl version that I'm halfway through re-implementing in the R
 
 * Form handlers (form->email, for contact pages and similar)
   * Implementing as a plugin, oooooh
-    * (If this goes well, then I have to refactor everything I've already done as plugins too, d'oh)
+    * If this goes well, then I have to refactor everything I've already done
+      as plugins too. D'oh.
   * Structure more like pages in this version...
     * elements -> form fields
     * element type -> input type
     * template -> form layout
   * Is it time to write that ShinyStuff / ShinyThing / ShinyBit abstraction??
     * Trying for a 'halfway house' abstraction using concerns, for now.
+  * Need a plugin installer task (to move migrations into place, and ... ?)
 
 * Newsletters (HTML mailshots)
   * MJML templates - https://mjml.io/documentation
