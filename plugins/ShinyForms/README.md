@@ -2,9 +2,9 @@
 
 This is a form handler plugin for [ShinyCMS](https://shinycms.com); it provides
 a few different endpoints to which you can POST a suitably constructed HTML form,
-and they will do Something Useful [tm] with it - e.g. email the form data to
-whatever address you have configured, allowing you to quickly and easily add a
-new contact form or an order enquiry form to your ShinyCMS-powered site).
+and they will do Something Useful [tm] with it. The simplest example emails the
+form data to the site owner - this allows you to quickly and easily add a new
+contact form or an order enquiry form to your ShinyCMS-powered site.
 
 Form handlers are created, configured, and controlled via the ShinyCMS admin area;
 look for 'Form Handlers' in your admin menu after enabling this plugin.
@@ -12,17 +12,23 @@ look for 'Form Handlers' in your admin menu after enabling this plugin.
 
 ## Installation
 
-Add this line to your main ShinyCMS Gemfile (or uncomment it if it's already there):
-
+Uncomment or add this line in your main ShinyCMS Gemfile:
 ```ruby
 gem 'shiny_forms', path: 'plugins/ShinyForms'
 ```
 
-Run `bundle install` to install the gem into your copy of ShinyCMS.
+To install the gem into your copy of ShinyCMS:
+```bash
+bundle install
+```
 
-Next, run the rake task `rails shiny:forms:create_migration`, followed by
-`rails db:migrate`, to add the ShinyForms tables to your ShinyCMS database.
-
+To add the ShinyForms tables and supporting data to your ShinyCMS database:
+```bash
+cd plugins/ShinyForms
+rails shiny:forms:install
+cd -
+rails db:migrate
+```
 
 ## Contributing
 
