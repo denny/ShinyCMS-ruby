@@ -378,16 +378,6 @@ ActiveRecord::Schema.define(version: 2020_07_30_141333) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "shiny_forms_form_elements", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "element_type", null: false
-    t.text "content"
-    t.bigint "form_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["form_id"], name: "index_shiny_forms_form_elements_on_form_id"
-  end
-
   create_table "shiny_forms_forms", force: :cascade do |t|
     t.string "name", null: false
     t.string "internal_name"
@@ -397,26 +387,6 @@ ActiveRecord::Schema.define(version: 2020_07_30_141333) do
     t.boolean "show_in_menu", default: true, null: false
     t.boolean "show_on_sitemap", default: true, null: false
     t.integer "sort_order"
-    t.bigint "template_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["template_id"], name: "index_shiny_forms_forms_on_template_id"
-  end
-
-  create_table "shiny_forms_template_elements", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "element_type", null: false
-    t.text "content"
-    t.bigint "template_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["template_id"], name: "index_shiny_forms_template_elements_on_template_id"
-  end
-
-  create_table "shiny_forms_templates", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "description"
-    t.string "filename", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -538,9 +508,6 @@ ActiveRecord::Schema.define(version: 2020_07_30_141333) do
   add_foreign_key "pages", "page_templates", column: "template_id"
   add_foreign_key "setting_values", "settings"
   add_foreign_key "setting_values", "users"
-  add_foreign_key "shiny_forms_form_elements", "shiny_forms_forms", column: "form_id"
-  add_foreign_key "shiny_forms_forms", "shiny_forms_templates", column: "template_id"
-  add_foreign_key "shiny_forms_template_elements", "shiny_forms_templates", column: "template_id"
   add_foreign_key "taggings", "tags"
   add_foreign_key "user_capabilities", "capabilities"
   add_foreign_key "user_capabilities", "users"
