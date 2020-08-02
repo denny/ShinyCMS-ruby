@@ -272,6 +272,9 @@ en:
         list_title: Emails
       show:
         breadcrumb_list: Emails
+    admin:
+      emails:
+        title: Emails
 
   rep:
     base:
