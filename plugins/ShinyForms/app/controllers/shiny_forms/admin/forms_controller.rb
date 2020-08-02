@@ -9,8 +9,10 @@ module ShinyForms
 
     # GET /admin/forms
     def index
-      @forms = Form.all
-      authorise @forms
+      authorise Form
+      page_num = params[ :page ] || 1
+      @forms = Form.page( page_num )
+      authorise @forms if @forms.present?
     end
 
     # GET /admin/forms/new
