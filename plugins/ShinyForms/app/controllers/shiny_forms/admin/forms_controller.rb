@@ -3,7 +3,7 @@
 require_dependency 'shiny_forms/application_controller'
 
 module ShinyForms
-  # Provides useful generic endpoints to post a form to
+  # ShinyForms plugin admin controller - add/edit/delete form handlers
   class Admin::FormsController < AdminController
     before_action :set_form, only: %i[ edit update destroy ]
 

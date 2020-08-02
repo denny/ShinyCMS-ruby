@@ -2,7 +2,8 @@
 
 module ShinyForms
   # Base controller for ShinyCMS forms plugin
-  class ApplicationController < ActionController::Base
+  # Inherits from ShinyCMS ApplicationController
+  class ApplicationController < ::ApplicationController
     helper Rails.application.routes.url_helpers
   end
 end
