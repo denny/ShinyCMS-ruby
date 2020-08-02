@@ -22,4 +22,4 @@ before_script:
   - bundle exec rails db:schema:load
 
 script:
-  - bundle exec rspec
+  - bundle exec rspec spec plugins/*/spec
