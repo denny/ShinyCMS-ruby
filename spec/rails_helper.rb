@@ -46,6 +46,9 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with :truncation
     ShinyCMS::Application.load_tasks
     Rake::Task['db:seed'].invoke
+
+    # TODO: FIXME: Need a generic solution for loading seed data required by plugins
+    Rake::Task['shiny_forms:db:seed'].invoke
   end
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
