@@ -6,11 +6,11 @@ module ShinyForms
   RSpec.describe Form, type: :model do
     describe '.name' do
       it 'knows its own name' do
-        name = Faker::Books::CultureSeries.unique.civs.parameterize
+        ship_name = Faker::Books::CultureSeries.unique.civs.parameterize
 
-        form = create :form, name: name
+        form = create :form, internal_name: ship_name
 
-        expect( form.name ).to eq name
+        expect( form.name ).to eq ship_name
       end
     end
   end
