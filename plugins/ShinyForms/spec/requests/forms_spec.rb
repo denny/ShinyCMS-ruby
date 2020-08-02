@@ -6,12 +6,15 @@ RSpec.describe 'ShinyForms', type: :request do
   describe 'POST /form/testing' do
     it 'processes the form data' do
       create :top_level_page
-      create :plain_text_email_form
+      form = create :plain_text_email_form
 
-      post form_path, params: {
-        email: Faker::Internet.unique.email,
-        subject: Faker::Books::CultureSeries.unique.culture_ship,
-        message: Faker::Lorem.paragraph( count: 3 )
+      post shiny_forms.process_form_path( form.slug ), params: {
+        shiny_form: {
+          name: Faker::Name.unique.name,
+          email: Faker::Internet.unique.email,
+          subject: Faker::Books::CultureSeries.unique.culture_ship,
+          message: Faker::Lorem.paragraphs.join("\n\n")
+        }
       }
 
       expect( response ).to have_http_status :found
