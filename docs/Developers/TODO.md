@@ -12,6 +12,8 @@
 * Rename [foo]_element.[foo]_id to [foo]_element.parent_id for all element types,
   and see if this makes it possible to pull more stuff into concerns/helpers
 
+* Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
+
 * Add exact_text option to capybara matcher calls in request specs
   * expect(bar).to have_[field/whatever], text: 'foo', exact_text: true
   * NB: Try one first; might fail on whitespace differences :eyeroll:
