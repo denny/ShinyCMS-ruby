@@ -4,58 +4,69 @@ require_dependency 'shiny_forms/application_controller'
 
 module ShinyForms
   # Provides useful generic endpoints to post a form to
-  class Admin::FormsController < ApplicationController
-    before_action :set_form, only: %i[ show edit update destroy ]
+  class Admin::FormsController < AdminController
+    helper Rails.application.routes.url_helpers
+
+    before_action :set_form, only: %i[ edit update destroy ]
 
     # GET /admin/forms
     def index
       @forms = Form.all
+      authorise @forms
     end
 
     # GET /admin/forms/new
     def new
       @form = Form.new
+      authorise @form
     end
-
-    # GET /admin/forms/1
-    def edit; end
 
     # POST /admin/forms
     def create
       @form = Form.new(form_params)
+      authorise @form
 
       if @form.save
-        redirect_to @form, notice: 'Form was successfully created.'
+        redirect_to action: :edit, id: @form.id, notice: t( '.success' )
       else
+        flash.now[ :alert ] = t( '.failure' )
         render :new
       end
     end
 
+    # GET /admin/forms/1
+    def edit
+      authorise @form
+    end
+
     # PATCH/PUT /admin/forms/1
     def update
+      authorise @form
+
       if @form.update(form_params)
-        redirect_to @form, notice: 'Form was successfully updated.'
+        redirect_to action: :edit, id: @form.id, notice: t( '.success' )
       else
+        flash.now[ :alert ] = t( '.failure' )
         render :edit
       end
     end
 
     # DELETE /admin/forms/1
     def destroy
+      authorise @form
+
       @form.destroy!
-      redirect_to forms_url, notice: 'Form was successfully destroyed.'
+      redirect_to forms_path, notice: t( '.success' )
     end
 
     private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_form
-      @form = Form.find(params[:id])
+      @form = Form.find( params[:id] )
     end
 
-    # Only allow a trusted parameter "white list" through.
     def form_params
-      params.fetch(:form, {})
+      params.fetch( :form, {} )
     end
   end
 end
