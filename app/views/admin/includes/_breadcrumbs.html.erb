@@ -26,7 +26,7 @@
 
   <%# TODO: FIXME: Need to handle plugin breadcrumbs in a generic way! %>
   <% elsif controller_name == 'forms' %>
-    <li class="breadcrumb-item"><%= link_to t( 'admin.forms.title' ), shiny_forms.forms_path %></li>
+    <li class="breadcrumb-item"><%= link_to t( "admin.%{controller_name}.title" ), shiny_forms.forms_path %></li>
 
   <%# You are now leaving BODGE CITY - population: too many! :-\ %>
 
