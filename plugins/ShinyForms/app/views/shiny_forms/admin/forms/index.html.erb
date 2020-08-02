@@ -1,0 +1,46 @@
+<% @page_title = t( '.title' ) %>
+
+<% if @forms.present? %>
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th class="longer">
+        Name
+      </th>
+      <th>
+        Handler
+      </th>
+      <th>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @forms.each do |form| %>
+    <tr>
+      <td>
+        <%= form.internal_name %>
+      </td>
+      <td>
+        <%= form.handler %>
+      </td>
+      <td class="actions">
+        <%= link_to t( 'edit'   ), edit_form_path( post ) %>
+        <%= link_to t( 'delete' ), form_path( post ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @forms, window: 3, views_prefix: 'admin' %>
+<p id="pager-info">
+  <%= page_entries_info @forms %>
+</p>
+
+<% else %>
+<p>
+  <%= t( '.empty' ) %>
+</p>
+<% end %>
