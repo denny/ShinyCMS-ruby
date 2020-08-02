@@ -4,6 +4,7 @@ module ShinyForms
   # Model for ShinyCMS forms
   class Form < ApplicationRecord
     include ShinyName
+    include ShinySlug
 
     # Specify policy class for Pundit
     def policy_class
