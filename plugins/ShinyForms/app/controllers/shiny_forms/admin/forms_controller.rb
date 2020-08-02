@@ -5,8 +5,6 @@ require_dependency 'shiny_forms/application_controller'
 module ShinyForms
   # Provides useful generic endpoints to post a form to
   class Admin::FormsController < AdminController
-    helper Rails.application.routes.url_helpers
-
     before_action :set_form, only: %i[ edit update destroy ]
 
     # GET /admin/forms
