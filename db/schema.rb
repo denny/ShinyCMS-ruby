@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_30_141333) do
+ActiveRecord::Schema.define(version: 2020_08_02_135306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -379,13 +379,11 @@ ActiveRecord::Schema.define(version: 2020_07_30_141333) do
   end
 
   create_table "shiny_forms_forms", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "internal_name"
+    t.string "internal_name", null: false
+    t.string "public_name"
     t.string "slug", null: false
     t.text "description"
-    t.boolean "show_on_site", default: true, null: false
-    t.boolean "show_in_menu", default: true, null: false
-    t.boolean "show_on_sitemap", default: true, null: false
+    t.string "handler", null: false
     t.integer "sort_order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

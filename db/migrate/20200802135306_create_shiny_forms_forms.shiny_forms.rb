@@ -1,3 +1,4 @@
+# This migration comes from shiny_forms (originally 20200730141332)
 class CreateShinyFormsForms < ActiveRecord::Migration[6.0]
   def change
     create_table :shiny_forms_forms do |t|
