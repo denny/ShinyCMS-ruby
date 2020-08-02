@@ -21,7 +21,7 @@ module MainSiteHelper
   end
 
   def insert_type?( name, type )
-    InsertSet.first.elements.where( name: name ).pick( :content_type ) == type
+    InsertSet.first.elements.where( name: name ).pick( :element_type ) == type
   end
 
   def setting( name )

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_140826) do
+ActiveRecord::Schema.define(version: 2020_08_02_174821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -260,7 +260,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_140826) do
     t.bigint "set_id", null: false
     t.string "name", null: false
     t.string "content"
-    t.string "content_type", default: "Short Text", null: false
+    t.string "element_type", default: "Short Text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_insert_elements_on_name", unique: true
@@ -296,7 +296,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_140826) do
     t.bigint "page_id", null: false
     t.string "name", null: false
     t.string "content"
-    t.string "content_type", default: "Short Text", null: false
+    t.string "element_type", default: "Short Text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["page_id"], name: "index_page_elements_on_page_id"
@@ -322,7 +322,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_140826) do
     t.bigint "template_id", null: false
     t.string "name", null: false
     t.string "content"
-    t.string "content_type", default: "Short Text", null: false
+    t.string "element_type", default: "Short Text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["template_id"], name: "index_page_template_elements_on_template_id"

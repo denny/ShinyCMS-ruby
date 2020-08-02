@@ -2,7 +2,7 @@
 
 <% no_tagged_content = true %>
 
-<% @content_types.each do |type| %>
+<% @element_types.each do |type| %>
   <% next unless @tagged_items[ type ].present? %>
   <% no_tagged_content = false %>
   <h2>

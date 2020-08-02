@@ -196,7 +196,7 @@ en:
       instructions: Click the link below to unlock your account
       link_text: Unlock my account
 
-  content_types:
+  element_types:
     blog_post: blog post
 
 

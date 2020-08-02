@@ -39,7 +39,7 @@
     <br><%= f.check_box :hidden_from_menu %>
   </p>
   <%= f.fields_for :elements do |fields| %>
-    <%= render partial: 'admin/pages/page_element', locals: { fields: fields, content: :content, name: @page.elements[fields.index].name, content_type: @page.elements[fields.index].content_type, filenames: select_filenames } %>
+    <%= render partial: 'admin/pages/page_element', locals: { fields: fields, content: :content, name: @page.elements[fields.index].name, element_type: @page.elements[fields.index].element_type, filenames: select_filenames } %>
   <% end %>
   <p class="top-margin">
     <%= f.submit t( 'update' ) %>
