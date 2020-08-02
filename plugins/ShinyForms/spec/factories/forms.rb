@@ -13,7 +13,7 @@ module ShinyForms
     end
 
     factory :plain_text_email_form, parent: :form do
-      handler { 'plain text email' }
+      handler { 'plain_text_email' }
     end
   end
 end
