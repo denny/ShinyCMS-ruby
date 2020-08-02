@@ -1,12 +1,18 @@
 # ShinyCMS: TODO
 
-## Small fixes, to do next/soon
+## Fixes and refactoring of code already written - to do next/soon
+
+* Rename hidden to show_on_site, rename hidden_from_menus to show_on_menus,
+  rewrite all the related code to flip its meaning, moving as much as possible
+  into 'Hideable' (?) helpers and concerns
 
 * Add exact_text option to capybara matcher calls in request specs
   * expect(bar).to have_[field/whatever], text: 'foo', exact_text: true
   * NB: Try one first; might fail on whitespace differences :eyeroll:
 
 * Check for and add missing indexes - https://pawelurbanek.com/rails-postgres-join-indexes
+
+* Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
 
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)

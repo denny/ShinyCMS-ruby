@@ -2,15 +2,18 @@
 
 ## TL,DR
 
-`git clone https://github.com/denny/ShinyCMS-ruby.git`  
-`cd ShinyCMS-ruby`  
-[ copy docs/env.sample to .env.development.local and edit it ]  
-`bundle install`  
-`yarn install`  
-`rails db:setup`  
-`rails shiny:demo:load`    # if you want the demo data loaded  
-`rails shiny:admin:create` # if you didn't load the demo data  
-`rails s`
+```bash
+git clone https://github.com/denny/ShinyCMS-ruby.git
+cd ShinyCMS-ruby
+cp docs/env.sample .env.development.local
+# Edit .env.development.local in case you want/need to change anything
+bundle install
+yarn install
+rails db:setup
+rails shiny:demo:load     # if you want the demo data loaded
+rails shiny:admin:create  # if you didn't load the demo data
+rails s
+```
 
 You should now have a ShinyCMS site at http://localhost:3000,
 with an admin area at http://localhost:3000/admin
@@ -30,12 +33,13 @@ To do all three in one command: `rails db:setup`
 ### Demo data
 
 There is a set of demo data available, which will allow you to try out most
-ShinyCMS features without having to create your own test data first. You can
-load it with the rake task `rails shiny:demo:load`
+ShinyCMS features without having to create your own test data first.
 
 WARNING: DATA LOSS!  
-Loading the demo data will wipe the database as its first step. Before you run
-this task, back up any data that you don't want to lose!
+Loading the demo data will wipe the database - it's the first thing this rake
+task does. Before you run it, back up any data that you don't want to lose!
+
+To load the demo data: `rails shiny:demo:load`
 
 
 ### Deployment
