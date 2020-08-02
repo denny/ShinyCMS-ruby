@@ -1,6 +1,6 @@
     <% unless @post.discussion.locked? %>
     <a onclick="toggleHidden('comment_form')"><%= t( '.reply' ) %></a>
-    <% unless post.discussion.hidden? %>
+    <% if post.discussion.show_on_site? %>
     (<%= t( 'discussions.n_comments', count: post.discussion.comments.visible.count ) %>)
     <% end %>
     <% end %>
@@ -15,6 +15,4 @@
     <% end %>
     </span>
     <% end %>
-    <% if current_user_can?( :hide, :discussions ) || current_user_can?( :lock, :discussions ) %>
     <%= render partial: 'discussions/moderation_links', locals: { discussion: post.discussion } %>
-    <% end %>

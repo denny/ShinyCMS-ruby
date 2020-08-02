@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_174821) do
+ActiveRecord::Schema.define(version: 2020_08_02_201259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_174821) do
     t.string "title", null: false
     t.string "slug", null: false
     t.text "body", null: false
-    t.boolean "hidden", default: false, null: false
+    t.boolean "show_on_site", default: true, null: false
     t.bigint "blog_id", null: false
     t.bigint "user_id", null: false
     t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
@@ -165,8 +165,8 @@ ActiveRecord::Schema.define(version: 2020_08_02_174821) do
     t.string "public_name"
     t.string "slug", null: false
     t.text "description"
-    t.boolean "hidden_from_menu", default: false, null: false
-    t.boolean "hidden", default: false, null: false
+    t.boolean "show_in_menus", default: true, null: false
+    t.boolean "show_on_site", default: true, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -199,7 +199,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_174821) do
     t.text "body"
     t.string "ip_address"
     t.boolean "locked", default: false, null: false
-    t.boolean "hidden", default: false, null: false
+    t.boolean "show_on_site", default: true, null: false
     t.boolean "spam", default: false, null: false
     t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -221,7 +221,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_174821) do
     t.string "resource_type"
     t.bigint "resource_id"
     t.boolean "locked", default: false, null: false
-    t.boolean "hidden", default: false, null: false
+    t.boolean "show_on_site", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["resource_type", "resource_id"], name: "index_discussions_on_resource_type_and_resource_id"
@@ -285,7 +285,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_174821) do
     t.string "title", null: false
     t.string "slug", null: false
     t.text "body", null: false
-    t.boolean "hidden", default: false, null: false
+    t.boolean "show_on_site", default: true, null: false
     t.bigint "user_id", null: false
     t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -310,8 +310,8 @@ ActiveRecord::Schema.define(version: 2020_08_02_174821) do
     t.bigint "default_page_id"
     t.bigint "section_id"
     t.integer "sort_order"
-    t.boolean "hidden_from_menu", default: false, null: false
-    t.boolean "hidden", default: false, null: false
+    t.boolean "show_in_menus", default: true, null: false
+    t.boolean "show_on_site", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["section_id"], name: "index_page_sections_on_section_id"
@@ -344,8 +344,8 @@ ActiveRecord::Schema.define(version: 2020_08_02_174821) do
     t.bigint "template_id", null: false
     t.bigint "section_id"
     t.integer "sort_order"
-    t.boolean "hidden_from_menu", default: false, null: false
-    t.boolean "hidden", default: false, null: false
+    t.boolean "show_in_menus", default: true, null: false
+    t.boolean "show_on_site", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["section_id"], name: "index_pages_on_section_id"

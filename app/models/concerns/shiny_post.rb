@@ -3,6 +3,7 @@
 # Common behaviours for 'post' type models (blog post, news post, etc)
 module ShinyPost
   extend ActiveSupport::Concern
+  include ShinyShowHide
   include ShinySlugInMonth
   include ShinyTeaser
 
@@ -26,12 +27,11 @@ module ShinyPost
 
     alias_attribute :author, :user
 
-    delegate :hidden, to: :discussion, allow_nil: true, prefix: true
+    delegate :show_on_site, to: :discussion, allow_nil: true, prefix: true
     delegate :locked, to: :discussion, allow_nil: true, prefix: true
 
     # Scopes and default sort order
 
-    scope :visible,          -> { where( hidden: false ) }
     scope :not_future_dated, -> { where( 'posted_at <= current_timestamp' ) }
     scope :published,        -> { visible.merge( not_future_dated ) }
 

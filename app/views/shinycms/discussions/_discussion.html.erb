@@ -1,4 +1,4 @@
-<% unless resource.discussion.hidden %>
+<% if resource.discussion.show_on_site? %>
 
 <h3 class="above-section">
   <%= t( 'discussions.comments' ) %>

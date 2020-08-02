@@ -5,7 +5,7 @@
 
 <% if current_user_can?( :hide, :comments ) %>
   <% if comment.hidden? %>
-    <%= link_to t( 'unhide' ), unhide_comment_path( comment ), method: :put %>
+    <%= link_to t( 'show' ), show_comment_path( comment ), method: :put %>
   <% else %>
     <%= link_to t( 'hide' ), hide_comment_path( comment ), method: :put %>
   <% end %>

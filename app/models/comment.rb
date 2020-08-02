@@ -2,6 +2,8 @@
 
 # Model class for comments
 class Comment < ApplicationRecord
+  include ShinyShowHide
+
   # Associations
 
   belongs_to :discussion
@@ -41,7 +43,6 @@ class Comment < ApplicationRecord
   # Scopes
 
   scope :top_level, -> { where( parent: nil   ).order( :number ) }
-  scope :visible,   -> { where( hidden: false ) }
 
   scope :since, ->( date ) { where( 'posted_at > ?', date ) }
 
@@ -110,14 +111,6 @@ class Comment < ApplicationRecord
 
   def unlock
     update( locked: false )
-  end
-
-  def hide
-    update( hidden: true )
-  end
-
-  def unhide
-    update( hidden: false )
   end
 
   def mark_as_spam

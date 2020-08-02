@@ -5,7 +5,6 @@ FactoryBot.define do
     title  { Faker::Books::CultureSeries.unique.culture_ship.titlecase }
     slug   { title.dup.parameterize }
     body   { Faker::Lorem.paragraph }
-    hidden { false }
     posted_at { Time.zone.now.iso8601 }
 
     association :author, factory: :user

@@ -32,12 +32,12 @@ RSpec.describe 'Discussion moderation', type: :request do
     end
   end
 
-  describe 'PUT /admin/discussion/1/unhide' do
+  describe 'PUT /admin/discussion/1/show' do
     it 'unhides the discussion' do
       @discussion.hide
       expect( @discussion.reload.hidden? ).to be true
 
-      put unhide_discussion_path( @discussion )
+      put show_discussion_path( @discussion )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to discussion_path( @discussion )

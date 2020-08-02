@@ -2,11 +2,11 @@
 
 # Pundit policy for administration of discussions
 class Admin::DiscussionPolicy < Admin::DefaultPolicy
-  def hide?
+  def show?
     @this_user.can? :hide, :discussions
   end
 
-  def unhide?
+  def hide?
     @this_user.can? :hide, :discussions
   end
 

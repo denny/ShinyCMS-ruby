@@ -1,4 +1,4 @@
-<% unless @discussion.hidden %>
+<% if @discussion.show_on_site? %>
 
 <% if @discussion.comments.top_level.present? %>
   <%= render partial: 'discussions/top_level',

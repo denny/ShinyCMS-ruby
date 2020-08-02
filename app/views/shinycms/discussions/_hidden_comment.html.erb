@@ -3,7 +3,7 @@
     <i><%= t( 'discussions.hidden_comment' ) %></i>
   </p>
 
-  <% if current_user_can?( :hide, :comments ) %>
+  <% if current_user_can?( :hide, :comments ) || current_user_can?( :lock, :comments ) %>
   <footer>
     <p>
       <%= render partial: 'discussions/comment/moderation_links', locals: { comment: comment } %>

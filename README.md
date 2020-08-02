@@ -42,15 +42,18 @@ refactoring, and all the other things I don't get to do enough of at work :)
     * Spam comment moderation sends 'spam'/'not spam' training data to Akismet
 * Tags
   * Currently on blog posts and news posts, ready to add to new content types
+* Likes or up/down votes on posts, comments, etc
 * Built-in web stats (powered by Ahoy) and email stats (powered by Ahoy::Email)
-* Support for themes
+* Charts and dashboards for viewing stats (powered by Blazer)
+  * Ready for use, but currently without demo data
+* Support for themes (on the main site - not, currently, for the CMS admin area)
+  * One theme included
 
 ### Planned features
 
+* Form handlers (contact page, etc) [in progress]
 * Newsletters (HTML mailshots) [in progress]
-* Charts and dashboards for viewing stats [in progress]
-* Form handlers (contact page, etc)
-* 'Likes' on posts, comments, etc
+  * Supports MJML templates
 * User profile pages (with content such as recent comments, recent posts, etc)
 * Access control groups
   * Can be used to control access to file downloads and secure whole pages,
@@ -76,7 +79,8 @@ If you want to set up a website using ShinyCMS, please read the
 Theme templates and sample data for a demo site are provided, so you can try
 all of the CMS features without doing any set-up work.
 
-### System dependencies
+
+## System dependencies
 
 * A webserver - I use `rails s` locally, and deploy to Heroku
 * A database - for now this assumes Postgres
