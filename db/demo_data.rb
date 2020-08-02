@@ -1,15 +1,15 @@
 
 Blog.create!([
-  {id: 1, name: "ShinyBlog", description: "", title: "The ShinySite Blog", slug: "shinysite", hidden_from_menu: false, hidden: false, user_id: @shiny_admin.id}
+  {id: 1, internal_name: "ShinyBlog", description: "", public_name: "The ShinySite Blog", slug: "shinysite", hidden_from_menu: false, hidden: false, user_id: @shiny_admin.id}
 ])
 
 BlogPost.create!([
-  {id: 1, title: "Demo content", slug: "demo-content", body: "<p>I&#39;m never sure what to do about demo content for ShinyCMS. The Perl version ended up with a weird mixture of content about the CMS, extracts from a book with suitably friendly licensing, and word salad from the Futurama Lorem Ipsum generator.</p>\r\n\r\n<p>Now here we are with the Ruby version, and apparently I haven&#39;t learned my lesson - so I&#39;m starting with content about the CMS again. Or in this case, meta-content.</p>\r\n", hidden: false, blog_id: 1, user_id: @shiny_admin.id, discussion_id: nil, posted_at: "2020-02-08 07:24:27", tag_list: nil},
-  {id: 2, title: "Homepage updates", slug: "updates", body: "<p>I&#39;m not feeling very well this week - I don&#39;t think I&#39;ve got the dreaded corona virus, I&#39;m not coughing, but I&#39;m extremely wiped out. So, instead of tackling anything too brain-taxing in the odd bit of time I do feel up to looking at personal projects, I&#39;m just updating the demo site content a bit - specifically, I&#39;m updating the &#39;features&#39; block on the homepage, including making some screenshots.</p>\r\n\r\n<p>I thought there should probably be more than one post in the blog feature screenshot, so ... here we are ;)</p>\r\n", hidden: false, blog_id: 1, user_id: @shiny_admin.id, discussion_id: nil, posted_at: "2020-06-05 01:03:47", tag_list: nil}
+  {id: 1, title: "Demo content", slug: "demo-content", body: "<p>I&#39;m never sure what to do about demo content for ShinyCMS. The Perl version ended up with a weird mixture of content about the CMS, extracts from a book with suitably friendly licensing, and word salad from the Futurama Lorem Ipsum generator.</p>\r\n\r\n<p>Now here we are with the Ruby version, and apparently I haven&#39;t learned my lesson - so I&#39;m starting with content about the CMS again. Or in this case, meta-content.</p>\r\n", hidden: false, blog_id: 1, user_id: @shiny_admin.id, posted_at: "2020-02-08 07:24:27", tag_list: nil},
+  {id: 2, title: "Homepage updates", slug: "updates", body: "<p>I&#39;m not feeling very well this week - I don&#39;t think I&#39;ve got the dreaded corona virus, I&#39;m not coughing, but I&#39;m extremely wiped out. So, instead of tackling anything too brain-taxing in the odd bit of time I do feel up to looking at personal projects, I&#39;m just updating the demo site content a bit - specifically, I&#39;m updating the &#39;features&#39; block on the homepage, including making some screenshots.</p>\r\n\r\n<p>I thought there should probably be more than one post in the blog feature screenshot, so ... here we are ;)</p>\r\n", hidden: false, blog_id: 1, user_id: @shiny_admin.id, posted_at: "2020-06-05 01:03:47", tag_list: nil}
 ])
 
 NewsPost.create!([
-  {id: 1, title: "No news is good news?", slug: "no-news", body: "Insert imaginative demo content here...", hidden: false, user_id: @shiny_admin.id, discussion_id: nil, posted_at: "2020-05-14 14:06:33", tag_list: nil}
+  {id: 1, title: "No news is good news?", slug: "no-news", body: "Insert imaginative demo content here...", hidden: false, user_id: @shiny_admin.id, posted_at: "2020-05-14 14:06:33", tag_list: nil}
 ])
 
 Discussion.create!([
@@ -71,15 +71,15 @@ PageTemplateElement.create!([
 ])
 
 PageSection.create!([
-  {id: 1, name: "Two column", description: "", title: "Two Column", slug: "two", default_page_id: nil, section_id: nil, sort_order: 3, hidden_from_menu: false, hidden: false}
+  {id: 1, internal_name: "Two column", description: "", public_name: "Two Column", slug: "two", default_page_id: nil, section_id: nil, sort_order: 3, hidden_from_menu: false, hidden: false}
 ])
 
 Page.create!([
-  {id: 1, name: "Home", description: "Demo site home page - uses Halcyonic index template", title: "ShinyCMS Demo", slug: "home", template_id: 1, section_id: nil, sort_order: 1, hidden_from_menu: true, hidden: false},
-  {id: 2, name: "One column", description: "", title: "One Column", slug: "one", template_id: 2, section_id: nil, sort_order: 2, hidden_from_menu: false, hidden: false},
-  {id: 3, name: "Right sidebar", description: "", title: "Right Sidebar", slug: "right-sidebar", template_id: 3, section_id: 1, sort_order: 2, hidden_from_menu: false, hidden: false},
-  {id: 4, name: "Left sidebar", description: "", title: "Left Sidebar", slug: "left-sidebar", template_id: 4, section_id: 1, sort_order: 1, hidden_from_menu: false, hidden: false},
-  {id: 5, name: "Three column", description: "", title: "Three Column", slug: "three", template_id: 5, section_id: nil, sort_order: 4, hidden_from_menu: false, hidden: false}
+  {id: 1, internal_name: "Home", description: "Demo site home page - uses Halcyonic index template", public_name: "ShinyCMS Demo", slug: "home", template_id: 1, section_id: nil, sort_order: 1, hidden_from_menu: true, hidden: false},
+  {id: 2, internal_name: "One column", description: "", public_name: "One Column", slug: "one", template_id: 2, section_id: nil, sort_order: 2, hidden_from_menu: false, hidden: false},
+  {id: 3, internal_name: "Right sidebar", description: "", public_name: "Right Sidebar", slug: "right-sidebar", template_id: 3, section_id: 1, sort_order: 2, hidden_from_menu: false, hidden: false},
+  {id: 4, internal_name: "Left sidebar", description: "", public_name: "Left Sidebar", slug: "left-sidebar", template_id: 4, section_id: 1, sort_order: 1, hidden_from_menu: false, hidden: false},
+  {id: 5, internal_name: "Three column", description: "", public_name: "Three Column", slug: "three", template_id: 5, section_id: nil, sort_order: 4, hidden_from_menu: false, hidden: false}
 ])
 
 PageElement.create!([

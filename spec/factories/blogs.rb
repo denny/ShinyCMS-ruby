@@ -2,9 +2,8 @@
 
 FactoryBot.define do
   factory :blog do
-    name  { Faker::Books::CultureSeries.unique.culture_ship }
-    title { name.dup.titlecase    }
-    slug  { name.dup.parameterize }
+    internal_name { Faker::Books::CultureSeries.unique.culture_ship }
+    slug { internal_name.dup.parameterize }
 
     hidden_from_menu { false }
     hidden { false }

@@ -15,7 +15,7 @@ RSpec.describe 'Inserts', type: :request do
       get '/'
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title page.title
+      expect( response.body ).to have_title page.name
       expect( response.body ).to have_css '.small', text: insert.content
     end
   end

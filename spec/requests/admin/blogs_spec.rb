@@ -25,24 +25,11 @@ RSpec.describe 'Admin::Blogs', type: :request do
   end
 
   describe 'POST /admin/blogs' do
-    it 'fails to create a new blog when an incomplete form is submitted' do
-      post create_blog_path, params: {
-        blog: {
-          user_id: @admin.id,
-          name: nil
-        }
-      }
-
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.blogs.new.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.blogs.create.failure' )
-    end
-
     it 'creates a new blog when a complete form is submitted' do
       post create_blog_path, params: {
         blog: {
           user_id: @admin.id,
-          name: Faker::Books::CultureSeries.unique.culture_ship
+          internal_name: Faker::Books::CultureSeries.unique.culture_ship
         }
       }
 
@@ -54,6 +41,18 @@ RSpec.describe 'Admin::Blogs', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.blogs.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.blogs.create.success' )
+    end
+
+    it 'fails to create a new blog when an incomplete form is submitted' do
+      post create_blog_path, params: {
+        blog: {
+          user_id: @admin.id
+        }
+      }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.blogs.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.blogs.create.failure' )
     end
   end
 
@@ -68,28 +67,13 @@ RSpec.describe 'Admin::Blogs', type: :request do
   end
 
   describe 'PUT /admin/blogs/:id' do
-    it 'fails to update the blog details when an incomplete form is submitted' do
-      blog = create :blog
-
-      put blog_path( blog ), params: {
-        blog: {
-          user_id: @admin.id,
-          name: nil
-        }
-      }
-
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.blogs.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.blogs.update.failure' )
-    end
-
     it 'updates the blog details when a complete form is submitted' do
       blog = create :blog
 
       put blog_path( blog ), params: {
         blog: {
           user_id: @admin.id,
-          name: Faker::Books::CultureSeries.unique.culture_ship
+          internal_name: Faker::Books::CultureSeries.unique.culture_ship
         }
       }
 
@@ -101,6 +85,21 @@ RSpec.describe 'Admin::Blogs', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.blogs.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.blogs.update.success' )
+    end
+
+    it 'fails to update the blog details when invalid details are submitted' do
+      blog = create :blog
+
+      put blog_path( blog ), params: {
+        blog: {
+          user_id: @admin.id,
+          internal_name: ''
+        }
+      }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.blogs.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.blogs.update.failure' )
     end
   end
 
@@ -118,9 +117,9 @@ RSpec.describe 'Admin::Blogs', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.blogs.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.blogs.destroy.success' )
-      expect( response.body ).to     have_css 'td', text: b1.name
-      expect( response.body ).not_to have_css 'td', text: b2.name
-      expect( response.body ).to     have_css 'td', text: b3.name
+      expect( response.body ).to     have_css 'td', text: b1.internal_name
+      expect( response.body ).not_to have_css 'td', text: b2.internal_name
+      expect( response.body ).to     have_css 'td', text: b3.internal_name
     end
 
     it 'fails gracefully when attempting to delete a non-existent blog' do

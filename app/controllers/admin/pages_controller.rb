@@ -70,7 +70,7 @@ class Admin::PagesController < AdminController
 
   def page_params
     params.require( :page ).permit(
-      :name, :description, :title, :slug, :template_id, :section_id,
+      :internal_name, :public_name, :slug, :description, :template_id, :section_id,
       :sort_order, :hidden, :hidden_from_menu,
       elements_attributes: {}
     )

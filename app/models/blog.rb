@@ -2,7 +2,7 @@
 
 # Model class for blogs (which are a collection of blog posts)
 class Blog < ApplicationRecord
-  include ShinyTitle
+  include ShinyName
   include ShinySlug
 
   # Associations

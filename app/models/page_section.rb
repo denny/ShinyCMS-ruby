@@ -2,7 +2,7 @@
 
 # Model for page sections
 class PageSection < ApplicationRecord
-  include ShinyTitle
+  include ShinyName
   include ShinySlugInSection
 
   # Associations
@@ -98,7 +98,7 @@ class PageSection < ApplicationRecord
   # Return the default top-level section
   def self.default_section
     name_or_slug = Setting.get :default_section
-    top_level_sections.where( name: name_or_slug )
+    top_level_sections.where( internal_name: name_or_slug )
                       .or( top_level_sections
                       .where( slug: name_or_slug ) )
                       .first
