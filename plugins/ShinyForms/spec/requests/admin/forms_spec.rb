@@ -9,11 +9,11 @@ RSpec.describe 'ShinyForms Admin', type: :request do
   end
 
   describe 'GET /admin/forms/new' do
-    it 'loads the form to add a new form' do
-      get new_form_path
+    it 'loads the page to add a new form handler' do
+      get shiny_forms.new_form_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.forms.new.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_forms.admin.forms.new.title' ).titlecase
     end
   end
 end
