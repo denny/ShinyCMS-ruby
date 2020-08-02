@@ -12,6 +12,7 @@ en:
   shiny_forms:
     admin:
       forms:
+        title: Forms
         index:
           title: List form handlers
         new:

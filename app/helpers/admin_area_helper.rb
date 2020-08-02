@@ -6,6 +6,8 @@ module AdminAreaHelper
   def authorise( record )
     if record.is_a? Symbol
       policy_class_name = "Admin::#{record.to_s.camelize}Policy"
+    elsif record.respond_to? :policy_class
+      policy_class_name = record.policy_class.to_s
     else
       record_class_name = class_name( record )
       record_class_name = record_class_name.remove( '::' )
