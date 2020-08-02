@@ -7,5 +7,9 @@ module ShinyForms
     def policy_class
       ::Admin::FormPolicy
     end
+
+    def self.policy_class
+      ::Admin::FormPolicy
+    end
   end
 end
