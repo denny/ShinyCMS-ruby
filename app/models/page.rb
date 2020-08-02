@@ -43,7 +43,7 @@ class Page < ApplicationRecord
       elements.create!(
         name: template_element.name,
         content: template_element.content,
-        content_type: template_element.content_type
+        element_type: template_element.element_type
       )
     end
   end

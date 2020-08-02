@@ -7,7 +7,7 @@
       fields: fields,
       content: :content,
       name: fields.object.name,
-      content_type: fields.object.content_type
+      element_type: fields.object.element_type
     } %>
   <% end %>
 </table>
@@ -23,7 +23,7 @@
     </legend>
     <p>
       <%= f2.text_field :name, placeholder: t( '.name_placeholder' ), class: 'textshort' %>
-      <%= f2.select :content_type, content_types %>
+      <%= f2.select :element_type, element_types %>
       <br><%= f2.text_field :content, placeholder: t( '.content_placeholder' ), class: 'textlong' %>
     </p>
     <p>

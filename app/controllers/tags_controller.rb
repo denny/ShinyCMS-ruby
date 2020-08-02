@@ -39,7 +39,7 @@ class TagsController < ApplicationController
     taggable_models.each do |resource|
       @tagged_items[ resource.name ] = resource.readonly.tagged_with( @tag_name )
     end
-    @content_types = @tagged_items.keys.sort
+    @element_types = @tagged_items.keys.sort
   end
 
   private
