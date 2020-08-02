@@ -24,10 +24,11 @@ bundle install
 
 To add the ShinyForms tables and supporting data to your ShinyCMS database:
 ```bash
+RAILS_ENV=test rails shiny_forms:install:data
 rails shiny_forms:install:data
-raisl shiny_forms:install:migrations
-cd -
+rails shiny_forms:install:migrations
 rails db:migrate
+RAILS_ENV=test rails db:migrate
 ```
 
 ## Contributing
