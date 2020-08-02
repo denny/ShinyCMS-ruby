@@ -1,0 +1,31 @@
+<% @page_title = t( '.title' ) %>
+
+<%= form_for @form, url: shiny_forms.form_path( @form ), method: :put do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :internal_name %><br>
+    <%= f.text_field :internal_name %>
+  </p>
+  <p>
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
+  </p>
+  <p>
+    <%= f.label :show_on_site %><br>
+    <%= f.check_box :show_on_site %>
+  </p>
+  <p>
+    <%= f.label :show_in_menus %><br>
+    <%= f.check_box :show_in_menu %>
+  </p>
+  <p>
+    <%= f.label :show_on_sitemap %><br>
+    <%= f.check_box :show_on_sitemap %>
+  </p>
+  <p>
+    <%= f.submit t( 'save' ) %>
+  </p>
+<% end %>
