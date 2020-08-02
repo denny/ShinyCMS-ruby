@@ -24,11 +24,11 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
 
-      expect( response.body ).to have_css 'td', text: page.name
-      expect( response.body ).to have_css 'td', text: subpage.name
-      expect( response.body ).to have_css 'td', text: subpage.section.name
-      expect( response.body ).to have_css 'td', text: hidden_subpage.name
-      expect( response.body ).to have_css 'td', text: hidden_section.name
+      expect( response.body ).to have_css 'td', text: page.internal_name
+      expect( response.body ).to have_css 'td', text: subpage.internal_name
+      expect( response.body ).to have_css 'td', text: subpage.section.internal_name
+      expect( response.body ).to have_css 'td', text: hidden_subpage.internal_name
+      expect( response.body ).to have_css 'td', text: hidden_section.internal_name
     end
   end
 
@@ -44,7 +44,7 @@ RSpec.describe 'Admin: Pages', type: :request do
   describe 'POST /admin/page/new' do
     it 'fails when the form is submitted without all the details' do
       post create_page_path, params: {
-        'page[title]': 'Test'
+        'page[public_name]': 'Test'
       }
 
       expect( response      ).to have_http_status :ok
@@ -56,7 +56,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       template = create :page_template
 
       post create_page_path, params: {
-        'page[name]': 'Test',
+        'page[internal_name]': 'Test',
         'page[slug]': 'profile',
         'page[template_id]': template.id
       }
@@ -70,7 +70,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       template = create :page_template
 
       post create_page_path, params: {
-        'page[name]': 'Test',
+        'page[internal_name]': 'Test',
         'page[template_id]': template.id
       }
 
@@ -86,8 +86,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       template = create :page_template
 
       post create_page_path, params: {
-        'page[name]': 'Test',
-        'page[title]': 'Test',
+        'page[internal_name]': 'Test',
         'page[slug]': 'test',
         'page[template_id]': template.id
       }
@@ -136,7 +135,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       page = create :top_level_page
 
       put page_path( page ), params: {
-        'page[name]': ''
+        'page[internal_name]': ''
       }
 
       expect( response      ).to have_http_status :ok
@@ -148,7 +147,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       page = create :top_level_page
 
       put page_path( page ), params: {
-        'page[name]': 'Updated by test'
+        'page[internal_name]': 'Updated by test'
       }
 
       expect( response      ).to have_http_status :found
@@ -157,7 +156,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.update.success' )
-      expect( response.body ).to have_field 'page_name', with: 'Updated by test'
+      expect( response.body ).to have_field 'page_internal_name', with: 'Updated by test'
     end
 
     it 'recreates the slug if it is wiped before submitting an update' do
@@ -165,8 +164,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       old_slug = page.slug
 
       put page_path( page ), params: {
-        'page[name]': 'Updated by test',
-        'page[title]': '',
+        'page[internal_name]': 'Updated by test',
         'page[slug]': ''
       }
 
@@ -195,9 +193,9 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.pages.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.destroy.success' )
-      expect( response.body ).to     have_css 'td', text: p1.name
-      expect( response.body ).not_to have_css 'td', text: p2.name
-      expect( response.body ).to     have_css 'td', text: p3.name
+      expect( response.body ).to     have_css 'td', text: p1.internal_name
+      expect( response.body ).not_to have_css 'td', text: p2.internal_name
+      expect( response.body ).to     have_css 'td', text: p3.internal_name
     end
 
     it 'fails gracefully when attempting to delete a non-existent page' do

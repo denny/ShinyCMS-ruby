@@ -2,20 +2,20 @@
 
 <%= form_for :page, url: create_page_path, method: :post do |f| %>
   <p>
-    <%= f.label :name %>
-    <br><%= f.text_field :name %>
+    <%= f.label :internal_name %><br>
+    <%= f.text_field :internal_name %>
   </p>
   <p>
-    <%= f.label :description %>
-    <br><%= f.text_field :description %>
+    <%= f.label :public_name %><br>
+    <%= f.text_field :public_name %>
   </p>
   <p>
-    <%= f.label :title %>
-    <br><%= f.text_field :title %>
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
   </p>
   <p>
-    <%= f.label :slug %>
-    <br><%= f.text_field :slug %>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
   </p>
   <p>
     <%= f.label :template_id, 'Template' %>
@@ -23,7 +23,7 @@
   </p>
   <p>
     <%= f.label :section_id, 'Section' %>
-    <br><%= f.select :section_id, PageSection.pluck( :name, :id ),
+    <br><%= f.select :section_id, PageSection.pluck( :internal_name, :id ),
             { include_blank: 'None' } %>
   </p>
   <p>

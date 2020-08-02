@@ -31,25 +31,34 @@ RSpec.describe Blog, type: :model do
     end
   end
 
-  context 'scopes' do
-    it 'can create a title' do
-      blog = create :blog
+  context 'methods' do
+    describe '.name' do
+      it 'returns the public_name if one is set' do
+        blog = create :blog, public_name: Faker::Books::CultureSeries.unique.culture_ship
 
-      blog.title = nil
-      expect( blog.title ).to be_blank
+        expect( blog.name ).not_to eq blog.internal_name
+        expect( blog.name ).to eq blog.public_name
+      end
 
-      blog.generate_title
-      expect( blog.title ).to match %r{[-\w]+}
+      it 'returns the internal_name if public_name is not set' do
+        blog = create :blog, public_name: nil
+
+        expect( blog.public_name ).to be_blank
+
+        expect( blog.name ).to eq blog.internal_name
+      end
     end
 
-    it 'can create a slug' do
-      blog = create :blog
+    describe '.generate_slug' do
+      it 'can create a slug' do
+        blog = create :blog
 
-      blog.slug = nil
-      expect( blog.slug ).to be_blank
+        blog.slug = nil
+        expect( blog.slug ).to be_blank
 
-      blog.generate_slug
-      expect( blog.slug ).to match %r{[-\w]+}
+        blog.generate_slug
+        expect( blog.slug ).to match %r{[-\w]+}
+      end
     end
   end
 end

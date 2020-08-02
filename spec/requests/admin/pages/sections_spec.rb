@@ -32,7 +32,9 @@ RSpec.describe 'Admin: Page Sections', type: :request do
   describe 'POST /admin/pages/section/new' do
     it 'fails when the form is submitted without all the details' do
       post create_page_section_path, params: {
-        'page_section[title]': 'Test'
+        page_section: {
+          public_name: Faker::Books::CultureSeries.unique.culture_ship
+        }
       }
 
       expect( response      ).to have_http_status :ok
@@ -42,9 +44,10 @@ RSpec.describe 'Admin: Page Sections', type: :request do
 
     it 'fails if top-level section slug collides with a controller namespace' do
       post create_page_section_path, params: {
-        'page_section[name]': 'Test',
-        'page_section[title]': 'Test',
-        'page_section[slug]': 'profile'
+        page_section: {
+          internal_name: Faker::Books::CultureSeries.unique.culture_ship,
+          slug: 'profile'
+        }
       }
 
       expect( response      ).to have_http_status :ok
@@ -53,10 +56,12 @@ RSpec.describe 'Admin: Page Sections', type: :request do
     end
 
     it 'adds a new section when the form is submitted' do
+      ship_name = Faker::Books::CultureSeries.unique.culture_ship
       post create_page_section_path, params: {
-        'page_section[name]': 'Test',
-        'page_section[title]': 'Test',
-        'page_section[slug]': 'test'
+        page_section: {
+          internal_name: ship_name,
+          slug: ship_name.parameterize
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -84,7 +89,9 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       section = create :page_section
 
       put page_section_path( section ), params: {
-        'page_section[name]': nil
+        page_section: {
+          internal_name: nil
+        }
       }
 
       expect( response      ).to have_http_status :ok
@@ -96,7 +103,9 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       section = create :page_section
 
       put page_section_path( section ), params: {
-        'page_section[name]': 'Updated by test'
+        page_section: {
+          internal_name: 'Updated by test'
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -105,7 +114,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.sections.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.sections.update.success' )
-      expect( response.body ).to include 'Updated by test'
+      expect( response.body ).to have_field 'page_section_internal_name', with: 'Updated by test'
     end
   end
 
@@ -123,9 +132,9 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.pages.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.sections.destroy.success' )
-      expect( response.body ).to     have_css 'td', text: s1.name
-      expect( response.body ).not_to have_css 'td', text: s2.name
-      expect( response.body ).to     have_css 'td', text: s3.name
+      expect( response.body ).to     have_css 'td', text: s1.internal_name
+      expect( response.body ).not_to have_css 'td', text: s2.internal_name
+      expect( response.body ).to     have_css 'td', text: s3.internal_name
     end
 
     it 'fails gracefully when attempting to delete a non-existent section' do

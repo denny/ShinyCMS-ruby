@@ -2,20 +2,20 @@
 
 <%= form_for @blog, url: create_blog_path, method: :post do |f| %>
   <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :internal_name %><br>
+    <%= f.text_field :internal_name %>
   </p>
   <p>
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </p>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.label :public_name %><br>
+    <%= f.text_field :public_name %>
   </p>
   <p>
     <%= f.label :slug %><br>
     <%= f.text_field :slug %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
   </p>
   <p>
     <%= f.label :user_id, 'Owner' %><br>
