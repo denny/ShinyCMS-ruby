@@ -15,7 +15,16 @@ en:
         title: Forms
         index:
           title: List form handlers
+          empty: There are no form handlers defined yet
         new:
           title: Add new form handler
         edit:
           title: Edit form handler
+        create:
+          success: New form handler created
+          failure: Failed to create new form handler
+        update:
+          success: Form handler updated
+          failure: Failed to update form handler
+        destroy:
+          success: Form handler deleted
