@@ -24,7 +24,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
       post create_insert_path, params: {
         'insert_element[name]': 'new_insert',
         'insert_element[content]': 'NEW AND IMPROVED!',
-        'insert_element[content_type]': I18n.t( 'admin.elements.short_text' )
+        'insert_element[element_type]': I18n.t( 'admin.elements.short_text' )
       }
 
       expect( response      ).to have_http_status :found
@@ -40,7 +40,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
       post create_insert_path, params: {
         'insert_element[name]': 'insert_is_empty',
         'insert_element[content]': '',
-        'insert_element[content_type]': I18n.t( 'admin.elements.short_text' )
+        'insert_element[element_type]': I18n.t( 'admin.elements.short_text' )
       }
 
       expect( response      ).to have_http_status :found
@@ -56,7 +56,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
       post create_insert_path, params: {
         'insert_element[name]': 'insert_is_null',
         'insert_element[content]': nil,
-        'insert_element[content_type]': I18n.t( 'admin.elements.short_text' )
+        'insert_element[element_type]': I18n.t( 'admin.elements.short_text' )
       }
 
       expect( response      ).to have_http_status :found
@@ -124,7 +124,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
         "insert_set[elements_attributes][1][id]": s2.id,
         "insert_set[elements_attributes][1][name]": s2.name,
         "insert_set[elements_attributes][1][content]": 'Updated content',
-        "insert_set[elements_attributes][1][content_type]": s2.content_type
+        "insert_set[elements_attributes][1][element_type]": s2.element_type
       }
 
       expect( response      ).to     have_http_status :found
@@ -147,7 +147,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
         "insert_set[elements_attributes][1][id]": s2.id,
         "insert_set[elements_attributes][1][name]": s1.name,
         "insert_set[elements_attributes][1][content]": 'Updated content',
-        "insert_set[elements_attributes][1][content_type]": s2.content_type
+        "insert_set[elements_attributes][1][element_type]": s2.element_type
       }
 
       expect( response      ).to     have_http_status :found

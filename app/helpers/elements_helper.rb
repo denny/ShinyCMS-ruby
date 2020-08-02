@@ -3,7 +3,7 @@
 # Helpers for code dealing with Page/Template/etc elements
 module ElementsHelper
   # Provide list of known element types (short text, long text, etc)
-  def content_types
+  def element_types
     I18n.t( 'admin.elements' ).values
   end
 
