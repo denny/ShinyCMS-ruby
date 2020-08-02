@@ -14,25 +14,11 @@
 require 'dotenv/tasks'
 
 namespace :shiny_forms do
-  namespace :install do
+  namespace :db do
     # :nocov:
-    desc 'ShinyCMS: install supporting data for Forms plugin'
-    task data: %i[ environment dotenv ] do
-      # Add admin capabilities for Forms plugin
-      forms_cc = CapabilityCategory.find_or_create_by!( name: 'forms' )
-      forms_cc.capabilities.find_or_create_by!( name: 'list'    )
-      forms_cc.capabilities.find_or_create_by!( name: 'add'     )
-      forms_cc.capabilities.find_or_create_by!( name: 'edit'    )
-      forms_cc.capabilities.find_or_create_by!( name: 'destroy' )
-
-      # Add feature flag for Forms plugin
-      forms_flag = FeatureFlag.find_or_create_by!( name: 'forms' )
-      forms_flag.update!(
-        description: 'Enable generic form handlers from ShinyForms plugin',
-        enabled: true,
-        enabled_for_logged_in: true,
-        enabled_for_admins: true
-      )
+    desc 'ShinyCMS: load supporting data for forms plugin'
+    task seed: %i[ environment dotenv ] do
+      ShinyForms::Engine.load_seed
     end
     # :nocov:
   end
