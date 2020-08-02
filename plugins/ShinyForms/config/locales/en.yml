@@ -1,0 +1,20 @@
+
+# Translation strings for ShinyCMS forms plugin
+
+en:
+  feature_flags:
+    forms: Forms
+
+  admin:
+    forms:
+      title: Forms
+
+  shiny_forms:
+    admin:
+      forms:
+        index:
+          title: List form handlers
+        new:
+          title: Add new form handler
+        edit:
+          title: Edit form handler
