@@ -2,15 +2,6 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
-* Rename hidden to show_on_site, rename hidden_from_menus to show_on_menus,
-  rewrite all the related code to flip its meaning, moving as much as possible
-  into 'Hideable' (?) helpers and concerns
-
-* Rename [foo]_element.[foo]_id to [foo]_element.parent_id for all element types,
-  and see if this makes it possible to pull more stuff into concerns/helpers
-
-* Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
-
 * Add exact_text option to capybara matcher calls in request specs
   * expect(bar).to have_[field/whatever], text: 'foo', exact_text: true
   * NB: Try one first; might fail on whitespace differences :eyeroll:
