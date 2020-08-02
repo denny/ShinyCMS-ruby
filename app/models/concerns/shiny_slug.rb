@@ -15,9 +15,11 @@ module ShinySlug
 
     # rubocop:disable Style/RedundantSelf
     def generate_slug
-      return unless self.respond_to?( :title ) && title.present?
-
-      self.slug = title.parameterize
+      if self.respond_to?( :name ) && name.present?
+        self.slug = name.parameterize
+      elsif self.respond_to?( :title ) && title.present?
+        self.slug = title.parameterize
+      end
     end
     # rubocop:enable Style/RedundantSelf
   end

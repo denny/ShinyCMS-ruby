@@ -2,9 +2,6 @@
 
 ## Small fixes, to do next/soon
 
-* Rename title and name to name and internal_name (respectively) on all models,
-  fix helpers and other code appropriately
-
 * Rename hidden to show_on_site, rename hidden_from_menus to show_on_menus,
   rewrite all the related code to flip its meaning, moving as much as possible
   into 'Hideable' (?) helpers and concerns

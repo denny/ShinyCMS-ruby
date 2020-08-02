@@ -24,7 +24,7 @@ RSpec.describe 'Pages', type: :request do
         get '/'
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title @page.title
+        expect( response.body ).to have_title @page.public_name
       end
 
       it 'renders an error if the template file is missing' do
@@ -47,7 +47,7 @@ RSpec.describe 'Pages', type: :request do
         get "/#{@page.slug}"
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title @page.title
+        expect( response.body ).to have_title @page.public_name
       end
     end
 
@@ -58,16 +58,16 @@ RSpec.describe 'Pages', type: :request do
         get "/#{page.section.slug}/#{page.slug}"
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title page.title
+        expect( response.body ).to have_title page.public_name
       end
     end
 
     describe 'GET /section-name' do
       it 'fetches the first page from the specified section' do
         section = create :page_section
-        create :page_in_section, title: '1st Page', section: section
-        create :page_in_section, title: '2nd Page', section: section
-        create :page_in_section, title: '3rd Page', section: section
+        create :page_in_section, public_name: '1st Page', section: section
+        create :page_in_section, public_name: '2nd Page', section: section
+        create :page_in_section, public_name: '3rd Page', section: section
 
         get "/#{section.slug}"
 
@@ -77,9 +77,9 @@ RSpec.describe 'Pages', type: :request do
 
       it 'fetches the default page from the specified section if one is set' do
         section = create :page_section
-        page001 = create :page_in_section, title: '1st Page', section: section
-        page002 = create :page_in_section, title: '2nd Page', section: section
-        page003 = create :page_in_section, title: '3rd Page', section: section
+        page001 = create :page_in_section, public_name: '1st Page', section: section
+        page002 = create :page_in_section, public_name: '2nd Page', section: section
+        page003 = create :page_in_section, public_name: '3rd Page', section: section
         page001.section.update! default_page_id: page003.id
 
         get "/#{page002.section.slug}"
@@ -96,7 +96,7 @@ RSpec.describe 'Pages', type: :request do
         get "/#{p.section.section.slug}/#{p.section.slug}/#{p.slug}"
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title p.title
+        expect( response.body ).to have_title p.public_name
       end
     end
 

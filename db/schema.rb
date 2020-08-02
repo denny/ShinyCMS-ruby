@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_135306) do
+ActiveRecord::Schema.define(version: 2020_08_02_140826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -161,10 +161,10 @@ ActiveRecord::Schema.define(version: 2020_08_02_135306) do
   end
 
   create_table "blogs", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "description"
-    t.string "title", null: false
+    t.string "internal_name", null: false
+    t.string "public_name"
     t.string "slug", null: false
+    t.text "description"
     t.boolean "hidden_from_menu", default: false, null: false
     t.boolean "hidden", default: false, null: false
     t.bigint "user_id", null: false
@@ -273,7 +273,8 @@ ActiveRecord::Schema.define(version: 2020_08_02_135306) do
   end
 
   create_table "mailing_lists", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "internal_name", null: false
+    t.string "public_name"
     t.string "slug", null: false
     t.boolean "is_public", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -302,10 +303,10 @@ ActiveRecord::Schema.define(version: 2020_08_02_135306) do
   end
 
   create_table "page_sections", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "description"
-    t.string "title", null: false
+    t.string "internal_name", null: false
+    t.string "public_name"
     t.string "slug", null: false
+    t.text "description"
     t.bigint "default_page_id"
     t.bigint "section_id"
     t.integer "sort_order"
@@ -336,10 +337,10 @@ ActiveRecord::Schema.define(version: 2020_08_02_135306) do
   end
 
   create_table "pages", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "description"
-    t.string "title", null: false
+    t.string "internal_name", null: false
+    t.string "public_name"
     t.string "slug", null: false
+    t.text "description"
     t.bigint "template_id", null: false
     t.bigint "section_id"
     t.integer "sort_order"

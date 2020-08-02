@@ -3,9 +3,9 @@
 FactoryBot.define do
   factory :comment do
     sequence( :number )
-    title   { Faker::Books::CultureSeries.unique.culture_ship.titlecase }
-    body    { Faker::Lorem.paragraph }
-    hidden  { false }
+    title  { Faker::Books::CultureSeries.unique.culture_ship.titlecase }
+    body   { Faker::Lorem.paragraph }
+    hidden { false }
     author_type { 'anonymous' }
   end
 

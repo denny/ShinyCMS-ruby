@@ -1,6 +1,6 @@
 
 Blog.create!([
-  {id: 1, name: "ShinyBlog", description: "", title: "The ShinySite Blog", slug: "shinysite", hidden_from_menu: false, hidden: false, user_id: @shiny_admin.id}
+  {id: 1, internal_name: "ShinyBlog", description: "", public_name: "The ShinySite Blog", slug: "shinysite", hidden_from_menu: false, hidden: false, user_id: @shiny_admin.id}
 ])
 
 BlogPost.create!([
@@ -71,15 +71,15 @@ PageTemplateElement.create!([
 ])
 
 PageSection.create!([
-  {id: 1, name: "Two column", description: "", title: "Two Column", slug: "two", default_page_id: nil, section_id: nil, sort_order: 3, hidden_from_menu: false, hidden: false}
+  {id: 1, internal_name: "Two column", description: "", public_name: "Two Column", slug: "two", default_page_id: nil, section_id: nil, sort_order: 3, hidden_from_menu: false, hidden: false}
 ])
 
 Page.create!([
-  {id: 1, name: "Home", description: "Demo site home page - uses Halcyonic index template", title: "ShinyCMS Demo", slug: "home", template_id: 1, section_id: nil, sort_order: 1, hidden_from_menu: true, hidden: false},
-  {id: 2, name: "One column", description: "", title: "One Column", slug: "one", template_id: 2, section_id: nil, sort_order: 2, hidden_from_menu: false, hidden: false},
-  {id: 3, name: "Right sidebar", description: "", title: "Right Sidebar", slug: "right-sidebar", template_id: 3, section_id: 1, sort_order: 2, hidden_from_menu: false, hidden: false},
-  {id: 4, name: "Left sidebar", description: "", title: "Left Sidebar", slug: "left-sidebar", template_id: 4, section_id: 1, sort_order: 1, hidden_from_menu: false, hidden: false},
-  {id: 5, name: "Three column", description: "", title: "Three Column", slug: "three", template_id: 5, section_id: nil, sort_order: 4, hidden_from_menu: false, hidden: false}
+  {id: 1, internal_name: "Home", description: "Demo site home page - uses Halcyonic index template", public_name: "ShinyCMS Demo", slug: "home", template_id: 1, section_id: nil, sort_order: 1, hidden_from_menu: true, hidden: false},
+  {id: 2, internal_name: "One column", description: "", public_name: "One Column", slug: "one", template_id: 2, section_id: nil, sort_order: 2, hidden_from_menu: false, hidden: false},
+  {id: 3, internal_name: "Right sidebar", description: "", public_name: "Right Sidebar", slug: "right-sidebar", template_id: 3, section_id: 1, sort_order: 2, hidden_from_menu: false, hidden: false},
+  {id: 4, internal_name: "Left sidebar", description: "", public_name: "Left Sidebar", slug: "left-sidebar", template_id: 4, section_id: 1, sort_order: 1, hidden_from_menu: false, hidden: false},
+  {id: 5, internal_name: "Three column", description: "", public_name: "Three Column", slug: "three", template_id: 5, section_id: nil, sort_order: 4, hidden_from_menu: false, hidden: false}
 ])
 
 PageElement.create!([

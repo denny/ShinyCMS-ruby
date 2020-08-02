@@ -2,7 +2,7 @@
 
 # Model for 'brochure' pages
 class Page < ApplicationRecord
-  include ShinyTitle
+  include ShinyName
   include ShinySlugInSection
 
   # Associations
@@ -97,7 +97,7 @@ class Page < ApplicationRecord
   def self.default_page
     name_or_slug = Setting.get :default_page
     top_level_pages
-      .where( name: name_or_slug )
+      .where( internal_name: name_or_slug )
       .or( top_level_pages
       .where( slug: name_or_slug ) )
       .first ||
