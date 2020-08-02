@@ -157,7 +157,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
-          discussion_hidden: true,
+          discussion_show_on_site: false,
           discussion_locked: true
         }
       }
@@ -169,8 +169,8 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.blog.posts.update.success' )
-      expect( post.discussion.hidden ).to be true
-      expect( post.discussion.locked ).to be true
+      expect( post.discussion.hidden? ).to be true
+      expect( post.discussion.locked? ).to be true
     end
   end
 

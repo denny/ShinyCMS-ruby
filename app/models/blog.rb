@@ -4,6 +4,7 @@
 class Blog < ApplicationRecord
   include ShinyName
   include ShinySlug
+  include ShinyShowHide
 
   # Associations
 

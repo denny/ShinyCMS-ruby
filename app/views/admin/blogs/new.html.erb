@@ -22,13 +22,14 @@
     <%= f.select :user_id, User.that_can( :add, :blogs ).pluck( :username, :id ) %>
   </p>
   <p>
-    <%= f.label :hidden_from_menu %><br>
-    <%= f.check_box :hidden_from_menu %>
+    <%= f.label :show_on_site %>
+    <br><%= f.check_box :show_on_site %>
   </p>
   <p>
-    <%= f.label :hidden %><br>
-    <%= f.check_box :hidden %>
+    <%= f.label :show_in_menus %>
+    <br><%= f.check_box :show_in_menus %>
   </p>
+
   <p>
     <%= f.submit t( 'add' ) %>
   </p>

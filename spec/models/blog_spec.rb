@@ -14,18 +14,18 @@ RSpec.describe Blog, type: :model do
   context 'scopes' do
     it 'can fetch the visible posts (not hidden, not future-dated)' do
       blog = create :blog
-      create :blog_post, blog: blog, hidden: true
+      create :blog_post, blog: blog, show_on_site: false
       create :blog_post, blog: blog
-      create :blog_post, blog: blog, hidden: true
+      create :blog_post, blog: blog, show_on_site: false
 
       expect( blog.posts.length ).to eq 1
     end
 
     it 'can fetch all of the posts' do
       blog = create :blog
-      create :blog_post, blog: blog, hidden: true
+      create :blog_post, blog: blog, show_on_site: false
       create :blog_post, blog: blog
-      create :blog_post, blog: blog, hidden: true
+      create :blog_post, blog: blog, show_on_site: false
 
       expect( blog.all_posts.length ).to eq 3
     end

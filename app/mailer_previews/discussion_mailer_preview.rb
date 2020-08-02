@@ -21,7 +21,7 @@ class DiscussionMailerPreview
   end
 
   def mock_comment
-    comments = Comment.where( hidden: false, spam: false )
+    comments = Comment.where( show_on_site: true, spam: false )
     comments.where.not( parent: nil ).last || comments.last
   end
 end

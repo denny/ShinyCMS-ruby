@@ -40,13 +40,13 @@ seed Capability, { name: 'edit',          category: blog_posts_cc }
 seed Capability, { name: 'destroy',       category: blog_posts_cc }
 seed Capability, { name: 'change_author', category: blog_posts_cc }
 # Discussions
+seed Capability, { name: 'show',    category: discussion_cc }
 seed Capability, { name: 'hide',    category: discussion_cc }
-seed Capability, { name: 'unhide',  category: discussion_cc }
 seed Capability, { name: 'lock',    category: discussion_cc }
 seed Capability, { name: 'unlock',  category: discussion_cc }
 # Comments
+seed Capability, { name: 'show',    category: comments_cc }
 seed Capability, { name: 'hide',    category: comments_cc }
-seed Capability, { name: 'unhide',  category: comments_cc }
 seed Capability, { name: 'lock',    category: comments_cc }
 seed Capability, { name: 'unlock',  category: comments_cc }
 seed Capability, { name: 'destroy', category: comments_cc }

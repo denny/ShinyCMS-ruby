@@ -30,12 +30,12 @@
     <%= f.cktext_area :body, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
   </p>
   <p>
-    <%= f.label :hidden, 'Hide post' %><br>
-    <%= f.check_box :hidden %>
+    <%= f.label :show_on_site, 'Published' %><br>
+    <%= f.check_box :show_on_site %>
   </p>
   <p>
-    <%= f.label :discussion_hidden, 'Hide comments' %><br>
-    <%= f.check_box :discussion_hidden %>
+    <%= f.label :discussion_show_on_site, 'Show comments' %><br>
+    <%= f.check_box :discussion_show_on_site %>
   </p>
   <p>
     <%= f.label :discussion_locked, 'Lock comments' %><br>

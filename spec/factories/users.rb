@@ -53,26 +53,26 @@ FactoryBot.define do
     after :create do |admin|
       category = CapabilityCategory.find_by( name: 'discussions' )
 
+      show   = category.capabilities.find_by( name: 'show'   )
       hide   = category.capabilities.find_by( name: 'hide'   )
-      unhide = category.capabilities.find_by( name: 'unhide' )
       lock   = category.capabilities.find_by( name: 'lock'   )
       unlock = category.capabilities.find_by( name: 'unlock' )
 
+      create :user_capability, user: admin, capability: show
       create :user_capability, user: admin, capability: hide
-      create :user_capability, user: admin, capability: unhide
       create :user_capability, user: admin, capability: lock
       create :user_capability, user: admin, capability: unlock
 
       category = CapabilityCategory.find_by( name: 'comments' )
 
+      show    = category.capabilities.find_by( name: 'show'   )
       hide    = category.capabilities.find_by( name: 'hide'    )
-      unhide  = category.capabilities.find_by( name: 'unhide'  )
       lock    = category.capabilities.find_by( name: 'lock'    )
       unlock  = category.capabilities.find_by( name: 'unlock'  )
       destroy = category.capabilities.find_by( name: 'destroy' )
 
+      create :user_capability, user: admin, capability: show
       create :user_capability, user: admin, capability: hide
-      create :user_capability, user: admin, capability: unhide
       create :user_capability, user: admin, capability: lock
       create :user_capability, user: admin, capability: unlock
       create :user_capability, user: admin, capability: destroy

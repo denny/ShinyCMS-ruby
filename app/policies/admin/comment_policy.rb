@@ -14,11 +14,11 @@ class Admin::CommentPolicy < Admin::DefaultPolicy
     @this_user.can? :destroy, :spam_comments
   end
 
-  def hide?
+  def show?
     @this_user.can? :hide, :comments
   end
 
-  def unhide?
+  def hide?
     @this_user.can? :hide, :comments
   end
 
