@@ -27,7 +27,8 @@ module ShinyForms
       authorise @form
 
       if @form.save
-        redirect_to action: :edit, id: @form.id, notice: t( '.success' )
+        flash[ :notice ] = t( '.success' )
+        redirect_to action: :edit, id: @form.id
       else
         flash.now[ :alert ] = t( '.failure' )
         render :new
@@ -44,7 +45,8 @@ module ShinyForms
       authorise @form
 
       if @form.update(form_params)
-        redirect_to action: :edit, id: @form.id, notice: t( '.success' )
+        flash[ :notice ] = t( '.success' )
+        redirect_to action: :edit, id: @form.id
       else
         flash.now[ :alert ] = t( '.failure' )
         render :edit
@@ -66,7 +68,9 @@ module ShinyForms
     end
 
     def form_params
-      params.fetch( :form, {} )
+      params.require( :form ).permit(
+        :internal_name, :public_name, :slug, :handler
+      )
     end
   end
 end
