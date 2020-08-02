@@ -4,6 +4,7 @@
 class PageSection < ApplicationRecord
   include ShinyName
   include ShinySlugInSection
+  include ShinyShowHide
 
   # Associations
 
@@ -22,14 +23,11 @@ class PageSection < ApplicationRecord
 
   # Validations
 
-  validates :hidden, inclusion: { in: [ true, false ] }
-  validates :slug,   safe_top_level_slug: true, if: -> { section.blank? }
+  validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
 
   # Scopes and default sort order
 
-  scope :top_level,        -> { where( section: nil  ) }
-  scope :visible,          -> { where( hidden: false ) }
-  scope :visible_in_menus, -> { where( hidden: false, hidden_from_menu: false ) }
+  scope :top_level, -> { where( section: nil  ) }
 
   self.implicit_order_column = 'sort_order'
 

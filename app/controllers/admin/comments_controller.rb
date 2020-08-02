@@ -39,15 +39,15 @@ class Admin::CommentsController < AdminController
     redirect_to action: :index
   end
 
-  def hide
+  def show
     authorise @comment
-    @comment.hide
+    @comment.show
     redirect_back fallback_location: @comment.anchored_path
   end
 
-  def unhide
+  def hide
     authorise @comment
-    @comment.unhide
+    @comment.hide
     redirect_back fallback_location: @comment.anchored_path
   end
 

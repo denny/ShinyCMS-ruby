@@ -2,8 +2,6 @@
 
 FactoryBot.define do
   factory :discussion do
-    hidden { false }
-
     transient do
       comment_count { 0 }
       comments_posted_at { Time.zone.now.iso8601 }

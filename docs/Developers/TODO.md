@@ -2,10 +2,6 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
-* Rename hidden to show_on_site, rename hidden_from_menus to show_on_menus,
-  rewrite all the related code to flip its meaning, moving as much as possible
-  into 'Hideable' (?) helpers and concerns
-
 * Add exact_text option to capybara matcher calls in request specs
   * expect(bar).to have_[field/whatever], text: 'foo', exact_text: true
   * NB: Try one first; might fail on whitespace differences :eyeroll:
@@ -13,6 +9,13 @@
 * Check for and add missing indexes - https://pawelurbanek.com/rails-postgres-join-indexes
 
 * Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
+
+### Non-trivial
+
+* Split comment_author details off of comments, as a polymorphic (similar to email_recipients)
+
+* ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
+  sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
 
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
@@ -23,7 +26,6 @@
   * https://ckeditor.com/docs/ckeditor5/latest/features/image-upload/ckfinder.html
 * Site map
 * Affiliate cookie
-* Split comment_author details off of comments, as a polymorphic (similar to email_recipients)
 
 ### Medium-ish
 

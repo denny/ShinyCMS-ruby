@@ -15,6 +15,4 @@
     <% end %>
     </span>
     <% end %>
-    <% if current_user_can?( :hide, :discussions ) || current_user_can?( :lock, :discussions ) %>
     <%= render partial: 'discussions/moderation_links', locals: { discussion: post.discussion } %>
-    <% end %>

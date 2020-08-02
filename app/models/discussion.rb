@@ -2,6 +2,8 @@
 
 # Model class for discussions (used to group comments)
 class Discussion < ApplicationRecord
+  include ShinyShowHide
+
   # Assocations
 
   belongs_to :resource, inverse_of: :discussion, polymorphic: true
@@ -28,14 +30,6 @@ class Discussion < ApplicationRecord
 
   def unlock
     update( locked: false )
-  end
-
-  def hide
-    update( hidden: true )
-  end
-
-  def unhide
-    update( hidden: false )
   end
 
   # Class methods
