@@ -31,7 +31,7 @@ RSpec.describe 'ShinyForms Admin', type: :request do
       post shiny_forms.forms_path, params: {
         form: {
           internal_name: Faker::Books::CultureSeries.unique.culture_ship,
-          handler: 'plain_text_email'
+          handler: 'plain_email'
         }
       }
 
@@ -58,7 +58,7 @@ RSpec.describe 'ShinyForms Admin', type: :request do
 
   describe 'GET /admin/forms/:id/edit' do
     it 'loads the page to edit an existing form handler' do
-      form = create :plain_text_email_form
+      form = create :plain_email_form
 
       get shiny_forms.edit_form_path( form )
 
@@ -69,7 +69,7 @@ RSpec.describe 'ShinyForms Admin', type: :request do
 
   describe 'PUT /admin/forms/:id' do
     it 'updates the form handler when the appropriate details are submitted' do
-      form = create :plain_text_email_form
+      form = create :plain_email_form
       old_name = form.name
       new_name = Faker::Books::CultureSeries.unique.culture_ship
 
@@ -90,7 +90,7 @@ RSpec.describe 'ShinyForms Admin', type: :request do
     end
 
     it 'fails when the form is submitted without all the required details' do
-      form = create :plain_text_email_form
+      form = create :plain_email_form
 
       put shiny_forms.form_path( form ), params: {
         form: {
@@ -106,9 +106,9 @@ RSpec.describe 'ShinyForms Admin', type: :request do
 
   describe 'DELETE /admin/form/:id' do
     it 'deletes the specified form' do
-      f1 = create :plain_text_email_form
-      f2 = create :plain_text_email_form
-      f3 = create :plain_text_email_form
+      f1 = create :plain_email_form
+      f2 = create :plain_email_form
+      f3 = create :plain_email_form
 
       delete shiny_forms.form_path( f2 )
 

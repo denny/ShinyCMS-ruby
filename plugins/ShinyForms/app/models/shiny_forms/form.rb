@@ -31,5 +31,53 @@ module ShinyForms
     def self.policy_class
       ::Admin::FormPolicy
     end
+
+    def self.template_file_exists?( filename )
+      Form.available_templates.include? filename
+    end
+
+    # Get a list of available template files from the disk
+    def self.available_templates
+      ( theme_templates + default_templates ).uniq.sort
+    end
+
+    def self.theme_templates
+      return unless theme_template_dir
+
+      template_names = []
+
+      filenames = Dir.glob '*.mjml', base: theme_template_dir
+      filenames.each do |filename|
+        template_names << filename.remove( '.html.mjml' )
+      end
+
+      template_names.sort
+    end
+
+    def self.default_templates
+      template_names = []
+
+      filenames = Dir.glob '*.mjml', base: default_template_dir
+      filenames.each do |filename|
+        template_names << filename.remove( '.html.mjml' )
+      end
+
+      template_names.sort
+    end
+
+    def self.theme_template_dir
+      Rails.root.join Theme.current.mailer_templates_path if Theme.current.present?
+    end
+
+    def self.default_template_dir
+      Rails.root.join 'plugins/ShinyForms/app/views/shiny_forms/form_mailer'
+    end
+
+    # Add another validation here, because it uses the class methods above
+    validates :filename, inclusion: {
+      in: Form.available_templates,
+      message: I18n.t( 'shiny_forms.models.forms.template_file_must_exist' ),
+      allow_nil: true
+    }
   end
 end

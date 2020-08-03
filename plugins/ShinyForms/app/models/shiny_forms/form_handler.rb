@@ -3,14 +3,12 @@
 module ShinyForms
   # Basic form handlers for ShinyCMS
   class FormHandler
-    def plain_text_email( email_to, form_data, _ )
-      FormMailer.plain_text_email( email_to, form_data ).deliver_now
+    def plain_email( email_to, form_data, _ )
+      FormMailer.plain( email_to, form_data ).deliver_now
     end
 
-    def mjml_template_email( email_to, form_data, filename )
-      FormMailer.mjml_template_email( email_to, form_data, filename ).deliver_now
+    def template_email( email_to, form_data, filename )
+      FormMailer.with_template( email_to, form_data, filename ).deliver_now
     end
-
-    def html_template_email( email_to, form_data, filename ); end
   end
 end

@@ -5,7 +5,7 @@ module ShinyForms
   class FormMailer < ApplicationMailer
     before_action :check_feature_flags
 
-    def plain_text_email( to, form_data )
+    def plain( to, form_data )
       email_to = build_to( to )
       return if email_to.blank?
 
@@ -16,16 +16,18 @@ module ShinyForms
       mail to: email_to, subject: email_subject, &:text
     end
 
-    def mjml_template_email( to, form_data, filename )
+    def with_template( to, form_data, filename )
       email_to = build_to( to )
       return if email_to.blank?
+      return unless Form.template_file_exists?( filename )
 
       @form_data = form_data
 
       track open: false, click: false
 
-      mail to: email_to, subject: email_subject do
-        "#{filename}.mjml"
+      mail to: email_to, subject: email_subject, template_name: filename do |format|
+        format.html
+        format.text
       end
     end
 
