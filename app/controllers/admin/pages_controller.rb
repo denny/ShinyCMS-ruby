@@ -30,8 +30,7 @@ class Admin::PagesController < AdminController
     authorise @page
 
     if @page.save
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @page.id
+      redirect_with_notice edit_page_path( @page ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -48,8 +47,7 @@ class Admin::PagesController < AdminController
     authorise @page
 
     if @page.update( page_params )
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @page.id
+      redirect_with_notice edit_page_path( @page ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit

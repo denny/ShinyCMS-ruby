@@ -31,8 +31,7 @@ class Admin::NewsController < AdminController
     authorise @post
 
     if @post.save
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @post.id
+      redirect_with_notice edit_news_post_path( @post ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -47,8 +46,7 @@ class Admin::NewsController < AdminController
     authorise @post
 
     if @post.update( post_params )
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @post.id
+      redirect_with_notice edit_news_post_path( @post ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit

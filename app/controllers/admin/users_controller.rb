@@ -28,8 +28,7 @@ class Admin::UsersController < AdminController
     authorise @user
 
     if @user.save
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @user.id
+      redirect_with_notice edit_user_path( @user ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -46,8 +45,7 @@ class Admin::UsersController < AdminController
     authorise @user
 
     if @user.update_without_password( user_params )
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @user.id
+      redirect_with_notice edit_user_path( @user ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit
