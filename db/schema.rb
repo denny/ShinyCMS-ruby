@@ -385,6 +385,10 @@ ActiveRecord::Schema.define(version: 2020_08_02_201259) do
     t.string "slug", null: false
     t.text "description"
     t.string "handler", null: false
+    t.string "email_to"
+    t.string "filename"
+    t.string "redirect_to"
+    t.string "success_message"
     t.integer "sort_order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

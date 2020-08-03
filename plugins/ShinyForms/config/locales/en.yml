@@ -32,6 +32,7 @@ en:
           failure: Failed to update form handler
         destroy:
           success: Form handler deleted
+          failure: Failed to delete form handler
         set_form:
           not_found: Form handler not found
 

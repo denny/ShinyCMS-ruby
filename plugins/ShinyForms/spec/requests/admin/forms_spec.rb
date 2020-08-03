@@ -132,7 +132,7 @@ RSpec.describe 'ShinyForms Admin', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_forms.admin.forms.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_forms.admin.forms.destroy.failure' )
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_forms.admin.forms.set_form.not_found' )
     end
   end
 end

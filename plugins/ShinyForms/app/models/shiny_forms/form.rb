@@ -14,9 +14,11 @@ module ShinyForms
 
     def send_to_handler( form_data )
       if handlers.respond_to?( handler )
-        handlers.public_send( handler.to_sym, form_data )
+        handlers.public_send( handler.to_sym, self, form_data )
+        true
       else
         Rails.logger.warn "Unknown form handler '#{handler}' (form ID: #{id})"
+        false
       end
     end
 
