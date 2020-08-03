@@ -23,6 +23,11 @@ module AdminAreaHelper
         %w[ posts pages templates ].include?( controller_name ) )
   end
 
+  def redirect_with_notice( redirect_path, notice_message )
+    flash[ :notice ] = notice_message
+    redirect_to redirect_path
+  end
+
   def redirect_with_alert( redirect_path, alert_message )
     skip_authorization
     flash[ :alert ] = alert_message

@@ -27,8 +27,7 @@ class Admin::Pages::SectionsController < AdminController
     authorise @section
 
     if @section.save
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @section.id
+      redirect_with_notice edit_page_section_path( @section ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -45,8 +44,7 @@ class Admin::Pages::SectionsController < AdminController
     authorise @section
 
     if @section.update( section_params )
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @section.id
+      redirect_with_notice edit_page_section_path( @section ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render :edit
