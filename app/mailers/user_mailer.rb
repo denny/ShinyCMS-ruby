@@ -4,7 +4,7 @@
 class UserMailer < ApplicationMailer
   include Devise::Controllers::UrlHelpers
 
-  default from: ->(*) { default_from_address }
+  default from: ->(*) { default_email }
   default template_path: 'user_mailer'
 
   def confirmation_instructions( user, token )

@@ -5,8 +5,6 @@ require 'rails_helper'
 RSpec.describe 'ShinyForms', type: :request do
   describe 'POST /form/testing' do
     it 'processes the form data' do
-      skip 'whut'
-
       create :top_level_page
       form = create :plain_text_email_form
 

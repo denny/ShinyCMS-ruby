@@ -7,5 +7,10 @@ module ShinyForms
       slug { name.dup.parameterize }
       handler { 'plain_text_email' }
     end
+
+    factory :mjml_template_email_form, class: 'ShinyForms::Form' do
+      handler { 'mjml_template_email' }
+      filename { 'contact-form' }
+    end
   end
 end

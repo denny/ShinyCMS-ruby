@@ -67,7 +67,7 @@ module ShinyForms
       @form = ShinyForms::Form.find( params[:id] )
     rescue ActiveRecord::RecordNotFound
       skip_authorization
-      redirect_with_alert forms_path, t( '.failure' )
+      redirect_with_alert forms_path, t( '.not_found' )
     end
 
     def form_params
