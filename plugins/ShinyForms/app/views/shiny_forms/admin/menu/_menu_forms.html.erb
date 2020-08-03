@@ -1,6 +1,6 @@
 <% return unless current_user.can? :list, :forms %>
 
-  <%= render_admin_menu_section( t( 'admin.forms.title' ), 'spreadsheet' ) do %>
+  <%= render_admin_menu_section( t( 'shiny_forms.admin.forms.title' ), 'spreadsheet' ) do %>
 
     <%= render_admin_menu_item(
         t( 'shiny_forms.admin.forms.index.title' ), shiny_forms.forms_path, 'list' ) %>
