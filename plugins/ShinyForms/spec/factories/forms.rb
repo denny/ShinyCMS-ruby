@@ -8,9 +8,8 @@ module ShinyForms
       handler { 'plain_text_email' }
     end
 
-    factory :mjml_template_email_form, class: 'ShinyForms::Form' do
+    factory :mjml_template_email_form, class: 'ShinyForms::Form', parent: :form do
       handler { 'mjml_template_email' }
-      filename { 'contact-form' }
     end
   end
 end

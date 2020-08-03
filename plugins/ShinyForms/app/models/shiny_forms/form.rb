@@ -13,13 +13,12 @@ module ShinyForms
     end
 
     def send_to_handler( form_data )
-      if handlers.respond_to?( handler )
-        handlers.public_send( handler.to_sym, self, form_data )
-        true
-      else
-        Rails.logger.warn "Unknown form handler '#{handler}' (form ID: #{id})"
-        false
+      if handlers.respond_to?( handler.to_sym )
+        return handlers.public_send( handler.to_sym, email_to, form_data, filename )
       end
+
+      Rails.logger.warn "Unknown form handler '#{handler}' (form ID: #{id})"
+      false
     end
 
     # Specify policy class for Pundit

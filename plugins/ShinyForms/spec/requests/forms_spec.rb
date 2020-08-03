@@ -24,6 +24,26 @@ RSpec.describe 'ShinyForms', type: :request do
       expect( response ).to redirect_to root_path
       follow_redirect!
       expect( response ).to have_http_status :ok
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shiny_forms.forms.process_form.success' )
+    end
+
+    it 'can send MJML templated emails' do
+      form = create :mjml_template_email_form, filename: 'contact_form'
+
+      post shiny_forms.process_form_path( form.slug ), params: {
+        shiny_form: {
+          name: Faker::Name.unique.name,
+          email: Faker::Internet.unique.email,
+          subject: Faker::Books::CultureSeries.unique.culture_ship,
+          message: Faker::Lorem.paragraphs.join("\n\n")
+        }
+      }
+
+      expect( response ).to have_http_status :found
+      expect( response ).to redirect_to root_path
+      follow_redirect!
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shiny_forms.forms.process_form.success' )
     end
 
     it 'redirects as configured' do
@@ -40,6 +60,7 @@ RSpec.describe 'ShinyForms', type: :request do
       expect( response ).to redirect_to root_path
       follow_redirect!
       expect( response ).to have_http_status :ok
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shiny_forms.forms.process_form.success' )
     end
 
     it 'catches misconfigured form handlers' do
@@ -55,6 +76,7 @@ RSpec.describe 'ShinyForms', type: :request do
       expect( response ).to redirect_to root_path
       follow_redirect!
       expect( response ).to have_http_status :ok
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_forms.forms.process_form.failure' )
     end
   end
 end

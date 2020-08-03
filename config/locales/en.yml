@@ -122,6 +122,7 @@ en:
     admin_ip_list: Admin IP list
     all_comment_notifications_email: Email to notify of ALL comments
     allowed_to_comment: Allowed to comment
+    default_email: Default email address
     default_page: Default page
     default_section: Default section
     post_login_redirect: Post-login redirect

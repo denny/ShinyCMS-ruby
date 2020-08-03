@@ -5,6 +5,7 @@ require_dependency 'shiny_forms/application_controller'
 module ShinyForms
   # ShinyForms plugin admin controller - add/edit/delete form handlers
   class Admin::FormsController < AdminController
+    before_action :set_form_for_create, only: %i[ create ]
     before_action :set_form, only: %i[ edit update destroy ]
 
     # GET /admin/forms
@@ -23,12 +24,11 @@ module ShinyForms
 
     # POST /admin/forms
     def create
-      @form = Form.new(form_params)
       authorise @form
 
       if @form.save
         flash[ :notice ] = t( '.success' )
-        redirect_to action: :edit, id: @form.id
+        redirect_to edit_form_path( @form )
       else
         flash.now[ :alert ] = t( '.failure' )
         render :new
@@ -68,6 +68,10 @@ module ShinyForms
     rescue ActiveRecord::RecordNotFound
       skip_authorization
       redirect_with_alert forms_path, t( 'shiny_forms.admin.forms.set_form.not_found' )
+    end
+
+    def set_form_for_create
+      @form = Form.new( form_params )
     end
 
     def form_params

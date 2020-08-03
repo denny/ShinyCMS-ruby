@@ -5,36 +5,40 @@ module ShinyForms
   class FormMailer < ApplicationMailer
     before_action :check_feature_flags
 
-    def plain_text_email( form, form_data )
-      email_to = email_to( form )
+    def plain_text_email( to, form_data )
+      email_to = build_to( to )
       return if email_to.blank?
 
-      subject = subject_line( form_data.subject )
+      @form_data = form_data
 
       track open: false, click: false
 
-      mail to: email_to( form ), subject: subject, &:text
+      mail to: email_to, subject: email_subject, &:text
     end
 
-    def mjml_template_email( form, form_data )
-      email_to = email_to( form )
+    def mjml_template_email( to, form_data, filename )
+      email_to = build_to( to )
       return if email_to.blank?
 
-      subject = subject_line( form_data.subject )
+      @form_data = form_data
 
       track open: false, click: false
 
-      mail to: email_to, subject: subject, &:mjml
+      mail to: email_to, subject: email_subject do
+        "#{filename}.mjml"
+      end
     end
 
     private
 
-    def email_to( form )
-      form.email_to || Setting.get( :default_email )
+    def build_to( form_handler_email_to )
+      form_handler_email_to || Setting.get( :default_email )
     end
 
-    def subject_line( form_subject )
-      return "[#{@site_name}] #{form_subject}" if form_subject.present?
+    def email_subject
+      form_data_subject = @form_data['subject'] || nil
+
+      return "[#{@site_name}] #{form_data_subject}" if form_data_subject.present?
 
       I18n.t( '.default_subject', site_name: @site_name )
     end

@@ -236,6 +236,13 @@ setting = seed Setting, { name: 'allowed_to_comment' }, {
 setting.values.create_or_find_by!( value: 'Anonymous' )
 setting.update( locked: true )
 
+setting = seed Setting, { name: 'default_email' }, {
+  description: 'Default email address to send from',
+  level: 'site',
+  locked: false
+}
+setting.values.create_or_find_by!( value: 'admin@example.com' )
+
 setting = seed Setting, { name: 'default_page' }, {
   description: 'Default top-level page (either its name or its slug)',
   level: 'site',
