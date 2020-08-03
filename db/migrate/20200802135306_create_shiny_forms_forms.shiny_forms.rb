@@ -7,6 +7,8 @@ class CreateShinyFormsForms < ActiveRecord::Migration[6.0]
       t.string :slug, null: false
       t.text :description
       t.string :handler, null: false
+      t.string :email_to
+      t.string :filename
       t.string :redirect_to
       t.string :success_message
       t.integer :sort_order
