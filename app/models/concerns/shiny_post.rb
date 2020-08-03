@@ -32,7 +32,7 @@ module ShinyPost
 
     # Scopes and default sort order
 
-    scope :not_future_dated, -> { where( 'posted_at <= current_timestamp' ) }
+    scope :not_future_dated, -> { where( 'posted_at <= ?', Time.zone.now.iso8601 ) }
     scope :published,        -> { visible.merge( not_future_dated ) }
 
     self.implicit_order_column = 'posted_at'
