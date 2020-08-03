@@ -32,8 +32,7 @@ class Admin::Blog::PostsController < AdminController
     authorise @post
 
     if @post.save
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, blog_id: @blog.id, id: @post.id
+      redirect_with_notice edit_blog_post_path( @blog, @post ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -48,8 +47,7 @@ class Admin::Blog::PostsController < AdminController
     authorise @post
 
     if @post.update( post_params )
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, blog_id: @blog.id, id: @post.id
+      redirect_with_notice edit_blog_post_path( @blog, @post ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit
