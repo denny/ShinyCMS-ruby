@@ -299,6 +299,9 @@ setting = seed Setting, { name: 'track_clicks' }, {
 }
 setting.values.create_or_find_by!( value: 'No' )
 
+# TODO: FIXME: Need a generic solution for loading seed data required by plugins
+Rake::Task['shiny_forms:db:seed'].invoke
+
 # Let people know how to create an admin user
 demo = ( Rake.application.top_level_tasks.first == 'shiny:demo:load' )
 skip = User.super_admins_exist? || demo || Rails.env.test?
