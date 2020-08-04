@@ -111,8 +111,21 @@ ShinyCMS includes code from other open source and free software projects, which 
 
 ## Current Status
 
-[![CircleCI: Tests](https://circleci.com/gh/denny/ShinyCMS-ruby.svg?style=svg&circle-token=5d3c249b624bd720b7481eb606893737ba65a0ce)](https://circleci.com/gh/denny/ShinyCMS-ruby)  [![Travis CI: Tests](https://travis-ci.com/denny/ShinyCMS-ruby.svg?branch=main)](https://travis-ci.com/denny/ShinyCMS-ruby)  [![Codecov: Test Coverage](https://codecov.io/gh/denny/ShinyCMS-ruby/branch/main/graph/badge.svg?token=Pm6x6VcQ81)](https://codecov.io/gh/denny/ShinyCMS-ruby)
+![CircleCI](https://img.shields.io/circleci/build/github/denny/ShinyCMS-ruby?label=CircleCI&logo=circleci&logoColor=green&style=for-the-badge)
+![Travis CI](https://img.shields.io/travis/com/denny/ShinyCMS-ruby?label=Travis%20CI&logo=travis&logoColor=green&style=for-the-badge)
 
-[![CodeClimate: Maintainability](https://api.codeclimate.com/v1/badges/944f9f96599145fdea77/maintainability)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)  [![CodeBeat: Code Quality](https://codebeat.co/badges/97ed8fca-23b4-469e-a7fb-fd3ec7f8e4d5)](https://codebeat.co/projects/github-com-denny-shinycms-ruby-main)  [![Inch: Inline documentation](http://inch-ci.org/github/denny/ShinyCMS-ruby.svg?branch=main)](http://inch-ci.org/github/denny/ShinyCMS-ruby)
+![Codecov](https://img.shields.io/codecov/c/github/denny/ShinyCMS-ruby?label=Codecov&logo=codecov&logoColor=green&style=for-the-badge)
 
-[![Dependabot: Gem versions](https://api.dependabot.com/badges/status?host=github&repo=denny/ShinyCMS-ruby)](https://dependabot.com)  [![Hakiri: Security](https://hakiri.io/github/denny/ShinyCMS-ruby/main.svg)](https://hakiri.io/github/denny/ShinyCMS-ruby/main)
+![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&logoColor=green&style=for-the-badge)
+![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&logoColor=green&style=for-the-badge)
+
+![Dependabot](https://img.shields.io/static/v1?label=<LABEL>&message=enabled&color=green&logo=dependabot&style=for-the-badge)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/denny/ShinyCMS-ruby?logo=github&style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues-raw/denny/ShinyCMS-ruby?logo=github&style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/denny/ShinyCMS-ruby?logo=github&style=for-the-badge)
+
+[![CodeBeat: Code Quality](https://codebeat.co/badges/97ed8fca-23b4-469e-a7fb-fd3ec7f8e4d5)](https://codebeat.co/projects/github-com-denny-shinycms-ruby-main)
+[![Inch: Inline documentation](http://inch-ci.org/github/denny/ShinyCMS-ruby.svg?branch=main)](http://inch-ci.org/github/denny/ShinyCMS-ruby)
+
+[![Hakiri: Security](https://hakiri.io/github/denny/ShinyCMS-ruby/main.svg)](https://hakiri.io/github/denny/ShinyCMS-ruby/main)
