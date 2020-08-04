@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Shared test code, for testing the methods mixed-in by the Element concern
+# Shared test code, for testing the methods mixed-in by the ShinyElement concern
 RSpec.shared_examples ShinyElement do
   context 'format_name' do
     it 'returns a valid element name' do
