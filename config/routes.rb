@@ -193,7 +193,7 @@ Rails.application.routes.draw do
     # ShinyCMS plugins
 
     # ShinyForms: generic form handlers
-    mount ShinyForms::Engine, at: '/'
+    mount ShinyForms::Engine, at: '/' if defined?(ShinyForms)
 
     ###########################################################################
     # This final catch-all route passes through to the Pages controller.
