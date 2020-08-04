@@ -120,8 +120,13 @@ ShinyCMS includes code from other open source and free software projects, which 
 [![CodeBeat: Code Quality](https://codebeat.co/badges/97ed8fca-23b4-469e-a7fb-fd3ec7f8e4d5)](https://codebeat.co/projects/github-com-denny-shinycms-ruby-main)
 
 [![Dependabot](https://img.shields.io/static/v1?label=Dependabot&message=enabled&color=green&logo=dependabot&style=for-the-badge)](https://dependabot.com)
-<a href="https://hakiri.io/github/denny/ShinyCMS-ruby/main"><img src="https://hakiri.io/github/denny/ShinyCMS-ruby/main.svg" alt="Security" width="300px"></a>
+<a href="https://hakiri.io/github/denny/ShinyCMS-ruby/main"><img src="https://hakiri.io/github/denny/ShinyCMS-ruby/main.svg" alt="Security" width="200px"></a>
+
+[![Dependabot](https://img.shields.io/static/v1?label=Dependabot&message=enabled&color=green&logo=dependabot&style=for-the-badge)](https://dependabot.com)
 [![Hakiri: Security](https://hakiri.io/github/denny/ShinyCMS-ruby/main.svg)](https://hakiri.io/github/denny/ShinyCMS-ruby/main)
+
+[![RubyDocs](https://img.shields.io/static/v1?label=RubyDocs&message=✓&logo=ruby&style=for-the-badge)](https://rubydoc.info/github/denny/ShinyCMS-ruby)
+<a href="https://inch-ci.org/github/denny/ShinyCMS-ruby"><img src="https://inch-ci.org/github/denny/ShinyCMS-ruby.svg" alt="Inline Documentation" width="200px"></a>
 
 [![RubyDocs](https://img.shields.io/static/v1?label=RubyDocs&message=✓&logo=ruby&style=for-the-badge)](https://rubydoc.info/github/denny/ShinyCMS-ruby)
 [![Inch](https://inch-ci.org/github/denny/ShinyCMS-ruby.svg)](https://inch-ci.org/github/denny/ShinyCMS-ruby)
