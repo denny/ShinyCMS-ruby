@@ -7240,10 +7240,10 @@ slick@^1.12.2:
   resolved "https://registry.yarnpkg.com/slick/-/slick-1.12.2.tgz#bd048ddb74de7d1ca6915faa4a57570b3550c2d7"
   integrity sha1-vQSN23TefRymkV+qSldXCzVQwtc=
 
-smartmenus@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/smartmenus/-/smartmenus-1.1.0.tgz#19da8c61e02f7148d21510a7e5a70cd54cf4f1c7"
-  integrity sha1-GdqMYeAvcUjSFRCn5acM1Uz08cc=
+smartmenus@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/smartmenus/-/smartmenus-1.1.1.tgz#37ce42eb909071424940dc83b9d5264b6bc22959"
+  integrity sha512-O1HDCMFAsUnTeNZ4ZxENubSiaXq5CsV9LhECNl6unrHj/kIfIY+7TtPqpcQ63T+UEqwoNL0BzL/dUTvg+Rfkkw==
   dependencies:
     jquery ">=1.7.0"
 
