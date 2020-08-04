@@ -23,6 +23,8 @@ with an admin area at http://localhost:3000/admin
 
 ### Database
 
+Set your DATABASE_URL (including username and password) in your .env.*.local files
+
 To create the database: `rails db:create`  
 To load the database schema: `rails db:schema:load`  
 To load seed data: `rails db:seed`
