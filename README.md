@@ -117,16 +117,10 @@ ShinyCMS includes code from other open source and free software projects, which 
 
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&logoColor=green&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&logoColor=green&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
-[![CodeBeat: Code Quality](https://codebeat.co/badges/97ed8fca-23b4-469e-a7fb-fd3ec7f8e4d5)](https://codebeat.co/projects/github-com-denny-shinycms-ruby-main)
+<a href="https://codebeat.co/projects/github-com-denny-shinycms-ruby-main"><img src="https://codebeat.co/badges/97ed8fca-23b4-469e-a7fb-fd3ec7f8e4d5" alt="CodeBeat (code quality)" height="28px"></a>
 
 [![Dependabot](https://img.shields.io/static/v1?label=Dependabot&message=enabled&color=green&logo=dependabot&style=for-the-badge)](https://dependabot.com)
 <a href="https://hakiri.io/github/denny/ShinyCMS-ruby/main"><img src="https://hakiri.io/github/denny/ShinyCMS-ruby/main.svg" alt="Security" height="28px"></a>
 
-[![Dependabot](https://img.shields.io/static/v1?label=Dependabot&message=enabled&color=green&logo=dependabot&style=for-the-badge)](https://dependabot.com)
-[![Hakiri: Security](https://hakiri.io/github/denny/ShinyCMS-ruby/main.svg)](https://hakiri.io/github/denny/ShinyCMS-ruby/main)
-
 [![RubyDocs](https://img.shields.io/static/v1?label=RubyDocs&message=✓&logo=ruby&style=for-the-badge)](https://rubydoc.info/github/denny/ShinyCMS-ruby)
 <a href="https://inch-ci.org/github/denny/ShinyCMS-ruby"><img src="https://inch-ci.org/github/denny/ShinyCMS-ruby.svg" alt="Inline Documentation" height="28px"></a>
-
-[![RubyDocs](https://img.shields.io/static/v1?label=RubyDocs&message=✓&logo=ruby&style=for-the-badge)](https://rubydoc.info/github/denny/ShinyCMS-ruby)
-[![Inch](https://inch-ci.org/github/denny/ShinyCMS-ruby.svg)](https://inch-ci.org/github/denny/ShinyCMS-ruby)
