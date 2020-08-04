@@ -115,12 +115,12 @@ ShinyCMS includes code from other open source and free software projects, which 
 [![Travis CI](https://img.shields.io/travis/com/denny/ShinyCMS-ruby?label=Travis%20CI&logo=travis&logoColor=green&style=for-the-badge)](https://travis-ci.com/denny/ShinyCMS-ruby)
 [![Codecov](https://img.shields.io/codecov/c/github/denny/ShinyCMS-ruby?label=Codecov&logo=codecov&logoColor=green&style=for-the-badge)](https://codecov.io/gh/denny/ShinyCMS-ruby)
 
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&logoColor=green&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&logoColor=green&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
+[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
+[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
 <a href="https://codebeat.co/projects/github-com-denny-shinycms-ruby-main"><img src="https://codebeat.co/badges/97ed8fca-23b4-469e-a7fb-fd3ec7f8e4d5" alt="CodeBeat (code quality)" height="28px"></a>
 
-[![Dependabot](https://img.shields.io/static/v1?label=Dependabot&message=enabled&color=green&logo=dependabot&style=for-the-badge)](https://dependabot.com)
+<a href="https://dependabot.com"><img src="https://api.dependabot.com/badges/status?host=github&repo=denny/ShinyCMS-ruby" alt="Dependabot" height="28px"></a>
 <a href="https://hakiri.io/github/denny/ShinyCMS-ruby/main"><img src="https://hakiri.io/github/denny/ShinyCMS-ruby/main.svg" alt="Security" height="28px"></a>
 
-[![RubyDocs](https://img.shields.io/static/v1?label=RubyDocs&message=✓&logo=ruby&style=for-the-badge)](https://rubydoc.info/github/denny/ShinyCMS-ruby)
+[![RubyDocs](https://img.shields.io/static/v1?label=RubyDocs&color=brightgreen&message=✓&logo=ruby&style=for-the-badge)](https://rubydoc.info/github/denny/ShinyCMS-ruby)
 <a href="https://inch-ci.org/github/denny/ShinyCMS-ruby"><img src="https://inch-ci.org/github/denny/ShinyCMS-ruby.svg" alt="Inline Documentation" height="28px"></a>
