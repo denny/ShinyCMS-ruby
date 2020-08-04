@@ -48,13 +48,15 @@ refactoring, and all the other things I don't get to do enough of at work :)
   * Ready for use, but currently without demo data
 * Support for themes (on the main site - not, currently, for the CMS admin area)
   * One theme included
+* All emails use MJML templates, producing reliably cross-platform HTML emails
 
 ### Planned features
 
-* Form handlers (contact page, etc) [in progress]
+* Generic form handlers [in progress - nearly done]
+  * 'email contact page to site owner', etc
 * Newsletters (HTML mailshots) [in progress]
-  * Supports MJML templates
-* User profile pages (with content such as recent comments, recent posts, etc)
+* User profile pages [in progress]
+  * With content such as recent comments, recent posts, etc
 * Access control groups
   * Can be used to control access to file downloads and secure whole pages,
     but also to show/hide individual pieces of page content
