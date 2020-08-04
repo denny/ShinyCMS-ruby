@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PageElement, type: :model do
-  it_should_behave_like Element do
+  it_should_behave_like ShinyElement do
     let( :page    ) { create :page }
     let( :element ) { create :page_element, page: page }
   end

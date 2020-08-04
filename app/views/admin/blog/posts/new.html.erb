@@ -30,21 +30,21 @@
     <%= f.cktext_area :body, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
   </p>
   <p>
-    <%= f.label :hidden %><br>
-    <%= f.check_box :hidden %>
+    <%= f.label :show_on_site, 'Publish' %><br>
+    <%= f.check_box :show_on_site %>
   </p>
-  <!-- TODO: comment threads! (write or find :acts_as_commentable??)
+  <!-- TODO: initial status of comments
   <p>
     <%#= f.label :has_comments %><br>
     <%#= f.check_box :allow_comments %>
   </p>
   <p>
-    <%#= f.label :freeze_comments %><br>
-    <%#= f.check_box :allow_comments %>
+    <%= f.label :discussion_show_on_site, 'Show comments' %><br>
+    <%= f.check_box :discussion_show_on_site %>
   </p>
   <p>
-    <%#= f.label :hide_comments %><br>
-    <%#= f.check_box :allow_comments %>
+    <%= f.label :discussion_locked, 'Lock comments' %><br>
+    <%= f.check_box :discussion_locked %>
   </p>
   -->
   <p>

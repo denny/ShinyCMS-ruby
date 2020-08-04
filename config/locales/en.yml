@@ -19,9 +19,9 @@ en:
   add: Add
   edit: Edit
   post: Post
+  show: Show
   hide: Hide
   lock: Lock
-  unhide: Unhide
   unlock: Unlock
   update: Update
   delete: Delete
@@ -116,20 +116,21 @@ en:
       recent_posts: Recent Posts
 
   settings:
-    # NB: These translations strings are all here to keep them in one place
-    # together, but not all of them would make sense as user settings.
+    # NB: These translation strings are all here to keep them together in one location,
+    # but not all of them would make sense as site-user settings.
     # Particularly not the first one!!
     admin_ip_list: Admin IP list
     all_comment_notifications_email: Email to notify of ALL comments
     allowed_to_comment: Allowed to comment
     default_page: Default page
     default_section: Default section
+    default_search_backend: Default search back-end
     post_login_redirect: Post-login redirect
     recaptcha_comment_score: 'reCAPTCHA: Minimum score for comments'
     recaptcha_registration_score: 'reCAPTCHA: Minimum score for user registration'
     tag_view: Default tag view
     theme_name: Theme name
-    track_clicks: Track if links in emails are clicked
+    track_clicks: Track clicks of links in emails
     track_opens: Track if emails are opened
 
   search:
@@ -206,7 +207,7 @@ en:
       instructions: Click the link below to unlock your account
       link_text: Unlock my account
 
-  content_types:
+  element_types:
     blog_post: blog post
 
 

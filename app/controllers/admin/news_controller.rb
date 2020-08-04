@@ -31,8 +31,7 @@ class Admin::NewsController < AdminController
     authorise @post
 
     if @post.save
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @post.id
+      redirect_with_notice edit_news_post_path( @post ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -47,8 +46,7 @@ class Admin::NewsController < AdminController
     authorise @post
 
     if @post.update( post_params )
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @post.id
+      redirect_with_notice edit_news_post_path( @post ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit
@@ -56,11 +54,11 @@ class Admin::NewsController < AdminController
   end
 
   def update_discussion_flags
-    hidden, locked = extract_discussion_flags
+    show_on_site, locked = extract_discussion_flags
 
     return if @post.discussion.blank?
 
-    @post.discussion.update!( hidden: hidden, locked: locked )
+    @post.discussion.update!( show_on_site: show_on_site, locked: locked )
   end
 
   def destroy
@@ -83,7 +81,8 @@ class Admin::NewsController < AdminController
     params[ :news_post ].delete( :user_id ) unless current_user.can? :change_author, :news_posts
 
     params.require( :news_post ).permit(
-      :user_id, :title, :slug, :tag_list, :posted_at, :body, :hidden, :discussion_hidden, :discussion_locked
+      :user_id, :title, :slug, :tag_list, :posted_at, :body, :show_on_site,
+      :discussion_show_on_site, :discussion_locked
     )
   end
 
@@ -95,14 +94,15 @@ class Admin::NewsController < AdminController
     set_current_user_as_author_unless_admin
 
     params.require( :news_post ).permit(
-      :user_id, :title, :slug, :tag_list, :posted_at, :body, :hidden, :discussion_hidden, :discussion_locked
+      :user_id, :title, :slug, :tag_list, :posted_at, :body, :show_on_site,
+      :discussion_show_on_site, :discussion_locked
     )
   end
 
   def extract_discussion_flags
-    hidden = params[ :news_post].delete( :discussion_hidden ) || 0
+    show_on_site = params[ :news_post].delete( :discussion_show_on_site ) || 0
     locked = params[ :news_post].delete( :discussion_locked ) || 0
-    [ hidden, locked ]
+    [ show_on_site, locked ]
   end
 
   def set_current_user_as_author_unless_admin

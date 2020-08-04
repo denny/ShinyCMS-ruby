@@ -10,9 +10,9 @@ class ApplicationRecord < ActiveRecord::Base
 
   def human_name
     name = self.class.name.underscore
-    return name.humanize.downcase unless I18n.exists?( "content_types.#{name}" )
+    return name.humanize.downcase unless I18n.exists?( "element_types.#{name}" )
 
-    I18n.t( "content_types.#{name}" )
+    I18n.t( "element_types.#{name}" )
   end
 
   def self.algolia_search_on( searchable_attributes )

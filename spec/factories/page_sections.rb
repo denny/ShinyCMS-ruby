@@ -2,13 +2,11 @@
 
 FactoryBot.define do
   factory :page_section, aliases: [ :top_level_section ] do
-    name   { Faker::Books::CultureSeries.unique.culture_ship }
-    title  { name.dup.titlecase    }
-    slug   { name.dup.parameterize }
-    hidden { false }
+    internal_name { Faker::Books::CultureSeries.unique.culture_ship }
+    slug   { internal_name.dup.parameterize }
 
     trait :hidden do
-      hidden { true }
+      show_on_site { false }
     end
   end
 

@@ -2,7 +2,7 @@
 
 # Utility functions for dealing with pg_multisearch and Algolia (Search as a Service provider)
 module SearchHelper
-  def use_pg_search?
+  def pg_search_is_enabled?
     ActiveRecord::Base.connection.adapter_name == 'PostgreSQL'
   end
 

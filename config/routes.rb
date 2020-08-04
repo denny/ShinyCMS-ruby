@@ -113,16 +113,16 @@ Rails.application.routes.draw do
       get :comments, to: 'comments#index'
       put :comments, to: 'comments#update'
       scope path: 'comment' do
+        put    ':id/show',    to: 'comments#show',          as: :show_comment
         put    ':id/hide',    to: 'comments#hide',          as: :hide_comment
-        put    ':id/unhide',  to: 'comments#unhide',        as: :unhide_comment
         put    ':id/lock',    to: 'comments#lock',          as: :lock_comment
         put    ':id/unlock',  to: 'comments#unlock',        as: :unlock_comment
         put    ':id/is-spam', to: 'comments#mark_as_spam',  as: :spam_comment
         delete ':id/delete',  to: 'comments#destroy',       as: :destroy_comment
       end
       scope path: 'discussion' do
+        put ':id/show',   to: 'discussions#show',   as: :show_discussion
         put ':id/hide',   to: 'discussions#hide',   as: :hide_discussion
-        put ':id/unhide', to: 'discussions#unhide', as: :unhide_discussion
         put ':id/lock',   to: 'discussions#lock',   as: :lock_discussion
         put ':id/unlock', to: 'discussions#unlock', as: :unlock_discussion
       end

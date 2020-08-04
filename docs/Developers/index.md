@@ -5,7 +5,10 @@ If you're interested in contributing to ShinyCMS - thank you!
 Here are some things that might be useful to know...
 
 * [Vague roadmap](Roadmap.md)
-  * [Progress so far](Progress.md)
+
+* [Project goals and progress](Progress.md)
+  * [Done](done.md)
+  * [In progress](in-progress.md)
   * [Still to do](TODO.md)
 
 * [Testing](Testing.md)

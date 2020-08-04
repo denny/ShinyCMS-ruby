@@ -7,7 +7,7 @@
 <section>
   <% @blogs.each do |blog| %>
   <p>
-    <%= link_to blog.title, view_blog_path( blog ) %> - <%= blog.description %>
+    <%= link_to blog.name, view_blog_path( blog ) %> - <%= blog.description %>
   </p>
   <% end %>
 </section>

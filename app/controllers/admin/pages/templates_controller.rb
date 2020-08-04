@@ -30,8 +30,7 @@ class Admin::Pages::TemplatesController < AdminController
     authorise @template
 
     if @template.save
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @template.id
+      redirect_with_notice edit_page_template_path( @template ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -48,8 +47,7 @@ class Admin::Pages::TemplatesController < AdminController
     authorise @template
 
     if @template.update( template_params )
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @template.id
+      redirect_with_notice edit_page_template_path( @template ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render :edit

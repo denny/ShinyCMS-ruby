@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Common behaviour for models that store email addresses
-module Email
+module ShinyEmail
   extend ActiveSupport::Concern
 
   included do

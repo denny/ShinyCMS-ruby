@@ -2,8 +2,9 @@
 
 # Model for 'brochure' pages
 class Page < ApplicationRecord
-  include NameAndTitle
-  include SlugInSection
+  include ShinyName
+  include ShinySlugInSection
+  include ShinyShowHide
 
   # Associations
 
@@ -19,7 +20,6 @@ class Page < ApplicationRecord
 
   # Validations
 
-  validates :hidden,      inclusion: { in: [ true, false ] }
   validates :slug,        safe_top_level_slug: true, if: -> { section.blank? }
   validates :template_id, presence: true
 
@@ -27,13 +27,11 @@ class Page < ApplicationRecord
 
   after_create :add_elements
 
-  # Scopes
+  # Scopes and default sort order
+
+  scope :top_level, -> { where( section: nil ) }
 
   self.implicit_order_column = 'sort_order'
-
-  scope :top_level,        -> { where( section: nil ) }
-  scope :visible,          -> { where( hidden: false ) }
-  scope :visible_in_menus, -> { where( hidden: false, hidden_from_menu: false ) }
 
   # Instance methods
 
@@ -43,7 +41,7 @@ class Page < ApplicationRecord
       elements.create!(
         name: template_element.name,
         content: template_element.content,
-        content_type: template_element.content_type
+        element_type: template_element.element_type
       )
     end
   end
@@ -97,7 +95,7 @@ class Page < ApplicationRecord
   def self.default_page
     name_or_slug = Setting.get :default_page
     top_level_pages
-      .where( name: name_or_slug )
+      .where( internal_name: name_or_slug )
       .or( top_level_pages
       .where( slug: name_or_slug ) )
       .first ||

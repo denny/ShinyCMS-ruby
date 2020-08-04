@@ -1,6 +1,6 @@
   <% item_is_section = ( page_item.class.name == 'PageSection' ) %>
   <tr>
-    <% if page_item.hidden %>
+    <% if page_item.hidden? %>
     <td style="padding-left: <%= indent %>em;" class="hidden">
     <% else %>
     <td style="padding-left: <%= indent %>em;">

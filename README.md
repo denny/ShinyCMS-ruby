@@ -42,15 +42,18 @@ refactoring, and all the other things I don't get to do enough of at work :)
     * Spam comment moderation sends 'spam'/'not spam' training data to Akismet
 * Tags
   * Currently on blog posts and news posts, ready to add to new content types
+* Likes or up/down votes on posts, comments, etc
 * Built-in web stats (powered by Ahoy) and email stats (powered by Ahoy::Email)
-* Support for themes
+* Charts and dashboards for viewing stats (powered by Blazer)
+  * Ready for use, but currently without demo data
+* Support for themes (on the main site - not, currently, for the CMS admin area)
+  * One theme included
 
 ### Planned features
 
+* Form handlers (contact page, etc) [in progress]
 * Newsletters (HTML mailshots) [in progress]
-* Charts and dashboards for viewing stats [in progress]
-* Form handlers (contact page, etc)
-* 'Likes' on posts, comments, etc
+  * Supports MJML templates
 * User profile pages (with content such as recent comments, recent posts, etc)
 * Access control groups
   * Can be used to control access to file downloads and secure whole pages,
@@ -76,7 +79,8 @@ If you want to set up a website using ShinyCMS, please read the
 Theme templates and sample data for a demo site are provided, so you can try
 all of the CMS features without doing any set-up work.
 
-### System dependencies
+
+## System dependencies
 
 * A webserver - I use `rails s` locally, and deploy to Heroku
 * A database - for now this assumes Postgres
@@ -130,6 +134,6 @@ Please read and follow the code of conduct - thank you.
 
 [![CircleCI: Tests](https://circleci.com/gh/denny/ShinyCMS-ruby.svg?style=svg&circle-token=5d3c249b624bd720b7481eb606893737ba65a0ce)](https://circleci.com/gh/denny/ShinyCMS-ruby)  [![Travis CI: Tests](https://travis-ci.org/denny/ShinyCMS-ruby.svg?branch=master)](https://travis-ci.org/denny/ShinyCMS-ruby)  [![codecov: Test Coverage](https://codecov.io/gh/denny/ShinyCMS-ruby/branch/master/graph/badge.svg?token=Pm6x6VcQ81)](https://codecov.io/gh/denny/ShinyCMS-ruby)
 
-[![CodeClimate: Maintainability](https://api.codeclimate.com/v1/badges/944f9f96599145fdea77/maintainability)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)  [![CodeBeat: Code Quality](https://codebeat.co/badges/cbd8fc61-241a-4701-9716-d4264cb6d9d9)](https://codebeat.co/projects/github-com-denny-shinycms-ruby-master)  [![Inch: Inline docs](http://inch-ci.org/github/denny/ShinyCMS-ruby.svg?branch=master)](http://inch-ci.org/github/denny/ShinyCMS-ruby)
+[![CodeClimate: Maintainability](https://api.codeclimate.com/v1/badges/944f9f96599145fdea77/maintainability)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)  [![CodeBeat: Code Quality](https://codebeat.co/badges/cbd8fc61-241a-4701-9716-d4264cb6d9d9)](https://codebeat.co/projects/github-com-denny-shinycms-ruby-main)  [![Inch: Inline docs](http://inch-ci.org/github/denny/ShinyCMS-ruby.svg?branch=main)](http://inch-ci.org/github/denny/ShinyCMS-ruby)
 
 [![Dependabot: Gem versions](https://api.dependabot.com/badges/status?host=github&repo=denny/ShinyCMS-ruby)](https://dependabot.com)  [![Hakiri: Security](https://hakiri.io/github/denny/ShinyCMS-ruby/master.svg)](https://hakiri.io/github/denny/ShinyCMS-ruby/master)

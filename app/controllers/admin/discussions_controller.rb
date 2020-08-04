@@ -13,15 +13,15 @@
 class Admin::DiscussionsController < AdminController
   before_action :stash_discussion
 
-  def hide
+  def show
     authorise @discussion
-    @discussion.hide
+    @discussion.show
     redirect_to request.referer || discussion_path( @discussion )
   end
 
-  def unhide
+  def hide
     authorise @discussion
-    @discussion.unhide
+    @discussion.hide
     redirect_to request.referer || discussion_path( @discussion )
   end
 

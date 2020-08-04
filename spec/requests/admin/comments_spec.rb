@@ -135,12 +135,12 @@ RSpec.describe 'Comment moderation', type: :request do
     end
   end
 
-  describe 'PUT /admin/comment/1/unhide' do
+  describe 'PUT /admin/comment/1/show' do
     it 'unhides the comment' do
       @comment1.hide
       expect( @comment1.hidden? ).to be true
 
-      put unhide_comment_path( @comment1 )
+      put show_comment_path( @comment1 )
 
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to @comment1.anchored_path

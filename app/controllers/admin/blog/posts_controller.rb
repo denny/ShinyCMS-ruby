@@ -32,8 +32,7 @@ class Admin::Blog::PostsController < AdminController
     authorise @post
 
     if @post.save
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, blog_id: @blog.id, id: @post.id
+      redirect_with_notice edit_blog_post_path( @blog, @post ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -48,8 +47,7 @@ class Admin::Blog::PostsController < AdminController
     authorise @post
 
     if @post.update( post_params )
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @post.id
+      redirect_with_notice edit_blog_post_path( @blog, @post ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit
@@ -57,12 +55,12 @@ class Admin::Blog::PostsController < AdminController
   end
 
   def update_discussion_flags
-    hidden = params[ :blog_post].delete( :discussion_hidden ) || 0
+    show_on_site = params[ :blog_post].delete( :discussion_show_on_site ) || 0
     locked = params[ :blog_post].delete( :discussion_locked ) || 0
 
     return true if @post.discussion.blank?
 
-    @post.discussion.update!( hidden: hidden, locked: locked )
+    @post.discussion.update!( show_on_site: show_on_site, locked: locked )
   end
 
   def destroy
@@ -95,7 +93,8 @@ class Admin::Blog::PostsController < AdminController
     params[ :blog_post ].delete( :user_id ) unless current_user.can? :change_author, :blog_posts
 
     params.require( :blog_post ).permit(
-      :blog_id, :user_id, :title, :slug, :tag_list, :posted_at, :body, :hidden, :discussion_hidden, :discussion_locked
+      :blog_id, :user_id, :title, :slug, :tag_list, :posted_at, :body, :show_on_site,
+      :discussion_show_on_site, :discussion_locked
     )
   end
 
@@ -107,7 +106,8 @@ class Admin::Blog::PostsController < AdminController
     params[ :blog_post ][ :user_id ] = current_user.id unless current_user.can? :change_author, :blog_posts
 
     params.require( :blog_post ).permit(
-      :blog_id, :user_id, :title, :slug, :tag_list, :posted_at, :body, :hidden, :discussion_hidden, :discussion_locked
+      :blog_id, :user_id, :title, :slug, :tag_list, :posted_at, :body, :show_on_site,
+      :discussion_show_on_site, :discussion_locked
     )
   end
 end

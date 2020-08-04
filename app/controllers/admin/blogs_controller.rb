@@ -29,8 +29,7 @@ class Admin::BlogsController < AdminController
     authorise @blog
 
     if @blog.save
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @blog.id
+      redirect_with_notice edit_blog_path( @blog ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -45,8 +44,7 @@ class Admin::BlogsController < AdminController
     authorise @blog
 
     if @blog.update( blog_params )
-      flash[ :notice ] = t( '.success' )
-      redirect_to action: :edit, id: @blog.id
+      redirect_with_notice edit_blog_path( @blog ), t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit
@@ -71,7 +69,7 @@ class Admin::BlogsController < AdminController
 
   def blog_params
     params.require( :blog ).permit(
-      :name, :description, :title, :slug, :user_id, :hidden_from_menu, :hidden
+      :internal_name, :public_name, :slug, :description, :user_id, :show_on_site, :show_in_menus
     )
   end
 end

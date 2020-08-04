@@ -2,7 +2,7 @@
 
 # Store details of mailing list subscribers who aren't authenticated users
 class EmailRecipient < ApplicationRecord
-  include Email
+  include ShinyEmail
 
   # Associations
 

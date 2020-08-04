@@ -2,20 +2,20 @@
 
 <%= form_for @page, url: page_path( @page ), method: :put do |f| %>
   <p>
-    <%= f.label :name %>
-    <br><%= f.text_field :name %>
+    <%= f.label :internal_name %><br>
+    <%= f.text_field :internal_name %>
   </p>
   <p>
-    <%= f.label :description %>
-    <br><%= f.text_field :description %>
+    <%= f.label :public_name %><br>
+    <%= f.text_field :public_name %>
   </p>
   <p>
-    <%= f.label :title %>
-    <br><%= f.text_field :title %>
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
   </p>
   <p>
-    <%= f.label :slug %>
-    <br><%= f.text_field :slug %>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
   </p>
   <p>
     <%= f.label :template_id, 'Template' %>
@@ -23,7 +23,7 @@
   </p>
   <p>
     <%= f.label :section_id, 'Section' %>
-    <br><%= f.select :section_id, PageSection.pluck( :name, :id ),
+    <br><%= f.select :section_id, PageSection.pluck( :internal_name, :id ),
             { include_blank: 'None' } %>
   </p>
   <p>
@@ -31,15 +31,16 @@
     <br><%= f.text_field :sort_order %>
   </p>
   <p>
-    <%= f.label :hidden %>
-    <br><%= f.check_box :hidden %>
+    <%= f.label :show_on_site %>
+    <br><%= f.check_box :show_on_site %>
   </p>
   <p>
-    <%= f.label :hidden_from_menu %>
-    <br><%= f.check_box :hidden_from_menu %>
+    <%= f.label :show_in_menus %>
+    <br><%= f.check_box :show_in_menus %>
   </p>
+
   <%= f.fields_for :elements do |fields| %>
-    <%= render partial: 'admin/pages/page_element', locals: { fields: fields, content: :content, name: @page.elements[fields.index].name, content_type: @page.elements[fields.index].content_type, filenames: select_filenames } %>
+    <%= render partial: 'admin/pages/page_element', locals: { fields: fields, content: :content, name: @page.elements[fields.index].name, element_type: @page.elements[fields.index].element_type, filenames: select_filenames } %>
   <% end %>
   <p class="top-margin">
     <%= f.submit t( 'update' ) %>

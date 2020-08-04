@@ -16,36 +16,54 @@ class SearchController < ApplicationController
   before_action :check_feature_flags
   before_action :stash_query_string
 
+  SEARCH_BACKENDS = %w[ algolia pg ].freeze
+  private_constant :SEARCH_BACKENDS
+
   def index
     return unless @query
 
-    @page_num = params[ :page ] || 1
-    @per_page = Setting.get( :search_results_per_page ) || 20
+    @page_num = search_params[ :page  ] || 1
+    @per_page = search_params[ :count ] || Setting.get( :search_results_per_page ) || 20
 
-    if use_pg_search?
-      pg_search
-    elsif algolia_search_is_enabled?
-      algolia_search
-    end
+    backend = search_params[ :engine ].presence || Setting.get( :default_search_backend )
+    backend = nil unless SEARCH_BACKENDS.include? backend
+
+    @results = perform_search( backend )
   end
 
   private
+
+  def perform_search( backend )
+    return pg_search if pg_search_is_enabled? && backend == 'pg'
+
+    return algolia_search if algolia_search_is_enabled? && backend == 'algolia'
+
+    unless algolia_search_is_enabled? || pg_search_is_enabled?
+      Rails.logger.error 'Search feature is enabled, but no search back-ends are enabled'
+    end
+
+    []
+  end
 
   def pg_search
     @pageable = PgSearch.multisearch( @query )
                         .includes( :searchable )
                         .page( @page_num )
                         .per( @per_page )
-    @results = @pageable.map( &:searchable )
+    @pageable.map( &:searchable )
   end
 
   def algolia_search
     # TODO: get results from Algolia search API
-    @results = []
+    []
   end
 
   def stash_query_string
-    @query = params[:query]
+    @query = search_params[ :query ] || search_params[ :q ]
+  end
+
+  def search_params
+    params.permit( :query, :q, :page, :count, :engine )
   end
 
   def check_feature_flags

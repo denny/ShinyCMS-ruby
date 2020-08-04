@@ -32,11 +32,11 @@
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category = CapabilityCategory.find_by( name: 'discussions' ) %>
-  <% category_capabilities = %w[ hide unhide lock unlock skip ] %>
+  <% category_capabilities = %w[ show hide lock unlock skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category = CapabilityCategory.find_by( name: 'comments' ) %>
-  <% category_capabilities = %w[ hide unhide lock unlock destroy ] %>
+  <% category_capabilities = %w[ show hide lock unlock destroy ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category = CapabilityCategory.find_by( name: 'spam_comments' ) %>

@@ -2,8 +2,9 @@
 
 # Model for page sections
 class PageSection < ApplicationRecord
-  include NameAndTitle
-  include SlugInSection
+  include ShinyName
+  include ShinySlugInSection
+  include ShinyShowHide
 
   # Associations
 
@@ -22,16 +23,13 @@ class PageSection < ApplicationRecord
 
   # Validations
 
-  validates :hidden, inclusion: { in: [ true, false ] }
-  validates :slug,   safe_top_level_slug: true, if: -> { section.blank? }
+  validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
 
-  # Scopes
+  # Scopes and default sort order
+
+  scope :top_level, -> { where( section: nil  ) }
 
   self.implicit_order_column = 'sort_order'
-
-  scope :top_level,        -> { where( section: nil  ) }
-  scope :visible,          -> { where( hidden: false ) }
-  scope :visible_in_menus, -> { where( hidden: false, hidden_from_menu: false ) }
 
   # Instance methods
 
@@ -98,7 +96,7 @@ class PageSection < ApplicationRecord
   # Return the default top-level section
   def self.default_section
     name_or_slug = Setting.get :default_section
-    top_level_sections.where( name: name_or_slug )
+    top_level_sections.where( internal_name: name_or_slug )
                       .or( top_level_sections
                       .where( slug: name_or_slug ) )
                       .first

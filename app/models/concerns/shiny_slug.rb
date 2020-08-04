@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Common behaviour for URL slugs
-module Slug
+module ShinySlug
   extend ActiveSupport::Concern
 
   # Allowed characters for slugs: a-z A-Z 0-9 . _ -
@@ -15,9 +15,11 @@ module Slug
 
     # rubocop:disable Style/RedundantSelf
     def generate_slug
-      return unless self.respond_to?( :title ) && title.present?
-
-      self.slug = title.parameterize
+      if self.respond_to?( :name ) && name.present?
+        self.slug = name.parameterize
+      elsif self.respond_to?( :title ) && title.present?
+        self.slug = title.parameterize
+      end
     end
     # rubocop:enable Style/RedundantSelf
   end

@@ -58,7 +58,7 @@ class Admin::InsertsController < AdminController
   # Permitted params for single-item operations
   def new_element_params
     params.require( :insert_element )
-          .permit( :name, :content, :content_type )
+          .permit( :name, :content, :element_type )
   end
 
   # Permitted params for multi-item operations
