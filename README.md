@@ -1,17 +1,8 @@
-# ShinyCMS (Ruby version)
+# ShinyCMS
 
-[ShinyCMS](https://shinycms.org/) is an open-source content management system
-intended for use by web designers and web developers who want to keep a clear
-distinction between the markup they create and the content their clients can
-edit.
+[ShinyCMS](https://shinycms.org/) is an open-source content management system, intended for use by web designers and web developers. Page layouts are defined by ERB templates built by a front-end developer (or provided by a theme), with only specific designated pieces of text and images on the page marked as editable by content admins (site owners).
 
-This version is built in Ruby on Rails, and has support for cloud hosting
-(Heroku, AWS, etc).
-
-This rewrite started out as as an educational exercise, giving me an opportunity
-to build a Ruby on Rails application from scratch and largely by myself. It's
-also been nice to have time for proper testing (100% coverage!), regular
-refactoring, and all the other things I don't get to do enough of at work :)
+This version of ShinyCMS is built in Ruby on Rails, and has support for cloud hosting (Heroku, AWS, etc).
 
 
 ## Features
@@ -65,19 +56,16 @@ refactoring, and all the other things I don't get to do enough of at work :)
 * Forums
 * Polls
 
-(See the developer documentation for more detailed information on features
-[in progress](docs/Developer/Progress.md) and [to-do](docs/Developer/TODO.md))
+(See the [developer documentation](docs/Developer/index.md) for more detailed information on features [in progress](docs/Developer/in-progress.md) and [to-do](docs/Developer/TODO.md))
 
 
 ## Installation and configuration
 
-If you want to set up a website using ShinyCMS, please read the
-[Getting Started](docs/Getting-Started.md) guide.
+If you want to set up a website using ShinyCMS, please read the [Getting Started](docs/Getting-Started.md) guide.
 
 ### Demo site
 
-Theme templates and sample data for a demo site are provided, so you can try
-all of the CMS features without doing any set-up work.
+Theme templates and sample data for a demo site are provided, so you can try all of the CMS features without doing any set-up work.
 
 
 ## System dependencies
@@ -88,52 +76,43 @@ all of the CMS features without doing any set-up work.
 
 ### Services
 
-External services are mostly optional. If you add config settings for them
-(in ENV, .env*, or Heroku config vars) then they will be enabled, otherwise
-either those features will be disabled or a fallback will take their place.
+External services are mostly optional. If you add config settings for them (in ENV, .env*, or Heroku config vars) then they will be enabled, otherwise either those features will be disabled or a fallback will take their place.
 
 ### Ruby and Rails versions
 
-ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and
-generally uses the most recent stable release of both Ruby and Rails
-(currently Ruby 2.7.1 and Rails 6.0.3).
+ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.1 and Rails 6.0.3).
 
-It has been tested on every release of Rails 6 so far, and with most versions
-of Ruby from 2.5.8 onwards ([view recent test results][test results] for ruby
-2.5.8, 2.6.6, and 2.7.1).
+It has been tested on every release of Rails 6 so far, and with most versions of Ruby from 2.5.8 onwards ([view recent test results][test results] for ruby 2.5.8, 2.6.6, and 2.7.1).
 
-[Test results]: https://travis-ci.org/github/denny/ShinyCMS-ruby/builds/695548431
+[Test results]: https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/178342603
 
 There are currently no plans to add support for Rails 5 or older Ruby versions.
 
 
-## Licensing
+## Contributing
 
-ShinyCMS (Ruby version) is free software; you can redistribute it and/or modify
-it under the terms of the GPL (version 2 or later). There are copies of both v2
-and v3 of the GPL in [docs/Licensing](docs/Licensing/index.md), or you can read
-them online:  
-https://opensource.org/licenses/gpl-2.0  
-https://opensource.org/licenses/gpl-3.0
-
-ShinyCMS includes code from other open source and free software projects, which
-have their own licensing terms; please read the
-[licensing docs](docs/Licensing/index.md) for more details.
+If you're interested in contributing to ShinyCMS, please start by reading the
+[developer documentation](Developers/index.md).
 
 
 ## Code of Conduct
 
-This project has a [Code of Conduct](docs/code-of-conduct.md), which is intended
-to make using ShinyCMS, or contributing to it, a harassment-free experience for
-everybody involved - regardless of who they are and what they do or don't know.
+This project has a [Code of Conduct](docs/code-of-conduct.md), which is intended to make using ShinyCMS, or contributing to it, a harassment-free experience for everybody involved - regardless of who they are and what they do or don't know.
 
 Please read and follow the code of conduct - thank you.
 
 
+## Licensing
+
+ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later). There are copies of both [v2](docs/Licensing/gnu-gpl-2.0.md) and [v3](docs/Licensing/gnu-gpl-3.0.md) of the GPL in [docs/Licensing](docs/Licensing/index.md), or you can read them online: https://opensource.org/licenses/gpl-2.0 / https://opensource.org/licenses/gpl-3.0
+
+ShinyCMS includes code from other open source and free software projects, which have their own licensing terms; please read the [licensing docs](docs/Licensing/index.md) for more details.
+
+
 ## Current Status
 
-[![CircleCI: Tests](https://circleci.com/gh/denny/ShinyCMS-ruby.svg?style=svg&circle-token=5d3c249b624bd720b7481eb606893737ba65a0ce)](https://circleci.com/gh/denny/ShinyCMS-ruby)  [![Travis CI: Tests](https://travis-ci.org/denny/ShinyCMS-ruby.svg?branch=master)](https://travis-ci.org/denny/ShinyCMS-ruby)  [![codecov: Test Coverage](https://codecov.io/gh/denny/ShinyCMS-ruby/branch/master/graph/badge.svg?token=Pm6x6VcQ81)](https://codecov.io/gh/denny/ShinyCMS-ruby)
+[![CircleCI: Tests](https://circleci.com/gh/denny/ShinyCMS-ruby.svg?style=svg&circle-token=5d3c249b624bd720b7481eb606893737ba65a0ce)](https://circleci.com/gh/denny/ShinyCMS-ruby)  [![Travis CI: Tests](https://travis-ci.com/denny/ShinyCMS-ruby.svg?branch=main)](https://travis-ci.com/denny/ShinyCMS-ruby)  [![Codecov: Test Coverage](https://codecov.io/gh/denny/ShinyCMS-ruby/branch/main/graph/badge.svg?token=Pm6x6VcQ81)](https://codecov.io/gh/denny/ShinyCMS-ruby)
 
-[![CodeClimate: Maintainability](https://api.codeclimate.com/v1/badges/944f9f96599145fdea77/maintainability)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)  [![CodeBeat: Code Quality](https://codebeat.co/badges/cbd8fc61-241a-4701-9716-d4264cb6d9d9)](https://codebeat.co/projects/github-com-denny-shinycms-ruby-main)  [![Inch: Inline docs](http://inch-ci.org/github/denny/ShinyCMS-ruby.svg?branch=main)](http://inch-ci.org/github/denny/ShinyCMS-ruby)
+[![CodeClimate: Maintainability](https://api.codeclimate.com/v1/badges/944f9f96599145fdea77/maintainability)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)  [![CodeBeat: Code Quality](https://codebeat.co/badges/97ed8fca-23b4-469e-a7fb-fd3ec7f8e4d5)](https://codebeat.co/projects/github-com-denny-shinycms-ruby-main)  [![Inch: Inline documentation](http://inch-ci.org/github/denny/ShinyCMS-ruby.svg?branch=main)](http://inch-ci.org/github/denny/ShinyCMS-ruby)
 
-[![Dependabot: Gem versions](https://api.dependabot.com/badges/status?host=github&repo=denny/ShinyCMS-ruby)](https://dependabot.com)  [![Hakiri: Security](https://hakiri.io/github/denny/ShinyCMS-ruby/master.svg)](https://hakiri.io/github/denny/ShinyCMS-ruby/master)
+[![Dependabot: Gem versions](https://api.dependabot.com/badges/status?host=github&repo=denny/ShinyCMS-ruby)](https://dependabot.com)  [![Hakiri: Security](https://hakiri.io/github/denny/ShinyCMS-ruby/main.svg)](https://hakiri.io/github/denny/ShinyCMS-ruby/main)
