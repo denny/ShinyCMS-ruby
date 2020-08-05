@@ -187,7 +187,7 @@ Rails.application.routes.draw do
     mount RailsEmailPreview::Engine, at: '/admin/email-previews'
 
     # LetterOpener provides a webmail UI for viewing sent emails (in dev only)
-    mount LetterOpenerWeb::Engine, at: 'letter-opener' if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: '/dev/outbox' if Rails.env.development?
 
     ########################################
     # ShinyCMS plugins

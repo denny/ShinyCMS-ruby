@@ -41,15 +41,11 @@ Rails.application.configure do
       :local
     end
 
-  # If we've defined an extra hostname in the ENV, allow it
-  config.hosts << ENV['SHINYCMS_HOSTNAME'] if ENV['SHINYCMS_HOSTNAME'].present?
-
-  # Mailer settings
-  # We use letter_opener to catch all emails sent in dev
-  # You can view them at http://example.com/letter-opener
+  # We use letter_opener_web to catch all emails sent in dev
+  # You can view them at http://localhost:3000/dev/outbox
   config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Print deprecation notices to the Rails logger
