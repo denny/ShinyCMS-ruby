@@ -55,7 +55,7 @@ jobs:
             - yarn-cache-
       # Install MJML binary
       - run:
-          name: Install MJML
+          name: Install MJML binary
           command: npm install mjml
       - run:
           name: Install Node modules
@@ -64,6 +64,7 @@ jobs:
           key: yarn-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+            - node_modules
 
       # Restore Webpacker assets from cache, or compile them
       - restore_cache:
