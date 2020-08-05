@@ -17,8 +17,7 @@ RSpec.describe CapabilityCategory, type: :model do
     context 'given a model without capability data' do
       it 'logs an error and returns nil' do
         model = create :votable_ip
-
-        message = "CapabilityCategory.name_for generated 'votable_ips', which is not a valid category"
+        message = I18n.t( 'models.capability_category.not_found', name: 'votable_ips' )
 
         expect( Rails.logger ).to receive( :warn ).with( message )
 

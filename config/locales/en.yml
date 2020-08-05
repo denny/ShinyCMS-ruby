@@ -97,7 +97,7 @@ en:
       slug_not_unique_in_month: has already been used in this month
       slug_not_unique_in_section: has already been used in this section
     not_found:
-      title: "%{resource_type} not found"
+      title: '%{resource_type} not found'
       explanation: The URL you have reached is for a %{resource_type} that does not exist.
 
   page:
@@ -164,35 +164,35 @@ en:
   discussion_mailer:
     they_said: They said
     parent_comment_notification:
-      subject: "[%{site_name}] %{reply_author_name} replied to your comment"
+      subject: '[%{site_name}] %{reply_author_name} replied to your comment'
       you_said: You said
     discussion_notification:
-      subject: "[%{site_name}] %{comment_author_name} commented on your %{content_type}"
+      subject: '[%{site_name}] %{comment_author_name} commented on your %{content_type}'
     overview_notification:
-      subject: "[%{site_name}] %{comment_author_name} commented on your site"
+      subject: '[%{site_name}] %{comment_author_name} commented on your site'
 
   user_mailer:
     welcome: Welcome, %{name}!
     hello: Hello %{name},
     confirmation_instructions:
-      subject: "[%{site_name}] Please confirm your registration"
+      subject: '[%{site_name}] Please confirm your registration'
       instructions: You can confirm your email address by clicking the link below
       link_text: Confirm my address
     password_changed:
-      subject: "[%{site_name}] Your password has been changed"
+      subject: '[%{site_name}] Your password has been changed'
       text: We're contacting you to notify you that your password has been changed.
     reset_password:
-      subject: "[%{site_name}] Instructions for resetting your password"
+      subject: '[%{site_name}] Instructions for resetting your password'
       instructions: Someone has requested a link to change your password. You can do this through the link below.
       link_text: Change my password
       if_not_you: If you didn't request this, please ignore this email.
       no_change: Your password won't change unless you click the link above and create a new one.
     email_changed:
-      subject: "[%{site_name}] Changing your email address"
+      subject: '[%{site_name}] Changing your email address'
       email_changing: We're contacting you to notify you that your email is being changed to
       email_changed: We're contacting you to notify you that your email has been changed to
     unlock_instructions:
-      subject: "[%{site_name}] Your account has been locked"
+      subject: '[%{site_name}] Your account has been locked'
       explanation: Your account has been locked due to an excessive number of unsuccessful sign in attempts.
       instructions: Click the link below to unlock your account
       link_text: Unlock my account
@@ -281,11 +281,11 @@ en:
     base:
       email:
         one: 1 email
-        other: "%{count} emails"
+        other: '%{count} emails'
       in: in
       mailer:
         one: 1 mailer
-        other: "%{count} mailers"
+        other: '%{count} mailers'
       loading: Loading...
 
   admin:
@@ -531,6 +531,9 @@ en:
         empty: No stats to display
 
   models:
+    capability_category:
+      not_found: CapabilityCategory.name_for generated '%{name}', which is not in database
+
     page_template:
       template_file_must_exist: The template file must be in pages/templates
 

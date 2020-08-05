@@ -8,11 +8,21 @@ class CapabilityCategory < ApplicationRecord
   # Class methods
 
   # Returns the name of the capability category for a model instance, as a symbol
+  # Logs an error and returns nil if there is no corresponding category in the database
   def self.name_for( record )
-    name = record.class.name.underscore.pluralize.split('/').last
-    return name.to_sym if exists?( name: name )
+    name = category_name_for( record )
 
-    Rails.logger.warn "CapabilityCategory.name_for generated '#{name}', which is not a valid category"
+    return name.to_sym if category_names.include? name
+
+    Rails.logger.warn I18n.t( 'models.capability_category.not_found', name: name )
     nil
+  end
+
+  def self.category_names
+    @category_names ||= pluck( :name )
+  end
+
+  def self.category_name_for( record )
+    record.class.name.underscore.pluralize.split('/').last
   end
 end
