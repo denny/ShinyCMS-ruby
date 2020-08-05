@@ -9,11 +9,10 @@ class CapabilityCategory < ApplicationRecord
 
   # Returns the name of the capability category for a model instance, as a symbol
   def self.name_for( record )
-    names = record.class.name.underscore.pluralize.split('/')
-    name = names.last
+    name = record.class.name.underscore.pluralize.split('/').last
+    return name.to_sym if exists?( name: name )
 
-    Rails.logger.debug "CapabilityCategory.name_for returned '#{name}' which doesn't exist" unless exists?( name: name )
-
-    name.to_sym
+    Rails.logger.warn "CapabilityCategory.name_for generated '#{name}', which is not a valid category"
+    nil
   end
 end
