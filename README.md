@@ -148,6 +148,6 @@ Please read and follow the code of conduct - thank you.
 [![RubyDocs](https://img.shields.io/static/v1?label=RubyDocs&color=brightgreen&message=✓&logo=ruby&style=for-the-badge)](https://rubydoc.info/github/denny/ShinyCMS-ruby)
 <a href="https://inch-ci.org/github/denny/ShinyCMS-ruby"><img src="https://inch-ci.org/github/denny/ShinyCMS-ruby.svg" alt="Inline Documentation" height="28px"></a>
 
-[![GitHub](https://img.shields.io/github/license/denny/ShinyCMS-ruby?color=blue&logo=gnu&style=for-the-badge)](https://opensource.org/licenses/gpl-2.0)
 ![GitHub code size](https://img.shields.io/github/languages/code-size/denny/ShinyCMS-ruby?logo=github&style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/denny/ShinyCMS-ruby?logo=github&style=for-the-badge)
+[![GitHub](https://img.shields.io/github/license/denny/ShinyCMS-ruby?color=blue&logo=gnu&style=for-the-badge)](https://opensource.org/licenses/gpl-2.0)
