@@ -145,6 +145,6 @@ Please read and follow the code of conduct - thank you.
 <a href="https://dependabot.com"><img src="https://api.dependabot.com/badges/status?host=github&repo=denny/ShinyCMS-ruby" alt="Dependabot" height="28px"></a>
 <a href="https://hakiri.io/github/denny/ShinyCMS-ruby/main"><img src="https://hakiri.io/github/denny/ShinyCMS-ruby/main.svg" alt="Security" height="28px"></a>
 
-[![GitHub](https://img.shields.io/github/license/denny/ShinyCMS-ruby?style=for-the-badge&color=brightgreen)](https://opensource.org/licenses/gpl-2.0)
+[![GitHub](https://img.shields.io/github/license/denny/ShinyCMS-ruby?color=brightgreen&logo=gnu&style=for-the-badge)](https://opensource.org/licenses/gpl-2.0)
 [![RubyDocs](https://img.shields.io/static/v1?label=RubyDocs&color=brightgreen&message=✓&logo=ruby&style=for-the-badge)](https://rubydoc.info/github/denny/ShinyCMS-ruby)
 <a href="https://inch-ci.org/github/denny/ShinyCMS-ruby"><img src="https://inch-ci.org/github/denny/ShinyCMS-ruby.svg" alt="Inline Documentation" height="28px"></a>
