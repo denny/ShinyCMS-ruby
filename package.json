@@ -11,7 +11,7 @@
     "jquery": "^3.5.0",
     "minimist": "^1.2.2",
     "mjml": "^4.6.3",
-    "smartmenus": "^1.1.0"
+    "smartmenus": "^1.1.1"
   },
   "devDependencies": {
     "webpack": "^4.44.1",
