@@ -1,4 +1,4 @@
-# ShinyCMS (Ruby version)
+# ShinyCMS
 
 [ShinyCMS](https://shinycms.org/) is an open-source content management system
 intended for use by web designers and web developers who want to keep a clear
