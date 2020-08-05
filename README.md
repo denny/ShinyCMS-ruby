@@ -1,6 +1,6 @@
 # ShinyCMS
 
-[ShinyCMS](https://shinycms.org/) is an open-source content management system, intended for use by web designers and web developers. Page layouts are defined by ERB templates built by a front-end developer (or provided by a theme), with only specific designated pieces of text and images on the page marked as editable by content admins (site owners).
+[ShinyCMS](https://shinycms.org/) is an open-source content management system, intended for use by web designers and web developers. Page layouts are defined by templates (built by a front-end developer or provided by a theme), while content admins can only edit specific text and images on each page (via a simple and easy-to-use admin interface) - protecting page layouts from accidental edits.
 
 This version of ShinyCMS is built in Ruby on Rails, and has support for cloud hosting (Heroku, AWS, etc).
 
@@ -17,10 +17,9 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
   * Easily enable or disable CMS features (e.g. new user registrations)
   * Decide which settings to allow site users to override (e.g. theme)
 * Pages and Page Sections
-  * Can be added and removed by CMS admin users
-  * Have defined content areas which can be edited by admins
-  * Page layout controlled by Page Templates (can be provided by a theme,
-    or custom-built by web designer/developer)
+  * Site admins can add as many pages and (nested) sections as they like
+  * Pages have defined content areas which can be edited by admins
+  * Page layout is controlled by Page Templates (can be provided by a theme or custom-built)
   * Dynamically generated menus
 * Inserts (re-usable content fragments that can be pulled into any template)
 * News section
@@ -31,8 +30,7 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
   * Uses reCAPTCHA to block comments from bots
   * Uses Akismet to flag potential spam comments for moderation
     * Spam comment moderation sends 'spam'/'not spam' training data to Akismet
-* Tags
-  * Currently on blog posts and news posts, ready to add to new content types
+* Tags (currently enabled on blog posts and news posts, ready to add to any content type)
 * Likes or up/down votes on posts, comments, etc
 * Built-in web stats (powered by Ahoy) and email stats (powered by Ahoy::Email)
 * Charts and dashboards for viewing stats (powered by Blazer)
