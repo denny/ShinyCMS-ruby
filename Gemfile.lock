@@ -1,7 +1,7 @@
 PATH
   remote: plugins/ShinyForms
   specs:
-    shiny_forms (20.7)
+    shiny_forms (20.8)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
