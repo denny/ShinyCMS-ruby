@@ -17,7 +17,7 @@ AllCops:
     - public/**/*
     - tmp/**/*
     - tools/**/*
-    - vendor/*
+    - vendor/bundle/ruby/2.7.0/gems/**/*
 
 # Disabling cops for a few lines here and there is handy
 Style/DisableCopsWithinSourceCodeDirective:
