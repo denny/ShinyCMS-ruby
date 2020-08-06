@@ -6,19 +6,27 @@ module ShinyForms
     include ShinyName
     include ShinySlug
 
+    validates :slug, uniqueness: true
+
     # Instance methods
+
+    def send_to_handler( form_data )
+      return false_after_logging_warning unless handler_exists?
+
+      handlers.public_send( handler.to_sym, email_to, internal_name, form_data, filename )
+    end
+
+    def false_after_logging_warning
+      Rails.logger.warn "Unknown form handler '#{handler}' (form ID: #{id})"
+      false
+    end
+
+    def handler_exists?
+      handlers.respond_to?( handler.to_sym )
+    end
 
     def handlers
       @handlers ||= FormHandler.new
-    end
-
-    def send_to_handler( form_data )
-      if handlers.respond_to?( handler.to_sym )
-        return handlers.public_send( handler.to_sym, email_to, form_data, filename )
-      end
-
-      Rails.logger.warn "Unknown form handler '#{handler}' (form ID: #{id})"
-      false
     end
 
     # Specify policy class for Pundit
