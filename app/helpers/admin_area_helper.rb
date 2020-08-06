@@ -25,6 +25,10 @@ module AdminAreaHelper
         %w[ posts pages templates ].include?( controller_name ) )
   end
 
+  def plugins_for_menu
+    ::Plugin.loaded.map( &:underscore )
+  end
+
   def redirect_with_notice( redirect_path, notice_message )
     flash[ :notice ] = notice_message
     redirect_to redirect_path
