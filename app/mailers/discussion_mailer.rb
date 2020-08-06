@@ -7,14 +7,11 @@ class DiscussionMailer < ApplicationMailer
   def parent_comment_notification( comment )
     return unless comment&.parent&.notification_email&.present?
 
-    @reply  = comment
-    @parent = comment.parent
-
-    subject = parent_comment_notification_subject( @reply )
+    @reply, @parent = comment_and_parent( comment )
 
     @user = notified_user( @parent.notification_email, @parent.author_name_any )
 
-    mail to: @parent.notification_email, subject: subject do |format|
+    mail to: @parent.notification_email, subject: parent_comment_notification_subject do |format|
       format.html
       format.text
     end
@@ -23,32 +20,23 @@ class DiscussionMailer < ApplicationMailer
   def discussion_notification( comment )
     return unless comment&.discussion&.notification_email&.present?
 
-    @comment  = comment
-    @resource = comment.discussion.resource
+    @comment, @resource, @user = comment_and_resource_and_user( comment )
 
-    subject = discussion_notification_subject( @comment, @resource )
-
-    @user = comment.discussion.resource.user
-
-    mail to: comment.discussion.notification_email, subject: subject do |format|
+    mail to: comment.discussion.notification_email, subject: discussion_notification_subject do |format|
       format.html
       format.text
     end
   end
 
   def overview_notification( comment )
-    return if comment.blank?
+    email = Setting.get :all_comment_notifications_email
+    return if comment.blank? || email.blank?
 
     @comment = comment
 
-    email = Setting.get :all_comment_notifications_email
-    return if email.blank?
-
-    subject = overview_notification_subject( @comment )
-
     @user = notified_user( email, 'Admin' )
 
-    mail to: email, subject: subject do |format|
+    mail to: email, subject: overview_notification_subject do |format|
       format.html
       format.text
     end
@@ -56,29 +44,37 @@ class DiscussionMailer < ApplicationMailer
 
   private
 
-  def parent_comment_notification_subject( reply )
+  def parent_comment_notification_subject
     I18n.t(
       'discussion_mailer.parent_comment_notification.subject',
-      reply_author_name: reply.author_name_any,
+      reply_author_name: @reply.author_name_any,
       site_name: @site_name
     )
   end
 
-  def discussion_notification_subject( comment, resource )
+  def discussion_notification_subject
     I18n.t(
       'discussion_mailer.discussion_notification.subject',
-      comment_author_name: comment.author_name_any,
-      content_type: resource.human_name,
+      comment_author_name: @comment.author_name_any,
+      content_type: @resource.human_name,
       site_name: @site_name
     )
   end
 
-  def overview_notification_subject( comment )
+  def overview_notification_subject
     I18n.t(
       'discussion_mailer.overview_notification.subject',
-      comment_author_name: comment.author_name_any,
+      comment_author_name: @comment.author_name_any,
       site_name: @site_name
     )
+  end
+
+  def comment_and_parent( comment )
+    [ comment, comment.parent ]
+  end
+
+  def comment_and_resource_and_user( comment )
+    [ comment, comment.discussion.resource, comment.discussion.resource.user ]
   end
 
   def check_feature_flags
