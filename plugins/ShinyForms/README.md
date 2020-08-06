@@ -1,35 +1,25 @@
-# ShinyCMS: ShinyForms plugin
+# ShinyForms: Form handlers plugin for ShinyCMS
 
-This is a form handler plugin for [ShinyCMS](https://shinycms.com); it provides
-a few different endpoints to which you can POST a suitably constructed HTML form,
-and they will do Something Useful [tm] with it. The simplest example emails the
-form data to the site owner - this allows you to quickly and easily add a new
-contact form or an order enquiry form to your ShinyCMS-powered site.
+ShinyForms is a form handler plugin for [ShinyCMS](https://shinycms.com); it provides a few different endpoints to which you can POST a suitably constructed HTML form, and they will do Something Useful [tm] with it. The simplest example emails the form data to the site owner - this allows you to quickly and easily add a new contact form or an order enquiry form to your ShinyCMS-powered site.
 
-Form handlers are created, configured, and controlled via the ShinyCMS admin area;
-look for 'Form Handlers' in your admin menu after enabling this plugin.
+Form handlers are created, configured, and controlled via the ShinyCMS admin area; look for 'Form Handlers' in your admin menu after enabling this plugin.
 
 
 ## Installation
 
-Uncomment or add this line in your main ShinyCMS Gemfile:
-```ruby
-gem 'shiny_forms', path: 'plugins/ShinyForms'
-```
+Add 'ShinyForms' to the SHINYCMS_PLUGINS ENV var, then run `bundle install`
+for your main ShinyCMS app.
 
-To install the gem into your copy of ShinyCMS:
-```bash
-bundle install
-```
+(Currently, all plugins are enabled by default, so you don't need to
+explicitly set the ENV var unless you want to load a subset of plugins.)
 
 To add the ShinyForms tables and supporting data to your ShinyCMS database:
 ```bash
-RAILS_ENV=test rails shiny_forms:install:data
-rails shiny_forms:install:data
 rails shiny_forms:install:migrations
 rails db:migrate
-RAILS_ENV=test rails db:migrate
+rails shiny_forms:db:seed
 ```
+
 
 ## Contributing
 
