@@ -25,8 +25,8 @@
         <%= form.handler %>
       </td>
       <td class="actions">
-        <%= link_to t( 'edit'   ), edit_form_path( form ) %>
-        <%= link_to t( 'delete' ), form_path( form ),
+        <%= link_to t( 'edit'   ), shiny_forms.edit_form_path( form ) %>
+        <%= link_to t( 'delete' ), shiny_forms.form_path( form ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>
