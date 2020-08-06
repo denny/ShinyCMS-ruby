@@ -36,13 +36,12 @@ module AdminAreaHelper
     redirect_to redirect_path
   end
 
-  def render_capability_category( form, category, capabilities, show, skip = false )
+  def render_capability_category( form, category, capabilities, show )
     render partial: 'capability_category', locals: {
       f: form,
       category: category,
       category_capabilities: capabilities,
-      show: show,
-      skip_name: skip
+      show: show
     }
   end
 
