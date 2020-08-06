@@ -37,11 +37,9 @@ class DiscussionMailer < ApplicationMailer
 
     @comment = comment
 
-    subject = overview_notification_subject( @comment )
-
     @user = notified_user( overview_email, 'Admin' )
 
-    mail to: overview_email, subject: subject do |format|
+    mail to: overview_email, subject: overview_notification_subject do |format|
       format.html
       format.text
     end
@@ -66,10 +64,10 @@ class DiscussionMailer < ApplicationMailer
     )
   end
 
-  def overview_notification_subject( comment )
+  def overview_notification_subject
     I18n.t(
       'discussion_mailer.overview_notification.subject',
-      comment_author_name: comment.author_name_any,
+      comment_author_name: @comment.author_name_any,
       site_name: @site_name
     )
   end
