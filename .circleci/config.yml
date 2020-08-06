@@ -48,6 +48,16 @@ jobs:
           paths:
             - ~/ShinyCMS/vendor/bundle
 
+      # Run Rubocop to check linting
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop app/ config/ db/ lib/ plugins/ spec/
+
+      # Run bundle-audit to check gems for known security issues
+      - run:
+          name: Audit Gemfile bundle for security issues
+          command: bundle exec bundle-audit check --update
+
       # Restore Node dependencies from cache, or install them
       - restore_cache:
           keys:
