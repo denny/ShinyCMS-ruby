@@ -13,7 +13,7 @@ module ShinyForms
     def send_to_handler( form_data )
       return false_after_logging_warning unless handler_exists?
 
-      handlers.public_send( handler.to_sym, email_to, internal_name, form_data, filename )
+      handlers.public_send( handler.to_sym, self, form_data )
     end
 
     def false_after_logging_warning

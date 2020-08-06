@@ -28,8 +28,7 @@ module ShinyForms
       authorise @form
 
       if @form.save
-        flash[ :notice ] = t( '.success' )
-        redirect_to edit_form_path( @form )
+        redirect_with_notice edit_form_path( @form ), t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render :new
@@ -46,8 +45,7 @@ module ShinyForms
       authorise @form
 
       if @form.update(form_params)
-        flash[ :notice ] = t( '.success' )
-        redirect_to action: :edit, id: @form.id
+        redirect_with_notice edit_form_path( @form ), t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render :edit
@@ -59,7 +57,7 @@ module ShinyForms
       authorise @form
 
       @form.destroy!
-      redirect_to forms_path, notice: t( '.success' )
+      redirect_with_notice forms_path, t( '.success' )
     end
 
     private
