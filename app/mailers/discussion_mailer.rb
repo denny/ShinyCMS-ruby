@@ -9,11 +9,9 @@ class DiscussionMailer < ApplicationMailer
 
     @reply, @parent = comment_and_parent( comment )
 
-    subject = parent_comment_notification_subject( @reply )
-
     @user = notified_user( @parent.notification_email, @parent.author_name_any )
 
-    mail to: @parent.notification_email, subject: subject do |format|
+    mail to: @parent.notification_email, subject: parent_comment_notification_subject do |format|
       format.html
       format.text
     end
@@ -24,9 +22,7 @@ class DiscussionMailer < ApplicationMailer
 
     @comment, @resource, @user = comment_and_resource_and_user( comment )
 
-    subject = discussion_notification_subject( @comment, @resource )
-
-    mail to: comment.discussion.notification_email, subject: subject do |format|
+    mail to: comment.discussion.notification_email, subject: discussion_notification_subject do |format|
       format.html
       format.text
     end
@@ -48,19 +44,19 @@ class DiscussionMailer < ApplicationMailer
 
   private
 
-  def parent_comment_notification_subject( reply )
+  def parent_comment_notification_subject
     I18n.t(
       'discussion_mailer.parent_comment_notification.subject',
-      reply_author_name: reply.author_name_any,
+      reply_author_name: @reply.author_name_any,
       site_name: @site_name
     )
   end
 
-  def discussion_notification_subject( comment, resource )
+  def discussion_notification_subject
     I18n.t(
       'discussion_mailer.discussion_notification.subject',
-      comment_author_name: comment.author_name_any,
-      content_type: resource.human_name,
+      comment_author_name: @comment.author_name_any,
+      content_type: @resource.human_name,
       site_name: @site_name
     )
   end
