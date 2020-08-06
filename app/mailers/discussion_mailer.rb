@@ -33,13 +33,14 @@ class DiscussionMailer < ApplicationMailer
   end
 
   def overview_notification( comment )
-    return if comment.blank? || overview_email.blank?
+    email = Setting.get :all_comment_notifications_email
+    return if comment.blank? || email.blank?
 
     @comment = comment
 
-    @user = notified_user( overview_email, 'Admin' )
+    @user = notified_user( email, 'Admin' )
 
-    mail to: overview_email, subject: overview_notification_subject do |format|
+    mail to: email, subject: overview_notification_subject do |format|
       format.html
       format.text
     end
@@ -78,10 +79,6 @@ class DiscussionMailer < ApplicationMailer
 
   def comment_and_resource_and_user( comment )
     [ comment, comment.discussion.resource, comment.discussion.resource.user ]
-  end
-
-  def overview_email
-    Setting.get :all_comment_notifications_email
   end
 
   def check_feature_flags
