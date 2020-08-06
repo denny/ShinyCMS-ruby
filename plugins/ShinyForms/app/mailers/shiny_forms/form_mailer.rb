@@ -5,10 +5,11 @@ module ShinyForms
   class FormMailer < ApplicationMailer
     before_action :check_feature_flags
 
-    def plain( to, form_data )
+    def plain( to, form_name, form_data )
       email_to = build_to( to )
       return if email_to.blank?
 
+      @form_name = form_name
       @form_data = form_data
 
       track open: false, click: false
@@ -16,11 +17,12 @@ module ShinyForms
       mail to: email_to, subject: email_subject, &:text
     end
 
-    def with_template( to, form_data, filename )
+    def with_template( to, form_name, form_data, filename )
       email_to = build_to( to )
       return if email_to.blank?
       return unless Form.template_file_exists?( filename )
 
+      @form_name = form_name
       @form_data = form_data
 
       track open: false, click: false
@@ -42,7 +44,7 @@ module ShinyForms
 
       return "[#{@site_name}] #{form_data_subject}" if form_data_subject.present?
 
-      I18n.t( '.default_subject', site_name: @site_name )
+      I18n.t( 'shiny_forms.mailers.form_mailer.default_subject', site_name: @site_name )
     end
 
     def check_feature_flags

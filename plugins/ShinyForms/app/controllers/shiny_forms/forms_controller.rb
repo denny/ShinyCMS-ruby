@@ -34,7 +34,7 @@ module ShinyForms
     end
 
     def form_data
-      params.permit( shiny_form: {} )[ 'shiny_form' ]
+      params.permit( :authenticity_token, :slug, shiny_form: {} )[ 'shiny_form' ]
     end
 
     def check_feature_flags

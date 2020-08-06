@@ -39,9 +39,10 @@ en:
         set_form:
           not_found: Form handler not found
 
-    form_mailer:
-      subject_line:
-        default_subject: "[%{site_name}] Email from your website"
+
+    mailers:
+      form_mailer:
+        default_subject: '[%{site_name}] Form data from your website'
 
     models:
       forms:

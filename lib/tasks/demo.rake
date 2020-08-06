@@ -15,10 +15,12 @@ require 'dotenv/tasks'
 # rubocop:disable Layout/MultilineArrayLineBreaks
 
 # Big List of Models That Hold Demo Site Data
+# TODO: FIXME: need to figure out how to handle plugin models here
 MODEL_NAMES = %w[
   EmailRecipient MailingList Subscription
   Blog BlogPost NewsPost Discussion Comment
   PageTemplate PageTemplateElement PageSection Page PageElement InsertElement
+  ShinyForms::Form
   Blazer::Query Blazer::Dashboard Blazer::DashboardQuery
 ].freeze
 

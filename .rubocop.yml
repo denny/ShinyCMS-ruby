@@ -50,6 +50,11 @@ Style/IpAddresses:
   Exclude:
     - spec/requests/admin_spec.rb
 
+# This code is intentionally and helpfully rewriting a bit of HTML
+Rails/OutputSafety:
+  Exclude:
+    - config/initializers/field_with_errors.rb
+
 # Whitespace Considered Helpful
 Layout/ExtraSpacing:
   Enabled: false
