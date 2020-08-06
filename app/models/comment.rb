@@ -2,6 +2,7 @@
 
 # Model class for comments
 class Comment < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyShowHide
 
   # Associations

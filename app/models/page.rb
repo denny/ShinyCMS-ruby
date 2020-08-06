@@ -2,9 +2,10 @@
 
 # Model for 'brochure' pages
 class Page < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyName
-  include ShinySlugInSection
   include ShinyShowHide
+  include ShinySlugInSection
 
   # Associations
 

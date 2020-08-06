@@ -2,6 +2,7 @@
 
 # Model class for discussions (used to group comments)
 class Discussion < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyShowHide
 
   # Assocations

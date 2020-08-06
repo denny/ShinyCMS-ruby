@@ -3,6 +3,7 @@
 module ShinyForms
   # Model for ShinyCMS forms
   class Form < ApplicationRecord
+    include ShinyDemoDataProvider
     include ShinyName
     include ShinySlug
 
@@ -22,6 +23,8 @@ module ShinyForms
     end
 
     def handler_exists?
+      return false unless ShinyForms::FormHandler::FORM_HANDLERS.include? handler
+
       handlers.respond_to?( handler.to_sym )
     end
 

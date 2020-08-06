@@ -12,20 +12,6 @@ require 'dotenv/tasks'
 # rails shiny:demo:dump
 # - dumps the current database contents to db/demo_data.rb
 
-# rubocop:disable Layout/MultilineArrayLineBreaks
-
-# Big List of Models That Hold Demo Site Data
-# TODO: FIXME: need to figure out how to handle plugin models here
-MODEL_NAMES = %w[
-  EmailRecipient MailingList Subscription
-  Blog BlogPost NewsPost Discussion Comment
-  PageTemplate PageTemplateElement PageSection Page PageElement InsertElement
-  ShinyForms::Form
-  Blazer::Query Blazer::Dashboard Blazer::DashboardQuery
-].freeze
-
-# rubocop:enable Layout/MultilineArrayLineBreaks
-
 namespace :shiny do
   namespace :demo do
     desc 'ShinyCMS: reset database, create admin user, and load demo site data'
@@ -72,7 +58,7 @@ namespace :shiny do
     end
 
     def fix_primary_key_sequences
-      MODEL_NAMES.each do |model|
+      models_with_demo_data.each do |model|
         fix_primary_key_sequence( model.constantize.table_name )
       end
     end
@@ -88,7 +74,7 @@ namespace :shiny do
 
     task dump: %i[ environment dotenv ] do
       big_dump = ''
-      MODEL_NAMES.each do |model|
+      models_with_demo_data.each do |model|
         puts "Dumping: #{model}"
         dump = SeedDump.dump(
           model.constantize, exclude: %i[created_at updated_at]
@@ -102,6 +88,16 @@ namespace :shiny do
       File.open( Rails.root.join( 'db/demo_data.rb' ), 'w' ) do |dump|
         dump.write result
       end
+    end
+
+    def models_with_demo_data
+      Rails.application.eager_load! if Rails.env.development?
+      models = ApplicationRecord.descendants.select( &:dump_for_demo? ).map( &:to_s ).sort
+      # Fragile bodgery; move models with dependencies not happy with .sort order to the end
+      models.delete( 'Page' )
+      models.delete( 'PageElement' )
+      models.delete( 'Comment' )
+      models.push( 'Page', 'PageElement', 'Comment' )
     end
     # :nocov:
   end

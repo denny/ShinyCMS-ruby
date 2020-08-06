@@ -25,6 +25,10 @@ module AdminAreaHelper
         %w[ posts pages templates ].include?( controller_name ) )
   end
 
+  def plugins_for_menu
+    ::Plugin.loaded.map( &:underscore )
+  end
+
   def render_capability_category( form, category, capabilities, show )
     render partial: 'capability_category', locals: {
       f: form,

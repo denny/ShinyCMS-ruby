@@ -8,4 +8,8 @@ RSpec.describe Comment, type: :model do
     let( :discussion ) { create :discussion, resource: news_post }
     let( :item ) { create :comment, discussion: discussion }
   end
+
+  it_should_behave_like 'ShinyDemoDataProvider' do
+    let( :model ) { Blog }
+  end
 end

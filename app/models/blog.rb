@@ -2,9 +2,10 @@
 
 # Model class for blogs (which are a collection of blog posts)
 class Blog < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyName
-  include ShinySlug
   include ShinyShowHide
+  include ShinySlug
 
   # Associations
 
