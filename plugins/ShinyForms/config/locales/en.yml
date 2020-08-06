@@ -8,18 +8,18 @@ en:
 
   shiny_forms:
     forms:
-      handlers:
-        plain_email: Send plain unformatted email
-        template_email: Send email formatted with template
-      set_form:
-        not_found: Form handler not found
       process_form:
         success: Your form submission was successful
         failure: Form submission failed
+      set_form:
+        not_found: Form handler not found
 
     admin:
       forms:
         title: Forms
+        handlers:
+          plain_email: Send plain unformatted email
+          template_email: Send email formatted with template
         index:
           title: List form handlers
           empty: There are no form handlers defined yet

@@ -7,6 +7,7 @@ module ShinyForms
   class Admin::FormsController < AdminController
     before_action :set_form_for_create, only: %i[ create ]
     before_action :set_form, only: %i[ edit update destroy ]
+    before_action :set_form_handlers, only: %i[ new create edit update ]
 
     # GET /admin/forms
     def index
@@ -74,9 +75,18 @@ module ShinyForms
       @form = Form.new( form_params )
     end
 
+    def set_form_handlers
+      handlers = ShinyForms::FormHandler::FORM_HANDLERS
+      @form_handlers = []
+      handlers.each do |handler|
+        @form_handlers << [ I18n.t( "shiny_forms.admin.forms.handlers.#{handler}" ), handler ]
+      end
+    end
+
     def form_params
       params.require( :form ).permit(
-        :internal_name, :public_name, :slug, :handler
+        :internal_name, :public_name, :slug, :description, :handler,
+        :email_to, :filename, :redirect_to, :success_message
       )
     end
   end

@@ -22,7 +22,7 @@
         <%= form.internal_name %>
       </td>
       <td>
-        <%= form.handler %>
+        <%= t( "shiny_forms.admin.forms.handlers.#{form.handler}" ) %>
       </td>
       <td class="actions">
         <%= link_to t( 'edit'   ), shiny_forms.edit_form_path( form ) %>
