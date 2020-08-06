@@ -72,6 +72,8 @@
   db and there are still a load of 'feature hidden by flag/capability/etc'
   conditionals to implement.
 
+* Add a polymorphic metatags model(s?)+concern+helper that can be added to anything
+  that might want them for SEO (pages/sections, shop items/categories, etc)
 
 ### Medium-ish
 

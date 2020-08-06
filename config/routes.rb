@@ -4,7 +4,9 @@
 
 Rails.application.routes.draw do
   scope format: false do
-    # ========== ( Main site ) ==========
+    ########################################
+    # Main site
+
     root to: 'pages#index'
 
     if Rails.application.config.multiple_blogs_mode
@@ -86,12 +88,14 @@ Rails.application.routes.draw do
     post   'vote/:type/:id/:flag', to: 'votes#create',  as: :create_vote
     delete 'vote/:type/:id',       to: 'votes#destroy', as: :destroy_vote
 
-    # ========== ( Admin area ) ==========
+    ########################################
+    # Admin area
+
     get :admin, to: 'admin#index'
 
-    EXCEPT = %w[ index show create ].freeze
-
     scope path: 'admin', module: 'admin' do
+      EXCEPT = %w[ index show create ].freeze
+
       # Blogs
       get  :blogs, to: 'blogs#index'
       post :blog,  to: 'blogs#create', as: :create_blog
@@ -167,23 +171,34 @@ Rails.application.routes.draw do
       resources :user, controller: :users, except: EXCEPT
     end
 
-    # Ahoy email tracking
+    ########################################
+    # Rails engines
+
+    # AhoyEmail provides email tracking features
     mount AhoyEmail::Engine, at: '/ahoy'
 
-    # Blazer (web stats dashboard)
+    # Blazer provides charts and dashboards in the admin area
     mount Blazer::Engine, at: '/admin/stats'
 
-    # CKEditor (WYSIWYG editor used on various admin pages)
+    # CKEditor provides the WYSIWYG editor used in the admin area
     mount Ckeditor::Engine, at: '/admin/ckeditor'
 
-    # Mailer preview features
+    # RailsEmailPreview provides previews of site emails in the admin area
     mount RailsEmailPreview::Engine, at: '/admin/email-previews'
 
-    # Letter Opener webmail UI for dev environment
-    mount LetterOpenerWeb::Engine, at: 'letter-opener' if Rails.env.development?
+    # LetterOpener provides a webmail UI for viewing sent emails (in dev only)
+    mount LetterOpenerWeb::Engine, at: '/dev/outbox' if Rails.env.development?
 
-    # This catch-all route passes through to the Pages controller, allowing
-    # sites to have top-level pages (e.g. /foo instead of /pages/foo).
+    ########################################
+    # ShinyCMS plugins
+
+    # ShinyForms: generic form handlers
+    mount ShinyForms::Engine, at: '/' if defined?(ShinyForms)
+
+    ###########################################################################
+    # This final catch-all route passes through to the Pages controller.
+    # This makes it possible to have pages and sections at the top level
+    # e.g. /foo instead of /pages/foo
     get '*path', to: 'pages#show'
   end
 end

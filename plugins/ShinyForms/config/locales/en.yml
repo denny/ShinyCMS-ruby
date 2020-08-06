@@ -1,0 +1,49 @@
+
+# Translation strings for ShinyCMS forms plugin
+
+en:
+  feature_flags:
+    shiny_forms: Form handlers
+    shiny_forms_emails: Form handlers can send emails
+
+  shiny_forms:
+    forms:
+      process_form:
+        success: Your form submission was successful
+        failure: Form submission failed
+      set_form:
+        not_found: Form handler not found
+
+    admin:
+      forms:
+        title: Forms
+        handlers:
+          plain_email: Send plain unformatted email
+          template_email: Send email formatted with template
+        index:
+          title: List form handlers
+          empty: There are no form handlers defined yet
+        new:
+          title: Add new form handler
+        edit:
+          title: Edit form handler
+        create:
+          success: New form handler created
+          failure: Failed to create new form handler
+        update:
+          success: Form handler updated
+          failure: Failed to update form handler
+        destroy:
+          success: Form handler deleted
+          failure: Failed to delete form handler
+        set_form:
+          not_found: Form handler not found
+
+
+    mailers:
+      form_mailer:
+        default_subject: '[%{site_name}] Form data from your website'
+
+    models:
+      forms:
+        template_file_must_exist: The template file must exist

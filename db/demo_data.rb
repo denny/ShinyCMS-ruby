@@ -1,6 +1,6 @@
 
 Blog.create!([
-  {id: 1, internal_name: "ShinyBlog", description: "", public_name: "The ShinySite Blog", slug: "shinysite", show_in_menus: true, show_on_site: true, user_id: @shiny_admin.id}
+  {id: 1, internal_name: "ShinyBlog", public_name: "The ShinySite Blog", slug: "shinysite", description: "", show_in_menus: true, show_on_site: true, user_id: @shiny_admin.id}
 ])
 
 BlogPost.create!([
@@ -32,7 +32,8 @@ PageTemplate.create!([
   {id: 2, name: "No sidebar", description: "Single-column layout from the Halcyonic theme", filename: "no-sidebar"},
   {id: 3, name: "Right sidebar", description: "Two column layout (with sidebar on right) from the Halcyonic theme", filename: "right-sidebar"},
   {id: 4, name: "Left sidebar", description: "Two column layout (with sidebar on left) from the Halcyonic theme", filename: "left-sidebar"},
-  {id: 5, name: "Double sidebar", description: "Three column layout (sidebars on both sides) from the Halcyonic theme", filename: "double-sidebar"}
+  {id: 5, name: "Double sidebar", description: "Three column layout (sidebars on both sides) from the Halcyonic theme", filename: "double-sidebar"},
+  {id: 6, name: "Contact form", description: "", filename: "contact-form"}
 ])
 
 PageTemplateElement.create!([
@@ -71,15 +72,16 @@ PageTemplateElement.create!([
 ])
 
 PageSection.create!([
-  {id: 1, internal_name: "Two column", description: "", public_name: "Two Column", slug: "two", default_page_id: nil, section_id: nil, sort_order: 3, show_in_menus: true, show_on_site: true}
+  {id: 1, internal_name: "Two column", public_name: "Two Column", slug: "two", description: "", default_page_id: nil, section_id: nil, sort_order: 3, show_in_menus: true, show_on_site: true}
 ])
 
 Page.create!([
-  {id: 1, internal_name: "Home", description: "Demo site home page - uses Halcyonic index template", public_name: "ShinyCMS Demo", slug: "home", template_id: 1, section_id: nil, sort_order: 1, show_in_menus: false, show_on_site: true},
-  {id: 2, internal_name: "One column", description: "", public_name: "One Column", slug: "one", template_id: 2, section_id: nil, sort_order: 2, show_in_menus: true, show_on_site: true},
-  {id: 3, internal_name: "Right sidebar", description: "", public_name: "Right Sidebar", slug: "right-sidebar", template_id: 3, section_id: 1, sort_order: 2, show_in_menus: true, show_on_site: true},
-  {id: 4, internal_name: "Left sidebar", description: "", public_name: "Left Sidebar", slug: "left-sidebar", template_id: 4, section_id: 1, sort_order: 1, show_in_menus: true, show_on_site: true},
-  {id: 5, internal_name: "Three column", description: "", public_name: "Three Column", slug: "three", template_id: 5, section_id: nil, sort_order: 4, show_in_menus: true, show_on_site: true}
+  {id: 1, internal_name: "Home", public_name: "ShinyCMS Demo", slug: "home", description: "Demo site home page - uses Halcyonic index template", template_id: 1, section_id: nil, sort_order: 1, show_in_menus: false, show_on_site: true},
+  {id: 2, internal_name: "One column", public_name: "One Column", slug: "one", description: "", template_id: 2, section_id: nil, sort_order: 2, show_in_menus: true, show_on_site: true},
+  {id: 3, internal_name: "Right sidebar", public_name: "Right Sidebar", slug: "right-sidebar", description: "", template_id: 3, section_id: 1, sort_order: 2, show_in_menus: true, show_on_site: true},
+  {id: 4, internal_name: "Left sidebar", public_name: "Left Sidebar", slug: "left-sidebar", description: "", template_id: 4, section_id: 1, sort_order: 1, show_in_menus: true, show_on_site: true},
+  {id: 5, internal_name: "Three column", public_name: "Three Column", slug: "three", description: "", template_id: 5, section_id: nil, sort_order: 4, show_in_menus: true, show_on_site: true},
+  {id: 6, internal_name: "Contact Us", public_name: "", slug: "contact", description: "Contact form", template_id: 6, section_id: nil, sort_order: 9, show_in_menus: true, show_on_site: true}
 ])
 
 PageElement.create!([
@@ -115,6 +117,10 @@ PageElement.create!([
   {id: 30, page_id: 5, name: "heading", content: "", element_type: "Short Text"},
   {id: 31, page_id: 5, name: "subheading", content: "", element_type: "Short Text"},
   {id: 32, page_id: 5, name: "text_content", content: "", element_type: "Long Text"}
+])
+
+ShinyForms::Form.create!([
+  {id: 1, internal_name: "Contact Page", public_name: "Contact us", slug: "contact", description: nil, handler: "plain_email", email_to: nil, filename: nil, redirect_to: nil, success_message: nil, sort_order: nil}
 ])
 
 Blazer::Query.create!([

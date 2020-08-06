@@ -9,7 +9,7 @@ class ApplicationMailer < ActionMailer::Base
 
   track open: -> { track_opens? }, click: -> { track_clicks? }
 
-  default from: -> { default_from_address }
+  default from: -> { default_email }
 
   layout 'mailer'
 
@@ -23,8 +23,8 @@ class ApplicationMailer < ActionMailer::Base
     Setting.get( :track_clicks )&.downcase == 'yes'
   end
 
-  def default_from_address
-    ENV[ 'MAILER_SENDER' ]
+  def default_email
+    Setting.get( :default_email ) || ENV[ 'DEFAULT_EMAIL' ]
   end
 
   def notified_user( email_address, name = nil )

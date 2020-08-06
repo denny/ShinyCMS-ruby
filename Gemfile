@@ -1,10 +1,27 @@
 # frozen_string_literal: true
 
+# Supporting methods for loading ShinyCMS plugin gems
+def plugin_names
+  return ENV[ 'SHINYCMS_PLUGINS' ].split( /[, ]+/ ) if ENV[ 'SHINYCMS_PLUGINS' ]
+
+  Dir[ 'plugins/*' ].sort.map { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
+end
+
+def underscore( camel_cased_word )
+  word = camel_cased_word.to_s
+  word = word.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
+  word = word.gsub(/([a-z\d])([A-Z])/, '\1_\2')
+  word = word.tr('-', '_')
+  word.downcase
+end
+
 source 'https://rubygems.org' do
   gem 'rails', '~> 6.0.3'
 
+  # Database
   gem 'pg', '>= 0.18', '< 2.0'
 
+  # Webserver
   gem 'puma', '~> 4.3'
 
   # Load ENV from .env(.*) files
@@ -12,6 +29,12 @@ source 'https://rubygems.org' do
 
   # Locales for the 'not USA' bits of the world
   gem 'rails-i18n'
+
+  # Enable ShinyCMS plugins
+  plugin_names.each do |plugin_name|
+    gem_name = underscore( plugin_name )
+    gem gem_name, path: "plugins/#{plugin_name}"
+  end
 
   # Reduce boot times through caching; required in config/boot.rb
   gem 'bootsnap', '>= 1.4.2', require: false
