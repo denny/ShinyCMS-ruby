@@ -45,7 +45,7 @@ class DiscussionsController < ApplicationController
   end
 
   def save_comment
-    if passes_akismet_check? && passes_recaptcha? && @new_comment.save
+    if new_comment_passes_checks_and_saves?
       flash[ :notice ] = t( '.success' ) unless @new_comment.spam?
       redirect_back fallback_location: discussion_path( @discussion )
     else
@@ -64,6 +64,10 @@ class DiscussionsController < ApplicationController
 
   def stash_comment
     @comment = @discussion.comments.find_by( number: params[ :number ] ) || nil
+  end
+
+  def new_comment_passes_checks_and_saves?
+    passes_akismet_check? && passes_recaptcha? && @new_comment.save
   end
 
   def passes_akismet_check?
