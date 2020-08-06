@@ -2,6 +2,8 @@
 
 # Model for mailing list subscriptions
 class Subscription < ApplicationRecord
+  include ShinyDemoDataProvider
+
   # Associations
 
   belongs_to :subscriber, inverse_of: :subscriptions, polymorphic: true
@@ -13,10 +15,4 @@ class Subscription < ApplicationRecord
 
   validates :subscriber, presence: true
   validates :list,       presence: true
-
-  # Class methods
-
-  def self.dump_for_demo?
-    true
-  end
 end

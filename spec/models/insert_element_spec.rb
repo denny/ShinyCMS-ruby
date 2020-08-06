@@ -7,4 +7,8 @@ RSpec.describe InsertElement, type: :model do
     let( :set     ) { InsertSet.first }
     let( :element ) { create :insert_element, set: set }
   end
+
+  it_should_behave_like 'ShinyDemoDataProvider' do
+    let( :model ) { Blog }
+  end
 end

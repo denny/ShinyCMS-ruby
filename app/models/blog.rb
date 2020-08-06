@@ -2,9 +2,10 @@
 
 # Model class for blogs (which are a collection of blog posts)
 class Blog < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyName
-  include ShinySlug
   include ShinyShowHide
+  include ShinySlug
 
   # Associations
 
@@ -46,10 +47,6 @@ class Blog < ApplicationRecord
   end
 
   # Class methods
-
-  def self.dump_for_demo?
-    true
-  end
 
   def self.multiple_blogs_mode?
     Rails.application.config.multiple_blogs_mode == true

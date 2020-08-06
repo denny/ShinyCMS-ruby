@@ -2,6 +2,8 @@
 
 # Model for page templates
 class PageTemplate < ApplicationRecord
+  include ShinyDemoDataProvider
+
   # Associations
 
   has_many :pages, inverse_of: :template, foreign_key: :template_id,
@@ -49,10 +51,6 @@ class PageTemplate < ApplicationRecord
   end
 
   # Class methods
-
-  def self.dump_for_demo?
-    true
-  end
 
   def self.template_dir
     return if Theme.current.blank?

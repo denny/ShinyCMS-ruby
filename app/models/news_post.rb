@@ -2,6 +2,7 @@
 
 # Model class for news posts
 class NewsPost < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyPost
 
   # Associations
@@ -16,11 +17,5 @@ class NewsPost < ApplicationRecord
     url_helpers.view_news_post_path(
       posted_year, posted_month, slug, anchor: anchor
     )
-  end
-
-  # Class methods
-
-  def self.dump_for_demo?
-    true
   end
 end

@@ -2,6 +2,7 @@
 
 # Model class for discussions (used to group comments)
 class Discussion < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyShowHide
 
   # Assocations
@@ -41,9 +42,5 @@ class Discussion < ApplicationRecord
     discussions = where( id: counts.keys )
 
     [ discussions, counts ]
-  end
-
-  def self.dump_for_demo?
-    true
   end
 end

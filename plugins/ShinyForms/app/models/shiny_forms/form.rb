@@ -3,6 +3,7 @@
 module ShinyForms
   # Model for ShinyCMS forms
   class Form < ApplicationRecord
+    include ShinyDemoDataProvider
     include ShinyName
     include ShinySlug
 
@@ -40,10 +41,6 @@ module ShinyForms
 
     def self.policy_class
       ::Admin::FormPolicy
-    end
-
-    def self.dump_for_demo?
-      true
     end
 
     def self.template_file_exists?( filename )

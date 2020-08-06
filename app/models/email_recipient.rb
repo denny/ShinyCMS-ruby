@@ -2,6 +2,7 @@
 
 # Store details of mailing list subscribers who aren't authenticated users
 class EmailRecipient < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyEmail
 
   # Associations
@@ -19,12 +20,6 @@ class EmailRecipient < ApplicationRecord
   # Before/after actions
 
   before_validation :generate_token, if: -> { token.blank? }
-
-  # Class methods
-
-  def self.dump_for_demo?
-    true
-  end
 
   private
 

@@ -2,6 +2,7 @@
 
 # Model class for blog posts
 class BlogPost < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyPost
 
   # Associations
@@ -29,11 +30,5 @@ class BlogPost < ApplicationRecord
         posted_year, posted_month, slug, anchor: anchor
       )
     end
-  end
-
-  # Class methods
-
-  def self.dump_for_demo?
-    true
   end
 end

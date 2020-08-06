@@ -2,6 +2,7 @@
 
 # Model for page sections
 class PageSection < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyName
   include ShinySlugInSection
   include ShinyShowHide
@@ -100,9 +101,5 @@ class PageSection < ApplicationRecord
                       .or( top_level_sections
                       .where( slug: name_or_slug ) )
                       .first
-  end
-
-  def self.dump_for_demo?
-    true
   end
 end

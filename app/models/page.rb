@@ -2,9 +2,10 @@
 
 # Model for 'brochure' pages
 class Page < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyName
-  include ShinySlugInSection
   include ShinyShowHide
+  include ShinySlugInSection
 
   # Associations
 
@@ -103,9 +104,5 @@ class Page < ApplicationRecord
       PageSection.default_section&.default_page ||
 
       Page.top_level_pages.min
-  end
-
-  def self.dump_for_demo?
-    true
   end
 end
