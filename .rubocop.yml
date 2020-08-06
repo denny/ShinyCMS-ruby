@@ -5,18 +5,19 @@ require: rubocop-rails
 AllCops:
   EnabledByDefault: true
   Exclude:
-    - bin/*
     - app/assets/**/*
+    - bin/*
     - coverage/**/*
+    - db/schema.rb
+    - db/migrate/*.rb
     - docs/*
     - log/*
     - node_modules/**/*
+    - plugins/*/db/migrate/*.rb
     - public/**/*
     - tmp/**/*
     - tools/**/*
-    - db/schema.rb
-    - db/migrate/*.rb
-    - plugins/*/db/migrate/*.rb
+    - vendor/*
 
 # Disabling cops for a few lines here and there is handy
 Style/DisableCopsWithinSourceCodeDirective:
