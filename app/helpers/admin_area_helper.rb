@@ -29,24 +29,12 @@ module AdminAreaHelper
     ::Plugin.loaded.map( &:underscore )
   end
 
-  def redirect_with_notice( redirect_path, notice_message )
-    flash[ :notice ] = notice_message
-    redirect_to redirect_path
-  end
-
-  def redirect_with_alert( redirect_path, alert_message )
-    skip_authorization
-    flash[ :alert ] = alert_message
-    redirect_to redirect_path
-  end
-
-  def render_capability_category( form, category, capabilities, show, skip = false )
+  def render_capability_category( form, category, capabilities, show )
     render partial: 'capability_category', locals: {
       f: form,
       category: category,
       category_capabilities: capabilities,
-      show: show,
-      skip_name: skip
+      show: show
     }
   end
 
@@ -69,10 +57,10 @@ module AdminAreaHelper
     render partial: 'admin/menu/menu__section_end'
   end
 
-  def render_admin_menu_section( text, icon = nil )
+  def render_admin_menu_section( text, icon = nil, &contents )
     section = render_admin_menu_section_start( text, icon )
     section << capture do
-      yield
+      contents.call
     end
     section << render_admin_menu_section_end
   end

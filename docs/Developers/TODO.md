@@ -2,6 +2,11 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
+* Highlight section name in admin area menu when on a page which isn't in the menu
+  (e.g. 'Edit page', clicking around in Blazer, etc)
+
+* Jump admin menu to current section with an anchor
+
 * Add exact_text option to capybara matcher calls in request specs
   * expect(bar).to have_[field/whatever], text: 'foo', exact_text: true
   * NB: Try one first; might fail on whitespace differences :eyeroll:

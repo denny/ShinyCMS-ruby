@@ -31,7 +31,7 @@ class Admin::NewsController < AdminController
     authorise @post
 
     if @post.save
-      redirect_with_notice edit_news_post_path( @post ), t( '.success' )
+      redirect_to edit_news_post_path( @post ), notice: t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -46,7 +46,7 @@ class Admin::NewsController < AdminController
     authorise @post
 
     if @post.update( post_params )
-      redirect_with_notice edit_news_post_path( @post ), t( '.success' )
+      redirect_to edit_news_post_path( @post ), notice: t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit
@@ -74,7 +74,7 @@ class Admin::NewsController < AdminController
     @post = NewsPost.find( params[:id] )
   rescue ActiveRecord::RecordNotFound
     skip_authorization
-    redirect_with_alert news_path, t( '.failure' )
+    redirect_to news_path, alert: t( '.failure' )
   end
 
   def post_params

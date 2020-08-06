@@ -27,7 +27,7 @@ class Admin::Pages::SectionsController < AdminController
     authorise @section
 
     if @section.save
-      redirect_with_notice edit_page_section_path( @section ), t( '.success' )
+      redirect_to edit_page_section_path( @section ), notice: t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -44,7 +44,7 @@ class Admin::Pages::SectionsController < AdminController
     authorise @section
 
     if @section.update( section_params )
-      redirect_with_notice edit_page_section_path( @section ), t( '.success' )
+      redirect_to edit_page_section_path( @section ), notice: t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render :edit
@@ -58,7 +58,8 @@ class Admin::Pages::SectionsController < AdminController
     flash[ :notice ] = t( '.success' ) if section.destroy
     redirect_to pages_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    redirect_with_alert pages_path, t( '.failure' )
+    skip_authorization
+    redirect_to pages_path, alert: t( '.failure' )
   end
 
   private
