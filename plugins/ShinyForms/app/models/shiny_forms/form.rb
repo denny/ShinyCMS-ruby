@@ -22,6 +22,8 @@ module ShinyForms
     end
 
     def handler_exists?
+      return false unless ShinyForms::FormHandler::FORM_HANDLERS.include? handler
+
       handlers.respond_to?( handler.to_sym )
     end
 
