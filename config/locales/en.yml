@@ -206,6 +206,7 @@ en:
     default_email: Default email address
     default_page: Default page
     default_section: Default section
+    default_search_backend: Default search back-end
     post_login_redirect: Post-login redirect
     recaptcha_comment_score: 'reCAPTCHA: Minimum score for comments'
     recaptcha_registration_score: 'reCAPTCHA: Minimum score for user registration'
