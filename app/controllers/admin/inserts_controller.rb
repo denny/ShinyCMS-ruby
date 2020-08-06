@@ -40,7 +40,7 @@ class Admin::InsertsController < AdminController
     redirect_to action: :index
   rescue ActiveRecord::RecordNotUnique
     skip_authorization
-    redirect_with_alert inserts_path, t( '.failure' )
+    redirect_to inserts_path, alert: t( '.failure' )
   end
 
   def destroy
@@ -50,7 +50,8 @@ class Admin::InsertsController < AdminController
     flash[ :notice ] = t( '.success' ) if element.destroy
     redirect_to inserts_path
   rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-    redirect_with_alert inserts_path, t( '.failure' )
+    skip_authorization
+    redirect_to inserts_path, alert: t( '.failure' )
   end
 
   private
