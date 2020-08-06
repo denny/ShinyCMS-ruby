@@ -35,7 +35,7 @@ namespace :shiny do
           puts "Username: #{error}" unless username.nil?
         end
         puts 'Please choose a username for your admin account:'
-        username = STDIN.gets.strip
+        username = $stdin.gets.strip
 
         admin = User.new( username: username, password: password, email: email )
         admin.valid?
@@ -46,7 +46,7 @@ namespace :shiny do
           puts "Password: #{error}" unless password.nil?
         end
         puts 'Please set the password of your admin account:'
-        password = STDIN.gets.strip
+        password = $stdin.gets.strip
 
         admin = User.new( username: username, password: password, email: email )
         admin.valid?
@@ -57,7 +57,7 @@ namespace :shiny do
           puts "Email: #{error}" unless email.nil?
         end
         puts 'Please set the email address of your admin account:'
-        email = STDIN.gets.strip
+        email = $stdin.gets.strip
 
         admin = User.new( username: username, password: password, email: email )
         admin.valid?
