@@ -28,7 +28,7 @@ module ShinyForms
       authorise @form
 
       if @form.save
-        redirect_with_notice edit_form_path( @form ), t( '.success' )
+        redirect_to edit_form_path( @form ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render :new
@@ -45,7 +45,7 @@ module ShinyForms
       authorise @form
 
       if @form.update(form_params)
-        redirect_with_notice edit_form_path( @form ), t( '.success' )
+        redirect_to edit_form_path( @form ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render :edit
@@ -57,7 +57,7 @@ module ShinyForms
       authorise @form
 
       @form.destroy!
-      redirect_with_notice forms_path, t( '.success' )
+      redirect_to forms_path, notice: t( '.success' )
     end
 
     private
@@ -66,7 +66,7 @@ module ShinyForms
       @form = ShinyForms::Form.find( params[:id] )
     rescue ActiveRecord::RecordNotFound
       skip_authorization
-      redirect_with_alert forms_path, t( 'shiny_forms.admin.forms.set_form.not_found' )
+      redirect_to forms_path, alert: t( 'shiny_forms.admin.forms.set_form.not_found' )
     end
 
     def set_form_for_create

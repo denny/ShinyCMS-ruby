@@ -29,7 +29,7 @@ class Admin::BlogsController < AdminController
     authorise @blog
 
     if @blog.save
-      redirect_with_notice edit_blog_path( @blog ), t( '.success' )
+      redirect_to edit_blog_path( @blog ), notice: t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -44,7 +44,7 @@ class Admin::BlogsController < AdminController
     authorise @blog
 
     if @blog.update( blog_params )
-      redirect_with_notice edit_blog_path( @blog ), t( '.success' )
+      redirect_to edit_blog_path( @blog ), notice: t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit
@@ -64,7 +64,7 @@ class Admin::BlogsController < AdminController
     @blog = Blog.find( params[:id] )
   rescue ActiveRecord::RecordNotFound
     skip_authorization
-    redirect_with_alert blogs_path, t( '.failure' )
+    redirect_to blogs_path, alert: t( '.failure' )
   end
 
   def blog_params
