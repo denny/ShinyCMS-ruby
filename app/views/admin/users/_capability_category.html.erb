@@ -1,8 +1,6 @@
   <tr class="<%= show %>collapse collapse_capabilities">
     <td>
-      <% unless skip_name %>
       <%= t( "capability.category.#{category.name}" ) %>
-      <% end %>
     </td>
     <% category_capabilities.each do |capability_name| %>
     <td class="width16pc">

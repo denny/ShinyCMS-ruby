@@ -25,6 +25,10 @@ class Theme
     "#{view_path}/pages/templates"
   end
 
+  def mailer_templates_path
+    "#{view_path}/mailers/templates"
+  end
+
   # Class methods
 
   def self.base_directory_exists?( theme_name )

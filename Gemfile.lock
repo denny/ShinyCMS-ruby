@@ -1,3 +1,10 @@
+PATH
+  remote: plugins/ShinyForms
+  specs:
+    shiny_forms (20.7)
+      pg (>= 0.18, < 2.0)
+      rails (~> 6.0.3, >= 6.0.3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -110,7 +117,7 @@ GEM
       safely_block (>= 0.1.1)
     bootsnap (1.4.7)
       msgpack (~> 1.0)
-    brakeman (4.8.2)
+    brakeman (4.9.0)
     builder (3.2.4)
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
@@ -333,7 +340,7 @@ GEM
     rspec-support (3.9.3)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (0.88.0)
+    rubocop (0.89.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
       rainbow (>= 2.2.2, < 4.0)
@@ -342,8 +349,8 @@ GEM
       rubocop-ast (>= 0.1.0, < 1.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.2.0)
-      parser (>= 2.7.0.1)
+    rubocop-ast (0.3.0)
+      parser (>= 2.7.1.4)
     rubocop-rails (2.7.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
@@ -462,6 +469,7 @@ DEPENDENCIES
   rubocop-rails!
   sassc-rails!
   seed_dump!
+  shiny_forms!
   webpacker (~> 5.1)!
 
 BUNDLED WITH

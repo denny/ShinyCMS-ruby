@@ -15,10 +15,12 @@ require 'dotenv/tasks'
 # rubocop:disable Layout/MultilineArrayLineBreaks
 
 # Big List of Models That Hold Demo Site Data
+# TODO: FIXME: need to figure out how to handle plugin models here
 MODEL_NAMES = %w[
   EmailRecipient MailingList Subscription
   Blog BlogPost NewsPost Discussion Comment
   PageTemplate PageTemplateElement PageSection Page PageElement InsertElement
+  ShinyForms::Form
   Blazer::Query Blazer::Dashboard Blazer::DashboardQuery
 ].freeze
 
@@ -52,8 +54,8 @@ namespace :shiny do
 
     task confirm: %i[ environment dotenv ] do
       msg = 'Loading the demo site data wipes the database. Are you sure? (y/N)'
-      STDOUT.puts msg
-      unless STDIN.gets.chomp.downcase.in? %w[ y yes ]
+      $stdout.puts msg
+      unless $stdin.gets.chomp.downcase.in? %w[ y yes ]
         puts 'Thank you. No action taken, database is unchanged.'
         exit
       end

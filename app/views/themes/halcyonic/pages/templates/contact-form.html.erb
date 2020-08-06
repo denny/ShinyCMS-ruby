@@ -1,0 +1,43 @@
+      <section id="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+
+              <section>
+                <header>
+                  <h2><%= @page.name %></h2>
+                </header>
+
+                <%= form_tag '/form/contact', method: :post, class: 'contact_form' do %>
+                  <p>
+                    <label>Name:
+                    <br><input name="shiny_form[name]" type="text">
+                    </label>
+                  </p>
+                  <p>
+                    <label>Email:
+                    <br><input name="shiny_form[email]" type="email">
+                    </label>
+                  </p>
+                  <p>
+                    <label>Subject:
+                    <br><input name="shiny_form[subject]" type="text">
+                    </label>
+                  </p>
+                  <p>
+                    <label>Message:
+                    <br><textarea name="shiny_form[message]"></textarea>
+                    </label>
+                  </p>
+
+                  <p>
+                    <input type="submit" value="Send" class="button">
+                  </p>
+                <% end %>
+
+              </section>
+
+            </div>
+          </div>
+        </div>
+      </section>

@@ -1,0 +1,91 @@
+# frozen_string_literal: true
+
+module ShinyForms
+  # Model for ShinyCMS forms
+  class Form < ApplicationRecord
+    include ShinyName
+    include ShinySlug
+
+    validates :slug, uniqueness: true
+
+    # Instance methods
+
+    def send_to_handler( form_data )
+      return false_after_logging_warning unless handler_exists?
+
+      handlers.public_send( handler.to_sym, self, form_data )
+    end
+
+    def false_after_logging_warning
+      Rails.logger.warn "Unknown form handler '#{handler}' (form ID: #{id})"
+      false
+    end
+
+    def handler_exists?
+      handlers.respond_to?( handler.to_sym )
+    end
+
+    def handlers
+      @handlers ||= FormHandler.new
+    end
+
+    # Specify policy class for Pundit
+    def policy_class
+      ::Admin::FormPolicy
+    end
+
+    # Class methods
+
+    def self.policy_class
+      ::Admin::FormPolicy
+    end
+
+    def self.template_file_exists?( filename )
+      Form.available_templates.include? filename
+    end
+
+    # Get a list of available template files from the disk
+    def self.available_templates
+      ( theme_templates + default_templates ).uniq.sort
+    end
+
+    def self.theme_templates
+      return unless theme_template_dir
+
+      template_names = []
+
+      filenames = Dir.glob '*.mjml', base: theme_template_dir
+      filenames.each do |filename|
+        template_names << filename.remove( '.html.mjml' )
+      end
+
+      template_names.sort
+    end
+
+    def self.default_templates
+      template_names = []
+
+      filenames = Dir.glob '*.mjml', base: default_template_dir
+      filenames.each do |filename|
+        template_names << filename.remove( '.html.mjml' )
+      end
+
+      template_names.sort
+    end
+
+    def self.theme_template_dir
+      Rails.root.join Theme.current.mailer_templates_path if Theme.current.present?
+    end
+
+    def self.default_template_dir
+      Rails.root.join 'plugins/ShinyForms/app/views/shiny_forms/form_mailer'
+    end
+
+    # Add another validation here, because it uses the class methods above
+    validates :filename, inclusion: {
+      in: Form.available_templates,
+      message: I18n.t( 'shiny_forms.models.forms.template_file_must_exist' ),
+      allow_nil: true
+    }
+  end
+end

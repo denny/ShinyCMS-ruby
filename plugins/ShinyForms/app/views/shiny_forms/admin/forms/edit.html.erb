@@ -1,0 +1,37 @@
+<% @page_title = t( '.title' ) %>
+
+<%= form_for @form, url: shiny_forms.form_path( @form ), method: :put do |f| %>
+  <p>
+    <%= f.label :internal_name %><br>
+    <%= f.text_field :internal_name %>
+  </p>
+  <!--
+  <p>
+    <%= f.label :public_name %><br>
+    <%= f.text_field :public_name %>
+  </p>
+  -->
+  <p>
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
+  </p>
+  <p>
+    <%= f.label :handler %>
+    <br><%= f.select :handler, @form_handlers %>
+  </p>
+  <p>
+    <%= f.label :email_to %><br>
+    <%= f.text_field :email_to %>
+  </p>
+  <p>
+    <%= f.label :redirect_to %><br>
+    <%= f.text_field :redirect_to %>
+  </p>
+  <p>
+    <%= f.label :success_message %><br>
+    <%= f.text_field :success_message %>
+  </p>
+  <p>
+    <%= f.submit t( 'update' ) %>
+  </p>
+<% end %>

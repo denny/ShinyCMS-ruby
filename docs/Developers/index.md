@@ -13,6 +13,8 @@ Here are some things that might be useful to know...
 
 * [Testing](Testing.md)
 
+* [Email and Mailers](mailers.md)
+
 
 ## Code of Conduct
 
