@@ -50,4 +50,12 @@ RSpec.describe User, type: :model do
       expect( user.capabilities.count ).to eq lots
     end
   end
+
+  context 'we do not want to dump potentially real user data into the demo data file' do
+    describe '.dump_for_demo?' do
+      it 'returns false' do
+        expect( User.dump_for_demo? ).to be false
+      end
+    end
+  end
 end

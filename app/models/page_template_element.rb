@@ -2,6 +2,7 @@
 
 # Model class for template elements
 class PageTemplateElement < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyElement
 
   belongs_to :template, inverse_of: :elements, class_name: 'PageTemplate'

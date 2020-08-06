@@ -56,4 +56,8 @@ RSpec.describe Discussion, type: :model do
       end
     end
   end
+
+  it_should_behave_like 'ShinyDemoDataProvider' do
+    let( :model ) { Blog }
+  end
 end

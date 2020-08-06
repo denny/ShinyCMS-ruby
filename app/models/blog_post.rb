@@ -2,6 +2,7 @@
 
 # Model class for blog posts
 class BlogPost < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyPost
 
   # Associations

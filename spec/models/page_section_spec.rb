@@ -49,4 +49,8 @@ RSpec.describe 'PageSection model:', type: :model do
       expect( PageSection.last   ).to eq s2
     end
   end
+
+  it_should_behave_like 'ShinyDemoDataProvider' do
+    let( :model ) { Blog }
+  end
 end

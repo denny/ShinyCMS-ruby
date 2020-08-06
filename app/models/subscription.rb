@@ -2,6 +2,8 @@
 
 # Model for mailing list subscriptions
 class Subscription < ApplicationRecord
+  include ShinyDemoDataProvider
+
   # Associations
 
   belongs_to :subscriber, inverse_of: :subscriptions, polymorphic: true

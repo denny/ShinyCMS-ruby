@@ -38,4 +38,8 @@ RSpec.describe 'PageTemplate model:', type: :model do
       expect( PageTemplate.available_templates.first ).to eq 'an_example'
     end
   end
+
+  it_should_behave_like 'ShinyDemoDataProvider' do
+    let( :model ) { Blog }
+  end
 end

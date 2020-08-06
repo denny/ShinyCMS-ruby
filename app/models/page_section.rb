@@ -2,6 +2,7 @@
 
 # Model for page sections
 class PageSection < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyName
   include ShinySlugInSection
   include ShinyShowHide

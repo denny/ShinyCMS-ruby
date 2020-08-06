@@ -13,5 +13,9 @@ module ShinyForms
         expect( form.name ).to eq ship_name
       end
     end
+
+    it_should_behave_like 'ShinyDemoDataProvider' do
+      let( :model ) { Form }
+    end
   end
 end

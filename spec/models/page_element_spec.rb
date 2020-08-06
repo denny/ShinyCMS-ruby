@@ -7,4 +7,8 @@ RSpec.describe PageElement, type: :model do
     let( :page    ) { create :page }
     let( :element ) { create :page_element, page: page }
   end
+
+  it_should_behave_like 'ShinyDemoDataProvider' do
+    let( :model ) { Blog }
+  end
 end

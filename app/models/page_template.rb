@@ -2,6 +2,8 @@
 
 # Model for page templates
 class PageTemplate < ApplicationRecord
+  include ShinyDemoDataProvider
+
   # Associations
 
   has_many :pages, inverse_of: :template, foreign_key: :template_id,

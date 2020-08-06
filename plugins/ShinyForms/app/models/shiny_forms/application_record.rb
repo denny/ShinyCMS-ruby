@@ -2,7 +2,7 @@
 
 module ShinyForms
   # Base model for ShinyCMS form handlers plugin
-  class ApplicationRecord < ActiveRecord::Base
+  class ApplicationRecord < ::ApplicationRecord
     self.abstract_class = true
   end
 end

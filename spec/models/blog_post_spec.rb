@@ -42,6 +42,10 @@ RSpec.describe BlogPost, type: :model do
     end
   end
 
+  it_should_behave_like 'ShinyDemoDataProvider' do
+    let( :model ) { BlogPost }
+  end
+
   it_should_behave_like 'Voteable' do
     let( :item ) { create :blog_post }
   end

@@ -40,4 +40,8 @@ class ApplicationRecord < ActiveRecord::Base
   def self.pg_search_is_enabled?
     ActiveRecord::Base.connection.adapter_name == 'PostgreSQL'
   end
+
+  def self.dump_for_demo?
+    false
+  end
 end

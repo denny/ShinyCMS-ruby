@@ -2,6 +2,7 @@
 
 # Model class for news posts
 class NewsPost < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyPost
 
   # Associations
