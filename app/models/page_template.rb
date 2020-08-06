@@ -50,6 +50,10 @@ class PageTemplate < ApplicationRecord
 
   # Class methods
 
+  def self.dump_for_demo?
+    true
+  end
+
   def self.template_dir
     return if Theme.current.blank?
 

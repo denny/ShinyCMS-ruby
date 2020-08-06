@@ -7,4 +7,10 @@ class PageElement < ApplicationRecord
   belongs_to :page, inverse_of: :elements
 
   validates :page, presence: true
+
+  # Class methods
+
+  def self.dump_for_demo?
+    true
+  end
 end

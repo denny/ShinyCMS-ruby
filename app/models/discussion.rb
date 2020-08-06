@@ -42,4 +42,8 @@ class Discussion < ApplicationRecord
 
     [ discussions, counts ]
   end
+
+  def self.dump_for_demo?
+    true
+  end
 end

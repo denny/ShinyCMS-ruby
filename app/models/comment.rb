@@ -126,4 +126,8 @@ class Comment < ApplicationRecord
   def self.all_spam
     where( spam: true ).order( :created_at )
   end
+
+  def self.dump_for_demo?
+    true
+  end
 end

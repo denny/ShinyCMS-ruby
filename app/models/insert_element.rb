@@ -7,4 +7,10 @@ class InsertElement < ApplicationRecord
   belongs_to :set, inverse_of: :elements, class_name: 'InsertSet'
 
   validates :set, presence: true
+
+  # Class methods
+
+  def self.dump_for_demo?
+    true
+  end
 end

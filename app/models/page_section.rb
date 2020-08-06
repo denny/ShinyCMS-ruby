@@ -101,4 +101,8 @@ class PageSection < ApplicationRecord
                       .where( slug: name_or_slug ) )
                       .first
   end
+
+  def self.dump_for_demo?
+    true
+  end
 end

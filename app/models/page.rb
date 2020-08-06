@@ -104,4 +104,8 @@ class Page < ApplicationRecord
 
       Page.top_level_pages.min
   end
+
+  def self.dump_for_demo?
+    true
+  end
 end

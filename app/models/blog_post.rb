@@ -30,4 +30,10 @@ class BlogPost < ApplicationRecord
       )
     end
   end
+
+  # Class methods
+
+  def self.dump_for_demo?
+    true
+  end
 end

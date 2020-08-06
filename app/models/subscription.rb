@@ -13,4 +13,10 @@ class Subscription < ApplicationRecord
 
   validates :subscriber, presence: true
   validates :list,       presence: true
+
+  # Class methods
+
+  def self.dump_for_demo?
+    true
+  end
 end

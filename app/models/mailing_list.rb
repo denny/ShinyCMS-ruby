@@ -6,4 +6,10 @@ class MailingList < ApplicationRecord
 
   has_many :subscriptions, dependent: :destroy
   has_many :subscribers,   through: :subscriptions
+
+  # Class methods
+
+  def self.dump_for_demo?
+    true
+  end
 end

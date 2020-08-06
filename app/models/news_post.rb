@@ -17,4 +17,10 @@ class NewsPost < ApplicationRecord
       posted_year, posted_month, slug, anchor: anchor
     )
   end
+
+  # Class methods
+
+  def self.dump_for_demo?
+    true
+  end
 end

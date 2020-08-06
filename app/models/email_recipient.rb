@@ -20,6 +20,12 @@ class EmailRecipient < ApplicationRecord
 
   before_validation :generate_token, if: -> { token.blank? }
 
+  # Class methods
+
+  def self.dump_for_demo?
+    true
+  end
+
   private
 
   def generate_token

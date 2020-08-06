@@ -47,6 +47,10 @@ class Blog < ApplicationRecord
 
   # Class methods
 
+  def self.dump_for_demo?
+    true
+  end
+
   def self.multiple_blogs_mode?
     Rails.application.config.multiple_blogs_mode == true
   end

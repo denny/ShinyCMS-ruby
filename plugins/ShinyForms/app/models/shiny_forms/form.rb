@@ -42,6 +42,10 @@ module ShinyForms
       ::Admin::FormPolicy
     end
 
+    def self.dump_for_demo?
+      true
+    end
+
     def self.template_file_exists?( filename )
       Form.available_templates.include? filename
     end
