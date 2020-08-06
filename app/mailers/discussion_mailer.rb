@@ -7,8 +7,7 @@ class DiscussionMailer < ApplicationMailer
   def parent_comment_notification( comment )
     return unless comment&.parent&.notification_email&.present?
 
-    @reply  = comment
-    @parent = comment.parent
+    @reply, @parent = comment_and_parent( comment )
 
     subject = parent_comment_notification_subject( @reply )
 
@@ -23,12 +22,9 @@ class DiscussionMailer < ApplicationMailer
   def discussion_notification( comment )
     return unless comment&.discussion&.notification_email&.present?
 
-    @comment  = comment
-    @resource = comment.discussion.resource
+    @comment, @resource, @user = comment_and_resource_and_user( comment )
 
     subject = discussion_notification_subject( @comment, @resource )
-
-    @user = comment.discussion.resource.user
 
     mail to: comment.discussion.notification_email, subject: subject do |format|
       format.html
@@ -37,18 +33,15 @@ class DiscussionMailer < ApplicationMailer
   end
 
   def overview_notification( comment )
-    return if comment.blank?
+    return if comment.blank? || overview_email.blank?
 
     @comment = comment
 
-    email = Setting.get :all_comment_notifications_email
-    return if email.blank?
-
     subject = overview_notification_subject( @comment )
 
-    @user = notified_user( email, 'Admin' )
+    @user = notified_user( overview_email, 'Admin' )
 
-    mail to: email, subject: subject do |format|
+    mail to: overview_email, subject: subject do |format|
       format.html
       format.text
     end
@@ -79,6 +72,18 @@ class DiscussionMailer < ApplicationMailer
       comment_author_name: comment.author_name_any,
       site_name: @site_name
     )
+  end
+
+  def comment_and_parent( comment )
+    [ comment, comment.parent ]
+  end
+
+  def comment_and_resource_and_user( comment )
+    [ comment, comment.discussion.resource, comment.discussion.resource.user ]
+  end
+
+  def overview_email
+    Setting.get :all_comment_notifications_email
   end
 
   def check_feature_flags
