@@ -88,23 +88,15 @@ class DiscussionsController < ApplicationController
   end
 
   def comment_params
-    prms = params.require( :comment ).permit( permitted_param_names )
-    prms = merge_user_id( prms )
-    merge_discussion_id( prms )
+    prms = params.require( :comment ).permit(
+      %i[title body author_type author_name author_email author_url g-recaptcha-response[comment] g-recaptcha-response]
+    )
+    merge_user_id_and_discussion_id( prms )
   end
 
-  def merge_user_id( prms )
-    return prms unless user_signed_in?
-
-    prms.merge( user_id: current_user.id )
-  end
-
-  def merge_discussion_id( prms )
+  def merge_user_id_and_discussion_id( prms )
+    prms = prms.merge( user_id: current_user.id ) if user_signed_in?
     prms.merge( discussion_id: @discussion.id )
-  end
-
-  def permitted_param_names
-    %i[ title body author_type author_name author_email author_url g-recaptcha-response[comment] g-recaptcha-response ]
   end
 
   def check_feature_flags
