@@ -4,7 +4,7 @@
 # (specifically, a feature flag, and the admin user capabilities for authorisation)
 #
 # You can load or reload this data using the following rake task:
-# rails shiny_forms:install:data
+# rails shiny_forms:db:seed
 
 # Add feature flag
 forms_flag = FeatureFlag.find_or_create_by!( name: 'shiny_forms' )
