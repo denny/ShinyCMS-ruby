@@ -16,7 +16,7 @@ require 'dotenv/tasks'
 namespace :shiny_news do
   namespace :db do
     # :nocov:
-    desc 'ShinyCMS: load supporting data for forms plugin'
+    desc 'ShinyCMS: load supporting data for news plugin'
     task seed: %i[ environment dotenv ] do
       ShinyNews::Engine.load_seed
     end
