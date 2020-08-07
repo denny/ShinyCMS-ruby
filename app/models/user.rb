@@ -27,6 +27,8 @@ class User < ApplicationRecord
   has_many :blogs,      dependent: :restrict_with_error
   has_many :blog_posts, dependent: :restrict_with_error
   has_many :news_posts, dependent: :restrict_with_error
+  # TODO: polymorphic relationship here so users can own any type of plugin content
+  has_many :shiny_news_posts, dependent: :restrict_with_error
 
   # Validations
 
