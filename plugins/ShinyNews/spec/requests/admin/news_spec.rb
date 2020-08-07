@@ -60,7 +60,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
 
     it "fails to create a new news post when the slug isn't unique this month" do
-      post_from_this_month = create :news_post, posted_at: Time.zone.now.beginning_of_month
+      post_from_this_month = create :shiny_news_post, posted_at: Time.zone.now.beginning_of_month
 
       post create_news_post_path, params: {
         news_post: {
@@ -101,7 +101,7 @@ RSpec.describe 'Admin::News', type: :request do
 
   describe 'GET /admin/news/:id/edit' do
     it 'loads the form to edit an existing news post' do
-      post = create :news_post
+      post = create :shiny_news_post
 
       get edit_news_post_path( post )
 
@@ -111,7 +111,7 @@ RSpec.describe 'Admin::News', type: :request do
 
   describe 'PUT /admin/news' do
     it 'fails to update the news post when an incomplete form is submitted' do
-      post = create :news_post
+      post = create :shiny_news_post
 
       put news_post_path( post ), params: {
         news_post: {
@@ -127,7 +127,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
 
     it 'updates the news post when a complete form is submitted' do
-      post = create :news_post
+      post = create :shiny_news_post
 
       put news_post_path( post ), params: {
         news_post: {
@@ -148,7 +148,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
 
     it 'updates the discussion hidden/locked status successfully' do
-      post = create :news_post
+      post = create :shiny_news_post
       create :discussion, resource: post
 
       put news_post_path( post ), params: {
@@ -175,9 +175,9 @@ RSpec.describe 'Admin::News', type: :request do
 
   describe 'DELETE /admin/news/:id' do
     it 'deletes the specified news post' do
-      p1 = create :news_post
-      p2 = create :news_post
-      p3 = create :news_post
+      p1 = create :shiny_news_post
+      p2 = create :shiny_news_post
+      p3 = create :shiny_news_post
 
       delete news_post_path( p2 )
 
