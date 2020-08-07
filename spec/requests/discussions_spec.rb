@@ -10,7 +10,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
     FeatureFlag.disable :recaptcha_on_comment_form
     FeatureFlag.disable :akismet_on_comments
 
-    @post = create :news_post
+    @post = create :shiny_news_post
 
     @discussion = create :discussion, resource: @post
     @post.update!( discussion: @discussion )
