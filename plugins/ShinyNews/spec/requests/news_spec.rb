@@ -35,7 +35,7 @@ RSpec.describe 'News', type: :request do
 
       post3 = create :shiny_news_post
 
-      get view_news_path
+      get shiny_news.view_news_path
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2',      text: post1.title
@@ -49,7 +49,7 @@ RSpec.describe 'News', type: :request do
       create :top_level_page
       NewsPost.all.destroy_all
 
-      get view_news_path
+      get shiny_news.view_news_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'p', text: I18n.t( 'news.index.zero_posts' )
@@ -60,7 +60,7 @@ RSpec.describe 'News', type: :request do
     it 'displays the specified post' do
       post = create :shiny_news_post
 
-      # get view_news_post_path( post )
+      # get shiny_news.view_news_post_path( post )
       get "/news/#{post.posted_year}/#{post.posted_month}/#{post.slug}"
 
       expect( response ).to have_http_status :ok
@@ -69,7 +69,7 @@ RSpec.describe 'News', type: :request do
     it "displays the 404 page if the post doesn't exist" do
       post = create :shiny_news_post
 
-      # get view_news_post_path( post )
+      # get shiny_news.view_news_post_path( post )
       get "/news/#{post.posted_year}/#{post.posted_month}/NOPE"
 
       expect( response ).to have_http_status :not_found
@@ -82,7 +82,7 @@ RSpec.describe 'News', type: :request do
       post2 = create :shiny_news_post, posted_at: '2000-02-29'
       post3 = create :shiny_news_post, posted_at: '2000-09-03'
 
-      # get view_news_month_path( news, year, month )
+      # get shiny_news.view_news_month_path( news, year, month )
       get "/news/#{post1.posted_year}/#{post1.posted_month}"
 
       expect( response      ).to     have_http_status :ok
@@ -99,7 +99,7 @@ RSpec.describe 'News', type: :request do
       post2 = create :shiny_news_post, posted_at: '2000-02-29'
       post3 = create :shiny_news_post, posted_at: '2000-09-03'
 
-      # get view_news_year_path( news, year )
+      # get shiny_news.view_news_year_path( news, year )
       get "/news/#{post1.posted_year}"
 
       expect( response      ).to have_http_status :ok
