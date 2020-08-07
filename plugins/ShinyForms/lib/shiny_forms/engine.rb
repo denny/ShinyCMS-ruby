@@ -12,8 +12,8 @@ module ShinyForms
     end
 
     initializer 'shiny_forms.factories', after: 'factory_bot.set_factory_paths' do
-      shiny_forms_factories = File.expand_path( '../../spec/factories', __dir__ )
-      FactoryBot.definition_file_paths << shiny_forms_factories if defined? FactoryBot
+      plugin_factories = File.expand_path( '../../spec/factories', __dir__ )
+      FactoryBot.definition_file_paths << plugin_factories if defined? FactoryBot
     end
   end
 end
