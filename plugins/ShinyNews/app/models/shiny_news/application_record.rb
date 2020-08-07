@@ -10,14 +10,7 @@ module ShinyNews
     end
 
     def human_name
-      name = self.class.name.underscore.gsub( '/', '_' ).gsub( 'shiny_', '' )
-      return name.humanize.downcase unless I18n.exists?( "element_types.#{name}" )
-
-      I18n.t( "element_types.#{name}" )
-    end
-
-    def self.dump_for_demo?
-      false
+      self.class.name.underscore.gsub( '/', '_' ).gsub( 'shiny_', '' ).humanize.downcase
     end
   end
 end
