@@ -47,12 +47,12 @@ RSpec.describe 'News', type: :request do
 
     it 'throws an appropriate error if no news exists' do
       create :top_level_page
-      NewsPost.all.destroy_all
+      ShinyNews::Post.all.destroy_all
 
       get shiny_news.view_news_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css 'p', text: I18n.t( 'news.index.zero_posts' )
+      expect( response.body ).to have_css 'p', text: I18n.t( 'shiny_news.news.index.empty' )
     end
   end
 

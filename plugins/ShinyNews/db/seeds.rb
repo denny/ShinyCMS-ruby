@@ -30,7 +30,7 @@ news_downvotes_flag.update!(
 )
 
 # Add admin capabilities
-news_cc = CapabilityCategory.find_or_create_by!( name: 'news'  )
+news_cc = CapabilityCategory.find_or_create_by!( name: 'shiny_news_posts' )
 news_cc.capabilities.find_or_create_by!( name: 'list'          )
 news_cc.capabilities.find_or_create_by!( name: 'add'           )
 news_cc.capabilities.find_or_create_by!( name: 'edit'          )

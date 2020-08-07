@@ -18,14 +18,14 @@ module ShinyNews
     before_action :update_discussion_flags, only: %i[ create update ]
 
     def index
-      authorise NewsPost
+      authorise ShinyNews::Post
       page_num = params[ :page ] || 1
-      @posts = NewsPost.order( :created_at ).page( page_num )
+      @posts = ShinyNews::Post.order( :created_at ).page( page_num )
       authorise @posts if @posts.present?
     end
 
     def new
-      @post = NewsPost.new
+      @post = ShinyNews::Post.new
       authorise @post
     end
 
@@ -33,7 +33,7 @@ module ShinyNews
       authorise @post
 
       if @post.save
-        redirect_to edit_news_post_path( @post ), notice: t( '.success' )
+        redirect_to shiny_news.edit_news_path( @post ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render action: :new
@@ -48,7 +48,7 @@ module ShinyNews
       authorise @post
 
       if @post.update( post_params )
-        redirect_to edit_news_post_path( @post ), notice: t( '.success' )
+        redirect_to shiny_news.edit_news_path( @post ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render action: :edit
@@ -67,16 +67,16 @@ module ShinyNews
       authorise @post
 
       flash[ :notice ] = t( '.success' ) if @post.destroy
-      redirect_to action: :index
+      redirect_to news_index_path
     end
 
     private
 
     def set_post
-      @post = NewsPost.find( params[:id] )
+      @post = ShinyNews::Post.find( params[:id] )
     rescue ActiveRecord::RecordNotFound
       skip_authorization
-      redirect_to news_path, alert: t( '.failure' )
+      redirect_to news_index_path, alert: t( '.failure' )
     end
 
     def post_params
@@ -89,7 +89,7 @@ module ShinyNews
     end
 
     def set_post_for_create
-      @post = NewsPost.new( post_params_for_create )
+      @post = ShinyNews::Post.new( post_params_for_create )
     end
 
     def post_params_for_create

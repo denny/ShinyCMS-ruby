@@ -10,10 +10,10 @@ RSpec.describe 'Admin::News', type: :request do
 
   describe 'GET /admin/news' do
     it 'fetches the list of news posts' do
-      get shiny_news.news_path
+      get shiny_news.news_index_path
 
       expect( response ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.news.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.index.title' ).titlecase
     end
   end
 
@@ -35,14 +35,14 @@ RSpec.describe 'Admin::News', type: :request do
         }
       }
 
-      post1 = NewsPost.last
+      post1 = ShinyNews::Post.last
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_news.edit_news_path( post1 )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.news.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.news.create.success' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news.create.success' )
     end
 
     it 'fails to create a new news post when an incomplete form is submitted' do
@@ -55,8 +55,8 @@ RSpec.describe 'Admin::News', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.news.new.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.news.create.failure' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_news.admin.news.create.failure' )
     end
 
     it "fails to create a new news post when the slug isn't unique this month" do
@@ -72,8 +72,8 @@ RSpec.describe 'Admin::News', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.news.new.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.news.create.failure' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_news.admin.news.create.failure' )
     end
 
     it "doesn't fail when the slug is unique this month but not globally" do
@@ -88,14 +88,14 @@ RSpec.describe 'Admin::News', type: :request do
         }
       }
 
-      new_post = NewsPost.last
+      new_post = ShinyNews::Post.last
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_news.edit_news_path( new_post )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.news.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.news.create.success' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news.create.success' )
     end
   end
 
@@ -122,8 +122,8 @@ RSpec.describe 'Admin::News', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.news.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.news.update.failure' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_news.admin.news.update.failure' )
     end
 
     it 'updates the news post when a complete form is submitted' do
@@ -137,14 +137,14 @@ RSpec.describe 'Admin::News', type: :request do
         }
       }
 
-      post = NewsPost.last
+      post = ShinyNews::Post.last
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_news.edit_news_path( post )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.news.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.news.update.success' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news.update.success' )
     end
 
     it 'updates the discussion hidden/locked status successfully' do
@@ -161,13 +161,13 @@ RSpec.describe 'Admin::News', type: :request do
         }
       }
 
-      post = NewsPost.last
+      post = ShinyNews::Post.last
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_news.edit_news_path( post )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.news.update.success' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news.update.success' )
       expect( post.discussion.hidden? ).to be false
       expect( post.discussion.locked? ).to be true
     end
@@ -182,11 +182,11 @@ RSpec.describe 'Admin::News', type: :request do
       delete shiny_news.news_path( p2 )
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to shiny_news.news_path
+      expect( response      ).to     redirect_to shiny_news.news_index_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.news.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.news.destroy.success' )
+      expect( response.body ).to     have_title I18n.t( 'shiny_news.admin.news.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news.destroy.success' )
       expect( response.body ).to     have_css 'td', text: p1.title
       expect( response.body ).not_to have_css 'td', text: p2.title
       expect( response.body ).to     have_css 'td', text: p3.title
@@ -196,11 +196,11 @@ RSpec.describe 'Admin::News', type: :request do
       delete shiny_news.news_path( 999 )
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_news.news_path
+      expect( response      ).to redirect_to shiny_news.news_index_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.news.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.news.destroy.failure' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_news.admin.news.destroy.failure' )
     end
   end
 end

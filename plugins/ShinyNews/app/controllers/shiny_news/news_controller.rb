@@ -17,19 +17,19 @@ module ShinyNews
 
     def index
       page_num = params[:page] || 1
-      @posts = NewsPost.readonly.recent_posts.page( page_num )
+      @posts = ShinyNews::Post.readonly.recent_posts.page( page_num )
     end
 
     def month
-      @posts = NewsPost.readonly.posts_for_month( params[:year], params[:month] )
+      @posts = ShinyNews::Post.readonly.posts_for_month( params[:year], params[:month] )
     end
 
     def year
-      @posts = NewsPost.readonly.posts_for_year( params[:year] )
+      @posts = ShinyNews::Post.readonly.posts_for_year( params[:year] )
     end
 
     def show
-      @post = NewsPost.readonly.find_post( params[:year], params[:month], params[:slug] )
+      @post = ShinyNews::Post.readonly.find_post( params[:year], params[:month], params[:slug] )
       return if @post.present?
 
       @resource_type = 'News post'

@@ -13,8 +13,14 @@ class Plugin
   # Instance methods
 
   def index_path
+    engine_helpers = name.constantize::Engine.routes.url_helpers
     path_part = name.underscore.sub( 'shiny_', '' )
-    name.constantize::Engine.routes.url_helpers.public_send( "#{path_part}_path" )
+
+    if path_part == 'news'
+      engine_helpers.public_send( "#{path_part}_index_path" )
+    else
+      engine_helpers.public_send( "#{path_part}_path" )
+    end
   end
 
   # Class methods

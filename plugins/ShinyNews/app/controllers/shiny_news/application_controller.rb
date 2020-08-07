@@ -2,6 +2,7 @@
 
 module ShinyNews
   # ShinyNews base controller
-  class ApplicationController < ActionController::Base
+  class ApplicationController < ::ApplicationController
+    helper Rails.application.routes.url_helpers
   end
 end

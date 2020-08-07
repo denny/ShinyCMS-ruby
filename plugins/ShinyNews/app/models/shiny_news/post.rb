@@ -20,5 +20,16 @@ module ShinyNews
         posted_year, posted_month, slug, anchor: anchor
       )
     end
+
+    # Specify policy class for Pundit
+    def policy_class
+      Admin::PostPolicy
+    end
+
+    # Class methods
+
+    def self.policy_class
+      Admin::PostPolicy
+    end
   end
 end
