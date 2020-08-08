@@ -18,7 +18,7 @@ class Admin::DefaultPolicy < DefaultPolicy
       [ShinyCMS] (this probably just means that there's nothing to list yet)
       [ShinyCMS] Making best guess and checking auth for #{calling_class}
     LOG
-    @this_user.can? :list, calling_class.underscore.pluralize.to_sym
+    @this_user.can? :list, CapabilityCategory.name_for( calling_class.constantize )
   end
 
   def create?

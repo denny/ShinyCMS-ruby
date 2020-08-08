@@ -1,4 +1,3 @@
-
 # Translation strings for ShinyCMS forms plugin
 
 en:
@@ -24,7 +23,7 @@ en:
           title: List form handlers
           empty: There are no form handlers defined yet
         new:
-          title: Add new form handler
+          title: Add form handler
         edit:
           title: Edit form handler
         create:
@@ -38,7 +37,6 @@ en:
           failure: Failed to delete form handler
         set_form:
           not_found: Form handler not found
-
 
     mailers:
       form_mailer:

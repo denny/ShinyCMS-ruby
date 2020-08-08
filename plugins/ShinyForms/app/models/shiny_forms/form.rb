@@ -34,13 +34,13 @@ module ShinyForms
 
     # Specify policy class for Pundit
     def policy_class
-      ::Admin::FormPolicy
+      Admin::FormPolicy
     end
 
     # Class methods
 
     def self.policy_class
-      ::Admin::FormPolicy
+      Admin::FormPolicy
     end
 
     def self.template_file_exists?( filename )

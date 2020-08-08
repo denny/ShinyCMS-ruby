@@ -14,7 +14,9 @@ class Plugin
 
   def index_path
     path_part = name.underscore.sub( 'shiny_', '' )
-    name.constantize::Engine.routes.url_helpers.public_send( "#{path_part}_path" )
+    engine_helpers = name.constantize::Engine.routes.url_helpers
+
+    engine_helpers.public_send( "#{path_part}_path" )
   end
 
   # Class methods
