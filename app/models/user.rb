@@ -26,7 +26,6 @@ class User < ApplicationRecord
   # Admin content: throw an error if it hasn't been removed or reassigned
   has_many :blogs,      dependent: :restrict_with_error
   has_many :blog_posts, dependent: :restrict_with_error
-  has_many :news_posts, dependent: :restrict_with_error
 
   # Validations
 
@@ -143,7 +142,7 @@ class User < ApplicationRecord
 
     # List of admin areas, approximately in order of 'most commonly used'
     # (used by /admin index method to redirect somewhere hopefully useful)
-    areas = %i[ pages blogs blog news_posts users settings ]
+    areas = %i[ pages blogs blog users settings ]
 
     areas.each do |area|
       return area if can? :list, area

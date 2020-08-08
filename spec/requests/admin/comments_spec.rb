@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Comment moderation', type: :request do
+  skip 'Removing news feature, to replace with plugin version'
+
   before :each do
     @admin = create :discussion_admin
     sign_in @admin

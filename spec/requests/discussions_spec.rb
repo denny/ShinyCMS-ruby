@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Discussions/Comments', type: :request do
+  skip 'Removing news feature, to replace with plugin version'
+
   before :each do
     FeatureFlag.enable :news
     FeatureFlag.enable :comments
