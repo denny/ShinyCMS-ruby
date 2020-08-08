@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe Discussion, type: :model do
   context 'factory' do
     it 'can create a discussion' do
+      skip 'Removing news feature, to replace with plugin version'
+
       news_post  = create :news_post
       discussion = create :discussion, resource: news_post
 
@@ -15,6 +17,8 @@ RSpec.describe Discussion, type: :model do
   context 'methods' do
     context '.recently_active' do
       before :each do
+        skip 'Removing news feature, to replace with plugin version'
+
         @active_last_week = create :news_post
         @active_this_week = create :news_post
         @less_active_post = create :news_post
@@ -28,6 +32,8 @@ RSpec.describe Discussion, type: :model do
 
       describe 'without params' do
         it 'fetches the most active discussions from the last week, most active first' do
+          skip 'Removing news feature, to replace with plugin version'
+
           active, counts = Discussion.recently_active
 
           expect( active.length ).to eq 2
@@ -37,6 +43,8 @@ RSpec.describe Discussion, type: :model do
 
       describe 'with params' do
         it 'fetches the most active discussions from the specified timespan' do
+          skip 'Removing news feature, to replace with plugin version'
+
           active, counts = Discussion.recently_active( days: 14 )
 
           expect( active.length ).to eq 3
@@ -46,6 +54,8 @@ RSpec.describe Discussion, type: :model do
 
       describe 'when discussions have no comments' do
         it "doesn't include them" do
+          skip 'Removing news feature, to replace with plugin version'
+
           active, _counts = Discussion.recently_active
 
           expect( active.length ).to eq 2
@@ -58,6 +68,6 @@ RSpec.describe Discussion, type: :model do
   end
 
   it_should_behave_like 'ShinyDemoDataProvider' do
-    let( :model ) { Blog }
+    let( :model ) { Discussion }
   end
 end
