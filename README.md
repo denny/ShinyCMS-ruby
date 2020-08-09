@@ -102,7 +102,9 @@ This project has a [Code of Conduct](docs/code-of-conduct.md), which is intended
 Please read and follow the code of conduct - thank you.
 
 
-## Licensing
+## Copyright and Licensing
+
+ShinyCMS is copyright 2009-2020 Denny de la Haye - https://denny.me
 
 ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later). There are copies of both [v2](docs/Licensing/gnu-gpl-2.0.md) and [v3](docs/Licensing/gnu-gpl-3.0.md) of the GPL in [docs/Licensing](docs/Licensing/index.md), or you can read them online: https://opensource.org/licenses/gpl-2.0 / https://opensource.org/licenses/gpl-3.0
 

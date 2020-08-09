@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.email       = ['2020@denny.me']
   spec.homepage    = 'https://shinycms.com'
   spec.summary     = 'ShinyCMS form handlers plugin'
-  spec.description = 'ShinyCMS plugin that provides a few handlers for a HTML form POST.'
+  spec.description = 'Generic form handlers plugin for ShinyCMS'
   spec.license     = 'GPL'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'pg', '>= 0.18', '< 2.0'
 
+  spec.add_development_dependency 'factory_bot_rails'
   spec.add_development_dependency 'rspec-rails'
   spec.add_development_dependency 'sqlite3'
 end

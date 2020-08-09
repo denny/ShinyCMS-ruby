@@ -18,7 +18,7 @@ class Theme
   # Instance methods
 
   def view_path
-    "app/views/themes/#{name}"
+    Theme.build_view_path( name )
   end
 
   def page_templates_path
@@ -31,10 +31,14 @@ class Theme
 
   # Class methods
 
+  def self.build_view_path( theme_name )
+    "app/views/themes/#{theme_name}"
+  end
+
   def self.base_directory_exists?( theme_name )
     return false if theme_name.blank?
 
-    FileTest.directory?( Rails.root.join( 'app/views/themes', theme_name ) )
+    FileTest.directory?( Rails.root.join( build_view_path( theme_name ) ) )
   end
 
   # Find and return the current theme (if any)

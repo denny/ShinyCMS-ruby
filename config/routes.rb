@@ -41,20 +41,6 @@ Rails.application.routes.draw do
     get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
     post 'discussion/:id/:number', to: 'discussions#add_reply'
 
-    get 'news',                     to: 'news#index', as: :view_news
-    get 'news/:year/:month/:slug',  to: 'news#show',  as: :view_news_post,
-                                    constraints: {
-                                      year: %r{\d\d\d\d},
-                                      month: %r{\d\d}
-                                    }
-    get 'news/:year/:month',        to: 'news#month', as: :ignore5,
-                                    constraints: {
-                                      year: %r{\d\d\d\d},
-                                      month: %r{\d\d}
-                                    }
-    get 'news/:year',               to: 'news#year',  as: :ignore6,
-                                    constraints: { year: %r{\d\d\d\d} }
-
     get 'profile/:username',  to: 'profiles#show',  as: :user_profile,
                               constraints: { username: User::USERNAME_REGEX }
     get 'profile',            to: 'profiles#profile_redirect'
@@ -108,10 +94,6 @@ Rails.application.routes.draw do
         resources :post, controller: 'blog/posts', except: EXCEPT
       end
       post 'blog/:id/post', to: 'blog/posts#create', as: :create_blog_post
-
-      get  :news, to: 'news#index'
-      post :news, to: 'news#create', as: :create_news_post
-      resources :news, as: :news_post, except: EXCEPT
 
       # Discussion and comment moderation
       get :comments, to: 'comments#index'
@@ -189,14 +171,16 @@ Rails.application.routes.draw do
     # RailsEmailPreview provides previews of site emails in the admin area
     mount RailsEmailPreview::Engine, at: '/admin/email-previews'
 
-    # LetterOpener provides a webmail UI for viewing sent emails (in dev only)
+    # LetterOpener catches all emails sent in development, with a webmail UI to view them
     mount LetterOpenerWeb::Engine, at: '/dev/outbox' if Rails.env.development?
 
     ########################################
     # ShinyCMS plugins
 
-    # ShinyForms: generic form handlers
-    mount ShinyForms::Engine, at: '/' if defined?(ShinyForms)
+    Plugin.loaded.each do |plugin_name|
+      plugin = plugin_name.constantize
+      mount plugin::Engine, at: '/' if defined? plugin
+    end
 
     ###########################################################################
     # This final catch-all route passes through to the Pages controller.

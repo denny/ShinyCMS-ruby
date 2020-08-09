@@ -3,7 +3,7 @@
 # ShinyForms: ShinyCMS forms plugin
 #
 # To install supporting data for Forms (admin capabilities and feature flag):
-# rails shiny_forms:install:data
+# rails shiny_forms:db:seed
 #
 # To copy and run the database migrations for Forms:
 # rails shiny_forms:install:migrations
