@@ -28,6 +28,7 @@ class User < ApplicationRecord
   # Admin content: throw an error if it hasn't been removed or reassigned
   has_many :blogs,      dependent: :restrict_with_error
   has_many :blog_posts, dependent: :restrict_with_error
+  has_many :shiny_news_posts, dependent: :restrict_with_error, class_name: 'ShinyNews::Post'
 
   # Validations
 
@@ -144,7 +145,7 @@ class User < ApplicationRecord
 
     # List of admin areas, approximately in order of 'most commonly used'
     # (used by /admin index method to redirect somewhere hopefully useful)
-    areas = %i[ pages blogs blog users settings shiny_forms_forms ]
+    areas = %i[ pages shiny_news_posts blogs blog users settings shiny_forms_forms ]
 
     areas.each do |area|
       return area if can? :list, area

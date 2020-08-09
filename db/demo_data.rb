@@ -65,6 +65,10 @@ ShinyForms::Form.create!([
   {id: 1, internal_name: "Contact Page", public_name: "Contact us", slug: "contact", description: nil, handler: "plain_email", email_to: nil, filename: nil, redirect_to: nil, success_message: nil, sort_order: nil}
 ])
 
+ShinyNews::Post.create!([
+  {id: 1, title: "No news is good news?", slug: "no-news", body: "Insert imaginative demo content here...", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-05-14 14:06:33", tag_list: nil}
+])
+
 Page.create!([
   {id: 1, internal_name: "Home", public_name: "ShinyCMS Demo", slug: "home", description: "Demo site home page - uses Halcyonic index template", template_id: 1, section_id: nil, sort_order: 1, show_in_menus: false, show_on_site: true},
   {id: 2, internal_name: "One column", public_name: "One Column", slug: "one", description: "", template_id: 2, section_id: nil, sort_order: 2, show_in_menus: true, show_on_site: true},

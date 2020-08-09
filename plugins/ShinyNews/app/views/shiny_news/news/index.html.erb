@@ -1,0 +1,34 @@
+<% @page_title = t( '.title' ) %>
+
+<h2 class="above-section">
+  <%= @page_title %>
+</h2>
+
+<% @posts.each do |post| %>
+<section>
+
+  <header>
+    <h2>
+      <%= link_to post.title, post.path %>
+    </h2>
+    <h3>
+      Posted by <%= user_profile_link( post.author ) %>
+      at <%= post.posted_at.to_s( :time ) %>
+      on <%= post.posted_at.to_s( :shinydate ) %>
+    </h3>
+  </header>
+
+  <%= sanitize post.teaser( paragraphs: 3 ) %>
+
+</section>
+<% end %>
+
+<% if @posts.size == 0 %>
+<p>
+  <%= t( '.empty' ) %>
+</p>
+<% end %>
+
+<% @sidebar_position = 'right' %>
+<%= render partial: 'right_sidebar_join' %>
+<%= render partial: 'sidebar' %>

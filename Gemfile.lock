@@ -5,6 +5,13 @@ PATH
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
+PATH
+  remote: plugins/ShinyNews
+  specs:
+    shiny_news (20.8)
+      pg (>= 0.18, < 2.0)
+      rails (~> 6.0.3, >= 6.0.3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -458,6 +465,7 @@ DEPENDENCIES
   sassc-rails!
   seed_dump!
   shiny_forms!
+  shiny_news!
   webpacker (~> 5.1)!
 
 BUNDLED WITH
