@@ -72,5 +72,7 @@ RSpec.describe 'Admin controller:', type: :request do
     include_examples '/admin redirect', 'page_admin', '/admin/pages', 'pages'
     include_examples '/admin redirect', 'user_admin', '/admin/users', 'users'
     include_examples '/admin redirect', 'settings_admin', '/admin/site-settings', 'site_settings'
+
+    include_examples '/admin redirect', 'form_admin', '/admin/forms', 'forms', 'shiny_forms'
   end
 end

@@ -59,6 +59,8 @@ class AdminController < ApplicationController
   end
 
   def path_for( area = nil )
+    return Plugin.new( area ).admin_index_path if area.start_with? 'shiny_'
+
     area = :root if area.blank?
     area = :news if area == :news_posts
     area = :admin_site_settings if area == :settings
