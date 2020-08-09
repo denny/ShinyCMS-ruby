@@ -168,7 +168,7 @@ Rails.application.routes.draw do
     # RailsEmailPreview provides previews of site emails in the admin area
     mount RailsEmailPreview::Engine, at: '/admin/email-previews'
 
-    # LetterOpener provides a webmail UI for viewing sent emails (in dev only)
+    # LetterOpener catches all emails sent in development, with a webmail UI to view them
     mount LetterOpenerWeb::Engine, at: '/dev/outbox' if Rails.env.development?
 
     ########################################
