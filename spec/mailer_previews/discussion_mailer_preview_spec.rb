@@ -4,13 +4,11 @@ require 'rails_helper'
 
 RSpec.describe 'DiscussionMailerPreview', type: :request do
   before :each do
-    skip 'Removing news feature, to replace with plugin version'
-
     admin = create :email_admin
     sign_in admin
 
     u = create :user
-    n = create :news_post, author: u
+    n = create :shiny_news_post, author: u
     d = create :discussion, resource: n
     c = create :top_level_comment, discussion: d, author: u
     create :top_level_comment, discussion: d
@@ -21,8 +19,6 @@ RSpec.describe 'DiscussionMailerPreview', type: :request do
 
   describe '.overview_notification' do
     it 'shows the overview notification email' do
-      skip 'Removing news feature, to replace with plugin version'
-
       get rails_email_preview.rep_email_path(
         preview_id: 'discussion_mailer_preview-overview_notification'
       )
@@ -33,8 +29,6 @@ RSpec.describe 'DiscussionMailerPreview', type: :request do
 
   describe '.discussion_notification' do
     it 'shows the discussion notification email' do
-      skip 'Removing news feature, to replace with plugin version'
-
       get rails_email_preview.rep_email_path(
         preview_id: 'discussion_mailer_preview-discussion_notification'
       )
@@ -45,8 +39,6 @@ RSpec.describe 'DiscussionMailerPreview', type: :request do
 
   describe '.parent_comment_notification' do
     it 'shows the overview notification email' do
-      skip 'Removing news feature, to replace with plugin version'
-
       get rails_email_preview.rep_email_path(
         preview_id: 'discussion_mailer_preview-parent_comment_notification'
       )
