@@ -4,8 +4,6 @@ require 'rails_helper'
 
 RSpec.describe 'Comment moderation', type: :request do
   before :each do
-    skip 'Removing news feature, to replace with plugin version'
-
     @admin = create :discussion_admin
     sign_in @admin
 
@@ -14,7 +12,7 @@ RSpec.describe 'Comment moderation', type: :request do
     FeatureFlag.enable :comments
 
     @blog = create :blog_post
-    @news = create :news_post
+    @news = create :shiny_news_post
 
     @discussion1 = create :discussion, resource: @blog
     @comment1 = create :top_level_comment, discussion: @discussion1
@@ -27,8 +25,6 @@ RSpec.describe 'Comment moderation', type: :request do
 
   describe 'GET /admin/comments' do
     it 'fetches the spam comment moderation page' do
-      skip 'Removing news feature, to replace with plugin version'
-
       get comments_path
 
       expect( response      ).to have_http_status :ok
@@ -38,8 +34,6 @@ RSpec.describe 'Comment moderation', type: :request do
 
   describe 'PUT /admin/comments' do
     it 'reminds you that you need to select spam or not spam, if you do neither' do
-      skip 'Removing news feature, to replace with plugin version'
-
       put comments_path, params: {}
 
       expect( response      ).to     have_http_status :found
@@ -51,8 +45,6 @@ RSpec.describe 'Comment moderation', type: :request do
     end
 
     it 'deletes the selected comments if you say they are spam' do
-      skip 'Removing news feature, to replace with plugin version'
-
       skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
 
       @nested1.mark_as_spam
@@ -80,8 +72,6 @@ RSpec.describe 'Comment moderation', type: :request do
     end
 
     it 'removes spam flags from the selected comments if you say they are not spam' do
-      skip 'Removing news feature, to replace with plugin version'
-
       skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
 
       @nested1.mark_as_spam
@@ -109,8 +99,6 @@ RSpec.describe 'Comment moderation', type: :request do
     end
 
     it 'reports an error if it fails to remove spam flags' do
-      skip 'Removing news feature, to replace with plugin version'
-
       skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
 
       allow( Comment ).to receive( :mark_all_as_ham ).and_return( false )
@@ -134,8 +122,6 @@ RSpec.describe 'Comment moderation', type: :request do
   end
 
   describe 'PUT /admin/comment/1/hide' do
-    skip 'Removing news feature, to replace with plugin version'
-
     it 'hides the comment' do
       put hide_comment_path( @comment1 )
 
@@ -150,8 +136,6 @@ RSpec.describe 'Comment moderation', type: :request do
   end
 
   describe 'PUT /admin/comment/1/show' do
-    skip 'Removing news feature, to replace with plugin version'
-
     it 'unhides the comment' do
       @comment1.hide
       expect( @comment1.hidden? ).to be true
@@ -169,8 +153,6 @@ RSpec.describe 'Comment moderation', type: :request do
   end
 
   describe 'PUT /admin/comment/1/lock' do
-    skip 'Removing news feature, to replace with plugin version'
-
     it 'locks the comment' do
       put lock_comment_path( @comment2 )
 
@@ -184,8 +166,6 @@ RSpec.describe 'Comment moderation', type: :request do
   end
 
   describe 'PUT /admin/comment/1/unlock' do
-    skip 'Removing news feature, to replace with plugin version'
-
     it 'unlocks the comment' do
       @comment2.lock
       expect( @comment2.reload.locked? ).to be true
@@ -202,8 +182,6 @@ RSpec.describe 'Comment moderation', type: :request do
   end
 
   describe 'PUT /admin/comment/1/is-spam' do
-    skip 'Removing news feature, to replace with plugin version'
-
     it 'marks the comment as spam' do
       put spam_comment_path( @comment1 )
       @comment1.reload
@@ -218,8 +196,6 @@ RSpec.describe 'Comment moderation', type: :request do
   end
 
   describe 'DELETE /admin/comment/1/delete' do
-    skip 'Removing news feature, to replace with plugin version'
-
     it 'removes the comment' do
       delete destroy_comment_path( @comment2 )
 
