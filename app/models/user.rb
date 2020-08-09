@@ -144,7 +144,7 @@ class User < ApplicationRecord
 
     # List of admin areas, approximately in order of 'most commonly used'
     # (used by /admin index method to redirect somewhere hopefully useful)
-    areas = %i[ pages blogs blog users settings ]
+    areas = %i[ pages blogs blog users settings shiny_forms_forms ]
 
     areas.each do |area|
       return area if can? :list, area

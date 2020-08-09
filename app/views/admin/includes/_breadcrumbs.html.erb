@@ -13,7 +13,7 @@
   <%# ShinyCMS plugins %>
   <% elsif plugin_name != 'Admin' && plugin_name != 'RailsEmailPreview' %>
     <li class="breadcrumb-item">
-      <%= link_to t( "#{plugin_name.underscore}.admin.#{controller_name}.title" ), ::Plugin.new( plugin_name ).index_path %>
+      <%= link_to t( "#{plugin_name.underscore}.admin.#{controller_name}.title" ), ::Plugin.new( plugin_name ).admin_index_path %>
     </li>
 
   <%# TODO: handle nested controllers: Blog::Posts, Pages::Sections, etc %>
