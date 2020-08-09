@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Votes', type: :request do
   before :each do
+    skip 'Removing news feature, to replace with plugin version'
+
     FeatureFlag.enable :news
     FeatureFlag.enable :comments
 
@@ -21,6 +23,8 @@ RSpec.describe 'Votes', type: :request do
 
   describe 'POST /vote/comment/1/up' do
     it 'up-votes the comment once, despite two attempts' do
+      skip 'Removing news feature, to replace with plugin version'
+
       expect( @comment.get_upvotes.size ).to eq 0
 
       post create_vote_path( 'comment', @comment, 'up' )
@@ -45,6 +49,8 @@ RSpec.describe 'Votes', type: :request do
 
   describe 'POST /vote/comment/1/down' do
     it 'down-votes the comment' do
+      skip 'Removing news feature, to replace with plugin version'
+
       expect( @comment.get_downvotes.size ).to eq 0
 
       sign_in @voter
@@ -61,6 +67,8 @@ RSpec.describe 'Votes', type: :request do
 
   describe 'DELETE /vote/comment/1' do
     it 'remotes the existing vote from the comment' do
+      skip 'Removing news feature, to replace with plugin version'
+
       sign_in @voter
       @comment.upvote_by @voter
       expect( @comment.get_upvotes.size ).to eq 1

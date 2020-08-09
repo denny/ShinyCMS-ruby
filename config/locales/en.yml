@@ -104,18 +104,6 @@ en:
   page:
     template_file_missing: Unable to display page; its template file is missing.
 
-  news:
-    index:
-      title: Recent news
-      zero_posts: There are no news posts to display here.
-    post:
-      footer:
-        reply: Reply to this post
-    sidebar:
-      links: Links
-      links_blurb: Recommended reading from around the web
-      recent_posts: Recent Posts
-
   site_settings:
     index:
       title: Site settings
@@ -218,9 +206,6 @@ en:
     comment_votes: Comment votes ('likes')
     comment_downvotes: Comment downvotes ('dislikes')
     comment_notifications: Comment notifications
-    news: News
-    news_votes: Votes on news posts
-    news_downvotes: Down-votes on news posts
     recaptcha_on_registration_form: Protect registration form with reCAPTCHA
     recaptcha_on_comment_form: Protect comment form with reCAPTCHA
     tags: Tags
@@ -419,27 +404,6 @@ en:
       destroy:
         success: Insert deleted
         failure: Failed to delete insert
-
-    news:
-      title: News
-      index:
-        title: List news posts
-        empty: There are no news posts to display
-      new:
-        title: Add news post
-      edit:
-        title: Edit news post
-      create:
-        success: News post added
-        failure: Failed to add news post
-      update:
-        success: News post updated
-        failure: Failed to update news post
-      destroy:
-        success: News post deleted
-        failure: Failed to delete news post
-      set_post:
-        failure: Couldn't find specified blog post
 
     pages:
       title: Pages

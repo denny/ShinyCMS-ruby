@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Discussions/Comments', type: :request do
   before :each do
+    skip 'Removing news feature, to replace with plugin version'
+
     FeatureFlag.enable :news
     FeatureFlag.enable :comments
 
@@ -25,6 +27,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
   describe 'GET /discussions' do
     it 'displays the current most active discussions' do
+      skip 'Removing news feature, to replace with plugin version'
+
       get discussions_path
 
       expect( response      ).to have_http_status :ok
@@ -35,6 +39,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
   describe 'GET /news/1999/12/testing' do
     it 'loads a news post and its comments' do
+      skip 'Removing news feature, to replace with plugin version'
+
       get "/news/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}"
 
       expect( response      ).to have_http_status :ok
@@ -44,6 +50,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'loads a news post with an empty discussion' do
+      skip 'Removing news feature, to replace with plugin version'
+
       @discussion.comments.delete_all
 
       get "/news/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}"
@@ -54,6 +62,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'loads a news post with no discussion attached' do
+      skip 'Removing news feature, to replace with plugin version'
+
       @post.update!( discussion: nil )
 
       get "/news/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}"
@@ -65,6 +75,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
   describe 'GET /discussion/1' do
     it 'displays a discussion, without its parent resource' do
+      skip 'Removing news feature, to replace with plugin version'
+
       get discussion_path( @discussion )
 
       expect( response      ).to have_http_status :ok
@@ -73,6 +85,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it "renders the 404 page if the discussion doesn't exist" do
+      skip 'Removing news feature, to replace with plugin version'
+
       get discussion_path( 999 )
 
       expect( response      ).to have_http_status :not_found
@@ -84,6 +98,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
   describe 'GET /discussion/1/1' do
     it 'displays a comment and any replies to it' do
+      skip 'Removing news feature, to replace with plugin version'
+
       get comment_path( @discussion, @comment.number )
 
       expect( response      ).to have_http_status :ok
@@ -92,6 +108,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it "renders the 404 page if the comment doesn't exist" do
+      skip 'Removing news feature, to replace with plugin version'
+
       get comment_path( @discussion, 999 )
 
       expect( response      ).to have_http_status :not_found
@@ -103,6 +121,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
   describe 'POST /discussion/1' do
     it 'adds a new top-level comment to the discussion' do
+      skip 'Removing news feature, to replace with plugin version'
+
       title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
 
@@ -120,6 +140,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'adds a new comment by a logged-in user' do
+      skip 'Removing news feature, to replace with plugin version'
+
       user = create :user
       sign_in user
 
@@ -142,6 +164,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'adds a new comment by a logged-in user posting anonymously' do
+      skip 'Removing news feature, to replace with plugin version'
+
       user = create :user
       sign_in user
 
@@ -165,6 +189,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'adds a new comment by a logged-in user posting pseudonymously' do
+      skip 'Removing news feature, to replace with plugin version'
+
       user = create :user
       sign_in user
 
@@ -194,6 +220,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'fails to post a top-level comment with missing fields' do
+      skip 'Removing news feature, to replace with plugin version'
+
       post discussion_path( @discussion ), params: {
         comment: { author_type: 'anonymous' }
       }
@@ -203,6 +231,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'adds a new top-level comment to the discussion, with a recaptcha check' do
+      skip 'Removing news feature, to replace with plugin version'
+
       allow_any_instance_of( DiscussionsController )
         .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
       allow( DiscussionsController )
@@ -227,6 +257,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'classifies a new comment as spam after checking Akismet' do
+      skip 'Removing news feature, to replace with plugin version'
+
       skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
 
       FeatureFlag.enable :akismet_on_comments
@@ -256,6 +288,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it "doesn't save a new comment if Akismet classifies it as 'blatant' spam" do
+      skip 'Removing news feature, to replace with plugin version'
+
       skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
 
       FeatureFlag.enable :akismet_on_comments
@@ -285,6 +319,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
   describe 'POST /discussion/1/1' do
     it 'adds a new comment as a reply to an existing comment' do
+      skip 'Removing news feature, to replace with plugin version'
+
       title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
 

@@ -68,7 +68,6 @@ RSpec.describe 'Admin controller:', type: :request do
 
   describe 'GET /admin redirects to the appropriate admin area for:' do
     include_examples '/admin redirect', 'blog_admin', '/admin/blogs', 'blogs'
-    include_examples '/admin redirect', 'news_admin', '/admin/news',  'news'
     include_examples '/admin redirect', 'page_admin', '/admin/pages', 'pages'
     include_examples '/admin redirect', 'user_admin', '/admin/users', 'users'
     include_examples '/admin redirect', 'settings_admin', '/admin/site-settings', 'site_settings'
