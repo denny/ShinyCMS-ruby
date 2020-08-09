@@ -2,24 +2,23 @@
 
 # Model to provide convenience methods for dealing with ShinyCMS plugins
 class Plugin
-  attr_accessor :name
+  attr_accessor :name, :this
 
   def initialize( name )
-    name = Plugin.snake_to_camel_name( name ) if name.start_with? 'shiny_'
+    name = Plugin.capability_category_to_plugin_name( name ) if name.start_with? 'shiny_'
     return unless Plugin.all.include? name
 
     @name = name
+    @this = name.constantize
   end
 
   # Instance methods
 
   def admin_index_path
-    engine = name.constantize::Engine
-
-    return engine.helpers.admin_index_path if engine.helpers.respond_to? :admin_index_path
+    return this::Admin.index_path if this::Admin.respond_to? :index_path
 
     path_part = name.underscore.sub( 'shiny_', '' )
-    engine.routes.url_helpers.public_send( "#{path_part}_path" )
+    this::Engine.routes.url_helpers.public_send( "#{path_part}_path" )
   end
 
   # Class methods
@@ -36,7 +35,7 @@ class Plugin
     configured || all
   end
 
-  def self.snake_to_camel_name( snake_name )
-    snake_name.to_s.sub( %r{_[a-z]+$}, '' ).classify.pluralize
+  def self.capability_category_to_plugin_name( capability_category )
+    capability_category.to_s.sub( %r{_[a-z]+$}, '' ).classify.pluralize
   end
 end
