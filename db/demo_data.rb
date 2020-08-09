@@ -13,10 +13,6 @@ Discussion.create!([
   {id: 2, resource_type: "BlogPost", resource_id: 2, locked: false, show_on_site: true}
 ])
 
-NewsPost.create!([
-  {id: 1, title: "No news is good news?", slug: "no-news", body: "Insert imaginative demo content here...", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-05-14 14:06:33", tag_list: nil}
-])
-
 PageSection.create!([
   {id: 1, internal_name: "Two column", public_name: "Two Column", slug: "two", description: "", default_page_id: nil, section_id: nil, sort_order: 3, show_in_menus: true, show_on_site: true}
 ])
