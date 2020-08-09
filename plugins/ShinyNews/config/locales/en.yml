@@ -1,0 +1,51 @@
+# ============================================================================
+# Project:   ShinyNews plugin for ShinyCMS (Ruby version)
+# File:      plugins/ShinyNews/config/locales/en.yml
+# Purpose:   Translation strings for English
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
+
+en:
+  feature_flags:
+    news: News section
+    news_votes: Votes on news posts
+    news_downvotes: Down-votes on news posts
+
+  shiny_news:
+    news:
+      index:
+        title: Recent news
+        empty: There are no news posts to display
+      post:
+        footer:
+          reply: Reply to this post
+      sidebar:
+        links: Links
+        links_blurb: Recommended reading from around the web
+        recent_posts: Recent Posts
+
+    admin:
+      news:
+        title: News
+        index:
+          title: List news posts
+          empty: There are no news posts to display
+        new:
+          title: Add news post
+        edit:
+          title: Edit news post
+        create:
+          success: News post created
+          failure: Failed to create news post
+        update:
+          success: News post updated
+          failure: Failed to update news post
+        destroy:
+          success: News post deleted
+          failure: Failed to delete news post
+        set_post:
+          not_found: News post not found
