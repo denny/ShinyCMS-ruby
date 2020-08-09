@@ -23,6 +23,8 @@ class CapabilityCategory < ApplicationRecord
   end
 
   def self.category_name_for( record )
-    record.class.name.underscore.pluralize.split('/').last
+    return record.name.underscore.pluralize.gsub( '/', '_' ) if record.is_a? Class
+
+    record.class.name.underscore.pluralize.gsub( '/', '_' )
   end
 end

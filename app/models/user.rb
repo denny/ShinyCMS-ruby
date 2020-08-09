@@ -18,6 +18,8 @@ class User < ApplicationRecord
   # User's custom site settings, if any
   has_many :settings, class_name: 'SettingValue', inverse_of: :user, dependent: :destroy
 
+  # TODO: polymorphic relationship here so users can own any type of plugin-provided content
+
   # End-user content: destroy it along with their account
   has_many :comments, dependent: :destroy
   has_many :subscriptions, as: :subscriber, dependent: :destroy
@@ -148,6 +150,7 @@ class User < ApplicationRecord
     areas.each do |area|
       return area if can? :list, area
     end
+    nil
   end
 
   # Class methods
