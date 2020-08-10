@@ -30,7 +30,7 @@ module Rails
     end
 
     def license
-      template 'LICENSE.txt'
+      template 'LICENSE'
     end
 
     def gemspec
@@ -62,7 +62,7 @@ module Rails
     end
 
     def bin(force = false)
-      bin_file = engine? ? 'bin/rails.tt' : 'bin/test.tt'
+      bin_file = 'bin/rails.tt'
       template bin_file, force: force do |content|
         "#{shebang}\n" + content
       end
