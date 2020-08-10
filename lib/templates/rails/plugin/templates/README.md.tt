@@ -15,9 +15,9 @@ need to set the ENV var unless you want to load a subset of plugins.)
 To add the <%= camelized_modules %> tables and supporting data to your
 ShinyCMS database:
 ```bash
-rails <%= namespaced_name %>:install:migrations
+rails <%= underscored_name %>:install:migrations
 rails db:migrate
-rails <%= namespaced_name %>:db:seed
+rails <%= underscored_name %>:db:seed
 ```
 
 

@@ -9,7 +9,7 @@ module Rails
   # generator.
   #
   # This allows you to override entire operations, like the creation of the
-  # Gemfile, \README, or JavaScript files, without needing to know exactly
+  # Gemfile, README, or JavaScript files, without needing to know exactly
   # what those operations do so you can create another template action.
   class PluginBuilder
     def rakefile
@@ -116,19 +116,15 @@ module Rails
       end
 
       def create_assets_manifest_file
-        build(:assets_manifest) if !api? && engine?
+        build(:assets_manifest)
       end
 
       def create_public_stylesheets_files
-        build(:stylesheets) unless api?
+        build(:stylesheets)
       end
 
       def create_bin_files
         build(:bin)
-      end
-
-      def update_gemfile
-        build(:gemfile_entry) unless options[:skip_gemfile_entry]
       end
 
       def finish_template
