@@ -130,7 +130,8 @@ jobs:
           name: Run tests
           command: |
             mkdir /tmp/test-results
-            bundle exec rspec spec plugins \
+            TEST_FILES = circleci tests glob "spec/**/*_spec.rb" "plugins/*/spec/**/*_spec.rb" | circleci tests split --split-by=filesize
+            bundle exec rspec $TEST_FILES \
               --profile 10 \
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
