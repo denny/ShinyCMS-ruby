@@ -21,11 +21,10 @@ references:
       POSTGRES_DB: shinycms_test
 
 jobs:
-  # Setup phase
+  # Setup
   setup:
     docker:
       - *app
-      - *db
 
     working_directory: ~/ShinyCMS
 
@@ -47,16 +46,6 @@ jobs:
           key: bundler-cache-{{ checksum "Gemfile.lock" }}
           paths:
             - ~/ShinyCMS/vendor/bundle
-
-      # Run Rubocop to check linting
-      - run:
-          name: Rubocop
-          command: bundle exec rubocop app/ config/ db/ lib/ plugins/ spec/
-
-      # Run bundle-audit to check gems for known security issues
-      - run:
-          name: Audit Gemfile bundle for security issues
-          command: bundle exec bundle-audit check --update
 
       # Restore Node dependencies from cache, or install them
       - restore_cache:
@@ -96,14 +85,33 @@ jobs:
             - ShinyCMS
             - .cache/yarn
 
-  # Testing phase
-  test:
+  # Check linting, check gems for known security issues
+  rubocop_and_bundle_audit:
+    docker:
+      - *app
+
+    working_directory: ~/ShinyCMS
+    parallelism: 4
+
+    steps:
+      - attach_workspace:
+          at: ~/
+
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop app/ config/ db/ lib/ plugins/ spec/
+
+      - run:
+          name: Audit Gemfile bundle for security issues
+          command: bundle exec bundle-audit check --update
+
+  rspec:
     docker:
       - *app
       - *db
 
     working_directory: ~/ShinyCMS
-    parallelism: 4
+    parallelism: 3
 
     steps:
       - attach_workspace:
@@ -142,6 +150,9 @@ workflows:
   setup_and_test:
     jobs:
       - setup
-      - test:
+      - rubocop_and_bundle_audit:
+          requires:
+            - setup
+      - rspec:
           requires:
             - setup
