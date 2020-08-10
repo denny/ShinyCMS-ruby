@@ -91,7 +91,6 @@ jobs:
       - *app
 
     working_directory: ~/ShinyCMS
-    parallelism: 4
 
     steps:
       - attach_workspace:
