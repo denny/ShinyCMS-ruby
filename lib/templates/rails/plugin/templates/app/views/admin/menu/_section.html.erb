@@ -1,0 +1,11 @@
+<%% return unless current_user.can? :list, :<%= underscored_name %> %>
+
+  <%%= render_admin_menu_section( t( '<%= underscored_name %>.admin.<%= underscored_name %>.title' ), 'rss' ) do %>
+
+    <%%= render_admin_menu_item(
+        t( '<%= underscored_name %>.admin.<%= underscored_name %>.index.title' ), <%= underscored_name %>.news_path, 'list' ) %>
+
+    <%%= render_admin_menu_item_if( current_user.can?( :add, :<%= underscored_name %> ),
+        t( '<%= underscored_name %>.admin.<%= underscored_name %>.new.title' ), <%= underscored_name %>.new_<%= underscored_name %>_path, 'pencil' ) %>
+
+<%% end %>
