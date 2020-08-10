@@ -44,3 +44,6 @@ module ShinyNews
     end
   end
 end
+
+# Add inverse association for authors of news posts
+::User.has_many :shiny_news_posts, dependent: :restrict_with_error, class_name: 'ShinyNews::Post'
