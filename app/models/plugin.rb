@@ -5,7 +5,7 @@ class Plugin
   attr_accessor :name, :this
 
   def initialize( name )
-    name = Plugin.capability_category_to_plugin_name( name ) if name.start_with? 'shiny_'
+    name = Plugin.capability_category_to_plugin_name( name ) if name.to_s.start_with? 'shiny_'
     return unless Plugin.all.include? name
 
     @name = name
