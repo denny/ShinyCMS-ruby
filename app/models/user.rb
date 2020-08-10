@@ -29,7 +29,6 @@ class User < ApplicationRecord
   # Admin content: throw an error if it hasn't been removed or reassigned
   has_many :blogs,      dependent: :restrict_with_error
   has_many :blog_posts, dependent: :restrict_with_error
-  has_many :shiny_news_posts, dependent: :restrict_with_error, class_name: 'ShinyNews::Post'
 
   # Validations
 
