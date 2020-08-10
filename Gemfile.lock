@@ -135,7 +135,7 @@ GEM
     childprocess (4.0.0)
     ckeditor (5.1.0)
       orm_adapter (~> 0.5.0)
-    codecov (0.2.3)
+    codecov (0.2.5)
       colorize
       json
       simplecov
