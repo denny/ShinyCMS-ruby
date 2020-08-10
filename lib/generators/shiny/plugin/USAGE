@@ -1,11 +1,11 @@
 Description:
-    The command 'rails plugin new' creates a skeleton for developing
-    a ShinyCMS plugin
+    The command 'rails g shiny:plugin plugins/[name]' creates a skeleton
+    for developing a ShinyCMS plugin
 
 Example:
     cd ShinyCMS
-    rails plugin new plugins/ShinyThing
+    rails g shiny:plugin plugins/ShinyThing
 
     This generates a skeletal ShinyCMS plugin in ShinyCMS/plugins/ShinyThing
 
-    Please read Plugins.md in the ShinyCMS developer docs for hints and tips
+    Please read Plugins.md in the ShinyCMS developer docs for more information
