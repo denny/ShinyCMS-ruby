@@ -17,7 +17,7 @@ RDoc::Task.new(:rdoc) do |rdoc|
 end
 
 <% if !options[:skip_active_record] && with_dummy_app? -%>
-APP_RAKEFILE = File.expand_path("<%= dummy_path -%>/Rakefile", __dir__)
+APP_RAKEFILE = File.expand_path( '<%= dummy_path -%>/Rakefile', __dir__ )
 load 'rails/tasks/engine.rake'
 <% end -%>
 
