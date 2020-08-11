@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 <%= wrap_in_modules <<~rb
-  class ApplicationController < ActionController::Base
+  # Inherits from ShinyCMS ApplicationController
+  class ApplicationController < ::ApplicationController
+    helper Rails.application.routes.url_helpers
   end
 rb
 %>
