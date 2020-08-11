@@ -26,11 +26,11 @@ class BlogsController < ApplicationController
   end
 
   def month
-    @posts = @blog.posts_for_month( params[:year], params[:month] )
+    @posts = @blog.posts_in_month( params[:year], params[:month] )
   end
 
   def year
-    @posts = @blog.posts_for_year( params[:year] )
+    @posts = @blog.posts_in_year( params[:year] )
   end
 
   def show
