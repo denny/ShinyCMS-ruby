@@ -27,19 +27,18 @@ class Blog < ApplicationRecord
     all_posts.readonly.published
   end
 
-  def posts_for_month( year, month )
-    start_date = Date.new( year.to_i, month.to_i, 1 )
-    end_date = start_date + 1.month
-    posts.where( posted_at: start_date..end_date ).order( :posted_at )
+  def posts_in_month( year, month )
+    month = Date.new( year.to_i, month.to_i, 1 )
+    posts.where( posted_at: month.all_month ).published.readonly.order( :posted_at )
   end
 
-  def posts_for_year( year_string )
+  def posts_in_year( year_string )
     year = Date.new( year_string.to_i, 1, 1 )
-    posts.where( posted_at: year..year.end_of_year ).order( :posted_at )
+    posts.where( posted_at: year.all_year ).published.readonly.order( :posted_at )
   end
 
   def find_post( year, month, slug )
-    posts_for_month( year, month ).find_by( slug: slug )
+    posts_in_month( year, month ).find_by( slug: slug )
   end
 
   def recent_posts( page_num = 1 )
