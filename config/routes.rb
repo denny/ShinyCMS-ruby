@@ -41,11 +41,6 @@ Rails.application.routes.draw do
     get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
     post 'discussion/:id/:number', to: 'discussions#add_reply'
 
-    get 'profile/:username',  to: 'profiles#show',  as: :user_profile,
-                              constraints: { username: User::USERNAME_REGEX }
-    get 'profile',            to: 'profiles#profile_redirect'
-    get 'profiles',           to: 'profiles#index', as: :user_profiles
-
     get 'site-settings', to: 'site_settings#index'
     put 'site-settings', to: 'site_settings#update'
 

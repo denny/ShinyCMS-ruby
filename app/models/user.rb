@@ -130,7 +130,7 @@ class User < ApplicationRecord
     self
   end
 
-  def display_name_or_username
+  def name
     display_name.presence || username
   end
 

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'User accounts', type: :request do
   before :each do
     FeatureFlag.enable :user_login
-    FeatureFlag.enable :user_profiles
+    FeatureFlag.enable :profile_pages
   end
 
   describe 'GET /account/register' do
@@ -146,7 +146,7 @@ RSpec.describe 'User accounts', type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_profile_path( user.username )
+      expect( response      ).to redirect_to shiny_profiles.profile_path( user.username )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_link user.username, href: "/profile/#{user.username}"
@@ -163,7 +163,7 @@ RSpec.describe 'User accounts', type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to user_profile_path( user.username )
+      expect( response      ).to redirect_to shiny_profiles.profile_path( user.username )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_link user.username, href: "/profile/#{user.username}"
