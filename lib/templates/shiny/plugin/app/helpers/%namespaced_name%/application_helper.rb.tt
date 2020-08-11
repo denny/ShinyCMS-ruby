@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 <%= wrap_in_modules <<~rb
+  # Base helper for <%= camelized_modules =>
   module ApplicationHelper
   end
 rb
