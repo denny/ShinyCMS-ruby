@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
-require "<%= namespaced_name %>/engine"
+require '<%= namespaced_name %>/engine'
 
-<%= wrap_in_modules "# Your code goes here..." %>
+# Namespace wrapper
+<%= wrap_in_modules '' %>
