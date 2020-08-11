@@ -15,5 +15,5 @@ ShinyProfiles::Engine.routes.draw do
   get 'profiles',           to: 'profiles#index'
   get 'profile/:username',  to: 'profiles#show', as: :profile,
                             constraints: { username: User::USERNAME_REGEX }
-  get 'profile',            to: 'profiles#profile_redirect'
+  get 'profile',            to: 'profiles#profile_redirect', as: :profile_redirect
 end
