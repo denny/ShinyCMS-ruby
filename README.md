@@ -56,7 +56,7 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
 * Forums
 * Polls
 
-(See the [developer documentation](docs/Developer/index.md) for more detailed information on features [in progress](docs/Developer/in-progress.md) and [to-do](docs/Developer/TODO.md))
+(See the [developer documentation](docs/Developers/index.md) for more detailed information on features [in progress](docs/Developers/in-progress.md) and [to-do](docs/Developers/TODO.md))
 
 
 ## Installation and configuration
@@ -92,7 +92,7 @@ There are currently no plans to add support for Rails 5 or older Ruby versions.
 ## Contributing
 
 If you're interested in contributing to ShinyCMS, please start by reading the
-[developer documentation](Developers/index.md).
+[developer documentation](docs/Developers/index.md).
 
 
 ## Code of Conduct
