@@ -47,8 +47,8 @@ module ShinyPost
       posted_at.strftime( '%Y' )
     end
 
-    def posts_this_month
-      self.class.readonly.published.where( posted_at: posted_at.beginning_of_month..posted_at.end_of_month )
+    def posts_in_same_month
+      self.class.readonly.published.where( posted_at: posted_at.all_month )
     end
 
     def set_posted_at
@@ -57,18 +57,18 @@ module ShinyPost
 
     # Class methods
 
-    def self.posts_for_year( year_string )
+    def self.posts_in_year( year_string )
       year = Date.new( year_string.to_i, 1, 1 ).beginning_of_day
-      where( posted_at: year..year.end_of_year.end_of_day ).order( :posted_at ).readonly
+      where( posted_at: year.all_year ).order( :posted_at ).published.readonly
     end
 
-    def self.posts_for_month( year_string, month_string )
+    def self.posts_in_month( year_string, month_string )
       month = Date.new( year_string.to_i, month_string.to_i, 1 ).beginning_of_day
-      where( posted_at: month..month.end_of_month ).order( :posted_at ).readonly
+      where( posted_at: month.all_month ).order( :posted_at ).published.readonly
     end
 
     def self.find_post( year, month, slug )
-      posts_for_month( year, month ).find_by( slug: slug )
+      posts_in_month( year, month ).find_by( slug: slug )
     end
 
     def self.recent_posts( page_num = 1 )

@@ -22,11 +22,11 @@ module ShinyNews
     end
 
     def month
-      @posts = ShinyNews::Post.readonly.posts_for_month( params[:year], params[:month] )
+      @posts = ShinyNews::Post.readonly.posts_in_month( params[:year], params[:month] )
     end
 
     def year
-      @posts = ShinyNews::Post.readonly.posts_for_year( params[:year] )
+      @posts = ShinyNews::Post.readonly.posts_in_year( params[:year] )
     end
 
     def show
