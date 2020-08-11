@@ -406,6 +406,10 @@ main fieldset legend {
   width:            initial;
 }
 
+input.field_with_errors {
+  border:           2px solid $red;
+}
+
 
 // ==================== ( footer ) ====================
 

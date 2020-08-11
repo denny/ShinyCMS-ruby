@@ -1,0 +1,13 @@
+<% @form_data.keys.each do |key| %>
+<% if @form_data[key].length > 60 %>
+<%= key %>:
+<%= @form_data[key] %>
+
+<% else %>
+<%= key %>: <%= @form_data[key] %>
+
+<% end %>
+<% end %>
+
+
+[ sent via the <%= @form_name %> form on <%= @site_name %> ]

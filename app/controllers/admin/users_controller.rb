@@ -28,7 +28,7 @@ class Admin::UsersController < AdminController
     authorise @user
 
     if @user.save
-      redirect_with_notice edit_user_path( @user ), t( '.success' )
+      redirect_to edit_user_path( @user ), notice: t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -45,7 +45,7 @@ class Admin::UsersController < AdminController
     authorise @user
 
     if @user.update_without_password( user_params )
-      redirect_with_notice edit_user_path( @user ), t( '.success' )
+      redirect_to edit_user_path( @user ), notice: t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit
@@ -59,7 +59,8 @@ class Admin::UsersController < AdminController
     flash[ :notice ] = t( '.success' ) if user.destroy
     redirect_to users_path
   rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-    redirect_with_alert users_path, t( '.failure' )
+    skip_authorization
+    redirect_to users_path, alert: t( '.failure' )
   end
 
   private

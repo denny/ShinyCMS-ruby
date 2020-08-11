@@ -37,6 +37,7 @@ en:
   remove_upvote: '(+)'
   remove_downvote: '(-)'
 
+
   # ========== ( Main Site ) ==========
 
   blogs:
@@ -97,40 +98,11 @@ en:
       slug_not_unique_in_month: has already been used in this month
       slug_not_unique_in_section: has already been used in this section
     not_found:
-      title: "%{resource_type} not found"
+      title: '%{resource_type} not found'
       explanation: The URL you have reached is for a %{resource_type} that does not exist.
 
   page:
     template_file_missing: Unable to display page; its template file is missing.
-
-  news:
-    index:
-      title: Recent news
-      zero_posts: There are no news posts to display here.
-    post:
-      footer:
-        reply: Reply to this post
-    sidebar:
-      links: Links
-      links_blurb: Recommended reading from around the web
-      recent_posts: Recent Posts
-
-  settings:
-    # NB: These translations strings are all here to keep them in one place
-    # together, but not all of them would make sense as user settings.
-    # Particularly not the first one!!
-    admin_ip_list: Admin IP list
-    all_comment_notifications_email: Email to notify of ALL comments
-    allowed_to_comment: Allowed to comment
-    default_page: Default page
-    default_section: Default section
-    post_login_redirect: Post-login redirect
-    recaptcha_comment_score: 'reCAPTCHA: Minimum score for comments'
-    recaptcha_registration_score: 'reCAPTCHA: Minimum score for user registration'
-    tag_view: Default tag view
-    theme_name: Theme name
-    track_clicks: Track if links in emails are clicked
-    track_opens: Track if emails are opened
 
   site_settings:
     index:
@@ -163,41 +135,62 @@ en:
   discussion_mailer:
     they_said: They said
     parent_comment_notification:
-      subject: "[%{site_name}] %{reply_author_name} replied to your comment"
+      subject: '[%{site_name}] %{reply_author_name} replied to your comment'
       you_said: You said
     discussion_notification:
-      subject: "[%{site_name}] %{comment_author_name} commented on your %{content_type}"
+      subject: '[%{site_name}] %{comment_author_name} commented on your %{content_type}'
     overview_notification:
-      subject: "[%{site_name}] %{comment_author_name} commented on your site"
+      subject: '[%{site_name}] %{comment_author_name} commented on your site'
 
   user_mailer:
     welcome: Welcome, %{name}!
     hello: Hello %{name},
     confirmation_instructions:
-      subject: "[%{site_name}] Please confirm your registration"
+      subject: '[%{site_name}] Please confirm your registration'
       instructions: You can confirm your email address by clicking the link below
       link_text: Confirm my address
     password_changed:
-      subject: "[%{site_name}] Your password has been changed"
+      subject: '[%{site_name}] Your password has been changed'
       text: We're contacting you to notify you that your password has been changed.
     reset_password:
-      subject: "[%{site_name}] Instructions for resetting your password"
+      subject: '[%{site_name}] Instructions for resetting your password'
       instructions: Someone has requested a link to change your password. You can do this through the link below.
       link_text: Change my password
       if_not_you: If you didn't request this, please ignore this email.
       no_change: Your password won't change unless you click the link above and create a new one.
     email_changed:
-      subject: "[%{site_name}] Changing your email address"
+      subject: '[%{site_name}] Changing your email address'
       email_changing: We're contacting you to notify you that your email is being changed to
       email_changed: We're contacting you to notify you that your email has been changed to
     unlock_instructions:
-      subject: "[%{site_name}] Your account has been locked"
+      subject: '[%{site_name}] Your account has been locked'
       explanation: Your account has been locked due to an excessive number of unsuccessful sign in attempts.
       instructions: Click the link below to unlock your account
       link_text: Unlock my account
 
   element_types:
     blog_post: blog post
+
+
+  # ========== ( Settings ) ==========
+
+  # NB: These translations strings are all here to keep them in one place
+  # together, but not all of them would make sense as user settings.
+  # Particularly not the first one!!
+  settings:
+    admin_ip_list: Admin IP list
+    all_comment_notifications_email: Email to notify of ALL comments
+    allowed_to_comment: Allowed to comment
+    default_email: Default email address
+    default_page: Default page
+    default_section: Default section
+    post_login_redirect: Post-login redirect
+    recaptcha_comment_score: 'reCAPTCHA: Minimum score for comments'
+    recaptcha_registration_score: 'reCAPTCHA: Minimum score for user registration'
+    tag_view: Default tag view
+    theme_name: Theme name
+    track_clicks: Track if links in emails are clicked
+    track_opens: Track if emails are opened
 
 
   # ========== ( Feature Flags ) ==========
@@ -213,9 +206,6 @@ en:
     comment_votes: Comment votes ('likes')
     comment_downvotes: Comment downvotes ('dislikes')
     comment_notifications: Comment notifications
-    news: News
-    news_votes: Votes on news posts
-    news_downvotes: Down-votes on news posts
     recaptcha_on_registration_form: Protect registration form with reCAPTCHA
     recaptcha_on_comment_form: Protect comment form with reCAPTCHA
     tags: Tags
@@ -264,7 +254,17 @@ en:
       view_admin_notes: View admin notes
 
 
-  # ========== ( Admin Area ) ==========
+  # ==================== ( Admin Area ) ==============================
+
+  # kaminari pager blocks
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
+      truncate: "&hellip;"
+
 
   rails_email_preview:
     emails:
@@ -272,21 +272,26 @@ en:
         list_title: Emails
       show:
         breadcrumb_list: Emails
+    admin:
+      emails:
+        title: Emails
 
   rep:
     base:
       email:
         one: 1 email
-        other: "%{count} emails"
+        other: '%{count} emails'
       in: in
       mailer:
         one: 1 mailer
-        other: "%{count} mailers"
+        other: '%{count} mailers'
       loading: Loading...
 
   admin:
     title: Admin
     admin_area: Admin area
+
+    letter_opener_web: Outbox
 
     elements:
       short_text: Short Text
@@ -400,27 +405,6 @@ en:
         success: Insert deleted
         failure: Failed to delete insert
 
-    news:
-      title: News
-      index:
-        title: List news posts
-        empty: There are no news posts to display
-      new:
-        title: Add news post
-      edit:
-        title: Edit news post
-      create:
-        success: News post added
-        failure: Failed to add news post
-      update:
-        success: News post updated
-        failure: Failed to update news post
-      destroy:
-        success: News post deleted
-        failure: Failed to delete news post
-      set_post:
-        failure: Couldn't find specified blog post
-
     pages:
       title: Pages
       index:
@@ -526,21 +510,19 @@ en:
         title: Web stats
         empty: No stats to display
 
+
+  # ========== ( error messages for models/validations/etc ) ==========
+
   models:
+    capability_category:
+      not_found: CapabilityCategory.name_for generated '%{name}', which is not in database
+
     page_template:
       template_file_must_exist: The template file must be in pages/templates
 
     setting_value:
       one_per_user: You can only have one setting per value per user
 
-  # Pagination blocks on admin list pages (generated by kaminari)
-  views:
-    pagination:
-      first: "&laquo; First"
-      last: "Last &raquo;"
-      previous: "&lsaquo; Prev"
-      next: "Next &rsaquo;"
-      truncate: "&hellip;"
 
 #  ckeditor:
 #    page_title: 'CKEditor File Manager'

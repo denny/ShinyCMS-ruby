@@ -7,7 +7,7 @@ RSpec.describe 'Votes', type: :request do
     FeatureFlag.enable :news
     FeatureFlag.enable :comments
 
-    post = create :news_post
+    post = create :shiny_news_post
 
     discussion = create :discussion, resource: post
     post.update!( discussion: discussion )

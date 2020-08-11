@@ -45,7 +45,7 @@ class DiscussionsController < ApplicationController
   end
 
   def save_comment
-    if passes_akismet_check? && passes_recaptcha? && @new_comment.save
+    if new_comment_passes_checks_and_saves?
       flash[ :notice ] = t( '.success' ) unless @new_comment.spam?
       redirect_back fallback_location: discussion_path( @discussion )
     else
@@ -66,6 +66,10 @@ class DiscussionsController < ApplicationController
     @comment = @discussion.comments.find_by( number: params[ :number ] ) || nil
   end
 
+  def new_comment_passes_checks_and_saves?
+    passes_akismet_check? && passes_recaptcha? && @new_comment.save
+  end
+
   def passes_akismet_check?
     return true unless akismet_enabled? && akismet_api_key_is_set?
 
@@ -84,22 +88,15 @@ class DiscussionsController < ApplicationController
   end
 
   def comment_params
-    p = params.require( :comment ).permit( permitted_param_names )
-    p = p.merge( user_id: current_user.id ) if user_signed_in?
-    p.merge( discussion_id: @discussion.id )
+    prms = params.require( :comment ).permit(
+      %i[title body author_type author_name author_email author_url g-recaptcha-response[comment] g-recaptcha-response]
+    )
+    merge_user_id_and_discussion_id( prms )
   end
 
-  def permitted_param_names
-    %i[
-      title
-      body
-      author_type
-      author_name
-      author_email
-      author_url
-      g-recaptcha-response[comment]
-      g-recaptcha-response
-    ]
+  def merge_user_id_and_discussion_id( prms )
+    prms = prms.merge( user_id: current_user.id ) if user_signed_in?
+    prms.merge( discussion_id: @discussion.id )
   end
 
   def check_feature_flags

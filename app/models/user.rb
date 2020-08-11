@@ -18,6 +18,8 @@ class User < ApplicationRecord
   # User's custom site settings, if any
   has_many :settings, class_name: 'SettingValue', inverse_of: :user, dependent: :destroy
 
+  # TODO: polymorphic relationship here so users can own any type of plugin-provided content
+
   # End-user content: destroy it along with their account
   has_many :comments, dependent: :destroy
   has_many :subscriptions, as: :subscriber, dependent: :destroy
@@ -26,7 +28,6 @@ class User < ApplicationRecord
   # Admin content: throw an error if it hasn't been removed or reassigned
   has_many :blogs,      dependent: :restrict_with_error
   has_many :blog_posts, dependent: :restrict_with_error
-  has_many :news_posts, dependent: :restrict_with_error
 
   # Validations
 
@@ -143,11 +144,12 @@ class User < ApplicationRecord
 
     # List of admin areas, approximately in order of 'most commonly used'
     # (used by /admin index method to redirect somewhere hopefully useful)
-    areas = %i[ pages blogs blog news_posts users settings ]
+    areas = %i[ pages shiny_news_posts blogs blog users settings shiny_forms_forms ]
 
     areas.each do |area|
       return area if can? :list, area
     end
+    nil
   end
 
   # Class methods

@@ -281,17 +281,6 @@ ActiveRecord::Schema.define(version: 2020_08_02_201259) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "news_posts", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "slug", null: false
-    t.text "body", null: false
-    t.boolean "show_on_site", default: true, null: false
-    t.bigint "user_id", null: false
-    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "page_elements", force: :cascade do |t|
     t.bigint "page_id", null: false
     t.string "name", null: false
@@ -385,9 +374,25 @@ ActiveRecord::Schema.define(version: 2020_08_02_201259) do
     t.string "slug", null: false
     t.text "description"
     t.string "handler", null: false
+    t.string "email_to"
+    t.string "filename"
+    t.string "redirect_to"
+    t.string "success_message"
     t.integer "sort_order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shiny_news_posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "slug", null: false
+    t.text "body"
+    t.boolean "show_on_site", default: true, null: false
+    t.bigint "user_id"
+    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_shiny_news_posts_on_user_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -499,7 +504,6 @@ ActiveRecord::Schema.define(version: 2020_08_02_201259) do
   add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "discussions"
   add_foreign_key "insert_elements", "insert_sets", column: "set_id"
-  add_foreign_key "news_posts", "users"
   add_foreign_key "page_elements", "pages"
   add_foreign_key "page_sections", "page_sections", column: "section_id"
   add_foreign_key "page_template_elements", "page_templates", column: "template_id"
@@ -507,6 +511,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_201259) do
   add_foreign_key "pages", "page_templates", column: "template_id"
   add_foreign_key "setting_values", "settings"
   add_foreign_key "setting_values", "users"
+  add_foreign_key "shiny_news_posts", "users"
   add_foreign_key "taggings", "tags"
   add_foreign_key "user_capabilities", "capabilities"
   add_foreign_key "user_capabilities", "users"

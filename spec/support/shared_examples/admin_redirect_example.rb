@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 # Reusable spec to check that each admin type gets redirected correctly on login
-RSpec.shared_examples '/admin redirect' do |type, path, section|
+RSpec.shared_examples '/admin redirect' do |type, path, section, plugin|
   it "redirects a #{type.titlecase} correctly" do
     # rubocop:disable Rails/SaveBang
     admin = create type.to_sym
     sign_in admin
     # rubocop:enable Rails/SaveBang
+
+    title_string = "admin.#{section}.index.title"
+    title_string = "#{plugin}.#{title_string}" if plugin.present?
 
     get admin_path
 
@@ -14,6 +17,6 @@ RSpec.shared_examples '/admin redirect' do |type, path, section|
     expect( response      ).to redirect_to url_for( path )
     follow_redirect!
     expect( response      ).to have_http_status :ok
-    expect( response.body ).to have_title I18n.t( "admin.#{section}.index.title" ).titlecase
+    expect( response.body ).to have_title I18n.t( title_string ).titlecase
   end
 end

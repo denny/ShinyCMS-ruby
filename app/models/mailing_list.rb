@@ -2,6 +2,7 @@
 
 # Model for mailing lists
 class MailingList < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyName
 
   has_many :subscriptions, dependent: :destroy

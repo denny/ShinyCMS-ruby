@@ -2,6 +2,8 @@
 
 # Model for page templates
 class PageTemplate < ApplicationRecord
+  include ShinyDemoDataProvider
+
   # Associations
 
   has_many :pages, inverse_of: :template, foreign_key: :template_id,
@@ -77,15 +79,11 @@ class PageTemplate < ApplicationRecord
   private
 
   def add_element( formatting, name )
-    if formatting.nil? && name.include?( 'image' )
-      add_image_element name
-    elsif formatting.nil?
-      add_default_element name
-    elsif formatting == 'sanitize'
-      add_html_element name
-    elsif formatting == 'simple_format'
-      add_long_text_element name
-    end
+    return add_image_element name   if formatting.nil? && name.include?( 'image' )
+    return add_default_element name if formatting.nil?
+    return add_html_element name    if formatting == 'sanitize'
+
+    add_long_text_element name      if formatting == 'simple_format'
   end
 
   def add_default_element( name )

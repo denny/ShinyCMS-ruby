@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Discussion, type: :model do
   context 'factory' do
     it 'can create a discussion' do
-      news_post  = create :news_post
+      news_post  = create :shiny_news_post
       discussion = create :discussion, resource: news_post
 
       expect( Discussion.last ).to eq discussion
@@ -15,10 +15,10 @@ RSpec.describe Discussion, type: :model do
   context 'methods' do
     context '.recently_active' do
       before :each do
-        @active_last_week = create :news_post
-        @active_this_week = create :news_post
-        @less_active_post = create :news_post
-        @an_inactive_post = create :news_post
+        @active_last_week = create :shiny_news_post
+        @active_this_week = create :shiny_news_post
+        @less_active_post = create :shiny_news_post
+        @an_inactive_post = create :shiny_news_post
 
         create :discussion, resource: @active_last_week, comment_count: 5, comments_posted_at: 8.days.ago
         create :discussion, resource: @active_this_week, comment_count: 4
@@ -55,5 +55,9 @@ RSpec.describe Discussion, type: :model do
         end
       end
     end
+  end
+
+  it_should_behave_like 'ShinyDemoDataProvider' do
+    let( :model ) { Discussion }
   end
 end

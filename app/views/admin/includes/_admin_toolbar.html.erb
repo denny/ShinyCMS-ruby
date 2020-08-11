@@ -86,6 +86,10 @@
     |
 <% end %>
 
+    <% if Rails.env.development? %>
+    <%= link_to t( 'admin.letter_opener_web' ), letter_opener_web_path %>
+    |
+    <% end %>
     <% if current_user_can? :view_admin_area %>
     <%= link_to t( 'admin.admin_area' ), admin_path %>
     <% end %>

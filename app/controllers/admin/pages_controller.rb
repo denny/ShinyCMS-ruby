@@ -30,7 +30,7 @@ class Admin::PagesController < AdminController
     authorise @page
 
     if @page.save
-      redirect_with_notice edit_page_path( @page ), t( '.success' )
+      redirect_to edit_page_path( @page ), notice: t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :new
@@ -47,7 +47,7 @@ class Admin::PagesController < AdminController
     authorise @page
 
     if @page.update( page_params )
-      redirect_with_notice edit_page_path( @page ), t( '.success' )
+      redirect_to edit_page_path( @page ), notice: t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
       render action: :edit
@@ -61,7 +61,8 @@ class Admin::PagesController < AdminController
     flash[ :notice ] = t( '.success' ) if page.destroy
     redirect_to pages_path
   rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-    redirect_with_alert pages_path, t( '.failure' )
+    skip_authorization
+    redirect_to pages_path, alert: t( '.failure' )
   end
 
   private

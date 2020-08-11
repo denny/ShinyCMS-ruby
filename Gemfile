@@ -1,10 +1,27 @@
 # frozen_string_literal: true
 
+# Supporting methods for loading ShinyCMS plugin gems
+def plugin_names
+  return ENV[ 'SHINYCMS_PLUGINS' ].split( /[, ]+/ ) if ENV[ 'SHINYCMS_PLUGINS' ]
+
+  Dir[ 'plugins/*' ].sort.map { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
+end
+
+def underscore( camel_cased_word )
+  word = camel_cased_word.to_s
+  word = word.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
+  word = word.gsub(/([a-z\d])([A-Z])/, '\1_\2')
+  word = word.tr('-', '_')
+  word.downcase
+end
+
 source 'https://rubygems.org' do
   gem 'rails', '~> 6.0.3'
 
+  # Database
   gem 'pg', '>= 0.18', '< 2.0'
 
+  # Webserver
   gem 'puma', '~> 4.3'
 
   # Load ENV from .env(.*) files
@@ -12,6 +29,12 @@ source 'https://rubygems.org' do
 
   # Locales for the 'not USA' bits of the world
   gem 'rails-i18n'
+
+  # Enable ShinyCMS plugins
+  plugin_names.each do |plugin_name|
+    gem_name = underscore( plugin_name )
+    gem gem_name, path: "plugins/#{plugin_name}"
+  end
 
   # Reduce boot times through caching; required in config/boot.rb
   gem 'bootsnap', '>= 1.4.2', require: false
@@ -59,6 +82,7 @@ source 'https://rubygems.org' do
   # Web stats
   gem 'ahoy_matey'
   gem 'blazer'
+  gem 'chartkick', '~> 3.4.0'
   gem 'groupdate'
 
   # Image storage on S3, image processing (resizing)
@@ -94,7 +118,7 @@ source 'https://rubygems.org' do
     gem 'bundler-audit', require: false
     # Check for slow code
     gem 'fasterer', require: false
-    # Capture all emails sent by the system and view them in a dev webmail inbox
+    # Capture all emails sent by the system, and view them in a dev webmail inbox
     gem 'letter_opener_web', '~> 1.0'
     # Reload dev server when files change
     gem 'listen', '>= 3.0.5', '< 3.3'

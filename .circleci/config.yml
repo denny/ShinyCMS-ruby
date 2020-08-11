@@ -21,12 +21,10 @@ references:
       POSTGRES_DB: shinycms_test
 
 jobs:
-  build:
-  # Setup phase
-  # setup:
+  # Install gems, node modules, etc
+  install_dependencies:
     docker:
       - *app
-      - *db
 
     working_directory: ~/ShinyCMS
 
@@ -54,6 +52,10 @@ jobs:
           keys:
             - yarn-cache-{{ checksum "yarn.lock" }}
             - yarn-cache-
+      # Install MJML binary
+      - run:
+          name: Install MJML binary
+          command: npm install mjml
       - run:
           name: Install Node modules
           command: yarn install --cache-folder ~/.cache/yarn
@@ -61,13 +63,13 @@ jobs:
           key: yarn-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+            - node_modules
 
       # Restore Webpacker assets from cache, or compile them
       - restore_cache:
           keys:
             - webpacker-cache-{{ .Revision }}
             - webpacker-cache-
-      # run: bundle exec rails assets:precompile
       - run:
           name: Compile webpacker assets
           command: bundle exec rake webpacker:compile
@@ -76,44 +78,46 @@ jobs:
           paths:
             - ~/ShinyCMS/public/packs-test/
 
-  # Testing phase
-#  test:
-#    docker:
-#      - *app
-#      - *db
-#
-#    working_directory: ~/ShinyCMS
-#    parallelism: 4
-#
-#    steps:
-#      - checkout
-#
-#      - restore_cache:
-#          keys:
-#          - bundler-cache-{{ checksum "Gemfile.lock" }}
-#          - bundler-cache-
-#      - restore_cache:
-#          keys:
-#            - yarn-cache-{{ checksum "yarn.lock" }}
-#            - yarn-cache-
-#      - restore_cache:
-#          keys:
-#            - webpacker-cache-{{ .Revision }}
-#            - webpacker-cache-
-#
-#      # Install bundler (again?) and double-check the gems are all there
-#      - run:
-#          name: Install bundler
-#          command: |
-#            gem install bundler
-#            bundle check || bundle install
+      # Save it all for use by the test runners
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - ShinyCMS
+            - .cache/yarn
 
-      # Install MJML binary
+  # Check linting, check gems for known security issues
+  rubocop_and_bundle_audit:
+    docker:
+      - *app
+
+    working_directory: ~/ShinyCMS
+
+    steps:
+      - attach_workspace:
+          at: ~/
+
       - run:
-          name: Install MJML
-          command: npm install mjml
+          name: Rubocop
+          command: bundle exec rubocop app/ config/ db/ lib/ plugins/ spec/
 
-      # Database setup
+      - run:
+          name: Audit Gemfile bundle for security issues
+          command: bundle exec bundle-audit check --update
+
+  # Run rspec tests, for main app and plugins
+  rspec:
+    docker:
+      - *app
+      - *db
+
+    working_directory: ~/ShinyCMS
+    parallelism: 3
+
+    steps:
+      - attach_workspace:
+          at: ~/
+
+      # Database setup (one for each test runner, to avoid nasty collisions)
       - run:
           name: Wait for database
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -126,7 +130,7 @@ jobs:
           name: Run tests
           command: |
             mkdir /tmp/test-results
-            TEST_FILES=$( circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings )
+            TEST_FILES=$( circleci tests glob "spec/**/*_spec.rb" "plugins/*/spec/**/*_spec.rb" | circleci tests split --split-by=filesize )
             bundle exec rspec $TEST_FILES \
               --profile 10 \
               --format RspecJunitFormatter \
@@ -140,11 +144,15 @@ jobs:
           path: /tmp/test-results
           destination: test-results
 
-#workflows:
-#  version: 2
-#  setup_and_test:
-#    jobs:
-#      - setup
-#      - test:
-#          requires:
-#            - setup
+# Run everything
+workflows:
+  version: 2
+  setup_and_test:
+    jobs:
+      - install_dependencies
+      - rubocop_and_bundle_audit:
+          requires:
+            - install_dependencies
+      - rspec:
+          requires:
+            - install_dependencies

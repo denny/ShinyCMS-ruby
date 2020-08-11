@@ -34,4 +34,8 @@ RSpec.describe 'Page model:', type: :model do
       expect( Page.last   ).to eq p2
     end
   end
+
+  it_should_behave_like 'ShinyDemoDataProvider' do
+    let( :model ) { Blog }
+  end
 end

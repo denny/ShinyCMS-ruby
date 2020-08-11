@@ -2,9 +2,10 @@
 
 # Model for 'brochure' pages
 class Page < ApplicationRecord
+  include ShinyDemoDataProvider
   include ShinyName
-  include ShinySlugInSection
   include ShinyShowHide
+  include ShinySlugInSection
 
   # Associations
 
@@ -93,15 +94,17 @@ class Page < ApplicationRecord
 
   # Return the configured default page, or one of a few fallback options, or nil
   def self.default_page
+    configured_default_page ||
+      PageSection.default_section&.default_page ||
+      Page.top_level_pages.min
+  end
+
+  def self.configured_default_page
     name_or_slug = Setting.get :default_page
     top_level_pages
       .where( internal_name: name_or_slug )
       .or( top_level_pages
       .where( slug: name_or_slug ) )
-      .first ||
-
-      PageSection.default_section&.default_page ||
-
-      Page.top_level_pages.min
+      .first
   end
 end

@@ -12,18 +12,6 @@ require 'dotenv/tasks'
 # rails shiny:demo:dump
 # - dumps the current database contents to db/demo_data.rb
 
-# rubocop:disable Layout/MultilineArrayLineBreaks
-
-# Big List of Models That Hold Demo Site Data
-MODEL_NAMES = %w[
-  EmailRecipient MailingList Subscription
-  Blog BlogPost NewsPost Discussion Comment
-  PageTemplate PageTemplateElement PageSection Page PageElement InsertElement
-  Blazer::Query Blazer::Dashboard Blazer::DashboardQuery
-].freeze
-
-# rubocop:enable Layout/MultilineArrayLineBreaks
-
 namespace :shiny do
   namespace :demo do
     desc 'ShinyCMS: reset database, create admin user, and load demo site data'
@@ -52,8 +40,8 @@ namespace :shiny do
 
     task confirm: %i[ environment dotenv ] do
       msg = 'Loading the demo site data wipes the database. Are you sure? (y/N)'
-      STDOUT.puts msg
-      unless STDIN.gets.chomp.downcase.in? %w[ y yes ]
+      $stdout.puts msg
+      unless $stdin.gets.chomp.downcase.in? %w[ y yes ]
         puts 'Thank you. No action taken, database is unchanged.'
         exit
       end
@@ -70,7 +58,7 @@ namespace :shiny do
     end
 
     def fix_primary_key_sequences
-      MODEL_NAMES.each do |model|
+      models_with_demo_data.each do |model|
         fix_primary_key_sequence( model.constantize.table_name )
       end
     end
@@ -86,7 +74,7 @@ namespace :shiny do
 
     task dump: %i[ environment dotenv ] do
       big_dump = ''
-      MODEL_NAMES.each do |model|
+      models_with_demo_data.each do |model|
         puts "Dumping: #{model}"
         dump = SeedDump.dump(
           model.constantize, exclude: %i[created_at updated_at]
@@ -100,6 +88,16 @@ namespace :shiny do
       File.open( Rails.root.join( 'db/demo_data.rb' ), 'w' ) do |dump|
         dump.write result
       end
+    end
+
+    def models_with_demo_data
+      Rails.application.eager_load! if Rails.env.development?
+      models = ApplicationRecord.descendants.select( &:dump_for_demo? ).map( &:to_s ).sort
+      # Fragile bodgery; move models with dependencies not happy with .sort order to the end
+      models.delete( 'Page' )
+      models.delete( 'PageElement' )
+      models.delete( 'Comment' )
+      models.push( 'Page', 'PageElement', 'Comment' )
     end
     # :nocov:
   end

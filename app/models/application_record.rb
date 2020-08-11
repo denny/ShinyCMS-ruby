@@ -14,4 +14,8 @@ class ApplicationRecord < ActiveRecord::Base
 
     I18n.t( "element_types.#{name}" )
   end
+
+  def self.dump_for_demo?
+    false
+  end
 end

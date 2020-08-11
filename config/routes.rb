@@ -4,7 +4,9 @@
 
 Rails.application.routes.draw do
   scope format: false do
-    # ========== ( Main site ) ==========
+    ########################################
+    # Main site
+
     root to: 'pages#index'
 
     if Rails.application.config.multiple_blogs_mode
@@ -39,20 +41,6 @@ Rails.application.routes.draw do
     get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
     post 'discussion/:id/:number', to: 'discussions#add_reply'
 
-    get 'news',                     to: 'news#index', as: :view_news
-    get 'news/:year/:month/:slug',  to: 'news#show',  as: :view_news_post,
-                                    constraints: {
-                                      year: %r{\d\d\d\d},
-                                      month: %r{\d\d}
-                                    }
-    get 'news/:year/:month',        to: 'news#month', as: :ignore5,
-                                    constraints: {
-                                      year: %r{\d\d\d\d},
-                                      month: %r{\d\d}
-                                    }
-    get 'news/:year',               to: 'news#year',  as: :ignore6,
-                                    constraints: { year: %r{\d\d\d\d} }
-
     get 'profile/:username',  to: 'profiles#show',  as: :user_profile,
                               constraints: { username: User::USERNAME_REGEX }
     get 'profile',            to: 'profiles#profile_redirect'
@@ -86,12 +74,14 @@ Rails.application.routes.draw do
     post   'vote/:type/:id/:flag', to: 'votes#create',  as: :create_vote
     delete 'vote/:type/:id',       to: 'votes#destroy', as: :destroy_vote
 
-    # ========== ( Admin area ) ==========
+    ########################################
+    # Admin area
+
     get :admin, to: 'admin#index'
 
-    EXCEPT = %w[ index show create ].freeze
-
     scope path: 'admin', module: 'admin' do
+      EXCEPT = %w[ index show create ].freeze
+
       # Blogs
       get  :blogs, to: 'blogs#index'
       post :blog,  to: 'blogs#create', as: :create_blog
@@ -101,10 +91,6 @@ Rails.application.routes.draw do
         resources :post, controller: 'blog/posts', except: EXCEPT
       end
       post 'blog/:id/post', to: 'blog/posts#create', as: :create_blog_post
-
-      get  :news, to: 'news#index'
-      post :news, to: 'news#create', as: :create_news_post
-      resources :news, as: :news_post, except: EXCEPT
 
       # Discussion and comment moderation
       get :comments, to: 'comments#index'
@@ -167,23 +153,36 @@ Rails.application.routes.draw do
       resources :user, controller: :users, except: EXCEPT
     end
 
-    # Ahoy email tracking
+    ########################################
+    # Rails engines
+
+    # AhoyEmail provides email tracking features
     mount AhoyEmail::Engine, at: '/ahoy'
 
-    # Blazer (web stats dashboard)
+    # Blazer provides charts and dashboards in the admin area
     mount Blazer::Engine, at: '/admin/stats'
 
-    # CKEditor (WYSIWYG editor used on various admin pages)
+    # CKEditor provides the WYSIWYG editor used in the admin area
     mount Ckeditor::Engine, at: '/admin/ckeditor'
 
-    # Mailer preview features
+    # RailsEmailPreview provides previews of site emails in the admin area
     mount RailsEmailPreview::Engine, at: '/admin/email-previews'
 
-    # Letter Opener webmail UI for dev environment
-    mount LetterOpenerWeb::Engine, at: 'letter-opener' if Rails.env.development?
+    # LetterOpener catches all emails sent in development, with a webmail UI to view them
+    mount LetterOpenerWeb::Engine, at: '/dev/outbox' if Rails.env.development?
 
-    # This catch-all route passes through to the Pages controller, allowing
-    # sites to have top-level pages (e.g. /foo instead of /pages/foo).
+    ########################################
+    # ShinyCMS plugins
+
+    Plugin.loaded.each do |plugin_name|
+      plugin = plugin_name.constantize
+      mount plugin::Engine, at: '/' if defined? plugin
+    end
+
+    ###########################################################################
+    # This final catch-all route passes through to the Pages controller.
+    # This makes it possible to have pages and sections at the top level
+    # e.g. /foo instead of /pages/foo
     get '*path', to: 'pages#show'
   end
 end

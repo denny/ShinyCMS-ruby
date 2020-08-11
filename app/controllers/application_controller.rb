@@ -100,13 +100,16 @@ class ApplicationController < ActionController::Base
   end
 
   def set_view_paths
-    # Add the default templates directory to the top of view_paths
+    # Add the default templates directory to the top of the standard view_paths
     prepend_view_path 'app/views/shinycms'
 
-    # Apply the configured theme, if any, by adding it above the defaults
-    return unless Theme.current( current_user )
+    # Add the default templates directory for any loaded plugins above that
+    Plugin.loaded.each do |plugin_name|
+      prepend_view_path "plugins/#{plugin_name}/app/views/#{plugin_name.underscore}"
+    end
 
-    prepend_view_path Theme.current( current_user ).view_path
+    # Add the templates directory for the currently active theme (if any) above all default templates
+    prepend_view_path Theme.current( current_user ).view_path if Theme.current( current_user )
   end
 
   def recaptcha_v3_site_key

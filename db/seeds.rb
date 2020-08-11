@@ -16,7 +16,6 @@ spam_cc       = seed CapabilityCategory, { name: 'spam_comments'  }
 emails_cc     = seed CapabilityCategory, { name: 'email_previews' }
 features_cc   = seed CapabilityCategory, { name: 'feature_flags'  }
 inserts_cc    = seed CapabilityCategory, { name: 'inserts'        }
-news_cc       = seed CapabilityCategory, { name: 'news_posts'     }
 pages_cc      = seed CapabilityCategory, { name: 'pages'          }
 sections_cc   = seed CapabilityCategory, { name: 'page_sections'  }
 templates_cc  = seed CapabilityCategory, { name: 'page_templates' }
@@ -65,12 +64,6 @@ seed Capability, { name: 'list',    category: inserts_cc }
 seed Capability, { name: 'add',     category: inserts_cc }
 seed Capability, { name: 'edit',    category: inserts_cc }
 seed Capability, { name: 'destroy', category: inserts_cc }
-# News
-seed Capability, { name: 'list',          category: news_cc }
-seed Capability, { name: 'add',           category: news_cc }
-seed Capability, { name: 'edit',          category: news_cc }
-seed Capability, { name: 'destroy',       category: news_cc }
-seed Capability, { name: 'change_author', category: news_cc }
 # Pages
 seed Capability, { name: 'list',    category: pages_cc }
 seed Capability, { name: 'add',     category: pages_cc }
@@ -149,24 +142,6 @@ seed FeatureFlag, { name: 'comment_notifications' }, {
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
-seed FeatureFlag, { name: 'news' }, {
-  description: 'Add a news section to your site',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
-seed FeatureFlag, { name: 'news_votes' }, {
-  description: 'Enable votes on news posts',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
-seed FeatureFlag, { name: 'news_downvotes' }, {
-  description: 'Enable down-votes on news posts',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
 seed FeatureFlag, { name: 'akismet_on_comments' }, {
   description: 'Detect spam comments with Akismet',
   enabled: true,
@@ -236,6 +211,13 @@ setting = seed Setting, { name: 'allowed_to_comment' }, {
 setting.values.create_or_find_by!( value: 'Anonymous' )
 setting.update( locked: true )
 
+setting = seed Setting, { name: 'default_email' }, {
+  description: 'Default email address to send from',
+  level: 'site',
+  locked: false
+}
+setting.values.create_or_find_by!( value: 'admin@example.com' )
+
 setting = seed Setting, { name: 'default_page' }, {
   description: 'Default top-level page (either its name or its slug)',
   level: 'site',
@@ -298,6 +280,11 @@ setting = seed Setting, { name: 'track_clicks' }, {
   locked: true
 }
 setting.values.create_or_find_by!( value: 'No' )
+
+# Load seed data for any ShinyCMS plugins that are enabled
+Plugin.loaded.each do |plugin_name|
+  Rake::Task[ "#{plugin_name.underscore}:db:seed" ].invoke
+end
 
 # Let people know how to create an admin user
 demo = ( Rake.application.top_level_tasks.first == 'shiny:demo:load' )
