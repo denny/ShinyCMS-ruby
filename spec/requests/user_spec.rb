@@ -4,14 +4,16 @@ require 'rails_helper'
 
 RSpec.describe 'User accounts', type: :request do
   before :each do
+    @page = create :top_level_page
+  end
+
+  before :each do
     FeatureFlag.enable :user_login
-    FeatureFlag.enable :profile_pages
+    FeatureFlag.disable :profile_pages
   end
 
   describe 'GET /account/register' do
     it 'redirects to the site homepage if user registrations are not enabled' do
-      create :top_level_page
-
       FeatureFlag.disable :user_registration
 
       get new_user_registration_path
@@ -91,8 +93,6 @@ RSpec.describe 'User accounts', type: :request do
     end
 
     it 'redirects to the site homepage if user logins are not enabled' do
-      create :top_level_page
-
       FeatureFlag.disable :user_login
 
       get new_user_session_path
@@ -112,8 +112,6 @@ RSpec.describe 'User accounts', type: :request do
     end
 
     it 'defaults to assuming that user logins are not enabled' do
-      create :top_level_page
-
       FeatureFlag.find_by( name: 'user_login' ).update!( name: 'test' )
 
       get new_user_session_path
@@ -146,10 +144,9 @@ RSpec.describe 'User accounts', type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_profiles.profile_path( user.username )
+      expect( response      ).to redirect_to root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_link user.username, href: "/profile/#{user.username}"
       expect( response.body ).to have_link I18n.t( 'user.log_out' )
     end
 
@@ -163,10 +160,9 @@ RSpec.describe 'User accounts', type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_profiles.profile_path( user.username )
+      expect( response      ).to redirect_to root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_link user.username, href: "/profile/#{user.username}"
       expect( response.body ).to have_link I18n.t( 'user.log_out' )
     end
 
@@ -174,8 +170,8 @@ RSpec.describe 'User accounts', type: :request do
       password = 'shinycms unimaginative test passphrase'
       user = create :user, password: password
 
-      page = create :top_level_page
-      should_go_here = "http://www.example.com/#{page.slug}"
+      different_page = create :top_level_page
+      should_go_here = "http://www.example.com/#{different_page.slug}"
 
       post user_session_path,
            params: {
@@ -190,15 +186,13 @@ RSpec.describe 'User accounts', type: :request do
       expect( response      ).to redirect_to should_go_here
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css 'h1', text: page.name
+      expect( response.body ).to have_css 'h1', text: different_page.name
     end
   end
 
   describe 'POST /account/register' do
     it 'creates a new user, checking V3 reCAPTCHA if a V3 key is set' do
       FeatureFlag.enable :user_registration
-
-      create :top_level_page
 
       username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
@@ -227,8 +221,6 @@ RSpec.describe 'User accounts', type: :request do
     it 'creates a new user, checking V2 invisible reCAPTCHA if no V3 key present' do
       FeatureFlag.enable :user_registration
 
-      create :top_level_page
-
       username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
@@ -255,8 +247,6 @@ RSpec.describe 'User accounts', type: :request do
 
     it 'falls back to checkbox reCAPTCHA if invisible reCAPTCHA fails' do
       FeatureFlag.enable :user_registration
-
-      create :top_level_page
 
       username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
