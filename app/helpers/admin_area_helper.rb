@@ -25,8 +25,15 @@ module AdminAreaHelper
         %w[ posts pages templates ].include?( controller_name ) )
   end
 
-  def plugins_for_menu
-    ::Plugin.loaded.map( &:underscore )
+  def plugins_for_admin_menu
+    plugins = []
+    ::Plugin.loaded.each do |camelcase|
+      underscored = camelcase.underscore
+      if File.exist? Rails.root.join "plugins/#{camelcase}/app/views/#{underscored}/admin/menu/_section.html.erb"
+        plugins << underscored
+      end
+    end
+    plugins
   end
 
   def render_capability_category( form, category, capabilities, show )
