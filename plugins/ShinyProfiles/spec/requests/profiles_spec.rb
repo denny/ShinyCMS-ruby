@@ -64,4 +64,43 @@ RSpec.describe 'User profiles', type: :request do
       expect( response.body ).to include user.username
     end
   end
+
+  describe 'POST /login' do
+    it "redirects to the user's profile page if user profiles are enabled" do
+      password = 'shinycms unimaginative test passphrase'
+      user = create :user, password: password
+
+      FeatureFlag.enable :profile_pages
+
+      post user_session_path, params: {
+        'user[login]': user.username,
+        'user[password]': password
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_profiles.profile_path( user.username )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css 'h2', text: user.name
+    end
+
+    it "redirects to the site root if user profiles aren't enabled" do
+      password = 'shinycms unimaginative test passphrase'
+      user = create :user, password: password
+
+      FeatureFlag.disable :profile_pages
+      page = create :top_level_page
+
+      post user_session_path, params: {
+        'user[login]': user.username,
+        'user[password]': password
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to root_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css 'h1', text: page.name
+    end
+  end
 end
