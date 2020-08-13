@@ -18,12 +18,12 @@
     </div>
 
     <div class="field">
-      <%= f.label :display_name %><br>
-      <%= f.text_field :display_name %>
+      <%= f.label :public_name %><br>
+      <%= f.text_field :public_name %>
     </div>
     <div class="field">
-      <%= f.label :display_email %>
-      <br><%= f.text_field :display_email %>
+      <%= f.label :public_email %>
+      <br><%= f.text_field :public_email %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

@@ -1,4 +1,4 @@
-<% @page_title = user_display_name( @user_profile ) %>
+<% @page_title = @user_profile.name %>
 
 <section>
   <% if @user_profile.profile_pic.present? %>
@@ -7,7 +7,7 @@
 
   <header>
     <h2>
-      <%= user_display_name( @user_profile ) %>
+      <%= @user_profile.name %>
     </h2>
   </header>
 

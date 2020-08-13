@@ -307,8 +307,10 @@ RSpec.describe 'User accounts', type: :request do
 
       new_name = Faker::Books::CultureSeries.unique.culture_ship
       put user_registration_path, params: {
-        'user[display_name]': new_name,
-        'user[current_password]': user.password
+        user: {
+          public_name: new_name,
+          current_password: user.password
+        }
       }
 
       expect( response      ).to have_http_status :found
