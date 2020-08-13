@@ -53,7 +53,7 @@ class User < ApplicationRecord
 
   paginates_per 20
 
-  searchable_attributes = %i[ username display_name display_email ]
+  searchable_attributes = %i[ username public_name public_email ]
   algolia_search_on( searchable_attributes )
   pg_search_on( searchable_attributes )
 

@@ -1,2 +1,2 @@
 <%= link_to result.title, result.path %>
-by <%= link_to result.author.display_name_or_username, user_profile_path( result.author.username ) %>
+by <%= link_to result.author.name, shiny_profiles.profile_path( result.author.username ) %>

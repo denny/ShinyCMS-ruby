@@ -14,13 +14,13 @@ RSpec.describe 'Search:', type: :request do
 
   describe 'GET /search?query=Success' do
     it 'displays the search results using the default search back-end (pg_search)' do
-      user = create :user, display_name: 'Success'
+      user = create :user, public_name: 'Success'
 
       get search_path, params: { query: 'Success' }
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'search.results.title', query: 'Success' )
-      expect( response.body ).to     have_link user.display_name, href: "/profile/#{user.username}"
+      expect( response.body ).to     have_link user.public_name, href: "/profile/#{user.username}"
       expect( response.body ).not_to have_css 'p', text: I18n.t( 'search.no_results.no_results' )
     end
 
@@ -42,34 +42,34 @@ RSpec.describe 'Search:', type: :request do
 
   describe 'GET /search?engine=pg&query=Success' do
     it 'displays the search results, explicitly using the pg_search back-end' do
-      user = create :user, display_name: 'Success'
+      user = create :user, public_name: 'Success'
 
       get search_path, params: { engine: 'pg', query: 'Success' }
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'search.results.title', query: 'Success' )
-      expect( response.body ).to     have_link user.display_name, href: "/profile/#{user.username}"
+      expect( response.body ).to     have_link user.public_name, href: "/profile/#{user.username}"
       expect( response.body ).not_to have_css 'p', text: I18n.t( 'search.no_results.no_results' )
     end
   end
 
   describe 'GET /search?engine=algolia&query=Success' do
     it 'displays the search results, using the Algolia search back-end' do
-      # user = create :user, display_name: 'Success'
+      # user = create :user, public_name: 'Success'
 
       get search_path, params: { engine: 'algolia', query: 'Success' }
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'search.results.title', query: 'Success' )
       # TODO
-      # expect( response.body ).to     have_link user.display_name, href: "/profile/#{user.username}"
+      # expect( response.body ).to     have_link user.public_name, href: "/profile/#{user.username}"
       # expect( response.body ).not_to have_css 'p', text: I18n.t( 'search.no_results.no_results' )
     end
   end
 
   describe 'GET /search?query=FAIL' do
     it 'displays the lack of search results' do
-      user = create :user, display_name: 'Success'
+      user = create :user, public_name: 'Success'
 
       get "#{search_path}?query=FAIL"
 
