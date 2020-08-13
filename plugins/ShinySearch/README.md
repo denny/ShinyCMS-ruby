@@ -16,6 +16,18 @@ rails db:migrate
 rails shiny_search:db:seed
 ```
 
+## Configuration: Algolia
+
+Agolia is a Search-as-a-Service provider, available free for non-commercial sites. You will need to register for your own API keys, and then add them to your ENV:
+```
+# https://www.algolia.com/dashboard
+ALGOLIASEARCH_APPLICATION_ID=AA99AA99AA
+ALGOLIASEARCH_API_KEY=9999aaaa9999aaaa9999aaaa9999aaaa
+ALGOLIASEARCH_API_KEY_SEARCH=aaaa9999aaaa9999aaaa9999aaaa9999
+```
+
+If you want to disable the default pg_search, you can set `DISABLE_PG_SEARCH=true` in your ENV.
+
 
 ## Contributing
 
