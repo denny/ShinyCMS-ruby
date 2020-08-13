@@ -3,7 +3,7 @@
 # ============================================================================
 # Project:   ShinyNews plugin for ShinyCMS (Ruby version)
 # File:      plugins/ShinyNews/db/seeds.rb
-# Purpose:   Seed data for ShinyNews plugin
+# Purpose:   Seed data (feature flags and admin capabilities)
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
 #

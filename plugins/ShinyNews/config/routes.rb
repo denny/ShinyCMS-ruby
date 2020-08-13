@@ -13,6 +13,7 @@
 
 ShinyNews::Engine.routes.draw do
   scope format: false do
+    # Main site
     get 'news', to: 'news#index', as: :view_news
 
     get 'news/:year',               constraints: { year: %r{\d\d\d\d} },
@@ -24,6 +25,7 @@ ShinyNews::Engine.routes.draw do
     get 'news/:year/:month/:slug',  constraints: { year: %r{\d\d\d\d}, month: %r{\d\d} },
                                     to: 'news#show', as: :view_news_post
 
+    # Admin area
     scope path: 'admin', module: 'admin' do
       resources :news, except: :show
     end
