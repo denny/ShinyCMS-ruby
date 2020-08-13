@@ -1,72 +1,76 @@
 # frozen_string_literal: true
 
 # ============================================================================
-# Project:   ShinyCMS (Ruby version)
-# File:      app/controllers/search_controller.rb
-# Purpose:   Controller for search features on a ShinyCMS-powered site
+# Project:   ShinySearch plugin for ShinyCMS (Ruby version)
+# File:      plugin/ShinySearch/app/controllers/search_controller.rb
+# Purpose:   Main site controller
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or
 # modify it under the terms of the GPL (version 2 or later).
 # ============================================================================
-class SearchController < ApplicationController
-  include SearchHelper
 
-  before_action :check_feature_flags
-  before_action :stash_query_string
+module ShinySearch
+  # Main site controller for ShinySearch plugin for ShinyCMS
+  class SearchController < ApplicationController
+    include SearchHelper
 
-  SEARCH_BACKENDS = %w[ algolia pg ].freeze
-  private_constant :SEARCH_BACKENDS
+    before_action :check_feature_flags
+    before_action :stash_query_string
 
-  def index
-    return unless @query
+    SEARCH_BACKENDS = %w[ algolia pg ].freeze
+    private_constant :SEARCH_BACKENDS
 
-    @page_num = search_params[ :page  ] || 1
-    @per_page = search_params[ :count ] || Setting.get( :search_results_per_page ) || 20
+    def index
+      return unless @query
 
-    backend = search_params[ :engine ].presence || Setting.get( :default_search_backend )
-    backend = nil unless SEARCH_BACKENDS.include? backend
+      @page_num = search_params[ :page  ] || 1
+      @per_page = search_params[ :count ] || Setting.get( :search_results_per_page ) || 20
 
-    @results = perform_search( backend )
-  end
+      backend = search_params[ :engine ].presence || Setting.get( :default_search_backend )
+      backend = nil unless SEARCH_BACKENDS.include? backend
 
-  private
-
-  def perform_search( backend )
-    return pg_search if pg_search_is_enabled? && backend == 'pg'
-
-    return algolia_search if algolia_search_is_enabled? && backend == 'algolia'
-
-    unless algolia_search_is_enabled? || pg_search_is_enabled?
-      Rails.logger.error 'Search feature is enabled, but no search back-ends are enabled'
+      @results = perform_search( backend )
     end
 
-    []
-  end
+    private
 
-  def pg_search
-    @pageable = PgSearch.multisearch( @query )
-                        .includes( :searchable )
-                        .page( @page_num )
-                        .per( @per_page )
-    @pageable.map( &:searchable )
-  end
+    def perform_search( backend )
+      return pg_search if pg_search_is_enabled? && backend == 'pg'
 
-  def algolia_search
-    # TODO: get results from Algolia search API
-    []
-  end
+      return algolia_search if algolia_search_is_enabled? && backend == 'algolia'
 
-  def stash_query_string
-    @query = search_params[ :query ] || search_params[ :q ]
-  end
+      unless algolia_search_is_enabled? || pg_search_is_enabled?
+        Rails.logger.error 'Search feature is enabled, but no search back-ends are enabled'
+      end
 
-  def search_params
-    params.permit( :query, :q, :page, :count, :engine )
-  end
+      []
+    end
 
-  def check_feature_flags
-    enforce_feature_flags :search
+    def pg_search
+      @pageable = PgSearch.multisearch( @query )
+                          .includes( :searchable )
+                          .page( @page_num )
+                          .per( @per_page )
+      @pageable.map( &:searchable )
+    end
+
+    def algolia_search
+      # TODO: get results from Algolia search API
+      []
+    end
+
+    def stash_query_string
+      @query = search_params[ :query ] || search_params[ :q ]
+    end
+
+    def search_params
+      params.permit( :query, :q, :page, :count, :engine )
+    end
+
+    def check_feature_flags
+      enforce_feature_flags :search
+    end
   end
 end
