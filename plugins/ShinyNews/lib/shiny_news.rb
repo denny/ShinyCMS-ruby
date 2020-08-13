@@ -12,7 +12,6 @@
 # ============================================================================
 
 require 'shiny_news/engine'
-require 'shiny_news/admin'
 
 # Namespace wrapper for the ShinyNews plugin for ShinyCMS
 module ShinyNews

@@ -10,16 +10,16 @@ RSpec.describe 'Admin::News', type: :request do
 
   describe 'GET /admin/news' do
     it 'fetches the list of news posts' do
-      get shiny_news.news_index_path
+      get shiny_news.news_posts_path
 
       expect( response ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
     end
   end
 
   describe 'GET /admin/news/new' do
     it 'loads the form to create a new news post' do
-      get shiny_news.new_news_path
+      get shiny_news.new_news_post_path
 
       expect( response ).to have_http_status :ok
     end
@@ -27,8 +27,8 @@ RSpec.describe 'Admin::News', type: :request do
 
   describe 'POST /admin/news' do
     it 'creates a new news post when a complete form is submitted' do
-      post shiny_news.news_index_path, params: {
-        news_post: {
+      post shiny_news.news_posts_path, params: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph
@@ -38,16 +38,16 @@ RSpec.describe 'Admin::News', type: :request do
       post1 = ShinyNews::Post.last
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_news.edit_news_path( post1 )
+      expect( response      ).to redirect_to shiny_news.edit_news_post_path( post1 )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news.create.success' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news_posts.create.success' )
     end
 
     it 'fails to create a new news post when an incomplete form is submitted' do
-      post shiny_news.news_index_path, params: {
-        news_post: {
+      post shiny_news.news_posts_path, params: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: nil
@@ -55,15 +55,15 @@ RSpec.describe 'Admin::News', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.new.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_news.admin.news.create.failure' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_news.admin.news_posts.create.failure' )
     end
 
     it "fails to create a new news post when the slug isn't unique this month" do
       post_from_this_month = create :shiny_news_post, posted_at: Time.zone.now.beginning_of_month
 
-      post shiny_news.news_index_path, params: {
-        news_post: {
+      post shiny_news.news_posts_path, params: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
@@ -72,15 +72,15 @@ RSpec.describe 'Admin::News', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.new.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_news.admin.news.create.failure' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_news.admin.news_posts.create.failure' )
     end
 
     it "doesn't fail when the slug is unique this month but not globally" do
       post_from_last_month = create :blog_post, posted_at: 1.month.ago
 
-      post shiny_news.news_index_path, params: {
-        news_post: {
+      post shiny_news.news_posts_path, params: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
@@ -91,11 +91,11 @@ RSpec.describe 'Admin::News', type: :request do
       new_post = ShinyNews::Post.last
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_news.edit_news_path( new_post )
+      expect( response      ).to redirect_to shiny_news.edit_news_post_path( new_post )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news.create.success' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news_posts.create.success' )
     end
   end
 
@@ -103,7 +103,7 @@ RSpec.describe 'Admin::News', type: :request do
     it 'loads the form to edit an existing news post' do
       post = create :shiny_news_post
 
-      get shiny_news.edit_news_path( post )
+      get shiny_news.edit_news_post_path( post )
 
       expect( response ).to have_http_status :ok
     end
@@ -113,8 +113,8 @@ RSpec.describe 'Admin::News', type: :request do
     it 'fails to update the news post when an incomplete form is submitted' do
       post = create :shiny_news_post
 
-      put shiny_news.news_path( post ), params: {
-        news_post: {
+      put shiny_news.news_post_path( post ), params: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: nil
@@ -122,15 +122,15 @@ RSpec.describe 'Admin::News', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_news.admin.news.update.failure' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_news.admin.news_posts.update.failure' )
     end
 
     it 'updates the news post when a complete form is submitted' do
       post = create :shiny_news_post
 
-      put shiny_news.news_path( post ), params: {
-        news_post: {
+      put shiny_news.news_post_path( post ), params: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph
@@ -140,19 +140,19 @@ RSpec.describe 'Admin::News', type: :request do
       post = ShinyNews::Post.last
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_news.edit_news_path( post )
+      expect( response      ).to redirect_to shiny_news.edit_news_post_path( post )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news.update.success' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news_posts.update.success' )
     end
 
     it 'updates the discussion hidden/locked status successfully' do
       post = create :shiny_news_post
       create :discussion, resource: post
 
-      put shiny_news.news_path( post ), params: {
-        news_post: {
+      put shiny_news.news_post_path( post ), params: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
@@ -164,10 +164,10 @@ RSpec.describe 'Admin::News', type: :request do
       post = ShinyNews::Post.last
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_news.edit_news_path( post )
+      expect( response      ).to redirect_to shiny_news.edit_news_post_path( post )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news.update.success' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news_posts.update.success' )
       expect( post.discussion.hidden? ).to be false
       expect( post.discussion.locked? ).to be true
     end
@@ -179,28 +179,29 @@ RSpec.describe 'Admin::News', type: :request do
       p2 = create :shiny_news_post
       p3 = create :shiny_news_post
 
-      delete shiny_news.news_path( p2 )
+      delete shiny_news.news_post_path( p2 )
 
+      success_message = I18n.t( 'shiny_news.admin.news_posts.destroy.success' )
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to shiny_news.news_index_path
+      expect( response      ).to     redirect_to shiny_news.news_posts_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'shiny_news.admin.news.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news.destroy.success' )
+      expect( response.body ).to     have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: success_message
       expect( response.body ).to     have_css 'td', text: p1.title
       expect( response.body ).not_to have_css 'td', text: p2.title
       expect( response.body ).to     have_css 'td', text: p3.title
     end
 
     it 'fails gracefully when attempting to delete a non-existent news post' do
-      delete shiny_news.news_path( 999 )
+      delete shiny_news.news_post_path( 999 )
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_news.news_index_path
+      expect( response      ).to redirect_to shiny_news.news_posts_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_news.admin.news.destroy.failure' )
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_news.admin.news_posts.destroy.failure' )
     end
   end
 end

@@ -1,11 +1,11 @@
 <% return unless current_user.can? :list, :shiny_news_posts %>
 
-  <%= render_admin_menu_section( t( 'shiny_news.admin.news.title' ), 'rss' ) do %>
+  <%= render_admin_menu_section( t( 'shiny_news.admin.news_posts.title' ), 'rss' ) do %>
 
     <%= render_admin_menu_item(
-        t( 'shiny_news.admin.news.index.title' ), shiny_news.news_index_path, 'list' ) %>
+        t( 'shiny_news.admin.news_posts.index.title' ), shiny_news.news_posts_path, 'list' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :add, :shiny_news_posts ),
-        t( 'shiny_news.admin.news.new.title' ), shiny_news.new_news_path, 'pencil' ) %>
+        t( 'shiny_news.admin.news_posts.new.title' ), shiny_news.new_news_post_path, 'pencil' ) %>
 
   <% end %>
