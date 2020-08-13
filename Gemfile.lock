@@ -19,6 +19,15 @@ PATH
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
+PATH
+  remote: plugins/ShinySearch
+  specs:
+    shiny_search (20.8)
+      algoliasearch-rails
+      pg (>= 0.18, < 2.0)
+      pg_search
+      rails (~> 6.0.3, >= 6.0.3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -487,6 +496,7 @@ DEPENDENCIES
   shiny_forms!
   shiny_news!
   shiny_profiles!
+  shiny_search!
   webpacker (~> 5.1)!
 
 BUNDLED WITH

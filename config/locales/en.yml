@@ -104,16 +104,6 @@ en:
   page:
     template_file_missing: Unable to display page; its template file is missing.
 
-  search:
-    new:
-      title: Search the site
-    results:
-      title: "Search results for '%{query}'"
-    no_results:
-      no_results: No results found.
-      try_again: "Please try another search:"
-      try_tags: "Or, you can explore our tags section:"
-
   site_settings:
     index:
       title: Site settings
@@ -192,7 +182,6 @@ en:
     default_email: Default email address
     default_page: Default page
     default_section: Default section
-    default_search_backend: Default search back-end
     post_login_redirect: Post-login redirect
     recaptcha_comment_score: 'reCAPTCHA: Minimum score for comments'
     recaptcha_registration_score: 'reCAPTCHA: Minimum score for user registration'
@@ -217,7 +206,6 @@ en:
     comment_notifications: Comment notifications
     recaptcha_on_registration_form: Protect registration form with reCAPTCHA
     recaptcha_on_comment_form: Protect comment form with reCAPTCHA
-    search: Search
     tags: Tags
     user_login: User Login
     user_registration: User Registration

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Adds methods for working with search back-ends
-module ShinySearch
+module ShinySearchConcern
   extend ActiveSupport::Concern
 
   included do
