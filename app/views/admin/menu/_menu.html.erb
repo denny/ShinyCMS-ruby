@@ -6,7 +6,7 @@
 
   <%= render partial: 'admin/menu/menu_blogs'    %>
 
-  <% plugins_for_menu.each do |plugin_name| %>
+  <% plugins_for_admin_menu.each do |plugin_name| %>
   <%= render partial: "#{plugin_name}/admin/menu/section" %>
   <% end %>
 

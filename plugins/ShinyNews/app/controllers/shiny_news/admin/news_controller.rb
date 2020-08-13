@@ -3,7 +3,7 @@
 # ============================================================================
 # Project:   ShinyNews plugin for ShinyCMS (Ruby version)
 # File:      plugins/ShinyNews/app/controllers/shiny_news/admin/news_controller.rb
-# Purpose:   Controller for admin area
+# Purpose:   Admin area controller for news section
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
 #
@@ -12,7 +12,7 @@
 # ============================================================================
 
 module ShinyNews
-  # Admin area controller for ShinyNews
+  # Admin area controller for ShinyNews plugin for ShinyCMS
   class Admin::NewsController < AdminController
     before_action :set_post_for_create, only: :create
     before_action :set_post, only: %i[ edit update destroy ]

@@ -12,6 +12,13 @@ PATH
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
+PATH
+  remote: plugins/ShinyProfiles
+  specs:
+    shiny_profiles (20.8)
+      pg (>= 0.18, < 2.0)
+      rails (~> 6.0.3, >= 6.0.3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -104,7 +111,7 @@ GEM
     aws-sdk-kms (1.36.0)
       aws-sdk-core (~> 3, >= 3.99.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.77.0)
+    aws-sdk-s3 (1.78.0)
       aws-sdk-core (~> 3, >= 3.104.3)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
@@ -116,7 +123,7 @@ GEM
       chartkick (>= 3.2)
       railties (>= 5)
       safely_block (>= 0.1.1)
-    bootsnap (1.4.7)
+    bootsnap (1.4.8)
       msgpack (~> 1.0)
     brakeman (4.9.0)
     builder (3.2.4)
@@ -467,6 +474,7 @@ DEPENDENCIES
   seed_dump!
   shiny_forms!
   shiny_news!
+  shiny_profiles!
   webpacker (~> 5.1)!
 
 BUNDLED WITH

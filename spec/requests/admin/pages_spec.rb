@@ -57,7 +57,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
       post create_page_path, params: {
         'page[internal_name]': 'Test',
-        'page[slug]': 'profile',
+        'page[slug]': 'account',
         'page[template_id]': template.id
       }
 

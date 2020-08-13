@@ -4,10 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Feature Flags', type: :request do
   before :each do
-    FeatureFlag.find_or_create_by!( name: 'user_login' )
-               .update!( enabled: true )
-    FeatureFlag.find_or_create_by!( name: 'user_profiles' )
-               .update!( enabled: true )
+    FeatureFlag.enable :user_login
+    FeatureFlag.enable :profile_pages
   end
 
   describe 'GET /login' do
@@ -41,15 +39,15 @@ RSpec.describe 'Feature Flags', type: :request do
   end
 
   describe 'GET /profile/{username}' do
-    it 'fails for non-admin user with User Profiles feature only enabled for admins' do
+    it 'fails for non-admin user with Profile Pages feature only enabled for admins' do
       create :top_level_page
       user = create :user
       sign_in user
 
-      FeatureFlag.find_or_create_by!( name: 'user_profiles' )
+      FeatureFlag.find_or_create_by!( name: 'profile_pages' )
                  .update!( enabled: false, enabled_for_admins: true )
 
-      get user_profile_path( user.username )
+      get shiny_profiles.profile_path( user.username )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path
@@ -59,19 +57,19 @@ RSpec.describe 'Feature Flags', type: :request do
         '.alerts',
         text: I18n.t(
           'feature_flags.off_alert',
-          feature_name: I18n.t( 'feature_flags.user_profiles' )
+          feature_name: I18n.t( 'feature_flags.profile_pages' )
         )
       )
     end
 
-    it 'succeeds for admin user with User Profiles feature only enabled for admins' do
+    it 'succeeds for admin user with Profile Pages feature only enabled for admins' do
       user = create :admin_user
       sign_in user
 
-      FeatureFlag.find_or_create_by!( name: 'user_profiles' )
+      FeatureFlag.find_or_create_by!( name: 'profile_pages' )
                  .update!( enabled: false, enabled_for_admins: true )
 
-      get user_profile_path( user.username )
+      get shiny_profiles.profile_path( user.username )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include user.username

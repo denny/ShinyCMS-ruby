@@ -24,9 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata['allowed_push_host'] = 'TODO: Set to http://rubygems.org in some notional future'
 
-  spec.files = Dir['{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md']
-
-  # spec.required_ruby_version = '>= 2.7'
+  spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
   spec.add_dependency 'rails', '~> 6.0.3', '>= 6.0.3.2'
 

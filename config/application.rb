@@ -28,14 +28,8 @@ module ShinyCMS
 
     # Settings in config/environments/* take precedence over those set here.
     # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
-
-    config.i18n.default_locale = :en
-    config.i18n.available_locales = %w[ en ]
-    # TODO: More accurate locale for default data? And aspirational Spanish!
-    # config.i18n.default_locale = :'en-GB'
-    # config.i18n.available_locales = %w[ en-GB en es ]
+    # -- all .rb files in that directory are automatically loaded after
+    # loading the framework and any gems in your application.
 
     # Remote routes for Action Mailbox
     initializer(
