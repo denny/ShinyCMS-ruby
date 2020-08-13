@@ -122,8 +122,6 @@ en:
       title: "Tag: '%{tag}'"
 
   user:
-    view_profile: View your profile
-    edit_profile: Edit your profile
     log_in: Log in
     log_out: Log out
     register: Register
@@ -210,7 +208,6 @@ en:
     recaptcha_on_comment_form: Protect comment form with reCAPTCHA
     tags: Tags
     user_login: User Login
-    user_profiles: User Profiles
     user_registration: User Registration
 
 

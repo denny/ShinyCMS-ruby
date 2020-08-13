@@ -12,11 +12,11 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right pt-0">
       <div class="dropdown-header bg-light py-2"><strong><%= user_display_name %></strong></div>
-      <a class="dropdown-item" href="<%= user_profile_path( current_user.username ) %>">
-        <i class="cil-user user-menu-icon"></i> <%= t( 'user.view_profile' ) %>
+      <a class="dropdown-item" href="<%= shiny_profiles.profile_path( current_user.username ) %>">
+        <i class="cil-user user-menu-icon"></i> <%= t( 'shiny_profiles.view_profile' ) %>
       </a>
       <a class="dropdown-item" href="<%= edit_user_registration_path( current_user.username ) %>">
-        <i class="cil-pencil user-menu-icon"></i> <%= t( 'user.edit_profile' ) %>
+        <i class="cil-pencil user-menu-icon"></i> <%= t( 'shiny_profiles.edit_profile' ) %>
       </a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="<%= site_settings_path %>">

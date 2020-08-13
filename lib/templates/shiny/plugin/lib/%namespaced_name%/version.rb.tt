@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 <%= wrap_in_modules <<~rb
-  VERSION = '#{Time.zone.now.year.to_s[-2,2]}.#{'0' if Time.zone.now.month < 10}#{Time.zone.now.month}'
+  VERSION = '#{Time.zone.now.year.to_s[-2,2]}.#{Time.zone.now.month}'
   public_constant :VERSION
 rb
 %>
