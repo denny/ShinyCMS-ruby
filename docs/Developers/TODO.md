@@ -2,6 +2,9 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
+* Add tests for form actions being what they're supposed to be on new/edit pages, and for
+  delete links being correct on list pages
+
 * Highlight section name in admin area menu when on a page which isn't in the menu
   (e.g. 'Edit page', clicking around in Blazer, etc)
 
