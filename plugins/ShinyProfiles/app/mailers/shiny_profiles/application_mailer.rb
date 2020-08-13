@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module ShinyProfiles
-  # Base mailer for ShinyProfiles
+  # Base mailer class for ShinyProfiles plugin for ShinyCMS
   class ApplicationMailer < ActionMailer::Base
-    default from: 'from@example.com'
-    layout 'mailer'
   end
 end
