@@ -15,6 +15,8 @@ en:
 
   settings:
     default_search_backend: Default search back-end
+    search_enabled_algolia: Enable Agolia search backend
+    search_enabled_postgres: Enable Postgres search backend
 
   shiny_search:
     search:

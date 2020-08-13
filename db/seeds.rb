@@ -160,12 +160,6 @@ seed FeatureFlag, { name: 'recaptcha_on_registration_form' }, {
   enabled_for_logged_in: true,
   enabled_for_admins: true
 }
-seed FeatureFlag, { name: 'search' }, {
-  description: 'Turn on search feature',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
 seed FeatureFlag, { name: 'tags' }, {
   description: 'Turn on site-wide tag features',
   enabled: true,
@@ -231,13 +225,6 @@ setting = seed Setting, { name: 'default_section' }, {
   locked: false
 }
 setting.values.create_or_find_by!( value: '' )
-
-setting = seed Setting, { name: 'default_search_backend' }, {
-  description: 'Default back-end engine for search feature (pg or algolia)',
-  level: 'site',
-  locked: false
-}
-setting.values.create_or_find_by!( value: 'pg' )
 
 setting = seed Setting, { name: 'post_login_redirect' }, {
   description: 'Where people are redirected after login, if no referer header',

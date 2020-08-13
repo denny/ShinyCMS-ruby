@@ -24,11 +24,11 @@ module ShinySearchConcern
     end
 
     def self.algolia_search_is_enabled?
-      ENV['ALGOLIASEARCH_APPLICATION_ID'].present?
+      Setting.get( :search_enabled_algolia ) == 'true'
     end
 
     def self.pg_search_is_enabled?
-      ActiveRecord::Base.connection.adapter_name == 'PostgreSQL'
+      Setting.get( :search_enabled_postgres ) == 'true'
     end
   end
 end
