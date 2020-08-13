@@ -1,8 +1,34 @@
 # frozen_string_literal: true
 
-# namespace :<%= underscored_name %> do
-#   desc 'ShinyCMS: Short explanation of what this task does, for rails --tasks output'
-#   task task_name: %i[ environment dotenv ] do
-#     # Task goes here
-#   end
-# end
+# ============================================================================
+# Project:   <%= camelized_modules %> plugin for ShinyCMS (Ruby version)
+# File:      plugins/<%= camelized_modules %>/lib/tasks/<%= namespaced_name %>_tasks.rake
+# Purpose:   Rake tasks for <%= camelized_modules %> plugin
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
+
+# To copy and run the database migrations for <%= camelized_modules %>:
+# rails <%= namespaced_name %>:install:migrations
+# rails db:migrate
+#
+# To install supporting data for <%= camelized_modules %> (admin capabilities and feature flags):
+# rails <%= namespaced_name %>:db:seed
+#
+# These two tasks can be run in either order.
+
+require 'dotenv/tasks'
+
+namespace :<%= namespaced_name %> do
+  namespace :db do
+    # :nocov:
+    desc 'ShinyCMS: load supporting data for <%= camelized_modules %> plugin'
+    task seed: %i[ environment dotenv ] do
+      <%= camelized_modules %>::Engine.load_seed
+    end
+    # :nocov:
+  end
+end
