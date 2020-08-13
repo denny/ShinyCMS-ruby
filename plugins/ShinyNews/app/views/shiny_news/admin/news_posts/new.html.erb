@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_for @post, url: news_path( @post ), method: :put do |f| %>
+<%= form_for @post, url: news_posts_path, method: :post do |f| %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -11,7 +11,7 @@
   </p>
   <p>
     <%= f.label :tag_list, 'Tags' %><br>
-    <%= f.text_field :tag_list, value: @post.tag_list.join(', ') %>
+    <%= f.text_field :tag_list %>
   </p>
   <% if current_user.can? :change_author, :news_posts %>
   <p>
@@ -31,8 +31,13 @@
   </p>
 
   <p>
-    <%= f.label :show_on_site, 'Published' %><br>
+    <%= f.label :show_on_site, 'Publish' %><br>
     <%= f.check_box :show_on_site %>
+  </p>
+  <!-- TODO: initial state of comment thread
+  <p>
+    <%#= f.label :has_comments %><br>
+    <%#= f.check_box :allow_comments %>
   </p>
   <p>
     <%= f.label :discussion_show_on_site, 'Show comments' %><br>
@@ -42,8 +47,9 @@
     <%= f.label :discussion_locked, 'Lock comments' %><br>
     <%= f.check_box :discussion_locked %>
   </p>
+  -->
 
   <p>
-    <%= f.submit t( 'update' ) %>
+    <%= f.submit t( 'post' ) %>
   </p>
 <% end %>

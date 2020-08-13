@@ -2,7 +2,7 @@
 
 # ============================================================================
 # Project:   ShinyNews plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyNews/app/controllers/shiny_news/admin/news_controller.rb
+# File:      plugins/ShinyNews/app/controllers/shiny_news/admin/news_posts_controller.rb
 # Purpose:   Admin area controller for news section
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
@@ -13,7 +13,7 @@
 
 module ShinyNews
   # Admin area controller for ShinyNews plugin for ShinyCMS
-  class Admin::NewsController < AdminController
+  class Admin::NewsPostsController < AdminController
     before_action :set_post_for_create, only: :create
     before_action :set_post, only: %i[ edit update destroy ]
     before_action :update_discussion_flags, only: %i[ create update ]
@@ -34,7 +34,7 @@ module ShinyNews
       authorise @post
 
       if @post.save
-        redirect_to shiny_news.edit_news_path( @post ), notice: t( '.success' )
+        redirect_to shiny_news.edit_news_post_path( @post ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render action: :new
@@ -49,7 +49,7 @@ module ShinyNews
       authorise @post
 
       if @post.update( post_params )
-        redirect_to shiny_news.edit_news_path( @post ), notice: t( '.success' )
+        redirect_to shiny_news.edit_news_post_path( @post ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render action: :edit
@@ -68,7 +68,7 @@ module ShinyNews
       authorise @post
 
       flash[ :notice ] = t( '.success' ) if @post.destroy
-      redirect_to news_index_path
+      redirect_to news_posts_path
     end
 
     private
@@ -77,7 +77,7 @@ module ShinyNews
       @post = ShinyNews::Post.find( params[:id] )
     rescue ActiveRecord::RecordNotFound
       skip_authorization
-      redirect_to news_index_path, alert: t( '.failure' )
+      redirect_to news_posts_path, alert: t( '.failure' )
     end
 
     def post_params
