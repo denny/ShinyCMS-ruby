@@ -32,8 +32,8 @@
       </td>
       <td class="actions">
         <%= link_to t( 'view'   ), post.path %>
-        <%= link_to t( 'edit'   ), edit_news_post_path( post ) %>
-        <%= link_to t( 'delete' ), news_post_path( post ),
+        <%= link_to t( 'edit'   ), shiny_news.edit_news_post_path( post ) %>
+        <%= link_to t( 'delete' ), shiny_news.news_post_path( post ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>

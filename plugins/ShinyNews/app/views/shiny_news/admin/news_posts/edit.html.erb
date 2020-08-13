@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_for @post, url: news_post_path( @post ), method: :put do |f| %>
+<%= form_for @post, url: shiny_news.news_post_path( @post ), method: :put do |f| %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>

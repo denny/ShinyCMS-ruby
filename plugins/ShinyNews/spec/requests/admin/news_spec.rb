@@ -28,7 +28,7 @@ RSpec.describe 'Admin::News', type: :request do
   describe 'POST /admin/news' do
     it 'creates a new news post when a complete form is submitted' do
       post shiny_news.news_posts_path, params: {
-        news_post: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph
@@ -47,7 +47,7 @@ RSpec.describe 'Admin::News', type: :request do
 
     it 'fails to create a new news post when an incomplete form is submitted' do
       post shiny_news.news_posts_path, params: {
-        news_post: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: nil
@@ -63,7 +63,7 @@ RSpec.describe 'Admin::News', type: :request do
       post_from_this_month = create :shiny_news_post, posted_at: Time.zone.now.beginning_of_month
 
       post shiny_news.news_posts_path, params: {
-        news_post: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
@@ -80,7 +80,7 @@ RSpec.describe 'Admin::News', type: :request do
       post_from_last_month = create :blog_post, posted_at: 1.month.ago
 
       post shiny_news.news_posts_path, params: {
-        news_post: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
@@ -114,7 +114,7 @@ RSpec.describe 'Admin::News', type: :request do
       post = create :shiny_news_post
 
       put shiny_news.news_post_path( post ), params: {
-        news_post: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: nil
@@ -130,7 +130,7 @@ RSpec.describe 'Admin::News', type: :request do
       post = create :shiny_news_post
 
       put shiny_news.news_post_path( post ), params: {
-        news_post: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph
@@ -152,7 +152,7 @@ RSpec.describe 'Admin::News', type: :request do
       create :discussion, resource: post
 
       put shiny_news.news_post_path( post ), params: {
-        news_post: {
+        post: {
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
