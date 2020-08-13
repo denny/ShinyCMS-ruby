@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_201259) do
+ActiveRecord::Schema.define(version: 2020_08_13_090405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -443,8 +443,8 @@ ActiveRecord::Schema.define(version: 2020_08_02_201259) do
     t.string "email", default: "", null: false
     t.string "canonical_email", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "display_name"
-    t.string "display_email"
+    t.string "public_name"
+    t.string "public_email"
     t.text "bio"
     t.string "website"
     t.string "location"
