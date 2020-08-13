@@ -12,4 +12,7 @@
 # ============================================================================
 
 <%= camelized_modules %>::Engine.routes.draw do
+  scope format: false do
+    # ...
+  end
 end
