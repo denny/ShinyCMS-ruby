@@ -1,7 +1,7 @@
-# ShinyProfiles: ??? plugin for ShinyCMS
+# ShinyProfiles: User profile pages plugin for ShinyCMS
 
 ShinyProfiles is a plugin for [ShinyCMS](https://shinycms.com) which adds
-??? to your ShinyCMS website.
+user profile pages to your ShinyCMS website.
 
 
 ## Installation
