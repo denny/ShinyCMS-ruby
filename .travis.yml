@@ -17,10 +17,9 @@ addons:
   postgresql: "10"
 
 before_script:
-  - psql -c 'create database shinycms_test;' -U postgres
+  - bundle exec rails assets:precompile
   - bundle exec rails db:create
   - bundle exec rails db:schema:load
-  - bundle exec rails assets:precompile
 
 script:
   - bundle exec rspec spec plugins/*/spec
