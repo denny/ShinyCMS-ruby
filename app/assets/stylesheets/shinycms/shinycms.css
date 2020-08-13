@@ -54,13 +54,6 @@ body {
 }
 
 
-/* ========== ( search page ) ========== */
-
-.algolia-logo img {
-  width:                100px;
-}
-
-
 /* ===== ( styles for tag clouds ) ===== */
 
 .tagsize1 { font-size: 1.0em; }
