@@ -3,7 +3,7 @@
 # ============================================================================
 # Project:   ShinyProfiles plugin for ShinyCMS (Ruby version)
 # File:      plugins/ShinyProfiles/db/seeds.rb
-# Purpose:   Seed data for ShinyProfiles plugin
+# Purpose:   Seed data (feature flag)
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
 #

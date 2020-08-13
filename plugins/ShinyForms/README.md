@@ -1,8 +1,15 @@
 # ShinyForms: Form handlers plugin for ShinyCMS
 
-ShinyForms is a form handler plugin for [ShinyCMS](https://shinycms.com); it provides a few different endpoints to which you can POST a suitably constructed HTML form, and they will do Something Useful [tm] with it. The simplest example emails the form data to the site owner - this allows you to quickly and easily add a new contact form or an order enquiry form to your ShinyCMS-powered site.
+ShinyForms is a plugin for [ShinyCMS](https://shinycms.com) which adds
+some generic form handlers to your ShinyCMS site.
 
-Form handlers are created, configured, and controlled via the ShinyCMS admin area; look for 'Form Handlers' in your admin menu after enabling this plugin.
+Form handlers are endpoints to which you can POST a suitably constructed
+HTML form, and they will do Something Useful [tm] with it. The simplest
+example emails the form data to the site owner - this allows you to quickly
+and easily add a contact form or an order enquiry form to a ShinyCMS site.
+
+Form handlers are created, configured, and controlled via the ShinyCMS admin
+area; look for 'Form Handlers' in your admin menu after enabling this plugin.
 
 
 ## Installation
@@ -10,8 +17,8 @@ Form handlers are created, configured, and controlled via the ShinyCMS admin are
 Add 'ShinyForms' to the SHINYCMS_PLUGINS ENV var, then run `bundle install`
 for your main ShinyCMS app.
 
-(Currently, all plugins are enabled by default, so you don't need to
-explicitly set the ENV var unless you want to load a subset of plugins.)
+(Currently, all plugins are enabled by default, so you don't actually
+need to set the ENV var unless you want to load a subset of plugins.)
 
 To add the ShinyForms tables and supporting data to your ShinyCMS database:
 ```bash
