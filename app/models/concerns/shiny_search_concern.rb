@@ -24,11 +24,12 @@ module ShinySearchConcern
     end
 
     def self.algolia_search_is_enabled?
-      Setting.get( :search_enabled_algolia ) == 'true'
+      ENV['ALGOLIASEARCH_APPLICATION_ID'].present?
     end
 
     def self.pg_search_is_enabled?
-      Setting.get( :search_enabled_postgres ) == 'true'
+      # ActiveRecord::Base.connection.adapter_name == 'PostgreSQL' # This fires up the db too early in CI
+      true
     end
   end
 end
