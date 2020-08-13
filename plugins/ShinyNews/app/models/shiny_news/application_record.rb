@@ -12,7 +12,7 @@
 # ============================================================================
 
 module ShinyNews
-  # Base class for models
+  # Base model class for ShinyNews plugin for ShinyCMS
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
 

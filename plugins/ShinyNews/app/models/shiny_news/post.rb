@@ -12,7 +12,7 @@
 # ============================================================================
 
 module ShinyNews
-  # Model for news posts
+  # Model for news posts, from ShinyNews plugin for ShinyCMS
   class Post < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyPost
