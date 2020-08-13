@@ -11,3 +11,6 @@
 //= link halcyonic.css
 //= link smartmenus.css
 //= link_tree ../../../vendor/assets/images/halcyonic
+
+// FIXME: this does not belong here
+//= link shiny_search/algolia-logo.png
