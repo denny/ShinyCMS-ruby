@@ -37,30 +37,26 @@ jobs:
           command: gem install bundler
       - restore_cache:
           keys:
-          - bundler-cache-v4-{{ checksum "Gemfile.lock" }}
-          - bundler-cache-v4-
+          - bundler-cache-v6-{{ checksum "Gemfile.lock" }}
+          - bundler-cache-v6-
       - run:
           name: Install gems
           command: bundle check || bundle install
       - save_cache:
-          key: bundler-cache-v4-{{ checksum "Gemfile.lock" }}
+          key: bundler-cache-v6-{{ checksum "Gemfile.lock" }}
           paths:
             - ~/ShinyCMS/vendor/bundle
 
       # Restore Node dependencies from cache, or install them
       - restore_cache:
           keys:
-            - yarn-cache-v4-{{ checksum "yarn.lock" }}
-            - yarn-cache-v4-
-      # Install MJML binary
-      - run:
-          name: Install MJML binary
-          command: npm install mjml
+            - yarn-cache-v6-{{ checksum "yarn.lock" }}
+            - yarn-cache-v6-
       - run:
           name: Install Node modules
           command: yarn install --cache-folder ~/.cache/yarn
       - save_cache:
-          key: yarn-cache-v4-{{ checksum "yarn.lock" }}
+          key: yarn-cache-v6-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -68,17 +64,22 @@ jobs:
       # Restore Webpacker assets from cache, or compile them
       - restore_cache:
           keys:
-            - webpacker-cache-v4-{{ .Revision }}
-            - webpacker-cache-v4-
+            - webpacker-cache-v6-{{ .Revision }}
       - run:
           name: Compile webpacker assets
-          command: bundle exec rake webpacker:compile
+          command: bundle exec rails assets:precompile
+
       - save_cache:
-          key: webpacker-cache-v4-{{ .Revision }}
+          key: webpacker-cache-v6-{{ .Revision }}
           paths:
             - ~/ShinyCMS/public/packs-test/
 
-      # Save it all for use by the test runners
+      # Install MJML binary
+      - run:
+          name: Install MJML binary
+          command: npm install mjml
+
+          # Save it all for use by the test runners
       - persist_to_workspace:
           root: ~/
           paths:
