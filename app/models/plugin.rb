@@ -5,7 +5,7 @@ class Plugin
   attr_accessor :name, :this
 
   def initialize( name )
-    name = Plugin.capability_category_to_plugin_name( name ) if name.start_with? 'shiny_'
+    name = Plugin.capability_category_to_plugin_name( name ) if name.to_s.start_with? 'shiny_'
     return unless Plugin.all.include? name
 
     @name = name
@@ -14,10 +14,10 @@ class Plugin
 
   # Instance methods
 
-  def admin_index_path
-    return this::Admin.index_path if this::Admin.respond_to? :index_path
+  def admin_index_path( controller_name = nil )
+    path_part = controller_name || name
+    path_part = path_part.underscore.sub( 'shiny_', '' )
 
-    path_part = name.underscore.sub( 'shiny_', '' )
     this::Engine.routes.url_helpers.public_send( "#{path_part}_path" )
   end
 

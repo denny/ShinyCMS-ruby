@@ -3,7 +3,7 @@
 # ============================================================================
 # Project:   ShinyNews plugin for ShinyCMS (Ruby version)
 # File:      plugins/ShinyNews/app/controllers/shiny_news/news_controller.rb
-# Purpose:   Controller for main site
+# Purpose:   Main site controller for news section
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
 #
@@ -12,7 +12,7 @@
 # ============================================================================
 
 module ShinyNews
-  # Controller for main site
+  # Main site controller for news section, provided by ShinyNews plugin for ShinyCMS
   class NewsController < ApplicationController
     before_action :check_feature_flags
 
@@ -22,11 +22,11 @@ module ShinyNews
     end
 
     def month
-      @posts = ShinyNews::Post.readonly.posts_for_month( params[:year], params[:month] )
+      @posts = ShinyNews::Post.readonly.posts_in_month( params[:year], params[:month] )
     end
 
     def year
-      @posts = ShinyNews::Post.readonly.posts_for_year( params[:year] )
+      @posts = ShinyNews::Post.readonly.posts_in_year( params[:year] )
     end
 
     def show

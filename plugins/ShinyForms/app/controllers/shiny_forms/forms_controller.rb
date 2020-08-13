@@ -1,9 +1,20 @@
 # frozen_string_literal: true
 
+# ============================================================================
+# Project:   ShinyForms plugin for ShinyCMS (Ruby version)
+# File:      plugins/ShinyForms/app/controllers/shiny_forms/forms_controller.rb
+# Purpose:   Main site controller for form handlers
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
+
 require_dependency 'shiny_forms/application_controller'
 
 module ShinyForms
-  # Provides some useful generic endpoints to post a form to
+  # Main site controller for form handlers, provided by ShinyForms plugin for ShinyCMS
   class FormsController < ApplicationController
     before_action :check_feature_flags
     before_action :set_form, only: %i[ process_form ]

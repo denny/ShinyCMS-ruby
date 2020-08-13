@@ -132,8 +132,6 @@ en:
       title: "Tag: '%{tag}'"
 
   user:
-    view_profile: View your profile
-    edit_profile: Edit your profile
     log_in: Log in
     log_out: Log out
     register: Register
@@ -222,7 +220,6 @@ en:
     search: Search
     tags: Tags
     user_login: User Login
-    user_profiles: User Profiles
     user_registration: User Registration
 
 

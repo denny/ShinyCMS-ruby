@@ -12,6 +12,7 @@
 # ============================================================================
 
 module ShinyNews
+  # Base controller for admin features of ShinyNews plugin for ShinyCMS
   # Inherits from ShinyCMS AdminController
   class AdminController < ::AdminController
     helper Rails.application.routes.url_helpers

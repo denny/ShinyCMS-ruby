@@ -21,11 +21,10 @@ references:
       POSTGRES_DB: shinycms_test
 
 jobs:
-  # Setup phase
-  setup:
+  # Install gems, node modules, etc
+  install_dependencies:
     docker:
       - *app
-      - *db
 
     working_directory: ~/ShinyCMS
 
@@ -38,40 +37,26 @@ jobs:
           command: gem install bundler
       - restore_cache:
           keys:
-          - bundler-cache-{{ checksum "Gemfile.lock" }}
-          - bundler-cache-
+          - bundler-cache-v6-{{ checksum "Gemfile.lock" }}
+          - bundler-cache-v6-
       - run:
           name: Install gems
           command: bundle check || bundle install
       - save_cache:
-          key: bundler-cache-{{ checksum "Gemfile.lock" }}
+          key: bundler-cache-v6-{{ checksum "Gemfile.lock" }}
           paths:
             - ~/ShinyCMS/vendor/bundle
-
-      # Run Rubocop to check linting
-      - run:
-          name: Rubocop
-          command: bundle exec rubocop app/ config/ db/ lib/ plugins/ spec/
-
-      # Run bundle-audit to check gems for known security issues
-      - run:
-          name: Audit Gemfile bundle for security issues
-          command: bundle exec bundle-audit check --update
 
       # Restore Node dependencies from cache, or install them
       - restore_cache:
           keys:
-            - yarn-cache-{{ checksum "yarn.lock" }}
-            - yarn-cache-
-      # Install MJML binary
-      - run:
-          name: Install MJML binary
-          command: npm install mjml
+            - yarn-cache-v6-{{ checksum "yarn.lock" }}
+            - yarn-cache-v6-
       - run:
           name: Install Node modules
           command: yarn install --cache-folder ~/.cache/yarn
       - save_cache:
-          key: yarn-cache-{{ checksum "yarn.lock" }}
+          key: yarn-cache-v6-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -79,31 +64,55 @@ jobs:
       # Restore Webpacker assets from cache, or compile them
       - restore_cache:
           keys:
-            - webpacker-cache-{{ .Revision }}
-            - webpacker-cache-
+            - webpacker-cache-v6-{{ .Revision }}
       - run:
           name: Compile webpacker assets
-          command: bundle exec rake webpacker:compile
+          command: bundle exec rails assets:precompile
+
       - save_cache:
-          key: webpacker-cache-{{ .Revision }}
+          key: webpacker-cache-v6-{{ .Revision }}
           paths:
             - ~/ShinyCMS/public/packs-test/
 
-      # Save it all for use by the test runners
+      # Install MJML binary
+      - run:
+          name: Install MJML binary
+          command: npm install mjml
+
+          # Save it all for use by the test runners
       - persist_to_workspace:
           root: ~/
           paths:
             - ShinyCMS
             - .cache/yarn
 
-  # Testing phase
-  test:
+  # Check linting, check gems for known security issues
+  rubocop_and_bundle_audit:
+    docker:
+      - *app
+
+    working_directory: ~/ShinyCMS
+
+    steps:
+      - attach_workspace:
+          at: ~/
+
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop app/ config/ db/ lib/ plugins/ spec/
+
+      - run:
+          name: Audit Gemfile bundle for security issues
+          command: bundle exec bundle-audit check --update
+
+  # Run rspec tests, for main app and plugins
+  rspec:
     docker:
       - *app
       - *db
 
     working_directory: ~/ShinyCMS
-    parallelism: 4
+    parallelism: 3
 
     steps:
       - attach_workspace:
@@ -122,9 +131,8 @@ jobs:
           name: Run tests
           command: |
             mkdir /tmp/test-results
-            # TEST_FILES=$( circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings )
-            # bundle exec rspec $TEST_FILES \
-            bundle exec rspec spec plugins/*/spec \
+            TEST_FILES=$( circleci tests glob "spec/**/*_spec.rb" "plugins/*/spec/**/*_spec.rb" | circleci tests split --split-by=filesize )
+            bundle exec rspec $TEST_FILES \
               --profile 10 \
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
@@ -137,11 +145,15 @@ jobs:
           path: /tmp/test-results
           destination: test-results
 
+# Run everything
 workflows:
   version: 2
   setup_and_test:
     jobs:
-      - setup
-      - test:
+      - install_dependencies
+      - rubocop_and_bundle_audit:
           requires:
-            - setup
+            - install_dependencies
+      - rspec:
+          requires:
+            - install_dependencies

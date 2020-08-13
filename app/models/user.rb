@@ -139,8 +139,8 @@ class User < ApplicationRecord
     self
   end
 
-  def display_name_or_username
-    display_name.presence || username
+  def name
+    public_name.presence || username
   end
 
   # Queue email sends

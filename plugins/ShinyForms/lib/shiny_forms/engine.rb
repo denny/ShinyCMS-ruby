@@ -1,7 +1,18 @@
 # frozen_string_literal: true
 
+# ============================================================================
+# Project:   ShinyForms plugin for ShinyCMS (Ruby version)
+# File:      plugins/ShinyForms/lib/shiny_forms/engine.rb
+# Purpose:   Loads Rails::Engine functionality
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
+
 module ShinyForms
-  # Load the engine that powers the plugin
+  # Loads Rails::Engine features
   class Engine < ::Rails::Engine
     isolate_namespace ShinyForms
 

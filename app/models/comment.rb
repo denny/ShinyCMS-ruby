@@ -90,7 +90,7 @@ class Comment < ApplicationRecord
   end
 
   def author_name_any
-    return author.display_name_or_username if author_type == 'authenticated'
+    return author.name if author_type == 'authenticated'
     return author_name if author_type == 'pseudonymous' && author_name.present?
 
     'Anonymous'

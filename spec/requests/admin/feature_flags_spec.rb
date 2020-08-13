@@ -21,7 +21,7 @@ RSpec.describe 'Admin: Feature Flags', type: :request do
 
   describe 'PUT /admin/feature-flags' do
     it 'updates any feature flags that were changed' do
-      flag = FeatureFlag.enable :user_profiles
+      flag = FeatureFlag.enable :user_registration
 
       put feature_flags_path, params: {
         "features[flags][#{flag.id}][enabled]": true,
@@ -38,7 +38,7 @@ RSpec.describe 'Admin: Feature Flags', type: :request do
     end
 
     it 'fails gracefully if an update is invalid' do
-      flag = FeatureFlag.enable :user_profiles
+      flag = FeatureFlag.enable :user_registration
 
       put feature_flags_path, params: {
         "features[flags][#{flag.id}][enabled]": nil

@@ -46,7 +46,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       post create_page_section_path, params: {
         page_section: {
           internal_name: Faker::Books::CultureSeries.unique.culture_ship,
-          slug: 'profile'
+          slug: 'tags'
         }
       }
 

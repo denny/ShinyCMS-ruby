@@ -1,7 +1,18 @@
 # frozen_string_literal: true
 
+# ============================================================================
+# Project:   ShinyForms plugin for ShinyCMS (Ruby version)
+# File:      plugins/ShinyForms/app/models/shiny_forms/form_handler.rb
+# Purpose:   Model for Form Handlers (not an ActiveRecord model)
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
+
 module ShinyForms
-  # Basic form handlers for ShinyCMS
+  # Basic form handlers, provided by ShinyForms plugin for ShinyCMS
   class FormHandler
     FORM_HANDLERS = %w[ plain_email template_email ].freeze
     public_constant :FORM_HANDLERS

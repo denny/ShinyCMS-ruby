@@ -178,12 +178,6 @@ seed FeatureFlag, { name: 'user_login' }, {
   enabled_for_logged_in: false,
   enabled_for_admins: false
 }
-seed FeatureFlag, { name: 'user_profiles' }, {
-  description: 'Allow viewing of user profiles',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
 seed FeatureFlag, { name: 'user_registration' }, {
   description: 'Allow new users to create an account',
   enabled: false,

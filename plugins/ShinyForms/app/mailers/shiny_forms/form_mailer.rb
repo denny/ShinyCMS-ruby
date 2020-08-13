@@ -1,10 +1,20 @@
 # frozen_string_literal: true
 
+# ============================================================================
+# Project:   ShinyForms plugin for ShinyCMS (Ruby version)
+# File:      plugins/ShinyForms/app/models/shiny_forms/application_mailer.rb
+# Purpose:   Mailers for generic form handlers
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
+
 module ShinyForms
-  # Mailer for discussion-related emails (reply notifications, etc)
+  # Mailers for generic form handlers provided by ShinyForms plugin for ShinyCMS
   class FormMailer < ApplicationMailer
     before_action :check_feature_flags
-    before_action :do_not_track
 
     def plain( to, form_name, form_data )
       email_to = build_to( to )
@@ -45,10 +55,6 @@ module ShinyForms
     def set_form_data( form_name, form_data )
       @form_name = form_name
       @form_data = form_data
-    end
-
-    def do_not_track
-      track open: false, click: false
     end
 
     def check_feature_flags
