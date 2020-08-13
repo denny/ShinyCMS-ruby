@@ -3,7 +3,8 @@
 # Common behaviours for 'post' type models (blog post, news post, etc)
 module ShinyPost
   extend ActiveSupport::Concern
-  include ShinySearchConcern
+
+  include ShinySearch::Searchable if defined? ShinySearch
   include ShinyShowHide
   include ShinySlugInMonth
   include ShinyTeaser

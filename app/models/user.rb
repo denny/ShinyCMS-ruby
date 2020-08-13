@@ -4,7 +4,7 @@
 # rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
   include ShinyEmail
-  include ShinySearchConcern
+  include ShinySearch::Searchable if defined? ShinySearch
 
   # Associations
 
