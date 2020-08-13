@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ShinyForms
-  # Base helpers for ShinyCMS forms plugin
+  # Base helper module for ShinyForms plugin for ShinyCMS
   module ApplicationHelper
   end
 end
