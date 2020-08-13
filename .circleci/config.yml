@@ -37,21 +37,20 @@ jobs:
           command: gem install bundler
       - restore_cache:
           keys:
-          - bundler-cache-v3-{{ checksum "Gemfile.lock" }}
-          - bundler-cache-v3-
+          - bundler-cache-v5-{{ checksum "Gemfile.lock" }}
+          - bundler-cache-v5-
       - run:
           name: Install gems
           command: bundle check || bundle install
       - save_cache:
-          key: bundler-cache-v3-{{ checksum "Gemfile.lock" }}
+          key: bundler-cache-v5-{{ checksum "Gemfile.lock" }}
           paths:
             - ~/ShinyCMS/vendor/bundle
 
       # Restore Node dependencies from cache, or install them
       - restore_cache:
           keys:
-            - yarn-cache-v3-{{ checksum "yarn.lock" }}
-            - yarn-cache-v3-
+            - yarn-cache-v5-{{ checksum "yarn.lock" }}
       # Install MJML binary
       - run:
           name: Install MJML binary
@@ -60,7 +59,7 @@ jobs:
           name: Install Node modules
           command: yarn install --cache-folder ~/.cache/yarn
       - save_cache:
-          key: yarn-cache-v3-{{ checksum "yarn.lock" }}
+          key: yarn-cache-v5-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -68,13 +67,13 @@ jobs:
       # Restore Webpacker assets from cache, or compile them
       - restore_cache:
           keys:
-            - webpacker-cache-v3-{{ .Revision }}
-            - webpacker-cache-v3-
+            - webpacker-cache-v5-{{ .Revision }}
       - run:
           name: Compile webpacker assets
-          command: bundle exec rake webpacker:compile
+          command: bundle exec rails assets:precompile
+
       - save_cache:
-          key: webpacker-cache-v3-{{ .Revision }}
+          key: webpacker-cache-v5-{{ .Revision }}
           paths:
             - ~/ShinyCMS/public/packs-test/
 
