@@ -2,8 +2,8 @@
 
 # ============================================================================
 # Project:   ShinyProfiles plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyProfiles/app/controllers/profiles_controller.rb
-# Purpose:   Controller for user profile pages
+# File:      plugins/ShinyProfiles/app/controllers/shiny_profiles/profiles_controller.rb
+# Purpose:   Main site controller for user profile pages
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
 #
@@ -12,7 +12,7 @@
 # ============================================================================
 
 module ShinyProfiles
-  # Controller for user profile pages
+  # Main site controller for profile pages, provided by ShinyProfiles plugin for ShinyCMS
   class ProfilesController < ApplicationController
     before_action :check_feature_flags, only: %i[ show ]
 

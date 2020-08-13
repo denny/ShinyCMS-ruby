@@ -3,7 +3,7 @@
 # ============================================================================
 # Project:   ShinyNews plugin for ShinyCMS (Ruby version)
 # File:      plugins/ShinyNews/app/controllers/shiny_news/news_controller.rb
-# Purpose:   Controller for main site
+# Purpose:   Main site controller for news section
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
 #
@@ -12,7 +12,7 @@
 # ============================================================================
 
 module ShinyNews
-  # Controller for main site
+  # Main site controller for news section, provided by ShinyNews plugin for ShinyCMS
   class NewsController < ApplicationController
     before_action :check_feature_flags
 
