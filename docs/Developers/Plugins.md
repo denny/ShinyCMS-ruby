@@ -2,53 +2,27 @@
 
 ## Writing Plugins
 
-### WARNING: UNFINISHED NOTES!!
+1. Move into the base directory of your copy of the ShinyCMS code
+`cd ShinyCMS`
 
-cd ShinyCMS
+2. Run the plugin generator!
+`rails g shiny:plugin plugins/ShinyThings`
 
-rails plugin new --mountable --database=postgresql \
-  --skip-gemfile-entry --skip-git --skip-keeps --skip-test --skip-system-test \
-  --skip-puma --skip-spring --skip-turbolinks \
-  --skip-action-mailer --skip-action-mailbox --skip-action-cable \
-  --dummy-path=spec/dummy plugins/Shiny{Name}
+This is a cut-down version of the standard Rails Engine generator (rails new plugin --mountable) with some added boilerplate to fit into ShinyCMS. Currently your plugin must be named Shiny{Something} for all the file path bodges to work; a better system will hopefully replace this at some point. But not today. :)
 
-cd plugins/Shiny{Name}
+Optionally, you can add various skip flags which the rails plugin generator knows about, if you know you won't need those Rails features; e.g:
+`rails g shiny:plugin --skip-action-mailer --skip-action-mailbox --skip-action-cable plugins/ShinyThings`
 
-rm -f MIT-LICENSE
+3. Change directory into your shiny (see what I did there?) new plugin!
+`cd plugins/ShinyThings`
 
-rubocop --auto-correct-all --only Style/FrozenStringLiteralComment
-rubocop --auto-correct --only Layout/EmptyLineAfterMagicComment
-rubocop --auto-correct --only Layout/TrailingEmptyLines
-rubocop --auto-correct --only Style/GlobalStdStream
-rubocop --auto-correct-all --only Style/RedundantFetchBlock
+4. You will probably want to edit some of the details in these files:
+- shiny_things.gemspec
+- README.md
 
-plugins/Shiny{Name}/spec/dummy/config/environments/development.rb
-* Fix Rails.root.join() call params to be one string
+5. You will probably want to put code into some of the files under app/ and config/ :)
 
-## Files to edit (or generate from custom templates?)
+6. You can put tests in spec/ and run them from the ShinyCMS root directory:
+`rspec plugins/ShinyThings/spec`
 
-plugins/Shiny{Name}/lib/shiny_{name}.rb
-* Add top-level comment above module line
-
-plugins/Shiny{Name}/app/*/shiny_{name}/application_*.rb
-* Add top-level comment (between module and class lines)
-* Remove forgery blah from controller (unnecessary since rails 5.2)
-
-plugins/Shiny{Name}/shiny_{name}.gemspec
-* Replace " with '
-* Update various info strings
-* Add required Ruby version (2.7)
-* Change pg from dev dependency to main dependency, add version range
-* Add rspec-rails dev dependency
-
-lib/shiny_{name}/engine.rb
-* Add FactoryBot config
-
-lib/shiny_{name}/version.rb
-* Match version to current CMS version
-
-lib/tasks/shiny_{name}_tasks.rake
-* Add shiny_{name}:db:seed task
-
-README.md
-* blah blah plugin blah blah
+7. "Share and enjoy!"
