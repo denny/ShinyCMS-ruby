@@ -68,13 +68,13 @@ jobs:
       # Restore Webpacker assets from cache, or compile them
       - restore_cache:
           keys:
-            - webpacker-cache-{{ .Revision }}
-            - webpacker-cache-
+            - webpacker-cache-v1-{{ .Revision }}
+            - webpacker-cache-v1-
       - run:
           name: Compile webpacker assets
           command: bundle exec rake webpacker:compile
       - save_cache:
-          key: webpacker-cache-{{ .Revision }}
+          key: webpacker-cache-v1-{{ .Revision }}
           paths:
             - ~/ShinyCMS/public/packs-test/
 
