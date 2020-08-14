@@ -1,16 +1,5 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   <%= camelized_modules %> plugin for ShinyCMS (Ruby version)
-# File:      plugins/<%= camelized_modules %>/config/routes.rb
-# Purpose:   Routes for <%= camelized_modules %> plugin
-#
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
-#
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
-
 <%= camelized_modules %>::Engine.routes.draw do
   scope format: false do
     # ...

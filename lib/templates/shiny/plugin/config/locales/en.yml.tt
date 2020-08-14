@@ -1,14 +1,3 @@
-# ============================================================================
-# Project:   <%= camelized_modules %> plugin for ShinyCMS (Ruby version)
-# File:      plugins/<%= camelized_modules %>/config/locales/en.yml
-# Purpose:   Translation strings for English
-#
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
-#
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
-
 en:
   feature_flags:
     <%= name %>: <%= camelized_modules %>
