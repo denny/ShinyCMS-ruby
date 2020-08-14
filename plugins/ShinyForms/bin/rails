@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
 # This command will automatically be run when you run "rails" with Rails gems
 # installed from the root of your application.
 
 ENGINE_ROOT = File.expand_path('..', __dir__)
 ENGINE_PATH = File.expand_path('../lib/shiny_forms/engine', __dir__)
-APP_PATH = File.expand_path('../spec/dummy/config/application', __dir__)
 
 # Set up gems listed in the Gemfile.
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __dir__)
@@ -15,11 +17,11 @@ require 'rails'
 require 'active_model/railtie'
 require 'active_job/railtie'
 require 'active_record/railtie'
-require 'active_storage/engine'
+# require 'active_storage/engine'
 require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'action_view/railtie'
-require 'action_cable/engine'
-require 'sprockets/railtie'
-# require "rails/test_unit/railtie"
+# require 'action_cable/engine'
+# require 'sprockets/railtie'
+# require 'rails/test_unit/railtie'
 require 'rails/engine/commands'
