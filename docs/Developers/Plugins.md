@@ -1,28 +1,26 @@
 # ShinyCMS Developer Documentation
 
-## Writing Plugins
+## Writing a new plugin
 
-1. Move into the base directory of your copy of the ShinyCMS code
+1. Move into the base directory of your copy of the ShinyCMS code:
 `cd ShinyCMS`
 
-2. Run the plugin generator!
-`rails g shiny:plugin plugins/ShinyThings`
+2. Run the plugin generator:
+`rails g shiny:plugin plugins/ShinyThing`
 
-This is a cut-down version of the standard Rails Engine generator (rails new plugin --mountable) with some added boilerplate to fit into ShinyCMS. Currently your plugin must be named Shiny{Something} for all the file path bodges to work; a better system will hopefully replace this at some point. But not today. :)
+Currently your plugin must be named Shiny{Something} for some filepath-dependent hacks to work. One day in the future, a better-engineered plugin system will get rid of this requirement. But today is not that day. :)
 
-Optionally, you can add various skip flags which the rails plugin generator knows about, if you know you won't need those Rails features; e.g:
-`rails g shiny:plugin --skip-action-mailer --skip-action-mailbox --skip-action-cable plugins/ShinyThings`
+The plugin generator is a cut-down version of the standard Rails Engine generator (rails new plugin --mountable) with some added boilerplate to fit the resulting plugin into ShinyCMS. You can pass it flags which the rails plugin generator understands, to skip features that your plugin doesn't need - e.g:
+`rails g shiny:plugin --skip-action-mailer --skip-action-mailbox --skip-action-cable plugins/ShinyThing`
 
-3. Change directory into your shiny (see what I did there?) new plugin!
-`cd plugins/ShinyThings`
+3. You should put the appropriate details in `plugins/ShinyThing/shiny_thing.gemspec`, and you'll probably want to edit `plugins/ShinyThing/README.md` as well.
 
-4. You will probably want to edit some of the details in these files:
-- shiny_things.gemspec
-- README.md
+4. Most of your code probably goes in `plugins/ShinyThing/app/`, with routes and locale files in `plugins/ShinyThing/config/`
 
-5. You will probably want to put code into some of the files under app/ and config/ :)
+5. Your tests go in `plugins/ShinyThing/spec/` and you can run them from the ShinyCMS root directory:
+```
+rspec plugins/ShinyThing  # to run tests for just your new plugin
+rspec spec plugins  # to run tests for the main app and all plugins
+```
 
-6. You can put tests in spec/ and run them from the ShinyCMS root directory:
-`rspec plugins/ShinyThings/spec`
-
-7. "Share and enjoy!"
+6. "Share and enjoy!"
