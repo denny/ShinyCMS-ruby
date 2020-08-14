@@ -1,16 +1,5 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   <%= camelized_modules %> plugin for ShinyCMS (Ruby version)
-# File:      plugins/<%= camelized_modules %>/lib/tasks/<%= namespaced_name %>_tasks.rake
-# Purpose:   Rake tasks for <%= camelized_modules %> plugin
-#
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
-#
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
-
 # To copy and run the database migrations for <%= camelized_modules %>:
 # rails <%= namespaced_name %>:install:migrations
 # rails db:migrate

@@ -1,54 +1,26 @@
 # ShinyCMS Developer Documentation
 
-## Writing Plugins
+## Writing a new plugin
 
-### WARNING: UNFINISHED NOTES!!
+1. Move into the base directory of your copy of the ShinyCMS code:
+`cd ShinyCMS`
 
-cd ShinyCMS
+2. Run the plugin generator:
+`rails g shiny:plugin plugins/ShinyThing`
 
-rails plugin new --mountable --database=postgresql \
-  --skip-gemfile-entry --skip-git --skip-keeps --skip-test --skip-system-test \
-  --skip-puma --skip-spring --skip-turbolinks \
-  --skip-action-mailer --skip-action-mailbox --skip-action-cable \
-  --dummy-path=spec/dummy plugins/Shiny{Name}
+Currently your plugin must be named Shiny{Something} for some filepath-dependent hacks to work. One day in the future, a better-engineered plugin system will get rid of this requirement. But today is not that day. :)
 
-cd plugins/Shiny{Name}
+The plugin generator is a cut-down version of the standard Rails Engine generator (rails new plugin --mountable) with some added boilerplate to fit the resulting plugin into ShinyCMS. You can pass it flags which the rails plugin generator understands, to skip features that your plugin doesn't need - e.g:
+`rails g shiny:plugin --skip-action-mailer --skip-action-mailbox --skip-action-cable plugins/ShinyThing`
 
-rm -f MIT-LICENSE
+3. You should put the appropriate details in `plugins/ShinyThing/shiny_thing.gemspec`, and you'll probably want to edit `plugins/ShinyThing/README.md` as well.
 
-rubocop --auto-correct-all --only Style/FrozenStringLiteralComment
-rubocop --auto-correct --only Layout/EmptyLineAfterMagicComment
-rubocop --auto-correct --only Layout/TrailingEmptyLines
-rubocop --auto-correct --only Style/GlobalStdStream
-rubocop --auto-correct-all --only Style/RedundantFetchBlock
+4. Most of your code probably goes in `plugins/ShinyThing/app/`, with routes and locale files in `plugins/ShinyThing/config/`
 
-plugins/Shiny{Name}/spec/dummy/config/environments/development.rb
-* Fix Rails.root.join() call params to be one string
+5. Your tests go in `plugins/ShinyThing/spec/` and you can run them from the ShinyCMS root directory:
+```
+rspec plugins/ShinyThing  # to run tests for just your new plugin
+rspec spec plugins  # to run tests for the main app and all plugins
+```
 
-## Files to edit (or generate from custom templates?)
-
-plugins/Shiny{Name}/lib/shiny_{name}.rb
-* Add top-level comment above module line
-
-plugins/Shiny{Name}/app/*/shiny_{name}/application_*.rb
-* Add top-level comment (between module and class lines)
-* Remove forgery blah from controller (unnecessary since rails 5.2)
-
-plugins/Shiny{Name}/shiny_{name}.gemspec
-* Replace " with '
-* Update various info strings
-* Add required Ruby version (2.7)
-* Change pg from dev dependency to main dependency, add version range
-* Add rspec-rails dev dependency
-
-lib/shiny_{name}/engine.rb
-* Add FactoryBot config
-
-lib/shiny_{name}/version.rb
-* Match version to current CMS version
-
-lib/tasks/shiny_{name}_tasks.rake
-* Add shiny_{name}:db:seed task
-
-README.md
-* blah blah plugin blah blah
+6. "Share and enjoy!"

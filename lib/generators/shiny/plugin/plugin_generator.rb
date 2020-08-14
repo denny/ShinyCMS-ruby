@@ -37,10 +37,6 @@ module Rails
       template '%name%.gemspec'
     end
 
-    def gitignore
-      template 'gitignore', '.gitignore'
-    end
-
     def lib
       template 'lib/%namespaced_name%.rb'
       template 'lib/%namespaced_name%/engine.rb'
@@ -50,6 +46,7 @@ module Rails
 
     def config
       template 'config/routes.rb'
+      template 'config/locales/en.yml'
     end
 
     def assets_manifest
@@ -101,7 +98,6 @@ module Shiny
         build(:rakefile)
         build(:gemspec)   unless options[:skip_gemspec]
         build(:license)
-        build(:gitignore) unless options[:skip_git]
         build(:gemfile)   unless options[:skip_gemfile]
       end
 
