@@ -3,6 +3,28 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin controller:', type: :request do
+  describe 'GET /' do
+    it 'shows the admin toolbar on the main site, if you are an admin' do
+      create :top_level_page
+      admin = create :page_admin
+      sign_in admin
+
+      get root_path
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.shinycms-admin-toolbar'
+    end
+
+    it 'does not show the admin toolbar on the main site, if you are not an admin' do
+      create :top_level_page
+
+      get root_path
+
+      expect( response      ).to     have_http_status :ok
+      expect( response.body ).not_to have_css '.shinycms-admin-toolbar'
+    end
+  end
+
   describe 'GET /admin' do
     it 'redirects a non-admin to the main site' do
       user = create :user

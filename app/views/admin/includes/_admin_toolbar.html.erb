@@ -2,6 +2,11 @@
   <%= link_to image_tag( 'shinycms/admin-toolbar-logo.png', alt: 'ShinyCMS' ), 'http://shinycms.org/' %>
 
   <div class="shinycms-admin-toolbar-links">
+
+<% plugins_with_admin_toolbar_templates.each do |plugin_name| %>
+  <%= render partial: "#{plugin_name}/admin/toolbar/section" %>
+<% end %>
+
 <% if controller_name == 'blogs' %>
     <%= t( 'admin.blogs.title' ).singularize %>:
   <% if current_user_can?( :edit, :blogs ) %>

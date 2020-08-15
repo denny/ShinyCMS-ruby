@@ -11,8 +11,10 @@ FactoryBot.define do
   factory :admin_user, parent: :user do
     after :create do |admin|
       category = CapabilityCategory.find_by( name: 'general' )
-      capability = category.capabilities.find_by( name: 'view_admin_area' )
-      create :user_capability, user: admin, capability: capability
+      capability1 = category.capabilities.find_by( name: 'view_admin_area'    )
+      capability2 = category.capabilities.find_by( name: 'view_admin_toolbar' )
+      create :user_capability, user: admin, capability: capability1
+      create :user_capability, user: admin, capability: capability2
     end
   end
 

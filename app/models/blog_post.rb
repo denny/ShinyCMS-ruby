@@ -31,4 +31,10 @@ class BlogPost < ApplicationRecord
       )
     end
   end
+
+  # Class methods
+
+  def self.human_name
+    'blog post'
+  end
 end

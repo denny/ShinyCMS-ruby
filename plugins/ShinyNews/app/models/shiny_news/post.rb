@@ -19,7 +19,6 @@ module ShinyNews
 
     # Associations
 
-    # TODO: this needs to be polymorphic I think?
     belongs_to :user, inverse_of: :shiny_news_posts
 
     has_one :discussion, as: :resource, dependent: :destroy
@@ -34,13 +33,17 @@ module ShinyNews
 
     # Specify policy class for Pundit
     def policy_class
-      Admin::PostPolicy
+      ShinyNews::PostPolicy
     end
 
     # Class methods
 
+    def self.human_name
+      'news post'
+    end
+
     def self.policy_class
-      Admin::PostPolicy
+      ShinyNews::PostPolicy
     end
   end
 end

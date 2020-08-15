@@ -8,7 +8,7 @@ RSpec.describe PageTemplateElement, type: :model do
     let( :element  ) { create :page_template_element, template: template }
   end
 
-  it_should_behave_like 'ShinyDemoDataProvider' do
-    let( :model ) { Blog }
+  it_should_behave_like ShinyDemoDataProvider do
+    let( :model ) { described_class }
   end
 end

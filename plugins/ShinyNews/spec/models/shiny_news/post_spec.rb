@@ -47,8 +47,8 @@ module ShinyNews
       let( :item ) { create :shiny_news_post }
     end
 
-    it_should_behave_like 'ShinyDemoDataProvider' do
-      let( :model ) { ShinyNews::Post }
+    it_should_behave_like ShinyDemoDataProvider do
+      let( :model ) { described_class }
     end
   end
 end

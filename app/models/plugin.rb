@@ -38,4 +38,14 @@ class Plugin
   def self.capability_category_to_plugin_name( capability_category )
     capability_category.to_s.sub( %r{_[a-z]+$}, '' ).classify.pluralize
   end
+
+  def self.base_records
+    return @base_records if @base_records
+
+    @base_records = []
+    loaded.each do |plugin|
+      base_records << plugin.constantize::ApplicationRecord
+    end
+    @base_records
+  end
 end

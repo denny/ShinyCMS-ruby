@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Page model:', type: :model do
+RSpec.describe Page, type: :model do
   describe 'when I call Page.default_page' do
     it 'without a setting, it returns the first page created' do
       page1 = create :page, slug: 'first'
@@ -35,7 +35,7 @@ RSpec.describe 'Page model:', type: :model do
     end
   end
 
-  it_should_behave_like 'ShinyDemoDataProvider' do
-    let( :model ) { Blog }
+  it_should_behave_like ShinyDemoDataProvider do
+    let( :model ) { described_class }
   end
 end
