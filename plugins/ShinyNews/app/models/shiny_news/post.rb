@@ -39,6 +39,10 @@ module ShinyNews
 
     # Class methods
 
+    def self.human_name
+      'news post'
+    end
+
     def self.policy_class
       Admin::PostPolicy
     end
