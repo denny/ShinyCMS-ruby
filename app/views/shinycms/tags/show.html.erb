@@ -6,14 +6,14 @@
   <% next unless @tagged_items[ type ].present? %>
   <% no_tagged_content = false %>
   <h2>
-    <%= type.underscore.pluralize.humanize %> tagged with '<%= @tag_name %>'
+    <%= type.constantize.human_name.capitalize %> tagged with '<%= @tag_name %>'
   </h2>
 
   <section>
     <ul>
       <% @tagged_items[ type ].each do |item| %>
       <li>
-        <% if %w[ BlogPost NewsPost ].include? type %>
+        <% if item.class.include? ShinyPost %>
         <%= link_to item.title, item.path %>
           posted by <%= user_profile_link( item.author ) %>
           at <%= item.posted_at.to_s( :time ) %>
