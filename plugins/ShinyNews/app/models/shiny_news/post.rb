@@ -19,7 +19,6 @@ module ShinyNews
 
     # Associations
 
-    # TODO: this needs to be polymorphic I think?
     belongs_to :user, inverse_of: :shiny_news_posts
 
     has_one :discussion, as: :resource, dependent: :destroy
