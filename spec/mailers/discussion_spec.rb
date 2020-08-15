@@ -9,7 +9,7 @@ RSpec.describe 'Discussion mailer', type: :mailer do
     @site_name = I18n.t( 'site_name' )
 
     blogger     = create :blog_admin
-    blog_post   = create :blog_post, author: blogger
+    blog_post   = create :shiny_blogs_blog_post, author: blogger
     @discussion = create :discussion, resource: blog_post
   end
 

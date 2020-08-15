@@ -77,7 +77,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
 
     it "doesn't fail when the slug is unique this month but not globally" do
-      post_from_last_month = create :blog_post, posted_at: 1.month.ago
+      post_from_last_month = create :shiny_news_post, posted_at: 1.month.ago
 
       post shiny_news.news_posts_path, params: {
         post: {

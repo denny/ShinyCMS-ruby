@@ -40,7 +40,7 @@ module ShinyNews
     private
 
     def check_feature_flags
-      enforce_feature_flags :news
+      enforce_feature_flags :shiny_news
     end
   end
 end

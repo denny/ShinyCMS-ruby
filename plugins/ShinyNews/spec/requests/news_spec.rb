@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'News', type: :request do
   before :each do
-    FeatureFlag.enable :news
+    FeatureFlag.enable :shiny_news
   end
 
   describe 'GET /news' do

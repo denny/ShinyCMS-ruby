@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'PageSection model:', type: :model do
+RSpec.describe PageSection, type: :model do
   describe 'when I call .default_page' do
     it 'with no default set, it returns the first page created in this section' do
       section = create :page_section
@@ -51,6 +51,6 @@ RSpec.describe 'PageSection model:', type: :model do
   end
 
   it_should_behave_like 'ShinyDemoDataProvider' do
-    let( :model ) { Blog }
+    let( :model ) { described_class }
   end
 end

@@ -9,7 +9,7 @@ RSpec.describe 'Discussion moderation', type: :request do
 
     FeatureFlag.enable :comments
 
-    post = create :blog_post
+    post = create :shiny_blogs_blog_post
     @discussion = create :discussion, resource: post
 
     @comment1 = create :top_level_comment, discussion: @discussion

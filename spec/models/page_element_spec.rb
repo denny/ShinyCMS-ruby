@@ -9,6 +9,6 @@ RSpec.describe PageElement, type: :model do
   end
 
   it_should_behave_like 'ShinyDemoDataProvider' do
-    let( :model ) { Blog }
+    let( :model ) { described_class }
   end
 end

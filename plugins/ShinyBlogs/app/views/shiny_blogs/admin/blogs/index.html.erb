@@ -1,0 +1,45 @@
+<% @page_title = t( '.title' ) %>
+
+<% if @blogs.present? %>
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th class="longer">
+        Description
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blogs.each do |blog| %>
+    <tr>
+      <td>
+        <%= blog.name %>
+      </td>
+      <td>
+        <%= blog.description %>
+      </td>
+      <td class="actions">
+        <% if ShinyBlogs::Blog.multiple_blogs_mode? %>
+        <%= link_to t( 'view'   ), shiny_blogs.view_blog_path( blog ) %>
+        <% else %>
+        <%= link_to t( 'view'   ), shiny_blogs.view_blog_path %>
+        <% end %>
+        <%= link_to t( 'edit'   ), shiny_blogs.edit_blog_path( blog ) %>
+        <%= link_to t( 'delete' ), shiny_blogs.blog_path( blog ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else %>
+<p>
+  <%= t( '.empty' ) %>
+</p>
+<% end %>

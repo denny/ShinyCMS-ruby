@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Votes', type: :request do
   before :each do
-    FeatureFlag.enable :news
+    FeatureFlag.enable :shiny_news
     FeatureFlag.enable :comments
 
     post = create :shiny_news_post

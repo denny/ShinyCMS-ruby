@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Discussions/Comments', type: :request do
   before :each do
-    FeatureFlag.enable :news
+    FeatureFlag.enable :shiny_news
     FeatureFlag.enable :comments
 
     FeatureFlag.disable :recaptcha_on_comment_form

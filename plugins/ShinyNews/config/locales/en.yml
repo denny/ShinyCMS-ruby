@@ -11,9 +11,15 @@
 
 en:
   feature_flags:
-    news: News section
-    news_votes: Votes on news posts
-    news_downvotes: Down-votes on news posts
+    shiny_news: News section
+    shiny_news_votes: Votes on news posts
+    shiny_news_downvotes: Down-votes on news posts
+
+  discussions:
+    n_comments:
+      zero: No comments
+      one: 1 comment
+      other: '%{count} comments'
 
   shiny_news:
     news:

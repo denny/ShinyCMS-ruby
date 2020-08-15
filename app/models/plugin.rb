@@ -18,6 +18,12 @@ class Plugin
     path_part = controller_name || name
     path_part = path_part.underscore.sub( 'shiny_', '' )
 
+    # FIXME
+    return ShinyBlogs::Engine.routes.url_helpers.blogs_path if path_part == 'blogs'
+    return ShinyBlogs::Engine.routes.url_helpers.blog_posts_path( ShinyBlogs::Blog.first ) if path_part == 'posts'
+
+    path_part = 'news_posts' if path_part == 'news'
+
     this::Engine.routes.url_helpers.public_send( "#{path_part}_path" )
   end
 
