@@ -1,7 +1,7 @@
 <li>
   <%= link_to t( 'shiny_news.menu.title' ), shiny_news.view_news_path %>
   <ul>
-    <% ShinyNews::Post.recent_posts( per: 5 ).each do |menu_news_post| %>
+    <% ShinyNews::Post.recent.limit(5).each do |menu_news_post| %>
     <li>
       <%= link_to menu_news_post.title, menu_news_post.path %>
     </li>

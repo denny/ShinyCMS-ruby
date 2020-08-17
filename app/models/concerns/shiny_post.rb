@@ -35,6 +35,7 @@ module ShinyPost
 
     scope :not_future_dated, -> { where( 'posted_at <= ?', Time.zone.now.iso8601 ) }
     scope :published,        -> { visible.merge( not_future_dated ) }
+    scope :recent,           -> { order( posted_at: :desc ) }
 
     self.implicit_order_column = 'posted_at'
 
@@ -70,10 +71,6 @@ module ShinyPost
 
     def self.find_post( year, month, slug )
       posts_in_month( year, month ).find_by( slug: slug )
-    end
-
-    def self.recent_posts( page: 1, per: 10 )
-      order( posted_at: :desc ).readonly.page( page ).per( per )
     end
   end
 end
