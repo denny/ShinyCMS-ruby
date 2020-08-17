@@ -3,7 +3,7 @@
 # ============================================================================
 # Project:   ShinyBlog plugin for ShinyCMS (Ruby version)
 # File:      plugins/ShinyBlog/app/controllers/shiny_blog/blog_controller.rb
-# Purpose:   Main site controller for blog section
+# Purpose:   Main site controller for blog
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
 #
@@ -12,13 +12,14 @@
 # ============================================================================
 
 module ShinyBlog
-  # Main site controller for blog section, provided by ShinyBlog plugin for ShinyCMS
+  # Main site controller for blog - provided by ShinyBlog plugin for ShinyCMS
   class BlogController < ApplicationController
     before_action :check_feature_flags
 
     def index
       page_num = params[:page] || 1
-      @posts = ShinyBlog::Post.readonly.recent_posts.page( page_num )
+      per_page = params[:per]  || Setting.get( :blog_posts_per_page ) || 10
+      @posts = ShinyBlog::Post.readonly.recent.page( page_num ).per( per_page )
     end
 
     def month
