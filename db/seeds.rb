@@ -276,8 +276,8 @@ setting = seed Setting, { name: 'track_clicks' }, {
 setting.values.create_or_find_by!( value: 'No' )
 
 # Load seed data for any ShinyCMS plugins that are enabled
-Plugin.loaded.each do |plugin_name|
-  Rake::Task[ "#{plugin_name.underscore}:db:seed" ].invoke
+Plugin.loaded.each do |plugin|
+  Rake::Task[ "#{plugin.name.underscore}:db:seed" ].invoke
 end
 
 # Let people know how to create an admin user

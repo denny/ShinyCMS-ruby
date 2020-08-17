@@ -26,14 +26,7 @@ module AdminAreaHelper
   end
 
   def plugins_for_admin_menu
-    plugins = []
-    ::Plugin.loaded.each do |camelcase|
-      underscored = camelcase.underscore
-      if File.exist? Rails.root.join "plugins/#{camelcase}/app/views/#{underscored}/admin/menu/_section.html.erb"
-        plugins << underscored
-      end
-    end
-    plugins
+    ::Plugin.with_template( 'admin/menu/_section.html.erb' )
   end
 
   def render_capability_category( form, category, capabilities, show )

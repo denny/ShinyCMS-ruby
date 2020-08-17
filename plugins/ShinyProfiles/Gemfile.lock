@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shiny_profiles (20.08)
+    shiny_profiles (20.8)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
