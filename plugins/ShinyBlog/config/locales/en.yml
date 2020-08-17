@@ -17,12 +17,14 @@ en:
 
   capability:
     category:
-      blog_posts: Blogs
+      blog_posts: Blog posts
 
     blog_posts:
       change_author: Change author
 
   shiny_blog:
+    menu:
+      title: Blog
     blog:
       index:
         title: Recent blog posts
