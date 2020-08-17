@@ -1,0 +1,55 @@
+<% @page_title = t( '.title' ) %>
+
+<%= form_for @post, url: shiny_blog.blog_posts_path, method: :post do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
+  </p>
+  <p>
+    <%= f.label :tag_list, 'Tags' %><br>
+    <%= f.text_field :tag_list %>
+  </p>
+  <% if current_user.can? :change_author, :blog_posts %>
+  <p>
+    <%= f.label :user_id, 'Author' %><br>
+    <%= f.select :user_id, User.that_can( :add, :blog_posts ).pluck( :username, :id ) %>
+  </p>
+  <% else %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <% end %>
+  <p>
+    <%= f.label :posted_at %><br>
+    <%= f.text_field :posted_at %>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.cktext_area :body, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
+  </p>
+
+  <p>
+    <%= f.label :show_on_site, 'Publish' %><br>
+    <%= f.check_box :show_on_site %>
+  </p>
+  <!-- TODO: initial state of comment thread
+  <p>
+    <%#= f.label :has_comments %><br>
+    <%#= f.check_box :allow_comments %>
+  </p>
+  <p>
+    <%= f.label :discussion_show_on_site, 'Show comments' %><br>
+    <%= f.check_box :discussion_show_on_site %>
+  </p>
+  <p>
+    <%= f.label :discussion_locked, 'Lock comments' %><br>
+    <%= f.check_box :discussion_locked %>
+  </p>
+  -->
+
+  <p>
+    <%= f.submit t( 'post' ) %>
+  </p>
+<% end %>

@@ -7,23 +7,12 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
 
 ## Features
 
-### Current features
-
-* User accounts and administration
-  * ACL-based authorisation system for admins (powered by Pundit)
-  * Uses reCAPTCHA to block registration by bots
-* Web interface for site settings
-  * Change most site settings from within the CMS admin area
-  * Easily enable or disable CMS features (e.g. new user registrations)
-  * Decide which settings to allow site users to override (e.g. theme)
 * Pages and Page Sections
   * Site admins can add as many pages and (nested) sections as they like
   * Pages have defined content areas which can be edited by admins
   * Page layout is controlled by Page Templates (can be provided by a theme or custom-built)
   * Dynamically generated menus
 * Inserts (re-usable content fragments that can be pulled into any template)
-* News section
-* Blog
 * Comments (currently enabled on blog posts and news posts)
   * Fully nested, so you can easily see who is replying to who at any level
   * Email notifications
@@ -32,18 +21,37 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
     * Spam comment moderation sends 'spam'/'not spam' training data to Akismet
 * Tags (currently enabled on blog posts and news posts, ready to add to any content type)
 * Likes or up/down votes on posts, comments, etc
+* Plugin architecture
+  * Load what you need and leave the rest out - smaller footprint, smaller attack surface
+  * Included plugins:
+    * News section
+    * Blog
+    * Generic form handlers
+      * Contact form submitted -> email form data to site owner
+    * Site search feature
+      * Supports multiple search back-ends; default is pg_search
+  * Write your own plugins to add custom functionality
+    * Plugin generator included: `rails g shiny:plugin plugins/ShinyThing` to get started
+* Support for themes on the hosted site
+  * Themes included:
+    * Halcyonic from HTML5UP (suitable for content-rich sites)
+* All emails use MJML templates, producing reliably cross-platform HTML emails
+* User accounts and administration
+  * ACL-based authorisation system for admins (powered by Pundit)
+  * Uses reCAPTCHA to block registration by bots
+* Web interface for site settings
+  * Change most site settings from within the CMS admin area
+  * Easily enable or disable CMS features (e.g. new user registrations)
+  * Decide which settings to allow site users to override (e.g. theme)
 * Built-in web stats (powered by Ahoy) and email stats (powered by Ahoy::Email)
 * Charts and dashboards for viewing stats (powered by Blazer)
   * Ready for use, but currently without demo data
-* Support for themes (on the main site - not, currently, for the CMS admin area)
-  * One theme included
-* All emails use MJML templates, producing reliably cross-platform HTML emails
 
 ### Planned features
 
-* Generic form handlers [in progress - nearly done]
-  * 'email contact page to site owner', etc
 * Newsletters (HTML mailshots) [in progress]
+* Algolia support for search plugin [in progress]
+* More themes [in progress]
 * User profile pages [in progress]
   * With content such as recent comments, recent posts, etc
 * Access control groups
@@ -55,6 +63,8 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
 * Event listings
 * Forums
 * Polls
+* Surveys / questionnaires
+* Multiple blogs/journals on one site
 
 (See the [developer documentation](docs/Developers/index.md) for more detailed information on features [in progress](docs/Developers/in-progress.md) and [to-do](docs/Developers/TODO.md))
 
@@ -74,25 +84,24 @@ Theme templates and sample data for a demo site are provided, so you can try all
 * A database - for now this assumes Postgres
 * An email server or service - anything that ActionMailer supports
 
-### Services
-
-External services are mostly optional. If you add config settings for them (in ENV, .env*, or Heroku config vars) then they will be enabled, otherwise either those features will be disabled or a fallback will take their place.
-
 ### Ruby and Rails versions
 
 ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.1 and Rails 6.0.3).
 
 It has been tested on every release of Rails 6 so far, and with most versions of Ruby from 2.5.8 onwards ([view recent test results][test results] for ruby 2.5.8, 2.6.6, and 2.7.1).
 
-[Test results]: https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/179189695
+[Test results]: https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/179573547
 
 There are currently no plans to add support for Rails 5 or older Ruby versions.
+
+### Services
+
+External services are mostly optional. If you add config settings for them (in ENV, .env*, or Heroku config vars) then they will be enabled, otherwise either those features will be disabled or (where possible) a fallback will take their place.
 
 
 ## Contributing
 
-If you're interested in contributing to ShinyCMS, please start by reading the
-[developer documentation](docs/Developers/index.md).
+If you're interested in contributing to ShinyCMS, please start by reading the [developer documentation](docs/Developers/index.md).
 
 
 ## Code of Conduct
