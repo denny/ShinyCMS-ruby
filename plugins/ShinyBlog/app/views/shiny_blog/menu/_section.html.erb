@@ -1,0 +1,5 @@
+<% ShinyBlog::Post.recent_posts(5).each do |menu_blog_post| %>
+  <li>
+    <%= link_to menu_blog_post.title, menu_blog_post.path %>
+  </li>
+<% end %>

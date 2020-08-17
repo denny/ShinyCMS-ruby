@@ -8,8 +8,6 @@
 
 # Capabilities (for user authorisation, via Pundit)
 general_cc    = seed CapabilityCategory, { name: 'general'        }
-blogs_cc      = seed CapabilityCategory, { name: 'blogs'          }
-blog_posts_cc = seed CapabilityCategory, { name: 'blog_posts'     }
 discussion_cc = seed CapabilityCategory, { name: 'discussions'    }
 comments_cc   = seed CapabilityCategory, { name: 'comments'       }
 spam_cc       = seed CapabilityCategory, { name: 'spam_comments'  }
@@ -27,17 +25,6 @@ admins_cc     = seed CapabilityCategory, { name: 'admin_users'    }
 seed Capability, { name: 'view_admin_area'      }, { category: general_cc }
 seed Capability, { name: 'view_admin_dashboard' }, { category: general_cc }
 seed Capability, { name: 'view_admin_toolbar'   }, { category: general_cc }
-# Blogs
-seed Capability, { name: 'list',    category: blogs_cc }
-seed Capability, { name: 'add',     category: blogs_cc }
-seed Capability, { name: 'edit',    category: blogs_cc }
-seed Capability, { name: 'destroy', category: blogs_cc }
-# Blog Posts
-seed Capability, { name: 'list',          category: blog_posts_cc }
-seed Capability, { name: 'add',           category: blog_posts_cc }
-seed Capability, { name: 'edit',          category: blog_posts_cc }
-seed Capability, { name: 'destroy',       category: blog_posts_cc }
-seed Capability, { name: 'change_author', category: blog_posts_cc }
 # Discussions
 seed Capability, { name: 'show',    category: discussion_cc }
 seed Capability, { name: 'hide',    category: discussion_cc }
@@ -100,24 +87,6 @@ seed Capability, { name: 'edit',    category: admins_cc }
 seed Capability, { name: 'destroy', category: admins_cc }
 
 # Feature Flags (to turn on/off areas of site functionality)
-seed FeatureFlag, { name: 'blogs' }, {
-  description: 'Turn this on if you want a blog on your site',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
-seed FeatureFlag, { name: 'blog_votes' }, {
-  description: 'Enable votes (likes) on blog posts',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
-seed FeatureFlag, { name: 'blog_downvotes' }, {
-  description: 'Enable down-votes (dislikes) on blog posts',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
 seed FeatureFlag, { name: 'comments' }, {
   description: 'Enable comment and discussion features site-wide',
   enabled: true,
@@ -276,8 +245,8 @@ setting = seed Setting, { name: 'track_clicks' }, {
 setting.values.create_or_find_by!( value: 'No' )
 
 # Load seed data for any ShinyCMS plugins that are enabled
-Plugin.loaded.each do |plugin_name|
-  Rake::Task[ "#{plugin_name.underscore}:db:seed" ].invoke
+Plugin.loaded.each do |plugin|
+  Rake::Task[ "#{plugin.name.underscore}:db:seed" ].invoke
 end
 
 # Let people know how to create an admin user

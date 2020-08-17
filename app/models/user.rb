@@ -26,10 +26,6 @@ class User < ApplicationRecord
   has_many :subscriptions, as: :subscriber, dependent: :destroy
   has_many :lists, through: :subscriptions
 
-  # Admin content: throw an error if it hasn't been removed or reassigned
-  has_many :blogs,      dependent: :restrict_with_error
-  has_many :blog_posts, dependent: :restrict_with_error
-
   # Validations
 
   # Allowed characters for usernames: a-z A-Z 0-9 . _ -
@@ -153,7 +149,7 @@ class User < ApplicationRecord
 
     # List of admin areas, approximately in order of 'most commonly used'
     # (used by /admin index method to redirect somewhere hopefully useful)
-    areas = %i[ pages shiny_news_posts blogs blog users settings shiny_forms_forms ]
+    areas = %i[ pages news_posts blog_posts users settings forms ]
 
     areas.each do |area|
       return area if can? :list, area

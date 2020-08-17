@@ -3,8 +3,8 @@
   <%= render partial: 'menu/pages', locals: {
     items: Page.top_level_menu_items, path: '/' } %>
 
-  <% if feature_enabled? :blogs %>
-  <%= render partial: 'menu/blog' %>
+  <% plugins_with_main_site_menu_templates.each do |plugin| %>
+    <%= render partial: "#{plugin.name.underscore}/menu/section" %>
   <% end %>
 
   <% if feature_enabled? :tags %>

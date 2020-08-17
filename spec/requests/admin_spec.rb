@@ -3,6 +3,28 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin controller:', type: :request do
+  describe 'GET /' do
+    it 'shows the admin toolbar on the main site, if you are an admin' do
+      create :top_level_page
+      admin = create :page_admin
+      sign_in admin
+
+      get root_path
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.shinycms-admin-toolbar'
+    end
+
+    it 'does not show the admin toolbar on the main site, if you are not an admin' do
+      create :top_level_page
+
+      get root_path
+
+      expect( response      ).to     have_http_status :ok
+      expect( response.body ).not_to have_css '.shinycms-admin-toolbar'
+    end
+  end
+
   describe 'GET /admin' do
     it 'redirects a non-admin to the main site' do
       user = create :user
@@ -67,11 +89,12 @@ RSpec.describe 'Admin controller:', type: :request do
   end
 
   describe 'GET /admin redirects to the appropriate admin area for:' do
-    include_examples '/admin redirect', 'blog_admin', '/admin/blogs', 'blogs'
     include_examples '/admin redirect', 'page_admin', '/admin/pages', 'pages'
     include_examples '/admin redirect', 'user_admin', '/admin/users', 'users'
     include_examples '/admin redirect', 'settings_admin', '/admin/site-settings', 'site_settings'
 
-    include_examples '/admin redirect', 'form_admin', '/admin/forms', 'forms', 'shiny_forms'
+    include_examples '/admin redirect', 'blog_admin', '/admin/blog_posts', 'blog_posts', 'shiny_blog'
+    include_examples '/admin redirect', 'form_admin', '/admin/forms',      'forms',      'shiny_forms'
+    include_examples '/admin redirect', 'news_admin', '/admin/news_posts', 'news_posts', 'shiny_news'
   end
 end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'PageTemplate model:', type: :model do
+RSpec.describe PageTemplate, type: :model do
   context ' when I call .pages' do
     it 'it returns the associated pages' do
       template = create :page_template
@@ -39,7 +39,7 @@ RSpec.describe 'PageTemplate model:', type: :model do
     end
   end
 
-  it_should_behave_like 'ShinyDemoDataProvider' do
-    let( :model ) { Blog }
+  it_should_behave_like ShinyDemoDataProvider do
+    let( :model ) { described_class }
   end
 end

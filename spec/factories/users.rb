@@ -11,43 +11,15 @@ FactoryBot.define do
   factory :admin_user, parent: :user do
     after :create do |admin|
       category = CapabilityCategory.find_by( name: 'general' )
-      capability = category.capabilities.find_by( name: 'view_admin_area' )
-      create :user_capability, user: admin, capability: capability
+      capability1 = category.capabilities.find_by( name: 'view_admin_area'    )
+      capability2 = category.capabilities.find_by( name: 'view_admin_toolbar' )
+      create :user_capability, user: admin, capability: capability1
+      create :user_capability, user: admin, capability: capability2
     end
   end
 
   # TODO: user factory you can pass an array of admin types into,
   # to create all of the following (and mixtures) with less repetition...
-
-  factory :blog_admin, parent: :admin_user do
-    after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'blogs' )
-
-      list    = category.capabilities.find_by( name: 'list'    )
-      add     = category.capabilities.find_by( name: 'add'     )
-      edit    = category.capabilities.find_by( name: 'edit'    )
-      destroy = category.capabilities.find_by( name: 'destroy' )
-
-      create :user_capability, user: admin, capability: list
-      create :user_capability, user: admin, capability: add
-      create :user_capability, user: admin, capability: edit
-      create :user_capability, user: admin, capability: destroy
-
-      category = CapabilityCategory.find_by( name: 'blog_posts' )
-
-      list    = category.capabilities.find_by( name: 'list'    )
-      add     = category.capabilities.find_by( name: 'add'     )
-      edit    = category.capabilities.find_by( name: 'edit'    )
-      destroy = category.capabilities.find_by( name: 'destroy' )
-      # author  = category.capabilities.find_by( name: 'author' )
-
-      create :user_capability, user: admin, capability: list
-      create :user_capability, user: admin, capability: add
-      create :user_capability, user: admin, capability: edit
-      create :user_capability, user: admin, capability: destroy
-      # create :user_capability, user: admin, capability: author
-    end
-  end
 
   factory :discussion_admin, parent: :admin_user do
     after :create do |admin|

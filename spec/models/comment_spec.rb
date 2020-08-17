@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  it_should_behave_like 'ShinyDemoDataProvider' do
-    let( :model ) { Comment }
+  it_should_behave_like ShinyDemoDataProvider do
+    let( :model ) { described_class }
   end
 end
