@@ -72,8 +72,8 @@ module ShinyPost
       posts_in_month( year, month ).find_by( slug: slug )
     end
 
-    def self.recent_posts( page_num = 1 )
-      order( posted_at: :desc ).readonly.page( page_num )
+    def self.recent_posts( page: 1, per: 10 )
+      order( posted_at: :desc ).readonly.page( page ).per( per )
     end
   end
 end

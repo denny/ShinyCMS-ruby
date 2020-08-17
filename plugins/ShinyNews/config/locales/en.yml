@@ -23,6 +23,8 @@ en:
       change_author: Change author
 
   shiny_news:
+    menu:
+      title: News
     news:
       index:
         title: Recent news
