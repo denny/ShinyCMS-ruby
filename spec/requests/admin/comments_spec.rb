@@ -7,12 +7,12 @@ RSpec.describe 'Comment moderation', type: :request do
     @admin = create :discussion_admin
     sign_in @admin
 
-    FeatureFlag.enable :blogs
+    FeatureFlag.enable :blog
     FeatureFlag.enable :news
     FeatureFlag.enable :comments
 
     @blog = create :blog_post
-    @news = create :shiny_news_post
+    @news = create :news_post
 
     @discussion1 = create :discussion, resource: @blog
     @comment1 = create :top_level_comment, discussion: @discussion1

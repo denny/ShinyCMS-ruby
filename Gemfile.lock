@@ -1,4 +1,11 @@
 PATH
+  remote: plugins/ShinyBlog
+  specs:
+    shiny_blog (20.8)
+      pg (>= 0.18, < 2.0)
+      rails (~> 6.0.3, >= 6.0.3.2)
+
+PATH
   remote: plugins/ShinyForms
   specs:
     shiny_forms (20.8)
@@ -472,6 +479,7 @@ DEPENDENCIES
   rubocop-rails!
   sassc-rails!
   seed_dump!
+  shiny_blog!
   shiny_forms!
   shiny_news!
   shiny_profiles!

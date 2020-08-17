@@ -4,8 +4,6 @@
 
   <%= render partial: 'admin/menu/menu_pages'    %>
 
-  <%= render partial: 'admin/menu/menu_blogs'    %>
-
   <% plugins_for_admin_menu.each do |plugin| %>
   <%= render partial: "#{plugin.name.underscore}/admin/menu/section" %>
   <% end %>

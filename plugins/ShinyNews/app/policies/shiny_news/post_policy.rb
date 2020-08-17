@@ -2,7 +2,7 @@
 
 # ============================================================================
 # Project:   ShinyNews plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyNews/app/models/shiny_news/post.rb
+# File:      plugins/ShinyNews/app/policies/shiny_news/post.rb
 # Purpose:   Pundit policy for admin area features
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me

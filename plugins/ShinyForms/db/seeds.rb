@@ -31,7 +31,7 @@ form_emails_flag.update!(
 )
 
 # Add admin capabilities
-forms_cc = CapabilityCategory.find_or_create_by!( name: 'shiny_forms_forms' )
+forms_cc = CapabilityCategory.find_or_create_by!( name: 'forms' )
 forms_cc.capabilities.find_or_create_by!( name: 'list'    )
 forms_cc.capabilities.find_or_create_by!( name: 'add'     )
 forms_cc.capabilities.find_or_create_by!( name: 'edit'    )

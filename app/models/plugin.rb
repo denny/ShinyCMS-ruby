@@ -5,7 +5,6 @@ class Plugin
   attr_accessor :name
 
   def initialize( name )
-    name = Plugin.capability_category_to_plugin_name( name ) if name.to_s.start_with? 'shiny_'
     return unless Plugin.all_names.include? name
 
     @name = name
@@ -25,9 +24,8 @@ class Plugin
     File.exist? Rails.root.join "plugins/#{name}/app/views/#{name.underscore}/#{template_path}"
   end
 
-  def admin_index_path( controller_name = nil )
-    path_part = controller_name || name
-    path_part = path_part.underscore.sub( 'shiny_', '' )
+  def admin_index_path( area = nil )
+    path_part = area || name.underscore.sub( 'shiny_', '' )
 
     engine.routes.url_helpers.public_send( "#{path_part}_path" )
   end
@@ -71,9 +69,5 @@ class Plugin
 
   def self.configured_names
     ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
-  end
-
-  def self.capability_category_to_plugin_name( capability_category )
-    capability_category.to_s.sub( %r{_[a-z]+$}, '' ).classify.pluralize
   end
 end

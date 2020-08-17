@@ -17,12 +17,8 @@
           ::Plugin.new( plugin_name ).admin_index_path( controller_name ) %>
     </li>
 
-  <%# TODO: handle nested controllers: Blog::Posts, Pages::Sections, etc %>
+  <%# TODO: handle nested controllers: Pages::Sections, etc %>
   <%# For now, here is a cheap bodge, which I genuinely feel bad about.  %>
-  <% elsif controller_name == 'posts' %>
-    <li class="breadcrumb-item"><%= link_to t( 'admin.blogs.title'      ), blogs_path %></li>
-    <li class="breadcrumb-item"><%= link_to t( 'admin.blog.posts.title' ), blog_posts_path( @blog ) %></li>
-
   <% elsif controller_name == 'sections' %>
     <li class="breadcrumb-item"><%= link_to t( 'admin.pages.title'          ), pages_path %></li>
     <li class="breadcrumb-item"><%= link_to t( 'admin.pages.sections.title' ), pages_path %></li>

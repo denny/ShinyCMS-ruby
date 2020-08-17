@@ -8,7 +8,7 @@ RSpec.describe 'DiscussionMailerPreview', type: :request do
     sign_in admin
 
     u = create :user
-    n = create :shiny_news_post, author: u
+    n = create :news_post, author: u
     d = create :discussion, resource: n
     c = create :top_level_comment, discussion: d, author: u
     create :top_level_comment, discussion: d
