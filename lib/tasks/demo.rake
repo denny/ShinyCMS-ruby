@@ -94,10 +94,11 @@ namespace :shiny do
       Rails.application.eager_load! if Rails.env.development?
       models = ApplicationRecord.descendants.select( &:dump_for_demo? ).map( &:to_s ).sort
       # Fragile bodgery; move models with dependencies not happy with .sort order to the end
+      models.delete( 'Comment' )
+      models.delete( 'Discussion' )
       models.delete( 'Page' )
       models.delete( 'PageElement' )
-      models.delete( 'Comment' )
-      models.push( 'Page', 'PageElement', 'Comment' )
+      models.push( 'Page', 'PageElement', 'Discussion', 'Comment' )
     end
     # :nocov:
   end
