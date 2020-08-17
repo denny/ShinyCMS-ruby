@@ -12,13 +12,14 @@
 # ============================================================================
 
 module ShinyNews
-  # Main site controller for news section, provided by ShinyNews plugin for ShinyCMS
+  # Main site controller for news section - provided by ShinyNews plugin for ShinyCMS
   class NewsController < ApplicationController
     before_action :check_feature_flags
 
     def index
       page_num = params[:page] || 1
-      @posts = ShinyNews::Post.readonly.recent_posts.page( page_num )
+      per_page = params[:per]  || Setting.get( :news_posts_per_page ) || 10
+      @posts = ShinyNews::Post.readonly.recent.page( page_num ).per( per_page )
     end
 
     def month
