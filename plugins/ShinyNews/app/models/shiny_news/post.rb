@@ -19,7 +19,7 @@ module ShinyNews
 
     # Associations
 
-    belongs_to :user, inverse_of: :shiny_news_posts
+    belongs_to :user, inverse_of: :news_posts
 
     has_one :discussion, as: :resource, dependent: :destroy
 
@@ -49,4 +49,4 @@ module ShinyNews
 end
 
 # Add inverse association for authors of news posts
-::User.has_many :shiny_news_posts, dependent: :restrict_with_error, class_name: 'ShinyNews::Post'
+::User.has_many :news_posts, dependent: :restrict_with_error, class_name: 'ShinyNews::Post'

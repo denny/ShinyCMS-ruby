@@ -15,6 +15,13 @@ en:
     news_votes: Votes on news posts
     news_downvotes: Down-votes on news posts
 
+  capability:
+    category:
+      news_posts: News
+
+    news_posts:
+      change_author: Change author
+
   shiny_news:
     news:
       index:
@@ -23,6 +30,10 @@ en:
       post:
         footer:
           reply: Reply to this post
+          n_comments:
+            zero: No comments
+            one: 1 comment
+            other: '%{count} comments'
       sidebar:
         links: Links
         links_blurb: Recommended reading from around the web

@@ -60,7 +60,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
 
     it "fails to create a new news post when the slug isn't unique this month" do
-      post_from_this_month = create :shiny_news_post, posted_at: Time.zone.now.beginning_of_month
+      post_from_this_month = create :news_post, posted_at: Time.zone.now.beginning_of_month
 
       post shiny_news.news_posts_path, params: {
         post: {
@@ -77,7 +77,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
 
     it "doesn't fail when the slug is unique this month but not globally" do
-      post_from_last_month = create :blog_post, posted_at: 1.month.ago
+      post_from_last_month = create :news_post, posted_at: 1.month.ago
 
       post shiny_news.news_posts_path, params: {
         post: {
@@ -101,7 +101,7 @@ RSpec.describe 'Admin::News', type: :request do
 
   describe 'GET /admin/news/:id/edit' do
     it 'loads the form to edit an existing news post' do
-      post = create :shiny_news_post
+      post = create :news_post
 
       get shiny_news.edit_news_post_path( post )
 
@@ -111,7 +111,7 @@ RSpec.describe 'Admin::News', type: :request do
 
   describe 'PUT /admin/news' do
     it 'fails to update the news post when an incomplete form is submitted' do
-      post = create :shiny_news_post
+      post = create :news_post
 
       put shiny_news.news_post_path( post ), params: {
         post: {
@@ -127,7 +127,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
 
     it 'updates the news post when a complete form is submitted' do
-      post = create :shiny_news_post
+      post = create :news_post
 
       put shiny_news.news_post_path( post ), params: {
         post: {
@@ -148,7 +148,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
 
     it 'updates the discussion hidden/locked status successfully' do
-      post = create :shiny_news_post
+      post = create :news_post
       create :discussion, resource: post
 
       put shiny_news.news_post_path( post ), params: {
@@ -175,9 +175,9 @@ RSpec.describe 'Admin::News', type: :request do
 
   describe 'DELETE /admin/news/:id' do
     it 'deletes the specified news post' do
-      p1 = create :shiny_news_post
-      p2 = create :shiny_news_post
-      p3 = create :shiny_news_post
+      p1 = create :news_post
+      p2 = create :news_post
+      p3 = create :news_post
 
       delete shiny_news.news_post_path( p2 )
 
