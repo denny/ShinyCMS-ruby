@@ -4,6 +4,7 @@
 # e.g. page.slug / page_section.slug / shop_item.slug / etc
 module ShinySlugInSection
   extend ActiveSupport::Concern
+
   include ShinySlug
 
   included do

@@ -7,8 +7,8 @@
   <%= render partial: 'menu/blog' %>
   <% end %>
 
-  <% plugins_with_main_site_menu_templates.each do |plugin_name| %>
-    <%= render partial: "#{plugin_name}/menu/section" %>
+  <% plugins_with_main_site_menu_templates.each do |plugin| %>
+    <%= render partial: "#{plugin.name.underscore}/menu/section" %>
   <% end %>
 
   <% if feature_enabled? :tags %>

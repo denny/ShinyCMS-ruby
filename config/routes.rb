@@ -169,9 +169,8 @@ Rails.application.routes.draw do
     ########################################
     # ShinyCMS plugins
 
-    Plugin.loaded.each do |plugin_name|
-      plugin = plugin_name.constantize
-      mount plugin::Engine, at: '/' if defined? plugin
+    Plugin.loaded.each do |plugin|
+      mount plugin.engine, at: '/' if defined? plugin
     end
 
     ###########################################################################

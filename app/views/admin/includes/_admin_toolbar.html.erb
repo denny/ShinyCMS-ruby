@@ -3,8 +3,8 @@
 
   <div class="shinycms-admin-toolbar-links">
 
-<% plugins_with_admin_toolbar_templates.each do |plugin_name| %>
-  <%= render partial: "#{plugin_name}/admin/toolbar/section" %>
+<% plugins_with_admin_toolbar_templates.each do |plugin| %>
+  <%= render partial: "#{plugin.name.underscore}/admin/toolbar/section" %>
 <% end %>
 
 <% if controller_name == 'blogs' %>
