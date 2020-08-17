@@ -148,7 +148,7 @@ GEM
       simplecov
     coderay (1.1.2)
     colorize (0.8.1)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.7)
     crass (1.0.6)
     database_cleaner (1.8.5)
     database_cleaner-active_record (1.8.0)
@@ -408,7 +408,7 @@ GEM
     unicode-display_width (1.7.0)
     warden (1.2.8)
       rack (>= 2.0.6)
-    webpacker (5.1.1)
+    webpacker (5.2.0)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
@@ -475,7 +475,7 @@ DEPENDENCIES
   shiny_forms!
   shiny_news!
   shiny_profiles!
-  webpacker (~> 5.1)!
+  webpacker (~> 5.2)!
 
 BUNDLED WITH
    2.1.4
