@@ -143,5 +143,7 @@ source 'https://rubygems.org' do
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     gem 'rspec_junit_formatter'
+    # Used to intercept calls to the Algolia API
+    gem 'webmock'
   end
 end

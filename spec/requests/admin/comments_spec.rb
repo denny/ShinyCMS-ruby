@@ -21,6 +21,8 @@ RSpec.describe 'Comment moderation', type: :request do
 
     @discussion2 = create :discussion, resource: @news
     @comment2 = create :top_level_comment, discussion: @discussion2
+
+    WebMock.disable!
   end
 
   describe 'GET /admin/comments' do

@@ -14,7 +14,14 @@ require 'rspec/rails'
 
 # Add additional requires below this line; Rails is not loaded until this point
 
+# Capybara matchers, for more readable tests
 require 'capybara/rails'
+
+# Supply random fake data to tests, to make them work a bit harder
+require 'faker'
+
+# Mock all calls to Algolia API (their free plan has a very low transaction limit)
+require 'algolia/webmock'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -46,6 +53,14 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with :truncation
     ShinyCMS::Application.load_tasks
     Rake::Task['db:seed'].invoke
+  end
+
+  config.before :each do
+    WebMock.enable!
+  end
+
+  config.after :each do
+    WebMock.disable!
   end
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

@@ -171,6 +171,8 @@ GEM
     coderay (1.1.2)
     colorize (0.8.1)
     concurrent-ruby (1.1.6)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     crass (1.0.6)
     database_cleaner (1.8.5)
     database_cleaner-active_record (1.8.0)
@@ -213,6 +215,7 @@ GEM
       activesupport (>= 4.2.0)
     groupdate (5.1.0)
       activesupport (>= 5)
+    hashdiff (1.0.1)
     highline (2.0.3)
     httpclient (2.8.3)
     i18n (1.8.5)
@@ -390,6 +393,7 @@ GEM
       ffi (~> 1.9)
     ruby_parser (3.14.2)
       sexp_processor (~> 4.9)
+    safe_yaml (1.0.5)
     safely_block (0.3.0)
       errbase (>= 0.1.1)
     sassc (2.3.0)
@@ -434,6 +438,10 @@ GEM
     unicode-display_width (1.7.0)
     warden (1.2.8)
       rack (>= 2.0.6)
+    webmock (3.8.3)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     webpacker (5.1.1)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
@@ -505,6 +513,7 @@ DEPENDENCIES
   shiny_news!
   shiny_profiles!
   shiny_search!
+  webmock!
   webpacker (~> 5.1)!
 
 BUNDLED WITH
