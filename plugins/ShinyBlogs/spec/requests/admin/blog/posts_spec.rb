@@ -2,23 +2,24 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin::Blog::Posts', type: :request do
+RSpec.describe 'Admin::Blog', type: :request do
   before :each do
     @blog = create :shiny_blogs_blog
 
-    @admin = create :blog_admin
+    @admin = create :multi_blog_admin
     sign_in @admin
   end
 
-  describe 'GET /admin/blog/1/posts' do
+  describe 'GET /admin/blog' do
     it 'fetches the list of blog posts' do
       get shiny_blogs.blog_posts_path( @blog )
 
       expect( response ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
     end
   end
 
-  describe 'GET /admin/blog/1/posts/new' do
+  describe 'GET /admin/blog/new' do
     it 'loads the form to create a new blog post' do
       get shiny_blogs.new_blog_post_path( @blog )
 
@@ -26,7 +27,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
     end
   end
 
-  describe 'POST /admin/blog/1/post' do
+  describe 'POST /admin/blog' do
     it 'creates a new blog post when a complete form is submitted' do
       post shiny_blogs.create_blog_post_path( @blog ), params: {
         blog_post: {
@@ -102,7 +103,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
     end
   end
 
-  describe 'GET /admin/blog/1/posts/:id/edit' do
+  describe 'GET /admin/blog/:id/edit' do
     it 'loads the form to edit an existing blog post' do
       post = create :shiny_blogs_blog_post, blog: @blog
 
@@ -112,7 +113,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
     end
   end
 
-  describe 'PUT /admin/blog/1/posts' do
+  describe 'PUT /admin/blog' do
     it 'fails to update the blog post when an incomplete form is submitted' do
       post = create :shiny_blogs_blog_post, blog: @blog
 
@@ -160,7 +161,7 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
-          discussion_show_on_site: false,
+          discussion_show_on_site: true,
           discussion_locked: true
         }
       }
@@ -173,12 +174,12 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.alert-success',
                                           text: I18n.t( 'shiny_blogs.admin.blog.posts.update.success' )
-      expect( post.discussion.hidden? ).to be true
+      expect( post.discussion.hidden? ).to be false
       expect( post.discussion.locked? ).to be true
     end
   end
 
-  describe 'DELETE /admin/blog/1/posts/:id' do
+  describe 'DELETE /admin/blog/:id' do
     it 'deletes the specified blog post' do
       p1 = create :shiny_blogs_blog_post, blog: @blog
       p2 = create :shiny_blogs_blog_post, blog: @blog
@@ -186,13 +187,13 @@ RSpec.describe 'Admin::Blog::Posts', type: :request do
 
       delete shiny_blogs.blog_post_path( @blog, p2 )
 
+      success_message = I18n.t( 'shiny_blog.admin.blog_posts.destroy.success' )
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to shiny_blogs.blog_posts_path( @blog )
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shiny_blogs.admin.blog.posts.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success',
-                                              text: I18n.t( 'shiny_blogs.admin.blog.posts.destroy.success' )
+      expect( response.body ).to     have_css '.alert-success', text: success_message
       expect( response.body ).to     have_css 'td', text: p1.title
       expect( response.body ).not_to have_css 'td', text: p2.title
       expect( response.body ).to     have_css 'td', text: p3.title

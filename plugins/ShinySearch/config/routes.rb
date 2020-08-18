@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 # ============================================================================
-# Project:   ShinyNews plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyNews/app/models/shiny_news/post.rb
-# Purpose:   Pundit policy for admin area features
+# Project:   ShinySearch plugin for ShinyCMS (Ruby version)
+# File:      plugins/ShinySearch/config/routes.rb
+# Purpose:   Routes for ShinySearch plugin
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
 #
@@ -11,8 +11,10 @@
 # modify it under the terms of the GPL (version 2 or later).
 # ============================================================================
 
-module ShinyNews
-  # Inherits from ShinyCMS default admin policy
-  class Admin::PostPolicy < ::Admin::DefaultPolicy
+ShinySearch::Engine.routes.draw do
+  scope format: false do
+    # Main site
+    get  'search', to: 'search#index'
+    post 'search', to: 'search#index'
   end
 end

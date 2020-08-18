@@ -1,0 +1,13 @@
+<% if controller_name == 'shiny_news_posts' %>
+    <%= t( 'shiny_news.admin.news.title' ).singularize %>:
+  <% if current_user_can? :add, :news_posts %>
+    <%= link_to t( 'add' ), new_news_post_path %> /
+  <% end %>
+  <% if current_user_can?( :edit, :news_posts ) && @post.present? %>
+    <%= link_to t( 'edit' ), edit_news_post_path( @post ) %> /
+  <% end %>
+  <% if current_user_can? :list, :news_posts %>
+    <%= link_to t( 'list' ), news_posts_path %>
+  <% end %>
+    |
+<% end %>

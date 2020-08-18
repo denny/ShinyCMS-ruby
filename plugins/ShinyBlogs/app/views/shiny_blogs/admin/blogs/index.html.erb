@@ -24,11 +24,7 @@
         <%= blog.description %>
       </td>
       <td class="actions">
-        <% if ShinyBlogs::Blog.multiple_blogs_mode? %>
         <%= link_to t( 'view'   ), shiny_blogs.view_blog_path( blog ) %>
-        <% else %>
-        <%= link_to t( 'view'   ), shiny_blogs.view_blog_path %>
-        <% end %>
         <%= link_to t( 'edit'   ), shiny_blogs.edit_blog_path( blog ) %>
         <%= link_to t( 'delete' ), shiny_blogs.blog_path( blog ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_032317) do
+ActiveRecord::Schema.define(version: 2020_08_17_145406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -317,6 +317,15 @@ ActiveRecord::Schema.define(version: 2020_08_15_032317) do
     t.index ["slug", "section_id"], name: "index_pages_on_slug_and_section_id", unique: true
   end
 
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
@@ -342,6 +351,18 @@ ActiveRecord::Schema.define(version: 2020_08_15_032317) do
     t.boolean "locked", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shiny_blog_posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "slug", null: false
+    t.text "body"
+    t.boolean "show_on_site", default: true, null: false
+    t.bigint "user_id"
+    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_shiny_blog_posts_on_user_id"
   end
 
   create_table "shiny_blogs_blog_posts", force: :cascade do |t|
@@ -508,6 +529,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_032317) do
   add_foreign_key "pages", "page_templates", column: "template_id"
   add_foreign_key "setting_values", "settings"
   add_foreign_key "setting_values", "users"
+  add_foreign_key "shiny_blog_posts", "users"
   add_foreign_key "shiny_blogs_blog_posts", "shiny_blogs_blogs", column: "blog_id"
   add_foreign_key "shiny_blogs_blog_posts", "users"
   add_foreign_key "shiny_blogs_blogs", "users"

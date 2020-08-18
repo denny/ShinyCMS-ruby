@@ -4,6 +4,7 @@
 # e.g. blog posts, news posts, etc
 module ShinySlugInMonth
   extend ActiveSupport::Concern
+
   include ShinySlug
 
   included do

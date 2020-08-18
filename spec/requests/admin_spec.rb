@@ -95,8 +95,8 @@ RSpec.describe 'Admin controller:', type: :request do
     include_examples '/admin redirect', 'settings_admin', '/admin/site-settings', 'site_settings'
 
     # type, path, section, plugin
-    include_examples '/admin redirect', 'news_admin', '/admin/news_posts', 'news_posts', 'shiny_news'
-    include_examples '/admin redirect', 'blog_admin', '/admin/blogs',      'blogs',      'shiny_blogs'
+    include_examples '/admin redirect', 'blog_admin', '/admin/blog_posts', 'blog_posts', 'shiny_blog'
     include_examples '/admin redirect', 'form_admin', '/admin/forms',      'forms',      'shiny_forms'
+    include_examples '/admin redirect', 'news_admin', '/admin/news_posts', 'news_posts', 'shiny_news'
   end
 end

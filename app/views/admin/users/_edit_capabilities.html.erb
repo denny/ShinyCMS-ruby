@@ -19,40 +19,46 @@
     </th>
   </tr>
 
-  <% category = CapabilityCategory.find_by( name: 'general' ) %>
   <% category_capabilities = %w[ view_admin_area view_admin_dashboard view_admin_toolbar skip skip ] %>
-  <%= render_capability_category( f, category, category_capabilities, show ) %>
-
-  <% category = CapabilityCategory.find_by( name: 'shiny_blogs_blogs' ) %>
-  <% category_capabilities = %w[ list add edit destroy skip ] %>
-  <%= render_capability_category( f, category, category_capabilities, show ) %>
-
-  <% category = CapabilityCategory.find_by( name: 'shiny_blogs_blog_posts' ) %>
-  <% category_capabilities = %w[ list add edit destroy change_author ] %>
-  <%= render_capability_category( f, category, category_capabilities, show ) %>
-
-  <% category = CapabilityCategory.find_by( name: 'discussions' ) %>
-  <% category_capabilities = %w[ show hide lock unlock skip ] %>
-  <%= render_capability_category( f, category, category_capabilities, show ) %>
-
-  <% category = CapabilityCategory.find_by( name: 'comments' ) %>
-  <% category_capabilities = %w[ show hide lock unlock destroy ] %>
-  <%= render_capability_category( f, category, category_capabilities, show ) %>
-
-  <% category = CapabilityCategory.find_by( name: 'spam_comments' ) %>
-  <% category_capabilities = %w[ list add skip destroy skip ] %>
-  <%= render_capability_category( f, category, category_capabilities, show ) %>
-
-  <% category = CapabilityCategory.find_by( name: 'feature_flags' ) %>
-  <% category_capabilities = %w[ list skip edit skip skip ] %>
+  <% category = CapabilityCategory.find_by( name: 'general' ) %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category_capabilities = %w[ list add edit destroy skip ] %>
   <% CapabilityCategory.where(
-      name: %w[ inserts pages page_sections page_templates ]
+      name: %w[ pages page_sections page_templates inserts ]
     ).each do |category| %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
   <% end %>
+
+  <% category_capabilities = %w[ list add edit destroy skip ] %>
+  <% category = CapabilityCategory.find_by( name: 'shiny_blogs_blogs' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category_capabilities = %w[ list add edit destroy change_author ] %>
+  <% category = CapabilityCategory.find_by( name: 'shiny_blogs_blog_posts' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category = CapabilityCategory.find_by( name: 'blog_posts' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category = CapabilityCategory.find_by( name: 'news_posts' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category_capabilities = %w[ show hide lock unlock skip ] %>
+  <% category = CapabilityCategory.find_by( name: 'discussions' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category_capabilities = %w[ show hide lock unlock destroy ] %>
+  <% category = CapabilityCategory.find_by( name: 'comments' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category_capabilities = %w[ list add skip destroy skip ] %>
+  <% category = CapabilityCategory.find_by( name: 'spam_comments' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category_capabilities = %w[ list skip edit skip skip ] %>
+  <% category = CapabilityCategory.find_by( name: 'feature_flags' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% category = CapabilityCategory.find_by( name: 'stats' ) %>
   <% category_capabilities = %w[ view_web view_email use_blazer skip skip ] %>

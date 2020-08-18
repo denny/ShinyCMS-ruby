@@ -17,7 +17,7 @@
           ::Plugin.new( plugin_name ).admin_index_path( controller_name ) %>
     </li>
 
-  <%# TODO: handle nested controllers: Pages::Sections & Page::Templates %>
+  <%# TODO: handle nested controllers (Pages::Sections, Page::Templates) %>
   <%# (For now, here is a cheap bodge, which I genuinely feel bad about) %>
   <% elsif controller_name == 'sections' %>
     <li class="breadcrumb-item"><%= link_to t( 'admin.pages.title'          ), pages_path %></li>

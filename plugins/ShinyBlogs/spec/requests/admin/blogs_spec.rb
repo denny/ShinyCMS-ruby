@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Admin::Blogs', type: :request do
   before :each do
-    @admin = create :blog_admin
+    @admin = create :multi_blog_admin
     sign_in @admin
   end
 

@@ -32,25 +32,11 @@ module MainSiteHelper
     link_to user.name, shiny_profiles.profile_path( user.username )
   end
 
-  def plugins_for_main_site_menu
-    plugins = []
-    ::Plugin.loaded.each do |camelcase|
-      underscored = camelcase.underscore
-      if File.exist? Rails.root.join "plugins/#{camelcase}/app/views/#{underscored}/menu/_section.html.erb"
-        plugins << underscored
-      end
-    end
-    plugins
+  def plugins_with_main_site_menu_templates
+    ::Plugin.with_template( 'menu/_section.html.erb' )
   end
 
-  def plugins_for_admin_toolbar
-    plugins = []
-    ::Plugin.loaded.each do |camelcase|
-      underscored = camelcase.underscore
-      if File.exist? Rails.root.join "plugins/#{camelcase}/app/views/#{underscored}/admin/_toolbar.html.erb"
-        plugins << underscored
-      end
-    end
-    plugins
+  def plugins_with_admin_toolbar_templates
+    ::Plugin.with_template( 'admin/toolbar/_section.html.erb' )
   end
 end

@@ -41,7 +41,7 @@ source 'https://rubygems.org' do
   # Use faster SCSS gem for stylesheets
   gem 'sassc-rails'
   # Transpile app-like JavaScript. More info: https://github.com/rails/webpacker
-  gem 'webpacker', '~> 5.1'
+  gem 'webpacker', '~> 5.2'
 
   # Sessions, authentication, and authorisation
   gem 'activerecord-session_store'
@@ -64,6 +64,10 @@ source 'https://rubygems.org' do
 
   # MJML emails
   gem 'mjml-rails'
+
+  # Search
+  gem 'algoliasearch-rails'
+  gem 'pg_search'
 
   # Tags
   gem 'acts-as-taggable-on'
@@ -139,5 +143,7 @@ source 'https://rubygems.org' do
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     gem 'rspec_junit_formatter'
+    # Used to intercept calls to the Algolia API
+    gem 'webmock'
   end
 end

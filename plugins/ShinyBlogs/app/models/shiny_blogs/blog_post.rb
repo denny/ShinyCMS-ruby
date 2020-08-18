@@ -20,17 +20,9 @@ module ShinyBlogs
     # Instance methods
 
     def path( anchor: nil )
-      if ShinyBlogs::Blog.multiple_blogs_mode?
-        # :nocov:
-        url_helpers.view_blog_post_path(
-          blog.slug, posted_year, posted_month, slug, anchor: anchor
-        )
-        # :nocov:
-      else
-        url_helpers.view_blog_post_path(
-          posted_year, posted_month, slug, anchor: anchor
-        )
-      end
+      url_helpers.view_blog_post_path(
+        blog.slug, posted_year, posted_month, slug, anchor: anchor
+      )
     end
 
     # Specify policy class for Pundit
@@ -39,6 +31,10 @@ module ShinyBlogs
     end
 
     # Class methods
+
+    def self.human_name
+      'blog post'
+    end
 
     def self.policy_class
       Admin::BlogPostPolicy

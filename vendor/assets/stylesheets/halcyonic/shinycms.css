@@ -276,7 +276,6 @@ nav .sm li li a:hover {
 }
 
 
-
 /* ===== ( styles for tag clouds and tag lists ) ===== */
 
 .tagsize1 { font-size: 1em; }
@@ -288,6 +287,13 @@ nav .sm li li a:hover {
   column-count:         12;
   column-fill:          balance;
   width:                100%;
+}
+
+
+/* ========== ( search page ) ========== */
+
+.algolia-logo img {
+  width:                100px;
 }
 
 
@@ -307,14 +313,18 @@ nav .sm li li a:hover {
 
 /* ========== ( utility styles ) ========== */
 
-.clear-both {
-  clear:        both;
+.right {
+  text-align:   right;
+}
+
+.smaller {
+  font-size:    smaller;
 }
 
 .float-right {
   float:        right;
 }
 
-.smaller {
-  font-size:    smaller;
+.clear-both {
+  clear:        both;
 }

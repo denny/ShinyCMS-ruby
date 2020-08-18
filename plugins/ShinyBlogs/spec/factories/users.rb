@@ -2,7 +2,7 @@
 
 module ShinyForms
   FactoryBot.define do
-    factory :blog_admin, parent: :admin_user do
+    factory :multi_blog_admin, parent: :admin_user do
       after :create do |admin|
         category = CapabilityCategory.find_by( name: 'shiny_blogs_blogs' )
 

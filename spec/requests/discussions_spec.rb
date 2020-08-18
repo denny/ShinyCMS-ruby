@@ -4,13 +4,13 @@ require 'rails_helper'
 
 RSpec.describe 'Discussions/Comments', type: :request do
   before :each do
-    FeatureFlag.enable :shiny_news
+    FeatureFlag.enable :news
     FeatureFlag.enable :comments
 
     FeatureFlag.disable :recaptcha_on_comment_form
     FeatureFlag.disable :akismet_on_comments
 
-    @post = create :shiny_news_post
+    @post = create :news_post
 
     @discussion = create :discussion, resource: @post
     @post.update!( discussion: @discussion )
@@ -21,6 +21,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     create :top_level_comment, discussion: @discussion
 
     @nested = create :nested_comment, discussion: @discussion, parent: @comment
+
+    WebMock.disable!
   end
 
   describe 'GET /discussions' do

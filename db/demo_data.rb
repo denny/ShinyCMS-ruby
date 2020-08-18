@@ -55,6 +55,11 @@ ShinyBlogs::BlogPost.create!([
   {id: 2, title: "Homepage updates", slug: "updates", body: "<p>I&#39;m not feeling very well this week - I don&#39;t think I&#39;ve got the dreaded corona virus, I&#39;m not coughing, but I&#39;m extremely wiped out. So, instead of tackling anything too brain-taxing in the odd bit of time I do feel up to looking at personal projects, I&#39;m just updating the demo site content a bit - specifically, I&#39;m updating the &#39;features&#39; block on the homepage, including making some screenshots.</p>\r\n\r\n<p>I thought there should probably be more than one post in the blog feature screenshot, so ... here we are ;)</p>\r\n", show_on_site: true, blog_id: 1, user_id: @shiny_admin.id, posted_at: "2020-06-05 01:03:47", tag_list: nil}
 ])
 
+ShinyBlog::Post.create!([
+  {id: 1, title: "Demo content", slug: "demo-content", body: "<p>I&#39;m never sure what to do about demo content for ShinyCMS. The Perl version ended up with a weird mixture of content about the CMS, extracts from a book with suitably friendly licensing, and word salad from the Futurama Lorem Ipsum generator.</p>\r\n\r\n<p>Now here we are with the Ruby version, and apparently I haven&#39;t learned my lesson - so I&#39;m starting with content about the CMS again. Or in this case, meta-content.</p>\r\n", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-02-08 07:24:27", tag_list: nil},
+  {id: 2, title: "Homepage updates", slug: "updates", body: "<p>I&#39;m not feeling very well this week - I don&#39;t think I&#39;ve got the dreaded corona virus, I&#39;m not coughing, but I&#39;m extremely wiped out. So, instead of tackling anything too brain-taxing in the odd bit of time I do feel up to looking at personal projects, I&#39;m just updating the demo site content a bit - specifically, I&#39;m updating the &#39;features&#39; block on the homepage, including making some screenshots.</p>\r\n\r\n<p>I thought there should probably be more than one post in the blog feature screenshot, so ... here we are ;)</p>\r\n", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-06-05 01:03:47", tag_list: nil}
+])
+
 ShinyForms::Form.create!([
   {id: 1, internal_name: "Contact Page", public_name: "Contact us", slug: "contact", description: nil, handler: "plain_email", email_to: nil, filename: nil, redirect_to: nil, success_message: nil, sort_order: nil}
 ])
@@ -108,8 +113,8 @@ PageElement.create!([
 ])
 
 Discussion.create!([
-  {id: 1, resource_type: "ShinyBlogs::BlogPost", resource_id: 1, locked: false, show_on_site: true},
-  {id: 2, resource_type: "ShinyBlogs::BlogPost", resource_id: 2, locked: false, show_on_site: true}
+  {id: 1, resource_type: "ShinyBlog::Post", resource_id: 1, locked: false, show_on_site: true},
+  {id: 2, resource_type: "ShinyBlog::Post", resource_id: 2, locked: false, show_on_site: true}
 ])
 
 Comment.create!([

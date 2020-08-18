@@ -59,7 +59,9 @@ class AdminController < ApplicationController
   end
 
   def path_for( area = nil )
-    return Plugin.new( area ).admin_index_path if area.to_s.start_with? 'shiny_'
+    plugin_name = area.to_s.sub( '_posts', '' ).capitalize
+    plugin = Plugin.new( "Shiny#{plugin_name}" )
+    return plugin.admin_index_path( area.to_s ) if plugin.name.present?
 
     area = :root if area.blank?
     area = :admin_site_settings if area == :settings

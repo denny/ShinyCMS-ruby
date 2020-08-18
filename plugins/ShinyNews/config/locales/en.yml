@@ -11,9 +11,9 @@
 
 en:
   feature_flags:
-    shiny_news: News section
-    shiny_news_votes: Votes on news posts
-    shiny_news_downvotes: Down-votes on news posts
+    news: News section
+    news_votes: Votes on news posts
+    news_downvotes: Down-votes on news posts
 
   discussions:
     n_comments:
@@ -21,7 +21,16 @@ en:
       one: 1 comment
       other: '%{count} comments'
 
+  capability:
+    category:
+      news_posts: News
+
+    news_posts:
+      change_author: Change author
+
   shiny_news:
+    menu:
+      title: News
     news:
       index:
         title: Recent news
@@ -29,6 +38,10 @@ en:
       post:
         footer:
           reply: Reply to this post
+          n_comments:
+            zero: No comments
+            one: 1 comment
+            other: '%{count} comments'
       sidebar:
         links: Links
         links_blurb: Recommended reading from around the web

@@ -2,9 +2,7 @@
 
 require 'rails_helper'
 
-# FIXME: these tests all assume single blog mode, currently.
-
-RSpec.describe 'Blogs', type: :request do
+RSpec.describe 'Blog', type: :request do
   before :each do
     FeatureFlag.enable :shiny_blogs
     @blog = create :shiny_blogs_blog
@@ -52,7 +50,7 @@ RSpec.describe 'Blogs', type: :request do
       create :top_level_page
       ShinyBlogs::Blog.all.destroy_all
 
-      get shiny_blogs.view_blog_path( nil )
+      get '/blog/no-such-blog'
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to main_app.root_path
@@ -65,8 +63,8 @@ RSpec.describe 'Blogs', type: :request do
     it 'displays the specified blog post' do
       post = create :shiny_blogs_blog_post, blog: @blog
 
-      # get view_blog_post_path( post )
-      get "/blog/#{post.posted_year}/#{post.posted_month}/#{post.slug}"
+      # get shiny_blogs.view_blog_post_path( post )
+      get "/blog/#{@blog.slug}/#{post.posted_year}/#{post.posted_month}/#{post.slug}"
 
       expect( response ).to have_http_status :ok
     end
@@ -74,7 +72,8 @@ RSpec.describe 'Blogs', type: :request do
     it 'displays the 404 page if the blog post does not exist' do
       post = create :shiny_blogs_blog_post, blog: @blog
 
-      get "/blog/#{post.posted_year}/#{post.posted_month}/NOPE"
+      # get shiny_blogs.view_blog_post_path( post )
+      get "/blog/#{@blog.slug}/#{post.posted_year}/#{post.posted_month}/NOPE"
 
       expect( response ).to have_http_status :not_found
     end
@@ -86,8 +85,8 @@ RSpec.describe 'Blogs', type: :request do
       post2 = create :shiny_blogs_blog_post, blog: @blog, posted_at: '2000-02-29'
       post3 = create :shiny_blogs_blog_post, blog: @blog, posted_at: '2000-09-03'
 
-      # get view_blog_month_path( blog, year, month )
-      get "/blog/#{post1.posted_year}/#{post1.posted_month}"
+      # get shiny_blogs.view_blog_month_path( blog, year, month )
+      get "/blog/#{@blog.slug}/#{post1.posted_year}/#{post1.posted_month}"
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: 'February'
@@ -103,8 +102,8 @@ RSpec.describe 'Blogs', type: :request do
       post2 = create :shiny_blogs_blog_post, blog: @blog, posted_at: '2000-02-29'
       post3 = create :shiny_blogs_blog_post, blog: @blog, posted_at: '2000-09-03'
 
-      # get view_blog_year_path( blog, year )
-      get "/blog/#{post1.posted_year}"
+      # get shiny_blogs.view_blog_year_path( blog, year )
+      get "/blog/#{@blog.slug}/#{post1.posted_year}"
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'h2', text: 'February'

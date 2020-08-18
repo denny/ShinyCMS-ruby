@@ -19,9 +19,5 @@ module ShinyNews
     def url_helpers
       ShinyNews::Engine.routes.url_helpers
     end
-
-    def human_name
-      self.class.name.underscore.gsub( '/', '_' ).gsub( 'shiny_', '' ).humanize.downcase
-    end
   end
 end

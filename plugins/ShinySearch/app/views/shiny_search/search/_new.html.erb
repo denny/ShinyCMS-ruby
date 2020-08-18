@@ -1,0 +1,14 @@
+<%# frozen_string_literal: true %>
+
+<% @page_title = t( '.title' ) %>
+
+<section>
+  <header>
+    <h2>
+      <%= @page_title %>
+    </h2>
+    <p>
+      <%= render partial: 'search/form', locals: { name: 'main_search' } %>
+    </p>
+  </header>
+</section>
