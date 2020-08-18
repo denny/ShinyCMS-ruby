@@ -22,6 +22,10 @@ module ShinySearch
       ENV['ALGOLIASEARCH_APPLICATION_ID'].present?
     end
 
+    def display_algolia_logo?
+      algolia_search_is_enabled? && using_free_algolia_plan?
+    end
+
     # Algolia have a free plan for low-usage non-commercial sites. It requires you
     # to display their logo on search result pages. If you are using a paid plan
     # and you want to hide their logo, set ALGOLIASEARCH_USING_PAID_PLAN to 'Yes'.

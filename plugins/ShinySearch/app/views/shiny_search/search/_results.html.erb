@@ -12,7 +12,6 @@
   <% @results.each do |result| %>
     <li>
       <%= render partial: "search/result/#{result.class.name.underscore}", locals: { result: result } %>
-      <%= render partial: 'search/result/last_updated', locals: { date: result.updated_at } %>
     </li>
   <% end %>
   </ul>
@@ -27,4 +26,4 @@
   <% end %>
 </section>
 
-<%= render partial: 'search/algolia_logo' if algolia_search_is_enabled? && using_free_algolia_plan? %>
+<%= render partial: 'search/algolia_logo' if @search_backend == :algolia && display_algolia_logo? %>

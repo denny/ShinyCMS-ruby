@@ -49,6 +49,7 @@ module ShinySearch
     end
 
     def pg_search
+      @search_backend = :pg
       @pageable = PgSearch.multisearch( @query )
                           .includes( :searchable )
                           .page( @page_num )
@@ -57,6 +58,7 @@ module ShinySearch
     end
 
     def algolia_search
+      @search_backend = :algolia
       # TODO: get results from Algolia search API
       []
     end
