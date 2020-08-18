@@ -16,6 +16,9 @@ cache:
 addons:
   postgresql: "10"
 
+before_install:
+  - nvm use 12
+
 before_script:
   - psql -c 'create database shinycms_test;' -U postgres
   - bundle exec rails db:create

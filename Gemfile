@@ -41,7 +41,7 @@ source 'https://rubygems.org' do
   # Use faster SCSS gem for stylesheets
   gem 'sassc-rails'
   # Transpile app-like JavaScript. More info: https://github.com/rails/webpacker
-  gem 'webpacker', '~> 5.1'
+  gem 'webpacker', '~> 5.2'
 
   # Sessions, authentication, and authorisation
   gem 'activerecord-session_store'
