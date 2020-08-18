@@ -9,7 +9,7 @@ RSpec.describe 'News', type: :request do
 
   describe 'GET /news' do
     it 'displays the most recent news posts' do
-      post1 = create :shiny_news_post, body: <<~BODY1
+      post1 = create :news_post, body: <<~BODY1
         <p>
           First paragraph is the hook...
         </p>
@@ -27,13 +27,13 @@ RSpec.describe 'News', type: :request do
         </p>
       BODY1
 
-      post2 = create :shiny_news_post, body: <<~BODY2
+      post2 = create :news_post, body: <<~BODY2
         Not sure about this approach
         <br><br>
         Alternative way of doing paragraphs, basically.
       BODY2
 
-      post3 = create :shiny_news_post
+      post3 = create :news_post
 
       get shiny_news.view_news_path
 
@@ -58,7 +58,7 @@ RSpec.describe 'News', type: :request do
 
   describe 'GET /news/1999/12/a-news-post' do
     it 'displays the specified post' do
-      post = create :shiny_news_post
+      post = create :news_post
 
       # get shiny_news.view_news_post_path( post )
       get "/news/#{post.posted_year}/#{post.posted_month}/#{post.slug}"
@@ -67,7 +67,7 @@ RSpec.describe 'News', type: :request do
     end
 
     it "displays the 404 page if the post doesn't exist" do
-      post = create :shiny_news_post
+      post = create :news_post
 
       # get shiny_news.view_news_post_path( post )
       get "/news/#{post.posted_year}/#{post.posted_month}/NOPE"
@@ -78,9 +78,9 @@ RSpec.describe 'News', type: :request do
 
   describe 'GET /news/1999/12' do
     it 'displays the posts for the specified month' do
-      post1 = create :shiny_news_post, posted_at: '2000-02-20'
-      post2 = create :shiny_news_post, posted_at: '2000-02-29'
-      post3 = create :shiny_news_post, posted_at: '2000-09-03'
+      post1 = create :news_post, posted_at: '2000-02-20'
+      post2 = create :news_post, posted_at: '2000-02-29'
+      post3 = create :news_post, posted_at: '2000-09-03'
 
       # get shiny_news.view_news_month_path( news, year, month )
       get "/news/#{post1.posted_year}/#{post1.posted_month}"
@@ -95,9 +95,9 @@ RSpec.describe 'News', type: :request do
 
   describe 'GET /news/1999' do
     it 'displays the posts for the specified year' do
-      post1 = create :shiny_news_post, posted_at: '2000-02-20'
-      post2 = create :shiny_news_post, posted_at: '2000-02-29'
-      post3 = create :shiny_news_post, posted_at: '2000-09-03'
+      post1 = create :news_post, posted_at: '2000-02-20'
+      post2 = create :news_post, posted_at: '2000-02-29'
+      post3 = create :news_post, posted_at: '2000-09-03'
 
       # get shiny_news.view_news_year_path( news, year )
       get "/news/#{post1.posted_year}"

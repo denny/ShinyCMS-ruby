@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+
+<%= wrap_in_modules <<~rb
+  # Base mailer for <%= camelized_modules =>
+  class ApplicationMailer < ActionMailer::Base
+    default from: 'from@example.com'
+    layout 'mailer'
+  end
+rb
+%>

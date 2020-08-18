@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+# To copy and run the database migrations for <%= camelized_modules %>:
+# rails <%= namespaced_name %>:install:migrations
+# rails db:migrate
+#
+# To install supporting data for <%= camelized_modules %> (admin capabilities and feature flags):
+# rails <%= namespaced_name %>:db:seed
+#
+# These two tasks can be run in either order.
+
+require 'dotenv/tasks'
+
+namespace :<%= namespaced_name %> do
+  namespace :db do
+    # :nocov:
+    desc 'ShinyCMS: load supporting data for <%= camelized_modules %> plugin'
+    task seed: %i[ environment dotenv ] do
+      <%= camelized_modules %>::Engine.load_seed
+    end
+    # :nocov:
+  end
+end

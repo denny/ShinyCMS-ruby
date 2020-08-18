@@ -12,16 +12,12 @@
 # ============================================================================
 
 module ShinyNews
-  # Base class for models
+  # Base model class for ShinyNews plugin for ShinyCMS
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
 
     def url_helpers
       ShinyNews::Engine.routes.url_helpers
-    end
-
-    def human_name
-      self.class.name.underscore.gsub( '/', '_' ).gsub( 'shiny_', '' ).humanize.downcase
     end
   end
 end

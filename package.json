@@ -5,8 +5,8 @@
   "dependencies": {
     "@rails/activestorage": "^6.0.3",
     "@rails/ujs": "^6.0.3",
-    "@rails/webpacker": "^5.1.1",
-    "acorn": "^7.4.0",
+    "@rails/webpacker": "^5.2.1",
+    "acorn": "^8.0.1",
     "core-js": "^3.6.5",
     "jquery": "^3.5.0",
     "minimist": "^1.2.2",

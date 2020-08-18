@@ -40,19 +40,6 @@ en:
 
   # ========== ( Main Site ) ==========
 
-  blogs:
-    index:
-      title: Blogs
-    set_blog:
-      failure: Blog not found
-    post:
-      footer:
-        reply: Reply to this post
-    sidebar:
-      links: Links
-      links_blurb: Recommended reading from around the web
-      recent_posts: Recent Posts
-
   discussions:
     comment:
       form:
@@ -64,10 +51,6 @@ en:
         email: Email
         url: URL
     comments: Comments
-    n_comments:
-      zero: No comments
-      one: 1 comment
-      other: '%{count} comments'
     n_total: '%{count} total'
     n_recent_comments:
       one: 1 recent comment
@@ -122,8 +105,6 @@ en:
       title: "Tag: '%{tag}'"
 
   user:
-    view_profile: View your profile
-    edit_profile: Edit your profile
     log_in: Log in
     log_out: Log out
     register: Register
@@ -168,9 +149,6 @@ en:
       instructions: Click the link below to unlock your account
       link_text: Unlock my account
 
-  element_types:
-    blog_post: blog post
-
 
   # ========== ( Settings ) ==========
 
@@ -199,9 +177,6 @@ en:
     off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
     akismet_on_comments: Detect spam comments with Akismet
-    blogs: Blogs
-    blog_votes: Votes ('likes') on blog posts
-    blog_downvotes: Down-votes ('dislikes') on blog posts
     comments: Comments
     comment_votes: Comment votes ('likes')
     comment_downvotes: Comment downvotes ('dislikes')
@@ -210,7 +185,6 @@ en:
     recaptcha_on_comment_form: Protect comment form with reCAPTCHA
     tags: Tags
     user_login: User Login
-    user_profiles: User Profiles
     user_registration: User Registration
 
 
@@ -221,8 +195,6 @@ en:
 
     category:
       admin_users: Admin Users
-      blogs: Blogs
-      blog_posts: Blog Posts
       comments: Comments
       discussions: Discussions
       feature_flags: Feature Flags
@@ -235,9 +207,6 @@ en:
       settings: Site Settings
       spam_comments: Spam Comments
       users: Users
-
-    blog_posts:
-      change_author: Change author
 
     general:
       view_admin_area: View admin area
@@ -298,49 +267,6 @@ en:
       long_text: Long Text
       image: Image
       html: HTML
-
-    blogs:
-      title: Blogs
-      index:
-        title: List blogs
-        empty: There are no blogs to display
-      new:
-        title: Create new blog
-      edit:
-        title: Edit blog details
-      create:
-        success: New blog created
-        failure: Failed to create new blog
-      update:
-        success: Blog details updated
-        failure: Failed to update blog details
-      destroy:
-        success: Blog deleted
-        failure: Failed to delete blog
-      set_blog:
-        failure: Couldn't find specified blog
-
-    blog:
-      posts:
-        title: Posts
-        index:
-          title: List blog posts
-          empty: There are no blog posts to display
-        new:
-          title: Add blog post
-        edit:
-          title: Edit blog post
-        create:
-          success: New blog post added
-          failure: Failed to add new blog post
-        update:
-          success: Blog post updated
-          failure: Failed to update blog post
-        destroy:
-          success: Blog post deleted
-          failure: Failed to delete blog post
-        set_post:
-          failure: Couldn't find specified blog post
 
     comments:
       title: Spam comments

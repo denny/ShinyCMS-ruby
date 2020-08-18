@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
   private_constant :SIGN_IN_PARAMS
   ACCOUNT_UPDATE_PARAMS = %i[
     username email password password_confirmation current_password
-    display_name display_email profile_pic bio website location postcode
+    public_name public_email profile_pic bio website location postcode
   ].freeze
   private_constant :ACCOUNT_UPDATE_PARAMS
   # rubocop:enable Layout/MultilineArrayLineBreaks
@@ -76,7 +76,9 @@ class ApplicationController < ActionController::Base
 
     return admin_path if resource.can? :view_admin_area
 
-    user_profile_path( resource.username )
+    return shiny_profiles.profile_path( resource.username ) if feature_enabled?( :profile_pages )
+
+    root_path
   end
 
   private
@@ -104,8 +106,8 @@ class ApplicationController < ActionController::Base
     prepend_view_path 'app/views/shinycms'
 
     # Add the default templates directory for any loaded plugins above that
-    Plugin.loaded.each do |plugin_name|
-      prepend_view_path "plugins/#{plugin_name}/app/views/#{plugin_name.underscore}"
+    Plugin.loaded.each do |plugin|
+      prepend_view_path "plugins/#{plugin.name}/app/views/#{plugin.name.underscore}"
     end
 
     # Add the templates directory for the currently active theme (if any) above all default templates

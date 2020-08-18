@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 
-# This file contains supporting data required by the ShinyForms plugin for ShinyCMS
-# (specifically, a feature flag, and the admin user capabilities for authorisation)
+# ============================================================================
+# Project:   ShinyForms plugin for ShinyCMS (Ruby version)
+# File:      plugins/ShinyProfiles/db/seeds.rb
+# Purpose:   Seed data (feature flags and admin capabilities)
 #
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
+
 # You can load or reload this data using the following rake task:
 # rails shiny_forms:db:seed
 
@@ -23,7 +31,7 @@ form_emails_flag.update!(
 )
 
 # Add admin capabilities
-forms_cc = CapabilityCategory.find_or_create_by!( name: 'shiny_forms_forms' )
+forms_cc = CapabilityCategory.find_or_create_by!( name: 'forms' )
 forms_cc.capabilities.find_or_create_by!( name: 'list'    )
 forms_cc.capabilities.find_or_create_by!( name: 'add'     )
 forms_cc.capabilities.find_or_create_by!( name: 'edit'    )

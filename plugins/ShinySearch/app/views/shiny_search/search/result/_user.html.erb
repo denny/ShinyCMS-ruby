@@ -1,0 +1,2 @@
+<%= link_to result.name, shiny_profiles.profile_path( result.username ) %> -
+<%= render partial: 'search/result/includes/user_dates', locals: { joined: result.created_at, updated: result.updated_at } %>

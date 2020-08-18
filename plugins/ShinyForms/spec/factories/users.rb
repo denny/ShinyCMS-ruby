@@ -4,7 +4,7 @@ module ShinyForms
   FactoryBot.define do
     factory :form_admin, parent: :admin_user do
       after :create do |admin|
-        category = CapabilityCategory.find_by( name: 'shiny_forms_forms' )
+        category = CapabilityCategory.find_by( name: 'forms' )
 
         list    = category.capabilities.find_by( name: 'list'    )
         add     = category.capabilities.find_by( name: 'add'     )

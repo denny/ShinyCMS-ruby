@@ -10,7 +10,7 @@ module FeatureFlagsHelper
       feature_name: I18n.t( "feature_flags.#{feature_name}" )
     )
     # redirect_back( fallback_location: root_path )
-    redirect_to root_path
+    redirect_to main_app.root_path
   end
 
   def feature_enabled?( feature_name )

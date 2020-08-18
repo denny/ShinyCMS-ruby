@@ -3,15 +3,21 @@
 # Common behaviours for 'post' type models (blog post, news post, etc)
 module ShinyPost
   extend ActiveSupport::Concern
+
+  include ShinySearch::Searchable if defined? ShinySearch
   include ShinyShowHide
   include ShinySlugInMonth
   include ShinyTeaser
 
   included do
+    # Associations
+
+    has_one :discussion, as: :resource, dependent: :destroy
+
     # Validations
 
-    validates :body,      presence: true
     validates :title,     presence: true
+    validates :body,      presence: true
     validates :user_id,   presence: true
     validates :posted_at, presence: true
 
@@ -22,6 +28,10 @@ module ShinyPost
     acts_as_taggable
     acts_as_votable
     paginates_per 20
+
+    searchable_attributes = %i[ title body slug ] # TODO: author
+    algolia_search_on( searchable_attributes )
+    pg_search_on( searchable_attributes )
 
     # Attribute aliases and delegated methods
 
@@ -34,6 +44,7 @@ module ShinyPost
 
     scope :not_future_dated, -> { where( 'posted_at <= ?', Time.zone.now.iso8601 ) }
     scope :published,        -> { visible.merge( not_future_dated ) }
+    scope :recent,           -> { order( posted_at: :desc ) }
 
     self.implicit_order_column = 'posted_at'
 
@@ -69,10 +80,6 @@ module ShinyPost
 
     def self.find_post( year, month, slug )
       posts_in_month( year, month ).find_by( slug: slug )
-    end
-
-    def self.recent_posts( page_num = 1 )
-      order( posted_at: :desc ).readonly.page( page_num )
     end
   end
 end

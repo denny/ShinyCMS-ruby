@@ -7,8 +7,8 @@
                   <% if user_signed_in? %>
                   <h2>Welcome back!</h2>
                   <ul class="link-list last-child">
-                    <li><%= link_to t( 'user.view_profile' ), user_profile_path( current_user.username ) %></li>
-                    <li><%= link_to t( 'user.edit_profile' ), edit_user_registration_path %></li>
+                    <li><%= link_to t( 'shiny_profiles.view_profile' ), shiny_profiles.profile_path( current_user.username ) %></li>
+                    <li><%= link_to t( 'shiny_profiles.edit_profile' ), edit_user_registration_path %></li>
                     <li><%= link_to t( 'user.site_settings' ), site_settings_path %></li>
                     <li><%= link_to t( 'user.log_out' ), destroy_user_session_path, data: {}, method: :delete %></li>
                   </ul>
@@ -72,7 +72,9 @@
               <div class="col-4 col-12-medium imp-medium">
 
                 <section>
-                  <h2>An Informative Text Blurb</h2>
+                  <h2 class="right">
+                    <%= render partial: 'search/form', locals: { name: 'footer_search' } %>
+                  </h2>
                   <p>
                     Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed. Suspendisse eu
                     varius nibh. Suspendisse vitae magna eget odio amet mollis. Duis neque nisi,

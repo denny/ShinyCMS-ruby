@@ -7,8 +7,31 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
 
 ## Features
 
-### Current features
-
+* Pages and Page Sections
+  * Site admins can add as many pages and (nested) sections as they like
+  * Pages have defined content areas which can be edited by admins
+  * Page layout is controlled by Page Templates (can be provided by a theme or custom-built)
+  * Dynamically generated menus
+* Inserts (re-usable content fragments that can be pulled into any template)
+* Plugin architecture for an increasing number of features
+  * Included plugins:
+    * News section
+    * Blog
+    * Basic form handlers (e.g. contact form submitted -> email form data to site owner)
+    * Site search feature (will support multiple search back-ends; default is pg_search)
+  * Load only the plugins you want/need - smaller footprint, smaller attack surface
+  * [Write your own plugins](docs/Developer/Plugins.md) to add custom functionality
+    * Plugin generator included: `rails g shiny:plugin plugins/ShinyThing` to get started
+* Support for [themes](docs/Themes.md) on the hosted site
+  * One theme currently included: Halcyonic from HTML5UP (suitable for content-rich sites)
+* Comments (currently enabled on blog posts and news posts)
+  * Fully nested, so you can easily see who is replying to who at any level
+  * Email notifications of replies to your comments and posts
+  * Uses reCAPTCHA to block comments from bots
+  * Uses Akismet to flag potential spam comments for moderation
+    * Spam comment moderation sends 'spam'/'not spam' training data to Akismet
+* Tags (currently enabled on blog posts and news posts, ready to add to any content type)
+* Likes or up/down votes on posts, comments, etc
 * User accounts and administration
   * ACL-based authorisation system for admins (powered by Pundit)
   * Uses reCAPTCHA to block registration by bots
@@ -16,34 +39,16 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
   * Change most site settings from within the CMS admin area
   * Easily enable or disable CMS features (e.g. new user registrations)
   * Decide which settings to allow site users to override (e.g. theme)
-* Pages and Page Sections
-  * Site admins can add as many pages and (nested) sections as they like
-  * Pages have defined content areas which can be edited by admins
-  * Page layout is controlled by Page Templates (can be provided by a theme or custom-built)
-  * Dynamically generated menus
-* Inserts (re-usable content fragments that can be pulled into any template)
-* News section
-* Blog
-* Comments (currently enabled on blog posts and news posts)
-  * Fully nested, so you can easily see who is replying to who at any level
-  * Email notifications
-  * Uses reCAPTCHA to block comments from bots
-  * Uses Akismet to flag potential spam comments for moderation
-    * Spam comment moderation sends 'spam'/'not spam' training data to Akismet
-* Tags (currently enabled on blog posts and news posts, ready to add to any content type)
-* Likes or up/down votes on posts, comments, etc
+* All emails use MJML templates, producing reliably cross-platform HTML emails
 * Built-in web stats (powered by Ahoy) and email stats (powered by Ahoy::Email)
 * Charts and dashboards for viewing stats (powered by Blazer)
-  * Ready for use, but currently without demo data
-* Support for themes (on the main site - not, currently, for the CMS admin area)
-  * One theme included
-* All emails use MJML templates, producing reliably cross-platform HTML emails
 
 ### Planned features
 
-* Generic form handlers [in progress - nearly done]
-  * 'email contact page to site owner', etc
 * Newsletters (HTML mailshots) [in progress]
+* Algolia support for search plugin [in progress]
+* Default dashboard(s) and queries for Blazer
+* More themes [in progress]
 * User profile pages [in progress]
   * With content such as recent comments, recent posts, etc
 * Access control groups
@@ -55,8 +60,10 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
 * Event listings
 * Forums
 * Polls
+* Surveys / questionnaires
+* Multiple blogs/journals on one site
 
-(See the [developer documentation](docs/Developer/index.md) for more detailed information on features [in progress](docs/Developer/in-progress.md) and [to-do](docs/Developer/TODO.md))
+(See the [developer documentation](docs/Developers/index.md) for more detailed information on features [in progress](docs/Developers/in-progress.md) and [to-do](docs/Developers/TODO.md))
 
 
 ## Installation and configuration
@@ -74,25 +81,24 @@ Theme templates and sample data for a demo site are provided, so you can try all
 * A database - for now this assumes Postgres
 * An email server or service - anything that ActionMailer supports
 
-### Services
-
-External services are mostly optional. If you add config settings for them (in ENV, .env*, or Heroku config vars) then they will be enabled, otherwise either those features will be disabled or a fallback will take their place.
-
 ### Ruby and Rails versions
 
 ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.1 and Rails 6.0.3).
 
 It has been tested on every release of Rails 6 so far, and with most versions of Ruby from 2.5.8 onwards ([view recent test results][test results] for ruby 2.5.8, 2.6.6, and 2.7.1).
 
-[Test results]: https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/179189695
+[Test results]: https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/179573547
 
 There are currently no plans to add support for Rails 5 or older Ruby versions.
+
+### Services
+
+External services are mostly optional. If you add config settings for them (in ENV, .env*, or Heroku config vars) then they will be enabled, otherwise either those features will be disabled or (where possible) a fallback will take their place.
 
 
 ## Contributing
 
-If you're interested in contributing to ShinyCMS, please start by reading the
-[developer documentation](Developers/index.md).
+If you're interested in contributing to ShinyCMS, please start by reading the [developer documentation](docs/Developers/index.md).
 
 
 ## Code of Conduct

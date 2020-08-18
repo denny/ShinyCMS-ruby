@@ -4,6 +4,7 @@
 # rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
   include ShinyEmail
+  include ShinySearch::Searchable if defined? ShinySearch
 
   # Associations
 
@@ -24,10 +25,6 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :subscriptions, as: :subscriber, dependent: :destroy
   has_many :lists, through: :subscriptions
-
-  # Admin content: throw an error if it hasn't been removed or reassigned
-  has_many :blogs,      dependent: :restrict_with_error
-  has_many :blog_posts, dependent: :restrict_with_error
 
   # Validations
 
@@ -52,7 +49,15 @@ class User < ApplicationRecord
 
   paginates_per 20
 
+  searchable_attributes = %i[ username public_name public_email ]
+  algolia_search_on( searchable_attributes )
+  pg_search_on( searchable_attributes )
+
   # Virtual attributes
+
+  def hidden?
+    false
+  end
 
   # User profile pic (powered by ActiveStorage)
   has_one_attached :profile_pic
@@ -130,8 +135,8 @@ class User < ApplicationRecord
     self
   end
 
-  def display_name_or_username
-    display_name.presence || username
+  def name
+    public_name.presence || username
   end
 
   # Queue email sends
@@ -144,7 +149,7 @@ class User < ApplicationRecord
 
     # List of admin areas, approximately in order of 'most commonly used'
     # (used by /admin index method to redirect somewhere hopefully useful)
-    areas = %i[ pages shiny_news_posts blogs blog users settings shiny_forms_forms ]
+    areas = %i[ pages news_posts blog_posts users settings forms ]
 
     areas.each do |area|
       return area if can? :list, area

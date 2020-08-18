@@ -9,42 +9,11 @@ Rails.application.routes.draw do
 
     root to: 'pages#index'
 
-    if Rails.application.config.multiple_blogs_mode
-      # :nocov:
-      get 'blogs',                              to: 'blogs#index',
-                                                as: :view_blogs
-      get 'blog/:blog_slug',                    to: 'blogs#recent',
-                                                as: :view_blog
-      get 'blog/:blog_slug/:year/:month/:slug', to: 'blogs#show',  as: :view_blog_post
-      get 'blog/:blog_slug/:year/:month',       to: 'blogs#month', as: :view_blog_month
-      get 'blog/:blog_slug/:year',              to: 'blogs#year',  as: :view_blog_year
-      # :nocov:
-    else
-      get 'blog',                     to: 'blogs#recent', as: :view_blog
-      get 'blog/:year/:month/:slug',  to: 'blogs#show',   as: :view_blog_post,
-                                      constraints: {
-                                        year: %r{\d\d\d\d},
-                                        month: %r{\d\d}
-                                      }
-      get 'blog/:year/:month',        to: 'blogs#month',  as: :view_blog_month,
-                                      constraints: {
-                                        year: %r{\d\d\d\d},
-                                        month: %r{\d\d}
-                                      }
-      get 'blog/:year',               to: 'blogs#year',   as: :view_blog_year,
-                                      constraints: { year: %r{\d\d\d\d} }
-    end
-
     get  'discussions',            to: 'discussions#index', as: :discussions
     get  'discussion/:id',         to: 'discussions#show',  as: :discussion
     post 'discussion/:id',         to: 'discussions#add_comment'
     get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
     post 'discussion/:id/:number', to: 'discussions#add_reply'
-
-    get 'profile/:username',  to: 'profiles#show',  as: :user_profile,
-                              constraints: { username: User::USERNAME_REGEX }
-    get 'profile',            to: 'profiles#profile_redirect'
-    get 'profiles',           to: 'profiles#index', as: :user_profiles
 
     get 'site-settings', to: 'site_settings#index'
     put 'site-settings', to: 'site_settings#update'
@@ -81,16 +50,6 @@ Rails.application.routes.draw do
 
     scope path: 'admin', module: 'admin' do
       EXCEPT = %w[ index show create ].freeze
-
-      # Blogs
-      get  :blogs, to: 'blogs#index'
-      post :blog,  to: 'blogs#create', as: :create_blog
-
-      resources :blog, controller: :blogs, as: :blog, except: EXCEPT do
-        get :posts, to: 'blog/posts#index'
-        resources :post, controller: 'blog/posts', except: EXCEPT
-      end
-      post 'blog/:id/post', to: 'blog/posts#create', as: :create_blog_post
 
       # Discussion and comment moderation
       get :comments, to: 'comments#index'
@@ -174,9 +133,8 @@ Rails.application.routes.draw do
     ########################################
     # ShinyCMS plugins
 
-    Plugin.loaded.each do |plugin_name|
-      plugin = plugin_name.constantize
-      mount plugin::Engine, at: '/' if defined? plugin
+    Plugin.loaded.each do |plugin|
+      mount plugin.engine, at: '/' if defined? plugin
     end
 
     ###########################################################################

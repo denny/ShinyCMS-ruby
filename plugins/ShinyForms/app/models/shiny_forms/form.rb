@@ -1,7 +1,18 @@
 # frozen_string_literal: true
 
+# ============================================================================
+# Project:   ShinyForms plugin for ShinyCMS (Ruby version)
+# File:      plugins/ShinyForms/app/models/shiny_forms/form.rb
+# Purpose:   Model class for Forms
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
+
 module ShinyForms
-  # Model for ShinyCMS forms
+  # Model for forms, from ShinyForms plugin for ShinyCMS
   class Form < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyName
@@ -34,13 +45,13 @@ module ShinyForms
 
     # Specify policy class for Pundit
     def policy_class
-      Admin::FormPolicy
+      ShinyForms::FormPolicy
     end
 
     # Class methods
 
     def self.policy_class
-      Admin::FormPolicy
+      ShinyForms::FormPolicy
     end
 
     def self.template_file_exists?( filename )

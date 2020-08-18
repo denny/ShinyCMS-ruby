@@ -1,0 +1,29 @@
+<%# frozen_string_literal: true %>
+
+<% @page_title = t( '.title', query: @query ) %>
+
+<section>
+  <header>
+    <h2>
+      <%= @page_title %>
+    </h2>
+  </header>
+  <ul>
+  <% @results.each do |result| %>
+    <li>
+      <%= render partial: "search/result/#{result.class.name.underscore}", locals: { result: result } %>
+    </li>
+  <% end %>
+  </ul>
+  <% if @results.blank? %>
+    <%= render partial: 'search/no_results' %>
+  <% else %>
+    <% @pageable ||= @results %>
+    <%= paginate @pageable, window: 3 %>
+    <p id="pager-info">
+      <%= page_entries_info @pageable %>
+    </p>
+  <% end %>
+</section>
+
+<%= render partial: 'search/algolia_logo' if @search_backend == :algolia && display_algolia_logo? %>

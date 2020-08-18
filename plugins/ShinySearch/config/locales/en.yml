@@ -1,0 +1,29 @@
+# ============================================================================
+# Project:   ShinySearch plugin for ShinyCMS (Ruby version)
+# File:      plugins/ShinySearch/config/locales/en.yml
+# Purpose:   Translation strings for English
+#
+# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
+
+en:
+  feature_flags:
+    shiny_search: Search
+
+  settings:
+    default_search_backend: Default search back-end
+    search_enabled_algolia: Enable Agolia search backend
+    search_enabled_postgres: Enable Postgres search backend
+
+  search:
+    new:
+      title: Search the site
+    results:
+      title: "Search results for '%{query}'"
+    no_results:
+      no_results: No results found.
+      try_again: "Please try another search:"
+      try_tags: "Or, you can explore our tags section:"

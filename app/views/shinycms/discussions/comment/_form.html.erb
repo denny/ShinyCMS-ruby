@@ -30,13 +30,13 @@
     <% end %>
 
     <% if setting( :allowed_to_comment ) == 'Authenticated' %>
-      <%= user_display_name %>
+      <%= current_user.name %>
       <%= f.radio_button :author_type, 'authenticated', checked: true, hidden: true %>
     <% else %>
       <% if user_signed_in? %>
         <label><%= f.radio_button :author_type, 'authenticated', checked: true,
           onclick: "hide('comment#{num}_author_details')" %>
-        <%= user_display_name %></label>
+        <%= current_user.name %></label>
       <% else %>
         <%= f.radio_button :author_type, 'authenticated', disabled: true %>
         <%= link_to t( 'user.log_in' ), new_user_session_path %>

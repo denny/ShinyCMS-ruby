@@ -24,9 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata['allowed_push_host'] = "TODO: Set to 'http://rubygems.org' in some notional future"
 
-  spec.files = Dir['{app,config,db,lib}/**/*', 'Rakefile', 'README.md']
-
-  # spec.required_ruby_version = '>= 2.7'
+  spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
   spec.add_dependency 'rails', '~> 6.0.3', '>= 6.0.3.2'
 
@@ -34,5 +32,4 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'factory_bot_rails'
   spec.add_development_dependency 'rspec-rails'
-  spec.add_development_dependency 'sqlite3'
 end

@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+<%= camelized_modules %>::Engine.routes.draw do
+  scope format: false do
+    # ...
+  end
+end

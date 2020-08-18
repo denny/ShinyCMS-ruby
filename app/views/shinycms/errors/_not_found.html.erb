@@ -1,5 +1,5 @@
 <% @empty_layout = true %>
-<% @resource_type ||= controller.class.name.remove( 'Controller' ).underscore.humanize.singularize %>
+<% @resource_type ||= controller.class.name.sub( %r{.*\:\:}, '' ).remove( 'Controller' ).underscore.humanize.singularize %>
 
 <section>
   <header>

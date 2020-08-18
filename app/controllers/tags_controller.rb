@@ -46,7 +46,20 @@ class TagsController < ApplicationController
 
   def taggable_models
     Rails.application.eager_load! if Rails.env.development?
+
+    [ taggable_models_in_core + taggable_models_in_plugins ].flatten
+  end
+
+  def taggable_models_in_core
     ApplicationRecord.descendants.select( &:taggable? )
+  end
+
+  def taggable_models_in_plugins
+    plugin_models = []
+    Plugin.base_models.each do |base|
+      plugin_models << base.descendants.select( &:taggable? )
+    end
+    plugin_models
   end
 
   def check_feature_flags

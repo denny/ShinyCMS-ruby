@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+<%= wrap_in_modules <<~rb
+  class ApplicationJob < ActiveJob::Base
+  end
+rb
+%>

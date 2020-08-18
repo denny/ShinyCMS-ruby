@@ -1,0 +1,7 @@
+en:
+  feature_flags:
+    <%= name %>: <%= camelized_modules %>
+
+  <%= name %>:
+    admin:
+      title: <%= camelized_modules %>

@@ -14,8 +14,8 @@ module ShinyForms
       end
     end
 
-    it_should_behave_like 'ShinyDemoDataProvider' do
-      let( :model ) { Form }
+    it_should_behave_like ShinyDemoDataProvider do
+      let( :model ) { described_class }
     end
   end
 end

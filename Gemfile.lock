@@ -1,4 +1,11 @@
 PATH
+  remote: plugins/ShinyBlog
+  specs:
+    shiny_blog (20.8)
+      pg (>= 0.18, < 2.0)
+      rails (~> 6.0.3, >= 6.0.3.2)
+
+PATH
   remote: plugins/ShinyForms
   specs:
     shiny_forms (20.8)
@@ -10,6 +17,22 @@ PATH
   specs:
     shiny_news (20.8)
       pg (>= 0.18, < 2.0)
+      rails (~> 6.0.3, >= 6.0.3.2)
+
+PATH
+  remote: plugins/ShinyProfiles
+  specs:
+    shiny_profiles (20.8)
+      pg (>= 0.18, < 2.0)
+      rails (~> 6.0.3, >= 6.0.3.2)
+
+PATH
+  remote: plugins/ShinySearch
+  specs:
+    shiny_search (20.8)
+      algoliasearch-rails
+      pg (>= 0.18, < 2.0)
+      pg_search
       rails (~> 6.0.3, >= 6.0.3.2)
 
 GEM
@@ -92,6 +115,12 @@ GEM
       geocoder (>= 1.4.5)
       safely_block (>= 0.2.1)
     akismet (3.0.0)
+    algoliasearch (1.27.3)
+      httpclient (~> 2.8, >= 2.8.3)
+      json (>= 1.5.1)
+    algoliasearch-rails (1.24.1)
+      algoliasearch (>= 1.26.0, < 2.0.0)
+      json (>= 1.5.1)
     amazing_print (1.2.1)
     ast (2.4.1)
     aws-eventstream (1.1.0)
@@ -104,7 +133,7 @@ GEM
     aws-sdk-kms (1.36.0)
       aws-sdk-core (~> 3, >= 3.99.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.77.0)
+    aws-sdk-s3 (1.78.0)
       aws-sdk-core (~> 3, >= 3.104.3)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
@@ -116,7 +145,7 @@ GEM
       chartkick (>= 3.2)
       railties (>= 5)
       safely_block (>= 0.1.1)
-    bootsnap (1.4.7)
+    bootsnap (1.4.8)
       msgpack (~> 1.0)
     brakeman (4.9.0)
     builder (3.2.4)
@@ -141,7 +170,9 @@ GEM
       simplecov
     coderay (1.1.2)
     colorize (0.8.1)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.7)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     crass (1.0.6)
     database_cleaner (1.8.5)
     database_cleaner-active_record (1.8.0)
@@ -184,7 +215,9 @@ GEM
       activesupport (>= 4.2.0)
     groupdate (5.1.0)
       activesupport (>= 5)
+    hashdiff (1.0.1)
     highline (2.0.3)
+    httpclient (2.8.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.31)
@@ -254,6 +287,9 @@ GEM
     parser (2.7.1.4)
       ast (~> 2.4.1)
     pg (1.2.3)
+    pg_search (2.3.2)
+      activerecord (>= 5.2)
+      activesupport (>= 5.2)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -357,6 +393,7 @@ GEM
       ffi (~> 1.9)
     ruby_parser (3.14.2)
       sexp_processor (~> 4.9)
+    safe_yaml (1.0.5)
     safely_block (0.3.0)
       errbase (>= 0.1.1)
     sassc (2.3.0)
@@ -401,7 +438,11 @@ GEM
     unicode-display_width (1.7.0)
     warden (1.2.8)
       rack (>= 2.0.6)
-    webpacker (5.1.1)
+    webmock (3.8.3)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
+    webpacker (5.2.1)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
@@ -423,6 +464,7 @@ DEPENDENCIES
   ahoy_email!
   ahoy_matey!
   akismet!
+  algoliasearch-rails!
   amazing_print!
   aws-sdk-s3!
   bcrypt (~> 3.1.15)!
@@ -452,6 +494,7 @@ DEPENDENCIES
   mjml-rails!
   overcommit!
   pg (>= 0.18, < 2.0)!
+  pg_search!
   pry-rails!
   puma (~> 4.3)!
   pundit!
@@ -465,9 +508,13 @@ DEPENDENCIES
   rubocop-rails!
   sassc-rails!
   seed_dump!
+  shiny_blog!
   shiny_forms!
   shiny_news!
-  webpacker (~> 5.1)!
+  shiny_profiles!
+  shiny_search!
+  webmock!
+  webpacker (~> 5.2)!
 
 BUNDLED WITH
    2.1.4

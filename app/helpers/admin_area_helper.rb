@@ -25,8 +25,8 @@ module AdminAreaHelper
         %w[ posts pages templates ].include?( controller_name ) )
   end
 
-  def plugins_for_menu
-    ::Plugin.loaded.map( &:underscore )
+  def plugins_for_admin_menu
+    ::Plugin.with_template( 'admin/menu/_section.html.erb' )
   end
 
   def render_capability_category( form, category, capabilities, show )

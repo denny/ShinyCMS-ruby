@@ -3,7 +3,7 @@
 # ============================================================================
 # Project:   ShinyNews plugin for ShinyCMS (Ruby version)
 # File:      plugins/ShinyNews/app/controllers/shiny_news/news_controller.rb
-# Purpose:   Controller for main site
+# Purpose:   Main site controller for news section
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
 #
@@ -12,13 +12,14 @@
 # ============================================================================
 
 module ShinyNews
-  # Controller for main site
+  # Main site controller for news section - provided by ShinyNews plugin for ShinyCMS
   class NewsController < ApplicationController
     before_action :check_feature_flags
 
     def index
       page_num = params[:page] || 1
-      @posts = ShinyNews::Post.readonly.recent_posts.page( page_num )
+      per_page = params[:per]  || Setting.get( :news_posts_per_page ) || 10
+      @posts = ShinyNews::Post.readonly.recent.page( page_num ).per( per_page )
     end
 
     def month

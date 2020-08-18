@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_201259) do
+ActiveRecord::Schema.define(version: 2020_08_17_145406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -146,30 +146,6 @@ ActiveRecord::Schema.define(version: 2020_08_02_201259) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["creator_id"], name: "index_blazer_queries_on_creator_id"
-  end
-
-  create_table "blog_posts", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "slug", null: false
-    t.text "body", null: false
-    t.boolean "show_on_site", default: true, null: false
-    t.bigint "blog_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "blogs", force: :cascade do |t|
-    t.string "internal_name", null: false
-    t.string "public_name"
-    t.string "slug", null: false
-    t.text "description"
-    t.boolean "show_in_menus", default: true, null: false
-    t.boolean "show_on_site", default: true, null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "capabilities", force: :cascade do |t|
@@ -341,6 +317,15 @@ ActiveRecord::Schema.define(version: 2020_08_02_201259) do
     t.index ["slug", "section_id"], name: "index_pages_on_slug_and_section_id", unique: true
   end
 
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
@@ -366,6 +351,18 @@ ActiveRecord::Schema.define(version: 2020_08_02_201259) do
     t.boolean "locked", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shiny_blog_posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "slug", null: false
+    t.text "body"
+    t.boolean "show_on_site", default: true, null: false
+    t.bigint "user_id"
+    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_shiny_blog_posts_on_user_id"
   end
 
   create_table "shiny_forms_forms", force: :cascade do |t|
@@ -443,8 +440,8 @@ ActiveRecord::Schema.define(version: 2020_08_02_201259) do
     t.string "email", default: "", null: false
     t.string "canonical_email", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "display_name"
-    t.string "display_email"
+    t.string "public_name"
+    t.string "public_email"
     t.text "bio"
     t.string "website"
     t.string "location"
@@ -497,9 +494,6 @@ ActiveRecord::Schema.define(version: 2020_08_02_201259) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "blog_posts", "blogs"
-  add_foreign_key "blog_posts", "users"
-  add_foreign_key "blogs", "users"
   add_foreign_key "capabilities", "capability_categories", column: "category_id"
   add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "discussions"
@@ -511,6 +505,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_201259) do
   add_foreign_key "pages", "page_templates", column: "template_id"
   add_foreign_key "setting_values", "settings"
   add_foreign_key "setting_values", "users"
+  add_foreign_key "shiny_blog_posts", "users"
   add_foreign_key "shiny_news_posts", "users"
   add_foreign_key "taggings", "tags"
   add_foreign_key "user_capabilities", "capabilities"

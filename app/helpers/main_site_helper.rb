@@ -28,13 +28,15 @@ module MainSiteHelper
     Setting.get( name, current_user )
   end
 
-  def user_display_name( user = current_user )
-    return if user.blank?
-
-    user.display_name_or_username
+  def user_profile_link( user = current_user )
+    link_to user.name, shiny_profiles.profile_path( user.username )
   end
 
-  def user_profile_link( user = current_user )
-    link_to user_display_name( user ), user_profile_path( user.username )
+  def plugins_with_main_site_menu_templates
+    ::Plugin.with_template( 'menu/_section.html.erb' )
+  end
+
+  def plugins_with_admin_toolbar_templates
+    ::Plugin.with_template( 'admin/toolbar/_section.html.erb' )
   end
 end

@@ -3,7 +3,7 @@
 # ============================================================================
 # Project:   ShinyNews plugin for ShinyCMS (Ruby version)
 # File:      plugins/ShinyNews/db/seeds.rb
-# Purpose:   Seed data for ShinyNews plugin
+# Purpose:   Seed data (feature flags and admin capabilities)
 #
 # Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
 #
@@ -14,23 +14,26 @@
 # You can load or reload this data using the following rake task:
 # rails shiny_news:db:seed
 
-# Add feature flag
-news_flag = FeatureFlag.find_or_create_by!( name: 'news' )
-news_flag.update!(
+# Add feature flags
+
+flag = FeatureFlag.find_or_create_by!( name: 'news' )
+flag.update!(
   description: 'Enable news section, provided by ShinyNews plugin',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true
 )
-news_votes_flag = FeatureFlag.find_or_create_by!( name: 'news_votes' )
-news_votes_flag.update!(
+
+flag = FeatureFlag.find_or_create_by!( name: 'news_votes' )
+flag.update!(
   description: 'Enable votes on news posts',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true
 )
-news_downvotes_flag = FeatureFlag.find_or_create_by!( name: 'news_downvotes' )
-news_downvotes_flag.update!(
+
+flag = FeatureFlag.find_or_create_by!( name: 'news_downvotes' )
+flag.update!(
   description: 'Enable down-votes on news posts',
   enabled: true,
   enabled_for_logged_in: true,
@@ -38,9 +41,10 @@ news_downvotes_flag.update!(
 )
 
 # Add admin capabilities
-news_cc = CapabilityCategory.find_or_create_by!( name: 'shiny_news_posts' )
-news_cc.capabilities.find_or_create_by!( name: 'list'          )
-news_cc.capabilities.find_or_create_by!( name: 'add'           )
-news_cc.capabilities.find_or_create_by!( name: 'edit'          )
-news_cc.capabilities.find_or_create_by!( name: 'destroy'       )
-news_cc.capabilities.find_or_create_by!( name: 'change_author' )
+
+category = CapabilityCategory.find_or_create_by!( name: 'news_posts' )
+category.capabilities.find_or_create_by!( name: 'list'          )
+category.capabilities.find_or_create_by!( name: 'add'           )
+category.capabilities.find_or_create_by!( name: 'edit'          )
+category.capabilities.find_or_create_by!( name: 'destroy'       )
+category.capabilities.find_or_create_by!( name: 'change_author' )

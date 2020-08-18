@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+<%= wrap_in_modules <<~rb
+  # Loads Rails::Engine features
+  class Engine < ::Rails::Engine
+    isolate_namespace #{camelized_modules}
+    config.generators do |g|
+      g.test_framework :rspec
+      g.fixture_replacement :factory_bot
+      g.factory_bot dir: 'spec/factories'
+    end
+    initializer '#{namespaced_name}.factories', after: 'factory_bot.set_factory_paths' do
+      plugin_factories = File.expand_path( '../../spec/factories', __dir__ )
+      FactoryBot.definition_file_paths << plugin_factories if defined? FactoryBot
+    end
+  end
+rb
+%>
