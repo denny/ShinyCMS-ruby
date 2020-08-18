@@ -4,15 +4,20 @@
 module ShinyPost
   extend ActiveSupport::Concern
 
+  include ShinySearch::Searchable if defined? ShinySearch
   include ShinyShowHide
   include ShinySlugInMonth
   include ShinyTeaser
 
   included do
+    # Associations
+
+    has_one :discussion, as: :resource, dependent: :destroy
+
     # Validations
 
-    validates :body,      presence: true
     validates :title,     presence: true
+    validates :body,      presence: true
     validates :user_id,   presence: true
     validates :posted_at, presence: true
 
@@ -23,6 +28,10 @@ module ShinyPost
     acts_as_taggable
     acts_as_votable
     paginates_per 20
+
+    searchable_attributes = %i[ title body slug ] # TODO: author
+    algolia_search_on( searchable_attributes )
+    pg_search_on( searchable_attributes )
 
     # Attribute aliases and delegated methods
 

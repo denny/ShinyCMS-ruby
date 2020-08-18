@@ -4,6 +4,7 @@
 # rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
   include ShinyEmail
+  include ShinySearch::Searchable if defined? ShinySearch
 
   # Associations
 
@@ -48,7 +49,15 @@ class User < ApplicationRecord
 
   paginates_per 20
 
+  searchable_attributes = %i[ username public_name public_email ]
+  algolia_search_on( searchable_attributes )
+  pg_search_on( searchable_attributes )
+
   # Virtual attributes
+
+  def hidden?
+    false
+  end
 
   # User profile pic (powered by ActiveStorage)
   has_one_attached :profile_pic

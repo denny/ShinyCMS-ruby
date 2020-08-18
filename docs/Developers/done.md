@@ -13,16 +13,24 @@
     depth.
 * Inserts (re-usable content fragments that can be pulled into any template)
   * Improvements: snappier name? ;) (Renamed from Shared Content to Inserts)
+* Basic form handlers
+  * Improvements:
+    * Implemented as a plugin
+    * Support for MJML templates
 * Blog
+  * Improvements: implemented as a plugin
 * News section
+  * Improvements: implemented as a plugin
 * Nested comment threads
   * Currently enabled on blog posts and news posts
   * Ready to add to any other content type going forward
-  * Improvements: Perl's main ORM doesn't have native support for polymorphism,
-    and in fact I'd never heard of polymorphism at the time - but to get the
-    comments feature to work how I wanted, I basically came up with all the
-    same ideas. The Ruby version uses ActiveRecord's native polymorphism,
-    which is no doubt better than my hand-rolled version :)
+  * Improvements:
+    * Perl's main ORM doesn't have native support for polymorphism,
+      and in fact I'd never heard of polymorphism at the time - but to get the
+      comments feature to work how I wanted, I basically came up with all the
+      same ideas. The Ruby version uses ActiveRecord's native polymorphism,
+      which is no doubt better than my hand-rolled version :)
+    * MJML templates for reply notification emails
 * Tags
   * Currently enabled on blog posts and news posts
   * Ready to add to any other content type going forward
@@ -32,9 +40,15 @@
   * Ready to add to any other content type going forward
   * Improvements: adds optional 'downvote' feature; more generic implementation
     (powered by ActsAsVoteable)
+* Site search
+  * Improvements:
+    * Implemented as a plugin
+    * Support for multiple search back-ends
 * User accounts and administration
-  * Improvements: the Perl version has role-based authorisation. The Ruby
-    version has more flexible ACL-based authorisation (powered by Pundit).
+  * Improvements:
+    * The Perl version has role-based authorisation. The Ruby version has
+      more flexible ACL-based authorisation (powered by Pundit).
+    * MJML templates for all user account emails (welcome, forgot password, etc)
 * reCAPTCHA bot protection for registration and comment forms
   * Improvements: supports reCAPTCHA v3 with scores. Tries an invisible
     CAPTCHA first, falling back to an interactive CAPTCHA if that fails.

@@ -1,0 +1,7 @@
+<%# frozen_string_literal: true %>
+
+<% if @query.present? %>
+  <%= render partial: 'search/results' %>
+<% else %>
+  <%= render partial: 'search/new' %>
+<% end %>

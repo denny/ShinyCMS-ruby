@@ -65,6 +65,10 @@ source 'https://rubygems.org' do
   # MJML emails
   gem 'mjml-rails'
 
+  # Search
+  gem 'algoliasearch-rails'
+  gem 'pg_search'
+
   # Tags
   gem 'acts-as-taggable-on'
 
@@ -139,5 +143,7 @@ source 'https://rubygems.org' do
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     gem 'rspec_junit_formatter'
+    # Used to intercept calls to the Algolia API
+    gem 'webmock'
   end
 end
