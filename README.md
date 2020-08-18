@@ -13,29 +13,25 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
   * Page layout is controlled by Page Templates (can be provided by a theme or custom-built)
   * Dynamically generated menus
 * Inserts (re-usable content fragments that can be pulled into any template)
+* Plugin architecture for an increasing number of features
+  * Included plugins:
+    * News section
+    * Blog
+    * Basic form handlers (e.g. contact form submitted -> email form data to site owner)
+    * Site search feature (will support multiple search back-ends; default is pg_search)
+  * Load only the plugins you want/need - smaller footprint, smaller attack surface
+  * [Write your own plugins](docs/Developer/Plugins.md) to add custom functionality
+    * Plugin generator included: `rails g shiny:plugin plugins/ShinyThing` to get started
+* Support for [themes](docs/Themes.md) on the hosted site
+  * One theme currently included: Halcyonic from HTML5UP (suitable for content-rich sites)
 * Comments (currently enabled on blog posts and news posts)
   * Fully nested, so you can easily see who is replying to who at any level
-  * Email notifications
+  * Email notifications of replies to your comments and posts
   * Uses reCAPTCHA to block comments from bots
   * Uses Akismet to flag potential spam comments for moderation
     * Spam comment moderation sends 'spam'/'not spam' training data to Akismet
 * Tags (currently enabled on blog posts and news posts, ready to add to any content type)
 * Likes or up/down votes on posts, comments, etc
-* Plugin architecture
-  * Load what you need and leave the rest out - smaller footprint, smaller attack surface
-  * Included plugins:
-    * News section
-    * Blog
-    * Generic form handlers
-      * Contact form submitted -> email form data to site owner
-    * Site search feature
-      * Supports multiple search back-ends; default is pg_search
-  * Write your own plugins to add custom functionality
-    * Plugin generator included: `rails g shiny:plugin plugins/ShinyThing` to get started
-* Support for themes on the hosted site
-  * Themes included:
-    * Halcyonic from HTML5UP (suitable for content-rich sites)
-* All emails use MJML templates, producing reliably cross-platform HTML emails
 * User accounts and administration
   * ACL-based authorisation system for admins (powered by Pundit)
   * Uses reCAPTCHA to block registration by bots
@@ -43,14 +39,15 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
   * Change most site settings from within the CMS admin area
   * Easily enable or disable CMS features (e.g. new user registrations)
   * Decide which settings to allow site users to override (e.g. theme)
+* All emails use MJML templates, producing reliably cross-platform HTML emails
 * Built-in web stats (powered by Ahoy) and email stats (powered by Ahoy::Email)
 * Charts and dashboards for viewing stats (powered by Blazer)
-  * Ready for use, but currently without demo data
 
 ### Planned features
 
 * Newsletters (HTML mailshots) [in progress]
 * Algolia support for search plugin [in progress]
+* Default dashboard(s) and queries for Blazer
 * More themes [in progress]
 * User profile pages [in progress]
   * With content such as recent comments, recent posts, etc
