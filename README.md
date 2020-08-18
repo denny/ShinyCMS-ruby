@@ -14,7 +14,7 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
   * Dynamically generated menus
 * Inserts (re-usable content fragments that can be pulled into any template)
 * Plugin architecture for an increasing number of features
-  * Included plugins:
+  * Plugins currently included:
     * News section
     * Blog
     * Basic form handlers (e.g. contact form submitted -> email form data to site owner)
@@ -23,7 +23,9 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
   * [Write your own plugins](docs/Developer/Plugins.md) to add custom functionality
     * Plugin generator included: `rails g shiny:plugin plugins/ShinyThing` to get started
 * Support for [themes](docs/Themes.md) on the hosted site
-  * One theme currently included: Halcyonic from HTML5UP (suitable for content-rich sites)
+  * Themes currently included:
+    * Halcyonic (one, two, and three column layouts; suitable for content-rich sites)
+    * Coming Soon (single page with mailing list sign-up form and slideshow background)
 * Comments (currently enabled on blog posts and news posts)
   * Fully nested, so you can easily see who is replying to who at any level
   * Email notifications of replies to your comments and posts
@@ -46,22 +48,18 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
 ### Planned features
 
 * Newsletters (HTML mailshots) [in progress]
-* Algolia support for search plugin [in progress]
-* Default dashboard(s) and queries for Blazer
 * More themes [in progress]
 * User profile pages [in progress]
   * With content such as recent comments, recent posts, etc
+* Algolia support for search plugin [in progress]
+* Default dashboard(s) and queries for Blazer
 * Access control groups
   * Can be used to control access to file downloads and secure whole pages,
     but also to show/hide individual pieces of page content
 * Payment handling plugins
   * Options include recurring subscriptions to access control groups (AKA paid membership)
 * Online shop
-* Event listings
-* Forums
-* Polls
-* Surveys / questionnaires
-* Multiple blogs/journals on one site
+* ... and more :)
 
 (See the [developer documentation](docs/Developers/index.md) for more detailed information on features [in progress](docs/Developers/in-progress.md) and [to-do](docs/Developers/TODO.md))
 
