@@ -73,12 +73,6 @@ Rails.application.routes.draw do
       get 'feature-flags', to: 'feature_flags#index'
       put 'feature-flags', to: 'feature_flags#update'
 
-      # Inserts
-      get    :inserts,     to: 'inserts#index',   as: :inserts
-      put    :inserts,     to: 'inserts#update'
-      post   :insert,      to: 'inserts#create',  as: :create_insert
-      delete 'insert/:id', to: 'inserts#destroy', as: :destroy_insert
-
       # Pages
       get  :pages, to: 'pages#index'
       post :page,  to: 'pages#create', as: :create_page

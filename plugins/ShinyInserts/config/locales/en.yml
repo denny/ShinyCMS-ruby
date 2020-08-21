@@ -1,0 +1,39 @@
+# ============================================================================
+# Project:   ShinyInserts plugin for ShinyCMS (Ruby version)
+# File:      plugins/ShinyInserts/config/locales/en.yml
+# Purpose:   Translation strings for English
+#
+# Copyright 2009-2020 Denny de la Haye (https://denny.me)
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
+
+en:
+  feature_flags:
+    inserts: Inserts
+
+  capability:
+    category:
+      inserts: Inserts
+
+  shiny_inserts:
+    admin:
+      inserts:
+        title: Inserts
+        index:
+          title: Inserts
+          name_placeholder: Name
+          content_placeholder: Content (can be blank)
+        element:
+          unknown_element_type: UNKNOWN ELEMENT TYPE IN INSERTS
+        create:
+          success: New insert added
+          failure: Failed to add new insert
+        update:
+          success: Inserts updated
+          # unchanged: Inserts unchanged
+          failure: Failed to update inserts
+        destroy:
+          success: Insert deleted
+          failure: Failed to delete insert

@@ -1,11 +1,8 @@
-<% return unless current_user.can?( :list, :inserts        ) ||
-                 current_user.can?( :list, :spam_comments  ) ||
-                 current_user.can?( :list, :email_previews ) %>
-
   <%= render_admin_menu_section( t( 'admin.other.title' ), 'settings' ) do %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :list, :inserts ),
-        t( 'admin.inserts.title' ), inserts_path, 'list' ) %>
+    <% plugins_for_admin_other_menu.each do |plugin| %>
+    <%= render partial: "#{plugin.name.underscore}/admin/menu/other_item" %>
+    <% end %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :spam_comments ),
         t( 'admin.comments.title' ), comments_path, 'trash' ) %>

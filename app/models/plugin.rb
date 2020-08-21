@@ -20,6 +20,10 @@ class Plugin
     @base_model ||= name.constantize::ApplicationRecord
   end
 
+  def main_site_helper
+    @main_site_helper ||= name.constantize::MainSiteHelper if defined? name.constantize::MainSiteHelper
+  end
+
   def template_exists?( template_path )
     File.exist? Rails.root.join "plugins/#{name}/app/views/#{name.underscore}/#{template_path}"
   end
@@ -47,6 +51,14 @@ class Plugin
     plugins = []
     loaded.each do |plugin|
       plugins << plugin if plugin.template_exists?( template_path )
+    end
+    plugins
+  end
+
+  def self.with_main_site_helpers
+    plugins = []
+    loaded.each do |plugin|
+      plugins << plugin if plugin.main_site_helper.present?
     end
     plugins
   end

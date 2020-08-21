@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Common behaviour that all element models might want to use/offer
-# (PageElement, FormElement, InsertElement, etc)
+# (PageElement, ShinyInserts::Element, etc)
 module ShinyElement
   extend ActiveSupport::Concern
 
