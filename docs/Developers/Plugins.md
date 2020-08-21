@@ -8,7 +8,7 @@
 2. Run the plugin generator:
 `rails g shiny:plugin plugins/ShinyThing`
 
-Currently your plugin must be named Shiny{Something} for some filepath-dependent hacks to work. One day in the future, a better-engineered plugin system will get rid of this requirement. But today is not that day. :)
+(Currently your plugin must be named Shiny{Something} for some filepath-dependent hacks to work.)
 
 The plugin generator is a cut-down version of the standard Rails Engine generator (rails new plugin --mountable) with some added boilerplate to fit the resulting plugin into ShinyCMS. You can pass it flags which the rails plugin generator understands, to skip features that your plugin doesn't need - e.g:
 `rails g shiny:plugin --skip-action-mailer --skip-action-mailbox --skip-action-cable plugins/ShinyThing`

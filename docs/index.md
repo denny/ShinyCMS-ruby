@@ -22,6 +22,7 @@
     * [Done](Developers/done.md)
     * [In progress](Developers/in-progress.md)
     * [Still to do](Developers/TODO.md)
+  * [Plugins](Developers/Plugins.md)
   * [Testing](Developers/Testing.md)
 
 

@@ -11,6 +11,8 @@ Here are some things that might be useful to know...
   * [In progress](in-progress.md)
   * [Still to do](TODO.md)
 
+* [Plugins](Plugins.md)
+
 * [Testing](Testing.md)
 
 * [Email and Mailers](mailers.md)
