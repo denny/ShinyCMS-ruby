@@ -18,10 +18,10 @@
 
 * [Developer documentation](Developers/index.md)
   * [Roadmap](Developers/Roadmap.md)
-  * [Project goals and progress](Developers/Progress.md)
+  * Project progress:
     * [Done](Developers/done.md)
     * [In progress](Developers/in-progress.md)
-    * [Still to do](Developers/TODO.md)
+    * [To do](Developers/TODO.md)
   * [Plugins](Developers/Plugins.md)
   * [Testing](Developers/Testing.md)
 
