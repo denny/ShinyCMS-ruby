@@ -20,6 +20,13 @@ PATH
       rails (~> 6.0.3, >= 6.0.3.2)
 
 PATH
+  remote: plugins/ShinyInserts
+  specs:
+    shiny_inserts (20.8)
+      pg (>= 0.18, < 2.0)
+      rails (~> 6.0.3, >= 6.0.3.2)
+
+PATH
   remote: plugins/ShinyNews
   specs:
     shiny_news (20.8)
@@ -518,6 +525,7 @@ DEPENDENCIES
   shiny_blog!
   shiny_blogs!
   shiny_forms!
+  shiny_inserts!
   shiny_news!
   shiny_profiles!
   shiny_search!

@@ -13,6 +13,10 @@
 class ApplicationController < ActionController::Base
   include FeatureFlagsHelper
 
+  Plugin.with_main_site_helpers.each do |plugin|
+    helper plugin.main_site_helper
+  end
+
   before_action :set_view_paths
   before_action :configure_permitted_parameters, if: :devise_controller?
 

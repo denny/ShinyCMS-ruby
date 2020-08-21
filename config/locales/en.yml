@@ -199,7 +199,6 @@ en:
       discussions: Discussions
       feature_flags: Feature Flags
       general: General
-      inserts: Inserts
       pages: Pages
       page_sections: Page Sections
       page_templates: Page Templates
@@ -311,25 +310,6 @@ en:
       update:
         success: Feature flags updated
         failure: Failed to update feature flags
-
-    inserts:
-      title: Inserts
-      index:
-        title: Inserts
-        name_placeholder: Name
-        content_placeholder: Content (can be blank)
-      element:
-        unknown_element_type: UNKNOWN ELEMENT TYPE IN INSERTS
-      create:
-        success: New insert added
-        failure: Failed to add new insert
-      update:
-        success: Inserts updated
-        # unchanged: Inserts unchanged
-        failure: Failed to update inserts
-      destroy:
-        success: Insert deleted
-        failure: Failed to delete insert
 
     pages:
       title: Pages
