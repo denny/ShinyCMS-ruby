@@ -12,12 +12,12 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
   * Pages have defined content areas which can be edited by admins
   * Page layout is controlled by Page Templates (can be provided by a theme or custom-built)
   * Dynamically generated menus
-* Inserts (re-usable content fragments that can be pulled into any template)
 * Plugin architecture for an increasing number of features
   * Plugins currently included:
     * News section
     * Blog
     * Basic form handlers (e.g. contact form submitted -> email form data to site owner)
+    * Inserts (re-usable content fragments that can be pulled into any template)
     * Site search feature (will support multiple search back-ends; default is pg_search)
   * Load only the plugins you want/need - smaller footprint, smaller attack surface
   * [Write your own plugins](docs/Developer/Plugins.md) to add custom functionality
