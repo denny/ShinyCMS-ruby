@@ -1,0 +1,1 @@
+require( 'coming_soon' )
