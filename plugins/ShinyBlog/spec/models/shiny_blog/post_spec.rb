@@ -12,6 +12,12 @@ module ShinyBlog
     end
 
     context 'methods' do
+      it 'knows its own name' do
+        post = create :blog_post
+
+        expect( post.class.human_name ).to eq 'blog post'
+      end
+
       it 'can create a slug' do
         post = create :blog_post
 

@@ -73,14 +73,4 @@ class Plugin
   def self.configured_names
     ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
   end
-
-  def self.base_records
-    return @base_records if @base_records
-
-    @base_records = []
-    loaded.each do |plugin|
-      base_records << plugin.constantize::ApplicationRecord
-    end
-    @base_records
-  end
 end
