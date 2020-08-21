@@ -71,6 +71,8 @@ Rails.application.routes.draw do
       get 'feature-flags', to: 'feature_flags#index'
       put 'feature-flags', to: 'feature_flags#update'
 
+      EXCEPT = %w[ index show create ].freeze
+
       # Pages
       get  :pages, to: 'pages#index'
       post :page,  to: 'pages#create', as: :create_page
