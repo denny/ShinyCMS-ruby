@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_17_145406) do
+ActiveRecord::Schema.define(version: 2020_08_20_230654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -232,22 +232,6 @@ ActiveRecord::Schema.define(version: 2020_08_17_145406) do
     t.index ["name"], name: "index_feature_flags_on_name", unique: true
   end
 
-  create_table "insert_elements", force: :cascade do |t|
-    t.bigint "set_id", null: false
-    t.string "name", null: false
-    t.string "content"
-    t.string "element_type", default: "Short Text", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_insert_elements_on_name", unique: true
-    t.index ["set_id"], name: "index_insert_elements_on_set_id"
-  end
-
-  create_table "insert_sets", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "mailing_lists", force: :cascade do |t|
     t.string "internal_name", null: false
     t.string "public_name"
@@ -380,6 +364,22 @@ ActiveRecord::Schema.define(version: 2020_08_17_145406) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "shiny_inserts_elements", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "content"
+    t.string "element_type", default: "Short Text", null: false
+    t.bigint "set_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_insert_elements_on_name", unique: true
+    t.index ["set_id"], name: "index_insert_elements_on_set_id"
+  end
+
+  create_table "shiny_inserts_sets", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "shiny_news_posts", force: :cascade do |t|
     t.string "title", null: false
     t.string "slug", null: false
@@ -497,7 +497,6 @@ ActiveRecord::Schema.define(version: 2020_08_17_145406) do
   add_foreign_key "capabilities", "capability_categories", column: "category_id"
   add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "discussions"
-  add_foreign_key "insert_elements", "insert_sets", column: "set_id"
   add_foreign_key "page_elements", "pages"
   add_foreign_key "page_sections", "page_sections", column: "section_id"
   add_foreign_key "page_template_elements", "page_templates", column: "template_id"
@@ -506,6 +505,7 @@ ActiveRecord::Schema.define(version: 2020_08_17_145406) do
   add_foreign_key "setting_values", "settings"
   add_foreign_key "setting_values", "users"
   add_foreign_key "shiny_blog_posts", "users"
+  add_foreign_key "shiny_inserts_elements", "shiny_inserts_sets", column: "set_id"
   add_foreign_key "shiny_news_posts", "users"
   add_foreign_key "taggings", "tags"
   add_foreign_key "user_capabilities", "capabilities"

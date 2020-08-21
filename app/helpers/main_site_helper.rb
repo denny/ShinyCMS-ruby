@@ -16,14 +16,6 @@ module MainSiteHelper
     !current_user_is_admin?
   end
 
-  def insert( name )
-    InsertSet.first.elements.where( name: name ).pick( :content )
-  end
-
-  def insert_type?( name, type )
-    InsertSet.first.elements.where( name: name ).pick( :element_type ) == type
-  end
-
   def setting( name )
     Setting.get( name, current_user )
   end

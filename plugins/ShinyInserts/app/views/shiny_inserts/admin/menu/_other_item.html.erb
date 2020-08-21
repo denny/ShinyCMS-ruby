@@ -1,0 +1,2 @@
+    <%= render_admin_menu_item_if( current_user.can?( :list, :inserts ),
+        t( 'shiny_inserts.admin.inserts.title' ), shiny_inserts.inserts_path, 'list' ) %>

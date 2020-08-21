@@ -13,7 +13,6 @@ comments_cc   = seed CapabilityCategory, { name: 'comments'       }
 spam_cc       = seed CapabilityCategory, { name: 'spam_comments'  }
 emails_cc     = seed CapabilityCategory, { name: 'email_previews' }
 features_cc   = seed CapabilityCategory, { name: 'feature_flags'  }
-inserts_cc    = seed CapabilityCategory, { name: 'inserts'        }
 pages_cc      = seed CapabilityCategory, { name: 'pages'          }
 sections_cc   = seed CapabilityCategory, { name: 'page_sections'  }
 templates_cc  = seed CapabilityCategory, { name: 'page_templates' }
@@ -46,11 +45,6 @@ seed Capability, { name: 'show',    category: emails_cc }
 # Feature Flags
 seed Capability, { name: 'list',    category: features_cc }
 seed Capability, { name: 'edit',    category: features_cc }
-# Inserts
-seed Capability, { name: 'list',    category: inserts_cc }
-seed Capability, { name: 'add',     category: inserts_cc }
-seed Capability, { name: 'edit',    category: inserts_cc }
-seed Capability, { name: 'destroy', category: inserts_cc }
 # Pages
 seed Capability, { name: 'list',    category: pages_cc }
 seed Capability, { name: 'add',     category: pages_cc }
@@ -147,9 +141,6 @@ seed FeatureFlag, { name: 'user_registration' }, {
   enabled_for_logged_in: false,
   enabled_for_admins: false
 }
-
-# InsertSet, to tie any insert elements together
-InsertSet.create! if InsertSet.first.blank?
 
 # Settings
 setting = seed Setting, { name: 'admin_ip_list' }, {
