@@ -61,7 +61,7 @@
 
 * Support for themes
   * Override the core templates on a per-file, as-needed basis
-  * One theme included
+  * Two themes included
 * Built-in email stats
   * Track opens and/or link-clicks
   * Disabled in default settings (privacy, yay!)

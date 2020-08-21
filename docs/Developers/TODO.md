@@ -37,7 +37,6 @@
 
 ### Medium-ish
 
-* User profile pages (with content such as recent comments, recent posts, etc)
 * Create a sortable concern to replace page[_section].sort_order
   * Or, just use https://github.com/itmammoth/rails_sortable ?
   * make elements sortable (go via the concern, so they all get it)
@@ -58,6 +57,7 @@
 	* https://github.com/honeybadger-io/heya
 	* Oh, except the licence doesn't look great. Investigate that first.
 * Event listings
+* Surveys / questionnaires
 
 
 ## New features that I'd like to add / features that I'd like to totally rebuild
@@ -83,6 +83,10 @@
 * Add a polymorphic metatags model(s?)+concern+helper that can be added to anything
   that might want them for SEO (pages/sections, shop items/categories, etc)
 
+* More themes!
+
+* ¡español! :D
+
 ### Medium-ish
 
 * Tests for rake tasks
@@ -96,11 +100,6 @@
 
 * Cookie consent
   * https://github.com/infinum/cookies_eu ?
-
-* Finish multi-blog code
-  * Refactor news section to be a blog instance ?
-
-* ¡español! :D
 
 * Replace hand-rolled slug generation with FriendlyId ?
   * https://norman.github.io/friendly_id

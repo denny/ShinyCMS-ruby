@@ -55,11 +55,11 @@ class TagsController < ApplicationController
   end
 
   def taggable_models_in_plugins
-    plugin_models = []
-    Plugin.base_models.each do |base|
-      plugin_models << base.descendants.select( &:taggable? )
+    taggable_plugin_models = []
+    Plugin.with_base_models.each do |plugin|
+      taggable_plugin_models << plugin.base_model.descendants.select( &:taggable? )
     end
-    plugin_models
+    taggable_plugin_models
   end
 
   def check_feature_flags

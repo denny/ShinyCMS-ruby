@@ -17,7 +17,7 @@ class Plugin
   end
 
   def base_model
-    @base_model ||= name.constantize::ApplicationRecord
+    @base_model ||= name.constantize::ApplicationRecord if defined? name.constantize::ApplicationRecord
   end
 
   def main_site_helper
@@ -36,7 +36,7 @@ class Plugin
 
   # Class methods
 
-  # Returns a hash of the currently enabled plugins keyed by their camel-cased name
+  # Returns an array of the currently enabled plugins
   def self.loaded
     return @loaded if @loaded
 
@@ -56,19 +56,11 @@ class Plugin
   end
 
   def self.with_main_site_helpers
-    plugins = []
-    loaded.each do |plugin|
-      plugins << plugin if plugin.main_site_helper.present?
-    end
-    plugins
+    loaded.select( &:main_site_helper )
   end
 
-  def self.base_models
-    base_models = []
-    loaded.each do |plugin|
-      base_models << plugin.base_model
-    end
-    base_models
+  def self.with_base_models
+    loaded.select( &:base_model )
   end
 
   def self.loaded_names
