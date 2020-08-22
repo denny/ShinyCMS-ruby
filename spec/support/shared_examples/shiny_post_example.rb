@@ -39,89 +39,52 @@ RSpec.shared_examples ShinyPost do
   end
 
   describe 'scopes' do
+    before :each do
+      @older = post.class.create!(
+        title: Faker::Books::CultureSeries.unique.culture_ship,
+        body: 'Testing',
+        user: User.first,
+        posted_at: 1.day.ago
+      )
+      @hidden = post.class.create!(
+        title: Faker::Books::CultureSeries.unique.culture_ship,
+        body: 'Testing',
+        user: User.first,
+        show_on_site: false
+      )
+      @future = post.class.create!(
+        title: Faker::Books::CultureSeries.unique.culture_ship,
+        body: 'Testing',
+        user: User.first,
+        posted_at: 1.day.since
+      )
+    end
+
     describe '.visible' do
       it "returns posts that aren't hidden" do
-        _hidden = post.class.create!(
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: 'Testing',
-          user: User.first,
-          show_on_site: false
-        )
-        future = post.class.create!(
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: 'Testing',
-          user: User.first,
-          posted_at: 1.day.since
-        )
-
-        expect( post.class.visible.size ).to eq 2
-        expect( post.class.visible.last ).to eq future
+        expect( post.class.visible.size ).to eq 3
+        expect( post.class.visible.last ).to eq @future
       end
     end
 
     describe '.not_future_dated' do
       it "returns posts that aren't future-dated" do
-        hidden = post.class.create!(
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: 'Testing',
-          user: User.first,
-          show_on_site: false
-        )
-        _future = post.class.create!(
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: 'Testing',
-          user: User.first,
-          posted_at: 1.day.since
-        )
-
-        expect( post.class.not_future_dated.size ).to eq 2
-        expect( post.class.not_future_dated.order( :id ).last ).to eq hidden
+        expect( post.class.not_future_dated.size ).to eq 3
+        expect( post.class.not_future_dated.order( :id ).last ).to eq @hidden
       end
     end
 
     describe '.published' do
       it "returns posts that aren't hidden or future-dated" do
-        _hidden = post.class.create!(
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: 'Testing',
-          user: User.first,
-          show_on_site: false
-        )
-        _future = post.class.create!(
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: 'Testing',
-          user: User.first,
-          posted_at: 1.day.since
-        )
-
-        expect( post.class.published.size ).to eq 1
+        expect( post.class.published.size ).to eq 2
         expect( post.class.published.last ).to eq post
       end
     end
 
     describe '.recent' do
       it "returns posts that aren't hidden or future-dated, in most-recent-first order" do
-        older = post.class.create!(
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: 'Testing',
-          user: User.first,
-          posted_at: 1.day.ago
-        )
-        _hidden = post.class.create!(
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: 'Testing',
-          user: User.first,
-          show_on_site: false
-        )
-        _future = post.class.create!(
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: 'Testing',
-          user: User.first,
-          posted_at: 1.day.since
-        )
-
         expect( post.class.recent.size ).to eq 2
-        expect( post.class.recent.last ).to eq older
+        expect( post.class.recent.last ).to eq @older
       end
     end
   end
