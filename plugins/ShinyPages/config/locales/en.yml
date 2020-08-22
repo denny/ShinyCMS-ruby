@@ -1,0 +1,85 @@
+# ============================================================================
+# Project:   ShinyPages plugin for ShinyCMS (Ruby version)
+# File:      plugins/ShinyPages/config/locales/en.yml
+# Purpose:   Translation strings for English
+#
+# Copyright 2009-2020 Denny de la Haye (https://denny.me)
+#
+# ShinyCMS is free software; you can redistribute it and/or
+# modify it under the terms of the GPL (version 2 or later).
+# ============================================================================
+
+en:
+  feature_flags:
+    shiny_pages: ShinyPages
+
+  settings:
+    default_page: Default page
+    default_section: Default section
+
+  capability:
+    category:
+      pages: Pages
+      page_sections: Page Sections
+      page_templates: Page Templates
+
+  shiny_pages:
+    page:
+      template_file_missing: Unable to display page; its template file is missing.
+
+    admin:
+      pages:
+        title: Pages
+        index:
+          title: List pages
+        new:
+          title: Add new page
+        edit:
+          title: Edit page
+        create:
+          success: New page added
+          failure: Failed to add new page
+        update:
+          success: Page details updated
+          failure: Failed to update page details
+        destroy:
+          success: Page deleted
+          failure: Failed to delete page
+
+        sections:
+          title: Page sections
+          new:
+            title: Add new section
+          edit:
+            title: Edit section
+          create:
+            success: New section added
+            failure: Failed to add new section
+          update:
+            success: Section details updated
+            failure: Failed to update section details
+          destroy:
+            success: Section deleted
+            failure: Failed to section page
+
+        templates:
+          title: Page templates
+          index:
+            title: List templates
+          new:
+            title: Add new template
+          edit:
+            title: Edit template
+          create:
+            success: New template added
+            failure: Failed to add new template
+          update:
+            success: Template details updated
+            failure: Failed to update template details
+          destroy:
+            success: Template deleted
+            failure: Failed to delete template
+
+  models:
+    page_template:
+      template_file_must_exist: The template file must be in app/views/themes/{your theme}/pages/templates

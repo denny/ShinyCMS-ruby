@@ -10,10 +10,13 @@
 # ShinyCMS is free software; you can redistribute it and/or
 # modify it under the terms of the GPL (version 2 or later).
 # ============================================================================
-
 module ShinyForms
   # Base model class for ShinyForms plugin for ShinyCMS
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
+  end
+
+  def self.capability_category_name
+    'forms'
   end
 end

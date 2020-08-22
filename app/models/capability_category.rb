@@ -2,8 +2,7 @@
 
 # Part of the Pundit-powered ACL - group capabilities by site area, e.g. :pages
 class CapabilityCategory < ApplicationRecord
-  has_many :capabilities, inverse_of: :category, foreign_key: :category_id,
-                          dependent: :restrict_with_error
+  has_many :capabilities, inverse_of: :category, foreign_key: :category_id, dependent: :restrict_with_error
 
   # Class methods
 
@@ -18,13 +17,15 @@ class CapabilityCategory < ApplicationRecord
     nil
   end
 
-  def self.category_names
-    @category_names ||= pluck( :name )
+  def self.category_name_for( record )
+    record = record.class unless record.is_a? Class
+
+    return record.capability_category_name if record.respond_to? :capability_category_name
+
+    record.name.underscore.pluralize.gsub( '/', '_' )
   end
 
-  def self.category_name_for( record )
-    return record.name.underscore.pluralize.gsub( '/', '_' ) if record.is_a? Class
-
-    record.class.name.underscore.pluralize.gsub( '/', '_' )
+  def self.category_names
+    @category_names ||= pluck( :name )
   end
 end

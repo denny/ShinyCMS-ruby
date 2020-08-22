@@ -84,9 +84,6 @@ en:
       title: '%{resource_type} not found'
       explanation: The URL you have reached is for a %{resource_type} that does not exist.
 
-  page:
-    template_file_missing: Unable to display page; its template file is missing.
-
   site_settings:
     index:
       title: Site settings
@@ -160,8 +157,6 @@ en:
     all_comment_notifications_email: Email to notify of ALL comments
     allowed_to_comment: Allowed to comment
     default_email: Default email address
-    default_page: Default page
-    default_section: Default section
     post_login_redirect: Post-login redirect
     recaptcha_comment_score: 'reCAPTCHA: Minimum score for comments'
     recaptcha_registration_score: 'reCAPTCHA: Minimum score for user registration'
@@ -311,58 +306,6 @@ en:
         success: Feature flags updated
         failure: Failed to update feature flags
 
-    pages:
-      title: Pages
-      index:
-        title: List pages
-      new:
-        title: Add new page
-      edit:
-        title: Edit page
-      create:
-        success: New page added
-        failure: Failed to add new page
-      update:
-        success: Page details updated
-        failure: Failed to update page details
-      destroy:
-        success: Page deleted
-        failure: Failed to delete page
-
-      sections:
-        title: Page sections
-        new:
-          title: Add new section
-        edit:
-          title: Edit section
-        create:
-          success: New section added
-          failure: Failed to add new section
-        update:
-          success: Section details updated
-          failure: Failed to update section details
-        destroy:
-          success: Section deleted
-          failure: Failed to section page
-
-      templates:
-        title: Page templates
-        index:
-          title: List templates
-        new:
-          title: Add new template
-        edit:
-          title: Edit template
-        create:
-          success: New template added
-          failure: Failed to add new template
-        update:
-          success: Template details updated
-          failure: Failed to update template details
-        destroy:
-          success: Template deleted
-          failure: Failed to delete template
-
     other:
       title: Other
 
@@ -422,9 +365,6 @@ en:
   models:
     capability_category:
       not_found: CapabilityCategory.name_for generated '%{name}', which is not in database
-
-    page_template:
-      template_file_must_exist: The template file must be in pages/templates
 
     setting_value:
       one_per_user: You can only have one setting per value per user

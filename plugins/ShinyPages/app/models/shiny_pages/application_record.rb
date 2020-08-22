@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
-<%= wrap_in_modules <<~rb
-  # Base model class for #{camelized_modules}
+module ShinyPages
+  # Base model class for ShinyPages
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
+
     def url_helpers
-      #{camelized_modules}::Engine.routes.url_helpers
+      ShinyPages::Engine.routes.url_helpers
     end
+
     def self.capability_category_name
-      #{name}
+      'pages'
     end
   end
-rb
-%>
+end

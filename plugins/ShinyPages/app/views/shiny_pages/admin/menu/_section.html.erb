@@ -1,0 +1,11 @@
+<% return unless current_user.can? :list, :shiny_pages %>
+
+  <%= render_admin_menu_section( t( 'shiny_pages.admin.shiny_pages.title' ), 'rss' ) do %>
+
+    <%= render_admin_menu_item(
+        t( 'shiny_pages.admin.shiny_pages.index.title' ), shiny_pages.shiny_pages_path, 'list' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :add, :shiny_pages ),
+        t( 'shiny_pages.admin.shiny_pages.new.title' ), shiny_pages.new_shiny_pages_path, 'pencil' ) %>
+
+<% end %>
