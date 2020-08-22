@@ -33,7 +33,7 @@ module ShinyNews
 
     # Specify policy class for Pundit
     def policy_class
-      ShinyNews::PostPolicy
+      self.class.policy_class
     end
 
     # Class methods
