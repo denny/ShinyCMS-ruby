@@ -48,13 +48,13 @@ namespace :shiny do
     end
 
     def skip_callbacks_on_page_models
-      Page.skip_callback( :create, :after, :add_elements )
-      PageTemplate.skip_callback( :create, :after, :add_elements )
+      ShinyPages::Page.skip_callback( :create, :after, :add_elements )
+      ShinyPages::Template.skip_callback( :create, :after, :add_elements )
     end
 
     def set_callbacks_on_page_models
-      PageTemplate.set_callback( :create, :after, :add_elements )
-      Page.set_callback( :create, :after, :add_elements )
+      ShinyPages::Template.set_callback( :create, :after, :add_elements )
+      ShinyPages::Page.set_callback( :create, :after, :add_elements )
     end
 
     def fix_primary_key_sequences
@@ -92,13 +92,15 @@ namespace :shiny do
 
     def models_with_demo_data
       Rails.application.eager_load! if Rails.env.development?
-      models = ApplicationRecord.descendants.select( &:dump_for_demo? ).map( &:to_s ).sort
+      models = ApplicationRecord.models_with_demo_data
+
       # Fragile bodgery; move models with dependencies not happy with .sort order to the end
       models.delete( 'Comment' )
       models.delete( 'Discussion' )
-      models.delete( 'Page' )
-      models.delete( 'PageElement' )
-      models.push( 'Page', 'PageElement', 'Discussion', 'Comment' )
+      models.delete( 'ShinyPages::Page' )
+      models.delete( 'ShinyPages::PageElement' )
+
+      models.push( 'ShinyPages::Page', 'ShinyPages::PageElement', 'Discussion', 'Comment' )
     end
     # :nocov:
   end
