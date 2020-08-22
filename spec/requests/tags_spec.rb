@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
-RSpec.describe 'Tags', type: :request do
+# Tests for tagging features on main site (powered by ActsAsTaggableOn)
+RSpec.describe TagsController, type: :request do
   describe 'GET /tags/cloud' do
     it 'displays the tag cloud' do
       get tag_cloud_path

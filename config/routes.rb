@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 # Rails routing guide: http://guides.rubyonrails.org/routing.html
 
+# Routes for main app (ShinyCMS core)
 Rails.application.routes.draw do
   scope format: false do
     ########################################
@@ -112,13 +119,13 @@ Rails.application.routes.draw do
     # ShinyCMS plugins
 
     Plugin.loaded.each do |plugin|
-      mount plugin.engine, at: '/' if defined? plugin
+      mount plugin.engine, at: '/' if plugin.engine.present?
     end
 
-    ###########################################################################
+    ########################################################################################################
     # This catch-all route matches anything and everything not already matched by a route defined before it.
-    # It has to be the last route set up, because it hijacks anything that reaches it.
-    # This makes it possible to have pages and sections at the top level, e.g. /foo instead of /pages/foo
+    # It has to be the last route set up, because it hijacks anything that gets this far.
+    # This route gives us pages and sections at the top level, e.g. /foo instead of /pages/foo
     # TODO: figure out how to load a route last for the whole app, from inside a plugin's routes.rb
     get '*path', to: 'shiny_pages/pages#show' if defined? ShinyPages
   end

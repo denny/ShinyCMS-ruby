@@ -1,4 +1,12 @@
-# Note: You must restart bin/webpack-dev-server for changes to take effect
+# frozen_string_literal: true
+
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Note: You must restart bin/webpack-dev-server for changes to this file to take effect
 
 default: &default
   source_path: app/javascript

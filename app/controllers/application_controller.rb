@@ -1,16 +1,12 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyCMS (Ruby version)
-# File:      app/controllers/application_controller.rb
-# Purpose:   Base controller for ShinyCMS
-#            See also: main_controller, admin_controller
+# ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Base controller for ShinyCMS (see also: main_controller, admin_controller)
 class ApplicationController < ActionController::Base
   helper_method :recaptcha_v2_site_key,
                 :recaptcha_v3_site_key,

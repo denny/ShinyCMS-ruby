@@ -26,10 +26,10 @@ ShinyPages::Engine.routes.draw do
       end
     end
 
-    ###########################################################################
+    ########################################################################################################
     # This catch-all route matches anything and everything not already matched by a route defined before it.
-    # It has to be the last route set up, because it hijacks anything that reaches it.
-    # This makes it possible to have pages and sections at the top level, e.g. /foo instead of /pages/foo
+    # It has to be the last route set up, because it hijacks anything that gets this far.
+    # This route gives us pages and sections at the top level, e.g. /foo instead of /pages/foo
     # TODO: work out how to load this last from inside the ShinyPages plugin routes.rb
     # get '*path', to: 'pages#show'
   end

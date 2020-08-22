@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require_relative 'boot'
 
 # Load Rails components selectively
@@ -31,7 +37,7 @@ module ShinyCMS
     # -- all .rb files in that directory are automatically loaded after
     # loading the framework and any gems in your application.
 
-    # Remote routes for Action Mailbox
+    # Remove routes for Action Mailbox (just to make `rails routes` more readable)
     initializer(
       :remove_actionmailbox_routes, after: :add_routing_paths
     ) do |app|

@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 # Initialiser for Ahoy web stats; picks up various privacy-related settings
 # from ENV which are potentially useful for complying with GDPR.
 
-# Set AHOY_LINK_USERS to the string 'false' to disable automatic linking of
-# visits and users
+# Set AHOY_LINK_USERS to the string 'false' to disable automatic linking of visits and users
 class Ahoy::Store < Ahoy::DatabaseStore
   def authenticate( data )
     # :nocov:

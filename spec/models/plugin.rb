@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
-Rails.application.eager_load!
+# Have to eager load here in dev and test environments, otherwise there is much failingness
+Rails.application.eager_load! if Rails.env.test? || Rails.env.development?
 
+# Tests for ShinyCMS Plugin model
 RSpec.describe Plugin, type: :model do
   context 'class methods' do
     describe '.loaded' do

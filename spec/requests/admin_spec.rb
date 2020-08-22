@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
-RSpec.describe 'Admin controller:', type: :request do
+# Tests for admin base controller, and other general admin features
+RSpec.describe AdminController, type: :request do
   describe 'GET /' do
     it 'shows the admin toolbar on the main site, if you are an admin' do
       create :top_level_page

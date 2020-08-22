@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 # Reusable spec to check that each admin type gets redirected correctly on login
 RSpec.shared_examples '/admin redirect' do |type, path, section, plugin|
   it "redirects a #{type.titlecase} correctly" do

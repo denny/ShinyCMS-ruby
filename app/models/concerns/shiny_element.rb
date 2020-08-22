@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
-# Common behaviour that all element models might want to use/offer
-# (PageElement, ShinyInserts::Element, etc)
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Common behaviour that all element models might want to use/offer (ShinyPages::PageElement, ShinyInserts::Element, etc)
 module ShinyElement
   extend ActiveSupport::Concern
 

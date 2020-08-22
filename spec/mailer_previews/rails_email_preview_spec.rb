@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
-RSpec.describe 'RailsEmailPreview', type: :request do
+# Tests for the RailsEmailPreview engine, which powers admin previews of site emails
+RSpec.describe RailsEmailPreview, type: :request do
   before :each do
     admin = create :email_admin
     sign_in admin
@@ -12,8 +19,7 @@ RSpec.describe 'RailsEmailPreview', type: :request do
     it 'it shows the list of emails' do
       get rails_email_preview.rep_emails_path
 
-      expect( response.body )
-        .to have_content I18n.t( 'rails_email_preview.emails.index.list_title' )
+      expect( response.body ).to have_content I18n.t( 'rails_email_preview.emails.index.list_title' )
     end
   end
 end

@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 # Validator for attributes that only need to be unique within a collection
 # e.g. blog_post.slug within the month of posting
 class UniqueInCollectionValidator < ActiveRecord::Validations::UniquenessValidator

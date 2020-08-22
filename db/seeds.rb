@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 # This file contains any data which is either necessary to get ShinyCMS running,
 # or which might provide useful hints for configuration after that.
 #
-# It is used to populate the databse when you create it with `rails db:setup`
-# You can also load it (and reload it) at any time using `rails db:seed`
+# It is used to populate the database when you create it with `rails db:setup` or re-create it
+# with `rails db:reset`. You can also reload this data at any time using `rails db:seed`.
 
 # Capabilities (for user authorisation, via Pundit)
 general_cc    = seed CapabilityCategory, { name: 'general'        }
