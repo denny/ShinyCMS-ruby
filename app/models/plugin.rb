@@ -53,14 +53,6 @@ class Plugin
     @loaded = loading
   end
 
-  def self.with_template( template_path )
-    plugins = []
-    loaded.each do |plugin|
-      plugins << plugin if plugin.template_exists?( template_path )
-    end
-    plugins
-  end
-
   def self.with_main_site_helpers
     loaded.select( &:main_site_helper )
   end
@@ -73,15 +65,19 @@ class Plugin
     loaded.select( &:view_path )
   end
 
+  def self.with_template( template_path )
+    loaded.select { |plugin| plugin.template_exists?( template_path ) }
+  end
+
   def self.loaded_names
     configured_names || all_names
   end
 
-  def self.all_names
-    Dir[ 'plugins/*' ].sort.map { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
-  end
-
   def self.configured_names
     ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
+  end
+
+  def self.all_names
+    Dir[ 'plugins/*' ].sort.map { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
   end
 end
