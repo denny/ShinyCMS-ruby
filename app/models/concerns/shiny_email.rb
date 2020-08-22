@@ -6,9 +6,8 @@ module ShinyEmail
 
   included do
     validates :email, presence: true, uniqueness: true, case_sensitive: false
-    validates_with EmailAddress::ActiveRecordValidator
     validates :canonical_email, presence: true
-    validates_with EmailAddress::ActiveRecordValidator
+    validates_with EmailAddress::ActiveRecordValidator, fields: %i[ email canonical_email ]
 
     # TODO: figure out how this interacts with Devise when user updates email
     before_validation :generate_canonical_email, if:

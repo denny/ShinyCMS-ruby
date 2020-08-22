@@ -44,7 +44,7 @@ module ShinyPost
 
     scope :not_future_dated, -> { where( 'posted_at <= ?', Time.zone.now.iso8601 ) }
     scope :published,        -> { visible.merge( not_future_dated ) }
-    scope :recent,           -> { order( posted_at: :desc ) }
+    scope :recent,           -> { published.merge( order( posted_at: :desc ) ) }
 
     self.implicit_order_column = 'posted_at'
 

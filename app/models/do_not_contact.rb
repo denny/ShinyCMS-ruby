@@ -14,7 +14,7 @@ class DoNotContact < ApplicationRecord
   # Class methods
 
   def self.include?( email )
-    find_by( email: canonicalise_and_redact( email ) ) ? true : false
+    exists?( email: canonicalise_and_redact( email ) )
   end
 
   def self.includes?( email )

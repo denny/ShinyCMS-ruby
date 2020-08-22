@@ -45,7 +45,7 @@ module ShinyForms
 
     # Specify policy class for Pundit
     def policy_class
-      ShinyForms::FormPolicy
+      self.class.policy_class
     end
 
     # Class methods

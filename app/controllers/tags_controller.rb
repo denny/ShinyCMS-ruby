@@ -56,7 +56,7 @@ class TagsController < MainController
 
   def taggable_models_in_plugins
     taggable_plugin_models = []
-    Plugin.with_base_models.each do |plugin|
+    Plugin.with_models.each do |plugin|
       taggable_plugin_models << plugin.base_model.descendants.select( &:taggable? )
     end
     taggable_plugin_models

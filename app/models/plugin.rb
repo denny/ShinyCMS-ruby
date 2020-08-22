@@ -28,6 +28,12 @@ class Plugin
     File.exist? Rails.root.join "plugins/#{name}/app/views/#{name.underscore}/#{template_path}"
   end
 
+  def view_path
+    return unless File.exist? Rails.root.join( "plugins/#{name}/app/views/" )
+
+    "plugins/#{name}/app/views/#{name.underscore}"
+  end
+
   def admin_index_path( area = nil )
     path_part = area || name.underscore.sub( 'shiny_', '' )
 
@@ -47,31 +53,31 @@ class Plugin
     @loaded = loading
   end
 
-  def self.with_template( template_path )
-    plugins = []
-    loaded.each do |plugin|
-      plugins << plugin if plugin.template_exists?( template_path )
-    end
-    plugins
-  end
-
   def self.with_main_site_helpers
     loaded.select( &:main_site_helper )
   end
 
-  def self.with_base_models
+  def self.with_models
     loaded.select( &:base_model )
+  end
+
+  def self.with_views
+    loaded.select( &:view_path )
+  end
+
+  def self.with_template( template_path )
+    loaded.select { |plugin| plugin.template_exists?( template_path ) }
   end
 
   def self.loaded_names
     configured_names || all_names
   end
 
-  def self.all_names
-    Dir[ 'plugins/*' ].sort.map { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
-  end
-
   def self.configured_names
     ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
+  end
+
+  def self.all_names
+    Dir[ 'plugins/*' ].sort.map { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
   end
 end
