@@ -19,9 +19,5 @@ module ShinyNews
     def url_helpers
       ShinyNews::Engine.routes.url_helpers
     end
-
-    def self.capability_category_name
-      'news_posts'
-    end
   end
 end

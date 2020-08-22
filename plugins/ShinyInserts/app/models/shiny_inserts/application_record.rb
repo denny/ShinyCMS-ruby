@@ -15,8 +15,4 @@ module ShinyInserts
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
   end
-
-  def self.capability_category_name
-    'inserts'
-  end
 end

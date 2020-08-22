@@ -19,9 +19,5 @@ module ShinyBlog
     def url_helpers
       ShinyBlog::Engine.routes.url_helpers
     end
-
-    def self.capability_category_name
-      'blog_posts'
-    end
   end
 end

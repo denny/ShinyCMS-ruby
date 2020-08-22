@@ -15,8 +15,4 @@ module ShinyProfiles
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
   end
-
-  def self.capability_category_name
-    'profile_pages'
-  end
 end

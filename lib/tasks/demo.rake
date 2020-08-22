@@ -92,6 +92,7 @@ namespace :shiny do
 
     def models_with_demo_data
       Rails.application.eager_load! if Rails.env.development?
+
       models = ApplicationRecord.models_with_demo_data
 
       # Fragile bodgery; move models with dependencies not happy with .sort order to the end

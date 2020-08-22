@@ -20,6 +20,14 @@ class Plugin
     @base_model ||= name.constantize::ApplicationRecord if defined? name.constantize::ApplicationRecord
   end
 
+  def models_with_demo_data
+    model_names = []
+    base_model.descendants.each do |model|
+      model_names << model.name if model.respond_to? :dump_for_demo?
+    end
+    model_names.sort
+  end
+
   def main_site_helper
     @main_site_helper ||= name.constantize::MainSiteHelper if defined? name.constantize::MainSiteHelper
   end
@@ -67,6 +75,14 @@ class Plugin
 
   def self.with_template( template_path )
     loaded.select { |plugin| plugin.template_exists?( template_path ) }
+  end
+
+  def self.models_with_demo_data
+    model_names = []
+    loaded.each do |plugin|
+      model_names << plugin.models_with_demo_data
+    end
+    model_names.flatten.sort
   end
 
   def self.loaded_names
