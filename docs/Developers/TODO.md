@@ -18,6 +18,8 @@
 
 * Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
 
+* Replace Anonymous/Pseudonymous/Authenticated with symbols and translation strings
+
 ### Non-trivial
 
 * Split comment_author details off of comments, as a polymorphic (similar to email_recipients)

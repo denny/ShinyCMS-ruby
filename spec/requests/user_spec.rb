@@ -305,10 +305,10 @@ RSpec.describe 'User accounts', type: :request do
       user = create :user
       sign_in user
 
-      new_name = Faker::Books::CultureSeries.unique.culture_ship
+      new_name = Faker::Internet.unique.username
       put user_registration_path, params: {
         user: {
-          public_name: new_name,
+          username: new_name,
           current_password: user.password
         }
       }

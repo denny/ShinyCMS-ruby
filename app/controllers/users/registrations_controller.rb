@@ -11,6 +11,7 @@
 # modify it under the terms of the GPL (version 2 or later).
 # ============================================================================
 class Users::RegistrationsController < Devise::RegistrationsController
+  include FeatureFlagsHelper
   include RecaptchaHelper
 
   before_action :check_feature_flags, only: %i[ new create ]
