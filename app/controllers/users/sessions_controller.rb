@@ -11,9 +11,9 @@
 # modify it under the terms of the GPL (version 2 or later).
 # ============================================================================
 class Users::SessionsController < Devise::SessionsController
-  before_action :check_feature_flags
+  include FeatureFlagsHelper
 
-  skip_after_action :track_ahoy_visit
+  before_action :check_feature_flags
 
   private
 

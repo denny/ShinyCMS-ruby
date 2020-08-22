@@ -14,7 +14,7 @@
 module ShinyNews
   # Main site base controller for ShinyNews plugin for ShinyCMS
   # Inherits from ShinyCMS ApplicationController
-  class ApplicationController < ::ApplicationController
+  class ApplicationController < ::MainController
     helper Rails.application.routes.url_helpers
   end
 end

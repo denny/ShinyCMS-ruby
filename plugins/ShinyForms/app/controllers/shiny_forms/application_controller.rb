@@ -14,7 +14,7 @@
 module ShinyForms
   # Main site base controller for ShinyForms plugin for ShinyCMS
   # Inherits from ShinyCMS ApplicationController
-  class ApplicationController < ::ApplicationController
+  class ApplicationController < ::MainController
     helper Rails.application.routes.url_helpers
   end
 end
