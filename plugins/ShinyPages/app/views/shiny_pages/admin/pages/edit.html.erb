@@ -1,0 +1,48 @@
+<% @page_title = t( '.title' ) %>
+
+<%= form_for @page, url: shiny_pages.page_path( @page ), method: :put do |f| %>
+  <p>
+    <%= f.label :internal_name %><br>
+    <%= f.text_field :internal_name %>
+  </p>
+  <p>
+    <%= f.label :public_name %><br>
+    <%= f.text_field :public_name %>
+  </p>
+  <p>
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :template_id, 'Template' %>
+    <br><%= f.select :template_id, ShinyPages::Template.pluck( :name, :id ) %>
+  </p>
+  <p>
+    <%= f.label :section_id, 'Section' %>
+    <br><%= f.select :section_id, ShinyPages::Section.pluck( :internal_name, :id ),
+            { include_blank: 'None' } %>
+  </p>
+  <p>
+    <%= f.label :sort_order %>
+    <br><%= f.text_field :sort_order %>
+  </p>
+  <p>
+    <%= f.label :show_on_site %>
+    <br><%= f.check_box :show_on_site %>
+  </p>
+  <p>
+    <%= f.label :show_in_menus %>
+    <br><%= f.check_box :show_in_menus %>
+  </p>
+
+  <%= f.fields_for :elements do |fields| %>
+    <%= render partial: 'shiny_pages/admin/pages/page_element', locals: { fields: fields, content: :content, name: @page.elements[fields.index].name, element_type: @page.elements[fields.index].element_type, filenames: select_filenames } %>
+  <% end %>
+  <p class="top-margin">
+    <%= f.submit t( 'update' ) %>
+  </p>
+<% end %>

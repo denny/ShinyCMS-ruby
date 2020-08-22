@@ -2,17 +2,15 @@
   <%= render_admin_menu_item_if( current_user.can?( :view_admin_dashboard ),
       t( 'admin.dashboard.title' ), admin_path, 'speedometer' ) %>
 
-  <%= render partial: 'admin/menu/menu_pages'    %>
-
   <% plugins_for_admin_menu.each do |plugin| %>
   <%= render partial: "#{plugin.name.underscore}/admin/menu/section" %>
   <% end %>
 
-  <%= render partial: 'admin/menu/menu_users'    %>
+  <%= render partial: 'admin/menu/menu_users' %>
 
-  <%= render partial: 'admin/menu/menu_other'    %>
+  <%= render partial: 'admin/menu/menu_other' %>
+
+  <%= render partial: 'admin/menu/menu_stats' %>
 
   <%= render partial: 'admin/menu/menu_settings' %>
-
-  <%= render partial: 'admin/menu/menu_stats'    %>
 </ul>

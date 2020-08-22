@@ -1,0 +1,21 @@
+<% return unless current_user.can?( :list, :pages          ) ||
+                 current_user.can?( :list, :page_templates ) %>
+
+  <%= render_admin_menu_section( t( 'shiny_pages.admin.pages.title' ), 'list-rich' ) do %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :list, :pages ),
+        t( 'shiny_pages.admin.pages.index.title' ), shiny_pages.pages_path, 'list-rich' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :add, :pages ),
+        t( 'shiny_pages.admin.pages.new.title' ), shiny_pages.new_page_path, 'playlist-add' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :add, :page_sections ),
+        t( 'shiny_pages.admin.sections.new.title' ), shiny_pages.new_section_path, 'playlist-add' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :list, :page_templates ),
+        t( 'shiny_pages.admin.templates.index.title' ), shiny_pages.templates_path, 'library' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :add, :page_templates ),
+        t( 'shiny_pages.admin.templates.new.title' ), shiny_pages.new_template_path, 'library-add' ) %>
+
+  <% end %>

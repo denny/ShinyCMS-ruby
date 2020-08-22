@@ -1,15 +1,15 @@
 <% comment ||= nil %>
 <% if comment.present? %>
   <% discussion = comment.discussion %>
-  <% form_url = comment_path( discussion, comment.number ) %>
+  <% form_url = main_app.comment_path( discussion, comment.number ) %>
   <% num = "_#{comment.number}" %>
 <% else %>
-  <% form_url = discussion_path( discussion ) %>
+  <% form_url = main_app.discussion_path( discussion ) %>
 <% end %>
 
 <% if setting( :allowed_to_comment ) == 'Authenticated' && !user_signed_in? %>
   <p>
-    <%= link_to t( '.log_in_to_post' ), new_user_session_path %>
+    <%= link_to t( '.log_in_to_post' ), main_app.new_user_session_path %>
   </p>
 <% else %>
 
@@ -39,7 +39,7 @@
         <%= current_user.name %></label>
       <% else %>
         <%= f.radio_button :author_type, 'authenticated', disabled: true %>
-        <%= link_to t( 'user.log_in' ), new_user_session_path %>
+        <%= link_to t( 'user.log_in' ), main_app.new_user_session_path %>
       <% end %>
     <% end %>
   </p>

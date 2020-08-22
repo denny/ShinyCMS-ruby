@@ -7,48 +7,16 @@
   <%= render partial: "#{plugin.name.underscore}/admin/toolbar/section" %>
 <% end %>
 
-<% if controller_name == 'pages' %>
-    <%= t( 'admin.pages.title' ).singularize %>:
-  <% if current_user_can? :add, :pages %>
-    <%= link_to t( 'add'  ), new_page_path %> /
-  <% end %>
-  <% if @page.present? && current_user_can?( :edit, :pages ) %>
-    <%= link_to t( 'edit' ), edit_page_path( @page ) %> /
-  <% end %>
-  <% if current_user_can? :list, :pages %>
-    <%= link_to t( 'list' ), pages_path %>
-  <% end %>
-    |
-    <%= t( 'admin.pages.sections.title' ).singularize %>:
-  <% if current_user_can? :add, :page_sections %>
-    <%= link_to t( 'add' ), new_page_section_path %> /
-  <% end %>
-  <% if current_user_can?( :edit, :page_sections ) && @page&.section.present? %>
-    <%= link_to t( 'edit' ), edit_page_section_path( @page.section ) %>
-  <% end %>
-    |
-    <%= t( 'admin.pages.templates.title' ).singularize %>:
-  <% if current_user_can? :add, :page_templates %>
-    <%= link_to t( 'add'  ), new_page_template_path %> /
-  <% end %>
-  <% if current_user_can?( :edit, :page_templates ) && @page.present? %>
-    <%= link_to t( 'edit' ), edit_page_template_path( @page.template ) %> /
-  <% end %>
-  <% if current_user_can? :list, :page_templates %>
-    <%= link_to t( 'list' ), page_templates_path %>
-  <% end %>
-    |
-
-<% elsif controller_name == 'users' %>
+<% if controller_name == 'users' %>
     <%= t( 'admin.users.title' ).singularize %>:
   <% if current_user_can? :add, :users %>
-    <%= link_to t( 'add'  ), new_user_path %> /
+    <%= link_to t( 'add'  ), main_app.new_user_path %> /
   <% end %>
   <% if @user_profile.present? && current_user_can?( :edit, :users ) %>
-    <%= link_to t( 'edit' ), edit_user_path( @user_profile ) %> /
+    <%= link_to t( 'edit' ), main_app.edit_user_path( @user_profile ) %> /
   <% end %>
   <% if current_user_can? :list, :users %>
-    <%= link_to t( 'list' ), users_path %>
+    <%= link_to t( 'list' ), main_app.users_path %>
   <% end %>
     |
 <% end %>
@@ -57,28 +25,28 @@
   <%= t( 'admin.discussion.title' ) %>:
 <% if current_user_can? :hide, :discussions %>
   <% if @discussion.hidden? %>
-    <%= link_to t( 'show' ), show_discussion_path( @discussion ) %>
+    <%= link_to t( 'show' ), main_app.show_discussion_path( @discussion ) %>
   <% else %>
-    <%= link_to t( 'hide' ), hide_discussion_path(   @discussion ) %>
+    <%= link_to t( 'hide' ), main_app.hide_discussion_path(   @discussion ) %>
   <% end %>
     /
 <% end %>
 <% if current_user_can? :lock, :discussions %>
   <% if @discussion.locked? %>
-    <%= link_to t( 'unlock' ), unlock_discussion_path( @discussion ) %>
+    <%= link_to t( 'unlock' ), main_app.unlock_discussion_path( @discussion ) %>
   <% else %>
-    <%= link_to t( 'lock'   ), lock_discussion_path(   @discussion ) %>
+    <%= link_to t( 'lock'   ), main_app.lock_discussion_path(   @discussion ) %>
   <% end %>
 <% end %>
     |
 <% end %>
 
     <% if Rails.env.development? %>
-    <%= link_to t( 'admin.letter_opener_web' ), letter_opener_web_path %>
+    <%= link_to t( 'admin.letter_opener_web' ), main_app.letter_opener_web_path %>
     |
     <% end %>
     <% if current_user_can? :view_admin_area %>
-    <%= link_to t( 'admin.admin_area' ), admin_path %>
+    <%= link_to t( 'admin.admin_area' ), main_app.admin_path %>
     <% end %>
   </div>
 </nav>

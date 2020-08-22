@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     ########################################
     # Main site
 
-    root to: 'pages#index'
+    # TODO: figure out what to do here if ShinyPages isn't loaded...
+    root to: 'shiny_pages/pages#index' if defined? ShinyPages
 
     get  'discussions',            to: 'discussions#index', as: :discussions
     get  'discussion/:id',         to: 'discussions#show',  as: :discussion
@@ -73,32 +74,15 @@ Rails.application.routes.draw do
       get 'feature-flags', to: 'feature_flags#index'
       put 'feature-flags', to: 'feature_flags#update'
 
-      # Pages
-      get  :pages, to: 'pages#index'
-      post :page,  to: 'pages#create', as: :create_page
-      resources :page, controller: :pages, except: EXCEPT
-
-      scope path: :pages, module: :pages, as: :page do
-        get :sections,  to: 'sections#index'
-        resources :section,  controller: :sections, except: EXCEPT
-        get :templates, to: 'templates#index'
-        resources :template, controller: :templates, except: EXCEPT
-      end
-      post 'pages/section',   to: 'pages/sections#create',
-                              as: :create_page_section
-      post 'pages/template',  to: 'pages/templates#create',
-                              as: :create_page_template
-
       # Site settings
       get 'site-settings', to: 'site_settings#index', as: :admin_site_settings
       put 'site-settings', to: 'site_settings#update'
 
       # Stats
-      get 'web-stats',                to: 'web_stats#index'
-      get 'web-stats/user/:user_id',  to: 'web_stats#index', as: :user_web_stats
-      get 'email-stats',                to: 'email_stats#index'
-      get 'email-stats/user/:user_id',  to: 'email_stats#index',
-                                        as: :user_email_stats
+      get 'email-stats',               to: 'email_stats#index'
+      get 'email-stats/user/:user_id', to: 'email_stats#index', as: :user_email_stats
+      get 'web-stats',                 to: 'web_stats#index'
+      get 'web-stats/user/:user_id',   to: 'web_stats#index',   as: :user_web_stats
 
       # Users
       get  :users, to: 'users#index'
@@ -132,9 +116,10 @@ Rails.application.routes.draw do
     end
 
     ###########################################################################
-    # This final catch-all route passes through to the Pages controller.
-    # This makes it possible to have pages and sections at the top level
-    # e.g. /foo instead of /pages/foo
-    get '*path', to: 'pages#show'
+    # This catch-all route matches anything and everything not already matched by a route defined before it.
+    # It has to be the last route set up, because it hijacks anything that reaches it.
+    # This makes it possible to have pages and sections at the top level, e.g. /foo instead of /pages/foo
+    # TODO: figure out how to load a route last for the whole app, from inside a plugin's routes.rb
+    get '*path', to: 'shiny_pages/pages#show' if defined? ShinyPages
   end
 end

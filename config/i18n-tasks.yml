@@ -19,7 +19,7 @@ data:
     - config/locales/%{locale}.yml
     ## More files (e.g. include Devise translations):
     - config/locales/**/*.%{locale}.yml
-    ## ShinyCMS plugins
+    ## ShinyCMS plugins that need explicitly pointing out for some reason
     - plugins/ShinyProfiles/config/locales/%{locale}.yml
 
   # Locale files to write new keys to, based on a list of key pattern => file rules. Matched from top to bottom:
@@ -98,6 +98,9 @@ search:
 
 ## Do not consider these keys missing:
 ignore_missing:
+  # I have no idea
+  - shiny_pages.admin.pages.index.title
+  - shiny_pages.admin.pages.new.title
   # jQuery
   - date.month_names
   - error
@@ -107,6 +110,8 @@ ignore_missing:
 
 ## Consider these keys used:
 ignore_unused:
+  # These are used by a couple of plugins, I think it makes sense to leave them in core locale for now
+  - admin.elements.{html,image,long_text,short_text}
   # Devise
   - devise.*
   - errors.messages.*

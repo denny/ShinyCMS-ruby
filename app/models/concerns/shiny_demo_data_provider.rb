@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Provides .name method for anything with public_name and internal_name attributes
+# Volunteers for data dumping duty!
 module ShinyDemoDataProvider
   extend ActiveSupport::Concern
 

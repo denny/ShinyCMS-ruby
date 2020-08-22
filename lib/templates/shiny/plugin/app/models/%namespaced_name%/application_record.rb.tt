@@ -7,6 +7,9 @@
     def url_helpers
       #{camelized_modules}::Engine.routes.url_helpers
     end
+    def self.capability_category_name
+      #{name}
+    end
   end
 rb
 %>

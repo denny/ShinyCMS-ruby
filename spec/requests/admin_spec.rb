@@ -44,15 +44,15 @@ RSpec.describe 'Admin controller:', type: :request do
       sign_in admin
 
       Setting.find_by( name: 'post_login_redirect' )
-             .values.create!( user_id: admin.id, value: '/admin/page/new' )
+             .values.create!( user_id: admin.id, value: '/admin/pages/new' )
 
       get admin_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to new_page_path
+      expect( response      ).to redirect_to shiny_pages.new_page_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.new.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.pages.new.title' ).titlecase
     end
   end
 
@@ -66,10 +66,10 @@ RSpec.describe 'Admin controller:', type: :request do
       get admin_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to pages_path
+      expect( response      ).to redirect_to shiny_pages.pages_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.pages.index.title' ).titlecase
     end
 
     it 'redirects to the main site when a non-matching admin IP list is set' do
@@ -89,12 +89,12 @@ RSpec.describe 'Admin controller:', type: :request do
   end
 
   describe 'GET /admin redirects to the appropriate admin area for:' do
-    include_examples '/admin redirect', 'page_admin', '/admin/pages', 'pages'
-    include_examples '/admin redirect', 'user_admin', '/admin/users', 'users'
-    include_examples '/admin redirect', 'settings_admin', '/admin/site-settings', 'site_settings'
-
+    include_examples '/admin redirect', 'page_admin', '/admin/pages',      'pages',      'shiny_pages'
     include_examples '/admin redirect', 'blog_admin', '/admin/blog_posts', 'blog_posts', 'shiny_blog'
     include_examples '/admin redirect', 'form_admin', '/admin/forms',      'forms',      'shiny_forms'
     include_examples '/admin redirect', 'news_admin', '/admin/news_posts', 'news_posts', 'shiny_news'
+
+    include_examples '/admin redirect', 'user_admin', '/admin/users', 'users'
+    include_examples '/admin redirect', 'settings_admin', '/admin/site-settings', 'site_settings'
   end
 end
