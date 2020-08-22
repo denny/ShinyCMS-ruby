@@ -7,13 +7,13 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
 
 ## Features
 
-* Pages and Page Sections
-  * Site admins can add as many pages and (nested) sections as they like
-  * Pages have defined content areas which can be edited by admins
-  * Page layout is controlled by Page Templates (can be provided by a theme or custom-built)
-  * Dynamically generated menus
 * Plugin architecture for an increasing number of features
   * Plugins currently included:
+    * Pages and Page Sections
+      * Site admins can add as many pages and (nested) sections as they like
+      * Pages have defined content areas which can be edited by admins
+      * Page layout is controlled by Page Templates (can be provided by a theme or custom-built)
+      * Dynamically generated menus
     * News section
     * Blog
     * Inserts (re-usable content fragments that can be pulled into any template)
@@ -23,9 +23,8 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
   * [Write your own plugins](docs/Developer/Plugins.md) to add custom functionality
     * Plugin generator included: `rails g shiny:plugin plugins/ShinyThing` to get started
 * Support for [themes](docs/Themes.md) on the hosted site
-  * Light-lift theme system
-    * You only need to override the default templates that you want to change
-  * Themes currently included:
+  * Light-lift theme system - you only need to override the default templates that you want to change
+  * Two themes currently included:
     * Halcyonic (one, two, and three column layouts; suitable for content-rich sites)
     * Coming Soon (single page with mailing list sign-up form and slideshow background)
 * Comments (currently enabled on blog posts and news posts)
