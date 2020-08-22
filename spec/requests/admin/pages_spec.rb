@@ -120,10 +120,11 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.pages.edit.title' ).titlecase
 
-      expect( response.body ).to match %r{<input [^>]*value="SHORT!"[^>]*>}
-      expect( response.body ).to match %r{<textarea [^>]+>\nLONG!</textarea>}
-      expect( response.body ).to match %r{<option [^>]+>spiral.png</option>}
+      expect( response.body ).to have_field 'page[elements_attributes][4][content]', type: 'text',     with: 'SHORT!'
+      expect( response.body ).to have_field 'page[elements_attributes][5][content]', type: 'textarea', with: 'LONG!'
+      expect( response.body ).to have_field 'page[elements_attributes][6][content]', type: 'select',   with: 'ShinyCMS-logo.png'
 
+      expect( response.body ).to have_field 'page[elements_attributes][7][content]', type: 'textarea', with: 'HTML!'
       CKE_REGEX = %r{<textarea [^>]*id="(?<cke_id>page_elements_attributes_\d+_content)"[^>]*>\nHTML!</textarea>}.freeze
       matches = response.body.match CKE_REGEX
       expect( response.body ).to include "CKEDITOR.replace('#{matches[:cke_id]}'"
