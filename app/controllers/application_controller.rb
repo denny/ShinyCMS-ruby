@@ -110,8 +110,8 @@ class ApplicationController < ActionController::Base
     prepend_view_path 'app/views/shinycms'
 
     # Add the default templates directory for any loaded plugins above that
-    Plugin.loaded.each do |plugin|
-      prepend_view_path "plugins/#{plugin.name}/app/views/#{plugin.name.underscore}"
+    Plugin.with_views.each do |plugin|
+      prepend_view_path plugin.view_path
     end
 
     # Add the templates directory for the currently active theme (if any) above all default templates
