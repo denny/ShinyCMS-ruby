@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_for :page_section, url: create_page_section_path, method: :post do |f| %>
+<%= form_for :page_section, url: shiny_pages.sections_path, method: :post do |f| %>
   <p>
     <%= f.label :internal_name %><br>
     <%= f.text_field :internal_name %>
@@ -19,7 +19,7 @@
   </p>
   <p>
     <%= f.label :section_id, 'Section' %>
-    <br><%= f.select :section_id, PageSection.pluck( :internal_name, :id ),
+    <br><%= f.select :section_id, ShinyPages::Section.pluck( :internal_name, :id ),
             { include_blank: 'None' } %>
   </p>
   <p>

@@ -74,7 +74,16 @@ module ShinyPages
       menu_pages.present? || menu_sections.present?
     end
 
+    # Specify policy class for Pundit
+    def policy_class
+      self.class.policy_class
+    end
+
     # Class methods
+
+    def self.policy_class
+      ShinyPages::SectionPolicy
+    end
 
     def self.all_top_level_sections
       ShinyPages::Section.top_level
@@ -95,10 +104,6 @@ module ShinyPages
                         .or( top_level_sections
                         .where( slug: name_or_slug ) )
                         .first
-    end
-
-    def self.capability_category_name
-      'page_sections'
     end
   end
 end

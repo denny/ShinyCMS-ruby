@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_for @template, url: page_template_path( @template ), method: :put do |f| %>
+<%= form_for @template, url: shiny_pages.template_path( @template ), method: :put do |f| %>
   <p>
     <%= f.label :name %>
     <br><%= f.text_field :name %>
@@ -11,7 +11,7 @@
   </p>
   <p>
     <%= f.label :filename, 'Template file' %>
-    <br><%= f.select :filename, PageTemplate.available_templates %>
+    <br><%= f.select :filename, ShinyPages::Template.available_templates %>
   </p>
   <%= f.fields_for :elements do |fields| %>
   <p>

@@ -50,7 +50,16 @@ module ShinyPages
       end
     end
 
+    # Specify policy class for Pundit
+    def policy_class
+      self.class.policy_class
+    end
+
     # Class methods
+
+    def self.policy_class
+      ShinyPages::TemplatePolicy
+    end
 
     def self.template_dir
       return if Theme.current.blank?
@@ -75,10 +84,6 @@ module ShinyPages
       in: ShinyPages::Template.available_templates,
       message: I18n.t( 'models.page_template.template_file_must_exist' )
     }
-
-    def self.capability_category_name
-      'page_templates'
-    end
 
     private
 

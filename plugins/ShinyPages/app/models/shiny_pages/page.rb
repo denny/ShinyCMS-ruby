@@ -61,7 +61,16 @@ module ShinyPages
       self == ShinyPages::Page.default_page
     end
 
+    # Specify policy class for Pundit
+    def policy_class
+      self.class.policy_class
+    end
+
     # Class methods
+
+    def self.policy_class
+      ShinyPages::PagePolicy
+    end
 
     def self.all_top_level_pages
       ShinyPages::Page.top_level

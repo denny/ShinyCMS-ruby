@@ -1,4 +1,4 @@
-  <% item_is_section = ( page_item.class.name == 'PageSection' ) %>
+  <% item_is_section = ( page_item.is_a? ShinyPages::Section ) %>
   <tr>
     <% if page_item.hidden? %>
     <td style="padding-left: <%= indent %>em;" class="hidden">
@@ -13,12 +13,12 @@
     <td class="actions">
       <%= link_to t( 'view'   ), "#{view_path}/#{page_item.slug}" %>
       <% if item_is_section %>
-      <%= link_to t( 'edit'   ), edit_page_section_path( page_item ) %>
-      <%= link_to t( 'delete' ), page_section_path( page_item ),
+      <%= link_to t( 'edit'   ), shiny_pages.edit_section_path( page_item ) %>
+      <%= link_to t( 'delete' ), shiny_pages.section_path( page_item ),
           method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       <% else %>
-      <%= link_to t( 'edit'   ), edit_page_path( page_item ) %>
-      <%= link_to t( 'delete' ), page_path( page_item ),
+      <%= link_to t( 'edit'   ), shiny_pages.edit_page_path( page_item ) %>
+      <%= link_to t( 'delete' ), shiny_pages.page_path( page_item ),
           method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       <% end %>
     </td>

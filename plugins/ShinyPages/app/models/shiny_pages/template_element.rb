@@ -9,9 +9,5 @@ module ShinyPages
     belongs_to :template, inverse_of: :elements
 
     validates :template, presence: true
-
-    def self.capability_category_name
-      'page_templates'
-    end
   end
 end

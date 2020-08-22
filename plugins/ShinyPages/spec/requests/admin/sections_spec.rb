@@ -10,40 +10,40 @@ RSpec.describe 'Admin: Page Sections', type: :request do
 
   describe 'GET /admin/pages/sections' do
     it 'redirects to the combined pages+sections list' do
-      get page_sections_path
+      get shiny_pages.sections_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to pages_path
+      expect( response      ).to redirect_to shiny_pages.pages_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.pages.index.title' ).titlecase
     end
   end
 
   describe 'GET /admin/pages/section/new' do
     it 'loads the form to add a new section' do
-      get new_page_section_path
+      get shiny_pages.new_section_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.sections.new.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.sections.new.title' ).titlecase
     end
   end
 
   describe 'POST /admin/pages/section/new' do
     it 'fails when the form is submitted without all the details' do
-      post create_page_section_path, params: {
+      post shiny_pages.sections_path, params: {
         page_section: {
           public_name: Faker::Books::CultureSeries.unique.culture_ship
         }
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.sections.new.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.sections.create.failure' )
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.sections.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_pages.admin.sections.create.failure' )
     end
 
     it 'fails if top-level section slug collides with a controller namespace' do
-      post create_page_section_path, params: {
+      post shiny_pages.sections_path, params: {
         page_section: {
           internal_name: Faker::Books::CultureSeries.unique.culture_ship,
           slug: 'tags'
@@ -51,13 +51,14 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.sections.new.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.sections.create.failure' )
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.sections.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_pages.admin.sections.create.failure' )
     end
 
     it 'adds a new section when the form is submitted' do
       ship_name = Faker::Books::CultureSeries.unique.culture_ship
-      post create_page_section_path, params: {
+
+      post shiny_pages.sections_path, params: {
         page_section: {
           internal_name: ship_name,
           slug: ship_name.parameterize
@@ -65,11 +66,11 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to edit_page_section_path( PageSection.last )
+      expect( response      ).to redirect_to shiny_pages.edit_section_path( ShinyPages::Section.last )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.sections.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.sections.create.success' )
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.sections.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_pages.admin.sections.create.success' )
     end
   end
 
@@ -77,10 +78,10 @@ RSpec.describe 'Admin: Page Sections', type: :request do
     it 'loads the form to edit an existing section' do
       section = create :page_section
 
-      get edit_page_section_path( section )
+      get shiny_pages.edit_section_path( section )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.sections.edit.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.sections.edit.title' ).titlecase
     end
   end
 
@@ -88,33 +89,33 @@ RSpec.describe 'Admin: Page Sections', type: :request do
     it 'fails to update the section when submitted without all the details' do
       section = create :page_section
 
-      put page_section_path( section ), params: {
+      put shiny_pages.section_path( section ), params: {
         page_section: {
           internal_name: nil
         }
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.sections.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.sections.update.failure' )
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.sections.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_pages.admin.sections.update.failure' )
     end
 
     it 'updates the section when the form is submitted' do
       section = create :page_section
 
-      put page_section_path( section ), params: {
+      put shiny_pages.section_path( section ), params: {
         page_section: {
           internal_name: 'Updated by test'
         }
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to edit_page_section_path( section )
+      expect( response      ).to redirect_to shiny_pages.edit_section_path( section )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.sections.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.pages.sections.update.success' )
-      expect( response.body ).to have_field 'page_section_internal_name', with: 'Updated by test'
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.sections.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_pages.admin.sections.update.success' )
+      expect( response.body ).to have_field 'section[internal_name]', with: 'Updated by test'
     end
   end
 
@@ -124,28 +125,29 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       s2 = create :page_section
       s3 = create :page_section
 
-      delete page_section_path( s2 )
+      delete shiny_pages.section_path( s2 )
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to pages_path
+      expect( response      ).to     redirect_to shiny_pages.pages_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.pages.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.pages.sections.destroy.success' )
+      expect( response.body ).to     have_title I18n.t( 'shiny_pages.admin.pages.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success',
+                                              text: I18n.t( 'shiny_pages.admin.sections.destroy.success' )
       expect( response.body ).to     have_css 'td', text: s1.internal_name
       expect( response.body ).not_to have_css 'td', text: s2.internal_name
       expect( response.body ).to     have_css 'td', text: s3.internal_name
     end
 
     it 'fails gracefully when attempting to delete a non-existent section' do
-      delete page_section_path( 999 )
+      delete shiny_pages.section_path( 999 )
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to pages_path
+      expect( response      ).to redirect_to shiny_pages.pages_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.pages.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.pages.sections.destroy.failure' )
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.pages.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_pages.admin.sections.destroy.failure' )
     end
   end
 end

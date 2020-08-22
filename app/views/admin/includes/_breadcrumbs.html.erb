@@ -11,26 +11,17 @@
     <li class="breadcrumb-item"><%= link_to t( 'admin.stats.title' ), blazer.root_path %></li>
 
   <%# ShinyCMS plugins %>
-  <% elsif plugin_name != 'Admin' && plugin_name != 'RailsEmailPreview' %>
+  <% elsif Plugin.loaded_names.include? plugin_name %>
     <li class="breadcrumb-item">
       <%= link_to t( "#{plugin_name.underscore}.admin.#{controller_name}.title" ),
           ::Plugin.new( plugin_name ).admin_index_path( controller_name ) %>
     </li>
 
-  <%# TODO: handle nested controllers: Pages::Sections, etc %>
-  <%# For now, here is a cheap bodge, which I genuinely feel bad about.  %>
-  <% elsif controller_name == 'sections' %>
-    <li class="breadcrumb-item"><%= link_to t( 'admin.pages.title'          ), pages_path %></li>
-    <li class="breadcrumb-item"><%= link_to t( 'admin.pages.sections.title' ), pages_path %></li>
-
-  <% elsif controller_name == 'templates' %>
-    <li class="breadcrumb-item"><%= link_to t( 'admin.pages.title'           ), pages_path %></li>
-    <li class="breadcrumb-item"><%= link_to t( 'admin.pages.templates.title' ), page_templates_path %></li>
-
-  <%# ShinyCMS admin controllers (not plugins, not nested) %>
+  <%# ShinyCMS core features %>
   <% else %>
-    <li class="breadcrumb-item"><%= link_to t( "admin.#{controller_name}.title" ),
-                                    controller: controller_name, action: :index %></li>
+    <li class="breadcrumb-item">
+      <%= link_to t( "admin.#{controller_name}.title" ), controller: controller_name, action: :index %>
+    </li>
   <% end %>
 
     <li class="breadcrumb-item active"><%= @page_title.titlecase %></li>

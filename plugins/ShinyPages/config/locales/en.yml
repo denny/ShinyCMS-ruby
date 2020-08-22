@@ -11,7 +11,7 @@
 
 en:
   feature_flags:
-    shiny_pages: ShinyPages
+    pages: Pages
 
   settings:
     default_page: Default page
@@ -24,9 +24,6 @@ en:
       page_templates: Page Templates
 
   shiny_pages:
-    page:
-      template_file_missing: Unable to display page; its template file is missing.
-
     admin:
       pages:
         title: Pages
@@ -46,40 +43,43 @@ en:
           success: Page deleted
           failure: Failed to delete page
 
-        sections:
-          title: Page sections
-          new:
-            title: Add new section
-          edit:
-            title: Edit section
-          create:
-            success: New section added
-            failure: Failed to add new section
-          update:
-            success: Section details updated
-            failure: Failed to update section details
-          destroy:
-            success: Section deleted
-            failure: Failed to section page
+      sections:
+        title: Page sections
+        new:
+          title: Add new section
+        edit:
+          title: Edit section
+        create:
+          success: New section added
+          failure: Failed to add new section
+        update:
+          success: Section details updated
+          failure: Failed to update section details
+        destroy:
+          success: Section deleted
+          failure: Failed to section page
 
-        templates:
-          title: Page templates
-          index:
-            title: List templates
-          new:
-            title: Add new template
-          edit:
-            title: Edit template
-          create:
-            success: New template added
-            failure: Failed to add new template
-          update:
-            success: Template details updated
-            failure: Failed to update template details
-          destroy:
-            success: Template deleted
-            failure: Failed to delete template
+      templates:
+        title: Page templates
+        index:
+          title: List templates
+        new:
+          title: Add new template
+        edit:
+          title: Edit template
+        create:
+          success: New template added
+          failure: Failed to add new template
+        update:
+          success: Template details updated
+          failure: Failed to update template details
+        destroy:
+          success: Template deleted
+          failure: Failed to delete template
+
+    page:
+      template_file_missing: 'Unable to display page; its template file is missing.'
 
   models:
     page_template:
-      template_file_must_exist: The template file must be in app/views/themes/{your theme}/pages/templates
+      template_file_must_exist: 'The template file must be in app/views/themes/{your theme}/pages/templates'

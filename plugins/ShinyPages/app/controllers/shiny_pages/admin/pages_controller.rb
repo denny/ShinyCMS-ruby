@@ -10,68 +10,71 @@
 # ShinyCMS is free software; you can redistribute it and/or
 # modify it under the terms of the GPL (version 2 or later).
 # ============================================================================
-class Admin::PagesController < AdminController
-  def index
-    authorise Page
-    authorise PageSection
-    @top_level_items = Page.all_top_level_items
-    @top_level_items.each do |item|
-      authorise item
+module ShinyPages
+  # Admin controller for pages - ShinyPages plugin for ShinyCMS
+  class Admin::PagesController < AdminController
+    def index
+      authorise ShinyPages::Page
+      authorise ShinyPages::Section
+      @top_level_items = ShinyPages::Page.all_top_level_items
+      @top_level_items.each do |item|
+        authorise item
+      end
     end
-  end
 
-  def new
-    @page = Page.new
-    authorise @page
-  end
-
-  def create
-    @page = Page.new( page_params )
-    authorise @page
-
-    if @page.save
-      redirect_to edit_page_path( @page ), notice: t( '.success' )
-    else
-      flash.now[ :alert ] = t( '.failure' )
-      render action: :new
+    def new
+      @page = ShinyPages::Page.new
+      authorise @page
     end
-  end
 
-  def edit
-    @page = Page.find( params[:id] )
-    authorise @page
-  end
+    def create
+      @page = ShinyPages::Page.new( page_params )
+      authorise @page
 
-  def update
-    @page = Page.find( params[:id] )
-    authorise @page
-
-    if @page.update( page_params )
-      redirect_to edit_page_path( @page ), notice: t( '.success' )
-    else
-      flash.now[ :alert ] = t( '.failure' )
-      render action: :edit
+      if @page.save
+        redirect_to shiny_pages.edit_page_path( @page ), notice: t( '.success' )
+      else
+        flash.now[ :alert ] = t( '.failure' )
+        render action: :new
+      end
     end
-  end
 
-  def destroy
-    page = Page.find( params[:id] )
-    authorise page
+    def edit
+      @page = ShinyPages::Page.find( params[:id] )
+      authorise @page
+    end
 
-    flash[ :notice ] = t( '.success' ) if page.destroy
-    redirect_to pages_path
-  rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-    skip_authorization
-    redirect_to pages_path, alert: t( '.failure' )
-  end
+    def update
+      @page = ShinyPages::Page.find( params[:id] )
+      authorise @page
 
-  private
+      if @page.update( page_params )
+        redirect_to shiny_pages.edit_page_path( @page ), notice: t( '.success' )
+      else
+        flash.now[ :alert ] = t( '.failure' )
+        render action: :edit
+      end
+    end
 
-  def page_params
-    params.require( :page ).permit(
-      :internal_name, :public_name, :slug, :description, :template_id, :section_id,
-      :sort_order, :show_on_site, :show_in_menus,
-      elements_attributes: {}
-    )
+    def destroy
+      page = ShinyPages::Page.find( params[:id] )
+      authorise page
+
+      flash[ :notice ] = t( '.success' ) if page.destroy
+      redirect_to shiny_pages.pages_path
+    rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
+      skip_authorization
+      redirect_to shiny_pages.pages_path, alert: t( '.failure' )
+    end
+
+    private
+
+    def page_params
+      params.require( :page ).permit(
+        :internal_name, :public_name, :slug, :description, :template_id, :section_id,
+        :sort_order, :show_on_site, :show_in_menus,
+        elements_attributes: {}
+      )
+    end
   end
 end

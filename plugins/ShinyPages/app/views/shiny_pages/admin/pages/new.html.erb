@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_for :page, url: create_page_path, method: :post do |f| %>
+<%= form_for :page, url: shiny_pages.pages_path, method: :post do |f| %>
   <p>
     <%= f.label :internal_name %><br>
     <%= f.text_field :internal_name %>
@@ -19,11 +19,11 @@
   </p>
   <p>
     <%= f.label :template_id, 'Template' %>
-    <br><%= f.select :template_id, PageTemplate.pluck( :name, :id ) %>
+    <br><%= f.select :template_id, ShinyPages::Template.pluck( :name, :id ) %>
   </p>
   <p>
     <%= f.label :section_id, 'Section' %>
-    <br><%= f.select :section_id, PageSection.pluck( :internal_name, :id ),
+    <br><%= f.select :section_id, ShinyPages::Section.pluck( :internal_name, :id ),
             { include_blank: 'None' } %>
   </p>
   <p>
