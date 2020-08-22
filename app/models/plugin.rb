@@ -28,6 +28,12 @@ class Plugin
     File.exist? Rails.root.join "plugins/#{name}/app/views/#{name.underscore}/#{template_path}"
   end
 
+  def view_path
+    return unless File.exist? Rails.root.join( "plugins/#{name}/app/views/" )
+
+    "plugins/#{name}/app/views/#{name.underscore}"
+  end
+
   def admin_index_path( area = nil )
     path_part = area || name.underscore.sub( 'shiny_', '' )
 
@@ -59,8 +65,12 @@ class Plugin
     loaded.select( &:main_site_helper )
   end
 
-  def self.with_base_models
+  def self.with_models
     loaded.select( &:base_model )
+  end
+
+  def self.with_views
+    loaded.select( &:view_path )
   end
 
   def self.loaded_names
