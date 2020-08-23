@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyInserts plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyInserts/config/routes.rb
-# Purpose:   Routes for ShinyInserts plugin
+# ShinyInserts plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye (https://denny.me)
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 ShinyInserts::Engine.routes.draw do
   scope format: false do
