@@ -15,9 +15,6 @@ class EmailRecipient < ApplicationRecord
 
   has_many :messages, class_name: 'Ahoy::Message', as: :user, dependent: :nullify
 
-  has_many :subscriptions, inverse_of: :subscriber, dependent: :destroy
-  has_many :lists, through: :subscriptions
-
   # Validations
 
   validates :name,  presence: true
