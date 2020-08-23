@@ -13,7 +13,7 @@
 
 module ShinyNews
   # Main site controller for news section - provided by ShinyNews plugin for ShinyCMS
-  class NewsController < ApplicationController
+  class NewsController < MainController
     before_action :check_feature_flags
 
     def index

@@ -15,7 +15,7 @@ require_dependency 'shiny_forms/application_controller'
 
 module ShinyForms
   # Main site controller for form handlers, provided by ShinyForms plugin for ShinyCMS
-  class FormsController < ApplicationController
+  class FormsController < MainController
     before_action :check_feature_flags
     before_action :set_form, only: %i[ process_form ]
 

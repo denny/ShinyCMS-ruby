@@ -13,7 +13,7 @@
 
 module ShinyBlog
   # Main site controller for blog - provided by ShinyBlog plugin for ShinyCMS
-  class BlogController < ApplicationController
+  class BlogController < MainController
     before_action :check_feature_flags
 
     def index
