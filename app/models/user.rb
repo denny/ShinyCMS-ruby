@@ -29,8 +29,6 @@ class User < ApplicationRecord
 
   # End-user content: destroy it along with their account
   has_many :comments, dependent: :destroy
-  has_many :subscriptions, as: :subscriber, dependent: :destroy
-  has_many :lists, through: :subscriptions
 
   # Validations
 
