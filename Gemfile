@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 # Supporting methods for loading ShinyCMS plugin gems
 def plugin_names
   return ENV[ 'SHINYCMS_PLUGINS' ].split( /[, ]+/ ) if ENV[ 'SHINYCMS_PLUGINS' ]
@@ -15,6 +21,7 @@ def underscore( camel_cased_word )
   word.downcase
 end
 
+# The actual Gemfile!
 source 'https://rubygems.org' do
   gem 'rails', '~> 6.0.3'
 
@@ -97,12 +104,11 @@ source 'https://rubygems.org' do
   # Better-looking console output
   gem 'amazing_print'
 
-  # Pry is a debugging tool
-  # Uncomment it here if you want to use it on the Rails console in production
+  # Pry is a debugging tool - uncomment it here if you want to use it on the Rails console in production
   gem 'pry-rails'
 
   group :development, :test do
-    # Debugging tool. Uncomment it here if you commented it out in production.
+    # You can enable Pry here if you commented it out in production.
     # gem 'pry-rails'
     # Create test objects
     gem 'factory_bot_rails'

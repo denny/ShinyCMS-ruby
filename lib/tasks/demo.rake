@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
-# ShinyCMS tasks for setting up a demo site
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 require 'dotenv/tasks'
+
+# ShinyCMS tasks for setting up a demo site
 
 # rails shiny:demo:load
 # - resets the database

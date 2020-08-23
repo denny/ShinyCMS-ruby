@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
-# Load ShinyCMS routes inside engines (e.g. Blazer)
-# (Approach copied from RailsEmailPreview, which has this feature built in)
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Load ShinyCMS routes inside uncooperative engines - e.g. Blazer
+# (Inspired by RailsEmailPreview, which has this feature built in)
 module MainAppRouteDelegator
   def method_missing( method, *args, &block )
     if main_app_route_method?( method )

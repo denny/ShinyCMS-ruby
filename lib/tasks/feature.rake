@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
-# ShinyCMS feature flag administration tasks
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 require 'dotenv/tasks'
 
-# List feature flags and status
-# rails shiny:features:list
+# ShinyCMS feature flag administration tasks
 
-# Turn a feature on (for all user types)
-# rails shiny:feature:on[user_login]
-
-# Turn a feature off (for all user types)
-# rails shiny:feature:off[user_profiles]
+# List all feature flags with on/off status: rails shiny:features:list
+# Turn a feature on  (for all user types):   rails shiny:feature:on[user_login]
+# Turn a feature off (for all user types):   rails shiny:feature:off[user_profiles]
 
 namespace :shiny do
   namespace :features do

@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Config for test suite (anything that might be needed by non-Rails tests as well as Rails tests)
+
 require 'simplecov'
 SimpleCov.start do
   add_filter '/spec/'

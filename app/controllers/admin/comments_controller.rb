@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyCMS (Ruby version)
-# File:      app/controllers/admin/comments_controller.rb
-# Purpose:   Controller for ShinyCMS comment admin features
+# ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Controller for ShinyCMS comment admin features
 class Admin::CommentsController < AdminController
   include AkismetHelper
   include MainSiteHelper

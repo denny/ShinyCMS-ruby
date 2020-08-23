@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyCMS (Ruby version)
-# File:      app/controllers/discussion_controller.rb
-# Purpose:   Controller for discussion and comment features on a ShinyCMS site
+# ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Controller for discussion and comment features on a ShinyCMS site
 class DiscussionsController < MainController
   include AkismetHelper
   include RecaptchaHelper
