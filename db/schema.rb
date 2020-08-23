@@ -240,15 +240,6 @@ ActiveRecord::Schema.define(version: 2020_08_22_150557) do
     t.index ["name"], name: "index_feature_flags_on_name", unique: true
   end
 
-  create_table "mailing_lists", force: :cascade do |t|
-    t.string "internal_name", null: false
-    t.string "public_name"
-    t.string "slug", null: false
-    t.boolean "is_public", default: false, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
     t.string "searchable_type"
@@ -396,14 +387,6 @@ ActiveRecord::Schema.define(version: 2020_08_22_150557) do
     t.string "name", null: false
     t.text "description"
     t.string "filename", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.bigint "list_id", null: false
-    t.bigint "subscriber_id", null: false
-    t.string "subscriber_type", default: "EmailRecipient", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

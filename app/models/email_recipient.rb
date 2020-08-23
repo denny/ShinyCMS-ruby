@@ -6,7 +6,7 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Store details of mailing list subscribers who aren't authenticated users
+# Store details of people you send email to, who don't have a user account (e.g. newsletter subscribers)
 class EmailRecipient < ApplicationRecord
   include ShinyDemoDataProvider
   include ShinyEmail
