@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyPages plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyPages/app/policies/shiny_pages/section_policy.rb
-# Purpose:   Pundit policy for admin area features
+# ShinyPages plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyPages
   # Pundit policy for pages - part of the ShinyPages plugin for ShinyCMS

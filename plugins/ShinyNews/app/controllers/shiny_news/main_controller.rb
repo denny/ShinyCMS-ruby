@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# ShinyCMS ~ https://shinycms.org
+# ShinyNews plugin for ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
