@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyForms plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyForms/app/models/shiny_forms/application_mailer.rb
-# Purpose:   Base mailer class
+# ShinyForms plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyForms
   # Base mailer class for ShinyForms plugin for ShinyCMS

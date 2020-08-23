@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyBlog plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyBlog/lib/tasks/shiny_blog_tasks.rake
-# Purpose:   Rake tasks for ShinyBlog plugin
+# ShinyBlog plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+require 'dotenv/tasks'
 
 # To copy and run the database migrations for ShinyBlog (shiny_blog_posts table):
 # rails shiny_blog:install:migrations
@@ -19,8 +16,6 @@
 # rails shiny_blog:db:seed
 #
 # These two tasks can be run in either order.
-
-require 'dotenv/tasks'
 
 namespace :shiny_blog do
   namespace :db do
