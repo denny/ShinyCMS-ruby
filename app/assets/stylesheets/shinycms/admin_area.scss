@@ -1,18 +1,13 @@
-// ============================================================================
-// Project:   ShinyCMS (Ruby version)
-// File:      app/assets/stylesheets/shinycms/admin_area.scss
-// Purpose:   Extra styles for admin area, including minor tweaks to CoreUI
+// ShinyCMS ~ https://shinycms.org
 //
-// Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+// Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 //
-// ShinyCMS is free software; you can redistribute it and/or
-// modify it under the terms of the GPL (version 2 or later).
-// ============================================================================
+// ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+// Extra styles for admin area, including minor tweaks to CoreUI
 
 // Import styles for Rails Email Preview (powers /admin/emails feature)
-
 @import 'rails_email_preview/application';
-
 
 // ==================== ( define some colours ) ====================
 

@@ -1,19 +1,14 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyProfiles plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyProfiles/app/controllers/shiny_profiles/profiles_controller.rb
-# Purpose:   Main site controller for user profile pages
+# ShinyProfiles plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyProfiles
   # Main site controller for profile pages, provided by ShinyProfiles plugin for ShinyCMS
-  class ProfilesController < ApplicationController
+  class ProfilesController < MainController
     before_action :check_feature_flags, only: %i[ show ]
 
     def index

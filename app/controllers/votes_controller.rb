@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Controller for vote features on a ShinyCMS site
-class VotesController < ApplicationController
+class VotesController < MainController
   before_action :find_resource
   before_action :find_voter
 

@@ -1,19 +1,14 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyBlog plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyBlog/app/controllers/shiny_blog/blog_controller.rb
-# Purpose:   Main site controller for blog
+# ShinyBlog plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyBlog
   # Main site controller for blog - provided by ShinyBlog plugin for ShinyCMS
-  class BlogController < ApplicationController
+  class BlogController < MainController
     before_action :check_feature_flags
 
     def index

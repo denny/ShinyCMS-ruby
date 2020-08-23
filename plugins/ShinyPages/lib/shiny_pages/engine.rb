@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyPages plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyPages/lib/shiny_pages/engine.rb
-# Purpose:   Rails::Engine config
+# ShinyPages plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyPages
   # Loads Rails::Engine features
