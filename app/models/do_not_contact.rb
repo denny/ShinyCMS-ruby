@@ -19,12 +19,19 @@ class DoNotContact < ApplicationRecord
 
   # Class methods
 
+  def self.add( email )
+    return unless EmailAddress.valid?( email )
+
+    return :duplicate if include? email
+    return :success   if create!( email: email )
+  end
+
   def self.include?( email )
-    exists?( email: canonicalise_and_redact( email ) )
+    exists? email: canonicalise_and_redact( email )
   end
 
   def self.includes?( email )
-    include?( email )
+    include? email
   end
 
   def self.canonicalise_and_redact( email )
