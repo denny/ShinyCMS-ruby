@@ -27,8 +27,8 @@ data:
     - config/locales/%{locale}.yml
     ## More files (e.g. include Devise translations):
     - config/locales/**/*.%{locale}.yml
-    ## ShinyCMS plugins that need explicitly pointing out for some reason
-    - plugins/ShinyProfiles/config/locales/%{locale}.yml
+    ## ShinyCMS plugins
+    - plugins/Shiny*/config/locales/%{locale}.yml
 
   # Locale files to write new keys to, based on a list of key pattern => file rules. Matched from top to bottom:
   # `i18n-tasks normalize -p` will force move the keys according to these rules
@@ -66,6 +66,7 @@ search:
   paths:
     - app/
     - spec/
+    - plugins/
 
   ## Root directories for relative keys resolution.
   relative_roots:
@@ -73,9 +74,24 @@ search:
     - app/helpers
     - app/mailers
     - app/models
-  #  - app/presenters
     - app/views
     - app/views/shinycms
+    # FIXME
+    - plugins/ShinyBlog/app/controllers
+    - plugins/ShinyBlog/app/views
+    - plugins/ShinyForms/app/controllers
+    - plugins/ShinyForms/app/views
+    - plugins/ShinyInserts/app/controllers
+    - plugins/ShinyInserts/app/views
+    - plugins/ShinyLists/app/controllers
+    - plugins/ShinyLists/app/views
+    - plugins/ShinyNews/app/controllers
+    - plugins/ShinyNews/app/views
+    - plugins/ShinyPages/app/controllers
+    - plugins/ShinyPages/app/models
+    - plugins/ShinyPages/app/views
+    - plugins/ShinySearch/app/controllers
+    - plugins/ShinySearch/app/views
 
   ## Files or `File.fnmatch` patterns to exclude from search. Some files are always excluded regardless of this setting:
   ##   %w(*.jpg *.png *.gif *.svg *.ico *.eot *.otf *.ttf *.woff *.woff2 *.pdf *.css *.sass *.scss *.less *.yml *.json)

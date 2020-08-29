@@ -37,6 +37,9 @@ module ShinyForms
 
     def set_form
       @form = ShinyForms::Form.find_by( slug: params[:slug] )
+    rescue ActiveRecord::RecordNotFound
+      skip_authorization
+      redirect_to forms_path, alert: t( 'shiny_forms.forms.set_form.not_found' )
     end
 
     def form_data
