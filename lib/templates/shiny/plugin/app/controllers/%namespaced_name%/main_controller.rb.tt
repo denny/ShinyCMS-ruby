@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 <%= wrap_in_modules <<~rb
-  # Base controller for <%= camelized_modules %> main site features
+  # Base controller for #{camelized_modules} main site features
   # Inherits from ShinyCMS MainController
   class MainController < ::MainController
     helper Rails.application.routes.url_helpers

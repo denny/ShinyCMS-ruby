@@ -21,7 +21,7 @@ module ShinyPages
     end
 
     def new?
-      @this_user.can? :list, :page_templates
+      @this_user.can? :add, :page_templates
     end
 
     def create?

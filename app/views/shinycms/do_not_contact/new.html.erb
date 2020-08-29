@@ -1,0 +1,18 @@
+<% @page_title = t( '.title' ) %>
+<h2>
+  <%= t( '.heading' ) %>
+</h2>
+<p>
+  <%= t( '.explanation' ) %>
+</p>
+
+<%= form_with url: do_not_contact_path, method: :post do |f| %>
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email, type: 'email' %>
+  </p>
+
+  <p>
+    <%= f.submit t( 'add' ), class: 'button' %>
+  </p>
+<% end %>

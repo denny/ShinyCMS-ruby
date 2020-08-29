@@ -21,7 +21,7 @@ module ShinyNews
     end
 
     def new?
-      @this_user.can? :list, :news_posts
+      @this_user.can? :add, :news_posts
     end
 
     def create?

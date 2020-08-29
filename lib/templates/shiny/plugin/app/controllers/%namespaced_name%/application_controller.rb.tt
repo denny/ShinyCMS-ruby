@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+<%= wrap_in_modules <<~rb
+  # Base controller for the #{camelized_modules} plugin for ShinyCMS (see also MainController, AdminController)
+  class ApplicationController < ActionController::Base
+  end
+rb
+%>
