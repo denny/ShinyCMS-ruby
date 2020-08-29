@@ -10,11 +10,11 @@ module ShinyPages
 
     # Associations
 
-    belongs_to :section, class_name: 'ShinyPages::Section', inverse_of: :all_sections, optional: true
+    belongs_to :section, class_name: 'Section', inverse_of: :all_sections, optional: true
 
-    has_many :all_pages, class_name: 'ShinyPages::Page', inverse_of: :section, dependent: :restrict_with_error
+    has_many :all_pages, class_name: 'Page', inverse_of: :section, dependent: :restrict_with_error
 
-    has_many :all_sections, class_name: 'ShinyPages::Section', inverse_of: :section, dependent: :restrict_with_error
+    has_many :all_sections, class_name: 'Section', inverse_of: :section, dependent: :restrict_with_error
 
     # Validations
 
