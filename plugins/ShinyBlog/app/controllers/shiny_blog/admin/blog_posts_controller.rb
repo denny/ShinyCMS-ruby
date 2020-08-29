@@ -63,7 +63,7 @@ module ShinyBlog
       @post = ShinyBlog::Post.find( params[:id] )
     rescue ActiveRecord::RecordNotFound
       skip_authorization
-      redirect_to blog_posts_path, alert: t( '.not_found' )
+      redirect_to blog_posts_path, alert: t( 'shiny_blog.admin.blog_posts.set_post.not_found' )
     end
 
     def post_params

@@ -56,6 +56,5 @@ en:
           failure: Failed to update blog post
         destroy:
           success: Blog post deleted
-          failure: Failed to delete blog post
         set_post:
           not_found: Blog post not found
