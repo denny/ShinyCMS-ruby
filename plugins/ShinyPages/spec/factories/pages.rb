@@ -9,7 +9,6 @@
 FactoryBot.define do
   factory :page, class: 'ShinyPages::Page', aliases: [ :top_level_page ] do
     internal_name { Faker::Books::CultureSeries.unique.culture_ship }
-    slug   { internal_name.dup.parameterize }
     association :template, factory: :page_template
 
     trait :hidden do
