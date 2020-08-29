@@ -118,7 +118,7 @@ class User < ApplicationRecord
 
   def capabilities=( capability_set )
     old_capabilities = user_capabilities.pluck( :capability_id ).sort
-    new_capabilities = capability_set.keys.map( &:to_i ).sort
+    new_capabilities = capability_set.keys.collect( &:to_i ).sort
 
     remove = old_capabilities - new_capabilities
     add    = new_capabilities - old_capabilities
@@ -169,7 +169,7 @@ class User < ApplicationRecord
                       .capabilities
                       .find_by( name: capability.to_s )
                       .user_capabilities
-                      .map( &:user )
+                      .collect( &:user )
   end
 
   # Check whether we have at least one admin who can create more admins
