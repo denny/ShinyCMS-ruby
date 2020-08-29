@@ -9,6 +9,8 @@
 module ShinyLists
   # Model for subscriptions to mailing lists
   class Subscription < ApplicationRecord
+    include ShinyDemoDataProvider
+
     # Associations
 
     belongs_to :list,       inverse_of: :subscriptions
@@ -17,6 +19,12 @@ module ShinyLists
     # Scopes
 
     scope :active, -> { where( unsubscribed_at: nil ) }
+
+    # Instance methods
+
+    def unsubscribe
+      update( unsubscribed_at: Time.zone.now )
+    end
   end
 end
 
