@@ -14,7 +14,11 @@ RSpec.shared_examples ShinySlug do
       expect( sluggish.slug ).to be_blank
 
       sluggish.generate_slug
-      expect( sluggish.slug ).to match %r{[-\w]+}
+      if sluggish.respond_to? :title
+        expect( sluggish.slug ).to eq sluggish.title.parameterize
+      else
+        expect( sluggish.slug ).to eq sluggish.name.parameterize
+      end
     end
   end
 end
