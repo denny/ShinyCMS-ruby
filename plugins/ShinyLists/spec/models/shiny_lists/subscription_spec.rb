@@ -10,6 +10,32 @@ require 'rails_helper'
 
 module ShinyLists
   RSpec.describe Subscription, type: :model do
-    pending "add some examples to (or delete) #{__FILE__}"
+    context 'scopes' do
+      let( :list ) { create :mailing_list }
+
+      describe '.active' do
+        it 'does not include subscribers who have unsubscribed' do
+          create :mailing_list_subscription, list: list
+          create :mailing_list_subscription, list: list, unsubscribed_at: 1.day.ago
+
+          expect( list.subscriptions.active.count ).to eq 1
+        end
+      end
+    end
+
+    context 'instance methods' do
+      describe '.unsubscribe' do
+        it 'sets the unsubscribed timestamp' do
+          sub1 = create :mailing_list_subscription
+          expect( sub1.reload.unsubscribed_at ).to be nil
+          sub1.unsubscribe
+          expect( sub1.reload.unsubscribed_at ).not_to be nil
+        end
+      end
+    end
+
+    it_should_behave_like ShinyDemoDataProvider do
+      let( :model ) { described_class }
+    end
   end
 end

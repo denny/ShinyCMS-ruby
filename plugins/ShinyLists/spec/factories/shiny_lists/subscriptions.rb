@@ -9,5 +9,7 @@
 # Factory for list subscriptions - ShinyLists plugin for ShinyCMS
 FactoryBot.define do
   factory :mailing_list_subscription, class: 'ShinyLists::Subscription' do
+    association :list,       factory: :mailing_list
+    association :subscriber, factory: :email_recipient
   end
 end
