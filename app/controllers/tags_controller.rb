@@ -42,21 +42,11 @@ class TagsController < MainController
   private
 
   def taggable_models
-    Rails.application.eager_load! if Rails.env.development?
-
-    [ taggable_models_in_core + taggable_models_in_plugins ].flatten
+    [ taggable_models_in_core + Plugin.models_that_are_taggable ].flatten
   end
 
   def taggable_models_in_core
     ApplicationRecord.descendants.select( &:taggable? )
-  end
-
-  def taggable_models_in_plugins
-    taggable_plugin_models = []
-    Plugin.with_models.each do |plugin|
-      taggable_plugin_models << plugin.base_model.descendants.select( &:taggable? )
-    end
-    taggable_plugin_models
   end
 
   def check_feature_flags

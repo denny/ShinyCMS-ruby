@@ -15,10 +15,6 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def self.core_models_with_demo_data
-    model_names = []
-    descendants.each do |model|
-      model_names << model.name if model.respond_to? :dump_for_demo?
-    end
-    model_names
+    descendants.select { |model| model.respond_to?( :dump_for_demo? ) }.collect( &:name ).sort
   end
 end
