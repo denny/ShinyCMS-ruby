@@ -82,6 +82,19 @@ en:
       success: New comment posted
       failure: Failed to post new comment
 
+  do_not_contact:
+    new:
+      title: Do Not Contact list
+      heading: Add an email address to our Do Not Contact list
+      explanation: |
+        If you would prefer never to receive email from us, please enter your email address below.
+        It will be saved in an encrypted form in our database, on a list which is checked before
+        each email is sent from this site. If a match is found, the email is not sent.
+    create:
+      success: Your email address has been added to our Do Not Contact list
+      failure: Failed to add email address to Do Not Contact list; please try again
+      duplicate: Your email address is already on our Do Not Contact list
+
   errors:
     messages:
       slug_not_safe_at_top_level: cannot be used as a top-level slug
