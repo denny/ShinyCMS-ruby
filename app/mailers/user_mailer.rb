@@ -13,6 +13,9 @@ class UserMailer < ApplicationMailer
   default from: ->(*) { default_email }
   default template_path: 'user_mailer'
 
+  # Don't store URLs that might have security tokens in them in email stats data
+  track click: false
+
   def confirmation_instructions( user, token )
     @resource = @user = user
     @token = token
