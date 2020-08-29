@@ -17,11 +17,14 @@ Rails.application.routes.draw do
     # TODO: figure out what to do here if ShinyPages isn't loaded...
     root to: 'shiny_pages/pages#index' if defined? ShinyPages
 
-    get  'discussions',            to: 'discussions#index', as: :discussions
+    get  :discussions,             to: 'discussions#index', as: :discussions
     get  'discussion/:id',         to: 'discussions#show',  as: :discussion
     post 'discussion/:id',         to: 'discussions#add_comment'
     get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
     post 'discussion/:id/:number', to: 'discussions#add_reply'
+
+    get  'do-not-contact', to: 'do_not_contact#new'
+    post 'do-not-contact', to: 'do_not_contact#create'
 
     get 'site-settings', to: 'site_settings#index'
     put 'site-settings', to: 'site_settings#update'

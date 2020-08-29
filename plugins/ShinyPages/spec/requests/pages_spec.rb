@@ -38,7 +38,7 @@ RSpec.describe 'Pages', type: :request do
         get '/'
 
         expect( response      ).to have_http_status :failed_dependency
-        expect( response.body ).to include I18n.t( 'page.template_file_missing' )
+        expect( response.body ).to include I18n.t( 'shiny_pages.page.template_file_missing' )
       end
     end
 

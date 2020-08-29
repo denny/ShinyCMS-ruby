@@ -72,15 +72,24 @@
               <div class="col-4 col-12-medium imp-medium">
 
                 <section>
-                  <h2 class="right">
-                    <%= render partial: 'search/form', locals: { name: 'footer_search' } %>
+                  <% if defined? ShinySearch %>
+                  <h2>
+                    <%= t( 'shiny_search.search.new.title' ) %>
                   </h2>
                   <p>
-                    Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed. Suspendisse eu
-                    varius nibh. Suspendisse vitae magna eget odio amet mollis. Duis neque nisi,
-                    dapibus sed mattis quis, sed rutrum accumsan sed. Suspendisse eu varius nibh
-                    lorem ipsum amet dolor sit amet lorem ipsum consequat gravida justo mollis.
+                    <%= render partial: 'shiny_search/search/form', locals: { name: 'footer_search' } %>
                   </p>
+                  <% end %>
+
+                  <% if defined? ShinyLists %>
+                  <h2>
+                    <%= t( 'shiny_lists.subscribe' ) %>
+                  </h2>
+                  <p>
+                    <%= render partial: 'shiny_lists/includes/subscription_form',
+                        locals: { show_name_field: false, list: find_list_by_slug( 'newsletter' ) } %>
+                  </p>
+                  <% end %>
                 </section>
 
               </div>

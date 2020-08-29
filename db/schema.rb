@@ -18,7 +18,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_22_150557) do
+ActiveRecord::Schema.define(version: 2020_08_29_035400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -317,6 +317,29 @@ ActiveRecord::Schema.define(version: 2020_08_22_150557) do
   create_table "shiny_inserts_sets", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shiny_lists_lists", force: :cascade do |t|
+    t.string "internal_name", null: false
+    t.string "public_name"
+    t.string "slug", null: false
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shiny_lists_subscriptions", force: :cascade do |t|
+    t.bigint "list_id"
+    t.string "subscriber_type"
+    t.bigint "subscriber_id"
+    t.bigint "consent_id"
+    t.datetime "subscribed_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "unsubscribed_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["consent_id"], name: "index_shiny_lists_subscriptions_on_consent_id"
+    t.index ["list_id"], name: "index_shiny_lists_subscriptions_on_list_id"
+    t.index ["subscriber_type", "subscriber_id"], name: "shiny_lists_subscriptions_on_subscribers"
   end
 
   create_table "shiny_news_posts", force: :cascade do |t|

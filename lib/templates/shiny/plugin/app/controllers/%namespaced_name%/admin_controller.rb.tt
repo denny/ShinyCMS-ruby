@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 <%= wrap_in_modules <<~rb
-  # Base controller for <%= camelized_modules %> admin features
+  # Base controller for #{camelized_modules} admin features
   # Inherits from ShinyCMS AdminController
   class AdminController < ::AdminController
     helper Rails.application.routes.url_helpers

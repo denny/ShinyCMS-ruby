@@ -86,7 +86,7 @@ module ShinyPages
     def show_page
       unless @page.template.file_exists?
         # rubocop:disable Rails/RenderInline
-        render status: :failed_dependency, inline: I18n.t( 'page.template_file_missing' )
+        render status: :failed_dependency, inline: I18n.t( 'shiny_pages.page.template_file_missing' )
         # rubocop:enable Rails/RenderInline
         return
       end

@@ -21,7 +21,7 @@ module ShinyBlog
     end
 
     def new?
-      @this_user.can? :list, :blog_posts
+      @this_user.can? :add, :blog_posts
     end
 
     def create?

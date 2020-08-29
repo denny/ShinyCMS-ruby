@@ -63,7 +63,7 @@ module ShinyNews
       @post = ShinyNews::Post.find( params[:id] )
     rescue ActiveRecord::RecordNotFound
       skip_authorization
-      redirect_to news_posts_path, alert: t( '.failure' )
+      redirect_to news_posts_path, alert: t( '.not_found' )
     end
 
     def post_params
