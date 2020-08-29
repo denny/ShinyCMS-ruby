@@ -1,0 +1,24 @@
+<% list ||= ShinyLists::List.first %>
+
+<% if list.present? %>
+
+<% if user_signed_in? %>
+  <%= button_to t( 'shiny_lists.subscribe' ), shiny_lists.create_list_subscription_path,
+      params: { list_slug: list.slug } %>
+<% else %>
+  <%= form_for EmailRecipient.new, url: shiny_lists.create_list_subscription_path, method: :post, class: 'subscription_form' do |f| %>
+    <%= f.hidden_field :list_slug, value: list.slug %>
+    <% if show_name_field %>
+    <%= f.text_field :name %><br>
+    <% end %>
+    <%= f.text_field :email, placeholder: t( 'shiny_lists.email_address' ) %>
+    <% if show_name_field %><br><% end %>
+    <%= f.submit t( 'shiny_lists.subscribe' ), name: nil, class: 'button' %>
+  <% end %>
+<% end %>
+
+<% else %>
+  <p>
+    [ Subscription form error: no lists found ]
+  </p>
+<% end %>
