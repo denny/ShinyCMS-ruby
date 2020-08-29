@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+# ShinyLists plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Translation strings for English
+
+en:
+  feature_flags:
+    mailing_lists: Mailing lists
+
+  capability:
+    category:
+      mailing_lists: Mailing lists
+      mailing_list_subscriptions: List subscriptions
+
+  shiny_lists:
+    admin:
+      title: Mailing lists
