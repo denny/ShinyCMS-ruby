@@ -57,8 +57,6 @@ Rails.application.routes.draw do
     get :admin, to: 'admin#index'
 
     scope path: 'admin', module: 'admin' do
-      EXCEPT = %w[ index show create ].freeze
-
       # Discussion and comment moderation
       get :comments, to: 'comments#index'
       put :comments, to: 'comments#update'
@@ -94,7 +92,7 @@ Rails.application.routes.draw do
       # Users
       get  :users, to: 'users#index'
       post :user,  to: 'users#create', as: :create_user
-      resources :user, controller: :users, except: EXCEPT
+      resources :user, controller: :users, except: %i[ index show create ]
     end
 
     ########################################
