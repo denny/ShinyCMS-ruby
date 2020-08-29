@@ -10,8 +10,5 @@ module ShinyLists
   # Base model class for ShinyLists
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
-    def url_helpers
-      ShinyLists::Engine.routes.url_helpers
-    end
   end
 end
