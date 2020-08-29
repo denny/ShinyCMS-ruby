@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# This migration comes from shiny_lists (originally 20200823014211)
 
 # ShinyLists plugin for ShinyCMS ~ https://shinycms.org
 #
