@@ -9,6 +9,8 @@
 # Translation strings for English
 
 en:
+  subscribe: Subscribe
+
   feature_flags:
     mailing_lists: Mailing lists
 

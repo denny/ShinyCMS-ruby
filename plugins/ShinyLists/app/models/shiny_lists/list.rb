@@ -9,9 +9,24 @@
 module ShinyLists
   # Model for mailing lists
   class List < ApplicationRecord
+    include ShinyDemoDataProvider
+    include ShinyName
+    include ShinySlug
+
     # Assocations
 
-    has_many :subscriptions
-    has_many :subscribers, through: :subscriptions
+    has_many :subscriptions, dependent: :destroy
+    has_many :users, through: :subscriptions, source: :subscriber, source_type: 'User'
+    has_many :email_recipients, through: :subscriptions, source: :subscriber, source_type: 'EmailRecipient'
+
+    # Instance methods
+
+    def subscribed?( email_address )
+      users.exists?( email: email_address ) ||
+        email_recipients.exists?( email: email_address )
+    end
   end
 end
+
+::EmailRecipient.has_many :lists, through: :subscriptions, class_name: 'ShinyLists::List'
+::User.has_many :lists, through: :subscriptions, class_name: 'ShinyLists::List'
