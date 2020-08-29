@@ -21,7 +21,7 @@ module ShinyForms
     end
 
     def new?
-      @this_user.can? :list, :forms
+      @this_user.can? :add, :forms
     end
 
     def create?
