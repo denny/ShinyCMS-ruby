@@ -35,6 +35,10 @@ class Theme
     "#{view_path}/mailers/templates"
   end
 
+  def newsletter_templates_path
+    "#{view_path}/newsletters/templates"
+  end
+
   # Class methods
 
   def self.build_view_path( theme_name )
