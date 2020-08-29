@@ -49,7 +49,7 @@ module ShinySearch
                           .includes( :searchable )
                           .page( @page_num )
                           .per( @per_page )
-      @pageable.map( &:searchable )
+      @pageable.collect( &:searchable )
     end
 
     def algolia_search

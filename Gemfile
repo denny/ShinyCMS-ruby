@@ -10,7 +10,7 @@
 def plugin_names
   return ENV[ 'SHINYCMS_PLUGINS' ].split( /[, ]+/ ) if ENV[ 'SHINYCMS_PLUGINS' ]
 
-  Dir[ 'plugins/*' ].sort.map { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
+  Dir[ 'plugins/*' ].sort.collect { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
 end
 
 def underscore( camel_cased_word )
