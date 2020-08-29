@@ -1,0 +1,28 @@
+<% @page_title = t( '.title' ) %>
+
+<% if @subscriptions.present? %>
+
+<table>
+<% @subscriptions.each do |subscription| %>
+  <tr>
+    <td>
+      <%= subscription.list.name %>
+    </td>
+    <td>
+      <% if user_signed_in? %>
+      <%= link_to t( '.unsubscribe' ), shiny_lists.user_list_unsubscribe_path( subscription.list.slug ), method: :put %>
+      <% else %>
+      <%= link_to t( '.unsubscribe' ), shiny_lists.token_list_unsubscribe_path( subscription.list.slug, params[:token] ), method: :put %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<% else %>
+
+<p>
+  No subscriptions found.
+</p>
+
+<% end %>
