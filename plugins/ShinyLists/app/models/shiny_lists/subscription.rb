@@ -17,11 +17,5 @@ module ShinyLists
     # Scopes
 
     scope :active, -> { where( unsubscribed_at: nil ) }
-
-    # Instance methods
-
-    def active?
-      unsubscribed_at.nil?
-    end
   end
 end
