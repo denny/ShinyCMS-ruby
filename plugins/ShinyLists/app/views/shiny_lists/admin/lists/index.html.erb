@@ -1,0 +1,41 @@
+<% @page_title = t( '.title' ) %>
+
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Subscribers
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lists.each do |list| %>
+    <tr>
+      <td>
+        <%= list.internal_name %>
+      </td>
+      <td>
+        <%#= link_to list.subscriptions.active.count, subscriptions_path( list ) %>
+        <%= list.subscriptions.active.count %>
+      </td>
+      <td class="actions">
+        <%= link_to t( 'edit'   ), edit_list_path( list ) %>
+        <%= link_to t( 'delete' ), list_path( list ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  <tbody>
+</table>
+
+<%= paginate @lists, window: 3, views_prefix: 'admin' %>
+<p id="pager-info">
+  <%= page_entries_info @lists %>
+</p>

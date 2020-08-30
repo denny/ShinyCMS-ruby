@@ -1,0 +1,16 @@
+<% @page_title = t( '.title' ) %>
+
+<%= form_for @list, url: list_path( @list ), method: :put do |f| %>
+  <p>
+    <%= f.label :internal_name %>
+    <br><%= f.text_field :internal_name %>
+  </p>
+  <p>
+    <%= f.label :public_name %>
+    <br><%= f.text_field :public_name %>
+  </p>
+
+  <p class="top-margin">
+    <%= submit_tag t( 'update' ) %>
+  </p>
+<% end %>

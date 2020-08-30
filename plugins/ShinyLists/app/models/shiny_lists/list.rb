@@ -25,6 +25,16 @@ module ShinyLists
       users.exists?( email: email_address ) ||
         email_recipients.exists?( email: email_address )
     end
+
+    def policy_class
+      self.class.policy_class
+    end
+
+    # Class methods
+
+    def self.policy_class
+      ShinyLists::ListPolicy
+    end
   end
 end
 

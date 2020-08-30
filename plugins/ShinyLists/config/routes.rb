@@ -11,8 +11,8 @@
 ShinyLists::Engine.routes.draw do
   scope format: false do
     # Main site
-    get 'list/subscriptions/:token', to: 'subscriptions#index', as: :token_list_subscriptions
-    get 'list/subscriptions',        to: 'subscriptions#index', as: :user_list_subscriptions
+    get 'lists/subscriptions/:token', to: 'subscriptions#index', as: :token_list_subscriptions
+    get 'lists/subscriptions',        to: 'subscriptions#index', as: :user_list_subscriptions
 
     post 'list/:slug/subscribe', to: 'subscriptions#create', as: :create_list_subscription
 

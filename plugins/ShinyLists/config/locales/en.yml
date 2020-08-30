@@ -34,9 +34,19 @@ en:
         failure: Unsubscribe attempt failed - please contact site admins for help
 
     admin:
-      shiny_lists:
+      lists:
         title: Mailing lists
         index:
           title: Mailing lists
         new:
           title: New mailing list
+        create:
+          success: Mailing list created
+          failure: Failed to create mailing list
+        edit:
+          title: Edit mailing list
+        update:
+          success: Mailing list updated
+          failure: Failed to update mailing list
+        destroy:
+          success: Mailing list deleted
