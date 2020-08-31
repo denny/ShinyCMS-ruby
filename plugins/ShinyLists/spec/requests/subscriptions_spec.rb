@@ -64,6 +64,20 @@ RSpec.describe 'List subscriptions', type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_lists.subscriptions.index.title' )
       expect( response.body ).to have_css '.notices', text: I18n.t( 'shiny_lists.subscriptions.create.success' )
     end
+
+    it 'fails to create a new subscription to a non-existent list' do
+      user1 = create :user
+      sign_in user1
+
+      post shiny_lists.create_list_subscription_path( 'no-such-list' )
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_lists.user_list_subscriptions_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_lists.subscriptions.index.title' )
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_lists.subscriptions.create.failure' )
+    end
   end
 
   describe 'PUT /list/:slug/unsubscribe' do
@@ -81,6 +95,20 @@ RSpec.describe 'List subscriptions', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_lists.subscriptions.index.title' )
       expect( response.body ).to have_css '.notices', text: I18n.t( 'shiny_lists.subscriptions.unsubscribe.success' )
+    end
+
+    it 'fails to unsubscribe a logged-in user from a non-existent list' do
+      user1 = create :user
+      sign_in user1
+
+      put shiny_lists.user_list_unsubscribe_path( 'non-existent-list' )
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_lists.user_list_subscriptions_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_lists.subscriptions.index.title' )
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_lists.subscriptions.unsubscribe.failure' )
     end
   end
 

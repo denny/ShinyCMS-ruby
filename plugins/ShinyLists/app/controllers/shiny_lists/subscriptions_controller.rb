@@ -30,7 +30,7 @@ module ShinyLists
     end
 
     def unsubscribe
-      if subscription.unsubscribe
+      if subscription&.unsubscribe
         redirect_back fallback_location: view_list_subscriptions_path, notice: t( '.success' )
       else
         redirect_back fallback_location: view_list_subscriptions_path, alert: t( '.failure' )
