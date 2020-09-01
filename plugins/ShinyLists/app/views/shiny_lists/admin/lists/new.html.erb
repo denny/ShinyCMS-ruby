@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_for :list, url: lists_path, method: :post do |f| %>
+<%= form_for :list, url: shiny_lists.lists_path, method: :post do |f| %>
   <p>
     <%= f.label :internal_name %>
     <br><%= f.text_field :internal_name %>
@@ -8,6 +8,10 @@
   <p>
     <%= f.label :public_name %>
     <br><%= f.text_field :public_name %>
+  </p>
+  <p>
+    <%= f.label :slug %>
+    <br><%= f.text_field :slug %>
   </p>
 
   <p class="top-margin">
