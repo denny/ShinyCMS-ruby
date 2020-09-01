@@ -11,8 +11,10 @@ module ShinyLists
   class Admin::ListsController < AdminController
     def index
       authorise List
+
       page_num = params[ :page ] || 1
       @lists = List.page( page_num )
+
       authorise @lists if @lists.present?
     end
 

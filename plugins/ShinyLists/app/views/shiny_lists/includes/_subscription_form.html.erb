@@ -3,11 +3,9 @@
 <% if list.present? %>
 
 <% if user_signed_in? %>
-  <%= button_to t( 'shiny_lists.subscribe' ), shiny_lists.create_list_subscription_path,
-      params: { list_slug: list.slug } %>
+  <%= button_to t( 'shiny_lists.subscribe' ), shiny_lists.create_list_subscription_path( list.slug ) %>
 <% else %>
-  <%= form_for EmailRecipient.new, url: shiny_lists.create_list_subscription_path, method: :post, class: 'subscription_form' do |f| %>
-    <%= f.hidden_field :list_slug, value: list.slug %>
+  <%= form_for EmailRecipient.new, url: shiny_lists.create_list_subscription_path( list.slug ), method: :post, class: 'subscription_form' do |f| %>
     <% if show_name_field %>
     <%= f.text_field :name %><br>
     <% end %>

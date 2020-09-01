@@ -25,7 +25,7 @@ RSpec.describe 'Mailing List admin features', type: :request do
   end
 
   describe 'GET /admin/lists/new' do
-    it 'loads the page to add a new list handler' do
+    it 'loads the page to add a new mailing list' do
       get shiny_lists.new_list_path
 
       expect( response      ).to have_http_status :ok

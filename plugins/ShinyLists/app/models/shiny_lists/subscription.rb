@@ -16,6 +16,10 @@ module ShinyLists
     belongs_to :list,       inverse_of: :subscriptions
     belongs_to :subscriber, inverse_of: :subscriptions, polymorphic: true
 
+    # Plugin config
+
+    paginates_per 20
+
     # Scopes
 
     scope :active, -> { where( unsubscribed_at: nil ) }
@@ -24,6 +28,22 @@ module ShinyLists
 
     def unsubscribe
       update( unsubscribed_at: Time.zone.now )
+    end
+
+    def status
+      return I18n.t( 'shiny_lists.subscribed' ) if unsubscribed_at.blank?
+
+      I18n.t( 'shiny_lists.unsubscribed' )
+    end
+
+    def policy_class
+      self.class.policy_class
+    end
+
+    # Class methods
+
+    def self.policy_class
+      ShinyLists::SubscriptionPolicy
     end
   end
 end

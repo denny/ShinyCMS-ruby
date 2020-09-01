@@ -20,6 +20,9 @@ en:
   shiny_lists:
     email_address: Email address
     subscribe: Subscribe
+    subscribed: Subscribed
+    unsubscribe: Unsubscribe
+    unsubscribed: Unsubscribed
 
     subscriptions:
       index:
@@ -50,3 +53,15 @@ en:
           failure: Failed to update mailing list
         destroy:
           success: Mailing list deleted
+      subscriptions:
+        title: List subscriptions
+        index:
+          title: List subscriptions
+        create:
+          success: Subscribed
+          failure: Failed to subscribe
+        update:
+          success: Unsubscribed
+          failure: Failed to unsubscribe
+        destroy:
+          success: Subscription deleted

@@ -19,6 +19,10 @@ module ShinyLists
     has_many :users, through: :subscriptions, source: :subscriber, source_type: 'User'
     has_many :email_recipients, through: :subscriptions, source: :subscriber, source_type: 'EmailRecipient'
 
+    # Plugin config
+
+    paginates_per 20
+
     # Instance methods
 
     def subscribed?( email_address )
