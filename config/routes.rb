@@ -124,6 +124,10 @@ Rails.application.routes.draw do
     end
 
     ########################################################################################################
+    # This route explicitly intercepts any request starting with /admin that wasn't otherwise handled
+    match '/admin/*path', to: 'admin#not_found', as: :admin_404, via: %i[ get post put patch delete ]
+
+    ########################################################################################################
     # This catch-all route matches anything and everything not already matched by a route defined before it.
     # It has to be the last route set up, because it hijacks anything that gets this far.
     # This route gives us pages and sections at the top level, e.g. /foo instead of /pages/foo

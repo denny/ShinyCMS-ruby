@@ -271,7 +271,7 @@ en:
     title: Admin
     admin_area: Admin area
 
-    letter_opener_web: Outbox
+    invalid_url: 'Invalid URL: /admin/%{request_path}'
 
     elements:
       short_text: Short Text
@@ -323,6 +323,8 @@ en:
         success: Feature flags updated
         failure: Failed to update feature flags
 
+    letter_opener_web: Outbox
+
     other:
       title: Other
 
@@ -361,6 +363,8 @@ en:
 
     stats:
       title: Stats
+
+    # Blazer
     charts:
       title: Charts
     checks:
