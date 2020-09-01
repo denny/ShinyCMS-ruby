@@ -219,7 +219,7 @@ ActiveRecord::Schema.define(version: 2020_08_29_035400) do
   end
 
   create_table "email_recipients", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.string "email", null: false
     t.string "canonical_email", null: false
     t.uuid "token", null: false

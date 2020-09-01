@@ -17,7 +17,6 @@ class EmailRecipient < ApplicationRecord
 
   # Validations
 
-  validates :name,  presence: true
   validates :token, presence: true, uniqueness: true
 
   # Before/after actions
