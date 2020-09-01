@@ -22,8 +22,7 @@
         <%= list.internal_name %>
       </td>
       <td>
-        <%#= link_to list.subscriptions.active.count, subscriptions_path( list ) %>
-        <%= list.subscriptions.active.count %>
+        <%= link_to list.subscriptions.active.count, shiny_lists.list_subscriptions_path( list ) %>
       </td>
       <td class="actions">
         <%= link_to t( 'edit'   ), edit_list_path( list ) %>
