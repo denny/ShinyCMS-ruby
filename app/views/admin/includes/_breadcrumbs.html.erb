@@ -10,6 +10,12 @@
     <% @page_title = controller_name.titlecase %>
     <li class="breadcrumb-item"><%= link_to t( 'admin.stats.title' ), blazer.root_path %></li>
 
+  <%# TODO: FIXME: ShinyLists::Subscriptions bodge %>
+  <% elsif plugin_name == 'ShinyLists' %>
+    <li class="breadcrumb-item">
+      <%= link_to t( "shiny_lists.admin.lists.title" ), lists_path %>
+    </li>
+
   <%# ShinyCMS plugins %>
   <% elsif Plugin.loaded_names.include? plugin_name %>
     <li class="breadcrumb-item">
