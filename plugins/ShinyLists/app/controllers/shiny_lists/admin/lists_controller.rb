@@ -64,7 +64,7 @@ module ShinyLists
 
     def list_params
       params.require( :list ).permit(
-        :internal_name, :public_name, :slug
+        :internal_name, :public_name, :slug, :description
       )
     end
   end
