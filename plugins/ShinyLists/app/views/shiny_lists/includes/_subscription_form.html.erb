@@ -7,7 +7,7 @@
 <% else %>
   <%= form_for EmailRecipient.new, url: shiny_lists.create_list_subscription_path( list.slug ), method: :post, class: 'subscription_form' do |f| %>
     <% if show_name_field %>
-    <%= f.text_field :name %><br>
+    <%= f.text_field :name, placeholder: t( 'shiny_lists.name' ) %><br>
     <% end %>
     <%= f.text_field :email, placeholder: t( 'shiny_lists.email_address' ) %>
     <% if show_name_field %><br><% end %>
