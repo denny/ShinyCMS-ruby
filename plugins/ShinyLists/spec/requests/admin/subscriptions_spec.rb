@@ -38,11 +38,14 @@ RSpec.describe 'List Subscription admin features', type: :request do
         }
       }
 
+      success_message = I18n.t( 'shiny_lists.admin.subscriptions.create.success' )
+
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_lists.list_subscriptions_path( list )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.subscriptions.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: success_message
     end
   end
 
@@ -52,11 +55,14 @@ RSpec.describe 'List Subscription admin features', type: :request do
 
       put shiny_lists.list_subscription_path( list, s1 )
 
+      success_message = I18n.t( 'shiny_lists.admin.subscriptions.update.success' )
+
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_lists.list_subscriptions_path( list )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.subscriptions.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: success_message
       expect( response.body ).to have_css 'td', text: I18n.t( 'shiny_lists.unsubscribed' )
     end
   end
@@ -69,10 +75,11 @@ RSpec.describe 'List Subscription admin features', type: :request do
 
       delete shiny_lists.list_subscription_path( list, subscription2 )
 
+      success_message = I18n.t( 'shiny_lists.admin.subscriptions.destroy.success' )
+
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to shiny_lists.list_subscriptions_path( list )
       follow_redirect!
-      success_message = I18n.t( 'shiny_lists.admin.subscriptions.destroy.success' )
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shiny_lists.admin.subscriptions.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: success_message

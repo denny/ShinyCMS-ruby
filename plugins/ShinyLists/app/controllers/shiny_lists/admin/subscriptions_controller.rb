@@ -10,46 +10,42 @@ module ShinyLists
   # Controller for list subscription admin features - part of the ShinyLists plugin for ShinyCMS
   class Admin::SubscriptionsController < AdminController
     def index
-      authorise list
       authorise Subscription
 
-      page_num = params[:page] || 1
-      @subscriptions = list.subscriptions&.page( page_num )
+      return if list.subscriptions.blank?
 
-      authorise @subscriptions if @subscriptions.present?
+      page_num = params[:page] || 1
+      # TODO: How do I order this by subscriber.email ?
+      @subscriptions = list.subscriptions.order( Arel.sql( 'unsubscribed_at is null' ) ).page( page_num )
+
+      authorise @subscriptions
     end
 
+    # NB: If you live in GDPR territory, before using this feature you should consider whether
+    # you can prove that the person actively consented to be subscribed to your mailing list.
     def create
       authorise Subscription
 
-      # TODO: find/create subscriber (user/email recipient)
-      subscriber = EmailRecipient.create!( email: subscription_params[:email] )
+      flash[:notice] = t( '.success' ) if list.subscribe( subscriber_for_create )
 
-      new_subscription = ShinyLists::Subscription.new( list: list, subscriber: subscriber )
-
-      if new_subscription.save
-        redirect_to list_subscriptions_path( list ), notice: t( '.success' )
-      else
-        redirect_to list_subscriptions_path( list ), alert: t( '.failure' )
-      end
+      redirect_to list_subscriptions_path( list )
     end
 
     def update
       # Unsubscribe
       authorise subscription
 
-      if subscription.unsubscribe
-        redirect_to list_subscriptions_path, notice: t( '.success' )
-      else
-        redirect_to list_subscriptions_path, alert: t( '.failure' )
-      end
+      flash[:notice] = t( '.success' ) if subscription.unsubscribe
+
+      redirect_to list_subscriptions_path( list )
     end
 
     def destroy
       authorise subscription
 
-      flash[ :notice ] = t( '.success' ) if subscription.destroy
-      redirect_to list_subscriptions_path
+      flash[:notice] = t( '.success' ) if subscription.destroy
+
+      redirect_to list_subscriptions_path( list )
     end
 
     private
@@ -62,8 +58,14 @@ module ShinyLists
       list.subscriptions.find( params[:id] )
     end
 
+    def subscriber_for_create
+      User.find_by( email: subscription_params[:email] ) ||
+        EmailRecipient.find_by( email: subscription_params[:email] ) ||
+        EmailRecipient.create!( email: subscription_params[:email] )
+    end
+
     def subscription_params
-      params.require( :subscription ).permit( :email )
+      params.require( :subscription ).permit( :email, :page, :count )
     end
   end
 end

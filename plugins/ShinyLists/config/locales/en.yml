@@ -18,6 +18,7 @@ en:
       mailing_list_subscriptions: List subscriptions
 
   shiny_lists:
+    name: Name
     email_address: Email address
     subscribe: Subscribe
     subscribed: Subscribed
@@ -54,14 +55,14 @@ en:
         destroy:
           success: Mailing list deleted
       subscriptions:
-        title: List subscriptions
         index:
           title: List subscriptions
         create:
           success: Subscribed
-          failure: Failed to subscribe
+          # failure: Failed to create subscription
         update:
           success: Unsubscribed
-          failure: Failed to unsubscribe
+          # failure: Failed to unsubscribe
         destroy:
           success: Subscription deleted
+          # failure: Failed to delete subscription

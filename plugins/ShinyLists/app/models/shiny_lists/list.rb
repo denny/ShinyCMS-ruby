@@ -25,6 +25,12 @@ module ShinyLists
 
     # Instance methods
 
+    def subscribe( subscriber )
+      return if subscribed? subscriber.email
+
+      subscriptions.find_or_create_by!( subscriber: subscriber )
+    end
+
     def subscribed?( email_address )
       users.exists?( email: email_address ) ||
         email_recipients.exists?( email: email_address )
