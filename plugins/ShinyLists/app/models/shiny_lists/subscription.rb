@@ -30,10 +30,8 @@ module ShinyLists
       update( unsubscribed_at: Time.zone.now )
     end
 
-    def status
-      return I18n.t( 'shiny_lists.subscribed' ) if unsubscribed_at.blank?
-
-      I18n.t( 'shiny_lists.unsubscribed' )
+    def active?
+      unsubscribed_at.blank?
     end
 
     def policy_class

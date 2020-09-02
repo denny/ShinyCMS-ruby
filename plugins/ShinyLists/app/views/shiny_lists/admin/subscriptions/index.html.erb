@@ -28,7 +28,11 @@
         <%= subscription.subscriber.email %>
       </td>
       <td>
-        <%= subscription.status %>
+        <% if subscription.active? %>
+        <%= I18n.t( 'shiny_lists.subscribed' ) %> (<%= subscription.subscribed_at.to_s( :shinydate ) %>)
+        <% else %>
+        <%= I18n.t( 'shiny_lists.unsubscribed' ) %> (<%= subscription.unsubscribed_at.to_s( :shinydate ) %>)
+        <% end %>
       </td>
       <td class="actions">
         <%= link_to t( 'shiny_lists.unsubscribe' ), list_subscription_path( subscription.list, subscription ),
