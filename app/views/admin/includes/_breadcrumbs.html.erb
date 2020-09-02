@@ -3,32 +3,29 @@
     <li class="breadcrumb-item"><%= link_to t( 'home'        ), root_path  %></li>
     <li class="breadcrumb-item"><%= link_to t( 'admin.title' ), admin_path %></li>
 
-    <% plugin_name = controller.class.name.split('::').first %>
-
-  <%# Blazer %>
-  <% if plugin_name == 'Blazer' %>
-    <% @page_title = controller_name.titlecase %>
-    <li class="breadcrumb-item"><%= link_to t( 'admin.stats.title' ), blazer.root_path %></li>
-
-  <%# TODO: FIXME: ShinyLists::Subscriptions bodge %>
-  <% elsif plugin_name == 'ShinyLists' %>
     <li class="breadcrumb-item">
-      <%= link_to t( "shiny_lists.admin.lists.title" ), lists_path %>
-    </li>
+      <% plugin_name = controller.class.name.split('::').first %>
 
-  <%# ShinyCMS plugins %>
-  <% elsif Plugin.loaded_names.include? plugin_name %>
-    <li class="breadcrumb-item">
-      <%= link_to t( "#{plugin_name.underscore}.admin.#{controller_name}.title" ),
-          ::Plugin.new( plugin_name ).admin_index_path( controller_name ) %>
-    </li>
+      <%# Blazer %>
+      <% if plugin_name == 'Blazer' %>
+        <% @page_title = controller_name.titlecase %> <%# TODO: i18n %>
+        <%= link_to t( 'admin.stats.title' ), blazer.root_path %>
 
-  <%# ShinyCMS core features %>
-  <% else %>
-    <li class="breadcrumb-item">
-      <%= link_to t( "admin.#{controller_name}.title" ), controller: controller_name, action: :index %>
+      <%# TODO: FIXME: ShinyLists::Subscriptions bodge %>
+      <% elsif plugin_name == 'ShinyLists' %>
+        <%= link_to t( "shiny_lists.admin.lists.title" ), lists_path %>
+
+      <%# ShinyCMS plugins %>
+      <% elsif Plugin.loaded_names.include? plugin_name %>
+        <%= link_to t( "#{plugin_name.underscore}.admin.#{controller_name}.title" ),
+            ::Plugin.new( plugin_name ).admin_index_path( controller_name ) %>
+
+      <%# ShinyCMS core features %>
+      <% else %>
+        <%= link_to t( "admin.#{controller_name}.title" ), controller: controller_name, action: :index %>
+
+      <% end %>
     </li>
-  <% end %>
 
     <li class="breadcrumb-item active"><%= @page_title.titlecase %></li>
   </ol>
