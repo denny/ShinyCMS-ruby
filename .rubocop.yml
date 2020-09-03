@@ -68,6 +68,11 @@ Rails/OutputSafety:
   Exclude:
     - config/initializers/field_with_errors.rb
 
+# This 'useless' method enables a feature flag check
+Lint/UselessMethodDefinition:
+  Exclude:
+    - app/controllers/users/registrations_controller.rb
+
 # Whitespace Considered Helpful
 Layout/ExtraSpacing:
   Enabled: false
