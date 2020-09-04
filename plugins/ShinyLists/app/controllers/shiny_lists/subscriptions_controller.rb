@@ -58,11 +58,9 @@ module ShinyLists
     end
 
     def view_list_subscriptions_path
-      if user_signed_in?
-        user_list_subscriptions_path
-      else
-        token_list_subscriptions_path( params[:token] )
-      end
+      return user_list_subscriptions_path if user_signed_in?
+
+      token_list_subscriptions_path( params[:token] )
     end
   end
 end
