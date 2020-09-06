@@ -82,12 +82,16 @@
                   <% end %>
 
                   <% if defined? ShinyLists %>
+                  <% newsletter_list = find_list_by_slug( 'newsletter' ) %>
                   <h2>
-                    <%= t( 'shiny_lists.subscribe' ) %>
+                    <%= newsletter_list.name %>
                   </h2>
                   <p>
-                    <%= render partial: 'shiny_lists/includes/subscription_form',
-                        locals: { show_name_field: false, list: find_list_by_slug( 'newsletter' ) } %>
+                    <%= render partial: 'shiny_lists/includes/subscription_form', locals: {
+                      show_name_field: false,
+                      list: newsletter_list,
+                      consent_version: consent_version( 'newsletter-homepage-20200903' )
+                    } %>
                   </p>
                   <% end %>
                 </section>

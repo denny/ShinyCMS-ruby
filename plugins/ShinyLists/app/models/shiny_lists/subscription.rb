@@ -13,8 +13,11 @@ module ShinyLists
 
     # Associations
 
-    belongs_to :list,       inverse_of: :subscriptions
     belongs_to :subscriber, inverse_of: :subscriptions, polymorphic: true
+    belongs_to :list,       inverse_of: :subscriptions
+
+    has_one :consent, inverse_of: :subscription, class_name: 'ShinyLists::SubscriptionConsent'
+    has_one :consent_version, through: :consent
 
     # Plugin config
 

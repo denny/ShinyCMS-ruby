@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
+# ShinyLists plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
+# Tests for main site list subscription features
 RSpec.describe 'List subscriptions', type: :request do
   before do
     FeatureFlag.enable :mailing_lists
@@ -50,33 +57,40 @@ RSpec.describe 'List subscriptions', type: :request do
   end
 
   describe 'POST /list/:slug/subscribe' do
-    it 'creates a new subscription' do
+    it 'creates a new subscription for a logged-in user' do
       list1 = create :mailing_list
+      consent1 = create :consent_version
       user1 = create :user
       sign_in user1
 
-      post shiny_lists.create_list_subscription_path( list1.slug )
+      post shiny_lists.list_subscribe_path( list1.slug ), params: {
+        subscription: {
+          consent_version: consent1.slug,
+          consent_confirmation: '1'
+        }
+      }
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_lists.user_list_subscriptions_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_lists.subscriptions.index.title' )
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'shiny_lists.subscriptions.create.success' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shiny_lists.subscriptions.subscribe.success' )
     end
 
     it 'fails to create a new subscription to a non-existent list' do
       user1 = create :user
+      consent1 = create :consent_version
       sign_in user1
 
-      post shiny_lists.create_list_subscription_path( 'no-such-list' )
+      post shiny_lists.list_subscribe_path( 'no-such-list' ), params: { consent_version: consent1.slug }
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_lists.user_list_subscriptions_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_lists.subscriptions.index.title' )
-      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_lists.subscriptions.create.failure' )
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_lists.subscriptions.subscribe.failure' )
     end
   end
 

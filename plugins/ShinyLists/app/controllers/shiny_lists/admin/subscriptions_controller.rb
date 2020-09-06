@@ -22,28 +22,19 @@ module ShinyLists
     end
 
     # NB: If you live in GDPR territory, before using this feature you should consider whether
-    # you can prove that the person actively consented to be subscribed to your mailing list.
-    def create
+    # you could prove that the person actively consented to be subscribed to your mailing list.
+    def subscribe
       authorise Subscription
 
-      flash[:notice] = t( '.success' ) if list.subscribe( subscriber_for_create )
+      flash[:notice] = t( '.success' ) if list.subscribe( subscriber_for_subscribe, admin_consent )
 
       redirect_to list_subscriptions_path( list )
     end
 
-    def update
-      # Unsubscribe
+    def unsubscribe
       authorise subscription
 
       flash[:notice] = t( '.success' ) if subscription.unsubscribe
-
-      redirect_to list_subscriptions_path( list )
-    end
-
-    def destroy
-      authorise subscription
-
-      flash[:notice] = t( '.success' ) if subscription.destroy
 
       redirect_to list_subscriptions_path( list )
     end
@@ -58,10 +49,14 @@ module ShinyLists
       list.subscriptions.find( params[:id] )
     end
 
-    def subscriber_for_create
+    def subscriber_for_subscribe
       User.find_by( email: subscription_params[:email] ) ||
         EmailRecipient.find_by( email: subscription_params[:email] ) ||
         EmailRecipient.create!( email: subscription_params[:email] )
+    end
+
+    def admin_consent
+      ConsentVersion.find_by( slug: 'shiny-lists-admin-subscribe' )
     end
 
     def subscription_params

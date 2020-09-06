@@ -22,6 +22,10 @@ module MainSiteHelper
     !current_user_is_admin?
   end
 
+  def consent_version( slug )
+    ConsentVersion.find_by( slug: slug )
+  end
+
   def setting( name )
     Setting.get( name, current_user )
   end

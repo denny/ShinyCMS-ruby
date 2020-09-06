@@ -6,9 +6,12 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Record details of a user's consent (e.g. to be on one of your mailing lists)
-class Consent < ApplicationRecord
-  validates :purpose, presence: true
-
-  belongs_to :purpose, inverse_of: :consent, polymorphic: true
+module ShinyLists
+  # Factory for SubscriptionConsent model
+  FactoryBot.define do
+    factory :subscription_consent do
+      association :subscription, factory: :mailing_list_subscription
+      association :consent_version
+    end
+  end
 end

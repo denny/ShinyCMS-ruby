@@ -19,10 +19,8 @@ module ShinyLists
       end
     end
 
-    def create
-      new_subscription = Subscription.new( list: list, subscriber: subscriber_for_create )
-
-      if new_subscription.save
+    def subscribe
+      if list && consent_version && list.subscribe( subscriber_for_subscribe, consent_version )
         redirect_back fallback_location: view_list_subscriptions_path, notice: t( '.success' )
       else
         redirect_back fallback_location: view_list_subscriptions_path, alert: t( '.failure' )
@@ -40,13 +38,7 @@ module ShinyLists
     private
 
     def list
-      List.find_by( slug: params[ :slug ] )
-    end
-
-    def subscriber_for_create
-      current_user ||
-        EmailRecipient.find_by( email: params[:email] ) ||
-        EmailRecipient.create!( email: params[:email] )
+      List.find_by( slug: params[:slug] )
     end
 
     def subscriber
@@ -55,6 +47,22 @@ module ShinyLists
 
     def subscription
       subscriber.subscriptions.find_by( list: list )
+    end
+
+    def subscriber_for_subscribe
+      current_user ||
+        EmailRecipient.find_by( email: subscribe_params[:email] ) ||
+        EmailRecipient.create!( email: subscribe_params[:email] )
+    end
+
+    def consent_version
+      return unless subscribe_params[:consent_confirmation] == '1'
+
+      ConsentVersion.find_by( slug: subscribe_params[:consent_version] )
+    end
+
+    def subscribe_params
+      params.require( :subscription ).permit( :name, :email, :consent_version, :consent_confirmation )
     end
 
     def view_list_subscriptions_path

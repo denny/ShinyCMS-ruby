@@ -24,15 +24,13 @@ FactoryBot.define do
 
       category = CapabilityCategory.find_by( name: 'mailing_list_subscriptions' )
 
-      list    = category.capabilities.find_by( name: 'list'    )
-      add     = category.capabilities.find_by( name: 'add'     )
-      edit    = category.capabilities.find_by( name: 'edit'    )
-      destroy = category.capabilities.find_by( name: 'destroy' )
+      list   = category.capabilities.find_by( name: 'list'   )
+      add    = category.capabilities.find_by( name: 'add'    )
+      remove = category.capabilities.find_by( name: 'remove' )
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: add
-      create :user_capability, user: admin, capability: edit
-      create :user_capability, user: admin, capability: destroy
+      create :user_capability, user: admin, capability: remove
     end
   end
 end

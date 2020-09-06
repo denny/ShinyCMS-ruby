@@ -25,10 +25,10 @@ module ShinyLists
 
     # Instance methods
 
-    def subscribe( subscriber )
+    def subscribe( subscriber, consent_version )
       return if subscribed? subscriber.email
 
-      subscriptions.find_or_create_by!( subscriber: subscriber )
+      subscriptions.create!( subscriber: subscriber, consent_version: consent_version )
     end
 
     def subscribed?( email_address )

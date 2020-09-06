@@ -18,7 +18,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_29_035400) do
+ActiveRecord::Schema.define(version: 2020_09_06_094516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -185,18 +185,17 @@ ActiveRecord::Schema.define(version: 2020_08_29_035400) do
     t.boolean "locked", default: false, null: false
     t.boolean "show_on_site", default: true, null: false
     t.boolean "spam", default: false, null: false
-    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["number", "discussion_id"], name: "index_comments_on_number_and_discussion_id", unique: true
   end
 
-  create_table "consents", force: :cascade do |t|
-    t.string "purpose_type", null: false
-    t.bigint "purpose_id", null: false
-    t.string "action", null: false
-    t.text "wording", null: false
-    t.string "url"
+  create_table "consent_versions", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.text "full_text", null: false
+    t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -282,7 +281,7 @@ ActiveRecord::Schema.define(version: 2020_08_29_035400) do
     t.text "body"
     t.boolean "show_on_site", default: true, null: false
     t.bigint "user_id"
-    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_shiny_blog_posts_on_user_id"
@@ -328,16 +327,25 @@ ActiveRecord::Schema.define(version: 2020_08_29_035400) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "shiny_lists_subscription_consents", force: :cascade do |t|
+    t.bigint "consent_version_id"
+    t.bigint "subscription_id"
+    t.datetime "given_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "withdrawn_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["consent_version_id"], name: "index_shiny_lists_subscription_consents_on_consent_version_id"
+    t.index ["subscription_id"], name: "index_shiny_lists_subscription_consents_on_subscription_id"
+  end
+
   create_table "shiny_lists_subscriptions", force: :cascade do |t|
     t.bigint "list_id"
     t.string "subscriber_type"
     t.bigint "subscriber_id"
-    t.bigint "consent_id"
     t.datetime "subscribed_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "unsubscribed_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["consent_id"], name: "index_shiny_lists_subscriptions_on_consent_id"
     t.index ["list_id"], name: "index_shiny_lists_subscriptions_on_list_id"
     t.index ["subscriber_type", "subscriber_id"], name: "shiny_lists_subscriptions_on_subscribers"
   end
@@ -348,7 +356,7 @@ ActiveRecord::Schema.define(version: 2020_08_29_035400) do
     t.text "body"
     t.boolean "show_on_site", default: true, null: false
     t.bigint "user_id"
-    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_shiny_news_posts_on_user_id"

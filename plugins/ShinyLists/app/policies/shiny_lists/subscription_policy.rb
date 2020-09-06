@@ -20,16 +20,12 @@ module ShinyLists
       @this_user.can? :list, :mailing_list_subscriptions
     end
 
-    def create?
+    def subscribe?
       @this_user.can? :add, :mailing_list_subscriptions
     end
 
-    def update?
-      @this_user.can? :edit, :mailing_list_subscriptions
-    end
-
-    def destroy?
-      @this_user.can? :destroy, :mailing_list_subscriptions
+    def unsubscribe?
+      @this_user.can? :remove, :mailing_list_subscriptions
     end
   end
 end

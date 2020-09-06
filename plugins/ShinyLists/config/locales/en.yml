@@ -30,7 +30,7 @@ en:
         title: List subscriptions
         unsubscribe: Unsubscribe
         subscriber_not_found: Subscriber not found - please check link and try again
-      create:
+      subscribe:
         success: You have been subscribed
         failure: Failed to subscribe to mailing list - please try again
       unsubscribe:
@@ -57,12 +57,9 @@ en:
       subscriptions:
         index:
           title: List subscriptions
-        create:
+        subscribe:
           success: Subscribed
           # failure: Failed to create subscription
-        update:
+        unsubscribe:
           success: Unsubscribed
           # failure: Failed to unsubscribe
-        destroy:
-          success: Subscription deleted
-          # failure: Failed to delete subscription
