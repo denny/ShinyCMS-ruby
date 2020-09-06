@@ -36,8 +36,8 @@ subscriptions_cc.capabilities.find_or_create_by!( name: 'remove' )
 # Consent version used when a list admin manually subscribes somebody
 
 ConsentVersion.find_or_create_by!(
-  name: 'Subscribed by admin',
+  name: 'Subscribed by list admin',
   slug: 'shiny-lists-admin-subscribe',
-  full_text: 'ShinyLists: manual subscription by list admin',
-  notes: 'This is the consent record used when an admin manually subscribes somebody to a mailing list'
+  display_text: 'Manually subscribing people to lists might make it difficult to prove their consent. Are you sure?',
+  admin_notes: 'This is the consent version recorded when an admin manually subscribes somebody to a mailing list.'
 )

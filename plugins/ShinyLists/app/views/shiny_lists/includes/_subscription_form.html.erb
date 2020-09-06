@@ -15,7 +15,7 @@
   <br>
   <%= f.hidden_field :consent_version, value: consent_version.slug %>
   <label>
-    <%= f.check_box :consent_confirmation %> <%= consent_version.full_text %>
+    <%= f.check_box :consent_confirmation %> <%= consent_version.display_text %>
   </label>
 <% end %>
 

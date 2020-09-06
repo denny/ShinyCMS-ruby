@@ -13,11 +13,9 @@ module ShinyLists
 
     # Associations
 
-    belongs_to :subscriber, inverse_of: :subscriptions, polymorphic: true
-    belongs_to :list,       inverse_of: :subscriptions
-
-    has_one :consent, inverse_of: :subscription, class_name: 'ShinyLists::SubscriptionConsent'
-    has_one :consent_version, through: :consent
+    belongs_to :subscriber,      inverse_of: :subscriptions, polymorphic: true
+    belongs_to :list,            inverse_of: :subscriptions
+    belongs_to :consent_version, inverse_of: :subscriptions
 
     # Plugin config
 
@@ -49,5 +47,6 @@ module ShinyLists
   end
 end
 
+::ConsentVersion.has_many :subscriptions, inverse_of: :consent_version
 ::EmailRecipient.has_many :subscriptions, as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
 ::User.has_many :subscriptions, as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'

@@ -79,6 +79,11 @@ namespace :shiny do
     end
 
     task dump: %i[ environment dotenv ] do
+      Rails.application.eager_load!
+
+      # FIXME: bodge to deal with collision between seed data and demo data
+      ConsentVersion.first.delete
+
       big_dump = ''
       models_with_demo_data.each do |model|
         puts "Dumping: #{model}"

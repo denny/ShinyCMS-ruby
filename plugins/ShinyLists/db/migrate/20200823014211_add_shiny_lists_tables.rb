@@ -20,18 +20,10 @@ class AddShinyListsTables < ActiveRecord::Migration[6.0]
     create_table :shiny_lists_subscriptions do |t|
       t.references :list
       t.references :subscriber, polymorphic: true, index: { name: 'shiny_lists_subscriptions_on_subscribers' }
+      t.references :consent_version
 
       t.timestamp :subscribed_at, null: false, default: -> { 'CURRENT_TIMESTAMP' }
       t.timestamp :unsubscribed_at
-      t.timestamps
-    end
-
-    create_table :shiny_lists_subscription_consents do |t|
-      t.references :consent_version
-      t.references :subscription
-
-      t.timestamp :given_at, null: false, default: -> { 'CURRENT_TIMESTAMP' }
-      t.timestamp :withdrawn_at
       t.timestamps
     end
   end

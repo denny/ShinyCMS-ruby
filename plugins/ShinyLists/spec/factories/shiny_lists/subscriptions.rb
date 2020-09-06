@@ -12,6 +12,8 @@ module ShinyLists
     factory :mailing_list_subscription, class: 'ShinyLists::Subscription' do
       association :list,       factory: :mailing_list
       association :subscriber, factory: :email_recipient
+
+      association :consent_version
     end
   end
 end

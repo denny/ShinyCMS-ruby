@@ -11,6 +11,6 @@ class ConsentVersion < ApplicationRecord
   include ShinyDemoDataProvider
   include ShinySlug
 
-  validates :name,      presence: true
-  validates :full_text, presence: true
+  validates :name,         presence: true
+  validates :display_text, presence: true
 end

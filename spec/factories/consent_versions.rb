@@ -9,8 +9,7 @@
 # Factory for Consent model (holds details of things users can agree to, e.g. 'subscribe to mailing list')
 FactoryBot.define do
   factory :consent_version do
-    name { 'Newsletter (3rd September 2020)' }
-    slug { 'newsletter-2020-09-03' }
-    full_text { 'Your ideas are intriguing to me and I wish to subscribe to your newsletter.' }
+    name { Faker::Books::CultureSeries.unique.culture_ship }
+    display_text { Faker::Lorem.paragraph }
   end
 end

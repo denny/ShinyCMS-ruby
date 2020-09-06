@@ -295,6 +295,23 @@ en:
         success: Spam flags removed (comments should now be visible on site)
         failure: Failed to remove spam flags
 
+    consent_versions:
+      title: Consent versions
+      index:
+        title: Consent versions
+      new:
+        title: Add consent version
+      edit:
+        title: Update consent version
+      create:
+        success: New consent version added
+        failure: Failed to add new consent version
+      update:
+        success: Consent version updated
+        failure: Failed to update consent version
+      destroy:
+        success: Consent version deleted
+
     dashboard:
       title: Dashboard
 
