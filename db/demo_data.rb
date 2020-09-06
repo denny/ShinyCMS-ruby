@@ -6,7 +6,11 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Demo site data
+# Data for demo site
+
+ConsentVersion.create!([
+  {id: 2, name: "Newsletter subscription (3rd September 2020)", slug: "newsletter-2020-09-03", display_text: "Your ideas are intriguing to me, and I wish to subscribe to your newsletter.", admin_notes: "Consent text for the homepage newsletter subscribe form (part of the demo site data)."}
+])
 
 ShinyBlog::Post.create!([
   {id: 1, title: "Demo content", slug: "demo-content", body: "<p>I&#39;m never sure what to do about demo content for ShinyCMS. The Perl version ended up with a weird mixture of content about the CMS, extracts from a book with suitably friendly licensing, and word salad from the Futurama Lorem Ipsum generator.</p>\r\n\r\n<p>Now here we are with the Ruby version, and apparently I haven&#39;t learned my lesson - so I&#39;m starting with content about the CMS again. Or in this case, meta-content.</p>\r\n", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-02-08 07:24:27", tag_list: nil},
@@ -15,6 +19,10 @@ ShinyBlog::Post.create!([
 
 ShinyForms::Form.create!([
   {id: 1, internal_name: "Contact Page", public_name: "Contact us", slug: "contact", description: nil, handler: "plain_email", email_to: nil, filename: nil, redirect_to: nil, success_message: nil, sort_order: nil}
+])
+
+ShinyLists::List.create!([
+  {id: 1, internal_name: "Newsletter list", public_name: "Monthly newsletter", slug: "newsletter", description: ""}
 ])
 
 ShinyNews::Post.create!([
