@@ -1,5 +1,5 @@
 <% if controller_name == 'shiny_news_posts' %>
-    <%= t( 'shiny_news.admin.news.title' ).singularize %>:
+    <%= t( 'shiny_news.admin.news_posts.title' ).singularize %>:
   <% if current_user_can? :add, :news_posts %>
     <%= link_to t( 'add' ), new_news_post_path %> /
   <% end %>

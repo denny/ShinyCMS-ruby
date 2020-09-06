@@ -15,9 +15,6 @@ en:
     shiny_blogs_votes: Votes ('likes') on blog posts
     shiny_blogs_downvotes: Down-votes ('dislikes') on blog posts
 
-  element_types:
-    blog_post: blog post
-
   capability:
     category:
       shiny_blogs_blogs: Blogs
@@ -30,11 +27,6 @@ en:
       zero: No comments
       one: 1 comment
       other: '%{count} comments'
-
-  blogs:
-    post:
-      footer:
-        reply: Reply to this post
 
   shiny_blogs:
     blogs:

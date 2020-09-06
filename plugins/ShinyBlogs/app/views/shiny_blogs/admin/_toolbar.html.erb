@@ -1,10 +1,10 @@
 <% if controller_name == 'shiny_blogs_blogs' %>
-    <%= t( 'admin.blogs.title' ).singularize %>:
+    <%= t( 'shiny_blogs.admin.blogs.title' ).singularize %>:
   <% if current_user_can?( :edit, :blogs ) %>
     <%= link_to t( 'edit' ), edit_blog_path( @blog ) %>
     |
   <% end %>
-    <%= t( 'admin.blog.posts.title' ).singularize %>:
+    <%= t( 'shiny_blogs.admin.blog.posts.title' ).singularize %>:
   <% if current_user_can? :add, :blog_posts %>
     <%= link_to t( 'add' ), new_blog_post_path( @blog ) %> /
   <% end %>
