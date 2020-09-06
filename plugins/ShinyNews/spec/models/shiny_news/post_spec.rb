@@ -11,16 +11,18 @@ module ShinyNews
       end
     end
 
-    it_should_behave_like ShinyDemoDataProvider do
-      let( :model ) { described_class }
-    end
+    context 'concerns' do
+      it_should_behave_like ShinyDemoDataProvider do
+        let( :model ) { described_class }
+      end
 
-    it_should_behave_like ShinyPost do
-      let( :post ) { create :news_post }
-    end
+      it_should_behave_like ShinyPost do
+        let( :post ) { create :news_post }
+      end
 
-    it_should_behave_like 'Voteable' do
-      let( :item ) { create :news_post }
+      it_should_behave_like 'Voteable' do
+        let( :item ) { create :news_post }
+      end
     end
   end
 end
