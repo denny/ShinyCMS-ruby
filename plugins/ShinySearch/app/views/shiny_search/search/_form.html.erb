@@ -1,7 +1,5 @@
-<%# frozen_string_literal: true %>
-
 <% name ||= 'search_form' %>
 <%= form_with name: name, url: shiny_search.search_path, method: :get, local: true do |f| %>
   <%= f.text_field 'query' %>&nbsp;
-  <%= f.submit 'Search', name: nil, class: 'button' %>
+  <%= f.submit t( 'shiny_search.search.form.search' ), name: nil, class: 'button' %>
 <% end %>

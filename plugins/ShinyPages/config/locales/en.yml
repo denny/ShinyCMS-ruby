@@ -78,5 +78,6 @@ en:
       template_file_missing: 'Unable to display page; its template file is missing.'
 
   models:
-    page_template:
-      template_file_must_exist: 'The template file must be in app/views/themes/{your theme}/pages/templates'
+    shiny_pages:
+      template:
+        template_file_must_exist: 'The template file must be in themes/{your theme}/pages/templates'

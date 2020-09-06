@@ -30,6 +30,12 @@ class AdminController < ApplicationController
     end
   end
 
+  def not_found
+    skip_authorization
+    bad_path = params[:path]
+    redirect_to admin_path, alert: t( 'admin.invalid_url', request_path: bad_path )
+  end
+
   private
 
   # Check whether a list of permitted admin IP addresses has been defined,

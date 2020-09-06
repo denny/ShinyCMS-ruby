@@ -8,9 +8,6 @@
 
 require 'rails_helper'
 
-# Another bit that requires eager loading in case we don't have all the models hooked up yet
-Rails.application.eager_load!
-
 # Tests for methods on the base model
 RSpec.describe ApplicationRecord, type: :model do
   context 'methods on base model' do

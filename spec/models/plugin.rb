@@ -8,9 +8,6 @@
 
 require 'rails_helper'
 
-# Have to eager load here in dev and test environments, otherwise there is much failingness
-Rails.application.eager_load! if Rails.env.test? || Rails.env.development?
-
 # Tests for ShinyCMS Plugin model
 RSpec.describe Plugin, type: :model do
   context 'class methods' do

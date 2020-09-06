@@ -60,7 +60,8 @@ Rails.application.routes.draw do
     get :admin, to: 'admin#index'
 
     scope path: 'admin', module: 'admin' do
-      EXCEPT = %w[ index show create ].freeze
+      # Consent versions
+      resources :consent_versions, path: 'consent-versions', except: [ :show ]
 
       # Discussion and comment moderation
       get :comments, to: 'comments#index'
@@ -97,7 +98,7 @@ Rails.application.routes.draw do
       # Users
       get  :users, to: 'users#index'
       post :user,  to: 'users#create', as: :create_user
-      resources :user, controller: :users, except: EXCEPT
+      resources :user, controller: :users, except: %i[ index show create ]
     end
 
     ########################################
@@ -124,6 +125,10 @@ Rails.application.routes.draw do
     Plugin.loaded.each do |plugin|
       mount plugin.engine, at: '/' if plugin.engine.present?
     end
+
+    ########################################################################################################
+    # This route explicitly intercepts any request starting with /admin that wasn't otherwise handled
+    match '/admin/*path', to: 'admin#not_found', as: :admin_404, via: %i[ get post put patch delete ]
 
     ########################################################################################################
     # This catch-all route matches anything and everything not already matched by a route defined before it.

@@ -26,26 +26,30 @@ class Plugin
     @base_model ||= name.constantize::ApplicationRecord if defined? name.constantize::ApplicationRecord
   end
 
-  def models_with_demo_data
-    model_names = []
-    base_model.descendants.each do |model|
-      model_names << model.name if model.respond_to? :dump_for_demo?
-    end
-    model_names.sort
-  end
-
   def main_site_helper
     @main_site_helper ||= name.constantize::MainSiteHelper if defined? name.constantize::MainSiteHelper
   end
 
-  def template_exists?( template_path )
-    File.exist? Rails.root.join "plugins/#{name}/app/views/#{name.underscore}/#{template_path}"
+  def models_with_demo_data
+    base_model.descendants.select { |model| model.respond_to?( :dump_for_demo? ) }
+  end
+
+  def models_that_are_taggable
+    base_model.descendants.select( &:taggable? )
+  end
+
+  def models_that_are_votable
+    base_model.descendants.select( &:votable? )
   end
 
   def view_path
     return unless File.exist? Rails.root.join( "plugins/#{name}/app/views/" )
 
     "plugins/#{name}/app/views/#{name.underscore}"
+  end
+
+  def template_exists?( template_path )
+    File.exist? "#{view_path}/#{template_path}"
   end
 
   def admin_index_path( area = nil )
@@ -60,11 +64,8 @@ class Plugin
   def self.loaded
     return @loaded if @loaded
 
-    loading = []
-    loaded_names.each do |name|
-      loading << Plugin.new( name )
-    end
-    @loaded = loading
+    loaded_plugins = loaded_names.collect { |name| Plugin.new( name ) }
+    @loaded = loaded_plugins
   end
 
   def self.with_main_site_helpers
@@ -80,15 +81,21 @@ class Plugin
   end
 
   def self.with_template( template_path )
-    loaded.select { |plugin| plugin.template_exists?( template_path ) }
+    with_views.select { |plugin| plugin.template_exists?( template_path ) }
   end
 
   def self.models_with_demo_data
-    model_names = []
-    loaded.each do |plugin|
-      model_names << plugin.models_with_demo_data
-    end
-    model_names.flatten.sort
+    # Used by the rake task that dumps the demo site data
+    # Returns names rather than objects to allow the rake task to bodge the dump order
+    with_models.collect( &:models_with_demo_data ).flatten.collect( &:name ).sort
+  end
+
+  def self.models_that_are_taggable
+    with_models.collect( &:models_that_are_taggable ).flatten.sort_by( &:name )
+  end
+
+  def self.models_that_are_votable
+    with_models.collect( &:models_that_are_votable ).flatten.sort_by( &:name )
   end
 
   def self.loaded_names
@@ -100,6 +107,6 @@ class Plugin
   end
 
   def self.all_names
-    Dir[ 'plugins/*' ].sort.map { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
+    Dir[ 'plugins/*' ].sort.collect { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
   end
 end

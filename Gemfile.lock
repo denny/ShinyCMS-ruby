@@ -20,6 +20,13 @@ PATH
       rails (~> 6.0.3, >= 6.0.3.2)
 
 PATH
+  remote: plugins/ShinyLists
+  specs:
+    shiny_lists (20.8)
+      pg (>= 0.18, < 2.0)
+      rails (~> 6.0.3, >= 6.0.3.2)
+
+PATH
   remote: plugins/ShinyNews
   specs:
     shiny_news (20.8)
@@ -524,6 +531,7 @@ DEPENDENCIES
   shiny_blog!
   shiny_forms!
   shiny_inserts!
+  shiny_lists!
   shiny_news!
   shiny_pages!
   shiny_profiles!

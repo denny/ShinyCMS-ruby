@@ -14,4 +14,6 @@
 
 ActiveSupport::Inflector.inflections( :en ) do |inflect|
   inflect.acronym 'IP'
+  inflect.acronym 'HTML'
+  inflect.acronym 'MJML'
 end

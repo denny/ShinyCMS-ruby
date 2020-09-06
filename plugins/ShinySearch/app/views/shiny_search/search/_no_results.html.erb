@@ -1,12 +1,12 @@
 <p>
-  <%= t( '.no_results' ) %>
+  <%= t( 'shiny_search.search.no_results.no_results' ) %>
 </p>
 <p>
-  <%= t( '.try_again' ) %>
+  <%= t( 'shiny_search.search.no_results.try_again' ) %>
   <%= render partial: 'search/form', locals: { name: 'main_search' } %>
 </p>
 <% if feature_enabled?( :tags ) %>
 <p>
-  <%= t( '.try_tags' ) %> <%= link_to t( 'tags.index.title' ), tags_path %>
+  <%= t( 'shiny_search.search.no_results.try_tags' ) %> <%= link_to t( 'tags.index.title' ), tags_path %>
 </p>
 <% end %>

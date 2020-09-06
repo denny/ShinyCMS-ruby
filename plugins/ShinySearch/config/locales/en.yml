@@ -15,12 +15,15 @@ en:
     search_enabled_algolia: Enable Agolia search backend
     search_enabled_postgres: Enable Postgres search backend
 
-  search:
-    new:
-      title: Search the site
-    results:
-      title: "Search results for '%{query}'"
-    no_results:
-      no_results: No results found.
-      try_again: "Please try another search:"
-      try_tags: "Or, you can explore our tags section:"
+  shiny_search:
+    search:
+      form:
+        search: Search
+      new:
+        title: Search the site
+      results:
+        title: "Search results for '%{query}'"
+      no_results:
+        no_results: No results found.
+        try_again: "Please try another search:"
+        try_tags: "Or, you can explore our tags section:"

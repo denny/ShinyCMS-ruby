@@ -38,8 +38,15 @@ class VotesController < MainController
   end
 
   def votable_models
-    Rails.application.eager_load! if Rails.env.development?
-    ApplicationRecord.descendants.select( &:votable? ).map( &:to_s )
+    [ votable_models_in_core + votable_models_in_plugins ].flatten
+  end
+
+  def votable_models_in_core
+    ApplicationRecord.descendants.select( &:votable? ).collect( &:name ).sort
+  end
+
+  def votable_models_in_plugins
+    Plugin.models_that_are_votable.collect( &:name )
   end
 
   def find_voter

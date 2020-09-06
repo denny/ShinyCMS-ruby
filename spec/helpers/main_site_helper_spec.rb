@@ -18,4 +18,12 @@ RSpec.describe MainSiteHelper, type: :helper do
       expect( helper.setting( :testing_testing ) ).to eq '1 2 1 2'
     end
   end
+
+  describe 'consent_version' do
+    it 'returns the matching consent version' do
+      create :consent_version, name: 'Testing, testing', slug: 'testing'
+
+      expect( helper.consent_version( 'testing' ).name ).to eq 'Testing, testing'
+    end
+  end
 end

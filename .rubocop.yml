@@ -35,6 +35,11 @@ Gemspec/RequiredRubyVersion:
 Style/DisableCopsWithinSourceCodeDirective:
   Enabled: false
 
+# I prefer collect to map
+Style/CollectionMethods:
+  PreferredMethods:
+    map: collect
+
 # These are allowed and expected to contain long blocks
 Metrics/BlockLength:
   Exclude:
@@ -51,11 +56,12 @@ Style/Documentation:
   Exclude:
     - plugins/*/spec/**/*.rb
 
-# Spec files with I18n.t calls in them are more readable with slightly long lines
-# than they would be with lots of split lines. (And long data is long, I guess.)
+# Spec files with I18n.t calls in them are more readable with longer single lines
+# than they are with shorter split lines, and the demo data file is auto-generated.
 Layout/LineLength:
   Exclude:
     - spec/**/*.rb
+    - plugins/*/spec/**/*.rb
     - db/demo_data.rb
 
 # This test is for a feature involving a list of IP addresses
