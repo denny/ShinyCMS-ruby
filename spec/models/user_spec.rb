@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
+# Tests for user model
 RSpec.describe User, type: :model do
   context 'factory' do
     it 'can create a user' do
@@ -48,14 +55,6 @@ RSpec.describe User, type: :model do
       expect( user.capabilities.count ).to eq 0
       user.grant_all_capabilities
       expect( user.capabilities.count ).to eq lots
-    end
-  end
-
-  context 'we do not want to dump potentially real user data into the demo data file' do
-    describe '.dump_for_demo?' do
-      it 'returns false' do
-        expect( User.dump_for_demo? ).to be false
-      end
     end
   end
 end

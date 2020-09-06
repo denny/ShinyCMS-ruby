@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 # Common behaviours for 'post' type models (blog post, news post, etc)
 module ShinyPost
   extend ActiveSupport::Concern
@@ -44,7 +50,7 @@ module ShinyPost
 
     scope :not_future_dated, -> { where( 'posted_at <= ?', Time.zone.now.iso8601 ) }
     scope :published,        -> { visible.merge( not_future_dated ) }
-    scope :recent,           -> { order( posted_at: :desc ) }
+    scope :recent,           -> { published.merge( order( posted_at: :desc ) ) }
 
     self.implicit_order_column = 'posted_at'
 

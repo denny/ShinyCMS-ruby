@@ -1,16 +1,19 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails/generators/rails/app/app_generator'
 require 'date'
 
+# Rails generator for ShinyCMS plugins (not quite finished, but it'll get you started)
+#
+# This is a hacked-about copy of the standard Rails Engine plugin generator, removing stuff
+# that wasn't relevant, and adding some helpful boilerplate to tie into ShinyCMS more easily
 module Rails
-  # The plugin builder allows you to override elements of the plugin
-  # generator without being forced to reverse the operations of the default
-  # generator.
-  #
-  # This allows you to override entire operations, like the creation of the
-  # Gemfile, README, or JavaScript files, without needing to know exactly
-  # what those operations do so you can create another template action.
   class PluginBuilder
     def rakefile
       template 'Rakefile'

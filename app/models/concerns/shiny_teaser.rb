@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
-# Generate a teaser (short preview) from the text in .body
-# Defaults to three paragraphs
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Generate a teaser (short preview) from the text in .body (defaults to three paragraphs)
 module ShinyTeaser
   extend ActiveSupport::Concern
 

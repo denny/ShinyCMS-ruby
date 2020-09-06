@@ -82,5 +82,19 @@ RSpec.describe 'ShinyForms', type: :request do
       expect( response ).to have_http_status :ok
       expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_forms.forms.process_form.failure' )
     end
+
+    it 'handles non-existent form slugs' do
+      post shiny_forms.process_form_path( 'this-form-does-not-exist' ), params: {
+        shiny_form: {
+          message: Faker::Lorem.paragraph
+        }
+      }
+
+      expect( response ).to have_http_status :found
+      expect( response ).to redirect_to root_path
+      follow_redirect!
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_forms.forms.process_form.form_not_found' )
+    end
   end
 end

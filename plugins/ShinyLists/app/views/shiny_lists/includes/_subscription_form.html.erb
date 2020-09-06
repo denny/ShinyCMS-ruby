@@ -1,0 +1,34 @@
+<% list ||= ShinyLists::List.first %>
+<% consent_version ||= nil %>
+
+<% if list.present? && consent_version.present? %>
+
+<%= form_for :subscription, url: shiny_lists.list_subscribe_path( list.slug ), method: :post, class: 'subscription_form' do |f| %>
+  <% unless user_signed_in? %>
+  <% if show_name_field %>
+  <%= f.text_field :name, placeholder: t( 'shiny_lists.name' ) %><br>
+  <% end %>
+  <%= f.text_field :email, placeholder: t( 'shiny_lists.email_address' ) %>
+  <% if show_name_field %><br><% end %>
+  <% end %>
+  <%= f.submit t( 'shiny_lists.subscribe' ), name: nil, class: 'button' %>
+  <br>
+  <%= f.hidden_field :consent_version, value: consent_version.slug %>
+  <label>
+    <%= f.check_box :consent_confirmation %> <%= consent_version.display_text %>
+  </label>
+<% end %>
+
+<% end %>
+
+<% if list.blank? %>
+  <p>
+    [ Subscription form error: no lists found ]
+  </p>
+<% end %>
+
+<% if consent_version.blank? %>
+  <p>
+    [ Subscription form error: invalid consent configuration ]
+  </p>
+<% end %>

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'User profiles', type: :request do
-  before :all do
+  before :each do
     FeatureFlag.enable :user_login
     FeatureFlag.enable :profile_pages
   end
@@ -69,8 +69,6 @@ RSpec.describe 'User profiles', type: :request do
     it "redirects to the user's profile page if user profiles are enabled" do
       password = 'shinycms unimaginative test passphrase'
       user = create :user, password: password
-
-      FeatureFlag.enable :profile_pages
 
       post user_session_path, params: {
         'user[login]': user.username,

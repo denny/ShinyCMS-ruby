@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
-# ShinyCMS tasks for setting up a demo site
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 require 'dotenv/tasks'
+
+# ShinyCMS tasks for setting up a demo site
 
 # rails shiny:demo:load
 # - resets the database
@@ -48,13 +54,13 @@ namespace :shiny do
     end
 
     def skip_callbacks_on_page_models
-      Page.skip_callback( :create, :after, :add_elements )
-      PageTemplate.skip_callback( :create, :after, :add_elements )
+      ShinyPages::Page.skip_callback( :create, :after, :add_elements )
+      ShinyPages::Template.skip_callback( :create, :after, :add_elements )
     end
 
     def set_callbacks_on_page_models
-      PageTemplate.set_callback( :create, :after, :add_elements )
-      Page.set_callback( :create, :after, :add_elements )
+      ShinyPages::Template.set_callback( :create, :after, :add_elements )
+      ShinyPages::Page.set_callback( :create, :after, :add_elements )
     end
 
     def fix_primary_key_sequences
@@ -73,6 +79,11 @@ namespace :shiny do
     end
 
     task dump: %i[ environment dotenv ] do
+      Rails.application.eager_load!
+
+      # FIXME: bodge to deal with collision between seed data and demo data
+      ConsentVersion.first.delete
+
       big_dump = ''
       models_with_demo_data.each do |model|
         puts "Dumping: #{model}"
@@ -91,14 +102,15 @@ namespace :shiny do
     end
 
     def models_with_demo_data
-      Rails.application.eager_load! if Rails.env.development?
-      models = ApplicationRecord.descendants.select( &:dump_for_demo? ).map( &:to_s ).sort
+      models = ApplicationRecord.models_with_demo_data
+
       # Fragile bodgery; move models with dependencies not happy with .sort order to the end
       models.delete( 'Comment' )
       models.delete( 'Discussion' )
-      models.delete( 'Page' )
-      models.delete( 'PageElement' )
-      models.push( 'Page', 'PageElement', 'Discussion', 'Comment' )
+      models.delete( 'ShinyPages::Page' )
+      models.delete( 'ShinyPages::PageElement' )
+
+      models.push( 'ShinyPages::Page', 'ShinyPages::PageElement', 'Discussion', 'Comment' )
     end
     # :nocov:
   end

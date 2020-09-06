@@ -1,0 +1,51 @@
+<% @page_title = t( '.title' ) %>
+
+<%# TODO: search feature (for all admin list pages) %>
+
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Email
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subscriptions.each do |subscription| %>
+    <tr>
+      <td>
+        <%= subscription.subscriber.name %>
+      </td>
+      <td>
+        <%= subscription.subscriber.email %>
+      </td>
+      <td>
+        <% if subscription.active? %>
+        <%= I18n.t( 'shiny_lists.subscribed' ) %> (<%= subscription.subscribed_at.to_s( :shinydate ) %>)
+        <% else %>
+        <%= I18n.t( 'shiny_lists.unsubscribed' ) %> (<%= subscription.unsubscribed_at.to_s( :shinydate ) %>)
+        <% end %>
+      </td>
+      <td class="actions">
+        <%= link_to t( 'shiny_lists.unsubscribe' ), list_admin_unsubscribe_path( subscription.list, subscription ),
+            method: :put, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  <tbody>
+</table>
+
+<%= paginate @subscriptions, window: 3, views_prefix: 'admin' %>
+<p id="pager-info">
+  <%= page_entries_info @subscriptions %>
+</p>

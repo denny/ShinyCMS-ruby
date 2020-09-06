@@ -1,16 +1,13 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyCMS (Ruby version)
-# File:      app/controllers/tags_controller.rb
-# Purpose:   Controller for tag features on a ShinyCMS-powered site
+# ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
-class TagsController < ApplicationController
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Controller for tag features on a ShinyCMS-powered site
+class TagsController < MainController
   include MainSiteHelper
 
   before_action :check_feature_flags
@@ -45,21 +42,11 @@ class TagsController < ApplicationController
   private
 
   def taggable_models
-    Rails.application.eager_load! if Rails.env.development?
-
-    [ taggable_models_in_core + taggable_models_in_plugins ].flatten
+    [ taggable_models_in_core + Plugin.models_that_are_taggable ].flatten
   end
 
   def taggable_models_in_core
     ApplicationRecord.descendants.select( &:taggable? )
-  end
-
-  def taggable_models_in_plugins
-    plugin_models = []
-    Plugin.base_models.each do |base|
-      plugin_models << base.descendants.select( &:taggable? )
-    end
-    plugin_models
   end
 
   def check_feature_flags

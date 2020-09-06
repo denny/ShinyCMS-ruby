@@ -10,7 +10,12 @@ Features from the Perl version that I'm halfway through re-implementing in the R
   * Mailing lists
     * Getting a bit bogged down in feature creep on this one, need to make myself just MVP it!
 
+* User profile pages (with content such as recent comments, recent posts, etc)
+
 ### New features that snuck in ahead of schedule
+
+* Plugin architecture
+  * I'm in the process of converting all the initial features into Rails Engine plugins
 
 * Blazer dashboards / charts / etc
   * https://github.com/ankane/blazer
@@ -19,6 +24,9 @@ Features from the Perl version that I'm halfway through re-implementing in the R
 * Algolia search backend
 	* https://devcenter.heroku.com/articles/algoliasearch#using-with-rails
   * NB: Not free to non-commercial sites using the CMS :(
+
+* Multiple blog support
+  * The original version had some unfinished code around this, which initially got ported straight across, but has now been split off into an unfinished ShinyBlogs plugin while the ShinyBlog plugin has a cleaner single-blog implementation
 
 
 ## Done / TODO

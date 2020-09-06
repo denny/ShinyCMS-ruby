@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 # Set the 'field_with_errors' class on the input tag instead of wrapping it in a div
 ActionView::Base.field_error_proc =
   proc do |html_tag, _instance|

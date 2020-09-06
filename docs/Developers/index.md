@@ -4,12 +4,14 @@ If you're interested in contributing to ShinyCMS - thank you!
 
 Here are some things that might be useful to know...
 
-* [Vague roadmap](Roadmap.md)
+* [Roadmap](Roadmap.md)
 
-* [Project goals and progress](Progress.md)
+* Project progress:
   * [Done](done.md)
   * [In progress](in-progress.md)
   * [Still to do](TODO.md)
+
+* [Plugins](Plugins.md)
 
 * [Testing](Testing.md)
 

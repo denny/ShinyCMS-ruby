@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyCMS (Ruby version)
-# File:      app/controllers/admin_controller.rb
-# Purpose:   Base controller for ShinyCMS admin area
+# ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Base controller for the admin area in ShinyCMS
 class AdminController < ApplicationController
   include Pundit
   include AdminAreaHelper
@@ -17,9 +14,6 @@ class AdminController < ApplicationController
   before_action :check_admin_ip_list
   before_action :authenticate_user!
   before_action :cache_user_capabilities
-
-  skip_before_action :set_view_paths
-  skip_after_action  :track_ahoy_visit
 
   after_action :verify_authorized
 
@@ -34,6 +28,12 @@ class AdminController < ApplicationController
     else
       redirect_to path_for( current_user.primary_admin_area )
     end
+  end
+
+  def not_found
+    skip_authorization
+    bad_path = params[:path]
+    redirect_to admin_path, alert: t( 'admin.invalid_url', request_path: bad_path )
   end
 
   private

@@ -7,23 +7,24 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
 
 ## Features
 
-* Pages and Page Sections
-  * Site admins can add as many pages and (nested) sections as they like
-  * Pages have defined content areas which can be edited by admins
-  * Page layout is controlled by Page Templates (can be provided by a theme or custom-built)
-  * Dynamically generated menus
 * Plugin architecture for an increasing number of features
   * Plugins currently included:
+    * Pages and Page Sections
+      * Site admins can add as many pages and (nested) sections as they like
+      * Pages have defined content areas which can be edited by admins
+      * Page layout is controlled by Page Templates (can be provided by a theme or custom-built)
+      * Dynamically generated menus
     * News section
     * Blog
-    * Basic form handlers (e.g. contact form submitted -> email form data to site owner)
     * Inserts (re-usable content fragments that can be pulled into any template)
-    * Site search feature (will support multiple search back-ends; default is pg_search)
+    * Basic form handlers (e.g. contact form submitted -> email form data to site owner)
+    * Site search feature (supports multiple search back-ends; default is pg_search)
   * Load only the plugins you want/need - smaller footprint, smaller attack surface
   * [Write your own plugins](docs/Developer/Plugins.md) to add custom functionality
     * Plugin generator included: `rails g shiny:plugin plugins/ShinyThing` to get started
 * Support for [themes](docs/Themes.md) on the hosted site
-  * Themes currently included:
+  * Light-lift theme system - you only need to override the default templates that you want to change
+  * Two themes currently included:
     * Halcyonic (one, two, and three column layouts; suitable for content-rich sites)
     * Coming Soon (single page with mailing list sign-up form and slideshow background)
 * Comments (currently enabled on blog posts and news posts)
@@ -51,11 +52,11 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
 * More themes [in progress]
 * User profile pages [in progress]
   * With content such as recent comments, recent posts, etc
+* Support for multiple blogs on a single site [in progress]
 * Algolia support for search plugin [in progress]
 * Default dashboard(s) and queries for Blazer
 * Access control groups
-  * Can be used to control access to file downloads and secure whole pages,
-    but also to show/hide individual pieces of page content
+  * Can be used to control access to file downloads and secure whole pages, but also to show/hide individual pieces of page content (images/paragraphs/words/etc)
 * Payment handling plugins
   * Options include recurring subscriptions to access control groups (AKA paid membership)
 * Online shop

@@ -1,26 +1,33 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
-RSpec.describe 'Comment moderation', type: :request do
+# Tests for admin/moderation features for individual comments
+RSpec.describe Admin::CommentsController, type: :request do
   before :each do
-    @admin = create :discussion_admin
-    sign_in @admin
+    admin = create :discussion_admin
+    sign_in admin
 
     FeatureFlag.enable :blog
     FeatureFlag.enable :news
     FeatureFlag.enable :comments
 
-    @blog = create :blog_post
+    blog = create :blog_post
     @news = create :news_post
 
-    @discussion1 = create :discussion, resource: @blog
-    @comment1 = create :top_level_comment, discussion: @discussion1
-    @nested1 = create :nested_comment, discussion: @discussion1, parent: @comment1
-    create :top_level_comment, discussion: @discussion1
+    discussion1 = create :discussion, resource: blog
+    @comment1 = create :top_level_comment, discussion: discussion1
+    @nested1 = create :nested_comment, discussion: discussion1, parent: @comment1
+    create :top_level_comment, discussion: discussion1
 
-    @discussion2 = create :discussion, resource: @news
-    @comment2 = create :top_level_comment, discussion: @discussion2
+    discussion2 = create :discussion, resource: @news
+    @comment2 = create :top_level_comment, discussion: discussion2
 
     WebMock.disable!
   end

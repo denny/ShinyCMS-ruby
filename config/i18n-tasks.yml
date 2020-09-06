@@ -1,3 +1,11 @@
+# frozen_string_literal: true
+
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 # i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
 
 # The "main" locale.
@@ -20,7 +28,7 @@ data:
     ## More files (e.g. include Devise translations):
     - config/locales/**/*.%{locale}.yml
     ## ShinyCMS plugins
-    - plugins/ShinyProfiles/config/locales/%{locale}.yml
+    - plugins/Shiny*/config/locales/%{locale}.yml
 
   # Locale files to write new keys to, based on a list of key pattern => file rules. Matched from top to bottom:
   # `i18n-tasks normalize -p` will force move the keys according to these rules
@@ -58,6 +66,7 @@ search:
   paths:
     - app/
     - spec/
+    - plugins/
 
   ## Root directories for relative keys resolution.
   relative_roots:
@@ -65,9 +74,24 @@ search:
     - app/helpers
     - app/mailers
     - app/models
-  #  - app/presenters
     - app/views
     - app/views/shinycms
+    # FIXME
+    - plugins/ShinyBlog/app/controllers
+    - plugins/ShinyBlog/app/views
+    - plugins/ShinyForms/app/controllers
+    - plugins/ShinyForms/app/views
+    - plugins/ShinyInserts/app/controllers
+    - plugins/ShinyInserts/app/views
+    - plugins/ShinyLists/app/controllers
+    - plugins/ShinyLists/app/views
+    - plugins/ShinyNews/app/controllers
+    - plugins/ShinyNews/app/views
+    - plugins/ShinyPages/app/controllers
+    - plugins/ShinyPages/app/models
+    - plugins/ShinyPages/app/views
+    - plugins/ShinySearch/app/controllers
+    - plugins/ShinySearch/app/views
 
   ## Files or `File.fnmatch` patterns to exclude from search. Some files are always excluded regardless of this setting:
   ##   %w(*.jpg *.png *.gif *.svg *.ico *.eot *.otf *.ttf *.woff *.woff2 *.pdf *.css *.sass *.scss *.less *.yml *.json)
@@ -98,6 +122,9 @@ search:
 
 ## Do not consider these keys missing:
 ignore_missing:
+  # I have no idea
+  - shiny_pages.admin.pages.index.title
+  - shiny_pages.admin.pages.new.title
   # jQuery
   - date.month_names
   - error
@@ -107,6 +134,8 @@ ignore_missing:
 
 ## Consider these keys used:
 ignore_unused:
+  # These are used by a couple of plugins, I think it makes sense to leave them in core locale for now
+  - admin.elements.{html,image,long_text,short_text}
   # Devise
   - devise.*
   - errors.messages.*

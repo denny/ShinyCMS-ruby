@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
-# Validator for slugs that only need to be unique within a section
-# e.g. page.slug / page_section.slug / shop_item.slug / etc
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Validator for slugs that only need to be unique within a section (e.g. page.slug / page_section.slug / etc)
 module ShinySlugInSection
   extend ActiveSupport::Concern
 

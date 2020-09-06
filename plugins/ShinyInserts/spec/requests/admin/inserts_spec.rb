@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyInserts plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyInserts/spec/requests/admin/inserts_spec.rb
-# Purpose:   Tests for ShinyInserts admin features
+# ShinyInserts plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye (https://denny.me)
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 require 'rails_helper'
 
@@ -33,7 +28,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
       post shiny_inserts.create_insert_path, params: {
         'insert_element[name]': 'new_insert',
         'insert_element[content]': 'NEW AND IMPROVED!',
-        'insert_element[element_type]': I18n.t( 'shiny_inserts.admin.elements.short_text' )
+        'insert_element[element_type]': I18n.t( 'admin.elements.short_text' )
       }
 
       expect( response      ).to have_http_status :found
@@ -49,7 +44,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
       post shiny_inserts.create_insert_path, params: {
         'insert_element[name]': 'insert_is_empty',
         'insert_element[content]': '',
-        'insert_element[element_type]': I18n.t( 'shiny_inserts.admin.elements.short_text' )
+        'insert_element[element_type]': I18n.t( 'admin.elements.short_text' )
       }
 
       expect( response      ).to have_http_status :found
@@ -65,7 +60,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
       post shiny_inserts.create_insert_path, params: {
         'insert_element[name]': 'insert_is_null',
         'insert_element[content]': nil,
-        'insert_element[element_type]': I18n.t( 'shiny_inserts.admin.elements.short_text' )
+        'insert_element[element_type]': I18n.t( 'admin.elements.short_text' )
       }
 
       expect( response      ).to have_http_status :found

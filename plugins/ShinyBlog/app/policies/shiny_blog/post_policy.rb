@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyBlog plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyBlog/app/policies/shiny_blog/post.rb
-# Purpose:   Pundit policy for admin area features
+# ShinyBlog plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyBlog
   # Pundit policy for blog posts - part of the ShinyBlog plugin for ShinyCMS
@@ -26,7 +21,7 @@ module ShinyBlog
     end
 
     def new?
-      @this_user.can? :list, :blog_posts
+      @this_user.can? :add, :blog_posts
     end
 
     def create?

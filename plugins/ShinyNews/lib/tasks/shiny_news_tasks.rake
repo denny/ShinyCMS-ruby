@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyNews plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyNews/lib/tasks/shiny_news_tasks.rake
-# Purpose:   Rake tasks for ShinyNews plugin
+# ShinyNews plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+require 'dotenv/tasks'
 
 # To copy and run the database migrations for ShinyNews (shiny_news_posts table):
 # rails shiny_news:install:migrations
@@ -19,8 +16,6 @@
 # rails shiny_news:db:seed
 #
 # These two tasks can be run in either order.
-
-require 'dotenv/tasks'
 
 namespace :shiny_news do
   namespace :db do

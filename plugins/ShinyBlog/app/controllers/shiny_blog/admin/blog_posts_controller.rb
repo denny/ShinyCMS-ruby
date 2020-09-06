@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyBlog plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyBlog/app/controllers/shiny_blog/admin/blog_posts_controller.rb
-# Purpose:   Admin area controller
+# ShinyBlog plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyBlog
   # Admin area controller for ShinyBlog plugin for ShinyCMS
@@ -68,7 +63,7 @@ module ShinyBlog
       @post = ShinyBlog::Post.find( params[:id] )
     rescue ActiveRecord::RecordNotFound
       skip_authorization
-      redirect_to blog_posts_path, alert: t( '.failure' )
+      redirect_to blog_posts_path, alert: t( 'shiny_blog.admin.blog_posts.set_post.not_found' )
     end
 
     def post_params

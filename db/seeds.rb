@@ -1,34 +1,38 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 # This file contains any data which is either necessary to get ShinyCMS running,
 # or which might provide useful hints for configuration after that.
 #
-# It is used to populate the databse when you create it with `rails db:setup`
-# You can also load it (and reload it) at any time using `rails db:seed`
+# It is used to populate the database when you create it with `rails db:setup` or re-create it
+# with `rails db:reset`. You can also reload this data at any time using `rails db:seed`.
 
 # Capabilities (for user authorisation, via Pundit)
-general_cc    = seed CapabilityCategory, { name: 'general'        }
-discussion_cc = seed CapabilityCategory, { name: 'discussions'    }
-comments_cc   = seed CapabilityCategory, { name: 'comments'       }
-spam_cc       = seed CapabilityCategory, { name: 'spam_comments'  }
-emails_cc     = seed CapabilityCategory, { name: 'email_previews' }
-features_cc   = seed CapabilityCategory, { name: 'feature_flags'  }
-pages_cc      = seed CapabilityCategory, { name: 'pages'          }
-sections_cc   = seed CapabilityCategory, { name: 'page_sections'  }
-templates_cc  = seed CapabilityCategory, { name: 'page_templates' }
-stats_cc      = seed CapabilityCategory, { name: 'stats'          }
-settings_cc   = seed CapabilityCategory, { name: 'settings'       }
-users_cc      = seed CapabilityCategory, { name: 'users'          }
-admins_cc     = seed CapabilityCategory, { name: 'admin_users'    }
+general_cc    = seed CapabilityCategory, { name: 'general'          }
+discussion_cc = seed CapabilityCategory, { name: 'discussions'      }
+comments_cc   = seed CapabilityCategory, { name: 'comments'         }
+spam_cc       = seed CapabilityCategory, { name: 'spam_comments'    }
+consent_cc    = seed CapabilityCategory, { name: 'consent_versions' }
+emails_cc     = seed CapabilityCategory, { name: 'email_previews'   }
+features_cc   = seed CapabilityCategory, { name: 'feature_flags'    }
+stats_cc      = seed CapabilityCategory, { name: 'stats'            }
+settings_cc   = seed CapabilityCategory, { name: 'settings'         }
+users_cc      = seed CapabilityCategory, { name: 'users'            }
+admins_cc     = seed CapabilityCategory, { name: 'admin_users'      }
 # General
 seed Capability, { name: 'view_admin_area'      }, { category: general_cc }
 seed Capability, { name: 'view_admin_dashboard' }, { category: general_cc }
 seed Capability, { name: 'view_admin_toolbar'   }, { category: general_cc }
-# Discussions
-seed Capability, { name: 'show',    category: discussion_cc }
-seed Capability, { name: 'hide',    category: discussion_cc }
-seed Capability, { name: 'lock',    category: discussion_cc }
-seed Capability, { name: 'unlock',  category: discussion_cc }
+# Consent Versions
+seed Capability, { name: 'list',    category: consent_cc }
+seed Capability, { name: 'add',     category: consent_cc }
+seed Capability, { name: 'edit',    category: consent_cc }
+seed Capability, { name: 'destroy', category: consent_cc }
 # Comments
 seed Capability, { name: 'show',    category: comments_cc }
 seed Capability, { name: 'hide',    category: comments_cc }
@@ -39,27 +43,17 @@ seed Capability, { name: 'destroy', category: comments_cc }
 seed Capability, { name: 'list',    category: spam_cc }
 seed Capability, { name: 'add',     category: spam_cc }
 seed Capability, { name: 'destroy', category: spam_cc }
+# Discussions
+seed Capability, { name: 'show',    category: discussion_cc }
+seed Capability, { name: 'hide',    category: discussion_cc }
+seed Capability, { name: 'lock',    category: discussion_cc }
+seed Capability, { name: 'unlock',  category: discussion_cc }
 # Email Previews
 seed Capability, { name: 'list',    category: emails_cc }
 seed Capability, { name: 'show',    category: emails_cc }
 # Feature Flags
 seed Capability, { name: 'list',    category: features_cc }
 seed Capability, { name: 'edit',    category: features_cc }
-# Pages
-seed Capability, { name: 'list',    category: pages_cc }
-seed Capability, { name: 'add',     category: pages_cc }
-seed Capability, { name: 'edit',    category: pages_cc }
-seed Capability, { name: 'destroy', category: pages_cc }
-# Page Sections
-seed Capability, { name: 'list',    category: sections_cc }
-seed Capability, { name: 'add',     category: sections_cc }
-seed Capability, { name: 'edit',    category: sections_cc }
-seed Capability, { name: 'destroy', category: sections_cc }
-# Page Templates
-seed Capability, { name: 'list',    category: templates_cc }
-seed Capability, { name: 'add',     category: templates_cc }
-seed Capability, { name: 'edit',    category: templates_cc }
-seed Capability, { name: 'destroy', category: templates_cc }
 # Stats
 seed Capability, { name: 'view_web',    category: stats_cc }
 seed Capability, { name: 'view_email',  category: stats_cc }
@@ -171,20 +165,6 @@ setting = seed Setting, { name: 'default_email' }, {
   locked: false
 }
 setting.values.create_or_find_by!( value: 'admin@example.com' )
-
-setting = seed Setting, { name: 'default_page' }, {
-  description: 'Default top-level page (either its name or its slug)',
-  level: 'site',
-  locked: false
-}
-setting.values.create_or_find_by!( value: '' )
-
-setting = seed Setting, { name: 'default_section' }, {
-  description: 'Default top-level section (either its name or its slug)',
-  level: 'site',
-  locked: false
-}
-setting.values.create_or_find_by!( value: '' )
 
 setting = seed Setting, { name: 'post_login_redirect' }, {
   description: 'Where people are redirected after login, if no referer header',

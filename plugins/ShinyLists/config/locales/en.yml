@@ -1,0 +1,65 @@
+# frozen_string_literal: true
+
+# ShinyLists plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Translation strings for English
+
+en:
+  feature_flags:
+    mailing_lists: Mailing lists
+
+  capability:
+    category:
+      mailing_lists: Mailing lists
+      mailing_list_subscriptions: List subscriptions
+
+  shiny_lists:
+    name: Name
+    email_address: Email address
+    subscribe: Subscribe
+    subscribed: Subscribed
+    unsubscribe: Unsubscribe
+    unsubscribed: Unsubscribed
+
+    subscriptions:
+      index:
+        title: List subscriptions
+        unsubscribe: Unsubscribe
+        subscriber_not_found: Subscriber not found - please check link and try again
+      subscribe:
+        success: You have been subscribed
+        failure: Failed to subscribe to mailing list - please try again
+      unsubscribe:
+        success: You have been unsubscribed
+        failure: Unsubscribe attempt failed - please contact site admins for help
+
+    admin:
+      lists:
+        title: Mailing lists
+        index:
+          title: Mailing lists
+        new:
+          title: New mailing list
+        create:
+          success: Mailing list created
+          failure: Failed to create mailing list
+        edit:
+          title: Edit mailing list
+        update:
+          success: Mailing list updated
+          failure: Failed to update mailing list
+        destroy:
+          success: Mailing list deleted
+      subscriptions:
+        index:
+          title: List subscriptions
+        subscribe:
+          success: Subscribed
+          # failure: Failed to create subscription
+        unsubscribe:
+          success: Unsubscribed
+          # failure: Failed to unsubscribe

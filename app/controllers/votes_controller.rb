@@ -1,16 +1,13 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyCMS (Ruby version)
-# File:      app/controllers/votes_controller.rb
-# Purpose:   Controller for vote features on a ShinyCMS site
+# ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
-class VotesController < ApplicationController
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Controller for vote features on a ShinyCMS site
+class VotesController < MainController
   before_action :find_resource
   before_action :find_voter
 
@@ -41,8 +38,15 @@ class VotesController < ApplicationController
   end
 
   def votable_models
-    Rails.application.eager_load! if Rails.env.development?
-    ApplicationRecord.descendants.select( &:votable? ).map( &:to_s )
+    [ votable_models_in_core + votable_models_in_plugins ].flatten
+  end
+
+  def votable_models_in_core
+    ApplicationRecord.descendants.select( &:votable? ).collect( &:name ).sort
+  end
+
+  def votable_models_in_plugins
+    Plugin.models_that_are_votable.collect( &:name )
   end
 
   def find_voter

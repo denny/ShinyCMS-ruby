@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 # User model (powered by Devise)
 # rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
@@ -23,8 +29,6 @@ class User < ApplicationRecord
 
   # End-user content: destroy it along with their account
   has_many :comments, dependent: :destroy
-  has_many :subscriptions, as: :subscriber, dependent: :destroy
-  has_many :lists, through: :subscriptions
 
   # Validations
 
@@ -114,7 +118,7 @@ class User < ApplicationRecord
 
   def capabilities=( capability_set )
     old_capabilities = user_capabilities.pluck( :capability_id ).sort
-    new_capabilities = capability_set.keys.map( &:to_i ).sort
+    new_capabilities = capability_set.keys.collect( &:to_i ).sort
 
     remove = old_capabilities - new_capabilities
     add    = new_capabilities - old_capabilities
@@ -165,7 +169,7 @@ class User < ApplicationRecord
                       .capabilities
                       .find_by( name: capability.to_s )
                       .user_capabilities
-                      .map( &:user )
+                      .collect( &:user )
   end
 
   # Check whether we have at least one admin who can create more admins

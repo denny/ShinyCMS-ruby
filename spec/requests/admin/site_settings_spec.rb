@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
-RSpec.describe 'Admin: Site Settings', type: :request do
+# Tests for the site settings features in the admin area
+RSpec.describe Admin::SiteSettingsController, type: :request do
   before :each do
     admin = create :settings_admin
     sign_in admin

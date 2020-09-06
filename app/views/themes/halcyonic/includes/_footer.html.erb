@@ -8,13 +8,13 @@
                   <h2>Welcome back!</h2>
                   <ul class="link-list last-child">
                     <li><%= link_to t( 'shiny_profiles.view_profile' ), shiny_profiles.profile_path( current_user.username ) %></li>
-                    <li><%= link_to t( 'shiny_profiles.edit_profile' ), edit_user_registration_path %></li>
-                    <li><%= link_to t( 'user.site_settings' ), site_settings_path %></li>
-                    <li><%= link_to t( 'user.log_out' ), destroy_user_session_path, data: {}, method: :delete %></li>
+                    <li><%= link_to t( 'shiny_profiles.edit_profile' ), main_app.edit_user_registration_path %></li>
+                    <li><%= link_to t( 'user.site_settings' ), main_app.site_settings_path %></li>
+                    <li><%= link_to t( 'user.log_out' ), main_app.destroy_user_session_path, data: {}, method: :delete %></li>
                   </ul>
                   <% else %>
                   <h2>Log in</h2>
-                  <%= form_for( :user, url: user_session_path, method: :post ) do |f| %>
+                  <%= form_for( :user, url: main_app.user_session_path, method: :post ) do |f| %>
                     <div class="field">
                       <%= f.text_field :login, autocomplete: 'email', placeholder: 'Username or email' %>
                     </div>
@@ -72,15 +72,29 @@
               <div class="col-4 col-12-medium imp-medium">
 
                 <section>
-                  <h2 class="right">
-                    <%= render partial: 'search/form', locals: { name: 'footer_search' } %>
+                  <% if defined? ShinySearch %>
+                  <h2>
+                    <%= t( 'shiny_search.search.new.title' ) %>
                   </h2>
                   <p>
-                    Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed. Suspendisse eu
-                    varius nibh. Suspendisse vitae magna eget odio amet mollis. Duis neque nisi,
-                    dapibus sed mattis quis, sed rutrum accumsan sed. Suspendisse eu varius nibh
-                    lorem ipsum amet dolor sit amet lorem ipsum consequat gravida justo mollis.
+                    <%= render partial: 'shiny_search/search/form', locals: { name: 'footer_search' } %>
                   </p>
+                  <% end %>
+
+                  <% if defined? ShinyLists %>
+                  <% if list_for_footer_form = find_list_by_slug( 'newsletter' ) %>
+                  <h2>
+                    <%= list_for_footer_form.name %>
+                  </h2>
+                  <p>
+                    <%= render partial: 'shiny_lists/includes/subscription_form', locals: {
+                      show_name_field: false,
+                      list: list_for_footer_form,
+                      consent_version: consent_version( 'newsletter-2020-09-03' )
+                    } %>
+                  </p>
+                  <% end %>
+                  <% end %>
                 </section>
 
               </div>
