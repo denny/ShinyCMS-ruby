@@ -25,9 +25,9 @@ en:
       editions:
         title: Newsletter editions
         index:
-          title: Newsletter editions
+          title: Editions
         new:
-          title: Create new edition
+          title: New edition
         edit:
           title: Edit newsletter edition
         create:
@@ -41,15 +41,15 @@ en:
           failure: Nope
       sends:
         index:
-          title: Newsletter sends
+          title: Sends
         new:
-          title: Send a newsletter
+          title: Send / schedule
       templates:
-        title: Newsletter templates
+        title:  templates
         index:
-          title: Newsletter templates
+          title: Templates
         new:
-          title: Add new template
+          title: New template
         edit:
           title: Edit newsletter template
         create:
