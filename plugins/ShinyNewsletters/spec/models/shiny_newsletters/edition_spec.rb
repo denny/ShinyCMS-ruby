@@ -10,6 +10,10 @@ require 'rails_helper'
 
 module ShinyNewsletters
   RSpec.describe Edition, type: :model do
-    pending "add some examples to (or delete) #{__FILE__}"
+    context 'concerns' do
+      it_should_behave_like ShinyDemoDataProvider do
+        let( :model ) { described_class }
+      end
+    end
   end
 end
