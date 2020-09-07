@@ -39,9 +39,5 @@ module ShinyNewsletters
     def destroy?
       @this_user.can? :destroy, :newsletter_editions
     end
-
-    def send?
-      @this_user.can? :send, :newsletter_editions
-    end
   end
 end
