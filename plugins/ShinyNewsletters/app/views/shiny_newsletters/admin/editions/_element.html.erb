@@ -1,0 +1,14 @@
+<p>
+  <%= fields.label content, name %><br>
+  <% if element_type == t( 'admin.elements.short_text' ) %>
+  <%= fields.text_field content %>
+  <% elsif element_type == t( 'admin.elements.long_text' ) %>
+  <%= fields.text_area content %>
+  <% elsif element_type == t( 'admin.elements.image' ) %>
+  <%= fields.select content, filenames %>
+  <% elsif element_type == t( 'admin.elements.html' ) %>
+  <%= fields.cktext_area content, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
+  <% else %>
+  [ UNKNOWN ELEMENT TYPE IN PAGE DATA ]
+  <% end %>
+</p>

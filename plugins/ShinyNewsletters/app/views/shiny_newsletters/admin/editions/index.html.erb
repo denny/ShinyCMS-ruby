@@ -1,0 +1,32 @@
+<% @page_title = t( '.title' ) %>
+
+<% if @editions.present? %>
+
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th class="width25pc">
+        Name
+      </th>
+      <th class="width50pc">
+      </th>
+      <th class="width25pc">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @editions.each do |edition| %>
+    <tr>
+      <td>
+        <%= edition.internal_name %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else %>
+<p>
+  There are currently no Newsletter Editions to display.
+</p>
+<% end %>

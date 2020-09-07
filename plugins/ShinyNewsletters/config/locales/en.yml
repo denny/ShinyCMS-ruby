@@ -23,6 +23,7 @@ en:
       newsletters:
         title: Newsletters
       editions:
+        title: Newsletter editions
         index:
           title: Newsletter editions
         new:
