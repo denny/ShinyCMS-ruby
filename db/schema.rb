@@ -6,19 +6,13 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# This file is auto-generated from the current state of the database. Instead
-# of editing this file, please use the migrations feature of Active Record to
-# incrementally modify your database, and then regenerate this schema definition.
-#
 # This file is the source Rails uses to define your schema when running `rails
 # db:schema:load`. When creating a new database, `rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
-#
-# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_29_035400) do
+ActiveRecord::Schema.define(version: 2020_09_06_152115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -185,18 +179,17 @@ ActiveRecord::Schema.define(version: 2020_08_29_035400) do
     t.boolean "locked", default: false, null: false
     t.boolean "show_on_site", default: true, null: false
     t.boolean "spam", default: false, null: false
-    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["number", "discussion_id"], name: "index_comments_on_number_and_discussion_id", unique: true
   end
 
-  create_table "consents", force: :cascade do |t|
-    t.string "purpose_type", null: false
-    t.bigint "purpose_id", null: false
-    t.string "action", null: false
-    t.text "wording", null: false
-    t.string "url"
+  create_table "consent_versions", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.text "display_text", null: false
+    t.text "admin_notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -219,10 +212,10 @@ ActiveRecord::Schema.define(version: 2020_08_29_035400) do
   end
 
   create_table "email_recipients", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.string "email", null: false
     t.string "canonical_email", null: false
-    t.uuid "token", null: false
+    t.uuid "token", default: -> { "gen_random_uuid()" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_email_recipients_on_email", unique: true
@@ -282,7 +275,7 @@ ActiveRecord::Schema.define(version: 2020_08_29_035400) do
     t.text "body"
     t.boolean "show_on_site", default: true, null: false
     t.bigint "user_id"
-    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_shiny_blog_posts_on_user_id"
@@ -332,12 +325,12 @@ ActiveRecord::Schema.define(version: 2020_08_29_035400) do
     t.bigint "list_id"
     t.string "subscriber_type"
     t.bigint "subscriber_id"
-    t.bigint "consent_id"
+    t.bigint "consent_version_id"
     t.datetime "subscribed_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "unsubscribed_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["consent_id"], name: "index_shiny_lists_subscriptions_on_consent_id"
+    t.index ["consent_version_id"], name: "index_shiny_lists_subscriptions_on_consent_version_id"
     t.index ["list_id"], name: "index_shiny_lists_subscriptions_on_list_id"
     t.index ["subscriber_type", "subscriber_id"], name: "shiny_lists_subscriptions_on_subscribers"
   end
@@ -348,7 +341,7 @@ ActiveRecord::Schema.define(version: 2020_08_29_035400) do
     t.text "body"
     t.boolean "show_on_site", default: true, null: false
     t.bigint "user_id"
-    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_shiny_news_posts_on_user_id"

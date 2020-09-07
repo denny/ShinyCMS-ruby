@@ -95,6 +95,24 @@ RSpec.describe AdminController, type: :request do
     end
   end
 
+  describe 'GET /admin/does/not/exist' do
+    it 'redirects to /admin with an error message' do
+      admin = create :page_admin
+      sign_in admin
+
+      get '/admin/does/not/exist'
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to admin_path
+      follow_redirect!
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_pages.pages_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.alert', text: I18n.t( 'admin.invalid_url', request_path: 'does/not/exist' )
+    end
+  end
+
   describe 'GET /admin redirects to the appropriate admin area for:' do
     include_examples '/admin redirect', 'page_admin', '/admin/pages',      'pages',      'shiny_pages'
     include_examples '/admin redirect', 'blog_admin', '/admin/blog_posts', 'blog_posts', 'shiny_blog'

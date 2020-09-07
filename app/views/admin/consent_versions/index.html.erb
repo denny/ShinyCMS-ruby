@@ -1,0 +1,47 @@
+<% @page_title = t( '.title' ) %>
+
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Slug
+      </th>
+      <th>
+        Created (Updated)
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @consent_versions.each do |version| %>
+    <tr>
+      <td>
+        <%= version.name %>
+      </td>
+      <td>
+        <%= version.slug %>
+      </td>
+      <td>
+        <%= version.created_at.to_s( :shinydate ) %>
+        <% if version.updated_at > version.created_at %>(<%= version.updated_at.to_s( :shinydate ) %>)<% end %>
+      </td>
+      <td class="actions">
+        <%= link_to t( 'edit'   ), consent_version_path( version ) %>
+        <%= link_to t( 'delete' ), consent_version_path( version ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  <tbody>
+</table>
+
+<%= paginate @consent_versions, window: 3, views_prefix: 'admin' %>
+<p id="pager-info">
+  <%= page_entries_info @consent_versions %>
+</p>

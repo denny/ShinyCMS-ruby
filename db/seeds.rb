@@ -13,25 +13,26 @@
 # with `rails db:reset`. You can also reload this data at any time using `rails db:seed`.
 
 # Capabilities (for user authorisation, via Pundit)
-general_cc    = seed CapabilityCategory, { name: 'general'        }
-discussion_cc = seed CapabilityCategory, { name: 'discussions'    }
-comments_cc   = seed CapabilityCategory, { name: 'comments'       }
-spam_cc       = seed CapabilityCategory, { name: 'spam_comments'  }
-emails_cc     = seed CapabilityCategory, { name: 'email_previews' }
-features_cc   = seed CapabilityCategory, { name: 'feature_flags'  }
-stats_cc      = seed CapabilityCategory, { name: 'stats'          }
-settings_cc   = seed CapabilityCategory, { name: 'settings'       }
-users_cc      = seed CapabilityCategory, { name: 'users'          }
-admins_cc     = seed CapabilityCategory, { name: 'admin_users'    }
+general_cc    = seed CapabilityCategory, { name: 'general'          }
+discussion_cc = seed CapabilityCategory, { name: 'discussions'      }
+comments_cc   = seed CapabilityCategory, { name: 'comments'         }
+spam_cc       = seed CapabilityCategory, { name: 'spam_comments'    }
+consent_cc    = seed CapabilityCategory, { name: 'consent_versions' }
+emails_cc     = seed CapabilityCategory, { name: 'email_previews'   }
+features_cc   = seed CapabilityCategory, { name: 'feature_flags'    }
+stats_cc      = seed CapabilityCategory, { name: 'stats'            }
+settings_cc   = seed CapabilityCategory, { name: 'settings'         }
+users_cc      = seed CapabilityCategory, { name: 'users'            }
+admins_cc     = seed CapabilityCategory, { name: 'admin_users'      }
 # General
 seed Capability, { name: 'view_admin_area'      }, { category: general_cc }
 seed Capability, { name: 'view_admin_dashboard' }, { category: general_cc }
 seed Capability, { name: 'view_admin_toolbar'   }, { category: general_cc }
-# Discussions
-seed Capability, { name: 'show',    category: discussion_cc }
-seed Capability, { name: 'hide',    category: discussion_cc }
-seed Capability, { name: 'lock',    category: discussion_cc }
-seed Capability, { name: 'unlock',  category: discussion_cc }
+# Consent Versions
+seed Capability, { name: 'list',    category: consent_cc }
+seed Capability, { name: 'add',     category: consent_cc }
+seed Capability, { name: 'edit',    category: consent_cc }
+seed Capability, { name: 'destroy', category: consent_cc }
 # Comments
 seed Capability, { name: 'show',    category: comments_cc }
 seed Capability, { name: 'hide',    category: comments_cc }
@@ -42,6 +43,11 @@ seed Capability, { name: 'destroy', category: comments_cc }
 seed Capability, { name: 'list',    category: spam_cc }
 seed Capability, { name: 'add',     category: spam_cc }
 seed Capability, { name: 'destroy', category: spam_cc }
+# Discussions
+seed Capability, { name: 'show',    category: discussion_cc }
+seed Capability, { name: 'hide',    category: discussion_cc }
+seed Capability, { name: 'lock',    category: discussion_cc }
+seed Capability, { name: 'unlock',  category: discussion_cc }
 # Email Previews
 seed Capability, { name: 'list',    category: emails_cc }
 seed Capability, { name: 'show',    category: emails_cc }

@@ -10,8 +10,7 @@ en:
       process_form:
         success: Your form submission was successful
         failure: Form submission failed
-      set_form:
-        not_found: Form handler not found
+        form_not_found: Form handler not found
 
     admin:
       forms:

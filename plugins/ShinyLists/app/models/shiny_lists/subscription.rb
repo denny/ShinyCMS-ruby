@@ -13,8 +13,13 @@ module ShinyLists
 
     # Associations
 
-    belongs_to :list,       inverse_of: :subscriptions
-    belongs_to :subscriber, inverse_of: :subscriptions, polymorphic: true
+    belongs_to :subscriber,      inverse_of: :subscriptions, polymorphic: true
+    belongs_to :list,            inverse_of: :subscriptions
+    belongs_to :consent_version, inverse_of: :subscriptions
+
+    # Plugin config
+
+    paginates_per 20
 
     # Scopes
 
@@ -25,8 +30,23 @@ module ShinyLists
     def unsubscribe
       update( unsubscribed_at: Time.zone.now )
     end
+
+    def active?
+      unsubscribed_at.blank?
+    end
+
+    def policy_class
+      self.class.policy_class
+    end
+
+    # Class methods
+
+    def self.policy_class
+      ShinyLists::SubscriptionPolicy
+    end
   end
 end
 
+::ConsentVersion.has_many :subscriptions, inverse_of: :consent_version
 ::EmailRecipient.has_many :subscriptions, as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
 ::User.has_many :subscriptions, as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'

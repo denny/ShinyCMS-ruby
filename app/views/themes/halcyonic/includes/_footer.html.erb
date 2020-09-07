@@ -82,13 +82,18 @@
                   <% end %>
 
                   <% if defined? ShinyLists %>
+                  <% if list_for_footer_form = find_list_by_slug( 'newsletter' ) %>
                   <h2>
-                    <%= t( 'shiny_lists.subscribe' ) %>
+                    <%= list_for_footer_form.name %>
                   </h2>
                   <p>
-                    <%= render partial: 'shiny_lists/includes/subscription_form',
-                        locals: { show_name_field: false, list: find_list_by_slug( 'newsletter' ) } %>
+                    <%= render partial: 'shiny_lists/includes/subscription_form', locals: {
+                      show_name_field: false,
+                      list: list_for_footer_form,
+                      consent_version: consent_version( 'newsletter-2020-09-03' )
+                    } %>
                   </p>
+                  <% end %>
                   <% end %>
                 </section>
 

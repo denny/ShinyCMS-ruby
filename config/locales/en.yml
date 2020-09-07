@@ -271,7 +271,7 @@ en:
     title: Admin
     admin_area: Admin area
 
-    letter_opener_web: Outbox
+    invalid_url: 'Invalid URL: /admin/%{request_path}'
 
     elements:
       short_text: Short Text
@@ -294,6 +294,23 @@ en:
       process_ham_comments:
         success: Spam flags removed (comments should now be visible on site)
         failure: Failed to remove spam flags
+
+    consent_versions:
+      title: Consent versions
+      index:
+        title: Consent versions
+      new:
+        title: Add consent version
+      edit:
+        title: Update consent version
+      create:
+        success: New consent version added
+        failure: Failed to add new consent version
+      update:
+        success: Consent version updated
+        failure: Failed to update consent version
+      destroy:
+        success: Consent version deleted
 
     dashboard:
       title: Dashboard
@@ -322,6 +339,8 @@ en:
       update:
         success: Feature flags updated
         failure: Failed to update feature flags
+
+    letter_opener_web: Outbox
 
     other:
       title: Other
@@ -361,6 +380,8 @@ en:
 
     stats:
       title: Stats
+
+    # Blazer
     charts:
       title: Charts
     checks:

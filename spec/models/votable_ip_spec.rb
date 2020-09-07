@@ -10,7 +10,9 @@ require 'rails_helper'
 
 # Tests for VoteableIP model - anonymous up/down votes
 RSpec.describe VotableIP, type: :model do
-  it_should_behave_like 'VoteableVoter' do
-    let( :voter ) { create :votable_ip }
+  context 'concerns' do
+    it_should_behave_like 'VoteableVoter' do
+      let( :voter ) { create :votable_ip }
+    end
   end
 end

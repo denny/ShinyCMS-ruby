@@ -19,11 +19,31 @@ module ShinyLists
     has_many :users, through: :subscriptions, source: :subscriber, source_type: 'User'
     has_many :email_recipients, through: :subscriptions, source: :subscriber, source_type: 'EmailRecipient'
 
+    # Plugin config
+
+    paginates_per 20
+
     # Instance methods
+
+    def subscribe( subscriber, consent_version )
+      return if subscribed? subscriber.email
+
+      subscriptions.create!( subscriber: subscriber, consent_version: consent_version )
+    end
 
     def subscribed?( email_address )
       users.exists?( email: email_address ) ||
         email_recipients.exists?( email: email_address )
+    end
+
+    def policy_class
+      self.class.policy_class
+    end
+
+    # Class methods
+
+    def self.policy_class
+      ShinyLists::ListPolicy
     end
   end
 end

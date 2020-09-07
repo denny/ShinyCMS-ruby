@@ -52,7 +52,7 @@ source 'https://rubygems.org' do
 
   # Sessions, authentication, and authorisation
   gem 'activerecord-session_store'
-  gem 'bcrypt', '~> 3.1.15'
+  gem 'bcrypt', '~> 3.1.16'
   gem 'devise'
   gem 'devise-pwned_password'
   gem 'pundit'

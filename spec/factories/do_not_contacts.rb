@@ -9,6 +9,6 @@
 # Factory for DoNotContact model (one way encrypted email addresses to check against before we send anything)
 FactoryBot.define do
   factory :do_not_contact do
-    email { '{abcd123efg456etcetcblahblah}@example.com' }
+    email { Faker::Internet.unique.email }
   end
 end

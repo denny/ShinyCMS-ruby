@@ -1,12 +1,12 @@
 <% if current_user.can? :list, :mailing_lists %>
 
-  <%= render_admin_menu_section( t( 'shiny_lists.admin.shiny_lists.title' ), 'rss' ) do %>
+  <%= render_admin_menu_section( t( 'shiny_lists.admin.lists.title' ), 'rss' ) do %>
 
     <%= render_admin_menu_item(
-        t( 'shiny_lists.admin.shiny_lists.index.title' ), shiny_lists.lists_path, 'list' ) %>
+        t( 'shiny_lists.admin.lists.index.title' ), shiny_lists.lists_path, 'list' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :add, :mailing_lists ),
-        t( 'shiny_lists.admin.shiny_lists.new.title' ), shiny_lists.new_list_path, 'pencil' ) %>
+        t( 'shiny_lists.admin.lists.new.title' ), shiny_lists.new_list_path, 'pencil' ) %>
 
   <% end %>
 

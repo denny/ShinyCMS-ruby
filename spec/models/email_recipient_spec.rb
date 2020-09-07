@@ -6,9 +6,11 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Record details of a user's consent (e.g. to be on one of your mailing lists)
-class Consent < ApplicationRecord
-  validates :purpose, presence: true
+require 'rails_helper'
 
-  belongs_to :purpose, inverse_of: :consent, polymorphic: true
+# Tests for EmailRecipient model
+RSpec.describe EmailRecipient, type: :model do
+  it_should_behave_like ShinyToken do
+    let( :tokenised ) { create :email_recipient }
+  end
 end

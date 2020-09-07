@@ -16,30 +16,29 @@ module ShinyForms
 
     # POST /forms/:slug
     def process_form
-      if @form.send_to_handler( form_data )
-        flash[ :notice ] = @form.success_message || t( '.success' )
-        redirect_after_success
+      if @form.present?
+        if @form.send_to_handler( form_data )
+          redirect_after_success( @form.success_message || t( '.success' ) )
+        else
+          redirect_to main_app.root_path, alert: t( '.failure' )
+        end
       else
-        flash[ :alert ] = t( '.failure' )
-        redirect_to main_app.root_path
+        redirect_to main_app.root_path, alert: t( '.form_not_found' )
       end
     end
 
     private
 
-    def redirect_after_success
+    def redirect_after_success( notice )
       if @form.redirect_to.present?
-        redirect_to @form.redirect_to
+        redirect_to @form.redirect_to, notice: notice
       else
-        redirect_back fallback_location: main_app.root_path
+        redirect_back fallback_location: main_app.root_path, notice: notice
       end
     end
 
     def set_form
       @form = ShinyForms::Form.find_by( slug: params[:slug] )
-    rescue ActiveRecord::RecordNotFound
-      skip_authorization
-      redirect_to forms_path, alert: t( 'shiny_forms.forms.set_form.not_found' )
     end
 
     def form_data

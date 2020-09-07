@@ -29,7 +29,15 @@ lists_cc.capabilities.find_or_create_by!( name: 'add'     )
 lists_cc.capabilities.find_or_create_by!( name: 'edit'    )
 lists_cc.capabilities.find_or_create_by!( name: 'destroy' )
 
-subscriptions_cc.capabilities.find_or_create_by!( name: 'list'    )
-subscriptions_cc.capabilities.find_or_create_by!( name: 'add'     )
-subscriptions_cc.capabilities.find_or_create_by!( name: 'edit'    )
-subscriptions_cc.capabilities.find_or_create_by!( name: 'destroy' )
+subscriptions_cc.capabilities.find_or_create_by!( name: 'list'   )
+subscriptions_cc.capabilities.find_or_create_by!( name: 'add'    )
+subscriptions_cc.capabilities.find_or_create_by!( name: 'remove' )
+
+# Consent version used when a list admin manually subscribes somebody
+
+ConsentVersion.find_or_create_by!(
+  name: 'Subscribed by list admin',
+  slug: 'shiny-lists-admin-subscribe',
+  display_text: 'Manually subscribing people to lists might make it difficult to prove their consent. Are you sure?',
+  admin_notes: 'This is the consent version recorded when an admin manually subscribes somebody to a mailing list.'
+)

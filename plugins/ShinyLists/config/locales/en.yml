@@ -18,15 +18,19 @@ en:
       mailing_list_subscriptions: List subscriptions
 
   shiny_lists:
+    name: Name
     email_address: Email address
     subscribe: Subscribe
+    subscribed: Subscribed
+    unsubscribe: Unsubscribe
+    unsubscribed: Unsubscribed
 
     subscriptions:
       index:
         title: List subscriptions
         unsubscribe: Unsubscribe
         subscriber_not_found: Subscriber not found - please check link and try again
-      create:
+      subscribe:
         success: You have been subscribed
         failure: Failed to subscribe to mailing list - please try again
       unsubscribe:
@@ -34,9 +38,28 @@ en:
         failure: Unsubscribe attempt failed - please contact site admins for help
 
     admin:
-      shiny_lists:
+      lists:
         title: Mailing lists
         index:
           title: Mailing lists
         new:
           title: New mailing list
+        create:
+          success: Mailing list created
+          failure: Failed to create mailing list
+        edit:
+          title: Edit mailing list
+        update:
+          success: Mailing list updated
+          failure: Failed to update mailing list
+        destroy:
+          success: Mailing list deleted
+      subscriptions:
+        index:
+          title: List subscriptions
+        subscribe:
+          success: Subscribed
+          # failure: Failed to create subscription
+        unsubscribe:
+          success: Unsubscribed
+          # failure: Failed to unsubscribe
