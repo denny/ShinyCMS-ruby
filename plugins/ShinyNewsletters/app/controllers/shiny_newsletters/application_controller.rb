@@ -7,8 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyNewsletters
-  # Base model class for ShinyNewsletters
-  class ApplicationRecord < ActiveRecord::Base
-    self.abstract_class = true
+  # Unused base controller: see MainController and AdminController instead
+  class ApplicationController < ActionController::Base
   end
 end

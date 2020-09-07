@@ -20,7 +20,46 @@ en:
 
   shiny_newsletters:
     admin:
-      title: Newsletters
+      newsletters:
+        title: Newsletters
+      editions:
+        index:
+          title: Newsletter editions
+        new:
+          title: Create new edition
+        edit:
+          title: Edit newsletter edition
+        create:
+          success: Yep
+          failure: Nope
+        update:
+          success: Yep
+          failure: Nope
+        destroy:
+          success: Yep
+          failure: Nope
+      sends:
+        index:
+          title: Newsletter sends
+        new:
+          title: Send a newsletter
+      templates:
+        title: Newsletter templates
+        index:
+          title: Newsletter templates
+        new:
+          title: Add new template
+        edit:
+          title: Edit newsletter template
+        create:
+          success: Yep
+          failure: Nope
+        update:
+          success: Yep
+          failure: Nope
+        destroy:
+          success: Yep
+          failure: Nope
 
   models:
     shiny_newsletters:

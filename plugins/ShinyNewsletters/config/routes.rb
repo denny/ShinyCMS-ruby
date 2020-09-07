@@ -10,6 +10,16 @@
 
 ShinyNewsletters::Engine.routes.draw do
   scope format: false do
-    # ...
+    # Main site
+    resources :newsletters, only: %i[ index show ]
+
+    # Admin area
+    scope path: :admin, module: :admin do
+      scope path: :newsletters do
+        resources :templates, except: [ :show ]
+        resources :editions,  except: [ :show ]
+        resources :sends
+      end
+    end
   end
 end
