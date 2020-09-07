@@ -2,6 +2,7 @@
 
 <%# TODO: search feature (for all admin list pages) %>
 
+<% if @subscriptions.present? %>
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
@@ -49,3 +50,11 @@
 <p id="pager-info">
   <%= page_entries_info @subscriptions %>
 </p>
+
+<% else %>
+
+<p>
+  This list has no subscribers (past or present).
+</p>
+
+<% end %>
