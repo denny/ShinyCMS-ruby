@@ -40,7 +40,9 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
   describe 'POST /admin/newsletters/template/new' do
     it 'fails when the form is submitted without all the details' do
       post shiny_newsletters.templates_path, params: {
-        'newsletter_template[filename]': 'Test'
+        template: {
+          filename: 'Test'
+        }
       }
 
       expect( response      ).to have_http_status :ok
@@ -50,8 +52,10 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
 
     it 'adds a new template when the form is submitted' do
       post shiny_newsletters.templates_path, params: {
-        'newsletter_template[name]': 'Test',
-        'newsletter_template[filename]': 'an_example'
+        template: {
+          name: 'Test',
+          filename: 'an_example'
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -63,8 +67,10 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
 
     it 'adds the right number of elements to the new template' do
       post shiny_newsletters.templates_path, params: {
-        'newsletter_template[name]': 'Another Test',
-        'newsletter_template[filename]': 'an_example'
+        template: {
+          name: 'Another test',
+          filename: 'an_example'
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -72,7 +78,7 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.templates.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.templates.create.success' )
-      expect( ShinyNewsletters::TemplateElement.count ).to eq 4
+      expect( ShinyNewsletters::TemplateElement.count ).to eq 5
     end
   end
 
@@ -92,7 +98,9 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
       template = create :newsletter_template
 
       put shiny_newsletters.template_path( template ), params: {
-        'newsletter_template[name]': nil
+        template: {
+          name: nil
+        }
       }
 
       expect( response      ).to have_http_status :ok
@@ -105,7 +113,7 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
       e_id = ShinyNewsletters::TemplateElement.last.id
 
       put shiny_newsletters.template_path( template ), params: {
-        'newsletter_template[name]': 'Updated by test',
+        'template[name]': 'Updated by test',
         "elements[element_#{e_id}_name]": 'updated_element_name',
         "elements[element_#{e_id}_content]": 'Default content',
         "elements[element_#{e_id}_type]": 'HTML'

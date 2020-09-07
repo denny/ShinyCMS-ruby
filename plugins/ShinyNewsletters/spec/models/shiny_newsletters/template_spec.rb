@@ -13,21 +13,21 @@ module ShinyNewsletters
     context 'class methods' do
       describe '.file_exists?' do
         it 'returns true if the template file exists on the disk' do
-          template = create :page_template, filename: 'an_example'
+          template = create :newsletter_template, filename: 'an_example'
           expect( template.file_exists? ).to eq true
         end
 
         it 'it returns false if the template file does not exist' do
-          template = build :page_template, filename: 'NO-SUCH-FILE'
+          template = build :newsletter_template, filename: 'NO-SUCH-FILE'
           expect( template.file_exists? ).to eq false
         end
       end
 
       describe '.elements' do
         it 'returns the template elements' do
-          template = create :page_template
+          template = create :newsletter_template
 
-          expect( template.elements.size ).to eq 4
+          expect( template.elements.size ).to eq 5
         end
       end
 

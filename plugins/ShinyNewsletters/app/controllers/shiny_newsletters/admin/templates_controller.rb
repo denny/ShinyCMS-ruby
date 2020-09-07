@@ -66,9 +66,7 @@ module ShinyNewsletters
     private
 
     def template_params
-      params.require( :newsletter_template ).permit(
-        :name, :description, :filename, elements_attributes: {}
-      )
+      params.require( :template ).permit( :name, :description, :filename, elements_attributes: {} )
     end
   end
 end
