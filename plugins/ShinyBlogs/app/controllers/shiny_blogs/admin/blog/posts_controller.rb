@@ -21,8 +21,10 @@ module ShinyBlogs
 
     def index
       authorise BlogPost
+
       page_num = params[ :page ] || 1
       @posts = @blog.all_posts.order( :created_at ).page( page_num )
+
       authorise @posts.first if @posts.present?
     end
 
@@ -43,11 +45,11 @@ module ShinyBlogs
     end
 
     def edit
-      authorise @post
+      return unless authorise @post
     end
 
     def update
-      authorise @post
+      return unless authorise @post
 
       if @post.update( post_params )
         redirect_to edit_blog_post_path( @blog, @post ), notice: t( '.success' )
@@ -67,29 +69,27 @@ module ShinyBlogs
     end
 
     def destroy
-      authorise @post
+      return unless authorise @post
+
       flash[ :notice ] = t( '.success' ) if @post.destroy
-      redirect_to action: :index
+
+      redirect_to blog_posts_path( @blog )
     end
 
     private
 
     def set_blog
-      @blog =
-        if Blog.multiple_blogs_mode?
-          # :nocov:
-          Blog.find( params[:id] )
-          # :nocov:
-        else
-          Blog.first
-        end
+      @blog = ShinyBlogs::Blog.find( params[:blog_id] )
+      # rescue ActiveRecord::RecordNotFound
+      # skip_authorization
+      # redirect_to blogs_path, alert: t( '.failure' )
     end
 
     def set_post
       @post = @blog.all_posts.find( params[:id] )
     rescue ActiveRecord::RecordNotFound
       skip_authorization
-      redirect_to blog_posts_path, alert: t( '.failure' )
+      redirect_to blog_posts_path( @blog ), alert: t( '.failure' )
     end
 
     def post_params

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ShinyBlogs
-  # Model class for blogs (which are a collection of blog posts)
+  # Model class for blogs (which are a collection of blog posts) - part of the ShinyBlogs plugin for ShinyCMS
   class Blog < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyName
@@ -42,23 +42,15 @@ module ShinyBlogs
       posts_in_month( year, month ).find_by( slug: slug )
     end
 
-    def recent_posts( page_num = 1 )
-      posts.order( posted_at: :desc ).page( page_num )
-    end
-
     # Specify policy class for Pundit
     def policy_class
-      Admin::BlogPolicy
+      self.class.policy_class
     end
 
     # Class methods
 
     def self.policy_class
       Admin::BlogPolicy
-    end
-
-    def self.multiple_blogs_mode?
-      Rails.application.config.multiple_blogs_mode == true
     end
   end
 end

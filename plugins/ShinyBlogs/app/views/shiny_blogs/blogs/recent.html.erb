@@ -1,8 +1,8 @@
-<% @page_title = @blog.internal_name || 'Recent blog posts' %>
+<% @page_title = @blog&.name || 'Recent blog posts' %>
 
 <% @sidebar_position = 'right' %>
 
-<% @posts.each do |post| %>
+<% @posts&.each do |post| %>
   <%= render partial: 'blogs/post_in_list', locals: { post: post } %>
 <% end %>
 

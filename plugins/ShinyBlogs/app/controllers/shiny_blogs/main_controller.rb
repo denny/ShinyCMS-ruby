@@ -7,7 +7,9 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyBlogs
-  # Base controller for ShinyBlogs plugin for ShinyCMS (see also MainController, AdminController)
-  class ApplicationController < ActionController::Base
+  # Main site base controller for the ShinyBlogs plugin for ShinyCMS
+  # Inherits from ShinyCMS MainController
+  class MainController < ::MainController
+    helper Rails.application.routes.url_helpers
   end
 end

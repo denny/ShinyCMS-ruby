@@ -44,7 +44,7 @@ module ShinyBlogs
     end
 
     def update
-      authorise @blog
+      return unless authorise @blog
 
       if @blog.update( blog_params )
         redirect_to edit_blog_path( @blog ), notice: t( '.success' )
@@ -55,10 +55,11 @@ module ShinyBlogs
     end
 
     def destroy
-      authorise @blog
+      return unless authorise @blog
 
       flash[ :notice ] = t( '.success' ) if @blog.destroy
-      redirect_to action: :index
+
+      redirect_to blogs_path
     end
 
     private

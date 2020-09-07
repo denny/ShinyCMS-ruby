@@ -8,14 +8,14 @@ module ShinyBlogs
 
     # Associations
 
-    belongs_to :blog, class_name: 'ShinyBlogs::Blog'
+    belongs_to :blog, inverse_of: :all_posts, class_name: 'ShinyBlogs::Blog'
     belongs_to :user, inverse_of: :shiny_blogs_blog_posts
 
     has_one :discussion, as: :resource, dependent: :destroy
 
     # Validations
 
-    validates :blog_id, presence: true
+    validates :blog, presence: true
 
     # Instance methods
 
@@ -27,7 +27,7 @@ module ShinyBlogs
 
     # Specify policy class for Pundit
     def policy_class
-      Admin::BlogPostPolicy
+      self.class.policy_class
     end
 
     # Class methods

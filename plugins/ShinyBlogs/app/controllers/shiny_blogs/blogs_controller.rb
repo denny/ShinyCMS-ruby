@@ -1,42 +1,43 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyBlogs plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyBlog/app/controllers/blog_controller.rb
-# Purpose:   Controller for blog features on a ShinyCMS-powered site
+# ShinyBlogs plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyBlogs
-  # Main site controller for ShinyBlogs plugin for ShinyCMS
-  class BlogsController < ApplicationController
+  # Main site blog features - part of the ShinyBlogs plugin for ShinyCMS
+  class BlogsController < MainController
     before_action :check_feature_flags
     before_action :set_blog, except: :index
 
     def index
-      # :nocov:
       @blogs = ShinyBlogs::Blog.readonly.all
-      # :nocov:
     end
 
     def recent
+      return set_blog_failure if @blog.blank?
+
       page_num = params[:page] || 1
-      @posts = @blog.recent_posts.page( page_num )
+      @posts = @blog.posts.recent.page( page_num )
     end
 
     def month
+      return set_blog_failure if @blog.blank?
+
       @posts = @blog.posts_in_month( params[:year], params[:month] )
     end
 
     def year
+      return set_blog_failure if @blog.blank?
+
       @posts = @blog.posts_in_year( params[:year] )
     end
 
     def show
+      return set_blog_failure if @blog.blank?
+
       @post = @blog.find_post( params[:year], params[:month], params[:slug] )
       return if @post.present?
 
@@ -47,18 +48,11 @@ module ShinyBlogs
     private
 
     def set_blog
-      @blog =
-        if ShinyBlogs::Blog.multiple_blogs_mode?
-          # :nocov:
-          ShinyBlogs::Blog.readonly.find( params[:blog_slug] )
-          # :nocov:
-        else
-          ShinyBlogs::Blog.readonly.first
-        end
-      return if @blog.present?
+      @blog = ShinyBlogs::Blog.readonly.find_by( slug: params[:blog_slug] )
+    end
 
-      flash[ :alert ] = t( 'shiny_blogs.blogs.set_blog.failure' )
-      redirect_to main_app.root_path
+    def set_blog_failure
+      redirect_to view_blogs_path, alert: t( 'shiny_blogs.blogs.set_blog.failure' )
     end
 
     def check_feature_flags
