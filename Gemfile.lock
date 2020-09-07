@@ -175,7 +175,7 @@ GEM
       safely_block (>= 0.1.1)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
-    brakeman (4.9.0)
+    brakeman (4.9.1)
     builder (3.2.4)
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
@@ -192,7 +192,7 @@ GEM
     childprocess (4.0.0)
     ckeditor (5.1.0)
       orm_adapter (~> 0.5.0)
-    codecov (0.2.9)
+    codecov (0.2.10)
       json
       simplecov
     coderay (1.1.2)
@@ -323,7 +323,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (4.0.5)
-    puma (4.3.5)
+    puma (4.3.6)
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
