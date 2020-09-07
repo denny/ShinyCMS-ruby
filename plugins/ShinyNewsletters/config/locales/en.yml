@@ -23,7 +23,7 @@ en:
       newsletters:
         title: Newsletters
       editions:
-        title: Newsletter editions
+        title: Newsletter Editions
         index:
           title: Editions
         new:
@@ -31,21 +31,21 @@ en:
         edit:
           title: Edit newsletter edition
         create:
-          success: Yep
-          failure: Nope
+          success: Newsletter edition created
+          failure: Failed to create newsletter edition
         update:
-          success: Yep
-          failure: Nope
+          success: Newsletter edition updated
+          failure: Failed to update newsletter edition
         destroy:
-          success: Yep
-          failure: Nope
+          success: Newsletter edition deleted
+          failure: Failed to delete newsletter edition
       sends:
         index:
-          title: Sends
+          title: Sent / Sending
         new:
-          title: Send / schedule
+          title: Send
       templates:
-        title:  templates
+        title:  Newsletter Templates
         index:
           title: Templates
         new:
@@ -53,14 +53,14 @@ en:
         edit:
           title: Edit newsletter template
         create:
-          success: Yep
-          failure: Nope
+          success: Newsletter template created
+          failure: Failed to create newsletter template
         update:
-          success: Yep
-          failure: Nope
+          success: Newsletter template updated
+          failure: Failed to update newsletter template
         destroy:
-          success: Yep
-          failure: Nope
+          success: Newsletter template deleted
+          failure: Failed to delete newsletter template
 
   models:
     shiny_newsletters:
