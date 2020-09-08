@@ -8,7 +8,7 @@
     <mj-image src="https://example.com/images/<%= top_image %>" href="https://shinycms.org" alt="<%= top_alt_text %>" title="<%= top_title_text %>" />
 
     <mj-text>
-      <%= some_longer_text %>
+      <%= simple_format some_longer_text %>
     </mj-text>
 
   </mj-column>
