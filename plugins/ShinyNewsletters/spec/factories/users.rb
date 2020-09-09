@@ -20,7 +20,11 @@ FactoryBot.define do
       create :user_capability, user: admin, capability: add
       create :user_capability, user: admin, capability: edit
       create :user_capability, user: admin, capability: destroy
+    end
+  end
 
+  factory :newsletter_send_admin, parent: :newsletter_admin do
+    after :create do |admin|
       category = CapabilityCategory.find_by( name: 'newsletter_sends' )
 
       list    = category.capabilities.find_by( name: 'list'    )
