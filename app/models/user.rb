@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_many :capabilities, through: :user_capabilities, inverse_of: :users
 
   # Web and email stats (powered by Ahoy and Ahoy::Email)
-  has_many :visits, class_name: 'Ahoy::Visit', dependent: :nullify
+  has_many :visits,   class_name: 'Ahoy::Visit',   dependent: :nullify
   has_many :messages, class_name: 'Ahoy::Message', dependent: :nullify
 
   # User's custom site settings, if any
