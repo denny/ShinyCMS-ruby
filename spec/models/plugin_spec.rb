@@ -53,8 +53,8 @@ RSpec.describe Plugin, type: :model do
 
     describe '.admin_index_path' do
       it 'returns the approriate path' do
-        plugin = Plugin.new( 'ShinyNews' )
-        path = plugin.admin_index_path( 'editions' )
+        plugin = Plugin.new( 'ShinyBlog' )
+        path = plugin.admin_index_path( 'blog_posts' )
 
         expect( path ).to be_a String
       end
