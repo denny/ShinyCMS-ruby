@@ -9,6 +9,8 @@
 # Translation strings for English
 
 en:
+  cancel: Cancel
+
   feature_flags:
     newsletters: Newsletters
 
@@ -19,11 +21,18 @@ en:
       newsletter_sends: Newsletter sends
 
   shiny_newsletters:
+    newsletters:
+      index:
+        title: Newsletters
+        subscriber_not_found: Could not find subscriber - please check link and try again
+        no_newsletters: There are currently no newsletters to display
+      show:
+        title: View newsletter
+
     admin:
       newsletters:
         title: Newsletters
       editions:
-        title: Newsletter Editions
         index:
           title: Editions
         new:
@@ -42,10 +51,22 @@ en:
       sends:
         index:
           title: Sent / Sending
+          no_sends: There are currently no sends to display
         new:
           title: Send
+        edit:
+          title: Edit newsletter send
+        create:
+          success: Newsletter send created
+          failure: Failed to create newsletter send
+        update:
+          success: Newsletter send updated
+          failure: Failed to update newsletter send
+        cancel:
+          success: Newsletter send cancelled
+        destroy:
+          success: Newsletter send deleted
       templates:
-        title:  Newsletter Templates
         index:
           title: Templates
         new:

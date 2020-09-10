@@ -10,22 +10,22 @@ module ShinyNewsletters
   # Admin controller for newsletter templates - part of ShinyNewsletters plugin for ShinyCMS
   class Admin::TemplatesController < AdminController
     def index
-      authorise Template
+      authorize Template
 
       page_num = params[ :page ] || 1
 
       @templates = Template.order( :name ).page( page_num )
-      authorise @templates if @templates.present?
+      authorize @templates if @templates.present?
     end
 
     def new
       @template = Template.new
-      authorise @template
+      authorize @template
     end
 
     def create
       @template = Template.new( template_params )
-      authorise @template
+      authorize @template
 
       if @template.save
         redirect_to shiny_newsletters.edit_template_path( @template ), notice: t( '.success' )
@@ -37,12 +37,12 @@ module ShinyNewsletters
 
     def edit
       @template = Template.find( params[:id] )
-      authorise @template
+      authorize @template
     end
 
     def update
       @template = Template.find( params[:id] )
-      authorise @template
+      authorize @template
 
       if @template.update( template_params )
         redirect_to shiny_newsletters.edit_template_path( @template ), notice: t( '.success' )
@@ -54,7 +54,7 @@ module ShinyNewsletters
 
     def destroy
       template = Template.find( params[:id] )
-      authorise template
+      authorize template
 
       flash[ :notice ] = t( '.success' ) if template.destroy
       redirect_to shiny_newsletters.templates_path

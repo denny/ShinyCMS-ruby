@@ -12,7 +12,7 @@ module ShinyNewsletters
     include ShinyDemoDataProvider
     include ShinyName
     include ShinyShowHide
-    include ShinySlug
+    include ShinySlugInMonth
     include ShinyWithTemplate
 
     # Associations
@@ -25,6 +25,21 @@ module ShinyNewsletters
                                                 dependent: :destroy
 
     accepts_nested_attributes_for :elements
+
+    # Instance methods
+
+    def sent?
+      sends&.sent&.present?
+    end
+
+    def scheduled?
+      sends&.scheduled&.present?
+    end
+
+    # Used by SlugInMonth validator
+    def items_in_same_month
+      self.class.readonly.where( updated_at: updated_at.all_month )
+    end
 
     # Class methods
 

@@ -10,18 +10,18 @@ module ShinyNewsletters
   # Admin controller for newsletter editions - ShinyNewsletters plugin for ShinyCMS
   class Admin::EditionsController < AdminController
     def index
-      authorise Edition
+      authorize Edition
       @editions = Edition.all
     end
 
     def new
       @edition = Edition.new
-      authorise @edition
+      authorize @edition
     end
 
     def create
       @edition = Edition.new( edition_params )
-      authorise @edition
+      authorize @edition
 
       if @edition.save
         redirect_to shiny_newsletters.edit_edition_path( @edition ), notice: t( '.success' )
@@ -33,12 +33,12 @@ module ShinyNewsletters
 
     def edit
       @edition = Edition.find( params[:id] )
-      authorise @edition
+      authorize @edition
     end
 
     def update
       @edition = Edition.find( params[:id] )
-      authorise @edition
+      authorize @edition
 
       if @edition.update( edition_params )
         redirect_to shiny_newsletters.edit_edition_path( @edition ), notice: t( '.success' )
@@ -50,7 +50,7 @@ module ShinyNewsletters
 
     def destroy
       edition = Edition.find( params[:id] )
-      authorise edition
+      authorize edition
 
       flash[ :notice ] = t( '.success' ) if edition.destroy
       redirect_to shiny_newsletters.editions_path

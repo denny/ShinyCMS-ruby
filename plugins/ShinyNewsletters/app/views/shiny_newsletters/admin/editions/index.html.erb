@@ -5,12 +5,17 @@
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
-      <th class="width25pc">
+      <th>
         Name
       </th>
-      <th class="width50pc">
+      <th>
+        Description
       </th>
-      <th class="width25pc">
+      <th>
+        Status
+      </th>
+      <th>
+        &nbsp;
       </th>
     </tr>
   </thead>
@@ -19,6 +24,22 @@
     <tr>
       <td>
         <%= edition.internal_name %>
+      </td>
+      <td>
+        <%= edition.description %>
+      </td>
+      <td>
+        <% if edition.sent? %>
+          Sent
+        <% elsif edition.scheduled? %>
+          Scheduled
+        <% end %>
+      </td>
+      <td class="actions">
+        <%#= link_to t( 'shiny_newsletters.send' ), shiny_newsletters.new_send_path( edition ) %>
+        <%= link_to t( 'edit'   ), shiny_newsletters.edit_edition_path( edition ) %>
+        <%= link_to t( 'delete' ), shiny_newsletters.edition_path( edition ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>
     <% end %>

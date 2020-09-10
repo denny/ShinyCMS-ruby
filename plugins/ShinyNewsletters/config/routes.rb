@@ -11,14 +11,26 @@
 ShinyNewsletters::Engine.routes.draw do
   scope format: false do
     # Main site
-    resources :newsletters, only: %i[ index show ]
+    get 'newsletters',        to: 'newsletters#index', as: :user_view_newsletters
+    get 'newsletters/:token', to: 'newsletters#index', as: :token_view_newsletters
+
+    get 'newsletter/:year/:month/:slug',  to: 'newsletters#show', as: :user_view_newsletter,
+                                          constraints: { year: %r{\d\d\d\d}, month: %r{\d\d} }
+
+    get 'newsletter/:year/:month/:slug/:token', to: 'newsletters#show', as: :token_view_newsletter,
+                                                constraints: { year: %r{\d\d\d\d}, month: %r{\d\d} }
 
     # Admin area
     scope path: :admin, module: :admin do
       scope path: :newsletters do
         resources :templates, except: [ :show ]
         resources :editions,  except: [ :show ]
-        resources :sends
+
+        resources :sends do
+          put :pause,  to: 'sends#pause'
+          put :resume, to: 'sends#resume'
+          put :cancel, to: 'sends#cancel'
+        end
       end
     end
   end

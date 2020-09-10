@@ -1,0 +1,57 @@
+<% @page_title = t( '.title' ) %>
+
+<% if @sends.present? %>
+
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Edition
+      </th>
+      <th>
+        List
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sends.each do |send| %>
+    <tr>
+      <td>
+        <%= send.edition.internal_name %>
+      </td>
+      <td>
+        <%= send.list.internal_name %>
+      </td>
+      <td>
+        <% if send.sending? %>
+          Sending
+        <% elsif send.sent? %>
+          Sent
+        <% elsif send.scheduled? %>
+          Scheduled
+        <% end %>
+      </td>
+      <td class="actions">
+        <% if send.sending? %>
+        <%= link_to t( 'cancel' ), shiny_newsletters.send_cancel_path( send ) %>
+        <% end %>
+        <%= link_to t( 'edit'   ), shiny_newsletters.edit_send_path( send ) %>
+        <%= link_to t( 'delete' ), shiny_newsletters.send_path( send ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else %>
+<p>
+  <%= t( '.no_sends' ) %>
+</p>
+<% end %>
