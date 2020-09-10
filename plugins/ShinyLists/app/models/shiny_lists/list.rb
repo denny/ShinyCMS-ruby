@@ -15,9 +15,10 @@ module ShinyLists
 
     # Assocations
 
-    has_many :subscriptions, dependent: :destroy
-    has_many :users, through: :subscriptions, source: :subscriber, source_type: 'User'
-    has_many :email_recipients, through: :subscriptions, source: :subscriber, source_type: 'EmailRecipient'
+    has_many :subscriptions, inverse_of: :list, dependent: :destroy
+    has_many :users, through: :subscriptions, inverse_of: :lists, source: :subscriber, source_type: 'User'
+    has_many :email_recipients, through: :subscriptions, inverse_of: :lists, source: :subscriber,
+                                source_type: 'EmailRecipient'
 
     # Plugin config
 
@@ -48,5 +49,8 @@ module ShinyLists
   end
 end
 
-::EmailRecipient.has_many :lists, through: :subscriptions, class_name: 'ShinyLists::List'
-::User.has_many :lists, through: :subscriptions, class_name: 'ShinyLists::List'
+::EmailRecipient.has_many :subscriptions, as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
+::EmailRecipient.has_many :lists, through: :subscriptions, inverse_of: :email_recipients, class_name: 'ShinyLists::List'
+
+::User.has_many :subscriptions, as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
+::User.has_many :lists, through: :subscriptions, inverse_of: :users, class_name: 'ShinyLists::List'
