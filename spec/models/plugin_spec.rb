@@ -25,6 +25,12 @@ RSpec.describe Plugin, type: :model do
       end
     end
 
+    describe '.loaded?' do
+      it 'returns true if the named plugin is loaded' do
+        expect( Plugin.loaded?( 'ShinySearch' ) ).to be true
+      end
+    end
+
     describe '.models_with_demo_data' do
       it 'returns an array of model class names' do
         expect( Plugin.models_with_demo_data       ).to be_an Array
@@ -42,6 +48,15 @@ RSpec.describe Plugin, type: :model do
         expect( models            ).to be_an Array
         expect( models.first      ).to be_a Class
         expect( models.first.name ).to eq 'ShinyBlog::Post'
+      end
+    end
+
+    describe '.admin_index_path' do
+      it 'returns the approriate path' do
+        plugin = Plugin.new( 'ShinyBlog' )
+        path = plugin.admin_index_path( 'blog_posts' )
+
+        expect( path ).to be_a String
       end
     end
   end
