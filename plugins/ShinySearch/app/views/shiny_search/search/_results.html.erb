@@ -11,6 +11,7 @@
   <ul>
   <% @results.each do |result| %>
     <li>
+      <%# TODO: get search result templates from plugins %>
       <%= render partial: "search/result/#{result.class.name.underscore}", locals: { result: result } %>
     </li>
   <% end %>
@@ -18,11 +19,9 @@
   <% if @results.blank? %>
     <%= render partial: 'search/no_results' %>
   <% else %>
-    <% @pageable ||= @results %>
-    <%= paginate @pageable, window: 3 %>
-    <p id="pager-info">
-      <%= page_entries_info @pageable %>
-    </p>
+    <% if @pageable %>
+    <%= render partial: 'includes/pager', locals: { paged: @pageable } %>
+    <% end %>
   <% end %>
 </section>
 
