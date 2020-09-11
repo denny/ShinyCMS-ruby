@@ -11,9 +11,11 @@
         <% @page_title = controller_name.titlecase %> <%# TODO: i18n %>
         <%= link_to t( 'admin.stats.title' ), blazer.root_path %>
 
-      <%# TODO: FIXME: ShinyLists::Subscriptions bodge %>
+      <%# TODO: FIXME: bodges for list subscriptions and newsletters %>
       <% elsif plugin_name == 'ShinyLists' %>
         <%= link_to t( "shiny_lists.admin.lists.title" ), lists_path %>
+      <% elsif plugin_name == 'ShinyNewsletters' %>
+        <%= link_to t( "shiny_newsletters.admin.newsletters.title" ), editions_path %>
 
       <%# ShinyCMS plugins %>
       <% elsif ::Plugin.loaded? plugin_name %>
