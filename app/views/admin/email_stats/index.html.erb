@@ -40,10 +40,7 @@
   </tbody>
 </table>
 
-<%= paginate @messages, window: 3, views_prefix: 'admin' %>
-<p id="pager-info">
-  <%= page_entries_info @messages %>
-</p>
+<%= render partial: 'admin/includes/pager', locals: { paged: @messages } %>
 
 <% else %>
 <p>

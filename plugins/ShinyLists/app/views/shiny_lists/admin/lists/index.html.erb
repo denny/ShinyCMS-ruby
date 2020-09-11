@@ -34,7 +34,4 @@
   <tbody>
 </table>
 
-<%= paginate @lists, window: 3, views_prefix: 'admin' %>
-<p id="pager-info">
-  <%= page_entries_info @lists %>
-</p>
+<%= render partial: 'admin/includes/pager', locals: { paged: @lists } %>
