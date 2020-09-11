@@ -19,12 +19,32 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
   describe 'GET /admin/newsletters/sends' do
     it 'fetches the list of sends in the admin area' do
       send1 = create :newsletter_send
+      send2 = create :newsletter_send_sent
+      send3 = create :newsletter_send_sending
 
       get shiny_newsletters.sends_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.sends.index.title' ).titlecase
       expect( response.body ).to have_css 'td', text: send1.edition.internal_name
+      expect( response.body ).to have_css 'td', text: send3.edition.internal_name
+      expect( response.body ).not_to have_css 'td', text: send2.edition.internal_name
+    end
+  end
+
+  describe 'GET /admin/newsletters/sent' do
+    it 'fetches the list of sent in the admin area' do
+      send1 = create :newsletter_send
+      send2 = create :newsletter_send_sent
+      send3 = create :newsletter_send_sending
+
+      get shiny_newsletters.sent_path
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.sends.sent.title' ).titlecase
+      expect( response.body ).to have_css 'td', text: send2.edition.internal_name
+      expect( response.body ).not_to have_css 'td', text: send1.edition.internal_name
+      expect( response.body ).not_to have_css 'td', text: send3.edition.internal_name
     end
   end
 

@@ -20,6 +20,42 @@
     </tr>
   </thead>
   <tbody>
+    <% @sending.each do |send| %>
+    <tr>
+      <td>
+        <%= send.edition.internal_name %>
+      </td>
+      <td>
+        <%= send.list.internal_name %>
+      </td>
+      <td>
+        Sending
+      </td>
+      <td class="actions">
+        <%= link_to t( 'cancel' ), shiny_newsletters.send_cancel_path( send ) %>
+      </td>
+    </tr>
+    <% end %>
+
+    <% @scheduled.each do |send| %>
+    <tr>
+      <td>
+        <%= send.edition.internal_name %>
+      </td>
+      <td>
+        <%= send.list.internal_name %>
+      </td>
+      <td>
+        Scheduled
+      </td>
+      <td class="actions">
+        <%= link_to t( 'edit'   ), shiny_newsletters.edit_send_path( send ) %>
+        <%= link_to t( 'delete' ), shiny_newsletters.send_path( send ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+
     <% @sends.each do |send| %>
     <tr>
       <td>
@@ -29,18 +65,8 @@
         <%= send.list.internal_name %>
       </td>
       <td>
-        <% if send.sending? %>
-          Sending
-        <% elsif send.sent? %>
-          Sent
-        <% elsif send.scheduled? %>
-          Scheduled
-        <% end %>
       </td>
       <td class="actions">
-        <% if send.sending? %>
-        <%= link_to t( 'cancel' ), shiny_newsletters.send_cancel_path( send ) %>
-        <% end %>
         <%= link_to t( 'edit'   ), shiny_newsletters.edit_send_path( send ) %>
         <%= link_to t( 'delete' ), shiny_newsletters.send_path( send ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>

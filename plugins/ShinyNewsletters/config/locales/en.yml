@@ -50,10 +50,13 @@ en:
           failure: Failed to delete newsletter edition
       sends:
         index:
-          title: Sent / Sending
+          title: Sends
           no_sends: There are currently no sends to display
+        sent:
+          title: Sent
+          no_sends: There are no sent newsletters to display
         new:
-          title: Send
+          title: Send / Schedule
         edit:
           title: Edit newsletter send
         create:

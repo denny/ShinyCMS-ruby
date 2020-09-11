@@ -30,6 +30,7 @@ module ShinyNewsletters
 
     # Instance methods
 
+    # :nocov:
     def scheduled?
       send_at.present? && started_sending_at.blank?
     end
@@ -41,6 +42,7 @@ module ShinyNewsletters
     def sent?
       finished_sending_at.present?
     end
+    # :nocov:
 
     def cancel
       # TODO: distinguish between 'cancelled' and 'finished'

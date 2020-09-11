@@ -9,7 +9,10 @@
         t( 'shiny_newsletters.admin.editions.new.title' ), shiny_newsletters.new_edition_path, 'pencil' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :newsletter_sends ),
-        t( 'shiny_newsletters.admin.sends.index.title' ), shiny_newsletters.sends_path, 'envelope-closed' ) %>
+        t( 'shiny_newsletters.admin.sends.index.title' ), shiny_newsletters.sends_path, 'envelope-open' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :list, :newsletter_sends ),
+        t( 'shiny_newsletters.admin.sends.sent.title' ), shiny_newsletters.sent_path, 'envelope-closed' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :add, :newsletter_sends ),
         t( 'shiny_newsletters.admin.sends.new.title' ), shiny_newsletters.new_send_path, 'envelope-letter' ) %>

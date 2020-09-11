@@ -38,7 +38,7 @@ module ShinyNewsletters
 
     # Used by SlugInMonth validator
     def items_in_same_month
-      self.class.readonly.where( updated_at: updated_at.all_month )
+      self.class.readonly.where( updated_at: Time.zone.now.all_month )
     end
 
     # Class methods

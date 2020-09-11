@@ -11,7 +11,8 @@ module ShinyNewsletters
   class Admin::EditionsController < AdminController
     def index
       authorize Edition
-      @editions = Edition.all
+      @editions = Edition.page( page_number )&.per( items_per_page )
+      authorize @editions if @editions.present?
     end
 
     def new

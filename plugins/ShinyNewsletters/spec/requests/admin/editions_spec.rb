@@ -26,6 +26,18 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.index.title' ).titlecase
       expect( response.body ).to have_css 'td', text: edition1.internal_name
     end
+
+    it 'sets page size and page number correctly if overridden' do
+      edition1 = create :newsletter_edition
+      edition2 = create :newsletter_edition
+
+      get shiny_newsletters.editions_path, params: { page: 2, count: 1 }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.index.title' ).titlecase
+      expect( response.body ).to have_css 'td', text: edition2.internal_name
+      expect( response.body ).not_to have_css 'td', text: edition1.internal_name
+    end
   end
 
   describe 'GET /admin/newsletters/editions/new' do
@@ -38,9 +50,29 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
   end
 
   describe 'POST /admin/newsletters/editions' do
+    it 'adds a new edition when the form is submitted' do
+      template1 = create :newsletter_template
+
+      post shiny_newsletters.editions_path, params: {
+        edition: {
+          internal_name: Faker::Books::CultureSeries.unique.culture_ship,
+          template_id: template1.id
+        }
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_newsletters.edit_edition_path( ShinyNewsletters::Edition.last )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.editions.create.success' )
+    end
+
     it 'fails when the form is submitted without all the details' do
       post shiny_newsletters.editions_path, params: {
-        'edition[public_name]': 'Test'
+        edition: {
+          public_name: Faker::Books::CultureSeries.unique.culture_ship
+        }
       }
 
       expect( response      ).to have_http_status :ok
@@ -48,29 +80,31 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_newsletters.admin.editions.create.failure' )
     end
 
-    it 'adds a new edition when the form is submitted' do
-      template = create :newsletter_template
+    it "fails to create a new edition when the slug isn't unique this month" do
+      template1 = create :newsletter_template
+      edition1 = create :newsletter_edition, created_at: Time.zone.now.beginning_of_month, updated_at: Time.zone.now.beginning_of_month
 
       post shiny_newsletters.editions_path, params: {
-        'edition[internal_name]': 'Test',
-        'edition[template_id]': template.id
+        edition: {
+          internal_name: Faker::Books::CultureSeries.unique.culture_ship,
+          template_id: template1.id,
+          slug: edition1.slug
+        }
       }
 
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_newsletters.edit_edition_path( ShinyNewsletters::Edition.last )
-      follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.editions.create.success' )
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_newsletters.admin.editions.create.failure' )
     end
 
     it 'adds a new edition with elements from template' do
-      template = create :newsletter_template
+      template1 = create :newsletter_template
 
       post shiny_newsletters.editions_path, params: {
-        'edition[internal_name]': 'Test',
-        'edition[slug]': 'test',
-        'edition[template_id]': template.id
+        edition: {
+          internal_name: Faker::Books::CultureSeries.unique.culture_ship,
+          template_id: template1.id
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -79,16 +113,16 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.editions.create.success' )
-      expect( response.body ).to include template.elements.first.name
-      expect( response.body ).to include template.elements.last.name
+      expect( response.body ).to include template1.elements.first.name
+      expect( response.body ).to include template1.elements.last.name
     end
   end
 
   describe 'GET /admin/newsletters/editions/:id' do
     it 'loads the form to edit an existing edition' do
-      edition = create :newsletter_edition
+      edition1 = create :newsletter_edition
 
-      get shiny_newsletters.edit_edition_path( edition )
+      get shiny_newsletters.edit_edition_path( edition1 )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.edit.title' ).titlecase
@@ -97,10 +131,12 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
 
   describe 'PUT /admin/newsletters/editions/:id' do
     it 'fails to update the edition when submitted with a blank name' do
-      edition = create :newsletter_edition
+      edition1 = create :newsletter_edition
 
-      put shiny_newsletters.edition_path( edition ), params: {
-        'edition[internal_name]': ''
+      put shiny_newsletters.edition_path( edition1 ), params: {
+        edition: {
+          internal_name: ''
+        }
       }
 
       expect( response      ).to have_http_status :ok
@@ -109,14 +145,16 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
     end
 
     it 'updates the edition when the form is submitted' do
-      edition = create :newsletter_edition
+      edition1 = create :newsletter_edition
 
-      put shiny_newsletters.edition_path( edition ), params: {
-        'edition[internal_name]': 'Updated by test'
+      put shiny_newsletters.edition_path( edition1 ), params: {
+        edition: {
+          internal_name: 'Updated by test'
+        }
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_newsletters.edit_edition_path( edition )
+      expect( response      ).to redirect_to shiny_newsletters.edit_edition_path( edition1 )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.edit.title' ).titlecase
@@ -129,8 +167,10 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       old_slug = edition.slug
 
       put shiny_newsletters.edition_path( edition ), params: {
-        'edition[internal_name]': 'Updated by test',
-        'edition[slug]': ''
+        edition: {
+          internal_name: 'Updated by test',
+          slug: ''
+        }
       }
 
       expect( response      ).to     have_http_status :found

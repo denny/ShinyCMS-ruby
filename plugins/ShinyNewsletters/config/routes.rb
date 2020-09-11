@@ -31,6 +31,7 @@ ShinyNewsletters::Engine.routes.draw do
           put :resume, to: 'sends#resume'
           put :cancel, to: 'sends#cancel'
         end
+        get :sent, to: 'sends#sent'
       end
     end
   end

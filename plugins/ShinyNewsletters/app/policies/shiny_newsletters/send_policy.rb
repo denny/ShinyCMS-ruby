@@ -20,6 +20,10 @@ module ShinyNewsletters
       @this_user.can? :list, :newsletter_sends
     end
 
+    def sent?
+      index?
+    end
+
     def new?
       @this_user.can? :add, :newsletter_sends
     end
