@@ -39,27 +39,29 @@
 
 ### Medium-ish
 
-* Create a sortable concern to replace page[_section].sort_order
-  * Or, just use https://github.com/itmammoth/rails_sortable ?
-  * make elements sortable (go via the concern, so they all get it)
-    * Stretch goal, draggable UI in admin area - https://github.com/DuroSoft/rails_bootstrap_sortable ?
+* Draggable UI for reordering admin area list pages - SortableJS and some helpers using ActsAsList, maybe?
+
 * Access control groups
   * Can be used to control access to file downloads and secure whole pages,
     but also to show/hide individual pieces of page content
+
 * Polls
 
 ### Large-ish
 
 * Online shop
+
 * Payment handling plugins
   * Options include recurring subscriptions to access control groups (AKA paid membership)
+
 * Forums
+
 * Autoresponders
 	* Check out Heya - may or may not be useful to use / build on top of
 	* https://github.com/honeybadger-io/heya
 	* Oh, except the licence doesn't look great. Investigate that first.
+
 * Event listings
-* Surveys / questionnaires
 
 
 ## New features that I'd like to add / features that I'd like to totally rebuild

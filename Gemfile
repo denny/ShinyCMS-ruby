@@ -76,6 +76,9 @@ source 'https://rubygems.org' do
   gem 'algoliasearch-rails'
   gem 'pg_search'
 
+  # Sortable lists (elements of template, etc)
+  gem 'acts_as_list'
+
   # Tags
   gem 'acts-as-taggable-on'
 
