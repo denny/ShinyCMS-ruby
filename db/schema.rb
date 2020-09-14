@@ -365,7 +365,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.text "description"
     t.bigint "template_id", null: false
     t.bigint "section_id"
-    t.integer "sort_order"
+    t.integer "position"
     t.boolean "show_in_menus", default: true, null: false
     t.boolean "show_on_site", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -381,7 +381,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.text "description"
     t.bigint "default_page_id"
     t.bigint "section_id"
-    t.integer "sort_order"
+    t.integer "position"
     t.boolean "show_in_menus", default: true, null: false
     t.boolean "show_on_site", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
