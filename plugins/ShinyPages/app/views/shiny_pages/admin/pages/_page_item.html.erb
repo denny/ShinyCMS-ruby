@@ -1,18 +1,16 @@
-  <% item_is_section = ( page_item.is_a? ShinyPages::Section ) %>
+<% item_is_a_section = page_item.is_a?( ShinyPages::Section ) %>
+<% hidden_class_if_hidden = page_item.hidden? ? 'class="hidden"' : '' %>
+
   <tr>
-    <% if page_item.hidden? %>
-    <td style="padding-left: <%= indent %>em;" class="hidden">
-    <% else %>
-    <td style="padding-left: <%= indent %>em;">
-    <% end %>
-      <% if item_is_section %><b><% end %><%= page_item.name %><% if item_is_section %></b><% end %>
+    <td style="padding-left: <%= indent %>em;" <%= hidden_class_if_hidden %>>
+      <% if item_is_a_section %><b><% end %><%= page_item.internal_name %><% if item_is_a_section %></b><% end %>
     </td>
     <td>
       <%= page_item.description %>
     </td>
     <td class="actions">
       <%= link_to t( 'view'   ), "#{view_path}/#{page_item.slug}" %>
-      <% if item_is_section %>
+      <% if item_is_a_section %>
       <%= link_to t( 'edit'   ), shiny_pages.edit_section_path( page_item ) %>
       <%= link_to t( 'delete' ), shiny_pages.section_path( page_item ),
           method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
@@ -24,7 +22,7 @@
     </td>
   </tr>
 
-  <% if item_is_section && page_item.all_page_items.present? %>
+  <% if item_is_a_section && page_item.all_page_items.present? %>
     <% page_item.all_page_items.each do |subsection_item| %>
       <%= render partial: 'page_item', locals: {
         page_item: subsection_item,

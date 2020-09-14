@@ -58,10 +58,7 @@ function toggle_select_all() {
 </script>
 <% end %>
 
-<%= paginate @comments, window: 3, views_prefix: 'admin' %>
-<p id="pager-info">
-  <%= page_entries_info @comments %>
-</p>
+<%= render partial: 'admin/includes/pager', locals: { paged: @comments } %>
 
 <% else %>
 <p>
