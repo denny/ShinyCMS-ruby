@@ -82,7 +82,7 @@ namespace :shiny do
       Rails.application.eager_load!
 
       # FIXME: bodge to deal with collision between seed data and demo data
-      ConsentVersion.first.delete
+      ConsentVersion.find_by( slug: 'shiny-lists-admin-subscribe' ).delete
 
       big_dump = ''
       models_with_demo_data.each do |model|
