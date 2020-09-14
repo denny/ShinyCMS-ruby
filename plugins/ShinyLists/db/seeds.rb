@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # You can load or reload this data using the following rake task:
-# rails shiny_newsletters:db:seed
+# rails shiny_lists:db:seed
 
 # Feature flag
 
