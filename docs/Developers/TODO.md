@@ -2,13 +2,16 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
-* Add tests for form actions being what they're supposed to be on new/edit pages, and for
-  delete links being correct on list pages
+* Move search result templates into relevant plugins
+* Move search initializer(s) into ShinySearch plugin
+* Remove search gems from core Gemfile
 
 * Highlight section name in admin area menu when on a page which isn't in the menu
   (e.g. 'Edit page', clicking around in Blazer, etc)
+* Relatedly; jump admin menu to current section with an anchor
 
-* Jump admin menu to current section with an anchor
+* Add tests for form actions being what they're supposed to be on new/edit pages, and for
+  delete links being correct on list pages (to catch path helper issues)
 
 * Add exact_text option to capybara matcher calls in request specs
   * expect(bar).to have_[field/whatever], text: 'foo', exact_text: true
@@ -19,10 +22,28 @@
 * Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
 
 * Replace Anonymous/Pseudonymous/Authenticated with symbols and translation strings
+* Replace element types with symbols and translation strings
+
+* Track down untranslated strings and add them to locale files (e.g. 'no templates to display')
+  * Core and plugins
+  * Templates, controllers, and models
+  * Admin area, main site, and themes
+
+* Make sure concerns are used everywhere they could/should be, and that the shared examples
+  are used to test that the concerns are doing the right thing in each place they get used.
+
+* Add folding to page sections on /admin/pages
+  * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
+  * Decide 'intelligently' whether to fold all/none/some
+    * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
+
+* Add acts_as_paranoid to everything (soft delete) https://github.com/ActsAsParanoid/acts_as_paranoid
 
 ### Non-trivial
 
 * Split comment_author details off of comments, as a polymorphic (similar to email_recipients)
+  * Visitor model, to incorporate EmailRecipient, CommentAuthor, VotableIP, and future etc?
+    * Think carefully about privacy implications of linking previous actions to current visitor
 
 * ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
   sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
@@ -34,7 +55,9 @@
 
 * Some sort of file-picker (for image elements, CKEditor, etc)
   * https://ckeditor.com/docs/ckeditor5/latest/features/image-upload/ckfinder.html
+
 * Site map
+
 * Affiliate cookie
 
 ### Medium-ish

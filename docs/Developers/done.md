@@ -7,20 +7,19 @@
 (Noting improvements from the Perl version, if any)
 
 * Pages, with page templates, page sections, and dynamically-generated menus
-  * Improvements: the Perl version required all pages to be in a section, and
-    you could only nest sections two levels deep. The Ruby version allows you
-    to have pages at the top-level of your site, and to nest sections to any
-    depth.
+  * Improvements: the Perl version requires all pages to be in a section, and
+    you can only nest sections two levels deep. The Ruby version allows you to
+    have pages at the top-level of your site, and to nest sections to any depth
 * Inserts (re-usable content fragments that can be pulled into any template)
   * Improvements: snappier name? ;) (Renamed from Shared Content to Inserts)
 * Basic form handlers
-  * Improvements:
-    * Implemented as a plugin
-    * Support for MJML templates
+  * Improvements: MJML email templates
 * Blog
-  * Improvements: implemented as a plugin
+  * Improvements: Split up single-blog and multi-blog versions (the latter of
+    which was never fully implemented in the Perl version but just cluttered
+    up the codebase a bit) into two separate plugins. Now the multi-blog
+    clutter is in an unmerged branch and the single-blog code is much cleaner
 * News section
-  * Improvements: implemented as a plugin
 * Nested comment threads
   * Currently enabled on blog posts and news posts
   * Ready to add to any other content type going forward
@@ -41,9 +40,7 @@
   * Improvements: adds optional 'downvote' feature; more generic implementation
     (powered by ActsAsVoteable)
 * Site search
-  * Improvements:
-    * Implemented as a plugin
-    * Support for multiple search back-ends
+  * Improvements: Support for multiple search back-ends
 * User accounts and administration
   * Improvements:
     * The Perl version has role-based authorisation. The Ruby version has
@@ -62,6 +59,10 @@
 * Support for themes
   * Override the core templates on a per-file, as-needed basis
   * Two themes included
+* ShinyConcerns
+  * While re-implementing various features I've tried to pull useful common
+    functionality out into concerns, that might be handy building blocks for
+    anybody else who wants to write a ShinyCMS plugin
 * Built-in email stats
   * Track opens and/or link-clicks
   * Disabled in default settings (privacy, yay!)
