@@ -13,7 +13,7 @@ module ShinyTemplate
   included do
     # Associations
 
-    has_many  :elements, -> { order( id: :asc ) },
+    has_many  :elements, -> { order( position: :asc ) },
               inverse_of: :template,
               foreign_key: :template_id,
               class_name: 'TemplateElement',

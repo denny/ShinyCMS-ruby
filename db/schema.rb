@@ -394,6 +394,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.string "name", null: false
     t.string "content"
     t.string "element_type", default: "Short Text", null: false
+    t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["template_id"], name: "index_page_template_elements_on_template_id"

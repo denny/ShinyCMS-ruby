@@ -15,5 +15,7 @@ module ShinyPages
     belongs_to :template, inverse_of: :elements
 
     validates :template, presence: true
+
+    acts_as_list scope: :template, touch_on_update: false
   end
 end
