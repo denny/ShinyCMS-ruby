@@ -291,7 +291,6 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.string "filename"
     t.string "redirect_to"
     t.string "success_message"
-    t.integer "sort_order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
