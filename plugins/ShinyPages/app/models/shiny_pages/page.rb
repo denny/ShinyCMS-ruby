@@ -19,10 +19,11 @@ module ShinyPages
 
     belongs_to :section,  inverse_of: :all_pages, optional: true
     belongs_to :template, inverse_of: :pages
-    has_many   :elements, -> { order( :id ) },  inverse_of: :page,
-                                                foreign_key: :page_id,
-                                                class_name: 'PageElement',
-                                                dependent: :destroy
+    has_many   :elements, -> { order( position: :asc ) },
+               inverse_of: :page,
+               foreign_key: :page_id,
+               class_name: 'PageElement',
+               dependent: :destroy
 
     accepts_nested_attributes_for :elements
 

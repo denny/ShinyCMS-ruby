@@ -16,6 +16,6 @@ module ShinyPages
 
     validates :template, presence: true
 
-    acts_as_list scope: :template, touch_on_update: false
+    acts_as_list scope: :template
   end
 end
