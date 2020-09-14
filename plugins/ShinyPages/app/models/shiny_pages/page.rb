@@ -19,10 +19,8 @@ module ShinyPages
 
     belongs_to :section,  inverse_of: :all_pages, optional: true
     belongs_to :template, inverse_of: :pages
-    has_many   :elements, -> { order( :id ) },  inverse_of: :page,
-                                                foreign_key: :page_id,
-                                                class_name: 'PageElement',
-                                                dependent: :destroy
+
+    has_many :elements, inverse_of: :page, dependent: :destroy, class_name: 'PageElement'
 
     accepts_nested_attributes_for :elements
 
@@ -30,16 +28,17 @@ module ShinyPages
 
     validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
 
-    # Scopes and default sort order
+    # Scopes and sorting
 
     scope :top_level, -> { where( section: nil ) }
 
-    self.implicit_order_column = 'sort_order'
+    acts_as_list scope: :section
+    self.implicit_order_column = 'position'
 
     # Instance methods
 
     def default_page?
-      self == ShinyPages::Page.default_page
+      self == Page.default_page
     end
 
     # Class methods
@@ -65,7 +64,7 @@ module ShinyPages
       sections = Section.all_top_level_sections.to_a
 
       [ *pages, *sections ].sort_by do |item|
-        [ item.sort_order ? 0 : 1, item.sort_order || 0 ]
+        [ item.position ? 0 : 1, item.position || 0 ]
       end
     end
 
@@ -74,7 +73,7 @@ module ShinyPages
       sections = Section.top_level_menu_sections.to_a
 
       [ *pages, *sections ].sort_by do |item|
-        [ item.sort_order ? 0 : 1, item.sort_order || 0 ]
+        [ item.position ? 0 : 1, item.position || 0 ]
       end
     end
 
@@ -84,7 +83,7 @@ module ShinyPages
     end
 
     def self.configured_default_page
-      name_or_slug = Setting.get :default_page
+      name_or_slug = ::Setting.get :default_page
       top_level_pages
         .where( internal_name: name_or_slug )
         .or( top_level_pages

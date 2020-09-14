@@ -62,7 +62,7 @@
 
 ### Medium-ish
 
-* Add draggable UI for reordering admin area list pages - SortableJS and some helpers using ActsAsList, maybe?
+* Draggable UI for reordering admin area list pages - SortableJS and some helpers using ActsAsList, maybe?
 
 * Access control groups
   * Can be used to control access to file downloads and secure whole pages,
@@ -85,8 +85,6 @@
 	* Oh, except the licence doesn't look great. Investigate that first.
 
 * Event listings
-
-* Surveys / questionnaires
 
 
 ## New features that I'd like to add / features that I'd like to totally rebuild

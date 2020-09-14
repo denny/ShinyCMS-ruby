@@ -31,7 +31,8 @@ module ShinyWithTemplate
         elements.create!(
           name: template_element.name,
           content: template_element.content,
-          element_type: template_element.element_type
+          element_type: template_element.element_type,
+          position: template_element.position
         )
       end
     end
