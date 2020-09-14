@@ -3,7 +3,7 @@
 
   <tr>
     <td style="padding-left: <%= indent %>em;" <%= hidden_class_if_hidden %>>
-      <%= '<b>' if item_is_a_section %><%= page_item.internal_name %><%= '</b>' if item_is_a_section %>
+      <% if item_is_a_section %><b><% end %><%= page_item.internal_name %><% if item_is_a_section %></b><% end %>
     </td>
     <td>
       <%= page_item.description %>
