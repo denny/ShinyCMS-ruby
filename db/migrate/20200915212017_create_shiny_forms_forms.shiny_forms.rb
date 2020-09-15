@@ -1,4 +1,12 @@
+# frozen_string_literal: true
 # This migration comes from shiny_forms (originally 20200730141332)
+
+# ShinyForms plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 class CreateShinyFormsForms < ActiveRecord::Migration[6.0]
   def change
     create_table :shiny_forms_forms do |t|

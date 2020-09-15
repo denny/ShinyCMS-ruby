@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# This migration comes from shiny_pages (originally 20200822131839)
 
 # ShinyPages plugin for ShinyCMS ~ https://shinycms.org
 #

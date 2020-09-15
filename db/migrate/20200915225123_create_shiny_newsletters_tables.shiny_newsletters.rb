@@ -21,9 +21,8 @@ class CreateShinyNewslettersTables < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.string :content
       t.string :element_type, null: false, default: 'short_text'
-      t.integer :position
 
-      t.references :template
+      t.belongs_to :template, references: :shiny_newsletters_templates, foreign_key: { to_table: :shiny_newsletters_templates }, null: false
 
       t.timestamps
     end
@@ -40,9 +39,9 @@ class CreateShinyNewslettersTables < ActiveRecord::Migration[6.0]
 
       t.boolean :show_on_site, null: false, default: true
 
-      t.references :template
+      t.references :template, references: :shiny_newsletters_templates, foreign_key: { to_table: :shiny_newsletters_templates }, null: false
 
-      t.timestamp :published_at
+      t.timestamp :published_at, precision: 6
       t.timestamps
     end
 
@@ -50,20 +49,19 @@ class CreateShinyNewslettersTables < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.string :content
       t.string :element_type, null: false, default: 'short_text'
-      t.integer :position
 
-      t.references :edition
+      t.belongs_to :edition, references: :shiny_newsletters_editions, foreign_key: { to_table: :shiny_newsletters_editions }, null: false
 
       t.timestamps
     end
 
     create_table :shiny_newsletters_sends do |t|
-      t.references :edition
-      t.references :list # ShinyLists::List
+      t.references :edition, references: :shiny_newsletters_editions, foreign_key: { to_table: :shiny_newsletters_editions }, null: false
+      t.references :list, references: :shiny_lists_lists, foreign_key: { to_table: :shiny_lists_lists }, null: false
 
-      t.timestamp :send_at
-      t.timestamp :started_sending_at
-      t.timestamp :finished_sending_at
+      t.timestamp :send_at, precision: 6
+      t.timestamp :started_sending_at, precision: 6
+      t.timestamp :finished_sending_at, precision: 6
       t.timestamps
     end
   end
