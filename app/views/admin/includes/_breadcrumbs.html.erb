@@ -16,7 +16,7 @@
         <%= link_to t( "shiny_lists.admin.lists.title" ), lists_path %>
 
       <%# ShinyCMS plugins %>
-      <% elsif Plugin.loaded_names.include? plugin_name %>
+      <% elsif ::Plugin.loaded? plugin_name %>
         <%= link_to t( "#{plugin_name.underscore}.admin.#{controller_name}.title" ),
             ::Plugin.new( plugin_name ).admin_index_path( controller_name ) %>
 

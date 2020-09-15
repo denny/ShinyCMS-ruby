@@ -26,6 +26,7 @@ en:
         title: Pages
         index:
           title: List pages
+          empty_list: There are currently no pages or sections to display.
         new:
           title: Add new page
         edit:

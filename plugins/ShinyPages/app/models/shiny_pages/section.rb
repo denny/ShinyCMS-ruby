@@ -10,21 +10,21 @@ module ShinyPages
 
     # Associations
 
-    belongs_to :section, class_name: 'Section', inverse_of: :all_sections, optional: true
+    belongs_to :section, inverse_of: :all_sections, optional: true, class_name: 'Section'
 
-    has_many :all_pages, class_name: 'Page', inverse_of: :section, dependent: :restrict_with_error
-
-    has_many :all_sections, class_name: 'Section', inverse_of: :section, dependent: :restrict_with_error
+    has_many :all_pages,    inverse_of: :section, dependent: :restrict_with_error, class_name: 'Page'
+    has_many :all_sections, inverse_of: :section, dependent: :restrict_with_error, class_name: 'Section'
 
     # Validations
 
     validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
 
-    # Scopes and default sort order
+    # Scopes and sorting
 
     scope :top_level, -> { where( section: nil  ) }
 
-    self.implicit_order_column = 'sort_order'
+    acts_as_list scope: :section
+    self.implicit_order_column = 'position'
 
     # Instance methods
 
@@ -57,7 +57,7 @@ module ShinyPages
       sections = all_sections.to_a
 
       [ *pages, *sections ].sort_by do |item|
-        [ item.sort_order ? 0 : 1, item.sort_order || 0 ]
+        [ item.position ? 0 : 1, item.position || 0 ]
       end
     end
 
@@ -66,7 +66,7 @@ module ShinyPages
       sections = menu_sections.to_a
 
       [ *pages, *sections ].sort_by do |item|
-        [ item.sort_order ? 0 : 1, item.sort_order || 0 ]
+        [ item.position ? 0 : 1, item.position || 0 ]
       end
     end
 
@@ -82,24 +82,24 @@ module ShinyPages
     # Class methods
 
     def self.policy_class
-      ShinyPages::SectionPolicy
+      SectionPolicy
     end
 
     def self.all_top_level_sections
-      ShinyPages::Section.top_level
+      top_level
     end
 
     def self.top_level_sections
-      ShinyPages::Section.top_level.visible
+      top_level.visible
     end
 
     def self.top_level_menu_sections
-      ShinyPages::Section.top_level.visible_in_menus
+      top_level.visible_in_menus
     end
 
     # Return the default top-level section
     def self.default_section
-      name_or_slug = Setting.get :default_section
+      name_or_slug = ::Setting.get :default_section
       top_level_sections.where( internal_name: name_or_slug )
                         .or( top_level_sections
                         .where( slug: name_or_slug ) )

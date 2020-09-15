@@ -68,6 +68,10 @@ class Plugin
     @loaded = loaded_plugins
   end
 
+  def self.loaded?( plugin_name )
+    loaded_names.include? plugin_name
+  end
+
   def self.with_main_site_helpers
     loaded.select( &:main_site_helper )
   end
