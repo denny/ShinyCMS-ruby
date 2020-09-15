@@ -19,11 +19,11 @@ class User < ApplicationRecord
   has_many :capabilities, through: :user_capabilities, inverse_of: :users
 
   # Web and email stats (powered by Ahoy and Ahoy::Email)
-  has_many :visits,   class_name: 'Ahoy::Visit',   dependent: :nullify
-  has_many :messages, class_name: 'Ahoy::Message', dependent: :nullify
+  has_many :visits,   dependent: :nullify, class_name: 'Ahoy::Visit'
+  has_many :messages, dependent: :nullify, class_name: 'Ahoy::Message'
 
   # User's custom site settings, if any
-  has_many :settings, class_name: 'SettingValue', inverse_of: :user, dependent: :destroy
+  has_many :settings, inverse_of: :user, dependent: :destroy, class_name: 'SettingValue'
 
   # TODO: polymorphic relationship here so users can own any type of plugin-provided content
 

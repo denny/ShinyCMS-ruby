@@ -47,7 +47,5 @@ module ShinyLists
   end
 end
 
-::ConsentVersion.has_many :subscriptions,
-                          inverse_of: :consent_version,
-                          dependent: :restrict_with_error,
-                          class_name: 'ShinyLists::Subscription'
+::ConsentVersion.has_many :subscriptions, inverse_of: :consent_version, dependent: :restrict_with_error,
+                                          class_name: 'ShinyLists::Subscription'
