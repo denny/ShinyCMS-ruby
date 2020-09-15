@@ -6,12 +6,15 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-FactoryBot.define do
-  factory :blog_post, class: 'ShinyBlog::Post' do
-    title  { Faker::Books::CultureSeries.unique.culture_ship.titlecase }
-    body   { Faker::Lorem.paragraph }
-    posted_at { Time.zone.now.iso8601 }
+# Factory for blog posts - ShinyBlog plugin for ShinyCMS
+module ShinyBlog
+  FactoryBot.define do
+    factory :blog_post, class: 'ShinyBlog::Post' do
+      title  { Faker::Books::CultureSeries.unique.culture_ship.titlecase }
+      body   { Faker::Lorem.paragraph }
+      posted_at { Time.zone.now.iso8601 }
 
-    association :user
+      association :user
+    end
   end
 end

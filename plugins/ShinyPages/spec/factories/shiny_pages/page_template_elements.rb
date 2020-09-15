@@ -6,9 +6,12 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-FactoryBot.define do
-  factory :page_template_element, class: 'ShinyPages::TemplateElement' do
-    name { Faker::Books::CultureSeries.unique.civs.parameterize }
-    element_type { I18n.t( 'admin.elements.short_text' ) }
+# Factories for page template elements - ShinyPages plugin for ShinyCMS
+module ShinyPages
+  FactoryBot.define do
+    factory :page_template_element, class: 'ShinyPages::TemplateElement' do
+      name { Faker::Books::CultureSeries.unique.civs.parameterize }
+      element_type { I18n.t( 'admin.elements.short_text' ) }
+    end
   end
 end
