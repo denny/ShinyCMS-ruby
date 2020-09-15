@@ -12,6 +12,5 @@ class Capability < ApplicationRecord
 
   has_many :user_capabilities, inverse_of: :capability, dependent: :restrict_with_error
 
-  has_many :users, inverse_of: :capabilities, through: :user_capabilities,
-                   dependent: :restrict_with_error
+  has_many :users, inverse_of: :capabilities, through: :user_capabilities, dependent: :restrict_with_error
 end
