@@ -372,6 +372,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_175746) do
     t.string "name", null: false
     t.string "content"
     t.string "element_type", default: "short_text", null: false
+    t.integer "position"
     t.bigint "edition_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -410,6 +411,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_175746) do
     t.string "name", null: false
     t.string "content"
     t.string "element_type", default: "short_text", null: false
+    t.integer "position"
     t.bigint "template_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

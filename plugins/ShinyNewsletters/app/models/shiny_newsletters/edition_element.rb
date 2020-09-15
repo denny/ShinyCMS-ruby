@@ -15,5 +15,7 @@ module ShinyNewsletters
     belongs_to :edition, inverse_of: :elements
 
     validates :edition, presence: true
+
+    acts_as_list scope: :edition
   end
 end
