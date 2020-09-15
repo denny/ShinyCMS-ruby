@@ -21,6 +21,7 @@ class CreateShinyNewslettersTables < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.string :content
       t.string :element_type, null: false, default: 'short_text'
+      t.integer :position
 
       t.belongs_to :template, references: :shiny_newsletters_templates, foreign_key: { to_table: :shiny_newsletters_templates }, null: false
 
@@ -49,6 +50,7 @@ class CreateShinyNewslettersTables < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.string :content
       t.string :element_type, null: false, default: 'short_text'
+      t.integer :position
 
       t.belongs_to :edition, references: :shiny_newsletters_editions, foreign_key: { to_table: :shiny_newsletters_editions }, null: false
 
