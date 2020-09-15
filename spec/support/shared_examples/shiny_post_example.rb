@@ -76,7 +76,7 @@ RSpec.shared_examples ShinyPost do
     describe '.not_future_dated' do
       it "returns posts that aren't future-dated" do
         expect( post.class.not_future_dated.size ).to eq 3
-        expect( post.class.not_future_dated.order( :id ).last ).to eq @hidden
+        expect( post.class.not_future_dated.order( :created_at ).last ).to eq @hidden
       end
     end
 
