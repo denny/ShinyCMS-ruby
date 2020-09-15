@@ -10,7 +10,6 @@ class CreateShinyFormsForms < ActiveRecord::Migration[6.0]
       t.string :filename
       t.string :redirect_to
       t.string :success_message
-      t.integer :sort_order
 
       t.timestamps
     end

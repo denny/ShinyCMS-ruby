@@ -13,7 +13,7 @@ class Setting < ApplicationRecord
 
   # Associations
 
-  has_many :values, inverse_of: :setting, class_name: 'SettingValue', dependent: :destroy
+  has_many :values, inverse_of: :setting, dependent: :destroy, class_name: 'SettingValue'
 
   # Validations
 

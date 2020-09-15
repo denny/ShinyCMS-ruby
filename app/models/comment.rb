@@ -14,8 +14,8 @@ class Comment < ApplicationRecord
   # Associations
 
   belongs_to :discussion
-  belongs_to :parent, class_name: 'Comment', optional: true
-  belongs_to :user,   inverse_of: :comments, optional: true
+  belongs_to :parent, optional: true, class_name: 'Comment'
+  belongs_to :user,   optional: true, inverse_of: :comments
 
   has_many :comments, -> { where( spam: false ) },  inverse_of: :parent,
                                                     foreign_key: :parent_id,
