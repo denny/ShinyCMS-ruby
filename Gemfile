@@ -137,6 +137,8 @@ source 'https://rubygems.org' do
     gem 'listen', '>= 3.0.5', '< 3.3'
     # Helps you manage your git hooks
     gem 'overcommit', require: false
+    # Analysis tools for postgres
+    gem 'rails-pg-extras'
     # Linter
     gem 'rubocop', require: false
     gem 'rubocop-rails', require: false
