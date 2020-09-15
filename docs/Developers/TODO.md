@@ -13,10 +13,6 @@
 * Add tests for form actions being what they're supposed to be on new/edit pages, and for
   delete links being correct on list pages (to catch path helper issues)
 
-* Add exact_text option to capybara matcher calls in request specs
-  * expect(bar).to have_[field/whatever], text: 'foo', exact_text: true
-  * NB: Try one first; might fail on whitespace differences :eyeroll:
-
 * Check for and add missing indexes - https://pawelurbanek.com/rails-postgres-join-indexes
 
 * Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
