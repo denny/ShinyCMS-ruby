@@ -1,14 +1,15 @@
 # frozen_string_literal: true
+# This migration comes from shiny_blog (originally 20200812233918)
 
-# ShinyNews plugin for ShinyCMS ~ https://shinycms.org
+# ShinyLists plugin for ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-class CreateShinyNewsPosts < ActiveRecord::Migration[6.0]
+class CreateShinyBlogPosts < ActiveRecord::Migration[6.0]
   def change
-    create_table :shiny_news_posts do |t|
+    create_table :shiny_blog_posts do |t|
       t.string :title, null: false
       t.string :slug, null: false
       t.text :body

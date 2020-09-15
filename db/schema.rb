@@ -12,11 +12,11 @@
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2020_09_06_152115) do
+ActiveRecord::Schema.define(version: 2020_09_15_220751) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pgcrypto"
   enable_extension "pg_stat_statements"
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -275,7 +275,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.string "slug", null: false
     t.text "body"
     t.boolean "show_on_site", default: true, null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -304,7 +304,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_insert_elements_on_name", unique: true
-    t.index ["set_id"], name: "index_insert_elements_on_set_id"
+    t.index ["set_id"], name: "index_shiny_inserts_elements_on_set_id"
   end
 
   create_table "shiny_inserts_sets", force: :cascade do |t|
@@ -322,12 +322,12 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
   end
 
   create_table "shiny_lists_subscriptions", force: :cascade do |t|
-    t.bigint "list_id"
-    t.string "subscriber_type"
-    t.bigint "subscriber_id"
-    t.bigint "consent_version_id"
-    t.datetime "subscribed_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "unsubscribed_at"
+    t.bigint "list_id", null: false
+    t.string "subscriber_type", null: false
+    t.bigint "subscriber_id", null: false
+    t.bigint "consent_version_id", null: false
+    t.datetime "subscribed_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "unsubscribed_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["consent_version_id"], name: "index_shiny_lists_subscriptions_on_consent_version_id"
@@ -340,7 +340,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.string "slug", null: false
     t.text "body"
     t.boolean "show_on_site", default: true, null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -348,14 +348,14 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
   end
 
   create_table "shiny_pages_page_elements", force: :cascade do |t|
-    t.bigint "page_id", null: false
     t.string "name", null: false
     t.string "content"
-    t.string "element_type", default: "Short Text", null: false
+    t.string "element_type", default: "short_text", null: false
     t.integer "position"
+    t.bigint "page_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["page_id"], name: "index_page_elements_on_page_id"
+    t.index ["page_id"], name: "index_shiny_pages_page_elements_on_page_id"
   end
 
   create_table "shiny_pages_pages", force: :cascade do |t|
@@ -363,15 +363,16 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.string "public_name"
     t.string "slug", null: false
     t.text "description"
-    t.bigint "template_id", null: false
-    t.bigint "section_id"
     t.integer "position"
     t.boolean "show_in_menus", default: true, null: false
     t.boolean "show_on_site", default: true, null: false
+    t.bigint "section_id"
+    t.bigint "template_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["section_id"], name: "index_pages_on_section_id"
-    t.index ["slug", "section_id"], name: "index_pages_on_slug_and_section_id", unique: true
+    t.index ["section_id", "slug"], name: "index_pages_on_section_id_and_slug", unique: true
+    t.index ["section_id"], name: "index_shiny_pages_pages_on_section_id"
+    t.index ["template_id"], name: "index_shiny_pages_pages_on_template_id"
   end
 
   create_table "shiny_pages_sections", force: :cascade do |t|
@@ -379,26 +380,26 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.string "public_name"
     t.string "slug", null: false
     t.text "description"
-    t.bigint "default_page_id"
-    t.bigint "section_id"
     t.integer "position"
     t.boolean "show_in_menus", default: true, null: false
     t.boolean "show_on_site", default: true, null: false
+    t.bigint "section_id"
+    t.bigint "default_page_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["section_id"], name: "index_page_sections_on_section_id"
-    t.index ["slug", "section_id"], name: "index_page_sections_on_slug_and_section_id", unique: true
+    t.index ["section_id", "slug"], name: "index_page_sections_on_section_id_and_slug", unique: true
+    t.index ["section_id"], name: "index_shiny_pages_sections_on_section_id"
   end
 
   create_table "shiny_pages_template_elements", force: :cascade do |t|
-    t.bigint "template_id", null: false
     t.string "name", null: false
     t.string "content"
-    t.string "element_type", default: "Short Text", null: false
+    t.string "element_type", default: "short_text", null: false
     t.integer "position"
+    t.bigint "template_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["template_id"], name: "index_page_template_elements_on_template_id"
+    t.index ["template_id"], name: "index_shiny_pages_template_elements_on_template_id"
   end
 
   create_table "shiny_pages_templates", force: :cascade do |t|
@@ -510,10 +511,13 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
   add_foreign_key "setting_values", "users"
   add_foreign_key "shiny_blog_posts", "users"
   add_foreign_key "shiny_inserts_elements", "shiny_inserts_sets", column: "set_id"
+  add_foreign_key "shiny_lists_subscriptions", "consent_versions"
+  add_foreign_key "shiny_lists_subscriptions", "shiny_lists_lists", column: "list_id"
   add_foreign_key "shiny_news_posts", "users"
   add_foreign_key "shiny_pages_page_elements", "shiny_pages_pages", column: "page_id"
   add_foreign_key "shiny_pages_pages", "shiny_pages_sections", column: "section_id"
   add_foreign_key "shiny_pages_pages", "shiny_pages_templates", column: "template_id"
+  add_foreign_key "shiny_pages_sections", "shiny_pages_pages", column: "default_page_id"
   add_foreign_key "shiny_pages_sections", "shiny_pages_sections", column: "section_id"
   add_foreign_key "shiny_pages_template_elements", "shiny_pages_templates", column: "template_id"
   add_foreign_key "taggings", "tags"

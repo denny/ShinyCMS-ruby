@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# This migration comes from shiny_news (originally 20200806233918)
 
 # ShinyNews plugin for ShinyCMS ~ https://shinycms.org
 #
