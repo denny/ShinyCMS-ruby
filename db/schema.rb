@@ -291,7 +291,6 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.string "filename"
     t.string "redirect_to"
     t.string "success_message"
-    t.integer "sort_order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -352,6 +351,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.string "name", null: false
     t.string "content"
     t.string "element_type", default: "Short Text", null: false
+    t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["page_id"], name: "index_page_elements_on_page_id"
@@ -364,7 +364,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.text "description"
     t.bigint "template_id", null: false
     t.bigint "section_id"
-    t.integer "sort_order"
+    t.integer "position"
     t.boolean "show_in_menus", default: true, null: false
     t.boolean "show_on_site", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -380,7 +380,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.text "description"
     t.bigint "default_page_id"
     t.bigint "section_id"
-    t.integer "sort_order"
+    t.integer "position"
     t.boolean "show_in_menus", default: true, null: false
     t.boolean "show_on_site", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -394,6 +394,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_152115) do
     t.string "name", null: false
     t.string "content"
     t.string "element_type", default: "Short Text", null: false
+    t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["template_id"], name: "index_page_template_elements_on_template_id"

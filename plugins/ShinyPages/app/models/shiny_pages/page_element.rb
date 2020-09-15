@@ -15,5 +15,7 @@ module ShinyPages
     belongs_to :page, inverse_of: :elements
 
     validates :page, presence: true
+
+    acts_as_list scope: :page
   end
 end

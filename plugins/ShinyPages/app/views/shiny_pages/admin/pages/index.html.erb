@@ -14,6 +14,7 @@
     </tr>
   </thead>
 
+  <tbody class="sortable">
   <% @top_level_items.each do |top_level_item| %>
     <%= render partial: 'page_item', locals: {
       page_item: top_level_item,
@@ -21,10 +22,11 @@
       indent: 0.5
     } %>
   <% end %>
+  </tbody>
 </table>
 
 <% else %>
 <p>
-  There are currently no pages or sections to display.
+  <%= t( '.empty_list' ) %>
 </p>
 <% end %>
