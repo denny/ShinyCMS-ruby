@@ -16,7 +16,7 @@ class AddShinyInsertsTables < ActiveRecord::Migration[6.0]
     create_table :shiny_inserts_elements, force: :cascade do |t|
       t.string :name, null: false
       t.string :content
-      t.string :element_type, default: "Short Text", null: false
+      t.string :element_type, default: 'short_text', null: false
 
       t.belongs_to :set, references: :shiny_inserts_sets, foreign_key: { to_table: :shiny_inserts_sets }, null: false
 

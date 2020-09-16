@@ -278,6 +278,7 @@ en:
       long_text: Long Text
       image: Image
       html: HTML
+    unknown_element_type: UNKNOWN ELEMENT TYPE
 
     comments:
       title: Spam comments

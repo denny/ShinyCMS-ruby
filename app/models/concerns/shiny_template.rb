@@ -50,21 +50,21 @@ module ShinyTemplate
     def add_image_element( name )
       elements.create(
         name: name,
-        element_type: I18n.t( 'admin.elements.image' )
+        element_type: 'image'
       )
     end
 
     def add_html_element( name )
       elements.create(
         name: name,
-        element_type: I18n.t( 'admin.elements.html' )
+        element_type: 'html'
       )
     end
 
     def add_long_text_element( name )
       elements.create(
         name: name,
-        element_type: I18n.t( 'admin.elements.long_text' )
+        element_type: 'long_text'
       )
     end
   end

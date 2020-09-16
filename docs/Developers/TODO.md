@@ -16,7 +16,6 @@
 * Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
 
 * Replace Anonymous/Pseudonymous/Authenticated with symbols and translation strings
-* Replace element types with symbols and translation strings
 
 * Track down untranslated strings and add them to locale files (e.g. 'no templates to display')
   * Core and plugins

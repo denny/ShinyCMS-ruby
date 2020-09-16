@@ -28,7 +28,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
       post shiny_inserts.create_insert_path, params: {
         'insert_element[name]': 'new_insert',
         'insert_element[content]': 'NEW AND IMPROVED!',
-        'insert_element[element_type]': I18n.t( 'admin.elements.short_text' )
+        'insert_element[element_type]': 'short_text'
       }
 
       expect( response      ).to have_http_status :found
@@ -44,7 +44,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
       post shiny_inserts.create_insert_path, params: {
         'insert_element[name]': 'insert_is_empty',
         'insert_element[content]': '',
-        'insert_element[element_type]': I18n.t( 'admin.elements.short_text' )
+        'insert_element[element_type]': 'short_text'
       }
 
       expect( response      ).to have_http_status :found
@@ -60,7 +60,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
       post shiny_inserts.create_insert_path, params: {
         'insert_element[name]': 'insert_is_null',
         'insert_element[content]': nil,
-        'insert_element[element_type]': I18n.t( 'admin.elements.short_text' )
+        'insert_element[element_type]': 'short_text'
       }
 
       expect( response      ).to have_http_status :found

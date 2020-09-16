@@ -18,7 +18,19 @@
   <p>
     <%= fields.text_field :name %>
     <%= fields.select :element_type, element_types %>
-    <br><%= fields.text_field :content %>
+    <br>
+    <% element_type = @template.elements[fields.index].element_type %>
+    <% if element_type == 'short_text' %>
+    <%= fields.text_field :content %>
+    <% elsif element_type == 'long_text' %>
+    <%= fields.text_area :content %>
+    <% elsif element_type == 'image' %>
+    <%= fields.select :content, select_filenames %>
+    <% elsif element_type == 'html' %>
+    <%= fields.cktext_area :content, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
+    <% else %>
+    [ <%= t( 'admin.unknown_element_type' ) %> ]
+    <% end %>
   </p>
   <% end %>
 

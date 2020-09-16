@@ -116,7 +116,7 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
         'template[name]': 'Updated by test',
         "elements[element_#{e_id}_name]": 'updated_element_name',
         "elements[element_#{e_id}_content]": 'Default content',
-        "elements[element_#{e_id}_type]": 'HTML'
+        "elements[element_#{e_id}_type]": 'html'
       }
 
       expect( response      ).to have_http_status :found

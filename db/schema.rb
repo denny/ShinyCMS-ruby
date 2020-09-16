@@ -299,7 +299,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_225123) do
   create_table "shiny_inserts_elements", force: :cascade do |t|
     t.string "name", null: false
     t.string "content"
-    t.string "element_type", default: "Short Text", null: false
+    t.string "element_type", default: "short_text", null: false
     t.bigint "set_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
