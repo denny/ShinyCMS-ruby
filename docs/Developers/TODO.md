@@ -13,8 +13,6 @@
 * Add tests for form actions being what they're supposed to be on new/edit pages, and for
   delete links being correct on list pages (to catch path helper issues)
 
-* Check for and add missing indexes - https://pawelurbanek.com/rails-postgres-join-indexes
-
 * Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
 
 * Replace Anonymous/Pseudonymous/Authenticated with symbols and translation strings
@@ -43,6 +41,8 @@
 
 * ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
   sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
+
+* Move Comments, Tags, and Likes (and possibly Users?) into plugins
 
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
