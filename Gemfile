@@ -72,10 +72,6 @@ source 'https://rubygems.org' do
   # MJML emails
   gem 'mjml-rails'
 
-  # Search
-  gem 'algoliasearch-rails'
-  gem 'pg_search'
-
   # Sortable lists (elements of template, etc)
   gem 'acts_as_list'
 
