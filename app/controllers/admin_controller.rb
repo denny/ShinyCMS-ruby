@@ -26,7 +26,7 @@ class AdminController < ApplicationController
     elsif user_redirect.present?
       redirect_to user_redirect
     else
-      redirect_to path_for( current_user.primary_admin_area )
+      redirect_to primary_admin_path
     end
   end
 
@@ -58,14 +58,32 @@ class AdminController < ApplicationController
     return custom if custom&.start_with? '/'
   end
 
-  def path_for( area = nil )
-    plugin_name = area.to_s.sub( '_posts', '' ).capitalize
-    plugin = Plugin.new( "Shiny#{plugin_name}" )
-    return plugin.admin_index_path( area.to_s ) if plugin.name.present?
+  # Return the 'most useful' admin path that a user has access to
+  # FIXME: this is horrible :D and totally ignores separation of plugins
+  def primary_admin_path
+    return unless current_user.admin?
 
-    area = :root if area.blank?
-    area = :admin_site_settings if area == :settings
+    return primary_admin_path_web_content if primary_admin_path_web_content
+    return primary_admin_path_email       if primary_admin_path_email
+    return primary_admin_path_stats       if primary_admin_path_stats
 
-    public_send "#{area}_path"
+    return main_app.users_path if current_user.can? :list, :users
+  end
+
+  def primary_admin_path_web_content
+    return shiny_pages.pages_path     if current_user.can? :list, :pages
+    return shiny_blog.blog_posts_path if current_user.can? :list, :blog_posts
+    return shiny_news.news_posts_path if current_user.can? :list, :news_posts
+    return main_app.comments_path     if current_user.can? :list, :spam_comments
+  end
+
+  def primary_admin_path_email
+    return shiny_newsletters.editions_path if current_user.can? :list, :newsletter_editions
+    return shiny_lists.lists_path          if current_user.can? :list, :mailing_lists
+  end
+
+  def primary_admin_path_stats
+    return main_app.web_stats_path    if current_user.can? :view_web,   :stats
+    return main_app.email_stats_path  if current_user.can? :view_email, :stats
   end
 end

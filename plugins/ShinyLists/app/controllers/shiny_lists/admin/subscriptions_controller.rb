@@ -39,6 +39,11 @@ module ShinyLists
       redirect_to list_subscriptions_path( list )
     end
 
+    # Override the breadcrumbs 'section' link to go back to the lists page
+    def breadcrumb_link_text_and_path
+      [ t( 'shiny_lists.admin.lists.title' ), lists_path ]
+    end
+
     private
 
     def list

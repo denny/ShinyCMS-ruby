@@ -148,19 +148,6 @@ class User < ApplicationRecord
     devise_mailer.public_send( notification, self, *args ).deliver_later
   end
 
-  def primary_admin_area
-    return unless admin?
-
-    # List of admin areas, approximately in order of 'most commonly used'
-    # (used by /admin index method to redirect somewhere hopefully useful)
-    areas = %i[ pages news_posts blog_posts users settings forms ]
-
-    areas.each do |area|
-      return area if can? :list, area
-    end
-    nil
-  end
-
   # Class methods
 
   # Return all users that have the specified capability
