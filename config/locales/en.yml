@@ -128,6 +128,12 @@ en:
     site_settings: Site settings
 
 
+  # ========== ( Helpers ) ==========
+
+  shiny_display_date_helper:
+    time_and_date: '%{time} on %{date}'
+    date_and_time: '%{date} at %{time}'
+
   # ========== ( Mailers ) ==========
 
   discussion_mailer:
