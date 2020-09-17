@@ -41,8 +41,6 @@
 * ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
   sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
 
-* Move Comments, Tags, and Likes (and possibly Users?) into plugins
-
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
@@ -56,8 +54,6 @@
 * Affiliate cookie
 
 ### Medium-ish
-
-* Draggable UI for reordering admin area list pages - SortableJS and some helpers using ActsAsList, maybe?
 
 * Access control groups
   * Can be used to control access to file downloads and secure whole pages,
@@ -111,6 +107,8 @@
 
 ### Medium-ish
 
+* Draggable UI for reordering lists in admin area - SortableJS, maybe?
+
 * Tests for rake tasks
   * https://thoughtbot.com/blog/test-rake-tasks-like-a-boss ? (old)
 
@@ -128,6 +126,15 @@
 
 
 ### Large-ish
+
+* Finish the move to plugin architecture
+  * Move Comments, Tags, and Likes into plugins
+  * Move concerns and helpers into a plugin (ShinyToolbox?)
+    * Eventually, break them up into multiple plugins (ShinyPostTools, ShinyTemplateTools, etc)
+  * Look into moving Users into a plugin
+    * Ideally, move all the non-Devise User/Account functionality into concerns and helpers, so
+      you could include those into any site with Devise-powered auth and then use any ShinyPlugin
+  * Move plugins into separate gems
 
 * Surveys / Questionnaires
 
