@@ -1,0 +1,37 @@
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Edition
+      </th>
+      <th>
+        List
+      </th>
+      <th>
+        Sent
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sent.each do |send| %>
+    <tr>
+      <td>
+        <%= link_to send.edition.internal_name, edit_edition_path( send.edition ) %>
+      </td>
+      <td>
+        <%= link_to send.list.internal_name, shiny_lists.edit_list_path( send.list ) %>
+      </td>
+      <td>
+        <%= display_time_and_date( send.sent_at ) %>
+      </td>
+      <td class="actions">
+        <%= link_to t( '.view_details' ), shiny_newsletters.send_path( send ) %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -9,6 +9,10 @@
 module ShinyNewsletters
   # Admin controller for newsletter sends - part of ShinyNewsletters plugin for ShinyCMS
   class Admin::SendsController < AdminController
+    include ShinyDateHelper
+
+    before_action :convert_send_at_to_utc
+
     def index
       authorize Send
 
@@ -84,6 +88,10 @@ module ShinyNewsletters
 
     def send_params
       params.require( :send ).permit( :edition_id, :list_id, :send_at )
+    end
+
+    def convert_send_at_to_utc
+      params[ :send_at ] = convert_to_utc( params[ :send_at ] )
     end
   end
 end

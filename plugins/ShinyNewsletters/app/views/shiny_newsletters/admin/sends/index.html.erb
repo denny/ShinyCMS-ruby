@@ -1,82 +1,22 @@
 <% @page_title = t( '.title' ) %>
 
+<% if @sending.present? %>
+  <%= render partial: 'sending' %>
+<% end %>
+
+<% if @scheduled.present? %>
+  <%= render partial: 'scheduled' %>
+<% end %>
+
 <% if @sends.present? %>
+  <%= render partial: 'sends' %>
+<% end %>
 
-<table class="table table-responsive-sm table-striped">
-  <thead>
-    <tr>
-      <th>
-        Edition
-      </th>
-      <th>
-        List
-      </th>
-      <th>
-        Status
-      </th>
-      <th>
-        &nbsp;
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @sending.each do |send| %>
-    <tr>
-      <td>
-        <%= send.edition.internal_name %>
-      </td>
-      <td>
-        <%= send.list.internal_name %>
-      </td>
-      <td>
-        Sending
-      </td>
-      <td class="actions">
-        <%= link_to t( 'cancel' ), shiny_newsletters.send_cancel_path( send ) %>
-      </td>
-    </tr>
-    <% end %>
+<% if @sent.present? %>
+  <%= render partial: 'sent' %>
+<% end %>
 
-    <% @scheduled.each do |send| %>
-    <tr>
-      <td>
-        <%= send.edition.internal_name %>
-      </td>
-      <td>
-        <%= send.list.internal_name %>
-      </td>
-      <td>
-        Scheduled
-      </td>
-      <td class="actions">
-        <%= link_to t( 'edit'   ), shiny_newsletters.edit_send_path( send ) %>
-        <%= link_to t( 'delete' ), shiny_newsletters.send_path( send ),
-            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
-      </td>
-    </tr>
-    <% end %>
-
-    <% @sends.each do |send| %>
-    <tr>
-      <td>
-        <%= send.edition.internal_name %>
-      </td>
-      <td>
-        <%= send.list.internal_name %>
-      </td>
-      <td>
-      </td>
-      <td class="actions">
-        <%= link_to t( 'edit'   ), shiny_newsletters.edit_send_path( send ) %>
-        <%= link_to t( 'delete' ), shiny_newsletters.send_path( send ),
-            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<% else %>
+<% if @sending.blank? && @scheduled.blank? && @sends.blank? && @sent.blank? %>
 <p>
   <%= t( '.no_sends' ) %>
 </p>

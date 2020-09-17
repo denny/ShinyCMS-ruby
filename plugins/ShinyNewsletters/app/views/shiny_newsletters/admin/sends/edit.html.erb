@@ -9,6 +9,10 @@
     <%= f.label :list_id, 'Mailing List' %>
     <br><%= f.select :list_id, ShinyLists::List.pluck( :internal_name, :id ) %>
   </p>
+  <p>
+    <%= f.label :send_at, 'Send at', min: Time.zone.now.localtime %>
+    <br><%= f.date_field :send_at %> <%= f.time_field :send_at %>
+  </p>
 
   <p class="top-margin">
     <%= f.submit t( 'update' ) %>

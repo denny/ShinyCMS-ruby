@@ -33,6 +33,7 @@ en:
       newsletters:
         title: Newsletters
       editions:
+        title: Newsletter Editions
         index:
           title: Editions
         new:
@@ -49,12 +50,16 @@ en:
           success: Newsletter edition deleted
           failure: Failed to delete newsletter edition
       sends:
+        title: Newsletter Sends
         index:
           title: Sends
-          no_sends: There are currently no sends to display
+          no_sends: You have not started sending any newsletters yet
         sent:
           title: Sent
-          no_sends: There are no sent newsletters to display
+          view_details: View Details
+          no_sends_sent: You have not sent any newsletters yet
+        show:
+          title: View send details
         new:
           title: Send / Schedule
         edit:
@@ -70,6 +75,7 @@ en:
         destroy:
           success: Newsletter send deleted
       templates:
+        title: Newsletter Templates
         index:
           title: Templates
         new:
