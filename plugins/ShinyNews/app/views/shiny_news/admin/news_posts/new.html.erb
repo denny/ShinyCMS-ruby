@@ -22,8 +22,10 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
   <% end %>
   <p>
+  <p>
     <%= f.label :posted_at %><br>
-    <%= f.text_field :posted_at %>
+    <%= f.date_field :posted_at %> <%= f.time_field :posted_at %>
+  </p>
   </p>
   <p>
     <%= f.label :body %><br>
