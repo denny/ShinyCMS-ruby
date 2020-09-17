@@ -2,16 +2,16 @@
 
 <%= form_for @send, url: shiny_newsletters.sends_path, method: :post do |f| %>
   <p>
-    <%= f.label :edition_id, 'Newsletter Edition' %>
-    <br><%= f.select :edition_id, ShinyNewsletters::Edition.pluck( :internal_name, :id ) %>
+    <%= f.label :edition_id, 'Newsletter Edition' %><br>
+    <%= f.select :edition_id, ShinyNewsletters::Edition.pluck( :internal_name, :id ) %>
   </p>
   <p>
-    <%= f.label :list_id, 'Mailing List' %>
-    <br><%= f.select :list_id, ShinyLists::List.pluck( :internal_name, :id ) %>
+    <%= f.label :list_id, 'Mailing List' %><br>
+    <%= f.select :list_id, ShinyLists::List.pluck( :internal_name, :id ) %>
   </p>
   <p>
-    <%= f.label :send_at, 'Send at', min: Time.zone.now.localtime %>
-    <br><%= f.date_field :send_at %> <%= f.time_field :send_at %>
+    <%= f.label :send_at %><br>
+    <%= f.date_field :send_at, min: Time.zone.now.localtime %> <%= f.time_field :send_at %>
   </p>
 
   <p class="top-margin">
