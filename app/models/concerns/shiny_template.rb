@@ -33,12 +33,13 @@ module ShinyTemplate
     # Instance methods
 
     def file_exists?
-      self.class.available_templates.include? filename
+      self.class.template_file_exists? filename
     end
 
-    # Specify policy class for Pundit
-    def policy_class
-      self.class.policy_class
+    # Class methods
+
+    def self.template_file_exists?( filename )
+      available_templates.include? filename
     end
 
     private
@@ -47,17 +48,17 @@ module ShinyTemplate
       elements.create( name: name )
     end
 
-    def add_image_element( name )
-      elements.create(
-        name: name,
-        element_type: 'image'
-      )
-    end
-
     def add_html_element( name )
       elements.create(
         name: name,
         element_type: 'html'
+      )
+    end
+
+    def add_image_element( name )
+      elements.create(
+        name: name,
+        element_type: 'image'
       )
     end
 
