@@ -6,7 +6,7 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Common behaviour for MJML content templates - e.g. ShinyNewsletters::Template
+# Common behaviour for ERB MJML content templates - e.g. ShinyNewsletters::Template
 module ShinyMJMLTemplate
   extend ActiveSupport::Concern
 
@@ -21,9 +21,10 @@ module ShinyMJMLTemplate
 
       file = "#{self.class.template_dir}/#{filename}.html.mjml"
       erb = File.read file
-      # FIXME
+
+      # I am so, so sorry.
       erb.scan(
-        %r{<%=\s+(sanitize|simple_format)?\(?\s*(\w+)\s*\)?\s+%>}
+        %r{<%=\s+(sanitize|simple_format)?\(?\s*@elements\[\s*:(\w+)\]\s*\)?\s+%>}
       ).uniq.each do |result|
         added = add_element result[0], result[1]
         raise ActiveRecord::Rollback unless added
@@ -36,17 +37,18 @@ module ShinyMJMLTemplate
     def self.available_templates
       return unless template_dir
 
-      filenames = Dir.glob '*.html.mjml', base: template_dir
       template_names = []
+
+      filenames = Dir.glob '*.mjml', base: template_dir
       filenames.each do |filename|
         template_names << filename.remove( '.html.mjml' )
       end
+
       template_names.sort
     end
 
     private
 
-    # FIXME
     def add_element( formatting, name )
       return add_image_element name   if formatting.nil? && name.include?( 'image' )
       return add_default_element name if formatting.nil?
