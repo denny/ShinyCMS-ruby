@@ -16,6 +16,11 @@ module ShinyPages
 
     has_many :pages, inverse_of: :template, dependent: :restrict_with_error
 
+    # Specify policy class for Pundit
+    def policy_class
+      self.class.policy_class
+    end
+
     # Class methods
 
     def self.policy_class
@@ -23,9 +28,7 @@ module ShinyPages
     end
 
     def self.template_dir
-      return if Theme.current.blank?
-
-      Rails.root.join Theme.current.page_templates_path
+      Theme.current.template_dir( 'shiny_pages/pages' ) if Theme.current.present?
     end
 
     # Add another validation at the end, because it uses methods included/defined above

@@ -91,7 +91,7 @@ module ShinyPages
         return
       end
 
-      render template: "pages/templates/#{@page.template.filename}", locals: @page.elements_hash
+      render template: "shiny_pages/pages/#{@page.template.filename}", locals: @page.elements_hash
     end
 
     # Find the correct section to look for the specified (or default) page in
