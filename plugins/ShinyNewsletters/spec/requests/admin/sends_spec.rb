@@ -32,8 +32,8 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
     end
   end
 
-  describe 'GET /admin/newsletters/sent' do
-    it 'fetches the list of sent in the admin area' do
+  describe 'GET /admin/newsletters/sends/sent' do
+    it 'displays a list of recently sent newsletters' do
       send1 = create :newsletter_send
       send2 = create :newsletter_send_sent
       send3 = create :newsletter_send_sending
@@ -144,7 +144,7 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
     it 'cancels the specified send' do
       send1 = create :newsletter_send
 
-      put shiny_newsletters.send_cancel_path( send1 )
+      put shiny_newsletters.cancel_send_path( send1 )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_newsletters.sends_path
