@@ -6,7 +6,7 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Common behaviour for ERB content templates - e.g. ShinyPages::Template
+# Common behaviour for ERB HTML content templates - e.g. ShinyPages::Template
 module ShinyHTMLTemplate
   extend ActiveSupport::Concern
 
@@ -21,6 +21,8 @@ module ShinyHTMLTemplate
 
       file = "#{self.class.template_dir}/#{filename}.html.erb"
       erb = File.read file
+
+      # Never parse HTML with a regex.
       erb.scan(
         %r{<%=\s+(sanitize|simple_format)?\(?\s*(\w+)\s*\)?\s+%>}
       ).uniq.each do |result|
@@ -35,11 +37,13 @@ module ShinyHTMLTemplate
     def self.available_templates
       return unless template_dir
 
-      filenames = Dir.glob '*.html.erb', base: template_dir
       template_names = []
+
+      filenames = Dir.glob '*.html.erb', base: template_dir
       filenames.each do |filename|
         template_names << filename.remove( '.html.erb' )
       end
+
       template_names.sort
     end
 
