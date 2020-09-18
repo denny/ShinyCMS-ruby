@@ -41,7 +41,7 @@ RSpec.describe 'Newsletters', type: :request do
   end
 
   describe 'GET /newsletters/:id' do
-    it 'displays the newsleter in the browser' do
+    it 'displays the newsletter in the browser' do
       user1 = create :user
       sign_in user1
 
@@ -53,7 +53,7 @@ RSpec.describe 'Newsletters', type: :request do
       get shiny_newsletters.user_view_newsletter_path( send1.sent_year, send1.sent_month, send1.edition.slug )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title send1.edition.name.titlecase
+      expect( response.body ).to have_title send1.edition.name
     end
   end
 end
