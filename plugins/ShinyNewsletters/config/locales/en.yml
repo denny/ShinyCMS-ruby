@@ -36,6 +36,10 @@ en:
         title: Newsletter Editions
         index:
           title: Editions
+          send_sample: Send sample
+          send_to_list: Send to list
+        send_sample:
+          success: Sample sent
         new:
           title: New edition
         edit:
@@ -54,6 +58,7 @@ en:
         index:
           title: Sends
           no_sends: You have not started sending any newsletters yet
+          send_now: Send Now
         sent:
           title: Sent
           view_details: View Details
@@ -70,6 +75,8 @@ en:
         update:
           success: Newsletter send updated
           failure: Failed to update newsletter send
+        send_now:
+          success: Sending started
         cancel:
           success: Newsletter send cancelled
         destroy:
@@ -95,4 +102,4 @@ en:
   models:
     shiny_newsletters:
       template:
-        template_file_must_exist: 'The template file must be in themes/{your theme}/newsletters/templates'
+        template_file_must_exist: 'Template file must be in themes/{theme-name}/shiny_newsletters/newsletter_mailer'
