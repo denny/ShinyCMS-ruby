@@ -49,6 +49,15 @@ module ShinyNewsletters
       end
     end
 
+    def send_sample
+      edition = Edition.find( params[:id] )
+      authorize edition
+
+      flash[ :notice ] = t( '.success' ) if edition.send_sample( current_user )
+
+      redirect_to shiny_newsletters.editions_path
+    end
+
     def destroy
       edition = Edition.find( params[:id] )
       authorize edition
