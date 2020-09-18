@@ -1,9 +1,11 @@
-<% @email_title ||= "Email from #{@site_name}" %>
-<% @email_preview_line ||= @email_title %>
 <mjml>
   <mj-head>
+    <% @email_title ||= "Email from #{@site_name}" %>
+    <% @email_preview_line ||= @email_title %>
+
     <mj-title><%= @email_title %></mj-title>
     <mj-preview><%= @email_preview_line %></mj-preview>
+
     <mj-attributes>
       <mj-class name="big" font-size="20px" />
     </mj-attributes>
