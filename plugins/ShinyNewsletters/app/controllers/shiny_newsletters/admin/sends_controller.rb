@@ -32,8 +32,14 @@ module ShinyNewsletters
       authorize @sent if @sent.present?
     end
 
+    def show
+      authorize Send
+      @send = Send.find( params[:id] )
+      authorize @send
+    end
+
     def new
-      @send = Send.new
+      @send = Send.new( edition_id: params[:edition_id].presence )
       authorize @send
     end
 
@@ -66,8 +72,19 @@ module ShinyNewsletters
       end
     end
 
+    def send_now
+      send = Send.find( params[:id] )
+      authorize send
+
+      send.update!( send_at: Time.zone.now ) if send.scheduled?
+
+      flash[ :notice ] = t( '.success' ) if send.send_now
+
+      redirect_to shiny_newsletters.sends_path
+    end
+
     def cancel
-      send = Send.find( params[:send_id] )
+      send = Send.find( params[:id] )
       authorize send
 
       flash[ :notice ] = t( '.success' ) if send.cancel
@@ -87,7 +104,7 @@ module ShinyNewsletters
     private
 
     def send_params
-      params.require( :send ).permit( :edition_id, :list_id, :send_at )
+      params.require( :send ).permit( :edition_id, :list_id, :send_at, :send_now )
     end
 
     def convert_send_at_to_utc
