@@ -36,6 +36,10 @@ module ShinyNewsletters
       edit?
     end
 
+    def send_sample?
+      @this_user.can? :add, :newsletter_sends
+    end
+
     def destroy?
       @this_user.can? :destroy, :newsletter_editions
     end

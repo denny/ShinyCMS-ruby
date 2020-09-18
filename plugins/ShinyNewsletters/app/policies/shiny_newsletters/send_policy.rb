@@ -24,6 +24,10 @@ module ShinyNewsletters
       index?
     end
 
+    def show?
+      edit?
+    end
+
     def new?
       @this_user.can? :add, :newsletter_sends
     end
@@ -38,6 +42,10 @@ module ShinyNewsletters
 
     def update?
       edit?
+    end
+
+    def send_now?
+      create?
     end
 
     def cancel?
