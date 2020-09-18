@@ -3,8 +3,8 @@
 ## Fixes and refactoring of code already written - to do next/soon
 
 * Move search result templates into relevant plugins
-* Move search initializer(s) into ShinySearch plugin
-* Remove search gems from core Gemfile
+
+* Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
 
 * Highlight section name in admin area menu when on a page which isn't in the menu
   (e.g. 'Edit page', clicking around in Blazer, etc)
@@ -17,7 +17,10 @@
 
 * Replace Anonymous/Pseudonymous/Authenticated with symbols and translation strings
 
-* Track down untranslated strings and add them to locale files (e.g. 'no templates to display')
+* Track down untranslated strings and add them to locale files
+  * Frequent offenders:
+    * Index pages 'no results' message and column headings
+    * Labels on new/edit forms
   * Core and plugins
   * Templates, controllers, and models
   * Admin area, main site, and themes
