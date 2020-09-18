@@ -13,7 +13,7 @@ module ShinyNewsletters
       authenticate_user! unless params[:token]
 
       if subscriber
-        @recent_sends = newsletters_sent_to_subscriber&.recent&.page( page_number )&.per( items_per_page )
+        @recent_sends = newsletters_sent_to_subscribed_lists&.recent&.page( page_number )&.per( items_per_page )
       else
         flash.now[:alert] = t( '.subscriber_not_found' )
       end
@@ -22,7 +22,7 @@ module ShinyNewsletters
     def show
       # TODO: I need to get from MJML to HTML here
       @subscriber = subscriber
-      @send = newsletter_sent_to_subscriber
+      @send = newsletter_sent_to_subscribed_list
       @edition = @send.edition
     end
 
@@ -32,14 +32,14 @@ module ShinyNewsletters
       current_user || EmailRecipient.find_by( token: params[:token] )
     end
 
-    def newsletters_sent_to_subscriber
+    def newsletters_sent_to_subscribed_lists
       Send.sent.where( list: subscriber&.lists&.ids )
     end
 
-    def newsletter_sent_to_subscriber
-      return if newsletters_sent_to_subscriber.blank?
+    def newsletter_sent_to_subscribed_list
+      return if newsletters_sent_to_subscribed_lists.blank?
 
-      newsletters_sent_to_subscriber.sent_in_month( params[:year].to_i, params[:month].to_i ).each do |sent|
+      newsletters_sent_to_subscribed_lists.sent_in_month( params[:year].to_i, params[:month].to_i ).each do |sent|
         return sent if sent.edition.slug == params[:slug]
       end
     end
