@@ -26,12 +26,19 @@ ShinyNewsletters::Engine.routes.draw do
         resources :templates, except: [ :show ]
         resources :editions,  except: [ :show ]
 
-        resources :sends do
-          put :pause,  to: 'sends#pause'
-          put :resume, to: 'sends#resume'
-          put :cancel, to: 'sends#cancel'
-        end
+        get 'editions/:id/send-sample', to: 'editions#send_sample', as: :send_sample
+
+        resources :sends
         get :sent, to: 'sends#sent'
+
+        scope path: :sends do
+          put ':id/send',   to: 'sends#send_now', as: :send_now
+          put ':id/pause',  to: 'sends#pause',    as: :pause_send
+          put ':id/resume', to: 'sends#resume',   as: :resume_send
+          put ':id/cancel', to: 'sends#cancel',   as: :cancel_send
+
+          get 'new/:edition_id', to: 'sends#new', as: :send_edition
+        end
       end
     end
   end

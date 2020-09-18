@@ -8,7 +8,7 @@
   </header>
 
   <p>
-    <%= @edition.name %> (sent at @send.sent_at.to_s( :time ) on @send.sent_at.to_s( :shinydate )
+    <%= @edition.name %> (sent at <%= display_time_and_date( @send.sent_at ) %>)
   </p>
 
   <%# TODO: HTML rendering of MJML templated newsletter %>
