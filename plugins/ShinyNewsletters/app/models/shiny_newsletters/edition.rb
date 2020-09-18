@@ -34,15 +34,13 @@ module ShinyNewsletters
       sends&.scheduled&.present?
     end
 
+    def send_sample( recipient )
+      NewsletterMailer.send_email( self, recipient ).deliver_now
+    end
+
     # Used by SlugInMonth validator
     def items_in_same_month
       self.class.readonly.where( updated_at: Time.zone.now.all_month )
-    end
-
-    # Class methods
-
-    def self.policy_class
-      EditionPolicy
     end
   end
 end

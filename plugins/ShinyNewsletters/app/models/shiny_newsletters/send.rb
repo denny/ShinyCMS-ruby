@@ -30,22 +30,28 @@ module ShinyNewsletters
 
     # Instance methods
 
-    # :nocov:
-    def scheduled?
-      send_at.present? && started_sending_at.blank?
+    def sent?
+      finished_sending_at.present?
     end
 
     def sending?
       started_sending_at.present? && finished_sending_at.blank?
     end
 
-    def sent?
-      finished_sending_at.present?
+    def scheduled?
+      send_at.present? && started_sending_at.blank?
     end
-    # :nocov:
+
+    def future_dated?
+      scheduled? && send_at > Time.zone.now
+    end
+
+    def send_now
+      SendToListJob.perform_now( self )
+    end
 
     def cancel
-      # TODO: distinguish between 'cancelled' and 'finished'
+      # TODO: Distinguish between 'cancelled' and 'finished'
       update!( finished_sending_at: Time.zone.now )
     end
 

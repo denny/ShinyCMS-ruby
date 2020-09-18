@@ -18,14 +18,8 @@ module ShinyNewsletters
 
     # Class methods
 
-    def self.policy_class
-      ShinyNewsletters::TemplatePolicy
-    end
-
     def self.template_dir
-      return if Theme.current.blank?
-
-      Rails.root.join Theme.current.newsletter_templates_path
+      Theme.current.template_dir( 'shiny_newsletters/newsletter_mailer' ) if Theme.current.present?
     end
 
     # Add another validation at the end, because it uses methods included/defined above
