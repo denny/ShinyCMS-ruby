@@ -186,24 +186,6 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
     end
   end
 
-  describe 'GET /admin/newsletters/editions/:id/send-sample' do
-    it 'attempts to send a sample email to the logged-in user' do
-      send_admin = create :newsletter_send_admin
-      sign_in send_admin
-
-      edition1 = create :newsletter_edition
-
-      get shiny_newsletters.send_sample_path( edition1 )
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_newsletters.editions_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( "#{I18N_ROOT}.edit.title" ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( "#{I18N_ROOT}.send_sample.success" )
-    end
-  end
-
   describe 'DELETE /admin/newsletters/editions/:id' do
     it 'deletes the specified edition' do
       p1 = create :newsletter_edition
