@@ -125,8 +125,8 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response.body ).to have_field 'page[elements_attributes][6][content]',  type: 'select',
                                                                                       with: 'ShinyCMS-logo.png'
       expect( response.body ).to have_field 'page[elements_attributes][7][content]',  type: 'textarea', with: 'HTML!'
-      CKE_REGEX = %r{<textarea [^>]*id="(?<cke_id>page_elements_attributes_\d+_content)"[^>]*>\nHTML!</textarea>}.freeze
-      matches = response.body.match CKE_REGEX
+      cke_regex = %r{<textarea [^>]*id="(?<cke_id>page_elements_attributes_\d+_content)"[^>]*>\nHTML!</textarea>}.freeze
+      matches = response.body.match cke_regex
       expect( response.body ).to include "CKEDITOR.replace('#{matches[:cke_id]}'"
     end
   end
