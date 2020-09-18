@@ -39,16 +39,7 @@ module ShinyWithTemplate
 
     # Returns a hash of all the elements for this item, to feed to render's local
     def elements_hash
-      hash = {}
-      elements.each do |element|
-        hash[ element.name.to_sym ] = element.content
-      end
-      hash
-    end
-
-    # Specify policy class for Pundit
-    def policy_class
-      self.class.policy_class
+      elements.pluck( :name, :content ).to_h.symbolize_keys
     end
   end
 end
