@@ -11,6 +11,8 @@ require 'rails_helper'
 # Tests for newsletter edition admin features
 
 RSpec.describe 'Admin: Newsletter Editions', type: :request do
+  I18N_ROOT = 'shiny_newsletters.admin.editions'
+
   before :each do
     admin = create :newsletter_admin
     sign_in admin
@@ -23,7 +25,7 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       get shiny_newsletters.editions_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( "#{I18N_ROOT}.index.title" ).titlecase
       expect( response.body ).to have_css 'td', text: edition1.internal_name
     end
 
@@ -34,7 +36,7 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       get shiny_newsletters.editions_path, params: { page: 2, count: 1 }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( "#{I18N_ROOT}.index.title" ).titlecase
       expect( response.body ).to have_css 'td', text: edition2.internal_name
       expect( response.body ).not_to have_css 'td', text: edition1.internal_name
     end
@@ -45,7 +47,7 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       get shiny_newsletters.new_edition_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.new.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( "#{I18N_ROOT}.new.title" ).titlecase
     end
   end
 
@@ -64,8 +66,8 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response      ).to redirect_to shiny_newsletters.edit_edition_path( ShinyNewsletters::Edition.last )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.editions.create.success' )
+      expect( response.body ).to have_title I18n.t( "#{I18N_ROOT}.edit.title" ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( "#{I18N_ROOT}.create.success" )
     end
 
     it 'fails when the form is submitted without all the details' do
@@ -76,8 +78,8 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.new.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_newsletters.admin.editions.create.failure' )
+      expect( response.body ).to have_title I18n.t( "#{I18N_ROOT}.new.title" ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( "#{I18N_ROOT}.create.failure" )
     end
 
     it "fails to create a new edition when the slug isn't unique this month" do
@@ -93,8 +95,8 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.new.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_newsletters.admin.editions.create.failure' )
+      expect( response.body ).to have_title I18n.t( "#{I18N_ROOT}.new.title" ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( "#{I18N_ROOT}.create.failure" )
     end
 
     it 'adds a new edition with elements from template' do
@@ -111,8 +113,8 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response      ).to redirect_to shiny_newsletters.edit_edition_path( ShinyNewsletters::Edition.last )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.editions.create.success' )
+      expect( response.body ).to have_title I18n.t( "#{I18N_ROOT}.edit.title" ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( "#{I18N_ROOT}.create.success" )
       expect( response.body ).to include template1.elements.first.name
       expect( response.body ).to include template1.elements.last.name
     end
@@ -125,7 +127,7 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       get shiny_newsletters.edit_edition_path( edition1 )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.edit.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( "#{I18N_ROOT}.edit.title" ).titlecase
     end
   end
 
@@ -140,8 +142,8 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_newsletters.admin.editions.update.failure' )
+      expect( response.body ).to have_title I18n.t( "#{I18N_ROOT}.edit.title" ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( "#{I18N_ROOT}.update.failure" )
     end
 
     it 'updates the edition when the form is submitted' do
@@ -157,8 +159,8 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response      ).to redirect_to shiny_newsletters.edit_edition_path( edition1 )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.editions.update.success' )
+      expect( response.body ).to have_title I18n.t( "#{I18N_ROOT}.edit.title" ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( "#{I18N_ROOT}.update.success" )
       expect( response.body ).to have_field 'edition_internal_name', with: 'Updated by test'
     end
 
@@ -177,10 +179,28 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response      ).to     redirect_to shiny_newsletters.edit_edition_path( edition )
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'shiny_newsletters.admin.editions.edit.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.editions.update.success' )
+      expect( response.body ).to     have_title I18n.t( "#{I18N_ROOT}.edit.title" ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( "#{I18N_ROOT}.update.success" )
       expect( response.body ).to     have_field 'edition_slug', with: 'updated-by-test'
       expect( response.body ).not_to have_field 'edition_slug', with: old_slug
+    end
+  end
+
+  describe 'GET /admin/newsletters/editions/:id/send-sample' do
+    it 'attempts to send a sample email to the logged-in user' do
+      send_admin = create :newsletter_send_admin
+      sign_in send_admin
+
+      edition1 = create :newsletter_edition
+
+      get shiny_newsletters.send_sample_path( edition1 )
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_newsletters.editions_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( "#{I18N_ROOT}.edit.title" ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( "#{I18N_ROOT}.send_sample.success" )
     end
   end
 
@@ -196,9 +216,8 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response      ).to     redirect_to shiny_newsletters.editions_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'shiny_newsletters.admin.editions.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success',
-                                              text: I18n.t( 'shiny_newsletters.admin.editions.destroy.success' )
+      expect( response.body ).to     have_title I18n.t( "#{I18N_ROOT}.index.title" ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( "#{I18N_ROOT}.destroy.success" )
       expect( response.body ).to     have_css 'td', text: p1.internal_name
       expect( response.body ).not_to have_css 'td', text: p2.internal_name
       expect( response.body ).to     have_css 'td', text: p3.internal_name
@@ -211,8 +230,8 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response      ).to redirect_to shiny_newsletters.editions_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_newsletters.admin.editions.destroy.failure' )
+      expect( response.body ).to have_title I18n.t( "#{I18N_ROOT}.index.title" ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( "#{I18N_ROOT}.destroy.failure" )
     end
   end
 end
