@@ -10,9 +10,13 @@
   </header>
   <ul>
   <% @results.each do |result| %>
+    <% plugin_name = result.class.name.split('::').first %>
     <li>
-      <%# TODO: get search result templates from plugins %>
+      <% if ::Plugin.loaded? plugin_name %>
+      <%= render partial: "#{plugin_name.underscore}/search/result/#{result.class.name.underscore}", locals: { result: result } %>
+      <% else %>
       <%= render partial: "search/result/#{result.class.name.underscore}", locals: { result: result } %>
+      <% end %>
     </li>
   <% end %>
   </ul>
