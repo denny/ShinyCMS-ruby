@@ -29,7 +29,7 @@ source 'https://rubygems.org' do
   gem 'pg', '>= 0.18', '< 2.0'
 
   # Webserver
-  gem 'puma', '~> 4.3'
+  gem 'puma', '~> 5.0'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails'
