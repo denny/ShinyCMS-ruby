@@ -22,5 +22,12 @@ module ShinyEmail
     def generate_canonical_email
       self.canonical_email = EmailAddress.canonical( email )
     end
+
+    # Returns a string suitable for use as the To: header in an email
+    def email_to
+      return email if name.blank?
+
+      %("#{name}" <#{email}>)
+    end
   end
 end
