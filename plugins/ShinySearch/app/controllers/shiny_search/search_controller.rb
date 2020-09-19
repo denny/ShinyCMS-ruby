@@ -10,6 +10,7 @@ module ShinySearch
   # Main site controller for ShinySearch plugin for ShinyCMS
   class SearchController < MainController
     include SearchHelper
+    include ShinyPagingHelper
 
     before_action :check_feature_flags
     before_action :stash_query_string
@@ -19,9 +20,6 @@ module ShinySearch
 
     def index
       return unless @query
-
-      @page_num = search_params[ :page  ] || 1
-      @per_page = search_params[ :count ] || Setting.get( :search_results_per_page ) || 20
 
       backend = search_params[ :engine ].presence || Setting.get( :default_search_backend )
       backend = nil unless SEARCH_BACKENDS.include? backend
@@ -45,10 +43,7 @@ module ShinySearch
 
     def pg_search
       @search_backend = :pg
-      @pageable = PgSearch.multisearch( @query )
-                          .includes( :searchable )
-                          .page( @page_num )
-                          .per( @per_page )
+      @pageable = PgSearch.multisearch( @query ).includes( :searchable ).page( page_number ).per( items_per_page )
       @pageable.collect( &:searchable )
     end
 
@@ -63,7 +58,7 @@ module ShinySearch
     end
 
     def search_params
-      params.permit( :query, :q, :page, :count, :engine )
+      params.permit( :query, :q, :engine, :page, :count, :size, :per )
     end
 
     def check_feature_flags
