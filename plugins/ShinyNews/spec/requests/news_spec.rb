@@ -110,4 +110,16 @@ RSpec.describe 'News', type: :request do
       expect( response.body ).to have_css 'h2', text: post3.title
     end
   end
+
+  context 'Helpers and Concerns' do
+    before :all do
+      @twelve_items = create_list :news_post, 12, posted_at: 1.day.ago
+    end
+
+    it_should_behave_like 'Pagination' do
+      let( :items  ) { @twelve_items }
+      let( :markup ) { 'h2' }
+      let( :url    ) { shiny_news.view_news_path }
+    end
+  end
 end

@@ -17,7 +17,7 @@ module ShinyPagingHelper
 
   # TODO: configurable per-site default, with per-user/per-action override
   def items_per_page( default: 10 )
-    count = params[:count] || params[:size] || params[:per]
+    count = params[:count].presence || params[:size].presence || params[:per].presence
 
     return default if count.blank?
     return default if count.match?( /\D/ )
