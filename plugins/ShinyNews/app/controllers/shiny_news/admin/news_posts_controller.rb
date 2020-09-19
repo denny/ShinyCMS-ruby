@@ -10,14 +10,14 @@ module ShinyNews
   # Admin area controller for ShinyNews plugin for ShinyCMS
   class Admin::NewsPostsController < AdminController
     include ShinyDateHelper
+    include ShinyPagingHelper
 
     before_action :set_post_for_create, only: :create
     before_action :set_post, only: %i[ edit update destroy ]
 
     def index
       authorise Post
-      page_num = params[ :page ] || 1
-      @posts = Post.order( :created_at ).page( page_num )
+      @posts = Post.order( created_at: :desc ).page( page_number )
       authorise @posts if @posts.present?
     end
 
