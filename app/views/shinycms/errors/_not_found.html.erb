@@ -1,27 +1,19 @@
 <% @empty_layout = true %>
-<% @resource_type ||= controller.class.name.sub( %r{.*\:\:}, '' ).remove( 'Controller' ).underscore.humanize.singularize %>
+<% resource_type ||= controller.class.name.sub( %r{.*\:\:}, '' ).remove( 'Controller' ).underscore.humanize.singularize %>
 
 <section>
   <header>
     <h2>
-      <%= t( '.title', resource_type: @resource_type ) %>
+      <%= t( '.title', resource_type: resource_type.titlecase ) %>
     </h2>
   </header>
 
   <p>
-    <%= t( '.explanation', resource_type: @resource_type.downcase ) %>
-  </p>
-  <p>
-    You can use the search form
-    <% if feature_enabled? :tags %>
-    <% tags = ActsAsTaggableOn::Tag.order( :name ) %>
-    <% if tags.size > 0 %> and the tag list <% end %>
-    <% end %>
-    below to try to find what you were looking for,
-    or to explore the other content on this site.
+    <%= t( '.explanation', resource_type: resource_type.downcase ) %>
   </p>
 </section>
 
+<% if feature_enabled? :search %>
 <section>
   <header>
     <h2>
@@ -30,18 +22,20 @@
   </header>
 
   <p>
-    <%# TODO: search feature %>
-    <%= form_with name: 'search', url: root_path, method: :post do |f| %>
-      <%= f.text_field 'q' %> <%= f.submit 'Search', class: 'button' %>
+    <%= form_with name: 'search', url: shiny_search.search_path do |f| %>
+      <%= f.text_field 'query' %> <%= f.submit 'Search', class: 'button' %>
     <% end %>
   </p>
 </section>
+<% end %>
 
-<% if tags.present? && tags.size > 0 %>
+<% if feature_enabled? :tags %>
+  <% tags = ActsAsTaggableOn::Tag.order( :name ) %>
+  <% if tags.size > 0 %>
 <section>
   <header>
     <h2>
-      Tags
+      Browse tags
     </h2>
   </header>
 
@@ -51,4 +45,5 @@
     <% end %>
   </div>
 </section>
+  <% end %>
 <% end %>
