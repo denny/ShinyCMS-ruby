@@ -67,7 +67,7 @@ module ShinySearch
     end
 
     def check_feature_flags
-      enforce_feature_flags :shiny_search
+      enforce_feature_flags :search
     end
   end
 end
