@@ -13,4 +13,14 @@ FactoryBot.define do
     level  { 'site' }
     locked { false  }
   end
+
+  factory :default_setting, parent: :setting do
+    association :setting_value, :default_setting_value
+  end
+
+  factory :user_setting, parent: :setting do
+    level { 'user' }
+
+    association :setting_value, :user_setting_value
+  end
 end
