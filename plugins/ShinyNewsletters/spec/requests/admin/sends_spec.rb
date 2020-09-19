@@ -48,6 +48,18 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
     end
   end
 
+  describe 'GET /admin/newsletters/sends/123' do
+    it 'displays the details of a send which has completed (or been cancelled)' do
+      send1 = create :newsletter_send_sent
+
+      get shiny_newsletters.send_path( send1 )
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.sends.show.title' ).titlecase
+      expect( response.body ).to have_css 'td', text: send1.edition.internal_name
+    end
+  end
+
   describe 'GET /admin/newsletters/sends/new' do
     it 'loads the form to add a new send' do
       get shiny_newsletters.new_send_path
