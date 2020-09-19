@@ -31,8 +31,10 @@ RSpec.describe Admin::SiteSettingsController, type: :request do
       s1 = Setting.set( :theme_name, to: 'thematic' )
 
       put admin_site_settings_path, params: {
-        "settings[level_#{s1.id}]": 'user',
-        "settings[value_#{s1.id}]": 'thematic'
+        settings: {
+          "level_#{s1.id}": 'user',
+          "value_#{s1.id}": 'thematic'
+        }
       }
 
       expect( response      ).to     have_http_status :found
@@ -53,8 +55,10 @@ RSpec.describe Admin::SiteSettingsController, type: :request do
       s1 = Setting.set( :theme_name, to: 'Original' )
 
       put admin_site_settings_path, params: {
-        "settings[level_#{s1.id}]": s1.level,
-        "settings[value_#{s1.id}]": 'Updated'
+        settings: {
+          "level_#{s1.id}": s1.level,
+          "value_#{s1.id}": 'Updated'
+        }
       }
 
       expect( response      ).to     have_http_status :found
@@ -71,8 +75,10 @@ RSpec.describe Admin::SiteSettingsController, type: :request do
       s1 = Setting.set( :theme_name, to: 'Unchanging' )
 
       put admin_site_settings_path, params: {
-        "settings[level_#{s1.id}]": s1.level,
-        "settings[value_#{s1.id}]": 'Unchanging'
+        settings: {
+          "level_#{s1.id}": s1.level,
+          "value_#{s1.id}": 'Unchanging'
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -88,8 +94,10 @@ RSpec.describe Admin::SiteSettingsController, type: :request do
       s1 = Setting.set( :admin_ip_list, to: '127.0.0.1, 1.2.3.4' )
 
       put admin_site_settings_path, params: {
-        "settings[level_#{s1.id}]": 'user',
-        "settings[value_#{s1.id}]": '127.0.0.1, 1.2.3.4'
+        settings: {
+          "level_#{s1.id}": 'user',
+          "value_#{s1.id}": '127.0.0.1, 1.2.3.4'
+        }
       }
 
       expect( response      ).to     have_http_status :found
@@ -112,8 +120,10 @@ RSpec.describe Admin::SiteSettingsController, type: :request do
       s1 = Setting.set( :admin_ip_list, to: '127.0.0.1, 1.2.3.4' )
 
       put admin_site_settings_path, params: {
-        "settings[level_#{s1.id}]": s1.level,
-        "settings[value_#{s1.id}]": '127.0.0.1, 4.3.2.1'
+        settings: {
+          "level_#{s1.id}": s1.level,
+          "value_#{s1.id}": '127.0.0.1, 4.3.2.1'
+        }
       }
 
       expect( response      ).to     have_http_status :found
