@@ -1,10 +1,11 @@
-<% @empty_layout = true %>
 <% resource_type ||= controller.class.name.sub( %r{.*\:\:}, '' ).remove( 'Controller' ).underscore.humanize.singularize %>
+
+<% @page_title = t( '.title', resource_type: resource_type.capitalize ) %>
 
 <section>
   <header>
     <h2>
-      <%= t( '.title', resource_type: resource_type.titlecase ) %>
+      <%= @page_title %>
     </h2>
   </header>
 
