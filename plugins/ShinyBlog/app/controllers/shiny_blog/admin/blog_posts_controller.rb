@@ -9,18 +9,20 @@
 module ShinyBlog
   # Admin area controller for ShinyBlog plugin for ShinyCMS
   class Admin::BlogPostsController < AdminController
+    include ShinyDateHelper
+
     before_action :set_post_for_create, only: :create
     before_action :set_post, only: %i[ edit update destroy ]
 
     def index
-      authorise ShinyBlog::Post
+      authorise Post
       page_num = params[ :page ] || 1
-      @posts = ShinyBlog::Post.order( :created_at ).page( page_num )
+      @posts = Post.order( :created_at ).page( page_num )
       authorise @posts if @posts.present?
     end
 
     def new
-      @post = ShinyBlog::Post.new
+      @post = Post.new
       authorise @post
     end
 
@@ -60,7 +62,7 @@ module ShinyBlog
     private
 
     def set_post
-      @post = ShinyBlog::Post.find( params[:id] )
+      @post = Post.find( params[:id] )
     rescue ActiveRecord::RecordNotFound
       skip_authorization
       redirect_to blog_posts_path, alert: t( 'shiny_blog.admin.blog_posts.set_post.not_found' )
@@ -78,7 +80,7 @@ module ShinyBlog
     end
 
     def set_post_for_create
-      @post = ShinyBlog::Post.new( post_params_for_create )
+      @post = Post.new( post_params_for_create )
     end
 
     def post_params_for_create
