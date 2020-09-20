@@ -22,5 +22,17 @@ module ShinyNewsletters
         expect { SendToSubscriberJob.perform_later( send1, subscriber1 ) }.to have_enqueued_job
       end
     end
+
+    describe '.perform_now' do
+      it 'attempts to trigger a mailer send' do
+        ActiveJob::Base.queue_adapter = :test
+
+        subscriber1 = create :email_recipient
+        # send1       = create :newsletter_send
+        send1       = create :newsletter_send_sent # TODO: This will bail out before sending
+
+        expect( SendToSubscriberJob.perform_now( send1, subscriber1 ) ).to be_truthy
+      end
+    end
   end
 end

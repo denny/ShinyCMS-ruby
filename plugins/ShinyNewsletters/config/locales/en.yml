@@ -40,6 +40,7 @@ en:
           send_to_list: Send to list
         send_sample:
           success: Sample sent
+          mjml_error: MJML Parser Error
         new:
           title: New edition
         edit:
