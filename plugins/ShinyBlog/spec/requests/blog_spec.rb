@@ -117,14 +117,5 @@ RSpec.describe 'Blog', type: :request do
     end
   end
 
-  context 'Helpers and Concerns' do
-    before :all do
-      @items     = create_list :blog_post, 12, posted_at: 1.day.ago
-      @base_url  = shiny_blog.view_blog_path
-      @item_tag  = 'h2'
-      @item_text = 'title'
-    end
-
-    it_should_behave_like 'a paginated list'
-  end
+  it_behaves_like 'Pagination', 'blog_post', '/blog', 'h2', 'title'
 end

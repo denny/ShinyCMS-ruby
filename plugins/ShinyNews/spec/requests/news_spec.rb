@@ -111,14 +111,5 @@ RSpec.describe 'News', type: :request do
     end
   end
 
-  context 'Helpers and Concerns' do
-    before :all do
-      @items     = create_list :news_post, 12, posted_at: 1.day.ago
-      @base_url  = shiny_news.view_news_path
-      @item_tag  = 'h2'
-      @item_text = 'title'
-    end
-
-    it_should_behave_like 'a paginated list'
-  end
+  it_behaves_like 'Pagination', 'news_post', '/news', 'h2', 'title'
 end
