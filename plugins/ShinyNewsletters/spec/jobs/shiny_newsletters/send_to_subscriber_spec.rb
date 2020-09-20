@@ -24,14 +24,15 @@ module ShinyNewsletters
     end
 
     describe '.perform_now' do
-      it 'attempts to trigger a mailer send' do
-        ActiveJob::Base.queue_adapter = :test
+      context 'with an already-sent Send' do
+        it 'bails out before sending' do
+          ActiveJob::Base.queue_adapter = :test
 
-        subscriber1 = create :email_recipient
-        # send1       = create :newsletter_send
-        send1       = create :newsletter_send_sent # TODO: This will bail out before sending
+          subscriber1 = create :email_recipient
+          send1       = create :newsletter_send_sent
 
-        expect( SendToSubscriberJob.perform_now( send1, subscriber1 ) ).to be_truthy
+          expect( SendToSubscriberJob.perform_now( send1, subscriber1 ) ).to be_nil
+        end
       end
     end
   end
