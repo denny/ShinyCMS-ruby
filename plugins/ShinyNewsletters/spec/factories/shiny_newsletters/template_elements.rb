@@ -7,8 +7,10 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Factory for template elements - ShinyNewsletters plugin for ShinyCMS
-FactoryBot.define do
-  factory :newsletter_template_element, class: 'ShinyNewsletters::TemplateElement' do
-    name { Faker::Books::CultureSeries.unique.culture_ship }
+module ShinyNewsletters
+  FactoryBot.define do
+    factory :newsletter_template_element, class: 'ShinyNewsletters::TemplateElement' do
+      name { Faker::Books::CultureSeries.unique.culture_ship }
+    end
   end
 end
