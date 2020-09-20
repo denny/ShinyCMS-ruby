@@ -107,7 +107,7 @@ module ShinyPages
 
     # 404 handler
     def not_found
-      render status: :not_found, template: 'errors/404'
+      render 'errors/404', status: :not_found
     end
   end
 end
