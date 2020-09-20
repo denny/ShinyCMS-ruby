@@ -8,12 +8,6 @@
 
 # Useful methods for displaying/saving dates and times
 module ShinyDateHelper
-  def convert_to_utc( input )
-    return unless input.is_a? Time
-
-    Time.local( *input.to_a ).utc
-  end
-
   def display_date_and_time( timestamp )
     return unless timestamp.is_a? Time
 
@@ -42,5 +36,19 @@ module ShinyDateHelper
     return unless timestamp.is_a? Time
 
     timestamp.localtime.to_s :time
+  end
+
+  def combine_date_and_time_inputs( params_hash, date_input_name )
+    date_string = params_hash[ date_input_name ]
+    time_string = params_hash.delete( "#{date_input_name}_time" )
+
+    params_hash[ date_input_name.to_sym ] = "#{date_string} #{time_string}".strip
+    params_hash
+  end
+
+  def convert_to_utc( input )
+    return unless input.is_a? Time
+
+    Time.local( *input.to_a ).utc
   end
 end

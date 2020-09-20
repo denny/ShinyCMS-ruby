@@ -110,4 +110,6 @@ RSpec.describe 'News', type: :request do
       expect( response.body ).to have_css 'h2', text: post3.title
     end
   end
+
+  it_behaves_like 'Pagination', 'news_post', '/news', 'h2', 'title'
 end

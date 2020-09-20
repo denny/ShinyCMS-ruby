@@ -8,7 +8,7 @@
 
 en:
   feature_flags:
-    shiny_search: Search
+    search: Search
 
   settings:
     default_search_backend: Default search back-end
