@@ -135,7 +135,7 @@ en:
     date_and_time: '%{date} at %{time}'
 
 
-    # ========== ( Mailers ) ==========
+  # ========== ( Mailers ) ==========
 
   discussion_mailer:
     they_said: They said
