@@ -32,12 +32,12 @@ ShinyNewsletters::Engine.routes.draw do
         get :sent, to: 'sends#sent'
 
         scope path: :sends do
-          put ':id/send',   to: 'sends#send_now', as: :send_now
-          put ':id/pause',  to: 'sends#pause',    as: :pause_send
-          put ':id/resume', to: 'sends#resume',   as: :resume_send
-          put ':id/cancel', to: 'sends#cancel',   as: :cancel_send
+          put ':id/start',  to: 'sends#start_sending',  as: :start_sending
+          put ':id/pause',  to: 'sends#pause_sending',  as: :pause_sending
+          put ':id/resume', to: 'sends#resume_sending', as: :resume_sending
+          put ':id/cancel', to: 'sends#cancel_sending', as: :cancel_sending
 
-          get 'new/:edition_id', to: 'sends#new', as: :send_edition
+          get 'new/:edition_id', to: 'sends#new', as: :new_send_for_edition
         end
       end
     end

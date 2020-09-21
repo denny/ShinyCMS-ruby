@@ -46,11 +46,11 @@ module ShinyNewsletters
       scheduled? && send_at > Time.zone.now
     end
 
-    def send_now
+    def start_sending
       SendToListJob.perform_now( self )
     end
 
-    def cancel
+    def cancel_sending
       # TODO: Distinguish between 'cancelled' and 'finished'
       update!( finished_sending_at: Time.zone.now )
     end

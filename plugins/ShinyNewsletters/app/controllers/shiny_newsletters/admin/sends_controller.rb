@@ -72,22 +72,22 @@ module ShinyNewsletters
       end
     end
 
-    def send_now
+    def start_sending
       send = Send.find( params[:id] )
       authorize send
 
       send.update!( send_at: Time.zone.now ) if send.scheduled?
 
-      flash[ :notice ] = t( '.success' ) if send.send_now
+      flash[ :notice ] = t( '.success' ) if send.start_sending
 
       redirect_to shiny_newsletters.sends_path
     end
 
-    def cancel
+    def cancel_sending
       send = Send.find( params[:id] )
       authorize send
 
-      flash[ :notice ] = t( '.success' ) if send.cancel
+      flash[ :notice ] = t( '.success' ) if send.cancel_sending
 
       redirect_to shiny_newsletters.sends_path
     end

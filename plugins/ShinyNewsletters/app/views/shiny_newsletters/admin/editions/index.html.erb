@@ -37,7 +37,7 @@
       </td>
       <td class="actions">
         <%= link_to t( 'shiny_newsletters.admin.editions.index.send_sample'  ), shiny_newsletters.send_sample_path( edition ) %>
-        <%= link_to t( 'shiny_newsletters.admin.editions.index.send_to_list' ), shiny_newsletters.send_edition_path( edition ) %>
+        <%= link_to t( 'shiny_newsletters.admin.editions.index.send_to_list' ), shiny_newsletters.new_send_for_edition_path( edition ) %>
         <%= link_to t( 'edit'   ), shiny_newsletters.edit_edition_path( edition ) %>
         <%= link_to t( 'delete' ), shiny_newsletters.edition_path( edition ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>

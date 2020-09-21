@@ -59,7 +59,7 @@ en:
         index:
           title: Sends
           no_sends: You have not started sending any newsletters yet
-          send_now: Send Now
+          send: Send
         sent:
           title: Sent
           view_details: View Details
@@ -76,9 +76,9 @@ en:
         update:
           success: Newsletter send updated
           failure: Failed to update newsletter send
-        send_now:
+        start_sending:
           success: Sending started
-        cancel:
+        cancel_sending:
           success: Newsletter send cancelled
         destroy:
           success: Newsletter send deleted

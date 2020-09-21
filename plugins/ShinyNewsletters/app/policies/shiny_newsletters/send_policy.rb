@@ -44,11 +44,11 @@ module ShinyNewsletters
       edit?
     end
 
-    def send_now?
+    def start_sending?
       create?
     end
 
-    def cancel?
+    def cancel_sending?
       edit?
     end
 
