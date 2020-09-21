@@ -86,9 +86,9 @@ search:
     - plugins/ShinyLists/app/controllers
     - plugins/ShinyLists/app/views
     - plugins/ShinyNews/app/controllers
+    - plugins/ShinyNews/app/views
     - plugins/ShinyNewsletters/app/views
     - plugins/ShinyNewsletters/app/controllers
-    - plugins/ShinyNews/app/views
     - plugins/ShinyPages/app/controllers
     - plugins/ShinyPages/app/models
     - plugins/ShinyPages/app/views
