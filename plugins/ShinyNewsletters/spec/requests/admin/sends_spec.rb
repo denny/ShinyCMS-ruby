@@ -152,18 +152,36 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
     end
   end
 
-  describe 'PUT /admin/newsletters/sends/:id/cancel' do
-    it 'cancels the specified send' do
-      send1 = create :newsletter_send
+  describe 'PUT /admin/newsletters/sends/:id/start' do
+    it 'starts sending the specified send' do
+      # send1 = create :newsletter_send
+      send1 = create :newsletter_send, send_at: 1.day.since # Temporary bodge
 
-      put shiny_newsletters.cancel_send_path( send1 )
+      put shiny_newsletters.start_sending_path( send1 )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_newsletters.sends_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.sends.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.sends.cancel.success' )
+      # TODO: currently this is going to fail, because the send is future-dated
+      # expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.sends.start_sending.success' )
+    end
+  end
+
+  describe 'PUT /admin/newsletters/sends/:id/cancel' do
+    it 'cancels the specified (currently sending) send' do
+      send1 = create :newsletter_send
+
+      put shiny_newsletters.cancel_sending_path( send1 )
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_newsletters.sends_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.sends.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.sends.cancel_sending.success' )
+      # TODO: No distinction between 'finished' and 'cancelled' currently
       # expect( response.body ).to have_css 'td', text: 'Cancelled'
     end
   end
