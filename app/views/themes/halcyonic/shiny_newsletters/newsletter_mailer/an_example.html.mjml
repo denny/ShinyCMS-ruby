@@ -2,9 +2,9 @@
 <mj-section>
   <mj-column>
 
-    <mj-title>
+    <mj-test>
       <%= @elements[:a_heading] %>
-    </mj-title>
+    </mj-test>
 
     <mj-image src="https://example.com/images/<%= @elements[:top_image] %>" href="https://shinycms.org" alt="<%= @elements[:top_alt_text] %>" title="<%= @elements[:top_title_text] %>" />
 
