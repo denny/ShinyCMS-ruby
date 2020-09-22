@@ -1,43 +1,45 @@
 # ShinyCMS
 
-[ShinyCMS](https://shinycms.org/) is an open-source content management system, intended for use by web designers and web developers. Page layouts are defined by templates (built by a front-end developer or provided by a theme), while content admins can only edit specific text and images on each page (via a simple and easy-to-use admin interface) - protecting page layouts from accidental edits.
+[ShinyCMS](https://shinycms.org/) is an open-source content management system built in Ruby on Rails, with support for cloud hosting (Heroku, AWS, etc).
 
-This version of ShinyCMS is built in Ruby on Rails, and has support for cloud hosting (Heroku, AWS, etc).
+It is intended primarily for use by web designers and web developers to build content-managed websites for their clients. Page layouts are defined by templates (built by a front-end developer or provided by a theme) which designate specific pieces of content as editable (text, images, etc). These can then be updated via an easy-to-use admin interface - protecting page layouts from accidental edits, and making editing content a simple and safe process for non-technical site admins.
+
+ShinyCMS has a plugin architecture; you can add custom functionality by [writing your own plugins](docs/Developer/Plugins.md) (`rails g shiny:plugin plugins/ShinyThing` to get started)
 
 
 ## Features
 
-* Plugin architecture for an increasing number of features
-  * Plugins currently included:
-    * Pages and Page Sections
-      * Site admins can add as many pages and (nested) sections as they like
-      * Pages have defined content areas which can be edited by admins
-      * Page layout is controlled by Page Templates (can be provided by a theme or custom-built)
-      * Dynamically generated menus
-    * News section
-    * Blog
-    * Inserts (re-usable content fragments that can be pulled into any template)
-    * Basic form handlers (e.g. contact form submitted -> email form data to site owner)
-    * Site search feature (supports multiple search back-ends; default is pg_search)
+* Provided by plugins:
+  * Pages and Page Sections
+    * Site admins can add as many pages and (nested) sections as they like
+    * Pages have defined content areas which can be edited by admins
+    * Page layout is controlled by Page Templates (can be provided by a theme or custom-built)
+    * Dynamically generated menus
+  * Inserts (re-usable content fragments that can be pulled into any template)
+  * News section
+  * Blog
+  * Mailing lists
+  * Newsletters
+  * Basic form handlers (e.g. contact form submitted -> email form data to site owner)
+  * Site search feature (supports multiple search back-ends; default is pg_search)
   * Load only the plugins you want/need - smaller footprint, smaller attack surface
-  * [Write your own plugins](docs/Developer/Plugins.md) to add custom functionality
-    * Plugin generator included: `rails g shiny:plugin plugins/ShinyThing` to get started
+* Provided by the main app:
+  * Comments (currently enabled on blog posts and news posts)
+    * Fully nested, so you can easily see who is replying to who at any level
+    * Email notifications of replies to your comments and posts
+    * Uses reCAPTCHA to block comments from bots
+    * Uses Akismet to flag potential spam comments for moderation
+      * Spam comment moderation sends 'spam'/'not spam' training data to Akismet
+  * Tags (currently enabled on blog posts and news posts, ready to add to any content type)
+  * Likes or up/down votes on posts, comments, etc
+  * User accounts and administration
+    * ACL-based authorisation system for admins (powered by Pundit)
+    * Uses reCAPTCHA to block registration by bots
 * Support for [themes](docs/Themes.md) on the hosted site
   * Light-lift theme system - you only need to override the default templates that you want to change
   * Two themes currently included:
     * Halcyonic (one, two, and three column layouts; suitable for content-rich sites)
     * Coming Soon (single page with mailing list sign-up form and slideshow background)
-* Comments (currently enabled on blog posts and news posts)
-  * Fully nested, so you can easily see who is replying to who at any level
-  * Email notifications of replies to your comments and posts
-  * Uses reCAPTCHA to block comments from bots
-  * Uses Akismet to flag potential spam comments for moderation
-    * Spam comment moderation sends 'spam'/'not spam' training data to Akismet
-* Tags (currently enabled on blog posts and news posts, ready to add to any content type)
-* Likes or up/down votes on posts, comments, etc
-* User accounts and administration
-  * ACL-based authorisation system for admins (powered by Pundit)
-  * Uses reCAPTCHA to block registration by bots
 * Web interface for site settings
   * Change most site settings from within the CMS admin area
   * Easily enable or disable CMS features (e.g. new user registrations)
@@ -48,13 +50,12 @@ This version of ShinyCMS is built in Ruby on Rails, and has support for cloud ho
 
 ### Planned features
 
-* Newsletters (HTML mailshots) [in progress]
-* More themes [in progress]
-* User profile pages [in progress]
-  * With content such as recent comments, recent posts, etc
-* Support for multiple blogs on a single site [in progress]
-* Algolia support for search plugin [in progress]
 * Default dashboard(s) and queries for Blazer
+* More themes
+* User profile pages
+  * With content such as recent comments, recent posts, etc
+* Algolia support for search plugin [in progress]
+* Support for multiple blogs on a single site [in progress]
 * Access control groups
   * Can be used to control access to file downloads and secure whole pages, but also to show/hide individual pieces of page content (images/paragraphs/words/etc)
 * Payment handling plugins

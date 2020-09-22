@@ -17,7 +17,7 @@ class DiscussionMailer < ApplicationMailer
 
     @user = notified_user( @parent.notification_email, @parent.author_name_any )
 
-    mail to: @parent.notification_email, subject: parent_comment_notification_subject do |format|
+    mail to: @user.email_to, subject: parent_comment_notification_subject do |format|
       format.html
       format.text
     end
@@ -28,7 +28,7 @@ class DiscussionMailer < ApplicationMailer
 
     @comment, @resource, @user = comment_and_resource_and_user( comment )
 
-    mail to: comment.discussion.notification_email, subject: discussion_notification_subject do |format|
+    mail to: @user.email_to, subject: discussion_notification_subject do |format|
       format.html
       format.text
     end
@@ -42,7 +42,7 @@ class DiscussionMailer < ApplicationMailer
 
     @user = notified_user( email, 'Admin' )
 
-    mail to: email, subject: overview_notification_subject do |format|
+    mail to: @user.email_to, subject: overview_notification_subject do |format|
       format.html
       format.text
     end

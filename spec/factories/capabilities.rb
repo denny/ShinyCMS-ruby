@@ -9,7 +9,7 @@
 # Factory for Capability model
 FactoryBot.define do
   factory :capability do
-    name { Faker::Books::CultureSeries.unique.civs.parameterize }
+    name { Faker::Books::CultureSeries.unique.civs.underscore }
 
     association :category, factory: :capability_category
   end

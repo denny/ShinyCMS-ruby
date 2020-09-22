@@ -1,0 +1,38 @@
+<% @page_title = t( '.title' ) %>
+
+<% if @templates.present? %>
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Template
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+  <% @templates.each do |template| %>
+  <tr class="showfocus">
+    <td>
+      <%= template.name %>
+    </td>
+    <td class="actions">
+      <%= link_to t( 'edit'   ), shiny_newsletters.edit_template_path( template ) %>
+      <%= link_to t( 'delete' ), shiny_newsletters.template_path( template ),
+          method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<%= paginate @templates, window: 3, views_prefix: 'admin' %>
+<p id="pager-info">
+  <%= page_entries_info @templates %>
+</p>
+
+<% else %>
+<p>
+  There are currently no templates to display.
+</p>
+<% end %>

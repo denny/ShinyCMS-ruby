@@ -12,7 +12,7 @@
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2020_09_15_220751) do
+ActiveRecord::Schema.define(version: 2020_09_15_225123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -299,7 +299,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_220751) do
   create_table "shiny_inserts_elements", force: :cascade do |t|
     t.string "name", null: false
     t.string "content"
-    t.string "element_type", default: "Short Text", null: false
+    t.string "element_type", default: "short_text", null: false
     t.bigint "set_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -345,6 +345,64 @@ ActiveRecord::Schema.define(version: 2020_09_15_220751) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_shiny_news_posts_on_user_id"
+  end
+
+  create_table "shiny_newsletters_edition_elements", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "content"
+    t.string "element_type", default: "short_text", null: false
+    t.integer "position"
+    t.bigint "edition_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["edition_id"], name: "index_shiny_newsletters_edition_elements_on_edition_id"
+  end
+
+  create_table "shiny_newsletters_editions", force: :cascade do |t|
+    t.string "internal_name", null: false
+    t.string "public_name"
+    t.string "slug", null: false
+    t.text "description"
+    t.string "from_name"
+    t.string "from_email"
+    t.string "subject"
+    t.boolean "show_on_site", default: true, null: false
+    t.bigint "template_id", null: false
+    t.datetime "published_at", precision: 6
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["template_id"], name: "index_shiny_newsletters_editions_on_template_id"
+  end
+
+  create_table "shiny_newsletters_sends", force: :cascade do |t|
+    t.bigint "edition_id", null: false
+    t.bigint "list_id", null: false
+    t.datetime "send_at", precision: 6
+    t.datetime "started_sending_at", precision: 6
+    t.datetime "finished_sending_at", precision: 6
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["edition_id"], name: "index_shiny_newsletters_sends_on_edition_id"
+    t.index ["list_id"], name: "index_shiny_newsletters_sends_on_list_id"
+  end
+
+  create_table "shiny_newsletters_template_elements", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "content"
+    t.string "element_type", default: "short_text", null: false
+    t.integer "position"
+    t.bigint "template_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["template_id"], name: "index_shiny_newsletters_template_elements_on_template_id"
+  end
+
+  create_table "shiny_newsletters_templates", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "filename", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "shiny_pages_page_elements", force: :cascade do |t|
@@ -514,6 +572,11 @@ ActiveRecord::Schema.define(version: 2020_09_15_220751) do
   add_foreign_key "shiny_lists_subscriptions", "consent_versions"
   add_foreign_key "shiny_lists_subscriptions", "shiny_lists_lists", column: "list_id"
   add_foreign_key "shiny_news_posts", "users"
+  add_foreign_key "shiny_newsletters_edition_elements", "shiny_newsletters_editions", column: "edition_id"
+  add_foreign_key "shiny_newsletters_editions", "shiny_newsletters_templates", column: "template_id"
+  add_foreign_key "shiny_newsletters_sends", "shiny_lists_lists", column: "list_id"
+  add_foreign_key "shiny_newsletters_sends", "shiny_newsletters_editions", column: "edition_id"
+  add_foreign_key "shiny_newsletters_template_elements", "shiny_newsletters_templates", column: "template_id"
   add_foreign_key "shiny_pages_page_elements", "shiny_pages_pages", column: "page_id"
   add_foreign_key "shiny_pages_pages", "shiny_pages_sections", column: "section_id"
   add_foreign_key "shiny_pages_pages", "shiny_pages_templates", column: "template_id"

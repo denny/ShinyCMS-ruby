@@ -1,0 +1,40 @@
+<% @page_title = t( '.title' ) %>
+
+<%= form_for @template, url: shiny_newsletters.template_path( @template ), method: :put do |f| %>
+  <p>
+    <%= f.label :name %>
+    <br><%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <br><%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :filename, 'Template file' %>
+    <br><%= f.select :filename, ShinyNewsletters::Template.available_templates %>
+  </p>
+
+  <%= f.fields_for :elements do |fields| %>
+  <p>
+    <%= fields.text_field :name %>
+    <%= fields.select :element_type, element_types %>
+    <br>
+    <% element_type = @template.elements[fields.index].element_type %>
+    <% if element_type == 'short_text' %>
+    <%= fields.text_field :content %>
+    <% elsif element_type == 'long_text' %>
+    <%= fields.text_area :content %>
+    <% elsif element_type == 'image' %>
+    <%= fields.select :content, select_filenames %>
+    <% elsif element_type == 'html' %>
+    <%= fields.cktext_area :content, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
+    <% else %>
+    [ <%= t( 'admin.unknown_element_type' ) %> ]
+    <% end %>
+  </p>
+  <% end %>
+
+  <p class="top-margin">
+    <%= submit_tag t( 'update' ) %>
+  </p>
+<% end %>

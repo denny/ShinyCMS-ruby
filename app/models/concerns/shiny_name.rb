@@ -14,7 +14,7 @@ module ShinyName
     validates :internal_name, presence: true
 
     def name
-      public_name || internal_name
+      public_name.presence || internal_name
     end
   end
 end

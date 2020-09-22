@@ -13,11 +13,7 @@ module ShinyTemplate
   included do
     # Associations
 
-    has_many  :elements, -> { order( position: :asc ) },
-              inverse_of: :template,
-              foreign_key: :template_id,
-              class_name: 'TemplateElement',
-              dependent: :destroy
+    has_many :elements, inverse_of: :template, dependent: :destroy, class_name: 'TemplateElement'
 
     accepts_nested_attributes_for :elements
 
@@ -37,12 +33,13 @@ module ShinyTemplate
     # Instance methods
 
     def file_exists?
-      self.class.available_templates.include? filename
+      self.class.template_file_exists? filename
     end
 
-    # Specify policy class for Pundit
-    def policy_class
-      self.class.policy_class
+    # Class methods
+
+    def self.template_file_exists?( filename )
+      available_templates.include? filename
     end
 
     private
@@ -51,24 +48,24 @@ module ShinyTemplate
       elements.create( name: name )
     end
 
-    def add_image_element( name )
-      elements.create(
-        name: name,
-        element_type: I18n.t( 'admin.elements.image' )
-      )
-    end
-
     def add_html_element( name )
       elements.create(
         name: name,
-        element_type: I18n.t( 'admin.elements.html' )
+        element_type: 'html'
+      )
+    end
+
+    def add_image_element( name )
+      elements.create(
+        name: name,
+        element_type: 'image'
       )
     end
 
     def add_long_text_element( name )
       elements.create(
         name: name,
-        element_type: I18n.t( 'admin.elements.long_text' )
+        element_type: 'long_text'
       )
     end
   end

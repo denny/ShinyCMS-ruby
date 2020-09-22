@@ -70,7 +70,8 @@ module ShinyPost
       posted_at.strftime( '%Y' )
     end
 
-    def posts_in_same_month
+    # Used by SlugInMonth validator
+    def items_in_same_month
       self.class.readonly.published.where( posted_at: posted_at.all_month )
     end
 

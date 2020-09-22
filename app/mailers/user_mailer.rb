@@ -20,7 +20,7 @@ class UserMailer < ApplicationMailer
     @resource = @user = user
     @token = token
 
-    mail to: user.email, subject: t( '.subject' ) do |format|
+    mail to: user.email_to, subject: t( '.subject' ) do |format|
       format.html
       format.text
     end
@@ -30,7 +30,7 @@ class UserMailer < ApplicationMailer
     @resource = @user = user
     @token = token
 
-    mail to: user.email, subject: t( '.subject' ) do |format|
+    mail to: user.email_to, subject: t( '.subject' ) do |format|
       format.html
       format.text
     end
@@ -39,7 +39,7 @@ class UserMailer < ApplicationMailer
   def password_changed( user )
     @resource = @user = user
 
-    mail to: user.email, subject: t( '.subject' ) do |format|
+    mail to: user.email_to, subject: t( '.subject' ) do |format|
       format.html
       format.text
     end
@@ -48,7 +48,7 @@ class UserMailer < ApplicationMailer
   def email_changed( user )
     @resource = @user = user
 
-    mail to: user.email, subject: t( '.subject' ) do |format|
+    mail to: user.email_to, subject: t( '.subject' ) do |format|
       format.html
       format.text
     end
@@ -58,7 +58,7 @@ class UserMailer < ApplicationMailer
     @resource = @user = user
     @token = token
 
-    mail to: user.email, subject: t( '.subject' ) do |format|
+    mail to: user.email_to, subject: t( '.subject' ) do |format|
       format.html
       format.text
     end

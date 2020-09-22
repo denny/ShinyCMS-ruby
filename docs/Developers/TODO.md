@@ -3,8 +3,8 @@
 ## Fixes and refactoring of code already written - to do next/soon
 
 * Move search result templates into relevant plugins
-* Move search initializer(s) into ShinySearch plugin
-* Remove search gems from core Gemfile
+
+* Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
 
 * Highlight section name in admin area menu when on a page which isn't in the menu
   (e.g. 'Edit page', clicking around in Blazer, etc)
@@ -13,14 +13,14 @@
 * Add tests for form actions being what they're supposed to be on new/edit pages, and for
   delete links being correct on list pages (to catch path helper issues)
 
-* Check for and add missing indexes - https://pawelurbanek.com/rails-postgres-join-indexes
-
 * Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
 
 * Replace Anonymous/Pseudonymous/Authenticated with symbols and translation strings
-* Replace element types with symbols and translation strings
 
-* Track down untranslated strings and add them to locale files (e.g. 'no templates to display')
+* Track down untranslated strings and add them to locale files
+  * Frequent offenders:
+    * Index pages 'no results' message and column headings
+    * Labels on new/edit forms
   * Core and plugins
   * Templates, controllers, and models
   * Admin area, main site, and themes
@@ -57,8 +57,6 @@
 * Affiliate cookie
 
 ### Medium-ish
-
-* Draggable UI for reordering admin area list pages - SortableJS and some helpers using ActsAsList, maybe?
 
 * Access control groups
   * Can be used to control access to file downloads and secure whole pages,
@@ -112,6 +110,8 @@
 
 ### Medium-ish
 
+* Draggable UI for reordering lists in admin area - SortableJS, maybe?
+
 * Tests for rake tasks
   * https://thoughtbot.com/blog/test-rake-tasks-like-a-boss ? (old)
 
@@ -129,6 +129,15 @@
 
 
 ### Large-ish
+
+* Finish the move to plugin architecture
+  * Move Comments, Tags, and Likes into plugins
+  * Move concerns and helpers into a plugin (ShinyToolbox?)
+    * Eventually, break them up into multiple plugins (ShinyPostTools, ShinyTemplateTools, etc)
+  * Look into moving Users into a plugin
+    * Ideally, move all the non-Devise User/Account functionality into concerns and helpers, so
+      you could include those into any site with Devise-powered auth and then use any ShinyPlugin
+  * Move plugins into separate gems
 
 * Surveys / Questionnaires
 

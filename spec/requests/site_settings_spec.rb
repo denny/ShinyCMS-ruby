@@ -47,8 +47,8 @@ RSpec.describe SiteSettingsController, type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'site_settings.index.title' ).titlecase
       expect( response.body ).to     have_css '.notices', text: I18n.t( 'site_settings.update.success' )
-      expect( response.body ).to     include new_value
-      expect( response.body ).not_to include @initial_value
+      expect( response.body ).to     have_field "settings[value_#{@setting.id}]", with: new_value
+      expect( response.body ).not_to have_field "settings[value_#{@setting.id}]", with: @initial_value
     end
 
     it 'updates the value of an admin-only setting' do
@@ -72,8 +72,8 @@ RSpec.describe SiteSettingsController, type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'site_settings.index.title' ).titlecase
       expect( response.body ).to     have_css '.notices', text: I18n.t( 'site_settings.update.success' )
-      expect( response.body ).to     include new_value
-      expect( response.body ).not_to include @initial_value
+      expect( response.body ).to     have_field "settings[value_#{@setting.id}]", with: new_value
+      expect( response.body ).not_to have_field "settings[value_#{@setting.id}]", with: @initial_value
     end
 
     it "doesn't update settings if they weren't changed" do

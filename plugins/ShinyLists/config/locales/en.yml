@@ -55,8 +55,9 @@ en:
         destroy:
           success: Mailing list deleted
       subscriptions:
+        title: List Subscriptions
         index:
-          title: List subscriptions
+          title: Subscriptions
         subscribe:
           success: Subscribed
           # failure: Failed to create subscription

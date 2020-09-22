@@ -1,0 +1,16 @@
+<% @email_title = @edition.subject %>
+<mj-section>
+  <mj-column>
+
+    <mj-title>
+      <%= @elements[:a_heading] %>
+    </mj-title>
+
+    <mj-image src="https://example.com/images/<%= @elements[:top_image] %>" href="https://shinycms.org" alt="<%= @elements[:top_alt_text] %>" title="<%= @elements[:top_title_text] %>" />
+
+    <mj-text>
+      <%= simple_format @elements[:some_longer_text] %>
+    </mj-text>
+
+  </mj-column>
+</mj-section>

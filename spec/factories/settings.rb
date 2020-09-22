@@ -9,7 +9,7 @@
 # Factory for Setting model (used together with SettingValue model/factory)
 FactoryBot.define do
   factory :setting do
-    name   { Faker::Books::CultureSeries.unique.civs.parameterize }
+    name   { Faker::Books::CultureSeries.unique.civs.underscore }
     level  { 'site' }
     locked { false  }
   end
