@@ -20,6 +20,8 @@ class UserMailer < ApplicationMailer
     @resource = @user = user
     @token = token
 
+    return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
+
     mail to: user.email_to, subject: t( '.subject' ) do |format|
       format.html
       format.text
@@ -30,6 +32,8 @@ class UserMailer < ApplicationMailer
     @resource = @user = user
     @token = token
 
+    return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
+
     mail to: user.email_to, subject: t( '.subject' ) do |format|
       format.html
       format.text
@@ -38,6 +42,8 @@ class UserMailer < ApplicationMailer
 
   def password_changed( user )
     @resource = @user = user
+
+    return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
 
     mail to: user.email_to, subject: t( '.subject' ) do |format|
       format.html
@@ -48,6 +54,8 @@ class UserMailer < ApplicationMailer
   def email_changed( user )
     @resource = @user = user
 
+    return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
+
     mail to: user.email_to, subject: t( '.subject' ) do |format|
       format.html
       format.text
@@ -57,6 +65,8 @@ class UserMailer < ApplicationMailer
   def unlock_instructions( user, token )
     @resource = @user = user
     @token = token
+
+    return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
 
     mail to: user.email_to, subject: t( '.subject' ) do |format|
       format.html
