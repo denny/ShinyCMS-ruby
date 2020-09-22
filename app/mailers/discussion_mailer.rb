@@ -58,7 +58,7 @@ class DiscussionMailer < ApplicationMailer
     I18n.t(
       'discussion_mailer.parent_comment_notification.subject',
       reply_author_name: @reply.author_name_any,
-      site_name: @site_name
+      site_name: site_name
     )
   end
 
@@ -67,7 +67,7 @@ class DiscussionMailer < ApplicationMailer
       'discussion_mailer.discussion_notification.subject',
       comment_author_name: @comment.author_name_any,
       content_type: @resource.class.human_name,
-      site_name: @site_name
+      site_name: site_name
     )
   end
 
@@ -75,7 +75,7 @@ class DiscussionMailer < ApplicationMailer
     I18n.t(
       'discussion_mailer.overview_notification.subject',
       comment_author_name: @comment.author_name_any,
-      site_name: @site_name
+      site_name: site_name
     )
   end
 
