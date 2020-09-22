@@ -28,7 +28,7 @@
         <%= post.author.name %>
       </td>
       <td>
-        <%= display_time_and_date( post.posted_at ) %>
+        <%= display_time_on_date( post.posted_at ) %>
       </td>
       <td class="actions">
         <%= link_to t( 'view'   ), post.path %>

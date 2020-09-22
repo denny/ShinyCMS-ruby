@@ -8,22 +8,22 @@
 
 # Useful methods for displaying/saving dates and times
 module ShinyDateHelper
-  def display_date_and_time( timestamp )
+  def display_date_at_time( timestamp )
     return unless timestamp.is_a? Time
 
     date = timestamp.localtime.to_s :shinydate
     time = timestamp.localtime.to_s :time
 
-    I18n.t( 'shiny_display_date_helper.date_and_time', time: time, date: date )
+    I18n.t( 'shiny_date_helper.date_at_time', time: time, date: date )
   end
 
-  def display_time_and_date( timestamp )
+  def display_time_on_date( timestamp )
     return unless timestamp.is_a? Time
 
     date = timestamp.localtime.to_s :shinydate
     time = timestamp.localtime.to_s :time
 
-    I18n.t( 'shiny_display_date_helper.time_and_date', time: time, date: date )
+    I18n.t( 'shiny_date_helper.time_on_date', time: time, date: date )
   end
 
   def display_date( timestamp )

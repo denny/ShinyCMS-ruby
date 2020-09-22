@@ -26,7 +26,7 @@
         <%= send.list.internal_name %>
       </td>
       <td>
-        <%= display_time_and_date( send.send_at ) %>
+        <%= display_time_on_date( send.send_at ) %>
       </td>
       <td class="actions">
         <%= link_to t( 'edit'   ), shiny_newsletters.edit_send_path( send ) %>
