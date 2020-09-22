@@ -20,8 +20,20 @@ ShinyNews::Post.create!([
   {id: 1, title: "No news is good news?", slug: "no-news", body: "Insert imaginative demo content here...", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-05-14 14:06:33", tag_list: nil}
 ])
 
+ShinyNewsletters::Template.create!([
+  {id: 1, name: "Monthly newsletter", description: "Template for our monthly newsletter", filename: "an_example"}
+])
+
+ShinyNewsletters::TemplateElement.create!([
+  {id: 1, name: "a_heading", content: "The ShinyCMS Newsletter!", element_type: "short_text", position: 1, template_id: 1},
+  {id: 2, name: "top_image", content: "ShinyCMS-logo.png", element_type: "image", position: 2, template_id: 1},
+  {id: 3, name: "top_alt_text", content: "", element_type: "short_text", position: 3, template_id: 1},
+  {id: 4, name: "top_title_text", content: "", element_type: "short_text", position: 4, template_id: 1},
+  {id: 5, name: "some_longer_text", content: "", element_type: "long_text", position: 5, template_id: 1}
+])
+
 ShinyPages::Section.create!([
-  {id: 1, internal_name: "Two column", public_name: "Two Column", slug: "two", description: "", default_page_id: nil, section_id: nil, position: 3, show_in_menus: true, show_on_site: true}
+  {id: 1, internal_name: "Two column", public_name: "Two Column", slug: "two", description: "", position: 3, show_in_menus: true, show_on_site: true, section_id: nil, default_page_id: nil}
 ])
 
 ShinyPages::Template.create!([
@@ -34,82 +46,98 @@ ShinyPages::Template.create!([
 ])
 
 ShinyPages::TemplateElement.create!([
-  {id: 1, template_id: 1, name: "banner_text", content: "", element_type: "html", position: 1},
-  {id: 2, template_id: 1, name: "banner_button_url", content: "", element_type: "short_text", position: 2},
-  {id: 3, template_id: 1, name: "banner_button_text", content: "", element_type: "short_text", position: 3},
-  {id: 4, template_id: 1, name: "banner_image", content: "", element_type: "image", position: 4},
-  {id: 5, template_id: 1, name: "image1", content: "", element_type: "image", position: 5},
-  {id: 6, template_id: 1, name: "heading1", content: "", element_type: "short_text", position: 6},
-  {id: 7, template_id: 1, name: "paragraph1", content: "", element_type: "long_text", position: 7},
-  {id: 8, template_id: 1, name: "image2", content: "", element_type: "image", position: 8},
-  {id: 9, template_id: 1, name: "heading2", content: "", element_type: "short_text", position: 9},
-  {id: 10, template_id: 1, name: "paragraph2", content: "", element_type: "long_text", position: 10},
-  {id: 11, template_id: 1, name: "image3", content: "", element_type: "image", position: 11},
-  {id: 12, template_id: 1, name: "heading3", content: "", element_type: "short_text", position: 12},
-  {id: 13, template_id: 1, name: "paragraph3", content: "", element_type: "long_text", position: 13},
-  {id: 14, template_id: 1, name: "image4", content: "", element_type: "image", position: 14},
-  {id: 15, template_id: 1, name: "heading4", content: "", element_type: "short_text", position: 15},
-  {id: 16, template_id: 1, name: "paragraph4", content: "", element_type: "long_text", position: 16},
-  {id: 17, template_id: 1, name: "image5", content: "", element_type: "image", position: 17},
-  {id: 18, template_id: 1, name: "image6", content: "", element_type: "image", position: 18},
-  {id: 19, template_id: 1, name: "image7", content: "", element_type: "image", position: 19},
-  {id: 20, template_id: 1, name: "image8", content: "", element_type: "image", position: 20},
-  {id: 21, template_id: 2, name: "heading", content: nil, element_type: "short_text", position: 1},
-  {id: 22, template_id: 2, name: "subheading", content: nil, element_type: "short_text", position: 2},
-  {id: 23, template_id: 2, name: "text_content", content: nil, element_type: "long_text", position: 3},
-  {id: 24, template_id: 3, name: "heading", content: nil, element_type: "short_text", position: 1},
-  {id: 25, template_id: 3, name: "subheading", content: nil, element_type: "short_text", position: 2},
-  {id: 26, template_id: 3, name: "text_content", content: nil, element_type: "long_text", position: 3},
-  {id: 27, template_id: 4, name: "heading", content: nil, element_type: "short_text", position: 1},
-  {id: 28, template_id: 4, name: "subheading", content: nil, element_type: "short_text", position: 2},
-  {id: 29, template_id: 4, name: "text_content", content: nil, element_type: "long_text", position: 3},
-  {id: 30, template_id: 5, name: "heading", content: nil, element_type: "short_text", position: 1},
-  {id: 31, template_id: 5, name: "subheading", content: nil, element_type: "short_text", position: 2},
-  {id: 32, template_id: 5, name: "text_content", content: nil, element_type: "long_text", position: 3}
+  {id: 1, name: "banner_text", content: "", element_type: "html", position: 1, template_id: 1},
+  {id: 2, name: "banner_button_url", content: "", element_type: "short_text", position: 2, template_id: 1},
+  {id: 3, name: "banner_button_text", content: "", element_type: "short_text", position: 3, template_id: 1},
+  {id: 4, name: "banner_image", content: "", element_type: "image", position: 4, template_id: 1},
+  {id: 5, name: "image1", content: "", element_type: "image", position: 5, template_id: 1},
+  {id: 6, name: "heading1", content: "", element_type: "short_text", position: 6, template_id: 1},
+  {id: 7, name: "paragraph1", content: "", element_type: "long_text", position: 7, template_id: 1},
+  {id: 8, name: "image2", content: "", element_type: "image", position: 8, template_id: 1},
+  {id: 9, name: "heading2", content: "", element_type: "short_text", position: 9, template_id: 1},
+  {id: 10, name: "paragraph2", content: "", element_type: "long_text", position: 10, template_id: 1},
+  {id: 11, name: "image3", content: "", element_type: "image", position: 11, template_id: 1},
+  {id: 12, name: "heading3", content: "", element_type: "short_text", position: 12, template_id: 1},
+  {id: 13, name: "paragraph3", content: "", element_type: "long_text", position: 13, template_id: 1},
+  {id: 14, name: "image4", content: "", element_type: "image", position: 14, template_id: 1},
+  {id: 15, name: "heading4", content: "", element_type: "short_text", position: 15, template_id: 1},
+  {id: 16, name: "paragraph4", content: "", element_type: "long_text", position: 16, template_id: 1},
+  {id: 17, name: "image5", content: "", element_type: "image", position: 17, template_id: 1},
+  {id: 18, name: "image6", content: "", element_type: "image", position: 18, template_id: 1},
+  {id: 19, name: "image7", content: "", element_type: "image", position: 19, template_id: 1},
+  {id: 20, name: "image8", content: "", element_type: "image", position: 20, template_id: 1},
+  {id: 21, name: "heading", content: nil, element_type: "short_text", position: 1, template_id: 2},
+  {id: 22, name: "subheading", content: nil, element_type: "short_text", position: 2, template_id: 2},
+  {id: 23, name: "text_content", content: nil, element_type: "long_text", position: 3, template_id: 2},
+  {id: 24, name: "heading", content: nil, element_type: "short_text", position: 1, template_id: 3},
+  {id: 25, name: "subheading", content: nil, element_type: "short_text", position: 2, template_id: 3},
+  {id: 26, name: "text_content", content: nil, element_type: "long_text", position: 3, template_id: 3},
+  {id: 27, name: "heading", content: nil, element_type: "short_text", position: 1, template_id: 4},
+  {id: 28, name: "subheading", content: nil, element_type: "short_text", position: 2, template_id: 4},
+  {id: 29, name: "text_content", content: nil, element_type: "long_text", position: 3, template_id: 4},
+  {id: 30, name: "heading", content: nil, element_type: "short_text", position: 1, template_id: 5},
+  {id: 31, name: "subheading", content: nil, element_type: "short_text", position: 2, template_id: 5},
+  {id: 32, name: "text_content", content: nil, element_type: "long_text", position: 3, template_id: 5}
 ])
 
 ShinyPages::Page.create!([
-  {id: 1, internal_name: "Home", public_name: "ShinyCMS Demo", slug: "home", description: "Demo site home page - uses Halcyonic index template", template_id: 1, section_id: nil, position: 1, show_in_menus: false, show_on_site: true},
-  {id: 2, internal_name: "One column", public_name: "One Column", slug: "one", description: "", template_id: 2, section_id: nil, position: 2, show_in_menus: true, show_on_site: true},
-  {id: 3, internal_name: "Right sidebar", public_name: "Right Sidebar", slug: "right-sidebar", description: "", template_id: 3, section_id: 1, position: 3, show_in_menus: true, show_on_site: true},
-  {id: 4, internal_name: "Left sidebar", public_name: "Left Sidebar", slug: "left-sidebar", description: "", template_id: 4, section_id: 1, position: 1, show_in_menus: true, show_on_site: true},
-  {id: 5, internal_name: "Three column", public_name: "Three Column", slug: "three", description: "", template_id: 5, section_id: nil, position: 4, show_in_menus: true, show_on_site: true},
-  {id: 6, internal_name: "Contact Us", public_name: "", slug: "contact", description: "Contact form", template_id: 6, section_id: nil, position: 9, show_in_menus: true, show_on_site: true}
+  {id: 1, internal_name: "Home", public_name: "ShinyCMS Demo", slug: "home", description: "Demo site home page - uses Halcyonic index template", position: 1, show_in_menus: false, show_on_site: true, section_id: nil, template_id: 1},
+  {id: 2, internal_name: "One column", public_name: "One Column", slug: "one", description: "", position: 2, show_in_menus: true, show_on_site: true, section_id: nil, template_id: 2},
+  {id: 3, internal_name: "Right sidebar", public_name: "Right Sidebar", slug: "right-sidebar", description: "", position: 6, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 3},
+  {id: 4, internal_name: "Left sidebar", public_name: "Left Sidebar", slug: "left-sidebar", description: "", position: 1, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 4},
+  {id: 5, internal_name: "Three column", public_name: "Three Column", slug: "three", description: "", position: 4, show_in_menus: true, show_on_site: true, section_id: nil, template_id: 5},
+  {id: 6, internal_name: "Contact Us", public_name: "", slug: "contact", description: "Contact form", position: 9, show_in_menus: true, show_on_site: true, section_id: nil, template_id: 6}
 ])
 
 ShinyPages::PageElement.create!([
-  {id: 1, page_id: 1, name: "banner_text", content: "<p><a href=\"https://shinycms.org/\">ShinyCMS</a> is a free and open source content-management system. This <a href=\"http://github.com/denny/ShinyCMS-ruby\">new version</a> is built with <a href=\"https://www.ruby-lang.org/\">Ruby</a> on <a href=\"https://rubyonrails.org/\">Rails</a> (the <a href=\"https://github.com/denny/ShinyCMS\">original version</a> is built with <a href=\"https://www.perl.org/\">Perl</a> and <a href=\"http://www.catalystframework.org/\">Catalyst</a>).</p>\r\n", element_type: "html", position: 1},
-  {id: 2, page_id: 1, name: "banner_button_url", content: "https://github.com/denny/ShinyCMS-ruby", element_type: "short_text", position: 2},
-  {id: 3, page_id: 1, name: "banner_button_text", content: "ShinyCMS on GitHub", element_type: "short_text", position: 3},
-  {id: 4, page_id: 1, name: "banner_image", content: "banner.png", element_type: "image", position: 4},
-  {id: 5, page_id: 1, name: "image1", content: "pages.png", element_type: "image", position: 5},
-  {id: 6, page_id: 1, name: "heading1", content: "Pages", element_type: "short_text", position: 6},
-  {id: 7, page_id: 1, name: "paragraph1", content: "Template-drive brochure pages with a simple, easy to use admin interface - safely edit the content areas without any risk of disturbing the page layout. Can be organised into nested sections for larger, more complicated sites.", element_type: "long_text", position: 7},
-  {id: 8, page_id: 1, name: "image2", content: "blog.png", element_type: "image", position: 8},
-  {id: 9, page_id: 1, name: "heading2", content: "Blog", element_type: "short_text", position: 9},
-  {id: 10, page_id: 1, name: "paragraph2", content: "Add posts now, backdate them, or schedule them to appear in the future. Hide/show/edit/delete posts. Decide whether to allow/disable discussion feature (comments) by default, overridable on a per-post basis.", element_type: "long_text", position: 10},
-  {id: 11, page_id: 1, name: "image3", content: "nested-comments.png", element_type: "image", position: 11},
-  {id: 12, page_id: 1, name: "heading3", content: "Discussions / Comments", element_type: "short_text", position: 12},
-  {id: 13, page_id: 1, name: "paragraph3", content: "Currently enabled on blog posts and news posts, but can be added to any type of content. Show/hide and lock/unlock whole discussions or individual comments.", element_type: "long_text", position: 13},
-  {id: 14, page_id: 1, name: "image4", content: "spam-comment-moderation.png", element_type: "image", position: 14},
-  {id: 15, page_id: 1, name: "heading4", content: "Anti-spam features", element_type: "short_text", position: 15},
-  {id: 16, page_id: 1, name: "paragraph4", content: "Uses reCAPTCHA to detect and block bots. Uses Akismet to flag and hide potential spam comments. Moderation queue for flagged comments, with decisions fed back to Akismet to improve their accuracy.", element_type: "long_text", position: 16},
-  {id: 17, page_id: 1, name: "image5", content: "pic05.jpg", element_type: "image", position: 17},
-  {id: 18, page_id: 1, name: "image6", content: "pic06.jpg", element_type: "image", position: 18},
-  {id: 19, page_id: 1, name: "image7", content: "pic07.jpg", element_type: "image", position: 19},
-  {id: 20, page_id: 1, name: "image8", content: "pic08.jpg", element_type: "image", position: 20},
-  {id: 21, page_id: 2, name: "heading", content: "", element_type: "short_text", position: 1},
-  {id: 22, page_id: 2, name: "subheading", content: "", element_type: "short_text", position: 2},
-  {id: 23, page_id: 2, name: "text_content", content: "", element_type: "long_text", position: 3},
-  {id: 24, page_id: 3, name: "heading", content: "", element_type: "short_text", position: 1},
-  {id: 25, page_id: 3, name: "subheading", content: "", element_type: "short_text", position: 2},
-  {id: 26, page_id: 3, name: "text_content", content: "", element_type: "long_text", position: 3},
-  {id: 27, page_id: 4, name: "heading", content: "", element_type: "short_text", position: 1},
-  {id: 28, page_id: 4, name: "subheading", content: "", element_type: "short_text", position: 2},
-  {id: 29, page_id: 4, name: "text_content", content: "", element_type: "long_text", position: 3},
-  {id: 30, page_id: 5, name: "heading", content: "", element_type: "short_text", position: 1},
-  {id: 31, page_id: 5, name: "subheading", content: "", element_type: "short_text", position: 2},
-  {id: 32, page_id: 5, name: "text_content", content: "", element_type: "long_text", position: 3}
+  {id: 1, name: "banner_text", content: "<p><a href=\"https://shinycms.org/\">ShinyCMS</a> is a free and open source content-management system. This <a href=\"http://github.com/denny/ShinyCMS-ruby\">new version</a> is built with <a href=\"https://www.ruby-lang.org/\">Ruby</a> on <a href=\"https://rubyonrails.org/\">Rails</a> (the <a href=\"https://github.com/denny/ShinyCMS\">original version</a> is built with <a href=\"https://www.perl.org/\">Perl</a> and <a href=\"http://www.catalystframework.org/\">Catalyst</a>).</p>\r\n", element_type: "html", position: 1, page_id: 1},
+  {id: 2, name: "banner_button_url", content: "https://github.com/denny/ShinyCMS-ruby", element_type: "short_text", position: 2, page_id: 1},
+  {id: 3, name: "banner_button_text", content: "ShinyCMS on GitHub", element_type: "short_text", position: 3, page_id: 1},
+  {id: 4, name: "banner_image", content: "banner.png", element_type: "image", position: 4, page_id: 1},
+  {id: 5, name: "image1", content: "pages.png", element_type: "image", position: 5, page_id: 1},
+  {id: 6, name: "heading1", content: "Pages", element_type: "short_text", position: 6, page_id: 1},
+  {id: 7, name: "paragraph1", content: "Template-drive brochure pages with a simple, easy to use admin interface - safely edit the content areas without any risk of disturbing the page layout. Can be organised into nested sections for larger, more complicated sites.", element_type: "long_text", position: 7, page_id: 1},
+  {id: 8, name: "image2", content: "blog.png", element_type: "image", position: 8, page_id: 1},
+  {id: 9, name: "heading2", content: "Blog", element_type: "short_text", position: 9, page_id: 1},
+  {id: 10, name: "paragraph2", content: "Add posts now, backdate them, or schedule them to appear in the future. Hide/show/edit/delete posts. Decide whether to allow/disable discussion feature (comments) by default, overridable on a per-post basis.", element_type: "long_text", position: 10, page_id: 1},
+  {id: 11, name: "image3", content: "nested-comments.png", element_type: "image", position: 11, page_id: 1},
+  {id: 12, name: "heading3", content: "Discussions / Comments", element_type: "short_text", position: 12, page_id: 1},
+  {id: 13, name: "paragraph3", content: "Currently enabled on blog posts and news posts, but can be added to any type of content. Show/hide and lock/unlock whole discussions or individual comments.", element_type: "long_text", position: 13, page_id: 1},
+  {id: 14, name: "image4", content: "spam-comment-moderation.png", element_type: "image", position: 14, page_id: 1},
+  {id: 15, name: "heading4", content: "Anti-spam features", element_type: "short_text", position: 15, page_id: 1},
+  {id: 16, name: "paragraph4", content: "Uses reCAPTCHA to detect and block bots. Uses Akismet to flag and hide potential spam comments. Moderation queue for flagged comments, with decisions fed back to Akismet to improve their accuracy.", element_type: "long_text", position: 16, page_id: 1},
+  {id: 17, name: "image5", content: "pic05.jpg", element_type: "image", position: 17, page_id: 1},
+  {id: 18, name: "image6", content: "pic06.jpg", element_type: "image", position: 18, page_id: 1},
+  {id: 19, name: "image7", content: "pic07.jpg", element_type: "image", position: 19, page_id: 1},
+  {id: 20, name: "image8", content: "pic08.jpg", element_type: "image", position: 20, page_id: 1},
+  {id: 21, name: "heading", content: "", element_type: "short_text", position: 1, page_id: 2},
+  {id: 22, name: "subheading", content: "", element_type: "short_text", position: 2, page_id: 2},
+  {id: 23, name: "text_content", content: "", element_type: "long_text", position: 3, page_id: 2},
+  {id: 24, name: "heading", content: "", element_type: "short_text", position: 1, page_id: 3},
+  {id: 25, name: "subheading", content: "", element_type: "short_text", position: 2, page_id: 3},
+  {id: 26, name: "text_content", content: "", element_type: "long_text", position: 3, page_id: 3},
+  {id: 27, name: "heading", content: "", element_type: "short_text", position: 1, page_id: 4},
+  {id: 28, name: "subheading", content: "", element_type: "short_text", position: 2, page_id: 4},
+  {id: 29, name: "text_content", content: "", element_type: "long_text", position: 3, page_id: 4},
+  {id: 30, name: "heading", content: "", element_type: "short_text", position: 1, page_id: 5},
+  {id: 31, name: "subheading", content: "", element_type: "short_text", position: 2, page_id: 5},
+  {id: 32, name: "text_content", content: "", element_type: "long_text", position: 3, page_id: 5}
+])
+
+ShinyNewsletters::Edition.create!([
+  {id: 1, internal_name: "First Post", public_name: "", slug: "first", description: "Our first newsletter!", from_name: nil, from_email: nil, subject: nil, show_on_site: true, template_id: 1, published_at: nil}
+])
+
+ShinyNewsletters::EditionElement.create!([
+  {id: 1, name: "a_heading", content: "The ShinyCMS Newsletter!", element_type: "short_text", position: 1, edition_id: 1},
+  {id: 2, name: "top_image", content: "ShinyCMS-logo.png", element_type: "image", position: 2, edition_id: 1},
+  {id: 3, name: "top_alt_text", content: "ShinyCMS!", element_type: "short_text", position: 3, edition_id: 1},
+  {id: 4, name: "top_title_text", content: "ShinyCMS!", element_type: "short_text", position: 4, edition_id: 1},
+  {id: 5, name: "some_longer_text", content: "Welcome, to the very first edition of the ShinyCMS monthly newsletter...\r\n\r\nWell, that's all we've got time for this month. We hope you enjoyed it as much as we did! :D", element_type: "long_text", position: 5, edition_id: 1}
+])
+
+ShinyNewsletters::Send.create!([
+  {id: 1, edition_id: 1, list_id: 1, send_at: nil, started_sending_at: nil, finished_sending_at: nil}
 ])
 
 Discussion.create!([
