@@ -154,8 +154,8 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
 
   describe 'PUT /admin/newsletters/sends/:id/start' do
     it 'starts sending the specified send' do
-      # send1 = create :newsletter_send
-      send1 = create :newsletter_send, send_at: 1.day.since # Temporary bodge
+      list1 = create :mailing_list, subscriber_count: 1
+      send1 = create :newsletter_send, list: list1
 
       put shiny_newsletters.start_sending_path( send1 )
 
@@ -164,8 +164,7 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.sends.index.title' ).titlecase
-      # TODO: currently this is going to fail, because the send is future-dated
-      # expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.sends.start_sending.success' )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.sends.start_sending.success' )
     end
   end
 
