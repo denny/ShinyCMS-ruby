@@ -9,14 +9,20 @@
 module ShinyNewsletters
   # Model for newsletter sends - when an edition is sent to a list
   class Send < ApplicationRecord
+    include ShinyDemoDataProvider
+
     # Associations
 
     belongs_to :edition
     belongs_to :list, class_name: 'ShinyLists::List'
 
-    # Scopes and aliases
+    # Attributes and aliases
+
+    attr_writer :send_at_time
 
     alias_attribute :sent_at, :finished_sending_at
+
+    # Scopes
 
     scope :unscheduled, -> { where( started_sending_at: nil, send_at: nil ) }
     scope :scheduled,   -> { where( started_sending_at: nil ).where.not( send_at: nil ) }
@@ -29,6 +35,10 @@ module ShinyNewsletters
     scope :sent_in_month, ->( year, month ) { where( sent_at: Date.new( year, month, 1 ).end_of_day.all_month ) }
 
     # Instance methods
+
+    def send_at_time
+      send_at&.time
+    end
 
     def sent?
       finished_sending_at.present?

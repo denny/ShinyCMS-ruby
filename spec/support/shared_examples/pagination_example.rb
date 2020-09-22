@@ -12,6 +12,12 @@ RSpec.shared_examples 'Pagination' do |factory, base_url, match_tag, match_text|
 
   before :each do
     @items = items
+    # TODO: FIXME: there has _got_ to be a better way to do this, in the create_list call I assume
+    # Attempt to fix flappy tests by setting different posted_at timestamps to order them by
+    @items.each do |item|
+      item.update!( posted_at: item.posted_at + item.id.minutes )
+    end
+    @items = @items.reverse # recent posts page is from newest to oldest
   end
 
   context 'when viewing a list with twelve items in it' do

@@ -11,8 +11,19 @@ module ShinyNewsletters
   FactoryBot.define do
     factory :newsletter_edition, class: 'ShinyNewsletters::Edition' do
       internal_name { Faker::Books::CultureSeries.unique.culture_ship }
+      subject { internal_name.dup }
 
       association :template, factory: :newsletter_template
+
+      after :create do |edition|
+        edition.elements.each do |element|
+          if element.element_type == 'image'
+            element.update!( content: 'ShinyCMS-logo.png' )
+          else
+            element.update!( content: Faker::Books::CultureSeries.civs )
+          end
+        end
+      end
     end
   end
 end

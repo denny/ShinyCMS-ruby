@@ -17,6 +17,8 @@ class DiscussionMailer < ApplicationMailer
 
     @user = notified_user( @parent.notification_email, @parent.author_name_any )
 
+    return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
+
     mail to: @user.email_to, subject: parent_comment_notification_subject do |format|
       format.html
       format.text
@@ -27,6 +29,8 @@ class DiscussionMailer < ApplicationMailer
     return unless comment&.discussion&.notification_email&.present?
 
     @comment, @resource, @user = comment_and_resource_and_user( comment )
+
+    return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
 
     mail to: @user.email_to, subject: discussion_notification_subject do |format|
       format.html

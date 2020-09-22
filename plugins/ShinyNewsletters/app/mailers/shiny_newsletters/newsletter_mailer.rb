@@ -11,21 +11,28 @@ module ShinyNewsletters
   class NewsletterMailer < ApplicationMailer
     before_action :check_feature_flags
 
-    def send_email( edition, subscriber )
-      @edition  = edition
-      @elements = edition.elements_hash
-      @user     = subscriber
+    def send_email( edition, recipient )
+      stash_content( edition )
+      stash_user( recipient )
 
-      mail to: @user.email_to, subject: edition.subject, template_name: edition.template.filename do |format|
+      return if DoNotContact.include? recipient.email # TODO: make this happen without explicit call
+
+      mail to: @user.email_to, subject: @edition.subject, template_name: @edition.template.filename do |format|
         format.html
-        # FIXME
-        # :nocov:
         format.text
-        # :nocov:
       end
     end
 
     private
+
+    def stash_content( edition )
+      @edition  = edition
+      @elements = edition.elements_hash
+    end
+
+    def stash_user( recipient )
+      @user = recipient
+    end
 
     def check_feature_flags
       enforce_feature_flags :newsletters

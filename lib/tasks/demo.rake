@@ -32,9 +32,9 @@ namespace :shiny do
 
       Setting.set :theme_name, to: 'halcyonic'
 
-      skip_callbacks_on_page_models
+      skip_callbacks_on_templated_models
       require Rails.root.join 'db/demo_data.rb'
-      set_callbacks_on_page_models
+      set_callbacks_on_templated_models
 
       fix_primary_key_sequences
 
@@ -53,14 +53,18 @@ namespace :shiny do
       end
     end
 
-    def skip_callbacks_on_page_models
+    def skip_callbacks_on_templated_models
       ShinyPages::Page.skip_callback( :create, :after, :add_elements )
       ShinyPages::Template.skip_callback( :create, :after, :add_elements )
+      ShinyNewsletters::Edition.skip_callback( :create, :after, :add_elements )
+      ShinyNewsletters::Template.skip_callback( :create, :after, :add_elements )
     end
 
-    def set_callbacks_on_page_models
+    def set_callbacks_on_templated_models
       ShinyPages::Template.set_callback( :create, :after, :add_elements )
       ShinyPages::Page.set_callback( :create, :after, :add_elements )
+      ShinyNewsletters::Template.set_callback( :create, :after, :add_elements )
+      ShinyNewsletters::Edition.set_callback( :create, :after, :add_elements )
     end
 
     def fix_primary_key_sequences
@@ -104,13 +108,37 @@ namespace :shiny do
     def models_with_demo_data
       models = ApplicationRecord.models_with_demo_data
 
-      # Fragile bodgery; move models with dependencies not happy with .sort order to the end
-      models.delete( 'Comment' )
-      models.delete( 'Discussion' )
-      models.delete( 'ShinyPages::Page' )
-      models.delete( 'ShinyPages::PageElement' )
+      # Have to bodge load order here to fix dependency issues
+      change_insert_order( models )
+    end
 
-      models.push( 'ShinyPages::Page', 'ShinyPages::PageElement', 'Discussion', 'Comment' )
+    def change_insert_order( model_names )
+      model_names = remove_models_from_list( model_names )
+      add_models_to_end_of_list( model_names )
+    end
+
+    def models_to_reorder
+      # FIXME: can the plugins provide a load order for their models?
+      %w[
+        ShinyPages::Page
+        ShinyPages::PageElement
+        ShinyNewsletters::Edition
+        ShinyNewsletters::EditionElement
+        ShinyNewsletters::Send
+        Discussion
+        Comment
+      ]
+    end
+
+    def remove_models_from_list( model_names )
+      models_to_reorder.each do |model_name|
+        model_names.delete( model_name )
+      end
+      model_names
+    end
+
+    def add_models_to_end_of_list( model_names )
+      model_names.push( *models_to_reorder )
     end
     # :nocov:
   end

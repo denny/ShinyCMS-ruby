@@ -10,12 +10,11 @@ module ShinyNewsletters
   # Send an edition of a newsletter to an individual subscriber on a list
   class SendToSubscriberJob < ApplicationJob
     def perform( send, subscriber )
-      return if send.sent? # Cancelled
+      return if send.sent?
 
-      # FIXME
-      # :nocov:
-      NewsletterMailer.send_email( send.edition, subscriber ).deliver_now
-      # :nocov:
+      return unless send.list.subscribed? subscriber.email
+
+      NewsletterMailer.send_email( send.edition, subscriber ).deliver
     end
   end
 end
