@@ -55,10 +55,7 @@ module ShinyNewsletters
 
       flash[ :notice ] = t( '.success' ) if edition.send_sample( current_user )
 
-      # FIXME
-      # :nocov:
       redirect_to shiny_newsletters.editions_path
-      # :nocov:
     rescue ActionView::Template::Error, Mjml::Parser::ParseError
       redirect_to shiny_newsletters.editions_path, alert: t( '.mjml_error' )
     end

@@ -18,10 +18,7 @@ module ShinyNewsletters
 
       mail to: @user.email_to, subject: edition.subject, template_name: edition.template.filename do |format|
         format.html
-        # FIXME
-        # :nocov:
         format.text
-        # :nocov:
       end
     end
 

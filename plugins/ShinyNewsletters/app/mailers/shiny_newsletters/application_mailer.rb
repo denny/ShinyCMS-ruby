@@ -39,8 +39,6 @@ module ShinyNewsletters
       ::Setting.get( :default_email ) || ENV[ 'DEFAULT_EMAIL' ]
     end
 
-    # FIXME
-    # :nocov:
     def track_opens?
       Setting.get( :track_opens )&.downcase == 'yes'
     end
@@ -48,6 +46,5 @@ module ShinyNewsletters
     def track_clicks?
       Setting.get( :track_clicks )&.downcase == 'yes'
     end
-    # :nocov:
   end
 end

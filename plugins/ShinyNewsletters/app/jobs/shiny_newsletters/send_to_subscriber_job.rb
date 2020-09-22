@@ -12,10 +12,7 @@ module ShinyNewsletters
     def perform( send, subscriber )
       return if send.sent? # Cancelled
 
-      # FIXME
-      # :nocov:
       NewsletterMailer.send_email( send.edition, subscriber ).deliver_now
-      # :nocov:
     end
   end
 end
