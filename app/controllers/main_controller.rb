@@ -9,6 +9,7 @@
 # Base controller for 'main site'; end-user-facing ShinyCMS features
 class MainController < ApplicationController
   include FeatureFlagsHelper
+  include ShinyMainSiteHelper
 
   Plugin.with_main_site_helpers.each do |plugin|
     helper plugin.main_site_helper
