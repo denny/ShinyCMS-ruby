@@ -130,9 +130,9 @@ en:
 
   # ========== ( Helpers ) ==========
 
-  shiny_display_date_helper:
-    time_and_date: '%{time} on %{date}'
-    date_and_time: '%{date} at %{time}'
+  shiny_date_helper:
+    time_on_date: '%{time} on %{date}'
+    date_at_time: '%{date} at %{time}'
 
 
   # ========== ( Mailers ) ==========
