@@ -12,6 +12,8 @@ module ShinyNewsletters
     def perform( send, subscriber )
       return if send.sent? # Cancelled
 
+      return unless send.list.subscribed? subscriber.email
+
       NewsletterMailer.send_email( send.edition, subscriber ).deliver_now
     end
   end
