@@ -11,6 +11,7 @@ module ShinyNewsletters
   FactoryBot.define do
     factory :newsletter_edition, class: 'ShinyNewsletters::Edition' do
       internal_name { Faker::Books::CultureSeries.unique.culture_ship }
+
       association :template, factory: :newsletter_template
     end
   end
