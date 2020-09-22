@@ -11,6 +11,14 @@ module ShinyLists
   FactoryBot.define do
     factory :mailing_list, class: 'ShinyLists::List' do
       internal_name { Faker::Books::CultureSeries.unique.culture_ship }
+
+      transient do
+        subscriber_count { 0 }
+      end
+
+      after :create do |list, evaluator|
+        create_list :mailing_list_subscription, evaluator.subscriber_count, list: list
+      end
     end
   end
 end

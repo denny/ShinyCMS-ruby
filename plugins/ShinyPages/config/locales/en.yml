@@ -81,4 +81,4 @@ en:
   models:
     shiny_pages:
       template:
-        template_file_must_exist: 'The template file must be in themes/{your theme}/pages/templates'
+        template_file_must_exist: 'Template file must be in themes/{theme-name}/shiny_pages/pages'

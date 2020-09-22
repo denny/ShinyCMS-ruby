@@ -1,0 +1,20 @@
+<% @page_title = t( '.title' ) %>
+
+<%= form_for @send, url: shiny_newsletters.send_path( @send ), method: :put do |f| %>
+  <p>
+    <%= f.label :edition_id, 'Newsletter Edition' %><br>
+    <%= f.select :edition_id, ShinyNewsletters::Edition.pluck( :internal_name, :id ) %>
+  </p>
+  <p>
+    <%= f.label :list_id, 'Mailing List' %><br>
+    <%= f.select :list_id, ShinyLists::List.pluck( :internal_name, :id ) %>
+  </p>
+  <p>
+    <%= f.label :send_at %><br>
+    <%= f.date_field :send_at, min: Time.zone.now.localtime %> <%= f.time_field :send_at_time %>
+  </p>
+
+  <p class="top-margin">
+    <%= f.submit t( 'update' ) %>
+  </p>
+<% end %>

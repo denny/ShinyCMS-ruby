@@ -8,8 +8,6 @@
 
 # Helper methods for using Google reCAPTCHA
 module RecaptchaHelper
-  include MainSiteHelper
-
   def verify_checkbox_recaptcha
     return if self.class.recaptcha_checkbox_secret_key.blank?
 

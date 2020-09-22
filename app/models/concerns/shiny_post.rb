@@ -46,6 +46,8 @@ module ShinyPost
     delegate :show_on_site, to: :discussion, allow_nil: true, prefix: true
     delegate :locked, to: :discussion, allow_nil: true, prefix: true
 
+    attr_writer :posted_at_time
+
     # Scopes and default sort order
 
     scope :not_future_dated, -> { where( 'posted_at <= ?', Time.zone.now.iso8601 ) }
@@ -56,6 +58,10 @@ module ShinyPost
 
     # Instance methods
 
+    def posted_at_time
+      posted_at&.time
+    end
+
     def posted_month
       posted_at.strftime( '%m' )
     end
@@ -64,7 +70,8 @@ module ShinyPost
       posted_at.strftime( '%Y' )
     end
 
-    def posts_in_same_month
+    # Used by SlugInMonth validator
+    def items_in_same_month
       self.class.readonly.published.where( posted_at: posted_at.all_month )
     end
 

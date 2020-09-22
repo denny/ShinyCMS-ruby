@@ -10,12 +10,12 @@
     "core-js": "^3.6.5",
     "jquery": "^3.5.0",
     "minimist": "^1.2.2",
-    "mjml": "^4.6.3",
+    "mjml": "^4.7.0",
     "smartmenus": "^1.1.1",
     "sortablejs": "^1.11.2-alpha.3"
   },
   "devDependencies": {
-    "webpack": "^4.44.1",
+    "webpack": "^4.44.2",
     "webpack-dev-server": "^3.10.1"
   }
 }

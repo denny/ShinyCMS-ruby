@@ -1,0 +1,28 @@
+<% @page_title = t( '.title' ) %>
+
+<section>
+  <header>
+    <h2>
+      <%= @page_title %>
+    </h2>
+  </header>
+
+  <% if @recent_sends.present? %>
+
+  <ul>
+    <% @recent_sends.each do |sent| %>
+    <li>
+      <%= link_to( sent.edition.name, sent.path ) %>
+      - sent at sent.sent_at.to_s( :time ) on sent.sent_at.to_s( :shinydate )
+    </li>
+    <% end %>
+  </ul>
+
+  <%= render partial: 'includes/pager', locals: { paged: @recent_sends } %>
+
+  <% else %>
+  <p>
+    <%= t( '.no_newsletters' ) %>
+  </p>
+  <% end %>
+</section>

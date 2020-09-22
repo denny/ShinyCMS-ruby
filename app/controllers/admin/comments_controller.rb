@@ -9,7 +9,6 @@
 # Controller for ShinyCMS comment admin features
 class Admin::CommentsController < AdminController
   include AkismetHelper
-  include MainSiteHelper
 
   before_action :stash_comment, except: %i[ index update ]
 

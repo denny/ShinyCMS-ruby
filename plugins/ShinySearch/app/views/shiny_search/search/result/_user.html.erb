@@ -1,2 +1,5 @@
-<%= link_to result.name, shiny_profiles.profile_path( result.username ) %> -
-<%= render partial: 'search/result/includes/user_dates', locals: { joined: result.created_at, updated: result.updated_at } %>
+<%= link_to result.name, shiny_profiles.profile_path( result.username ) %>
+<small><i>
+  account created <%= display_date( result.created_at ) %>
+  <% if result.updated_at > result.created_at %>(last updated on <%= display_date( result.updated_at ) %>)<% end %>
+</i></small>

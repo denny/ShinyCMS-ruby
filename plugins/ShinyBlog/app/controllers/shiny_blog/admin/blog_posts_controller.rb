@@ -9,18 +9,20 @@
 module ShinyBlog
   # Admin area controller for ShinyBlog plugin for ShinyCMS
   class Admin::BlogPostsController < AdminController
+    include ShinyDateHelper
+    include ShinyPagingHelper
+
     before_action :set_post_for_create, only: :create
     before_action :set_post, only: %i[ edit update destroy ]
 
     def index
-      authorise ShinyBlog::Post
-      page_num = params[ :page ] || 1
-      @posts = ShinyBlog::Post.order( :created_at ).page( page_num )
+      authorise Post
+      @posts = Post.order( created_at: :desc ).page( page_number )
       authorise @posts if @posts.present?
     end
 
     def new
-      @post = ShinyBlog::Post.new
+      @post = Post.new
       authorise @post
     end
 
@@ -42,7 +44,7 @@ module ShinyBlog
     def update
       authorise @post
 
-      if @post.update( post_params )
+      if @post.update( strong_params_for_update )
         redirect_to shiny_blog.edit_blog_post_path( @post ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
@@ -60,51 +62,55 @@ module ShinyBlog
     private
 
     def set_post
-      @post = ShinyBlog::Post.find( params[:id] )
+      @post = Post.find( params[:id] )
     rescue ActiveRecord::RecordNotFound
       skip_authorization
       redirect_to blog_posts_path, alert: t( 'shiny_blog.admin.blog_posts.set_post.not_found' )
     end
 
-    def post_params
-      permitted_params = params.require( :post ).permit(
-        :user_id, :title, :slug, :tag_list, :posted_at, :body, :show_on_site,
+    def strong_params_for_update
+      temp_params = params.require( :post ).permit(
+        :title, :slug, :body, :tag_list, :show_on_site, :user_id, :posted_at, :posted_at_time,
         :discussion_show_on_site, :discussion_locked
       )
 
-      permitted_params.delete( :user_id ) unless current_user.can? :change_author, :blog_posts
+      temp_params = combine_date_and_time_inputs( temp_params, :posted_at )
 
-      update_discussion_flags( permitted_params )
+      temp_params.delete( :user_id ) unless current_user.can? :change_author, :blog_posts
+
+      update_discussion_flags( temp_params )
     end
 
     def set_post_for_create
-      @post = ShinyBlog::Post.new( post_params_for_create )
+      @post = Post.new( strong_params_for_create )
     end
 
-    def post_params_for_create
-      permitted_params = params.require( :post ).permit(
-        :user_id, :title, :slug, :tag_list, :posted_at, :body, :show_on_site,
+    def strong_params_for_create
+      temp_params = params.require( :post ).permit(
+        :title, :slug, :body, :tag_list, :show_on_site, :user_id, :posted_at, :posted_at_time,
         :discussion_show_on_site, :discussion_locked
       )
 
-      # permitted_params = update_discussion_flags( permitted_params )
+      temp_params = combine_date_and_time_inputs( temp_params, :posted_at )
 
-      only_allow_admins_to_set_author( permitted_params )
+      # temp_params = update_discussion_flags( temp_params )
+
+      only_allow_admins_to_set_author( temp_params )
     end
 
-    def only_allow_admins_to_set_author( permitted_params )
-      permitted_params[ :user_id ] = current_user.id unless current_user.can? :change_author, :blog_posts
-      permitted_params
+    def only_allow_admins_to_set_author( temp_params )
+      temp_params[ :user_id ] = current_user.id unless current_user.can? :change_author, :blog_posts
+      temp_params
     end
 
-    def update_discussion_flags( permitted_params )
-      show_on_site = permitted_params.delete( :discussion_show_on_site ) || 0
-      locked = permitted_params.delete( :discussion_locked ) || 0
+    def update_discussion_flags( temp_params )
+      show_on_site = temp_params.delete( :discussion_show_on_site ) || 0
+      locked = temp_params.delete( :discussion_locked ) || 0
 
-      return permitted_params if @post.discussion.blank?
+      return temp_params if @post.discussion.blank?
 
       @post.discussion.update!( show_on_site: show_on_site, locked: locked )
-      permitted_params
+      temp_params
     end
   end
 end

@@ -24,27 +24,23 @@ class Theme
   # Instance methods
 
   def view_path
-    Theme.build_view_path( name )
+    Theme.view_path( name )
   end
 
-  def page_templates_path
-    "#{view_path}/pages/templates"
-  end
-
-  def mailer_templates_path
-    "#{view_path}/mailers/templates"
+  def template_dir( more_path = '' )
+    Rails.root.join view_path, more_path
   end
 
   # Class methods
 
-  def self.build_view_path( theme_name )
+  def self.view_path( theme_name )
     "app/views/themes/#{theme_name}"
   end
 
   def self.base_directory_exists?( theme_name )
     return false if theme_name.blank?
 
-    FileTest.directory?( Rails.root.join( build_view_path( theme_name ) ) )
+    FileTest.directory?( Rails.root.join( view_path( theme_name ) ) )
   end
 
   # Find and return the current theme (if any)

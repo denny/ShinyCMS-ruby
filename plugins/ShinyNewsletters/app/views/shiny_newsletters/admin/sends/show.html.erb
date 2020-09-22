@@ -1,0 +1,35 @@
+<% @page_title = t( '.title' ) %>
+
+<table>
+  <tr>
+    <td>
+      Edition
+    </td>
+    <td>
+      <%= @send.edition.internal_name %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      List
+    </td>
+    <td>
+      <%= @send.list.internal_name %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Started sending at
+    </td>
+    <td>
+      <%= @send.started_sending_at %>
+    </td>
+  </tr>
+    <td>
+      Finished sending at
+    </td>
+    <td>
+      <%= @send.finished_sending_at %>
+    </td>
+  </tr>
+</table>

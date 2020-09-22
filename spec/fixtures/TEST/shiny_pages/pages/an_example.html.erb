@@ -1,0 +1,27 @@
+<% @page_title = @page.name %>
+<h1>
+  <%= @page.name %>
+</h1>
+<p>
+  <img src="/images/<%= an_image %>" alt="">
+</p>
+<h2>
+  <%= a_heading %>
+</h2>
+
+<% if @page.default_page? %>
+<p>
+  You are currently viewing the default page for this site.
+</p>
+<% end %>
+
+<%= simple_format some_text %>
+
+<%= sanitize html_text %>
+
+<p class="small">
+  Contact:
+  <% if insert_type?( 'the_email', 'short_text' ) %>
+    <a href="mailto:<%= insert( 'the_email' ) %>"><%= insert( 'the_email' ) %></a>
+  <% end %>
+</p>

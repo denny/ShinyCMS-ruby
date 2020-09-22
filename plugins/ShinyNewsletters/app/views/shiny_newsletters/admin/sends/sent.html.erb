@@ -1,0 +1,9 @@
+<% @page_title = t( '.title' ) %>
+
+<% if @sent.present? %>
+  <%= render partial: 'sent' %>
+<% else %>
+<p>
+  <%= t( '.no_sends_sent' ) %>
+</p>
+<% end %>

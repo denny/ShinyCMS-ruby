@@ -1,0 +1,37 @@
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Edition
+      </th>
+      <th>
+        List
+      </th>
+      <th>
+        Started sending
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sending.each do |send| %>
+    <tr>
+      <td>
+        <%= send.edition.internal_name %>
+      </td>
+      <td>
+        <%= send.list.internal_name %>
+      </td>
+      <td>
+        <%= display_time_on_date( send.started_sending_at ) %>
+      </td>
+      <td class="actions">
+        <%= link_to t( 'cancel' ), shiny_newsletters.cancel_sending_path( send ) %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

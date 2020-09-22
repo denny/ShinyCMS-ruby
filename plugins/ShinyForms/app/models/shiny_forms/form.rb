@@ -83,7 +83,7 @@ module ShinyForms
     end
 
     def self.theme_template_dir
-      Rails.root.join Theme.current.mailer_templates_path if Theme.current.present?
+      Theme.current.template_dir( 'shiny_forms/form_mailer' ) if Theme.current.present?
     end
 
     def self.default_template_dir

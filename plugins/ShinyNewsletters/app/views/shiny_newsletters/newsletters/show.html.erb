@@ -1,0 +1,15 @@
+<% @page_title = @edition.name || t( '.title' ) %>
+
+<section>
+  <header>
+    <h2>
+      <%= @page_title %>
+    </h2>
+  </header>
+
+  <p>
+    <%= @edition.name %> (sent at <%= display_time_on_date( @send.sent_at ) %>)
+  </p>
+
+  <%# TODO: HTML rendering of MJML templated newsletter %>
+</section>

@@ -1,21 +1,27 @@
+# frozen_string_literal: true
+
+# ShinyInserts plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 class AddShinyInsertsTables < ActiveRecord::Migration[6.0]
   def change
     create_table :shiny_inserts_sets, force: :cascade do |t|
-      t.datetime :created_at, precision: 6, null: false
-      t.datetime :updated_at, precision: 6, null: false
+      t.timestamps
     end
 
     create_table :shiny_inserts_elements, force: :cascade do |t|
       t.string :name, null: false
       t.string :content
-      t.string :element_type, default: "Short Text", null: false
-      t.bigint :set_id, null: false
-      t.datetime :created_at, precision: 6, null: false
-      t.datetime :updated_at, precision: 6, null: false
-      t.index ["name"], name: :index_insert_elements_on_name, unique: true
-      t.index ["set_id"], name: :index_insert_elements_on_set_id
-    end
+      t.string :element_type, default: 'short_text', null: false
 
-    add_foreign_key :shiny_inserts_elements, :shiny_inserts_sets, column: :set_id
+      t.belongs_to :set, references: :shiny_inserts_sets, foreign_key: { to_table: :shiny_inserts_sets }, null: false
+
+      t.timestamps
+
+      t.index ["name"], name: :index_insert_elements_on_name, unique: true
+    end
   end
 end
