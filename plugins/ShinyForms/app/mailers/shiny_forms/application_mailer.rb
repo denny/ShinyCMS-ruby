@@ -12,7 +12,8 @@ module ShinyForms
     include FeatureFlagsHelper
     include ShinyMailerHelper
 
-    before_action :set_site_name
+    add_template_helper ShinyMailerHelper
+
     before_action :set_view_paths
 
     track open: false, click: false
@@ -22,10 +23,6 @@ module ShinyForms
     layout 'mailer'
 
     private
-
-    def set_site_name
-      @site_name = site_name
-    end
 
     def set_view_paths
       add_view_paths( 'plugins/ShinyForms/app/views' )

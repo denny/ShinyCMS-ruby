@@ -13,7 +13,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
   before :each do
     FeatureFlag.enable :comment_notifications
 
-    @site_name = I18n.t( 'site_name' )
+    @site_name = ::Setting.get( :site_name ) || I18n.t( 'site_name' )
 
     blogger     = create :blog_admin
     blog_post   = create :blog_post, author: blogger

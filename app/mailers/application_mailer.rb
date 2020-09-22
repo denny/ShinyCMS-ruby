@@ -11,7 +11,8 @@ class ApplicationMailer < ActionMailer::Base
   include FeatureFlagsHelper
   include ShinyMailerHelper
 
-  before_action :set_site_name
+  add_template_helper ShinyMailerHelper
+
   before_action :set_view_paths
 
   default from: -> { default_email }
@@ -26,10 +27,6 @@ class ApplicationMailer < ActionMailer::Base
     User.find_by( email: email_address ) ||
       EmailRecipient.find_by( email: email_address ) ||
       EmailRecipient.create!( email: email_address, name: name )
-  end
-
-  def set_site_name
-    @site_name = site_name
   end
 
   def set_view_paths

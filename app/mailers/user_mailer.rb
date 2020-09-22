@@ -16,59 +16,59 @@ class UserMailer < ApplicationMailer
   # Don't store URLs that might have security tokens in them in email stats data
   track click: false
 
-  def confirmation_instructions( user, token )
+  def confirmation_instructions( user, token, _args = nil )
     @resource = @user = user
     @token = token
 
     return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
 
-    mail to: user.email_to, subject: t( '.subject' ) do |format|
+    mail to: user.email_to, subject: t( '.subject', site_name: site_name ) do |format|
       format.html
       format.text
     end
   end
 
-  def reset_password( user, token )
+  def reset_password( user, token, _args = nil )
     @resource = @user = user
     @token = token
 
     return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
 
-    mail to: user.email_to, subject: t( '.subject' ) do |format|
+    mail to: user.email_to, subject: t( '.subject', site_name: site_name ) do |format|
       format.html
       format.text
     end
   end
 
-  def password_changed( user )
+  def password_changed( user, _args = nil )
     @resource = @user = user
 
     return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
 
-    mail to: user.email_to, subject: t( '.subject' ) do |format|
+    mail to: user.email_to, subject: t( '.subject', site_name: site_name ) do |format|
       format.html
       format.text
     end
   end
 
-  def email_changed( user )
+  def email_changed( user, _args = nil )
     @resource = @user = user
 
     return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
 
-    mail to: user.email_to, subject: t( '.subject' ) do |format|
+    mail to: user.email_to, subject: t( '.subject', site_name: site_name ) do |format|
       format.html
       format.text
     end
   end
 
-  def unlock_instructions( user, token )
+  def unlock_instructions( user, token, _args = nil )
     @resource = @user = user
     @token = token
 
     return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
 
-    mail to: user.email_to, subject: t( '.subject' ) do |format|
+    mail to: user.email_to, subject: t( '.subject', site_name: site_name ) do |format|
       format.html
       format.text
     end

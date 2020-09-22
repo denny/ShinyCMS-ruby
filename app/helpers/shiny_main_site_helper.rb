@@ -7,7 +7,9 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Methods that might be useful in templates and/or controllers on the main site
-module MainSiteHelper
+module ShinyMainSiteHelper
+  include ShinySiteNameHelper
+
   include ActsAsTaggableOn::TagsHelper
 
   def current_user_can?( capability, category = :general )

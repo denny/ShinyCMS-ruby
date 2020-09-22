@@ -12,9 +12,8 @@
     <%= csp_meta_tag %>
 
     <% @page_title ||= 'Coming Soon' %>
-    <% @site_name  ||= 'ShinySite'   %>
 
-    <title><%= @page_title %> - <%= @site_name %></title>
+    <title><%= @page_title %> - <%= site_name %></title>
 
     <%= favicon_link_tag asset_path( 'shinycms/favicon.ico' ) %>
 

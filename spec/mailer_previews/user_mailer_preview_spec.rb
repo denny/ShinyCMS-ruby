@@ -13,6 +13,8 @@ RSpec.describe UserMailerPreview, type: :request do
   before :each do
     admin = create :email_admin
     sign_in admin
+
+    @site_name = ::Setting.get( :site_name ) || I18n.t( 'site_name' )
   end
 
   describe '.confirmation_instructions' do
@@ -22,7 +24,7 @@ RSpec.describe UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'user_mailer.confirmation_instructions.subject' )
+        .to have_content I18n.t( 'user_mailer.confirmation_instructions.subject', site_name: @site_name )
     end
   end
 
@@ -33,7 +35,7 @@ RSpec.describe UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'user_mailer.reset_password.subject' )
+        .to have_content I18n.t( 'user_mailer.reset_password.subject', site_name: @site_name )
     end
   end
 
@@ -44,7 +46,7 @@ RSpec.describe UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'user_mailer.password_changed.subject' )
+        .to have_content I18n.t( 'user_mailer.password_changed.subject', site_name: @site_name )
     end
   end
 
@@ -55,7 +57,7 @@ RSpec.describe UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'user_mailer.email_changed.subject' )
+        .to have_content I18n.t( 'user_mailer.email_changed.subject', site_name: @site_name )
     end
   end
 
@@ -66,7 +68,7 @@ RSpec.describe UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'user_mailer.unlock_instructions.subject' )
+        .to have_content I18n.t( 'user_mailer.unlock_instructions.subject', site_name: @site_name )
     end
   end
 end
