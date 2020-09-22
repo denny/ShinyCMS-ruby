@@ -1,0 +1,106 @@
+# frozen_string_literal: true
+
+# ShinyNewsletters plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Translation strings for English
+
+en:
+  cancel: Cancel
+
+  feature_flags:
+    newsletters: Newsletters
+
+  capability:
+    category:
+      newsletter_templates: Newsletter templates
+      newsletter_editions: Newsletter editions
+      newsletter_sends: Newsletter sends
+
+  shiny_newsletters:
+    newsletters:
+      index:
+        title: Newsletters
+        subscriber_not_found: Could not find subscriber - please check link and try again
+        no_newsletters: There are currently no newsletters to display
+      show:
+        title: View newsletter
+
+    admin:
+      newsletters:
+        title: Newsletters
+      editions:
+        title: Newsletter Editions
+        index:
+          title: Editions
+          send_sample: Send sample
+          send_to_list: Send to list
+        send_sample:
+          success: Sample sent
+          mjml_error: MJML Parser Error
+        new:
+          title: New edition
+        edit:
+          title: Edit newsletter edition
+        create:
+          success: Newsletter edition created
+          failure: Failed to create newsletter edition
+        update:
+          success: Newsletter edition updated
+          failure: Failed to update newsletter edition
+        destroy:
+          success: Newsletter edition deleted
+          failure: Failed to delete newsletter edition
+      sends:
+        title: Newsletter Sends
+        index:
+          title: Sends
+          no_sends: You have not started sending any newsletters yet
+          send: Send
+        sent:
+          title: Sent
+          view_details: View Details
+          no_sends_sent: You have not sent any newsletters yet
+        show:
+          title: View send details
+        new:
+          title: Send / Schedule
+        edit:
+          title: Edit newsletter send
+        create:
+          success: Newsletter send created
+          failure: Failed to create newsletter send
+        update:
+          success: Newsletter send updated
+          failure: Failed to update newsletter send
+        start_sending:
+          success: Sending started
+        cancel_sending:
+          success: Newsletter send cancelled
+        destroy:
+          success: Newsletter send deleted
+      templates:
+        title: Newsletter Templates
+        index:
+          title: Templates
+        new:
+          title: New template
+        edit:
+          title: Edit newsletter template
+        create:
+          success: Newsletter template created
+          failure: Failed to create newsletter template
+        update:
+          success: Newsletter template updated
+          failure: Failed to update newsletter template
+        destroy:
+          success: Newsletter template deleted
+          failure: Failed to delete newsletter template
+
+  models:
+    shiny_newsletters:
+      template:
+        template_file_must_exist: 'Template file must be in themes/{theme-name}/shiny_newsletters/newsletter_mailer'

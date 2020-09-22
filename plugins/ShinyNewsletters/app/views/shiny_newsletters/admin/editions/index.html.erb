@@ -1,0 +1,54 @@
+<% @page_title = t( '.title' ) %>
+
+<% if @editions.present? %>
+
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @editions.each do |edition| %>
+    <tr>
+      <td>
+        <%= edition.internal_name %>
+      </td>
+      <td>
+        <%= edition.description %>
+      </td>
+      <td>
+        <% if edition.sent? %>
+          Sent
+        <% elsif edition.scheduled? %>
+          Scheduled
+        <% end %>
+      </td>
+      <td class="actions">
+        <%= link_to t( 'shiny_newsletters.admin.editions.index.send_sample'  ), shiny_newsletters.send_sample_path( edition ) %>
+        <%= link_to t( 'shiny_newsletters.admin.editions.index.send_to_list' ), shiny_newsletters.new_send_for_edition_path( edition ) %>
+        <%= link_to t( 'edit'   ), shiny_newsletters.edit_edition_path( edition ) %>
+        <%= link_to t( 'delete' ), shiny_newsletters.edition_path( edition ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else %>
+<p>
+  There are currently no Newsletter Editions to display.
+</p>
+<% end %>

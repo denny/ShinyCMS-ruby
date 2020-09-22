@@ -1,0 +1,34 @@
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Edition
+      </th>
+      <th>
+        List
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sends.each do |send| %>
+    <tr>
+      <td>
+        <%= send.edition.internal_name %>
+      </td>
+      <td>
+        <%= send.list.internal_name %>
+      </td>
+      <td class="actions">
+        <%= link_to t( 'shiny_newsletters.admin.sends.index.send' ), shiny_newsletters.start_sending_path( send ), method: :put %>
+        <%= link_to t( 'edit'   ), shiny_newsletters.edit_send_path( send ) %>
+        <%= link_to t( 'delete' ), shiny_newsletters.send_path( send ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

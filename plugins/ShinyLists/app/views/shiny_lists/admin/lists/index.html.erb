@@ -25,8 +25,8 @@
         <%= link_to list.subscriptions.active.count, shiny_lists.list_subscriptions_path( list ) %>
       </td>
       <td class="actions">
-        <%= link_to t( 'edit'   ), edit_list_path( list ) %>
-        <%= link_to t( 'delete' ), list_path( list ),
+        <%= link_to t( 'edit'   ), shiny_lists.edit_list_path( list ) %>
+        <%= link_to t( 'delete' ), shiny_lists.list_path( list ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>

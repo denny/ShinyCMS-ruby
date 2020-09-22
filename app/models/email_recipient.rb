@@ -15,8 +15,6 @@ class EmailRecipient < ApplicationRecord
 
   # Associations
 
-  has_many :messages, class_name: 'Ahoy::Message', as: :user, dependent: :nullify
-
   # Email stats (powered by Ahoy)
   has_many :messages, as: :user, dependent: :nullify, class_name: 'Ahoy::Message'
 end

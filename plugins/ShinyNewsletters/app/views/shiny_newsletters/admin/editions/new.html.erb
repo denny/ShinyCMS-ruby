@@ -1,0 +1,32 @@
+<% @page_title = t( '.title' ) %>
+
+<%= form_for @edition, url: shiny_newsletters.editions_path, method: :post do |f| %>
+  <p>
+    <%= f.label :internal_name %><br>
+    <%= f.text_field :internal_name %>
+  </p>
+  <p>
+    <%= f.label :public_name %><br>
+    <%= f.text_field :public_name %>
+  </p>
+  <p>
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :template_id, 'Template' %>
+    <br><%= f.select :template_id, ShinyNewsletters::Template.pluck( :name, :id ) %>
+  </p>
+  <p>
+    <%= f.label :show_on_site %>
+    <br><%= f.check_box :show_on_site %>
+  </p>
+
+  <p class="top-margin">
+    <%= f.submit t( 'add' ) %>
+  </p>
+<% end %>

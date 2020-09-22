@@ -30,7 +30,7 @@ RSpec.describe 'DiscussionMailerPreview', type: :request do
         preview_id: 'discussion_mailer_preview-overview_notification'
       )
 
-      expect( response.body ).to have_content 'commented on your site'
+      expect( response.body ).to have_content ' commented on '
     end
   end
 

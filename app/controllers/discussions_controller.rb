@@ -27,8 +27,7 @@ class DiscussionsController < MainController
   def show_thread
     return if @comment.present?
 
-    @resource_type = 'Comment'
-    render 'errors/404', status: :not_found
+    render 'errors/404', status: :not_found, locals: { resource_type: 'comment' }
   end
 
   def add_comment

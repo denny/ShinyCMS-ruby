@@ -10,8 +10,7 @@
     </h2>
     <h3>
       Posted by <%= user_profile_link( @post.author ) %>
-      at <%= @post.posted_at.to_s( :time ) %>
-      on <%= @post.posted_at.to_s( :shinydate ) %>
+      at <%= display_time_on_date( @post.posted_at ) %>
     </h3>
   </header>
 

@@ -1,5 +1,3 @@
-<%# frozen_string_literal: true %>
-
 <% @page_title = t( 'shiny_search.search.results.title', query: @query ) %>
 
 <section>
@@ -11,7 +9,6 @@
   <ul>
   <% @results.each do |result| %>
     <li>
-      <%# TODO: get search result templates from plugins %>
       <%= render partial: "search/result/#{result.class.name.underscore}", locals: { result: result } %>
     </li>
   <% end %>

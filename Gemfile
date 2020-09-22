@@ -29,7 +29,7 @@ source 'https://rubygems.org' do
   gem 'pg', '>= 0.18', '< 2.0'
 
   # Webserver
-  gem 'puma', '~> 4.3'
+  gem 'puma', '~> 5.0'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails'
@@ -72,10 +72,6 @@ source 'https://rubygems.org' do
   # MJML emails
   gem 'mjml-rails'
 
-  # Search
-  gem 'algoliasearch-rails'
-  gem 'pg_search'
-
   # Sortable lists (elements of template, etc)
   gem 'acts_as_list'
 
@@ -101,7 +97,7 @@ source 'https://rubygems.org' do
 
   # Image storage on S3, image processing (resizing)
   gem 'aws-sdk-s3'
-  gem 'image_processing', '~> 1.11'
+  gem 'image_processing', '~> 1.12'
   gem 'mini_magick'
 
   # Better-looking console output
@@ -137,6 +133,8 @@ source 'https://rubygems.org' do
     gem 'listen', '>= 3.0.5', '< 3.3'
     # Helps you manage your git hooks
     gem 'overcommit', require: false
+    # Analysis tools for postgres
+    gem 'rails-pg-extras'
     # Linter
     gem 'rubocop', require: false
     gem 'rubocop-rails', require: false

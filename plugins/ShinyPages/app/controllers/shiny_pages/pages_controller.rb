@@ -91,7 +91,7 @@ module ShinyPages
         return
       end
 
-      render template: "pages/templates/#{@page.template.filename}", locals: @page.elements_hash
+      render template: "shiny_pages/pages/#{@page.template.filename}", locals: @page.elements_hash
     end
 
     # Find the correct section to look for the specified (or default) page in
@@ -107,7 +107,7 @@ module ShinyPages
 
     # 404 handler
     def not_found
-      render status: :not_found, template: 'errors/404'
+      render 'errors/404', status: :not_found
     end
   end
 end

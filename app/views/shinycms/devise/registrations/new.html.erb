@@ -32,7 +32,7 @@
     </div>
 
     <% if flash[ :show_checkbox_recaptcha ] %>
-      <%= recaptcha_tags site_key: recaptcha_v2_site_key %>
+      <%= recaptcha_tags site_key: recaptcha_checkbox_site_key %>
     <% elsif recaptcha_v3_site_key.present? %>
       <%= recaptcha_v3 action: 'registration', site_key: recaptcha_v3_site_key %>
     <% else %>

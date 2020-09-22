@@ -22,8 +22,6 @@ en:
           title: Inserts
           name_placeholder: Name
           content_placeholder: Content (can be blank)
-        element:
-          unknown_element_type: UNKNOWN ELEMENT TYPE IN INSERTS
         create:
           success: New insert added
           failure: Failed to add new insert

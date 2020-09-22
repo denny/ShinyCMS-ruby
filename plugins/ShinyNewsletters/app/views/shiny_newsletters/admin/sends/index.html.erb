@@ -1,0 +1,23 @@
+<% @page_title = t( '.title' ) %>
+
+<% if @sending.present? %>
+  <%= render partial: 'sending' %>
+<% end %>
+
+<% if @scheduled.present? %>
+  <%= render partial: 'scheduled' %>
+<% end %>
+
+<% if @sends.present? %>
+  <%= render partial: 'sends' %>
+<% end %>
+
+<% if @sent.present? %>
+  <%= render partial: 'sent' %>
+<% end %>
+
+<% if @sending.blank? && @scheduled.blank? && @sends.blank? && @sent.blank? %>
+<p>
+  <%= t( '.no_sends' ) %>
+</p>
+<% end %>

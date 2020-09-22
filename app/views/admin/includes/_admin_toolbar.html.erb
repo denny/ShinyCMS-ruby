@@ -41,12 +41,12 @@
     |
 <% end %>
 
-    <% if Rails.env.development? %>
+  <% if Rails.env.development? %>
     <%= link_to t( 'admin.letter_opener_web' ), main_app.letter_opener_web_path %>
     |
-    <% end %>
-    <% if current_user_can? :view_admin_area %>
+  <% end %>
+  <% if current_user_can? :view_admin_area %>
     <%= link_to t( 'admin.admin_area' ), main_app.admin_path %>
-    <% end %>
+  <% end %>
   </div>
 </nav>
