@@ -200,8 +200,7 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( "#{i18n_root}.index.title" ).titlecase
-      # TODO: FIXME: The code this tests is failing on what looks like a low-level MJML rendering issue
-      # expect( response.body ).to have_css '.alert-success', text: I18n.t( "#{i18n_root}.send_sample.success" )
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( "#{i18n_root}.send_sample.success" )
     end
   end
 
