@@ -130,9 +130,9 @@ en:
 
   # ========== ( Helpers ) ==========
 
-  shiny_display_date_helper:
-    time_and_date: '%{time} on %{date}'
-    date_and_time: '%{date} at %{time}'
+  shiny_date_helper:
+    time_on_date: '%{time} on %{date}'
+    date_at_time: '%{date} at %{time}'
 
 
   # ========== ( Mailers ) ==========
@@ -140,35 +140,35 @@ en:
   discussion_mailer:
     they_said: They said
     parent_comment_notification:
-      subject: '[%{site_name}] %{reply_author_name} replied to your comment'
+      subject: '%{reply_author_name} replied to your comment on %{site_name}'
       you_said: You said
     discussion_notification:
-      subject: '[%{site_name}] %{comment_author_name} commented on your %{content_type}'
+      subject: '%{comment_author_name} commented on your %{content_type} on %{site_name}'
     overview_notification:
-      subject: '[%{site_name}] %{comment_author_name} commented on your site'
+      subject: '%{comment_author_name} commented on %{site_name}'
 
   user_mailer:
     welcome: Welcome, %{name}!
     hello: Hello %{name},
     confirmation_instructions:
-      subject: '[%{site_name}] Please confirm your registration'
+      subject: 'Please confirm your registration on %{site_name}'
       instructions: You can confirm your email address by clicking the link below
       link_text: Confirm my address
     password_changed:
-      subject: '[%{site_name}] Your password has been changed'
+      subject: 'Your password has been changed on %{site_name}'
       text: We're contacting you to notify you that your password has been changed.
     reset_password:
-      subject: '[%{site_name}] Instructions for resetting your password'
+      subject: 'Instructions for resetting your password on %{site_name}'
       instructions: Someone has requested a link to change your password. You can do this through the link below.
       link_text: Change my password
       if_not_you: If you didn't request this, please ignore this email.
       no_change: Your password won't change unless you click the link above and create a new one.
     email_changed:
-      subject: '[%{site_name}] Changing your email address'
+      subject: 'Changing your email address on %{site_name}'
       email_changing: We're contacting you to notify you that your email is being changed to
       email_changed: We're contacting you to notify you that your email has been changed to
     unlock_instructions:
-      subject: '[%{site_name}] Your account has been locked'
+      subject: 'Your account on %{site_name} has been locked'
       explanation: Your account has been locked due to an excessive number of unsuccessful sign in attempts.
       instructions: Click the link below to unlock your account
       link_text: Unlock my account

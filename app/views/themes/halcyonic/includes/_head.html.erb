@@ -5,9 +5,8 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <% @site_name ||= 'ShinySite' %>
   <title>
-    <%= @page_title %><%= ' - ' if @page_title.present? %><%= @site_name %>
+    <%= @page_title %><%= ' - ' if @page_title.present? %><%= site_name %>
   </title>
 
   <%= favicon_link_tag asset_path( 'shinycms/favicon.ico' ) %>

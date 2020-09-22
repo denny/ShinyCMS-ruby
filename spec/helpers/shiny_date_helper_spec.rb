@@ -10,22 +10,22 @@ require 'rails_helper'
 
 # Tests for date helper methods
 RSpec.describe ShinyDateHelper, type: :helper do
-  describe 'display_date_and_time( utc_time )' do
+  describe 'display_date_at_time( utc_time )' do
     it 'returns a nicely-formatted date and time string, in localtime, date first' do
       input = Time.zone.now
 
-      result = helper.display_date_and_time( input )
+      result = helper.display_date_at_time( input )
 
       expect( result ).to be_a String
       expect( result ).to match %r{\w\w\w, \d\d \w\w\w \d\d\d\d at \d\d:\d\d}
     end
   end
 
-  describe 'display_time_and_date( utc_time )' do
+  describe 'display_time_on_date( utc_time )' do
     it 'returns a nicely-formatted time and date string, in localtime, time first' do
       input = Time.zone.now
 
-      result = helper.display_time_and_date( input )
+      result = helper.display_time_on_date( input )
 
       expect( result ).to be_a String
       expect( result ).to match %r{\d\d:\d\d on \w\w\w, \d\d \w\w\w \d\d\d\d}

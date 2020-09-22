@@ -8,8 +8,6 @@
 
 # Controller for user-site-settings features on a ShinyCMS site
 class SiteSettingsController < MainController
-  include MainSiteHelper
-
   before_action :authenticate_user!
 
   def index

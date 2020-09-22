@@ -2,7 +2,7 @@
   <mj-column>
 
     <mj-text>
-      <%= @reply.author_name_any %> replied to your comment on <%= @site_name %>:
+      <%= @reply.author_name_any %> replied to your comment on <%= site_name %>:
     </mj-text>
 
     <mj-text>

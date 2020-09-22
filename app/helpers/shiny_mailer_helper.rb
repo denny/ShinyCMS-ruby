@@ -8,6 +8,8 @@
 
 # Helper to add useful common behaviour to ShinyCMS mailers
 module ShinyMailerHelper
+  include ShinySiteNameHelper
+
   def add_view_paths( plugin_path = nil )
     # Add the default templates directory to the top of view_paths
     prepend_view_path 'app/views/shinycms'
@@ -23,10 +25,6 @@ module ShinyMailerHelper
 
   def default_email
     ::Setting.get( :default_email ) || ENV[ 'DEFAULT_EMAIL' ]
-  end
-
-  def site_name
-    I18n.t( 'site_name' )
   end
 
   def track_opens?
