@@ -44,7 +44,7 @@ module ShinyNewsletters
     end
 
     def create
-      @send = Send.new( send_params )
+      @send = Send.new( strong_params )
       authorize @send
 
       if @send.save
@@ -64,7 +64,7 @@ module ShinyNewsletters
       @send = Send.find( params[:id] )
       authorize @send
 
-      if @send.update( send_params )
+      if @send.update( strong_params )
         redirect_to shiny_newsletters.edit_send_path( @send ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
@@ -103,8 +103,10 @@ module ShinyNewsletters
 
     private
 
-    def send_params
-      params.require( :send ).permit( :edition_id, :list_id, :send_at, :send_now )
+    def strong_params
+      temp_params = params.require( :send ).permit( :edition_id, :list_id, :send_at, :send_at_time, :send_now )
+
+      combine_date_and_time_inputs( temp_params, :send_at )
     end
 
     def convert_send_at_to_utc
