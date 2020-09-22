@@ -13,5 +13,9 @@ module ShinyNewsletters
       name { Faker::Books::CultureSeries.unique.culture_ship }
       filename { 'an_example' }
     end
+
+    factory :invalid_newsletter_template, parent: :newsletter_template do
+      filename { 'bad_mjml' }
+    end
   end
 end

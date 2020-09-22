@@ -1,0 +1,9 @@
+<mj-section>
+  <mj-column>
+
+     <mj-title>
+      Titles don't belong in the body block
+    </mj-title>
+
+  </mj-column>
+</mj-section>
