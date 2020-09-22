@@ -12,8 +12,9 @@ module ShinyNewsletters
     include FeatureFlagsHelper
     include ShinyMailerHelper
 
+    add_template_helper ShinyMailerHelper
+
     before_action :set_view_paths
-    before_action :set_site_name
 
     track open: -> { track_opens? }, click: -> { track_clicks? }
 
@@ -25,10 +26,6 @@ module ShinyNewsletters
 
     def set_view_paths
       add_view_paths 'plugins/ShinyNewsletters/app/views'
-    end
-
-    def set_site_name
-      @site_name = site_name
     end
   end
 end

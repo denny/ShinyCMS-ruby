@@ -10,7 +10,7 @@
     </mj-text>
 
     <mj-text>
-      [ sent via the <%= @site_name %> contact form ]
+      [ sent via the <%= site_name %> contact form ]
     </mj-text>
 
   </mj-column>

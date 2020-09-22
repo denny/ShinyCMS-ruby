@@ -42,9 +42,9 @@ module ShinyForms
     def email_subject
       form_data_subject = @form_data['subject'] || nil
 
-      return "[#{@site_name}] #{form_data_subject}" if form_data_subject.present?
+      return "[#{site_name}] #{form_data_subject}" if form_data_subject.present?
 
-      I18n.t( 'shiny_forms.mailers.form_mailer.default_subject', site_name: @site_name )
+      I18n.t( 'shiny_forms.mailers.form_mailer.default_subject', site_name: site_name )
     end
 
     def set_form_data( form_name, form_data )
