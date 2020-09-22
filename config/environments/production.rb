@@ -72,8 +72,9 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for ActiveJob (+ separate queues per environment)
-  # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "ShinyCMS_production"
+  # config.active_job.queue_adapter = :resque
+  config.active_job.queue_adapter = :sidekiq
+  config.active_job.queue_name_prefix = 'shinycms_production'
 
   # config.action_mailer.perform_caching = false
 
