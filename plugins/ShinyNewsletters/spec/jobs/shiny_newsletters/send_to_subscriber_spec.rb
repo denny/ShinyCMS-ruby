@@ -18,12 +18,29 @@ module ShinyNewsletters
 
         subscriber1 = create :email_recipient
         send1       = create :newsletter_send
+        consent1    = create :consent_version
+
+        send1.list.subscribe( subscriber1, consent1 )
 
         expect { SendToSubscriberJob.perform_later( send1, subscriber1 ) }.to have_enqueued_job
       end
     end
 
     describe '.perform_now' do
+      it 'with a valid send and subscriber' do
+        ActiveJob::Base.queue_adapter = :test
+
+        subscriber1 = create :email_recipient
+        send1       = create :newsletter_send
+        consent1    = create :consent_version
+
+        send1.list.subscribe( subscriber1, consent1 )
+
+        result = SendToSubscriberJob.perform_now( send1, subscriber1 )
+
+        expect( result ).to be_a Mail::Message
+      end
+
       context 'with an already-sent Send' do
         it 'bails out before sending' do
           ActiveJob::Base.queue_adapter = :test
