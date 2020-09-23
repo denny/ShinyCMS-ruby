@@ -187,6 +187,7 @@ en:
     post_login_redirect: Post-login redirect
     recaptcha_comment_score: 'reCAPTCHA: Minimum score for comments'
     recaptcha_registration_score: 'reCAPTCHA: Minimum score for user registration'
+    site_name: Site name
     tag_view: Default tag view
     theme_name: Theme name
     track_clicks: Track if links in emails are clicked
