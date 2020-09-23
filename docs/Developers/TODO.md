@@ -128,15 +128,6 @@
 
 ### Large-ish
 
-* Finish the move to plugin architecture
-  * Move Comments, Tags, and Likes into plugins
-  * Move concerns and helpers into a plugin (ShinyToolbox?)
-    * Eventually, break them up into multiple plugins (ShinyPostTools, ShinyTemplateTools, etc)
-  * Look into moving Users into a plugin
-    * Ideally, move all the non-Devise User/Account functionality into concerns and helpers, so
-      you could include those into any site with Devise-powered auth and then use any ShinyPlugin
-  * Move plugins into separate gems
-
 * Surveys / Questionnaires
 
 * GDPR compliance
