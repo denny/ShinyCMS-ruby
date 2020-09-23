@@ -25,7 +25,6 @@ en:
     blog:
       index:
         title: Recent blog posts
-        empty: There are no blog posts to display
       post:
         footer:
           reply: Reply to this post
@@ -43,7 +42,6 @@ en:
         title: Blog
         index:
           title: List blog posts
-          empty: There are no blog posts to display
         new:
           title: Add blog post
         edit:

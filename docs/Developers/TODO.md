@@ -14,12 +14,8 @@
 * Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
 
 * Track down untranslated strings and add them to locale files
-  * Frequent offenders:
-    * Index pages 'no results' message and column headings
-    * Labels on new/edit forms
-  * Core and plugins
-  * Templates, controllers, and models
-  * Admin area, main site, and themes
+  * Check core and plugins; templates, controllers, and models; admin area, main site, and themes
+  * Frequent offenders: column headings on index pages, input labels on new/edit forms
 
 * Make sure concerns are used everywhere they could/should be, and that the shared examples
   are used to test that the concerns are doing the right thing in each place they get used.

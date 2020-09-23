@@ -37,6 +37,9 @@ en:
   # Confirmation dialogue
   are_you_sure: Are you sure?
 
+  # Empty listing
+  empty_list: There are no %{items} to display
+
   # Votes / Likes
   vote: Vote
   add_upvote: '+'
@@ -65,7 +68,6 @@ en:
     n_recent_comments:
       one: 1 recent comment
       other: '%{count} recent comments'
-    no_comments_to_display: There are no comments to display
     new_comment: Add a new comment
     reply: Reply to this comment
     hidden_comment: This comment has been hidden by a moderator.
@@ -80,7 +82,6 @@ en:
     index:
       title: Discussions
       recently_active: Recently active discussions
-      none_found: There are no discussions with recent comments.
     save_comment:
       success: New comment posted
       failure: Failed to post new comment
@@ -295,7 +296,6 @@ en:
       title: Spam comments
       index:
         title: Spam comment moderation
-        empty: There are currently no comments marked as spam
         select_all: Select all
         confirm_spam: Confirm as spam (and delete)
         remove_flag: Remove spam flag (and publish)
@@ -337,7 +337,6 @@ en:
       title: Email stats
       index:
         title: Email stats
-        empty: No stats to display
 
     feature_flags:
       title: Feature Flags
@@ -407,7 +406,6 @@ en:
       title: Web stats
       index:
         title: Web stats
-        empty: No stats to display
 
 
   # ========== ( error messages for models/validations/etc ) ==========
