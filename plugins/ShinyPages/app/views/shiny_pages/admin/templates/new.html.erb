@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_for :page_template, url: shiny_pages.templates_path, method: :post do |f| %>
+<%= form_for @template, url: shiny_pages.templates_path, method: :post do |f| %>
   <p>
     <%= f.label :name %>
     <br><%= f.text_field :name %>
