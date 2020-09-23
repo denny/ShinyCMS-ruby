@@ -8,6 +8,8 @@
 
 # Methods that might be useful in templates and/or controllers on the main site
 module ShinyMainSiteHelper
+  include ShinyDiscussionHelper
+  include ShinyPluginHelper
   include ShinySiteNameHelper
 
   include ActsAsTaggableOn::TagsHelper
@@ -34,13 +36,5 @@ module ShinyMainSiteHelper
 
   def user_profile_link( user = current_user )
     link_to user.name, shiny_profiles.profile_path( user.username )
-  end
-
-  def plugins_with_main_site_menu_templates
-    ::Plugin.with_template( 'menu/_section.html.erb' )
-  end
-
-  def plugins_with_admin_toolbar_templates
-    ::Plugin.with_template( 'admin/toolbar/_section.html.erb' )
   end
 end
