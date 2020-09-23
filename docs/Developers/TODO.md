@@ -2,8 +2,6 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
-* Find and fix bug causing issues when trying to move a top-level section into another top-level section
-
 * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
 
 * Highlight section name in admin area menu when on a page which isn't in the menu
