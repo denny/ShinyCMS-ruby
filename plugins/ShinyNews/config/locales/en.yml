@@ -25,7 +25,6 @@ en:
     news:
       index:
         title: Recent news
-        empty: There are no news posts to display
       post:
         footer:
           reply: Reply to this post
@@ -43,7 +42,6 @@ en:
         title: News
         index:
           title: List news posts
-          empty: There are no news posts to display
         new:
           title: Add news post
         edit:

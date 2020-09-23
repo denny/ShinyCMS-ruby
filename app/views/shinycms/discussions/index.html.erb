@@ -29,7 +29,7 @@
 
   <% if @active_discussions.blank? %>
     <p>
-      <%= t( '.none_found' ) %>
+      <%= t( 'empty_list', items: 'recently-active discussions' ) %>
     </p>
   <% end %>
 </section>

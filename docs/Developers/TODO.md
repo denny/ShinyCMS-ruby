@@ -13,15 +13,9 @@
 
 * Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
 
-* Replace Anonymous/Pseudonymous/Authenticated with symbols and translation strings
-
 * Track down untranslated strings and add them to locale files
-  * Frequent offenders:
-    * Index pages 'no results' message and column headings
-    * Labels on new/edit forms
-  * Core and plugins
-  * Templates, controllers, and models
-  * Admin area, main site, and themes
+  * Check core and plugins; templates, controllers, and models; admin area, main site, and themes
+  * Frequent offenders: column headings on index pages, input labels on new/edit forms
 
 * Make sure concerns are used everywhere they could/should be, and that the shared examples
   are used to test that the concerns are doing the right thing in each place they get used.
@@ -127,15 +121,6 @@
 
 
 ### Large-ish
-
-* Finish the move to plugin architecture
-  * Move Comments, Tags, and Likes into plugins
-  * Move concerns and helpers into a plugin (ShinyToolbox?)
-    * Eventually, break them up into multiple plugins (ShinyPostTools, ShinyTemplateTools, etc)
-  * Look into moving Users into a plugin
-    * Ideally, move all the non-Devise User/Account functionality into concerns and helpers, so
-      you could include those into any site with Devise-powered auth and then use any ShinyPlugin
-  * Move plugins into separate gems
 
 * Surveys / Questionnaires
 
