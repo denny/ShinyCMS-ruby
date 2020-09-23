@@ -42,7 +42,7 @@ en:
           failure: Failed to delete page
 
       sections:
-        title: Page sections
+        title: Pages
         new:
           title: Add new section
         edit:

@@ -32,7 +32,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
   describe 'POST /admin/pages/section/new' do
     it 'fails when the form is submitted without all the details' do
       post shiny_pages.sections_path, params: {
-        page_section: {
+        section: {
           public_name: Faker::Books::CultureSeries.unique.culture_ship
         }
       }
@@ -44,7 +44,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
 
     it 'fails if top-level section slug collides with a controller namespace' do
       post shiny_pages.sections_path, params: {
-        page_section: {
+        section: {
           internal_name: Faker::Books::CultureSeries.unique.culture_ship,
           slug: 'tags'
         }
@@ -59,7 +59,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       ship_name = Faker::Books::CultureSeries.unique.culture_ship
 
       post shiny_pages.sections_path, params: {
-        page_section: {
+        section: {
           internal_name: ship_name,
           slug: ship_name.parameterize
         }
@@ -90,7 +90,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       section = create :page_section
 
       put shiny_pages.section_path( section ), params: {
-        page_section: {
+        section: {
           internal_name: nil
         }
       }
@@ -104,7 +104,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       section = create :page_section
 
       put shiny_pages.section_path( section ), params: {
-        page_section: {
+        section: {
           internal_name: 'Updated by test'
         }
       }
@@ -116,6 +116,25 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.sections.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_pages.admin.sections.update.success' )
       expect( response.body ).to have_field 'section[internal_name]', with: 'Updated by test'
+    end
+
+    it 'moves a top-level section inside another section' do
+      section1 = create :page_section
+      section2 = create :page_section
+
+      put shiny_pages.section_path( section1 ), params: {
+        section: {
+          section_id: section2.id
+        }
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_pages.edit_section_path( section1 )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.sections.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_pages.admin.sections.update.success' )
+      expect( response.body ).to have_field 'section[section_id]', with: section2.id
     end
   end
 
