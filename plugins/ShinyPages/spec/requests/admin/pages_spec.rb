@@ -44,7 +44,9 @@ RSpec.describe 'Admin: Pages', type: :request do
   describe 'POST /admin/page/new' do
     it 'fails when the form is submitted without all the details' do
       post shiny_pages.pages_path, params: {
-        'page[public_name]': 'Test'
+        page: {
+          public_name: 'Test'
+        }
       }
 
       expect( response      ).to have_http_status :ok
@@ -56,9 +58,11 @@ RSpec.describe 'Admin: Pages', type: :request do
       template = create :page_template
 
       post shiny_pages.pages_path, params: {
-        'page[internal_name]': 'Test',
-        'page[slug]': 'account',
-        'page[template_id]': template.id
+        page: {
+          internal_name: 'Test',
+          slug: 'account',
+          template_id: template.id
+        }
       }
 
       expect( response      ).to have_http_status :ok
@@ -70,8 +74,10 @@ RSpec.describe 'Admin: Pages', type: :request do
       template = create :page_template
 
       post shiny_pages.pages_path, params: {
-        'page[internal_name]': 'Test',
-        'page[template_id]': template.id
+        page: {
+          internal_name: 'Test',
+          template_id: template.id
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -86,9 +92,10 @@ RSpec.describe 'Admin: Pages', type: :request do
       template = create :page_template
 
       post shiny_pages.pages_path, params: {
-        'page[internal_name]': 'Test',
-        'page[slug]': 'test',
-        'page[template_id]': template.id
+        page: {
+          internal_name: 'Test',
+          template_id: template.id
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -136,7 +143,9 @@ RSpec.describe 'Admin: Pages', type: :request do
       page = create :top_level_page
 
       put shiny_pages.page_path( page ), params: {
-        'page[internal_name]': ''
+        page: {
+          internal_name: ''
+        }
       }
 
       expect( response      ).to have_http_status :ok
@@ -148,7 +157,9 @@ RSpec.describe 'Admin: Pages', type: :request do
       page = create :top_level_page
 
       put shiny_pages.page_path( page ), params: {
-        'page[internal_name]': 'Updated by test'
+        page: {
+          internal_name: 'Updated by test'
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -165,8 +176,10 @@ RSpec.describe 'Admin: Pages', type: :request do
       old_slug = page.slug
 
       put shiny_pages.page_path( page ), params: {
-        'page[internal_name]': 'Updated by test',
-        'page[slug]': ''
+        page: {
+          internal_name: 'Updated by test',
+          slug: ''
+        }
       }
 
       expect( response      ).to     have_http_status :found

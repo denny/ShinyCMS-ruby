@@ -99,7 +99,7 @@ class Comment < ApplicationRecord
     return author.name if author_type == 'authenticated'
     return author_name if author_type == 'pseudonymous' && author_name.present?
 
-    'Anonymous'
+    I18n.t( 'discussions.anonymous' )
   end
 
   def notifiable?

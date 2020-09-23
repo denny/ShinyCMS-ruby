@@ -26,7 +26,6 @@ en:
         title: Pages
         index:
           title: List pages
-          empty_list: There are currently no pages or sections to display.
         new:
           title: Add new page
         edit:
@@ -42,7 +41,7 @@ en:
           failure: Failed to delete page
 
       sections:
-        title: Page sections
+        title: Pages
         new:
           title: Add new section
         edit:

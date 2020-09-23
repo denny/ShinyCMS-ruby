@@ -1,6 +1,6 @@
 Posted by
 <% if comment.author_type == 'anonymous' %>
-  Anonymous
+  <%= t( '.anonymous' ) %>
 <% elsif comment.author_type == 'pseudonymous' %>
   <% if comment.author_url.present? %>
     <%= link_to comment.author_name, comment.author_url %>

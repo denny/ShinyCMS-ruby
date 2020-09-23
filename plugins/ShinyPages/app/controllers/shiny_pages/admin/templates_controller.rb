@@ -66,7 +66,7 @@ module ShinyPages
     private
 
     def template_params
-      params.require( :page_template ).permit(
+      params.require( :template ).permit(
         :name, :description, :filename, elements_attributes: {}
       )
     end

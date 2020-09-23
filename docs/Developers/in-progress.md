@@ -2,8 +2,9 @@
 
 ## In progress
 
-Features from the Perl version that I'm halfway through re-implementing in the Ruby version
-(with notes on where I'm up to, what I'm stuck on, links to useful docs, etc)
+Features that I'm halfway through implementing (with notes on where I'm up to, what I'm stuck on, links to useful docs, etc)
+
+### Features that exist in the Perl version
 
 * Newsletters (HTML mailshots) and mailing lists
   * Nearly done!
@@ -12,10 +13,18 @@ Features from the Perl version that I'm halfway through re-implementing in the R
 
 * User profile pages (with content such as recent comments, recent posts, etc)
 
-### New features that snuck in ahead of schedule
+### Features that don't exist in the Perl version but I seem to be working on them anyway
 
 * Plugin architecture
-  * I'm in the process of converting all the initial features into Rails Engine plugins
+  * I've converted most of the existing features into Rails Engine plugins
+  * Still to do:
+    * Move Comments, Tags, and Likes into plugins
+    * Move concerns and helpers into a plugin (ShinyToolbox?)
+      * Eventually, break them up into multiple plugins (ShinyPostTools, ShinyTemplateTools, etc)
+    * Look into moving Users into a plugin
+      * Ideally, move all the non-Devise User/Account functionality into concerns and helpers, so
+        you could include those into any site with Devise-powered auth and then use any ShinyPlugin
+    * Move each plugin into its own separate gem
 
 * Blazer dashboards / charts / etc
   * https://github.com/ankane/blazer
@@ -26,7 +35,10 @@ Features from the Perl version that I'm halfway through re-implementing in the R
   * NB: Not free to non-commercial sites using the CMS :(
 
 * Multiple blog support
-  * The original version had some unfinished code around this, which initially got ported straight across, but has now been split off into an unfinished ShinyBlogs plugin while the ShinyBlog plugin has a cleaner single-blog implementation
+  * The original version had some unfinished code around allowing multiple blogs on a single 'journal style' site
+  * When I reimplemented the Blog feature I split it into:
+    * ShinyBlog (single blog, finished (for now) and merged)
+    * ShinyBlogs (multi-blog, not finished, still in a branch)
 
 
 ## Done / TODO
