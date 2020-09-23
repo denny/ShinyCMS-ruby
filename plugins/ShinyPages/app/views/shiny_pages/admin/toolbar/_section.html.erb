@@ -1,4 +1,4 @@
-<% if controller_name == 'pages' %>
+<% if plugin_name == 'ShinyPages' %>
   <% if current_user_can? :list, :pages %>
     <%= t( 'shiny_pages.admin.pages.title' ).singularize %>:
   <% if current_user_can? :add, :pages %>
