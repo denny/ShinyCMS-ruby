@@ -13,8 +13,6 @@
 
 * Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
 
-* Replace Anonymous/Pseudonymous/Authenticated with symbols and translation strings
-
 * Track down untranslated strings and add them to locale files
   * Frequent offenders:
     * Index pages 'no results' message and column headings

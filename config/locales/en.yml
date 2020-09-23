@@ -48,6 +48,7 @@ en:
   # ========== ( Main Site ) ==========
 
   discussions:
+    anonymous: Anonymous
     comment:
       form:
         comment: Comment
@@ -57,6 +58,8 @@ en:
         name: Name
         email: Email
         url: URL
+      posted_by:
+        anonymous: Anonymous
     comments: Comments
     n_total: '%{count} total'
     n_recent_comments:
