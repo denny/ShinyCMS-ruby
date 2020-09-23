@@ -38,7 +38,7 @@ en:
 
     mailers:
       form_mailer:
-        default_subject: '[%{site_name}] Form data from your website'
+        default_subject: 'Form data from %{site_name}'
 
     models:
       forms:
