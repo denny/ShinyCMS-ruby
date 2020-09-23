@@ -110,6 +110,8 @@
 
 * Draggable UI for reordering lists in admin area - SortableJS, maybe?
 
+* When people post a comment or subscribe to a list without being logged in, offer to create an account for them?
+
 * Tests for rake tasks
   * https://thoughtbot.com/blog/test-rake-tasks-like-a-boss ? (old)
 

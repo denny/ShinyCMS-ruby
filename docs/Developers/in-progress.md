@@ -5,10 +5,10 @@
 Features from the Perl version that I'm halfway through re-implementing in the Ruby version
 (with notes on where I'm up to, what I'm stuck on, links to useful docs, etc)
 
-* Newsletters (HTML mailshots)
-  * MJML templates - https://mjml.io/documentation
-  * Mailing lists
-    * Getting a bit bogged down in feature creep on this one, need to make myself just MVP it!
+* Newsletters (HTML mailshots) and mailing lists
+  * Nearly done!
+  * Add a nice default template or two, from https://mjml.io/templates/newsletter-email
+  * Do some end-to-end testing, i.e. 'try to use it'
 
 * User profile pages (with content such as recent comments, recent posts, etc)
 
