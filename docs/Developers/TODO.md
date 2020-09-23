@@ -2,8 +2,6 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
-* Move search result templates into relevant plugins
-
 * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
 
 * Highlight section name in admin area menu when on a page which isn't in the menu
