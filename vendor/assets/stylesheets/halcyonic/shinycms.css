@@ -299,7 +299,7 @@ nav .sm li li a:hover {
 .user-profile-pic {
   border-radius:        5px;
   float:                right;
-  max-width:            80%;
+  width:                500px;
 }
 
 .user-icon {

@@ -1,23 +1,22 @@
 <% @page_title = @user_profile.name %>
 
 <section>
-  <% if @user_profile.profile_pic.present? %>
-  <%= image_tag @user_profile.profile_pic.variant( resize: '400x400!' ).processed.service_url, class: 'user_profile_pic' %>
-  <% end %>
-
   <header>
     <h2>
       <%= @user_profile.name %>
     </h2>
   </header>
 
+  <% if @user_profile.profile_pic.present? %>
+  <%= image_tag @user_profile.profile_pic.variant( resize: '400x400!' ).processed.service_url, class: 'user_profile_pic' %>
+  <% end %>
+
   <% if @user_profile.bio.present? %>
   <%= simple_format @user_profile.bio %>
   <% end %>
 
   <p>
-    Member since: <%= @user_profile.created_at.to_s( :time ) %>
-    on <%= @user_profile.created_at.to_date.to_s( :rfc822 ) %>
+    Member since: <%= display_date( @user_profile.created_at ) %>
   </p>
 
   <% if @user_profile.profile_pic.present? %>
@@ -34,8 +33,10 @@
   </header>
 
   <p>
-    Last login: <%= @user_profile.last_sign_in_at.to_s( :time ) %>
-    on <%= @user_profile.last_sign_in_at.to_date.to_s( :rfc822 ) %>,
+    Account created: <%= display_date_at_time( @user_profile.created_at ) %>
+  </p>
+  <p>
+    Last login: <%= display_date_at_time( @user_profile.last_sign_in_at ) %>
     from <%= @user_profile.last_sign_in_ip_was %>
   </p>
 </section>
