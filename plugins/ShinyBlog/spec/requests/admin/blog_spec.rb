@@ -51,6 +51,30 @@ RSpec.describe 'Admin::Blog', type: :request do
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_blog.admin.blog_posts.create.success' )
     end
 
+    it 'creates a linked discussion if requested' do
+      post shiny_blog.blog_posts_path, params: {
+        post: {
+          user_id: @admin.id,
+          title: Faker::Books::CultureSeries.unique.culture_ship,
+          body: Faker::Lorem.paragraph,
+          discussion_show_on_site: '1',
+          discussion_locked: '1'
+        }
+      }
+
+      post = ShinyBlog::Post.last
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_blog.edit_blog_post_path( post )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_blog.admin.blog_posts.create.success' )
+
+      expect( post.discussion         ).to be_present
+      expect( post.discussion.hidden? ).to be false
+      expect( post.discussion.locked? ).to be true
+    end
+
     it 'fails to create a new blog post when an incomplete form is submitted' do
       post shiny_blog.blog_posts_path, params: {
         post: {
@@ -162,8 +186,8 @@ RSpec.describe 'Admin::Blog', type: :request do
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
-          discussion_show_on_site: true,
-          discussion_locked: true
+          discussion_show_on_site: '0',
+          discussion_locked: '1'
         }
       }
 
@@ -174,7 +198,7 @@ RSpec.describe 'Admin::Blog', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_blog.admin.blog_posts.update.success' )
-      expect( post.discussion.hidden? ).to be false
+      expect( post.discussion.hidden? ).to be true
       expect( post.discussion.locked? ).to be true
     end
   end

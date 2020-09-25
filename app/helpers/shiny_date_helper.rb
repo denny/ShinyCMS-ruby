@@ -38,7 +38,7 @@ module ShinyDateHelper
     timestamp.localtime.to_s :time
   end
 
-  def combine_date_and_time_inputs( params_hash, date_input_name )
+  def combine_date_and_time_params( params_hash, date_input_name )
     date_string = params_hash[ date_input_name ]
     time_string = params_hash.delete( "#{date_input_name}_time" )
 
