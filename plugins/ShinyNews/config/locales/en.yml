@@ -39,7 +39,9 @@ en:
 
     admin:
       news_posts:
-        title: News
+        breadcrumb: News
+        menu: News
+        toolbar: News posts
         index:
           title: List news posts
         new:

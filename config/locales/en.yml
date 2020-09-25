@@ -261,12 +261,10 @@ en:
   rails_email_preview:
     emails:
       index:
-        list_title: Emails
+        title: All mailers
       show:
+        title: Preview email
         breadcrumb_list: Emails
-    admin:
-      emails:
-        title: Emails
 
   rep:
     base:
@@ -280,8 +278,8 @@ en:
       loading: Loading...
 
   admin:
-    title: Admin
-    admin_area: Admin area
+    breadcrumb: Admin
+    toolbar: Admin area
 
     invalid_url: 'Invalid URL: /admin/%{request_path}'
 
@@ -293,7 +291,8 @@ en:
     unknown_element_type: UNKNOWN ELEMENT TYPE
 
     comments:
-      title: Spam comments
+      breadcrumb: Comments
+      menu: Spam comments
       index:
         title: Spam comment moderation
         select_all: Select all
@@ -308,7 +307,8 @@ en:
         failure: Failed to remove spam flags
 
     consent_versions:
-      title: Consent versions
+      breadcrumb: Consent versions
+      menu: Consent versions
       index:
         title: Consent versions
       new:
@@ -325,24 +325,28 @@ en:
         success: Consent version deleted
 
     dashboard:
-      title: Dashboard
+      breadcrumb: Dashboard
+      menu: Dashboard
 
     discussion:
-      title: Discussion
+      toolbar: Discussion
       enable_comments: Enable comments
       show_comments: Show comments
       lock_comments: Lock comments
 
     emails:
-      title: Emails
+      breadcrumb: Emails
+      menu: Emails
 
     email_stats:
-      title: Email stats
+      breadcrumb: Stats
+      menu: Email stats
       index:
         title: Email stats
 
     feature_flags:
-      title: Feature Flags
+      breadcrumb: Settings
+      menu: Feature Flags
       index:
         title: Feature Flags
         feature: Feature
@@ -357,10 +361,11 @@ en:
     letter_opener_web: Outbox
 
     other:
-      title: Other
+      menu: Other
 
     site_settings:
-      title: Site settings
+      breadcrumb: Settings
+      menu: Site settings
       index:
         title: Site settings
         name: Name
@@ -375,7 +380,9 @@ en:
         unchanged: No settings were changed
 
     users:
-      title: Users
+      breadcrumb: Users
+      menu: Users
+      toolbar: Users
       index:
         title: List users
       new:
@@ -393,20 +400,23 @@ en:
         failure: Failed to delete user
 
     stats:
-      title: Stats
+      menu: Stats
+      breadcrumb: Stats
 
     # Blazer
     charts:
-      title: Charts
-    checks:
-      title: Checks
-    dashboards:
-      title: Dashboards
-    queries:
-      title: Queries
+      menu: Charts
+      # title: Charts
+    # checks:
+      # title: Checks
+    # dashboards:
+      # title: Dashboards
+    # queries:
+      # title: Queries
 
     web_stats:
-      title: Web stats
+      breadcrumb: Stats
+      menu: Web stats
       index:
         title: Web stats
 

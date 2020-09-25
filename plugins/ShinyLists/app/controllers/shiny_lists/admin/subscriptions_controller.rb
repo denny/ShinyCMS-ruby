@@ -41,7 +41,7 @@ module ShinyLists
 
     # Override the breadcrumbs 'section' link to go back to the lists page
     def breadcrumb_link_text_and_path
-      [ t( 'shiny_lists.admin.lists.title' ), lists_path ]
+      [ t( 'shiny_lists.admin.lists.breadcrumb' ), lists_path ]
     end
 
     private
