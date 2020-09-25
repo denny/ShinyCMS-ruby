@@ -21,18 +21,18 @@ module ShinyNews
     helper_method :load_html_editor?
 
     def index
-      authorise Post
+      authorize Post
       @posts = Post.order( created_at: :desc ).page( page_number )
-      authorise @posts if @posts.present?
+      authorize @posts if @posts.present?
     end
 
     def new
       @post = Post.new
-      authorise @post
+      authorize @post
     end
 
     def create
-      authorise @post
+      authorize @post
 
       if @post.save
         redirect_to shiny_news.edit_news_post_path( @post ), notice: t( '.success' )
@@ -43,11 +43,11 @@ module ShinyNews
     end
 
     def edit
-      authorise @post
+      authorize @post
     end
 
     def update
-      authorise @post
+      authorize @post
 
       if @post.update( strong_params_for_update )
         redirect_to shiny_news.edit_news_post_path( @post ), notice: t( '.success' )
@@ -58,7 +58,7 @@ module ShinyNews
     end
 
     def destroy
-      authorise @post
+      authorize @post
 
       flash[ :notice ] = t( '.success' ) if @post.destroy
       redirect_to news_posts_path

@@ -12,22 +12,22 @@ module ShinyPages
     helper_method :load_html_editor?
 
     def index
-      authorise ShinyPages::Page
-      authorise ShinyPages::Section
+      authorize ShinyPages::Page
+      authorize ShinyPages::Section
       @top_level_items = ShinyPages::Page.all_top_level_items
       @top_level_items.each do |item|
-        authorise item
+        authorize item
       end
     end
 
     def new
       @page = ShinyPages::Page.new
-      authorise @page
+      authorize @page
     end
 
     def create
       @page = ShinyPages::Page.new( page_params )
-      authorise @page
+      authorize @page
 
       if @page.save
         redirect_to shiny_pages.edit_page_path( @page ), notice: t( '.success' )
@@ -39,12 +39,12 @@ module ShinyPages
 
     def edit
       @page = ShinyPages::Page.find( params[:id] )
-      authorise @page
+      authorize @page
     end
 
     def update
       @page = ShinyPages::Page.find( params[:id] )
-      authorise @page
+      authorize @page
 
       if @page.update( page_params )
         redirect_to shiny_pages.edit_page_path( @page ), notice: t( '.success' )
@@ -56,7 +56,7 @@ module ShinyPages
 
     def destroy
       page = ShinyPages::Page.find( params[:id] )
-      authorise page
+      authorize page
 
       flash[ :notice ] = t( '.success' ) if page.destroy
       redirect_to shiny_pages.pages_path

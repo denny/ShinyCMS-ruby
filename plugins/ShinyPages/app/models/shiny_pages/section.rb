@@ -74,16 +74,7 @@ module ShinyPages
       menu_pages.present? || menu_sections.present?
     end
 
-    # Specify policy class for Pundit
-    def policy_class
-      self.class.policy_class
-    end
-
     # Class methods
-
-    def self.policy_class
-      SectionPolicy
-    end
 
     def self.all_top_level_sections
       top_level

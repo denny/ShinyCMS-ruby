@@ -12,10 +12,5 @@ module ShinyInserts
     has_many :elements, -> { order(:name) }, inverse_of: :set, dependent: :destroy, class_name: 'ShinyInserts::Element'
 
     accepts_nested_attributes_for :elements
-
-    # Specify policy class for Pundit
-    def policy_class
-      ShinyInserts::SetPolicy
-    end
   end
 end
