@@ -10,6 +10,7 @@ module ShinyNews
   # Admin area controller for ShinyNews plugin for ShinyCMS
   class Admin::NewsPostsController < AdminController
     include ShinyDiscussionAdmin
+    include ShinyPostAdmin
 
     include ShinyDateHelper
     include ShinyPagingHelper
@@ -79,36 +80,26 @@ module ShinyNews
     end
 
     def strong_params_for_create
+      enforce_change_author_capability_for_create( :news_posts )
+
       temp_params = params.require( :post ).permit(
         :title, :slug, :body, :tag_list, :show_on_site, :user_id, :posted_at, :posted_at_time
       )
 
-      temp_params = only_admins_can_set_author( temp_params )
-
       combine_date_and_time_params( temp_params, :posted_at )
-    end
-
-    def only_admins_can_set_author( temp_params )
-      temp_params[ :user_id ] = current_user.id unless current_user.can? :change_author, :news_posts
-      temp_params
     end
 
     def strong_params_for_update
       show, lock = extract_discussion_flags_from_params( params[:post] )
       create_discussion_or_update_flags( @post, show, lock )
 
+      enforce_change_author_capability_for_update( :news_posts )
+
       temp_params = params.require( :post ).permit(
         :title, :slug, :body, :tag_list, :show_on_site, :user_id, :posted_at, :posted_at_time
       )
 
-      temp_params = only_admins_can_change_author( temp_params )
-
       combine_date_and_time_params( temp_params, :posted_at )
-    end
-
-    def only_admins_can_change_author( temp_params )
-      temp_params.delete( :user_id ) unless current_user.can? :change_author, :blog_posts
-      temp_params
     end
   end
 end
