@@ -9,6 +9,9 @@
 module ShinyBlog
   # Admin area controller for ShinyBlog plugin for ShinyCMS
   class Admin::BlogPostsController < AdminController
+    include ShinyDiscussionAdmin
+    include ShinyPostAdmin
+
     include ShinyDateHelper
     include ShinyPagingHelper
 
@@ -68,49 +71,35 @@ module ShinyBlog
       redirect_to blog_posts_path, alert: t( 'shiny_blog.admin.blog_posts.set_post.not_found' )
     end
 
-    def strong_params_for_update
-      temp_params = params.require( :post ).permit(
-        :title, :slug, :body, :tag_list, :show_on_site, :user_id, :posted_at, :posted_at_time,
-        :discussion_show_on_site, :discussion_locked
-      )
-
-      temp_params = combine_date_and_time_inputs( temp_params, :posted_at )
-
-      temp_params.delete( :user_id ) unless current_user.can? :change_author, :blog_posts
-
-      update_discussion_flags( temp_params )
-    end
-
     def set_post_for_create
+      show, lock = extract_discussion_flags_from_params( params[:post] )
+
       @post = Post.new( strong_params_for_create )
+
+      create_discussion_or_update_flags( @post, show, lock ) if show
     end
 
     def strong_params_for_create
+      enforce_change_author_capability_for_create( :blog_posts )
+
       temp_params = params.require( :post ).permit(
-        :title, :slug, :body, :tag_list, :show_on_site, :user_id, :posted_at, :posted_at_time,
-        :discussion_show_on_site, :discussion_locked
+        :title, :slug, :body, :tag_list, :show_on_site, :user_id, :posted_at, :posted_at_time
       )
 
-      temp_params = combine_date_and_time_inputs( temp_params, :posted_at )
-
-      # temp_params = update_discussion_flags( temp_params )
-
-      only_allow_admins_to_set_author( temp_params )
+      combine_date_and_time_params( temp_params, :posted_at )
     end
 
-    def only_allow_admins_to_set_author( temp_params )
-      temp_params[ :user_id ] = current_user.id unless current_user.can? :change_author, :blog_posts
-      temp_params
-    end
+    def strong_params_for_update
+      show, lock = extract_discussion_flags_from_params( params[:post] )
+      create_discussion_or_update_flags( @post, show, lock )
 
-    def update_discussion_flags( temp_params )
-      show_on_site = temp_params.delete( :discussion_show_on_site ) || 0
-      locked = temp_params.delete( :discussion_locked ) || 0
+      enforce_change_author_capability_for_update( :blog_posts )
 
-      return temp_params if @post.discussion.blank?
+      temp_params = params.require( :post ).permit(
+        :title, :slug, :body, :tag_list, :show_on_site, :user_id, :posted_at, :posted_at_time
+      )
 
-      @post.discussion.update!( show_on_site: show_on_site, locked: locked )
-      temp_params
+      combine_date_and_time_params( temp_params, :posted_at )
     end
   end
 end

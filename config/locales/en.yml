@@ -329,6 +329,9 @@ en:
 
     discussion:
       title: Discussion
+      enable_comments: Enable comments
+      show_comments: Show comments
+      lock_comments: Lock comments
 
     emails:
       title: Emails
