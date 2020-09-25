@@ -9,6 +9,8 @@
 module ShinyPages
   # Admin controller for templates - ShinyPages plugin for ShinyCMS
   class Admin::TemplatesController < AdminController
+    helper_method :load_html_editor?
+
     def index
       authorise ShinyPages::Template
 
@@ -69,6 +71,11 @@ module ShinyPages
       params.require( :template ).permit(
         :name, :description, :filename, elements_attributes: {}
       )
+    end
+
+    # Return true if the page we're on might need a WYSIWYG HTML editor
+    def load_html_editor?
+      action_name == 'edit'
     end
   end
 end

@@ -23,12 +23,6 @@ module AdminAreaHelper
     authorize record, policy_class: policy_class_name.constantize
   end
 
-  # Return true if the page we're on might need a WYSIWYG HTML editor
-  def html_editor_needed?
-    ( action_name == 'new' && controller_name == 'posts' ) ||
-      ( action_name == 'edit' && %w[ posts pages templates ].include?( controller_name ) )
-  end
-
   def plugins_for_admin_menu
     ::Plugin.with_template( 'admin/menu/_section.html.erb' )
   end
