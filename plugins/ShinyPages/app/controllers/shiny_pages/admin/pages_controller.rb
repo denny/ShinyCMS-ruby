@@ -9,6 +9,8 @@
 module ShinyPages
   # Admin controller for pages - ShinyPages plugin for ShinyCMS
   class Admin::PagesController < AdminController
+    helper_method :load_html_editor?
+
     def index
       authorise ShinyPages::Page
       authorise ShinyPages::Section
@@ -70,6 +72,11 @@ module ShinyPages
         :internal_name, :public_name, :slug, :description, :template_id, :section_id,
         :position, :show_on_site, :show_in_menus, elements_attributes: {}
       )
+    end
+
+    # Return true if the page we're on might need a WYSIWYG HTML editor
+    def load_html_editor?
+      action_name == 'edit'
     end
   end
 end

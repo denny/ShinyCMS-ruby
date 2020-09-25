@@ -19,6 +19,8 @@ class AdminController < ApplicationController
 
   layout 'admin/layouts/admin_area'
 
+  helper_method :load_html_editor?
+
   def index
     skip_authorization
     if current_user.not_admin?
@@ -85,5 +87,9 @@ class AdminController < ApplicationController
   def primary_admin_path_stats
     return main_app.web_stats_path    if current_user.can? :view_web,   :stats
     return main_app.email_stats_path  if current_user.can? :view_email, :stats
+  end
+
+  def load_html_editor?
+    false
   end
 end

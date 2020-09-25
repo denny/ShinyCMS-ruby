@@ -18,6 +18,8 @@ module ShinyNews
     before_action :set_post_for_create, only: :create
     before_action :set_post, only: %i[ edit update destroy ]
 
+    helper_method :load_html_editor?
+
     def index
       authorise Post
       @posts = Post.order( created_at: :desc ).page( page_number )
@@ -100,6 +102,11 @@ module ShinyNews
       )
 
       combine_date_and_time_params( temp_params, :posted_at )
+    end
+
+    # Return true if the page we're on might need a WYSIWYG HTML editor
+    def load_html_editor?
+      action_name == 'new' || action_name == 'edit'
     end
   end
 end

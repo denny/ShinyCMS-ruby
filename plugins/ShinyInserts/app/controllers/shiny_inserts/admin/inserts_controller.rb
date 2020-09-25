@@ -52,9 +52,9 @@ module ShinyInserts
       redirect_to shiny_inserts.inserts_path, alert: t( '.failure' )
     end
 
-    helper_method :html_editor_needed?
+    helper_method :load_html_editor?
 
-    def html_editor_needed?
+    def load_html_editor?
       return true if action_name == :index
     end
 
