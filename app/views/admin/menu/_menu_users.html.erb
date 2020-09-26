@@ -1,6 +1,6 @@
 <% return unless current_user.can? :list, :users %>
 
-  <%= render_admin_menu_section( t( 'admin.users.title' ), 'people' ) do %>
+  <%= render_admin_menu_section( t( 'admin.users.menu' ), 'people' ) do %>
 
     <%= render_admin_menu_item(
         t( 'admin.users.index.title' ), users_path, 'people' ) %>

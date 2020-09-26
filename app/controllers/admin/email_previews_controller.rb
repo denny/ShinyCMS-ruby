@@ -8,5 +8,5 @@
 
 # Base controller for Rails Email Preview, used by /admin/emails
 class Admin::EmailPreviewsController < AdminController
-  before_action -> { authorise :email_preview }, only: %i[ index show ]
+  before_action -> { authorize :email_preview }, only: %i[ index show ]
 end

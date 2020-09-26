@@ -11,14 +11,14 @@ class Admin::WebStatsController < AdminController
   before_action :set_ahoy_user
 
   def index
-    authorise Ahoy::Visit
+    authorize Ahoy::Visit
 
     page_num = params[ :page ] || 1
     visits = Ahoy::Visit
     visits = visits.where( user: @ahoy_user ) if @ahoy_user
     @visits = visits.order( 'started_at desc' ).page( page_num )
 
-    authorise @visits if @visits.present?
+    authorize @visits if @visits.present?
   end
 
   private

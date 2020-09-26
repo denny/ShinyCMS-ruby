@@ -26,19 +26,10 @@ module ShinyNews
       )
     end
 
-    # Specify policy class for Pundit
-    def policy_class
-      self.class.policy_class
-    end
-
     # Class methods
 
     def self.human_name
       'news post'
-    end
-
-    def self.policy_class
-      ShinyNews::PostPolicy
     end
   end
 end

@@ -1,5 +1,5 @@
 <% if plugin_name == 'ShinyBlog' %>
-    <%= t( 'shiny_blog.admin.blog_posts.title' ).singularize %>:
+    <%= t( 'shiny_blog.admin.blog_posts.toolbar' ).singularize %>:
   <% if current_user_can? :add, :blog_posts %>
     <%= link_to t( 'add' ), shiny_blog.new_blog_post_path %> /
   <% end %>

@@ -9,13 +9,13 @@
 # Controller for feature flags section of ShinyCMS admin area
 class Admin::FeatureFlagsController < AdminController
   def index
-    authorise FeatureFlag
+    authorize FeatureFlag
     @flags = FeatureFlag.all.order( :name )
-    authorise @flags if @flags.present?
+    authorize @flags if @flags.present?
   end
 
   def update
-    authorise FeatureFlag
+    authorize FeatureFlag
 
     if FeatureFlag.update_all_flags( feature_flag_params )
       flash[ :notice ] = t( '.success' )

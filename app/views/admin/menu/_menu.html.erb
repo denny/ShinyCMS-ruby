@@ -1,6 +1,6 @@
 <ul class="c-sidebar-nav">
   <%= render_admin_menu_item_if( current_user.can?( :view_admin_dashboard ),
-      t( 'admin.dashboard.title' ), admin_path, 'speedometer' ) %>
+      t( 'admin.dashboard.menu' ), admin_path, 'speedometer' ) %>
 
   <% plugins_for_admin_menu.each do |plugin| %>
   <%= render partial: "#{plugin.name.underscore}/admin/menu/section" %>
