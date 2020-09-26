@@ -8,21 +8,6 @@
 
 # Helper methods for admin area
 module AdminAreaHelper
-  # Invoke Pundit
-  def authorise( record )
-    if record.is_a? Symbol
-      policy_class_name = "Admin::#{record.to_s.camelize}Policy"
-    elsif record.respond_to? :policy_class
-      policy_class_name = record.policy_class.to_s
-    else
-      record_class_name = class_name( record )
-      record_class_name = record_class_name.remove( '::' )
-      policy_class_name = "Admin::#{record_class_name}Policy"
-    end
-
-    authorize record, policy_class: policy_class_name.constantize
-  end
-
   def plugins_for_admin_menu
     ::Plugin.with_template( 'admin/menu/_section.html.erb' )
   end
@@ -74,17 +59,5 @@ module AdminAreaHelper
 
   def render_admin_menu_item_if( condition, text, link, icon = nil )
     render_admin_menu_item( text, link, icon ) if condition
-  end
-
-  private
-
-  def class_name( this )
-    return this.first.class.name if this.class.name == 'ActiveRecord::Relation'
-    return this.first.class.name if this.class.name == 'Array'
-    return this.name             if this.class.name == 'Class'
-    return this.name             if this.class.name == 'Module'
-    return this.to_s.classify    if this.class.name == 'Symbol'
-
-    this.class.name
   end
 end

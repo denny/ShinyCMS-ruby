@@ -9,20 +9,20 @@
 # Controller for users section of ShinyCMS admin area
 class Admin::UsersController < AdminController
   def index
-    authorise User
+    authorize User
     page_num = params[ :page ] || 1
     @users = User.order( :username ).page( page_num )
-    authorise @users if @users.present?
+    authorize @users if @users.present?
   end
 
   def new
     @user = User.new
-    authorise @user
+    authorize @user
   end
 
   def create
     @user = User.new( user_params )
-    authorise @user
+    authorize @user
 
     if @user.save
       redirect_to edit_user_path( @user ), notice: t( '.success' )
@@ -34,12 +34,12 @@ class Admin::UsersController < AdminController
 
   def edit
     @user = User.find( params[:id] )
-    authorise @user
+    authorize @user
   end
 
   def update
     @user = User.find( params[:id] )
-    authorise @user
+    authorize @user
 
     if @user.update_without_password( user_params )
       redirect_to edit_user_path( @user ), notice: t( '.success' )
@@ -51,7 +51,7 @@ class Admin::UsersController < AdminController
 
   def destroy
     user = User.find( params[:id] )
-    authorise user
+    authorize user
 
     flash[ :notice ] = t( '.success' ) if user.destroy
     redirect_to users_path
