@@ -9,7 +9,7 @@
   <%= render partial: "#{plugin.name.underscore}/admin/toolbar/section", locals: { plugin_name: plugin_name } %>
 <% end %>
 
-<% if controller_name == 'users' %>
+<% if controller_name == 'users' || controller_name == 'profiles' %>
     <%= t( 'admin.users.title' ).singularize %>:
   <% if current_user_can? :add, :users %>
     <%= link_to t( 'add'  ), main_app.new_user_path %> /

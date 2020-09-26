@@ -1,0 +1,16 @@
+<section>
+  <header>
+    <h3>
+      <%= heading %>
+    </h3>
+  </header>
+
+  <ul>
+  <% items.each do |item| %>
+    <li>
+      <%= render partial: "profile/content/#{item.class.name.underscore}", locals: { item: item } %>
+    </li>
+  <% end %>
+  </ul>
+  <header>
+</section>

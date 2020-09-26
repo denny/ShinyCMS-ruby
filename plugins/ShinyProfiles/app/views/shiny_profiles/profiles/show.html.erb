@@ -1,55 +1,9 @@
 <% @page_title = @user_profile.name %>
 
-<section>
-  <header>
-    <h2>
-      <%= @user_profile.name %>
-    </h2>
-  </header>
+<%= render partial: 'public' %>
 
-  <% if @user_profile.profile_pic.present? %>
-  <%= image_tag @user_profile.profile_pic.variant( resize: '400x400!' ).processed.service_url, class: 'user_profile_pic' %>
-  <% end %>
+<%#= render partial: 'content' %>
 
-  <% if @user_profile.bio.present? %>
-  <%= simple_format @user_profile.bio %>
-  <% end %>
+<%= render partial: 'private' %>
 
-  <p>
-    Member since: <%= display_date( @user_profile.created_at ) %>
-  </p>
-
-  <% if @user_profile.profile_pic.present? %>
-  <div class="clear-both"></div>
-  <% end %>
-</section>
-
-<% if @user_profile == current_user %>
-<section>
-  <header>
-    <h3>
-      Private information (only visible to you)
-    </h3>
-  </header>
-
-  <p>
-    Account created: <%= display_date_at_time( @user_profile.created_at ) %>
-  </p>
-  <p>
-    Last login: <%= display_date_at_time( @user_profile.last_sign_in_at ) %>
-    from <%= @user_profile.last_sign_in_ip_was %>
-  </p>
-</section>
-<% end %>
-
-<% if current_user_can?( :view_admin_notes, :users ) && @user_profile.admin_notes.present? %>
-<section>
-  <header>
-    <h3>
-      Admin notes
-    </h3>
-  </header>
-
-  <%= simple_format @user_profile.admin_notes %>
-</section>
-<% end %>
+<%= render partial: 'admin' %>
