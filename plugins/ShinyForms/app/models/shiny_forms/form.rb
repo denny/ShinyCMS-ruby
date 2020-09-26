@@ -38,16 +38,7 @@ module ShinyForms
       @handlers ||= FormHandler.new
     end
 
-    # Specify policy class for Pundit
-    def policy_class
-      self.class.policy_class
-    end
-
     # Class methods
-
-    def self.policy_class
-      ShinyForms::FormPolicy
-    end
 
     def self.template_file_exists?( filename )
       Form.available_templates.include? filename

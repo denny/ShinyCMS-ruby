@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
 # Pundit policy for administration of discussions
-class Admin::DiscussionPolicy < Admin::DefaultPolicy
+class DiscussionPolicy
+  attr_reader :this_user, :record
+
+  def initialize( this_user, record )
+    @this_user = this_user
+    @record = record
+  end
+
   def show?
-    @this_user.can? :hide, :discussions
+    hide?
   end
 
   def hide?
@@ -15,6 +22,6 @@ class Admin::DiscussionPolicy < Admin::DefaultPolicy
   end
 
   def unlock?
-    @this_user.can? :lock, :discussions
+    lock?
   end
 end

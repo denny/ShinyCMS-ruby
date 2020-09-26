@@ -12,22 +12,22 @@ module ShinyPages
     helper_method :load_html_editor?
 
     def index
-      authorise ShinyPages::Template
+      authorize ShinyPages::Template
 
       page_num = params[ :page ] || 1
 
       @templates = ShinyPages::Template.order( :name ).page( page_num )
-      authorise @templates if @templates.present?
+      authorize @templates if @templates.present?
     end
 
     def new
       @template = ShinyPages::Template.new
-      authorise @template
+      authorize @template
     end
 
     def create
       @template = ShinyPages::Template.new( template_params )
-      authorise @template
+      authorize @template
 
       if @template.save
         redirect_to shiny_pages.edit_template_path( @template ), notice: t( '.success' )
@@ -39,12 +39,12 @@ module ShinyPages
 
     def edit
       @template = ShinyPages::Template.find( params[:id] )
-      authorise @template
+      authorize @template
     end
 
     def update
       @template = ShinyPages::Template.find( params[:id] )
-      authorise @template
+      authorize @template
 
       if @template.update( template_params )
         redirect_to shiny_pages.edit_template_path( @template ), notice: t( '.success' )
@@ -56,7 +56,7 @@ module ShinyPages
 
     def destroy
       template = ShinyPages::Template.find( params[:id] )
-      authorise template
+      authorize template
 
       flash[ :notice ] = t( '.success' ) if template.destroy
       redirect_to shiny_pages.templates_path
