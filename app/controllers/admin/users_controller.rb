@@ -8,10 +8,11 @@
 
 # Controller for users section of ShinyCMS admin area
 class Admin::UsersController < AdminController
+  include ShinyPagingHelper
+
   def index
     authorize User
-    page_num = params[ :page ] || 1
-    @users = User.order( :username ).page( page_num )
+    @users = User.order( :username ).page( page_number )
     authorize @users if @users.present?
   end
 
