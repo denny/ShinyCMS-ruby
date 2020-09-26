@@ -1,6 +1,6 @@
 <% if plugin_name == 'ShinyPages' %>
   <% if current_user_can? :list, :pages %>
-    <%= t( 'shiny_pages.admin.pages.title' ).singularize %>:
+    <%= t( 'shiny_pages.admin.pages.toolbar' ).singularize %>:
   <% if current_user_can? :add, :pages %>
     <%= link_to t( 'add'  ), shiny_pages.new_page_path %> /
   <% end %>
@@ -10,7 +10,7 @@
     <%= link_to t( 'list' ), shiny_pages.pages_path %>
     |
 
-    <%= t( 'shiny_pages.admin.sections.title' ).singularize %>:
+    <%= t( 'shiny_pages.admin.sections.toolbar' ).singularize %>:
   <% if current_user_can? :add, :page_sections %>
     <%= link_to t( 'add' ), shiny_pages.new_section_path %>
   <% end %>
@@ -21,7 +21,7 @@
   <% end %>
 
   <% if current_user_can? :list, :page_templates %>
-    <%= t( 'shiny_pages.admin.templates.title' ).singularize %>:
+    <%= t( 'shiny_pages.admin.templates.toolbar' ).singularize %>:
   <% if current_user_can? :add, :page_templates %>
     <%= link_to t( 'add'  ), shiny_pages.new_template_path %> /
   <% end %>

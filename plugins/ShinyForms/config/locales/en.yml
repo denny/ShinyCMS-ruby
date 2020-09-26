@@ -14,7 +14,8 @@ en:
 
     admin:
       forms:
-        title: Forms
+        breadcrumb: Forms
+        menu: Forms
         handlers:
           plain_email: Send plain unformatted email
           template_email: Send email formatted with template

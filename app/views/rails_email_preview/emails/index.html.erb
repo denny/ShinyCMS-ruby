@@ -1,12 +1,10 @@
 <%
-  @page_title = 'System Emails'
+  @page_title = t( '.title' )
   list = @list
   previews = @previews
 %>
 
 <div class="rep--main-container">
-  <!-- h1><%= t '.list_title' %></h1 -->
-
   <%= with_index_hook :list do %>
     <div class="<%= rep_style[:row_class] %>">
       <% list.columns do |groups| %>

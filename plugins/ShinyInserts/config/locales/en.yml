@@ -17,7 +17,9 @@ en:
   shiny_inserts:
     admin:
       inserts:
-        title: Inserts
+        breadcrumb: Inserts
+        menu: Inserts
+        toolbar: Inserts
         index:
           title: Inserts
           name_placeholder: Name

@@ -39,7 +39,9 @@ en:
 
     admin:
       blog_posts:
-        title: Blog
+        breadcrumb: Blog
+        menu: Blog
+        toolbar: Blog posts
         index:
           title: List blog posts
         new:

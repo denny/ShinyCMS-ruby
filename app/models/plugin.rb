@@ -62,7 +62,7 @@ class Plugin
 
   def self.breadcrumb_link_text_and_path( plugin_name, controller_name )
     [
-      I18n.t( "#{plugin_name.underscore}.admin.#{controller_name}.title" ),
+      I18n.t( "#{plugin_name.underscore}.admin.#{controller_name}.breadcrumb" ),
       plugin_name.constantize::Engine.routes.url_helpers.public_send( "#{controller_name}_path" )
     ]
   end
