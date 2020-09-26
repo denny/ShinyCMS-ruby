@@ -23,11 +23,9 @@
   <% category_capabilities = %w[ view_admin_area view_admin_dashboard view_admin_toolbar skip skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
-  <% category_capabilities = %w[ list add edit destroy change_author ] %>
-  <% category = CapabilityCategory.find_by( name: 'blog_posts' ) %>
-  <%= render_capability_category( f, category, category_capabilities, show ) %>
-  <% category = CapabilityCategory.find_by( name: 'news_posts' ) %>
-  <%= render_capability_category( f, category, category_capabilities, show ) %>
+  <% plugins_for_edit_capabilities.each do |plugin| %>
+    <%= render partial: "#{plugin.name.underscore}/admin/user/edit_capabilities", locals: { f: f, show: show } %>
+  <% end %>
 
   <% category = CapabilityCategory.find_by( name: 'discussions' ) %>
   <% category_capabilities = %w[ show hide lock unlock skip ] %>
@@ -44,13 +42,6 @@
   <% category = CapabilityCategory.find_by( name: 'feature_flags' ) %>
   <% category_capabilities = %w[ list skip edit skip skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
-
-  <% category_capabilities = %w[ list add edit destroy skip ] %>
-  <% CapabilityCategory.where(
-      name: %w[ inserts pages page_sections page_templates ]
-    ).each do |category| %>
-  <%= render_capability_category( f, category, category_capabilities, show ) %>
-  <% end %>
 
   <% category = CapabilityCategory.find_by( name: 'stats' ) %>
   <% category_capabilities = %w[ view_web view_email use_blazer skip skip ] %>
