@@ -15,10 +15,5 @@ module ShinyInserts
     belongs_to :set, inverse_of: :elements, class_name: 'ShinyInserts::Set'
 
     validates :set, presence: true
-
-    # Specify policy class for Pundit
-    def policy_class
-      ShinyInserts::ElementPolicy
-    end
   end
 end

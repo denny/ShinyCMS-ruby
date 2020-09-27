@@ -2,7 +2,13 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
-* Move search result templates into relevant plugins
+* Double opt-in journey
+  * Email recipients
+    * List subscriptions
+    * Comment notifications
+
+* Fix explosion in PagesController for /foo/bar where the 'foo' section doesn't exist
+  * While you're there, make helper methods to wrap top_level_pages and top_level_sections
 
 * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
 
@@ -10,30 +16,14 @@
   (e.g. 'Edit page', clicking around in Blazer, etc)
 * Relatedly; jump admin menu to current section with an anchor
 
-* Add tests for form actions being what they're supposed to be on new/edit pages, and for
-  delete links being correct on list pages (to catch path helper issues)
-
 * Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
 
-* Replace Anonymous/Pseudonymous/Authenticated with symbols and translation strings
-
 * Track down untranslated strings and add them to locale files
-  * Frequent offenders:
-    * Index pages 'no results' message and column headings
-    * Labels on new/edit forms
-  * Core and plugins
-  * Templates, controllers, and models
-  * Admin area, main site, and themes
+  * Check core and plugins; templates, controllers, and models; admin area, main site, and themes
+  * Frequent offenders: column headings on index pages, input labels on new/edit forms
 
 * Make sure concerns are used everywhere they could/should be, and that the shared examples
   are used to test that the concerns are doing the right thing in each place they get used.
-
-* Add folding to page sections on /admin/pages
-  * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
-  * Decide 'intelligently' whether to fold all/none/some
-    * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
-
-* Add acts_as_paranoid to everything (soft delete) https://github.com/ActsAsParanoid/acts_as_paranoid
 
 ### Non-trivial
 
@@ -108,9 +98,22 @@
 
 * ¡español! :D
 
+* Add tests for form actions being what they're supposed to be on new/edit pages,
+  and for delete links being correct on list pages (to catch path helper issues)
+
 ### Medium-ish
 
+* Add acts_as_paranoid to everything (soft delete)
+  * https://github.com/ActsAsParanoid/acts_as_paranoid
+
+* Add folding to page sections on /admin/pages
+  * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
+  * Decide 'intelligently' whether to fold all/none/some
+    * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
+
 * Draggable UI for reordering lists in admin area - SortableJS, maybe?
+
+* When people post a comment or subscribe to a list without being logged in, offer to create an account for them?
 
 * Tests for rake tasks
   * https://thoughtbot.com/blog/test-rake-tasks-like-a-boss ? (old)
@@ -130,15 +133,6 @@
 
 ### Large-ish
 
-* Finish the move to plugin architecture
-  * Move Comments, Tags, and Likes into plugins
-  * Move concerns and helpers into a plugin (ShinyToolbox?)
-    * Eventually, break them up into multiple plugins (ShinyPostTools, ShinyTemplateTools, etc)
-  * Look into moving Users into a plugin
-    * Ideally, move all the non-Devise User/Account functionality into concerns and helpers, so
-      you could include those into any site with Devise-powered auth and then use any ShinyPlugin
-  * Move plugins into separate gems
-
 * Surveys / Questionnaires
 
 * GDPR compliance
@@ -146,7 +140,8 @@
 
 * Switch from ERB to handlebars or similar for main site templates
 
-* Allow Page templates to be stored in database and edited in admin UI
+* Allow theme templates to be stored in database and edited in admin UI
+* Allow theme templates to be imported from an S3 folder
 
 * Allow in-situ editing of Page (and other?) content
   * Mercury: https://jejacks0n.github.io/mercury

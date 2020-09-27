@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
 # Pundit policy for email previews
-class Admin::EmailPreviewPolicy < Admin::DefaultPolicy
+class EmailPreviewPolicy
+  attr_reader :this_user, :record
+
+  def initialize( this_user, record )
+    @this_user = this_user
+    @record = record
+  end
+
   def index?
     @this_user.can? :list, :email_previews
   end

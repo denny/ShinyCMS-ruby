@@ -1,6 +1,6 @@
 <% if current_user.can? :list, :mailing_lists %>
 
-  <%= render_admin_menu_section( t( 'shiny_lists.admin.lists.title' ), 'list' ) do %>
+  <%= render_admin_menu_section( t( 'shiny_lists.admin.lists.menu' ), 'list' ) do %>
 
     <%= render_admin_menu_item(
         t( 'shiny_lists.admin.lists.index.title' ), shiny_lists.lists_path, 'list' ) %>

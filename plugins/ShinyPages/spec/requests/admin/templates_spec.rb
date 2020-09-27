@@ -32,7 +32,9 @@ RSpec.describe 'Admin: Page Templates', type: :request do
   describe 'POST /admin/pages/template/new' do
     it 'fails when the form is submitted without all the details' do
       post shiny_pages.templates_path, params: {
-        'page_template[filename]': 'Test'
+        template: {
+          filename: 'Test'
+        }
       }
 
       expect( response      ).to have_http_status :ok
@@ -42,8 +44,10 @@ RSpec.describe 'Admin: Page Templates', type: :request do
 
     it 'adds a new template when the form is submitted' do
       post shiny_pages.templates_path, params: {
-        'page_template[name]': 'Test',
-        'page_template[filename]': 'an_example'
+        template: {
+          name: 'Test',
+          filename: 'an_example'
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -55,8 +59,10 @@ RSpec.describe 'Admin: Page Templates', type: :request do
 
     it 'adds the right number of elements to the new template' do
       post shiny_pages.templates_path, params: {
-        'page_template[name]': 'Another Test',
-        'page_template[filename]': 'an_example'
+        template: {
+          name: 'Another Test',
+          filename: 'an_example'
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -84,7 +90,9 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       template = create :page_template
 
       put shiny_pages.template_path( template ), params: {
-        'page_template[name]': nil
+        template: {
+          name: nil
+        }
       }
 
       expect( response      ).to have_http_status :ok
@@ -97,10 +105,14 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       e_id = ShinyPages::TemplateElement.last.id
 
       put shiny_pages.template_path( template ), params: {
-        'page_template[name]': 'Updated by test',
-        "elements[element_#{e_id}_name]": 'updated_element_name',
-        "elements[element_#{e_id}_content]": 'Default content',
-        "elements[element_#{e_id}_type]": 'html'
+        template: {
+          name: 'Updated by test'
+        },
+        elements: {
+          "element_#{e_id}_name": 'updated_element_name',
+          "element_#{e_id}_content": 'Default content',
+          "element_#{e_id}_type": 'html'
+        }
       }
 
       expect( response      ).to have_http_status :found

@@ -59,7 +59,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'h3', text: I18n.t( 'discussions.comments' )
-      expect( response.body ).to have_css 'p',  text: I18n.t( 'discussions.no_comments_to_display' )
+      expect( response.body ).to have_css 'p',  text: I18n.t( 'empty_list', items: 'comments' )
     end
 
     it 'loads a news post with no discussion attached' do

@@ -2,14 +2,14 @@
                  current_user.can?( :view_email,  :stats ) ||
                  current_user.can?( :make_charts, :stats ) %>
 
-  <%= render_admin_menu_section( t( 'admin.stats.title' ), 'chart' ) do %>
+  <%= render_admin_menu_section( t( 'admin.stats.menu' ), 'chart' ) do %>
 
     <%= render_admin_menu_item_if( current_user.can?( :view_web, :stats ),
-        t( 'admin.web_stats.title' ), web_stats_path, 'chart' ) %>
+        t( 'admin.web_stats.menu' ), web_stats_path, 'chart' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :view_email, :stats ),
-        t( 'admin.email_stats.title' ), email_stats_path, 'chart' ) %>
+        t( 'admin.email_stats.menu' ), email_stats_path, 'chart' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :make_charts, :stats ),
-        t( 'admin.charts.title' ), blazer_path, 'chart' ) %>
+        t( 'admin.charts.menu' ), blazer_path, 'chart' ) %>
   <% end %>

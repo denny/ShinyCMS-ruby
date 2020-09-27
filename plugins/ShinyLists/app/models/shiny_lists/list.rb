@@ -27,30 +27,23 @@ module ShinyLists
     # Instance methods
 
     def subscribe( subscriber, consent_version )
-      return if subscribed? subscriber.email
+      existing = subscriptions.find_by( subscriber: subscriber )
+
+      return existing.update!( consent_version: consent_version, updated_at: Time.zone.now ) if existing
 
       subscriptions.create!( subscriber: subscriber, consent_version: consent_version )
     end
 
     def subscribed?( email_address )
-      users.exists?( email: email_address ) ||
-        email_recipients.exists?( email: email_address )
-    end
-
-    def policy_class
-      self.class.policy_class
-    end
-
-    # Class methods
-
-    def self.policy_class
-      ShinyLists::ListPolicy
+      email_recipients.exists?( email: email_address ) || users.exists?( email: email_address )
     end
   end
 end
 
-::EmailRecipient.has_many :subscriptions, as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
+::EmailRecipient.has_many :subscriptions, -> { active },
+                          as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
 ::EmailRecipient.has_many :lists, through: :subscriptions, inverse_of: :email_recipients, class_name: 'ShinyLists::List'
 
-::User.has_many :subscriptions, as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
+::User.has_many :subscriptions, -> { active },
+                as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
 ::User.has_many :lists, through: :subscriptions, inverse_of: :users, class_name: 'ShinyLists::List'

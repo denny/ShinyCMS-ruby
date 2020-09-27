@@ -14,13 +14,13 @@ module ShinyInserts
     # Displays main form, for updating/deleting the existing insert,
     # and a second form at the bottom of the page to add new insert.
     def index
-      authorise @insert_set
+      authorize @insert_set
     end
 
     # Bottom of page form submitted; add new insert
     def create
       @new_element = @insert_set.elements.new( new_element_params )
-      authorise @new_element
+      authorize @new_element
 
       if @new_element.save
         flash[ :notice ] = t( '.success' )
@@ -32,7 +32,7 @@ module ShinyInserts
 
     # Main form submitted; update existing insert
     def update
-      authorise @insert_set
+      authorize @insert_set
 
       flash[ :notice ] = t( '.success' ) if @insert_set.update( insert_params )
       redirect_to shiny_inserts.inserts_path
@@ -43,7 +43,7 @@ module ShinyInserts
 
     def destroy
       element = @insert_set.elements.find( params[ :id ] )
-      authorise element
+      authorize element
 
       flash[ :notice ] = t( '.success' ) if element.destroy
       redirect_to action: :index
@@ -52,9 +52,9 @@ module ShinyInserts
       redirect_to shiny_inserts.inserts_path, alert: t( '.failure' )
     end
 
-    helper_method :html_editor_needed?
+    helper_method :load_html_editor?
 
-    def html_editor_needed?
+    def load_html_editor?
       return true if action_name == :index
     end
 

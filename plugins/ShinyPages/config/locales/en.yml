@@ -23,10 +23,11 @@ en:
   shiny_pages:
     admin:
       pages:
-        title: Pages
+        breadcrumb: Pages
+        menu: Pages
+        toolbar: Pages
         index:
           title: List pages
-          empty_list: There are currently no pages or sections to display.
         new:
           title: Add new page
         edit:
@@ -42,7 +43,8 @@ en:
           failure: Failed to delete page
 
       sections:
-        title: Page sections
+        breadcrumb: Pages
+        toolbar: Sections
         new:
           title: Add new section
         edit:
@@ -58,7 +60,8 @@ en:
           failure: Failed to section page
 
       templates:
-        title: Page templates
+        breadcrumb: Page templates
+        toolbar: Templates
         index:
           title: List templates
         new:

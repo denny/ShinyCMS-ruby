@@ -22,10 +22,12 @@ en:
   shiny_news:
     menu:
       title: News
+    profile:
+      content:
+        title: Recent news posts
     news:
       index:
         title: Recent news
-        empty: There are no news posts to display
       post:
         footer:
           reply: Reply to this post
@@ -40,10 +42,11 @@ en:
 
     admin:
       news_posts:
-        title: News
+        breadcrumb: News
+        menu: News
+        toolbar: News posts
         index:
           title: List news posts
-          empty: There are no news posts to display
         new:
           title: Add news post
         edit:

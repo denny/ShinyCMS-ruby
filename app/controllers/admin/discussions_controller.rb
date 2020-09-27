@@ -11,25 +11,25 @@ class Admin::DiscussionsController < AdminController
   before_action :stash_discussion
 
   def show
-    authorise @discussion
+    authorize @discussion
     @discussion.show
     redirect_to request.referer || discussion_path( @discussion )
   end
 
   def hide
-    authorise @discussion
+    authorize @discussion
     @discussion.hide
     redirect_to request.referer || discussion_path( @discussion )
   end
 
   def lock
-    authorise @discussion
+    authorize @discussion
     @discussion.lock
     redirect_to request.referer || discussion_path( @discussion )
   end
 
   def unlock
-    authorise @discussion
+    authorize @discussion
     @discussion.unlock
     redirect_to request.referer || discussion_path( @discussion )
   end

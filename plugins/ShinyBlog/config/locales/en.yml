@@ -22,10 +22,12 @@ en:
   shiny_blog:
     menu:
       title: Blog
+    profile:
+      content:
+        title: Recent blog posts
     blog:
       index:
         title: Recent blog posts
-        empty: There are no blog posts to display
       post:
         footer:
           reply: Reply to this post
@@ -40,10 +42,11 @@ en:
 
     admin:
       blog_posts:
-        title: Blog
+        breadcrumb: Blog
+        menu: Blog
+        toolbar: Blog posts
         index:
           title: List blog posts
-          empty: There are no blog posts to display
         new:
           title: Add blog post
         edit:
