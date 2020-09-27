@@ -22,6 +22,9 @@ en:
   shiny_news:
     menu:
       title: News
+    profile:
+      content:
+        title: Recent news posts
     news:
       index:
         title: Recent news

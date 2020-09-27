@@ -22,6 +22,8 @@ class UserPolicy
   end
 
   def edit?
+    return @this_user.can? :edit, :admin_users if @record.admin?
+
     @this_user.can? :edit, :users
   end
 
@@ -30,6 +32,8 @@ class UserPolicy
   end
 
   def destroy?
+    return @this_user.can? :destroy, :admin_users if @record.admin?
+
     @this_user.can? :destroy, :users
   end
 end

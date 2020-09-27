@@ -49,7 +49,9 @@ class Comment < ApplicationRecord
 
   # Scopes
 
-  scope :top_level, -> { where( parent: nil   ).order( :number ) }
+  scope :top_level, -> { where( parent: nil ).order( :number ) }
+
+  scope :recent, -> { visible.merge( order( posted_at: :desc ) ) }
 
   scope :since, ->( date ) { where( 'posted_at > ?', date ) }
 

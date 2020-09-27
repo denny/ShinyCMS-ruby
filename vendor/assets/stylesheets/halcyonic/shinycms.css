@@ -312,17 +312,21 @@ nav .sm li li a:hover {
 }
 
 
-/* ========== ( user profile pics ) ========== */
-
-.user-profile-pic {
-  border-radius:        5px;
-  float:                right;
-  max-width:            80%;
-}
+/* ========== ( user profiles ) ========== */
 
 .user-icon {
   border-radius:        3px;
   max-width:            200px;
+}
+
+.user-profile-pic {
+  border-radius:        5px;
+  float:                right;
+  max-width:            400px;
+}
+
+.user-profile-content {
+  display:              none;
 }
 
 
