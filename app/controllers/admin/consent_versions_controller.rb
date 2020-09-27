@@ -8,7 +8,7 @@
 
 # Admin controller for managing consent versions
 class Admin::ConsentVersionsController < AdminController
-  before_action :stash_consent_version, only: %i[ edit update destroy ]
+  before_action :stash_consent_version, only: %i[ show edit update destroy ]
 
   def index
     authorize ConsentVersion
@@ -17,6 +17,10 @@ class Admin::ConsentVersionsController < AdminController
     @consent_versions = ConsentVersion.order( updated_at: :desc ).page( page_num )
 
     authorize @consent_versions if @consent_versions.present?
+  end
+
+  def show
+    authorize @consent_version
   end
 
   def new
@@ -37,7 +41,6 @@ class Admin::ConsentVersionsController < AdminController
   end
 
   def edit
-    # TODO: make the display text / whole record read-only as soon as anybody has agreed to it
     authorize @consent_version
   end
 

@@ -57,6 +57,9 @@ source 'https://rubygems.org' do
   gem 'devise-pwned_password'
   gem 'pundit'
 
+  # We use Sidekiq as the backend for ActiveJob (to queue email sends)
+  gem 'sidekiq'
+
   # Bot detection to protect forms (including registration, comments, etc)
   gem 'recaptcha'
 

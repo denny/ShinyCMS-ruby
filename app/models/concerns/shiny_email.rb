@@ -23,6 +23,10 @@ module ShinyEmail
       self.canonical_email = EmailAddress.canonical( email )
     end
 
+    def obfuscated_email
+      EmailAddress.munge( email )
+    end
+
     # Returns a string suitable for use as the To: header in an email
     def email_to
       return email if name.blank?

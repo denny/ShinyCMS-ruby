@@ -27,6 +27,18 @@ RSpec.describe Admin::ConsentVersionsController, type: :request do
     end
   end
 
+  describe 'GET /admin/consent-version/1' do
+    it 'displays the details of an in-use consent version' do
+      version1 = create :consent_version
+
+      get consent_version_path( version1 )
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.consent_versions.show.title' ).titlecase
+      expect( response.body ).to have_css 'p', text: version1.name
+    end
+  end
+
   describe 'GET /admin/consent-version/new' do
     it 'loads the form to add a new consent version' do
       get new_consent_version_path
@@ -93,6 +105,14 @@ RSpec.describe Admin::ConsentVersionsController, type: :request do
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.consent_versions.update.failure' )
     end
 
+    it 'raises an error if the consent version has already been agreed to by some people' do
+      version1 = create :consent_version
+      create :mailing_list_subscription, consent_version: version1
+
+      expect { put consent_version_path( version1 ), params: { consent_version: { slug: 'new-slug' } } }
+        .to raise_error ConsentVersion::HasBeenAgreedTo
+    end
+
     it 'updates the consent version when the form is submitted' do
       version = create :consent_version
 
@@ -129,6 +149,13 @@ RSpec.describe Admin::ConsentVersionsController, type: :request do
       expect( response.body ).to     have_css 'td', text: version1.name
       expect( response.body ).not_to have_css 'td', text: version2.name
       expect( response.body ).to     have_css 'td', text: version3.name
+    end
+
+    it 'raises an error if the consent version has already been agreed to by some people' do
+      version1 = create :consent_version
+      create :mailing_list_subscription, consent_version: version1
+
+      expect { delete consent_version_path( version1 ) }.to raise_error ConsentVersion::HasBeenAgreedTo
     end
   end
 end

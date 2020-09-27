@@ -61,7 +61,7 @@ Rails.application.routes.draw do
 
     scope path: 'admin', module: 'admin' do
       # Consent versions
-      resources :consent_versions, path: 'consent-versions', except: [ :show ]
+      resources :consent_versions, path: 'consent-versions'
 
       # Discussion and comment moderation
       get :comments, to: 'comments#index'

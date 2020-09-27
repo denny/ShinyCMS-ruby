@@ -113,6 +113,45 @@ nav ul, .sidebar ul, .header ul, .footer ul {
 }
 
 
+/* ========== ( utility styles ) ========== */
+
+.right {
+  text-align:   right;
+}
+
+.float-right {
+  float:        right;
+}
+
+.no-left-padding {
+  padding-left: 0 !important;
+}
+
+.smaller {
+  font-size:    smaller;
+}
+
+.larger {
+  font-size:    larger;
+}
+
+strong, b {
+  font-weight:  bold;
+}
+
+.clear-both {
+  clear:        both;
+}
+
+.white-text {
+  color:        #ffffff !important;
+}
+
+a.button:hover {
+  text-decoration: none;
+}
+
+
 /* ===== ( main menu ) ===== */
 
 nav .sm {
@@ -327,23 +366,4 @@ nav .sm li li a:hover {
 
 .user-profile-content {
   display:              none;
-}
-
-
-/* ========== ( utility styles ) ========== */
-
-.right {
-  text-align:   right;
-}
-
-.smaller {
-  font-size:    smaller;
-}
-
-.float-right {
-  float:        right;
-}
-
-.clear-both {
-  clear:        both;
 }
