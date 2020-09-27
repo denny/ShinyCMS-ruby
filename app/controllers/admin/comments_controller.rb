@@ -9,14 +9,14 @@
 # Controller for ShinyCMS comment admin features
 class Admin::CommentsController < AdminController
   include AkismetHelper
+  include ShinyPagingHelper
 
   before_action :stash_comment, except: %i[ index update ]
 
   # Display spam comment moderation page
   def index
     authorize Comment
-    page_num = params[ :page ] || 1
-    @comments = Comment.all_spam.page( page_num )
+    @comments = Comment.spam.page( page_number )
     authorize @comments if @comments.present?
   end
 
