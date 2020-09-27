@@ -17,6 +17,10 @@ module ShinyForms
 
     # Instance methods
 
+    def action
+      "/form/#{slug}"
+    end
+
     def send_to_handler( form_data )
       return false_after_logging_warning unless handler_exists?
 

@@ -16,6 +16,7 @@ en:
       forms:
         breadcrumb: Forms
         menu: Forms
+        toolbar: Forms
         handlers:
           plain_email: Send plain unformatted email
           template_email: Send email formatted with template

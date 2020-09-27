@@ -1,13 +1,11 @@
-<% if plugin_name == 'ShinyBlog' %>
-    <%= t( 'shiny_blog.admin.blog_posts.toolbar' ).singularize %>:
+<% if plugin_name == 'ShinyBlog' && current_user_can?( :list, :blog_posts ) %>
+  <%= t( 'shiny_blog.admin.blog_posts.toolbar' ) %>:
+    <%= link_to t( 'list' ), shiny_blog.blog_posts_path %>
   <% if current_user_can? :add, :blog_posts %>
-    <%= link_to t( 'add' ), shiny_blog.new_blog_post_path %> /
+    / <%= link_to t( 'add' ), shiny_blog.new_blog_post_path %>
   <% end %>
   <% if current_user_can?( :edit, :blog_posts ) && @post.present? %>
-    <%= link_to t( 'edit' ), shiny_blog.edit_blog_post_path( @post ) %> /
-  <% end %>
-  <% if current_user_can? :list, :blog_posts %>
-    <%= link_to t( 'list' ), shiny_blog.blog_posts_path %>
+    / <%= link_to t( 'edit' ), shiny_blog.edit_blog_post_path( @post ) %>
   <% end %>
     |
 <% end %>

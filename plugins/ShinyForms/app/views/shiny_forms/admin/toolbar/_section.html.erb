@@ -1,0 +1,11 @@
+<% if @form.present? && current_user_can?( :list, :forms ) %>
+  <%= t( 'shiny_forms.admin.forms.toolbar' ) %>:
+    <%= link_to t( 'list' ), shiny_forms.forms_path %>
+  <% if current_user_can? :add, :forms %>
+    / <%= link_to t( 'add' ), shiny_forms.new_form_path %>
+  <% end %>
+  <% if current_user_can?( :edit, :forms ) %>
+    / <%= link_to t( 'edit' ), shiny_forms.edit_form_path( @form ) %>
+  <% end %>
+    |
+<% end %>
