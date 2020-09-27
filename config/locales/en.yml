@@ -314,6 +314,8 @@ en:
       menu: Consent versions
       index:
         title: Consent versions
+      show:
+        title: View consent version
       new:
         title: Add consent version
       edit:
