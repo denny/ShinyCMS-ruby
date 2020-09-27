@@ -1,16 +1,13 @@
 <section>
-  <header>
-    <h3>
-      <%= heading %>
-    </h3>
-  </header>
-
-  <ul>
-  <% items.each do |item| %>
-    <li>
-      <%= render partial: "profile/content/#{item.class.name.underscore}", locals: { item: item } %>
-    </li>
+  <% plugins_with_profile_content_templates.each do |plugin_name| %>
+  <div style="float: left; padding-right: 2em;">
+    <%= render partial: "#{plugin_name}/profile/content" %>
+  </div>
   <% end %>
-  </ul>
-  <header>
+
+  <div style="float: left; padding-right: 2em;">
+    <%= render partial: 'discussions/profile/content' %>
+  </div>
+
+  <div class="clear-both"></div>
 </section>
