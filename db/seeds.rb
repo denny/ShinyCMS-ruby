@@ -192,7 +192,7 @@ setting = seed Setting, { name: 'site_name' }, {
   level: 'site',
   locked: false
 }
-setting.values.create_or_find_by!( value: '' )
+setting.values.create_or_find_by!( value: 'MyShinySite' )
 
 setting = seed Setting, { name: 'tag_view' }, {
   description: "('cloud' or 'list')",
