@@ -14,6 +14,7 @@ module ShinyLists
 
       if subscriber
         @subscriptions = subscriber.subscriptions
+        @subscriber    = subscriber
       else
         flash.now[:alert] = t( '.subscriber_not_found' )
       end
@@ -25,19 +26,6 @@ module ShinyLists
       else
         redirect_back fallback_location: main_app.root_path, alert: subscribe_failure_message
       end
-    end
-
-    def subscribe_success_message
-      return t( 'shiny_lists.subscriptions.subscribe.success' ) if subscription.updated_at == subscription.created_at
-
-      t( 'shiny_lists.subscriptions.subscribe.already_subscribed' )
-    end
-
-    def subscribe_failure_message
-      return t( 'shiny_lists.subscriptions.subscribe.list_not_found'  ) if list.blank?
-      return t( 'shiny_lists.subscriptions.subscribe.consent_missing' ) if consent_version.blank?
-
-      t( 'shiny_lists.subscriptions.subscribe.failure' )
     end
 
     def unsubscribe
@@ -88,6 +76,19 @@ module ShinyLists
       return user_list_subscriptions_path if user_signed_in?
 
       token_list_subscriptions_path( token )
+    end
+
+    def subscribe_success_message
+      return t( 'shiny_lists.subscriptions.subscribe.success' ) if subscription.updated_at == subscription.created_at
+
+      t( 'shiny_lists.subscriptions.subscribe.already_subscribed' )
+    end
+
+    def subscribe_failure_message
+      return t( 'shiny_lists.subscriptions.subscribe.list_not_found'  ) if list.blank?
+      return t( 'shiny_lists.subscriptions.subscribe.consent_missing' ) if consent_version.blank?
+
+      t( 'shiny_lists.subscriptions.subscribe.failure' )
     end
   end
 end

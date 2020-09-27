@@ -27,7 +27,7 @@ en:
 
     subscriptions:
       index:
-        title: List subscriptions
+        title: Your mailing list subscriptions
         unsubscribe: Unsubscribe
         subscriber_not_found: Subscriber not found - please check link and try again
       subscribe:

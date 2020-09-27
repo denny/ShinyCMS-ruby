@@ -40,8 +40,10 @@ module ShinyLists
   end
 end
 
-::EmailRecipient.has_many :subscriptions, as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
+::EmailRecipient.has_many :subscriptions, -> { active },
+                          as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
 ::EmailRecipient.has_many :lists, through: :subscriptions, inverse_of: :email_recipients, class_name: 'ShinyLists::List'
 
-::User.has_many :subscriptions, as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
+::User.has_many :subscriptions, -> { active },
+                as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
 ::User.has_many :lists, through: :subscriptions, inverse_of: :users, class_name: 'ShinyLists::List'
