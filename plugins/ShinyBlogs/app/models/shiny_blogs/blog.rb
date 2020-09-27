@@ -41,17 +41,6 @@ module ShinyBlogs
     def find_post( year, month, slug )
       posts_in_month( year, month ).find_by( slug: slug )
     end
-
-    # Specify policy class for Pundit
-    def policy_class
-      self.class.policy_class
-    end
-
-    # Class methods
-
-    def self.policy_class
-      Admin::BlogPolicy
-    end
   end
 end
 

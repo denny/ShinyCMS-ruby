@@ -20,21 +20,21 @@ module ShinyBlogs
     before_action :update_discussion_flags, only: %i[ create update ]
 
     def index
-      authorise BlogPost
+      authorize BlogPost
 
       page_num = params[ :page ] || 1
       @posts = @blog.all_posts.order( :created_at ).page( page_num )
 
-      authorise @posts.first if @posts.present?
+      authorize @posts.first if @posts.present?
     end
 
     def new
       @post = @blog.posts.new
-      authorise @post
+      authorize @post
     end
 
     def create
-      authorise @post
+      authorize @post
 
       if @post.save
         redirect_to edit_blog_post_path( @blog, @post ), notice: t( '.success' )
@@ -45,11 +45,11 @@ module ShinyBlogs
     end
 
     def edit
-      return unless authorise @post
+      return unless authorize @post
     end
 
     def update
-      return unless authorise @post
+      return unless authorize @post
 
       if @post.update( post_params )
         redirect_to edit_blog_post_path( @blog, @post ), notice: t( '.success' )
@@ -69,7 +69,7 @@ module ShinyBlogs
     end
 
     def destroy
-      return unless authorise @post
+      return unless authorize @post
 
       flash[ :notice ] = t( '.success' ) if @post.destroy
 

@@ -17,19 +17,19 @@ module ShinyBlogs
     before_action :set_blog, only: %i[ edit update destroy ]
 
     def index
-      authorise Blog
+      authorize Blog
       @blogs = Blog.all
-      authorise @blogs if @blogs.present?
+      authorize @blogs if @blogs.present?
     end
 
     def new
       @blog = Blog.new
-      authorise @blog
+      authorize @blog
     end
 
     def create
       @blog = Blog.new( blog_params )
-      authorise @blog
+      authorize @blog
 
       if @blog.save
         redirect_to edit_blog_path( @blog ), notice: t( '.success' )
@@ -40,11 +40,11 @@ module ShinyBlogs
     end
 
     def edit
-      authorise @blog
+      authorize @blog
     end
 
     def update
-      return unless authorise @blog
+      return unless authorize @blog
 
       if @blog.update( blog_params )
         redirect_to edit_blog_path( @blog ), notice: t( '.success' )
@@ -55,7 +55,7 @@ module ShinyBlogs
     end
 
     def destroy
-      return unless authorise @blog
+      return unless authorize @blog
 
       flash[ :notice ] = t( '.success' ) if @blog.destroy
 

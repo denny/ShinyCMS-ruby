@@ -63,8 +63,8 @@ en:
         set_blog:
           failure: Couldn't find specified blog
 
-      posts:
-        title: Posts
+      #posts:
+      #  title: Posts
 
       blog:
         posts:

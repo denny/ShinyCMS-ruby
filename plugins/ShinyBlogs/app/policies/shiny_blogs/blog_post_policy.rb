@@ -17,11 +17,11 @@ module ShinyBlogs
     end
 
     def index?
-      @this_user.can? :list, :blog_posts
+      @this_user.can? :list, :shiny_blogs_blog_posts
     end
 
     def new?
-      @this_user.can? :add, :blog_posts
+      @this_user.can? :add, :shiny_blogs_blog_posts
     end
 
     def create?
@@ -29,7 +29,7 @@ module ShinyBlogs
     end
 
     def edit?
-      @this_user.can? :edit, :blog_posts
+      @this_user.can? :edit, :shiny_blogs_blog_posts
     end
 
     def update?
@@ -37,7 +37,7 @@ module ShinyBlogs
     end
 
     def destroy?
-      @this_user.can? :destroy, :blog_posts
+      @this_user.can? :destroy, :shiny_blogs_blog_posts
     end
   end
 end
