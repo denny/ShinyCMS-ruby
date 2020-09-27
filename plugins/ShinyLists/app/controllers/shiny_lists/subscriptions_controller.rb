@@ -14,6 +14,7 @@ module ShinyLists
 
       if subscriber
         @subscriptions = subscriber.subscriptions
+        @subscriber    = subscriber
       else
         flash.now[:alert] = t( '.subscriber_not_found' )
       end
@@ -21,9 +22,9 @@ module ShinyLists
 
     def subscribe
       if list && consent_version && list.subscribe( subscriber_for_subscribe, consent_version )
-        redirect_back fallback_location: view_list_subscriptions_path, notice: t( '.success' )
+        redirect_back fallback_location: view_list_subscriptions_path, notice: subscribe_success_message
       else
-        redirect_back fallback_location: view_list_subscriptions_path, alert: t( '.failure' )
+        redirect_back fallback_location: main_app.root_path, alert: subscribe_failure_message
       end
     end
 
@@ -31,7 +32,7 @@ module ShinyLists
       if subscription&.unsubscribe
         redirect_back fallback_location: view_list_subscriptions_path, notice: t( '.success' )
       else
-        redirect_back fallback_location: view_list_subscriptions_path, alert: t( '.failure' )
+        redirect_back fallback_location: main_app.root_path, alert: t( '.failure' )
       end
     end
 
@@ -42,7 +43,7 @@ module ShinyLists
     end
 
     def subscriber
-      current_user || EmailRecipient.find_by( token: params[:token] )
+      current_user || EmailRecipient.find_by( token: token )
     end
 
     def subscription
@@ -61,6 +62,12 @@ module ShinyLists
       ConsentVersion.find_by( slug: subscribe_params[:consent_version] )
     end
 
+    def token
+      return params[:token] unless action_name == 'subscribe'
+
+      subscriber_for_subscribe&.token
+    end
+
     def subscribe_params
       params.require( :subscription ).permit( :name, :email, :consent_version, :consent_confirmation )
     end
@@ -68,7 +75,20 @@ module ShinyLists
     def view_list_subscriptions_path
       return user_list_subscriptions_path if user_signed_in?
 
-      token_list_subscriptions_path( params[:token] )
+      token_list_subscriptions_path( token )
+    end
+
+    def subscribe_success_message
+      return t( 'shiny_lists.subscriptions.subscribe.success' ) if subscription.updated_at == subscription.created_at
+
+      t( 'shiny_lists.subscriptions.subscribe.already_subscribed' )
+    end
+
+    def subscribe_failure_message
+      return t( 'shiny_lists.subscriptions.subscribe.list_not_found'  ) if list.blank?
+      return t( 'shiny_lists.subscriptions.subscribe.consent_missing' ) if consent_version.blank?
+
+      t( 'shiny_lists.subscriptions.subscribe.failure' )
     end
   end
 end

@@ -17,21 +17,21 @@ module ShinyForms
 
     # GET /admin/forms
     def index
-      authorise Form
+      authorize Form
       page_num = params[ :page ] || 1
       @forms = Form.page( page_num )
-      authorise @forms if @forms.present?
+      authorize @forms if @forms.present?
     end
 
     # GET /admin/forms/new
     def new
       @form = Form.new
-      authorise @form
+      authorize @form
     end
 
     # POST /admin/forms
     def create
-      authorise @form
+      authorize @form
 
       if @form.save
         redirect_to edit_form_path( @form ), notice: t( '.success' )
@@ -43,12 +43,12 @@ module ShinyForms
 
     # GET /admin/forms/1
     def edit
-      authorise @form
+      authorize @form
     end
 
     # PATCH/PUT /admin/forms/1
     def update
-      authorise @form
+      authorize @form
 
       if @form.update(form_params)
         redirect_to edit_form_path( @form ), notice: t( '.success' )
@@ -60,7 +60,7 @@ module ShinyForms
 
     # DELETE /admin/forms/1
     def destroy
-      authorise @form
+      authorize @form
 
       @form.destroy!
       redirect_to forms_path, notice: t( '.success' )

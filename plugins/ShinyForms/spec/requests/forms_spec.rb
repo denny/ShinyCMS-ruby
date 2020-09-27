@@ -7,6 +7,16 @@ RSpec.describe 'ShinyForms', type: :request do
     create :top_level_page
   end
 
+  describe 'GET /contact-form' do
+    it 'loads a page with a ShinyForm embedded' do
+      template1 = create :page_template, filename: 'contact_form'
+      page1 = create :top_level_page, template: template1
+      create :plain_email_form, slug: 'contact'
+
+      get "/#{page1.slug}"
+    end
+  end
+
   describe 'POST /form/testing' do
     context 'with form.handler = plain_email' do
       it 'sends a plain email (dump of form_data)' do

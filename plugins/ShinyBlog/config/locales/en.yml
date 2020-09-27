@@ -22,6 +22,9 @@ en:
   shiny_blog:
     menu:
       title: Blog
+    profile:
+      content:
+        title: Recent blog posts
     blog:
       index:
         title: Recent blog posts
@@ -39,7 +42,9 @@ en:
 
     admin:
       blog_posts:
-        title: Blog
+        breadcrumb: Blog
+        menu: Blog
+        toolbar: Blog posts
         index:
           title: List blog posts
         new:

@@ -1,0 +1,90 @@
+  <%# Original template downloaded from the MJML website: https://mjml.io/try-it-live/templates/onepage %>
+
+  <% @email_title  = @elements[:email_title] %>
+  <% @preview_text = @elements[:preview_text] if @elements[:preview_text].present? %>
+
+  <mj-body background-color="#d7dde5">
+    <mj-section background-color="#ffffff" full-width="full-width">
+      <mj-column width="33.33333333333333%" vertical-align="middle">
+        <mj-image src="<%= @elements[:logo_image] %>" alt="<%= @elements[:logo_alt] %>" padding-bottom="0px" padding-top="10px"></mj-image>
+      </mj-column>
+      <mj-column width="66.66666666666666%" vertical-align="middle">
+        <mj-text align="center" padding-bottom="0px" padding-top="10px">
+          <a href="<%= @elements[:link_1_url] %>" style="text-decoration: none; color: inherit;"><%= @elements[:link_1_text] %></a>
+          &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;
+          <a href="<%= @elements[:link_2_url] %>" style="text-decoration: none; color: inherit;"><%= @elements[:link_2_text] %></a>
+          &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;
+          <a href="<%= @elements[:link_3_url] %>" style="text-decoration: none; color: inherit;"><%= @elements[:link_3_text] %></a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-url="https://shinycms.org/images/<%= @elements[:banner_image] %>" background-size="cover" full-width="full-width" background-repeat="no-repeat">
+      <mj-column width="100%" vertical-align="middle">
+        <mj-text align="center" font-size="14px" color="#45474e" padding-bottom="10px" padding-top="45px">
+          <span style="font-size: 30px; line-height: 30px;"><%= @elements[:banner_heading] %></span>
+          <br/><br/>
+          <%= @elements[:banner_subheading] %>
+        </mj-text>
+        <mj-button href="<%= @elements[:subscribe_url] %>" align="center" background-color="#e85034" color="#fff" border-radius="24px" font-family="Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif" padding-bottom="45px" padding-top="10px">SUBSCRIBE</mj-button>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#ffffff" full-width="full-width">
+      <mj-column vertical-align="top" width="33.33333333333333%">
+        <mj-image src="https://shinycms.org/images/<%= @elements[:column_1_image] %>" alt="<%= @elements[:column_1_alt] %>" width="50px"></mj-image>
+        <mj-text align="center" color="#9da3a3" font-size="11px" padding-bottom="30px">
+          <span style="font-size: 14px; color: #e85034"><%= @elements[:column_1_heading] %></span>
+          <br/><br/>
+          <%= @elements[:column_1_text] %>
+        </mj-text>
+      </mj-column>
+      <mj-column vertical-align="top" width="33.33333333333333%">
+        <mj-image src="https://shinycms.org/images/<%= @elements[:column_2_image] %>" alt="<%= @elements[:column_2_alt] %>" width="50px"></mj-image>
+        <mj-text align="center" color="#9da3a3" font-size="11px" padding-bottom="30px">
+          <span style="font-size: 14px; color: #e85034"><%= @elements[:column_2_heading] %></span>
+          <br/><br/>
+          <%= @elements[:column_2_text] %>
+        </mj-text>
+      </mj-column>
+      <mj-column vertical-align="top" width="33.33333333333333%">
+        <mj-image src="https://shinycms.org/images/<%= @elements[:column_3_image] %>" alt="<%= @elements[:column_3_alt] %>" width="50px"></mj-image>
+        <mj-text align="center" color="#9da3a3" font-size="11px" padding-bottom="30px" padding-top="3px">
+          <span style="font-size: 14px; color: #e85034"><%= @elements[:column_3_heading] %></span>
+          <br/><br/>
+          <%= @elements[:column_3_text] %>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#e85034" full-width="full-width">
+      <mj-column width="100%" vertical-align="middle">
+        <mj-text align="center" color="#ffffff" font-size="18px" padding-bottom="10px"><%= @elements[:wide_heading] %></mj-text>
+        <mj-divider border-color="#fff" border-style="solid" border-width="1px" padding-left="100px" padding-right="100px" padding-bottom="20px" padding-top="20px"></mj-divider>
+        <mj-text align="center" color="#f8d5d1" font-size="11px" padding-bottom="25px">
+          <%= @elements[:wide_text] %>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#ffffff" full-width="full-width">
+      <mj-column width="50%" vertical-align="middle">
+        <mj-image src="https://shinycms.org/images/<%= @elements[:article_1_image] %>" alt="<%= @elements[:article_1_alt] %>" padding-bottom="20px" padding-top="20px"></mj-image>
+      </mj-column>
+      <mj-column width="50%" vertical-align="middle">
+        <mj-text align="left" color="#9da3a3" font-size="11px" padding-bottom="25px" padding-top="25px">
+          <span style="font-weight: bold; font-size: 14px; color: #45474e"><%= @elements[:article_1_heading] %></span>
+          <br/><br/>
+          <%= @elements[:article_1_text] %>
+        </mj-text>
+        <mj-button href="<%= @elements[:article_1_url] %>" align="left" background-color="#e85034" color="#fff" border-radius="24px" font-size="11px" font-family="Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif" padding-bottom="45px" padding-top="10px">READ MORE</mj-button>
+      </mj-column>
+    </mj-section>
+
+    <mj-section full-width="full-width">
+      <mj-column width="100%" vertical-align="middle">
+        <mj-text align="center" font-size="11px" padding-bottom="0px" padding-top="0px">
+          <%= @elements[:footer_text] %>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>

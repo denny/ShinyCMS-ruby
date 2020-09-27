@@ -1,0 +1,4 @@
+  <% category_capabilities = %w[ list add edit destroy skip ] %>
+  <% CapabilityCategory.where( name: %w[ pages page_sections page_templates ] ).each do |category| %>
+    <%= render_capability_category( f, category, category_capabilities, show ) %>
+  <% end %>

@@ -1,3 +1,5 @@
+      <% @form = find_form_by_slug( 'contact' ) %>
+
       <section id="content">
         <div class="container">
           <div class="row">
@@ -8,7 +10,7 @@
                   <h2><%= @page.name %></h2>
                 </header>
 
-                <%= form_tag '/form/contact', method: :post, class: 'contact_form' do %>
+                <%= form_tag @form.action, method: :post, class: 'contact_form' do %>
                   <p>
                     <label>Name:
                     <br><input name="shiny_form[name]" type="text">

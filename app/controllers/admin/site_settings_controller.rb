@@ -9,13 +9,13 @@
 # Controller for site-settings section of ShinyCMS admin area
 class Admin::SiteSettingsController < AdminController
   def index
-    authorise Setting
+    authorize Setting
     @settings = Setting.order( :name )
-    authorise @settings if @settings.present?
+    authorize @settings if @settings.present?
   end
 
   def update
-    authorise Setting.first
+    authorize Setting.first
 
     all_updated = update_settings( settings_params )
     if all_updated.nil?
@@ -45,7 +45,7 @@ class Admin::SiteSettingsController < AdminController
 
   def update_setting( id, params )
     setting = Setting.find( id )
-    authorise setting
+    authorize setting
 
     level_flag = update_level( setting, params )
     value_flag = update_value( setting, params )

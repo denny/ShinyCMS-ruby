@@ -35,11 +35,15 @@
     <%= f.check_box :show_on_site %>
   </p>
   <p>
-    <%= f.label :discussion_show_on_site, 'Show comments' %><br>
+    <% if @post.discussion.blank? %>
+    <%= f.label :discussion_show_on_site, t( 'admin.discussion.enable_comments' ) %><br>
+    <% else %>
+    <%= f.label :discussion_show_on_site, t( 'admin.discussion.show_comments' ) %><br>
+    <% end %>
     <%= f.check_box :discussion_show_on_site %>
   </p>
   <p>
-    <%= f.label :discussion_locked, 'Lock comments' %><br>
+    <%= f.label :discussion_locked, t( 'admin.discussion.lock_comments' ) %><br>
     <%= f.check_box :discussion_locked %>
   </p>
 

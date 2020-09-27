@@ -72,8 +72,9 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for ActiveJob (+ separate queues per environment)
-  # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "ShinyCMS_production"
+  # config.active_job.queue_adapter = :resque
+  config.active_job.queue_adapter = :sidekiq
+  config.active_job.queue_name_prefix = 'shinycms_production'
 
   # config.action_mailer.perform_caching = false
 
@@ -81,14 +82,20 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to
   # raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
+    # SMTP server - the server you send email through - e.g. smtp.sendgrid.net
     address: ENV['MAILER_ADDRESS'],
     port: ENV['MAILER_PORT'],
+    # HELO/EHLO domain - the domain your emails come from - e.g. shinycms.org
     domain: ENV['MAILER_DOMAIN'],
     user_name: ENV['MAILER_USER_NAME'],
-    password: ENV['MAILER_PASSWORD']
+    password: ENV['MAILER_PASSWORD'],
+    # 'plain', 'login', or 'cram_md5'
+    authentication: ( ENV['MAILER_AUTHENTICATION'] || 'plain' ).to_sym
   }
+  # The domain name used to construct any URLs in your emails
+  config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

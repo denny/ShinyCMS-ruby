@@ -1,5 +1,5 @@
 <%- # Using ERB for this template to have precise control of tag indentation for correct rendering of raw and text.  -%>
-<% @page_title = 'System Emails' %>
+<% @page_title = @preview.name || t( '.title' ) %>
 
 <div class="rep--main-container">
   <div id="email-show" class="rep--email-show">

@@ -1,0 +1,21 @@
+<% @page_title = t( '.title' ) %>
+
+<p>
+  Name: <%= @consent_version.name %>
+</p>
+<p>
+  Slug: <%= @consent_version.slug %>
+</p>
+<p>
+  Display text:<br>
+  <%= @consent_version.display_text %>
+</p>
+<p>
+  Admin notes:<br>
+  <%= @consent_version.admin_notes %>
+</p>
+
+<p>
+  This consent text has been agreed to as part of <%= @consent_version.subscriptions.count %> subscriptions,
+  <%= @consent_version.subscriptions.active.count %> of which are still active.
+</p>

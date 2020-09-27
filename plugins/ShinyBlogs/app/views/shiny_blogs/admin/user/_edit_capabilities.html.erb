@@ -1,0 +1,7 @@
+  <% category_capabilities = %w[ list add edit destroy skip ] %>
+  <% category = CapabilityCategory.find_by( name: 'shiny_blogs_blogs' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category_capabilities = %w[ list add edit destroy change_author ] %>
+  <% category = CapabilityCategory.find_by( name: 'shiny_blogs_blog_posts' ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
