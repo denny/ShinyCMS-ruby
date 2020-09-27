@@ -1,16 +1,15 @@
 <% if plugin_name == 'ShinyPages' %>
   <% if current_user_can? :list, :pages %>
-    <%= t( 'shiny_pages.admin.pages.toolbar' ).singularize %>:
+    <%= t( 'shiny_pages.admin.pages.toolbar' ) %>:
+    <%= link_to t( 'list' ), shiny_pages.pages_path %>
   <% if current_user_can? :add, :pages %>
-    <%= link_to t( 'add'  ), shiny_pages.new_page_path %> /
+    / <%= link_to t( 'add'  ), shiny_pages.new_page_path %>
   <% end %>
   <% if @page.present? && current_user_can?( :edit, :pages ) %>
-    <%= link_to t( 'edit' ), shiny_pages.edit_page_path( @page ) %> /
+    / <%= link_to t( 'edit' ), shiny_pages.edit_page_path( @page ) %>
   <% end %>
-    <%= link_to t( 'list' ), shiny_pages.pages_path %>
     |
-
-    <%= t( 'shiny_pages.admin.sections.toolbar' ).singularize %>:
+    <%= t( 'shiny_pages.admin.sections.toolbar' ) %>:
   <% if current_user_can? :add, :page_sections %>
     <%= link_to t( 'add' ), shiny_pages.new_section_path %>
   <% end %>
@@ -21,14 +20,14 @@
   <% end %>
 
   <% if current_user_can? :list, :page_templates %>
-    <%= t( 'shiny_pages.admin.templates.toolbar' ).singularize %>:
+    <%= t( 'shiny_pages.admin.templates.toolbar' ) %>:
+    <%= link_to t( 'list' ), shiny_pages.templates_path %>
   <% if current_user_can? :add, :page_templates %>
-    <%= link_to t( 'add'  ), shiny_pages.new_template_path %> /
+    / <%= link_to t( 'add'  ), shiny_pages.new_template_path %>
   <% end %>
   <% if current_user_can?( :edit, :page_templates ) && @page.present? %>
-    <%= link_to t( 'edit' ), shiny_pages.edit_template_path( @page.template ) %> /
-  <% end %>
-    <%= link_to t( 'list' ), shiny_pages.templates_path %>
+    / <%= link_to t( 'edit' ), shiny_pages.edit_template_path( @page.template ) %>
   <% end %>
     |
+  <% end %>
 <% end %>
