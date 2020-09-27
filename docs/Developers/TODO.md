@@ -7,6 +7,9 @@
     * List subscriptions
     * Comment notifications
 
+* Fix explosion in PagesController for /foo/bar where the 'foo' section doesn't exist
+  * While you're there, make helper methods to wrap top_level_pages and top_level_sections
+
 * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
 
 * Highlight section name in admin area menu when on a page which isn't in the menu
