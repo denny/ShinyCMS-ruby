@@ -32,7 +32,10 @@ en:
         subscriber_not_found: Subscriber not found - please check link and try again
       subscribe:
         success: You have been subscribed
-        failure: Failed to subscribe to mailing list - please try again
+        already_subscribed: You are already subscribed to this mailing list
+        failure: Failed to subscribe to mailing list - please check your details and try again
+        list_not_found: Mailing list not found - please inform site admins
+        consent_missing: You must check the box to subscribe - please try again
       unsubscribe:
         success: You have been unsubscribed
         failure: Unsubscribe attempt failed - please contact site admins for help

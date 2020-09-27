@@ -12,17 +12,17 @@ module ShinyLists
   RSpec.describe List, type: :model do
     context 'instance methods' do
       let( :list ) { create :mailing_list }
-      let( :email_recipient ) { create :email_recipient }
+      let( :user ) { create :user }
 
       describe '.subscribed?' do
         it 'returns true if the email address is subscribed' do
-          create :mailing_list_subscription, list: list, subscriber: email_recipient
+          create :mailing_list_subscription, list: list, subscriber: user
 
-          expect( list.subscribed?( email_recipient.email ) ).to be true
+          expect( list.subscribed?( user.email ) ).to be true
         end
 
         it 'returns false if the email address is not subscribed' do
-          expect( list.subscribed?( email_recipient.email ) ).to be false
+          expect( list.subscribed?( user.email ) ).to be false
         end
       end
     end

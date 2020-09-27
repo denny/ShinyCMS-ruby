@@ -27,14 +27,15 @@ module ShinyLists
     # Instance methods
 
     def subscribe( subscriber, consent_version )
-      return if subscribed? subscriber.email
+      existing = subscriptions.find_by( subscriber: subscriber )
+
+      return existing.update!( consent_version: consent_version, updated_at: Time.zone.now ) if existing
 
       subscriptions.create!( subscriber: subscriber, consent_version: consent_version )
     end
 
     def subscribed?( email_address )
-      users.exists?( email: email_address ) ||
-        email_recipients.exists?( email: email_address )
+      email_recipients.exists?( email: email_address ) || users.exists?( email: email_address )
     end
   end
 end
