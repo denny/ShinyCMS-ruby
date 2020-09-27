@@ -1,0 +1,5 @@
+  <% if inserts_exist? && current_user_can?( :edit, :inserts ) %>
+    <%= t( 'shiny_inserts.admin.inserts.toolbar' ) %>:
+    <%= link_to t( 'edit' ), shiny_inserts.inserts_path %>
+    |
+  <% end %>

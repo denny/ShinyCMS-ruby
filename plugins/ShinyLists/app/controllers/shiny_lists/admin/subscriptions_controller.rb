@@ -10,7 +10,7 @@ module ShinyLists
   # Controller for list subscription admin features - part of the ShinyLists plugin for ShinyCMS
   class Admin::SubscriptionsController < AdminController
     def index
-      authorise Subscription
+      authorize Subscription
 
       return if list.subscriptions.blank?
 
@@ -18,13 +18,13 @@ module ShinyLists
       # TODO: How do I order this by subscriber.email ?
       @subscriptions = list.subscriptions.order( Arel.sql( 'unsubscribed_at is null' ) ).page( page_num )
 
-      authorise @subscriptions
+      authorize @subscriptions
     end
 
     # NB: If you live in GDPR territory, before using this feature you should consider whether
     # you could prove that the person actively consented to be subscribed to your mailing list.
     def subscribe
-      authorise Subscription
+      authorize Subscription
 
       flash[:notice] = t( '.success' ) if list.subscribe( subscriber_for_subscribe, admin_consent )
 
@@ -32,7 +32,7 @@ module ShinyLists
     end
 
     def unsubscribe
-      authorise subscription
+      authorize subscription
 
       flash[:notice] = t( '.success' ) if subscription.unsubscribe
 
@@ -41,7 +41,7 @@ module ShinyLists
 
     # Override the breadcrumbs 'section' link to go back to the lists page
     def breadcrumb_link_text_and_path
-      [ t( 'shiny_lists.admin.lists.title' ), lists_path ]
+      [ t( 'shiny_lists.admin.lists.breadcrumb' ), lists_path ]
     end
 
     private

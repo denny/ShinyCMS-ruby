@@ -1,5 +1,5 @@
 <% if plugin_name == 'ShinyNews' %>
-    <%= t( 'shiny_news.admin.news_posts.title' ).singularize %>:
+    <%= t( 'shiny_news.admin.news_posts.toolbar' ).singularize %>:
   <% if current_user_can? :add, :news_posts %>
     <%= link_to t( 'add' ), shiny_news.new_news_post_path %> /
   <% end %>

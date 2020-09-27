@@ -39,7 +39,9 @@ en:
 
     admin:
       lists:
-        title: Mailing lists
+        breadcrumb: Lists
+        menu: Mailing lists
+        # toolbar: Mailing lists
         index:
           title: Mailing lists
         new:
@@ -55,7 +57,8 @@ en:
         destroy:
           success: Mailing list deleted
       subscriptions:
-        title: List Subscriptions
+        breadcrumb: List subscriptions
+        # toolbar: Subscriptions
         index:
           title: Subscriptions
         subscribe:

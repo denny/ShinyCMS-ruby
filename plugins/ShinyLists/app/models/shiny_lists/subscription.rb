@@ -34,16 +34,6 @@ module ShinyLists
     def active?
       unsubscribed_at.blank?
     end
-
-    def policy_class
-      self.class.policy_class
-    end
-
-    # Class methods
-
-    def self.policy_class
-      ShinyLists::SubscriptionPolicy
-    end
   end
 end
 

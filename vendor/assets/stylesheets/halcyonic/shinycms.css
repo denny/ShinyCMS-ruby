@@ -95,6 +95,24 @@ textarea {
 }
 
 
+/* ===== ( undoing sweeping style resets ) ===== */
+
+blockquote {
+  border-left: 0.2em solid #ccc;
+  padding-left: 0.4em;
+}
+
+ul {
+  list-style: circle inside;
+  margin: 0.4em;
+}
+
+nav ul, .sidebar ul, .header ul, .footer ul {
+  list-style: none;
+  margin: 0;
+}
+
+
 /* ===== ( main menu ) ===== */
 
 nav .sm {

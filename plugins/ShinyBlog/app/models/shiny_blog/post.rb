@@ -26,19 +26,10 @@ module ShinyBlog
       )
     end
 
-    # Specify policy class for Pundit
-    def policy_class
-      self.class.policy_class
-    end
-
     # Class methods
 
     def self.human_name
       'blog post'
-    end
-
-    def self.policy_class
-      ShinyBlog::PostPolicy
     end
   end
 end

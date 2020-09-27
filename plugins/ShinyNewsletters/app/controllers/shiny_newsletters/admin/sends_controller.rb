@@ -106,7 +106,7 @@ module ShinyNewsletters
     def strong_params
       temp_params = params.require( :send ).permit( :edition_id, :list_id, :send_at, :send_at_time, :send_now )
 
-      combine_date_and_time_inputs( temp_params, :send_at )
+      combine_date_and_time_params( temp_params, :send_at )
     end
 
     def convert_send_at_to_utc

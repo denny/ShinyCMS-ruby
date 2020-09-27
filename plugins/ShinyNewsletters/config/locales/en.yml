@@ -30,9 +30,10 @@ en:
 
     admin:
       newsletters:
-        title: Newsletters
+        breadcrumb: Newsletters
+        menu: Newsletters
       editions:
-        title: Newsletter Editions
+        breadcrumb: Newsletter editions
         index:
           title: Editions
           send_sample: Send sample
@@ -54,7 +55,7 @@ en:
           success: Newsletter edition deleted
           failure: Failed to delete newsletter edition
       sends:
-        title: Newsletter Sends
+        breadcrumb: Newsletter sends
         index:
           title: Sends
           no_sends: You have not started sending any newsletters yet
@@ -82,7 +83,7 @@ en:
         destroy:
           success: Newsletter send deleted
       templates:
-        title: Newsletter Templates
+        breadcrumb: Newsletter templates
         index:
           title: Templates
         new:

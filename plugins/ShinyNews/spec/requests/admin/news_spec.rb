@@ -156,8 +156,8 @@ RSpec.describe 'Admin::News', type: :request do
           user_id: @admin.id,
           title: Faker::Books::CultureSeries.unique.culture_ship,
           body: Faker::Lorem.paragraph,
-          discussion_show_on_site: true,
-          discussion_locked: true
+          discussion_show_on_site: '1',
+          discussion_locked: '1'
         }
       }
 

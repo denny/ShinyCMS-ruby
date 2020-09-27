@@ -16,5 +16,9 @@ module ShinyInserts
     def insert_type?( name, type )
       ShinyInserts::Set.first.elements.where( name: name ).pick( :element_type ) == type
     end
+
+    def inserts_exist?
+      ShinyInserts::Set.first.elements.present?
+    end
   end
 end

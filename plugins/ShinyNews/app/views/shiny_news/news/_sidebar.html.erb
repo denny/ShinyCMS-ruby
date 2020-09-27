@@ -5,7 +5,7 @@
           </h2>
         </header>
         <ul>
-          <% ShinyNews::Post.recent.limit(10).each do |sidebar_news_post| %>
+          <% recent_news_posts(10).each do |sidebar_news_post| %>
           <li>
             <%= link_to sidebar_news_post.title, sidebar_news_post.path %>
           </li>

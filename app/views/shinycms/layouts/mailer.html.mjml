@@ -11,14 +11,5 @@
     </mj-attributes>
   </mj-head>
 
-  <mj-body>
-    <mj-section>
-      <mj-column>
-        <mj-text mj-class="big"><%= site_name %></mj-text>
-      </mj-column>
-    </mj-section>
-
-    <%= yield %>
-
-  </mj-body>
+  <%= yield %>
 </mjml>

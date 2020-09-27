@@ -14,15 +14,15 @@ class Admin::CommentsController < AdminController
 
   # Display spam comment moderation page
   def index
-    authorise Comment
+    authorize Comment
     page_num = params[ :page ] || 1
     @comments = Comment.all_spam.page( page_num )
-    authorise @comments if @comments.present?
+    authorize @comments if @comments.present?
   end
 
   # Process submission of spam comment moderation page
   def update
-    authorise Comment
+    authorize Comment
     case update_params[ :spam_or_ham ]
     when 'spam'
       process_spam_comments
@@ -36,37 +36,37 @@ class Admin::CommentsController < AdminController
   end
 
   def show
-    authorise @comment
+    authorize @comment
     @comment.show
     redirect_back fallback_location: @comment.anchored_path
   end
 
   def hide
-    authorise @comment
+    authorize @comment
     @comment.hide
     redirect_back fallback_location: @comment.anchored_path
   end
 
   def lock
-    authorise @comment
+    authorize @comment
     @comment.lock
     redirect_back fallback_location: @comment.anchored_path
   end
 
   def unlock
-    authorise @comment
+    authorize @comment
     @comment.unlock
     redirect_back fallback_location: @comment.anchored_path
   end
 
   def destroy
-    authorise @comment
+    authorize @comment
     @comment.destroy!
     redirect_back fallback_location: @comment.anchored_path
   end
 
   def mark_as_spam
-    authorise @comment
+    authorize @comment
     @comment.mark_as_spam
     redirect_back fallback_location: @comment.anchored_path
   end

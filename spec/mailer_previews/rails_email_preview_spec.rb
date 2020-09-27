@@ -19,7 +19,8 @@ RSpec.describe RailsEmailPreview, type: :request do
     it 'it shows the list of emails' do
       get rails_email_preview.rep_emails_path
 
-      expect( response.body ).to have_content I18n.t( 'rails_email_preview.emails.index.list_title' )
+      expect( response.body ).to have_title I18n.t( 'rails_email_preview.emails.index.title' ).titlecase
+      expect( response.body ).to have_link text: I18n.t( 'devise.mailer.confirmation_instructions.subject' )
     end
   end
 end

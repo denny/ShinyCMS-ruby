@@ -10,7 +10,7 @@
 <% end %>
 
 <% if controller_name == 'users' || controller_name == 'profiles' %>
-    <%= t( 'admin.users.title' ).singularize %>:
+    <%= t( 'admin.users.toolbar' ) %>:
   <% if current_user_can? :add, :users %>
     <%= link_to t( 'add'  ), main_app.new_user_path %> /
   <% end %>
@@ -24,7 +24,7 @@
 <% end %>
 
 <% if @discussion.present? %>
-  <%= t( 'admin.discussion.title' ) %>:
+  <%= t( 'admin.discussion.toolbar' ) %>:
 <% if current_user_can? :hide, :discussions %>
   <% if @discussion.hidden? %>
     <%= link_to t( 'show' ), main_app.show_discussion_path( @discussion ) %>
@@ -48,7 +48,7 @@
     |
   <% end %>
   <% if current_user_can? :view_admin_area %>
-    <%= link_to t( 'admin.admin_area' ), main_app.admin_path %>
+    <%= link_to t( 'admin.toolbar' ), main_app.admin_path %>
   <% end %>
   </div>
 </nav>

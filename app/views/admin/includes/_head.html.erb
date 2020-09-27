@@ -26,4 +26,6 @@
 
     <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js' %>
 
-    <%= javascript_include_tag Ckeditor.cdn_url if html_editor_needed? %>
+    <% unless controller.kind_of? Blazer::BaseController %>
+    <%= javascript_include_tag Ckeditor.cdn_url if load_html_editor? %>
+    <% end %>
