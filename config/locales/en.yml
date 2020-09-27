@@ -85,6 +85,9 @@ en:
     save_comment:
       success: New comment posted
       failure: Failed to post new comment
+    profile:
+      content:
+        title: Recent comments
 
   do_not_contact:
     new:

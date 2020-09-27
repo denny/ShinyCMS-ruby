@@ -9,8 +9,12 @@
 module ShinyBlog
   # Helper method for finding mailing lists - part of ShinyBlog plugin for ShinyCMS
   module MainSiteHelper
-    def recent_blog_posts( count )
-      ShinyBlog::Post.recent.limit( count )
+    def recent_blog_posts( count = 10 )
+      ShinyBlog::Post.readonly.recent.limit( count )
+    end
+
+    def recent_blog_posts_by_user( user, count = 10 )
+      ShinyBlog::Post.readonly.where( user: user ).recent.limit( count )
     end
   end
 end
