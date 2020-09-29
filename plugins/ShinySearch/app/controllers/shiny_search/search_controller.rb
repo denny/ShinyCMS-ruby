@@ -9,7 +9,7 @@
 module ShinySearch
   # Main site controller for ShinySearch plugin for ShinyCMS
   class SearchController < MainController
-    include SearchHelper
+    include ShinySearch::MainSiteHelper
     include ShinyPagingHelper
 
     before_action :check_feature_flags

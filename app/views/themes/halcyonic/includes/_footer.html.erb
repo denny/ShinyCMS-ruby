@@ -72,7 +72,7 @@
               <div class="col-4 col-12-medium imp-medium">
 
                 <section>
-                  <% if defined? ShinySearch %>
+                  <% if plugin_loaded? :ShinySearch %>
                   <h2>
                     <%= t( 'shiny_search.search.new.title' ) %>
                   </h2>

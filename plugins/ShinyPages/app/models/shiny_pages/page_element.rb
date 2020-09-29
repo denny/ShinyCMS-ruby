@@ -7,8 +7,9 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyPages
-  # Model class for page elements
+  # Model class for page elements - part of the ShinyPages plugin for ShinyCMS
   class PageElement < ApplicationRecord
+    include ShinySearch::Searchable if ::Plugin.loaded? :ShinySearch
     include ShinyDemoDataProvider
     include ShinyElement
 
@@ -17,5 +18,11 @@ module ShinyPages
     validates :page, presence: true
 
     acts_as_list scope: :page
+
+    searchable_by :content if ::Plugin.loaded? :ShinySearch # TODO
+
+    def hidden?
+      false
+    end
   end
 end

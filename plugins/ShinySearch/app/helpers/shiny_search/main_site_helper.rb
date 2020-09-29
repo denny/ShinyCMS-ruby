@@ -8,7 +8,7 @@
 
 module ShinySearch
   # Utility functions for dealing with pg_multisearch and Algolia (Search as a Service provider)
-  module SearchHelper
+  module MainSiteHelper
     def pg_search_is_enabled?
       ENV['DISABLE_PG_SEARCH'].blank?
     end
