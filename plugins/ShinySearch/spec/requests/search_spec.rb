@@ -25,8 +25,8 @@ RSpec.describe 'Search:', type: :request do
     end
 
     it 'logs an error if no search back-ends are enabled' do
-      allow_any_instance_of( ShinySearch::SearchHelper ).to receive( :algolia_search_is_enabled? ).and_return( false )
-      allow_any_instance_of( ShinySearch::SearchHelper ).to receive( :pg_search_is_enabled?      ).and_return( false )
+      allow_any_instance_of( ShinySearch::MainSiteHelper ).to receive( :algolia_search_is_enabled? ).and_return( false )
+      allow_any_instance_of( ShinySearch::MainSiteHelper ).to receive( :pg_search_is_enabled?      ).and_return( false )
 
       expect( Rails.logger ).to receive( :error ).with(
         'Search feature is enabled, but no search back-ends are enabled'
