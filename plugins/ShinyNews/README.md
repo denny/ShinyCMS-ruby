@@ -1,6 +1,6 @@
 # ShinyNews: News section plugin for ShinyCMS
 
-ShinyNews is a plugin for [ShinyCMS](https://shinycms.com) which adds
+ShinyNews is a plugin for [ShinyCMS](https://shinycms.org) which adds
 a news section to your ShinyCMS website.
 
 News posts can be added and edited in the ShinyCMS admin area; look for 'News'

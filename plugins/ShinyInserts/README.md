@@ -1,6 +1,6 @@
 # ShinyInserts: reusable content plugin for ShinyCMS
 
-ShinyInserts is a plugin for [ShinyCMS](https://shinycms.com) which adds
+ShinyInserts is a plugin for [ShinyCMS](https://shinycms.org) which adds
 reusable content fragments ('inserts') to your ShinyCMS website.
 
 

@@ -1,6 +1,6 @@
 # ShinyForms: Form handlers plugin for ShinyCMS
 
-ShinyForms is a plugin for [ShinyCMS](https://shinycms.com) which adds
+ShinyForms is a plugin for [ShinyCMS](https://shinycms.org) which adds
 some generic form handlers to your ShinyCMS site.
 
 Form handlers are endpoints to which you can POST a suitably constructed

@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.version     = ShinyForms::VERSION
   spec.authors     = ['Denny de la Haye']
   spec.email       = ['2020@denny.me']
-  spec.homepage    = 'https://shinycms.com'
+  spec.homepage    = 'https://shinycms.org'
   spec.summary     = 'ShinyCMS form handlers plugin'
   spec.description = 'Generic form handlers plugin for ShinyCMS'
   spec.license     = 'GPL'
