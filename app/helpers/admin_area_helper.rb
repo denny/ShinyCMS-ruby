@@ -48,11 +48,9 @@ module AdminAreaHelper
     render partial: 'admin/menu/menu__section_end'
   end
 
-  def render_admin_menu_section( text, icon = nil, &contents )
+  def render_admin_menu_section( text, icon = nil, &block )
     section = render_admin_menu_section_start( text, icon )
-    section << capture do
-      contents.call
-    end
+    section << capture(&block)
     section << render_admin_menu_section_end
   end
 
