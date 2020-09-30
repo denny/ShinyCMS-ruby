@@ -13,6 +13,8 @@
 
   <%= render partial: 'admin/menu/menu_settings' %>
 
+  <% if sidekiq_web_enabled? %>
   <%= render_admin_menu_item_if( current_user.can?( :manage_sidekiq_jobs ),
-      t( 'admin.sidekiq_web.menu' ), sidekiq_web_path, 'speedometer' ) %>
+      t( 'admin.sidekiq_web.menu' ), sidekiq_web_path, 'applications' ) %>
+  <% end %>
 </ul>

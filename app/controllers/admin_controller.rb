@@ -9,7 +9,6 @@
 # Base controller for the admin area in ShinyCMS
 class AdminController < ApplicationController
   include Pundit
-  include AdminAreaHelper
 
   before_action :check_admin_ip_list
   before_action :authenticate_user!
