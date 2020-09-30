@@ -108,11 +108,6 @@ Style/ClassAndModuleChildren:
 Style/RegexpLiteral:
   Enabled: false
 
-# TODO: see if I can make this method happy at some point
-Metrics/AbcSize:
-  Exclude:
-    - app/helpers/admin_area_helper.rb
-
 # I like chaining methods, it's aesthetically pleasing :-p
 Performance/ChainArrayAllocation:
   Enabled: false
