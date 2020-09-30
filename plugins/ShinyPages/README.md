@@ -1,6 +1,6 @@
 # ShinyPages: 'brochure pages' plugin for ShinyCMS
 
-ShinyPages is a plugin for [ShinyCMS](https://shinycms.com) which adds content-managed pages (with page templates and page sections) to your ShinyCMS website.
+ShinyPages is a plugin for [ShinyCMS](https://shinycms.org) which adds content-managed pages (with page templates and page sections) to your ShinyCMS website.
 
 
 ## Installation

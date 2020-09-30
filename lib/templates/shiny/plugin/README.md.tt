@@ -1,6 +1,6 @@
 # <%= camelized_modules %>: ??? plugin for ShinyCMS
 
-<%= camelized_modules %> is a plugin for [ShinyCMS](https://shinycms.com) which adds
+<%= camelized_modules %> is a plugin for [ShinyCMS](https://shinycms.org) which adds
 ??? to your ShinyCMS website.
 
 
