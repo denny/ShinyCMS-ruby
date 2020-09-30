@@ -71,10 +71,14 @@ Rails/OutputSafety:
   Exclude:
     - config/initializers/field_with_errors.rb
 
-# This 'useless' method enables a feature flag check
+# This method lets me put a feature flag check in front of user registrations. That seems quite useful to me.
 Lint/UselessMethodDefinition:
   Exclude:
     - app/controllers/users/registrations_controller.rb
+
+# Allow compact class names (e.g. Admin::Pages::TemplatesController)
+Style/ClassAndModuleChildren:
+  Enabled: false
 
 # Whitespace Considered Helpful
 Layout/ExtraSpacing:
@@ -92,10 +96,6 @@ Layout/SpaceInsideParens:
 Layout/SpaceInsidePercentLiteralDelimiters:
   Enabled: false
 Layout/SpaceInsideReferenceBrackets:
-  Enabled: false
-
-# Allow compact class names (e.g. Admin::Pages::TemplatesController)
-Style/ClassAndModuleChildren:
   Enabled: false
 
 # I'd rather use one style of regex everywhere, that is clearer for munging URLs
