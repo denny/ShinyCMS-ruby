@@ -13,7 +13,7 @@
   <% if current_user_can? :add, :page_sections %>
     <%= link_to t( 'add' ), shiny_pages.new_section_path %>
   <% end %>
-  <% if current_user_can?( :edit, :page_sections ) && @page.section.present? %>
+  <% if current_user_can?( :edit, :page_sections ) && @page&.section.present? %>
     / <%= link_to t( 'edit' ), shiny_pages.edit_section_path( @page.section ) %>
   <% end %>
     |
