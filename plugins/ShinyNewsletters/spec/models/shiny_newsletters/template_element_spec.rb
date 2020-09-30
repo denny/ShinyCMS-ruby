@@ -8,6 +8,7 @@
 
 require 'rails_helper'
 
+# Tests for newsletter template element model
 module ShinyNewsletters
   RSpec.describe TemplateElement, type: :model do
     it_should_behave_like ShinyElement do

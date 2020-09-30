@@ -9,7 +9,6 @@
 require 'rails_helper'
 
 # Tests for job that (queues the jobs that) sends a copy of a newsletter edition to everybody on a mailing list
-
 module ShinyNewsletters
   RSpec.describe SendToListJob do
     describe '.perform_later' do
