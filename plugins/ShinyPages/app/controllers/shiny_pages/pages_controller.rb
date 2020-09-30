@@ -9,14 +9,15 @@
 module ShinyPages
   # Main site controller - ShinyPages plugin for ShinyCMS
   class PagesController < MainController
+    include ShinyPages::MainSiteHelper
+
     # Handle requests for the root page
     # /  (or /pages)
     def index
-      @page = ShinyPages::Page.readonly.default_page
-      if @page
-        show_page
-        return
-      end
+      @page = find_default_page
+
+      return show_page if @page
+
       # rubocop:disable Rails/RenderInline
       render inline: <<~HTML
         <p>
@@ -55,7 +56,7 @@ module ShinyPages
     end
 
     def show_top_level_page( slug )
-      @page = ShinyPages::Page.readonly.top_level_pages&.find_by( slug: slug )
+      @page = find_top_level_page( slug )
       return unless @page
 
       show_page
@@ -63,7 +64,7 @@ module ShinyPages
     end
 
     def show_top_level_section( slug )
-      @page = ShinyPages::Section.readonly.top_level_sections&.find_by( slug: slug )&.default_page
+      @page = find_top_level_section( slug )&.default_page
       return unless @page
 
       show_page
@@ -74,7 +75,7 @@ module ShinyPages
     # /pages/foo/bar, /pages/foo/bar/baz, /pages/etc/etc/etc
     def show_in_section( path_parts )
       slug = path_parts.pop
-      section = traverse_path( path_parts, ShinyPages::Section.readonly.top_level_sections )
+      section = traverse_path( path_parts, top_level_sections )
 
       @page = section.pages&.find_by( slug: slug ) || section.sections&.find_by( slug: slug )&.default_page
       show_page && return if @page
