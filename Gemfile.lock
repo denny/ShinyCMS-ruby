@@ -419,6 +419,9 @@ GEM
     rubocop-ast (0.7.0)
       parser (>= 2.7.1.5)
       strscan (>= 1.0.0)
+    rubocop-performance (1.8.1)
+      rubocop (>= 0.87.0)
+      rubocop-ast (>= 0.4.0)
     rubocop-rails (2.8.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
@@ -548,6 +551,7 @@ DEPENDENCIES
   rspec-rails!
   rspec_junit_formatter!
   rubocop!
+  rubocop-performance!
   rubocop-rails!
   sassc-rails!
   seed_dump!

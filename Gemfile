@@ -140,6 +140,7 @@ source 'https://rubygems.org' do
     gem 'rails-pg-extras'
     # Linter
     gem 'rubocop', require: false
+    gem 'rubocop-performance', require: false
     gem 'rubocop-rails', require: false
     # Used to generate demo site data
     gem 'seed_dump'

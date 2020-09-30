@@ -28,7 +28,7 @@ class CapabilityCategory < ApplicationRecord
 
     return record.capability_category_name if record.respond_to? :capability_category_name
 
-    record.name.underscore.pluralize.gsub( '/', '_' )
+    record.name.underscore.pluralize.tr( '/', '_' )
   end
 
   def self.category_names
