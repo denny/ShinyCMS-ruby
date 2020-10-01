@@ -20,7 +20,7 @@ class EmailRecipient < ApplicationRecord
 
   # Scopes
 
-  scope :confirmed, -> { confirmed_at.present? }
+  scope :confirmed, -> { where.not( confirmed_at: nil ) }
 
   # Instance methods
 

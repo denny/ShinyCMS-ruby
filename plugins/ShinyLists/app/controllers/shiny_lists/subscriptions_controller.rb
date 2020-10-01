@@ -14,7 +14,8 @@ module ShinyLists
 
       if subscriber
         @subscriptions = subscriber.subscriptions
-        @subscriber    = subscriber
+
+        flash.now[:alert] = t( '.email_not_confirmed' ) unless subscriber.confirmed?
       else
         flash.now[:alert] = t( '.subscriber_not_found' )
       end

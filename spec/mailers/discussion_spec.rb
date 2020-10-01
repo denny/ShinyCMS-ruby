@@ -38,10 +38,11 @@ RSpec.describe DiscussionMailer, type: :mailer do
     end
 
     it 'generates an email to a pseudonymous parent comment author' do
-      top   = create :top_level_comment, discussion: @discussion,
-                                         author_type: 'Pseudonymous',
-                                         author_name: 'Test Suite',
-                                         author_email: 'test@example.com'
+      recipient = create :confirmed_email_recipient
+      top = create :top_level_comment,  discussion: @discussion,
+                                        author_type: 'Pseudonymous',
+                                        author_name: 'Test Suite',
+                                        author_email: recipient.email
       reply = create :nested_comment, parent: top, discussion: @discussion
 
       email = DiscussionMailer.parent_comment_notification( reply )
