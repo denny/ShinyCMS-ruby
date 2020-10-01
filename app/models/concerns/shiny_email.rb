@@ -23,6 +23,10 @@ module ShinyEmail
       self.canonical_email = EmailAddress.canonical( email )
     end
 
+    def do_not_email?
+      !confirmed? || DoNotContact.include?( email )
+    end
+
     def obfuscated_email
       EmailAddress.munge( email )
     end

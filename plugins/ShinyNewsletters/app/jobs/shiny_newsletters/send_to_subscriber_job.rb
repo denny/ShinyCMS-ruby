@@ -10,6 +10,7 @@ module ShinyNewsletters
   # Send an edition of a newsletter to an individual subscriber on a list
   class SendToSubscriberJob < ApplicationJob
     def perform( send, subscriber )
+      return if subscriber.do_not_email?
       return if send.sent?
 
       return unless send.list.subscribed? subscriber.email

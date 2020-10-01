@@ -2,10 +2,7 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
-* Double opt-in journey
-  * Email recipients
-    * List subscriptions
-    * Comment notifications
+* Add subscription-management links to list emails
 
 * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
 
@@ -77,6 +74,8 @@
 
 * 2FA
   * https://github.com/tinfoil/devise-two-factor
+
+* Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)
 
 * Configurable (per-site and per-user) menu order in admin area
 

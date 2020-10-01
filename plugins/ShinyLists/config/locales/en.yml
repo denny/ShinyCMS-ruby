@@ -30,6 +30,7 @@ en:
         title: Your mailing list subscriptions
         unsubscribe: Unsubscribe
         subscriber_not_found: Subscriber not found - please check link and try again
+        email_not_confirmed: You will not receive any email until your email address has been confirmed
       subscribe:
         success: You have been subscribed
         already_subscribed: You are already subscribed to this mailing list

@@ -85,6 +85,10 @@ Rails/OutputSafety:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+# I think this makes code significantly harder to read, personally
+Style/ConditionalAssignment:
+  Enabled: false
+
 # This test is for a feature that parses a list of IP addresses
 Style/IpAddresses:
   Exclude:

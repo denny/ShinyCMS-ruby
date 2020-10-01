@@ -23,8 +23,10 @@ Rails.application.routes.draw do
     get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
     post 'discussion/:id/:number', to: 'discussions#add_reply'
 
-    get  'do-not-contact', to: 'do_not_contact#new'
-    post 'do-not-contact', to: 'do_not_contact#create'
+    get  'email/confirm/:token', to: 'email_recipients#confirm', as: :confirm_email
+
+    get  'email/do-not-contact', to: 'do_not_contact#new', as: :do_not_contact
+    post 'email/do-not-contact', to: 'do_not_contact#create'
 
     get 'site-settings', to: 'site_settings#index'
     put 'site-settings', to: 'site_settings#update'
