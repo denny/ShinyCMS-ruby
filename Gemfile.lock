@@ -1,63 +1,63 @@
 PATH
   remote: plugins/ShinyBlog
   specs:
-    shiny_blog (20.8)
+    shiny_blog (20.10)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
 PATH
   remote: plugins/ShinyForms
   specs:
-    shiny_forms (20.8)
+    shiny_forms (20.10)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
 PATH
   remote: plugins/ShinyInserts
   specs:
-    shiny_inserts (20.8)
+    shiny_inserts (20.10)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
 PATH
   remote: plugins/ShinyLists
   specs:
-    shiny_lists (20.8)
+    shiny_lists (20.10)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
 PATH
   remote: plugins/ShinyNews
   specs:
-    shiny_news (20.8)
+    shiny_news (20.10)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
 PATH
   remote: plugins/ShinyNewsletters
   specs:
-    shiny_newsletters (20.8)
+    shiny_newsletters (20.10)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
 PATH
   remote: plugins/ShinyPages
   specs:
-    shiny_pages (20.8)
+    shiny_pages (20.10)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
 PATH
   remote: plugins/ShinyProfiles
   specs:
-    shiny_profiles (20.8)
+    shiny_profiles (20.10)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
 PATH
   remote: plugins/ShinySearch
   specs:
-    shiny_search (20.8)
+    shiny_search (20.10)
       algoliasearch-rails
       pg (>= 0.18, < 2.0)
       pg_search
