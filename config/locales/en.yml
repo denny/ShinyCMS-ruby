@@ -102,6 +102,13 @@ en:
       failure: Failed to add email address to Do Not Contact list; please try again
       duplicate: Your email address is already on our Do Not Contact list
 
+  email_recipients:
+    confirm:
+      success: Thank you for verifying your email address
+      token_not_found: Failed to find email address; please check URL and try again
+      token_expired: Your confirmation link has expired; please request a new email and try again
+      # failure: Failed to confirm email address; please try again, or alert site admins
+
   errors:
     messages:
       slug_not_safe_at_top_level: cannot be used as a top-level slug

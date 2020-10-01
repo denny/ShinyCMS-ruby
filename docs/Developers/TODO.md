@@ -78,6 +78,8 @@
 * 2FA
   * https://github.com/tinfoil/devise-two-factor
 
+* Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)
+
 * Configurable (per-site and per-user) menu order in admin area
 
 * Better tooling for loading (and ideally, for creating/updating) the demo data

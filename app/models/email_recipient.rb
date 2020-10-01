@@ -17,4 +17,31 @@ class EmailRecipient < ApplicationRecord
 
   # Email stats (powered by Ahoy)
   has_many :messages, as: :user, dependent: :nullify, class_name: 'Ahoy::Message'
+
+  # Scopes
+
+  scope :confirmed, -> { confirmed_at.present? }
+
+  # Instance methods
+
+  def confirm
+    return false if confirm_expired?
+
+    update!( confirmed_at: Time.zone.now )
+  end
+
+  def confirmed?
+    confirmed_at.present?
+  end
+
+  def confirm_expired?
+    confirm_sent_at < self.class.confirm_token_valid_for.ago
+  end
+
+  # Class methods
+
+  def self.confirm_token_valid_for
+    # TODO: make this configurable
+    7.days
+  end
 end
