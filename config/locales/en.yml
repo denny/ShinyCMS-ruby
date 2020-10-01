@@ -161,6 +161,10 @@ en:
     overview_notification:
       subject: '%{comment_author_name} commented on %{site_name}'
 
+  email_recipient_mailer:
+    confirm:
+      subject: Confirm your email address for %{site_name}
+
   user_mailer:
     welcome: Welcome, %{name}!
     hello: Hello %{name},

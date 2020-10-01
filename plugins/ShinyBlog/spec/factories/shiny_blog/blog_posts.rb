@@ -14,7 +14,7 @@ module ShinyBlog
       body   { Faker::Lorem.paragraph }
       posted_at { Time.zone.now.iso8601 }
 
-      association :user
+      association :user, factory: :blog_admin
     end
   end
 end

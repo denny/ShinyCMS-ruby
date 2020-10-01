@@ -24,6 +24,21 @@ class EmailRecipient < ApplicationRecord
 
   # Instance methods
 
+  after_create :send_confirm_email
+
+  def set_confirm_token
+    update!(
+      confirm_token: SecureRandom.uuid,
+      confirm_sent_at: Time.zone.now,
+      confirmed_at: nil
+    )
+  end
+
+  def send_confirm_email
+    set_confirm_token
+    EmailRecipientMailer.confirm( self )
+  end
+
   def confirm
     return false if confirm_expired?
 
