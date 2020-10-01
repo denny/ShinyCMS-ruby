@@ -25,9 +25,9 @@ settings_cc   = seed CapabilityCategory, { name: 'settings'         }
 users_cc      = seed CapabilityCategory, { name: 'users'            }
 admins_cc     = seed CapabilityCategory, { name: 'admin_users'      }
 # General
-seed Capability, { name: 'view_admin_area'      }, { category: general_cc }
-seed Capability, { name: 'view_admin_dashboard' }, { category: general_cc }
-seed Capability, { name: 'view_admin_toolbar'   }, { category: general_cc }
+seed Capability, { name: 'view_admin_area'     }, { category: general_cc }
+seed Capability, { name: 'view_admin_toolbar'  }, { category: general_cc }
+seed Capability, { name: 'manage_sidekiq_jobs' }, { category: general_cc }
 # Consent Versions
 seed Capability, { name: 'list',    category: consent_cc }
 seed Capability, { name: 'add',     category: consent_cc }

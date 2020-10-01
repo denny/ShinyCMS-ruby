@@ -116,6 +116,19 @@ Rails.application.routes.draw do
     # RailsEmailPreview provides previews of site emails in the admin area
     mount RailsEmailPreview::Engine, at: '/admin/email-previews'
 
+    def sidekiq_web_enabled?
+      ENV['DISABLE_SIDEKIQ_WEB']&.downcase != 'true'
+    end
+
+    # Sidekiq Web provides a web dashboard for your sidekiq jobs and queues
+    if sidekiq_web_enabled?
+      require 'sidekiq/web'
+      Sidekiq::Web.set :sessions, false
+      authenticate :user, ->( user ) { user.can? :manage_sidekiq_jobs } do
+        mount Sidekiq::Web, at: '/admin/sidekiq'
+      end
+    end
+
     # LetterOpener catches all emails sent in development, with a webmail UI to view them
     mount LetterOpenerWeb::Engine, at: '/dev/outbox' if Rails.env.development?
 
