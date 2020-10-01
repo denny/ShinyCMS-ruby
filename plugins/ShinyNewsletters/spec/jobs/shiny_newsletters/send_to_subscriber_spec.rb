@@ -15,7 +15,7 @@ module ShinyNewsletters
       it 'queues a send-to-subscriber job' do
         ActiveJob::Base.queue_adapter = :test
 
-        subscriber1 = create :email_recipient
+        subscriber1 = create :email_recipient, :confirmed
         send1       = create :newsletter_send
         consent1    = create :consent_version
 
@@ -29,7 +29,7 @@ module ShinyNewsletters
       it 'with a valid send and subscriber' do
         ActiveJob::Base.queue_adapter = :test
 
-        subscriber1 = create :email_recipient
+        subscriber1 = create :email_recipient, :confirmed
         send1       = create :newsletter_send
         consent1    = create :consent_version
 
@@ -44,7 +44,7 @@ module ShinyNewsletters
         it 'bails out before sending' do
           ActiveJob::Base.queue_adapter = :test
 
-          subscriber1 = create :email_recipient
+          subscriber1 = create :email_recipient, :confirmed
           send1       = create :newsletter_send_sent
 
           expect( SendToSubscriberJob.perform_now( send1, subscriber1 ) ).to be_nil

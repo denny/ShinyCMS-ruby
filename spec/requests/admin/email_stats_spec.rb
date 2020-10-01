@@ -33,7 +33,7 @@ RSpec.describe Admin::EmailStatsController, type: :request do
     end
 
     it 'fetches the email stats for a specific recipient (without a user account)' do
-      user = create :email_recipient
+      user = create :email_recipient, :confirmed
 
       get email_stats_path, params: { user_id: user.id, user_type: 'EmailRecipient' }
 

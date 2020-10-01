@@ -1,0 +1,7 @@
+Hi <%= @recipient.name || @recipient.email %>,
+
+Before we can send you any emails from <%= @site_name %>, we need you to click on the link below:
+
+    <%= confirm_email_url( @confirm_token ) %>
+
+Thank you!

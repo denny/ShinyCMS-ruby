@@ -9,7 +9,7 @@
 
   <% if @subscriptions.present? %>
   <p>
-    You are managing subscriptions for <strong><%= @subscriber.obfuscated_email %></strong>.
+    You are managing subscriptions for <strong><%= @subscriptions.first.subscriber.obfuscated_email %></strong>.
     If this is not you, please <% if user_signed_in? %>log out<% else %>check the link you used<% end %>!
   </p>
 
