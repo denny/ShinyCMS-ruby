@@ -8,6 +8,7 @@
 
 require 'rails_helper'
 
+# Tests for newsletter template model
 module ShinyNewsletters
   RSpec.describe Template, type: :model do
     context 'class methods' do

@@ -9,7 +9,6 @@
 require 'rails_helper'
 
 # Tests for job that sends a single copy of a newsletter edition to a subscriber
-
 module ShinyNewsletters
   RSpec.describe SendToSubscriberJob do
     describe '.perform_later' do
