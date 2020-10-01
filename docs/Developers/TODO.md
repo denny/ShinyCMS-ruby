@@ -2,10 +2,7 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
-* Double opt-in journey
-  * Email recipients
-    * List subscriptions
-    * Comment notifications
+* Add subscription-management links to list emails
 
 * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
 
