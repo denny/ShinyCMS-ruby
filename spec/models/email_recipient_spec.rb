@@ -19,7 +19,9 @@ RSpec.describe EmailRecipient, type: :model do
       end
 
       it 'fails if the confirm token has expired' do
-        recipient = create :email_recipient, confirm_sent_at: 1.month.ago
+        recipient = create :email_recipient
+        recipient.set_confirm_token
+        recipient.update!( confirm_sent_at: 1.month.ago )
 
         expect( recipient.confirm ).to be false
       end
@@ -41,7 +43,9 @@ RSpec.describe EmailRecipient, type: :model do
 
     describe '.confirm_expired?' do
       it 'returns true if the confirm_token has expired' do
-        recipient = create :email_recipient, confirm_sent_at: 1.month.ago
+        recipient = create :email_recipient
+        recipient.set_confirm_token
+        recipient.update!( confirm_sent_at: 1.month.ago )
 
         expect( recipient.confirm_expired? ).to be true
       end
