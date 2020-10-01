@@ -138,7 +138,8 @@ seed FeatureFlag, { name: 'user_registration' }, {
 
 # Settings
 def set_setting( name:, value: '', description: nil, level: 'site', locked: false )
-  setting = Setting.create_or_find_by!( name: name.to_s, locked: false )
+  setting = Setting.create_or_find_by!( name: name.to_s )
+  setting.unlock
 
   setting.update!( description: description ) if description.present?
   setting.update!( level: level ) unless setting.level == level
@@ -147,7 +148,7 @@ def set_setting( name:, value: '', description: nil, level: 'site', locked: fals
 
   setting_value.update!( value: value ) unless Setting.get( name ) == value
 
-  setting.lock if locked && !setting.locked?
+  setting.lock if locked
 end
 
 set_setting(
@@ -170,6 +171,7 @@ set_setting(
 
 set_setting(
   name: :default_email,
+  value: 'admin@example.com',
   description: 'Default email address to send from'
 )
 
@@ -211,7 +213,7 @@ set_setting(
 
 set_setting(
   name: :theme_name,
-  value: 'halcyonic'
+  value: ''
 )
 
 set_setting(
