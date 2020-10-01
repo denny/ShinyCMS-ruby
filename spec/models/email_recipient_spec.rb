@@ -13,13 +13,13 @@ RSpec.describe EmailRecipient, type: :model do
   context 'instance methods' do
     describe '.confirm' do
       it 'successfully confirms a matching email recipient' do
-        recipient = create :unconfirmed_email_recipient
+        recipient = create :email_recipient
 
         expect( recipient.confirm ).to be true
       end
 
       it 'fails if the confirm token has expired' do
-        recipient = create :unconfirmed_email_recipient, confirm_sent_at: 1.month.ago
+        recipient = create :email_recipient, confirm_sent_at: 1.month.ago
 
         expect( recipient.confirm ).to be false
       end
@@ -27,13 +27,13 @@ RSpec.describe EmailRecipient, type: :model do
 
     describe '.confirmed?' do
       it 'returns true if the recipient has confirmed their email address' do
-        recipient = create :confirmed_email_recipient
+        recipient = create :email_recipient, :confirmed
 
         expect( recipient.confirmed? ).to be true
       end
 
       it 'returns false if the recipient has not confirmed their email address' do
-        recipient = create :unconfirmed_email_recipient
+        recipient = create :email_recipient
 
         expect( recipient.confirmed? ).to be false
       end
@@ -41,13 +41,13 @@ RSpec.describe EmailRecipient, type: :model do
 
     describe '.confirm_expired?' do
       it 'returns true if the confirm_token has expired' do
-        recipient = create :unconfirmed_email_recipient, confirm_sent_at: 1.month.ago
+        recipient = create :email_recipient, confirm_sent_at: 1.month.ago
 
         expect( recipient.confirm_expired? ).to be true
       end
 
       it 'returns false if the confirm_token has not expired' do
-        recipient = create :unconfirmed_email_recipient
+        recipient = create :email_recipient
 
         expect( recipient.confirm_expired? ).to be false
       end

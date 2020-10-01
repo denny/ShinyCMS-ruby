@@ -16,7 +16,7 @@ RSpec.describe EmailRecipientsController, type: :request do
 
   describe 'GET /email/confirm/:token' do
     it 'confirms the email address if the token is valid' do
-      recipient = create :unconfirmed_email_recipient
+      recipient = create :email_recipient
 
       get confirm_email_path( recipient.token )
 
@@ -38,7 +38,7 @@ RSpec.describe EmailRecipientsController, type: :request do
     end
 
     it 'shows an error message if the token has expired' do
-      recipient = create :unconfirmed_email_recipient, confirm_sent_at: 1.month.ago
+      recipient = create :email_recipient, confirm_sent_at: 1.month.ago
 
       get confirm_email_path( recipient.token )
 

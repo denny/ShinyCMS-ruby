@@ -15,8 +15,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
 
     @site_name = ::Setting.get( :site_name ) || I18n.t( 'site_name' )
 
-    blogger     = create :blog_admin
-    blog_post   = create :blog_post, author: blogger
+    blog_post   = create :blog_post
     @discussion = create :discussion, resource: blog_post
   end
 
@@ -38,7 +37,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
     end
 
     it 'generates an email to a pseudonymous parent comment author' do
-      recipient = create :confirmed_email_recipient
+      recipient = create :email_recipient, :confirmed
       top = create :top_level_comment,  discussion: @discussion,
                                         author_type: 'Pseudonymous',
                                         author_name: 'Test Suite',
