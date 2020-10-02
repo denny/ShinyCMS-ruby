@@ -6,6 +6,8 @@
 
 * Add subscription-management links to list emails
 
+* Replace everywhere a model class is named in a template, with a helper method
+
 * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
 
 * Highlight section name in admin area menu when on a page which isn't in the menu
