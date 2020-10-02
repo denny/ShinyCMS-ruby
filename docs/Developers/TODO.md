@@ -2,6 +2,8 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
+* Make a generic sidebar template that renders any partials in a specified directory
+
 * Add subscription-management links to list emails
 
 * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
