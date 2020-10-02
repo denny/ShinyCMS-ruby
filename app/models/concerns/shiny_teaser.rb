@@ -13,29 +13,52 @@ module ShinyTeaser
   included do
     validates :body, presence: true
 
+    def body_longer_than_teaser?( paragraphs: 3 )
+      body_paragraphs.size > paragraphs
+    end
+
     def teaser( paragraphs: 3 )
-      return split_by_p_tags(  paragraphs ) if contains_p_tags
-      return split_by_br_tags( paragraphs ) if contains_br_tags
+      return body if body_paragraphs.size == 1
 
-      body
+      paragraphs = body_paragraphs.size if body_paragraphs.size < paragraphs
+
+      join_paragraphs( body_paragraphs[ 0..( paragraphs - 1 ) ] )
     end
 
-    def split_by_p_tags( paragraphs )
-      split_text = body.split %r{</p>[^<]*<p>}i
-      split_text[ 0..( paragraphs - 1 ) ].join( "\n</p>\n<p>" )
+    def body_paragraphs
+      return split_by_p_tags(  body ) if contains_p_tags(  body )
+      return split_by_br_tags( body ) if contains_br_tags( body )
+
+      [ body ]
     end
 
-    def split_by_br_tags( paragraphs )
-      split_text = body.split %r{<br ?/?>\s*<br ?/?>}i
-      split_text[ 0..( paragraphs - 1 ) ].join "\n<br><br>\n"
+    def join_paragraphs( paragraphs )
+      return join_with_p_tags(  paragraphs ) if contains_p_tags(  body )
+      return join_with_br_tags( paragraphs ) if contains_br_tags( body )
     end
 
-    def contains_p_tags
-      body.match? %r{</p>[^<]*<p>}i
+    def split_by_p_tags( text )
+      text.split %r{</p>[^<]*<p>}i
     end
 
-    def contains_br_tags
-      body.match? %r{<br ?/?>\s*<br ?/?>}i
+    def split_by_br_tags( text )
+      text.split %r{<br ?/?>\s*<br ?/?>}i
+    end
+
+    def join_with_p_tags( paragraphs )
+      paragraphs.join( "\n</p>\n<p>" )
+    end
+
+    def join_with_br_tags( paragraphs )
+      paragraphs.join "\n<br><br>\n"
+    end
+
+    def contains_p_tags( text )
+      text.match? %r{</p>[^<]*<p>}i
+    end
+
+    def contains_br_tags( text )
+      text.match? %r{<br ?/?>\s*<br ?/?>}i
     end
   end
 end
