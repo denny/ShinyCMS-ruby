@@ -1,0 +1,9 @@
+<%
+  return unless feature_enabled? :comments
+  return if post.discussion.blank?
+  return if post.discussion.hidden?
+%>
+
+<a name="comments"></a>
+
+<%= render partial: 'discussions/discussion', locals: { resource: post } %>

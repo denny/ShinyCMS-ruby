@@ -1,4 +1,8 @@
-<% if resource.discussion.show_on_site? %>
+<%
+  return unless feature_enabled? :comments
+  return if resource.discussion.blank?
+  return if resource.discussion.hidden?
+%>
 
 <h3 class="above-section">
   <%= t( 'discussions.comments' ) %>
@@ -13,6 +17,4 @@
       <%= t( 'empty_list', items: 'comments' ) %>
     </p>
   </section>
-<% end %>
-
 <% end %>

@@ -1,0 +1,8 @@
+<header>
+  <h2>
+    <%= link_to post.title, post.path %>
+  </h2>
+  <h3>
+    Posted by <%= user_profile_link( post.author ) %> at <%= display_time_on_date( post.posted_at ) %>
+  </h3>
+</header>

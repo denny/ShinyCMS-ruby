@@ -1,0 +1,10 @@
+<%
+  return unless feature_enabled? :comments
+  return if post.discussion.blank?
+  return if post.discussion.hidden?
+  return if post.discussion.locked?
+%>
+
+<div id="comment_form" class="comment_form" hidden>
+  <%= render partial: 'discussions/comment/form', locals: { discussion: post.discussion } %>
+</div>
