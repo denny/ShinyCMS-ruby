@@ -1,0 +1,8 @@
+<%
+  return unless feature_enabled? :tags
+  return unless post.tag_list.present?
+%>
+
+<p>
+  Tags: <% post.tag_list.each do |tag| %><%= link_to tag, tag_path( tag ) %> <% end %>
+</p>

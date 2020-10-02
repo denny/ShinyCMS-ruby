@@ -1,0 +1,13 @@
+<footer>
+  <% if post.body_longer_than_teaser? %>
+    <%= link_to t( 'shiny_news.news.index.read_more' ), post.path %>
+  <% else %>
+    <%= link_to t( 'shiny_news.news.index.view_post' ), post.path %>
+  <% end %>
+
+  <% if feature_enabled?( :comments ) && post.discussion&.show_on_site? %>
+  <span class="float-right">
+    <%= link_to t( 'shiny_news.news.n_comments', count: post.discussion.comments.visible.count ), post.path( anchor: 'comments' ) %>
+  </span>
+  <% end %>
+</footer>
