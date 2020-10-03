@@ -401,7 +401,7 @@ main fieldset legend {
   width:            initial;
 }
 
-input.field_with_errors {
+input.field_with_errors, select.field_with_errors, textarea.field_with_errors {
   border:           2px solid $red;
 }
 

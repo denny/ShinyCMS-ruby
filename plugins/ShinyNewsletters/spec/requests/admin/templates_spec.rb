@@ -41,7 +41,7 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
     it 'fails when the form is submitted without all the details' do
       post shiny_newsletters.templates_path, params: {
         template: {
-          filename: 'Test'
+          filename: 'an_example'
         }
       }
 

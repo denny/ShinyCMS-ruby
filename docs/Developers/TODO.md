@@ -4,9 +4,6 @@
 
 * Write mailer tests instead of hitting mailers indirectly from request specs (Forms; any others?)
 
-* Add a MJML syntax check when adding a Newsletter Template, so I can remove the rescue block
-  from EditionsController.send_sample and change Edition.send_sample to use .deliver_later
-
 * Re-think mailer preview features
     * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
 
