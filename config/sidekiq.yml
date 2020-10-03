@@ -6,9 +6,12 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Sidekiq configuration, for production mailer jobs
-production:
-  :concurrency: 3
-  :queues:
-    - shinycms_production_mailers
-    - shinycms_production_active_storage_analysis
+# Sidekiq configuration (for ActiveJob including Mailers)
+
+:concurrency: <%= ENV.fetch( 'SIDEKIQ_CONCURRENCY' ) { 1 } %>
+<% prefix = ENV.fetch( 'SIDEKIQ_PREFIX' ) { '' } %>
+<% prefix = "#{prefix}_" unless prefix == '' %>
+:queues:
+  - <%= prefix %>mailers
+  - <%= prefix %>active_storage_analysis
+  - <%= prefix %>active_storage_purge
