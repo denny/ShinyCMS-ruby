@@ -13,8 +13,6 @@ module ShinyNewsletters
   RSpec.describe SendToSubscriberJob do
     describe '.perform_later' do
       it 'queues a send-to-subscriber job' do
-        ActiveJob::Base.queue_adapter = :test
-
         subscriber1 = create :email_recipient, :confirmed
         send1       = create :newsletter_send
         consent1    = create :consent_version
@@ -27,8 +25,6 @@ module ShinyNewsletters
 
     describe '.perform_now' do
       it 'with a valid send and subscriber' do
-        ActiveJob::Base.queue_adapter = :test
-
         subscriber1 = create :email_recipient, :confirmed
         send1       = create :newsletter_send
         consent1    = create :consent_version
@@ -42,8 +38,6 @@ module ShinyNewsletters
 
       context 'with an already-sent Send' do
         it 'bails out before sending' do
-          ActiveJob::Base.queue_adapter = :test
-
           subscriber1 = create :email_recipient, :confirmed
           send1       = create :newsletter_send_sent
 
