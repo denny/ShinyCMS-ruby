@@ -1,4 +1,4 @@
-<% list ||= ShinyLists::List.first %>
+<% list ||= most_recent_list %>
 <% consent_version ||= nil %>
 
 <% if list.present? && consent_version.present? %>

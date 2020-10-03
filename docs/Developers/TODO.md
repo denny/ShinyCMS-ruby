@@ -5,7 +5,7 @@
 * Write mailer tests instead of hitting mailers indirectly from request specs (Forms; any others?)
 
 * Re-think mailer preview features
-    * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
+  * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
 
 * Make a generic sidebar template that renders any partials in a specified directory
 

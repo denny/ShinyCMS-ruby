@@ -10,14 +10,14 @@
       <% if controller.respond_to? :breadcrumb_link_text_and_path %>
         <%= link_to *controller.breadcrumb_link_text_and_path %>
 
+      <%# ShinyCMS plugins %>
+      <% elsif plugin_loaded? plugin_name %>
+        <%= link_to *plugin_breadcrumb_link_text_and_path( plugin_name, controller_name ) %>
+
       <%# Blazer %>
       <% elsif plugin_name == 'Blazer' %>
         <% @page_title = controller_name.titlecase %> <%# TODO: i18n %>
         <%= link_to t( 'admin.stats.breadcrumb' ), blazer.root_path %>
-
-      <%# ShinyCMS plugins %>
-      <% elsif ::Plugin.loaded? plugin_name %>
-        <%= link_to *::Plugin.breadcrumb_link_text_and_path( plugin_name, controller_name ) %>
 
       <%# ShinyCMS core features %>
       <% else %>
