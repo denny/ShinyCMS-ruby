@@ -40,7 +40,6 @@ en:
           send_to_list: Send to list
         send_sample:
           success: Sample sent
-          mjml_error: MJML Parser Error
         new:
           title: New edition
         edit:
@@ -103,4 +102,8 @@ en:
   models:
     shiny_newsletters:
       template:
-        template_file_must_exist: 'Template file must be in themes/{theme-name}/shiny_newsletters/newsletter_mailer'
+        template_file_must_exist: '(template file must be in themes/{theme-name}/shiny_newsletters/newsletter_mailer)'
+
+  errors:
+    messages:
+      invalid_mjml: '(template file is not valid MJML)'

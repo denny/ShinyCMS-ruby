@@ -41,6 +41,21 @@ module ShinyNewsletters
       end
     end
 
+    context 'validations' do
+      describe 'mjml_syntax' do
+        it 'fails to create a new Template if the template file is not valid MJML' do
+          template = create :newsletter_template
+
+          update_successful = template.update( filename: 'bad_mjml' )
+
+          expect( update_successful ).to be false
+          expect( template.errors.size ).to eq 1
+          expect( template.errors.first.first  ).to eq :filename
+          expect( template.errors.first.second ).to eq I18n.t( 'errors.messages.invalid_mjml' )
+        end
+      end
+    end
+
     context 'concerns' do
       it_should_behave_like ShinyDemoDataProvider do
         let( :model ) { described_class }

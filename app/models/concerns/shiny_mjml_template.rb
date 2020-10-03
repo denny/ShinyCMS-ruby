@@ -13,6 +13,10 @@ module ShinyMJMLTemplate
   include ShinyTemplate
 
   included do
+    # Validations
+
+    validates :filename, mjml_syntax: true, if: -> { filename_changed? }
+
     # Instance methods
 
     # Create template elements, based on the content of the template file
@@ -20,10 +24,10 @@ module ShinyMJMLTemplate
       raise ActiveRecord::Rollback unless file_exists?
 
       file = "#{self.class.template_dir}/#{filename}.html.mjml"
-      erb = File.read file
+      mjml = File.read file
 
       # I am so, so sorry.
-      erb.scan(
+      mjml.scan(
         %r{<%=\s+(sanitize|simple_format)?\(?\s*@elements\[\s*:(\w+)\]\s*\)?\s+%>}
       ).uniq.each do |result|
         added = add_element result[0], result[1]
