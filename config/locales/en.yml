@@ -172,16 +172,16 @@ en:
       subject: 'Please confirm your registration on %{site_name}'
       instructions: You can confirm your email address by clicking the link below
       link_text: Confirm my address
-    password_changed:
+    password_changed_instructions:
       subject: 'Your password has been changed on %{site_name}'
       text: We're contacting you to notify you that your password has been changed.
-    reset_password:
+    reset_password_instructions:
       subject: 'Instructions for resetting your password on %{site_name}'
       instructions: Someone has requested a link to change your password. You can do this through the link below.
       link_text: Change my password
       if_not_you: If you didn't request this, please ignore this email.
       no_change: Your password won't change unless you click the link above and create a new one.
-    email_changed:
+    email_changed_instructions:
       subject: 'Changing your email address on %{site_name}'
       email_changing: We're contacting you to notify you that your email is being changed to
       email_changed: We're contacting you to notify you that your email has been changed to
