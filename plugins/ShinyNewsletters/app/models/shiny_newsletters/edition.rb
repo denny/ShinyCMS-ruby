@@ -35,7 +35,7 @@ module ShinyNewsletters
     end
 
     def send_sample( recipient )
-      NewsletterMailer.send_email( self, recipient ).deliver_now
+      NewsletterMailer.send_email( self, recipient ).deliver_later
     end
 
     # Used by SlugInMonth validator

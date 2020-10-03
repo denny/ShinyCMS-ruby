@@ -13,11 +13,11 @@ module ShinyForms
     public_constant :FORM_HANDLERS
 
     def plain_email( form, form_data )
-      FormMailer.plain( form.email_to, form.internal_name, form_data ).deliver_now
+      FormMailer.plain( form.email_to, form.internal_name, form_data ).deliver_later
     end
 
     def template_email( form, form_data )
-      FormMailer.with_template( form.email_to, form.internal_name, form_data, form.filename ).deliver_now
+      FormMailer.with_template( form.email_to, form.internal_name, form_data, form.filename ).deliver_later
     end
   end
 end
