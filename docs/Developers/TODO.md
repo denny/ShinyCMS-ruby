@@ -2,6 +2,11 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
+* Write mailer tests instead of hitting mailers indirectly from request specs (Forms; any others?)
+
+* Add a MJML syntax check when adding a Newsletter Template, so I can remove the rescue block
+  from EditionsController.send_sample and change Edition.send_sample to use .deliver_later
+
 * Make a generic sidebar template that renders any partials in a specified directory
 
 * Add subscription-management links to list emails

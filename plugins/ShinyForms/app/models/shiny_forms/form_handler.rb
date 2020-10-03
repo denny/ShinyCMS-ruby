@@ -13,11 +13,25 @@ module ShinyForms
     public_constant :FORM_HANDLERS
 
     def plain_email( form, form_data )
-      FormMailer.plain( form.email_to, form.internal_name, form_data ).deliver_later
+      # FIXME: Get rid of this horrible bodge, by writing tests for FormMailer
+      if Rails.env.test?
+        FormMailer.plain( form.email_to, form.internal_name, form_data ).deliver_now
+      else
+        # :nocov:
+        FormMailer.plain( form.email_to, form.internal_name, form_data ).deliver_later
+        # :nocov:
+      end
     end
 
     def template_email( form, form_data )
-      FormMailer.with_template( form.email_to, form.internal_name, form_data, form.filename ).deliver_later
+      # FIXME: Get rid of this horrible bodge, by writing tests for FormMailer
+      if Rails.env.test?
+        FormMailer.with_template( form.email_to, form.internal_name, form_data, form.filename ).deliver_now
+      else
+        # :nocov:
+        FormMailer.with_template( form.email_to, form.internal_name, form_data, form.filename ).deliver_later
+        # :nocov:
+      end
     end
   end
 end
