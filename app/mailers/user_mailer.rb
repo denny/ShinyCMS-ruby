@@ -28,7 +28,7 @@ class UserMailer < ApplicationMailer
     end
   end
 
-  def reset_password( user, token, _args = nil )
+  def reset_password_instructions_instructions( user, token, _args = nil )
     @resource = @user = user
     @token = token
 
@@ -40,7 +40,7 @@ class UserMailer < ApplicationMailer
     end
   end
 
-  def password_changed( user, _args = nil )
+  def password_changed_instructions( user, _args = nil )
     @resource = @user = user
 
     return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
@@ -51,7 +51,7 @@ class UserMailer < ApplicationMailer
     end
   end
 
-  def email_changed( user, _args = nil )
+  def email_changed_instructions( user, _args = nil )
     @resource = @user = user
 
     return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
