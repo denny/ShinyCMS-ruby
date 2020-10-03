@@ -12,16 +12,16 @@ class UserMailerPreview
     UserMailer.confirmation_instructions fetch_user, fake_token
   end
 
-  def reset_password
-    UserMailer.reset_password fetch_user, fake_token
+  def reset_password_instructions
+    UserMailer.reset_password_instructions fetch_user, fake_token
   end
 
-  def password_changed
-    UserMailer.password_changed fetch_user
+  def password_changed_instructions
+    UserMailer.password_changed_instructions fetch_user
   end
 
-  def email_changed
-    UserMailer.email_changed fetch_user
+  def email_changed_instructions
+    UserMailer.email_changed_instructions fetch_user
   end
 
   def unlock_instructions
