@@ -1,45 +1,19 @@
 <% @page_title = @post.title %>
 
-<% @sidebar_position = 'right' %>
-
 <section>
-
-  <header>
-    <h2>
-      <%= link_to @post.title, @post.path %>
-    </h2>
-    <h3>
-      Posted by <%= user_profile_link( @post.author ) %>
-      at <%= display_time_on_date( @post.posted_at ) %>
-    </h3>
-  </header>
+  <%= render partial: 'news/show/post_header', locals: { post: @post } %>
 
   <%= sanitize @post.body %>
 
-  <% if @post.tag_list.present? %>
-  <p>
-    Tags: <% @post.tag_list.each do |tag| %><%= link_to tag, tag_path( tag ) %> <% end %>
-  </p>
-  <% end %>
+  <%= render partial: 'news/show/post_tags', locals: { post: @post } %>
 
-  <% if @post.discussion.present? %>
-  <footer>
-    <%= render partial: 'news/post/footer', locals: { post: @post } %>
-  </footer>
+  <%= render partial: 'news/show/post_footer', locals: { post: @post } %>
 
-  <% unless @post.discussion.hidden? || @post.discussion.locked? %>
-  <div id="comment_form" class="comment_form" hidden>
-    <%= render partial: 'discussions/comment/form', locals: { discussion: @post.discussion } %>
-  </div>
-  <% end %>
-  <% end %>
+  <%= render partial: 'news/show/comment_form', locals: { post: @post } %>
 </section>
 
-<a name="comments"></a>
+<%= render partial: 'news/show/discussion', locals: { post: @post } %>
 
-<% unless @post.discussion.blank? || @post.discussion.hidden? %>
-  <%= render partial: 'discussions/discussion', locals: { resource: @post } %>
-<% end %>
-
+<% @sidebar_position = 'right' %>
 <%= render partial: 'right_sidebar_join' %>
 <%= render partial: 'sidebar' %>

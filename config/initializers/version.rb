@@ -6,4 +6,5 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-VERSION = '20.8'
+# ShinyCMS version number ('Ubuntu style', YY.MM)
+VERSION = '20.10'

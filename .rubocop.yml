@@ -18,6 +18,7 @@ AllCops:
     - app/assets/**/*
     - bin/*
     - coverage/**/*
+    - db/archived-migrations/*.rb
     - db/migrate/*.rb
     - db/schema.rb
     - docs/*

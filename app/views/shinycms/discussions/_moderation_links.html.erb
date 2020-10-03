@@ -1,4 +1,9 @@
-<% if current_user_can?( :hide, :discussions ) || current_user_can?( :lock, :discussions ) %>
+<%
+  return unless feature_enabled? :comments
+  return unless current_user_can?( :hide, :discussions ) || current_user_can?( :lock, :discussions )
+  return if discussion.blank?
+%>
+
 <div class="float-right smaller">
   Discussion:
   <% if discussion.hidden? %>
@@ -13,4 +18,3 @@
     <%= link_to t( 'lock' ), lock_discussion_path( discussion ) %>
   <% end %>
 </div>
-<% end %>

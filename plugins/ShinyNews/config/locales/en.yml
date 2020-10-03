@@ -26,15 +26,16 @@ en:
       content:
         title: Recent news posts
     news:
+      n_comments:
+        zero: No comments
+        one: 1 comment
+        other: '%{count} comments'
       index:
         title: Recent news
-      post:
-        footer:
-          reply: Reply to this post
-          n_comments:
-            zero: No comments
-            one: 1 comment
-            other: '%{count} comments'
+        view_post: View post
+        read_more: Read more
+      show:
+        reply: Reply to this post
       sidebar:
         links: Links
         links_blurb: Recommended reading from around the web
