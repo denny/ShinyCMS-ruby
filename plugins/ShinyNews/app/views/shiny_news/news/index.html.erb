@@ -1,24 +1,14 @@
 <% @page_title = t( '.title' ) %>
 
-<h2 class="above-section">
-  <%= @page_title %>
-</h2>
+<%= render partial: 'news/index/page_title' %>
 
 <% @posts.each do |post| %>
 <section>
-
-  <header>
-    <h2>
-      <%= link_to post.title, post.path %>
-    </h2>
-    <h3>
-      Posted by <%= user_profile_link( post.author ) %>
-      at <%= display_time_on_date( post.posted_at ) %>
-    </h3>
-  </header>
+  <%= render partial: 'news/index/post_header', locals: { post: post } %>
 
   <%= sanitize post.teaser( paragraphs: 3 ) %>
 
+  <%= render partial: 'news/index/post_footer', locals: { post: post } %>
 </section>
 <% end %>
 

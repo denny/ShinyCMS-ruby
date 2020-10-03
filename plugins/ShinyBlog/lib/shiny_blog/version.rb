@@ -7,6 +7,6 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyBlog
-  VERSION = '20.8'
+  VERSION = '20.10'
   public_constant :VERSION
 end

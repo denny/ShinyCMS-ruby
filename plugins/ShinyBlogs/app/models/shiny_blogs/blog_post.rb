@@ -24,12 +24,6 @@ module ShinyBlogs
         blog.slug, posted_year, posted_month, slug, anchor: anchor
       )
     end
-
-    # Class methods
-
-    def self.human_name
-      'blog post'
-    end
   end
 end
 

@@ -1,6 +1,6 @@
 # ShinyProfiles: User profile pages plugin for ShinyCMS
 
-ShinyProfiles is a plugin for [ShinyCMS](https://shinycms.com) which adds
+ShinyProfiles is a plugin for [ShinyCMS](https://shinycms.org) which adds
 user profile pages to your ShinyCMS website.
 
 

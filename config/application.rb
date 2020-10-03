@@ -42,7 +42,7 @@ module ShinyCMS
       :remove_actionmailbox_routes, after: :add_routing_paths
     ) do |app|
       app.routes_reloader.paths.delete_if do |path|
-        path =~ /actionmailbox/
+        path.include? 'actionmailbox'
       end
     end
   end

@@ -8,6 +8,10 @@
 
 # Helper methods for dealing with plugins
 module ShinyPluginHelper
+  def plugin_loaded?( plugin_name )
+    ::Plugin.loaded? plugin_name
+  end
+
   def plugins_with_main_site_menu_templates
     ::Plugin.with_template( 'menu/_section.html.erb' )
   end

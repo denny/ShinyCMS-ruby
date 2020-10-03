@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# ShinyProfiles plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 $LOAD_PATH.push File.expand_path( 'lib', __dir__ )
 
 # Maintain your gem's version:
@@ -13,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.email       = [ '2020@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
   spec.summary     = 'ShinyProfiles plugin for ShinyCMS'
-  spec.description = 'The ShinyProfiles plugin provides a profile pages feature for ShinyCMS'
+  spec.description = 'The ShinyProfiles plugin provides user profile pages for ShinyCMS'
   spec.license     = 'GPL'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

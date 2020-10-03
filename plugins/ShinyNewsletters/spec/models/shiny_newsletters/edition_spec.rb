@@ -8,6 +8,7 @@
 
 require 'rails_helper'
 
+# Tests for newsletter edition model
 module ShinyNewsletters
   RSpec.describe Edition, type: :model do
     context 'concerns' do

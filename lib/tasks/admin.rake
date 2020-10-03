@@ -36,7 +36,7 @@ namespace :shiny do
       admin = User.new( username: username, password: password, email: email )
       admin.valid?
 
-      while admin.errors.messages.keys.include? :username
+      while admin.errors.messages.key? :username
         admin.errors[:username].each do |error|
           puts "Username: #{error}" unless username.nil?
         end
@@ -47,7 +47,7 @@ namespace :shiny do
         admin.valid?
       end
 
-      while admin.errors.messages.keys.include? :password
+      while admin.errors.messages.key? :password
         admin.errors[:password].each do |error|
           puts "Password: #{error}" unless password.nil?
         end
@@ -58,7 +58,7 @@ namespace :shiny do
         admin.valid?
       end
 
-      while admin.errors.messages.keys.include? :email
+      while admin.errors.messages.key? :email
         admin.errors[:email].each do |error|
           puts "Email: #{error}" unless email.nil?
         end

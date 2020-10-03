@@ -15,7 +15,7 @@ module ShinyNewsletters
       stash_content( edition )
       stash_user( recipient )
 
-      return if DoNotContact.include? recipient.email # TODO: make this happen without explicit call
+      return if @user.do_not_email? # TODO: make this happen without explicit call
 
       mail to: @user.email_to, subject: @edition.subject, template_name: @edition.template.filename do |format|
         format.html

@@ -18,5 +18,14 @@ module ShinyLists
         expect( helper.find_list_by_slug( 'newsletter' ) ).to eq list1
       end
     end
+
+    describe 'most_recent_list' do
+      it 'returns the last list created' do
+        create :mailing_list
+        list2 = create :mailing_list
+
+        expect( helper.most_recent_list ).to eq list2
+      end
+    end
   end
 end

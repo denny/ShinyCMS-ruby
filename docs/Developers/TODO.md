@@ -2,13 +2,18 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
-* Double opt-in journey
-  * Email recipients
-    * List subscriptions
-    * Comment notifications
+* Write mailer tests instead of hitting mailers indirectly from request specs (Forms; any others?)
 
-* Fix explosion in PagesController for /foo/bar where the 'foo' section doesn't exist
-  * While you're there, make helper methods to wrap top_level_pages and top_level_sections
+* Re-think mailer preview features
+  * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
+
+* Make a generic sidebar template that renders any partials in a specified directory
+
+* Add subscription-management links to list emails
+
+* Replace everywhere a model class is named in a template, with a helper method
+
+* Change admin settings page to get descriptions in same 'stripe' as the thing they describe
 
 * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
 
@@ -80,6 +85,8 @@
 
 * 2FA
   * https://github.com/tinfoil/devise-two-factor
+
+* Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)
 
 * Configurable (per-site and per-user) menu order in admin area
 

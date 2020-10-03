@@ -1,7 +1,7 @@
     <% unless @post.discussion.locked? %>
-    <a onclick="toggleHidden('comment_form')"><%= t( 'shiny_blog.blog.post.footer.reply' ) %></a>
+    <a onclick="toggleHidden('comment_form')"><%= t( 'shiny_blogs.blogs.show.reply' ) %></a>
     <% if post.discussion.show_on_site? %>
-    (<%= t( 'shiny_blog.blog.post.footer.n_comments', count: post.discussion.comments.visible.count ) %>)
+    (<%= t( 'discussions.n_comments', count: post.discussion.comments.visible.count ) %>)
     <% end %>
     <% end %>
 

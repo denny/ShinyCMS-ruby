@@ -10,7 +10,7 @@
 module ShinyNews
   FactoryBot.define do
     factory :news_post, class: 'ShinyNews::Post' do
-      title  { Faker::Books::CultureSeries.unique.culture_ship.titlecase }
+      title  { Faker::Books::CultureSeries.unique.culture_ship }
       body   { Faker::Lorem.paragraph }
       posted_at { Time.zone.now.iso8601 }
 

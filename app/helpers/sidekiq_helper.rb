@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
-# ShinySearch plugin for ShinyCMS ~ https://shinycms.org
+# ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-module ShinySearch
-  # Base helper for <%= camelized_modules =>
-  module ApplicationHelper
+# Helper methods for Sidekiq
+module SidekiqHelper
+  def sidekiq_web_enabled?
+    ENV['DISABLE_SIDEKIQ_WEB']&.downcase != 'true'
   end
 end

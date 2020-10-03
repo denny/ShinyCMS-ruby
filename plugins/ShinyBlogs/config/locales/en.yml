@@ -40,6 +40,8 @@ en:
         recent_posts: Recent Posts
       set_blog:
         failure: Couldn't find specified blog
+      show:
+        reply: Reply to this post
 
     admin:
       blogs:
@@ -62,9 +64,6 @@ en:
           failure: Failed to delete blog
         set_blog:
           failure: Couldn't find specified blog
-
-      #posts:
-      #  title: Posts
 
       blog:
         posts:

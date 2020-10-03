@@ -8,6 +8,7 @@
 
 require 'rails_helper'
 
+# Tests for newsletter template model
 module ShinyNewsletters
   RSpec.describe Template, type: :model do
     context 'class methods' do
@@ -36,6 +37,21 @@ module ShinyNewsletters
           expect( described_class.available_templates.size  ).to eq 2
           expect( described_class.available_templates.first ).to eq 'an_example'
           expect( described_class.available_templates.last  ).to eq 'bad_mjml'
+        end
+      end
+    end
+
+    context 'validations' do
+      describe 'mjml_syntax' do
+        it 'fails to create a new Template if the template file is not valid MJML' do
+          template = create :newsletter_template
+
+          update_successful = template.update( filename: 'bad_mjml' )
+
+          expect( update_successful ).to be false
+          expect( template.errors.size ).to eq 1
+          expect( template.errors.first.first  ).to eq :filename
+          expect( template.errors.first.second ).to eq I18n.t( 'errors.messages.invalid_mjml' )
         end
       end
     end

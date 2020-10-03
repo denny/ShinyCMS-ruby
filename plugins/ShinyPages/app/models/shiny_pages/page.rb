@@ -7,8 +7,9 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyPages
-  # Model for 'brochure' pages
+  # Model for 'brochure' pages - part of the ShinyPages plugin for ShinyCMS
   class Page < ApplicationRecord
+    include ShinySearch::Searchable if ::Plugin.loaded? :ShinySearch
     include ShinyDemoDataProvider
     include ShinyName
     include ShinyShowHide
@@ -27,6 +28,10 @@ module ShinyPages
     # Validations
 
     validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
+
+    # Plugin features
+
+    searchable_by :public_name, :slug if ::Plugin.loaded? :ShinySearch # TODO: elements!
 
     # Scopes and sorting
 

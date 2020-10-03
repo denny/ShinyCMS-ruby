@@ -6,6 +6,7 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# User factory for page admins
 module ShinyPages
   FactoryBot.define do
     factory :page_admin, parent: :admin_user do

@@ -1,6 +1,6 @@
 # ShinySearch: search feature plugin for ShinyCMS
 
-ShinySearch is a plugin for [ShinyCMS](https://shinycms.com) which adds a search feature (with a choice of backend engines) to your ShinyCMS website.
+ShinySearch is a plugin for [ShinyCMS](https://shinycms.org) which adds a search feature (with a choice of backend engines) to your ShinyCMS website.
 
 
 ## Installation

@@ -8,6 +8,13 @@
 
 # Helper methods for admin area
 module AdminAreaHelper
+  def plugin_breadcrumb_link_text_and_path( plugin_name, controller_name )
+    [
+      I18n.t( "#{plugin_name.underscore}.admin.#{controller_name}.breadcrumb" ),
+      plugin_name.constantize::Engine.routes.url_helpers.public_send( "#{controller_name}_path" )
+    ]
+  end
+
   def plugins_for_admin_menu
     ::Plugin.with_template( 'admin/menu/_section.html.erb' )
   end
@@ -18,6 +25,14 @@ module AdminAreaHelper
 
   def plugins_for_edit_capabilities
     ::Plugin.with_template( 'admin/user/_edit_capabilities.html.erb' )
+  end
+
+  def capability( name:, category: )
+    Capability.find_by( name: name, category: category )
+  end
+
+  def capability_category( name )
+    CapabilityCategory.find_by( name: name.to_s )
   end
 
   def render_capability_category( form, category, capabilities, show )
@@ -48,11 +63,9 @@ module AdminAreaHelper
     render partial: 'admin/menu/menu__section_end'
   end
 
-  def render_admin_menu_section( text, icon = nil, &contents )
+  def render_admin_menu_section( text, icon = nil, &block )
     section = render_admin_menu_section_start( text, icon )
-    section << capture do
-      contents.call
-    end
+    section << capture(&block)
     section << render_admin_menu_section_end
   end
 

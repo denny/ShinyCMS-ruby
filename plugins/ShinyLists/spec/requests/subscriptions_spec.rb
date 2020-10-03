@@ -39,7 +39,7 @@ RSpec.describe 'List subscriptions', type: :request do
 
   describe 'GET /subscriptions/:token' do
     it "displays a token-identified user's subscriptions" do
-      subscriber1 = create :email_recipient
+      subscriber1 = create :email_recipient, :confirmed
 
       get shiny_lists.token_list_subscriptions_path( subscriber1.token )
 
@@ -225,7 +225,7 @@ RSpec.describe 'List subscriptions', type: :request do
   describe 'PUT /list/:slug/unsubscribe/:token' do
     it 'unsubscribes a token-authenticated user' do
       list1 = create :mailing_list
-      subscriber1 = create :email_recipient
+      subscriber1 = create :email_recipient, :confirmed
       create :mailing_list_subscription, list: list1, subscriber: subscriber1
 
       put shiny_lists.token_list_unsubscribe_path( list1.slug, subscriber1.token )

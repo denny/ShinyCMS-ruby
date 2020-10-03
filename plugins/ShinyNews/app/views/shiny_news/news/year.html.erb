@@ -1,28 +1,31 @@
-<% @page_title = "News posts in #{@posts.first.posted_at.year}"  %>
-
-<% @sidebar_position = 'right' %>
+<% @page_title = "News posts in #{params[:year]}"  %>
 
 <% current_month = '' %>
 <% @posts.each do |post| %>
   <% unless post.posted_at.month == current_month %>
-  <h2>
-    <%= I18n.t('date.month_names')[post.posted_at.month] %>
-  </h2>
   <% current_month = post.posted_at.month %>
+  <h2>
+    <%= I18n.t('date.month_names')[current_month] %>
+  </h2>
   <% end %>
 
   <section>
-    <header>
-      <h2>
-        <%= link_to post.title, post.path %>
-      </h2>
-      <h3>
-        Posted by <%= user_profile_link( post.author ) %>
-        at <%= display_time_on_date( post.posted_at ) %>
-      </h3>
-    </header>
+    <% if feature_enabled?( :comments ) && post.discussion&.show_on_site? %>
+    <span class="float-right" style="margin-top: 2.5em;">
+      <%= link_to t( 'shiny_news.news.n_comments', count: post.discussion.comments.visible.count ), post.path( anchor: 'comments' ) %>
+    </span>
+    <% end %>
+
+    <%= render partial: 'news/index/post_header', locals: { post: post } %>
   </section>
 <% end %>
 
+<% if @posts.size == 0 %>
+<p>
+  <%= t( 'empty_list', items: 'blog posts' ) %>
+</p>
+<% end %>
+
+<% @sidebar_position = 'right' %>
 <%= render partial: 'right_sidebar_join' %>
 <%= render partial: 'sidebar' %>

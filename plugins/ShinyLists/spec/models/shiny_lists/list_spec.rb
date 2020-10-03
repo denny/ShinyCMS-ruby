@@ -8,6 +8,7 @@
 
 require 'rails_helper'
 
+# Tests for mailing list model
 module ShinyLists
   RSpec.describe List, type: :model do
     context 'instance methods' do

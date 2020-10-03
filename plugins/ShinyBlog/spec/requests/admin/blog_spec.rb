@@ -8,6 +8,7 @@
 
 require 'rails_helper'
 
+# Tests for blog admin features
 RSpec.describe 'Admin::Blog', type: :request do
   before :each do
     @admin = create :blog_admin
