@@ -27,7 +27,7 @@
   </p>
 
   <%= f.fields_for :elements do |fields| %>
-    <%= render partial: 'shiny_newsletters/admin/editions/element', locals: { fields: fields, content: :content, name: @edition.elements[fields.index].name, element_type: @edition.elements[fields.index].element_type, filenames: select_filenames } %>
+    <%= render partial: 'shiny_newsletters/admin/editions/element', locals: { fields: fields, content: :content, name: @edition.elements[fields.index].name, element_type: @edition.elements[fields.index].element_type, filenames: filenames_for_image_select } %>
   <% end %>
   <p class="top-margin">
     <%= f.submit t( 'update' ) %>

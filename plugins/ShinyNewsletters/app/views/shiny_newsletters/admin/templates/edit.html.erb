@@ -25,7 +25,7 @@
     <% elsif element_type == 'long_text' %>
     <%= fields.text_area :content %>
     <% elsif element_type == 'image' %>
-    <%= fields.select :content, select_filenames %>
+    <%= fields.select :content, filenames_for_image_select %>
     <% elsif element_type == 'html' %>
     <%= fields.cktext_area :content, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
     <% else %>
