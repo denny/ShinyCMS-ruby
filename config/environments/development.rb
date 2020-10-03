@@ -38,12 +38,17 @@ Rails.application.configure do
   config.action_controller.action_on_unpermitted_parameters = :raise
 
   # Check whether we're pushing files up to AWS or storing them on local disk
-  config.active_storage.service =
-    if ENV['AWS_BUCKET'].present?
-      :amazon
-    else
-      :local
-    end
+  if ENV['AWS_BUCKET'].present?
+    config.active_storage.service = :amazon
+  else
+    config.active_storage.service = :local
+  end
+
+  # Allow ActiveJob to use Sidekiq queues in dev
+  if ENV['SIDEKIQ_CONCURRENCY'].present?
+    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_name_prefix = ENV['SIDEKIQ_PREFIX'] if ENV['SIDEKIQ_PREFIX'].present?
+  end
 
   # We use letter_opener_web to catch all emails sent in dev
   # You can view them at http://localhost:3000/dev/outbox
