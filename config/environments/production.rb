@@ -71,10 +71,9 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  # Use a real queuing backend for ActiveJob (+ separate queues per environment)
-  # config.active_job.queue_adapter = :resque
+  # Use a real queuing backend for ActiveJob
   config.active_job.queue_adapter = :sidekiq
-  config.active_job.queue_name_prefix = 'shinycms_production'
+  config.active_job.queue_name_prefix = ENV['SIDEKIQ_PREFIX'] if ENV['SIDEKIQ_PREFIX'].present?
 
   # config.action_mailer.perform_caching = false
 
