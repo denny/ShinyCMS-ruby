@@ -8,6 +8,8 @@
 
 * Replace everywhere a model class is named in a template, with a helper method
 
+* Change admin settings page to get descriptions in same 'stripe' as the thing they describe
+
 * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
 
 * Highlight section name in admin area menu when on a page which isn't in the menu
