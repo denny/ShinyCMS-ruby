@@ -1,0 +1,14 @@
+<%
+  return unless feature_enabled? :comments
+  return unless post.discussion.present?
+  return unless post.discussion.show_on_site?
+%>
+
+<% if post.discussion.locked? %>
+  <%= t( 'shiny_news.news.n_comments', count: post.discussion.comments.visible.count ) %>
+<% else %>
+  <a onclick="toggleHidden('comment_form')"><%= t( 'shiny_news.news.show.reply' ) %></a>
+  <% if post.discussion.comments.visible.count > 0 %>
+    (<%= t( 'shiny_news.news.n_comments', count: post.discussion.comments.visible.count ) %>)
+  <% end %>
+<% end %>

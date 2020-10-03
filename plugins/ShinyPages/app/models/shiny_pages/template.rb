@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyPages
-  # Model for page templates
+  # Model for page templates - part of the ShinyPages plugin for ShinyCMS
   class Template < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyHTMLTemplate

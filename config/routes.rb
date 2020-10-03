@@ -23,8 +23,10 @@ Rails.application.routes.draw do
     get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
     post 'discussion/:id/:number', to: 'discussions#add_reply'
 
-    get  'do-not-contact', to: 'do_not_contact#new'
-    post 'do-not-contact', to: 'do_not_contact#create'
+    get  'email/confirm/:token', to: 'email_recipients#confirm', as: :confirm_email
+
+    get  'email/do-not-contact', to: 'do_not_contact#new', as: :do_not_contact
+    post 'email/do-not-contact', to: 'do_not_contact#create'
 
     get 'site-settings', to: 'site_settings#index'
     put 'site-settings', to: 'site_settings#update'
@@ -115,6 +117,19 @@ Rails.application.routes.draw do
 
     # RailsEmailPreview provides previews of site emails in the admin area
     mount RailsEmailPreview::Engine, at: '/admin/email-previews'
+
+    def sidekiq_web_enabled?
+      ENV['DISABLE_SIDEKIQ_WEB']&.downcase != 'true'
+    end
+
+    # Sidekiq Web provides a web dashboard for your sidekiq jobs and queues
+    if sidekiq_web_enabled?
+      require 'sidekiq/web'
+      Sidekiq::Web.set :sessions, false
+      authenticate :user, ->( user ) { user.can? :manage_sidekiq_jobs } do
+        mount Sidekiq::Web, at: '/admin/sidekiq'
+      end
+    end
 
     # LetterOpener catches all emails sent in development, with a webmail UI to view them
     mount LetterOpenerWeb::Engine, at: '/dev/outbox' if Rails.env.development?

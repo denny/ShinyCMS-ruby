@@ -1,26 +1,31 @@
-<% @page_title = "Blog posts in #{I18n.t("date.month_names")[@posts.first.posted_at.month]} #{@posts.first.posted_at.year}"  %>
+<%
+  if params[:year].to_i != Time.zone.now.year
+    @page_title = "Blog posts in #{I18n.t("date.month_names")[params[:month].to_i]} #{params[:year]}"
+  elsif params[:month].to_i != Time.zone.now.month
+    @page_title = "Blog posts in #{I18n.t("date.month_names")[params[:month].to_i]}"
+  else
+    @page_title = 'Blog posts this month'
+  end
+%>
 
-<% @sidebar_position = 'right' %>
-
-<h2 class="above-section">
-  Blog posts in <%= I18n.t('date.month_names')[@posts.first.posted_at.month] %>
-</h2>
+<%= render partial: 'blog/index/page_title' %>
 
 <% @posts.each do |post| %>
 <section>
-  <header>
-    <h2>
-      <%= link_to post.title, post.path %>
-    </h2>
-    <h3>
-      Posted by <%= user_profile_link( post.author ) %>
-      at <%= display_time_on_date( post.posted_at ) %>
-    </h3>
-  </header>
+  <%= render partial: 'blog/index/post_header', locals: { post: post } %>
 
   <%= sanitize post.teaser( paragraphs: 3 ) %>
+
+  <%= render partial: 'blog/index/post_footer', locals: { post: post } %>
 </section>
 <% end %>
 
+<% if @posts.size == 0 %>
+<p>
+  <%= t( 'empty_list', items: 'blog posts' ) %>
+</p>
+<% end %>
+
+<% @sidebar_position = 'right' %>
 <%= render partial: 'right_sidebar_join' %>
 <%= render partial: 'sidebar' %>

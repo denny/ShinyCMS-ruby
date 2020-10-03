@@ -19,43 +19,43 @@
     </th>
   </tr>
 
-  <% category = CapabilityCategory.find_by( name: 'general' ) %>
-  <% category_capabilities = %w[ view_admin_area view_admin_dashboard view_admin_toolbar skip skip ] %>
+  <% category = capability_category( :general ) %>
+  <% category_capabilities = %w[ view_admin_area view_admin_toolbar manage_sidekiq_jobs skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% plugins_for_edit_capabilities.each do |plugin| %>
     <%= render partial: "#{plugin.name.underscore}/admin/user/edit_capabilities", locals: { f: f, show: show } %>
   <% end %>
 
-  <% category = CapabilityCategory.find_by( name: 'discussions' ) %>
+  <% category = capability_category( :discussions ) %>
   <% category_capabilities = %w[ show hide lock unlock skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
-  <% category = CapabilityCategory.find_by( name: 'comments' ) %>
+  <% category = capability_category( :comments ) %>
   <% category_capabilities = %w[ show hide lock unlock destroy ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
-  <% category = CapabilityCategory.find_by( name: 'spam_comments' ) %>
+  <% category = capability_category( :spam_comments ) %>
   <% category_capabilities = %w[ list add skip destroy skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
-  <% category = CapabilityCategory.find_by( name: 'feature_flags' ) %>
-  <% category_capabilities = %w[ list skip edit skip skip ] %>
-  <%= render_capability_category( f, category, category_capabilities, show ) %>
-
-  <% category = CapabilityCategory.find_by( name: 'stats' ) %>
+  <% category = capability_category( :stats ) %>
   <% category_capabilities = %w[ view_web view_email use_blazer skip skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
-  <% category = CapabilityCategory.find_by( name: 'settings' ) %>
+  <% category = capability_category( :settings ) %>
   <% category_capabilities = %w[ list skip edit skip skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
-  <% category = CapabilityCategory.find_by( name: 'users' ) %>
+  <% category = capability_category( :feature_flags ) %>
+  <% category_capabilities = %w[ list skip edit skip skip ] %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category = capability_category( :users ) %>
   <% category_capabilities = %w[ list add edit destroy view_admin_notes ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
-  <% category = CapabilityCategory.find_by( name: 'admin_users' ) %>
+  <% category = capability_category( :admin_users ) %>
   <% category_capabilities = %w[ list add edit destroy skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 </table>

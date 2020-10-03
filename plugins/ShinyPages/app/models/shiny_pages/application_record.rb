@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyPages
-  # Base model class for ShinyPages
+  # Base model class for ShinyPages - part of the ShinyPages plugin for ShinyCMS
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
 

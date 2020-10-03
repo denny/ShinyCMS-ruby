@@ -102,6 +102,13 @@ en:
       failure: Failed to add email address to Do Not Contact list; please try again
       duplicate: Your email address is already on our Do Not Contact list
 
+  email_recipients:
+    confirm:
+      success: Thank you for verifying your email address
+      token_not_found: Failed to find email address; please check URL and try again
+      token_expired: Your confirmation link has expired; please request a new email and try again
+      # failure: Failed to confirm email address; please try again, or alert site admins
+
   errors:
     messages:
       slug_not_safe_at_top_level: cannot be used as a top-level slug
@@ -154,6 +161,10 @@ en:
     overview_notification:
       subject: '%{comment_author_name} commented on %{site_name}'
 
+  email_recipient_mailer:
+    confirm:
+      subject: Confirm your email address for %{site_name}
+
   user_mailer:
     welcome: Welcome, %{name}!
     hello: Hello %{name},
@@ -161,16 +172,16 @@ en:
       subject: 'Please confirm your registration on %{site_name}'
       instructions: You can confirm your email address by clicking the link below
       link_text: Confirm my address
-    password_changed:
+    password_changed_instructions:
       subject: 'Your password has been changed on %{site_name}'
       text: We're contacting you to notify you that your password has been changed.
-    reset_password:
+    reset_password_instructions:
       subject: 'Instructions for resetting your password on %{site_name}'
       instructions: Someone has requested a link to change your password. You can do this through the link below.
       link_text: Change my password
       if_not_you: If you didn't request this, please ignore this email.
       no_change: Your password won't change unless you click the link above and create a new one.
-    email_changed:
+    email_changed_instructions:
       subject: 'Changing your email address on %{site_name}'
       email_changing: We're contacting you to notify you that your email is being changed to
       email_changed: We're contacting you to notify you that your email has been changed to
@@ -236,8 +247,8 @@ en:
 
     general:
       view_admin_area: View admin area
-      view_admin_dashboard: View admin dashboard
       view_admin_toolbar: View admin toolbar
+      manage_sidekiq_jobs: Manage Sidekiq jobs
 
     stats:
       view_web: View web stats
@@ -329,10 +340,6 @@ en:
       destroy:
         success: Consent version deleted
 
-    dashboard:
-      breadcrumb: Dashboard
-      menu: Dashboard
-
     discussion:
       toolbar: Discussion
       enable_comments: Enable comments
@@ -367,6 +374,9 @@ en:
 
     other:
       menu: Other
+
+    sidekiq_web:
+      menu: Sidekiq dashboard
 
     site_settings:
       breadcrumb: Settings

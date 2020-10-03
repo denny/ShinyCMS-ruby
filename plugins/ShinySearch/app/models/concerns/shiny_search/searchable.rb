@@ -12,9 +12,12 @@ module ShinySearch
     extend ActiveSupport::Concern
 
     included do
-      def self.algolia_search_on( searchable_attributes )
-        return unless algolia_search_is_enabled?
+      def self.searchable_by( *searchable_attributes )
+        algolia_search_on( searchable_attributes ) if algolia_search_is_enabled?
+        pg_search_on( searchable_attributes )      if pg_search_is_enabled?
+      end
 
+      def self.algolia_search_on( searchable_attributes )
         include AlgoliaSearch
 
         algoliasearch unless: :hidden?, per_environment: true do
@@ -23,8 +26,6 @@ module ShinySearch
       end
 
       def self.pg_search_on( searchable_attributes )
-        return unless pg_search_is_enabled?
-
         include PgSearch::Model
 
         multisearchable against: searchable_attributes, unless: :hidden?
@@ -35,7 +36,6 @@ module ShinySearch
       end
 
       def self.pg_search_is_enabled?
-        # ActiveRecord::Base.connection.adapter_name == 'PostgreSQL' # This fires up the db too early in CI
         ENV['DISABLE_PG_SEARCH'].blank?
       end
     end

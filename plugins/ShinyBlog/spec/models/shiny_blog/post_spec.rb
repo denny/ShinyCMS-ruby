@@ -8,6 +8,7 @@
 
 require 'rails_helper'
 
+# Tests for blog post model
 module ShinyBlog
   RSpec.describe Post, type: :model do
     context 'factory' do
