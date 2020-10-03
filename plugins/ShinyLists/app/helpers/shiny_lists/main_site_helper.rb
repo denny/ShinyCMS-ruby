@@ -12,5 +12,9 @@ module ShinyLists
     def find_list_by_slug( slug )
       ShinyLists::List.find_by( slug: slug )
     end
+
+    def most_recent_list
+      ShinyLists::List.order( :created_at ).last
+    end
   end
 end
