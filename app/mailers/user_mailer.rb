@@ -28,7 +28,7 @@ class UserMailer < ApplicationMailer
     end
   end
 
-  def reset_password_instructions_instructions( user, token, _args = nil )
+  def reset_password_instructions( user, token, _args = nil )
     @resource = @user = user
     @token = token
 
