@@ -10,16 +10,14 @@
     <br><%= f.text_field :description %>
   </p>
   <p>
-    <%= f.label :filename, 'Template file' %>
-    <br><%= f.select :filename, ShinyPages::Template.available_templates %>
+    <%= f.label :filename, t( 'admin.template_file' ) %>
+    <br><%= f.select :filename, ShinyPages::Template.available_templates, include_blank: '' %>
   </p>
+
   <%= f.fields_for :elements do |fields| %>
-  <p>
-    <%= fields.text_field :name %>
-    <%= fields.select :element_type, element_types %>
-    <br><%= fields.text_field :content %>
-  </p>
+    <%= render partial: 'element', locals: { fields: fields, content: :content, name: @template.elements[fields.index].name, element_type: @template.elements[fields.index].element_type, filenames: filenames_for_image_select } %>
   <% end %>
+
   <p class="top-margin">
     <%= submit_tag t( 'update' ) %>
   </p>

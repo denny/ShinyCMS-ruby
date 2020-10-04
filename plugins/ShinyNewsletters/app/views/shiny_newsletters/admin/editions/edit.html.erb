@@ -18,8 +18,8 @@
     <%= f.text_field :description %>
   </p>
   <p>
-    <%= f.label :template_id, 'Template' %>
-    <br><%= f.select :template_id, ShinyNewsletters::Template.pluck( :name, :id ) %>
+    <%= f.label :template_id, t( 'admin.template' ) %>
+    <br><%= f.select :template_id, ShinyNewsletters::Template.pluck( :name, :id ), include_blank: '' %>
   </p>
   <p>
     <%= f.label :show_on_site %>
@@ -27,8 +27,9 @@
   </p>
 
   <%= f.fields_for :elements do |fields| %>
-    <%= render partial: 'shiny_newsletters/admin/editions/element', locals: { fields: fields, content: :content, name: @edition.elements[fields.index].name, element_type: @edition.elements[fields.index].element_type, filenames: filenames_for_image_select } %>
+    <%= render partial: 'element', locals: { fields: fields, content: :content, name: @edition.elements[fields.index].name, element_type: @edition.elements[fields.index].element_type, filenames: filenames_for_image_select } %>
   <% end %>
+
   <p class="top-margin">
     <%= f.submit t( 'update' ) %>
   </p>

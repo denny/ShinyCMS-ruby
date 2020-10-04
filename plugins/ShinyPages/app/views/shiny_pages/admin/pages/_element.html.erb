@@ -5,7 +5,7 @@
   <% elsif element_type == 'long_text' %>
   <%= fields.text_area content %>
   <% elsif element_type == 'image' %>
-  <%= fields.select content, filenames %>
+  <%= fields.select content, filenames, include_blank: '' %>
   <% elsif element_type == 'html' %>
   <%= fields.cktext_area content, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
   <% else %>

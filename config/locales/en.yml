@@ -297,6 +297,9 @@ en:
 
     invalid_url: 'Invalid URL: /admin/%{request_path}'
 
+    section: Section
+    template: Template
+    template_file: Template file
     elements:
       short_text: Short Text
       long_text: Long Text

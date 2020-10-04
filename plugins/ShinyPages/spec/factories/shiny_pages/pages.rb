@@ -30,7 +30,7 @@ module ShinyPages
       after :create do |page|
         create :short_text_page_element, page: page, name: 'short_text',   content: 'SHORT!'
         create :long_text_page_element,  page: page, name: 'long_text',    content: 'LONG!'
-        create :image_page_element,      page: page, name: 'image_select', content: 'IMAGE.png'
+        create :image_page_element,      page: page, name: 'image_select', content: 'ShinyCMS-logo.png'
         create :html_page_element,       page: page, name: 'html',         content: 'HTML!'
       end
     end
