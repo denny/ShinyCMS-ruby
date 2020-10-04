@@ -388,6 +388,9 @@ main .top-margin {
 // Sortable elements
 .ui-sortable-handle {
   cursor:           grabbing;
+  font-size:        1.5em;
+  padding-left:     0.5em;
+  vertical-align:   middle;
 }
 
 // fieldset for bottom-of-page 'add new element' forms
