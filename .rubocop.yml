@@ -67,7 +67,6 @@ Lint/UselessMethodDefinition:
   Exclude:
     - app/controllers/users/registrations_controller.rb
 
-
 # I like chaining methods, it's aesthetically pleasing :-p
 Performance/ChainArrayAllocation:
   Enabled: false
@@ -90,9 +89,10 @@ Style/ClassAndModuleChildren:
 Style/ConditionalAssignment:
   Enabled: false
 
-# This test is for a feature that parses a list of IP addresses
+# The test is for a feature that parses a list of IP addresses; the demo data is demo data
 Style/IpAddresses:
   Exclude:
+    - db/demo_data.rb
     - spec/requests/admin_spec.rb
 
 # I'd rather use one style of regex everywhere, and this one is clearer when working with URLs:

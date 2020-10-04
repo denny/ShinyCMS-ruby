@@ -2,7 +2,7 @@
   <mj-column>
 
     <mj-text>
-      <%= @comment.author_name_any %> commented on your <%= @content_type %> on <%= site_name %>:
+      <%= @comment.author_name_or_anon %> commented on your <%= @content_type %> on <%= site_name %>:
     </mj-text>
 
     <mj-text>

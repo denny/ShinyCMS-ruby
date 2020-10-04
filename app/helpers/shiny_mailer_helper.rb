@@ -28,10 +28,10 @@ module ShinyMailerHelper
   end
 
   def track_opens?
-    ::Setting.get( :track_opens )&.downcase == 'yes'
+    ::Setting.true?( :track_opens )
   end
 
   def track_clicks?
-    ::Setting.get( :track_clicks )&.downcase == 'yes'
+    ::Setting.true?( :track_clicks )
   end
 end
