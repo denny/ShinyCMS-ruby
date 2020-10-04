@@ -57,6 +57,9 @@ source 'https://rubygems.org' do
   gem 'devise-pwned_password'
   gem 'pundit'
 
+  # Soft delete
+  gem 'acts_as_paranoid'
+
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
   gem 'sidekiq'
 
