@@ -11,10 +11,9 @@
       </td>
       <td>
         <small>
-          Posted by <%= comment.author_name_any %>
-          at <%= comment.posted_at.to_s( :time ) %>
-          on <%= comment.posted_at.to_s( :shinydate ) %>
-          <% if comment.author_url.present? %> - <%= comment.author_url %><% end %>
+          Posted by <%= comment.author_name_or_anon %>
+          at <%= display_time_on_date( comment.posted_at ) %>
+          <% if comment.author&.website&.present? %> - <%= comment.author.website %><% end %>
         </small>
         <% if comment.title.present? %>
           <br><%= comment.title %>

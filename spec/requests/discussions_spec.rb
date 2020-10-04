@@ -116,7 +116,10 @@ RSpec.describe 'Discussions/Comments', type: :request do
       body  = Faker::Lorem.paragraph
 
       post discussion_path( @discussion ), params: {
-        comment: { title: title, body: body, author_type: 'anonymous' }
+        comment: {
+          title: title,
+          body: body
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -136,7 +139,10 @@ RSpec.describe 'Discussions/Comments', type: :request do
       body  = Faker::Lorem.paragraph
 
       post discussion_path( @discussion ), params: {
-        comment: { title: title, body: body, author_type: 'authenticated' }
+        comment: {
+          title: title,
+          body: body
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -146,65 +152,36 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response.body ).to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
       expect( response.body ).to have_css 'h2', text: title
       expect( response.body ).to have_css 'h3', text: user.username
-
-      expect( Comment.last.user_id ).to eq user.id
     end
 
-    it 'adds a new comment by a logged-in user posting anonymously' do
-      user = create :user
-      sign_in user
-
+    it 'adds a new comment by a pseudonymous user' do
+      name = Faker::Name.unique.name
       title = Faker::Books::CultureSeries.unique.culture_ship
-      body  = Faker::Lorem.paragraph
-
-      post discussion_path( @discussion ), params: {
-        comment: { title: title, body: body, author_type: 'anonymous' }
-      }
-
-      expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to discussion_path( @discussion )
-      follow_redirect!
-      expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
-      expect( response.body ).to     have_css 'h2', text: title
-      expect( response.body ).to     have_css 'h3', text: 'Anonymous'
-      expect( response.body ).not_to have_css 'h3', text: user.username
-
-      expect( Comment.last.user_id ).to eq user.id
-    end
-
-    it 'adds a new comment by a logged-in user posting pseudonymously' do
-      user = create :user
-      sign_in user
-
-      title = Faker::Books::CultureSeries.unique.culture_ship
-      body  = Faker::Lorem.paragraph
-      name  = Faker::Books::CultureSeries.unique.culture_ship
 
       post discussion_path( @discussion ), params: {
         comment: {
+          author_name: name,
+          author_email: Faker::Internet.unique.email,
           title: title,
-          body: body,
-          author_type: 'pseudonymous',
-          author_name: name
+          body: Faker::Lorem.paragraph
         }
       }
 
-      expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to discussion_path( @discussion )
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to discussion_path( @discussion )
       follow_redirect!
-      expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
-      expect( response.body ).to     have_css 'h2', text: title
-      expect( response.body ).to     have_css 'h3', text: name
-      expect( response.body ).not_to have_css 'h3', text: user.username
-
-      expect( Comment.last.user_id ).to eq user.id
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
+      expect( response.body ).to have_css 'h2', text: title
+      expect( response.body ).to have_css 'h3', text: name
     end
 
     it 'fails to post a top-level comment with missing fields' do
       post discussion_path( @discussion ), params: {
-        comment: { author_type: 'anonymous' }
+        comment: {
+          title: nil,
+          body: nil
+        }
       }
 
       expect( response      ).to have_http_status :ok
@@ -223,7 +200,10 @@ RSpec.describe 'Discussions/Comments', type: :request do
       body  = Faker::Lorem.paragraph
 
       post discussion_path( @discussion ), params: {
-        comment: { title: title, body: body, author_type: 'anonymous' }
+        comment: {
+          title: title,
+          body: body
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -248,7 +228,6 @@ RSpec.describe 'Discussions/Comments', type: :request do
         comment: {
           title: title,
           body: body,
-          author_type: 'pseudonymous',
           author_name: always_fail_author_name
         }
       }
@@ -278,8 +257,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       post discussion_path( @discussion ), params: {
         comment: {
           title: title,
-          body: body,
-          author_type: 'anonymous'
+          body: body
         }
       }
 
@@ -298,7 +276,10 @@ RSpec.describe 'Discussions/Comments', type: :request do
       body  = Faker::Lorem.paragraph
 
       post comment_path( @discussion, @comment.number ), params: {
-        comment: { title: title, body: body, author_type: 'anonymous' }
+        comment: {
+          title: title,
+          body: body
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -312,7 +293,10 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
     it 'fails to post a reply with missing fields' do
       post comment_path( @discussion, @comment.number ), params: {
-        comment: { author_type: 'anonymous' }
+        comment: {
+          title: nil,
+          body: nil
+        }
       }
 
       expect( response      ).to have_http_status :ok

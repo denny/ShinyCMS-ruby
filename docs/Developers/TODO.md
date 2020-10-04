@@ -32,9 +32,8 @@
 
 ### Non-trivial
 
-* Split comment_author details off of comments, as a polymorphic (similar to email_recipients)
-  * Visitor model, to incorporate EmailRecipient, CommentAuthor, VotableIP, and future etc?
-    * Think carefully about privacy implications of linking previous actions to current visitor
+* Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?
+  * Think carefully about privacy implications of linking previous actions to current visitor
 
 * ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
   sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
