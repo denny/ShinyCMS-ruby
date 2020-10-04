@@ -54,6 +54,13 @@ module ShinyPages
       end
     end
 
+    def sort_elements
+      params[ :elements ].each_with_index do |element, index|
+        TemplateElement.find( element[:id] ).update!( position: index + 1 )
+      end
+      head :ok
+    end
+
     def destroy
       template = ShinyPages::Template.find( params[:id] )
       authorize template

@@ -385,6 +385,11 @@ main .top-margin {
   margin-top:       1.5em;
 }
 
+// Sortable elements
+.ui-sortable-handle {
+  cursor:           grabbing;
+}
+
 // fieldset for bottom-of-page 'add new element' forms
 main fieldset {
   border:           1px solid $input-border;
