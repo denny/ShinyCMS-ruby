@@ -18,36 +18,36 @@
     Post as:
     &nbsp;
     <% if allow_anonymous_comments %>
-    <label><%= f.radio_button :author_type, 'anonymous',
+    <label><%= radio_button_tag :author_type, 'anonymous',
       onclick: "hide('comment#{num}_author_details')" %>
     <%= t( '.anonymous' ) %></label> &nbsp;
     <% end %>
 
     <% if allow_pseudonymous_comments %>
-    <label><%= f.radio_button :author_type, 'pseudonymous', checked: !user_signed_in?,
+    <label><%= radio_button_tag :author_type, 'pseudonymous', checked: !user_signed_in?,
       onclick: "show('comment#{num}_author_details')" %>
     <%= t( '.pseudonymous' ) %></label> &nbsp;
     <% end %>
 
     <% if allow_authenticated_comments %>
       <%= current_user.name %>
-      <%= f.radio_button :author_type, 'authenticated', checked: true, hidden: true %>
+      <%= radio_button :author_type, 'authenticated', checked: true, hidden: true %>
     <% else %>
       <% if user_signed_in? %>
-        <label><%= f.radio_button :author_type, 'authenticated', checked: true,
+        <label><%= radio_button_tag :author_type, 'authenticated', checked: true,
           onclick: "hide('comment#{num}_author_details')" %>
         <%= current_user.name %></label>
       <% else %>
-        <%= f.radio_button :author_type, 'authenticated', disabled: true %>
+        <%= radio_button_tag :author_type, 'authenticated', disabled: true %>
         <%= link_to t( 'user.log_in' ), main_app.new_user_session_path %>
       <% end %>
     <% end %>
   </p>
 
   <p id="comment<%= num %>_author_details" <% if user_signed_in? %>hidden<% end %>>
-    <%= f.text_field :author_name,  id: "comment#{num}_author_name",  placeholder: t( '.name'  ), class: 'author' %> &nbsp;
-    <%= f.text_field :author_email, id: "comment#{num}_author_email", placeholder: t( '.email' ), class: 'author' %> &nbsp;
-    <%= f.text_field :author_url,   id: "comment#{num}_author_url",   placeholder: t( '.url'   ), class: 'author' %>
+    <%= text_field_tag :author_name,  id: "comment#{num}_author_name",  placeholder: t( '.name'  ), class: 'author' %> &nbsp;
+    <%= text_field_tag :author_email, id: "comment#{num}_author_email", placeholder: t( '.email' ), class: 'author' %> &nbsp;
+    <%= text_field_tag :author_url,   id: "comment#{num}_author_url",   placeholder: t( '.url'   ), class: 'author' %>
   </p>
 
   <p>

@@ -60,6 +60,6 @@ class VotesController < MainController
   end
 
   def anon_votes_are_fixed?
-    Setting.get( 'anon_votes_are_fixed' )&.downcase == 'yes'
+    Setting.true?( :anon_votes_are_fixed )
   end
 end
