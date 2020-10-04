@@ -4,11 +4,10 @@
   <%= javascript_pack_tag 'application' %>
   <%#= javascript_pack_tag 'admin_area'  %>
 
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
     $( function() {
-      $( '#elements' ).sortable({
+      $( '#sortable' ).sortable({
         handle: '.handle',
         update: function( e, ui ) {
           Rails.ajax({
