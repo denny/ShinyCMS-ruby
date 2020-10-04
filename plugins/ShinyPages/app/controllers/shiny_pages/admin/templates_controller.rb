@@ -55,8 +55,11 @@ module ShinyPages
     end
 
     def sort_elements
-      params[ :elements ].each_with_index do |element, index|
-        TemplateElement.find( element[:id] ).update!( position: index + 1 )
+      template = TemplateElement.find( params[ :element ].first ).template
+      authorize template, :edit?
+
+      params[ :element ].each_with_index do |element_id, index|
+        TemplateElement.find( element_id ).update!( position: index + 1 )
       end
       head :ok
     end
