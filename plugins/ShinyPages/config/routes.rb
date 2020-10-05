@@ -18,8 +18,6 @@ ShinyPages::Engine.routes.draw do
       scope path: :pages do
         resources :sections,  except: [ :show ]
         resources :templates, except: [ :show ]
-
-        patch 'templates/elements/sort', to: 'templates#sort_elements', as: :sort_template_elements
       end
     end
 

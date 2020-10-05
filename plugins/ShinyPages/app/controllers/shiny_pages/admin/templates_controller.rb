@@ -9,6 +9,8 @@
 module ShinyPages
   # Admin controller for templates - ShinyPages plugin for ShinyCMS
   class Admin::TemplatesController < AdminController
+    include ShinySortable
+
     helper_method :load_html_editor?
 
     def index
@@ -26,7 +28,7 @@ module ShinyPages
     end
 
     def create
-      @template = ShinyPages::Template.new( template_params )
+      @template = ShinyPages::Template.new( strong_params )
       authorize @template
 
       if @template.save
@@ -46,7 +48,7 @@ module ShinyPages
       @template = ShinyPages::Template.find( params[:id] )
       authorize @template
 
-      if @template.update( template_params )
+      if sort_elements && @template.update( strong_params )
         redirect_to shiny_pages.edit_template_path( @template ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
@@ -55,13 +57,10 @@ module ShinyPages
     end
 
     def sort_elements
-      template = TemplateElement.find( params[ :element ].first ).template
-      authorize template, :edit?
+      return true if params[ :sort_order ].blank?
 
-      params[ :element ].each_with_index do |element_id, index|
-        TemplateElement.find( element_id ).update!( position: index + 1 )
-      end
-      head :ok
+      sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
+      apply_sort_order( @template.elements, sort_order )
     end
 
     def destroy
@@ -77,9 +76,9 @@ module ShinyPages
 
     private
 
-    def template_params
+    def strong_params
       params.require( :template ).permit(
-        :name, :description, :filename, elements_attributes: {}
+        :name, :description, :filename, :sort_order, elements_attributes: {}
       )
     end
 
