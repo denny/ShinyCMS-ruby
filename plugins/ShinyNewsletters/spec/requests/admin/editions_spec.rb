@@ -118,6 +118,41 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response.body ).to include template1.elements.first.name
       expect( response.body ).to include template1.elements.last.name
     end
+
+    it 'updates the element order' do
+      template_admin = create :newsletter_template_admin
+      sign_in template_admin
+
+      edition = create :newsletter_edition
+      last_element = edition.elements.last
+
+      # Put the last element first
+      ids = edition.elements.ids
+      last_id = ids.pop
+      ids.unshift last_id
+
+      query_string = ''
+      ids.each do |id|
+        query_string += "sorted[]=#{id}&"
+      end
+
+      expect( last_element.position ).to eq ids.size
+
+      put shiny_newsletters.edition_path( edition ), params: {
+        edition: {
+          internal_name: edition.internal_name
+        },
+        sort_order: query_string
+      }
+
+      expect( response      ).to have_http_status :found
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.editions.update.success' )
+
+      expect( last_element.reload.position ).to eq 1
+    end
   end
 
   describe 'GET /admin/newsletters/editions/:id' do
