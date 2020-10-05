@@ -26,6 +26,20 @@ RSpec.describe Admin::UsersController, type: :request do
         expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
         expect( response.body ).to include user.username
       end
+
+      it 'sets page size and page number correctly if params are present' do
+        user1 = create :user, username: 'again_with_the_apples'
+        user2 = create :user, username: 'bendy_bananas'
+        user3 = create :user, username: 'cool_cucumbers'
+
+        get users_path( params: { page: 2, count: 2 } )
+
+        expect( response      ).to     have_http_status :ok
+        expect( response.body ).to     have_title I18n.t( 'admin.users.index.title' ).titlecase
+        expect( response.body ).to     have_css 'td', text: user3.username
+        expect( response.body ).not_to have_css 'td', text: user2.username
+        expect( response.body ).not_to have_css 'td', text: user1.username
+      end
     end
 
     describe 'GET /admin/users/search?q=bobx' do

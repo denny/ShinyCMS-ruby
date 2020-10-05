@@ -8,8 +8,6 @@
 
 # Base controller for ShinyCMS (see also: main_controller, admin_controller)
 class ApplicationController < ActionController::Base
-  include PagingHelper
-
   helper_method :recaptcha_v2_site_key,
                 :recaptcha_v3_site_key,
                 :recaptcha_checkbox_site_key

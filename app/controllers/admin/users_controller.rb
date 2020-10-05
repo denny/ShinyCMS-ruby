@@ -12,7 +12,7 @@ class Admin::UsersController < AdminController
 
   def index
     authorize User
-    @users = User.order( :username ).page( page_number )
+    @users = User.order( :username ).page( page_number ).per( items_per_page )
     authorize @users if @users.present?
   end
 
