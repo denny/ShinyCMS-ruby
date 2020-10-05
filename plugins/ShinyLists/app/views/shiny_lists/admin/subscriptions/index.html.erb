@@ -1,8 +1,5 @@
 <% @page_title = t( '.title' ) %>
 
-<%# TODO: search feature (for all admin list pages) %>
-
-<% if @subscriptions.present? %>
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
@@ -47,11 +44,3 @@
 </table>
 
 <%= render partial: 'admin/includes/pager', locals: { paged: @subscriptions } %>
-
-<% else %>
-
-<p>
-  This list has no subscribers (past or present).
-</p>
-
-<% end %>

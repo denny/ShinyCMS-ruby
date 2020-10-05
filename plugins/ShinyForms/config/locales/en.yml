@@ -22,7 +22,6 @@ en:
           template_email: Send email formatted with template
         index:
           title: List form handlers
-          empty: There are no form handlers defined yet
         new:
           title: Add form handler
         edit:

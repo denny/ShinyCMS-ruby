@@ -1,6 +1,5 @@
 <% @page_title = t( '.title' ) %>
 
-<% if @posts.present? %>
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
@@ -42,9 +41,3 @@
 </table>
 
 <%= render partial: 'admin/includes/pager', locals: { paged: @posts } %>
-
-<% else %>
-<p>
-  <%= t( 'empty_list', items: 'blog posts' ) %>
-</p>
-<% end %>

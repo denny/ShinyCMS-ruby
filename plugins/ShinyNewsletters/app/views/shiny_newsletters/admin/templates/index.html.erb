@@ -1,6 +1,5 @@
 <% @page_title = t( '.title' ) %>
 
-<% if @templates.present? %>
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
@@ -30,9 +29,3 @@
 <p id="pager-info">
   <%= page_entries_info @templates %>
 </p>
-
-<% else %>
-<p>
-  <%= t( 'empty_list', items: 'templates' ) %>
-</p>
-<% end %>
