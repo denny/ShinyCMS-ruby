@@ -38,7 +38,7 @@ en:
   are_you_sure: Are you sure?
 
   # Empty listing
-  empty_list: There are no %{items} to display
+  empty_list: no %{items} found
 
   # Votes / Likes
   vote: Vote
@@ -315,6 +315,7 @@ en:
         select_all: Select all
         confirm_spam: Confirm as spam (and delete)
         remove_flag: Remove spam flag (and publish)
+        search: Search comments
       update:
         spam_or_ham: Please choose either 'confirm as spam' or 'remove spam flag'
       process_spam_comments:
@@ -328,6 +329,7 @@ en:
       menu: Consent versions
       index:
         title: Consent versions
+        search: Search comments
       show:
         title: View consent version
       new:
@@ -358,6 +360,7 @@ en:
       menu: Email stats
       index:
         title: Email stats
+        search: Search stats
 
     feature_flags:
       breadcrumb: Settings
@@ -438,6 +441,7 @@ en:
       menu: Web stats
       index:
         title: Web stats
+        search: Search stats
 
 
   # ========== ( error messages for models/validations/etc ) ==========
