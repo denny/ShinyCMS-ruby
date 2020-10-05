@@ -1,8 +1,10 @@
 <p id="sorted_<%= id %>">
   <%= fields.label content, name %>
+  <% if current_user.can? :edit, :page_templates %>
   <span class="handle">
     <i class="cil-sort-ascending"></i>
   </span>
+  <% end %>
   <br>
   <% if element_type == 'short_text' %>
   <%= fields.text_field content %>

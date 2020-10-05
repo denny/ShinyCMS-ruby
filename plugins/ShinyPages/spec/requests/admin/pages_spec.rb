@@ -200,6 +200,9 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
 
     it 'updates the element order' do
+      template_admin = create :page_template_admin
+      sign_in template_admin
+
       page = create :top_level_page
       last_element = page.elements.last
 

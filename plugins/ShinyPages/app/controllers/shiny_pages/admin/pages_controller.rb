@@ -58,6 +58,7 @@ module ShinyPages
 
     def sort_elements
       return true if params[ :sort_order ].blank?
+      return true unless current_user.can? :edit, :page_templates
 
       sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
       apply_sort_order( @page.elements, sort_order )
