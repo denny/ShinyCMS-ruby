@@ -21,7 +21,7 @@ ShinyLists::Engine.routes.draw do
 
     # Admin area
     scope path: 'admin', module: 'admin' do
-      get  'lists/search', to: 'lists#search', as: :search_lists
+      get  'lists/search', to: 'lists#search'
       post 'lists/search', to: 'lists#search'
 
       resources :lists, except: :show do
