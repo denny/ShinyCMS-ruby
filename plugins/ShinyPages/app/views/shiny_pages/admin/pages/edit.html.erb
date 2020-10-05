@@ -38,9 +38,13 @@
     <br><%= f.check_box :show_in_menus %>
   </p>
 
+  <%= hidden_field_tag :sort_order, id: 'sort_order' %>
+  <span id="sortable">
   <%= f.fields_for :elements do |fields| %>
-    <%= render partial: 'element', locals: { fields: fields, content: :content, name: @page.elements[fields.index].name, element_type: @page.elements[fields.index].element_type, filenames: filenames_for_image_select } %>
+    <% this = @page.elements[fields.index] %>
+    <%= render partial: 'element', locals: { fields: fields, id: this.id, name: this.name, element_type: this.element_type, content: :content, filenames: filenames_for_image_select } %>
   <% end %>
+  </span>
 
   <p class="top-margin">
     <%= f.submit t( 'update' ) %>

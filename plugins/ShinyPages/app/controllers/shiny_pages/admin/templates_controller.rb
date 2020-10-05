@@ -78,7 +78,7 @@ module ShinyPages
 
     def strong_params
       params.require( :template ).permit(
-        :name, :description, :filename, :sort_order, elements_attributes: {}
+        :name, :description, :filename, elements_attributes: {}
       )
     end
 

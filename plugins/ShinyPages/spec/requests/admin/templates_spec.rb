@@ -144,7 +144,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
         query_string += "sorted[]=#{id}&"
       end
 
-      expect( last_element.reload.position ).to eq ids.size
+      expect( last_element.position ).to eq ids.size
 
       put shiny_pages.template_path( template ), params: {
         template: {
@@ -158,6 +158,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.templates.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_pages.admin.templates.update.success' )
+
       expect( last_element.reload.position ).to eq 1
     end
   end

@@ -1,5 +1,9 @@
-<p>
-  <%= fields.label content, name %><br>
+<p id="sorted_<%= id %>">
+  <%= fields.label content, name %>
+  <span class="handle">
+    <i class="cil-sort-ascending"></i>
+  </span>
+  <br>
   <% if element_type == 'short_text' %>
   <%= fields.text_field content %>
   <% elsif element_type == 'long_text' %>
