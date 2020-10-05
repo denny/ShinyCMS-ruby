@@ -28,6 +28,21 @@ RSpec.describe Admin::UsersController, type: :request do
       end
     end
 
+    describe 'GET /admin/users/search?q=bobx' do
+      it 'fetches the list of users with matching names' do
+        user_x = create :user, public_name: 'BobX'
+        user_y = create :user, public_name: 'BobY'
+
+        get search_users_path, params: { q: 'bobx' }
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
+
+        expect( response.body ).to include user_x.username
+        expect( response.body ).not_to include user_y.username
+      end
+    end
+
     describe 'GET /admin/user/new' do
       it 'loads the form to add a new user' do
         get new_user_path

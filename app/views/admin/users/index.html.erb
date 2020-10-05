@@ -1,5 +1,7 @@
 <% @page_title = t( '.title' ) %>
 
+<%= render partial: 'admin/includes/search', locals: { action: search_users_path, placeholder: t( '.search' ) } %>
+
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>

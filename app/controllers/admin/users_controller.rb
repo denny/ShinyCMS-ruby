@@ -16,6 +16,20 @@ class Admin::UsersController < AdminController
     authorize @users if @users.present?
   end
 
+  def search
+    authorize User
+
+    q = params[:q]
+    @users =  User.where( "username ilike '%#{q}%'" )
+                  .or( User.where( 'public_name  ilike ?', "%#{q}%" )
+                  .or( User.where( 'public_email ilike ?', "%#{q}%" )
+                  .or( User.where( 'website      ilike ?', "%#{q}%" ) ) ) )
+                  .order( :username ).page( page_number )
+
+    authorize @users if @users.present?
+    render :index
+  end
+
   def new
     @user = User.new
     authorize @user

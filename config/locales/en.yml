@@ -403,6 +403,7 @@ en:
       toolbar: Users
       index:
         title: List users
+        search: Search users
       new:
         title: Add new user
       edit:
