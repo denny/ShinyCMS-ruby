@@ -14,7 +14,7 @@
     </tr>
   </thead>
 
-  <tbody class="sortable">
+  <tbody id="live-sortable" data-url="<%= shiny_pages.sort_pages_path %>">
   <% @top_level_items.each do |top_level_item| %>
     <%= render partial: 'page_item', locals: {
       page_item: top_level_item,

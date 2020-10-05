@@ -49,6 +49,16 @@ module ShinyPages
       end
     end
 
+    def sort_pages
+      # section = Section.find( params[ :section_id ] )
+      authorize Section, :edit?
+
+      params[ :page_sort ].each_with_index do |page_id, index|
+        Page.find( page_id ).update!( position: index + 1 )
+      end
+      head :ok
+    end
+
     def destroy
       section = ShinyPages::Section.find( params[:id] )
       authorize section
