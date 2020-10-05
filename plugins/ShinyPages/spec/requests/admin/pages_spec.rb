@@ -266,4 +266,32 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_pages.admin.pages.destroy.failure' )
     end
   end
+
+  describe 'PATCH /admin/pages/sort' do
+    it 'sorts the pages and sections as requested' do
+      s1 = create :page_section, position: 1
+      p2 = create :page, section: s1, position: 2
+      p3 = create :top_level_page, position: 3
+      s4 = create :page_section, position: 4
+      p5 = create :top_level_page, position: 5
+
+      patch shiny_pages.sort_pages_and_sections_path, params: {
+        sorted: [
+          p2.id,
+          "section#{s4.id}",
+          "section#{s1.id}",
+          p5.id,
+          p3.id
+        ]
+      }
+
+      expect( response ).to have_http_status :ok
+
+      expect( s1.reload.position ).to eq 3
+      expect( p2.reload.position ).to eq 1
+      expect( p3.reload.position ).to eq 5
+      expect( s4.reload.position ).to eq 2
+      expect( p5.reload.position ).to eq 4
+    end
+  end
 end

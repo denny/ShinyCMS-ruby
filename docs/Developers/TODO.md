@@ -117,8 +117,6 @@
   * Decide 'intelligently' whether to fold all/none/some
     * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
 
-* Draggable UI for reordering lists in admin area - SortableJS, maybe?
-
 * When people post a comment or subscribe to a list without being logged in, offer to create an account for them?
 
 * Tests for rake tasks
