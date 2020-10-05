@@ -33,13 +33,13 @@ RSpec.describe Admin::UsersController, type: :request do
         user_x = create :user, public_name: 'BobX'
         user_y = create :user, public_name: 'BobY'
 
-        get search_users_path, params: { q: 'bobx' }
+        get users_search_path, params: { q: 'bobx' }
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
 
-        expect( response.body ).to include user_x.username
-        expect( response.body ).not_to include user_y.username
+        expect( response.body ).to     have_css 'td', text: user_x.username
+        expect( response.body ).not_to have_css 'td', text: user_y.username
       end
     end
 

@@ -101,7 +101,7 @@ Rails.application.routes.draw do
       get  :users, to: 'users#index'
       post :user,  to: 'users#create', as: :create_user
 
-      get  'users/search', to: 'users#search', as: :search_users
+      get  'users/search', to: 'users#search'
       post 'users/search', to: 'users#search'
 
       resources :user, controller: :users, except: %i[ index show create ]
