@@ -1,6 +1,9 @@
-<p>
+<p id="sorted_<%= id %>">
   <%= fields.text_field :name %>
   <%= fields.select :element_type, element_types %>
+  <span class="handle">
+    <i class="cil-sort-ascending"></i>
+  </span>
   <br>
   <% if element_type == 'short_text' %>
   <%= fields.text_field content %>

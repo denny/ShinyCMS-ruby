@@ -9,6 +9,8 @@
 module ShinyNewsletters
   # Admin controller for newsletter templates - part of ShinyNewsletters plugin for ShinyCMS
   class Admin::TemplatesController < AdminController
+    include ShinySortable
+
     def index
       authorize Template
 
@@ -44,12 +46,19 @@ module ShinyNewsletters
       @template = Template.find( params[:id] )
       authorize @template
 
-      if @template.update( template_params )
+      if sort_elements && @template.update( template_params )
         redirect_to shiny_newsletters.edit_template_path( @template ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render :edit
       end
+    end
+
+    def sort_elements
+      return true if params[ :sort_order ].blank?
+
+      sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
+      apply_sort_order( @template.elements, sort_order )
     end
 
     def destroy
