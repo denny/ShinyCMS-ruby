@@ -2,15 +2,17 @@
 <% hidden_class_if_hidden = page_item.hidden? ? 'class="hidden"' : '' %>
 
   <% if item_is_a_section %>
-  <tr id="section_sort_<%= page_item.id %>">
+  <tr id="sorted_section<%= page_item.id %>">
   <% else %>
-  <tr id="page_sort_<%= page_item.id %>">
+  <tr id="sorted_<%= page_item.id %>">
   <% end %>
     <td style="padding-left: <%= indent %>em;" <%= hidden_class_if_hidden %>>
       <% if item_is_a_section %><b><% end %><%= page_item.internal_name %><% if item_is_a_section %></b><% end %>
+      <% if current_user.can? :edit, :page_sections %>
       <span class="handle">
         <i class="cil-sort-ascending"></i>
       </span>
+      <% end %>
     </td>
     <td>
       <%= page_item.description %>

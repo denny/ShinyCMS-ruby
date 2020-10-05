@@ -13,9 +13,9 @@ ShinyPages::Engine.routes.draw do
 
     # Admin area
     scope path: :admin, module: :admin do
-      resources :pages, except: [ :show ]
+      patch 'pages/sort', to: 'pages#sort_pages_and_sections', as: :sort_pages_and_sections
 
-      patch 'pages/sections/sort-pages', to: 'sections#sort_pages', as: :sort_pages
+      resources :pages, except: [ :show ]
 
       scope path: :pages do
         resources :sections,  except: [ :show ]
