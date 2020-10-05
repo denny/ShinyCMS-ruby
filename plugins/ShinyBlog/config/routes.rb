@@ -22,6 +22,9 @@ ShinyBlog::Engine.routes.draw do
 
     # Admin area
     scope path: 'admin', module: 'admin' do
+      get  'blog_posts/search', to: 'blog_posts#search'
+      post 'blog_posts/search', to: 'blog_posts#search'
+
       resources :blog_posts, except: :show
     end
   end

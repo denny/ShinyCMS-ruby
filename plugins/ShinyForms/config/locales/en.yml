@@ -22,6 +22,7 @@ en:
           template_email: Send email formatted with template
         index:
           title: List form handlers
+          search: Search form handlers
         new:
           title: Add form handler
         edit:

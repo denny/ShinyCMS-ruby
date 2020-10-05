@@ -28,6 +28,7 @@ en:
         toolbar: Pages
         index:
           title: List pages
+          # search: Search pages and sections
         new:
           title: Add new page
         edit:
@@ -64,6 +65,7 @@ en:
         toolbar: Templates
         index:
           title: List templates
+          search: Search templates
         new:
           title: Add new template
         edit:

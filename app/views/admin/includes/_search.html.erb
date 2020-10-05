@@ -1,3 +1,4 @@
+<% action ||= "#{url_for}/search" %>
 <% method ||= :get; label ||= nil; placeholder ||= '' %>
 <span class="float-right">
   <%= form_tag action, method: method do |f| %>

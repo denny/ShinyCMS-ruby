@@ -10,6 +10,7 @@ module ShinyNewsletters
   # Admin controller for newsletter sends - part of ShinyNewsletters plugin for ShinyCMS
   class Admin::SendsController < AdminController
     include ShinyDateHelper
+    include ShinyPagingHelper
 
     before_action :convert_send_at_to_utc
 

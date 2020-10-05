@@ -9,6 +9,8 @@
 module ShinyLists
   # Controller for list subscription admin features - part of the ShinyLists plugin for ShinyCMS
   class Admin::SubscriptionsController < AdminController
+    include ShinyPagingHelper
+
     def index
       authorize Subscription
 

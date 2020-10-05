@@ -52,6 +52,7 @@ Metrics/BlockLength:
     - config/routes.rb
     - lib/tasks/*.rake
     - plugins/*/spec/**/*.rb
+    - plugins/*/config/routes.rb
     - spec/**/*.rb
 
 # Spec files with I18n.t calls in them are more readable with longer single lines

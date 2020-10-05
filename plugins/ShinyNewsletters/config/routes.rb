@@ -23,13 +23,24 @@ ShinyNewsletters::Engine.routes.draw do
     # Admin area
     scope path: :admin, module: :admin do
       scope path: :newsletters do
-        resources :templates, except: [ :show ]
+        get  'editions/search',  to: 'editions#search'
+        post 'editions/search',  to: 'editions#search'
+
+        get  'editions/:id/send-sample', to: 'editions#send_sample', as: :send_sample
+
         resources :editions,  except: [ :show ]
 
-        get 'editions/:id/send-sample', to: 'editions#send_sample', as: :send_sample
+        get  'templates/search', to: 'templates#search'
+        post 'templates/search', to: 'templates#search'
+
+        resources :templates, except: [ :show ]
+
+        get  'sends/search',     to: 'sends#search'
+        post 'sends/search',     to: 'sends#search'
+
+        get :sent, to: 'sends#sent'
 
         resources :sends
-        get :sent, to: 'sends#sent'
 
         scope path: :sends do
           put ':id/start',  to: 'sends#start_sending',  as: :start_sending

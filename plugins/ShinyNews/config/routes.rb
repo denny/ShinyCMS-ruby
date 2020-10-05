@@ -22,6 +22,9 @@ ShinyNews::Engine.routes.draw do
 
     # Admin area
     scope path: 'admin', module: 'admin' do
+      get  'news_posts/search', to: 'news_posts#search'
+      post 'news_posts/search', to: 'news_posts#search'
+
       resources :news_posts, except: :show
     end
   end
