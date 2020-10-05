@@ -14,9 +14,8 @@ module ShinyLists
 
       return if list.subscriptions.blank?
 
-      page_num = params[:page] || 1
       # TODO: How do I order this by subscriber.email ?
-      @subscriptions = list.subscriptions.order( Arel.sql( 'unsubscribed_at is null' ) ).page( page_num )
+      @subscriptions = list.subscriptions.recent.order( Arel.sql( 'unsubscribed_at is null' ) ).page( page_number )
 
       authorize @subscriptions
     end
