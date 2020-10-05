@@ -89,11 +89,11 @@ ShinyPages::TemplateElement.create!([
 
 ShinyPages::Page.create!([
   {id: 1, internal_name: "Home", public_name: "ShinyCMS Demo", slug: "home", description: "Demo site home page - uses Halcyonic index template", position: 1, show_in_menus: false, show_on_site: true, section_id: nil, template_id: 1},
-  {id: 6, internal_name: "Contact Us", public_name: "", slug: "contact", description: "Contact form", position: 8, show_in_menus: true, show_on_site: true, section_id: nil, template_id: 6},
-  {id: 5, internal_name: "Double sidebar", public_name: "", slug: "double", description: "Embrace the healing power of AND", position: 5, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 5},
   {id: 2, internal_name: "No sidebar", public_name: "", slug: "none", description: "", position: 3, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 2},
+  {id: 3, internal_name: "Right sidebar", public_name: "", slug: "right", description: "", position: 7, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 3},
   {id: 4, internal_name: "Left sidebar", public_name: "", slug: "left", description: "", position: 6, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 4},
-  {id: 3, internal_name: "Right sidebar", public_name: "", slug: "right", description: "", position: 7, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 3}
+  {id: 5, internal_name: "Double sidebar", public_name: "", slug: "double", description: "Embrace the healing power of AND", position: 5, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 5},
+  {id: 6, internal_name: "Contact Us", public_name: "", slug: "contact", description: "Contact form", position: 8, show_in_menus: true, show_on_site: true, section_id: nil, template_id: 6}
 ])
 
 ShinyPages::PageElement.create!([
