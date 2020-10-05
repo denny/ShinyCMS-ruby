@@ -1,17 +1,16 @@
 <p id="sorted_<%= id %>">
-  <%= fields.label content, name %>
-  <% if current_user.can? :edit, :newsletter_templates %>
+  <%= fields.text_field :name %>
+  <%= fields.select :element_type, element_types %>
   <span class="handle">
     <i class="cil-sort-ascending"></i>
   </span>
-  <% end %>
   <br>
   <% if element_type == 'short_text' %>
   <%= fields.text_field content %>
   <% elsif element_type == 'long_text' %>
   <%= fields.text_area content %>
   <% elsif element_type == 'image' %>
-  <%= fields.select content, filenames %>
+  <%= fields.select content, filenames, include_blank: '' %>
   <% elsif element_type == 'html' %>
   <%= fields.cktext_area content, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
   <% else %>

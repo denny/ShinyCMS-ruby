@@ -10,29 +10,17 @@
     <br><%= f.text_field :description %>
   </p>
   <p>
-    <%= f.label :filename, 'Template file' %>
-    <br><%= f.select :filename, ShinyNewsletters::Template.available_templates %>
+    <%= f.label :filename, t( 'admin.template_file' ) %>
+    <br><%= f.select :filename, ShinyNewsletters::Template.available_templates, include_blank: '' %>
   </p>
 
+  <%= hidden_field_tag :sort_order, id: 'sort_order' %>
+  <span id="sortable">
   <%= f.fields_for :elements do |fields| %>
-  <p>
-    <%= fields.text_field :name %>
-    <%= fields.select :element_type, element_types %>
-    <br>
-    <% element_type = @template.elements[fields.index].element_type %>
-    <% if element_type == 'short_text' %>
-    <%= fields.text_field :content %>
-    <% elsif element_type == 'long_text' %>
-    <%= fields.text_area :content %>
-    <% elsif element_type == 'image' %>
-    <%= fields.select :content, select_filenames %>
-    <% elsif element_type == 'html' %>
-    <%= fields.cktext_area :content, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
-    <% else %>
-    [ <%= t( 'admin.unknown_element_type' ) %> ]
-    <% end %>
-  </p>
+    <% this = @template.elements[fields.index] %>
+    <%= render partial: 'element', locals: { fields: fields, id: this.id, name: this.name, element_type: this.element_type, content: :content, filenames: filenames_for_image_select } %>
   <% end %>
+  </span>
 
   <p class="top-margin">
     <%= submit_tag t( 'update' ) %>

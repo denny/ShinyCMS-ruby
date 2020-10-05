@@ -9,6 +9,8 @@
 module ShinyPages
   # Admin controller for pages - ShinyPages plugin for ShinyCMS
   class Admin::PagesController < AdminController
+    include ShinySortable
+
     helper_method :load_html_editor?
 
     def index
@@ -46,12 +48,20 @@ module ShinyPages
       @page = ShinyPages::Page.find( params[:id] )
       authorize @page
 
-      if @page.update( page_params )
+      if sort_elements && @page.update( page_params )
         redirect_to shiny_pages.edit_page_path( @page ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render action: :edit
       end
+    end
+
+    def sort_elements
+      return true if params[ :sort_order ].blank?
+      return true unless current_user.can? :edit, :page_templates
+
+      sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
+      apply_sort_order( @page.elements, sort_order )
     end
 
     def destroy

@@ -198,6 +198,41 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response.body ).to     have_field 'page_slug', with: 'updated-by-test'
       expect( response.body ).not_to have_field 'page_slug', with: old_slug
     end
+
+    it 'updates the element order' do
+      template_admin = create :page_template_admin
+      sign_in template_admin
+
+      page = create :top_level_page
+      last_element = page.elements.last
+
+      # Put the last element first
+      ids = page.elements.ids
+      last_id = ids.pop
+      ids.unshift last_id
+
+      query_string = ''
+      ids.each do |id|
+        query_string += "sorted[]=#{id}&"
+      end
+
+      expect( last_element.position ).to eq ids.size
+
+      put shiny_pages.page_path( page ), params: {
+        page: {
+          internal_name: page.internal_name
+        },
+        sort_order: query_string
+      }
+
+      expect( response      ).to have_http_status :found
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.pages.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_pages.admin.pages.update.success' )
+
+      expect( last_element.reload.position ).to eq 1
+    end
   end
 
   describe 'DELETE /admin/page/delete/:id' do

@@ -126,6 +126,38 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.templates.update.success' )
       expect( response.body ).to include 'Updated by test'
     end
+
+    it 'updates the element order' do
+      template = create :newsletter_template
+      last_element = template.elements.last
+
+      # Put the last element first
+      ids = template.elements.ids
+      last_id = ids.pop
+      ids.unshift last_id
+
+      query_string = ''
+      ids.each do |id|
+        query_string += "sorted[]=#{id}&"
+      end
+
+      expect( last_element.position ).to eq ids.size
+
+      put shiny_newsletters.template_path( template ), params: {
+        template: {
+          name: template.name
+        },
+        sort_order: query_string
+      }
+
+      expect( response      ).to have_http_status :found
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.templates.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.templates.update.success' )
+
+      expect( last_element.reload.position ).to eq 1
+    end
   end
 
   describe 'DELETE /admin/newsletters/template/delete/:id' do
