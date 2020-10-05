@@ -2,6 +2,10 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
+* Add search boxes on all admin list pages, for sites with lots of content/members/etc
+
+* Investigate and fix blank email issue
+
 * Write mailer tests instead of hitting mailers indirectly from request specs (Forms; any others?)
 
 * Re-think mailer preview features
