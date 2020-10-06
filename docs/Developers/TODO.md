@@ -6,8 +6,8 @@
 
 * Investigate and fix blank email issue
 
-* Move most of this list into GitHub issues?
-  * Put the whole TODO list in there?
+* Move most of this list into GitHub issues
+  * Put the whole 'planned features' TODO list in there?
 
 * Figure out what the bug is with paging on newsletter editions admin index page
   * (And, at a guess from the error message, any and all nested admin index pages)

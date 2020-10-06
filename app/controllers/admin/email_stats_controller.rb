@@ -8,14 +8,14 @@
 
 # Controller for viewing email stats in ShinyCMS admin area
 class Admin::EmailStatsController < AdminController
-  before_action :set_ahoy_user
-
   def index
     authorize Ahoy::Message
 
-    messages  = Ahoy::Message
-    messages  = messages.where( user: @ahoy_user ) if @ahoy_user
-    @messages = messages.order( sent_at: :desc   ).page( page_number ).per( items_per_page )
+    messages = ahoy_messages
+    messages = messages_to_user      if params[ :user_id ]
+    messages = messages_to_recipient if params[ :recipient_id ]
+
+    @messages = messages.page( page_number ).per( items_per_page )
 
     authorize @messages if @messages.present?
   end
@@ -24,12 +24,10 @@ class Admin::EmailStatsController < AdminController
     authorize Ahoy::Message
 
     q = params[:q]
-
-    messages  = Ahoy::Message
-    messages  = messages.where( user: @ahoy_user ) if @ahoy_user
-    @messages = messages.where( 'email_address ilike ?', "%#{q}%" )
-                        .order( started_at: :desc )
-                        .page( page_number ).per( items_per_page )
+    @messages = Ahoy::Message.where( 'mailer ilike ?', "%#{q}%" )
+                             .or( Ahoy::Message.where( 'subject ilike ?', "%#{q}%" ) )
+                             .order( sent_at: :desc )
+                             .page( page_number ).per( items_per_page )
 
     authorize @messages if @messages.present?
     render :index
@@ -37,14 +35,23 @@ class Admin::EmailStatsController < AdminController
 
   private
 
-  def set_ahoy_user
-    return if params[:user_id].blank?
+  def ahoy_messages
+    Ahoy::Message.order( sent_at: :desc )
+  end
 
-    @ahoy_user =
-      if params[:user_type].presence == 'EmailRecipient'
-        EmailRecipient.find( params[:user_id] )
-      else
-        User.find( params[:user_id] )
-      end
+  def messages_to_user
+    ahoy_messages.where( user: user )
+  end
+
+  def messages_to_recipient
+    ahoy_messages.where( user: email_recipient )
+  end
+
+  def user
+    User.find( params[ :user_id ] )
+  end
+
+  def email_recipient
+    EmailRecipient.find( params[ :recipient_id ] )
   end
 end
