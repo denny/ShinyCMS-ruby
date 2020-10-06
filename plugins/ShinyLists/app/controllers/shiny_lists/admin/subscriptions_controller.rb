@@ -25,10 +25,10 @@ module ShinyLists
       authorize Subscription
 
       q = params[:q]
-      @subscriptions = list.subscriptions
-                           .where( 'name ilike ?', "%#{q}%" )
-                           .recent
-                           .page( page_number ).per( items_per_page )
+      @subscriptions = subscriptions.where( 'date(subscribed_at) = ?', q )
+                                    .or( subscriptions.where( 'date(unsubscribed_at) = ?', q ) )
+                                    .order( subscribed_at: :desc )
+                                    .page( page_number ).per( items_per_page )
 
       authorize @subscriptions if @subscriptions.present?
       render :index
@@ -63,8 +63,12 @@ module ShinyLists
       ShinyLists::List.find( params[:list_id] )
     end
 
+    def subscriptions
+      list.subscriptions
+    end
+
     def subscription
-      list.subscriptions.find( params[:id] )
+      subscriptions.find( params[:id] )
     end
 
     def subscriber_for_subscribe
