@@ -2,11 +2,12 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
-* Add search boxes on all admin list pages, for sites with lots of content/members/etc
-
 * Concede to resourceful routes for admin/users
 
 * Investigate and fix blank email issue
+
+* Move most of this list into GitHub issues?
+  * Put the whole TODO list in there?
 
 * Figure out what the bug is with paging on newsletter editions admin index page
   * (And, at a guess from the error message, any and all nested admin index pages)
@@ -36,6 +37,10 @@
 
 * Make sure concerns are used everywhere they could/should be, and that the shared examples
   are used to test that the concerns are doing the right thing in each place they get used.
+
+* Flesh out search methods in admin controllers
+  * Make sure they check against all useful attributes
+  * Bonus points for checking against associated entities, e.g. subscription->subscriber->name
 
 ### Non-trivial
 
