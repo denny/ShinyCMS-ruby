@@ -14,12 +14,22 @@ module ShinyPages
     helper_method :load_html_editor?
 
     def index
-      authorize ShinyPages::Template
-
-      page_num = params[ :page ] || 1
-
-      @templates = ShinyPages::Template.order( :name ).page( page_num )
+      authorize Template
+      @templates = Template.order( :name ).page( page_number ).per( items_per_page )
       authorize @templates if @templates.present?
+    end
+
+    def search
+      authorize Template
+
+      q = params[:q]
+      @templates = Template.where( 'name ilike ?', "%#{q}%" )
+                           .or( Template.where( 'description ilike ?', "%#{q}%" ) )
+                           .order( :name )
+                           .page( page_number ).per( items_per_page )
+
+      authorize @templates if @templates.present?
+      render :index
     end
 
     def new

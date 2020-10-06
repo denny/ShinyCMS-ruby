@@ -12,4 +12,8 @@ class Ahoy::VisitPolicy
   def index?
     @this_user.can? :view_web, :stats
   end
+
+  def search?
+    index?
+  end
 end

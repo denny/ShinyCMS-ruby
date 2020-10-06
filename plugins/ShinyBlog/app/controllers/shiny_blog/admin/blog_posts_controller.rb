@@ -13,7 +13,6 @@ module ShinyBlog
     include ShinyPostAdmin
 
     include ShinyDateHelper
-    include ShinyPagingHelper
 
     before_action :set_post_for_create, only: :create
     before_action :set_post, only: %i[ edit update destroy ]
@@ -22,8 +21,21 @@ module ShinyBlog
 
     def index
       authorize Post
-      @posts = Post.order( created_at: :desc ).page( page_number )
+      @posts = Post.order( posted_at: :desc ).page( page_number ).per( items_per_page )
       authorize @posts if @posts.present?
+    end
+
+    def search
+      authorize Post
+
+      q = params[:q]
+      @posts = Post.where( 'title ilike ?', "%#{q}%" )
+                   .or( Post.where( 'body ilike ?', "%#{q}%" ) )
+                   .order( posted_at: :desc )
+                   .page( page_number ).per( items_per_page )
+
+      authorize @posts if @posts.present?
+      render :index
     end
 
     def new

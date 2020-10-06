@@ -25,6 +25,8 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
       * Ideally, move all the non-Devise User/Account functionality into concerns and helpers, so
         you could include those into any site with Devise-powered auth and then use any ShinyPlugin
     * Move each plugin into its own separate gem
+      * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
+
 
 * Blazer dashboards / charts / etc
   * https://github.com/ankane/blazer

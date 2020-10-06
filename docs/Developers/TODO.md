@@ -2,9 +2,13 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
-* Add search boxes on all admin list pages, for sites with lots of content/members/etc
-
 * Investigate and fix blank email issue
+
+* Move most of this list into GitHub issues
+  * Put the whole 'planned features' TODO list in there?
+
+* Figure out what the bug is with paging on newsletter editions admin index page
+  * (And, at a guess from the error message, any and all nested admin index pages)
 
 * Write mailer tests instead of hitting mailers indirectly from request specs (Forms; any others?)
 
@@ -19,8 +23,6 @@
 
 * Change admin settings page to get descriptions in same 'stripe' as the thing they describe
 
-* Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
-
 * Highlight section name in admin area menu when on a page which isn't in the menu
   (e.g. 'Edit page', clicking around in Blazer, etc)
 * Relatedly; jump admin menu to current section with an anchor
@@ -33,6 +35,10 @@
 
 * Make sure concerns are used everywhere they could/should be, and that the shared examples
   are used to test that the concerns are doing the right thing in each place they get used.
+
+* Flesh out search methods in admin controllers
+  * Make sure they check against all useful attributes
+  * Bonus points for checking against associated entities, e.g. subscription->subscriber->name
 
 ### Non-trivial
 

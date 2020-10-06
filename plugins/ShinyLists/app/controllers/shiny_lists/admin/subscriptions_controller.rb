@@ -15,9 +15,23 @@ module ShinyLists
       return if list.subscriptions.blank?
 
       # TODO: How do I order this by subscriber.email ?
-      @subscriptions = list.subscriptions.recent.order( Arel.sql( 'unsubscribed_at is null' ) ).page( page_number )
+      @subscriptions = list.subscriptions.recent.order( Arel.sql( 'unsubscribed_at is null' ) )
+                           .page( page_number ).per( items_per_page )
 
       authorize @subscriptions
+    end
+
+    def search
+      authorize Subscription
+
+      q = params[:q]
+      @subscriptions = subscriptions.where( 'date(subscribed_at) = ?', q )
+                                    .or( subscriptions.where( 'date(unsubscribed_at) = ?', q ) )
+                                    .order( subscribed_at: :desc )
+                                    .page( page_number ).per( items_per_page )
+
+      authorize @subscriptions if @subscriptions.present?
+      render :index
     end
 
     # NB: If you live in GDPR territory, before using this feature you should consider whether
@@ -49,8 +63,12 @@ module ShinyLists
       ShinyLists::List.find( params[:list_id] )
     end
 
+    def subscriptions
+      list.subscriptions
+    end
+
     def subscription
-      list.subscriptions.find( params[:id] )
+      subscriptions.find( params[:id] )
     end
 
     def subscriber_for_subscribe

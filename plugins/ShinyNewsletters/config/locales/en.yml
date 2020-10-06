@@ -38,6 +38,7 @@ en:
           title: Editions
           send_sample: Send sample
           send_to_list: Send to list
+          search: Search editions
         send_sample:
           success: Sample sent
         new:
@@ -59,6 +60,7 @@ en:
           title: Sends
           no_sends: You have not started sending any newsletters yet
           send: Send
+          search: Search sends
         sent:
           title: Sent
           view_details: View Details
@@ -85,6 +87,7 @@ en:
         breadcrumb: Newsletter templates
         index:
           title: Templates
+          search: Search templates
         new:
           title: New template
         edit:

@@ -1,6 +1,7 @@
 <% @page_title = t( '.title' ) %>
 
-<% if @forms.present? %>
+<%= render partial: 'admin/includes/search', locals: { action: shiny_forms.forms_search_path, placeholder: t( '.search' ) } %>
+
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
@@ -35,9 +36,3 @@
 </table>
 
 <%= render partial: 'admin/includes/pager', locals: { paged: @forms } %>
-
-<% else %>
-<p>
-  <%= t( '.empty' ) %>
-</p>
-<% end %>

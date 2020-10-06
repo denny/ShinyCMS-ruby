@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<% if @editions.present? %>
+<%= render partial: 'admin/includes/search', locals: { action: shiny_newsletters.editions_search_path, placeholder: t( '.search' ) } %>
 
 <table class="table table-responsive-sm table-striped">
   <thead>
@@ -47,8 +47,4 @@
   </tbody>
 </table>
 
-<% else %>
-<p>
-  <%= t( 'empty_list', items: 'newsletter editions' ) %>
-</p>
-<% end %>
+<%= render partial: 'admin/includes/pager', locals: { paged: @editions } %>

@@ -1,6 +1,7 @@
 <% @page_title = t( '.title' ) %>
 
-<% if @templates.present? %>
+<%= render partial: 'admin/includes/search', locals: { action: shiny_newsletters.templates_search_path, placeholder: t( '.search' ) } %>
+
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
@@ -30,9 +31,3 @@
 <p id="pager-info">
   <%= page_entries_info @templates %>
 </p>
-
-<% else %>
-<p>
-  <%= t( 'empty_list', items: 'templates' ) %>
-</p>
-<% end %>

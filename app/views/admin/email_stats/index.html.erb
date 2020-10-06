@@ -1,5 +1,7 @@
 <% @page_title = t( '.title' ) %>
 
+<%= render partial: 'admin/includes/search', locals: { placeholder: t( '.search' ) } %>
+
 <% if @messages.present? %>
 <table class="table table-responsive-sm table-striped">
   <thead>

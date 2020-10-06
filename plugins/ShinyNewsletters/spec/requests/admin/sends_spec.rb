@@ -48,6 +48,21 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
     end
   end
 
+  describe 'GET /admin/newsletters/sends/search?q=2001-12-31' do
+    it 'fetches the list of matching sends' do
+      send1 = create :newsletter_send_sent, finished_sending_at: 2.days.ago
+      send2 = create :newsletter_send_sent, finished_sending_at: 1.day.ago
+
+      get shiny_newsletters.sends_search_path, params: { q: 2.days.ago.strftime('%F') }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.sends.index.title' ).titlecase
+
+      expect( response.body ).to     have_css 'td', text: send1.edition.internal_name
+      expect( response.body ).not_to have_css 'td', text: send2.edition.internal_name
+    end
+  end
+
   describe 'GET /admin/newsletters/sends/123' do
     it 'displays the details of a send which has completed (or been cancelled)' do
       send1 = create :newsletter_send_sent

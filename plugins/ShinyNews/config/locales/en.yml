@@ -48,6 +48,7 @@ en:
         toolbar: News posts
         index:
           title: List news posts
+          search: Search news posts
         new:
           title: Add news post
         edit:

@@ -18,6 +18,19 @@ module ShinyLists
       authorize @lists if @lists.present?
     end
 
+    def search
+      authorize List
+
+      q = params[:q]
+      @lists = List.where( 'internal_name ilike ?', "%#{q}%" )
+                   .or( List.where( 'slug ilike ?', "%#{q}%" ) )
+                   .order( :internal_name )
+                   .page( page_number ).per( items_per_page )
+
+      authorize @lists if @lists.present?
+      render :index
+    end
+
     def new
       @list = List.new
       authorize @list

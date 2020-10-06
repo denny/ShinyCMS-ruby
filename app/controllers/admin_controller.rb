@@ -10,6 +10,8 @@
 class AdminController < ApplicationController
   include Pundit
 
+  include ShinyPagingHelper
+
   before_action :check_admin_ip_list
   before_action :authenticate_user!
   before_action :cache_user_capabilities
