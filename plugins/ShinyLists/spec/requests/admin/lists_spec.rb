@@ -24,6 +24,21 @@ RSpec.describe 'Mailing List admin features', type: :request do
     end
   end
 
+  describe 'GET /admin/lists/search?q=zing' do
+    it 'fetches the list of matching mailing lists' do
+      list1 = create :mailing_list, slug: 'zingy-zebra'
+      list2 = create :mailing_list, slug: 'awesome-aardvark'
+
+      get shiny_lists.lists_search_path, params: { q: 'zing' }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.lists.index.title' ).titlecase
+
+      expect( response.body ).to     have_css 'td', text: list1.internal_name
+      expect( response.body ).not_to have_css 'td', text: list2.internal_name
+    end
+  end
+
   describe 'GET /admin/lists/new' do
     it 'loads the page to add a new mailing list' do
       get shiny_lists.new_list_path

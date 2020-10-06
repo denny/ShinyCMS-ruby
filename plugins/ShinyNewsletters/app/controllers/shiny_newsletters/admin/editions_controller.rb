@@ -9,7 +9,6 @@
 module ShinyNewsletters
   # Admin controller for newsletter editions - ShinyNewsletters plugin for ShinyCMS
   class Admin::EditionsController < AdminController
-    include ShinyPagingHelper
     include ShinySortable
 
     def index
@@ -22,7 +21,7 @@ module ShinyNewsletters
       authorize Edition
 
       q = params[:q]
-      @editions = Edition.where( "internal_name ilike '%#{q}%'" )
+      @editions = Edition.where( 'internal_name ilike ?', "%#{q}%" )
                          .or( Edition.where( 'public_name ilike ?', "%#{q}%" )
                          .or( Edition.where( 'description ilike ?', "%#{q}%" ) ) )
                          .order( updated_at: :desc )

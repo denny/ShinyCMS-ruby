@@ -63,11 +63,17 @@ Rails.application.routes.draw do
 
     scope path: 'admin', module: 'admin' do
       # Consent versions
+      get  'consent-versions/search', to: 'consent_versions#search'
+      post 'consent-versions/search', to: 'consent_versions#search'
       resources :consent_versions, path: 'consent-versions'
 
       # Discussion and comment moderation
       get :comments, to: 'comments#index'
       put :comments, to: 'comments#update'
+
+      get  'comments/search', to: 'comments#search'
+      post 'comments/search', to: 'comments#search'
+
       scope path: 'comment' do
         put    ':id/show',    to: 'comments#show',          as: :show_comment
         put    ':id/hide',    to: 'comments#hide',          as: :hide_comment
@@ -76,6 +82,7 @@ Rails.application.routes.draw do
         put    ':id/is-spam', to: 'comments#mark_as_spam',  as: :spam_comment
         delete ':id/delete',  to: 'comments#destroy',       as: :destroy_comment
       end
+
       scope path: 'discussion' do
         put ':id/show',   to: 'discussions#show',   as: :show_discussion
         put ':id/hide',   to: 'discussions#hide',   as: :hide_discussion

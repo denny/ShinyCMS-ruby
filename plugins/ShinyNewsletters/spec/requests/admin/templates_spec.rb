@@ -28,6 +28,21 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
     end
   end
 
+  describe 'GET /admin/newsletters/templates/search?q=zing' do
+    it 'fetches the list of matching templates' do
+      template1 = create :newsletter_template, description: 'zingy-zebra'
+      template2 = create :newsletter_template, description: 'awesome-aardvark'
+
+      get shiny_newsletters.templates_search_path, params: { q: 'zing' }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.templates.index.title' ).titlecase
+
+      expect( response.body ).to     have_css 'td', text: template1.name
+      expect( response.body ).not_to have_css 'td', text: template2.name
+    end
+  end
+
   describe 'GET /admin/newsletters/template/new' do
     it 'loads the form to add a new template' do
       get shiny_newsletters.new_template_path

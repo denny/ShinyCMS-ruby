@@ -13,12 +13,27 @@ class Admin::WebStatsController < AdminController
   def index
     authorize Ahoy::Visit
 
-    page_num = params[ :page ] || 1
-    visits = Ahoy::Visit
-    visits = visits.where( user: @ahoy_user ) if @ahoy_user
-    @visits = visits.order( 'started_at desc' ).page( page_num )
+    visits  = Ahoy::Visit
+    visits  = visits.where( user: @ahoy_user  ) if @ahoy_user
+    @visits = visits.order( started_at: :desc ).page( page_number ).per( items_per_page )
 
     authorize @visits if @visits.present?
+  end
+
+  def search
+    authorize Ahoy::Visit
+
+    q = params[:q]
+
+    visits  = Ahoy::Visit
+    visits  = visits.where( user: @ahoy_user ) if @ahoy_user
+    @visits = visits.where( 'to ilike ?', "%#{q}%" )
+                    .or( visits.where( 'subject ilike ?', "%#{q}%" ) )
+                    .order( started_at: :desc )
+                    .page( page_number ).per( items_per_page )
+
+    authorize @visits if @visits.present?
+    render :index
   end
 
   private

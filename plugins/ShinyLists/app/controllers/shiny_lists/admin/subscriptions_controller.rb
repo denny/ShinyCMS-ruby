@@ -9,17 +9,29 @@
 module ShinyLists
   # Controller for list subscription admin features - part of the ShinyLists plugin for ShinyCMS
   class Admin::SubscriptionsController < AdminController
-    include ShinyPagingHelper
-
     def index
       authorize Subscription
 
       return if list.subscriptions.blank?
 
       # TODO: How do I order this by subscriber.email ?
-      @subscriptions = list.subscriptions.recent.order( Arel.sql( 'unsubscribed_at is null' ) ).page( page_number )
+      @subscriptions = list.subscriptions.recent.order( Arel.sql( 'unsubscribed_at is null' ) )
+                           .page( page_number ).per( items_per_page )
 
       authorize @subscriptions
+    end
+
+    def search
+      authorize Subscription
+
+      q = params[:q]
+      @subscriptions = list.subscriptions
+                           .where( 'name ilike ?', "%#{q}%" )
+                           .recent
+                           .page( page_number ).per( items_per_page )
+
+      authorize @subscriptions if @subscriptions.present?
+      render :index
     end
 
     # NB: If you live in GDPR territory, before using this feature you should consider whether

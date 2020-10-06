@@ -13,12 +13,26 @@ class Admin::EmailStatsController < AdminController
   def index
     authorize Ahoy::Message
 
-    page_num = params[ :page ] || 1
-    messages = Ahoy::Message
-    messages = messages.where( user: @ahoy_user ) if @ahoy_user
-    @messages = messages.order( 'sent_at desc' ).page( page_num )
+    messages  = Ahoy::Message
+    messages  = messages.where( user: @ahoy_user ) if @ahoy_user
+    @messages = messages.order( sent_at: :desc   ).page( page_number ).per( items_per_page )
 
     authorize @messages if @messages.present?
+  end
+
+  def search
+    authorize Ahoy::Message
+
+    q = params[:q]
+
+    messages  = Ahoy::Message
+    messages  = messages.where( user: @ahoy_user ) if @ahoy_user
+    @messages = messages.where( 'email_address ilike ?', "%#{q}%" )
+                        .order( started_at: :desc )
+                        .page( page_number ).per( items_per_page )
+
+    authorize @messages if @messages.present?
+    render :index
   end
 
   private

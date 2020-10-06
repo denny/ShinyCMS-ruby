@@ -20,6 +20,10 @@ module ShinyForms
       @this_user.can? :list, :forms
     end
 
+    def search?
+      index?
+    end
+
     def new?
       @this_user.can? :add, :forms
     end

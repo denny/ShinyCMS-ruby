@@ -12,6 +12,8 @@ FactoryBot.define do
     transient do
       comment_count { 0 }
       comments_posted_at { Time.zone.now.iso8601 }
+
+      association :resource, factory: :news_post
     end
 
     after :create do |discussion, evaluator|
