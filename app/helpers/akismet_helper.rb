@@ -74,24 +74,11 @@ module AkismetHelper
   end
 
   def merge_author_details( comment, details )
-    name  = comment_author_name(  comment )
-    email = comment_author_email( comment )
-    url   = comment_author_url(   comment )
-    details[ :author       ] = name
+    email = comment&.author&.email
+    url   = comment&.author&.website
+    details[ :author       ] = comment.author_name_or_anon
     details[ :author_email ] = email if email
     details[ :author_url   ] = url   if url
     details
-  end
-
-  def comment_author_name( comment )
-    comment.author_name || comment.author&.username || 'Anonymous'
-  end
-
-  def comment_author_email( comment )
-    comment.author_email || comment.author&.email
-  end
-
-  def comment_author_url( comment )
-    comment.author_url   || comment.author&.website
   end
 end

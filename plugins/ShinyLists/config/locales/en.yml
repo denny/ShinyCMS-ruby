@@ -48,6 +48,7 @@ en:
         # toolbar: Mailing lists
         index:
           title: Mailing lists
+          search: Search lists
         new:
           title: New mailing list
         create:
@@ -65,6 +66,7 @@ en:
         # toolbar: Subscriptions
         index:
           title: Subscriptions
+          search: Search subscriptions
         subscribe:
           success: Subscribed
           # failure: Failed to create subscription

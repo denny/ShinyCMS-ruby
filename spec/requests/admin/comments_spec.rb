@@ -34,10 +34,30 @@ RSpec.describe Admin::CommentsController, type: :request do
 
   describe 'GET /admin/comments' do
     it 'fetches the spam comment moderation page' do
+      create :comment, spam: true
+      create :comment, spam: true
+      comment3 = create :comment, spam: true
+
       get comments_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.comments.index.title' ).titlecase
+      expect( response.body ).to have_css 'td', text: comment3.title
+    end
+
+    describe 'GET /admin/comments/search?q=zing' do
+      it 'fetches the list of matching spam comments' do
+        comment1 = create :comment, body: 'Zebras are zingy', spam: true
+        comment2 = create :comment, body: 'Aardvarks are awesome', spam: true
+
+        get comments_search_path, params: { q: 'zing' }
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'admin.comments.index.title' ).titlecase
+
+        expect( response.body ).to     have_css 'td', text: comment1.title
+        expect( response.body ).not_to have_css 'td', text: comment2.title
+      end
     end
   end
 

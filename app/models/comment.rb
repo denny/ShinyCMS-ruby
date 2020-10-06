@@ -15,22 +15,17 @@ class Comment < ApplicationRecord
 
   belongs_to :discussion
   belongs_to :parent, optional: true, class_name: 'Comment'
-  belongs_to :user,   optional: true, inverse_of: :comments
+  belongs_to :author, optional: true, polymorphic: true, inverse_of: :comments
 
   has_many :comments, -> { not_spam }, inverse_of: :parent, foreign_key: :parent_id, dependent: :destroy
 
   # Validations
 
-  validates :author_type,   presence: true
   validates :discussion_id, presence: true
   validates :body,          presence: true, unless: -> { title.present? }
   validates :title,         presence: true, unless: -> { body.present?  }
-  validates :user_id,       presence: true, if:     -> { author_type == 'authenticated'}
 
   validates :number, uniqueness: { scope: :discussion_id }
-
-  validates_with EmailAddress::ActiveRecordValidator,
-                 field: :author_email, if: -> { author_email.present? }
 
   # Before/after actions
 
@@ -40,10 +35,6 @@ class Comment < ApplicationRecord
   # Plugins
 
   acts_as_votable
-
-  # Aliases
-
-  alias_attribute :author, :user
 
   # Scopes
 
@@ -96,21 +87,16 @@ class Comment < ApplicationRecord
     DiscussionMailer.overview_notification( self )
   end
 
-  def author_name_any
-    return author.name if author_type == 'authenticated'
-    return author_name if author_type == 'pseudonymous' && author_name.present?
-
-    I18n.t( 'discussions.anonymous' )
+  def author_name_or_anon
+    author&.name&.presence || I18n.t( 'discussions.anonymous' )
   end
 
-  def notifiable?
-    author_email.present? || author.present?
+  def authenticated_author?
+    author_type == 'User'
   end
 
   def notification_email
-    return unless notifiable?
-
-    author_email.presence || author.email
+    author&.email
   end
 
   def lock

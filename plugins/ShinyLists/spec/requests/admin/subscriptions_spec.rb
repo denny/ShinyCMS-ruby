@@ -30,6 +30,19 @@ RSpec.describe 'List Subscription admin features', type: :request do
     end
   end
 
+  describe 'GET /admin/list/:id/subscriptions/search?q=2001-12-31' do
+    it 'displays the list of matching subscriptions' do
+      create :mailing_list_subscription, list: list, subscribed_at: 2.days.ago
+      create :mailing_list_subscription, list: list, subscribed_at: 1.day.ago
+
+      get shiny_lists.list_subscriptions_search_path( list ), params: { q: 2.days.ago.strftime('%F') }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.subscriptions.index.title' ).titlecase
+      expect( response.body ).to have_css 'td', text: 2.days.ago.to_s( :shinydate )
+    end
+  end
+
   describe 'POST /admin/list/:list_id/subscriptions' do
     it 'subscribes an email address to the specified mailing list' do
       post shiny_lists.list_admin_subscribe_path( list ), params: {

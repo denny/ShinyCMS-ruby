@@ -20,6 +20,10 @@ module ShinyNewsletters
       @this_user.can? :list, :newsletter_editions
     end
 
+    def search?
+      index?
+    end
+
     def new?
       @this_user.can? :add, :newsletter_editions
     end

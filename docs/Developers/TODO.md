@@ -2,6 +2,14 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
+* Investigate and fix blank email issue
+
+* Move most of this list into GitHub issues
+  * Put the whole 'planned features' TODO list in there?
+
+* Figure out what the bug is with paging on newsletter editions admin index page
+  * (And, at a guess from the error message, any and all nested admin index pages)
+
 * Write mailer tests instead of hitting mailers indirectly from request specs (Forms; any others?)
 
 * Re-think mailer preview features
@@ -14,8 +22,6 @@
 * Replace everywhere a model class is named in a template, with a helper method
 
 * Change admin settings page to get descriptions in same 'stripe' as the thing they describe
-
-* Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
 
 * Highlight section name in admin area menu when on a page which isn't in the menu
   (e.g. 'Edit page', clicking around in Blazer, etc)
@@ -30,11 +36,14 @@
 * Make sure concerns are used everywhere they could/should be, and that the shared examples
   are used to test that the concerns are doing the right thing in each place they get used.
 
+* Flesh out search methods in admin controllers
+  * Make sure they check against all useful attributes
+  * Bonus points for checking against associated entities, e.g. subscription->subscriber->name
+
 ### Non-trivial
 
-* Split comment_author details off of comments, as a polymorphic (similar to email_recipients)
-  * Visitor model, to incorporate EmailRecipient, CommentAuthor, VotableIP, and future etc?
-    * Think carefully about privacy implications of linking previous actions to current visitor
+* Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?
+  * Think carefully about privacy implications of linking previous actions to current visitor
 
 * ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
   sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
@@ -117,8 +126,6 @@
   * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
   * Decide 'intelligently' whether to fold all/none/some
     * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
-
-* Draggable UI for reordering lists in admin area - SortableJS, maybe?
 
 * When people post a comment or subscribe to a list without being logged in, offer to create an account for them?
 

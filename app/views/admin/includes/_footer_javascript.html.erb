@@ -2,3 +2,27 @@
       <script src="https://unpkg.com/@coreui/coreui@3.0.0-beta.1/dist/js/coreui.min.js"></script>
 
       <%= javascript_pack_tag 'application' %>
+      <%#= javascript_pack_tag 'admin_area'  %>
+
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script>
+        $( function() {
+          $( '#sortable' ).sortable({
+            handle: '.handle',
+            update: function( e, ui ) {
+              $( '#sort_order' ).val( $( this ).sortable( 'serialize' ) );
+            }
+          });
+
+          $( '#live-sortable' ).sortable({
+            handle: '.handle',
+            update: function( e, ui ) {
+              Rails.ajax({
+                url:  $( this ).data( 'url' ),
+                type: 'PATCH',
+                data: $( this ).sortable( 'serialize' ),
+              });
+            }
+          });
+        });
+      </script>

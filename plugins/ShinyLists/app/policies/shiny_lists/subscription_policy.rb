@@ -20,6 +20,10 @@ module ShinyLists
       @this_user.can? :list, :mailing_list_subscriptions
     end
 
+    def search?
+      index?
+    end
+
     def subscribe?
       @this_user.can? :add, :mailing_list_subscriptions
     end

@@ -19,6 +19,19 @@ class Admin::ConsentVersionsController < AdminController
     authorize @consent_versions if @consent_versions.present?
   end
 
+  def search
+    authorize ConsentVersion
+
+    q = params[:q]
+    @consent_versions = ConsentVersion.where( 'name ilike ?', "%#{q}%" )
+                                      .or( ConsentVersion.where( 'slug ilike ?', "%#{q}%" ) )
+                                      .order( updated_at: :desc )
+                                      .page( page_number ).per( items_per_page )
+
+    authorize @consent_versions if @consent_versions.present?
+    render :index
+  end
+
   def show
     authorize @consent_version
   end

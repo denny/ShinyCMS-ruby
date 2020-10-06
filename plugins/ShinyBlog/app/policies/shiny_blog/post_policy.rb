@@ -20,6 +20,10 @@ module ShinyBlog
       @this_user.can? :list, :blog_posts
     end
 
+    def search?
+      index?
+    end
+
     def new?
       @this_user.can? :add, :blog_posts
     end

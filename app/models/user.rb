@@ -28,7 +28,7 @@ class User < ApplicationRecord
   # TODO: polymorphic relationship here so users can own any type of plugin-provided content
 
   # End-user content: destroy it along with their account
-  has_many :comments, dependent: :destroy
+  has_many :comments, as: :author, dependent: :destroy
 
   # Validations
 

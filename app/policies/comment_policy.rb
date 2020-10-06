@@ -37,6 +37,10 @@ class CommentPolicy
     @this_user.can? :list, :spam_comments
   end
 
+  def search?
+    index?
+  end
+
   def mark_as_spam?
     @this_user.can? :add, :spam_comments
   end

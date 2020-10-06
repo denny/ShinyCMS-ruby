@@ -26,6 +26,35 @@ RSpec.describe Admin::UsersController, type: :request do
         expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
         expect( response.body ).to include user.username
       end
+
+      it 'sets page size and page number correctly if params are present' do
+        user1 = create :user, username: 'again_with_the_apples'
+        user2 = create :user, username: 'bendy_bananas'
+        user3 = create :user, username: 'cool_cucumbers'
+
+        get users_path( params: { page: 2, count: 2 } )
+
+        expect( response      ).to     have_http_status :ok
+        expect( response.body ).to     have_title I18n.t( 'admin.users.index.title' ).titlecase
+        expect( response.body ).to     have_css 'td', text: user3.username
+        expect( response.body ).not_to have_css 'td', text: user2.username
+        expect( response.body ).not_to have_css 'td', text: user1.username
+      end
+    end
+
+    describe 'GET /admin/users/search?q=bobx' do
+      it 'fetches the list of users with matching names' do
+        user_x = create :user, public_name: 'BobX'
+        user_y = create :user, public_name: 'BobY'
+
+        get users_search_path, params: { q: 'bobx' }
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
+
+        expect( response.body ).to     have_css 'td', text: user_x.username
+        expect( response.body ).not_to have_css 'td', text: user_y.username
+      end
     end
 
     describe 'GET /admin/user/new' do
@@ -39,8 +68,10 @@ RSpec.describe Admin::UsersController, type: :request do
 
     describe 'POST /admin/user/new' do
       it 'fails when the form is submitted without all the details' do
-        post create_user_path, params: {
-          'user[username]': Faker::Internet.unique.username
+        post users_path, params: {
+          user: {
+            username: Faker::Internet.unique.username
+          }
         }
 
         expect( response      ).to have_http_status :ok
@@ -51,10 +82,12 @@ RSpec.describe Admin::UsersController, type: :request do
       it 'fails when the username collides with an existing username' do
         create :user, username: 'test'
 
-        post create_user_path, params: {
-          'user[username]': 'test',
-          'user[password]': Faker::Internet.unique.password,
-          'user[email]': Faker::Internet.unique.email
+        post users_path, params: {
+          user: {
+            username: 'test',
+            password: Faker::Internet.unique.password,
+            email: Faker::Internet.unique.email
+          }
         }
 
         expect( response      ).to have_http_status :ok
@@ -64,10 +97,12 @@ RSpec.describe Admin::UsersController, type: :request do
 
       it 'adds a new user when the form is submitted' do
         username = Faker::Internet.unique.username
-        post create_user_path, params: {
-          'user[username]': username,
-          'user[password]': Faker::Internet.unique.password,
-          'user[email]': Faker::Internet.unique.email( name: username )
+        post users_path, params: {
+          user: {
+            username: username,
+            password: Faker::Internet.unique.password,
+            email: Faker::Internet.unique.email( name: username )
+          }
         }
 
         expect( response      ).to have_http_status :found
@@ -96,7 +131,9 @@ RSpec.describe Admin::UsersController, type: :request do
         user = create :user
 
         put user_path( user ), params: {
-          'user[username]': ''
+          user: {
+            username: ''
+          }
         }
 
         expect( response      ).to have_http_status :ok
@@ -108,7 +145,9 @@ RSpec.describe Admin::UsersController, type: :request do
         user = create :user
 
         put user_path( user ), params: {
-          'user[username]': 'new_username'
+          user: {
+            username: 'new_username'
+          }
         }
 
         expect( response      ).to have_http_status :found

@@ -1,14 +1,13 @@
 Posted by
-<% if comment.author_type == 'anonymous' %>
+<% if comment.author.blank? %>
   <%= t( '.anonymous' ) %>
-<% elsif comment.author_type == 'pseudonymous' %>
-  <% if comment.author_url.present? %>
-    <%= link_to comment.author_name, comment.author_url %>
-  <% else %>
-    <%= comment.author_name %>
-  <% end %>
-<% elsif comment.author_type == 'authenticated' %>
+<% elsif comment.authenticated_author? %>
     <%= user_profile_link( comment.author ) %>
+<% else %>
+  <% if comment.author.website.present? %>
+    <%= link_to comment.author.name, comment.author.website %>
+  <% else %>
+    <%= comment.author.name %>
+  <% end %>
 <% end %>
-at <%= comment.posted_at.to_s( :time      ) %>
-on <%= comment.posted_at.to_s( :shinydate ) %>
+at <%= display_time_on_date( comment.posted_at ) %>

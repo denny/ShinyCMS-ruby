@@ -21,6 +21,6 @@ module ShinyDiscussionHelper
   end
 
   def recent_comments_by_user( user, count = 10 )
-    Comment.readonly.where( user: user ).recent.limit( count )
+    Comment.readonly.where( author: user ).recent.limit( count )
   end
 end

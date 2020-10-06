@@ -24,6 +24,21 @@ RSpec.describe 'ShinyForms Admin', type: :request do
     end
   end
 
+  describe 'GET /admin/forms/search?q=zing' do
+    it 'fetches the list of matching form handlers' do
+      form1 = create :form, slug: 'zingy-zebras'
+      form2 = create :form, slug: 'awesome-aardvarks'
+
+      get shiny_forms.forms_search_path, params: { q: 'zing' }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_forms.admin.forms.index.title' ).titlecase
+
+      expect( response.body ).to     have_css 'td', text: form1.internal_name
+      expect( response.body ).not_to have_css 'td', text: form2.internal_name
+    end
+  end
+
   describe 'GET /admin/forms/new' do
     it 'loads the page to add a new form handler' do
       get shiny_forms.new_form_path
