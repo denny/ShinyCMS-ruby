@@ -1,7 +1,6 @@
-<% action ||= "#{url_for}/search" %>
-<% method ||= :get; label ||= nil; placeholder ||= '' %>
+<% action ||= "#{url_for}/search"; label ||= nil; placeholder ||= '' %>
 <span class="float-right">
-  <%= form_tag action, method: method do |f| %>
+  <%= form_tag action, method: :get do |f| %>
     <% if label.present? %><%= label_tag label %><% end %>
     <%= text_field_tag :q, '', placeholder: placeholder, class: 'textshort' %>
   <% end %>
