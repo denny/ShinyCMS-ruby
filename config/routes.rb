@@ -106,12 +106,9 @@ Rails.application.routes.draw do
       get 'web-stats/search',        to: 'web_stats#search'
 
       # Users
-      get  :users, to: 'users#index'
-      post :user,  to: 'users#create', as: :create_user
-
       get 'users/search', to: 'users#search'
 
-      resources :user, controller: :users, except: %i[ index show create ]
+      resources :users, except: [ :show ]
     end
 
     ########################################

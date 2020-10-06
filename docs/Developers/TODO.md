@@ -2,8 +2,6 @@
 
 ## Fixes and refactoring of code already written - to do next/soon
 
-* Concede to resourceful routes for admin/users
-
 * Investigate and fix blank email issue
 
 * Move most of this list into GitHub issues

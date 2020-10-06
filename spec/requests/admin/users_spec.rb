@@ -68,8 +68,10 @@ RSpec.describe Admin::UsersController, type: :request do
 
     describe 'POST /admin/user/new' do
       it 'fails when the form is submitted without all the details' do
-        post create_user_path, params: {
-          'user[username]': Faker::Internet.unique.username
+        post users_path, params: {
+          user: {
+            username: Faker::Internet.unique.username
+          }
         }
 
         expect( response      ).to have_http_status :ok
@@ -80,10 +82,12 @@ RSpec.describe Admin::UsersController, type: :request do
       it 'fails when the username collides with an existing username' do
         create :user, username: 'test'
 
-        post create_user_path, params: {
-          'user[username]': 'test',
-          'user[password]': Faker::Internet.unique.password,
-          'user[email]': Faker::Internet.unique.email
+        post users_path, params: {
+          user: {
+            username: 'test',
+            password: Faker::Internet.unique.password,
+            email: Faker::Internet.unique.email
+          }
         }
 
         expect( response      ).to have_http_status :ok
@@ -93,10 +97,12 @@ RSpec.describe Admin::UsersController, type: :request do
 
       it 'adds a new user when the form is submitted' do
         username = Faker::Internet.unique.username
-        post create_user_path, params: {
-          'user[username]': username,
-          'user[password]': Faker::Internet.unique.password,
-          'user[email]': Faker::Internet.unique.email( name: username )
+        post users_path, params: {
+          user: {
+            username: username,
+            password: Faker::Internet.unique.password,
+            email: Faker::Internet.unique.email( name: username )
+          }
         }
 
         expect( response      ).to have_http_status :found
@@ -125,7 +131,9 @@ RSpec.describe Admin::UsersController, type: :request do
         user = create :user
 
         put user_path( user ), params: {
-          'user[username]': ''
+          user: {
+            username: ''
+          }
         }
 
         expect( response      ).to have_http_status :ok
@@ -137,7 +145,9 @@ RSpec.describe Admin::UsersController, type: :request do
         user = create :user
 
         put user_path( user ), params: {
-          'user[username]': 'new_username'
+          user: {
+            username: 'new_username'
+          }
         }
 
         expect( response      ).to have_http_status :found
