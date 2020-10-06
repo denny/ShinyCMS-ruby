@@ -8,7 +8,7 @@ RSpec.describe 'Admin::News', type: :request do
     sign_in @admin
   end
 
-  describe 'GET /admin/news_posts' do
+  describe 'GET //admin/news' do
     it 'fetches the list of news posts' do
       get shiny_news.news_posts_path
 
@@ -17,7 +17,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
   end
 
-  describe 'GET /admin/news_posts/search?q=zing' do
+  describe 'GET //admin/news/search?q=zing' do
     it 'fetches the list of matching news posts' do
       post1 = create :news_post, body: 'Zebras are zingy'
       post2 = create :news_post, body: 'Aardvarks are awesome'
@@ -32,7 +32,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
   end
 
-  describe 'GET /admin/news_posts/new' do
+  describe 'GET //admin/news/new' do
     it 'loads the form to create a new news post' do
       get shiny_news.new_news_post_path
 
@@ -114,7 +114,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
   end
 
-  describe 'GET /admin/news_posts/:id/edit' do
+  describe 'GET //admin/news/:id/edit' do
     it 'loads the form to edit an existing news post' do
       post = create :news_post
 
@@ -188,7 +188,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
   end
 
-  describe 'DELETE /admin/news_posts/:id' do
+  describe 'DELETE //admin/news/:id' do
     it 'deletes the specified news post' do
       p1 = create :news_post
       p2 = create :news_post

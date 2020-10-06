@@ -21,15 +21,13 @@ ShinyLists::Engine.routes.draw do
 
     # Admin area
     scope path: 'admin', module: 'admin' do
-      get  'lists/search', to: 'lists#search'
-      post 'lists/search', to: 'lists#search'
+      get 'lists/search', to: 'lists#search'
 
       resources :lists, except: :show do
         get  :subscriptions, to: 'subscriptions#index'
         post :subscriptions, to: 'subscriptions#subscribe', as: :admin_subscribe
 
-        get  'subscriptions/search', to: 'subscriptions#search'
-        post 'subscriptions/search', to: 'subscriptions#search'
+        get 'subscriptions/search', to: 'subscriptions#search'
 
         delete 'subscriptions/:id', to: 'subscriptions#unsubscribe', as: :admin_unsubscribe
       end

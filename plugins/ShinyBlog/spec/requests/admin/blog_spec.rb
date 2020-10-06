@@ -15,7 +15,7 @@ RSpec.describe 'Admin::Blog', type: :request do
     sign_in @admin
   end
 
-  describe 'GET /admin/blog_posts' do
+  describe 'GET //admin/blog' do
     it 'fetches the list of blog posts' do
       get shiny_blog.blog_posts_path
 
@@ -24,7 +24,7 @@ RSpec.describe 'Admin::Blog', type: :request do
     end
   end
 
-  describe 'GET /admin/blog_posts/search?q=zing' do
+  describe 'GET //admin/blog/search?q=zing' do
     it 'fetches the list of matching blog posts' do
       post1 = create :blog_post, body: 'Zebras are zingy'
       post2 = create :blog_post, body: 'Aardvarks are awesome'
@@ -39,7 +39,7 @@ RSpec.describe 'Admin::Blog', type: :request do
     end
   end
 
-  describe 'GET /admin/blog_posts/new' do
+  describe 'GET //admin/blog/new' do
     it 'loads the form to create a new blog post' do
       get shiny_blog.new_blog_post_path
 
@@ -145,7 +145,7 @@ RSpec.describe 'Admin::Blog', type: :request do
     end
   end
 
-  describe 'GET /admin/blog_posts/:id/edit' do
+  describe 'GET //admin/blog/:id/edit' do
     it 'loads the form to edit an existing blog post' do
       post = create :blog_post
 
@@ -219,7 +219,7 @@ RSpec.describe 'Admin::Blog', type: :request do
     end
   end
 
-  describe 'DELETE /admin/blog_posts/:id' do
+  describe 'DELETE //admin/blog/:id' do
     it 'deletes the specified blog post' do
       p1 = create :blog_post
       p2 = create :blog_post
