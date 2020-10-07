@@ -12,7 +12,7 @@ module ShinyBlogs
     factory :shiny_blogs_blog, class: 'ShinyBlogs::Blog' do
       internal_name { Faker::Books::CultureSeries.unique.culture_ship }
 
-      association :user
+      association :user, factory: :multi_blog_admin
     end
   end
 end

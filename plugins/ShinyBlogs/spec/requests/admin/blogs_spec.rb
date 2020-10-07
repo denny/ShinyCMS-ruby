@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
+# ShinyBlogs plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
+# Tests for blog (not blog post) admin features - ShinyBlogs plugin for ShinyCMS
 RSpec.describe 'Admin::Blogs', type: :request do
   before :each do
     @admin = create :multi_blog_admin
@@ -26,7 +33,7 @@ RSpec.describe 'Admin::Blogs', type: :request do
 
   describe 'POST /admin/blogs' do
     it 'creates a new blog when a complete form is submitted' do
-      post shiny_blogs.create_blog_path, params: {
+      post shiny_blogs.blogs_path, params: {
         blog: {
           user_id: @admin.id,
           internal_name: Faker::Books::CultureSeries.unique.culture_ship
@@ -44,7 +51,7 @@ RSpec.describe 'Admin::Blogs', type: :request do
     end
 
     it 'fails to create a new blog when an incomplete form is submitted' do
-      post shiny_blogs.create_blog_path, params: {
+      post shiny_blogs.blogs_path, params: {
         blog: {
           user_id: @admin.id
         }

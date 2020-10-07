@@ -1,19 +1,14 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyBlogs plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyBlog/app/controllers/admin/blog/posts_controller.rb
-# Purpose:   Controller for blog posts in ShinyCMS admin area
+# ShinyBlogs plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyBlogs
-  # Admin controller for blog posts, from ShinyBlogs plugin for ShinyCMS
-  class Admin::Blog::PostsController < AdminController
+  # Admin controller for blog posts - ShinyBlogs plugin for ShinyCMS
+  class Admin::PostsController < AdminController
     before_action :set_blog
     before_action :set_post_for_create, only: %i[ create ]
     before_action :set_post, only: %i[ edit update destroy ]
@@ -78,7 +73,7 @@ module ShinyBlogs
 
     # Override the breadcrumbs 'section' link to go back to the list of posts for this blog
     def breadcrumb_link_text_and_path
-      [ t( 'shiny_blogs.admin.blog.posts.title' ), blog_posts_path( @blog ) ]
+      [ t( 'shiny_blogs.admin.posts.breadcrumb' ), blog_posts_path( @blog ) ]
     end
 
     private

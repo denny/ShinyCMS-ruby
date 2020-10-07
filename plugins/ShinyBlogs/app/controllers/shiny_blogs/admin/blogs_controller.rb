@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyBlogs plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyBlog/app/controllers/admin/blogs_controller.rb
-# Purpose:   Controller for blogs section of ShinyCMS admin area
+# ShinyBlogs plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyBlogs
   # Admin controller for blogs, from ShinyBlogs plugin for ShinyCMS
@@ -17,18 +12,18 @@ module ShinyBlogs
     before_action :set_blog, only: %i[ edit update destroy ]
 
     def index
-      authorize Blog
-      @blogs = Blog.all
+      authorize ShinyBlogs::Blog
+      @blogs = ShinyBlogs::Blog.all
       authorize @blogs if @blogs.present?
     end
 
     def new
-      @blog = Blog.new
+      @blog = ShinyBlogs::Blog.new
       authorize @blog
     end
 
     def create
-      @blog = Blog.new( blog_params )
+      @blog = ShinyBlogs::Blog.new( blog_params )
       authorize @blog
 
       if @blog.save
@@ -65,7 +60,7 @@ module ShinyBlogs
     private
 
     def set_blog
-      @blog = Blog.find( params[:id] )
+      @blog = ShinyBlogs::Blog.find( params[:id] )
     rescue ActiveRecord::RecordNotFound
       skip_authorization
       redirect_to blogs_path, alert: t( '.failure' )

@@ -15,7 +15,7 @@ module ShinyBlogs
       posted_at { Time.zone.now.iso8601 }
 
       association :blog, factory: :shiny_blogs_blog
-      association :user
+      association :user, factory: :single_blog_admin
     end
   end
 end

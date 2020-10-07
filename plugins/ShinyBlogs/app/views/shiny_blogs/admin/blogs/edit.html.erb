@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_for @blog, url: shiny_blogs.blog_path, method: :put do |f| %>
+<%= form_for @blog, url: shiny_blogs.blog_path( @blog ), method: :put do |f| %>
   <p>
     <%= f.label :internal_name %><br>
     <%= f.text_field :internal_name %>
