@@ -6,11 +6,33 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# User model (powered by Devise)
+# Model for user accounts (largely powered by Devise)
 # rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
   include ShinySearch::Searchable if ::Plugin.loaded? :ShinySearch
   include ShinyEmail
+
+  # Plugin features
+
+  # Enable basically every Devise module except :omniauthable (for now)
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+         :validatable, :confirmable, :lockable, :timeoutable, :trackable
+  devise :pwned_password unless Rails.env.test?
+
+  # Soft delete
+  acts_as_paranoid
+  validates_as_paranoid
+  before_destroy :redact_emails!
+
+  # Upvotes AKA 'likes'
+  acts_as_voter
+
+  paginates_per 20
+
+  if ::Plugin.all_loaded? :ShinySearch, :ShinyProfiles
+    # TODO: all of these except username will be moving into ShinyProfiles::Profile
+    searchable_by :username, :public_name, :public_email, :bio, :website, :location, :postcode
+  end
 
   # Associations
 
@@ -22,13 +44,8 @@ class User < ApplicationRecord
   has_many :visits,   dependent: :nullify, class_name: 'Ahoy::Visit'
   has_many :messages, dependent: :nullify, class_name: 'Ahoy::Message'
 
-  # User's custom site settings, if any
-  has_many :settings, inverse_of: :user, dependent: :destroy, class_name: 'SettingValue'
-
-  # TODO: polymorphic relationship here so users can own any type of plugin-provided content
-
-  # End-user content: destroy it along with their account
   has_many :comments, as: :author, dependent: :destroy
+  has_many :settings, inverse_of: :user, dependent: :destroy, class_name: 'SettingValue'
 
   # Validations
 
@@ -38,31 +55,15 @@ class User < ApplicationRecord
   ANCHORED_USERNAME_REGEX = %r{\A#{USERNAME_REGEX}\z}.freeze
   private_constant :ANCHORED_USERNAME_REGEX
 
-  validates :username, presence: true, uniqueness: true, case_sensitive: false
+  # The next line allows you to re-use usernames of soft-deleted users...
+  # but only if you get rid of the unique key in the db as well :-\
+  # validates_uniqueness_of_without_deleted :username
+
+  validates :username, presence: true, case_sensitive: false, uniqueness: true
   validates :username, length: { maximum: 50 }
   validates :username, format: ANCHORED_USERNAME_REGEX
 
-  # Plugin features
-
-  # Enable basically every Devise module except :omniauthable (for now)
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :validatable, :confirmable, :lockable, :timeoutable, :trackable
-  devise :pwned_password unless Rails.env.test?
-
-  acts_as_voter
-
-  paginates_per 20
-
-  if ::Plugin.all_loaded? :ShinySearch, :ShinyProfiles
-    # TODO: all of these except username will be moving into ShinyProfiles::Profile
-    searchable_by :username, :public_name, :public_email, :bio, :website, :location, :postcode
-  end
-
   # Virtual attributes
-
-  def hidden?
-    false
-  end
 
   # User profile pic (powered by ActiveStorage)
   has_one_attached :profile_pic
@@ -74,7 +75,16 @@ class User < ApplicationRecord
     @login || username || email
   end
 
+  # ShinySearch::Searchable expects this to exist
+  def hidden?
+    false
+  end
+
   # Instance methods
+
+  def name
+    public_name.presence || username
+  end
 
   def admin?
     general = CapabilityCategory.find_by( name: 'general' )
@@ -138,10 +148,6 @@ class User < ApplicationRecord
       end
     end
     self
-  end
-
-  def name
-    public_name.presence || username
   end
 
   # Queue email sends
