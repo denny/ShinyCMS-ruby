@@ -95,7 +95,7 @@ source 'https://rubygems.org' do
   # Web stats
   gem 'ahoy_matey'
   gem 'blazer'
-  gem 'chartkick', '~> 3.4.0'
+  gem 'chartkick', '~> 3.4.1'
   gem 'groupdate'
 
   # Image storage on S3, image processing (resizing)
