@@ -1,0 +1,4 @@
+# ShinyCMS Plugins
+
+## ShinyNews
+

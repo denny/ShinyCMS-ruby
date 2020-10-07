@@ -13,6 +13,35 @@
 
 * [Themes](Themes.md)
 
+### Features and Plugins
+
+* [Admin features](features/AdminFeatures.md)
+* Basic CMS features ('brochure sites')
+  * [Pages](plugins/ShinyPages.md)
+  * [Inserts](plugins/ShinyInserts.md)
+  * [Form handlers](plugins/ShinyForms.md)
+  * [Search](plugins/ShinySearch.md)
+* Post regular updates
+  * [Blog](plugins/ShinyBlog.md)
+  * [News section](plugins/ShinyNews.md)
+* Send promotional emails
+  * [Mailing lists](plugins/ShinyLists.md)
+  * [Newsletters](plugins/ShinyNewsletters.md)
+* Build a community
+  * [User accounts](features/UserAccounts.md)
+  * [Profile pages](plugins/ShinyProfiles.md)
+  * [Comments](features/Comments.md)
+  * [Tags](features/Tags.md)
+  * [Upvotes](features/Upvotes.md) ('likes')
+* Settings and configuration
+  * [Feature flags](features/FeatureFlags.md)
+  * [Site settings](features/SiteSettings.md)
+* Stats and tracking
+  * [Email stats](features/EmailStats.md)
+  * [Web stats](features/WebStats.md)
+  * [Charts and dashboards](features/Charts.md)
+* [MJML email templates](features/MJML.md)
+
 
 ## Contributing to ShinyCMS
 

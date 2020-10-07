@@ -23,7 +23,7 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
   * Re-usable content fragments that can be pulled into any template on any page
 * [News section](docs/plugins/ShinyNews.md) ±
 * [Blog](docs/plugins/ShinyBlog.md) ±
-* [Discussions](docs/features/Discussions.md) (comments)
+* [Comments](docs/features/Comments.md)
   * Ready to add to any content; enabled by default on blog posts and optionally on news posts
   * Fully nested comment threads, so you can easily see who is replying to who at any level
   * Email notifications of replies to comments and posts
@@ -38,7 +38,7 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
 * [Site search](docs/plugins/ShinySearch.md) ±
   * Ready to support multiple search backends (default is pg_search multisearch)
 * [Tags](docs/features/Tags.md)
-* [Likes](docs/features/Upvotes.md) (or up/down votes) on posts and comments
+* [Upvotes](docs/features/Upvotes.md) (AKA 'likes') on posts and comments
 * [User profile pages](docs/plugins/ShinyProfiles.md) ±
   * Links to user-provided content such as recent comments, recent blog posts, etc
 * [User accounts](docs/features/UserAccounts.md) and administration
