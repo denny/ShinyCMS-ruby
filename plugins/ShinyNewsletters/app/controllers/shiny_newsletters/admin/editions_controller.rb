@@ -9,10 +9,26 @@
 module ShinyNewsletters
   # Admin controller for newsletter editions - ShinyNewsletters plugin for ShinyCMS
   class Admin::EditionsController < AdminController
+    include ShinySortable
+
     def index
       authorize Edition
-      @editions = Edition.page( page_number )&.per( items_per_page )
+      @editions = Edition.page( page_number ).per( items_per_page )
       authorize @editions if @editions.present?
+    end
+
+    def search
+      authorize Edition
+
+      q = params[:q]
+      @editions = Edition.where( 'internal_name ilike ?', "%#{q}%" )
+                         .or( Edition.where( 'public_name ilike ?', "%#{q}%" )
+                         .or( Edition.where( 'description ilike ?', "%#{q}%" ) ) )
+                         .order( updated_at: :desc )
+                         .page( page_number ).per( items_per_page )
+
+      authorize @editions if @editions.present?
+      render :index
     end
 
     def new
@@ -41,12 +57,20 @@ module ShinyNewsletters
       @edition = Edition.find( params[:id] )
       authorize @edition
 
-      if @edition.update( edition_params )
+      if sort_elements && @edition.update( edition_params )
         redirect_to shiny_newsletters.edit_edition_path( @edition ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render action: :edit
       end
+    end
+
+    def sort_elements
+      return true if params[ :sort_order ].blank?
+      return true unless current_user.can? :edit, :newsletter_templates
+
+      sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
+      apply_sort_order( @edition.elements, sort_order )
     end
 
     def send_sample

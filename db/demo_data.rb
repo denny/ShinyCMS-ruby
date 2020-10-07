@@ -1,4 +1,10 @@
 
+CommentAuthor.create!([
+  {id: 1, name: "ShinyCMS", website: "https://shinycms.org", ip_address: "127.0.0.1", token: "6cfe74c8-5e99-4589-9430-ac0b70e7ec1f", email_recipient_id: nil},
+  {id: 2, name: "Pill Pusher", website: "http://spammy.website", ip_address: "127.0.0.1", token: "6de0eecc-8b3d-44ba-aee5-0e9ccbd42006", email_recipient_id: nil},
+  {id: 3, name: "Lorem Long", website: "", ip_address: "127.0.0.1", token: "99b0c809-899e-4394-8c62-92e520e51985", email_recipient_id: nil}
+])
+
 ConsentVersion.create!([
   {id: 2, name: "Newsletter subscription (3rd September 2020)", slug: "newsletter-2020-09-03", display_text: "Your ideas are intriguing to me, and I wish to subscribe to your newsletter.", admin_notes: "Consent text for the homepage newsletter subscribe form (part of the demo site data)."}
 ])
@@ -33,7 +39,8 @@ ShinyNewsletters::TemplateElement.create!([
 ])
 
 ShinyPages::Section.create!([
-  {id: 1, internal_name: "Two column", public_name: "Two Column", slug: "two", description: "", position: 3, show_in_menus: true, show_on_site: true, section_id: nil, default_page_id: nil}
+  {id: 1, internal_name: "Sample pages", public_name: "Pages", slug: "sample-page-layouts", description: "These are the page layouts provided by the Halcyonic theme", position: 2, show_in_menus: true, show_on_site: true, section_id: nil, default_page_id: nil},
+  {id: 2, internal_name: "Single sidebar", public_name: "", slug: "single", description: "To the left, or to the right?", position: 4, show_in_menus: true, show_on_site: true, section_id: 1, default_page_id: nil}
 ])
 
 ShinyPages::Template.create!([
@@ -82,11 +89,11 @@ ShinyPages::TemplateElement.create!([
 
 ShinyPages::Page.create!([
   {id: 1, internal_name: "Home", public_name: "ShinyCMS Demo", slug: "home", description: "Demo site home page - uses Halcyonic index template", position: 1, show_in_menus: false, show_on_site: true, section_id: nil, template_id: 1},
-  {id: 2, internal_name: "One column", public_name: "One Column", slug: "one", description: "", position: 2, show_in_menus: true, show_on_site: true, section_id: nil, template_id: 2},
-  {id: 3, internal_name: "Right sidebar", public_name: "Right Sidebar", slug: "right-sidebar", description: "", position: 6, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 3},
-  {id: 4, internal_name: "Left sidebar", public_name: "Left Sidebar", slug: "left-sidebar", description: "", position: 1, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 4},
-  {id: 5, internal_name: "Three column", public_name: "Three Column", slug: "three", description: "", position: 4, show_in_menus: true, show_on_site: true, section_id: nil, template_id: 5},
-  {id: 6, internal_name: "Contact Us", public_name: "", slug: "contact", description: "Contact form", position: 9, show_in_menus: true, show_on_site: true, section_id: nil, template_id: 6}
+  {id: 2, internal_name: "No sidebar", public_name: "", slug: "none", description: "", position: 3, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 2},
+  {id: 3, internal_name: "Right sidebar", public_name: "", slug: "right", description: "", position: 7, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 3},
+  {id: 4, internal_name: "Left sidebar", public_name: "", slug: "left", description: "", position: 6, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 4},
+  {id: 5, internal_name: "Double sidebar", public_name: "", slug: "double", description: "Embrace the healing power of AND", position: 5, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 5},
+  {id: 6, internal_name: "Contact Us", public_name: "", slug: "contact", description: "Contact form", position: 8, show_in_menus: true, show_on_site: true, section_id: nil, template_id: 6}
 ])
 
 ShinyPages::PageElement.create!([
@@ -146,11 +153,11 @@ Discussion.create!([
 ])
 
 Comment.create!([
-  {id: 1, discussion_id: 1, number: 1, parent_id: nil, author_type: "authenticated", user_id: @shiny_admin.id, author_name: "", author_email: "", author_url: "", title: "Properly nested comments...", body: "Ask for them by name - do not accept inferior substitutes!", ip_address: nil, locked: false, show_on_site: true, spam: false, posted_at: "2020-02-28 18:56:25"},
-  {id: 2, discussion_id: 1, number: 2, parent_id: nil, author_type: "pseudonymous", user_id: @shiny_admin.id, author_name: "ShinyCMS", author_email: "", author_url: "https://shinycms.org", title: "", body: "Yes, this is indeed a comment thread. The nested comments feature was added to ShinyCMS (Ruby version) in February 2020.\r\n\r\n(And to the Perl version in August 2010)", ip_address: nil, locked: false, show_on_site: true, spam: false, posted_at: "2020-02-28 19:02:46"},
-  {id: 3, discussion_id: 1, number: 3, parent_id: 1, author_type: "anonymous", user_id: nil, author_name: "", author_email: "", author_url: "", title: "Nested comments FTW!", body: "", ip_address: nil, locked: true, show_on_site: true, spam: false, posted_at: "2020-02-28 19:03:55"},
-  {id: 4, discussion_id: 1, number: 4, parent_id: 3, author_type: "authenticated", user_id: @shiny_admin.id, author_name: "", author_email: "", author_url: "", title: "I agree with this mysterious stranger! ;)", body: "Nested comments are the only acceptable form of comment system in the 21st century. Or the 20th, for that matter.", ip_address: nil, locked: false, show_on_site: false, spam: false, posted_at: "2020-02-28 19:08:52"},
-  {id: 5, discussion_id: 2, number: 1, parent_id: nil, author_type: "anonymous", user_id: nil, author_name: nil, author_email: nil, author_url: nil, title: "BEST BITCOIN ADVICE", body: "Prey on the misfortunate of others in the coolest ponzi scheme ever to sweep the Internet!!", ip_address: nil, locked: false, show_on_site: true, spam: true, posted_at: "2020-06-05 01:23:13"},
-  {id: 6, discussion_id: 2, number: 2, parent_id: nil, author_type: "pseudonymous", user_id: nil, author_name: "Pill Pusher", author_email: nil, author_url: nil, title: nil, body: "Rise to every occasion with our bargain blue diamonds!", ip_address: nil, locked: false, show_on_site: true, spam: true, posted_at: "2020-06-05 22:56:48"},
-  {id: 7, discussion_id: 2, number: 3, parent_id: nil, author_type: "pseudonymous", user_id: nil, author_name: "lorembomb", author_email: nil, author_url: nil, title: nil, body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst.", ip_address: nil, locked: false, show_on_site: true, spam: true, posted_at: "2020-06-05 23:01:17"}
+  {id: 1, discussion_id: 1, number: 1, parent_id: nil, title: "Properly nested comments...", body: "Ask for them by name - do not accept inferior substitutes!", ip_address: nil, locked: false, show_on_site: true, spam: false, author_type: "User", author_id: 1, posted_at: "2020-02-28 18:56:25"},
+  {id: 2, discussion_id: 1, number: 2, parent_id: nil, title: "", body: "Yes, this is indeed a comment thread. The nested comments feature was added to ShinyCMS (Ruby version) in February 2020.\r\n\r\n(And to the Perl version in August 2010)", ip_address: nil, locked: false, show_on_site: true, spam: false, author_type: "CommentAuthor", author_id: 1, posted_at: "2020-02-28 19:02:46"},
+  {id: 3, discussion_id: 1, number: 3, parent_id: 1, title: "Nested comments FTW!", body: "", ip_address: nil, locked: true, show_on_site: true, spam: false, author_type: nil, author_id: nil, posted_at: "2020-02-28 19:03:55"},
+  {id: 4, discussion_id: 1, number: 4, parent_id: 3, title: "I agree with this mysterious stranger! ;)", body: "Nested comments are the only acceptable form of comment system in the 21st century. Or the 20th, for that matter.", ip_address: nil, locked: false, show_on_site: false, spam: false, author_type: "User", author_id: 1, posted_at: "2020-02-28 19:08:52"},
+  {id: 5, discussion_id: 2, number: 1, parent_id: nil, title: "BEST BITCOIN ADVICE", body: "Prey on the misfortunate of others in the coolest ponzi scheme ever to sweep the Internet!!", ip_address: nil, locked: false, show_on_site: true, spam: true, author_type: nil, author_id: nil, posted_at: "2020-06-05 01:23:13"},
+  {id: 6, discussion_id: 2, number: 2, parent_id: nil, title: nil, body: "Rise to every occasion with our bargain blue diamonds!", ip_address: nil, locked: false, show_on_site: true, spam: true, author_type: "CommentAuthor", author_id: 2, posted_at: "2020-06-05 22:56:48"},
+  {id: 7, discussion_id: 2, number: 3, parent_id: nil, title: nil, body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst.", ip_address: nil, locked: false, show_on_site: true, spam: true, author_type: "CommentAuthor", author_id: 3, posted_at: "2020-06-05 23:01:17"}
 ])

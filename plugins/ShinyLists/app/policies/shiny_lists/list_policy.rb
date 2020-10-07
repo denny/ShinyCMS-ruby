@@ -20,6 +20,10 @@ module ShinyLists
       @this_user.can? :list, :mailing_lists
     end
 
+    def search?
+      index?
+    end
+
     def new?
       @this_user.can? :add, :mailing_lists
     end

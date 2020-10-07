@@ -13,6 +13,10 @@ class ConsentVersionPolicy
     @this_user.can? :list, :consent_versions
   end
 
+  def search?
+    index?
+  end
+
   def show?
     edit?
   end

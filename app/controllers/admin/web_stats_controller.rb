@@ -8,24 +8,42 @@
 
 # Controller for viewing web stats in ShinyCMS admin area
 class Admin::WebStatsController < AdminController
-  before_action :set_ahoy_user
-
   def index
     authorize Ahoy::Visit
 
-    page_num = params[ :page ] || 1
-    visits = Ahoy::Visit
-    visits = visits.where( user: @ahoy_user ) if @ahoy_user
-    @visits = visits.order( 'started_at desc' ).page( page_num )
+    visits = ahoy_visits
+    visits = visits_by_user if params[ :user_id ]
+
+    @visits = visits.page( page_number ).per( items_per_page )
 
     authorize @visits if @visits.present?
   end
 
+  def search
+    authorize Ahoy::Visit
+
+    q = params[:q]
+
+    @visits = Ahoy::Visit.where( 'referrer ilike ?', "%#{q}%" )
+                         .or( Ahoy::Visit.where( 'landing_page ilike ?', "%#{q}%" ) )
+                         .order( started_at: :desc )
+                         .page( page_number ).per( items_per_page )
+
+    authorize @visits if @visits.present?
+    render :index
+  end
+
   private
 
-  def set_ahoy_user
-    return if params[:user_id].blank?
+  def ahoy_visits
+    Ahoy::Visit.order( started_at: :desc )
+  end
 
-    @ahoy_user = User.find( params[:user_id] )
+  def visits_by_user
+    ahoy_visits.where( user: user )
+  end
+
+  def user
+    User.find( params[ :user_id ] )
   end
 end

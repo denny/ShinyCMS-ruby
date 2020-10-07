@@ -13,6 +13,8 @@ ShinyForms::Engine.routes.draw do
 
     # Admin area
     scope path: 'admin', module: 'admin' do
+      get 'forms/search', to: 'forms#search'
+
       resources :forms, except: :show
     end
   end

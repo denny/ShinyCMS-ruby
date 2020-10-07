@@ -48,6 +48,7 @@ en:
         toolbar: Blog posts
         index:
           title: List blog posts
+          search: Search blog posts
         new:
           title: Add blog post
         edit:

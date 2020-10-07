@@ -29,7 +29,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
 
       subject = I18n.t(
         'discussion_mailer.parent_comment_notification.subject',
-        reply_author_name: reply.author_name_any,
+        reply_author_name: reply.author_name_or_anon,
         site_name: @site_name
       )
 
@@ -38,17 +38,16 @@ RSpec.describe DiscussionMailer, type: :mailer do
 
     it 'generates an email to a pseudonymous parent comment author' do
       recipient = create :email_recipient, :confirmed
-      top = create :top_level_comment,  discussion: @discussion,
-                                        author_type: 'Pseudonymous',
-                                        author_name: 'Test Suite',
-                                        author_email: recipient.email
+      author = create :comment_author, name: recipient.name, email_recipient: recipient
+      top = create :top_level_comment, discussion: @discussion, author: author
+
       reply = create :nested_comment, parent: top, discussion: @discussion
 
       email = DiscussionMailer.parent_comment_notification( reply )
 
       subject = I18n.t(
         'discussion_mailer.parent_comment_notification.subject',
-        reply_author_name: reply.author_name_any,
+        reply_author_name: reply.author_name_or_anon,
         site_name: @site_name
       )
 
@@ -64,7 +63,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
 
       subject = I18n.t(
         'discussion_mailer.discussion_notification.subject',
-        comment_author_name: comment.author_name_any,
+        comment_author_name: comment.author_name_or_anon,
         content_type: 'blog post',
         site_name: @site_name
       )
@@ -83,7 +82,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
 
       subject = I18n.t(
         'discussion_mailer.overview_notification.subject',
-        comment_author_name: comment.author_name_any,
+        comment_author_name: comment.author_name_or_anon,
         site_name: @site_name
       )
 

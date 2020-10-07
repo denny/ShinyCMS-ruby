@@ -27,6 +27,21 @@ RSpec.describe Admin::ConsentVersionsController, type: :request do
     end
   end
 
+  describe 'GET /admin/consent-versions/search?q=zing' do
+    it 'fetches the list of matching consent versions' do
+      consent1 = create :consent_version, slug: 'zingy-zebras'
+      consent2 = create :consent_version, slug: 'awesome-aardvarks'
+
+      get consent_versions_search_path, params: { q: 'zing' }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.consent_versions.index.title' ).titlecase
+
+      expect( response.body ).to     have_css 'td', text: consent1.name
+      expect( response.body ).not_to have_css 'td', text: consent2.name
+    end
+  end
+
   describe 'GET /admin/consent-version/1' do
     it 'displays the details of an in-use consent version' do
       version1 = create :consent_version

@@ -28,6 +28,21 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
     end
   end
 
+  describe 'GET /admin/newsletters/templates/search?q=zing' do
+    it 'fetches the list of matching templates' do
+      template1 = create :newsletter_template, description: 'zingy-zebra'
+      template2 = create :newsletter_template, description: 'awesome-aardvark'
+
+      get shiny_newsletters.templates_search_path, params: { q: 'zing' }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.templates.index.title' ).titlecase
+
+      expect( response.body ).to     have_css 'td', text: template1.name
+      expect( response.body ).not_to have_css 'td', text: template2.name
+    end
+  end
+
   describe 'GET /admin/newsletters/template/new' do
     it 'loads the form to add a new template' do
       get shiny_newsletters.new_template_path
@@ -125,6 +140,38 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.templates.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.templates.update.success' )
       expect( response.body ).to include 'Updated by test'
+    end
+
+    it 'updates the element order' do
+      template = create :newsletter_template
+      last_element = template.elements.last
+
+      # Put the last element first
+      ids = template.elements.ids
+      last_id = ids.pop
+      ids.unshift last_id
+
+      query_string = ''
+      ids.each do |id|
+        query_string += "sorted[]=#{id}&"
+      end
+
+      expect( last_element.position ).to eq ids.size
+
+      put shiny_newsletters.template_path( template ), params: {
+        template: {
+          name: template.name
+        },
+        sort_order: query_string
+      }
+
+      expect( response      ).to have_http_status :found
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.templates.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.templates.update.success' )
+
+      expect( last_element.reload.position ).to eq 1
     end
   end
 

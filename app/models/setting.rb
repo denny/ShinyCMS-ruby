@@ -73,6 +73,10 @@ class Setting < ApplicationRecord
     setting.value
   end
 
+  def self.true?( name )
+    %w[ TRUE True true YES Yes yes ].include? get( name )
+  end
+
   def self.user_settings
     where( level: 'user' ).order( :name )
   end

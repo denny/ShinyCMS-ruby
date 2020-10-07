@@ -12,4 +12,8 @@ class Ahoy::MessagePolicy
   def index?
     @this_user.can? :view_email, :stats
   end
+
+  def search?
+    index?
+  end
 end

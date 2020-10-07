@@ -1,8 +1,8 @@
 <% @page_title = t( '.title' ) %>
 
-<%# TODO: search feature (for all admin list pages) %>
-
 <% if @subscriptions.present? %>
+<%= render partial: 'admin/includes/search', locals: { action: shiny_lists.list_subscriptions_search_path( @subscriptions.first.list ), placeholder: t( '.search' ) } %>
+
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
@@ -49,9 +49,8 @@
 <%= render partial: 'admin/includes/pager', locals: { paged: @subscriptions } %>
 
 <% else %>
-
 <p>
-  This list has no subscribers (past or present).
+  <%= t( 'empty_list', items: 'subscriptions' ) %>
 </p>
-
 <% end %>
+

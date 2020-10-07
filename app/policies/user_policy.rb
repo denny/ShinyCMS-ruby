@@ -13,6 +13,10 @@ class UserPolicy
     @this_user.can? :list, :users
   end
 
+  def search?
+    index?
+  end
+
   def new?
     @this_user.can? :add, :users
   end

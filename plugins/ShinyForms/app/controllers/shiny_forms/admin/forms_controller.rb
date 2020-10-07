@@ -15,7 +15,6 @@ module ShinyForms
     before_action :set_form, only: %i[ edit update destroy ]
     before_action :set_form_handlers, only: %i[ new create edit update ]
 
-    # GET /admin/forms
     def index
       authorize Form
       page_num = params[ :page ] || 1
@@ -23,13 +22,24 @@ module ShinyForms
       authorize @forms if @forms.present?
     end
 
-    # GET /admin/forms/new
+    def search
+      authorize Form
+
+      q = params[:q]
+      @forms = Form.where( 'internal_name ilike ?', "%#{q}%" )
+                   .or( Form.where( 'slug ilike ?', "%#{q}%" ) )
+                   .order( :internal_name )
+                   .page( page_number ).per( items_per_page )
+
+      authorize @forms if @forms.present?
+      render :index
+    end
+
     def new
       @form = Form.new
       authorize @form
     end
 
-    # POST /admin/forms
     def create
       authorize @form
 
@@ -41,12 +51,10 @@ module ShinyForms
       end
     end
 
-    # GET /admin/forms/1
     def edit
       authorize @form
     end
 
-    # PATCH/PUT /admin/forms/1
     def update
       authorize @form
 
@@ -58,7 +66,6 @@ module ShinyForms
       end
     end
 
-    # DELETE /admin/forms/1
     def destroy
       authorize @form
 

@@ -9,6 +9,8 @@
 module ShinyNewsletters
   # Controller for main site newsletter features - from the ShinyNewsletters plugin for ShinyCMS
   class NewslettersController < MainController
+    include ShinyPagingHelper
+
     def index
       authenticate_user! unless params[:token]
 

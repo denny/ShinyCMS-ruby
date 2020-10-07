@@ -23,7 +23,10 @@ module ShinyLists
 
     # Scopes
 
-    scope :active, -> { where( unsubscribed_at: nil ) }
+    scope :active,   -> { where(     unsubscribed_at: nil ) }
+    scope :inactive, -> { where.not( unsubscribed_at: nil ) }
+
+    scope :recent, -> { order( :subscribed_at ) }
 
     # Instance methods
 
