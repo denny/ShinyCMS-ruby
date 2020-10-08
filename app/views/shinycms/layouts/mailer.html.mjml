@@ -11,7 +11,5 @@
     <% end %>
   </mj-head>
 
-  <mj-body>
-    <%= yield %>
-  </mj-body>
+  <%= yield %>
 </mjml>
