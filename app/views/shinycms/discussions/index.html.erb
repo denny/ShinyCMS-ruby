@@ -21,7 +21,7 @@
         (<%= t( 'discussions.n_total', count: discussion.comments.visible.count ) %>)
       </td>
       <td>
-        <%= discussion.resource.class.human_name.capitalize %>
+        <%= discussion.resource.class.translated_name.titlecase %>
       </td>
     </tr>
     <% end %>

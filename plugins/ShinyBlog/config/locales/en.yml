@@ -20,7 +20,7 @@ en:
       change_author: Change author
 
   models:
-    human_names:
+    names:
       shiny_blog_post: blog post
 
   shiny_blog:

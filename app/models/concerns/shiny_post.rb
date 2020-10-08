@@ -11,6 +11,7 @@ module ShinyPost
   extend ActiveSupport::Concern
 
   include ShinySearch::Searchable if ::Plugin.loaded? :ShinySearch
+  include ShinyClassName
   include ShinyShowHide
   include ShinySlugInMonth
   include ShinyTeaser
