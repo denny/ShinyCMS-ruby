@@ -9,8 +9,6 @@
 
 * Make a generic sidebar template that renders any partials in a specified directory
 
-* Add subscription-management links to list emails
-
 * Highlight section name in admin area menu when on a page which isn't in the menu
   (e.g. 'Edit page', clicking around in Blazer, etc)
 * Relatedly; jump admin menu to current section with an anchor

@@ -11,5 +11,15 @@
     <% end %>
   </mj-head>
 
-  <%= yield %>
+  <mj-body>
+    <%= yield %>
+
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <%= render partial: 'shiny_lists/includes/email/manage_subscriptions' %>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
 </mjml>

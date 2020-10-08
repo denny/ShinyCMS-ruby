@@ -1,15 +1,21 @@
 <mjml>
   <mj-head>
-    <% @email_title ||= "Email from #{site_name}" %>
-    <% @email_preview_line ||= @email_title %>
+    <mj-title>
+      <%= @email_title || "Email from #{site_name}" %>
+    </mj-title>
 
-    <mj-title><%= @email_title %></mj-title>
-    <mj-preview><%= @email_preview_line %></mj-preview>
+    <% if @email_preview_line.present? %>
+    <mj-preview>
+      <%= @email_preview_line %>
+    </mj-preview>
+    <% end %>
 
-    <mj-attributes>
-      <mj-class name="big" font-size="20px" />
-    </mj-attributes>
+    <mj-font href="https://fonts.googleapis.com/css?family=Montserrat" name="Montserrat"></mj-font>
+    <mj-font href="https://fonts.googleapis.com/css?family=Raleway" name="Raleway"></mj-font>
+    <mj-font href="https://fonts.googleapis.com/css?family=Open Sans" name="Open Sans"></mj-font>
   </mj-head>
 
-  <%= yield %>
+  <mj-body background-color="#f8f8f8">
+    <%= yield %>
+  </mj-body>
 </mjml>
