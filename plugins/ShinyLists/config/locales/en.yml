@@ -25,6 +25,11 @@ en:
     unsubscribe: Unsubscribe
     unsubscribed: Unsubscribed
 
+    email:
+      footer:
+        click_here: Click here to
+        manage_subscriptions: manage your subscriptions
+
     subscriptions:
       index:
         title: Your mailing list subscriptions
