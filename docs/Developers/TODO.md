@@ -2,8 +2,6 @@
 
 ## Fixes and refactoring of code already written
 
-* Investigate and fix blank email issue
-
 * Move most of this list into GitHub issues
   * Put the whole 'planned features' TODO list in there?
 
