@@ -1,5 +1,5 @@
 <%= link_to result.title, result.path %> -
-<%= result.class.human_name %> by <%= link_to result.user.name, shiny_profiles.profile_path( result.user.username ) %> -
+<%= result.class.translated_name %> by <%= link_to result.user.name, shiny_profiles.profile_path( result.user.username ) %> -
 <small><i>
   posted at <%= display_time_on_date( result.posted_at ) %>
   <% if result.updated_at > result.posted_at %>(updated at <%= display_time_on_date( result.updated_at ) %>)<% end %>

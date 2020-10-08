@@ -11,6 +11,7 @@ module ShinyPost
   extend ActiveSupport::Concern
 
   include ShinySearch::Searchable if ::Plugin.loaded? :ShinySearch
+  include ShinyClassName
   include ShinyShowHide
   include ShinySlugInMonth
   include ShinyTeaser
@@ -33,6 +34,8 @@ module ShinyPost
 
     acts_as_taggable
     acts_as_votable
+    acts_as_paranoid
+    validates_as_paranoid
     paginates_per 20
 
     searchable_by :title, :body, :slug if ::Plugin.loaded? :ShinySearch # TODO: author

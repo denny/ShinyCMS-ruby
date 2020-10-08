@@ -29,7 +29,7 @@ module ShinyBlog
       @post = Post.find_post( strong_params[:year], strong_params[:month], strong_params[:slug] )
       return if @post.present?
 
-      render 'errors/404', status: :not_found, locals: { resource_type: Post.human_name }
+      render 'errors/404', status: :not_found, locals: { resource_type: I18n.t( 'models.names.shiny_blog_post' ) }
     end
 
     private

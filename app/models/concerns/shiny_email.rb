@@ -31,6 +31,13 @@ module ShinyEmail
       EmailAddress.munge( email )
     end
 
+    def redact_emails!
+      skip_reconfirmation! if is_a? User
+      self.email = EmailAddress.redact( email )
+      self.canonical_email = EmailAddress.redact( canonical_email )
+      save!( validate: false )
+    end
+
     # Returns a string suitable for use as the To: header in an email
     def email_to
       return email if name.blank?

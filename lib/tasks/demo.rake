@@ -28,7 +28,12 @@ namespace :shiny do
     task load: prereqs do
       @shiny_admin.skip_confirmation!
       @shiny_admin.save!
-      @shiny_admin.grant_all_capabilities
+
+      User.transaction do
+        Capability.all.find_each do |capability|
+          @shiny_admin.user_capabilities.create! capability: capability
+        end
+      end
 
       Setting.set :theme_name, to: 'halcyonic'
 
