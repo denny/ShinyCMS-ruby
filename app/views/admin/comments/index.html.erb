@@ -1,6 +1,7 @@
 <% @page_title = t( '.title' ) %>
 
-<% if @comments.present? %>
+<%= render partial: 'admin/includes/search', locals: { placeholder: t( '.search' ) } %>
+
 <%= form_for 'spam_comments', method: :put do |f| %>
 <table class="table table-responsive-sm table-striped">
   <tbody>
@@ -11,10 +12,9 @@
       </td>
       <td>
         <small>
-          Posted by <%= comment.author_name_any %>
-          at <%= comment.posted_at.to_s( :time ) %>
-          on <%= comment.posted_at.to_s( :shinydate ) %>
-          <% if comment.author_url.present? %> - <%= comment.author_url %><% end %>
+          Posted by <%= comment.author_name_or_anon %>
+          at <%= display_time_on_date( comment.posted_at ) %>
+          <% if comment.author&.website&.present? %> - <%= comment.author.website %><% end %>
         </small>
         <% if comment.title.present? %>
           <br><%= comment.title %>
@@ -45,23 +45,18 @@
     </tr>
   </tbody>
 </table>
+<% end %>
+
+<%= render partial: 'admin/includes/pager', locals: { paged: @comments } %>
+
 <script>
-function toggle_select_all() {
+  function toggle_select_all() {
     var checked  = document.getElementById( 'select_all' ).checked;
     var boxes    = document.getElementsByClassName( 'itembox' );
     var boxcount = boxes.length;
 
     for ( var i = 0; i < boxcount; i++ ) {
-        boxes[i].checked = checked;
+      boxes[i].checked = checked;
     }
-}
+  }
 </script>
-<% end %>
-
-<%= render partial: 'admin/includes/pager', locals: { paged: @comments } %>
-
-<% else %>
-<p>
-  <%= t( 'empty_list', items: 'spam comments' ) %>
-</p>
-<% end %>

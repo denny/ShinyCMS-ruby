@@ -14,7 +14,7 @@ module ElementsHelper
   end
 
   # Provide filenames for use in select inputs for image elements
-  def select_filenames( path = nil )
+  def filenames_for_image_select( path = nil )
     path ||= Rails.root.join( 'public/images' )
     filenames = Dir.glob '*?.?*', base: path
     filenames.sort

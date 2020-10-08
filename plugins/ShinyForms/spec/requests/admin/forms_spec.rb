@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
+# ShinyForms plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
+# Tests for form admin features
 RSpec.describe 'ShinyForms Admin', type: :request do
   before :each do
     admin = create :form_admin
@@ -14,6 +21,21 @@ RSpec.describe 'ShinyForms Admin', type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_forms.admin.forms.index.title' ).titlecase
+    end
+  end
+
+  describe 'GET /admin/forms/search?q=zing' do
+    it 'fetches the list of matching form handlers' do
+      form1 = create :form, slug: 'zingy-zebras'
+      form2 = create :form, slug: 'awesome-aardvarks'
+
+      get shiny_forms.forms_search_path, params: { q: 'zing' }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_forms.admin.forms.index.title' ).titlecase
+
+      expect( response.body ).to     have_css 'td', text: form1.internal_name
+      expect( response.body ).not_to have_css 'td', text: form2.internal_name
     end
   end
 

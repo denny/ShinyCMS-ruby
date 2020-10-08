@@ -1,0 +1,9 @@
+<span class="float-right smaller">
+  &nbsp;&nbsp;&nbsp;
+
+  <% if feature_enabled?( :blog_downvotes ) %>
+    <%= render partial: 'votable/vote_up_down', locals: { resource: post } %>
+  <% else %>
+    <%= render partial: 'votable/vote_up', locals: { resource: post } %>
+  <% end %>
+</span>

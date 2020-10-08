@@ -8,9 +8,27 @@
 
 # Model to store the full text that users of the site may be asked to agree to, for GDPR compliance
 class ConsentVersion < ApplicationRecord
+  # Custom error class
+  class HasBeenAgreedTo < StandardError; end
+
   include ShinyDemoDataProvider
   include ShinySlug
 
   validates :name,         presence: true
   validates :display_text, presence: true
+
+  before_update  :before_update
+  before_destroy :before_destroy
+
+  def before_update
+    return if subscriptions.blank?
+
+    raise HasBeenAgreedTo, 'You cannot change the details of a consent version that people have already agreed to'
+  end
+
+  def before_destroy
+    return if subscriptions.blank?
+
+    raise HasBeenAgreedTo, 'You cannot delete a consent version that people have already agreed to'
+  end
 end

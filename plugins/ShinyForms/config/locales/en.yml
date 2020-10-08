@@ -14,13 +14,15 @@ en:
 
     admin:
       forms:
-        title: Forms
+        breadcrumb: Forms
+        menu: Forms
+        toolbar: Forms
         handlers:
           plain_email: Send plain unformatted email
           template_email: Send email formatted with template
         index:
           title: List form handlers
-          empty: There are no form handlers defined yet
+          search: Search form handlers
         new:
           title: Add form handler
         edit:

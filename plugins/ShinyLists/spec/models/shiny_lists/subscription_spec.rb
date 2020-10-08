@@ -8,6 +8,7 @@
 
 require 'rails_helper'
 
+# Tests for mailing list subscriptions model
 module ShinyLists
   RSpec.describe Subscription, type: :model do
     context 'scopes' do

@@ -1,0 +1,13 @@
+<footer>
+  <% if feature_enabled? :comments %>
+    <%= render partial: 'blog/show/footer_discussion_links', locals: { post: post } %>
+  <% end %>
+
+  <% if feature_enabled? :blog_votes %>
+    <%= render partial: 'blog/show/footer_votable_links', locals: { post: post } %>
+  <% end %>
+
+  <% if feature_enabled? :comments %>
+    <%= render partial: 'discussions/moderation_links', locals: { discussion: post.discussion.presence } %>
+  <% end %>
+</footer>

@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
+# ShinyPages plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
+# Tests for page admin features
 RSpec.describe 'Admin: Pages', type: :request do
   before :each do
     admin = create :page_admin
@@ -191,6 +198,41 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response.body ).to     have_field 'page_slug', with: 'updated-by-test'
       expect( response.body ).not_to have_field 'page_slug', with: old_slug
     end
+
+    it 'updates the element order' do
+      template_admin = create :page_template_admin
+      sign_in template_admin
+
+      page = create :top_level_page
+      last_element = page.elements.last
+
+      # Put the last element first
+      ids = page.elements.ids
+      last_id = ids.pop
+      ids.unshift last_id
+
+      query_string = ''
+      ids.each do |id|
+        query_string += "sorted[]=#{id}&"
+      end
+
+      expect( last_element.position ).to eq ids.size
+
+      put shiny_pages.page_path( page ), params: {
+        page: {
+          internal_name: page.internal_name
+        },
+        sort_order: query_string
+      }
+
+      expect( response      ).to have_http_status :found
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.pages.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_pages.admin.pages.update.success' )
+
+      expect( last_element.reload.position ).to eq 1
+    end
   end
 
   describe 'DELETE /admin/page/delete/:id' do
@@ -222,6 +264,34 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.pages.index.title' ).titlecase
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_pages.admin.pages.destroy.failure' )
+    end
+  end
+
+  describe 'PATCH /admin/pages/sort' do
+    it 'sorts the pages and sections as requested' do
+      s1 = create :page_section, position: 1
+      p2 = create :page, section: s1, position: 2
+      p3 = create :top_level_page, position: 3
+      s4 = create :page_section, position: 4
+      p5 = create :top_level_page, position: 5
+
+      patch shiny_pages.sort_pages_and_sections_path, params: {
+        sorted: [
+          p2.id,
+          "section#{s4.id}",
+          "section#{s1.id}",
+          p5.id,
+          p3.id
+        ]
+      }
+
+      expect( response ).to have_http_status :ok
+
+      expect( s1.reload.position ).to eq 3
+      expect( p2.reload.position ).to eq 1
+      expect( p3.reload.position ).to eq 5
+      expect( s4.reload.position ).to eq 2
+      expect( p5.reload.position ).to eq 4
     end
   end
 end

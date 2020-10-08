@@ -13,11 +13,11 @@ if ENV[ 'PRETTY_PRY_PROMPT' ].present?
     name.call
   end
 
-  def app_name
+  def app_name_for_pry_prompt
     Pry::Helpers::Text.cyan( 'ShinyCMS' )
   end
 
-  def rails_env
+  def rails_env_for_pry_prompt
     return Pry::Helpers::Text.cyan  '(dev)'  if Rails.env.development?
     return Pry::Helpers::Text.green '(test)' if Rails.env.test?
 
@@ -30,8 +30,8 @@ if ENV[ 'PRETTY_PRY_PROMPT' ].present?
     format(
       '%<app_name>s %<rails_env>s [%<in_count>s] %<name>s(%<context>s)%<nesting>s%<separator>s ',
       name: prompt_name(pry.config.prompt_name),
-      app_name: app_name,
-      rails_env: rails_env,
+      app_name: app_name_for_pry_prompt,
+      rails_env: rails_env_for_pry_prompt,
       in_count: pry.input_ring.count,
       context: Pry.view_clip(context),
       nesting: ( nesting.positive? ? ":#{nesting}" : '' ),

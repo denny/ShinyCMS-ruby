@@ -23,7 +23,10 @@ module ShinyLists
 
     # Scopes
 
-    scope :active, -> { where( unsubscribed_at: nil ) }
+    scope :active,   -> { where(     unsubscribed_at: nil ) }
+    scope :inactive, -> { where.not( unsubscribed_at: nil ) }
+
+    scope :recent, -> { order( :subscribed_at ) }
 
     # Instance methods
 
@@ -33,16 +36,6 @@ module ShinyLists
 
     def active?
       unsubscribed_at.blank?
-    end
-
-    def policy_class
-      self.class.policy_class
-    end
-
-    # Class methods
-
-    def self.policy_class
-      ShinyLists::SubscriptionPolicy
     end
   end
 end

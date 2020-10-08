@@ -10,9 +10,11 @@
 FactoryBot.define do
   factory :comment do
     sequence( :number )
-    title  { Faker::Books::CultureSeries.unique.culture_ship.titlecase }
+    title  { Faker::Books::CultureSeries.unique.culture_ship }
     body   { Faker::Lorem.paragraph }
     author_type { 'anonymous' }
+
+    association :discussion
   end
 
   factory :top_level_comment, parent: :comment do

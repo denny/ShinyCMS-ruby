@@ -15,24 +15,17 @@ class Comment < ApplicationRecord
 
   belongs_to :discussion
   belongs_to :parent, optional: true, class_name: 'Comment'
-  belongs_to :user,   optional: true, inverse_of: :comments
+  belongs_to :author, optional: true, polymorphic: true, inverse_of: :comments
 
-  has_many :comments, -> { where( spam: false ) },  inverse_of: :parent,
-                                                    foreign_key: :parent_id,
-                                                    dependent: :destroy
+  has_many :comments, -> { not_spam }, inverse_of: :parent, foreign_key: :parent_id, dependent: :destroy
 
   # Validations
 
-  validates :author_type,   presence: true
   validates :discussion_id, presence: true
   validates :body,          presence: true, unless: -> { title.present? }
   validates :title,         presence: true, unless: -> { body.present?  }
-  validates :user_id,       presence: true, if:     -> { author_type == 'authenticated'}
 
   validates :number, uniqueness: { scope: :discussion_id }
-
-  validates_with EmailAddress::ActiveRecordValidator,
-                 field: :author_email, if: -> { author_email.present? }
 
   # Before/after actions
 
@@ -43,20 +36,19 @@ class Comment < ApplicationRecord
 
   acts_as_votable
 
-  # Aliases
-
-  alias_attribute :author, :user
-
   # Scopes
 
-  scope :top_level, -> { where( parent: nil   ).order( :number ) }
+  scope :recent,    -> { visible.merge( order( posted_at: :desc  ) ) }
+  scope :top_level, -> { where( parent: nil ).order( :number     ) }
+  scope :spam,      -> { where( spam: true  ).order( :created_at ) }
+  scope :not_spam,  -> { where( spam: false ) }
 
   scope :since, ->( date ) { where( 'posted_at > ?', date ) }
 
   # Instance methods
 
   def set_number
-    self.number = ( discussion.all_comments.maximum( :number ) || 0 ) + 1
+    self.number = discussion.next_comment_number
   end
 
   # Returns the path to a comment's parent resource, anchored to the comment
@@ -95,21 +87,16 @@ class Comment < ApplicationRecord
     DiscussionMailer.overview_notification( self )
   end
 
-  def author_name_any
-    return author.name if author_type == 'authenticated'
-    return author_name if author_type == 'pseudonymous' && author_name.present?
-
-    I18n.t( 'discussions.anonymous' )
+  def author_name_or_anon
+    author&.name&.presence || I18n.t( 'discussions.anonymous' )
   end
 
-  def notifiable?
-    author_email.present? || author.present?
+  def authenticated_author?
+    author_type == 'User'
   end
 
   def notification_email
-    return unless notifiable?
-
-    author_email.presence || author.email
+    author&.email
   end
 
   def lock
@@ -128,9 +115,5 @@ class Comment < ApplicationRecord
 
   def self.mark_all_as_ham( comment_ids )
     _shut_up_rubocop = where( id: comment_ids ).update( spam: false )
-  end
-
-  def self.all_spam
-    where( spam: true ).order( :created_at )
   end
 end

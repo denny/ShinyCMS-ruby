@@ -9,8 +9,8 @@
 # User model (powered by Devise)
 # rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
+  include ShinySearch::Searchable if ::Plugin.loaded? :ShinySearch
   include ShinyEmail
-  include ShinySearch::Searchable if defined? ShinySearch
 
   # Associations
 
@@ -28,7 +28,7 @@ class User < ApplicationRecord
   # TODO: polymorphic relationship here so users can own any type of plugin-provided content
 
   # End-user content: destroy it along with their account
-  has_many :comments, dependent: :destroy
+  has_many :comments, as: :author, dependent: :destroy
 
   # Validations
 
@@ -42,7 +42,7 @@ class User < ApplicationRecord
   validates :username, length: { maximum: 50 }
   validates :username, format: ANCHORED_USERNAME_REGEX
 
-  # Plugins
+  # Plugin features
 
   # Enable basically every Devise module except :omniauthable (for now)
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
@@ -53,9 +53,10 @@ class User < ApplicationRecord
 
   paginates_per 20
 
-  searchable_attributes = %i[ username public_name public_email ]
-  algolia_search_on( searchable_attributes )
-  pg_search_on( searchable_attributes )
+  if ::Plugin.all_loaded? :ShinySearch, :ShinyProfiles
+    # TODO: all of these except username will be moving into ShinyProfiles::Profile
+    searchable_by :username, :public_name, :public_email, :bio, :website, :location, :postcode
+  end
 
   # Virtual attributes
 

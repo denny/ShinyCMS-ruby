@@ -10,22 +10,35 @@ module ShinyLists
   # Controller for mailing list admin features - part of the ShinyLists plugin for ShinyCMS
   class Admin::ListsController < AdminController
     def index
-      authorise List
+      authorize List
 
       page_num = params[ :page ] || 1
       @lists = List.page( page_num )
 
-      authorise @lists if @lists.present?
+      authorize @lists if @lists.present?
+    end
+
+    def search
+      authorize List
+
+      q = params[:q]
+      @lists = List.where( 'internal_name ilike ?', "%#{q}%" )
+                   .or( List.where( 'slug ilike ?', "%#{q}%" ) )
+                   .order( :internal_name )
+                   .page( page_number ).per( items_per_page )
+
+      authorize @lists if @lists.present?
+      render :index
     end
 
     def new
       @list = List.new
-      authorise @list
+      authorize @list
     end
 
     def create
       @list = List.new( list_params )
-      authorise @list
+      authorize @list
 
       if @list.save
         redirect_to edit_list_path( @list ), notice: t( '.success' )
@@ -37,12 +50,12 @@ module ShinyLists
 
     def edit
       @list = List.find( params[:id] )
-      authorise @list
+      authorize @list
     end
 
     def update
       @list = List.find( params[:id] )
-      authorise @list
+      authorize @list
 
       if @list.update( list_params )
         redirect_to edit_list_path( @list ), notice: t( '.success' )
@@ -54,7 +67,7 @@ module ShinyLists
 
     def destroy
       list = List.find( params[:id] )
-      authorise list
+      authorize list
 
       flash[ :notice ] = t( '.success' ) if list.destroy
       redirect_to lists_path

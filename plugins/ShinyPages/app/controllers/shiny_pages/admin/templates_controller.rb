@@ -9,23 +9,37 @@
 module ShinyPages
   # Admin controller for templates - ShinyPages plugin for ShinyCMS
   class Admin::TemplatesController < AdminController
+    include ShinySortable
+
+    helper_method :load_html_editor?
+
     def index
-      authorise ShinyPages::Template
+      authorize Template
+      @templates = Template.order( :name ).page( page_number ).per( items_per_page )
+      authorize @templates if @templates.present?
+    end
 
-      page_num = params[ :page ] || 1
+    def search
+      authorize Template
 
-      @templates = ShinyPages::Template.order( :name ).page( page_num )
-      authorise @templates if @templates.present?
+      q = params[:q]
+      @templates = Template.where( 'name ilike ?', "%#{q}%" )
+                           .or( Template.where( 'description ilike ?', "%#{q}%" ) )
+                           .order( :name )
+                           .page( page_number ).per( items_per_page )
+
+      authorize @templates if @templates.present?
+      render :index
     end
 
     def new
       @template = ShinyPages::Template.new
-      authorise @template
+      authorize @template
     end
 
     def create
-      @template = ShinyPages::Template.new( template_params )
-      authorise @template
+      @template = ShinyPages::Template.new( strong_params )
+      authorize @template
 
       if @template.save
         redirect_to shiny_pages.edit_template_path( @template ), notice: t( '.success' )
@@ -37,14 +51,14 @@ module ShinyPages
 
     def edit
       @template = ShinyPages::Template.find( params[:id] )
-      authorise @template
+      authorize @template
     end
 
     def update
       @template = ShinyPages::Template.find( params[:id] )
-      authorise @template
+      authorize @template
 
-      if @template.update( template_params )
+      if sort_elements && @template.update( strong_params )
         redirect_to shiny_pages.edit_template_path( @template ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
@@ -52,9 +66,16 @@ module ShinyPages
       end
     end
 
+    def sort_elements
+      return true if params[ :sort_order ].blank?
+
+      sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
+      apply_sort_order( @template.elements, sort_order )
+    end
+
     def destroy
       template = ShinyPages::Template.find( params[:id] )
-      authorise template
+      authorize template
 
       flash[ :notice ] = t( '.success' ) if template.destroy
       redirect_to shiny_pages.templates_path
@@ -65,10 +86,15 @@ module ShinyPages
 
     private
 
-    def template_params
+    def strong_params
       params.require( :template ).permit(
         :name, :description, :filename, elements_attributes: {}
       )
+    end
+
+    # Return true if the page we're on might need a WYSIWYG HTML editor
+    def load_html_editor?
+      action_name == 'edit'
     end
   end
 end

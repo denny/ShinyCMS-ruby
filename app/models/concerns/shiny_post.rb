@@ -10,7 +10,7 @@
 module ShinyPost
   extend ActiveSupport::Concern
 
-  include ShinySearch::Searchable if defined? ShinySearch
+  include ShinySearch::Searchable if ::Plugin.loaded? :ShinySearch
   include ShinyShowHide
   include ShinySlugInMonth
   include ShinyTeaser
@@ -35,9 +35,7 @@ module ShinyPost
     acts_as_votable
     paginates_per 20
 
-    searchable_attributes = %i[ title body slug ] # TODO: author
-    algolia_search_on( searchable_attributes )
-    pg_search_on( searchable_attributes )
+    searchable_by :title, :body, :slug if ::Plugin.loaded? :ShinySearch # TODO: author
 
     # Attribute aliases and delegated methods
 

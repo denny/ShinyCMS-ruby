@@ -57,6 +57,9 @@ source 'https://rubygems.org' do
   gem 'devise-pwned_password'
   gem 'pundit'
 
+  # We use Sidekiq as the backend for ActiveJob (to queue email sends)
+  gem 'sidekiq'
+
   # Bot detection to protect forms (including registration, comments, etc)
   gem 'recaptcha'
 
@@ -92,7 +95,7 @@ source 'https://rubygems.org' do
   # Web stats
   gem 'ahoy_matey'
   gem 'blazer'
-  gem 'chartkick', '~> 3.4.0'
+  gem 'chartkick', '~> 3.4.1'
   gem 'groupdate'
 
   # Image storage on S3, image processing (resizing)
@@ -137,6 +140,7 @@ source 'https://rubygems.org' do
     gem 'rails-pg-extras'
     # Linter
     gem 'rubocop', require: false
+    gem 'rubocop-performance', require: false
     gem 'rubocop-rails', require: false
     # Used to generate demo site data
     gem 'seed_dump'

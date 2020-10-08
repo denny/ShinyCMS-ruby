@@ -1,4 +1,4 @@
-  <% c = Capability.find_by( name: capability, category: category ) %>
+  <% c = capability( name: capability, category: category ) %>
   <% if c.present? %>
     <label>
       <% if @user.can?( c.name.to_sym, c.category.name.to_sym ) %>

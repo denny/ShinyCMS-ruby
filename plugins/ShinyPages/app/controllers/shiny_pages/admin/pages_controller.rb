@@ -9,23 +9,27 @@
 module ShinyPages
   # Admin controller for pages - ShinyPages plugin for ShinyCMS
   class Admin::PagesController < AdminController
+    include ShinySortable
+
+    helper_method :load_html_editor?
+
     def index
-      authorise ShinyPages::Page
-      authorise ShinyPages::Section
+      authorize ShinyPages::Page
+      authorize ShinyPages::Section
       @top_level_items = ShinyPages::Page.all_top_level_items
       @top_level_items.each do |item|
-        authorise item
+        authorize item
       end
     end
 
     def new
       @page = ShinyPages::Page.new
-      authorise @page
+      authorize @page
     end
 
     def create
       @page = ShinyPages::Page.new( page_params )
-      authorise @page
+      authorize @page
 
       if @page.save
         redirect_to shiny_pages.edit_page_path( @page ), notice: t( '.success' )
@@ -37,14 +41,14 @@ module ShinyPages
 
     def edit
       @page = ShinyPages::Page.find( params[:id] )
-      authorise @page
+      authorize @page
     end
 
     def update
       @page = ShinyPages::Page.find( params[:id] )
-      authorise @page
+      authorize @page
 
-      if @page.update( page_params )
+      if sort_elements && @page.update( page_params )
         redirect_to shiny_pages.edit_page_path( @page ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
@@ -52,9 +56,31 @@ module ShinyPages
       end
     end
 
+    def sort_elements
+      return true if params[ :sort_order ].blank?
+      return true unless current_user.can? :edit, :page_templates
+
+      sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
+      apply_sort_order( @page.elements, sort_order )
+    end
+
+    def sort_pages_and_sections
+      authorize Section, :edit?
+
+      params[ :sorted ].each_with_index do |item_id, index|
+        if item_id.to_s.start_with? 'section'
+          item_id = item_id.to_s.sub( %r{^section}, '' ).to_i
+          Section.find( item_id ).update!( position: index + 1 )
+        else
+          Page.find( item_id ).update!( position: index + 1 )
+        end
+      end
+      head :ok
+    end
+
     def destroy
       page = ShinyPages::Page.find( params[:id] )
-      authorise page
+      authorize page
 
       flash[ :notice ] = t( '.success' ) if page.destroy
       redirect_to shiny_pages.pages_path
@@ -70,6 +96,11 @@ module ShinyPages
         :internal_name, :public_name, :slug, :description, :template_id, :section_id,
         :position, :show_on_site, :show_in_menus, elements_attributes: {}
       )
+    end
+
+    # Return true if the page we're on might need a WYSIWYG HTML editor
+    def load_html_editor?
+      action_name == 'edit'
     end
   end
 end

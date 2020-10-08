@@ -1,6 +1,6 @@
 # ShinyBlog: Blog section plugin for ShinyCMS
 
-ShinyBlog is a plugin for [ShinyCMS](https://shinycms.com) which adds
+ShinyBlog is a plugin for [ShinyCMS](https://shinycms.org) which adds
 a blog section to your ShinyCMS website.
 
 Blog posts can be added and edited in the ShinyCMS admin area; look for 'Blog'

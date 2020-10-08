@@ -10,19 +10,31 @@
 class Admin::CommentsController < AdminController
   include AkismetHelper
 
-  before_action :stash_comment, except: %i[ index update ]
+  before_action :stash_comment, except: %i[ index search update ]
 
   # Display spam comment moderation page
   def index
-    authorise Comment
-    page_num = params[ :page ] || 1
-    @comments = Comment.all_spam.page( page_num )
-    authorise @comments if @comments.present?
+    authorize Comment
+    @comments = Comment.spam.page( page_number )
+    authorize @comments if @comments.present?
+  end
+
+  def search
+    authorize Comment
+
+    q = params[:q]
+    @comments = Comment.spam.where( 'title ilike ?', "%#{q}%" )
+                       .or( Comment.spam.where( 'body ilike ?', "%#{q}%" ) )
+                       .order( posted_at: :desc )
+                       .page( page_number ).per( items_per_page )
+
+    authorize @comments if @comments.present?
+    render :index
   end
 
   # Process submission of spam comment moderation page
   def update
-    authorise Comment
+    authorize Comment
     case update_params[ :spam_or_ham ]
     when 'spam'
       process_spam_comments
@@ -36,37 +48,37 @@ class Admin::CommentsController < AdminController
   end
 
   def show
-    authorise @comment
+    authorize @comment
     @comment.show
     redirect_back fallback_location: @comment.anchored_path
   end
 
   def hide
-    authorise @comment
+    authorize @comment
     @comment.hide
     redirect_back fallback_location: @comment.anchored_path
   end
 
   def lock
-    authorise @comment
+    authorize @comment
     @comment.lock
     redirect_back fallback_location: @comment.anchored_path
   end
 
   def unlock
-    authorise @comment
+    authorize @comment
     @comment.unlock
     redirect_back fallback_location: @comment.anchored_path
   end
 
   def destroy
-    authorise @comment
+    authorize @comment
     @comment.destroy!
     redirect_back fallback_location: @comment.anchored_path
   end
 
   def mark_as_spam
-    authorise @comment
+    authorize @comment
     @comment.mark_as_spam
     redirect_back fallback_location: @comment.anchored_path
   end

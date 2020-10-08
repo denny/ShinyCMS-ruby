@@ -1,0 +1,29 @@
+    <% @form = find_form_by_slug( 'contact' ) %>
+
+    <section>
+      <%= form_tag @form.action, method: :post do %>
+      <p>
+        <label>Name:<br>
+        <input name="shiny_form[name]" type="text">
+        </label>
+      </p>
+      <p>
+        <label>Email:<br>
+        <input name="shiny_form[email]" type="email">
+        </label>
+      </p>
+      <p>
+        <label>Subject:<br>
+        <input name="shiny_form[subject]" type="text">
+        </label>
+      </p>
+      <p>
+        <label>Message:<br>
+        <textarea name="shiny_form[message]"></textarea>
+        </label>
+      </p>
+      <p>
+        <input type="submit" value="Send">
+      </p>
+      <% end %>
+    </section>

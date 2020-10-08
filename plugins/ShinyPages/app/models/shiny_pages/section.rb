@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
+# ShinyPages plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 module ShinyPages
-  # Model for page sections
+  # Model for page sections - part of the ShinyPages plugin for ShinyCMS
   class Section < ApplicationRecord
+    include ShinySearch::Searchable if ::Plugin.loaded? :ShinySearch
     include ShinyDemoDataProvider
     include ShinyName
     include ShinySlugInSection
@@ -18,6 +25,10 @@ module ShinyPages
     # Validations
 
     validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
+
+    # Plugin features
+
+    searchable_by :public_name, :slug if ::Plugin.loaded? :ShinySearch
 
     # Scopes and sorting
 
@@ -74,16 +85,7 @@ module ShinyPages
       menu_pages.present? || menu_sections.present?
     end
 
-    # Specify policy class for Pundit
-    def policy_class
-      self.class.policy_class
-    end
-
     # Class methods
-
-    def self.policy_class
-      SectionPolicy
-    end
 
     def self.all_top_level_sections
       top_level

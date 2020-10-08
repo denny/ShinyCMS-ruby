@@ -1,37 +1,25 @@
 # ShinyCMS: TODO
 
-## Fixes and refactoring of code already written - to do next/soon
+## Fixes and refactoring of code already written
 
-* Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
+* Investigate and fix blank email issue
+
+* Move most of this list into GitHub issues
+  * Put the whole 'planned features' TODO list in there?
+
+* Make a generic sidebar template that renders any partials in a specified directory
 
 * Highlight section name in admin area menu when on a page which isn't in the menu
   (e.g. 'Edit page', clicking around in Blazer, etc)
 * Relatedly; jump admin menu to current section with an anchor
 
-* Add tests for form actions being what they're supposed to be on new/edit pages, and for
-  delete links being correct on list pages (to catch path helper issues)
-
-* Catch Pundit::NotAuthorizedError and output `head :unauthorized` (currently 500s I think?)
-
-* Track down untranslated strings and add them to locale files
-  * Check core and plugins; templates, controllers, and models; admin area, main site, and themes
-  * Frequent offenders: column headings on index pages, input labels on new/edit forms
-
-* Make sure concerns are used everywhere they could/should be, and that the shared examples
-  are used to test that the concerns are doing the right thing in each place they get used.
-
-* Add folding to page sections on /admin/pages
-  * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
-  * Decide 'intelligently' whether to fold all/none/some
-    * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
-
-* Add acts_as_paranoid to everything (soft delete) https://github.com/ActsAsParanoid/acts_as_paranoid
-
 ### Non-trivial
 
-* Split comment_author details off of comments, as a polymorphic (similar to email_recipients)
-  * Visitor model, to incorporate EmailRecipient, CommentAuthor, VotableIP, and future etc?
-    * Think carefully about privacy implications of linking previous actions to current visitor
+* Re-think mailer preview features
+  * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
+
+* Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?
+  * Think carefully about privacy implications of linking previous actions to current visitor
 
 * ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
   sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
@@ -83,6 +71,8 @@
 * 2FA
   * https://github.com/tinfoil/devise-two-factor
 
+* Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)
+
 * Configurable (per-site and per-user) menu order in admin area
 
 * Better tooling for loading (and ideally, for creating/updating) the demo data
@@ -100,9 +90,20 @@
 
 * ¡español! :D
 
+* Add tests for form actions being what they're supposed to be on new/edit pages,
+  and for delete links being correct on list pages (to catch path helper issues)
+
 ### Medium-ish
 
-* Draggable UI for reordering lists in admin area - SortableJS, maybe?
+* Add acts_as_paranoid to everything (soft delete)
+  * https://github.com/ActsAsParanoid/acts_as_paranoid
+
+* Add folding to page sections on /admin/pages
+  * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
+  * Decide 'intelligently' whether to fold all/none/some
+    * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
+
+* When people post a comment or subscribe to a list without being logged in, offer to create an account for them?
 
 * Tests for rake tasks
   * https://thoughtbot.com/blog/test-rake-tasks-like-a-boss ? (old)
@@ -129,7 +130,8 @@
 
 * Switch from ERB to handlebars or similar for main site templates
 
-* Allow Page templates to be stored in database and edited in admin UI
+* Allow theme templates to be stored in database and edited in admin UI
+* Allow theme templates to be imported from an S3 folder
 
 * Allow in-situ editing of Page (and other?) content
   * Mercury: https://jejacks0n.github.io/mercury

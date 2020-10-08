@@ -13,7 +13,8 @@ module ShinyTemplate
   included do
     # Associations
 
-    has_many :elements, inverse_of: :template, dependent: :destroy, class_name: 'TemplateElement'
+    has_many :elements, -> { order( :position ) }, inverse_of: :template, dependent: :destroy,
+                                                   class_name: 'TemplateElement'
 
     accepts_nested_attributes_for :elements
 

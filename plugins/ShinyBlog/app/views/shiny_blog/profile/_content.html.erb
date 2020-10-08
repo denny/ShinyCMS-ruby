@@ -1,0 +1,22 @@
+<% blog_posts = recent_blog_posts_by_user( @user_profile, 5 ) %>
+
+<% if blog_posts.present? %>
+<script>
+  document.getElementsByClassName('user-profile-content')[0].style='display: block;';
+</script>
+
+<header style="margin: 0;">
+  <h3>
+    <%#= link_to t( '.title' ), shiny_blog.view_blog_posts_by_user_path( @user_profile ) %>
+    <%= link_to t( '.title' ), shiny_blog.view_blog_path %>
+  </h3>
+</header>
+
+<ul style="list-style: none; margin-left: 0;">
+  <% blog_posts.each do |post| %>
+  <li>
+    <%= link_to post.title, post.path %>
+  </li>
+  <% end %>
+</ul>
+<% end %>

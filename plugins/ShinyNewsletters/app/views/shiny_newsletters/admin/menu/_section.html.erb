@@ -1,6 +1,6 @@
 <% if current_user.can?( :list, :newsletter_editions ) || current_user.can?( :list, :newsletter_templates ) %>
 
-  <%= render_admin_menu_section( t( 'shiny_newsletters.admin.newsletters.title' ), 'newspaper' ) do %>
+  <%= render_admin_menu_section( t( 'shiny_newsletters.admin.newsletters.menu' ), 'newspaper' ) do %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :newsletter_editions ),
         t( 'shiny_newsletters.admin.editions.index.title' ), shiny_newsletters.editions_path, 'newspaper' ) %>

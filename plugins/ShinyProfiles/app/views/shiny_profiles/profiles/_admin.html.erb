@@ -1,0 +1,11 @@
+<% if current_user_can?( :view_admin_notes, :users ) && @user_profile.admin_notes.present? %>
+<section>
+  <header>
+    <h3>
+      Admin notes
+    </h3>
+  </header>
+
+  <%= simple_format @user_profile.admin_notes %>
+</section>
+<% end %>

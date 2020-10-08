@@ -6,10 +6,10 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
 
 ### Features that exist in the Perl version
 
-* Newsletters (HTML mailshots)
-  * MJML templates - https://mjml.io/documentation
-  * Mailing lists
-    * Getting a bit bogged down in feature creep on this one, need to make myself just MVP it!
+* Newsletters (HTML mailshots) and mailing lists
+  * Nearly done!
+  * Add a nice default template or two, from https://mjml.io/templates/newsletter-email
+  * Do some end-to-end testing, i.e. 'try to use it'
 
 * User profile pages (with content such as recent comments, recent posts, etc)
 
@@ -25,6 +25,8 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
       * Ideally, move all the non-Devise User/Account functionality into concerns and helpers, so
         you could include those into any site with Devise-powered auth and then use any ShinyPlugin
     * Move each plugin into its own separate gem
+      * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
+
 
 * Blazer dashboards / charts / etc
   * https://github.com/ankane/blazer

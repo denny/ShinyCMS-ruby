@@ -6,7 +6,7 @@
     <% elsif element_type == 'long_text' %>
     <%= fields.text_area content %>
     <% elsif element_type == 'image' %>
-    <%= fields.select content, select_filenames %>
+    <%= fields.select content, filenames_for_image_select %>
     <% elsif element_type == 'html' %>
     <%= fields.cktext_area content %>
     <% else %>
@@ -14,7 +14,7 @@
     <% end %>
   </td>
   <td class="actions">
-    <%= link_to t( 'delete' ), destroy_insert_path( fields.object ),
+    <%= link_to t( 'delete' ), shiny_inserts.destroy_insert_path( fields.object ),
         method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
   </td>
 </tr>

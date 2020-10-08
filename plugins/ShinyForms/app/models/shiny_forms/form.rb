@@ -17,6 +17,10 @@ module ShinyForms
 
     # Instance methods
 
+    def action
+      "/form/#{slug}"
+    end
+
     def send_to_handler( form_data )
       return false_after_logging_warning unless handler_exists?
 
@@ -38,16 +42,7 @@ module ShinyForms
       @handlers ||= FormHandler.new
     end
 
-    # Specify policy class for Pundit
-    def policy_class
-      self.class.policy_class
-    end
-
     # Class methods
-
-    def self.policy_class
-      ShinyForms::FormPolicy
-    end
 
     def self.template_file_exists?( filename )
       Form.available_templates.include? filename

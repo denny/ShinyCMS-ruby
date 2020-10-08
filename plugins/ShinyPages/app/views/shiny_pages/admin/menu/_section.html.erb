@@ -1,7 +1,7 @@
 <% return unless current_user.can?( :list, :pages          ) ||
                  current_user.can?( :list, :page_templates ) %>
 
-  <%= render_admin_menu_section( t( 'shiny_pages.admin.pages.title' ), 'list-rich' ) do %>
+  <%= render_admin_menu_section( t( 'shiny_pages.admin.pages.menu' ), 'list-rich' ) do %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :pages ),
         t( 'shiny_pages.admin.pages.index.title' ), shiny_pages.pages_path, 'list-rich' ) %>

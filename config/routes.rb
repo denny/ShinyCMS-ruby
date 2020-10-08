@@ -23,8 +23,10 @@ Rails.application.routes.draw do
     get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
     post 'discussion/:id/:number', to: 'discussions#add_reply'
 
-    get  'do-not-contact', to: 'do_not_contact#new'
-    post 'do-not-contact', to: 'do_not_contact#create'
+    get  'email/confirm/:token', to: 'email_recipients#confirm', as: :confirm_email
+
+    get  'email/do-not-contact', to: 'do_not_contact#new', as: :do_not_contact
+    post 'email/do-not-contact', to: 'do_not_contact#create'
 
     get 'site-settings', to: 'site_settings#index'
     put 'site-settings', to: 'site_settings#update'
@@ -61,11 +63,14 @@ Rails.application.routes.draw do
 
     scope path: 'admin', module: 'admin' do
       # Consent versions
-      resources :consent_versions, path: 'consent-versions', except: [ :show ]
+      get 'consent-versions/search', to: 'consent_versions#search'
+      resources :consent_versions, path: 'consent-versions'
 
       # Discussion and comment moderation
       get :comments, to: 'comments#index'
       put :comments, to: 'comments#update'
+      get 'comments/search', to: 'comments#search'
+
       scope path: 'comment' do
         put    ':id/show',    to: 'comments#show',          as: :show_comment
         put    ':id/hide',    to: 'comments#hide',          as: :hide_comment
@@ -74,6 +79,7 @@ Rails.application.routes.draw do
         put    ':id/is-spam', to: 'comments#mark_as_spam',  as: :spam_comment
         delete ':id/delete',  to: 'comments#destroy',       as: :destroy_comment
       end
+
       scope path: 'discussion' do
         put ':id/show',   to: 'discussions#show',   as: :show_discussion
         put ':id/hide',   to: 'discussions#hide',   as: :hide_discussion
@@ -90,15 +96,19 @@ Rails.application.routes.draw do
       put 'site-settings', to: 'site_settings#update'
 
       # Stats
-      get 'email-stats',               to: 'email_stats#index'
-      get 'email-stats/user/:user_id', to: 'email_stats#index', as: :user_email_stats
-      get 'web-stats',                 to: 'web_stats#index'
-      get 'web-stats/user/:user_id',   to: 'web_stats#index',   as: :user_web_stats
+      get 'email-stats',                         to: 'email_stats#index'
+      get 'email-stats/user/:user_id',           to: 'email_stats#index', as: :user_email_stats
+      get 'email-stats/recipient/:recipient_id', to: 'email_stats#index', as: :recipient_email_stats
+      get 'email-stats/search',                  to: 'email_stats#search'
+
+      get 'web-stats',               to: 'web_stats#index'
+      get 'web-stats/user/:user_id', to: 'web_stats#index', as: :user_web_stats
+      get 'web-stats/search',        to: 'web_stats#search'
 
       # Users
-      get  :users, to: 'users#index'
-      post :user,  to: 'users#create', as: :create_user
-      resources :user, controller: :users, except: %i[ index show create ]
+      get 'users/search', to: 'users#search'
+
+      resources :users, except: [ :show ]
     end
 
     ########################################
@@ -115,6 +125,19 @@ Rails.application.routes.draw do
 
     # RailsEmailPreview provides previews of site emails in the admin area
     mount RailsEmailPreview::Engine, at: '/admin/email-previews'
+
+    def sidekiq_web_enabled?
+      ENV['DISABLE_SIDEKIQ_WEB']&.downcase != 'true'
+    end
+
+    # Sidekiq Web provides a web dashboard for your sidekiq jobs and queues
+    if sidekiq_web_enabled?
+      require 'sidekiq/web'
+      Sidekiq::Web.set :sessions, false
+      authenticate :user, ->( user ) { user.can? :manage_sidekiq_jobs } do
+        mount Sidekiq::Web, at: '/admin/sidekiq'
+      end
+    end
 
     # LetterOpener catches all emails sent in development, with a webmail UI to view them
     mount LetterOpenerWeb::Engine, at: '/dev/outbox' if Rails.env.development?

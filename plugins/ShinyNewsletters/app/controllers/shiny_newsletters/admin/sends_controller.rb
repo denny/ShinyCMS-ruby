@@ -22,14 +22,27 @@ module ShinyNewsletters
       @scheduled = Send.scheduled if page_number == 1
       authorize @scheduled if @scheduled.present?
 
-      @sends = Send.unscheduled.page( page_number )
+      @sends = Send.unscheduled.page( page_number ).per( items_per_page )
       authorize @sends if @sends.present?
     end
 
     def sent
       authorize Send
-      @sent = Send.sent.recent.page( page_number )
+      @sent = Send.sent.recent.page( page_number ).per( items_per_page )
       authorize @sent if @sent.present?
+    end
+
+    def search
+      authorize Send
+
+      q = params[:q]
+      @sends = Send.where( 'date(started_sending_at) = ?', q )
+                   .or( Send.where( 'date(finished_sending_at) = ?', q ) )
+                   .order( sent_at: :desc )
+                   .page( page_number ).per( items_per_page )
+
+      authorize @sends if @sends.present?
+      render :index
     end
 
     def show
@@ -106,7 +119,7 @@ module ShinyNewsletters
     def strong_params
       temp_params = params.require( :send ).permit( :edition_id, :list_id, :send_at, :send_at_time, :send_now )
 
-      combine_date_and_time_inputs( temp_params, :send_at )
+      combine_date_and_time_params( temp_params, :send_at )
     end
 
     def convert_send_at_to_utc

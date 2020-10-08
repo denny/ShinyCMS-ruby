@@ -1,6 +1,6 @@
 <% return unless current_user.can? :list, :consent_versions %>
 
-  <%= render_admin_menu_section( t( 'admin.consent_versions.title' ), 'check' ) do %>
+  <%= render_admin_menu_section( t( 'admin.consent_versions.menu' ), 'check' ) do %>
 
     <%= render_admin_menu_item(
         t( 'admin.consent_versions.index.title' ), consent_versions_path, 'check' ) %>

@@ -1,0 +1,3 @@
+  <% category_capabilities = %w[ list add edit destroy change_author ] %>
+  <% category = capability_category( :blog_posts ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>

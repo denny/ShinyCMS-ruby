@@ -87,7 +87,7 @@ ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and genera
 
 It has been tested on every release of Rails 6 so far, and with most versions of Ruby from 2.5.8 onwards ([view recent test results][test results] for ruby 2.5.8, 2.6.6, and 2.7.1).
 
-[Test results]: https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/184397336
+[Test results]: https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/188454649
 
 There are currently no plans to add support for Rails 5 or older Ruby versions.
 
@@ -123,15 +123,12 @@ ShinyCMS includes code from other open source and free software projects, which 
 [![Travis CI](https://img.shields.io/travis/com/denny/ShinyCMS-ruby?label=Travis%20CI&logo=travis&logoColor=white&style=for-the-badge)](https://travis-ci.com/denny/ShinyCMS-ruby)
 [![Codecov](https://img.shields.io/codecov/c/github/denny/ShinyCMS-ruby?label=Codecov&logo=codecov&logoColor=white&style=for-the-badge)](https://codecov.io/gh/denny/ShinyCMS-ruby)
 
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/denny/ShinyCMS-ruby?label=CodeFactor&logo=codefactor&logoColor=white&style=for-the-badge)](https://www.codefactor.io/repository/github/denny/shinycms-ruby)
 <a href="https://codebeat.co/projects/github-com-denny-shinycms-ruby-main"><img src="https://codebeat.co/badges/97ed8fca-23b4-469e-a7fb-fd3ec7f8e4d5" alt="CodeBeat (code quality)" height="28px"></a>
 
 [![Dependabot](https://img.shields.io/static/v1?label=Dependabot&color=brightgreen&message=enabled&logo=dependabot&style=for-the-badge)](https://rubydoc.info/github/denny/ShinyCMS-ruby)
 <a href="https://hakiri.io/github/denny/ShinyCMS-ruby/main"><img src="https://hakiri.io/github/denny/ShinyCMS-ruby/main.svg" alt="Security" height="28px"></a>
-
-[![RubyDocs](https://img.shields.io/static/v1?label=RubyDocs&color=brightgreen&message=✓&logo=ruby&style=for-the-badge)](https://rubydoc.info/github/denny/ShinyCMS-ruby)
-<a href="https://inch-ci.org/github/denny/ShinyCMS-ruby"><img src="https://inch-ci.org/github/denny/ShinyCMS-ruby.svg" alt="Inline Documentation" height="28px"></a>
 
 ![GitHub code size](https://img.shields.io/github/languages/code-size/denny/ShinyCMS-ruby?logo=github&style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/denny/ShinyCMS-ruby?logo=github&style=for-the-badge)

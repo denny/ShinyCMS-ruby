@@ -20,7 +20,8 @@ module ShinyNewsletters
     belongs_to :template, inverse_of: :editions
 
     has_many :sends,    inverse_of: :edition, dependent: :restrict_with_error
-    has_many :elements, inverse_of: :edition, dependent: :destroy, class_name: 'EditionElement'
+    has_many :elements, -> { order( :position) }, inverse_of: :edition, dependent: :destroy,
+                                                  class_name: 'EditionElement'
 
     accepts_nested_attributes_for :elements
 
@@ -35,7 +36,7 @@ module ShinyNewsletters
     end
 
     def send_sample( recipient )
-      NewsletterMailer.send_email( self, recipient ).deliver_now
+      NewsletterMailer.send_email( self, recipient ).deliver_later
     end
 
     # Used by SlugInMonth validator

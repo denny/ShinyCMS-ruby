@@ -38,7 +38,7 @@ en:
   are_you_sure: Are you sure?
 
   # Empty listing
-  empty_list: There are no %{items} to display
+  empty_list: no %{items} found
 
   # Votes / Likes
   vote: Vote
@@ -85,6 +85,9 @@ en:
     save_comment:
       success: New comment posted
       failure: Failed to post new comment
+    profile:
+      content:
+        title: Recent comments
 
   do_not_contact:
     new:
@@ -98,6 +101,13 @@ en:
       success: Your email address has been added to our Do Not Contact list
       failure: Failed to add email address to Do Not Contact list; please try again
       duplicate: Your email address is already on our Do Not Contact list
+
+  email_recipients:
+    confirm:
+      success: Thank you for verifying your email address
+      token_not_found: Failed to find email address; please check URL and try again
+      token_expired: Your confirmation link has expired; please request a new email and try again
+      # failure: Failed to confirm email address; please try again, or alert site admins
 
   errors:
     messages:
@@ -151,6 +161,10 @@ en:
     overview_notification:
       subject: '%{comment_author_name} commented on %{site_name}'
 
+  email_recipient_mailer:
+    confirm:
+      subject: Confirm your email address for %{site_name}
+
   user_mailer:
     welcome: Welcome, %{name}!
     hello: Hello %{name},
@@ -158,16 +172,16 @@ en:
       subject: 'Please confirm your registration on %{site_name}'
       instructions: You can confirm your email address by clicking the link below
       link_text: Confirm my address
-    password_changed:
+    password_changed_instructions:
       subject: 'Your password has been changed on %{site_name}'
       text: We're contacting you to notify you that your password has been changed.
-    reset_password:
+    reset_password_instructions:
       subject: 'Instructions for resetting your password on %{site_name}'
       instructions: Someone has requested a link to change your password. You can do this through the link below.
       link_text: Change my password
       if_not_you: If you didn't request this, please ignore this email.
       no_change: Your password won't change unless you click the link above and create a new one.
-    email_changed:
+    email_changed_instructions:
       subject: 'Changing your email address on %{site_name}'
       email_changing: We're contacting you to notify you that your email is being changed to
       email_changed: We're contacting you to notify you that your email has been changed to
@@ -233,8 +247,8 @@ en:
 
     general:
       view_admin_area: View admin area
-      view_admin_dashboard: View admin dashboard
       view_admin_toolbar: View admin toolbar
+      manage_sidekiq_jobs: Manage Sidekiq jobs
 
     stats:
       view_web: View web stats
@@ -261,12 +275,10 @@ en:
   rails_email_preview:
     emails:
       index:
-        list_title: Emails
+        title: All mailers
       show:
+        title: Preview email
         breadcrumb_list: Emails
-    admin:
-      emails:
-        title: Emails
 
   rep:
     base:
@@ -280,11 +292,14 @@ en:
       loading: Loading...
 
   admin:
-    title: Admin
-    admin_area: Admin area
+    breadcrumb: Admin
+    toolbar: Admin area
 
     invalid_url: 'Invalid URL: /admin/%{request_path}'
 
+    section: Section
+    template: Template
+    template_file: Template file
     elements:
       short_text: Short Text
       long_text: Long Text
@@ -293,12 +308,14 @@ en:
     unknown_element_type: UNKNOWN ELEMENT TYPE
 
     comments:
-      title: Spam comments
+      breadcrumb: Comments
+      menu: Spam comments
       index:
         title: Spam comment moderation
         select_all: Select all
         confirm_spam: Confirm as spam (and delete)
         remove_flag: Remove spam flag (and publish)
+        search: Search comments
       update:
         spam_or_ham: Please choose either 'confirm as spam' or 'remove spam flag'
       process_spam_comments:
@@ -308,9 +325,13 @@ en:
         failure: Failed to remove spam flags
 
     consent_versions:
-      title: Consent versions
+      breadcrumb: Consent versions
+      menu: Consent versions
       index:
         title: Consent versions
+        search: Search comments
+      show:
+        title: View consent version
       new:
         title: Add consent version
       edit:
@@ -324,22 +345,26 @@ en:
       destroy:
         success: Consent version deleted
 
-    dashboard:
-      title: Dashboard
-
     discussion:
-      title: Discussion
+      toolbar: Discussion
+      enable_comments: Enable comments
+      show_comments: Show comments
+      lock_comments: Lock comments
 
     emails:
-      title: Emails
+      breadcrumb: Emails
+      menu: Emails
 
     email_stats:
-      title: Email stats
+      breadcrumb: Stats
+      menu: Email stats
       index:
         title: Email stats
+        search: Search stats
 
     feature_flags:
-      title: Feature Flags
+      breadcrumb: Settings
+      menu: Feature Flags
       index:
         title: Feature Flags
         feature: Feature
@@ -354,10 +379,14 @@ en:
     letter_opener_web: Outbox
 
     other:
-      title: Other
+      menu: Other
+
+    sidekiq_web:
+      menu: Sidekiq dashboard
 
     site_settings:
-      title: Site settings
+      breadcrumb: Settings
+      menu: Site settings
       index:
         title: Site settings
         name: Name
@@ -372,9 +401,12 @@ en:
         unchanged: No settings were changed
 
     users:
-      title: Users
+      breadcrumb: Users
+      menu: Users
+      toolbar: Users
       index:
         title: List users
+        search: Search users
       new:
         title: Add new user
       edit:
@@ -390,22 +422,26 @@ en:
         failure: Failed to delete user
 
     stats:
-      title: Stats
+      menu: Stats
+      breadcrumb: Stats
 
     # Blazer
     charts:
-      title: Charts
-    checks:
-      title: Checks
-    dashboards:
-      title: Dashboards
-    queries:
-      title: Queries
+      menu: Charts
+      # title: Charts
+    # checks:
+      # title: Checks
+    # dashboards:
+      # title: Dashboards
+    # queries:
+      # title: Queries
 
     web_stats:
-      title: Web stats
+      breadcrumb: Stats
+      menu: Web stats
       index:
         title: Web stats
+        search: Search stats
 
 
   # ========== ( error messages for models/validations/etc ) ==========

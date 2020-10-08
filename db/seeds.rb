@@ -25,9 +25,9 @@ settings_cc   = seed CapabilityCategory, { name: 'settings'         }
 users_cc      = seed CapabilityCategory, { name: 'users'            }
 admins_cc     = seed CapabilityCategory, { name: 'admin_users'      }
 # General
-seed Capability, { name: 'view_admin_area'      }, { category: general_cc }
-seed Capability, { name: 'view_admin_dashboard' }, { category: general_cc }
-seed Capability, { name: 'view_admin_toolbar'   }, { category: general_cc }
+seed Capability, { name: 'view_admin_area'     }, { category: general_cc }
+seed Capability, { name: 'view_admin_toolbar'  }, { category: general_cc }
+seed Capability, { name: 'manage_sidekiq_jobs' }, { category: general_cc }
 # Consent Versions
 seed Capability, { name: 'list',    category: consent_cc }
 seed Capability, { name: 'add',     category: consent_cc }
@@ -137,90 +137,96 @@ seed FeatureFlag, { name: 'user_registration' }, {
 }
 
 # Settings
-setting = seed Setting, { name: 'admin_ip_list' }, {
-  description: 'IP addresses allowed to access admin area (comma-separated)',
-  level: 'site',
-  locked: true
-}
-setting.values.create_or_find_by!( value: '' )
+def set_setting( name:, value: '', description: nil, level: 'site', locked: false )
+  setting = Setting.create_or_find_by!( name: name.to_s )
+  setting.unlock
 
-setting = seed Setting, { name: 'all_comment_notifications_email' }, {
-  description: 'Set this to an email address to receive a notification for every comment posted on the site',
-  level: 'site',
-  locked: true
-}
-setting.values.create_or_find_by!( value: '' )
+  setting.update!( description: description ) if description.present?
+  setting.update!( level: level ) unless setting.level == level
 
-setting = seed Setting, { name: 'allowed_to_comment' }, {
-  description: 'Lowest-ranking user-type (Anonymous/Pseudonymous/Authenticated/None) that is allowed to post comments',
-  level: 'site',
-  locked: false
-}
-setting.values.create_or_find_by!( value: 'Anonymous' )
-setting.update( locked: true )
+  setting_value = setting.values.create_or_find_by!( user: nil )
 
-setting = seed Setting, { name: 'default_email' }, {
-  description: 'Default email address to send from',
-  level: 'site',
-  locked: false
-}
-setting.values.create_or_find_by!( value: 'admin@example.com' )
+  setting_value.update!( value: value ) unless Setting.get( name ) == value
 
-setting = seed Setting, { name: 'post_login_redirect' }, {
-  description: 'Where people are redirected after login, if no referer header',
+  setting.lock if locked
+end
+
+set_setting(
+  name: :admin_ip_list,
+  locked: true,
+  description: 'IP addresses allowed to access admin area (comma-separated)'
+)
+
+set_setting(
+  name: :all_comment_notifications_email,
+  locked: true,
+  description: 'Set this to an email address to receive a notification for every comment posted on the site'
+)
+
+set_setting(
+  name: :allowed_to_comment,
+  value: 'Anonymous',
+  description: 'Lowest-ranking user-type (Anonymous/Pseudonymous/Authenticated/None) that is allowed to post comments'
+)
+
+set_setting(
+  name: :default_email,
+  value: 'admin@example.com',
+  description: 'Default email address to send from'
+)
+
+set_setting(
+  name: :post_login_redirect,
+  value: '/',
   level: 'admin',
-  locked: false
-}
-setting.values.create_or_find_by!( value: '/' )
+  description: 'Where people are redirected after login, if no referer header'
+)
 
-setting = seed Setting, { name: 'recaptcha_comment_score' }, {
-  description: 'Minimum score for reCAPTCHA V3 on anon/pseudonymous comments',
+set_setting(
+  name: :recaptcha_comment_score,
+  value: '0.6',
   level: 'admin',
-  locked: true
-}
-setting.values.create_or_find_by!( value: '0.6' )
+  locked: true,
+  description: 'Minimum score for reCAPTCHA V3 on anon/pseudonymous comments'
+)
 
-setting = seed Setting, { name: 'recaptcha_registration_score' }, {
-  description: 'Minimum score for reCAPTCHA V3 on user registration',
+set_setting(
+  name: :recaptcha_registration_score,
+  value: '0.4',
   level: 'admin',
-  locked: true
-}
-setting.values.create_or_find_by!( value: '0.4' )
+  locked: true,
+  description: 'Minimum score for reCAPTCHA V3 on user registration'
+)
 
-setting = seed Setting, { name: 'site_name' }, {
-  description: '',
-  level: 'site',
-  locked: false
-}
-setting.values.create_or_find_by!( value: '' )
+set_setting(
+  name: :site_name,
+  value: 'MyShinySite',
+  description: 'Default email address to send from'
+)
 
-setting = seed Setting, { name: 'tag_view' }, {
-  description: "('cloud' or 'list')",
+set_setting(
+  name: :tag_view,
+  value: 'cloud',
   level: 'user',
-  locked: false
-}
-setting.values.create_or_find_by!( value: 'cloud' )
+  description: "('cloud' or 'list')"
+)
 
-setting = seed Setting, { name: 'theme_name' }, {
-  description: '',
-  level: 'site',
-  locked: false
-}
-setting.values.create_or_find_by!( value: '' )
+set_setting(
+  name: :theme_name,
+  value: ''
+)
 
-setting = seed Setting, { name: 'track_opens' }, {
-  description: 'Track email opens',
-  level: 'site',
-  locked: true
-}
-setting.values.create_or_find_by!( value: 'No' )
+set_setting(
+  name: :track_opens,
+  value: 'No',
+  description: 'Track email opens'
+)
 
-setting = seed Setting, { name: 'track_clicks' }, {
-  description: 'Track email link-clicks',
-  level: 'site',
-  locked: true
-}
-setting.values.create_or_find_by!( value: 'No' )
+set_setting(
+  name: :track_opens,
+  value: 'No',
+  description: 'Track email link-clicks'
+)
 
 # Load seed data for any ShinyCMS plugins that are enabled
 Plugin.loaded.each do |plugin|

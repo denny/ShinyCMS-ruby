@@ -26,19 +26,33 @@ RSpec.describe Admin::EmailStatsController, type: :request do
     it 'fetches the email stats for a specific user' do
       user = create :user
 
-      get email_stats_path, params: { user_id: user.id }
+      get user_email_stats_path( user.id )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.email_stats.index.title' ).titlecase
     end
 
     it 'fetches the email stats for a specific recipient (without a user account)' do
-      user = create :email_recipient
+      recipient = create :email_recipient, :confirmed
 
-      get email_stats_path, params: { user_id: user.id, user_type: 'EmailRecipient' }
+      get recipient_email_stats_path( recipient.id )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.email_stats.index.title' ).titlecase
+    end
+  end
+
+  describe 'GET /admin/email-stats/search?q=banana' do
+    it 'fetches the stats with matching details' do
+      # TODO: factory for ahoy messages
+
+      get email_stats_search_path, params: { q: 'banana' }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.email_stats.index.title' ).titlecase
+
+      # expect( response.body ).to     have_css 'td', text: 'apple'
+      expect( response.body ).not_to have_css 'td', text: 'banana'
     end
   end
 end

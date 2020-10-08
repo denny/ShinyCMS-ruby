@@ -1,10 +1,27 @@
 # frozen_string_literal: true
 
+# ShinyForms plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
+# Tests for main site form features
 RSpec.describe 'ShinyForms', type: :request do
   before :each do
     create :top_level_page
+  end
+
+  describe 'GET /contact-form' do
+    it 'loads a page with a ShinyForm embedded' do
+      template1 = create :page_template, filename: 'contact_form'
+      page1 = create :top_level_page, template: template1
+      create :plain_email_form, slug: 'contact'
+
+      get "/#{page1.slug}"
+    end
   end
 
   describe 'POST /form/testing' do

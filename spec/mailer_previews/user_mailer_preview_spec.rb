@@ -28,36 +28,36 @@ RSpec.describe UserMailerPreview, type: :request do
     end
   end
 
-  describe '.reset_password' do
+  describe '.reset_password_instructions' do
     it 'shows the password reset email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'user_mailer_preview-reset_password'
+        preview_id: 'user_mailer_preview-reset_password_instructions'
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'user_mailer.reset_password.subject', site_name: @site_name )
+        .to have_content I18n.t( 'user_mailer.reset_password_instructions.subject', site_name: @site_name )
     end
   end
 
-  describe '.password_changed' do
+  describe '.password_changed_instructions' do
     it 'shows the password changed email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'user_mailer_preview-password_changed'
+        preview_id: 'user_mailer_preview-password_changed_instructions'
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'user_mailer.password_changed.subject', site_name: @site_name )
+        .to have_content I18n.t( 'user_mailer.password_changed_instructions.subject', site_name: @site_name )
     end
   end
 
-  describe '.email_changed' do
+  describe '.email_changed_instructions' do
     it 'shows the email address changed notification email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'user_mailer_preview-email_changed'
+        preview_id: 'user_mailer_preview-email_changed_instructions'
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'user_mailer.email_changed.subject', site_name: @site_name )
+        .to have_content I18n.t( 'user_mailer.email_changed_instructions.subject', site_name: @site_name )
     end
   end
 

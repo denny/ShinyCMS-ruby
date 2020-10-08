@@ -25,23 +25,35 @@ en:
     unsubscribe: Unsubscribe
     unsubscribed: Unsubscribed
 
+    email:
+      footer:
+        click_here: Click here to
+        manage_subscriptions: manage your subscriptions
+
     subscriptions:
       index:
-        title: List subscriptions
+        title: Your mailing list subscriptions
         unsubscribe: Unsubscribe
         subscriber_not_found: Subscriber not found - please check link and try again
+        email_not_confirmed: You will not receive any email until your email address has been confirmed
       subscribe:
         success: You have been subscribed
-        failure: Failed to subscribe to mailing list - please try again
+        already_subscribed: You are already subscribed to this mailing list
+        failure: Failed to subscribe to mailing list - please check your details and try again
+        list_not_found: Mailing list not found - please inform site admins
+        consent_missing: You must check the box to subscribe - please try again
       unsubscribe:
         success: You have been unsubscribed
         failure: Unsubscribe attempt failed - please contact site admins for help
 
     admin:
       lists:
-        title: Mailing lists
+        breadcrumb: Lists
+        menu: Mailing lists
+        # toolbar: Mailing lists
         index:
           title: Mailing lists
+          search: Search lists
         new:
           title: New mailing list
         create:
@@ -55,9 +67,11 @@ en:
         destroy:
           success: Mailing list deleted
       subscriptions:
-        title: List Subscriptions
+        breadcrumb: List subscriptions
+        # toolbar: Subscriptions
         index:
           title: Subscriptions
+          search: Search subscriptions
         subscribe:
           success: Subscribed
           # failure: Failed to create subscription

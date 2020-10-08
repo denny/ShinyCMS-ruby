@@ -1,28 +1,37 @@
 <% @page_title = t( '.title' ) %>
 
-<% if @subscriptions.present? %>
+<section>
+  <header>
+    <h2>
+      <%= @page_title %>
+    </h2>
+  </header>
 
-<table>
-<% @subscriptions.each do |subscription| %>
-  <tr>
-    <td>
-      <%= subscription.list.name %>
-    </td>
-    <td>
-      <% if user_signed_in? %>
-      <%= link_to t( '.unsubscribe' ), shiny_lists.user_list_unsubscribe_path( subscription.list.slug ), method: :put %>
-      <% else %>
-      <%= link_to t( '.unsubscribe' ), shiny_lists.token_list_unsubscribe_path( subscription.list.slug, params[:token] ), method: :put %>
-      <% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
+  <% if @subscriptions.present? %>
+  <p>
+    You are managing subscriptions for <strong><%= @subscriptions.first.subscriber.obfuscated_email %></strong>.
+    If this is not you, please <% if user_signed_in? %>log out<% else %>check the link you used<% end %>!
+  </p>
 
-<% else %>
-
-<p>
-  No subscriptions found.
-</p>
-
-<% end %>
+  <table>
+    <% @subscriptions.each do |subscription| %>
+    <tr>
+      <td class="no-left-padding larger">
+        <%= subscription.list.name %>
+      </td>
+      <td>
+        <% if user_signed_in? %>
+        <%= link_to t( '.unsubscribe' ), shiny_lists.user_list_unsubscribe_path( subscription.list.slug ), method: :put, class: 'button white-text' %>
+        <% else %>
+        <%= link_to t( '.unsubscribe' ), shiny_lists.token_list_unsubscribe_path( subscription.list.slug, params[:token] ), method: :put, class: 'button white-text' %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <% else %>
+  <p>
+    No subscriptions found.
+  </p>
+  <% end %>
+</section>

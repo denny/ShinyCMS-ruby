@@ -26,10 +26,24 @@ RSpec.describe Admin::WebStatsController, type: :request do
     it 'fetches the web stats for a specific user' do
       user = create :user
 
-      get web_stats_path, params: { user_id: user.id }
+      get user_web_stats_path( user.id )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.web_stats.index.title' ).titlecase
+    end
+  end
+
+  describe 'GET /admin/web-stats/search?q=banana' do
+    it 'fetches the stats with matching details' do
+      # TODO: factory for ahoy visits
+
+      get web_stats_search_path, params: { q: 'banana' }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'admin.web_stats.index.title' ).titlecase
+
+      # expect( response.body ).to     have_css 'td', text: 'apple'
+      expect( response.body ).not_to have_css 'td', text: 'banana'
     end
   end
 end

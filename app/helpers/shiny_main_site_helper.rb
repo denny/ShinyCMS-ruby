@@ -11,20 +11,9 @@ module ShinyMainSiteHelper
   include ShinyDiscussionHelper
   include ShinyPluginHelper
   include ShinySiteNameHelper
+  include ShinyUserHelper
 
   include ActsAsTaggableOn::TagsHelper
-
-  def current_user_can?( capability, category = :general )
-    current_user&.can? capability, category
-  end
-
-  def current_user_is_admin?
-    current_user&.admin?
-  end
-
-  def current_user_is_not_admin?
-    !current_user_is_admin?
-  end
 
   def consent_version( slug )
     ConsentVersion.find_by( slug: slug )
@@ -32,9 +21,5 @@ module ShinyMainSiteHelper
 
   def setting( name )
     Setting.get( name, current_user )
-  end
-
-  def user_profile_link( user = current_user )
-    link_to user.name, shiny_profiles.profile_path( user.username )
   end
 end

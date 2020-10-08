@@ -22,16 +22,20 @@ en:
   shiny_blog:
     menu:
       title: Blog
+    profile:
+      content:
+        title: Recent blog posts
     blog:
+      n_comments:
+        zero: No comments
+        one: 1 comment
+        other: '%{count} comments'
       index:
         title: Recent blog posts
-      post:
-        footer:
-          reply: Reply to this post
-          n_comments:
-            zero: No comments
-            one: 1 comment
-            other: '%{count} comments'
+        view_post: View post
+        read_more: Read more
+      show:
+        reply: Reply to this post
       sidebar:
         links: Links
         links_blurb: Recommended reading from around the web
@@ -39,9 +43,12 @@ en:
 
     admin:
       blog_posts:
-        title: Blog
+        breadcrumb: Blog
+        menu: Blog
+        toolbar: Blog posts
         index:
           title: List blog posts
+          search: Search blog posts
         new:
           title: Add blog post
         edit:

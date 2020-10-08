@@ -21,11 +21,11 @@ class Setting < ApplicationRecord
   validates :level,  presence: true
   validates :locked, inclusion: { in: [ true, false ] }
 
-  validate :validate_not_locked, on: %i[ update destroy ]
+  validate :validate_not_locked, on: %i[ update destroy ], unless: :will_save_change_to_locked?
 
   # Before/after actions
 
-  before_update :enforce_locking
+  before_update :enforce_locking, unless: :will_save_change_to_locked?
 
   # Instance methods
 
@@ -45,6 +45,16 @@ class Setting < ApplicationRecord
     values.find_by( user_id: nil )
   end
 
+  def lock
+    return if locked?
+
+    update!( locked: true )
+  end
+
+  def unlock
+    update!( locked: false )
+  end
+
   # Class methods
 
   def self.set( name, to: )
@@ -61,6 +71,10 @@ class Setting < ApplicationRecord
     return user_value if user_value.present?
 
     setting.value
+  end
+
+  def self.true?( name )
+    %w[ TRUE True true YES Yes yes ].include? get( name )
   end
 
   def self.user_settings

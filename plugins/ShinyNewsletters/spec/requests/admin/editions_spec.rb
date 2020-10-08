@@ -29,16 +29,19 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response.body ).to have_css 'td', text: edition1.internal_name
     end
 
-    it 'sets page size and page number correctly if overridden' do
-      edition1 = create :newsletter_edition
-      edition2 = create :newsletter_edition
+    describe 'GET /admin/newsletters/editions/search?q=bobx' do
+      it 'fetches the list of editions with matching data' do
+        edition_a = create :newsletter_edition, description: 'Always appetising apples'
+        edition_b = create :newsletter_edition, description: 'Badly bruised bananas'
 
-      get shiny_newsletters.editions_path, params: { page: 2, count: 1 }
+        get shiny_newsletters.editions_search_path, params: { q: 'appetising apples' }
 
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( "#{i18n_root}.index.title" ).titlecase
-      expect( response.body ).to have_css 'td', text: edition2.internal_name
-      expect( response.body ).not_to have_css 'td', text: edition1.internal_name
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.index.title' ).titlecase
+
+        expect( response.body ).to     have_css 'td', text: edition_a.internal_name
+        expect( response.body ).not_to have_css 'td', text: edition_b.internal_name
+      end
     end
   end
 
@@ -117,6 +120,41 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response.body ).to have_css '.alert-success', text: I18n.t( "#{i18n_root}.create.success" )
       expect( response.body ).to include template1.elements.first.name
       expect( response.body ).to include template1.elements.last.name
+    end
+
+    it 'updates the element order' do
+      template_admin = create :newsletter_template_admin
+      sign_in template_admin
+
+      edition = create :newsletter_edition
+      last_element = edition.elements.last
+
+      # Put the last element first
+      ids = edition.elements.ids
+      last_id = ids.pop
+      ids.unshift last_id
+
+      query_string = ''
+      ids.each do |id|
+        query_string += "sorted[]=#{id}&"
+      end
+
+      expect( last_element.position ).to eq ids.size
+
+      put shiny_newsletters.edition_path( edition ), params: {
+        edition: {
+          internal_name: edition.internal_name
+        },
+        sort_order: query_string
+      }
+
+      expect( response      ).to have_http_status :found
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.editions.update.success' )
+
+      expect( last_element.reload.position ).to eq 1
     end
   end
 
@@ -201,23 +239,6 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( "#{i18n_root}.index.title" ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( "#{i18n_root}.send_sample.success" )
-    end
-
-    it 'attempts to send a sample email with an invalid MJML template' do
-      send_admin = create :newsletter_send_admin
-      sign_in send_admin
-
-      invalid1 = create :invalid_newsletter_template
-      edition1 = create :newsletter_edition, template: invalid1
-
-      get shiny_newsletters.send_sample_path( edition1 )
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_newsletters.editions_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( "#{i18n_root}.index.title" ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( "#{i18n_root}.send_sample.mjml_error" )
     end
   end
 

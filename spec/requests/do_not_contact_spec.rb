@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for ShinyCMS 'do not contact' feature
 RSpec.describe DoNotContactController, type: :request do
-  describe 'GET /do-not-contact' do
+  describe 'GET /email/do-not-contact' do
     it 'displays the do-not-contact form' do
       get do_not_contact_path
 
@@ -19,7 +19,7 @@ RSpec.describe DoNotContactController, type: :request do
     end
   end
 
-  describe 'POST /do-not-contact' do
+  describe 'POST /email/do-not-contact' do
     it 'adds a valid email to the do-not-contact list' do
       post do_not_contact_path, params: { email: Faker::Internet.unique.email }
 

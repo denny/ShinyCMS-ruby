@@ -7,8 +7,9 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyPages
-  # Model for 'brochure' pages
+  # Model for 'brochure' pages - part of the ShinyPages plugin for ShinyCMS
   class Page < ApplicationRecord
+    include ShinySearch::Searchable if ::Plugin.loaded? :ShinySearch
     include ShinyDemoDataProvider
     include ShinyName
     include ShinyShowHide
@@ -20,13 +21,17 @@ module ShinyPages
     belongs_to :section,  inverse_of: :all_pages, optional: true
     belongs_to :template, inverse_of: :pages
 
-    has_many :elements, inverse_of: :page, dependent: :destroy, class_name: 'PageElement'
+    has_many :elements, -> { order( :position ) }, inverse_of: :page, dependent: :destroy, class_name: 'PageElement'
 
     accepts_nested_attributes_for :elements
 
     # Validations
 
     validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
+
+    # Plugin features
+
+    searchable_by :public_name, :slug if ::Plugin.loaded? :ShinySearch # TODO: elements!
 
     # Scopes and sorting
 
@@ -41,16 +46,7 @@ module ShinyPages
       self == Page.default_page
     end
 
-    # Specify policy class for Pundit
-    def policy_class
-      self.class.policy_class
-    end
-
     # Class methods
-
-    def self.policy_class
-      PagePolicy
-    end
 
     def self.all_top_level_pages
       top_level

@@ -1,14 +1,15 @@
       <section>
         <header>
           <h2>
-            <%= t( '.recent_posts' ) %>
+            <%= link_to t( '.recent_posts' ), shiny_news.view_news_path %>
           </h2>
         </header>
         <ul>
-          <li><a href="#">A list</a></li>
-          <li><a href="#">Of links</a></li>
-          <li><a href="#">To recent</a></li>
-          <li><a href="#">News posts</a></li>
+          <% recent_news_posts(10).each do |sidebar_news_post| %>
+          <li>
+            <%= link_to sidebar_news_post.title, sidebar_news_post.path %>
+          </li>
+          <% end %>
         </ul>
       </section>
 

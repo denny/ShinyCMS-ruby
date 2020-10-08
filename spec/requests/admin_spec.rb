@@ -114,11 +114,11 @@ RSpec.describe AdminController, type: :request do
   end
 
   describe 'GET /admin redirects to the appropriate admin area for:' do
-    include_examples '/admin redirect', 'user_admin', '/admin/users',      'users'
-    include_examples '/admin redirect', 'page_admin', '/admin/pages',      'pages',      'shiny_pages'
-    include_examples '/admin redirect', 'blog_admin', '/admin/blog_posts', 'blog_posts', 'shiny_blog'
-    include_examples '/admin redirect', 'news_admin', '/admin/news_posts', 'news_posts', 'shiny_news'
-    include_examples '/admin redirect', 'list_admin', '/admin/lists',      'lists',      'shiny_lists'
+    include_examples '/admin redirect', 'user_admin', '/admin/users', 'users'
+    include_examples '/admin redirect', 'page_admin', '/admin/pages', 'pages',      'shiny_pages'
+    include_examples '/admin redirect', 'blog_admin', '/admin/blog',  'blog_posts', 'shiny_blog'
+    include_examples '/admin redirect', 'news_admin', '/admin/news',  'news_posts', 'shiny_news'
+    include_examples '/admin redirect', 'list_admin', '/admin/lists', 'lists',      'shiny_lists'
     include_examples '/admin redirect', 'newsletter_admin', '/admin/newsletters/editions', 'editions', 'shiny_newsletters'
   end
 end
