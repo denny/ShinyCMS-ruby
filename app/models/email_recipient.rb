@@ -20,13 +20,21 @@ class EmailRecipient < ApplicationRecord
   # Email stats (powered by Ahoy)
   has_many :messages, as: :user, dependent: :nullify, class_name: 'Ahoy::Message'
 
+  # Plugin features
+
+  acts_as_paranoid
+  validates_as_paranoid
+
   # Scopes
 
   scope :confirmed, -> { where.not( confirmed_at: nil ) }
 
-  # Instance methods
+  # Before/after actions
 
   after_create :send_confirm_email
+  before_destroy :redact_emails!
+
+  # Instance methods
 
   def set_confirm_token
     update!(

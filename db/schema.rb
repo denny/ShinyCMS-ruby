@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_220622) do
+ActiveRecord::Schema.define(version: 2020_10_08_234213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -171,6 +171,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_220622) do
     t.bigint "email_recipient_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_comment_authors_on_deleted_at"
     t.index ["email_recipient_id"], name: "index_comment_authors_on_email_recipient_id"
   end
 
@@ -189,7 +191,9 @@ ActiveRecord::Schema.define(version: 2020_10_08_220622) do
     t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
     t.index ["author_type", "author_id"], name: "index_comments_on_author_type_and_author_id"
+    t.index ["deleted_at"], name: "index_comments_on_deleted_at"
     t.index ["number", "discussion_id"], name: "index_comments_on_number_and_discussion_id", unique: true
   end
 
@@ -200,6 +204,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_220622) do
     t.text "admin_notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_consent_versions_on_deleted_at"
   end
 
   create_table "discussions", force: :cascade do |t|
@@ -209,6 +215,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_220622) do
     t.boolean "show_on_site", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_discussions_on_deleted_at"
     t.index ["resource_type", "resource_id"], name: "index_discussions_on_resource_type_and_resource_id"
   end
 
@@ -216,6 +224,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_220622) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_do_not_contacts_on_deleted_at"
     t.index ["email"], name: "index_do_not_contacts_on_email", unique: true
   end
 
@@ -241,6 +251,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_220622) do
     t.boolean "enabled_for_admins", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_feature_flags_on_deleted_at"
     t.index ["name"], name: "index_feature_flags_on_name", unique: true
   end
 
