@@ -61,7 +61,7 @@ module ShinyInserts
     private
 
     def stash_insert_set
-      @insert_set = ShinyInserts::Set.first
+      @insert_set = Set.first
     end
 
     # Permitted params for single-item operations

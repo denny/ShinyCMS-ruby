@@ -14,21 +14,21 @@ module ShinyPages
     helper_method :load_html_editor?
 
     def index
-      authorize ShinyPages::Page
-      authorize ShinyPages::Section
-      @top_level_items = ShinyPages::Page.all_top_level_items
+      authorize Page
+      authorize Section
+      @top_level_items = Page.all_top_level_items
       @top_level_items.each do |item|
         authorize item
       end
     end
 
     def new
-      @page = ShinyPages::Page.new
+      @page = Page.new
       authorize @page
     end
 
     def create
-      @page = ShinyPages::Page.new( page_params )
+      @page = Page.new( page_params )
       authorize @page
 
       if @page.save
@@ -40,12 +40,12 @@ module ShinyPages
     end
 
     def edit
-      @page = ShinyPages::Page.find( params[:id] )
+      @page = Page.find( params[:id] )
       authorize @page
     end
 
     def update
-      @page = ShinyPages::Page.find( params[:id] )
+      @page = Page.find( params[:id] )
       authorize @page
 
       if sort_elements && @page.update( page_params )
@@ -79,7 +79,7 @@ module ShinyPages
     end
 
     def destroy
-      page = ShinyPages::Page.find( params[:id] )
+      page = Page.find( params[:id] )
       authorize page
 
       flash[ :notice ] = t( '.success' ) if page.destroy

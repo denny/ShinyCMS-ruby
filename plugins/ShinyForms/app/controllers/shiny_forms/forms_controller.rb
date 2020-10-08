@@ -38,7 +38,7 @@ module ShinyForms
     end
 
     def set_form
-      @form = ShinyForms::Form.find_by( slug: params[:slug] )
+      @form = Form.find_by( slug: params[:slug] )
     end
 
     def form_data

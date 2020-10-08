@@ -76,7 +76,7 @@ module ShinyForms
     private
 
     def set_form
-      @form = ShinyForms::Form.find( params[:id] )
+      @form = Form.find( params[:id] )
     rescue ActiveRecord::RecordNotFound
       skip_authorization
       redirect_to forms_path, alert: t( 'shiny_forms.admin.forms.set_form.not_found' )
@@ -87,7 +87,7 @@ module ShinyForms
     end
 
     def set_form_handlers
-      handlers = ShinyForms::FormHandler::FORM_HANDLERS
+      handlers = FormHandler::FORM_HANDLERS
       @form_handlers = []
       handlers.each do |handler|
         @form_handlers << [ I18n.t( "shiny_forms.admin.forms.handlers.#{handler}" ), handler ]

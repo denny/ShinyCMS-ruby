@@ -60,7 +60,7 @@ module ShinyLists
     private
 
     def list
-      ShinyLists::List.find( params[:list_id] )
+      List.find( params[:list_id] )
     end
 
     def subscriptions

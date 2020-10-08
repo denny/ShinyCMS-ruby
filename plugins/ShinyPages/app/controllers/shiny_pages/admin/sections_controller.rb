@@ -11,17 +11,17 @@ module ShinyPages
   class Admin::SectionsController < AdminController
     # Redirect to the combined page+section list
     def index
-      authorize ShinyPages::Section
+      authorize Section
       redirect_to shiny_pages.pages_path
     end
 
     def new
-      @section = ShinyPages::Section.new
+      @section = Section.new
       authorize @section
     end
 
     def create
-      @section = ShinyPages::Section.new( section_params )
+      @section = Section.new( section_params )
       authorize @section
 
       if @section.save
@@ -33,12 +33,12 @@ module ShinyPages
     end
 
     def edit
-      @section = ShinyPages::Section.find( params[:id] )
+      @section = Section.find( params[:id] )
       authorize @section
     end
 
     def update
-      @section = ShinyPages::Section.find( params[:id] )
+      @section = Section.find( params[:id] )
       authorize @section
 
       if @section.update( section_params )
@@ -50,7 +50,7 @@ module ShinyPages
     end
 
     def destroy
-      section = ShinyPages::Section.find( params[:id] )
+      section = Section.find( params[:id] )
       authorize section
 
       flash[ :notice ] = t( '.success' ) if section.destroy

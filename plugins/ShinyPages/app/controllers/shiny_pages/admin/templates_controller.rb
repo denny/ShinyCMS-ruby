@@ -33,12 +33,12 @@ module ShinyPages
     end
 
     def new
-      @template = ShinyPages::Template.new
+      @template = Template.new
       authorize @template
     end
 
     def create
-      @template = ShinyPages::Template.new( strong_params )
+      @template = Template.new( strong_params )
       authorize @template
 
       if @template.save
@@ -50,12 +50,12 @@ module ShinyPages
     end
 
     def edit
-      @template = ShinyPages::Template.find( params[:id] )
+      @template = Template.find( params[:id] )
       authorize @template
     end
 
     def update
-      @template = ShinyPages::Template.find( params[:id] )
+      @template = Template.find( params[:id] )
       authorize @template
 
       if sort_elements && @template.update( strong_params )
@@ -74,7 +74,7 @@ module ShinyPages
     end
 
     def destroy
-      template = ShinyPages::Template.find( params[:id] )
+      template = Template.find( params[:id] )
       authorize template
 
       flash[ :notice ] = t( '.success' ) if template.destroy
