@@ -18,7 +18,7 @@ RSpec.describe EmailRecipientsController, type: :request do
     it 'confirms the email address if the token is valid' do
       recipient = create :email_recipient
 
-      get confirm_email_path( recipient.token )
+      get confirm_email_path( recipient.confirm_token )
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to root_path
@@ -42,7 +42,7 @@ RSpec.describe EmailRecipientsController, type: :request do
       recipient.set_confirm_token
       recipient.update!( confirm_sent_at: 1.month.ago )
 
-      get confirm_email_path( recipient.token )
+      get confirm_email_path( recipient.confirm_token )
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to root_path

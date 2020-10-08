@@ -38,13 +38,13 @@ class EmailRecipient < ApplicationRecord
 
   def send_confirm_email
     set_confirm_token
-    EmailRecipientMailer.confirm( self )
+    EmailRecipientMailer.confirm( self ).deliver_later
   end
 
   def confirm
     return false if confirm_expired?
 
-    update!( confirmed_at: Time.zone.now )
+    update!( confirmed_at: Time.zone.now, confirm_token: nil )
   end
 
   def confirmed?

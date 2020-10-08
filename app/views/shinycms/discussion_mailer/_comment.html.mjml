@@ -1,7 +1,11 @@
 <% indent ||= '' %>
+<% if comment.title.present? %>
 <mj-text>
-  <% if comment.title.present? %><%= indent %><%= comment.title %>
-
-  <% end %><% if comment.body.present? %><%= indent %><%= comment.body %>
-  <% end %>
+  <%= indent %><%= comment.title %>
 </mj-text>
+<% end %>
+<% if comment.body.present? %>
+<mj-text>
+  <%= indent %><%= comment.body %>
+</mj-text>
+<% end %>
