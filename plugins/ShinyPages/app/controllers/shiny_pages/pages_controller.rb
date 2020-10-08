@@ -9,7 +9,7 @@
 module ShinyPages
   # Main site controller - ShinyPages plugin for ShinyCMS
   class PagesController < MainController
-    include ShinyPages::MainSiteHelper
+    include MainSiteHelper
 
     # Handle requests for the root page
     # /  (or /pages)
