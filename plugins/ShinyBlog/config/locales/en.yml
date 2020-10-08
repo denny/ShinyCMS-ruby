@@ -19,6 +19,10 @@ en:
     blog_posts:
       change_author: Change author
 
+  models:
+    human_names:
+      shiny_blog_post: blog post
+
   shiny_blog:
     menu:
       title: Blog
