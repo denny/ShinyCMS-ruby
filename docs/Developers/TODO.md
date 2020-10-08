@@ -1,15 +1,8 @@
 # ShinyCMS: TODO
 
+* Move this list into GitHub issues?
+
 ## Fixes and refactoring of code already written
-
-* Investigate and fix blank email issue
-
-* Move most of this list into GitHub issues
-  * Put the whole 'planned features' TODO list in there?
-
-* Make a generic sidebar template that renders any partials in a specified directory
-
-* Add subscription-management links to list emails
 
 * Highlight section name in admin area menu when on a page which isn't in the menu
   (e.g. 'Edit page', clicking around in Blazer, etc)
@@ -33,6 +26,7 @@
 
 * Some sort of file-picker (for image elements, CKEditor, etc)
   * https://ckeditor.com/docs/ckeditor5/latest/features/image-upload/ckfinder.html
+  * Integrate functionality from MahBucket here?
 
 * Site map
 
@@ -66,6 +60,8 @@
 ## New features that I'd like to add / features that I'd like to totally rebuild
 
 ### Small-ish
+
+* Make a generic sidebar template that renders any partials in a specified directory
 
 * 'Deploy to Heroku' button
   * https://devcenter.heroku.com/articles/heroku-button
