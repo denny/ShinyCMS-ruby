@@ -2,8 +2,12 @@ PATH
   remote: plugins/ShinyBlog
   specs:
     shiny_blog (20.10)
+      acts-as-taggable-on
+      acts_as_paranoid
+      kaminari
       pg (>= 0.18, < 2.0)
-      rails (~> 6.0.3, >= 6.0.3.2)
+      pundit
+      rails (~> 6.0.3, >= 6.0.3.4)
 
 PATH
   remote: plugins/ShinyForms
