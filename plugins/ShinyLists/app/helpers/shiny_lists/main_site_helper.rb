@@ -10,11 +10,11 @@ module ShinyLists
   # Helper method for finding mailing lists - part of ShinyLists plugin for ShinyCMS
   module MainSiteHelper
     def find_list_by_slug( slug )
-      ShinyLists::List.find_by( slug: slug )
+      List.find_by( slug: slug )
     end
 
     def most_recent_list
-      ShinyLists::List.order( :created_at ).last
+      List.order( :created_at ).last
     end
   end
 end

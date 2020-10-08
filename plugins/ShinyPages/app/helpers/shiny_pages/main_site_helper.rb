@@ -10,7 +10,7 @@ module ShinyPages
   # Helper methods for dealing with Pages and Page Sections
   module MainSiteHelper
     def find_default_page
-      ShinyPages::Page.readonly.default_page
+      Page.readonly.default_page
     end
 
     def find_top_level_page( slug )
@@ -22,11 +22,11 @@ module ShinyPages
     end
 
     def top_level_pages
-      ShinyPages::Page.readonly.top_level_pages
+      Page.readonly.top_level_pages
     end
 
     def top_level_sections
-      ShinyPages::Section.readonly.top_level_sections
+      Section.readonly.top_level_sections
     end
   end
 end

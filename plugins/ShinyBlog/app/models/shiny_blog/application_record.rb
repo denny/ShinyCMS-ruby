@@ -12,7 +12,7 @@ module ShinyBlog
     self.abstract_class = true
 
     def url_helpers
-      ShinyBlog::Engine.routes.url_helpers
+      Engine.routes.url_helpers
     end
   end
 end

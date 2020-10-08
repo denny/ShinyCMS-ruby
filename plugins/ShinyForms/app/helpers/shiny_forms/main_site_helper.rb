@@ -10,7 +10,7 @@ module ShinyForms
   # Helper method for finding form handlers - part of ShinyForms plugin for ShinyCMS
   module MainSiteHelper
     def find_form_by_slug( slug )
-      ShinyForms::Form.find_by( slug: slug )
+      Form.find_by( slug: slug )
     end
   end
 end
