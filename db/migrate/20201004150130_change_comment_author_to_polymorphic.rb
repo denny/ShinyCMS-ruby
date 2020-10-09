@@ -1,10 +1,10 @@
 class ChangeCommentAuthorToPolymorphic < ActiveRecord::Migration[6.0]
   def change
-    Comments.where( author_type: 'anonymous'    ).update_all!( author_type: nil             )
-    Comments.where( author_type: 'pseudonymous' ).update_all!( author_type: 'CommentAuthor' )
-    Comments.where( author_type: 'verified'     ).update_all!( author_type: 'User'          )
+    Comment.where( author_type: 'anonymous'    ).update_all!( author_type: nil             )
+    Comment.where( author_type: 'pseudonymous' ).update_all!( author_type: 'CommentAuthor' )
+    Comment.where( author_type: 'verified'     ).update_all!( author_type: 'User'          )
 
-    Comments.where( author_type: 'CommentAuthor' ).each do |comment|
+    Comment.where( author_type: 'CommentAuthor' ).each do |comment|
       author = CommentAuthor.create!(
         name: comment.author_name,
         website: comment.author_url,
