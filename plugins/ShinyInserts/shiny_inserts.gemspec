@@ -46,7 +46,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'kaminari'
 
   # CKEditor: WYSIWYG editor for admin area
-  gem 'ckeditor'
+  spec.add_dependency 'ckeditor'
 
   # Testing
   spec.add_development_dependency 'factory_bot_rails'
