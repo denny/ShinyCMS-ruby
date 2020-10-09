@@ -2,6 +2,10 @@
 
 ## Feature Flags
 
-Quickly and easily enable or disable CMS features (e.g. 'new user registrations') in CMS admin area
+Quickly and easily enable or disable CMS features (e.g. 'new user registrations') in the admin area.
 
-Rake task too
+Can be controlled via a rake task too:
+```
+rails shiny:features:list
+rails shiny:feature:off[user_registrations]
+```
