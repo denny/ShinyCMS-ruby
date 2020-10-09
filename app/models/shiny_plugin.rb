@@ -6,12 +6,12 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Model to provide convenience methods for dealing with ShinyCMS plugins
-class Plugin
+# Provides convenience methods for interacting with ShinyCMS plugins
+class ShinyPlugin
   attr_accessor :name
 
   def initialize( name )
-    return unless Plugin.all_names.include? name
+    return unless ShinyPlugin.all_names.include? name
 
     @name = name
   end
@@ -64,7 +64,7 @@ class Plugin
   def self.loaded
     return @loaded if @loaded
 
-    loaded_plugins = loaded_names.collect { |name| Plugin.new( name ) }
+    loaded_plugins = loaded_names.collect { |name| ShinyPlugin.new( name ) }
     @loaded = loaded_plugins
   end
 

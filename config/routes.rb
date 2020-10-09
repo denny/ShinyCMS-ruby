@@ -145,7 +145,7 @@ Rails.application.routes.draw do
     ########################################
     # ShinyCMS plugins
 
-    Plugin.loaded.each do |plugin|
+    ShinyPlugin.loaded.each do |plugin|
       mount plugin.engine, at: '/' if plugin.engine.present?
     end
 

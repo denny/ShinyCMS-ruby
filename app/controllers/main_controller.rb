@@ -11,7 +11,7 @@ class MainController < ApplicationController
   include FeatureFlagsHelper
   include ShinyMainSiteHelper
 
-  Plugin.with_main_site_helpers.each do |plugin|
+  ShinyPlugin.with_main_site_helpers.each do |plugin|
     helper plugin.main_site_helper
   end
 
@@ -74,7 +74,7 @@ class MainController < ApplicationController
     prepend_view_path 'app/views/shinycms'
 
     # Add the default templates directory for any loaded plugins above that
-    Plugin.with_views.each do |plugin|
+    ShinyPlugin.with_views.each do |plugin|
       prepend_view_path plugin.view_path
     end
 
