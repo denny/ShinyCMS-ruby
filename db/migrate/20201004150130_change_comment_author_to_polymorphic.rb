@@ -15,7 +15,8 @@ class ChangeCommentAuthorToPolymorphic < ActiveRecord::Migration[6.0]
       if comment.author_email.present?
         author.email_recipient.create!(
           name: comment.author_name,
-          email: comment.author_email
+          email: comment.author_email,
+          ip_address: comment.ip_address
         )
       end
     end
