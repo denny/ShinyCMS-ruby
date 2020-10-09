@@ -53,6 +53,7 @@ class Admin::UsersController < AdminController
   def update
     @user = User.find( params[:id] )
     authorize @user
+    @user.skip_reconfirmation!
 
     if @user.update_without_password( user_params )
       redirect_to edit_user_path( @user ), notice: t( '.success' )

@@ -142,7 +142,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.templates.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_pages.admin.templates.update.success' )
-      expect( response.body ).to include 'Updated by test'
+      expect( response.body ).to have_field 'template[name]', with: 'Updated by test'
     end
 
     it 'updates the element order' do

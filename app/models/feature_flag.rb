@@ -16,6 +16,11 @@ class FeatureFlag < ApplicationRecord
   validates :enabled_for_logged_in, inclusion: { in: [ true, false ] }
   validates :enabled_for_admins,    inclusion: { in: [ true, false ] }
 
+  # Plugin features
+
+  acts_as_paranoid
+  validates_as_paranoid
+
   # Instance methods
 
   def enable

@@ -15,6 +15,11 @@ class Setting < ApplicationRecord
 
   has_many :values, inverse_of: :setting, dependent: :destroy, class_name: 'SettingValue'
 
+  # Plugin features
+
+  acts_as_paranoid
+  validates_as_paranoid
+
   # Validations
 
   validates :name,   presence: true

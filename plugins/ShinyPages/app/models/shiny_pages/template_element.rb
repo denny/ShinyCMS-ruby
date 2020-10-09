@@ -10,12 +10,6 @@ module ShinyPages
   # Model class for template elements - part of the ShinyPages plugin for ShinyCMS
   class TemplateElement < ApplicationRecord
     include ShinyDemoDataProvider
-    include ShinyElement
-
-    belongs_to :template, inverse_of: :elements
-
-    validates :template, presence: true
-
-    acts_as_list scope: :template
+    include ShinyTemplateElement
   end
 end

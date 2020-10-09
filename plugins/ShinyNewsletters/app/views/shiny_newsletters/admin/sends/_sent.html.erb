@@ -20,7 +20,7 @@
     <% @sent.each do |send| %>
     <tr>
       <td>
-        <%= link_to send.edition.internal_name, edit_edition_path( send.edition ) %>
+        <%= link_to send.edition.internal_name, shiny_newsletters.edit_edition_path( send.edition ) %>
       </td>
       <td>
         <%= link_to send.list.internal_name, shiny_lists.edit_list_path( send.list ) %>

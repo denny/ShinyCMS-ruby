@@ -13,6 +13,14 @@ module ShinyForms
     include ShinyName
     include ShinySlug
 
+    # Plugin features
+
+    acts_as_paranoid
+    validates_as_paranoid
+    paginates_per 20
+
+    # Validations
+
     validates :slug, uniqueness: true
 
     # Instance methods

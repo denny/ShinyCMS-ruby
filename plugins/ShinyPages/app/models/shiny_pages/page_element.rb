@@ -13,13 +13,21 @@ module ShinyPages
     include ShinyDemoDataProvider
     include ShinyElement
 
+    # Assocations
+
     belongs_to :page, inverse_of: :elements
 
-    validates :page, presence: true
+    # Plugin features
 
     acts_as_list scope: :page
 
     searchable_by :content if ::Plugin.loaded? :ShinySearch # TODO
+
+    # Validations
+
+    validates :page, presence: true
+
+    # Instance methods
 
     def hidden?
       false

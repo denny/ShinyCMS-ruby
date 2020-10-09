@@ -13,6 +13,11 @@ class DoNotContact < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
 
+  # Plugin features
+
+  acts_as_paranoid
+  validates_as_paranoid
+
   # Before/after actions
 
   before_save :redact_email

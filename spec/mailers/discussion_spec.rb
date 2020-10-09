@@ -64,7 +64,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
       subject = I18n.t(
         'discussion_mailer.discussion_notification.subject',
         comment_author_name: comment.author_name_or_anon,
-        content_type: 'blog post',
+        content_type: I18n.t( 'models.names.shiny_blog_post' ),
         site_name: @site_name
       )
 

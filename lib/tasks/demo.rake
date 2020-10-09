@@ -28,7 +28,12 @@ namespace :shiny do
     task load: prereqs do
       @shiny_admin.skip_confirmation!
       @shiny_admin.save!
-      @shiny_admin.grant_all_capabilities
+
+      User.transaction do
+        Capability.all.find_each do |capability|
+          @shiny_admin.user_capabilities.create! capability: capability
+        end
+      end
 
       Setting.set :theme_name, to: 'halcyonic'
 
@@ -119,15 +124,13 @@ namespace :shiny do
 
     def models_to_reorder
       # FIXME: can the plugins provide a load order for their models?
+      # rubocop:disable Layout/MultilineArrayLineBreaks
       %w[
-        ShinyPages::Page
-        ShinyPages::PageElement
-        ShinyNewsletters::Edition
-        ShinyNewsletters::EditionElement
-        ShinyNewsletters::Send
-        Discussion
-        Comment
+        Discussion Comment
+        ShinyPages::Page ShinyPages::PageElement
+        ShinyNewsletters::Edition ShinyNewsletters::EditionElement ShinyNewsletters::Send
       ]
+      # rubocop:enable Layout/MultilineArrayLineBreaks
     end
 
     def remove_models_from_list( model_names )

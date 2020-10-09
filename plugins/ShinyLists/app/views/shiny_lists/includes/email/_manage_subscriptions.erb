@@ -1,0 +1,6 @@
+<%= t( 'shiny_lists.email.footer.click_here' ) %>
+<% if @user.is_a? EmailRecipient %>
+  <%= link_to I18n.t( 'shiny_lists.email.footer.manage_subscriptions' ), shiny_lists.token_list_subscriptions_url( @user.token ) %>
+<% else %>
+  <%= link_to I18n.t( 'shiny_lists.email.footer.manage_subscriptions' ), shiny_lists.user_list_subscriptions_url %>
+<% end %>

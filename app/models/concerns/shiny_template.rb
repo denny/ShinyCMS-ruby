@@ -25,6 +25,9 @@ module ShinyTemplate
 
     # Plugins
 
+    acts_as_paranoid
+    validates_as_paranoid
+
     paginates_per 20
 
     # Before/after actions

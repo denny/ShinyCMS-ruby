@@ -25,12 +25,6 @@ module ShinyNews
         posted_year, posted_month, slug, anchor: anchor
       )
     end
-
-    # Class methods
-
-    def self.human_name
-      'news post'
-    end
   end
 end
 

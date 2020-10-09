@@ -26,16 +26,20 @@ module ShinyBlog
     end
 
     def show
-      @post = Post.find_post( strong_params[:year], strong_params[:month], strong_params[:slug] )
+      @post = Post.find_post( *post_path_params )
       return if @post.present?
 
-      render 'errors/404', status: :not_found, locals: { resource_type: Post.human_name }
+      render 'errors/404', status: :not_found, locals: { resource_type: I18n.t( 'models.names.shiny_blog_post' ) }
     end
 
     private
 
     def strong_params
       params.permit( :year, :month, :slug, :page, :count, :size, :per )
+    end
+
+    def post_path_params
+      [ strong_params[:year], strong_params[:month], strong_params[:slug] ]
     end
 
     def check_feature_flags
