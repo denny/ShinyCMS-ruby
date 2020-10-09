@@ -11,6 +11,13 @@ module ShinyWithTemplate
   extend ActiveSupport::Concern
 
   included do
+    # Plugin features
+
+    acts_as_paranoid
+    validates_as_paranoid
+
+    paginates_per 20
+
     # Validations
 
     validates :template, presence: true
@@ -18,10 +25,6 @@ module ShinyWithTemplate
     # Before/after actions
 
     after_create :add_elements
-
-    # Plugins
-
-    paginates_per 20
 
     # Instance methods
 

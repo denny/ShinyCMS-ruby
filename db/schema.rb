@@ -12,7 +12,7 @@
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2020_10_09_144833) do
+ActiveRecord::Schema.define(version: 2020_10_09_163441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -403,6 +403,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_144833) do
     t.bigint "edition_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_newsletters_edition_elements_on_deleted_at"
     t.index ["edition_id"], name: "index_shiny_newsletters_edition_elements_on_edition_id"
   end
 
@@ -419,6 +421,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_144833) do
     t.datetime "published_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_newsletters_editions_on_deleted_at"
     t.index ["template_id"], name: "index_shiny_newsletters_editions_on_template_id"
   end
 
@@ -430,6 +434,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_144833) do
     t.datetime "finished_sending_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_newsletters_sends_on_deleted_at"
     t.index ["edition_id"], name: "index_shiny_newsletters_sends_on_edition_id"
     t.index ["list_id"], name: "index_shiny_newsletters_sends_on_list_id"
   end
@@ -442,6 +448,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_144833) do
     t.bigint "template_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_newsletters_template_elements_on_deleted_at"
     t.index ["template_id"], name: "index_shiny_newsletters_template_elements_on_template_id"
   end
 
@@ -451,6 +459,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_144833) do
     t.string "filename", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_newsletters_templates_on_deleted_at"
   end
 
   create_table "shiny_pages_page_elements", force: :cascade do |t|
@@ -461,6 +471,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_144833) do
     t.bigint "page_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_pages_page_elements_on_deleted_at"
     t.index ["page_id"], name: "index_shiny_pages_page_elements_on_page_id"
   end
 
@@ -476,6 +488,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_144833) do
     t.bigint "template_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_pages_pages_on_deleted_at"
     t.index ["section_id", "slug"], name: "index_pages_on_section_id_and_slug", unique: true
     t.index ["section_id"], name: "index_shiny_pages_pages_on_section_id"
     t.index ["template_id"], name: "index_shiny_pages_pages_on_template_id"
@@ -493,6 +507,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_144833) do
     t.bigint "default_page_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_pages_sections_on_deleted_at"
     t.index ["section_id", "slug"], name: "index_page_sections_on_section_id_and_slug", unique: true
     t.index ["section_id"], name: "index_shiny_pages_sections_on_section_id"
   end
@@ -505,6 +521,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_144833) do
     t.bigint "template_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_pages_template_elements_on_deleted_at"
     t.index ["template_id"], name: "index_shiny_pages_template_elements_on_template_id"
   end
 
@@ -514,6 +532,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_144833) do
     t.string "filename", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_pages_templates_on_deleted_at"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|

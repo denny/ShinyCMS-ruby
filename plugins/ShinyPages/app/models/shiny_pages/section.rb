@@ -28,6 +28,9 @@ module ShinyPages
 
     # Plugin features
 
+    acts_as_paranoid
+    validates_as_paranoid
+
     searchable_by :public_name, :slug if ::Plugin.loaded? :ShinySearch
 
     # Scopes and sorting
