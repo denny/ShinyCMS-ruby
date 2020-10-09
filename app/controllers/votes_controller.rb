@@ -46,7 +46,7 @@ class VotesController < MainController
   end
 
   def votable_models_in_plugins
-    Plugin.models_that_are_votable.collect( &:name )
+    ShinyPlugin.models_that_are_votable.collect( &:name )
   end
 
   def find_voter

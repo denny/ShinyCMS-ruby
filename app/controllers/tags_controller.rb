@@ -40,7 +40,7 @@ class TagsController < MainController
   private
 
   def taggable_models
-    [ taggable_models_in_core + Plugin.models_that_are_taggable ].flatten
+    [ taggable_models_in_core + ShinyPlugin.models_that_are_taggable ].flatten
   end
 
   def taggable_models_in_core

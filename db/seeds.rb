@@ -229,7 +229,7 @@ set_setting(
 )
 
 # Load seed data for any ShinyCMS plugins that are enabled
-Plugin.loaded.each do |plugin|
+ShinyPlugin.loaded.each do |plugin|
   Rake::Task[ "#{plugin.name.underscore}:db:seed" ].invoke
 end
 

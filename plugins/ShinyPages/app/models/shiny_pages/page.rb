@@ -9,7 +9,7 @@
 module ShinyPages
   # Model for 'brochure' pages - part of the ShinyPages plugin for ShinyCMS
   class Page < ApplicationRecord
-    include ShinySearch::Searchable if ::Plugin.loaded? :ShinySearch
+    include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
     include ShinyDemoDataProvider
     include ShinyName
     include ShinyShowHide
@@ -31,7 +31,7 @@ module ShinyPages
 
     # Plugin features
 
-    searchable_by :public_name, :slug if ::Plugin.loaded? :ShinySearch # TODO: elements!
+    searchable_by :public_name, :slug if ShinyPlugin.loaded? :ShinySearch # TODO: elements!
 
     # Scopes and sorting
 

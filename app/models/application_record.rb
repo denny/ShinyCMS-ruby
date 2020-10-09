@@ -11,7 +11,7 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   def self.models_with_demo_data
-    [ core_models_with_demo_data + Plugin.models_with_demo_data ].flatten.sort
+    [ core_models_with_demo_data + ShinyPlugin.models_with_demo_data ].flatten.sort
   end
 
   def self.core_models_with_demo_data
