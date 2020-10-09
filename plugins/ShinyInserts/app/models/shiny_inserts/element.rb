@@ -12,7 +12,16 @@ module ShinyInserts
     include ShinyDemoDataProvider
     include ShinyElement
 
+    # Associations
+
     belongs_to :set, inverse_of: :elements, class_name: 'ShinyInserts::Set'
+
+    # Plugin features
+
+    acts_as_paranoid
+    validates_as_paranoid
+
+    # Validations
 
     validates :set, presence: true
   end

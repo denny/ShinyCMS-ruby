@@ -32,10 +32,21 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
-  spec.add_dependency 'rails', '~> 6.0.3', '>= 6.0.3.2'
+  spec.add_dependency 'rails', '~> 6.0.3', '>= 6.0.3.4'
 
   spec.add_dependency 'pg', '>= 0.18', '< 2.0'
 
+  # Authorisation
+  spec.add_dependency 'pundit'
+
+  # Soft delete
+  spec.add_dependency 'acts_as_paranoid'
+
+  # Pagination
+  spec.add_dependency 'kaminari'
+
+  # Testing
   spec.add_development_dependency 'factory_bot_rails'
+  spec.add_development_dependency 'faker'
   spec.add_development_dependency 'rspec-rails'
 end
