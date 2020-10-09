@@ -73,8 +73,6 @@
 
 * Configurable (per-site and per-user) menu order in admin area
 
-* Better tooling for loading (and ideally, for creating/updating) the demo data
-
 * In admin area, load the full dataset for user capabilities, feature flags,
   and possibly site settings, and stick them in some hashes, with some helper
   methods to check them. The menu already makes a crazy amount of hits on the

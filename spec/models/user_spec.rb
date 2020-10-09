@@ -46,4 +46,10 @@ RSpec.describe User, type: :model do
       expect( result.id ).to eq @user.id
     end
   end
+
+  context 'concerns' do
+    it_should_behave_like ShinyEmail do
+      let( :addressee ) { create :user }
+    end
+  end
 end
