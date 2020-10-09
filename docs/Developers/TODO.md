@@ -93,9 +93,6 @@
 
 ### Medium-ish
 
-* Add acts_as_paranoid to everything (soft delete)
-  * https://github.com/ActsAsParanoid/acts_as_paranoid
-
 * Add folding to page sections on /admin/pages
   * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
   * Decide 'intelligently' whether to fold all/none/some
