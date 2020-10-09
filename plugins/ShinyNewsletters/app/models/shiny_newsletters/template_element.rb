@@ -10,12 +10,6 @@ module ShinyNewsletters
   # Model for newsletter template elements
   class TemplateElement < ApplicationRecord
     include ShinyDemoDataProvider
-    include ShinyElement
-
-    belongs_to :template, inverse_of: :elements
-
-    validates :template, presence: true
-
-    acts_as_list scope: :template
+    include ShinyTemplateElement
   end
 end

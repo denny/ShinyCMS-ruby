@@ -12,5 +12,10 @@ module ShinyInserts
     has_many :elements, -> { order(:name) }, inverse_of: :set, dependent: :destroy, class_name: 'ShinyInserts::Element'
 
     accepts_nested_attributes_for :elements
+
+    # Plugin features
+
+    acts_as_paranoid
+    validates_as_paranoid
   end
 end

@@ -19,6 +19,11 @@ class Discussion < ApplicationRecord
   has_many :all_comments, inverse_of: :discussion, dependent: :destroy, class_name: 'Comment'
   # TODO: Get rid of .all_comments; only used to find the next .number when creating a new comment
 
+  # Plugin features
+
+  acts_as_paranoid
+  validates_as_paranoid
+
   # Instance methods
 
   def notifiable?

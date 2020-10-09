@@ -13,6 +13,11 @@ class SettingValue < ApplicationRecord
   belongs_to :setting, inverse_of: :values
   belongs_to :user,    inverse_of: :settings, optional: true
 
+  # Plugin features
+
+  acts_as_paranoid
+  validates_as_paranoid
+
   # Validations
 
   validates :setting_id, presence: true

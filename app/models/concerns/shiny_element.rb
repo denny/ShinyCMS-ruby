@@ -17,10 +17,19 @@ module ShinyElement
   private_constant :ANCHORED_ELEMENT_NAME_REGEX
 
   included do
+    # Plugin features
+
+    acts_as_paranoid
+    validates_as_paranoid
+
+    # Validations
+
     validates :name, presence: true
     validates :name, format:   ANCHORED_ELEMENT_NAME_REGEX
 
     before_validation :format_name, if: -> { name.present? }
+
+    # Instance methods
 
     def format_name
       self.name = name.parameterize.underscore
