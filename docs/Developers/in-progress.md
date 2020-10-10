@@ -26,20 +26,19 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
         you could include those into any site with Devise-powered auth and then use any ShinyPlugin
     * Move each plugin into its own separate gem
       * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
+      * Look at Combustion, for minimal test apps for gems: https://github.com/pat/combustion
 
-* Blazer dashboards / charts / etc
-  * https://github.com/ankane/blazer
+* Blazer dashboards / charts / etc: https://github.com/ankane/blazer
   * This is merged, but needs a default dashboard and queries setting up
 
-* Algolia search backend
-	* https://devcenter.heroku.com/articles/algoliasearch#using-with-rails
+* Algolia search backend: https://devcenter.heroku.com/articles/algoliasearch#using-with-rails
   * NB: Not free to non-commercial sites using the CMS :(
 
 * Multiple blog support
-  * The Perl version had some unfinished code for having multiple blogs on a single 'journal style' site
-  * When I reimplemented the Blog feature I split it into two plugins:
-    * ShinyBlog (single blog, finished (for now) and merged)
-    * ShinyBlogs (multi-blog, not finished, still in a branch)
+  * The Perl version had half-finished code for hosting multiple blogs on a single 'journal' site
+  * In the Ruby version, this has been split it into two plugins:
+    * ShinyBlog (single blog) - finished (for now) and merged
+    * ShinyBlogs (multi-blog) - not finished, still in a branch
 
 
 ## Done / TODO
