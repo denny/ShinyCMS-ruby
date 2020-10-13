@@ -178,7 +178,7 @@ GEM
     algoliasearch-rails (1.24.1)
       algoliasearch (>= 1.26.0, < 2.0.0)
       json (>= 1.5.1)
-    amazing_print (1.2.1)
+    amazing_print (1.2.2)
     ast (2.4.1)
     aws-eventstream (1.1.0)
     aws-partitions (1.380.0)
