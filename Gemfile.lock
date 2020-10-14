@@ -385,9 +385,9 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
-    rails-pg-extras (1.2.1)
+    rails-pg-extras (1.2.4)
       activerecord
-      ruby-pg-extras (= 1.2.1)
+      ruby-pg-extras (= 1.2.4)
     rails_email_preview (2.2.2)
       rails (>= 4.2)
       request_store
@@ -452,7 +452,7 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 0.87.0)
-    ruby-pg-extras (1.2.1)
+    ruby-pg-extras (1.2.4)
       pg
       terminal-table
     ruby-progressbar (1.10.1)
