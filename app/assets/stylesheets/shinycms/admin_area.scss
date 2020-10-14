@@ -199,7 +199,7 @@ main p {
 }
 
 form .ui-sortable-handle {
-  background:       image-url( 'shinycms/admin/icons/up-down-icon.png' ) left 0.4em no-repeat;
+  background:       image-url( 'shinycms/admin/icons/up-down-icon.png' ) left 0.5em no-repeat;
   width:            1.5em;
 }
 
@@ -324,14 +324,17 @@ main label {
   padding-bottom:   0;
 }
 
-main input {
+main input, select, textarea {
   background:       $input-bg;
   border:           1px solid $input-border;
   color:            $input-fg;
+  margin:           0.2em 0.2em 0.2em 0;
+  padding:          0.3em 0.5em;
+}
+
+main input {
   height:           2em;
   line-height:      1.5;
-  margin:           0.2em 0.2em 0.2em 0;
-  padding-left:     0.5em;
 }
 
 main [type=file] {
@@ -342,21 +345,13 @@ main [type=file] {
 }
 
 main select {
-  background:       $input-bg;
-  border:           1px solid $input-border;
-  color:            $input-fg;
   height:           2em;
-  margin-bottom:    0.5em;
   min-width:        10em;
   padding:          0.3em;
 }
 
 main textarea {
-  background:       $input-bg;
-  border:           1px solid $input-border;
-  color:            $input-fg;
   min-width:        800px;
-  padding:          0.3em 0.5em;
 }
 
 main [type=text] {
@@ -405,6 +400,10 @@ main [type=reset]:hover {
 
 main .top-margin {
   margin-top:       1.5em;
+}
+
+table.elements {
+  margin-left:      0.5em;
 }
 
 // fieldset for bottom-of-page 'add new element' forms
