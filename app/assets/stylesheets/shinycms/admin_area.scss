@@ -55,9 +55,9 @@ $alert-bg:          $light-red;
 $notice-bg:         $light-green;
 
 $highlight-colour:  $very-light-blue;
-$lighter-colour:    $lighter-blue;
-$light-colour:      $light-blue;
 $dark-colour:       $dark-blue;
+$light-colour:      $light-blue;
+$lighter-colour:    $lighter-blue;
 
 $button-text:       $dark-colour;
 $input-border:      $lighter-colour;
@@ -182,11 +182,29 @@ main p {
   margin:           0.5em 0 0 0.5em;
 }
 
+
 .alert {
   border:           1px solid $grey;
   color:            $dark-grey;
   font-size:        1.1em;
   padding:          0.5em 1em;
+}
+
+
+// ========== ( drag-to-sort ) ==========
+
+.handle {
+  background:       image-url( 'shinycms/admin/icons/up-down-icon.png' ) left 0.5em no-repeat;
+  vertical-align:   top;
+  width:            1.5em;
+}
+
+.ui-sortable-handle {
+  cursor:           grab;
+}
+
+.ui-sortable-handle:active {
+  cursor:           grabbing;
 }
 
 
@@ -204,20 +222,24 @@ main p {
   border-top:       0;
 }
 
-.table-striped .width25pc {
-  width:            25%;
+.table-striped .width5pc {
+  width:            5%;
 }
 
-.table-striped .width50pc {
-  width:            50%;
+.table-striped .width16pc {
+  width:            16%;
 }
 
 .table-striped .width20pc {
   width:            20%;
 }
 
-.table-striped .width16pc {
-  width:            16%;
+.table-striped .width25pc {
+  width:            25%;
+}
+
+.table-striped .width50pc {
+  width:            50%;
 }
 
 .table-striped .collapse-toggle {
@@ -383,14 +405,6 @@ main [type=reset]:hover {
 
 main .top-margin {
   margin-top:       1.5em;
-}
-
-// Sortable elements
-.ui-sortable-handle {
-  cursor:           grabbing;
-  font-size:        1.2em;
-  padding-left:     0.4em;
-  vertical-align:   middle;
 }
 
 // fieldset for bottom-of-page 'add new element' forms
