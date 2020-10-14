@@ -19,12 +19,12 @@
     </script>
     <% end %>
 
-    <%= stylesheet_link_tag 'https://unpkg.com/@coreui/icons@1.0.0/css/free.min.css' %>
     <%= stylesheet_link_tag 'https://unpkg.com/@coreui/coreui@3.0.0/dist/css/coreui.min.css' %>
-    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Noto+Sans+TC|Ubuntu|Roboto+Condensed|Roboto&display=swap' %>
-    <%= stylesheet_link_tag 'shinycms/admin_area', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'https://unpkg.com/@coreui/icons@1.0.0/css/free.min.css' %>
 
-    <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js' %>
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Noto+Sans+TC|Ubuntu|Roboto+Condensed|Roboto&display=swap' %>
+
+    <%= stylesheet_link_tag 'shinycms/admin_area', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <% unless controller.kind_of? Blazer::BaseController %>
     <%= javascript_include_tag Ckeditor.cdn_url if load_html_editor? %>

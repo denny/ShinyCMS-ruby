@@ -55,9 +55,9 @@ $alert-bg:          $light-red;
 $notice-bg:         $light-green;
 
 $highlight-colour:  $very-light-blue;
-$lighter-colour:    $lighter-blue;
-$light-colour:      $light-blue;
 $dark-colour:       $dark-blue;
+$light-colour:      $light-blue;
+$lighter-colour:    $lighter-blue;
 
 $button-text:       $dark-colour;
 $input-border:      $lighter-colour;
@@ -182,11 +182,33 @@ main p {
   margin:           0.5em 0 0 0.5em;
 }
 
+
 .alert {
   border:           1px solid $grey;
   color:            $dark-grey;
   font-size:        1.1em;
   padding:          0.5em 1em;
+}
+
+
+// ========== ( drag-to-sort ) ==========
+
+.table-striped .ui-sortable-handle {
+  background:       image-url( 'shinycms/admin/icons/up-down-icon.png' ) center center no-repeat;
+  width:            1.5em;
+}
+
+form .ui-sortable-handle {
+  background:       image-url( 'shinycms/admin/icons/up-down-icon.png' ) left 0.5em no-repeat;
+  width:            1.5em;
+}
+
+.ui-sortable-handle {
+  cursor:           grab;
+}
+
+.ui-sortable-handle:active {
+  cursor:           grabbing;
 }
 
 
@@ -204,20 +226,20 @@ main p {
   border-top:       0;
 }
 
-.table-striped .width25pc {
-  width:            25%;
-}
-
-.table-striped .width50pc {
-  width:            50%;
+.table-striped .width16pc {
+  width:            16%;
 }
 
 .table-striped .width20pc {
   width:            20%;
 }
 
-.table-striped .width16pc {
-  width:            16%;
+.table-striped .width25pc {
+  width:            25%;
+}
+
+.table-striped .width50pc {
+  width:            50%;
 }
 
 .table-striped .collapse-toggle {
@@ -302,14 +324,17 @@ main label {
   padding-bottom:   0;
 }
 
-main input {
+main input, select, textarea {
   background:       $input-bg;
   border:           1px solid $input-border;
   color:            $input-fg;
+  margin:           0.2em 0.2em 0.2em 0;
+  padding:          0.3em 0.5em;
+}
+
+main input {
   height:           2em;
   line-height:      1.5;
-  margin:           0.2em 0.2em 0.2em 0;
-  padding-left:     0.5em;
 }
 
 main [type=file] {
@@ -320,21 +345,13 @@ main [type=file] {
 }
 
 main select {
-  background:       $input-bg;
-  border:           1px solid $input-border;
-  color:            $input-fg;
   height:           2em;
-  margin-bottom:    0.5em;
   min-width:        10em;
   padding:          0.3em;
 }
 
 main textarea {
-  background:       $input-bg;
-  border:           1px solid $input-border;
-  color:            $input-fg;
   min-width:        800px;
-  padding:          0.3em 0.5em;
 }
 
 main [type=text] {
@@ -385,12 +402,8 @@ main .top-margin {
   margin-top:       1.5em;
 }
 
-// Sortable elements
-.ui-sortable-handle {
-  cursor:           grabbing;
-  font-size:        1.2em;
-  padding-left:     0.4em;
-  vertical-align:   middle;
+table.elements {
+  margin-left:      0.5em;
 }
 
 // fieldset for bottom-of-page 'add new element' forms

@@ -26,13 +26,28 @@
     <br><%= f.check_box :show_on_site %>
   </p>
 
-  <%= hidden_field_tag :sort_order, id: 'sort_order' %>
-  <span id="sortable">
-  <%= f.fields_for :elements do |fields| %>
-    <% this = @edition.elements[fields.index] %>
-    <%= render partial: 'element', locals: { fields: fields, id: this.id, name: this.name, element_type: this.element_type, content: :content, filenames: filenames_for_image_select } %>
+  <% if current_user.can? :edit, :newsletter_templates %>
+  <p>
+    <label>Change element order
+      <br><input type="checkbox" onChange="toggleShowHandles( this.checked );">
+    </label>
+  </p>
+
+  <%= hidden_field_tag :sort_order, '', id: :sort_order %>
   <% end %>
-  </span>
+
+  <table class="elements">
+    <% if current_user.can? :edit, :newsletter_templates %>
+    <tbody id="sortable">
+    <% end %>
+    <%= f.fields_for :elements do |fields| %>
+      <% this = @edition.elements[fields.index] %>
+      <%= render partial: 'element', locals: { fields: fields, id: this.id, name: this.name, element_type: this.element_type, content: :content, filenames: filenames_for_image_select } %>
+    <% end %>
+    <% if current_user.can? :edit, :newsletter_templates %>
+    </tbody>
+    <% end %>
+  </table>
 
   <p class="top-margin">
     <%= f.submit t( 'update' ) %>

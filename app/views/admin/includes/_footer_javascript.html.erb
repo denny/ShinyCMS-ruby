@@ -26,3 +26,14 @@
           });
         });
       </script>
+
+      <script>
+        function toggleShowHandles( show_handles ) {
+          var handles = document.getElementsByClassName( 'handle' );
+          var count = handles.length;
+
+          for ( var i = 0; i < count; i++ ) {
+            handles[i].hidden = !show_handles;
+          }
+        }
+      </script>
