@@ -6,8 +6,6 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-require 'rss'
-
 # Methods that any admin controller handling ShinyPosts might want
 module ShinyPostAdmin
   def enforce_change_author_capability_for_create( category )
