@@ -1,16 +1,23 @@
 // ========== Admin Area ==========
 
 //= link shinycms/admin_area.css
+//= link_tree ../images/shinycms/admin
 
+// ========== Admin Toolbar ==========
 
-// ========== Main Site ==========
-
-//= link shinycms.css
 //= link shinycms/admin_toolbar.css
+
+// ========== Main Site (default, un-themed templates) ==========
+
+//= link shinycms/main_site.css
+
+// ========== All of the above ==========
+
 //= link_tree ../images/shinycms
 
 
 // ========== Themes ==========
+// FIXME: this config should be in the theme files, not the core manifest
 
 // Halcyonic
 //= link halcyonic.css
@@ -22,5 +29,8 @@
 //= link_tree ../../../vendor/assets/images/coming_soon
 
 
-// FIXME: this should be defined in plugins/ShinySearch
+// ========== Plugins ==========
+// FIXME: this config should be in the plugin files, not the core manifest
+
+// ShinySearch
 //= link shiny_search/algolia-logo.png

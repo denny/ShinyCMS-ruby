@@ -82,7 +82,7 @@ Theme templates and sample data for a demo site are provided, so you can try all
 
 ### Ruby and Rails versions
 
-ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.1 and Rails 6.0.3).
+ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.2 and Rails 6.0.3).
 
 It has been tested on every release of Rails 6 so far, and with most versions of Ruby from 2.5.8 onwards ([view recent test results][test results] for ruby 2.5.8, 2.6.6, and 2.7.1).
 

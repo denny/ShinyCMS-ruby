@@ -9,7 +9,7 @@
 # Model for user accounts (largely powered by Devise)
 # rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
-  include ShinySearch::Searchable if ::Plugin.loaded? :ShinySearch
+  include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
   include ShinyEmail
 
   # Plugin features
@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
   paginates_per 20
 
-  if ::Plugin.all_loaded? :ShinySearch, :ShinyProfiles
+  if ShinyPlugin.all_loaded? :ShinySearch, :ShinyProfiles
     # TODO: all of these except username will be moving into ShinyProfiles::Profile
     searchable_by :username, :public_name, :public_email, :bio, :website, :location, :postcode
   end

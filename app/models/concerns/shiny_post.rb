@@ -10,7 +10,7 @@
 module ShinyPost
   extend ActiveSupport::Concern
 
-  include ShinySearch::Searchable if ::Plugin.loaded? :ShinySearch
+  include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
   include ShinyClassName
   include ShinyShowHide
   include ShinySlugInMonth
@@ -38,7 +38,7 @@ module ShinyPost
     validates_as_paranoid
     paginates_per 20
 
-    searchable_by :title, :body, :slug if ::Plugin.loaded? :ShinySearch # TODO: author
+    searchable_by :title, :body, :slug if ShinyPlugin.loaded? :ShinySearch # TODO: author
 
     # Attribute aliases and delegated methods
 

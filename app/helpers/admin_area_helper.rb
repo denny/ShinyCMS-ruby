@@ -16,15 +16,15 @@ module AdminAreaHelper
   end
 
   def plugins_for_admin_menu
-    ::Plugin.with_template( 'admin/menu/_section.html.erb' )
+    ShinyPlugin.with_template( 'admin/menu/_section.html.erb' )
   end
 
   def plugins_for_admin_other_menu
-    ::Plugin.with_template( 'admin/menu/_other_item.html.erb' )
+    ShinyPlugin.with_template( 'admin/menu/_other_item.html.erb' )
   end
 
   def plugins_for_edit_capabilities
-    ::Plugin.with_template( 'admin/user/_edit_capabilities.html.erb' )
+    ShinyPlugin.with_template( 'admin/user/_edit_capabilities.html.erb' )
   end
 
   def capability( name:, category: )
