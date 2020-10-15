@@ -192,6 +192,19 @@ en:
       link_text: Unlock my account
 
 
+  # ========== ( Models ) ==========
+
+  models:
+    capability_category:
+      not_found: CapabilityCategory.name_for generated '%{name}', which is not in database
+
+    setting_value:
+      one_per_user: You can only have one setting per value per user
+
+    shiny_post_atom_feed_entry:
+      read_more: '( ... read full post on site ... )'
+
+
   # ========== ( Settings ) ==========
 
   # NB: These translations strings are all here to keep them in one place
@@ -442,17 +455,6 @@ en:
       index:
         title: Web stats
         search: Search stats
-
-
-  # ========== ( error messages for models/validations/etc ) ==========
-
-  models:
-    capability_category:
-      not_found: CapabilityCategory.name_for generated '%{name}', which is not in database
-
-    setting_value:
-      one_per_user: You can only have one setting per value per user
-
 
 #  ckeditor:
 #    page_title: 'CKEditor File Manager'
