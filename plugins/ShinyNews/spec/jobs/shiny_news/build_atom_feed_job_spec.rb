@@ -19,9 +19,9 @@ module ShinyNews
 
     describe '.perform_now' do
       it 'builds the atom feed' do
-        create :long_news_post
-        create :long_news_post
-        create :long_news_post
+        create :long_news_post, posted_at: 1.hour.ago
+        create :news_post, posted_at: 1.minute.ago
+        create :news_post
 
         atom_feed_intro = <<~TOP
           <?xml version="1.0" encoding="UTF-8"?>
