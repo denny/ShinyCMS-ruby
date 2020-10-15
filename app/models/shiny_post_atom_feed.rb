@@ -40,6 +40,7 @@ class ShinyPostAtomFeed
   def write_file
     File.open file_path, 'w' do |f|
       f.write feed.to_feed( 'atom' )
+      f.write "\n"
     end
   end
 
