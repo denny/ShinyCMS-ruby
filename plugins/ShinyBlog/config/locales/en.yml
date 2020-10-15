@@ -29,6 +29,8 @@ en:
     profile:
       content:
         title: Recent blog posts
+    atom_feed_job:
+      read_more: '( ... read full post on site ... )'
     blog:
       n_comments:
         zero: No comments

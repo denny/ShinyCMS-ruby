@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+  xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <author>
+    <name>MyShinySite</name>
+  </author>
+  <id>http://localhost:3000/feeds/atom/blog.xml</id>
+  <title>MyShinySite</title>
+  <updated>2020-06-05T01:03:47Z</updated>
+  <entry>
+    <id>http://localhost:3000/blog/2020/06/updates</id>
+    <link href="http://localhost:3000/blog/2020/06/updates"/>
+    <summary>&lt;p&gt;I&amp;#39;m not feeling very well this week - I don&amp;#39;t think I&amp;#39;ve got the dreaded corona virus, I&amp;#39;m not coughing, but I&amp;#39;m extremely wiped out. So, instead of tackling anything too brain-taxing in the odd bit of time I do feel up to looking at personal projects, I&amp;#39;m just updating the demo site content a bit - specifically, I&amp;#39;m updating the &amp;#39;features&amp;#39; block on the homepage, including making some screenshots.
+&lt;/p&gt;
+&lt;p&gt;I thought there should probably be more than one post in the blog feature screenshot, so ... here we are ;)&lt;/p&gt;
+</summary>
+    <title>Homepage updates</title>
+    <updated>2020-06-05T01:03:47Z</updated>
+    <dc:date>2020-06-05T01:03:47Z</dc:date>
+  </entry>
+  <entry>
+    <id>http://localhost:3000/blog/2020/02/demo-content</id>
+    <link href="http://localhost:3000/blog/2020/02/demo-content"/>
+    <summary>&lt;p&gt;I&amp;#39;m never sure what to do about demo content for ShinyCMS. The Perl version ended up with a weird mixture of content about the CMS, extracts from a book with suitably friendly licensing, and word salad from the Futurama Lorem Ipsum generator.
+&lt;/p&gt;
+&lt;p&gt;Now here we are with the Ruby version, and apparently I haven&amp;#39;t learned my lesson - so I&amp;#39;m starting with content about the CMS again. Or in this case, meta-content.&lt;/p&gt;
+</summary>
+    <title>Demo content</title>
+    <updated>2020-02-08T07:24:27Z</updated>
+    <dc:date>2020-02-08T07:24:27Z</dc:date>
+  </entry>
+  <dc:date>2020-06-05T01:03:47Z</dc:date>
+</feed>

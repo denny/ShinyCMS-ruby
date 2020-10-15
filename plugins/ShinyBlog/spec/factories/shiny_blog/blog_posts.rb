@@ -16,5 +16,9 @@ module ShinyBlog
 
       association :user, factory: :blog_admin
     end
+
+    factory :long_blog_post, parent: :blog_post do
+      body { Faker::Lorem.paragraphs( number: 5 ).join( '<br><br>' ) }
+    end
   end
 end
