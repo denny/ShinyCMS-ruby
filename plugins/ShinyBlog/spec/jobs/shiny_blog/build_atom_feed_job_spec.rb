@@ -8,12 +8,12 @@
 
 require 'rails_helper'
 
-# Tests for job that rebuilds the blog atom feed
+# Tests for job that builds the blog atom feed
 module ShinyBlog
-  RSpec.describe AtomFeedJob do
+  RSpec.describe BuildAtomFeedJob do
     describe '.perform_later' do
       it 'queues the job' do
-        expect { AtomFeedJob.perform_later }.to have_enqueued_job
+        expect { BuildAtomFeedJob.perform_later }.to have_enqueued_job
       end
     end
 
@@ -26,9 +26,9 @@ module ShinyBlog
           <feed xmlns="http://www.w3.org/2005/Atom"
         TOP
 
-        AtomFeedJob.perform_now
+        BuildAtomFeedJob.perform_now
 
-        file_content = File.read AtomFeedJob::FILE_PATH
+        file_content = File.read Rails.root.join( 'public/feeds/atom/blog.xml' )
 
         expect( file_content ).to start_with atom_feed_intro
       end
