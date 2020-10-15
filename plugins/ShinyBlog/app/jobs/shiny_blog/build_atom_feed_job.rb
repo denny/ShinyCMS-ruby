@@ -10,20 +10,14 @@ module ShinyBlog
   # Background job to regenerate blog Atom feed - part of the ShinyBlog plugin for ShinyCMS
   # Called when a blog post is added or updated (TODO: or when a future-dated post goes live)
   class BuildAtomFeedJob < ApplicationJob
-    include ShinyPostAdmin
-
-    include Rails.application.routes.url_helpers
-
-    def default_url_options
-      Rails.application.config.action_mailer.default_url_options
-    end
-
     def perform
       posts = Post.recent.limit( 10 )
 
-      feed = build_feed( 'blog', posts )
+      atom_feed = ShinyPostAtomFeed.new( :blog )
 
-      write_feed( 'blog', feed )
+      atom_feed.build( posts )
+
+      atom_feed.write_file
     end
   end
 end
