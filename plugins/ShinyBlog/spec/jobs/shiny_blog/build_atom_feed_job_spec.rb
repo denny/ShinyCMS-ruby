@@ -20,6 +20,8 @@ module ShinyBlog
     describe '.perform_now' do
       it 'builds the atom feed' do
         create :long_blog_post
+        create :long_blog_post
+        create :long_blog_post
 
         atom_feed_intro = <<~TOP
           <?xml version="1.0" encoding="UTF-8"?>
