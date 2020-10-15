@@ -328,6 +328,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_164412) do
     t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_blogs_blog_posts_on_deleted_at"
   end
 
   create_table "shiny_blogs_blogs", force: :cascade do |t|
@@ -340,6 +342,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_164412) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_blogs_blogs_on_deleted_at"
   end
 
   create_table "shiny_forms_forms", force: :cascade do |t|
