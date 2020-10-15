@@ -20,8 +20,10 @@ module ShinyBlogs
 
     has_many :all_posts, inverse_of: :blog, class_name: 'BlogPost', dependent: :restrict_with_error
 
-    # Plugins
+    # Plugin features
 
+    acts_as_paranoid
+    validates_as_paranoid
     paginates_per 20
 
     # Aliases
