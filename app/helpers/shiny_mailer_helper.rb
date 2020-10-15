@@ -8,6 +8,7 @@
 
 # Helper to add useful common behaviour to ShinyCMS mailers
 module ShinyMailerHelper
+  include ShinyPluginHelper
   include ShinySiteNameHelper
 
   def add_view_paths( plugin_path = nil )
@@ -17,10 +18,6 @@ module ShinyMailerHelper
     prepend_view_path plugin_path if valid_plugin_path?
     # Apply the configured theme, if any, by adding it above the defaults
     prepend_view_path ::Theme.current.view_path if ::Theme.current
-  end
-
-  def valid_plugin_path?( plugin_path = nil )
-    plugin_path.present? && plugin_path.starts_with?( 'plugins/' ) && plugin_path.ends_with?( 'app/views' )
   end
 
   def default_email
