@@ -19,6 +19,12 @@ class Comment < ApplicationRecord
 
   has_many :comments, -> { not_spam }, inverse_of: :parent, foreign_key: :parent_id, dependent: :destroy
 
+  # Plugin features
+
+  acts_as_votable
+  acts_as_paranoid
+  validates_as_paranoid
+
   # Validations
 
   validates :discussion_id, presence: true
@@ -31,10 +37,6 @@ class Comment < ApplicationRecord
 
   before_create :set_number
   after_create  :send_notifications
-
-  # Plugins
-
-  acts_as_votable
 
   # Scopes
 

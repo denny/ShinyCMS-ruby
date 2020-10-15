@@ -66,7 +66,7 @@ class DiscussionMailer < ApplicationMailer
     I18n.t(
       'discussion_mailer.discussion_notification.subject',
       comment_author_name: @comment.author_name_or_anon,
-      content_type: @resource.class.human_name,
+      content_type: @resource.class.translated_name,
       site_name: site_name
     )
   end

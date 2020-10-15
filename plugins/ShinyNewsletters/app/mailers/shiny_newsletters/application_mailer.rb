@@ -20,7 +20,7 @@ module ShinyNewsletters
 
     default from: -> { default_email }
 
-    layout 'mailer'
+    layout 'newsletter_mailer'
 
     private
 

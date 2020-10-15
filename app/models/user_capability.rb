@@ -10,4 +10,7 @@
 class UserCapability < ApplicationRecord
   belongs_to :user
   belongs_to :capability
+
+  acts_as_paranoid
+  validates_as_paranoid
 end

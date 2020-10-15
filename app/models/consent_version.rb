@@ -14,8 +14,17 @@ class ConsentVersion < ApplicationRecord
   include ShinyDemoDataProvider
   include ShinySlug
 
+  # Validations
+
   validates :name,         presence: true
   validates :display_text, presence: true
+
+  # Plugin features
+
+  acts_as_paranoid
+  validates_as_paranoid
+
+  # Before actions
 
   before_update  :before_update
   before_destroy :before_destroy

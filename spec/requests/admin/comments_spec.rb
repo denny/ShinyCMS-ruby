@@ -82,9 +82,11 @@ RSpec.describe Admin::CommentsController, type: :request do
       expect( @comment2.reload.spam? ).to be true
 
       put comments_path, params: {
-        'spam_comments[spam_or_ham]': 'spam',
-        "spam_comments[comment_#{@nested1.id}]": 1,
-        "spam_comments[comment_#{@comment2.id}]": 0
+        spam_comments: {
+          spam_or_ham: 'spam',
+          "comment_#{@nested1.id}": 1,
+          "comment_#{@comment2.id}": 0
+        }
       }
 
       expect( response      ).to     have_http_status :found
@@ -109,9 +111,11 @@ RSpec.describe Admin::CommentsController, type: :request do
       expect( @comment2.reload.spam? ).to be true
 
       put comments_path, params: {
-        'spam_comments[spam_or_ham]': 'ham',
-        "spam_comments[comment_#{@nested1.id}]": 1,
-        "spam_comments[comment_#{@comment2.id}]": 0
+        spam_comments: {
+          spam_or_ham: 'ham',
+          "comment_#{@nested1.id}": 1,
+          "comment_#{@comment2.id}": 0
+        }
       }
 
       expect( response      ).to     have_http_status :found
@@ -136,9 +140,11 @@ RSpec.describe Admin::CommentsController, type: :request do
       @comment2.mark_as_spam
 
       put comments_path, params: {
-        'spam_comments[spam_or_ham]': 'ham',
-        "spam_comments[comment_#{@nested1.id}]": 1,
-        "spam_comments[comment_#{@comment2.id}]": 0
+        spam_comments: {
+          spam_or_ham: 'ham',
+          "comment_#{@nested1.id}": 1,
+          "comment_#{@comment2.id}": 0
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -232,7 +238,7 @@ RSpec.describe Admin::CommentsController, type: :request do
       expect( response      ).to redirect_to @news.path( anchor: 'comments' )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).not_to include @comment2.title
+      expect( response.body ).not_to have_css 'td', text: @comment2.title
     end
   end
 end

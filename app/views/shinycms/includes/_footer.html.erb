@@ -6,8 +6,12 @@
   | <%= link_to t( 'user.log_out' ), main_app.destroy_user_session_path, data: {}, method: :delete %>
   ]
   <% else %>
-  <%= link_to t( 'user.log_in'   ), main_app.new_user_session_path %> /
-  <%= link_to t( 'user.register' ), main_app.new_user_registration_path %>
+  <% if feature_enabled? :user_logins %>
+  <%= link_to t( 'user.log_in'   ), main_app.new_user_session_path %>
+  <% end %>
+  <% if feature_enabled? :user_registration %>
+  / <%= link_to t( 'user.register' ), main_app.new_user_registration_path %>
+  <% end %>
   <% end %>
 </p>
 <p>

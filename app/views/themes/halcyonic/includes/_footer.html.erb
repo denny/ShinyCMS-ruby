@@ -12,7 +12,7 @@
                     <li><%= link_to t( 'user.site_settings' ), main_app.site_settings_path %></li>
                     <li><%= link_to t( 'user.log_out' ), main_app.destroy_user_session_path, data: {}, method: :delete %></li>
                   </ul>
-                  <% else %>
+                  <% elsif feature_enabled? :user_logins %>
                   <h2>Log in</h2>
                   <%= form_for( :user, url: main_app.user_session_path, method: :post ) do |f| %>
                     <div class="field">
@@ -40,7 +40,7 @@
                     <div class="row">
                       <div class="col-4 col-12-small">
                         <ul class="link-list last-child">
-                          <% unless user_signed_in? %>
+                          <% if feature_enabled?( :user_registration ) && !user_signed_in? %>
                           <li>Click here to <%= link_to t( 'user.register' ).downcase, new_user_registration_path %></li>
                           <% end %>
                           <li><a href="#">Sed mattis quis rutrum</a></li>

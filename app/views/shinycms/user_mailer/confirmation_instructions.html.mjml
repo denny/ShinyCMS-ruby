@@ -1,19 +1,38 @@
-<mj-body>
-  <mj-section>
-    <mj-column>
-
-      <mj-text>
-        <%= t( 'user_mailer.welcome', name: @resource.username ) %>,
-      </mj-text>
-
-      <mj-text>
+<mj-section background-color="#ffffff" background-repeat="repeat" padding-bottom="0px" padding-left="0px" padding-right="0px" padding-top="0px" padding="20px 0" text-align="center">
+  <mj-column>
+    <mj-divider border-color="#60b4cc" border-style="solid" border-width="7px" padding-bottom="40px" padding-left="0px" padding-right="0px" padding-top="0px" padding="10px 25px" width="100%">
+    </mj-divider>
+    <mj-image align="center" alt="" border="none" href="" padding-bottom="0px" padding-top="0px" padding="10px 25px" src="https://shinycms.org/images/oval-spiral.png" target="_blank" title="" height="auto" width="225px">
+    </mj-image>
+  </mj-column>
+</mj-section>
+<mj-section background-color="#ffffff" background-repeat="repeat" background-size="auto" padding-bottom="0px" padding-top="0px" padding="20px 0" text-align="center">
+  <mj-column>
+    <mj-image align="center" alt="" border="none" height="auto" href="" padding-bottom="0px" padding-left="50px" padding-right="50px" padding-top="40px" padding="10px 25px" src="https://www.mailjet.com/wp-content/uploads/2019/07/Welcome-02.png" target="_blank" title="" width="300px">
+    </mj-image>
+  </mj-column>
+</mj-section>
+<mj-section background-color="#ffffff" background-repeat="repeat" background-size="auto" padding-bottom="70px" padding-top="30px" padding="20px 0px 20px 0px" text-align="center">
+  <mj-column>
+    <mj-text align="left" color="#797e82" font-family="Open Sans, Helvetica, Arial, sans-serif" font-size="13px" line-height="22px" padding-bottom="0px" padding-left="50px" padding-right="50px" padding-top="0px" padding="0px 25px 0px 25px">
+      <h2 style="text-align:center; color: #000000; line-height:32px">
+        <%= t( 'user_mailer.welcome', name: @resource.username ) %>
+      </h2>
+    </mj-text>
+    <mj-text align="left" color="#797e82" font-family="Open Sans, Helvetica, Arial, sans-serif" font-size="13px" line-height="22px" padding-bottom="0px" padding-left="50px" padding-right="50px" padding-top="0px" padding="0px 25px 0px 25px">
+      <p style="margin: 10px 0; text-align: center;">
         <%= t( '.instructions' ) %>:
-      </mj-text>
-
-      <mj-text>
-        <%= link_to t( '.link_text' ), confirmation_url( @resource, confirmation_token: @token ) %>
-      </mj-text>
-
-    </mj-column>
-  </mj-section>
-</mj-body>
+      </p>
+    </mj-text>
+    <mj-button href="<%= confirmation_url( @resource, confirmation_token: @token ) %>" align="center" background-color="#60b4cc" border-radius="100px" border="none" color="#ffffff" font-family="Open Sans, Helvetica, Arial, sans-serif" font-size="13px" font-weight="normal" inner-padding="15px 25px 15px 25px" padding-bottom="20px" padding-top="20px" padding="10px 25px" text-decoration="none" text-transform="none" vertical-align="middle">
+      <b style="font-weight:700"><%= t( '.link_text' ) %></b>
+    </mj-button>
+    <mj-text align="left" color="#797e82" font-family="Open Sans, Helvetica, Arial, sans-serif" font-size="13px" line-height="22px" padding-bottom="0px" padding-left="50px" padding-right="50px" padding-top="0px" padding="0px 25px 0px 25px">
+      <p style="margin: 10px 0; text-align: center;">
+        If the button doesn&rsquo;t work, copy this URL into your browser:
+        <br>
+        <%= link_to confirmation_url( @resource, confirmation_token: @token ), confirmation_url( @resource, confirmation_token: @token ) %>
+      </p>
+    </mj-text>
+  </mj-column>
+</mj-section>

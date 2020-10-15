@@ -4,10 +4,13 @@
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
+      <% if current_user.can? :edit, :page_sections %>
+      <th></th>
+      <% end %>
       <th class="width25pc">
         Page / Section
       </th>
-      <th class="width50pc">
+      <th>
       </th>
       <th class="width25pc">
       </th>

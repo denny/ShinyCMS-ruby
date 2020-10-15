@@ -12,10 +12,16 @@ module ShinyNewsletters
     include ShinyDemoDataProvider
     include ShinyElement
 
+    # Associations
+
     belongs_to :edition, inverse_of: :elements
 
-    validates :edition, presence: true
+    # Plugin features
 
     acts_as_list scope: :edition
+
+    # Validations
+
+    validates :edition, presence: true
   end
 end

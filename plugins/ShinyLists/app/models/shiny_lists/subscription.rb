@@ -19,6 +19,8 @@ module ShinyLists
 
     # Plugin config
 
+    acts_as_paranoid
+    validates_as_paranoid
     paginates_per 20
 
     # Scopes

@@ -1,38 +1,12 @@
 # ShinyCMS: TODO
 
-## Fixes and refactoring of code already written
-
-* Investigate and fix blank email issue
-
-* Move most of this list into GitHub issues
-  * Put the whole 'planned features' TODO list in there?
-
-* Make a generic sidebar template that renders any partials in a specified directory
-
-* Add subscription-management links to list emails
-
-* Highlight section name in admin area menu when on a page which isn't in the menu
-  (e.g. 'Edit page', clicking around in Blazer, etc)
-* Relatedly; jump admin menu to current section with an anchor
-
-### Non-trivial
-
-* Re-think mailer preview features
-  * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
-
-* Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?
-  * Think carefully about privacy implications of linking previous actions to current visitor
-
-* ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
-  sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
-
-
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
 ### Small-ish
 
 * Some sort of file-picker (for image elements, CKEditor, etc)
   * https://ckeditor.com/docs/ckeditor5/latest/features/image-upload/ckfinder.html
+  * Integrate functionality from MahBucket here?
 
 * Site map
 
@@ -67,17 +41,17 @@
 
 ### Small-ish
 
-* 'Deploy to Heroku' button
-  * https://devcenter.heroku.com/articles/heroku-button
+* Make a generic sidebar template that renders any partials in a specified directory
 
-* 2FA
-  * https://github.com/tinfoil/devise-two-factor
+* When not-logged-in users post a comment or subscribe to a list, offer to create an account for them
 
 * Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)
 
-* Configurable (per-site and per-user) menu order in admin area
+* 'Deploy to Heroku' button: https://devcenter.heroku.com/articles/heroku-button
 
-* Better tooling for loading (and ideally, for creating/updating) the demo data
+* 2FA: https://github.com/tinfoil/devise-two-factor
+
+* Configurable (per-site and per-user) menu order in admin area
 
 * In admin area, load the full dataset for user capabilities, feature flags,
   and possibly site settings, and stick them in some hashes, with some helper
@@ -97,15 +71,13 @@
 
 ### Medium-ish
 
-* Add acts_as_paranoid to everything (soft delete)
-  * https://github.com/ActsAsParanoid/acts_as_paranoid
-
 * Add folding to page sections on /admin/pages
   * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
   * Decide 'intelligently' whether to fold all/none/some
     * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
 
-* When people post a comment or subscribe to a list without being logged in, offer to create an account for them?
+* ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
+  sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
 
 * Tests for rake tasks
   * https://thoughtbot.com/blog/test-rake-tasks-like-a-boss ? (old)
@@ -124,6 +96,12 @@
 
 
 ### Large-ish
+
+* Re-think mailer preview features
+  * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
+
+* Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?
+  * Think carefully about privacy implications of linking previous actions to current visitor
 
 * Surveys / Questionnaires
 
@@ -149,4 +127,4 @@ in this version - as well as a few new ones that snuck in along the way - with n
 from the Perl version where applicable.
 
 See the [in-progress](in-progress.md) list for features that I am currently working on
-(with notes on where I'm up to, and links to useful docs).
+(with notes on where I'm up to, links to useful docs, etc).

@@ -17,6 +17,11 @@ class CommentAuthor < ApplicationRecord
 
   belongs_to :email_recipient, optional: true
 
+  # Plugin features
+
+  acts_as_paranoid
+  validates_as_paranoid
+
   # Instance methods
 
   def email

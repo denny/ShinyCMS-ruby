@@ -6,7 +6,7 @@
   <% next unless @tagged_items[ type ].present? %>
   <% no_tagged_content = false %>
   <h2>
-    <%= type.constantize.human_name.capitalize %> tagged with '<%= @tag_name %>'
+    <%= type.constantize.translated_name.pluralize.capitalize %> tagged with '<%= @tag_name %>'
   </h2>
 
   <section>

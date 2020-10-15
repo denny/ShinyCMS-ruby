@@ -6,13 +6,11 @@
   <% else %>
   <tr id="sorted_<%= page_item.id %>">
   <% end %>
+    <% if current_user.can? :edit, :page_sections %>
+    <td class="handle"></td>
+    <% end %>
     <td style="padding-left: <%= indent %>em;" <%= hidden_class_if_hidden %>>
       <% if item_is_a_section %><b><% end %><%= page_item.internal_name %><% if item_is_a_section %></b><% end %>
-      <% if current_user.can? :edit, :page_sections %>
-      <span class="handle">
-        <i class="cil-sort-ascending"></i>
-      </span>
-      <% end %>
     </td>
     <td>
       <%= page_item.description %>

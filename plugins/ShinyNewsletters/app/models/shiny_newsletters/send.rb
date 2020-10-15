@@ -16,6 +16,11 @@ module ShinyNewsletters
     belongs_to :edition
     belongs_to :list, class_name: 'ShinyLists::List'
 
+    # Plugin features
+
+    acts_as_paranoid
+    validates_as_paranoid
+
     # Attributes and aliases
 
     attr_writer :send_at_time

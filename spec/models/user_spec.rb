@@ -47,14 +47,9 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context 'the grant_all_capabilities method' do
-    it 'turns the user into a super-admin with the full set of capabilities' do
-      user = create :user
-      lots = Capability.count
-
-      expect( user.capabilities.count ).to eq 0
-      user.grant_all_capabilities
-      expect( user.capabilities.count ).to eq lots
+  context 'concerns' do
+    it_should_behave_like ShinyEmail do
+      let( :addressee ) { create :user }
     end
   end
 end

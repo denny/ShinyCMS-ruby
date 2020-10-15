@@ -9,7 +9,7 @@
 module ShinyPages
   # Model for page sections - part of the ShinyPages plugin for ShinyCMS
   class Section < ApplicationRecord
-    include ShinySearch::Searchable if ::Plugin.loaded? :ShinySearch
+    include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
     include ShinyDemoDataProvider
     include ShinyName
     include ShinySlugInSection
@@ -28,7 +28,10 @@ module ShinyPages
 
     # Plugin features
 
-    searchable_by :public_name, :slug if ::Plugin.loaded? :ShinySearch
+    acts_as_paranoid
+    validates_as_paranoid
+
+    searchable_by :public_name, :slug if ShinyPlugin.loaded? :ShinySearch
 
     # Scopes and sorting
 

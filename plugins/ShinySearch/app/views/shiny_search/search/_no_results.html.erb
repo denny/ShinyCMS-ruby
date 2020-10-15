@@ -7,6 +7,6 @@
 </p>
 <% if feature_enabled?( :tags ) %>
 <p>
-  <%= t( 'shiny_search.search.no_results.try_tags' ) %> <%= link_to t( 'tags.index.title' ), tags_path %>
+  <%= t( 'shiny_search.search.no_results.try_tags' ) %> <%= link_to t( 'tags.index.title' ), main_app.tags_path %>
 </p>
 <% end %>

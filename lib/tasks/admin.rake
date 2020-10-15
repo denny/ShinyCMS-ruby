@@ -22,10 +22,14 @@ namespace :shiny do
     task create: %i[ environment dotenv get_admin_details ] do
       @shiny_admin.skip_confirmation!
       @shiny_admin.save!
-      @shiny_admin.grant_all_capabilities
-      username = @shiny_admin.username
 
-      puts "ShinyCMS super-admin created; you can log in as '#{username}' now."
+      User.transaction do
+        Capability.all.find_each do |capability|
+          @shiny_admin.user_capabilities.create! capability: capability
+        end
+      end
+
+      puts "ShinyCMS super-admin created; you can log in as '#{@shiny_admin.username}' now."
     end
 
     task get_admin_details: %i[ environment dotenv ] do

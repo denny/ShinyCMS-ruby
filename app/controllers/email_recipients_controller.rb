@@ -10,7 +10,7 @@
 class EmailRecipientsController < MainController
   # Confirm that the person has access to the email account - AKA double opt-in
   def confirm
-    recipient = EmailRecipient.find_by( token: params[ :token ] )
+    recipient = EmailRecipient.find_by( confirm_token: params[ :token ] )
 
     if recipient&.confirm
       flash[ :notice ] = t( '.success' )

@@ -18,8 +18,14 @@
   * Improvements: Split up single-blog and multi-blog versions (the latter of
     which was never fully implemented in the Perl version but just cluttered
     up the codebase a bit) into two separate plugins. Now the multi-blog
-    clutter is in an unmerged branch and the single-blog code is much cleaner
+    feature is in an unmerged development branch and the merged single-blog
+    code is much cleaner
 * News section
+* Newsletters and mailing lists
+  * Improvements:
+    * Email address verification (AKA double opt-in) for email recipients
+    * MJML templates
+    * Records exact consent text agreed to for list subscriptions (for GDPR compliance)
 * Nested comment threads
   * Currently enabled on blog posts and news posts
   * Ready to add to any other content type going forward
@@ -72,6 +78,7 @@
   * Support for GDPR-friendly stats (IP masking, etc)
   * Disabled in default settings
   * Powered by Ahoy
+* Recoverable soft delete on almost all models (powered by ActsAsParanoid)
 
 
 ## TODO / In Progress
