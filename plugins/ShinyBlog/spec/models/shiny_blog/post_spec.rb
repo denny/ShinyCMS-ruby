@@ -22,7 +22,7 @@ module ShinyBlog
       it 'knows its own name' do
         post = create :blog_post
 
-        expect( post.class.human_name ).to eq 'blog post'
+        expect( post.class.translated_name ).to eq 'blog post'
       end
     end
 
