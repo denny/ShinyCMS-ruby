@@ -7,7 +7,7 @@
 
 ### Installation and deployment
 
-* [Getting Started](GettingStarted.md)
+* [Getting Started](Getting-Started.md)
 
 ### Building your own site
 
