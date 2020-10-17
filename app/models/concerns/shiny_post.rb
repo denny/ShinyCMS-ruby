@@ -28,7 +28,10 @@ module ShinyPost
     validates :user_id,   presence: true
     validates :posted_at, presence: true
 
+    # Callbacks
+
     before_validation :set_posted_at, if: -> { posted_at.blank? }
+    after_commit      :build_atom_feed
 
     # Plugin features
 
@@ -78,6 +81,10 @@ module ShinyPost
 
     def set_posted_at
       self.posted_at = Time.zone.now.iso8601
+    end
+
+    def build_atom_feed
+      self.class.module_parent::BuildAtomFeedJob.perform_later
     end
 
     # Class methods
