@@ -47,7 +47,6 @@ module ShinyBlog
       authorize @post
 
       if @post.save
-        BuildAtomFeedJob.perform_later
         redirect_to shiny_blog.edit_blog_post_path( @post ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
@@ -63,7 +62,6 @@ module ShinyBlog
       authorize @post
 
       if @post.update( strong_params_for_update )
-        BuildAtomFeedJob.perform_later
         redirect_to shiny_blog.edit_blog_post_path( @post ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
