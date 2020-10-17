@@ -49,6 +49,9 @@
 
 * 'Deploy to Heroku' button: https://devcenter.heroku.com/articles/heroku-button
 
+* Generate a technical documentation site from the contents of /docs
+  * https://www.mkdocs.org + material theme https://squidfunk.github.io/mkdocs-material
+
 * 2FA: https://github.com/tinfoil/devise-two-factor
 
 * Configurable (per-site and per-user) menu order in admin area
