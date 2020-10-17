@@ -1,5 +1,10 @@
 # ShinyCMS: TODO
 
+## Urgent / Important
+
+* Heroku Scheduler / Cron / Whenever / whatever for running scheduled Newsletter Send jobs!
+
+
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
 ### Small-ish
@@ -9,6 +14,7 @@
   * Integrate functionality from MahBucket here?
 
 * Site map
+  * https://github.com/kjvarga/sitemap_generator ?
 
 * Affiliate cookie
 

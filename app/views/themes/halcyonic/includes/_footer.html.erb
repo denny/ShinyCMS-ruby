@@ -12,7 +12,7 @@
                     <li><%= link_to t( 'user.site_settings' ), main_app.site_settings_path %></li>
                     <li><%= link_to t( 'user.log_out' ), main_app.destroy_user_session_path, data: {}, method: :delete %></li>
                   </ul>
-                  <% elsif feature_enabled? :user_logins %>
+                  <% elsif feature_enabled? :user_login %>
                   <h2>Log in</h2>
                   <%= form_for( :user, url: main_app.user_session_path, method: :post ) do |f| %>
                     <div class="field">

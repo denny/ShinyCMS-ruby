@@ -10,6 +10,9 @@
 # ActiveStorage
 /storage/
 
+# Atom feeds
+/public/feeds/atom/*.xml
+
 # Test output
 /coverage/
 /spec/reports/

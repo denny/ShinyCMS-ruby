@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+# ShinyNews plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+module ShinyNews
+  # Background job to regenerate news section Atom feed - part of the ShinyNews plugin for ShinyCMS
+  # Called when a news post is added or updated (TODO: or when a future-dated post goes live)
+  class BuildAtomFeedJob < ApplicationJob
+    def perform
+      posts = Post.recent.limit( 10 )
+
+      atom_feed = ShinyPostAtomFeed.new( :news )
+
+      atom_feed.build( posts )
+
+      atom_feed.write_file
+    end
+  end
+end
