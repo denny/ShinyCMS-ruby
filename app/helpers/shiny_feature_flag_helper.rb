@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Helper methods for turning CMS features on/off selectively
-module FeatureFlagsHelper
+module ShinyFeatureFlagHelper
   def enforce_feature_flags( feature_name )
     return if feature_enabled? feature_name
 

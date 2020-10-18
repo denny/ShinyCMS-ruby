@@ -1,0 +1,86 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Config for mkdocs, which builds https://docs.shinycms.org
+
+site_name:        ShinyCMS
+site_url:         http://docs.shinycms.org/
+site_description: Documentation for users and developers of ShinyCMS (Ruby version)
+site_author:      Denny de la Haye
+copyright:        ShinyCMS is copyright 2009-2020 Denny de la Haye (denny.me)
+
+repo_url: https://github.com/denny/ShinyCMS-ruby/
+edit_uri: ''
+
+theme: material
+
+nav:
+  - Install and Deploy:
+    - Getting Started: Getting-Started.md
+    - Themes:          Themes.md
+
+  - Features:
+    - User Accounts:   Features/MainApp/UserAccounts.md
+    - Admin Features:  Features/MainApp/admin-features.md
+
+    - Basic 'brochure site' features:
+      - Pages:         Features/Plugins/ShinyPages.md
+      - Forms:         Features/Plugins/ShinyForms.md
+      - Inserts:       Features/Plugins/ShinyInserts.md
+      - Search:        Features/Plugins/ShinySearch.md
+
+    - Regular content updates:
+      - Blog:          Features/Plugins/ShinyBlog.md
+      - News section:  Features/Plugins/ShinyNews.md
+      - Tags:          Features/MainApp/Tags.md
+
+    - Send promotional emails:
+      - Mailing Lists: Features/Plugins/ShinyLists.md
+      - Newsletters:   Features/Plugins/ShinyNewsletters.md
+
+    - Build a community:
+      - Comments:      Features/MainApp/Comments.md
+      - Upvotes:       Features/MainApp/Upvotes.md
+      - Profile Pages: Features/Plugins/ShinyProfiles.md
+
+    - Tracking/Analytics:
+      - Email Stats:   Features/MainApp/EmailStats.md
+      - Web Stats:     Features/MainApp/WebStats.md
+      - Charts:        Features/MainApp/Charts.md
+
+    - Configuration:
+      - Feature Flags: Features/MainApp/FeatureFlags.md
+      - Site Settings: Features/MainApp/SiteSettings.md
+
+    - Other:
+      - MJML:          Features/MainApp/mjml.md
+      - Pagination:    Features/MainApp/pagination.md
+      - Soft Delete:   Features/MainApp/soft-delete.md
+
+  - Developer Documentation:
+    - Contributing:    Developers/Contributing.md
+
+    - Project Goals:   Developers/ProjectGoals.md
+
+    - Project Progress:
+      - TODO:          Developers/TODO.md
+      - In Progress:   Developers/in-progress.md
+      - Done:          Developers/done.md
+
+    - Plugins:         Developers/Plugins.md
+
+    - Testing:         Developers/Testing.md
+
+    - Useful shared CMS code:
+      - Concerns:      Developers/Concerns.md
+      - Helpers:       Developers/Helpers.md
+      - Mailers:       Developers/Mailers.md
+      # Other libs:    Developers/app-libs.md
+
+  - Licensing:         Licensing/index.md
+  - Credits:           credits.md
+  - Code of Conduct:   code-of-conduct.md
+  - Index:             index.md

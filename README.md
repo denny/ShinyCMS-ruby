@@ -1,67 +1,66 @@
 # ShinyCMS
 
-[ShinyCMS](https://shinycms.org/) is an open-source content management system built in Ruby on Rails, with support for cloud hosting (Heroku, AWS, etc).
+[ShinyCMS](https://shinycms.org/) is an open-source content management system built in Ruby on Rails, with support for [themes](docs/Themes.md), [plugins](docs/Developer/Plugins.md), and cloud hosting.
 
-It is intended primarily for use by web designers and web developers to build content-managed websites for their clients. Page layouts are defined by templates (built by a front-end developer or provided by a theme) which designate specific pieces of content as editable (text, images, etc). These can then be updated via an easy-to-use admin interface - protecting page layouts from accidental edits, and making editing content a simple and safe process for non-technical site admins.
+It is designed for professional web developers to use as a platform when building content-managed websites for their clients. It provides a number of features 'out of the box', with an easy-to-use admin interface for your clients to use when updating their site. You can also write your own plugins to add custom functionality.
 
-ShinyCMS has a plugin architecture; you can add custom functionality by [writing your own plugins](docs/Developer/Plugins.md) (`rails g shiny:plugin plugins/ShinyThing` to get started)
+To build a basic site on top of ShinyCMS, you just need to know HTML and ERB well enough to make any custom page templates that your site needs, or to modify those provided (at least until more ready-made themes are available; themes are easy to make, and theme contributions are very welcome).
 
 
 ## Features
 
-* Provided by plugins:
-  * Pages and Page Sections
-    * Site admins can add as many pages and (nested) sections as they like
-    * Pages have defined content areas which can be edited by admins
-    * Page layout is controlled by Page Templates (can be provided by a theme or custom-built)
-    * Dynamically generated menus
-  * Inserts (re-usable content fragments that can be pulled into any template)
-  * News section
-  * Blog
-  * Mailing lists
-  * Newsletters
-  * Basic form handlers (e.g. contact form submitted -> email form data to site owner)
-  * Site search feature (supports multiple search back-ends; default is pg_search)
-  * Load only the plugins you want/need - smaller footprint, smaller attack surface
-* Provided by the main app:
-  * Comments (currently enabled on blog posts and news posts)
-    * Fully nested, so you can easily see who is replying to who at any level
-    * Email notifications of replies to your comments and posts
-    * Uses reCAPTCHA to block comments from bots
-    * Uses Akismet to flag potential spam comments for moderation
-      * Spam comment moderation sends 'spam'/'not spam' training data to Akismet
-  * Tags (currently enabled on blog posts and news posts, ready to add to any content type)
-  * Likes or up/down votes on posts, comments, etc
-  * User accounts and administration
-    * ACL-based authorisation system for admins (powered by Pundit)
-    * Uses reCAPTCHA to block registration by bots
-* Support for [themes](docs/Themes.md) on the hosted site
-  * Light-lift theme system - you only need to override the default templates that you want to change
-  * Two themes currently included:
-    * Halcyonic (one, two, and three column layouts; suitable for content-rich sites)
-    * Coming Soon (single page with mailing list sign-up form and slideshow background)
-* Web interface for site settings
-  * Change most site settings from within the CMS admin area
-  * Easily enable or disable CMS features (e.g. new user registrations)
-  * Decide which settings to allow site users to override (e.g. theme)
-* All emails use MJML templates, producing reliably cross-platform HTML emails
-* Built-in web stats (powered by Ahoy) and email stats (powered by Ahoy::Email)
-* Charts and dashboards for viewing stats (powered by Blazer)
+* [Plugin architecture](docs/Developer/Plugins.md)
+  * Load only the features you want; reduce in-memory size and attackable surface area
+  * Add custom functionality easily by writing your own plugins
+  * All features marked with ± below are provided by a plugin
+* [Themes](docs/Themes.md) (on the hosted site)
+  * Light-lift theme system - you can override just a few of the default partials if you want
+  * Two themes included; Halcyonic, for content-rich sites, and Coming Soon for pre-launch sites
+* [Pages](docs/Features/Plugins/ShinyPages.md) ±
+  * Content-controlled 'brochure pages', with layout controlled by Page Templates
+  * Can be organised into Page Sections (nested to any depth), with dynamically generated menus
+* [Inserts](docs/Features/Plugins/ShinyInserts.md) ±
+  * Re-usable content fragments that can be pulled into any template on any page
+* [News section](docs/Features/Plugins/ShinyNews.md) ±
+* [Blog](docs/Features/Plugins/ShinyBlog.md) ±
+* [Comments](docs/Features/MainApp/Comments.md)
+  * Ready to add to any content; enabled by default on blog posts and optionally on news posts
+  * Fully nested comment threads, so you can easily see who is replying to who at any level
+  * Email notifications of replies to comments and posts
+  * Uses [reCAPTCHA](https://developers.google.com/recaptcha/) to block bots, and [Akismet](https://akismet.com/) to flag potential spam for moderation
+    * Spam moderation feature sends training data back to Akismet, to improve its accuracy in future
+* [Mailing lists](docs/Features/Plugins/ShinyLists.md) ±
+  * Double opt-in, user subscription management, 'do not contact' feature
+* [Newsletters](docs/Features/Plugins/ShinyNewsletters.md) ±
+  * HTML mailshots, produced from MJML templates for cross-platform compatibility
+* [Basic form handlers](docs/Features/Plugins/ShinyForms.md)
+  * e.g. 'email form data to site owner' - useful for contact and enquiry forms
+* [Site search](docs/Features/Plugins/ShinySearch.md) ±
+  * Ready to support multiple search backends (default is pg_search multisearch)
+* [Tags](docs/Features/MainApp/Tags.md)
+* [Upvotes](docs/Features/MainApp/Upvotes.md) (AKA 'likes') on posts and comments
+* [User profile pages](docs/Features/Plugins/ShinyProfiles.md) ±
+  * Links to user-provided content such as recent comments, recent blog posts, etc
+* [User accounts](docs/Features/MainApp/UserAccounts.md) and administration
+  * ACL-based authorisation system for admins (powered by [Pundit](https://github.com/varvet/pundit))
+  * Uses [reCAPTCHA](https://developers.google.com/recaptcha/) to block registration by bots
+* Web interface for [site settings](docs/Features/MainApp/SiteSettings.md) and [feature flags](docs/Features/MainApp/FeatureFlags.md)
+* All emails are generated from MJML templates, producing reliably cross-platform HTML emails
+* Built-in tracking of [web stats](docs/Features/MainApp/WebStats.md) and [email stats](docs/Features/MainApp/EmailStats.md) (powered by [Ahoy](https://github.com/ankane/ahoy) and [Ahoy::Email](https://github.com/ankane/ahoy_email))
+* Build your own [charts and dashboards](docs/Features/MainApp/Charts.md) for viewing and analyzing stats (powered by [Blazer](https://github.com/ankane/blazer))
 
 ### Planned features
 
-* Default dashboard(s) and queries for Blazer
-* More themes
-* User profile pages
-  * With content such as recent comments, recent posts, etc
-* Algolia support for search plugin [in progress]
-* Support for multiple blogs on a single site [in progress]
-* Access control groups
-  * Can be used to control access to file downloads and secure whole pages, but also to show/hide individual pieces of page content (images/paragraphs/words/etc)
+* Content Access Groups
+  * Control access to large items - file downloads, whole pages on the site
+  * Or smaller items within a page - specific images, page sections, even individual words
 * Payment handling plugins
-  * Options include recurring subscriptions to access control groups (AKA paid membership)
+  * Including recurring subscriptions to content access groups - AKA paid membership
 * Online shop
-* ... and more :)
+* Support for multiple blogs on a single site (in progress)
+* [Algolia](https://www.algolia.com/) support for search plugin (in progress)
+* Default dashboard and charts for Blazer
+* More themes!
 
 (See the [developer documentation](docs/Developers/index.md) for more detailed information on features [in progress](docs/Developers/in-progress.md) and [to-do](docs/Developers/TODO.md))
 
