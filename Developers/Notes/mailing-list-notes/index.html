@@ -1,0 +1,1306 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for users and developers of ShinyCMS (Ruby version)">
+      
+      
+        <link rel="canonical" href="http://docs.shinycms.org/Developers/Notes/mailing-list-notes/">
+      
+      
+        <meta name="author" content="Denny de la Haye">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>Mailing list notes - ShinyCMS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#shinycms-dev-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="http://docs.shinycms.org/" title="ShinyCMS" class="md-header-nav__button md-logo" aria-label="ShinyCMS">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            ShinyCMS
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Mailing list notes
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/denny/ShinyCMS-ruby/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="http://docs.shinycms.org/" title="ShinyCMS" class="md-nav__button md-logo" aria-label="ShinyCMS">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    ShinyCMS
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/denny/ShinyCMS-ruby/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../Getting-Started/" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../Themes/" class="md-nav__link">
+      Themes
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../code-of-conduct/" class="md-nav__link">
+      Code of Conduct
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../credits/" class="md-nav__link">
+      Credits
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Features
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Features" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+    
+    <label class="md-nav__link" for="nav-6-1">
+      Main App
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Main App" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-1">
+        <span class="md-nav__icon md-icon"></span>
+        Main App
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/MainApp/admin-features/" class="md-nav__link">
+      Admin Features
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/MainApp/mjml/" class="md-nav__link">
+      MJML
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/MainApp/pagination/" class="md-nav__link">
+      Pagination
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/MainApp/soft-delete/" class="md-nav__link">
+      Soft Delete
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/MainApp/FeatureFlags/" class="md-nav__link">
+      Feature Flags
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/MainApp/SiteSettings/" class="md-nav__link">
+      Site Settings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/MainApp/UserAccounts/" class="md-nav__link">
+      User Accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/MainApp/Comments/" class="md-nav__link">
+      Comments
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/MainApp/Tags/" class="md-nav__link">
+      Tags
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/MainApp/Upvotes/" class="md-nav__link">
+      Upvotes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/MainApp/EmailStats/" class="md-nav__link">
+      Email Stats
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/MainApp/WebStats/" class="md-nav__link">
+      Web Stats
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/MainApp/Charts/" class="md-nav__link">
+      Charts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+    
+    <label class="md-nav__link" for="nav-6-2">
+      Plugins
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Plugins" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-2">
+        <span class="md-nav__icon md-icon"></span>
+        Plugins
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/Plugins/ShinyPages/" class="md-nav__link">
+      ShinyPages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/Plugins/ShinyForms/" class="md-nav__link">
+      ShinyForms
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/Plugins/ShinyInserts/" class="md-nav__link">
+      ShinyInserts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/Plugins/ShinySearch/" class="md-nav__link">
+      ShinySearch
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/Plugins/ShinyBlog/" class="md-nav__link">
+      ShinyBlog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/Plugins/ShinyNews/" class="md-nav__link">
+      ShinyNews
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/Plugins/ShinyLists/" class="md-nav__link">
+      ShinyLists
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/Plugins/ShinyNewsletters/" class="md-nav__link">
+      ShinyNewsletters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Features/Plugins/ShinyProfiles/" class="md-nav__link">
+      ShinyProfiles
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    
+    <label class="md-nav__link" for="nav-7">
+      Developers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Developers" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Developers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Contributing/" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ProjectGoals/" class="md-nav__link">
+      Project Goals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-3" type="checkbox" id="nav-7-3">
+    
+    <label class="md-nav__link" for="nav-7-3">
+      Project Progress
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Project Progress" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-3">
+        <span class="md-nav__icon md-icon"></span>
+        Project Progress
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../TODO/" class="md-nav__link">
+      TODO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../in-progress/" class="md-nav__link">
+      In Progress
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../done/" class="md-nav__link">
+      Done
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Plugins/" class="md-nav__link">
+      Plugins
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Testing/" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-6" type="checkbox" id="nav-7-6">
+    
+    <label class="md-nav__link" for="nav-7-6">
+      Useful shared CMS code
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Useful shared CMS code" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-6">
+        <span class="md-nav__icon md-icon"></span>
+        Useful shared CMS code
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Concerns/" class="md-nav__link">
+      Concerns
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Helpers/" class="md-nav__link">
+      Helpers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Mailers/" class="md-nav__link">
+      Mailers
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-7" type="checkbox" id="nav-7-7" checked>
+    
+    <label class="md-nav__link" for="nav-7-7">
+      Notes
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Notes" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-7">
+        <span class="md-nav__icon md-icon"></span>
+        Notes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../import-from-perl-shinycms/" class="md-nav__link">
+      Import data from Perl version of ShinyCMS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Mailing list notes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Mailing list notes
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mailing-lists-discussion-groups-forums" class="md-nav__link">
+    Mailing Lists ( / Discussion Groups / Forums )
+  </a>
+  
+    <nav class="md-nav" aria-label="Mailing Lists ( / Discussion Groups / Forums )">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#warning-massive-creature-feep-occurring-here" class="md-nav__link">
+    (Warning! MASSIVE creature feep occurring here!)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-subscriber-per-list-config" class="md-nav__link">
+    Per subscriber per list config
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admins" class="md-nav__link">
+    'Admins'
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enhancements-for-later-because-this-list-isnt-long-enough-already" class="md-nav__link">
+    Enhancements for later (because this list isn't long enough already)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flappy-tests/" class="md-nav__link">
+      Flappy tests
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../menu-icons/" class="md-nav__link">
+      Menu Icons
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Licensing
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Licensing" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon"></span>
+        Licensing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Licensing/" class="md-nav__link">
+      Licensing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Licensing/gnu-gpl-v2.0/" class="md-nav__link">
+      GNU GPL v2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Licensing/gnu-gpl-v3.0/" class="md-nav__link">
+      GNU GPL v3
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Licensing/mit/" class="md-nav__link">
+      MIT License
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Licensing/cc-by-3.0.txt" class="md-nav__link">
+      CC by 3.0
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mailing-lists-discussion-groups-forums" class="md-nav__link">
+    Mailing Lists ( / Discussion Groups / Forums )
+  </a>
+  
+    <nav class="md-nav" aria-label="Mailing Lists ( / Discussion Groups / Forums )">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#warning-massive-creature-feep-occurring-here" class="md-nav__link">
+    (Warning! MASSIVE creature feep occurring here!)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-subscriber-per-list-config" class="md-nav__link">
+    Per subscriber per list config
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admins" class="md-nav__link">
+    'Admins'
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enhancements-for-later-because-this-list-isnt-long-enough-already" class="md-nav__link">
+    Enhancements for later (because this list isn't long enough already)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="shinycms-dev-notes">ShinyCMS: dev notes</h1>
+<h2 id="mailing-lists-discussion-groups-forums">Mailing Lists ( / Discussion Groups / Forums )</h2>
+<h3 id="warning-massive-creature-feep-occurring-here">(Warning! MASSIVE creature feep occurring here!)</h3>
+<p>Things which aren't optional:<br />
+* Double opt-in subscriptions are a basic human right ;)
+* Instantly-effective unsubscribe links and headers in all list emails
+* Settings with privacy implications should default to the more private setting</p>
+<p>General thoughts:<br />
+* UUIDs for anything that doesn't have slugs - do not expose sequential IDs!
+  * Good time to switch the whole system to UUIDs under the hood?
+    * Having read around on this, not convinced it's a good idea
+  * HashIDs instead? https://github.com/jcypret/hashid-rails</p>
+<p>Lists / Groups:<br />
+* Enabled (emails will be delivered): yes/no
+* List details page
+  * Useful info: description, owner/admins, etc
+  * Useful links: sub/unsub, view archives, view subscribers, etc
+    * Subscriber list is: visible/hidden
+* Hidden: yes/no
+* Publicised (listed on hub page of some sort): yes/no
+* Open for subscriptions: yes/no / see 'List subscriptions' below</p>
+<p>List categories:<br />
+* e.g. Announcements/Promo/Discussion/etc
+* Partly for display purposes, partly for potential ACL stuff (see 'Admins')</p>
+<p>List subscriptions:<br />
+* Can ask to subscribe: anybody / registered website users / nobody
+* Subscriptions require approval: yes/no
+  * Subscriptions can be approved by: any subscriber / established subscribers
+    / &gt;N/&gt;N% subscribers / registered users / admins only
+* Subscribers can be removed by: [ see previous list ]
+* When somebody unsubscribes by any interface other than the 'manage all subs'
+  page, we should include details of any other lists they are still subscribed
+  to in the unsub confirmation email, and give them both the 'manage your
+  subscriptions' link and also a one-click 'unsubscribe from everything' link
+  (if they're leaving, they're leaving - making it harder for them is pointless)
+* List is notified of subscriptions and unsubscriptions: yes/no</p>
+<p>List archives:<br />
+  * Web view of previous posts to a list
+  * Provides 'view this email in your browser' functionality
+  * Viewable by: anybody / subscribers / admins / nobody
+    * Subscribers can see posts from before they subscribed: yes/no</p>
+<p>List posts:<br />
+* Can post to list: any subscriber / subscribers over X duration / subscribers
+  over N previous posts / admins only
+* Reply-to munging (trollolol): yes/no
+* Show email of sender: yes/partial/obfuscated/no
+* Show name of sender: yes/no</p>
+<p>Moderation:<br />
+* Posts to list require approval if they are from: anybody / unregistered
+  users / new subscribers (<N posts / \<X duration) / non-admins
+* Posts to list can be approved by: anybody (except the original poster) /
+  established subscribers / the collective vote of >N or >N% subscribers /
+  registered users / admins only</p>
+<p>Tracking (for marketing?) and Engagement (list quality/sender reputation):<br />
+* Opens are tracked: yes/no
+ * Is it possible to filter out 'opens' by spam-scanning software (etc) that
+   downloads images (including our tracking pixels)? Look at user-agents maybe?
+* Clicks are tracked: yes/no
+  * Again, can we filter out link-following by software?
+  * Track all the details of a click (probably for marketing) or just the fact
+    that 'a click happened' (enough for engagement): detail/no detail
+  * If opens and/or clicks are tracked, use them to disable emails to
+    potentially-unengaged people after X duration / N emails: yes/no
+    * Ask people before disabling emails to them: yes/no
+* If people don't engage with emails OR web UI, disable their subscription
+  entirely? (Do I want the word 'subscription' here or 'membership'- I'm back
+  to wondering whether 'lists' and 'groups' are the same thing, or should be)</p>
+<h3 id="per-subscriber-per-list-config">Per subscriber per list config</h3>
+<ul>
+<li>Receive emails sent to list: yes/no</li>
+<li>Receive emails in digest format (daily/weekly?)  yes/no</li>
+</ul>
+<h2 id="admins">'Admins'</h2>
+<p>(This is a near-fractal timesink of potential granularity and configurability -
+it will definitely need its own ACL system/subsystem eventually.)</p>
+<p>e.g.<br />
+* A list/group can have: owner(s?) / admins / moderators
+  * owners can create/remove admins
+  * admins can delete list?
+* Categories can have: ditto, and:
+  * owners can edit category, create/remove admins
+  * admins can create/delete lists
+* The whole system has: same again? plus:
+  * owners can create categories
+  * etc</p>
+<h2 id="enhancements-for-later-because-this-list-isnt-long-enough-already">Enhancements for later (because this list isn't long enough already)</h2>
+<ul>
+<li>Web UI</li>
+<li>'Forum style' web interface that can be used to read and post to list too</li>
+<li>Extension of 'view archives' above, or replacement for it?<ul>
+<li>Somewhere around here this turns from a mailing list feature into a 'groups' feature</li>
+</ul>
+</li>
+<li>Ratings:</li>
+<li>Rate posts (this is only really viable if there's a web interface I think)</li>
+<li>Rate people (reputation systems omg)</li>
+<li>More options for posts:</li>
+<li>Restrict post length to: NN characters<ul>
+<li>Posts over this length are: rejected/truncated</li>
+</ul>
+</li>
+<li>Only NN posts per subscriber per HH hours</li>
+<li>Delay before distributing each post: NN minutes</li>
+<li>More options for subscriptions:</li>
+<li>Pay to subscribe (once the system has payment handlers implemented)</li>
+<li>Autoresponders</li>
+<li>'Timed series' emails<ul>
+<li>Could be triggered by</li>
+<li>System (new user signs up -&gt; triggers onboarding series</li>
+<li>Admin <em>shrug</em></li>
+<li>User request<ul>
+<li>Via web UI</li>
+<li>Via autoresponder</li>
+<li>Via 'pay to subscribe' ("Buy our six week 'learn to cook' course!", etc)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../import-from-perl-shinycms/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Import data from Perl version of ShinyCMS
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../flappy-tests/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Flappy tests
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            ShinyCMS is copyright 2009-2020 Denny de la Haye (denny.me)
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
