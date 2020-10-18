@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
-     <loc>http://docs.shinycms.org/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>http://docs.shinycms.org/Getting-Started/</loc>
      <lastmod>2020-10-18</lastmod>
      <changefreq>daily</changefreq>
@@ -12,63 +8,11 @@
      <lastmod>2020-10-18</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://docs.shinycms.org/code-of-conduct/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/credits/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Features/MainApp/admin-features/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Features/MainApp/mjml/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Features/MainApp/pagination/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Features/MainApp/soft-delete/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Features/MainApp/FeatureFlags/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Features/MainApp/SiteSettings/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>http://docs.shinycms.org/Features/MainApp/UserAccounts/</loc>
      <lastmod>2020-10-18</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://docs.shinycms.org/Features/MainApp/Comments/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Features/MainApp/Tags/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Features/MainApp/Upvotes/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Features/MainApp/EmailStats/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Features/MainApp/WebStats/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Features/MainApp/Charts/</loc>
+     <loc>http://docs.shinycms.org/Features/MainApp/admin-features/</loc>
      <lastmod>2020-10-18</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -96,6 +40,10 @@
      <lastmod>2020-10-18</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>http://docs.shinycms.org/Features/MainApp/Tags/</loc>
+     <lastmod>2020-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>http://docs.shinycms.org/Features/Plugins/ShinyLists/</loc>
      <lastmod>2020-10-18</lastmod>
      <changefreq>daily</changefreq>
@@ -104,7 +52,47 @@
      <lastmod>2020-10-18</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>http://docs.shinycms.org/Features/MainApp/Comments/</loc>
+     <lastmod>2020-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://docs.shinycms.org/Features/MainApp/Upvotes/</loc>
+     <lastmod>2020-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>http://docs.shinycms.org/Features/Plugins/ShinyProfiles/</loc>
+     <lastmod>2020-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://docs.shinycms.org/Features/MainApp/EmailStats/</loc>
+     <lastmod>2020-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://docs.shinycms.org/Features/MainApp/WebStats/</loc>
+     <lastmod>2020-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://docs.shinycms.org/Features/MainApp/Charts/</loc>
+     <lastmod>2020-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://docs.shinycms.org/Features/MainApp/FeatureFlags/</loc>
+     <lastmod>2020-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://docs.shinycms.org/Features/MainApp/SiteSettings/</loc>
+     <lastmod>2020-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://docs.shinycms.org/Features/MainApp/mjml/</loc>
+     <lastmod>2020-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://docs.shinycms.org/Features/MainApp/pagination/</loc>
+     <lastmod>2020-10-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://docs.shinycms.org/Features/MainApp/soft-delete/</loc>
      <lastmod>2020-10-18</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -148,39 +136,19 @@
      <lastmod>2020-10-18</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://docs.shinycms.org/Developers/Notes/import-from-perl-shinycms/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Developers/Notes/mailing-list-notes/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Developers/Notes/flappy-tests/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Developers/Notes/menu-icons/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>http://docs.shinycms.org/Licensing/</loc>
      <lastmod>2020-10-18</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://docs.shinycms.org/Licensing/gnu-gpl-v2.0/</loc>
+     <loc>http://docs.shinycms.org/credits/</loc>
      <lastmod>2020-10-18</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://docs.shinycms.org/Licensing/gnu-gpl-v3.0/</loc>
+     <loc>http://docs.shinycms.org/code-of-conduct/</loc>
      <lastmod>2020-10-18</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://docs.shinycms.org/Licensing/mit/</loc>
-     <lastmod>2020-10-18</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://docs.shinycms.org/Licensing/cc-by-3.0.txt</loc>
+     <loc>http://docs.shinycms.org/</loc>
      <lastmod>2020-10-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
