@@ -18,77 +18,69 @@ edit_uri: ''
 theme: material
 
 nav:
-  - Index:           index.md
-  - Getting Started: Getting-Started.md
-  - Themes:          Themes.md
-
-  - Code of Conduct: code-of-conduct.md
-  - Credits:         credits.md
+  - Install and Deploy:
+    - Getting Started: Getting-Started.md
+    - Themes:          Themes.md
 
   - Features:
-    - Main App:
-      - Admin Features:   Features/MainApp/admin-features.md
+    - User Accounts:   Features/MainApp/UserAccounts.md
+    - Admin Features:  Features/MainApp/admin-features.md
 
-      - MJML:             Features/MainApp/mjml.md
-      - Pagination:       Features/MainApp/pagination.md
-      - Soft Delete:      Features/MainApp/soft-delete.md
+    - Basic 'brochure site' features:
+      - Pages:         Features/Plugins/ShinyPages.md
+      - Forms:         Features/Plugins/ShinyForms.md
+      - Inserts:       Features/Plugins/ShinyInserts.md
+      - Search:        Features/Plugins/ShinySearch.md
 
-      - Feature Flags:    Features/MainApp/FeatureFlags.md
-      - Site Settings:    Features/MainApp/SiteSettings.md
+    - Regular content updates:
+      - Blog:          Features/Plugins/ShinyBlog.md
+      - News section:  Features/Plugins/ShinyNews.md
+      - Tags:          Features/MainApp/Tags.md
 
-      - User Accounts:    Features/MainApp/UserAccounts.md
+    - Send promotional emails:
+      - Mailing Lists: Features/Plugins/ShinyLists.md
+      - Newsletters:   Features/Plugins/ShinyNewsletters.md
 
-      - Comments:         Features/MainApp/Comments.md
-      - Tags:             Features/MainApp/Tags.md
-      - Upvotes:          Features/MainApp/Upvotes.md
+    - Build a community:
+      - Comments:      Features/MainApp/Comments.md
+      - Upvotes:       Features/MainApp/Upvotes.md
+      - Profile Pages: Features/Plugins/ShinyProfiles.md
 
-      - Email Stats:      Features/MainApp/EmailStats.md
-      - Web Stats:        Features/MainApp/WebStats.md
-      - Charts:           Features/MainApp/Charts.md
+    - Tracking/Analytics:
+      - Email Stats:   Features/MainApp/EmailStats.md
+      - Web Stats:     Features/MainApp/WebStats.md
+      - Charts:        Features/MainApp/Charts.md
 
-    - Plugins:
-      - ShinyPages:       Features/Plugins/ShinyPages.md
-      - ShinyForms:       Features/Plugins/ShinyForms.md
-      - ShinyInserts:     Features/Plugins/ShinyInserts.md
-      - ShinySearch:      Features/Plugins/ShinySearch.md
+    - Configuration:
+      - Feature Flags: Features/MainApp/FeatureFlags.md
+      - Site Settings: Features/MainApp/SiteSettings.md
 
-      - ShinyBlog:        Features/Plugins/ShinyBlog.md
-      - ShinyNews:        Features/Plugins/ShinyNews.md
+    - Other:
+      - MJML:          Features/MainApp/mjml.md
+      - Pagination:    Features/MainApp/pagination.md
+      - Soft Delete:   Features/MainApp/soft-delete.md
 
-      - ShinyLists:       Features/Plugins/ShinyLists.md
-      - ShinyNewsletters: Features/Plugins/ShinyNewsletters.md
+  - Developer Documentation:
+    - Contributing:    Developers/Contributing.md
 
-      - ShinyProfiles:    Features/Plugins/ShinyProfiles.md
-
-  - Developers:
-    - Contributing:   Developers/Contributing.md
-
-    - Project Goals:  Developers/ProjectGoals.md
+    - Project Goals:   Developers/ProjectGoals.md
 
     - Project Progress:
-      - TODO:         Developers/TODO.md
-      - In Progress:  Developers/in-progress.md
-      - Done:         Developers/done.md
+      - TODO:          Developers/TODO.md
+      - In Progress:   Developers/in-progress.md
+      - Done:          Developers/done.md
 
-    - Plugins:        Developers/Plugins.md
+    - Plugins:         Developers/Plugins.md
 
-    - Testing:        Developers/Testing.md
+    - Testing:         Developers/Testing.md
 
     - Useful shared CMS code:
-      - Concerns:     Developers/Concerns.md
-      - Helpers:      Developers/Helpers.md
-      - Mailers:      Developers/Mailers.md
-      #- Other libs:   Developers/app-libs.md
+      - Concerns:      Developers/Concerns.md
+      - Helpers:       Developers/Helpers.md
+      - Mailers:       Developers/Mailers.md
+      # Other libs:    Developers/app-libs.md
 
-    - Notes:
-      - Import data from Perl version of ShinyCMS: Developers/Notes/import-from-perl-shinycms.md
-      - Mailing list notes: Developers/Notes/mailing-list-notes.md
-      - Flappy tests: Developers/Notes/flappy-tests.md
-      - Menu Icons: Developers/Notes/menu-icons.md
-
-  - Licensing:
-    - Licensing:   Licensing/index.md
-    - GNU GPL v2:  Licensing/gnu-gpl-v2.0.md
-    - GNU GPL v3:  Licensing/gnu-gpl-v3.0.md
-    - MIT License: Licensing/mit.md
-    - CC by 3.0:   Licensing/cc-by-3.0.txt
+  - Licensing:         Licensing/index.md
+  - Credits:           credits.md
+  - Code of Conduct:   code-of-conduct.md
+  - Index:             index.md
