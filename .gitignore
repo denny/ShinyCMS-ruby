@@ -18,6 +18,9 @@
 /spec/reports/
 /spec/examples.txt
 
+# MkDocs output
+/site
+
 # Log files
 /log/*.log
 
