@@ -2,38 +2,44 @@
 
 ## Helpers
 
-There are several helpers included with the project. These are intended to make it easier for people to build new features that work similarly to the existing features, from both a user and developer perspective.
+There are a number of helpers included with the project. These are intended to make it easier for people to build new features that work similarly to the existing features, from both a user and developer perspective.
+
+In many cases the helper methods are there as an easy-to-use wrapper around the most common use cases for a more complex invocation of some model code - for example, `<% posts = recent_blog_posts( 5 ) %>` is the same as `<% posts = ShinyBlog::Post.readonly.recent.limit( 5 ) %>` - hopefully this will make it easier for people to build themes even if they're not familiar with ActiveRecord.
 
 ### In the main app
 
-AdminAreaHelper - included by AdminController
-ShinyMainSiteHelper - included by MainSiteController, and includes several of the helpers below
+* ShinyMainSiteHelper    - common behaviour for main site controllers; includes many of the helpers below
+* AdminAreaHelper        - common behaviour for admin area controllers
+* ShinyMailerHelper      - common behaviour for Mailers
 
-shiny_date_helper.rb
-shiny_discussion_helper.rb
-elements_helper.rb
-feature_flags_helper.rb
-shiny_mailer_helper.rb
-shiny_paging_helper.rb
-shiny_plugin_helper.rb
-shiny_site_name_helper.rb
-shiny_user_helper.rb
+* ShinySiteNameHelper    - provides the <%= site_name %> method (included by ShinyMainSiteHelper and ShinyMailerHelper)
 
-AkismetHelper - methods for dealing with Akismet's spam-flagging service
-RecaptchaHelper - methods for dealing with Google's reCAPTCHA bot detection service
-Sidekiq - methods for dealing with Sidekiq job queues
+* ShinyPluginHelper      - methods wrapping common uses (in views) of the ShinyPlugin model
+
+* ShinyDateHelper        - turns model timestamps into human-friendly time and date strings
+* ShinyDiscussionHelper  - discussion-related settings and searches
+* ShinyElementHelper     - methods related to *Element models
+* ShinyFeatureFlagHelper - check and enforce feature flags
+* ShinyPagingHelper      - methods to help with pagination
+* ShinyUserHelper        - user-capability checks and profile link generation
+
+* AkismetHelper          - methods related to the Akismet spam-flagging service
+* RecaptchaHelper        - methods related to Google's reCAPTCHA bot detection service
+* SidekiqHelper          - method to check whether Sidekiq job queues are enabled
+
+At some point in the future, most of these Helpers will probably move into some sort of ShinyTools plugin or plugins (which can then be depended on by whichever other plugins need them), as part of the long-term plan to move most or all of the main app code into plugins.
 
 ### In plugins
 
-plugins/ShinyPages/app/helpers/shiny_pages/main_site_helper.rb
-plugins/ShinyForms/app/helpers/shiny_forms/main_site_helper.rb
-plugins/ShinyInserts/app/helpers/shiny_inserts/main_site_helper.rb
+* ShinyPages::MainSiteHelper    - page and page sections (default_page, default_section, etc)
+* ShinyInserts::MainSiteHelper  - get the content for an insert element, or check its type
+* ShinyForms::MainSiteHelper    - look up a form by slug
 
-plugins/ShinyBlog/app/helpers/shiny_blog/main_site_helper.rb
-plugins/ShinyNews/app/helpers/shiny_news/main_site_helper.rb
+* ShinySearch::MainSiteHelper   - check which search backends are enabled, and related methods
 
-plugins/ShinyLists/app/helpers/shiny_lists/main_site_helper.rb
-plugins/ShinyNewsletters/app/helpers/shiny_newsletters/application_helper.rb
+* ShinyBlog::MainSiteHelper     - get most recent (published) posts, for use in sidebars etc
+* ShinyNews::MainSiteHelper     - get most recent (published) posts, for use in sidebars etc
 
-plugins/ShinyProfiles/app/helpers/shiny_profiles/main_site_helper.rb
-plugins/ShinySearch/app/helpers/shiny_search/main_site_helper.rb
+* ShinyLists::MainSiteHelper    - look up a mailing list by slug (or fall back to most recent list)
+
+* ShinyProfiles::MainSiteHelper - find plugins with user-content partials to include on profile pages

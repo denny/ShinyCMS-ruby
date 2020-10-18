@@ -10,6 +10,7 @@
 module ShinyMainSiteHelper
   include ShinyConsentHelper
   include ShinyDiscussionHelper
+  include ShinyFeatureFlagHelper
   include ShinyPluginHelper
   include ShinySettingsHelper
   include ShinySiteNameHelper

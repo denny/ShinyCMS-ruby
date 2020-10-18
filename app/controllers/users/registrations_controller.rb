@@ -8,7 +8,7 @@
 
 # Controller to override or augment Devise user account features
 class Users::RegistrationsController < Devise::RegistrationsController
-  include FeatureFlagsHelper
+  include ShinyFeatureFlagHelper
   include RecaptchaHelper
 
   before_action :check_feature_flags, only: %i[ new create ]
