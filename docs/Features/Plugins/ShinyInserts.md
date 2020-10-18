@@ -9,3 +9,5 @@ Reusable content fragments for inclusion in any template in any section of the m
 
 
 ### Template tag
+
+<%= insert( :name_of_insert ) %>

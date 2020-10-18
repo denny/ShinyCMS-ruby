@@ -1,7 +1,4 @@
-# ShinyCMS: Documentation
-
-* [About ShinyCMS](../README.md)
-
+# ShinyCMS Documentation
 
 ## Using ShinyCMS
 
@@ -13,46 +10,56 @@
 
 * [Themes](Themes.md)
 
-### Features and Plugins
+### Features (Main App and Plugins)
 
-* [Admin features](features/AdminFeatures.md)
+* [User accounts](Features/MainApp/UserAccounts.md)
+* [Admin features](Features/MainApp/admin-features.md)
+
 * Basic CMS features ('brochure sites')
-  * [Pages](plugins/ShinyPages.md)
-  * [Inserts](plugins/ShinyInserts.md)
-  * [Form handlers](plugins/ShinyForms.md)
-  * [Search](plugins/ShinySearch.md)
+    * [Pages](Features/Plugins/ShinyPages.md)
+    * [Inserts](Features/Plugins/ShinyInserts.md)
+    * [Form handlers](Features/Plugins/ShinyForms.md)
+    * [Search](Features/Plugins/ShinySearch.md)
+
 * Post regular updates
-  * [Blog](plugins/ShinyBlog.md)
-  * [News section](plugins/ShinyNews.md)
+    * [Blog](Features/Plugins/ShinyBlog.md)
+    * [News section](Features/Plugins/ShinyNews.md)
+
 * Send promotional emails
-  * [Mailing lists](plugins/ShinyLists.md)
-  * [Newsletters](plugins/ShinyNewsletters.md)
+    * [Mailing lists](Features/Plugins/ShinyLists.md)
+    * [Newsletters](Features/Plugins/ShinyNewsletters.md)
+
 * Build a community
-  * [User accounts](features/UserAccounts.md)
-  * [Profile pages](plugins/ShinyProfiles.md)
-  * [Comments](features/Comments.md)
-  * [Tags](features/Tags.md)
-  * [Upvotes](features/Upvotes.md) ('likes')
+    * [Profile pages](Features/Plugins/ShinyProfiles.md)
+    * [Comments](Features/MainApp/Comments.md)
+    * [Tags](Features/MainApp/Tags.md)
+    * [Upvotes](Features/MainApp/Upvotes.md) ('likes')
+
 * Settings and configuration
-  * [Feature flags](features/FeatureFlags.md)
-  * [Site settings](features/SiteSettings.md)
+    * [Feature flags](Features/MainApp/FeatureFlags.md)
+    * [Site settings](Features/MainApp/SiteSettings.md)
+
 * Stats and tracking
-  * [Email stats](features/EmailStats.md)
-  * [Web stats](features/WebStats.md)
-  * [Charts and dashboards](features/Charts.md)
-* [MJML email templates](features/MJML.md)
+    * [Email stats](Features/MainApp/EmailStats.md)
+    * [Web stats](Features/MainApp/WebStats.md)
+    * [Charts and dashboards](Features/MainApp/Charts.md)
+
+* [MJML email templates](Features/MainApp/mjml.md)
 
 
-## Contributing to ShinyCMS
+## Contributing to ShinyCMS (developer documentation)
 
-* [Developer documentation](Developers/index.md)
-  * [Roadmap](Developers/Roadmap.md)
-  * Project progress:
+* [Index](Developers/Contributing.md)
+
+* [Project goals](Developers/ProjectGoals.md)
+
+* Project progress:
     * [Done](Developers/done.md)
     * [In progress](Developers/in-progress.md)
     * [To do](Developers/TODO.md)
-  * [Plugins](Developers/Plugins.md)
-  * [Testing](Developers/Testing.md)
+
+* [Plugins](Developers/Plugins.md)
+* [Testing](Developers/Testing.md)
 
 
 ## Other
@@ -60,8 +67,8 @@
 * [Credits](credits.md)
 
 * [Licensing](Licensing/index.md)
-  * [GPL v2](Licensing/gnu-gpl-v2.0.md)
-  * [GPL v3](Licensing/gnu-gpl-v3.0.md)
+    * [GPL v2](Licensing/gnu-gpl-v2.0.md)
+    * [GPL v3](Licensing/gnu-gpl-v3.0.md)
 
 
 ## Code of Conduct

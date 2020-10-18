@@ -16,38 +16,38 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
 * [Themes](docs/Themes.md) (on the hosted site)
   * Light-lift theme system - you can override just a few of the default partials if you want
   * Two themes included; Halcyonic, for content-rich sites, and Coming Soon for pre-launch sites
-* [Pages](docs/plugins/ShinyPages.md) ±
+* [Pages](docs/Features/Plugins/ShinyPages.md) ±
   * Content-controlled 'brochure pages', with layout controlled by Page Templates
   * Can be organised into Page Sections (nested to any depth), with dynamically generated menus
-* [Inserts](docs/plugins/ShinyInserts.md) ±
+* [Inserts](docs/Features/Plugins/ShinyInserts.md) ±
   * Re-usable content fragments that can be pulled into any template on any page
-* [News section](docs/plugins/ShinyNews.md) ±
-* [Blog](docs/plugins/ShinyBlog.md) ±
-* [Comments](docs/features/Comments.md)
+* [News section](docs/Features/Plugins/ShinyNews.md) ±
+* [Blog](docs/Features/Plugins/ShinyBlog.md) ±
+* [Comments](docs/Features/MainApp/Comments.md)
   * Ready to add to any content; enabled by default on blog posts and optionally on news posts
   * Fully nested comment threads, so you can easily see who is replying to who at any level
   * Email notifications of replies to comments and posts
   * Uses [reCAPTCHA](https://developers.google.com/recaptcha/) to block bots, and [Akismet](https://akismet.com/) to flag potential spam for moderation
     * Spam moderation feature sends training data back to Akismet, to improve its accuracy in future
-* [Mailing lists](docs/plugins/ShinyLists.md) ±
+* [Mailing lists](docs/Features/Plugins/ShinyLists.md) ±
   * Double opt-in, user subscription management, 'do not contact' feature
-* [Newsletters](docs/plugins/ShinyNewsletters.md) ±
+* [Newsletters](docs/Features/Plugins/ShinyNewsletters.md) ±
   * HTML mailshots, produced from MJML templates for cross-platform compatibility
-* [Basic form handlers](docs/plugins/ShinyForms.md)
+* [Basic form handlers](docs/Features/Plugins/ShinyForms.md)
   * e.g. 'email form data to site owner' - useful for contact and enquiry forms
-* [Site search](docs/plugins/ShinySearch.md) ±
+* [Site search](docs/Features/Plugins/ShinySearch.md) ±
   * Ready to support multiple search backends (default is pg_search multisearch)
-* [Tags](docs/features/Tags.md)
-* [Upvotes](docs/features/Upvotes.md) (AKA 'likes') on posts and comments
-* [User profile pages](docs/plugins/ShinyProfiles.md) ±
+* [Tags](docs/Features/MainApp/Tags.md)
+* [Upvotes](docs/Features/MainApp/Upvotes.md) (AKA 'likes') on posts and comments
+* [User profile pages](docs/Features/Plugins/ShinyProfiles.md) ±
   * Links to user-provided content such as recent comments, recent blog posts, etc
-* [User accounts](docs/features/UserAccounts.md) and administration
+* [User accounts](docs/Features/MainApp/UserAccounts.md) and administration
   * ACL-based authorisation system for admins (powered by [Pundit](https://github.com/varvet/pundit))
   * Uses [reCAPTCHA](https://developers.google.com/recaptcha/) to block registration by bots
-* Web interface for [site settings](docs/features/SiteSettings.md) and [feature flags](docs/features/FeatureFlags.md)
+* Web interface for [site settings](docs/Features/MainApp/SiteSettings.md) and [feature flags](docs/Features/MainApp/FeatureFlags.md)
 * All emails are generated from MJML templates, producing reliably cross-platform HTML emails
-* Built-in tracking of [web stats](docs/features/WebStats.md) and [email stats](docs/features/EmailStats.md) (powered by [Ahoy](https://github.com/ankane/ahoy) and [Ahoy::Email](https://github.com/ankane/ahoy_email))
-* Build your own [charts and dashboards](docs/features/Charts.md) for viewing and analyzing stats (powered by [Blazer](https://github.com/ankane/blazer))
+* Built-in tracking of [web stats](docs/Features/MainApp/WebStats.md) and [email stats](docs/Features/MainApp/EmailStats.md) (powered by [Ahoy](https://github.com/ankane/ahoy) and [Ahoy::Email](https://github.com/ankane/ahoy_email))
+* Build your own [charts and dashboards](docs/Features/MainApp/Charts.md) for viewing and analyzing stats (powered by [Blazer](https://github.com/ankane/blazer))
 
 ### Planned features
 

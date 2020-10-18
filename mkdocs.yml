@@ -1,0 +1,94 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Config for mkdocs, which builds https://docs.shinycms.org
+
+site_name:        ShinyCMS
+site_url:         http://docs.shinycms.org/
+site_description: Documentation for users and developers of ShinyCMS (Ruby version)
+site_author:      Denny de la Haye
+copyright:        ShinyCMS is copyright 2009-2020 Denny de la Haye (denny.me)
+
+repo_url: https://github.com/denny/ShinyCMS-ruby/
+edit_uri: ''
+
+theme: material
+
+nav:
+  - Index:           index.md
+  - Getting Started: Getting-Started.md
+  - Themes:          Themes.md
+
+  - Code of Conduct: code-of-conduct.md
+  - Credits:         credits.md
+
+  - Features:
+    - Main App:
+      - Admin Features:   Features/MainApp/admin-features.md
+
+      - MJML:             Features/MainApp/mjml.md
+      - Pagination:       Features/MainApp/pagination.md
+      - Soft Delete:      Features/MainApp/soft-delete.md
+
+      - Feature Flags:    Features/MainApp/FeatureFlags.md
+      - Site Settings:    Features/MainApp/SiteSettings.md
+
+      - User Accounts:    Features/MainApp/UserAccounts.md
+
+      - Comments:         Features/MainApp/Comments.md
+      - Tags:             Features/MainApp/Tags.md
+      - Upvotes:          Features/MainApp/Upvotes.md
+
+      - Email Stats:      Features/MainApp/EmailStats.md
+      - Web Stats:        Features/MainApp/WebStats.md
+      - Charts:           Features/MainApp/Charts.md
+
+    - Plugins:
+      - ShinyPages:       Features/Plugins/ShinyPages.md
+      - ShinyForms:       Features/Plugins/ShinyForms.md
+      - ShinyInserts:     Features/Plugins/ShinyInserts.md
+      - ShinySearch:      Features/Plugins/ShinySearch.md
+
+      - ShinyBlog:        Features/Plugins/ShinyBlog.md
+      - ShinyNews:        Features/Plugins/ShinyNews.md
+
+      - ShinyLists:       Features/Plugins/ShinyLists.md
+      - ShinyNewsletters: Features/Plugins/ShinyNewsletters.md
+
+      - ShinyProfiles:    Features/Plugins/ShinyProfiles.md
+
+  - Developers:
+    - Contributing:   Developers/Contributing.md
+
+    - Project Goals:  Developers/ProjectGoals.md
+
+    - Project Progress:
+      - TODO:         Developers/TODO.md
+      - In Progress:  Developers/in-progress.md
+      - Done:         Developers/done.md
+
+    - Plugins:        Developers/Plugins.md
+
+    - Testing:        Developers/Testing.md
+
+    - Useful shared CMS code:
+      - Concerns:     Developers/Concerns.md
+      - Helpers:      Developers/Helpers.md
+      - Mailers:      Developers/Mailers.md
+      #- Other libs:   Developers/app-libs.md
+
+    - Notes:
+      - Import data from Perl version of ShinyCMS: Developers/Notes/import-from-perl-shinycms.md
+      - Mailing list notes: Developers/Notes/mailing-list-notes.md
+      - Flappy tests: Developers/Notes/flappy-tests.md
+      - Menu Icons: Developers/Notes/menu-icons.md
+
+  - Licensing:
+    - Licensing:   Licensing/index.md
+    - GNU GPL v2:  Licensing/gnu-gpl-v2.0.md
+    - GNU GPL v3:  Licensing/gnu-gpl-v3.0.md
+    - MIT License: Licensing/mit.md
+    - CC by 3.0:   Licensing/cc-by-3.0.txt
