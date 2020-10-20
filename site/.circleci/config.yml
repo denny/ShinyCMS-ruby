@@ -1,5 +1,17 @@
 version: 2
 
-general:
-  branches:
-    ignore: gh-pages
+workflows:
+  setup_and_test:
+    jobs:
+      - install_dependencies:
+          filters:
+            branches:
+              ignore: gh-pages
+      - rubocop_and_bundle_audit:
+          filters:
+            branches:
+              ignore: gh-pages
+      - rspec:
+          filters:
+            branches:
+              ignore: gh-pages
