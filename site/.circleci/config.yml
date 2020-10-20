@@ -1,17 +1,17 @@
 version: 2
 
+jobs:
+  do_nothing:
+    steps:
+    - run:
+      name: Wait one second
+      command: sleep 1
+
 workflows:
-  setup_and_test:
+  version: 2
+  skip_gh_pages:
     jobs:
-      - install_dependencies:
-          filters:
-            branches:
-              ignore: gh-pages
-      - rubocop_and_bundle_audit:
-          filters:
-            branches:
-              ignore: gh-pages
-      - rspec:
+      - do_nothing:
           filters:
             branches:
               ignore: gh-pages
