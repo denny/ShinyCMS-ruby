@@ -47,7 +47,7 @@ RSpec.describe Admin::UsersController, type: :request do
         user_x = create :user, public_name: 'BobX'
         user_y = create :user, public_name: 'BobY'
 
-        get users_search_path, params: { q: 'bobx' }
+        get search_users_path, params: { q: 'bobx' }
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
