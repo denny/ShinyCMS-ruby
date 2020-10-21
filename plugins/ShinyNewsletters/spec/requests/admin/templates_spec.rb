@@ -33,7 +33,7 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
       template1 = create :newsletter_template, description: 'zingy-zebra'
       template2 = create :newsletter_template, description: 'awesome-aardvark'
 
-      get shiny_newsletters.templates_search_path, params: { q: 'zing' }
+      get shiny_newsletters.search_templates_path, params: { q: 'zing' }
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.templates.index.title' ).titlecase

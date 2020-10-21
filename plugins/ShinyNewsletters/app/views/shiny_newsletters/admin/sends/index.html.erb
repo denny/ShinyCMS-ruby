@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= render partial: 'admin/includes/search', locals: { action: shiny_newsletters.sends_search_path, placeholder: t( '.search' ) } %>
+<%= render partial: 'admin/includes/search', locals: { action: shiny_newsletters.search_sends_path, placeholder: t( '.search' ) } %>
 
 <% if @sending.present? %>
   <%= render partial: 'sending' %>

@@ -13,9 +13,14 @@ ShinyForms::Engine.routes.draw do
 
     # Admin area
     scope path: 'admin', module: 'admin' do
-      get 'forms/search', to: 'forms#search'
+      concern :paginatable do
+        get '(page/:page)', action: :index, on: :collection, as: ''
+      end
+      concern :searchable do
+        get :search, on: :collection
+      end
 
-      resources :forms, except: :show
+      resources :forms, except: :show, concerns: %i[ paginatable searchable ]
     end
   end
 end

@@ -13,17 +13,21 @@ ShinyPages::Engine.routes.draw do
 
     # Admin area
     scope path: :admin, module: :admin do
-      get 'pages/search', to: 'pages#search'
+      concern :paginatable do
+        get '(page/:page)', action: :index, on: :collection, as: ''
+      end
+      concern :searchable do
+        get :search, on: :collection
+      end
+      concern :sortable do
+        put :sort, on: :collection
+      end
 
-      patch 'pages/sort', to: 'pages#sort_pages_and_sections', as: :sort_pages_and_sections
-
-      resources :pages, except: [ :show ]
+      resources :pages, except: :show, concerns: %i[ paginatable searchable sortable ]
 
       scope path: :pages do
-        get 'templates/search', to: 'templates#search'
-
-        resources :sections,  except: [ :show ]
-        resources :templates, except: [ :show ]
+        resources :sections,  except: :show
+        resources :templates, except: :show, concerns: %i[ paginatable searchable ]
       end
     end
 

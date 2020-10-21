@@ -53,7 +53,7 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
       send1 = create :newsletter_send_sent, finished_sending_at: 2.days.ago
       send2 = create :newsletter_send_sent, finished_sending_at: 1.day.ago
 
-      get shiny_newsletters.sends_search_path, params: { q: 2.days.ago.strftime('%F') }
+      get shiny_newsletters.search_sends_path, params: { q: 2.days.ago.strftime('%F') }
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.sends.index.title' ).titlecase
@@ -172,7 +172,7 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
       list1 = create :mailing_list, subscriber_count: 1
       send1 = create :newsletter_send, list: list1
 
-      put shiny_newsletters.start_sending_path( send1 )
+      put shiny_newsletters.start_send_path( send1 )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_newsletters.sends_path
@@ -187,7 +187,7 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
     it 'cancels the specified (currently sending) send' do
       send1 = create :newsletter_send
 
-      put shiny_newsletters.cancel_sending_path( send1 )
+      put shiny_newsletters.cancel_send_path( send1 )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_newsletters.sends_path

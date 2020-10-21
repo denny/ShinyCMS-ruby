@@ -1,7 +1,7 @@
 <% @page_title = t( '.title' ) %>
 
 <% if @subscriptions.present? %>
-<%= render partial: 'admin/includes/search', locals: { action: shiny_lists.list_subscriptions_search_path( @subscriptions.first.list ), placeholder: t( '.search' ) } %>
+<%= render partial: 'admin/includes/search', locals: { action: shiny_lists.search_list_subscriptions_path( @subscriptions.first.list ), placeholder: t( '.search' ) } %>
 
 <table class="table table-responsive-sm table-striped">
   <thead>
@@ -38,7 +38,7 @@
         <% end %>
       </td>
       <td class="actions">
-        <%= link_to t( 'shiny_lists.unsubscribe' ), shiny_lists.list_admin_unsubscribe_path( subscription.list, subscription ),
+        <%= link_to t( 'shiny_lists.unsubscribe' ), shiny_lists.admin_list_unsubscribe_path( subscription.list, subscription ),
             method: :put, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>

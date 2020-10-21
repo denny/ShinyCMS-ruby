@@ -19,7 +19,7 @@
             update: function( e, ui ) {
               Rails.ajax({
                 url:  $( this ).data( 'url' ),
-                type: 'PATCH',
+                type: 'PUT',
                 data: $( this ).sortable( 'serialize' ),
               });
             }
