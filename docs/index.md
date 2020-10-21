@@ -2,15 +2,18 @@
 
 ## Using ShinyCMS
 
-### Installation and deployment
+### Getting Started
 
-* [Getting Started](Getting-Started.md)
+* [tl,dr](tldr.md) - for the impatient :)
 
-### Building your own site
+* [Installation](INSTALL.md)        - installing a local dev system
+* [Configuration](Configuration.md) - where different things are configured
+* [External services](Services.md)  - required services and optional extras
+* [Demo site](demo-site.md)         - loading the demo site templates and data
+* [Themes](Themes.md)               - start building your hosted site by creating a theme for it
 
-* [Themes](Themes.md)
 
-### Features (Main App and Plugins)
+### CMS Features
 
 * [User accounts](Features/MainApp/UserAccounts.md)
 * [Admin features](Features/MainApp/admin-features.md)

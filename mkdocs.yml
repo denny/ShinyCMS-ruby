@@ -18,9 +18,14 @@ edit_uri: ''
 theme: material
 
 nav:
-  - Install and Deploy:
-    - Getting Started: Getting-Started.md
-    - Themes:          Themes.md
+  - Installation, configuration, deployment:
+    - Local installation: INSTALL.md
+    - Configuration:      Configuration.md
+    - External services:  Services.md
+    - Demo site:          demo-site.md
+    - Themes:             Themes.md
+
+    - tl,dr:              tldr.md
 
   - Features:
     - User Accounts:   Features/MainApp/UserAccounts.md

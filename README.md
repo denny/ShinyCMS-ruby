@@ -67,32 +67,29 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
 
 ## Installation and configuration
 
-If you want to set up a website using ShinyCMS, please read the [Getting Started](docs/Getting-Started.md) guide.
+If you want to set up a website using ShinyCMS, please start by reading the [installation guide](docs/INSTALL.md) - or, if you want the quick version, [tl,dr](docs/tldr.md).
 
 ### Demo site
 
-Theme templates and sample data for a demo site are provided, so you can try all of the CMS features without doing any set-up work.
+Theme templates and sample data for a [demo site](docs/demo-site.md) are provided, so you can try all of the CMS features without doing any data-entry work first. You can run the demo site on a free Heroku plan, using the free/hobby pricing level for all the required dynos and add-ons.
 
+### System dependencies
 
-## System dependencies
+You will need a webserver, a Postgres-compatible database server, and a Sidekiq-compatible caching service (e.g. Redis).
 
-* A webserver - I use `rails s` locally, and deploy to Heroku
-* A database - for now this assumes Postgres
-* An email server or service - anything that ActionMailer supports
+You will need a mail server if you intend to enable any of the features that send emails; user registrations, reply notifications, etc. Anything supported by ActionMailer should work.
+
+All other supported [external services](docs/Services.md) are optional. If you add config details for them (in ENV / .env* files / Heroku config) then they will be used, otherwise either the related CMS features will be unavailable or they will have reduced functionality.
 
 ### Ruby and Rails versions
 
-ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.2 and Rails 6.0.3).
+ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.2 and Rails 6.0.3.4).
 
-It has been tested on every release of Rails 6 so far, and with most versions of Ruby from 2.5.8 onwards ([view recent test results][test results] for ruby 2.5.8, 2.6.6, and 2.7.1).
+It has been tested on every release of Rails 6 so far, and with most versions of Ruby from 2.5.8 onwards ([view recent test results][test results] for ruby 2.5.8, 2.6.6, and 2.7.2).
 
-[Test results]: https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/188454649
+[Test results]: https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/190156596
 
 There are currently no plans to add support for Rails 5 or older Ruby versions.
-
-### Services
-
-External services are mostly optional. If you add config settings for them (in ENV, .env*, or Heroku config vars) then they will be enabled, otherwise either those features will be disabled or (where possible) a fallback will take their place.
 
 
 ## Contributing
