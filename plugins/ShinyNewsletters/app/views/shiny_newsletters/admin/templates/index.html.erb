@@ -27,7 +27,4 @@
   <% end %>
 </table>
 
-<%= paginate @templates, window: 3, views_prefix: 'admin' %>
-<p id="pager-info">
-  <%= page_entries_info @templates %>
-</p>
+<%= render partial: 'admin/includes/pager', locals: { paged: @templates, route_set: shiny_newsletters } %>
