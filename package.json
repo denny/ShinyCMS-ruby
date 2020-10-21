@@ -12,7 +12,6 @@
     "jquery-ui": "^1.12.1",
     "minimist": "^1.2.2",
     "mjml": "^4.7.1",
-    "node-forge": "0.10.0",
     "smartmenus": "^1.1.1"
   },
   "devDependencies": {

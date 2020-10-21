@@ -16,5 +16,9 @@ module ShinyNews
 
       association :user
     end
+
+    factory :long_news_post, parent: :news_post do
+      body { Faker::Lorem.paragraphs( number: 5 ).join( '<br><br>' ) }
+    end
   end
 end

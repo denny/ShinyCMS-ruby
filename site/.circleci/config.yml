@@ -1,0 +1,17 @@
+version: 2
+
+jobs:
+  do_nothing:
+    steps:
+    - run:
+      name: Wait one second
+      command: sleep 1
+
+workflows:
+  version: 2
+  skip_gh_pages:
+    jobs:
+      - do_nothing:
+          filters:
+            branches:
+              ignore: gh-pages

@@ -3,8 +3,8 @@
 ShinyCMS is copyright 2009-2020 Denny de la Haye (https://denny.me)
 
 ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later). There are copies of both v2 and v3 of the GPL included with the ShinyCMS code, or you can read them online:
-* [GNU GPL v2](gnu-gpl-2.0.md) / https://opensource.org/licenses/gpl-2.0
-* [GNU GPL v3](gnu-gpl-3.0.md) / https://opensource.org/licenses/gpl-3.0
+* [GNU GPL v2](gnu-gpl-v2.0.md) / https://opensource.org/licenses/gpl-2.0
+* [GNU GPL v3](gnu-gpl-v3.0.md) / https://opensource.org/licenses/gpl-3.0
 
 
 ## License terms for code from other projects
@@ -17,7 +17,7 @@ ShinyCMS currently uses CKEditor to provide WYSIWYG editing in the admin area. A
 
 ### HTML5 UP: Halcyonic and Coming Soon themes
 
-The templates for the Halcyonic theme were built using the Halcyonic theme from HTML5 UP. The templates for the Coming Soon theme were built using the Eventually theme from HTML5 UP. Both of these HTML5 UP themes are licensed CC-BY-3.0 (Creative Commons Attribution 3.0 Unported): [CC-BY-3.0](cc-by-3.0.md) / https://html5up.net/license
+The templates for the Halcyonic theme were built using the Halcyonic theme from HTML5 UP. The templates for the Coming Soon theme were built using the Eventually theme from HTML5 UP. Both of these HTML5 UP themes are licensed CC-BY-3.0 (Creative Commons Attribution 3.0 Unported): [CC-BY-3.0](cc-by-3.0.txt) / https://html5up.net/license
 
 ### CoreUI admin template
 
