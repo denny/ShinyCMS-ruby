@@ -89,6 +89,7 @@ source 'https://rubygems.org' do
 
   # Pagination
   gem 'kaminari'
+  gem 'kaminari_route_prefix'
 
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'

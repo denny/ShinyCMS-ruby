@@ -304,6 +304,8 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    kaminari_route_prefix (0.1.1)
+      kaminari (~> 1.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -558,6 +560,7 @@ DEPENDENCIES
   i18n-tasks (~> 0.9.31)!
   image_processing (~> 1.12)!
   kaminari!
+  kaminari_route_prefix!
   letter_opener_web (~> 1.0)!
   listen (>= 3.0.5, < 3.3)!
   mini_magick!

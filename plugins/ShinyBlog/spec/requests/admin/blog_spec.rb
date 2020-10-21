@@ -35,20 +35,7 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
     end
 
     it 'fetches the list of blog posts with more than one page of posts' do
-      skip 'TODO: FIXME: THIS TEST EXPOSES A SHOWSTOPPER BUG!'
-
-      create :blog_post
-      create :blog_post
-      create :blog_post
-      create :blog_post
-      create :blog_post
-      create :blog_post
-      create :blog_post
-      create :blog_post
-      create :blog_post
-      create :blog_post
-      create :blog_post
-      create :blog_post
+      create_list :blog_post, 12
 
       get shiny_blog.blog_posts_path
 
