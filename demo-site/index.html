@@ -9,7 +9,7 @@
         <meta name="description" content="Documentation for users and developers of ShinyCMS (Ruby version)">
       
       
-        <link rel="canonical" href="http://docs.shinycms.org/Getting-Started/">
+        <link rel="canonical" href="http://docs.shinycms.org/demo-site/">
       
       
         <meta name="author" content="Denny de la Haye">
@@ -19,7 +19,7 @@
     
     
       
-        <title>Getting Started - ShinyCMS</title>
+        <title>Demo site - ShinyCMS</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shinycms-getting-started" class="md-skip">
+        <a href="#shinycms-documentation" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Getting Started
+              Demo site
             
           </span>
         </div>
@@ -198,16 +198,52 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
     
     <label class="md-nav__link" for="nav-1">
-      Install and Deploy
+      Installation, configuration, deployment
       <span class="md-nav__icon md-icon"></span>
     </label>
-    <nav class="md-nav" aria-label="Install and Deploy" data-md-level="1">
+    <nav class="md-nav" aria-label="Installation, configuration, deployment" data-md-level="1">
       <label class="md-nav__title" for="nav-1">
         <span class="md-nav__icon md-icon"></span>
-        Install and Deploy
+        Installation, configuration, deployment
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../INSTALL/" class="md-nav__link">
+      Local installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Configuration/" class="md-nav__link">
+      Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Services/" class="md-nav__link">
+      External services
+    </a>
+  </li>
+
         
           
           
@@ -224,12 +260,12 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Getting Started
+        Demo site
         <span class="md-nav__icon md-icon"></span>
       </label>
     
     <a href="./" class="md-nav__link md-nav__link--active">
-      Getting Started
+      Demo site
     </a>
     
       
@@ -246,23 +282,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tldr" class="md-nav__link">
-    TL,DR
+  <a href="#demo-site" class="md-nav__link">
+    Demo site
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-longer-version" class="md-nav__link">
-    The longer version
-  </a>
-  
-    <nav class="md-nav" aria-label="The longer version">
+    <nav class="md-nav" aria-label="Demo site">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#database" class="md-nav__link">
-    Database
+  <a href="#theme-templates" class="md-nav__link">
+    Theme / templates
   </a>
   
 </li>
@@ -275,84 +304,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#deployment" class="md-nav__link">
-    Deployment
+  <a href="#heroku" class="md-nav__link">
+    Heroku
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    Configuration
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuration">
+    <nav class="md-nav" aria-label="Heroku">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#env-vars" class="md-nav__link">
-    ENV vars
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#feature-flags" class="md-nav__link">
-    Feature Flags
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#site-settings" class="md-nav__link">
-    Site Settings
+  <a href="#loading-the-demo-site-data-on-heroku" class="md-nav__link">
+    Loading the demo site data on Heroku
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#services" class="md-nav__link">
-    Services
-  </a>
-  
-    <nav class="md-nav" aria-label="Services">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aws-s3-file-storage" class="md-nav__link">
-    AWS S3 - file storage
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recaptcha-bot-protection" class="md-nav__link">
-    reCAPTCHA - bot protection
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#have-i-been-pwned-password-leak-checking" class="md-nav__link">
-    Have I Been Pwned - password leak checking
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#themes" class="md-nav__link">
-    Themes
-  </a>
   
 </li>
         
@@ -376,6 +343,18 @@
   <li class="md-nav__item">
     <a href="../Themes/" class="md-nav__link">
       Themes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tldr/" class="md-nav__link">
+      tl,dr
     </a>
   </li>
 
@@ -1127,23 +1106,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tldr" class="md-nav__link">
-    TL,DR
+  <a href="#demo-site" class="md-nav__link">
+    Demo site
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-longer-version" class="md-nav__link">
-    The longer version
-  </a>
-  
-    <nav class="md-nav" aria-label="The longer version">
+    <nav class="md-nav" aria-label="Demo site">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#database" class="md-nav__link">
-    Database
+  <a href="#theme-templates" class="md-nav__link">
+    Theme / templates
   </a>
   
 </li>
@@ -1156,84 +1128,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#deployment" class="md-nav__link">
-    Deployment
+  <a href="#heroku" class="md-nav__link">
+    Heroku
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    Configuration
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuration">
+    <nav class="md-nav" aria-label="Heroku">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#env-vars" class="md-nav__link">
-    ENV vars
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#feature-flags" class="md-nav__link">
-    Feature Flags
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#site-settings" class="md-nav__link">
-    Site Settings
+  <a href="#loading-the-demo-site-data-on-heroku" class="md-nav__link">
+    Loading the demo site data on Heroku
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#services" class="md-nav__link">
-    Services
-  </a>
-  
-    <nav class="md-nav" aria-label="Services">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aws-s3-file-storage" class="md-nav__link">
-    AWS S3 - file storage
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recaptcha-bot-protection" class="md-nav__link">
-    reCAPTCHA - bot protection
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#have-i-been-pwned-password-leak-checking" class="md-nav__link">
-    Have I Been Pwned - password leak checking
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#themes" class="md-nav__link">
-    Themes
-  </a>
   
 </li>
         
@@ -1255,91 +1165,21 @@
               
                 
                 
-                <h1 id="shinycms-getting-started">ShinyCMS: Getting Started</h1>
-<h2 id="tldr">TL,DR</h2>
-<pre><code class="language-bash">git clone https://github.com/denny/ShinyCMS-ruby.git
-cd ShinyCMS-ruby
-cp docs/env.sample .env.development.local
-# Edit .env.development.local in case you want/need to change anything
-bundle install
-yarn install
-rails db:setup
-rails shiny:demo:load     # if you want the demo data loaded
-rails shiny:admin:create  # if you didn't load the demo data
-rails s
-</code></pre>
-<p>You should now have a ShinyCMS site at http://localhost:3000,
-with an admin area at http://localhost:3000/admin</p>
-<h2 id="the-longer-version">The longer version</h2>
-<h3 id="database">Database</h3>
-<p>Set your DATABASE_URL (including username and password) in your .env.*.local files</p>
-<p>To create the database: <code>rails db:create</code><br />
-To load the database schema: <code>rails db:schema:load</code><br />
-To load seed data: <code>rails db:seed</code></p>
-<p>To do all three in one command: <code>rails db:setup</code></p>
+                <h1 id="shinycms-documentation">ShinyCMS Documentation</h1>
+<h2 id="demo-site">Demo site</h2>
+<h3 id="theme-templates">Theme / templates</h3>
+<p>The demo site uses the Halcyonic theme, whose templates are currently included with a standard install of the CMS. This may change in future, but for now you will already have the demo site theme templates in place.</p>
 <h3 id="demo-data">Demo data</h3>
-<p>There is a set of demo data available, which will allow you to try out most
-ShinyCMS features without having to create your own test data first.</p>
-<p>WARNING: DATA LOSS!<br />
-Loading the demo data will wipe the database - it's the first thing this rake
-task does. Before you run it, back up any data that you don't want to lose!</p>
-<p>To load the demo data: <code>rails shiny:demo:load</code></p>
-<h3 id="deployment">Deployment</h3>
-<p>There's a Procfile for easy deployment to Heroku. You can run a test/demo
-install of ShinyCMS on there for free, using a Free Dyno for web and a
-Postgres add-on at the Hobby Dev level.</p>
-<p>To load the demo data on Heroku, first load it locally using the instructions
-above, then use the following command to upload it to your Heroku Postgres
-add-on database (NB: the first command wipes the Heroku database):<br />
-<code>heroku pg:reset postgresql-whatever-99999 --app my-shinycms --confirm my-shinycms</code><br />
-<code>heroku pg:push shinycms postgresql-whatever-99999 --app my-shinycms</code></p>
-<h3 id="configuration">Configuration</h3>
-<p>Configuration is split between the following locations:</p>
-<h4 id="env-vars">ENV vars</h4>
-<ul>
-<li>Mostly used for secrets (database details, API keys etc)</li>
-<li>Usually loaded from .env* files, or from Settings &gt; Config Vars on Heroku</li>
-<li>See docs/env.sample for a full list of possible ENV settings</li>
-</ul>
-<h4 id="feature-flags">Feature Flags</h4>
-<ul>
-<li>Turn CMS features on (or off) for all users, logged-in only, or admin only</li>
-<li>Controlled in the CMS admin area - /admin/feature-flags</li>
-<li>Can also be turned on/off from the command line: <code>rails shiny:feature:on[tags]</code></li>
-</ul>
-<h4 id="site-settings">Site Settings</h4>
-<ul>
-<li>Configuration of CMS options and features</li>
-<li>Controlled in the CMS admin area - /admin/site-settings</li>
-</ul>
-<h3 id="services">Services</h3>
-<p>External services are mostly optional. If you add config settings for them
-(via ENV vars on the command line, or via a .env file (see .env.example),
-or via your Config Vars on Heroku) then they will be enabled, otherwise
-either those features will be disabled or a fallback will take their place.</p>
-<h4 id="aws-s3-file-storage">AWS S3 - file storage</h4>
-<p>User uploaded files can be stored on AWS S3 instead of locally. To enable this
-feature you will need to have an an AWS account, create an S3 bucket, and add
-the relevant keys to the ENV/config.</p>
-<h4 id="recaptcha-bot-protection">reCAPTCHA - bot protection</h4>
-<p>User registration and posting comments can be protected from bots using Google's
-reCAPTCHA service. To enable this feature you will need to obtain keys and add
-them to your ENV/config. You will get the best results with a pair of V3 keys
-and a pair of V2 keys (this allows you to set a minimum score for each protected
-feature in your Site Settings area). At first reCAPTCHA tries an 'invisible'
-(non-interactive) check (V3 with score if configured, V2 otherwise), falling
-back to a V2 checkbox if that fails.</p>
-<h4 id="have-i-been-pwned-password-leak-checking">Have I Been Pwned - password leak checking</h4>
-<p>The user registration and login features use Devise::PwnedPassword to check
-user's passwords against https://haveibeenpwned.com/Passwords and warn the
-user if they find a match, but this doesn't require any setup on your part.</p>
-<h3 id="themes">Themes</h3>
-<p>The recommended way to start building a site on ShinyCMS is to create a theme
-for it. You can read more about creating themes in <a href="../Themes/">docs/Themes</a></p>
-<p>The default theme can be set in ENV['SHINYCMS_THEME'] and on the Site Settings
-page in the admin area. If both are set, the latter takes priority. You can also
-choose to make this setting user-overridable, in which case a user's setting
-will take priority for them.</p>
+<p>There is a set of demo data available, which adds a small amount of content for each of the CMS features. This allows you to try out most of these features without having to invent and input your own test data first.</p>
+<p>NB: Loading the demo data will wipe the current contents of the database. Before you run this rake task, back up any data that you don't want to lose.</p>
+<p>To load the demo data: <code>rails shiny:demo:load</code> (and reply 'Y' to the 'Are you sure?' question)</p>
+<h3 id="heroku">Heroku</h3>
+<p>You can run a test/demo install of ShinyCMS on Heroku for free, using free dynos for web and worker, and 'Hobby Dev' add-ons for Postgres and Redis. A suitable Procfile is provided.</p>
+<h4 id="loading-the-demo-site-data-on-heroku">Loading the demo site data on Heroku</h4>
+<p>To load the demo data into a Heroku Postgres add-on, first load it locally using the instructions above and in the <a href="../INSTALL/">installation guide</a>, then use the following commands to upload it to your Heroku Postgres add-on database (substituting your own app name and heroku pg instance name, obviously):</p>
+<pre><code>heroku pg:reset postgresql-something-99999 --app my-app-name --confirm my-app-name
+heroku pg:push shinycms postgresql-something-99999 --app my-app-name
+</code></pre>
                 
               
               
@@ -1357,6 +1197,20 @@ will take priority for them.</p>
   
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../Services/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                External services
+              </div>
+            </div>
+          </a>
         
         
           <a href="../Themes/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
