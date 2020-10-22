@@ -12,8 +12,10 @@ module ShinyPost
 
   include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
   include ShinyClassName
+  include ShinyPaging
   include ShinyShowHide
   include ShinySlugInMonth
+  include ShinySoftDelete
   include ShinyTeaser
 
   included do
@@ -37,9 +39,6 @@ module ShinyPost
 
     acts_as_taggable
     acts_as_votable
-    acts_as_paranoid
-    validates_as_paranoid
-    paginates_per 20
 
     searchable_by :title, :body, :slug if ShinyPlugin.loaded? :ShinySearch # TODO: author
 
