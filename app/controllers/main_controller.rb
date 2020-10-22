@@ -38,6 +38,10 @@ class MainController < ApplicationController
 
   layout 'layouts/main_site'
 
+  def default_items_per_page
+    Setting.get_int( :default_items_per_page ) || 10
+  end
+
   protected
 
   def configure_permitted_parameters

@@ -176,6 +176,18 @@ set_setting(
 )
 
 set_setting(
+  name: :default_items_per_page,
+  value: '10',
+  description: 'Default number of items to display per page'
+)
+
+set_setting(
+  name: :default_items_per_page_in_admin_area,
+  value: '10',
+  description: 'Default number of items to display per page in the admin area'
+)
+
+set_setting(
   name: :post_login_redirect,
   value: '/',
   level: 'admin',

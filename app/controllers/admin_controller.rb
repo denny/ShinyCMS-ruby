@@ -39,6 +39,10 @@ class AdminController < ApplicationController
     redirect_to admin_path, alert: t( 'admin.invalid_url', request_path: bad_path )
   end
 
+  def default_items_per_page
+    Setting.get_int( :default_items_per_page_in_admin_area ) || Setting.get_int( :default_items_per_page ) || 10
+  end
+
   private
 
   # Check whether a list of permitted admin IP addresses has been defined,

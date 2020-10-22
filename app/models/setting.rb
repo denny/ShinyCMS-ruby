@@ -78,8 +78,12 @@ class Setting < ApplicationRecord
     setting.value
   end
 
-  def self.true?( name )
-    %w[ TRUE True true YES Yes yes ].include? get( name )
+  def self.get_int( name, user = nil )
+    get( name, user )&.to_i
+  end
+
+  def self.true?( name, user = nil )
+    %w[ TRUE True true YES Yes yes ].include? get( name, user )
   end
 
   def self.user_settings

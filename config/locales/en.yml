@@ -233,6 +233,8 @@ en:
     all_comment_notifications_email: Email to notify of ALL comments
     allowed_to_comment: Allowed to comment
     default_email: Default email address
+    default_items_per_page: Default items per page
+    default_items_per_page_in_admin_area: Default items per page in admin area
     post_login_redirect: Post-login redirect
     recaptcha_comment_score: 'reCAPTCHA: Minimum score for comments'
     recaptcha_registration_score: 'reCAPTCHA: Minimum score for user registration'
