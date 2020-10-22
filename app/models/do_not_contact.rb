@@ -9,14 +9,11 @@
 # Store details of people who have asked you not to contact them at all
 # Uses EmailAddress.redact to store and search addresses via a one-way hash
 class DoNotContact < ApplicationRecord
+  include ShinySoftDelete
+
   # Validations
 
   validates :email, presence: true, uniqueness: true
-
-  # Plugin features
-
-  acts_as_paranoid
-  validates_as_paranoid
 
   # Before/after actions
 

@@ -8,17 +8,14 @@
 
 # Class for settings items (definitions)
 class Setting < ApplicationRecord
+  include ShinySoftDelete
+
   # Custom error class
   class CannotUpdateLockedSetting < StandardError; end
 
   # Associations
 
   has_many :values, inverse_of: :setting, dependent: :destroy, class_name: 'SettingValue'
-
-  # Plugin features
-
-  acts_as_paranoid
-  validates_as_paranoid
 
   # Validations
 

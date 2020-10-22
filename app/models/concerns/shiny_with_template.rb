@@ -10,9 +10,6 @@
 module ShinyWithTemplate
   extend ActiveSupport::Concern
 
-  include ShinyPaging
-  include ShinySoftDelete
-
   included do
     # Validations
 

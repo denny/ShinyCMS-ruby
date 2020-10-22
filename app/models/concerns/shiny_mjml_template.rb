@@ -10,8 +10,6 @@
 module ShinyMJMLTemplate
   extend ActiveSupport::Concern
 
-  include ShinyPaging
-  include ShinySoftDelete
   include ShinyTemplate
 
   included do

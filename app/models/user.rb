@@ -60,9 +60,9 @@ class User < ApplicationRecord
   # Virtual attributes
 
   # User profile pic (powered by ActiveStorage)
-  # The dependent: :purge_now option is required to avoid an incompatibility with acts_as_paranoid (soft delete):
-  # https://github.com/ActsAsParanoid/acts_as_paranoid/issues/103
   has_one_attached :profile_pic, dependent: :purge_now
+  # The dependent: :purge_now option is required to avoid an incompatibility issue with soft delete:
+  # https://github.com/ActsAsParanoid/acts_as_paranoid/issues/103
 
   # Allow authenticating by either username or email
   attr_writer :login
