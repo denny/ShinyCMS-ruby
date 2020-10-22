@@ -33,7 +33,7 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
   * Double opt-in, user subscription management, 'do not contact' feature
 * [Newsletters](docs/Features/Plugins/ShinyNewsletters.md) ±
   * HTML mailshots, produced from MJML templates for cross-platform compatibility
-* [Basic form handlers](docs/Features/Plugins/ShinyForms.md)
+* [Basic form handlers](docs/Features/Plugins/ShinyForms.md) ±
   * e.g. 'email form data to site owner' - useful for contact and enquiry forms
 * [Site search](docs/Features/Plugins/ShinySearch.md) ±
   * Ready to support multiple search backends (default is pg_search multisearch)
@@ -45,9 +45,9 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
   * ACL-based authorisation system for admins (powered by [Pundit](https://github.com/varvet/pundit))
   * Uses [reCAPTCHA](https://developers.google.com/recaptcha/) to block registration by bots
 * Web interface for [site settings](docs/Features/MainApp/SiteSettings.md) and [feature flags](docs/Features/MainApp/FeatureFlags.md)
-* All emails are generated from MJML templates, producing reliably cross-platform HTML emails
 * Built-in tracking of [web stats](docs/Features/MainApp/WebStats.md) and [email stats](docs/Features/MainApp/EmailStats.md) (powered by [Ahoy](https://github.com/ankane/ahoy) and [Ahoy::Email](https://github.com/ankane/ahoy_email))
 * Build your own [charts and dashboards](docs/Features/MainApp/Charts.md) for viewing and analyzing stats (powered by [Blazer](https://github.com/ankane/blazer))
+* All emails are generated from [MJML](docs/Features/mjml.md) templates, producing reliably cross-platform HTML emails
 
 ### Planned features
 
@@ -62,12 +62,15 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
 * Default dashboard and charts for Blazer
 * More themes!
 
-(See the [developer documentation](docs/Developers/index.md) for more detailed information on features [in progress](docs/Developers/in-progress.md) and [to-do](docs/Developers/TODO.md))
+
+## Documentation
+
+[docs.shinycms.org] is generated from the documentation included in [/docs](docs/index.md).
 
 
 ## Installation and configuration
 
-If you want to set up a website using ShinyCMS, please start by reading the [installation guide](docs/INSTALL.md) - or, if you want the quick version, [tl,dr](docs/tldr.md).
+Please start by reading the [installation guide](docs/INSTALL.md) (or [tl,dr](docs/tldr.md) for the very short version).
 
 ### Demo site
 
