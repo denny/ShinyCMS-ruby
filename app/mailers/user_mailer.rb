@@ -10,7 +10,7 @@
 class UserMailer < ApplicationMailer
   include Devise::Controllers::UrlHelpers
 
-  default from: ->(*) { default_email }
+  default from: ->( * ) { default_email }
   default template_path: 'user_mailer'
 
   # Don't store URLs that might have security tokens in them in email stats data
