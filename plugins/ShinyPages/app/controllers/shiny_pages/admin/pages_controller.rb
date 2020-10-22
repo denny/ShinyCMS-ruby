@@ -14,21 +14,37 @@ module ShinyPages
     helper_method :load_html_editor?
 
     def index
-      authorize ShinyPages::Page
-      authorize ShinyPages::Section
+      authorize Page
+      authorize Section
+
       @top_level_items = ShinyPages::Page.all_top_level_items
       @top_level_items.each do |item|
         authorize item
       end
     end
 
+    # Endpoint for drag-to-sort of pages and sections (on admin index view)
+    def sort
+      authorize Section, :edit?
+
+      params[ :sorted ].each_with_index do |item_id, index|
+        if item_id.to_s.start_with? 'section'
+          item_id = item_id.to_s.sub( %r{^section}, '' ).to_i
+          Section.find( item_id ).update!( position: index + 1 )
+        else
+          Page.find( item_id ).update!( position: index + 1 )
+        end
+      end
+      head :ok
+    end
+
     def new
-      @page = ShinyPages::Page.new
+      @page = Page.new
       authorize @page
     end
 
     def create
-      @page = ShinyPages::Page.new( page_params )
+      @page = Page.new( page_params )
       authorize @page
 
       if @page.save
@@ -40,12 +56,12 @@ module ShinyPages
     end
 
     def edit
-      @page = ShinyPages::Page.find( params[:id] )
+      @page = Page.find( params[:id] )
       authorize @page
     end
 
     def update
-      @page = ShinyPages::Page.find( params[:id] )
+      @page = Page.find( params[:id] )
       authorize @page
 
       if sort_elements && @page.update( page_params )
@@ -64,22 +80,8 @@ module ShinyPages
       apply_sort_order( @page.elements, sort_order )
     end
 
-    def sort_pages_and_sections
-      authorize Section, :edit?
-
-      params[ :sorted ].each_with_index do |item_id, index|
-        if item_id.to_s.start_with? 'section'
-          item_id = item_id.to_s.sub( %r{^section}, '' ).to_i
-          Section.find( item_id ).update!( position: index + 1 )
-        else
-          Page.find( item_id ).update!( position: index + 1 )
-        end
-      end
-      head :ok
-    end
-
     def destroy
-      page = ShinyPages::Page.find( params[:id] )
+      page = Page.find( params[:id] )
       authorize page
 
       flash[ :notice ] = t( '.success' ) if page.destroy

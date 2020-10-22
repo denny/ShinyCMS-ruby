@@ -61,15 +61,21 @@ Rails.application.routes.draw do
 
     get :admin, to: 'admin#index'
 
+    concern :paginatable do
+      get '(page/:page)', action: :index, on: :collection, as: ''
+    end
+    concern :searchable do
+      get :search, on: :collection
+    end
+
     scope path: 'admin', module: 'admin' do
       # Consent versions
-      get 'consent-versions/search', to: 'consent_versions#search'
-      resources :consent_versions, path: 'consent-versions'
+      resources :consent_versions, path: 'consent-versions', concerns: %i[ paginatable searchable ]
 
       # Discussion and comment moderation
-      get :comments, to: 'comments#index'
-      put :comments, to: 'comments#update'
-      get 'comments/search', to: 'comments#search'
+      get 'comments(/page/:page)', to: 'comments#index', as: :comments
+      put 'comments',              to: 'comments#update'
+      get 'comments/search',       to: 'comments#search'
 
       scope path: 'comment' do
         put    ':id/show',    to: 'comments#show',          as: :show_comment
@@ -96,19 +102,17 @@ Rails.application.routes.draw do
       put 'site-settings', to: 'site_settings#update'
 
       # Stats
-      get 'email-stats',                         to: 'email_stats#index'
+      get 'email-stats(/page/:page)',            to: 'email_stats#index', as: :email_stats
       get 'email-stats/user/:user_id',           to: 'email_stats#index', as: :user_email_stats
       get 'email-stats/recipient/:recipient_id', to: 'email_stats#index', as: :recipient_email_stats
       get 'email-stats/search',                  to: 'email_stats#search'
 
-      get 'web-stats',               to: 'web_stats#index'
-      get 'web-stats/user/:user_id', to: 'web_stats#index', as: :user_web_stats
-      get 'web-stats/search',        to: 'web_stats#search'
+      get 'web-stats(/page/:page)',              to: 'web_stats#index', as: :web_stats
+      get 'web-stats/user/:user_id',             to: 'web_stats#index', as: :user_web_stats
+      get 'web-stats/search',                    to: 'web_stats#search'
 
       # Users
-      get 'users/search', to: 'users#search'
-
-      resources :users, except: [ :show ]
+      resources :users, except: :show, concerns: %i[ paginatable searchable ]
     end
 
     ########################################

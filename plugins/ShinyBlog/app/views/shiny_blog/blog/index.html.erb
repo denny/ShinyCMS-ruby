@@ -12,11 +12,7 @@
 </section>
 <% end %>
 
-<% if @posts.size == 0 %>
-<p>
-  <%= t( 'empty_list', items: 'blog posts' ) %>
-</p>
-<% end %>
+<%= render partial: 'includes/pager', locals: { paged: @posts, route_set: shiny_blog } %>
 
 <% @sidebar_position = 'right' %>
 <%= render partial: 'right_sidebar_join' %>

@@ -29,7 +29,7 @@ RSpec.describe 'Mailing List admin features', type: :request do
       list1 = create :mailing_list, slug: 'zingy-zebra'
       list2 = create :mailing_list, slug: 'awesome-aardvark'
 
-      get shiny_lists.lists_search_path, params: { q: 'zing' }
+      get shiny_lists.search_lists_path, params: { q: 'zing' }
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.lists.index.title' ).titlecase

@@ -9,7 +9,7 @@
 ShinyNews::Engine.routes.draw do
   scope format: false do
     # Main site
-    get 'news', to: 'news#index', as: :view_news
+    get 'news(/page/:page)',        to: 'news#index', as: :view_news
 
     get 'news/:year',               constraints: { year: %r{\d\d\d\d} },
                                     to: 'news#year', as: :view_news_year
@@ -22,9 +22,14 @@ ShinyNews::Engine.routes.draw do
 
     # Admin area
     scope path: 'admin', module: 'admin' do
-      get 'news/search', to: 'news_posts#search', as: :news_posts_search
+      concern :paginatable do
+        get '(page/:page)', action: :index, on: :collection, as: ''
+      end
+      concern :searchable do
+        get :search, on: :collection
+      end
 
-      resources :news_posts, path: 'news', except: :show
+      resources :news_posts, path: 'news', except: :show, concerns: %i[ paginatable searchable ]
     end
   end
 end

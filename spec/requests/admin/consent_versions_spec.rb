@@ -32,7 +32,7 @@ RSpec.describe Admin::ConsentVersionsController, type: :request do
       consent1 = create :consent_version, slug: 'zingy-zebras'
       consent2 = create :consent_version, slug: 'awesome-aardvarks'
 
-      get consent_versions_search_path, params: { q: 'zing' }
+      get search_consent_versions_path, params: { q: 'zing' }
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.consent_versions.index.title' ).titlecase

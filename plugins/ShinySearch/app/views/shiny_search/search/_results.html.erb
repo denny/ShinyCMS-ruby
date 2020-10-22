@@ -17,7 +17,7 @@
     <%= render partial: 'search/no_results' %>
   <% else %>
     <% if @pageable %>
-    <%= render partial: 'includes/pager', locals: { paged: @pageable } %>
+    <%= render partial: 'includes/pager', locals: { paged: @pageable, route_set: shiny_search } %>
     <% end %>
   <% end %>
 </section>

@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= render partial: 'admin/includes/search', locals: { action: shiny_newsletters.editions_search_path, placeholder: t( '.search' ) } %>
+<%= render partial: 'admin/includes/search', locals: { action: shiny_newsletters.search_editions_path, placeholder: t( '.search' ) } %>
 
 <table class="table table-responsive-sm table-striped">
   <thead>
@@ -36,7 +36,7 @@
         <% end %>
       </td>
       <td class="actions">
-        <%= link_to t( 'shiny_newsletters.admin.editions.index.send_sample'  ), shiny_newsletters.send_sample_path( edition ) %>
+        <%= link_to t( 'shiny_newsletters.admin.editions.index.send_sample'  ), shiny_newsletters.send_sample_edition_path( edition ) %>
         <%= link_to t( 'shiny_newsletters.admin.editions.index.send_to_list' ), shiny_newsletters.new_send_for_edition_path( edition ) %>
         <%= link_to t( 'edit'   ), shiny_newsletters.edit_edition_path( edition ) %>
         <%= link_to t( 'delete' ), shiny_newsletters.edition_path( edition ),

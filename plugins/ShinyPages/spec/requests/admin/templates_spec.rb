@@ -32,7 +32,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       template1 = create :page_template, description: 'zingy-zebra'
       template2 = create :page_template, description: 'awesome-aardvark'
 
-      get shiny_pages.templates_search_path, params: { q: 'zing' }
+      get shiny_pages.search_templates_path, params: { q: 'zing' }
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.templates.index.title' ).titlecase

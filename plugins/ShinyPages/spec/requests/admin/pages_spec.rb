@@ -267,7 +267,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
   end
 
-  describe 'PATCH /admin/pages/sort' do
+  describe 'PUT /admin/pages/sort' do
     it 'sorts the pages and sections as requested' do
       s1 = create :page_section, position: 1
       p2 = create :page, section: s1, position: 2
@@ -275,7 +275,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       s4 = create :page_section, position: 4
       p5 = create :top_level_page, position: 5
 
-      patch shiny_pages.sort_pages_and_sections_path, params: {
+      put shiny_pages.sort_pages_path, params: {
         sorted: [
           p2.id,
           "section#{s4.id}",
