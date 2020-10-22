@@ -8,7 +8,7 @@
 
 # User login controller; almost entirely handled by Devise
 class Users::SessionsController < Devise::SessionsController
-  include FeatureFlagsHelper
+  include ShinyFeatureFlagHelper
 
   before_action :check_feature_flags
 

@@ -29,9 +29,10 @@
     </tr>
     <% end %>
   </table>
+
   <% else %>
   <p>
-    No subscriptions found.
+    <%= t( 'empty_list', items: 'subscriptions' ) %>
   </p>
   <% end %>
 </section>

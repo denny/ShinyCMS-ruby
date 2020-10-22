@@ -89,6 +89,7 @@ source 'https://rubygems.org' do
 
   # Pagination
   gem 'kaminari'
+  gem 'kaminari_route_prefix'
 
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'
@@ -98,7 +99,7 @@ source 'https://rubygems.org' do
   # Web stats
   gem 'ahoy_matey'
   gem 'blazer'
-  gem 'chartkick', '~> 3.4.1'
+  gem 'chartkick', '~> 3.4.2'
   gem 'groupdate'
 
   # Image storage on S3, image processing (resizing)

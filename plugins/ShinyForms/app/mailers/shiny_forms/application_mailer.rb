@@ -9,7 +9,6 @@
 module ShinyForms
   # Base mailer class - ShinyForms plugin for ShinyCMS
   class ApplicationMailer < ActionMailer::Base
-    include FeatureFlagsHelper
     include ShinyMailerHelper
 
     add_template_helper ShinyMailerHelper

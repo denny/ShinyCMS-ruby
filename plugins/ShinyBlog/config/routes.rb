@@ -9,7 +9,7 @@
 ShinyBlog::Engine.routes.draw do
   scope format: false do
     # Main site
-    get 'blog', to: 'blog#index', as: :view_blog
+    get 'blog(/page/:page)',        to: 'blog#index', as: :view_blog
 
     get 'blog/:year',               constraints: { year: %r{\d\d\d\d} },
                                     to: 'blog#year', as: :view_blog_year
@@ -22,9 +22,14 @@ ShinyBlog::Engine.routes.draw do
 
     # Admin area
     scope path: 'admin', module: 'admin' do
-      get 'blog/search', to: 'blog_posts#search', as: :blog_posts_search
+      concern :paginatable do
+        get '(page/:page)', action: :index, on: :collection, as: ''
+      end
+      concern :searchable do
+        get :search, on: :collection
+      end
 
-      resources :blog_posts, path: 'blog', except: :show
+      resources :blog_posts, path: 'blog', except: :show, concerns: %i[ paginatable searchable ]
     end
   end
 end

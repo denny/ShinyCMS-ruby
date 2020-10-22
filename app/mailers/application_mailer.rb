@@ -8,7 +8,6 @@
 
 # Base class for Mailers
 class ApplicationMailer < ActionMailer::Base
-  include FeatureFlagsHelper
   include ShinyMailerHelper
 
   add_template_helper ShinyMailerHelper

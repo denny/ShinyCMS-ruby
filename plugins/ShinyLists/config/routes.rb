@@ -11,26 +11,28 @@
 ShinyLists::Engine.routes.draw do
   scope format: false do
     # Main site
-    get  'lists/subscriptions/:token',    to: 'subscriptions#index',       as: :token_list_subscriptions
-    get  'lists/subscriptions',           to: 'subscriptions#index',       as: :user_list_subscriptions
+    get  'lists/subscriptions(/page/:page)',        to: 'subscriptions#index', as: :user_list_subscriptions
+    get  'lists/subscriptions/:token(/page/:page)', to: 'subscriptions#index', as: :token_list_subscriptions
 
-    post 'list/:slug/subscribe',          to: 'subscriptions#subscribe',   as: :list_subscribe
+    post 'list/:slug/subscribe', to: 'subscriptions#subscribe', as: :list_subscribe
 
-    put  'list/:slug/unsubscribe/:token', to: 'subscriptions#unsubscribe', as: :token_list_unsubscribe
     put  'list/:slug/unsubscribe',        to: 'subscriptions#unsubscribe', as: :user_list_unsubscribe
+    put  'list/:slug/unsubscribe/:token', to: 'subscriptions#unsubscribe', as: :token_list_unsubscribe
 
     # Admin area
     scope path: 'admin', module: 'admin' do
-      get 'lists/search', to: 'lists#search'
-
-      resources :lists, except: :show do
-        get  :subscriptions, to: 'subscriptions#index'
-        post :subscriptions, to: 'subscriptions#subscribe', as: :admin_subscribe
-
-        get 'subscriptions/search', to: 'subscriptions#search'
-
-        delete 'subscriptions/:id', to: 'subscriptions#unsubscribe', as: :admin_unsubscribe
+      concern :paginatable do
+        get '(page/:page)', action: :index, on: :collection, as: ''
       end
+      concern :searchable do
+        get :search, action: :search, on: :collection
+      end
+
+      resources :lists, except: :show, concerns: %i[ paginatable searchable ] do
+        resources :subscriptions, only: :index, concerns: %i[ paginatable searchable ]
+      end
+      post 'list/:list_id/subscriptions',     to: 'subscriptions#subscribe',   as: :admin_list_subscribe
+      put  'list/:list_id/subscriptions/:id', to: 'subscriptions#unsubscribe', as: :admin_list_unsubscribe
     end
   end
 end

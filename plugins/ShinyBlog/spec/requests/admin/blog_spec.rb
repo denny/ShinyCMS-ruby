@@ -9,27 +9,71 @@
 require 'rails_helper'
 
 # Tests for blog admin features
-RSpec.describe 'Admin::Blog', type: :request do
+RSpec.describe 'Admin: Blog Posts', type: :request do
   before :each do
     @admin = create :blog_admin
     sign_in @admin
   end
 
-  describe 'GET //admin/blog' do
-    it 'fetches the list of blog posts' do
+  describe 'GET /admin/blog' do
+    it 'fetches the list of blog posts with less than one page of posts' do
+      create :blog_post
+      create :blog_post
+      create :blog_post
+
       get shiny_blog.blog_posts_path
 
       expect( response ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
     end
+
+    it 'fetches the list of blog posts when its empty' do
+      get shiny_blog.blog_posts_path
+
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
+    end
+
+    it 'fetches the list of blog posts with more than one page of posts' do
+      create_list :blog_post, 12
+
+      get shiny_blog.blog_posts_path
+
+      pager_info = I18n.t(
+        'helpers.page_entries_info.more_pages.display_entries',
+        entry_name: 'posts', first: 1, last: 10, total: 12
+      ).gsub( '&nbsp;', ' ' ).gsub( /<\/?b>/, '' )
+      # WARNING: this    ^ is not a standard ASCII space :eyeroll:
+      # TODO: figure out how to match this i18n HTML fragment properly
+
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
+      expect( response.body ).to have_css '#pager-info', text: pager_info
+    end
+
+    it 'fetches the second page of blog posts' do
+      create_list :blog_post, 12
+
+      get shiny_blog.blog_posts_path, params: { page: 2 }
+
+      pager_info = I18n.t(
+        'helpers.page_entries_info.more_pages.display_entries',
+        entry_name: 'posts', first: 11, last: 12, total: 12
+      ).gsub( '&nbsp;', ' ' ).gsub( /<\/?b>/, '' )
+      # WARNING: this    ^ is not a standard ASCII space
+
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
+      expect( response.body ).to have_css '#pager-info', text: pager_info
+    end
   end
 
-  describe 'GET //admin/blog/search?q=zing' do
+  describe 'GET /admin/blog/search?q=zing' do
     it 'fetches the list of matching blog posts' do
       post1 = create :blog_post, body: 'Zebras are zingy'
       post2 = create :blog_post, body: 'Aardvarks are awesome'
 
-      get shiny_blog.blog_posts_search_path, params: { q: 'zing' }
+      get shiny_blog.search_blog_posts_path, params: { q: 'zing' }
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
@@ -39,7 +83,7 @@ RSpec.describe 'Admin::Blog', type: :request do
     end
   end
 
-  describe 'GET //admin/blog/new' do
+  describe 'GET /admin/blog/new' do
     it 'loads the form to create a new blog post' do
       get shiny_blog.new_blog_post_path
 

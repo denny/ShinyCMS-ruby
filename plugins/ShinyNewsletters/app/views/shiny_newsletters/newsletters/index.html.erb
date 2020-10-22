@@ -8,7 +8,6 @@
   </header>
 
   <% if @recent_sends.present? %>
-
   <ul>
     <% @recent_sends.each do |sent| %>
     <li>
@@ -18,7 +17,7 @@
     <% end %>
   </ul>
 
-  <%= render partial: 'includes/pager', locals: { paged: @recent_sends } %>
+  <%= render partial: 'includes/pager', locals: { paged: @recent_sends, route_set: shiny_newsletters } %>
 
   <% else %>
   <p>

@@ -22,7 +22,7 @@ RSpec.describe 'Admin::News', type: :request do
       post1 = create :news_post, body: 'Zebras are zingy'
       post2 = create :news_post, body: 'Aardvarks are awesome'
 
-      get shiny_news.news_posts_search_path, params: { q: 'zing' }
+      get shiny_news.search_news_posts_path, params: { q: 'zing' }
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
