@@ -65,7 +65,7 @@ module AdminAreaHelper
 
   def render_admin_menu_section( text, icon = nil, &block )
     section = render_admin_menu_section_start( text, icon )
-    section << capture(&block)
+    section << capture( &block )
     section << render_admin_menu_section_end
   end
 

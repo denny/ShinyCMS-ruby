@@ -9,7 +9,8 @@
 module ShinyInserts
   # Model class for Insert Sets - from the ShinyInserts plugin for ShinyCMS
   class Set < ApplicationRecord
-    has_many :elements, -> { order(:name) }, inverse_of: :set, dependent: :destroy, class_name: 'ShinyInserts::Element'
+    has_many :elements, -> { order( :name ) }, inverse_of: :set, dependent: :destroy,
+                                               class_name: 'ShinyInserts::Element'
 
     accepts_nested_attributes_for :elements
 

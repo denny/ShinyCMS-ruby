@@ -112,9 +112,9 @@ Rails.application.configure do
   #     = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'ShinyCMS')
 
   if ENV['RAILS_LOG_TO_STDOUT'].present?
-    logger           = ActiveSupport::Logger.new($stdout)
+    logger           = ActiveSupport::Logger.new( $stdout )
     logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    config.logger    = ActiveSupport::TaggedLogging.new( logger )
   end
 
   # Do not dump schema after migrations.

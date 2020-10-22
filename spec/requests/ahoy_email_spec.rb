@@ -29,7 +29,7 @@ RSpec.describe 'Ahoy email tracking', type: :request do
 
       url = 'http://example.com'
       signature = OpenSSL::HMAC.hexdigest(
-        OpenSSL::Digest.new('sha1'), AhoyEmail.secret_token, url
+        OpenSSL::Digest.new( 'sha1' ), AhoyEmail.secret_token, url
       )
 
       expect( message.clicked_at ).to be_nil
