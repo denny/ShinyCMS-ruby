@@ -35,7 +35,7 @@ RSpec.describe 'List Subscription admin features', type: :request do
       create :mailing_list_subscription, list: list, subscribed_at: 2.days.ago
       create :mailing_list_subscription, list: list, subscribed_at: 1.day.ago
 
-      get shiny_lists.search_list_subscriptions_path( list ), params: { q: 2.days.ago.strftime('%F') }
+      get shiny_lists.search_list_subscriptions_path( list ), params: { q: 2.days.ago.strftime( '%F' ) }
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.subscriptions.index.title' ).titlecase

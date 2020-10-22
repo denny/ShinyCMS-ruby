@@ -79,7 +79,7 @@ namespace :shiny do
     end
 
     def fix_primary_key_sequence( table_name )
-      ActiveRecord::Base.connection.execute(<<~SQL.squish)
+      ActiveRecord::Base.connection.execute( <<~SQL.squish )
         BEGIN;
         LOCK TABLE #{table_name} IN EXCLUSIVE MODE;
         SELECT setval( '#{table_name}_id_seq', COALESCE( ( SELECT MAX(id)+1 FROM #{table_name} ), 1 ), false );

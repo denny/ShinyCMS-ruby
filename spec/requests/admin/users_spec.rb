@@ -213,7 +213,7 @@ RSpec.describe Admin::UsersController, type: :request do
     it 'updates the admin capabilities when the form is submitted' do
       user = create :user
 
-      capability_id = Capability.where( name: 'view_admin_area').pick( :id )
+      capability_id = Capability.where( name: 'view_admin_area' ).pick( :id )
       field_name = "user[capabilities[#{capability_id}]]"
 
       expect( user.capabilities.length ).to eq 0

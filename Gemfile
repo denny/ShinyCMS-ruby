@@ -15,14 +15,15 @@ end
 
 def underscore( camel_cased_word )
   word = camel_cased_word.to_s
-  word = word.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
-  word = word.gsub(/([a-z\d])([A-Z])/, '\1_\2')
-  word = word.tr('-', '_')
+  word = word.gsub( /([A-Z\d]+)([A-Z][a-z])/, '\1_\2' )
+  word = word.gsub( /([a-z\d])([A-Z])/, '\1_\2' )
+  word = word.tr( '-', '_' )
   word.downcase
 end
 
 # The actual Gemfile!
 source 'https://rubygems.org' do
+  # Rails 6
   gem 'rails', '~> 6.0.3'
 
   # Database
@@ -50,11 +51,15 @@ source 'https://rubygems.org' do
   # Transpile app-like JavaScript. More info: https://github.com/rails/webpacker
   gem 'webpacker', '~> 5.2'
 
-  # Sessions, authentication, and authorisation
-  gem 'activerecord-session_store'
-  gem 'bcrypt', '~> 3.1.16'
+  # User authentication
   gem 'devise'
+  # Sessions
+  gem 'activerecord-session_store'
+  # Stronger password encryption
+  gem 'bcrypt', '~> 3.1.16'
+  # Check user passwords against known data leaks
   gem 'devise-pwned_password'
+  # Authorisation
   gem 'pundit'
 
   # Soft delete
@@ -89,6 +94,7 @@ source 'https://rubygems.org' do
 
   # Pagination
   gem 'kaminari'
+  # Allow passing route helpers (for Rails engines) into pagination blocks
   gem 'kaminari_route_prefix'
 
   # CKEditor: WYSIWYG editor for admin area
@@ -98,13 +104,18 @@ source 'https://rubygems.org' do
   gem 'ahoy_email'
   # Web stats
   gem 'ahoy_matey'
+  # Charts and dashboards
   gem 'blazer'
+  # Charts
   gem 'chartkick', '~> 3.4.2'
+  # Date ranges
   gem 'groupdate'
 
-  # Image storage on S3, image processing (resizing)
+  # Image storage on S3
   gem 'aws-sdk-s3'
+  # Image processing, for resizing etc
   gem 'image_processing', '~> 1.12'
+  # Also image processing
   gem 'mini_magick'
 
   # Better-looking console output
@@ -116,36 +127,47 @@ source 'https://rubygems.org' do
   group :development, :test do
     # You can enable Pry here if you commented it out in production.
     # gem 'pry-rails'
+
+    # Tests are good, m'kay?
+    gem 'rspec-rails'
+
     # Create test objects
     gem 'factory_bot_rails'
     # Fill test objects with fake data
     gem 'faker'
+
     # Utils for working with translation strings
     # gem 'i18n-debug'
     gem 'i18n-tasks', '~> 0.9.31'
-    # Tests are good, m'kay?
-    gem 'rspec-rails'
   end
 
   group :development do
+    # Linter
+    gem 'rubocop', require: false
+    # Rails-specific linting
+    gem 'rubocop-rails', require: false
+    # Performance-related analysis
+    gem 'rubocop-performance', require: false
+
     # Scan for security vulnerabilities
     gem 'brakeman', require: false
     # Check gems for security issues
     gem 'bundler-audit', require: false
     # Check for slow code
     gem 'fasterer', require: false
+
     # Capture all emails sent by the system, and view them in a dev webmail inbox
     gem 'letter_opener_web', '~> 1.0'
+
     # Reload dev server when files change
     gem 'listen', '>= 3.0.5', '< 3.3'
+
     # Helps you manage your git hooks
     gem 'overcommit', require: false
+
     # Analysis tools for postgres
     gem 'rails-pg-extras'
-    # Linter
-    gem 'rubocop', require: false
-    gem 'rubocop-performance', require: false
-    gem 'rubocop-rails', require: false
+
     # Used to generate demo site data
     gem 'seed_dump'
   end
@@ -155,9 +177,12 @@ source 'https://rubygems.org' do
     gem 'capybara', '>= 2.15'
     # Wipe the test database before each test run
     gem 'database_cleaner-active_record'
+
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
+    # Rspec report formatter for Codecov
     gem 'rspec_junit_formatter'
+
     # Used to intercept calls to the Algolia API
     gem 'webmock'
   end

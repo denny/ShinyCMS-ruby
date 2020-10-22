@@ -58,7 +58,7 @@ module ShinyForms
     def update
       authorize @form
 
-      if @form.update(form_params)
+      if @form.update( form_params )
         redirect_to edit_form_path( @form ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )

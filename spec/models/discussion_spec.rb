@@ -29,7 +29,7 @@ RSpec.describe Discussion, type: :model do
 
         create :discussion, resource: @active_last_week, comment_count: 5, comments_posted_at: 8.days.ago
         create :discussion, resource: @active_this_week, comment_count: 4
-        create :discussion, resource: @less_active_post, comment_count: rand(1..3)
+        create :discussion, resource: @less_active_post, comment_count: rand( 1..3 )
         create :discussion, resource: @an_inactive_post, comment_count: 0
       end
 

@@ -53,7 +53,7 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
       send1 = create :newsletter_send_sent, finished_sending_at: 2.days.ago
       send2 = create :newsletter_send_sent, finished_sending_at: 1.day.ago
 
-      get shiny_newsletters.search_sends_path, params: { q: 2.days.ago.strftime('%F') }
+      get shiny_newsletters.search_sends_path, params: { q: 2.days.ago.strftime( '%F' ) }
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.sends.index.title' ).titlecase

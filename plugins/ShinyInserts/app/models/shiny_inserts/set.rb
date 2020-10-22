@@ -11,7 +11,8 @@ module ShinyInserts
   class Set < ApplicationRecord
     include ShinySoftDelete
 
-    has_many :elements, -> { order(:name) }, inverse_of: :set, dependent: :destroy, class_name: 'ShinyInserts::Element'
+    has_many :elements, -> { order( :name ) }, inverse_of: :set, dependent: :destroy,
+                                               class_name: 'ShinyInserts::Element'
 
     accepts_nested_attributes_for :elements
   end
