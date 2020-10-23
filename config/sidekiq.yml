@@ -12,6 +12,7 @@
 <% prefix = ENV.fetch( 'SIDEKIQ_PREFIX' ) { '' } %>
 <% prefix = "#{prefix}_" unless prefix == '' %>
 :queues:
+  - <%= prefix %>default
   - <%= prefix %>mailers
   - <%= prefix %>active_storage_analysis
   - <%= prefix %>active_storage_purge
