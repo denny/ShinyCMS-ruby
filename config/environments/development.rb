@@ -38,7 +38,7 @@ Rails.application.configure do
   config.action_controller.action_on_unpermitted_parameters = :raise
 
   # Check whether we're pushing files up to AWS or storing them on local disk
-  if ENV['AWS_BUCKET'].present?
+  if ENV['AWS_S3_FILES_BUCKET'].present?
     config.active_storage.service = :amazon
   else
     config.active_storage.service = :local

@@ -43,7 +43,7 @@ Rails.application.configure do
 
   # Check whether we're pushing files up to AWS or storing them on local disk
   config.active_storage.service =
-    if ENV['AWS_BUCKET'].present?
+    if ENV['AWS_S3_FILES_BUCKET'].present?
       :amazon
     else
       :local
