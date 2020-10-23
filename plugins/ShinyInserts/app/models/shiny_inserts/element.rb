@@ -11,15 +11,11 @@ module ShinyInserts
   class Element < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyElement
+    include ShinySoftDelete
 
     # Associations
 
     belongs_to :set, inverse_of: :elements, class_name: 'ShinyInserts::Set'
-
-    # Plugin features
-
-    acts_as_paranoid
-    validates_as_paranoid
 
     # Validations
 

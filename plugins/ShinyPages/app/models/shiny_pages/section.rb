@@ -14,6 +14,7 @@ module ShinyPages
     include ShinyName
     include ShinySlugInSection
     include ShinyShowHide
+    include ShinySoftDelete
 
     # Associations
 
@@ -27,9 +28,6 @@ module ShinyPages
     validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
 
     # Plugin features
-
-    acts_as_paranoid
-    validates_as_paranoid
 
     searchable_by :public_name, :slug if ShinyPlugin.loaded? :ShinySearch
 

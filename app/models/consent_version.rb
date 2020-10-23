@@ -13,16 +13,12 @@ class ConsentVersion < ApplicationRecord
 
   include ShinyDemoDataProvider
   include ShinySlug
+  include ShinySoftDelete
 
   # Validations
 
   validates :name,         presence: true
   validates :display_text, presence: true
-
-  # Plugin features
-
-  acts_as_paranoid
-  validates_as_paranoid
 
   # Before actions
 

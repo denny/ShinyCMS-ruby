@@ -10,6 +10,8 @@
 module ShinyElement
   extend ActiveSupport::Concern
 
+  include ShinySoftDelete
+
   # Allowed characters for element names: a-z A-Z 0-9 _
   ELEMENT_NAME_REGEX = %r{[_a-zA-Z0-9]+}.freeze
   private_constant :ELEMENT_NAME_REGEX
@@ -17,11 +19,6 @@ module ShinyElement
   private_constant :ANCHORED_ELEMENT_NAME_REGEX
 
   included do
-    # Plugin features
-
-    acts_as_paranoid
-    validates_as_paranoid
-
     # Validations
 
     validates :name, presence: true

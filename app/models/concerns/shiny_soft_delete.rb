@@ -6,10 +6,12 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Links users and capabilities
-class UserCapability < ApplicationRecord
-  include ShinySoftDelete
+# Add soft delete to a model (mark data as deleted and hide it, but don't actually delete from database)
+module ShinySoftDelete
+  extend ActiveSupport::Concern
 
-  belongs_to :user
-  belongs_to :capability
+  included do
+    acts_as_paranoid
+    validates_as_paranoid
+  end
 end

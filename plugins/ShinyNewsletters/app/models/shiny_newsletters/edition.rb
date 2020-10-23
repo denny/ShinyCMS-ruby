@@ -11,8 +11,10 @@ module ShinyNewsletters
   class Edition < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyName
+    include ShinyPaging
     include ShinyShowHide
     include ShinySlugInMonth
+    include ShinySoftDelete
     include ShinyWithTemplate
 
     # Associations

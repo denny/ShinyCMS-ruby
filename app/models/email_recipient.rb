@@ -11,6 +11,7 @@
 class EmailRecipient < ApplicationRecord
   include ShinyDemoDataProvider
   include ShinyEmail
+  include ShinySoftDelete
   include ShinyToken
 
   # Associations
@@ -19,11 +20,6 @@ class EmailRecipient < ApplicationRecord
 
   # Email stats (powered by Ahoy)
   has_many :messages, as: :user, dependent: :nullify, class_name: 'Ahoy::Message'
-
-  # Plugin features
-
-  acts_as_paranoid
-  validates_as_paranoid
 
   # Scopes
 
