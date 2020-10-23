@@ -14,7 +14,7 @@ class ShinyPostAtomFeed
 
   include Rails.application.routes.url_helpers
 
-  attr_accessor :name, :feed, :file_path
+  attr_accessor :name, :feed
 
   def initialize( feed_name )
     return unless %i[ blog news ].include? feed_name
@@ -76,7 +76,7 @@ class ShinyPostAtomFeed
 
   def add_feed_id
     id = feed.class::Id.new
-    id.content = "#{base_url}/feeds/atom/#{name}.xml"
+    id.content = "#{feeds_base_url}/feeds/atom/#{name}.xml"
     feed.id = id
   end
 
@@ -104,14 +104,16 @@ class ShinyPostAtomFeed
     Rails.application.config.action_mailer.default_url_options
   end
 
-  def base_url
+  def feeds_base_url
     aws_s3_base_url || root_url.to_s.chop
   end
 
   def aws_s3_base_url
     return if aws_s3_feeds_bucket.blank?
 
-    "https://#{aws_s3_feeds_domain}"
+    http = ENV[ 'MAILER_URL_PROTOCOL' ].presence || 'https'
+
+    "#{http}://#{aws_s3_feeds_domain}"
   end
 
   def aws_s3_feeds_bucket
