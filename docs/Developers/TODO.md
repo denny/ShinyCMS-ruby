@@ -1,4 +1,4 @@
-# ShinyCMS: Project Progress
+# ShinyCMS Developer Documentation
 
 ## TODO
 
@@ -14,26 +14,33 @@
 * Some sort of file-picker (for image elements, CKEditor, etc)
     * https://ckeditor.com/docs/ckeditor5/latest/Features/MainApp/image-upload/ckfinder.html
     * Integrate functionality from MahBucket here?
+
 * Site map
     * https://github.com/kjvarga/sitemap_generator ?
+
 * Affiliate cookie
 
 ### Medium-ish
 
 * Access control groups
     * Can be used to control access to file downloads and secure whole pages, but also to show/hide individual pieces of page content
+
 * Polls
 
 ### Large-ish
 
 * Online shop
+
 * Payment handling plugins
     * Options include recurring subscriptions to access control groups (AKA paid membership)
+
 * Forums
+
 * Autoresponders
   	* Check out Heya - may or may not be useful to use / build on top of
   	* https://github.com/honeybadger-io/heya
   	* Oh, except the licence doesn't look great. Investigate that first.
+
 * Event listings
 
 
@@ -42,22 +49,35 @@
 ### Small-ish
 
 * Make a generic sidebar template that renders any partials in a specified directory
-* When not-logged-in users post a comment or subscribe to a list, offer to create an account for them
+
+* Add an admin UI for viewing/managing EmailRecipients
+
 * Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)
+
+* When not-logged-in users post a comment or subscribe to a list, offer to create an account for them
+
 * 'Deploy to Heroku' button: https://devcenter.heroku.com/articles/heroku-button
+
 * Generate a technical documentation site from the contents of /docs
     * https://www.mkdocs.org + material theme https://squidfunk.github.io/mkdocs-material
+
 * 2FA: https://github.com/tinfoil/devise-two-factor
+
 * Configurable (per-site and per-user) menu order in admin area
+
 * In admin area, load the full dataset for user capabilities, feature flags,
   and possibly site settings, and stick them in some hashes, with some helper
   methods to check them. The menu already makes a crazy amount of hits on the
   db and there are still a load of 'feature hidden by flag/capability/etc'
   conditionals to implement.
+
 * Add a polymorphic metatags model(s?)+concern+helper that can be added to anything
   that might want them for SEO (pages/sections, shop items/categories, etc)
+
 * More themes!
+
 * ¡español! :D
+
 * Add tests for form actions being what they're supposed to be on new/edit pages,
   and for delete links being correct on list pages (to catch path helper issues)
 
@@ -67,18 +87,25 @@
     * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
     * Decide 'intelligently' whether to fold all/none/some
         * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
+
 * ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
   sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
+
 * Tests for rake tasks
     * https://thoughtbot.com/blog/test-rake-tasks-like-a-boss ? (old)
+
 * Improve UX for slug auto-generation
     * Look at Fae CMS slugger: https://www.faecms.com/documentation/features-slugger
+
 * A/B testing
     * Field Test: https://github.com/ankane/field_test
+
 * Cookie consent
     * https://github.com/infinum/cookies_eu ?
+
 * Replace hand-rolled slug generation with FriendlyId ?
     * https://norman.github.io/friendly_id
+
 * Fix geolocation (for web stats) via Cloudflare?
     * https://support.cloudflare.com/hc/en-us/articles/200168236-Configuring-Cloudflare-IP-Geolocation
 
@@ -86,16 +113,24 @@
 
 * Re-think mailer preview features
     * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
+
 * Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?
     * Think carefully about privacy implications of linking previous actions to current visitor
+
 * Surveys / Questionnaires
+
 * GDPR compliance
     * https://github.com/prey/gdpr_rails
+
 * Switch from ERB to handlebars or similar for main site templates
+
 * Allow theme templates to be stored in database and edited in admin UI
+
 * Allow theme templates to be imported from an S3 folder
+
 * Allow in-situ editing of Page (and other?) content
     * Mercury: https://jejacks0n.github.io/mercury
+
 * Replace hand-rolled trees and recursion (page sections, etc) with ClosureTree ?
     * https://github.com/ClosureTree/closure_tree
 
