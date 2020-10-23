@@ -8,17 +8,14 @@
 
 # Class for settings items (definitions)
 class Setting < ApplicationRecord
+  include ShinySoftDelete
+
   # Custom error class
   class CannotUpdateLockedSetting < StandardError; end
 
   # Associations
 
   has_many :values, inverse_of: :setting, dependent: :destroy, class_name: 'SettingValue'
-
-  # Plugin features
-
-  acts_as_paranoid
-  validates_as_paranoid
 
   # Validations
 
@@ -78,8 +75,12 @@ class Setting < ApplicationRecord
     setting.value
   end
 
-  def self.true?( name )
-    %w[ TRUE True true YES Yes yes ].include? get( name )
+  def self.get_int( name, user = nil )
+    get( name, user )&.to_i
+  end
+
+  def self.true?( name, user = nil )
+    %w[ TRUE True true YES Yes yes ].include? get( name, user )
   end
 
   def self.user_settings

@@ -8,15 +8,12 @@
 
 # Model class for setting values (site-wide and per-user config settings)
 class SettingValue < ApplicationRecord
+  include ShinySoftDelete
+
   # Associations
 
   belongs_to :setting, inverse_of: :values
   belongs_to :user,    inverse_of: :settings, optional: true
-
-  # Plugin features
-
-  acts_as_paranoid
-  validates_as_paranoid
 
   # Validations
 

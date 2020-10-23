@@ -7,10 +7,11 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Model for user accounts (largely powered by Devise)
-# rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
   include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
   include ShinyEmail
+  include ShinyPaging
+  include ShinySoftDelete
 
   # Plugin features
 
@@ -19,15 +20,8 @@ class User < ApplicationRecord
          :validatable, :confirmable, :lockable, :timeoutable, :trackable
   devise :pwned_password unless Rails.env.test?
 
-  # Soft delete
-  acts_as_paranoid
-  validates_as_paranoid
-  before_destroy :redact_emails!
-
   # Upvotes AKA 'likes'
   acts_as_voter
-
-  paginates_per 20
 
   if ShinyPlugin.all_loaded? :ShinySearch, :ShinyProfiles
     # TODO: all of these except username will be moving into ShinyProfiles::Profile
@@ -66,9 +60,9 @@ class User < ApplicationRecord
   # Virtual attributes
 
   # User profile pic (powered by ActiveStorage)
-  # The dependent: :purge_now option is required to avoid an incompatibility with acts_as_paranoid (soft delete):
-  # https://github.com/ActsAsParanoid/acts_as_paranoid/issues/103
   has_one_attached :profile_pic, dependent: :purge_now
+  # The dependent: :purge_now option is required to avoid an incompatibility issue with soft delete:
+  # https://github.com/ActsAsParanoid/acts_as_paranoid/issues/103
 
   # Allow authenticating by either username or email
   attr_writer :login
@@ -178,4 +172,3 @@ class User < ApplicationRecord
     end
   end
 end
-# rubocop:enable Metrics/ClassLength
