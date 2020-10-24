@@ -36,11 +36,7 @@ class ShinyPostAtomFeed
   end
 
   def write_file
-    if aws_s3_feeds_bucket.present?
-      write_file_to_aws_s3
-    else
-      write_file_to_local_disk( Rails.root.join( "public/feeds/atom/#{name}.xml".to_s ) )
-    end
+    write_file_to_aws_s3 || write_file_to_local_disk( Rails.root.join( "public/feeds/atom/#{name}.xml".to_s ) )
   end
 
   private
@@ -53,6 +49,10 @@ class ShinyPostAtomFeed
   end
 
   def write_file_to_aws_s3
+    return if aws_s3_feeds_bucket.blank?
+
+    # TODO: mock this
+    # :nocov:
     s3 = Aws::S3::Resource.new(
       region: aws_s3_feeds_region,
       access_key_id: aws_s3_feeds_access_key_id,
@@ -64,6 +64,7 @@ class ShinyPostAtomFeed
     obj = s3.bucket( aws_s3_feeds_bucket ).object( "feeds/atom/#{name}.xml" )
     obj.upload_file( "/tmp/#{name}.xml" )
     obj.acl.put( { acl: 'public-read' } )
+    # :nocov:
   end
 
   def add_post_to_feed( post )
