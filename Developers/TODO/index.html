@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shinycms-project-progress" class="md-skip">
+        <a href="#shinycms-developer-documentation" class="md-skip">
           Skip to content
         </a>
       
@@ -1263,7 +1263,7 @@
               
                 
                 
-                <h1 id="shinycms-project-progress">ShinyCMS: Project Progress</h1>
+                <h1 id="shinycms-developer-documentation">ShinyCMS Developer Documentation</h1>
 <h2 id="todo">TODO</h2>
 <h3 id="urgent-important">Urgent / Important</h3>
 <ul>
@@ -1272,69 +1272,118 @@
 <h2 id="features-the-perl-version-has-which-the-ruby-version-doesnt-yet">Features the Perl version has, which the Ruby version doesn't. Yet. :)</h2>
 <h3 id="small-ish">Small-ish</h3>
 <ul>
-<li>Some sort of file-picker (for image elements, CKEditor, etc)<ul>
+<li>
+<p>Some sort of file-picker (for image elements, CKEditor, etc)</p>
+<ul>
 <li>https://ckeditor.com/docs/ckeditor5/latest/Features/MainApp/image-upload/ckfinder.html</li>
 <li>Integrate functionality from MahBucket here?</li>
 </ul>
 </li>
-<li>Site map<ul>
+<li>
+<p>Site map</p>
+<ul>
 <li>https://github.com/kjvarga/sitemap_generator ?</li>
 </ul>
 </li>
-<li>Affiliate cookie</li>
+<li>
+<p>Affiliate cookie</p>
+</li>
 </ul>
 <h3 id="medium-ish">Medium-ish</h3>
 <ul>
-<li>Access control groups<ul>
+<li>
+<p>Access control groups</p>
+<ul>
 <li>Can be used to control access to file downloads and secure whole pages, but also to show/hide individual pieces of page content</li>
 </ul>
 </li>
-<li>Polls</li>
+<li>
+<p>Polls</p>
+</li>
 </ul>
 <h3 id="large-ish">Large-ish</h3>
 <ul>
-<li>Online shop</li>
-<li>Payment handling plugins<ul>
+<li>
+<p>Online shop</p>
+</li>
+<li>
+<p>Payment handling plugins</p>
+<ul>
 <li>Options include recurring subscriptions to access control groups (AKA paid membership)</li>
 </ul>
 </li>
-<li>Forums</li>
-<li>Autoresponders<ul>
+<li>
+<p>Forums</p>
+</li>
+<li>
+<p>Autoresponders</p>
+<ul>
 <li>Check out Heya - may or may not be useful to use / build on top of</li>
 <li>https://github.com/honeybadger-io/heya</li>
 <li>Oh, except the licence doesn't look great. Investigate that first.</li>
 </ul>
 </li>
-<li>Event listings</li>
+<li>
+<p>Event listings</p>
+</li>
 </ul>
 <h2 id="new-features-that-id-like-to-add-features-that-id-like-to-totally-rebuild">New features that I'd like to add / features that I'd like to totally rebuild</h2>
 <h3 id="small-ish_1">Small-ish</h3>
 <ul>
-<li>Make a generic sidebar template that renders any partials in a specified directory</li>
-<li>When not-logged-in users post a comment or subscribe to a list, offer to create an account for them</li>
-<li>Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)</li>
-<li>'Deploy to Heroku' button: https://devcenter.heroku.com/articles/heroku-button</li>
-<li>Generate a technical documentation site from the contents of /docs<ul>
+<li>
+<p>Make a generic sidebar template that renders any partials in a specified directory</p>
+</li>
+<li>
+<p>Add an admin UI for viewing/managing EmailRecipients</p>
+</li>
+<li>
+<p>Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)</p>
+</li>
+<li>
+<p>When not-logged-in users post a comment or subscribe to a list, offer to create an account for them</p>
+</li>
+<li>
+<p>'Deploy to Heroku' button: https://devcenter.heroku.com/articles/heroku-button</p>
+</li>
+<li>
+<p>Generate a technical documentation site from the contents of /docs</p>
+<ul>
 <li>https://www.mkdocs.org + material theme https://squidfunk.github.io/mkdocs-material</li>
 </ul>
 </li>
-<li>2FA: https://github.com/tinfoil/devise-two-factor</li>
-<li>Configurable (per-site and per-user) menu order in admin area</li>
-<li>In admin area, load the full dataset for user capabilities, feature flags,
+<li>
+<p>2FA: https://github.com/tinfoil/devise-two-factor</p>
+</li>
+<li>
+<p>Configurable (per-site and per-user) menu order in admin area</p>
+</li>
+<li>
+<p>In admin area, load the full dataset for user capabilities, feature flags,
   and possibly site settings, and stick them in some hashes, with some helper
   methods to check them. The menu already makes a crazy amount of hits on the
   db and there are still a load of 'feature hidden by flag/capability/etc'
-  conditionals to implement.</li>
-<li>Add a polymorphic metatags model(s?)+concern+helper that can be added to anything
-  that might want them for SEO (pages/sections, shop items/categories, etc)</li>
-<li>More themes!</li>
-<li>¡español! :D</li>
-<li>Add tests for form actions being what they're supposed to be on new/edit pages,
-  and for delete links being correct on list pages (to catch path helper issues)</li>
+  conditionals to implement.</p>
+</li>
+<li>
+<p>Add a polymorphic metatags model(s?)+concern+helper that can be added to anything
+  that might want them for SEO (pages/sections, shop items/categories, etc)</p>
+</li>
+<li>
+<p>More themes!</p>
+</li>
+<li>
+<p>¡español! :D</p>
+</li>
+<li>
+<p>Add tests for form actions being what they're supposed to be on new/edit pages,
+  and for delete links being correct on list pages (to catch path helper issues)</p>
+</li>
 </ul>
 <h3 id="medium-ish_1">Medium-ish</h3>
 <ul>
-<li>Add folding to page sections on /admin/pages<ul>
+<li>
+<p>Add folding to page sections on /admin/pages</p>
+<ul>
 <li>Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)</li>
 <li>Decide 'intelligently' whether to fold all/none/some<ul>
 <li>(e.g. if there are &gt;20 pages in total, fold any section containing &gt;10 pages; if there are &gt;10 sections and &gt;100 pages in total, fold all sections; etc)</li>
@@ -1342,56 +1391,88 @@
 </li>
 </ul>
 </li>
-<li>ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
-  sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc</li>
-<li>Tests for rake tasks<ul>
+<li>
+<p>ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
+  sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc</p>
+</li>
+<li>
+<p>Tests for rake tasks</p>
+<ul>
 <li>https://thoughtbot.com/blog/test-rake-tasks-like-a-boss ? (old)</li>
 </ul>
 </li>
-<li>Improve UX for slug auto-generation<ul>
+<li>
+<p>Improve UX for slug auto-generation</p>
+<ul>
 <li>Look at Fae CMS slugger: https://www.faecms.com/documentation/features-slugger</li>
 </ul>
 </li>
-<li>A/B testing<ul>
+<li>
+<p>A/B testing</p>
+<ul>
 <li>Field Test: https://github.com/ankane/field_test</li>
 </ul>
 </li>
-<li>Cookie consent<ul>
+<li>
+<p>Cookie consent</p>
+<ul>
 <li>https://github.com/infinum/cookies_eu ?</li>
 </ul>
 </li>
-<li>Replace hand-rolled slug generation with FriendlyId ?<ul>
+<li>
+<p>Replace hand-rolled slug generation with FriendlyId ?</p>
+<ul>
 <li>https://norman.github.io/friendly_id</li>
 </ul>
 </li>
-<li>Fix geolocation (for web stats) via Cloudflare?<ul>
+<li>
+<p>Fix geolocation (for web stats) via Cloudflare?</p>
+<ul>
 <li>https://support.cloudflare.com/hc/en-us/articles/200168236-Configuring-Cloudflare-IP-Geolocation</li>
 </ul>
 </li>
 </ul>
 <h3 id="large-ish_1">Large-ish</h3>
 <ul>
-<li>Re-think mailer preview features<ul>
+<li>
+<p>Re-think mailer preview features</p>
+<ul>
 <li>Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?</li>
 </ul>
 </li>
-<li>Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?<ul>
+<li>
+<p>Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?</p>
+<ul>
 <li>Think carefully about privacy implications of linking previous actions to current visitor</li>
 </ul>
 </li>
-<li>Surveys / Questionnaires</li>
-<li>GDPR compliance<ul>
+<li>
+<p>Surveys / Questionnaires</p>
+</li>
+<li>
+<p>GDPR compliance</p>
+<ul>
 <li>https://github.com/prey/gdpr_rails</li>
 </ul>
 </li>
-<li>Switch from ERB to handlebars or similar for main site templates</li>
-<li>Allow theme templates to be stored in database and edited in admin UI</li>
-<li>Allow theme templates to be imported from an S3 folder</li>
-<li>Allow in-situ editing of Page (and other?) content<ul>
+<li>
+<p>Switch from ERB to handlebars or similar for main site templates</p>
+</li>
+<li>
+<p>Allow theme templates to be stored in database and edited in admin UI</p>
+</li>
+<li>
+<p>Allow theme templates to be imported from an S3 folder</p>
+</li>
+<li>
+<p>Allow in-situ editing of Page (and other?) content</p>
+<ul>
 <li>Mercury: https://jejacks0n.github.io/mercury</li>
 </ul>
 </li>
-<li>Replace hand-rolled trees and recursion (page sections, etc) with ClosureTree ?<ul>
+<li>
+<p>Replace hand-rolled trees and recursion (page sections, etc) with ClosureTree ?</p>
+<ul>
 <li>https://github.com/ClosureTree/closure_tree</li>
 </ul>
 </li>

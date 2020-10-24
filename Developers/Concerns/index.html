@@ -1136,7 +1136,9 @@
 <li>ShinyDemoDataProvider - identifies models that may provide data to the demo site</li>
 <li>ShinyEmail            - sets/searches/validates models by canonical_email as well as email</li>
 <li>ShinyName             - .name method, returns public_name if one is set, internal_name otherwise</li>
+<li>ShinyPaging           - enables pagination features (from kaminari) when included</li>
 <li>ShinyShowHide         - check or change show/hide status of content on the site/in menus/etc</li>
+<li>ShinySoftDelete       - enables soft delete features (from acts_as_paranoid) when included</li>
 <li>ShinyTeaser           - generate a truncated 'teaser' of a longer post, and related methods</li>
 <li>
 <p>ShinyToken            - generate/reset/check UUID token attributes with optional expiry times</p>
@@ -1149,7 +1151,7 @@
 <p>ShinySlugInSection - enforces slug uniqueness within each section (includes ShinySlug)</p>
 </li>
 <li>
-<p>ShinyPost - common behaviour for 'posts' (includes ShinyClassName, ShinyShowHide, ShinySlugInMonth, and ShinyTeaser) (included by ShinyBlog::Post, ShinyNews::Post)</p>
+<p>ShinyPost - common behaviour for 'posts' (includes ShinyClassName, ShinyPaging, ShinyShowHide, ShinySlugInMonth, ShinySoftDelete, ShinyTeaser) (included by ShinyBlog::Post, ShinyNews::Post)</p>
 </li>
 <li>
 <p>ShinyWithTemplate - for models that use a template for layout (included by ShinyPages::Page, ShinyNewsletters::Edition)</p>
