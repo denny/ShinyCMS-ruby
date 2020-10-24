@@ -1,27 +1,39 @@
-/* ShinyCMS ~ https://shinycms.org
- *
- * Copyright 2009-2020 Denny de la Haye ~ https://denny.me
- *
- * ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+// ShinyCMS ~ https://shinycms.org
+//
+// Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+//
+// ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
- * Additional styles & overrides for the ShinyCMS Halcyonic theme */
+// Additional styles & overrides for the ShinyCMS Halcyonic theme
 
-/* ===== ( Halcyonic's stylesheet seems to hide various input types ) ===== */
+$blue:              #2668ac;
+$light-blue:        #368aee;
+$lighter-blue:      #99ddff;
+$lightest-blue:     #aaeeff;
 
-input[type="checkbox"] {
-  -moz-appearance:      checkbox;
-  -webkit-appearance:   checkbox;
-  appearance:           auto;
-}
+$red:               #ed391b;
+$light-red:         #fd492b;
+$dark-red:          #de2a10;
+$darker-red:        #ce1a00;
 
-input[type="radio"] {
-  -moz-appearance:      radio;
-  -webkit-appearance:   radio;
-  appearance:           auto;
-}
+$white:             #fff;
+$lighter-grey:      #e8e8e8;
+$light-grey:        #ccc;
+$grey:              #888;
+$dark-grey:         #444;
+$nearly-black:      #111;
+$black:             #000;
+
+$alert-bg:          #ffdddd;
+$notice-bg:         #ddffdd;
+
+$button-bg:         $red;
+$button-bg-hover:   $light-red;
+$button-bg-active:  $darker-red;
+$button-text:       $white;
 
 
-/* ===== ( styles that aren't specific to one section ) ===== */
+// ===== ( styles that aren't specific to one section ) =====
 
 form div {
   margin:               0.5em 0;
@@ -53,14 +65,14 @@ a:hover {
 }
 
 .button {
-  background-color: #ed391b;
-  background-image: -moz-linear-gradient(top, #ed391b, #ce1a00);
-  background-image: -webkit-linear-gradient(top, #ed391b, #ce1a00);
-  background-image: -ms-linear-gradient(top, #ed391b, #ce1a00);
-  background-image: linear-gradient(top, #ed391b, #ce1a00);
+  background-color: $button-bg;
+  background-image: -moz-linear-gradient(top, $button-bg, $button-bg-active);
+  background-image: -webkit-linear-gradient(top, $button-bg, $button-bg-active);
+  background-image: -ms-linear-gradient(top, $button-bg, $button-bg-active);
+  background-image: linear-gradient(top, $button-bg, $button-bg-active);
   border-radius: 10px;
   box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.75), inset 0px 2px 0px 0px rgba(255, 192, 192, 0.5), inset 0px 0px 0px 2px rgba(255, 96, 96, 0.85), 3px 3px 3px 1px rgba(0, 0, 0, 0.15);
-  color: #fff;
+  color: $button-text;
   display: inline-block;
   font-weight: 300;
   outline: 0;
@@ -70,20 +82,20 @@ a:hover {
 }
 
 .button:hover {
-  background-color: #fd492b;
-  background-image: -moz-linear-gradient(top, #fd492b, #de2a10);
-  background-image: -webkit-linear-gradient(top, #fd492b, #de2a10);
-  background-image: -ms-linear-gradient(top, #fd492b, #de2a10);
-  background-image: linear-gradient(top, #fd492b, #de2a10);
+  background-color:$button-bg-hover;
+  background-image: -moz-linear-gradient(top,$button-bg-hover, $dark-red);
+  background-image: -webkit-linear-gradient(top,$button-bg-hover, $dark-red);
+  background-image: -ms-linear-gradient(top,$button-bg-hover, $dark-red);
+  background-image: linear-gradient(top,$button-bg-hover, $dark-red);
   box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.75), inset 0px 2px 0px 0px rgba(255, 192, 192, 0.5), inset 0px 0px 0px 2px rgba(255, 96, 96, 0.85), 3px 3px 3px 1px rgba(0, 0, 0, 0.15);
 }
 
 .button:active {
-  background-color: #ce1a00;
-  background-image: -moz-linear-gradient(top, #ce1a00, #ed391b);
-  background-image: -webkit-linear-gradient(top, #ce1a00, #ed391b);
-  background-image: -ms-linear-gradient(top, #ce1a00, #ed391b);
-  background-image: linear-gradient(top, #ce1a00, #ed391b);
+  background-color: $button-bg-active;
+  background-image: -moz-linear-gradient(top, $button-bg-active, $red);
+  background-image: -webkit-linear-gradient(top, $button-bg-active, $red);
+  background-image: -ms-linear-gradient(top, $button-bg-active, $red);
+  background-image: linear-gradient(top, $button-bg-active, $red);
   box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.75), inset 0px 2px 0px 0px rgba(255, 192, 192, 0.5), inset 0px 0px 0px 2px rgba(255, 96, 96, 0.85), 3px 3px 3px 1px rgba(0, 0, 0, 0.15);
 }
 
@@ -95,10 +107,10 @@ textarea {
 }
 
 
-/* ===== ( undoing sweeping style resets ) ===== */
+// ===== ( undoing sweeping style resets ) =====
 
 blockquote {
-  border-left: 0.2em solid #ccc;
+  border-left: 0.2em solid $light-grey;
   padding-left: 0.4em;
 }
 
@@ -112,8 +124,22 @@ nav ul, .sidebar ul, .header ul, .footer ul {
   margin: 0;
 }
 
+// ===== ( Halcyonic's stylesheet seems to hide various input types ) =====
 
-/* ========== ( utility styles ) ========== */
+input[type="checkbox"] {
+  -moz-appearance:      checkbox;
+  -webkit-appearance:   checkbox;
+  appearance:           auto;
+}
+
+input[type="radio"] {
+  -moz-appearance:      radio;
+  -webkit-appearance:   radio;
+  appearance:           auto;
+}
+
+
+// ===== ( utility styles ) =====
 
 .right {
   text-align:   right;
@@ -144,7 +170,7 @@ strong, b {
 }
 
 .white-text {
-  color:        #ffffff !important;
+  color:        $white !important;
 }
 
 a.button:hover {
@@ -152,7 +178,7 @@ a.button:hover {
 }
 
 
-/* ===== ( main menu ) ===== */
+// ===== ( main menu ) =====
 
 nav .sm {
   background:           none;
@@ -172,63 +198,77 @@ nav .sm li:last-child {
   margin:               0 !important;
 }
 
+nav .sm li ul {
+  padding:               0.6em 0;
+}
+
 nav .sm li li {
-  font-size:            0.9em;
+  font-size:            0.75em;
+  margin:               0 !important;
   text-shadow:          none;
 }
 
 nav .sm li li a {
-  color:                #444 !important;
+  color:                $dark-grey !important;
+  line-height:          1.2em;
+  padding:              0.4em 0.8em;
 }
 
 nav .sm li li a:hover {
-  color:                #2668ac !important;
+  color:                $blue !important;
+  line-height:          1.2em;
+  padding:              0.4em 0.8em;
 }
 
 
-/* ===== ( alerts / notices ) ===== */
+// ===== ( alerts / notices ) =====
 
 .header .alerts {
-  background:           #ffdddd;
+  background:           $alert-bg;
   border-radius:        3px;
-  color:                #111111;
+  color:                $nearly-black;
   margin:               0.5em !important;
   padding:              0.5em;
   text-shadow:          none;
 }
 
 .header .notices {
-  background:           #ddffdd;
+  background:           $notice-bg;
   border-radius:        3px;
-  color:                #111111;
+  color:                $nearly-black;
   margin:               0.5em !important;
   padding:              0.5em;
   text-shadow:          none;
 }
 
 
-/* ===== ( homepage banner ) ===== */
+// ===== ( homepage ) =====
 
 .banner p a {
-  color:                #aaeeff;
+  color:                $lighter-blue;
   text-decoration:      none;
 }
 
-.banner p a:visited {
-  color:                #99ddff;
+.banner p a:hover {
+  color:                $lightest-blue;
+  text-decoration:      none;
 }
 
 .banner .button-large a {
-  color:                #ffffff;
+  color:                $button-text;
   text-decoration:      none;
 }
 
 .banner-image {
-    width:              580px;
+  width:                580px;
 }
 
+.check-list li,
+.quote-list li {
+    list-style: none;
+}
 
-/* ===== ( sidebars ) ===== */
+// ===== ( sidebars ) =====
 
 .sidebar section {
   padding:              1.5em !important;
@@ -238,8 +278,17 @@ nav .sm li li a:hover {
   margin-bottom:        1em !important;
 }
 
+.sidebar a {
+  color:                $blue !important;
+  text-decoration:      none;
+}
+
+.sidebar a:hover {
+  color:                $light-blue !important;
+}
+
 .sidebar li {
-  border-bottom:        solid 1px #e2e6e8;
+  border-bottom:        solid 1px $lighter-grey;
   padding:              0.2em 0 0.2em 0;
 }
 
@@ -254,21 +303,29 @@ nav .sm li li a:hover {
 }
 
 
-/* ========== ( clickable headings ) ========== */
+// ===== ( links in headers/footers ) =====
 
 .content header a,
-.sidebar a {
-  color:                #2668ac !important;
+.content footer a {
+  color:                $blue !important;
   text-decoration:      none;
 }
 
 .content header a:hover,
-.sidebar a:hover {
-  color:                #368aee !important;
+.content footer a:hover {
+  color:                $light-blue !important;
+}
+
+.sidebar header a {
+  color:                $dark-grey !important;
+}
+
+.sidebar header a:hover {
+  color:                $light-blue !important;
 }
 
 
-/* ========== ( blog & news posts ) ========== */
+// ===== ( blog & news posts ) =====
 
 .post {
   padding:              2em 1.5em 0.5em 1.5em !important;
@@ -287,7 +344,7 @@ nav .sm li li a:hover {
 }
 
 
-/* ========== ( comments ) ========== */
+// ===== ( comments ) =====
 
 .comment {
   padding:              2em 1.5em 0.5em 1.5em !important;
@@ -306,11 +363,11 @@ nav .sm li li a:hover {
 }
 
 .locked {
-  color:    #888888;
+  color:                $grey;
 }
 
 
-/* ========== ( comment form ) ========== */
+// ===== ( comment form ) =====
 
 .comment_form {
   font-size:            0.9em !important;
@@ -330,7 +387,7 @@ nav .sm li li a:hover {
 }
 
 
-/* ===== ( styles for tag clouds and tag lists ) ===== */
+// ===== ( styles for tag clouds and tag lists ) =====
 
 .tagsize1 { font-size: 1em; }
 .tagsize2 { font-size: 2em; }
@@ -344,14 +401,14 @@ nav .sm li li a:hover {
 }
 
 
-/* ========== ( search page ) ========== */
+// ===== ( search page ) =====
 
 .algolia-logo img {
   width:                100px;
 }
 
 
-/* ========== ( user profiles ) ========== */
+// ===== ( user profiles ) =====
 
 .user-icon {
   border-radius:        3px;
