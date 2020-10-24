@@ -19,6 +19,9 @@ module ShinyEmail
     before_validation :generate_canonical_email, if:
       -> { canonical_email.blank? || email_changed? }
 
+    # Redact emails as part of deletion - in case we're also using soft delete
+    before_destroy :redact_emails!
+
     def generate_canonical_email
       self.canonical_email = EmailAddress.canonical( email )
     end

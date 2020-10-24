@@ -12,6 +12,10 @@ module ShinyPluginHelper
     ShinyPlugin.loaded? plugin_name
   end
 
+  def plugins_with_main_site_head_templates
+    ShinyPlugin.with_template( 'includes/_head_part.html.erb' )
+  end
+
   def plugins_with_main_site_menu_templates
     ShinyPlugin.with_template( 'menu/_section.html.erb' )
   end

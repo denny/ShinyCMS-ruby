@@ -34,7 +34,7 @@ RSpec.describe 'ShinyForms', type: :request do
             name: Faker::Name.unique.name,
             email: Faker::Internet.unique.email,
             subject: Faker::Books::CultureSeries.unique.culture_ship,
-            message: Faker::Lorem.paragraphs.join("\n\n")
+            message: Faker::Lorem.paragraphs.join( "\n\n" )
           }
         }
 
@@ -55,7 +55,7 @@ RSpec.describe 'ShinyForms', type: :request do
             name: Faker::Name.unique.name,
             email: Faker::Internet.unique.email,
             subject: Faker::Books::CultureSeries.unique.culture_ship,
-            message: Faker::Lorem.paragraphs.join("\n\n")
+            message: Faker::Lorem.paragraphs.join( "\n\n" )
           }
         }
 

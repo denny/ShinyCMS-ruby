@@ -65,7 +65,7 @@ class ShinyPostAtomFeedEntry
 
   def add_entry_summary
     summary = entry.class::Summary.new
-    summary.content = feed_entry_summary
+    summary.content = html_escape( feed_entry_summary )
     summary.type = 'html'
     entry.summary = summary
   end
@@ -84,6 +84,10 @@ class ShinyPostAtomFeedEntry
 
       <p>#{I18n.t( 'models.shiny_post_atom_feed_entry.read_more' )}</p>
     SUMMARY
+  end
+
+  def html_escape( html )
+    html.gsub( '&', '&amp;' ).gsub( '<', '&lt;' ).gsub( '>', '&gt;' )
   end
 
   def default_url_options

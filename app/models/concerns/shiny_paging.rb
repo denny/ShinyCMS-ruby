@@ -6,10 +6,11 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Links users and capabilities
-class UserCapability < ApplicationRecord
-  include ShinySoftDelete
+# Default config and common behaviours for models with pagination
+module ShinyPaging
+  extend ActiveSupport::Concern
 
-  belongs_to :user
-  belongs_to :capability
+  included do
+    paginates_per 10
+  end
 end

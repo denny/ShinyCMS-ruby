@@ -6,7 +6,7 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-$LOAD_PATH.push File.expand_path('lib', __dir__)
+$LOAD_PATH.push File.expand_path( 'lib', __dir__ )
 
 # Maintain your gem's version:
 require 'shiny_blog/version'
@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
-  unless spec.respond_to?(:metadata)
+  unless spec.respond_to?( :metadata )
     raise StandardError, 'RubyGems 2.0 or newer is required to protect against public gem pushes.'
   end
 

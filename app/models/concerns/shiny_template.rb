@@ -23,13 +23,6 @@ module ShinyTemplate
     validates :filename, presence: true
     validates :name,     presence: true
 
-    # Plugins
-
-    acts_as_paranoid
-    validates_as_paranoid
-
-    paginates_per 20
-
     # Before/after actions
 
     after_create :add_elements

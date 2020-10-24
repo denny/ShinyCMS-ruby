@@ -11,7 +11,9 @@ module ShinyLists
   class List < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyName
+    include ShinyPaging
     include ShinySlug
+    include ShinySoftDelete
 
     # Assocations
 
@@ -19,12 +21,6 @@ module ShinyLists
     has_many :users, through: :subscriptions, inverse_of: :lists, source: :subscriber, source_type: 'User'
     has_many :email_recipients, through: :subscriptions, inverse_of: :lists, source: :subscriber,
                                 source_type: 'EmailRecipient'
-
-    # Plugin config
-
-    acts_as_paranoid
-    validates_as_paranoid
-    paginates_per 20
 
     # Instance methods
 
