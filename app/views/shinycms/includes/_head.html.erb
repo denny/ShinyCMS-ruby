@@ -9,3 +9,7 @@
 
 <%= stylesheet_link_tag 'shinycms/main_site' %>
 <%= stylesheet_link_tag 'shinycms/admin_toolbar' if current_user_can? :view_admin_toolbar %>
+
+<% plugins_with_main_site_head_templates.each do |plugin| %>
+<%= render partial: "#{plugin.name.underscore}/includes/head_part" %>
+<% end %>

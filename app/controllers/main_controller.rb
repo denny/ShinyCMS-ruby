@@ -42,6 +42,12 @@ class MainController < ApplicationController
     Setting.get_int( :default_items_per_page ) || 10
   end
 
+  def feed_url( name )
+    "#{feeds_base_url}/feeds/atom/#{name}.xml"
+  end
+
+  helper_method :feed_url
+
   protected
 
   def configure_permitted_parameters
@@ -101,5 +107,29 @@ class MainController < ApplicationController
   # Track all actions with Ahoy
   def track_ahoy_visit
     ahoy.track 'Ran action', request.path_parameters
+  end
+
+  def feeds_base_url
+    aws_s3_base_url || main_app.root_url.to_s.chop
+  end
+
+  def aws_s3_base_url
+    return if aws_s3_feeds_bucket.blank?
+
+    http = ENV[ 'MAILER_URL_PROTOCOL' ].presence || 'https'
+
+    "#{http}://#{aws_s3_feeds_domain}"
+  end
+
+  def aws_s3_feeds_domain
+    ENV[ 'AWS_S3_FEEDS_DOMAIN' ].presence || "#{aws_s3_feeds_bucket}.s3.#{aws_s3_feeds_region}.amazonaws.com"
+  end
+
+  def aws_s3_feeds_bucket
+    ENV[ 'AWS_S3_FEEDS_BUCKET' ].presence
+  end
+
+  def aws_s3_feeds_region
+    ENV[ 'AWS_S3_FEEDS_REGION' ].presence
   end
 end
