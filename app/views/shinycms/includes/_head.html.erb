@@ -9,3 +9,10 @@
 
 <%= stylesheet_link_tag 'shinycms/main_site' %>
 <%= stylesheet_link_tag 'shinycms/admin_toolbar' if current_user_can? :view_admin_toolbar %>
+
+<% if ShinyPlugin.loaded? :ShinyBlog %>
+<%= auto_discovery_link_tag( :atom, feed_url( :blog ), { title: "#{site_name} Blog" } ) %>
+<% end %>
+<% if ShinyPlugin.loaded? :ShinyNews %>
+<%= auto_discovery_link_tag( :atom, feed_url( :news ), { title: "#{site_name} News" } ) %>
+<% end %>
