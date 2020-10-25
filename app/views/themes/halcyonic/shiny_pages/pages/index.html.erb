@@ -8,8 +8,8 @@
                 <a href="<%= banner_button_url %>" class="button-large"><%= banner_button_text %></a>
               </div>
               <div class="col-6 col-12-medium imp-medium">
-                <a href="/images/<%= banner_image %>">
-                  <img src="/images/<%= banner_image %>" alt="" class="banner-image" />
+                <a href="<%= banner_image.service_url if banner_image.present? %>">
+                  <%= image_tag banner_image.service_url, class: 'banner-image' if banner_image.present? %>
                 </a>
               </div>
             </div>
@@ -25,7 +25,7 @@
 
               <!-- Feature #1 -->
               <section>
-                <a href="/images/<%= image1 %>" class="bordered-feature-image"><img src="/images/<%= image1 %>" alt=""></a>
+                <a href="<%= image1.service_url if image1.present? %>" class="bordered-feature-image"><img src="<%= image1.service_url if image1.present? %>" alt=""></a>
                 <h2>
                   <%= heading1 %>
                 </h2>
@@ -37,7 +37,7 @@
 
               <!-- Feature #2 -->
               <section>
-                <a href="/images/<%= image2 %>" class="bordered-feature-image"><img src="/images/<%= image2 %>" alt=""></a>
+                <a href="<%= image2.service_url if image2.present? %>" class="bordered-feature-image"><img src="<%= image2.service_url if image2.present? %>" alt=""></a>
                 <h2>
                   <%= heading2 %>
                 </h2>
@@ -49,7 +49,7 @@
 
               <!-- Feature #3 -->
               <section>
-                <a href="/images/<%= image3 %>" class="bordered-feature-image"><img src="/images/<%= image3 %>" alt=""></a>
+                <a href="<%= image3.service_url if image3.present? %>" class="bordered-feature-image"><img src="<%= image3.service_url if image3.present? %>" alt=""></a>
                 <h2>
                   <%= heading3 %>
                 </h2>
@@ -61,7 +61,7 @@
 
               <!-- Feature #4 -->
               <section>
-                <a href="/images/<%= image4 %>" class="bordered-feature-image"><img src="/images/<%= image4 %>" alt=""></a>
+                <a href="<%= image4.service_url if image4.present? %>" class="bordered-feature-image"><img src="<%= image4.service_url if image4.present? %>" alt=""></a>
                 <h2>
                   <%= heading4 %>
                 </h2>
@@ -85,7 +85,7 @@
                   <h2>Who We Are</h2>
                   <h3>A subheading about who we are</h3>
                 </header>
-                <a href="#" class="feature-image"><img src="/images/<%= image5 %>" alt=""></a>
+                <a href="#" class="feature-image"><img src="<%= image5.service_url if image5.present? %>" alt=""></a>
                 <p>
                   Duis neque nisi, dapibus sed mattis quis, rutrum accumsan magna sed.
                   Suspendisse eu varius nibh. Suspendisse vitae magna eget odio amet mollis
@@ -122,17 +122,17 @@
                 </header>
                 <ul class="quote-list">
                   <li>
-                    <img src="/images/<%= image6 %>" alt="">
+                    <img src="<%= image6.service_url if image6.present? %>" alt="">
                     <p>"Neque nisidapibus mattis"</p>
                     <span>Jane Doe, CEO of UntitledCorp</span>
                   </li>
                   <li>
-                    <img src="/images/<%= image7 %>" alt="">
+                    <img src="<%= image7.service_url if image7.present? %>" alt="">
                     <p>"Lorem ipsum consequat!"</p>
                     <span>John Doe, President of FakeBiz</span>
                   </li>
                   <li>
-                    <img src="/images/<%= image8 %>" alt="">
+                    <img src="<%= image8.service_url if image8.present? %>" alt="">
                     <p>"Magna veroeros amet tempus"</p>
                     <span>Mary Smith, CFO of UntitledBiz</span>
                   </li>

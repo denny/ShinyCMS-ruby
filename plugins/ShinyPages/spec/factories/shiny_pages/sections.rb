@@ -18,7 +18,7 @@ module ShinyPages
       end
     end
 
-    factory :page_subsection, parent: :page_section do
+    factory :nested_page_section, parent: :page_section do
       association :section, factory: :page_section
     end
   end

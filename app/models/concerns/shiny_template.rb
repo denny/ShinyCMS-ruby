@@ -41,8 +41,26 @@ module ShinyTemplate
 
     private
 
-    def add_default_element( name )
-      elements.create( name: name )
+    def add_element( formatting, name )
+      return add_long_text_element name if formatting == 'simple_format'
+      return add_html_element name      if formatting == 'sanitize'
+      return add_image_element name     if formatting == 'image_tag' || ( formatting.nil? && name.include?( 'image' ) )
+
+      add_short_text_element name
+    end
+
+    def add_short_text_element( name )
+      elements.create(
+        name: name,
+        element_type: 'short_text'
+      )
+    end
+
+    def add_long_text_element( name )
+      elements.create(
+        name: name,
+        element_type: 'long_text'
+      )
     end
 
     def add_html_element( name )
@@ -56,13 +74,6 @@ module ShinyTemplate
       elements.create(
         name: name,
         element_type: 'image'
-      )
-    end
-
-    def add_long_text_element( name )
-      elements.create(
-        name: name,
-        element_type: 'long_text'
       )
     end
   end

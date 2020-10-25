@@ -3,7 +3,7 @@
   <%= @page.name %>
 </h1>
 <p>
-  <img src="/images/<%= an_image %>" alt="">
+  <%= image_tag an_image.service_url, class: 'classy' if an_image.present? %>
 </p>
 <h2>
   <%= a_heading %>
@@ -21,7 +21,7 @@
 
 <p class="small">
   Contact:
-  <% if insert_type?( 'the_email', 'short_text' ) %>
-    <a href="mailto:<%= insert( 'the_email' ) %>"><%= insert( 'the_email' ) %></a>
+  <% if insert_type?( :the_email, :short_text ) %>
+    <a href="mailto:<%= insert( :the_email ) %>"><%= insert( :the_email ) %></a>
   <% end %>
 </p>

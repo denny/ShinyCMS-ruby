@@ -12,21 +12,5 @@ module ShinyPages
     factory :page_element, class: 'ShinyPages::PageElement' do
       name { Faker::Books::CultureSeries.unique.civs.underscore }
     end
-
-    factory :short_text_page_element, parent: :page_element do
-      element_type { 'short_text' }
-    end
-
-    factory :long_text_page_element, parent: :page_element do
-      element_type { 'long_text' }
-    end
-
-    factory :image_page_element, parent: :page_element do
-      element_type { 'image' }
-    end
-
-    factory :html_page_element, parent: :page_element do
-      element_type { 'html' }
-    end
   end
 end
