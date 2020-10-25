@@ -2,15 +2,19 @@
 
 ## Steps currently required to create and deploy a new site
 
-### Create a private copy of the main repo
+I'm creating a copy of a simple site that is currently hosted on the Perl version of ShinyCMS:
+* to identify any missing bits of functionality in the existing features and plugins
+* to identify steps that could usefully be automated, partly or fully
+
+1. Create a private copy of the main repo
 
 https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/duplicating-a-repository
 
-### Remove included themes
+1. Remove included themes
 
 `git rm -r app/views/themes/*
 
-### Create new theme
+1. Create new theme
 
 ```bash
 # Pretty much every site will have some 'brochure' pages, and tweak header and footer content
@@ -35,13 +39,16 @@ touch app/views/themes/{site-name}/shiny_newsletters/newsletter_mailer/newslette
 touch app/views/themes/{site-name}/shiny_newsletters/newsletter_mailer/newsletter-template.text.erb
 ```
 
-### Create new Heroku pipeline, with staging and production apps
+1. Create new Heroku pipeline, with staging and production apps
 
 * Connect pipeline to new GitHub repo
 * Add Postgres and Redis add-ons to each app
 * Set as many config vars as possible (copypasta desired var names from docs/env.sample)
 * ...
 
-### Set up AWS S3 buckets for staging and production files, and feeds if needed
+1. Set up AWS S3 buckets for staging and production files, and feeds if needed
 
-(Files may be uploaded by ShinyPages, ShinyBlog, ShinyNews, ShinyInserts, and ShinyProfiles. ShinyBlog and ShinyNews will also generate feeds.)
+Files may be uploaded by ShinyPages, ShinyBlog, ShinyNews, ShinyInserts, and ShinyProfiles.
+
+ShinyBlog and ShinyNews will generate feeds.
+
