@@ -128,13 +128,16 @@ namespace :shiny do
 
     def models_to_reorder
       # FIXME: can the plugins provide a load order for their models?
-      # rubocop:disable Layout/MultilineArrayLineBreaks
       %w[
-        ShinyPages::Page ShinyPages::PageElement
-        ShinyNewsletters::Edition ShinyNewsletters::EditionElement ShinyNewsletters::Send
-        Discussion Comment
+        ShinyPages::Page
+        ShinyPages::PageElement
+        ShinyNewsletters::Edition
+        ShinyNewsletters::EditionElement
+        ShinyNewsletters::Send
+        Discussion
+        Comment
+        ActiveStorage::Attachment
       ]
-      # rubocop:enable Layout/MultilineArrayLineBreaks
     end
 
     def remove_models_from_list( model_names )
