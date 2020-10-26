@@ -1,4 +1,30 @@
 
+ActiveStorage::Attachment.create!([
+  {id: 1, name: "profile_pic", record_type: "User", record_id: 1, blob_id: 1},
+  {id: 21, name: "image", record_type: "ShinyPages::PageElement", record_id: 4, blob_id: 21},
+  {id: 22, name: "image", record_type: "ShinyPages::PageElement", record_id: 5, blob_id: 22},
+  {id: 23, name: "image", record_type: "ShinyPages::PageElement", record_id: 8, blob_id: 23},
+  {id: 24, name: "image", record_type: "ShinyPages::PageElement", record_id: 11, blob_id: 24},
+  {id: 25, name: "image", record_type: "ShinyPages::PageElement", record_id: 14, blob_id: 25},
+  {id: 26, name: "image", record_type: "ShinyPages::PageElement", record_id: 17, blob_id: 26},
+  {id: 27, name: "image", record_type: "ShinyPages::PageElement", record_id: 18, blob_id: 27},
+  {id: 28, name: "image", record_type: "ShinyPages::PageElement", record_id: 19, blob_id: 28},
+  {id: 29, name: "image", record_type: "ShinyPages::PageElement", record_id: 20, blob_id: 29}
+])
+
+ActiveStorage::Blob.create!([
+  {id: 1, key: "y3zpcvcouui9lt3wu7vk4fr1a1tp", filename: "look-right.500x500.png", content_type: "image/png", metadata: {"identified"=>true, "width"=>500, "height"=>500, "analyzed"=>true}, byte_size: 256042, checksum: "itC/lg3nWpfbyn83G4sYUw=="},
+  {id: 21, key: "38ykcc70w4ljcez0er150c95oci7", filename: "banner.png", content_type: "image/png", metadata: {"identified"=>true, "width"=>1920, "height"=>1080, "analyzed"=>true}, byte_size: 203393, checksum: "vxj9Z514JggEw282O3QH+g=="},
+  {id: 22, key: "r9f4ktolamtwno06sun0n0ezlhd6", filename: "pages.png", content_type: "image/png", metadata: {"identified"=>true, "width"=>1920, "height"=>800, "analyzed"=>true}, byte_size: 176087, checksum: "hrMduxxNxkV26EkKlhimwg=="},
+  {id: 23, key: "av2wfje8femqhaxvc2wdwe48xan8", filename: "blog.png", content_type: "image/png", metadata: {"identified"=>true, "width"=>1920, "height"=>800, "analyzed"=>true}, byte_size: 391167, checksum: "YaaNOr7GWayfoJSLRQpJUA=="},
+  {id: 24, key: "xrjrxpcbo54dz80twng23uye6y52", filename: "nested-comments.png", content_type: "image/png", metadata: {"identified"=>true, "width"=>1920, "height"=>800, "analyzed"=>true}, byte_size: 76843, checksum: "ogOwEnzdJBY82zYiWYH/tQ=="},
+  {id: 26, key: "e1yg62l26zvhvfanlujqwk44dqyq", filename: "pic05.jpg", content_type: "image/jpeg", metadata: {"identified"=>true, "width"=>324, "height"=>126, "analyzed"=>true}, byte_size: 3303, checksum: "ertDUTfVVXCzN7LyXVIwhg=="},
+  {id: 25, key: "ojna8xsz2ma134zzdgplijhicdep", filename: "spam-comment-moderation.png", content_type: "image/png", metadata: {"identified"=>true, "width"=>1920, "height"=>800, "analyzed"=>true}, byte_size: 102164, checksum: "Hfbp6FOjcENdbnyYpgHVbw=="},
+  {id: 27, key: "5owp8p7259e500usvhpnfkvft6uj", filename: "pic06.jpg", content_type: "image/jpeg", metadata: {"identified"=>true, "width"=>70, "height"=>70, "analyzed"=>true}, byte_size: 1557, checksum: "ZNUE+uSMU2cXw1RusWPZDg=="},
+  {id: 28, key: "w0lajssos8or024iuodvbwy7spl6", filename: "pic07.jpg", content_type: "image/jpeg", metadata: {"identified"=>true, "width"=>70, "height"=>70, "analyzed"=>true}, byte_size: 1594, checksum: "mYzPOdIEPlSxliI3ap23wQ=="},
+  {id: 29, key: "gef4y8lxz62e37btib86f1x5a4qm", filename: "pic08.jpg", content_type: "image/jpeg", metadata: {"identified"=>true, "width"=>70, "height"=>70, "analyzed"=>true}, byte_size: 1672, checksum: "2NFqN8YfXdXKw0IUsXGU1Q=="}
+])
+
 CommentAuthor.create!([
   {id: 1, name: "ShinyCMS", website: "https://shinycms.org", ip_address: "127.0.0.1", token: "6cfe74c8-5e99-4589-9430-ac0b70e7ec1f", email_recipient_id: nil, deleted_at: nil},
   {id: 2, name: "Pill Pusher", website: "http://spammy.website", ip_address: "127.0.0.1", token: "6de0eecc-8b3d-44ba-aee5-0e9ccbd42006", email_recipient_id: nil, deleted_at: nil},
