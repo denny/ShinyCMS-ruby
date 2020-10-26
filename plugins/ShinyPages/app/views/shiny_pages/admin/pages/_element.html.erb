@@ -16,12 +16,12 @@
     <%= fields.label content, name.humanize %><br>
     <%= fields.cktext_area content, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
   <% elsif element_type == 'image' %>
-    <%= fields.label 'content_image', name.humanize %><br>
-    <% if content_image.present? %>
-    <%= image_tag content_image.variant( resize_to_limit: [ nil, 150 ] ).processed.service_url, class: 'admin-image-thumbnail' %>
-    &nbsp;(<%= content_image.filename %>)
+    <%= fields.label 'image', name.humanize %><br>
+    <% if image.present? %>
+    <%= image_tag image.variant( resize_to_limit: [ nil, 150 ] ).processed.service_url, class: 'admin-image-thumbnail' %>
+    &nbsp;(<%= image.filename %>)
     <% end %>
-    <%= fields.file_field 'content_image', accept: 'image/png,image/gif,image/jpeg' %>
+    <%= fields.file_field 'image', accept: 'image/png,image/gif,image/jpeg' %>
   <% else %>
     [ <%= t( 'admin.unknown_element_type' ) %> ]
   <% end %>

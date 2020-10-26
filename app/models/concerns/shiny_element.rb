@@ -21,7 +21,7 @@ module ShinyElement
   included do
     # Associations
 
-    has_one_attached :content_image
+    has_one_attached :image
 
     # Validations
 

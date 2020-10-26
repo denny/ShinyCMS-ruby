@@ -33,9 +33,9 @@ module ShinyWithTemplate
       end
     end
 
-    # Returns a hash of all the elements for this item, to feed to render's local
+    # Returns a hash of all the elements for this item, to feed to render as local params
     def elements_hash
-      elements.collect { |element| [ element.name.to_sym, ( element.content_image.presence || element.content ) ] }.to_h
+      elements.collect { |element| [ element.name.to_sym, ( element.image.presence || element.content ) ] }.to_h
     end
   end
 end

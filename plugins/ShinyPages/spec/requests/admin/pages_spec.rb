@@ -134,7 +134,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.pages.edit.title' ).titlecase
 
-      expect( response.body ).to have_field 'page[elements_attributes][0][content_image]', type: 'file'
+      expect( response.body ).to have_field 'page[elements_attributes][0][image]',   type: 'file'
       expect( response.body ).to have_field 'page[elements_attributes][1][content]', type: 'text',     with: 'SHORT!'
       expect( response.body ).to have_field 'page[elements_attributes][2][content]', type: 'textarea', with: 'LONG!'
       expect( response.body ).to have_field 'page[elements_attributes][3][content]', type: 'textarea', with: 'HTML!'
