@@ -1,17 +1,24 @@
 <tr class="showfocus">
   <td>
+  <% if element_type == 'short_text' %>
     <%= fields.label content, name %><br>
-    <% if element_type == 'short_text' %>
     <%= fields.text_field content %>
-    <% elsif element_type == 'long_text' %>
+  <% elsif element_type == 'long_text' %>
+    <%= fields.label content, name %><br>
     <%= fields.text_area content %>
-    <% elsif element_type == 'image' %>
-    <%= fields.select content, filenames_for_image_select %>
-    <% elsif element_type == 'html' %>
-    <%= fields.cktext_area content %>
-    <% else %>
-    [ <%= t( 'admin.unknown_element_type' ) %> ]
+  <% elsif element_type == 'html' %>
+    <%= fields.label content, name %><br>
+    <%= fields.cktext_area content, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
+  <% elsif element_type == 'image' %>
+    <%= fields.label 'image', name %><br>
+    <% if image.present? %>
+    <%= image_tag image.variant( resize_to_limit: [ nil, 150 ] ).processed.service_url, class: 'admin-image-thumbnail' %>
+    &nbsp;(<%= image.filename %>)
     <% end %>
+    <%= fields.file_field 'image', accept: 'image/png,image/gif,image/jpeg' %>
+  <% else %>
+    [ <%= t( 'admin.unknown_element_type' ) %> ]
+  <% end %>
   </td>
   <td class="actions">
     <%= link_to t( 'delete' ), shiny_inserts.destroy_insert_path( fields.object ),

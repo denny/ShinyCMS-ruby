@@ -60,7 +60,7 @@ RSpec.describe 'Pages', type: :request do
 
     describe 'GET /section-name/page-name' do
       it 'fetches the specified page from the specified section' do
-        page = create :page_in_section
+        page = create :page_in_section, :with_content
 
         get "/#{page.section.slug}/#{page.slug}"
 

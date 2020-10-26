@@ -28,7 +28,7 @@ module ShinyMJMLTemplate
 
       # I am so, so sorry.
       mjml.scan(
-        %r{<%=\s+(sanitize|simple_format|image_tag)?\(?\s*@elements\[\s*:(\w+)\](\s*\)?|\..*service_url.*)\s+%>}
+        %r{<%=\s+(sanitize|simple_format|image_tag)?\(?\s*@elements\[\s*:(\w+)\](\s*\)?|\..*service_url.*?)\s+%>}
       ).uniq.each do |result|
         added = add_element result[0], result[1]
         raise ActiveRecord::Rollback unless added

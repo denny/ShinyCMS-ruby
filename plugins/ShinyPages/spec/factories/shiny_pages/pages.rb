@@ -11,10 +11,34 @@ module ShinyPages
   FactoryBot.define do
     factory :page, class: 'ShinyPages::Page', aliases: [ :top_level_page ] do
       internal_name { Faker::Books::CultureSeries.unique.culture_ship }
+
       association :template, factory: :page_template
 
       trait :hidden do
         show_on_site { false }
+      end
+
+      trait :with_content do
+        after :build do |page|
+          page.elements.each do |element|
+            case element.element_type
+            when 'short_text'
+              element.update!( content: Faker::Books::CultureSeries.civs )
+            when 'long_text'
+              element.update!( content: Faker::Lorem.paragraph )
+            when 'html'
+              element.update!( content: "<p>#{Faker::Lorem.paragraph}</p>" )
+            when 'image'
+              test_file = Rails.root.join( 'app/assets/images/shinycms/spiral.png' )
+              test_blob = ActiveStorage::Blob.create_after_upload!(
+                io: File.open( test_file ),
+                filename: 'spiral.png',
+                content_type: 'image/png'
+              ).signed_id
+              element.image.attach test_blob
+            end
+          end
+        end
       end
     end
 

@@ -12,11 +12,4 @@ module ShinyElementHelper
   def element_types
     I18n.t( 'admin.elements' ).collect { |element| [ element.second, element.first ] }
   end
-
-  # Provide filenames for use in select inputs for image elements
-  def filenames_for_image_select( path = nil )
-    path ||= Rails.root.join( 'public/images' )
-    filenames = Dir.glob '*?.?*', base: path
-    filenames.sort
-  end
 end

@@ -118,7 +118,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
   describe 'GET /admin/page/:id' do
     it 'loads the form to edit an existing page' do
-      page = create :top_level_page
+      page = create :top_level_page, :with_content
 
       get shiny_pages.edit_page_path( page )
 
