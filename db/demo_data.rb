@@ -1,17 +1,4 @@
 
-ActiveStorage::Attachment.create!([
-  {id: 1, name: "profile_pic", record_type: "User", record_id: 1, blob_id: 1},
-  {id: 21, name: "image", record_type: "ShinyPages::PageElement", record_id: 4, blob_id: 21},
-  {id: 22, name: "image", record_type: "ShinyPages::PageElement", record_id: 5, blob_id: 22},
-  {id: 23, name: "image", record_type: "ShinyPages::PageElement", record_id: 8, blob_id: 23},
-  {id: 24, name: "image", record_type: "ShinyPages::PageElement", record_id: 11, blob_id: 24},
-  {id: 25, name: "image", record_type: "ShinyPages::PageElement", record_id: 14, blob_id: 25},
-  {id: 26, name: "image", record_type: "ShinyPages::PageElement", record_id: 17, blob_id: 26},
-  {id: 27, name: "image", record_type: "ShinyPages::PageElement", record_id: 18, blob_id: 27},
-  {id: 28, name: "image", record_type: "ShinyPages::PageElement", record_id: 19, blob_id: 28},
-  {id: 29, name: "image", record_type: "ShinyPages::PageElement", record_id: 20, blob_id: 29}
-])
-
 ActiveStorage::Blob.create!([
   {id: 1, key: "y3zpcvcouui9lt3wu7vk4fr1a1tp", filename: "look-right.500x500.png", content_type: "image/png", metadata: {"identified"=>true, "width"=>500, "height"=>500, "analyzed"=>true}, byte_size: 256042, checksum: "itC/lg3nWpfbyn83G4sYUw=="},
   {id: 21, key: "38ykcc70w4ljcez0er150c95oci7", filename: "banner.png", content_type: "image/png", metadata: {"identified"=>true, "width"=>1920, "height"=>1080, "analyzed"=>true}, byte_size: 203393, checksum: "vxj9Z514JggEw282O3QH+g=="},
@@ -116,7 +103,7 @@ ShinyPages::TemplateElement.create!([
 ShinyPages::Page.create!([
   {id: 1, internal_name: "Home", public_name: "ShinyCMS Demo", slug: "home", description: "Demo site home page - uses Halcyonic index template", position: 1, show_in_menus: false, show_on_site: true, section_id: nil, template_id: 1, deleted_at: nil},
   {id: 2, internal_name: "No sidebar", public_name: "", slug: "none", description: "", position: 4, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 2, deleted_at: nil},
-  {id: 3, internal_name: "Right sidebar", public_name: "", slug: "right", description: "", position: 7, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 3, deleted_at: nil},
+  {id: 3, internal_name: "Right sidebar", public_name: "", slug: "right", description: "", position: 8, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 3, deleted_at: nil},
   {id: 4, internal_name: "Left sidebar", public_name: "", slug: "left", description: "", position: 6, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 4, deleted_at: nil},
   {id: 5, internal_name: "Double sidebar", public_name: "", slug: "double", description: "Embrace the healing power of AND", position: 8, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 5, deleted_at: nil},
   {id: 6, internal_name: "Contact Us", public_name: "", slug: "contact", description: "Contact form", position: 2, show_in_menus: true, show_on_site: true, section_id: nil, template_id: 6, deleted_at: nil}
@@ -186,4 +173,17 @@ Comment.create!([
   {id: 5, discussion_id: 2, number: 1, parent_id: nil, title: "BEST BITCOIN ADVICE", body: "Prey on the misfortunate of others in the coolest ponzi scheme ever to sweep the Internet!!", ip_address: nil, locked: false, show_on_site: true, spam: true, author_type: nil, author_id: nil, posted_at: "2020-06-05 01:23:13", deleted_at: nil},
   {id: 6, discussion_id: 2, number: 2, parent_id: nil, title: nil, body: "Rise to every occasion with our bargain blue diamonds!", ip_address: nil, locked: false, show_on_site: true, spam: true, author_type: "CommentAuthor", author_id: 2, posted_at: "2020-06-05 22:56:48", deleted_at: nil},
   {id: 7, discussion_id: 2, number: 3, parent_id: nil, title: nil, body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst.", ip_address: nil, locked: false, show_on_site: true, spam: true, author_type: "CommentAuthor", author_id: 3, posted_at: "2020-06-05 23:01:17", deleted_at: nil}
+])
+
+ActiveStorage::Attachment.create!([
+  {id: 1, name: "profile_pic", record_type: "User", record_id: 1, blob_id: 1},
+  {id: 21, name: "image", record_type: "ShinyPages::PageElement", record_id: 4, blob_id: 21},
+  {id: 22, name: "image", record_type: "ShinyPages::PageElement", record_id: 5, blob_id: 22},
+  {id: 23, name: "image", record_type: "ShinyPages::PageElement", record_id: 8, blob_id: 23},
+  {id: 24, name: "image", record_type: "ShinyPages::PageElement", record_id: 11, blob_id: 24},
+  {id: 25, name: "image", record_type: "ShinyPages::PageElement", record_id: 14, blob_id: 25},
+  {id: 26, name: "image", record_type: "ShinyPages::PageElement", record_id: 17, blob_id: 26},
+  {id: 27, name: "image", record_type: "ShinyPages::PageElement", record_id: 18, blob_id: 27},
+  {id: 28, name: "image", record_type: "ShinyPages::PageElement", record_id: 19, blob_id: 28},
+  {id: 29, name: "image", record_type: "ShinyPages::PageElement", record_id: 20, blob_id: 29}
 ])

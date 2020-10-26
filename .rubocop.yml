@@ -131,7 +131,16 @@ Layout/FirstArrayElementIndentation:
 Layout/LeadingEmptyLines:
   Exclude:
     - db/demo_data.rb
+Layout/SpaceAroundOperators:
+  Exclude:
+    - db/demo_data.rb
 Style/FrozenStringLiteralComment:
+  Exclude:
+    - db/demo_data.rb
+Style/NumericLiterals:
+  Exclude:
+    - db/demo_data.rb
+Style/StringHashKeys:
   Exclude:
     - db/demo_data.rb
 Style/StringLiterals:
