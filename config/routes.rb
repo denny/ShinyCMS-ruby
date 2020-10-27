@@ -137,7 +137,7 @@ Rails.application.routes.draw do
     # Sidekiq Web provides a web dashboard for your sidekiq jobs and queues
     if sidekiq_web_enabled?
       require 'sidekiq/web'
-      require 'sidekiq/status'
+      require 'sidekiq-status/web'
 
       Sidekiq::Web.set :sessions, false
       authenticate :user, ->( user ) { user.can? :manage_sidekiq_jobs } do
