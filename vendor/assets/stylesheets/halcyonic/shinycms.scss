@@ -169,6 +169,11 @@ strong, b {
   clear:        both;
 }
 
+.fixed {
+  font-family:  fixed;
+  font-size:    90%;
+}
+
 .white-text {
   color:        $white !important;
 }
@@ -330,8 +335,8 @@ nav .sm li li a:hover {
 .post img {
   float:                right;
   margin:               0 1em 0 1em;
-  max-height:           400px;
-  max-width:            400px;
+  max-height:           320px;
+  max-width:            320px;
 }
 
 // ===== ( comments ) =====
