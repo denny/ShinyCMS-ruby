@@ -3,7 +3,7 @@
 <%= render partial: 'news/index/page_title' %>
 
 <% @posts.each do |post| %>
-<section>
+<section class="post">
   <%= render partial: 'news/index/post_header', locals: { post: post } %>
 
   <%= sanitize post.teaser( paragraphs: 3 ) %>
