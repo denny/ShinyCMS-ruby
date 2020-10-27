@@ -18,7 +18,7 @@
   <% elsif element_type == 'image' %>
     <%= fields.label 'image', name.humanize %><br>
     <% if image.present? %>
-    <%= image_tag image.variant( resize_to_limit: [ nil, 150 ] ).processed.service_url, class: 'admin-image-thumbnail' %>
+    <%= image_tag image.variant( resize_to_limit: [ nil, 150 ] ), class: 'admin-image-thumbnail' %>
     &nbsp;(<%= image.filename %>)
     <% end %>
     <%= fields.file_field 'image', accept: 'image/png,image/gif,image/jpeg' %>
