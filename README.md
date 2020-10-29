@@ -65,16 +65,16 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
 
 ## Documentation
 
-[docs.shinycms.org] is generated from the documentation included in [/docs](docs/index.md).
+Documentation can be found on the [ShinyCMS documentation](https://docs.shinycms.org/) website in HTML format, and in [/docs](docs/index.md) in Markdown format.
 
 
 ## Installation and configuration
 
-Please start by reading the [installation guide](docs/INSTALL.md) (or [tl,dr](docs/tldr.md) for the very short version).
+Please start by reading the [installation guide](docs/INSTALL.md) ([tl,dr](docs/tldr.md)).
 
 ### Demo site
 
-Theme templates and sample data for a [demo site](docs/demo-site.md) are provided, so you can try all of the CMS features without doing any data-entry work first. You can run the demo site on a free Heroku plan, using the free/hobby pricing level for all the required dynos and add-ons.
+Theme templates and sample data for a [demo site](docs/demo-site.md) are provided, so you can try all of the CMS features without doing any data-entry work first. You can run the demo site locally or on a free Heroku plan.
 
 ### System dependencies
 
@@ -82,7 +82,7 @@ You will need a webserver, a Postgres-compatible database server, and a Sidekiq-
 
 You will need a mail server if you intend to enable any of the features that send emails; user registrations, reply notifications, etc. Anything supported by ActionMailer should work.
 
-All other supported [external services](docs/Services.md) are optional. If you add config details for them (in ENV / .env* files / Heroku config) then they will be used, otherwise either the related CMS features will be unavailable or they will have reduced functionality.
+All other supported [external services](docs/Services.md) are optional. If you add config details for them (in ENV / .env* files / Heroku config) then they will be used, otherwise the related CMS features will be unavailable or will have reduced functionality.
 
 ### Ruby and Rails versions
 
