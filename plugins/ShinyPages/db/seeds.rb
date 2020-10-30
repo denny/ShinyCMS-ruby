@@ -11,7 +11,7 @@
 
 # Feature flag
 
-flag = FeatureFlag.create_or_find_by!( name: 'pages' )
+flag = FeatureFlag.find_or_create_by!( name: 'pages' )
 flag.update!(
   description: "Enable 'brochure pages', provided by ShinyPages plugin",
   enabled: true,

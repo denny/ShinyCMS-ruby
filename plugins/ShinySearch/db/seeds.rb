@@ -10,7 +10,7 @@
 # rails shiny_search:db:seed
 
 # Add feature flag
-flag = FeatureFlag.create_or_find_by!( name: 'search' )
+flag = FeatureFlag.find_or_create_by!( name: 'search' )
 flag.update!(
   description: 'Turn on search features',
   enabled: true,
