@@ -10,6 +10,8 @@ module ShinyBlog
   # Background job to regenerate blog Atom feed - part of the ShinyBlog plugin for ShinyCMS
   # Called when a blog post is added or updated (TODO: or when a future-dated post goes live)
   class BuildAtomFeedJob < ApplicationJob
+    include Sidekiq::Status::Worker
+
     def perform
       posts = Post.recent.limit( 10 )
 
