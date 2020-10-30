@@ -9,5 +9,7 @@
 # Factory for UserCapability model
 FactoryBot.define do
   factory :user_capability do
+    association :user
+    association :capability
   end
 end
