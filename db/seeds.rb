@@ -13,128 +13,101 @@
 # with `rails db:reset`. You can also reload this data at any time using `rails db:seed`.
 
 # Capabilities (for user authorisation, via Pundit)
-general_cc    = seed CapabilityCategory, { name: 'general'          }
-discussion_cc = seed CapabilityCategory, { name: 'discussions'      }
-comments_cc   = seed CapabilityCategory, { name: 'comments'         }
-spam_cc       = seed CapabilityCategory, { name: 'spam_comments'    }
-consent_cc    = seed CapabilityCategory, { name: 'consent_versions' }
-emails_cc     = seed CapabilityCategory, { name: 'email_previews'   }
-features_cc   = seed CapabilityCategory, { name: 'feature_flags'    }
-stats_cc      = seed CapabilityCategory, { name: 'stats'            }
-settings_cc   = seed CapabilityCategory, { name: 'settings'         }
-users_cc      = seed CapabilityCategory, { name: 'users'            }
-admins_cc     = seed CapabilityCategory, { name: 'admin_users'      }
-# General
-seed Capability, { name: 'view_admin_area'     }, { category: general_cc }
-seed Capability, { name: 'view_admin_toolbar'  }, { category: general_cc }
-seed Capability, { name: 'manage_sidekiq_jobs' }, { category: general_cc }
-# Consent Versions
-seed Capability, { name: 'list',    category: consent_cc }
-seed Capability, { name: 'add',     category: consent_cc }
-seed Capability, { name: 'edit',    category: consent_cc }
-seed Capability, { name: 'destroy', category: consent_cc }
-# Comments
-seed Capability, { name: 'show',    category: comments_cc }
-seed Capability, { name: 'hide',    category: comments_cc }
-seed Capability, { name: 'lock',    category: comments_cc }
-seed Capability, { name: 'unlock',  category: comments_cc }
-seed Capability, { name: 'destroy', category: comments_cc }
-# Spam Comments
-seed Capability, { name: 'list',    category: spam_cc }
-seed Capability, { name: 'add',     category: spam_cc }
-seed Capability, { name: 'destroy', category: spam_cc }
-# Discussions
-seed Capability, { name: 'show',    category: discussion_cc }
-seed Capability, { name: 'hide',    category: discussion_cc }
-seed Capability, { name: 'lock',    category: discussion_cc }
-seed Capability, { name: 'unlock',  category: discussion_cc }
-# Email Previews
-seed Capability, { name: 'list',    category: emails_cc }
-seed Capability, { name: 'show',    category: emails_cc }
-# Feature Flags
-seed Capability, { name: 'list',    category: features_cc }
-seed Capability, { name: 'edit',    category: features_cc }
-# Stats
-seed Capability, { name: 'view_web',    category: stats_cc }
-seed Capability, { name: 'view_email',  category: stats_cc }
-seed Capability, { name: 'view_charts', category: stats_cc }
-seed Capability, { name: 'make_charts', category: stats_cc }
-# Site Settings
-seed Capability, { name: 'list',    category: settings_cc }
-seed Capability, { name: 'edit',    category: settings_cc }
-# Users
-seed Capability, { name: 'list',    category: users_cc }
-seed Capability, { name: 'add',     category: users_cc }
-seed Capability, { name: 'edit',    category: users_cc }
-seed Capability, { name: 'destroy', category: users_cc }
-seed Capability, { name: 'view_admin_notes', category: users_cc }
-# Admin Users
-seed Capability, { name: 'list',    category: admins_cc }
-seed Capability, { name: 'add',     category: admins_cc }
-seed Capability, { name: 'edit',    category: admins_cc }
-seed Capability, { name: 'destroy', category: admins_cc }
+def add_capabilities( category:, capabilities: )
+  capability_category = CapabilityCategory.create_or_find_by!( name: category )
+
+  capabilities.each do |capability_name|
+    capability_category.capabilities.create_or_find_by!(
+      name: capability_name
+    )
+  end
+end
+
+add_capabilities(
+  category: 'general',
+  capabilities: %w[ view_admin_area view_admin_toolbar manage_sidekiq_jobs ]
+)
+
+add_capabilities(
+  category: 'discussions',
+  capabilities: %w[ show hide lock unlock ]
+)
+
+add_capabilities(
+  category: 'comments',
+  capabilities: %w[ show hide lock unlock destroy ]
+)
+
+add_capabilities(
+  category: 'spam_comments',
+  capabilities: %w[ list add destroy ]
+)
+
+add_capabilities(
+  category: 'email_previews',
+  capabilities: %w[ list show ]
+)
+
+add_capabilities(
+  category: 'stats',
+  capabilities: %w[ view_web view_email view_charts make_charts ]
+)
+
+add_capabilities(
+  category: 'feature_flags',
+  capabilities: %w[ list edit ]
+)
+
+add_capabilities(
+  category: 'settings',
+  capabilities: %w[ list edit ]
+)
+
+add_capabilities(
+  category: 'consent_versions',
+  capabilities: %w[ list add edit destroy ]
+)
+
+add_capabilities(
+  category: 'users',
+  capabilities: %w[ list add edit destroy view_admin_notes ]
+)
+
+add_capabilities(
+  category: 'admin_users',
+  capabilities: %w[ list add edit destroy ]
+)
 
 # Feature Flags (to turn on/off areas of site functionality)
-seed FeatureFlag, { name: 'comments' }, {
-  description: 'Enable comment and discussion features site-wide',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
-seed FeatureFlag, { name: 'comment_votes' }, {
-  description: 'Enable votes on comments',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
-seed FeatureFlag, { name: 'comment_downvotes' }, {
-  description: 'Enable down-votes on comments',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
-seed FeatureFlag, { name: 'comment_notifications' }, {
-  description: 'Send notification emails to people who get comments',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
-seed FeatureFlag, { name: 'akismet_on_comments' }, {
-  description: 'Detect spam comments with Akismet',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
-seed FeatureFlag, { name: 'recaptcha_on_comment_form' }, {
-  description: 'Protect comment forms with reCAPTCHA',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
-seed FeatureFlag, { name: 'recaptcha_on_registration_form' }, {
-  description: 'Protect user registration form with reCAPTCHA',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
-seed FeatureFlag, { name: 'tags' }, {
-  description: 'Turn on site-wide tag features',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-}
-seed FeatureFlag, { name: 'user_login' }, {
+def add_feature_flag( name:, description: nil, enabled: true )
+  FeatureFlag.create_or_find_by!(
+    name: name,
+    description: description,
+    enabled: enabled,
+    enabled_for_logged_in: enabled,
+    enabled_for_admins: enabled
+  )
+end
+
+add_feature_flag( name: 'comments',                   description: 'Enable comment features' )
+add_feature_flag( name: 'comment_notifications',      description: 'Send notification emails for comments' )
+add_feature_flag( name: 'akismet_for_comments',       description: 'Flag spam comments with Akismet' )
+add_feature_flag( name: 'recaptcha_for_comments',     description: 'Protect comment forms with reCAPTCHA' )
+add_feature_flag( name: 'recaptcha_for_registration', description: 'Protect user registration form with reCAPTCHA' )
+add_feature_flag( name: 'tags',                       description: 'Enable tag features' )
+add_feature_flag( name: 'upvotes',                    description: "Enable up-votes (AKA 'likes')" )
+add_feature_flag( name: 'downvotes',                  description: 'Enable down-votes (requires up-votes)' )
+
+add_feature_flag(
+  name: 'user_login',
   description: 'Allow users to log in',
-  enabled: false,
-  enabled_for_logged_in: false,
-  enabled_for_admins: false
-}
-seed FeatureFlag, { name: 'user_registration' }, {
+  enabled: false
+)
+add_feature_flag(
+  name: 'user_registration',
   description: 'Allow new users to create an account',
-  enabled: false,
-  enabled_for_logged_in: false,
-  enabled_for_admins: false
-}
+  enabled: false
+)
 
 # Settings
 def set_setting( name:, value: '', description: nil, level: 'site', locked: false )
@@ -167,6 +140,24 @@ set_setting(
   name: :allowed_to_comment,
   value: 'Anonymous',
   description: 'Lowest-ranking user-type (Anonymous/Pseudonymous/Authenticated/None) that is allowed to post comments'
+)
+
+set_setting(
+  name: :anon_votes_can_change,
+  value: 'false',
+  description: 'Anonymous upvotes and downvotes can be changed/removed'
+)
+
+set_setting(
+  name: :comment_upvotes,
+  value: 'true',
+  description: 'Allow upvotes on comments'
+)
+
+set_setting(
+  name: :comment_downvotes,
+  value: 'true',
+  description: 'Allow downvotes on comments'
 )
 
 set_setting(

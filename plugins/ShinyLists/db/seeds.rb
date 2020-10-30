@@ -11,7 +11,7 @@
 
 # Feature flag
 
-flag = FeatureFlag.find_or_create_by!( name: 'mailing_lists' )
+flag = FeatureFlag.create_or_find_by!( name: 'mailing_lists' )
 flag.update!(
   description: 'Enable mailing list features (provided by ShinyLists plugin)',
   enabled: true,
@@ -21,21 +21,21 @@ flag.update!(
 
 # Admin capabilities
 
-lists_cc = CapabilityCategory.find_or_create_by!( name: 'mailing_lists' )
-subscriptions_cc = CapabilityCategory.find_or_create_by!( name: 'mailing_list_subscriptions' )
+lists_cc = CapabilityCategory.create_or_find_by!( name: 'mailing_lists' )
+subscriptions_cc = CapabilityCategory.create_or_find_by!( name: 'mailing_list_subscriptions' )
 
-lists_cc.capabilities.find_or_create_by!( name: 'list'    )
-lists_cc.capabilities.find_or_create_by!( name: 'add'     )
-lists_cc.capabilities.find_or_create_by!( name: 'edit'    )
-lists_cc.capabilities.find_or_create_by!( name: 'destroy' )
+lists_cc.capabilities.create_or_find_by!( name: 'list'    )
+lists_cc.capabilities.create_or_find_by!( name: 'add'     )
+lists_cc.capabilities.create_or_find_by!( name: 'edit'    )
+lists_cc.capabilities.create_or_find_by!( name: 'destroy' )
 
-subscriptions_cc.capabilities.find_or_create_by!( name: 'list'   )
-subscriptions_cc.capabilities.find_or_create_by!( name: 'add'    )
-subscriptions_cc.capabilities.find_or_create_by!( name: 'remove' )
+subscriptions_cc.capabilities.create_or_find_by!( name: 'list'   )
+subscriptions_cc.capabilities.create_or_find_by!( name: 'add'    )
+subscriptions_cc.capabilities.create_or_find_by!( name: 'remove' )
 
 # Consent version used when a list admin manually subscribes somebody
 
-ConsentVersion.find_or_create_by!(
+ConsentVersion.create_or_find_by!(
   name: 'Subscribed by list admin',
   slug: 'shiny-lists-admin-subscribe',
   display_text: 'Manually subscribing people to lists might make it difficult to prove their consent. Are you sure?',

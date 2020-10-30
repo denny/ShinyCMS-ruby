@@ -9,7 +9,7 @@
 # Utility functions for dealing with Akismet
 module AkismetHelper
   def akismet_enabled?
-    feature_enabled?( :akismet_on_comments )
+    feature_enabled?( :akismet_for_comments )
   end
 
   def akismet_api_key_is_set?
