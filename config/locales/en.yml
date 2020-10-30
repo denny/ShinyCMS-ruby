@@ -232,6 +232,9 @@ en:
     admin_ip_list: Admin IP list
     all_comment_notifications_email: Email to notify of ALL comments
     allowed_to_comment: Allowed to comment
+    anon_votes_can_change: Anonymous up/downvotes can change
+    comment_upvotes: Upvotes on comments
+    comment_downvotes: Down-votes on comments
     default_email: Default email address
     default_items_per_page: Default items per page
     default_items_per_page_in_admin_area: Default items per page in admin area
@@ -250,16 +253,16 @@ en:
   feature_flags:
     off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
-    akismet_on_comments: Detect spam comments with Akismet
+    akismet_for_comments: Detect spam comments with Akismet
     comments: Comments
-    comment_votes: Comment votes ('likes')
-    comment_downvotes: Comment downvotes ('dislikes')
     comment_notifications: Comment notifications
-    recaptcha_on_registration_form: Protect registration form with reCAPTCHA
-    recaptcha_on_comment_form: Protect comment form with reCAPTCHA
+    recaptcha_for_registration: Protect registration form with reCAPTCHA
+    recaptcha_for_comments: Protect comment form with reCAPTCHA
     tags: Tags
     user_login: User Login
     user_registration: User Registration
+    upvotes: Upvotes ('likes')
+    downvotes: Down-votes
 
 
   # ========== ( User Capabilities ) ==========

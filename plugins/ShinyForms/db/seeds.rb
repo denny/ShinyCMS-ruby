@@ -10,14 +10,14 @@
 # rails shiny_forms:db:seed
 
 # Add feature flag
-forms_flag = FeatureFlag.find_or_create_by!( name: 'shiny_forms' )
+forms_flag = FeatureFlag.create_or_find_by!( name: 'shiny_forms' )
 forms_flag.update!(
   description: 'Enable generic form handlers from ShinyForms plugin',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true
 )
-form_emails_flag = FeatureFlag.find_or_create_by!( name: 'shiny_forms_emails' )
+form_emails_flag = FeatureFlag.create_or_find_by!( name: 'shiny_forms_emails' )
 form_emails_flag.update!(
   description: 'Allow form handlers to send emails',
   enabled: true,
@@ -26,8 +26,8 @@ form_emails_flag.update!(
 )
 
 # Add admin capabilities
-forms_cc = CapabilityCategory.find_or_create_by!( name: 'forms' )
-forms_cc.capabilities.find_or_create_by!( name: 'list'    )
-forms_cc.capabilities.find_or_create_by!( name: 'add'     )
-forms_cc.capabilities.find_or_create_by!( name: 'edit'    )
-forms_cc.capabilities.find_or_create_by!( name: 'destroy' )
+forms_cc = CapabilityCategory.create_or_find_by!( name: 'forms' )
+forms_cc.capabilities.create_or_find_by!( name: 'list'    )
+forms_cc.capabilities.create_or_find_by!( name: 'add'     )
+forms_cc.capabilities.create_or_find_by!( name: 'edit'    )
+forms_cc.capabilities.create_or_find_by!( name: 'destroy' )

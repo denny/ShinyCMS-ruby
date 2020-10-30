@@ -82,7 +82,7 @@ class DiscussionsController < MainController
   end
 
   def passes_recaptcha?
-    return true unless feature_enabled? :recaptcha_on_comment_form
+    return true unless feature_enabled? :recaptcha_for_comments
     return true if     @new_comment.authenticated_author?
 
     verify_invisible_recaptcha( 'comment' ) || verify_checkbox_recaptcha
@@ -112,7 +112,7 @@ class DiscussionsController < MainController
     )
     return author if strong_params[ :author_email ].blank?
 
-    recipient = EmailRecipient.find_or_create_by!( email: strong_params[ :author_email ] )
+    recipient = EmailRecipient.create_or_find_by!( email: strong_params[ :author_email ] )
     author.update!( email_recipient: recipient )
     author
   end
