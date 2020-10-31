@@ -11,7 +11,7 @@
 
 # Feature flag
 
-flag = FeatureFlag.create_or_find_by!( name: 'newsletters' )
+flag = FeatureFlag.find_or_create_by!( name: 'newsletters' )
 flag.update!(
   description: 'Enable newsletter features (provided by ShinyNewsletters plugin)',
   enabled: true,
@@ -21,21 +21,22 @@ flag.update!(
 
 # Admin capabilities
 
-templates_cc = CapabilityCategory.create_or_find_by!( name: 'newsletter_templates' )
-editions_cc  = CapabilityCategory.create_or_find_by!( name: 'newsletter_editions'  )
-sends_cc     = CapabilityCategory.create_or_find_by!( name: 'newsletter_sends'     )
+def add_capabilities( capability_data )
+  capability_data.each_key do |category_name|
+    category = CapabilityCategory.create_or_find_by!( name: category_name )
 
-editions_cc.capabilities.create_or_find_by!( name: 'list'    )
-editions_cc.capabilities.create_or_find_by!( name: 'add'     )
-editions_cc.capabilities.create_or_find_by!( name: 'edit'    )
-editions_cc.capabilities.create_or_find_by!( name: 'destroy' )
+    capability_data[ category_name ].each do |capability_name|
+      category.capabilities.create_or_find_by( name: capability_name )
+    end
+  end
+end
 
-templates_cc.capabilities.create_or_find_by!( name: 'list'    )
-templates_cc.capabilities.create_or_find_by!( name: 'add'     )
-templates_cc.capabilities.create_or_find_by!( name: 'edit'    )
-templates_cc.capabilities.create_or_find_by!( name: 'destroy' )
-
-sends_cc.capabilities.create_or_find_by!( name: 'list'    )
-sends_cc.capabilities.create_or_find_by!( name: 'add'     )
-sends_cc.capabilities.create_or_find_by!( name: 'edit'    )
-sends_cc.capabilities.create_or_find_by!( name: 'destroy' )
+# rubocop:disable Layout/HashAlignment
+add_capabilities(
+  {
+    newsletter_templates: %w[ list add edit destroy ],
+    newsletter_editions:  %w[ list add edit destroy ],
+    newsletter_sends:     %w[ list add edit destroy ]
+  }
+)
+# rubocop:enable Layout/HashAlignment

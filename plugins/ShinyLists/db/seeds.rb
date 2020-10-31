@@ -11,7 +11,7 @@
 
 # Feature flag
 
-flag = FeatureFlag.create_or_find_by!( name: 'mailing_lists' )
+flag = FeatureFlag.find_or_create_by!( name: 'mailing_lists' )
 flag.update!(
   description: 'Enable mailing list features (provided by ShinyLists plugin)',
   enabled: true,
