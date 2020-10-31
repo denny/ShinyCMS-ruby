@@ -9,25 +9,26 @@
 # You can load or reload this data using the following rake task:
 # rails shiny_forms:db:seed
 
-# Add feature flag
-forms_flag = FeatureFlag.find_or_create_by!( name: 'shiny_forms' )
-forms_flag.update!(
-  description: 'Enable generic form handlers from ShinyForms plugin',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-)
-form_emails_flag = FeatureFlag.find_or_create_by!( name: 'shiny_forms_emails' )
-form_emails_flag.update!(
-  description: 'Allow form handlers to send emails',
-  enabled: true,
-  enabled_for_logged_in: true,
-  enabled_for_admins: true
-)
+# Feature flags
 
-# Add admin capabilities
-forms_cc = CapabilityCategory.create_or_find_by!( name: 'forms' )
-forms_cc.capabilities.create_or_find_by!( name: 'list'    )
-forms_cc.capabilities.create_or_find_by!( name: 'add'     )
-forms_cc.capabilities.create_or_find_by!( name: 'edit'    )
-forms_cc.capabilities.create_or_find_by!( name: 'destroy' )
+def add_feature_flag( name:, description: nil, enabled: true )
+  FeatureFlag.find_or_create_by(
+    name: name,
+    description: description,
+    enabled: enabled,
+    enabled_for_logged_in: enabled,
+    enabled_for_admins: enabled
+  )
+end
+
+add_feature_flag( name: 'shiny_forms',         description: 'Enable generic form handlers, from ShinyForms plugin' )
+add_feature_flag( name: 'shiny_forms_emails',  description: 'Allow form handlers to send emails' )
+add_feature_flag( name: 'recaptcha_for_forms', description: 'Protect ShinyForms with reCAPTCHA'  )
+
+# Admin capabilities
+
+forms_cc = CapabilityCategory.find_or_create_by!( name: 'forms' )
+forms_cc.capabilities.find_or_create_by!( name: 'list'    )
+forms_cc.capabilities.find_or_create_by!( name: 'add'     )
+forms_cc.capabilities.find_or_create_by!( name: 'edit'    )
+forms_cc.capabilities.find_or_create_by!( name: 'destroy' )

@@ -9,13 +9,13 @@
 # Seed data for Settings
 
 def set_setting( name:, value: '', description: nil, level: 'site', locked: false )
-  setting = Setting.create_or_find_by!( name: name.to_s )
+  setting = Setting.find_or_create_by!( name: name.to_s )
   setting.unlock
 
   setting.update!( description: description ) if description.present?
   setting.update!( level: level ) unless setting.level == level
 
-  setting_value = setting.values.create_or_find_by!( user: nil )
+  setting_value = setting.values.find_or_create_by!( user: nil )
 
   setting_value.update!( value: value ) unless Setting.get( name ) == value
 

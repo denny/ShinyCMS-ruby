@@ -21,39 +21,39 @@ flag.update!(
 
 # Admin capabilities
 
-pages_cc = CapabilityCategory.create_or_find_by!( name: 'pages' )
-sections_cc = CapabilityCategory.create_or_find_by!( name: 'page_sections' )
-templates_cc = CapabilityCategory.create_or_find_by!( name: 'page_templates' )
+pages_cc = CapabilityCategory.find_or_create_by!( name: 'pages' )
+sections_cc = CapabilityCategory.find_or_create_by!( name: 'page_sections' )
+templates_cc = CapabilityCategory.find_or_create_by!( name: 'page_templates' )
 
-pages_cc.capabilities.create_or_find_by!( name: 'list'    )
-pages_cc.capabilities.create_or_find_by!( name: 'add'     )
-pages_cc.capabilities.create_or_find_by!( name: 'edit'    )
-pages_cc.capabilities.create_or_find_by!( name: 'destroy' )
+pages_cc.capabilities.find_or_create_by!( name: 'list'    )
+pages_cc.capabilities.find_or_create_by!( name: 'add'     )
+pages_cc.capabilities.find_or_create_by!( name: 'edit'    )
+pages_cc.capabilities.find_or_create_by!( name: 'destroy' )
 
-sections_cc.capabilities.create_or_find_by!( name: 'list'    )
-sections_cc.capabilities.create_or_find_by!( name: 'add'     )
-sections_cc.capabilities.create_or_find_by!( name: 'edit'    )
-sections_cc.capabilities.create_or_find_by!( name: 'destroy' )
+sections_cc.capabilities.find_or_create_by!( name: 'list'    )
+sections_cc.capabilities.find_or_create_by!( name: 'add'     )
+sections_cc.capabilities.find_or_create_by!( name: 'edit'    )
+sections_cc.capabilities.find_or_create_by!( name: 'destroy' )
 
-templates_cc.capabilities.create_or_find_by!( name: 'list'    )
-templates_cc.capabilities.create_or_find_by!( name: 'add'     )
-templates_cc.capabilities.create_or_find_by!( name: 'edit'    )
-templates_cc.capabilities.create_or_find_by!( name: 'destroy' )
+templates_cc.capabilities.find_or_create_by!( name: 'list'    )
+templates_cc.capabilities.find_or_create_by!( name: 'add'     )
+templates_cc.capabilities.find_or_create_by!( name: 'edit'    )
+templates_cc.capabilities.find_or_create_by!( name: 'destroy' )
 
 # Site settings
 
-setting1 = Setting.create_or_find_by!( name: 'default_page' )
+setting1 = Setting.find_or_create_by!( name: 'default_page' )
 setting1.update!(
   description: 'Default top-level page (either its name or its slug)',
   level: 'site',
   locked: false
 )
-setting1.values.create_or_find_by!( value: '' )
+setting1.values.find_or_create_by!( value: '' )
 
-setting2 = Setting.create_or_find_by!( name: 'default_section' )
+setting2 = Setting.find_or_create_by!( name: 'default_section' )
 setting2.update!(
   description: 'Default top-level section (either its name or its slug)',
   level: 'site',
   locked: false
 )
-setting2.values.create_or_find_by!( value: '' )
+setting2.values.find_or_create_by!( value: '' )
