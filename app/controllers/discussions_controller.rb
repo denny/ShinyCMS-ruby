@@ -69,8 +69,8 @@ class DiscussionsController < MainController
   end
 
   def passes_recaptcha?
+    return true if user_signed_in?
     return true unless feature_enabled? :recaptcha_for_comments
-    return true if     @new_comment.authenticated_author?
 
     verify_invisible_recaptcha( 'comment' ) || verify_checkbox_recaptcha
   end
@@ -80,7 +80,8 @@ class DiscussionsController < MainController
   end
 
   def set_akismet_spam_flag
-    return true unless akismet_api_key_is_set? && akismet_enabled?
+    return true if user_signed_in?
+    return true unless akismet_api_key_is_set? && feature_enabled?( :akismet_for_comments )
 
     spam, blatant = akismet_check( request, @new_comment )
     if blatant && drop_blatant_spam?
