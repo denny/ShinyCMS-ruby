@@ -16,12 +16,8 @@ module AkismetHelper
     ENV[ 'AKISMET_API_KEY' ].present?
   end
 
-  def keep_blatant_spam?
-    setting( :akismet_blatant_spam )&.downcase == 'keep'
-  end
-
   def drop_blatant_spam?
-    !keep_blatant_spam?
+    Setting.true? :akismet_drop_blatant_spam
   end
 
   def akismet_client

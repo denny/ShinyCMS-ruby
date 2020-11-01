@@ -31,6 +31,7 @@ en:
   lock: Lock
   unlock: Unlock
   update: Update
+  remove: Remove
   delete: Delete
   destroy: Delete
 
@@ -230,6 +231,8 @@ en:
   # Particularly not the first one!!
   settings:
     admin_ip_list: Admin IP list
+    akismet_drop_blatant_spam: Drop 'blatant' spam
+    akismet_log_blatant_spam: Log when dropping blatant spam
     all_comment_notifications_email: Email to notify of ALL comments
     allowed_to_comment: Allowed to comment
     anon_votes_can_change: Anonymous up/downvotes can change
@@ -256,8 +259,8 @@ en:
     akismet_for_comments: Detect spam comments with Akismet
     comments: Comments
     comment_notifications: Comment notifications
-    recaptcha_for_registration: Protect registration form with reCAPTCHA
     recaptcha_for_comments: Protect comment form with reCAPTCHA
+    recaptcha_for_registration: Protect registration form with reCAPTCHA
     tags: Tags
     user_login: User Login
     user_registration: User Registration

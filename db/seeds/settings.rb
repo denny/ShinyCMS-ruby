@@ -29,6 +29,18 @@ set_setting(
 )
 
 set_setting(
+  name: :akismet_drop_blatant_spam,
+  value: 'true',
+  description: "If Akismet flags a comment as 'blatant' spam, don't save it for moderation"
+)
+
+set_setting(
+  name: :akismet_log_blatant_spam,
+  value: 'true',
+  description: 'Add a log entry each time a blatant spam comment is dropped'
+)
+
+set_setting(
   name: :all_comment_notifications_email,
   locked: true,
   description: 'Set this to an email address to receive a notification for every comment posted on the site'
@@ -86,7 +98,6 @@ set_setting(
 set_setting(
   name: :recaptcha_comment_score,
   value: '0.6',
-  level: 'admin',
   locked: true,
   description: 'Minimum score for reCAPTCHA V3 on anon/pseudonymous comments'
 )
@@ -94,7 +105,6 @@ set_setting(
 set_setting(
   name: :recaptcha_registration_score,
   value: '0.4',
-  level: 'admin',
   locked: true,
   description: 'Minimum score for reCAPTCHA V3 on user registration'
 )
@@ -124,7 +134,7 @@ set_setting(
 )
 
 set_setting(
-  name: :track_opens,
+  name: :track_clicks,
   value: 'No',
   description: 'Track email link-clicks'
 )
