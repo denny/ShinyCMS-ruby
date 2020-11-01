@@ -24,6 +24,7 @@ end
 add_feature_flag( name: 'shiny_forms',         description: 'Enable generic form handlers, from ShinyForms plugin' )
 add_feature_flag( name: 'shiny_forms_emails',  description: 'Allow form handlers to send emails' )
 add_feature_flag( name: 'recaptcha_for_forms', description: 'Protect ShinyForms with reCAPTCHA'  )
+add_feature_flag( name: 'akismet_for_forms',   description: 'Protect ShinyForms with Akismet'    )
 
 # Admin capabilities
 
@@ -32,3 +33,26 @@ forms_cc.capabilities.find_or_create_by!( name: 'list'    )
 forms_cc.capabilities.find_or_create_by!( name: 'add'     )
 forms_cc.capabilities.find_or_create_by!( name: 'edit'    )
 forms_cc.capabilities.find_or_create_by!( name: 'destroy' )
+
+# Settings
+
+def set_setting( name:, value: '', description: nil, level: 'site', locked: false )
+  setting = Setting.find_or_create_by!( name: name.to_s )
+  setting.unlock
+
+  setting.update!( description: description ) if description.present?
+  setting.update!( level: level ) unless setting.level == level
+
+  setting_value = setting.values.find_or_create_by!( user: nil )
+
+  setting_value.update!( value: value ) unless Setting.get( name ) == value
+
+  setting.lock if locked
+end
+
+set_setting(
+  name: :recaptcha_form_score,
+  value: '0.6',
+  locked: true,
+  description: 'Minimum score for reCAPTCHA V3 on ShinyForm submissions'
+)
