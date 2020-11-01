@@ -21,18 +21,9 @@ module AkismetHelper
   end
 
   def akismet_client
-    client = Akismet::Client.new( ENV[ 'AKISMET_API_KEY' ], root_url )
+    client = Akismet::Client.new( ENV[ 'AKISMET_API_KEY' ], main_app.root_url )
     client.open
     client
-  end
-
-  # Note: Akismet throws "Akismet::Error: unknown error" for invalid API keys
-  def akismet_check( request, comment )
-    akismet_client.check(
-      request.ip,
-      request.user_agent,
-      akismet_comment_details( comment, request.referer )
-    )
   end
 
   def akismet_confirm_spam( comment_ids )
@@ -57,6 +48,15 @@ module AkismetHelper
         akismet_comment_details( comment )
       )
     end
+  end
+
+  # Note: Akismet throws "Akismet::Error: unknown error" for invalid API keys
+  def akismet_check( request, comment )
+    akismet_client.check(
+      request.ip,
+      request.user_agent,
+      akismet_comment_details( comment, request.referer )
+    )
   end
 
   def akismet_comment_details( comment, referer = nil )
