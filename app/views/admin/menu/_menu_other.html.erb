@@ -7,7 +7,7 @@
     <%= render_admin_menu_item_if( current_user.can?( :list, :spam_comments ),
         t( 'admin.comments.menu' ), comments_path, 'trash' ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :list, :email_previews ),
-        t( 'admin.emails.menu' ), rails_email_preview_path, 'envelope-letter' ) %>
+    <%= render_admin_menu_item_if( current_user.can?( :list, :mailer_previews ),
+        t( 'admin.mailer_previews.menu' ), rails_email_preview_path, 'envelope-letter' ) %>
 
   <% end %>

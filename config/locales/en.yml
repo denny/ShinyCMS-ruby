@@ -380,10 +380,6 @@ en:
       show_comments: Show comments
       lock_comments: Lock comments
 
-    emails:
-      breadcrumb: Emails
-      menu: Emails
-
     email_stats:
       breadcrumb: Stats
       menu: Email stats
@@ -406,6 +402,10 @@ en:
         failure: Failed to update feature flags
 
     letter_opener_web: Outbox
+
+    mailer_previews:
+      breadcrumb: Mailers
+      menu: Mailer previews
 
     other:
       menu: Other

@@ -25,7 +25,7 @@ add_capabilities(
     discussions:      %w[ show hide lock unlock ],
     comments:         %w[ show hide lock unlock destroy ],
     spam_comments:    %w[ list add destroy ],
-    email_previews:   %w[ list show ],
+    mailer_previews:  %w[ list show ],
     stats:            %w[ view_web view_email view_charts make_charts ],
     feature_flags:    %w[ list edit ],
     settings:         %w[ list edit ],
