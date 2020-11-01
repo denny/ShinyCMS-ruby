@@ -380,6 +380,16 @@ en:
       show_comments: Show comments
       lock_comments: Lock comments
 
+    email:
+      menu: Email
+
+    email_recipients:
+      breadcrumb: Email Recipients
+      menu: Email recipients
+      index:
+        title: Manage email recipients
+        search: Search email recipients
+
     email_stats:
       breadcrumb: Stats
       menu: Email stats

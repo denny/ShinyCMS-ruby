@@ -1,0 +1,44 @@
+<% @page_title = t( '.title' ) %>
+
+<%= render partial: 'admin/includes/search', locals: { placeholder: t( '.search' ) } %>
+
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Email
+      </th>
+      <th>
+        Name
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recipients.each do |recipient| %>
+    <tr>
+      <td>
+        <%= recipient.email %>
+      </td>
+      <td>
+        <%= recipient.name %>
+      </td>
+      <td>
+        <%= recipient.status %>
+      </td>
+      <td class="actions">
+        <%= link_to t( 'delete' ), main_app.email_recipients_path( recipient ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  <tbody>
+</table>
+
+<%= render partial: 'admin/includes/pager', locals: { paged: @recipients } %>
