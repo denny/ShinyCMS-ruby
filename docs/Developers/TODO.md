@@ -140,6 +140,14 @@
 * Replace hand-rolled trees and recursion (page sections, etc) with ClosureTree ?
     * https://github.com/ClosureTree/closure_tree
 
+* Wiki?
+    * Integrate an existing project? https://www.ruby-toolbox.com/categories/wiki_apps
+
+* Integrate a static site generator? https://www.ruby-toolbox.com/categories/static_website_generation
+
+* Run multiple ShinySites from one ShinyCMS installation?
+    * https://www.ruby-toolbox.com/categories/Multitenancy
+
 
 ## Done / In Progress
 
