@@ -31,7 +31,7 @@ module ShinyForms
     private
 
     def passed_recaptcha_and_akismet?
-      passed_recaptcha? # && passed_akismet?
+      passed_recaptcha? && passed_akismet?
     end
 
     def passed_recaptcha?
@@ -40,6 +40,16 @@ module ShinyForms
       return true unless @form.use_recaptcha?
 
       verify_invisible_recaptcha( 'form' ) || verify_checkbox_recaptcha
+    end
+
+    def passed_akismet?
+      return true if user_signed_in?
+      return true unless akismet_api_key_is_set? && feature_enabled?( :akismet_for_forms )
+      return true unless @form.use_akismet?
+
+      spam, _blatant = akismet_check( request, form_data )
+
+      !spam
     end
 
     def redirect_after_success( notice )
