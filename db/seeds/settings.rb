@@ -9,13 +9,13 @@
 # Seed data for Settings
 
 def set_setting( name:, value: '', description: nil, level: 'site', locked: false )
-  setting = Setting.create_or_find_by!( name: name.to_s )
+  setting = Setting.find_or_create_by!( name: name.to_s )
   setting.unlock
 
   setting.update!( description: description ) if description.present?
   setting.update!( level: level ) unless setting.level == level
 
-  setting_value = setting.values.create_or_find_by!( user: nil )
+  setting_value = setting.values.find_or_create_by!( user: nil )
 
   setting_value.update!( value: value ) unless Setting.get( name ) == value
 
@@ -26,6 +26,18 @@ set_setting(
   name: :admin_ip_list,
   locked: true,
   description: 'IP addresses allowed to access admin area (comma-separated)'
+)
+
+set_setting(
+  name: :akismet_drop_blatant_spam,
+  value: 'true',
+  description: "If Akismet flags a comment as 'blatant' spam, don't save it for moderation"
+)
+
+set_setting(
+  name: :akismet_log_blatant_spam,
+  value: 'true',
+  description: 'Add a log entry each time a blatant spam comment is dropped'
 )
 
 set_setting(
@@ -86,7 +98,6 @@ set_setting(
 set_setting(
   name: :recaptcha_comment_score,
   value: '0.6',
-  level: 'admin',
   locked: true,
   description: 'Minimum score for reCAPTCHA V3 on anon/pseudonymous comments'
 )
@@ -94,7 +105,6 @@ set_setting(
 set_setting(
   name: :recaptcha_registration_score,
   value: '0.4',
-  level: 'admin',
   locked: true,
   description: 'Minimum score for reCAPTCHA V3 on user registration'
 )
@@ -124,7 +134,7 @@ set_setting(
 )
 
 set_setting(
-  name: :track_opens,
+  name: :track_clicks,
   value: 'No',
   description: 'Track email link-clicks'
 )

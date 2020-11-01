@@ -63,13 +63,25 @@ class DiscussionsController < MainController
   end
 
   def new_comment_passes_checks_and_saves?
-    return true if passes_akismet_check? && passes_recaptcha? && @new_comment.save
+    return true if passes_recaptcha? && set_akismet_spam_flag && @new_comment.save
 
     # raise ActiveRecord::Rollback
   end
 
-  def passes_akismet_check?
-    return true unless akismet_enabled? && akismet_api_key_is_set?
+  def passes_recaptcha?
+    return true if user_signed_in?
+    return true unless feature_enabled? :recaptcha_for_comments
+
+    verify_invisible_recaptcha( 'comment' ) || verify_checkbox_recaptcha
+  end
+
+  def log_blatant_spam?
+    Setting.true?( :log_blatant_spam )
+  end
+
+  def set_akismet_spam_flag
+    return true if user_signed_in?
+    return true unless akismet_api_key_is_set? && feature_enabled?( :akismet_for_comments )
 
     spam, blatant = akismet_check( request, @new_comment )
     if blatant && drop_blatant_spam?
@@ -79,17 +91,6 @@ class DiscussionsController < MainController
 
     @new_comment.spam = spam
     true
-  end
-
-  def passes_recaptcha?
-    return true unless feature_enabled? :recaptcha_for_comments
-    return true if     @new_comment.authenticated_author?
-
-    verify_invisible_recaptcha( 'comment' ) || verify_checkbox_recaptcha
-  end
-
-  def log_blatant_spam?
-    Setting.true?( :log_blatant_spam )
   end
 
   def new_comment_details

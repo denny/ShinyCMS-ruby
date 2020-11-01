@@ -19,26 +19,26 @@ flag.update!(
 )
 
 # Add setting for default search backend
-setting = Setting.create_or_find_by!( name: 'default_search_backend' )
+setting = Setting.find_or_create_by!( name: 'default_search_backend' )
 setting.update!(
   description: 'Default back-end engine for search feature (pg or algolia)',
   level: 'site',
   locked: false
 )
-setting.values.create_or_find_by!( value: 'pg' )
+setting.values.find_or_create_by!( value: 'pg' )
 
-setting = Setting.create_or_find_by!( name: 'search_enabled_algolia' )
+setting = Setting.find_or_create_by!( name: 'search_enabled_algolia' )
 setting.update!(
   description: 'Is the Algolia search backend enabled',
   level: 'site',
   locked: false
 )
-setting.values.create_or_find_by!( value: 'true' )
+setting.values.find_or_create_by!( value: 'true' )
 
-setting = Setting.create_or_find_by!( name: 'search_enabled_postgres' )
+setting = Setting.find_or_create_by!( name: 'search_enabled_postgres' )
 setting.update!(
   description: 'Is the Postgres search backend enabled',
   level: 'site',
   locked: false
 )
-setting.values.create_or_find_by!( value: 'true' )
+setting.values.find_or_create_by!( value: 'true' )

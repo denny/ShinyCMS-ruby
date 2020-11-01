@@ -189,10 +189,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'adds a new top-level comment to the discussion, with a recaptcha check' do
-      allow_any_instance_of( DiscussionsController )
-        .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
-      allow( DiscussionsController )
-        .to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
+      allow_any_instance_of( DiscussionsController ).to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
+      allow( DiscussionsController ).to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
 
       FeatureFlag.enable :recaptcha_for_comments
 

@@ -23,10 +23,10 @@ flag.update!(
 
 def add_capabilities( capability_data )
   capability_data.each_key do |category_name|
-    category = CapabilityCategory.create_or_find_by!( name: category_name )
+    category = CapabilityCategory.find_or_create_by!( name: category_name )
 
     capability_data[ category_name ].each do |capability_name|
-      category.capabilities.create_or_find_by( name: capability_name )
+      category.capabilities.find_or_create_by( name: capability_name )
     end
   end
 end
@@ -34,9 +34,9 @@ end
 # rubocop:disable Layout/HashAlignment
 add_capabilities(
   {
-    newsletter_templates: %w[ list add edit destroy ],
     newsletter_editions:  %w[ list add edit destroy ],
-    newsletter_sends:     %w[ list add edit destroy ]
+    newsletter_sends:     %w[ list add edit destroy ],
+    newsletter_templates: %w[ list add edit destroy ]
   }
 )
 # rubocop:enable Layout/HashAlignment

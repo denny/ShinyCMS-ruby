@@ -37,9 +37,9 @@ flag.update!(
 
 # Add admin capabilities
 
-category = CapabilityCategory.create_or_find_by!( name: 'blog_posts' )
-category.capabilities.create_or_find_by!( name: 'list'          )
-category.capabilities.create_or_find_by!( name: 'add'           )
-category.capabilities.create_or_find_by!( name: 'edit'          )
-category.capabilities.create_or_find_by!( name: 'destroy'       )
-category.capabilities.create_or_find_by!( name: 'change_author' )
+category = CapabilityCategory.find_or_create_by!( name: 'blog_posts' )
+category.capabilities.find_or_create_by!( name: 'list'          )
+category.capabilities.find_or_create_by!( name: 'add'           )
+category.capabilities.find_or_create_by!( name: 'edit'          )
+category.capabilities.find_or_create_by!( name: 'destroy'       )
+category.capabilities.find_or_create_by!( name: 'change_author' )
