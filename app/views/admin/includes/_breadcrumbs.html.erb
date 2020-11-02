@@ -14,10 +14,12 @@
       <% elsif plugin_loaded? plugin_name %>
         <%= link_to *plugin_breadcrumb_link_text_and_path( plugin_name, controller_name ) %>
 
-      <%# Blazer %>
+      <%# Other engines %>
       <% elsif plugin_name == 'Blazer' %>
         <% @page_title = controller_name.titlecase %> <%# TODO: i18n %>
         <%= link_to t( 'admin.stats.breadcrumb' ), blazer.root_path %>
+      <% elsif plugin_name == 'RailsEmailPreview' %>
+        <%= link_to t( 'rails_email_preview.breadcrumb' ), rails_email_preview.rep_root_path %>
 
       <%# ShinyCMS core features %>
       <% else %>

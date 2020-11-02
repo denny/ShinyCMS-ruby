@@ -302,13 +302,14 @@ en:
   # ==================== ( Admin Area ) ==============================
 
   rails_email_preview:
+    breadcrumb: Mailers
+    menu: Mailer previews
     emails:
       index:
         title: All mailers
       show:
         title: Preview email
         breadcrumb_list: Emails
-
   rep:
     base:
       email:
@@ -380,9 +381,22 @@ en:
       show_comments: Show comments
       lock_comments: Lock comments
 
-    emails:
-      breadcrumb: Emails
-      menu: Emails
+    email:
+      menu: Email
+
+    email_recipients:
+      breadcrumb: Email Recipients
+      menu: Email recipients
+      index:
+        title: Manage email recipients
+        search: Search email recipients
+        confirmed: Confirmed
+        unconfirmed: Not Confirmed
+        do_not_contact: Do Not Contact
+      do_not_contact:
+        success: Email address added to Do Not Contact list
+      destroy:
+        success: Email recipient deleted
 
     email_stats:
       breadcrumb: Stats

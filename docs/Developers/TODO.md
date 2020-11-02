@@ -4,8 +4,6 @@
 
 ### Urgent / Important
 
-* ShinyForms needs bot protection like whoa. :(
-
 * Heroku Scheduler / Cron / Whenever / whatever for running scheduled Newsletter Send jobs
 
 
@@ -16,6 +14,8 @@
 * Some sort of file-picker (for image elements, CKEditor, etc)
     * https://ckeditor.com/docs/ckeditor5/latest/Features/MainApp/image-upload/ckfinder.html
     * Integrate functionality from MahBucket here?
+
+* Mock/VCR the Akismet tests (and anything else that currently needs a 'net connection)
 
 * Site map
     * https://github.com/kjvarga/sitemap_generator ?
@@ -55,8 +55,6 @@
 * Make a generic sidebar template that renders any partials in a specified directory
 
 * Re-assess use of helpers (vs models/libs/whatever) for Akismet and reCaptcha (and others?)
-
-* Add an admin UI for viewing/managing EmailRecipients
 
 * Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)
 
@@ -139,6 +137,14 @@
 
 * Replace hand-rolled trees and recursion (page sections, etc) with ClosureTree ?
     * https://github.com/ClosureTree/closure_tree
+
+* Wiki?
+    * Integrate an existing project? https://www.ruby-toolbox.com/categories/wiki_apps
+
+* Integrate a static site generator? https://www.ruby-toolbox.com/categories/static_website_generation
+
+* Run multiple ShinySites from one ShinyCMS installation?
+    * https://www.ruby-toolbox.com/categories/Multitenancy
 
 
 ## Done / In Progress
