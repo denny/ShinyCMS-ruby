@@ -302,13 +302,14 @@ en:
   # ==================== ( Admin Area ) ==============================
 
   rails_email_preview:
+    breadcrumb: Mailers
+    menu: Mailer previews
     emails:
       index:
         title: All mailers
       show:
         title: Preview email
         breadcrumb_list: Emails
-
   rep:
     base:
       email:
@@ -389,6 +390,10 @@ en:
       index:
         title: Manage email recipients
         search: Search email recipients
+      do_not_contact:
+        success: Email recipient deleted, email address added to Do Not Contact list
+      destroy:
+        success: Email recipient deleted
 
     email_stats:
       breadcrumb: Stats
@@ -412,10 +417,6 @@ en:
         failure: Failed to update feature flags
 
     letter_opener_web: Outbox
-
-    mailer_previews:
-      breadcrumb: Mailers
-      menu: Mailer previews
 
     other:
       menu: Other
