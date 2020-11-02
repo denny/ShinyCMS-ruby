@@ -32,6 +32,10 @@ class EmailRecipientPolicy
     edit?
   end
 
+  def do_not_contact?
+    destroy?
+  end
+
   def destroy?
     @this_user.can? :destroy, :email_recipients
   end
