@@ -17,6 +17,8 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
 
 ### Features that don't exist in the Perl version but I seem to be working on them anyway
 
+* Admin UI for viewing/managing EmailRecipients
+
 * Plugin architecture
     * I've converted most of the existing features into Rails Engine plugins
     * Still to do:

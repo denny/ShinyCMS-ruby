@@ -4,8 +4,6 @@
 
 ### Urgent / Important
 
-* ShinyForms needs bot protection like whoa. :(
-
 * Heroku Scheduler / Cron / Whenever / whatever for running scheduled Newsletter Send jobs
 
 
@@ -55,8 +53,6 @@
 * Make a generic sidebar template that renders any partials in a specified directory
 
 * Re-assess use of helpers (vs models/libs/whatever) for Akismet and reCaptcha (and others?)
-
-* Add an admin UI for viewing/managing EmailRecipients
 
 * Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)
 
