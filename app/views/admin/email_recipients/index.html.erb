@@ -37,7 +37,8 @@
         <% end %>
       </td>
       <td class="actions">
-        <%= link_to t( 'delete' ), main_app.email_recipients_path( recipient ),
+        <%= link_to t( '.do_not_contact' ), main_app.do_not_contact_email_recipient_path( recipient ), method: :put %>
+        <%= link_to t( 'delete' ), main_app.email_recipient_path( recipient ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>

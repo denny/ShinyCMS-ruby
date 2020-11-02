@@ -392,8 +392,9 @@ en:
         search: Search email recipients
         confirmed: Confirmed
         unconfirmed: Not Confirmed
+        do_not_contact: Do Not Contact
       do_not_contact:
-        success: Email recipient deleted, email address added to Do Not Contact list
+        success: Email address added to Do Not Contact list
       destroy:
         success: Email recipient deleted
 
