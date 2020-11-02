@@ -57,7 +57,7 @@ RSpec.describe Admin::EmailRecipientsController, type: :request do
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'admin.email_recipients.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.email_recipients.destroy.success' )
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.email_recipients.do_not_contact.success' )
       expect( response.body ).to     have_css 'td', text: recipient1.name
 
       expect( DoNotContact.include?( email1 ) ).to be true
