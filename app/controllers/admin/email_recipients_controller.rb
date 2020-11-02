@@ -12,7 +12,6 @@ class Admin::EmailRecipientsController < AdminController
 
   def index
     authorize EmailRecipient
-
     @recipients = EmailRecipient.page( page_number ).per( items_per_page )
     authorize @recipients
   end
@@ -32,8 +31,7 @@ class Admin::EmailRecipientsController < AdminController
 
   def do_not_contact
     authorize EmailRecipient
-
-    recipient = EmailRecipient.find( param[ :id ] )
+    recipient = EmailRecipient.find( params[ :id ] )
     authorize recipient
 
     flash[ :notice ] = t( '.success' ) if recipient && DoNotContact.add( recipient.email )
@@ -43,8 +41,7 @@ class Admin::EmailRecipientsController < AdminController
 
   def destroy
     authorize EmailRecipient
-
-    recipient = EmailRecipient.find( param[ :id ] )
+    recipient = EmailRecipient.find( params[ :id ] )
     authorize recipient
 
     flash[ :notice ] = t( '.success' ) if recipient.destroy

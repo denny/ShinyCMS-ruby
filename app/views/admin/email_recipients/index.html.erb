@@ -30,7 +30,11 @@
         <%= recipient.name %>
       </td>
       <td>
-        <%= recipient.status %>
+        <% if recipient.confirmed? %>
+          <%= t( '.confirmed' ) %>
+        <% else %>
+          <%= t( '.unconfirmed' ) %>
+        <% end %>
       </td>
       <td class="actions">
         <%= link_to t( 'delete' ), main_app.email_recipients_path( recipient ),

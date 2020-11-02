@@ -390,6 +390,8 @@ en:
       index:
         title: Manage email recipients
         search: Search email recipients
+        confirmed: Confirmed
+        unconfirmed: Not Confirmed
       do_not_contact:
         success: Email recipient deleted, email address added to Do Not Contact list
       destroy:

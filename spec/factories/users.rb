@@ -84,6 +84,20 @@ FactoryBot.define do
     end
   end
 
+  factory :email_recipient_admin, parent: :admin_user do
+    after :create do |admin|
+      category = CapabilityCategory.find_by( name: 'email_recipients' )
+
+      list    = category.capabilities.find_by( name: 'list'    )
+      edit    = category.capabilities.find_by( name: 'edit'    )
+      destroy = category.capabilities.find_by( name: 'destroy' )
+
+      create :user_capability, user: admin, capability: list
+      create :user_capability, user: admin, capability: edit
+      create :user_capability, user: admin, capability: destroy
+    end
+  end
+
   factory :mailer_admin, parent: :admin_user do
     after :create do |admin|
       category = CapabilityCategory.find_by( name: 'mailer_previews' )
