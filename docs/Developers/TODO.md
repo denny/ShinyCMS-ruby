@@ -15,6 +15,8 @@
     * https://ckeditor.com/docs/ckeditor5/latest/Features/MainApp/image-upload/ckfinder.html
     * Integrate functionality from MahBucket here?
 
+* Mock/VCR the Akismet tests (and anything else that currently needs a 'net connection)
+
 * Site map
     * https://github.com/kjvarga/sitemap_generator ?
 
