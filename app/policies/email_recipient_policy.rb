@@ -24,14 +24,6 @@ class EmailRecipientPolicy
     index?
   end
 
-  def edit?
-    @this_user.can? :edit, :email_recipients
-  end
-
-  def update?
-    edit?
-  end
-
   def do_not_contact?
     destroy?
   end
