@@ -12,7 +12,7 @@
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2020_10_09_164412) do
+ActiveRecord::Schema.define(version: 2020_10_31_050440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -331,6 +331,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_164412) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deleted_at", precision: 6
+    t.boolean "use_recaptcha", default: true
+    t.boolean "use_akismet", default: true
     t.index ["deleted_at"], name: "index_shiny_forms_forms_on_deleted_at"
   end
 

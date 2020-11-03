@@ -39,7 +39,7 @@ module ShinyMJMLTemplate
 
     # Get a list of available template files from the disk
     def self.available_templates
-      return unless template_dir
+      return [] unless template_dir
 
       template_names = []
 

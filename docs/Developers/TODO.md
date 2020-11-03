@@ -15,6 +15,8 @@
     * https://ckeditor.com/docs/ckeditor5/latest/Features/MainApp/image-upload/ckfinder.html
     * Integrate functionality from MahBucket here?
 
+* Mock/VCR the Akismet tests (and anything else that currently needs a 'net connection)
+
 * Site map
     * https://github.com/kjvarga/sitemap_generator ?
 
@@ -48,9 +50,11 @@
 
 ### Small-ish
 
+* Add a 'save form submission to database' form handler
+
 * Make a generic sidebar template that renders any partials in a specified directory
 
-* Add an admin UI for viewing/managing EmailRecipients
+* Re-assess use of helpers (vs models/libs/whatever) for Akismet and reCaptcha (and others?)
 
 * Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)
 
@@ -62,6 +66,9 @@
     * https://www.mkdocs.org + material theme https://squidfunk.github.io/mkdocs-material
 
 * 2FA: https://github.com/tinfoil/devise-two-factor
+
+* Check site config for internal consistency on startup
+    * e.g. if reCAPTCHA is enabled for registrations, the reCAPTCHA keys must be set
 
 * Configurable (per-site and per-user) menu order in admin area
 
@@ -133,6 +140,14 @@
 
 * Replace hand-rolled trees and recursion (page sections, etc) with ClosureTree ?
     * https://github.com/ClosureTree/closure_tree
+
+* Wiki?
+    * Integrate an existing project? https://www.ruby-toolbox.com/categories/wiki_apps
+
+* Integrate a static site generator? https://www.ruby-toolbox.com/categories/static_website_generation
+
+* Run multiple ShinySites from one ShinyCMS installation?
+    * https://www.ruby-toolbox.com/categories/Multitenancy
 
 
 ## Done / In Progress

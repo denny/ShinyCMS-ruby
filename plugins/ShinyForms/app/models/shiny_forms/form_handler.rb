@@ -9,11 +9,15 @@
 module ShinyForms
   # Basic form handlers, provided by ShinyForms plugin for ShinyCMS
   class FormHandler
-    FORM_HANDLERS = %w[ plain_email template_email ].freeze
+    FORM_HANDLERS = %w[ store_in_database plain_email template_email ].freeze
     public_constant :FORM_HANDLERS
 
+    def store_in_database( form, form_data )
+      # TODO: Add shiny_forms_submissions table, save form submissions in it, create admin page for reading it
+    end
+
     def plain_email( form, form_data )
-      # FIXME: Get rid of this horrible bodge, by writing tests for FormMailer
+      # TODO: FIXME: Get rid of this horrible bodge, by writing tests for FormMailer
       if Rails.env.test?
         FormMailer.plain( form.email_to, form.internal_name, form_data ).deliver_now
       else
@@ -24,7 +28,7 @@ module ShinyForms
     end
 
     def template_email( form, form_data )
-      # FIXME: Get rid of this horrible bodge, by writing tests for FormMailer
+      # TODO: FIXME: Get rid of this horrible bodge, by writing tests for FormMailer
       if Rails.env.test?
         FormMailer.with_template( form.email_to, form.internal_name, form_data, form.filename ).deliver_now
       else

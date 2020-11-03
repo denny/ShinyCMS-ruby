@@ -11,23 +11,46 @@ require_dependency 'shiny_forms/application_controller'
 module ShinyForms
   # Main site controller for form handlers, provided by ShinyForms plugin for ShinyCMS
   class FormsController < MainController
+    include AkismetHelper
+    include RecaptchaHelper
+
     before_action :check_feature_flags
     before_action :set_form, only: %i[ process_form ]
 
     # POST /forms/:slug
     def process_form
-      if @form.present?
-        if @form.send_to_handler( form_data )
-          redirect_after_success( @form.success_message || t( '.success' ) )
-        else
-          redirect_to main_app.root_path, alert: t( '.failure' )
-        end
+      return redirect_to main_app.root_path, alert: t( '.form_not_found' ) if @form.blank?
+
+      if passed_recaptcha_and_akismet? && @form.send_to_handler( form_data )
+        redirect_after_success( @form.success_message || t( '.success' ) )
       else
-        redirect_to main_app.root_path, alert: t( '.form_not_found' )
+        redirect_to main_app.root_path, alert: t( '.failure' )
       end
     end
 
     private
+
+    def passed_recaptcha_and_akismet?
+      passed_recaptcha? && passed_akismet?
+    end
+
+    def passed_recaptcha?
+      return true if user_signed_in?
+      return true unless feature_enabled? :recaptcha_for_forms
+      return true unless @form.use_recaptcha?
+
+      verify_invisible_recaptcha( 'form' ) || verify_checkbox_recaptcha
+    end
+
+    def passed_akismet?
+      return true if user_signed_in?
+      return true unless akismet_api_key_is_set? && feature_enabled?( :akismet_for_forms )
+      return true unless @form.use_akismet?
+
+      spam, _blatant = akismet_check( request, form_data )
+
+      !spam
+    end
 
     def redirect_after_success( notice )
       if @form.redirect_to.present?

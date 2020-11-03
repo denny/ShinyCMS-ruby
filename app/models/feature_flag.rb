@@ -25,8 +25,7 @@ class FeatureFlag < ApplicationRecord
   end
 
   def disable
-    update! enabled: false, enabled_for_logged_in: false,
-            enabled_for_admins: false
+    update! enabled: false, enabled_for_logged_in: false, enabled_for_admins: false
   end
 
   # Class methods

@@ -32,6 +32,8 @@
                     </label>
                   </p>
 
+                  <%= render partial: 'includes/recaptcha_tags', locals: { action: 'shiny_form' } %>
+
                   <p>
                     <input type="submit" value="Send" class="button">
                   </p>

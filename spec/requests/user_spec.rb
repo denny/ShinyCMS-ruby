@@ -53,7 +53,7 @@ RSpec.describe 'User Accounts', type: :request do
         .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
 
       FeatureFlag.enable :user_registration
-      FeatureFlag.enable :recaptcha_on_registration_form
+      FeatureFlag.enable :recaptcha_for_registration
 
       get new_user_registration_path
 
@@ -67,7 +67,7 @@ RSpec.describe 'User Accounts', type: :request do
         .to receive( :recaptcha_v2_site_key ).and_return( 'A_KEY' )
 
       FeatureFlag.enable :user_registration
-      FeatureFlag.enable :recaptcha_on_registration_form
+      FeatureFlag.enable :recaptcha_for_registration
 
       get new_user_registration_path
 
@@ -81,7 +81,7 @@ RSpec.describe 'User Accounts', type: :request do
         .to receive( :recaptcha_checkbox_site_key ).and_return( 'A_KEY' )
 
       FeatureFlag.enable :user_registration
-      FeatureFlag.enable :recaptcha_on_registration_form
+      FeatureFlag.enable :recaptcha_for_registration
 
       get new_user_registration_path
 

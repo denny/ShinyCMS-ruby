@@ -12,6 +12,11 @@ require 'rails_helper'
 RSpec.describe 'ShinyForms', type: :request do
   before :each do
     create :top_level_page
+
+    allow_any_instance_of( ShinyForms::FormsController ).to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
+    allow( ShinyForms::FormsController ).to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
+
+    WebMock.disable!
   end
 
   describe 'GET /contact-form' do
