@@ -23,6 +23,8 @@ module ShinyForms
 
         email1 = FormMailer.plain( form1, form1.internal_name, { message: 'Plain text email' } )
 
+        expect { email1.deliver_later }.to have_enqueued_job
+
         expect( email1.subject ).to eq @default_subject
         expect( email1.body    ).to include 'message: Plain text email'
       end
@@ -33,6 +35,8 @@ module ShinyForms
         form1 = create :template_email_form
 
         email1 = FormMailer.with_template( form1, form1.internal_name, { message: 'Templated email' }, form1.filename )
+
+        expect { email1.deliver_later }.to have_enqueued_job
 
         expect( email1.subject ).to eq @default_subject
         expect( email1.parts.second.body ).to include 'Templated email'
