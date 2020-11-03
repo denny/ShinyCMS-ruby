@@ -67,6 +67,9 @@
 
 * 2FA: https://github.com/tinfoil/devise-two-factor
 
+* Check site config for internal consistency on startup
+    * e.g. if reCAPTCHA is enabled for registrations, the reCAPTCHA keys must be set
+
 * Configurable (per-site and per-user) menu order in admin area
 
 * In admin area, load the full dataset for user capabilities, feature flags,
