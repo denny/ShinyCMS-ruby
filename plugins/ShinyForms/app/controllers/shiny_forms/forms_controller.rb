@@ -64,8 +64,16 @@ module ShinyForms
       @form = ShinyForms::Form.find_by( slug: params[:slug] )
     end
 
+    def strong_params
+      # The perils of writing a generic form handler; calling .permit! here allows any and all params through.
+      # Why even bother using strong params, in that case? Because a bunch of other stuff expects/requires it :)
+      params.require( :shiny_form ).permit!
+    end
+
     def form_data
-      params.permit( :authenticity_token, :slug, shiny_form: {} )[ 'shiny_form' ]
+      data = strong_params
+      data.delete( %i[ g-recapcha-response g-recapcha-response-data ] )
+      data
     end
 
     def check_feature_flags

@@ -2,11 +2,11 @@
   <mj-column>
 
     <mj-text>
-      From: "<%= @form_data['name'] %>" <<%= @form_data['email'] %>>
+      From: "<%= @form_data[ :name ] %>" &lt;<%= @form_data[ :email ] %>&gt;
     </mj-text>
 
     <mj-text>
-      <%= @form_data['message'] %>
+      <%= @form_data[ :message ] %>
     </mj-text>
 
     <mj-text>
