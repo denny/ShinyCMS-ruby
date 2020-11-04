@@ -50,9 +50,15 @@
 
 ### Small-ish
 
+* Redo site settings and feature flags, using Sail? https://github.com/vinistock/sail#readme
+
 * Add a 'save form submission to database' form handler
 
 * Make a generic sidebar template that renders any partials in a specified directory
+
+* Add links to error messages, where helpful?
+    * https://guides.rubyonrails.org/i18n.html#using-safe-html-translations
+    * https://www.ruby-toolbox.com/projects/it
 
 * Re-assess use of helpers (vs models/libs/whatever) for Akismet and reCaptcha (and others?)
 
@@ -61,9 +67,6 @@
 * When not-logged-in users post a comment or subscribe to a list, offer to create an account for them
 
 * 'Deploy to Heroku' button: https://devcenter.heroku.com/articles/heroku-button
-
-* Generate a technical documentation site from the contents of /docs
-    * https://www.mkdocs.org + material theme https://squidfunk.github.io/mkdocs-material
 
 * 2FA: https://github.com/tinfoil/devise-two-factor
 
@@ -84,11 +87,19 @@
 * More themes!
 
 * ¡español! :D
+    * Bonus points: https://www.ruby-toolbox.com/projects/route_translator
+    * Possibly interesting at same time: https://www.ruby-toolbox.com/projects/rack-user-locale
+        * Also: https://support.cloudflare.com/hc/en-us/articles/200168236-Configuring-Cloudflare-IP-Geolocation
 
 * Add tests for form actions being what they're supposed to be on new/edit pages,
   and for delete links being correct on list pages (to catch path helper issues)
 
+* Make textarea inputs grow as needed
+    * http://www.cryer.co.uk/resources/javascript/script21_auto_grow_text_box.htm
+
 ### Medium-ish
+
+* Invites: https://github.com/scambra/devise_invitable#readme
 
 * Add folding to page sections on /admin/pages
     * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
