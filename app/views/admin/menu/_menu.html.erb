@@ -3,20 +3,17 @@
   <%= render partial: "#{plugin.name.underscore}/admin/menu/section" %>
   <% end %>
 
-  <%= render partial: 'admin/menu/menu_users' %>
+  <%= render partial: 'admin/menu/users' %>
 
-  <%= render partial: 'admin/menu/menu_email' %>
+  <%= render partial: 'admin/menu/email' %>
 
-  <%= render partial: 'admin/menu/menu_other' %>
+  <%= render partial: 'admin/menu/other' %>
 
-  <%= render partial: 'admin/menu/menu_stats' %>
+  <%= render partial: 'admin/menu/stats' %>
 
-  <%= render partial: 'admin/menu/menu_consent_versions' %>
+  <%= render partial: 'admin/menu/consent_versions' %>
 
-  <%= render partial: 'admin/menu/menu_settings' %>
+  <%= render partial: 'admin/menu/settings' %>
 
-  <% if sidekiq_web_enabled? %>
-  <%= render_admin_menu_item_if( current_user.can?( :manage_sidekiq_jobs ),
-      t( 'admin.sidekiq_web.menu' ), sidekiq_web_path, 'applications' ) %>
-  <% end %>
+  <%= render partial: 'admin/menu/sidekiq_web' %>
 </ul>

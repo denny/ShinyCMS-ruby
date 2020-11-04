@@ -10,6 +10,8 @@ module ShinyNews
   # Background job to regenerate news section Atom feed - part of the ShinyNews plugin for ShinyCMS
   # Called when a news post is added or updated (TODO: or when a future-dated post goes live)
   class BuildAtomFeedJob < ApplicationJob
+    include Sidekiq::Status::Worker
+
     def perform
       posts = Post.recent.limit( 10 )
 

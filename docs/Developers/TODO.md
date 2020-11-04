@@ -4,6 +4,8 @@
 
 ### Urgent / Important
 
+* Scale down idle workers dynos automatically: https://github.com/JustinLove/autoscaler
+
 * Heroku Scheduler / Cron / Whenever / whatever for running scheduled Newsletter Send jobs
 
 

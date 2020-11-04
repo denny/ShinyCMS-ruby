@@ -1,5 +1,6 @@
 <% return unless current_user.can?( :view_web,    :stats ) ||
                  current_user.can?( :view_email,  :stats ) ||
+                 current_user.can?( :view_charts, :stats ) ||
                  current_user.can?( :make_charts, :stats ) %>
 
   <%= render_admin_menu_section( t( 'admin.stats.menu' ), 'chart' ) do %>
@@ -12,4 +13,5 @@
 
     <%= render_admin_menu_item_if( current_user.can?( :make_charts, :stats ),
         t( 'admin.charts.menu' ), blazer_path, 'chart' ) %>
+
   <% end %>
