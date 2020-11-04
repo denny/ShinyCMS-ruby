@@ -12,10 +12,6 @@ module AkismetHelper
     ENV[ 'AKISMET_API_KEY' ].present?
   end
 
-  def drop_blatant_spam?
-    Setting.true? :akismet_drop_blatant_spam
-  end
-
   def akismet_confirm_spam( comment_ids )
     client = akismet_client
     comments = Comment.where( id: comment_ids )
