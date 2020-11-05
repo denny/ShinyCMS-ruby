@@ -84,7 +84,7 @@ module AkismetHelper
       created_at: Time.zone.now.iso8601,
       type: 'contact-form'
     }
-    details[ :referer ] = referer if referer.present?
+    details[ :referrer ] = referer if referer.present?
     merge_generic_form_author_details( form_data, details )
   end
 
