@@ -65,7 +65,7 @@ module AkismetHelper
       created_at: comment.created_at || Time.zone.now.iso8601,
       type: 'comment'
     }
-    details[ :referer ] = referer if referer.present?
+    details[ :referrer ] = referer if referer.present?
     merge_comment_author_details( comment, details )
   end
 
