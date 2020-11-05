@@ -8,16 +8,12 @@
 
 # Helper methods for templates and controllers dealing with discussions and comments
 module ShinyDiscussionHelper
-  def allow_anonymous_comments
-    Setting.get( :allowed_to_comment )&.downcase == 'anonymous'
+  def allow_anonymous_comments?
+    Setting.true?( :allow_anonymous_comments )
   end
 
-  def allow_pseudonymous_comments
-    Setting.get( :allowed_to_comment )&.downcase == 'pseudonymous' || allow_anonymous_comments
-  end
-
-  def allow_authenticated_comments
-    Setting.get( :allowed_to_comment )&.downcase == 'authenticated' || allow_pseudonymous_comments
+  def allow_unauthenticated_comments?
+    Setting.true?( :allow_unauthenticated_comments )
   end
 
   def recent_comments_by_user( user, count = 10 )

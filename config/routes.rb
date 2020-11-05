@@ -72,7 +72,7 @@ Rails.application.routes.draw do
       # Consent versions
       resources :consent_versions, path: 'consent-versions', concerns: %i[ paginatable searchable ]
 
-      # Discussion and comment moderation
+      # Comment and discussion moderation
       get 'comments(/page/:page)', to: 'comments#index', as: :comments
       put 'comments',              to: 'comments#update'
       get 'comments/search',       to: 'comments#search'
@@ -91,6 +91,12 @@ Rails.application.routes.draw do
         put ':id/hide',   to: 'discussions#hide',   as: :hide_discussion
         put ':id/lock',   to: 'discussions#lock',   as: :lock_discussion
         put ':id/unlock', to: 'discussions#unlock', as: :unlock_discussion
+      end
+
+      # Email Recipients
+      resources :email_recipients, path: 'email-recipients', concerns: %i[ paginatable searchable ],
+                                   except: %i[ show new create ] do
+        put :'do-not-contact', on: :member, to: 'email_recipients#do_not_contact'
       end
 
       # Feature Flags
@@ -137,6 +143,8 @@ Rails.application.routes.draw do
     # Sidekiq Web provides a web dashboard for your sidekiq jobs and queues
     if sidekiq_web_enabled?
       require 'sidekiq/web'
+      require 'sidekiq-status/web'
+
       Sidekiq::Web.set :sessions, false
       authenticate :user, ->( user ) { user.can? :manage_sidekiq_jobs } do
         mount Sidekiq::Web, at: '/admin/sidekiq'

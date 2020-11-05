@@ -169,6 +169,11 @@ strong, b {
   clear:        both;
 }
 
+.fixed {
+  font-family:  fixed;
+  font-size:    90%;
+}
+
 .white-text {
   color:        $white !important;
 }
@@ -327,22 +332,12 @@ nav .sm li li a:hover {
 
 // ===== ( blog & news posts ) =====
 
-.post {
-  padding:              2em 1.5em 0.5em 1.5em !important;
+.post img {
+  float:                right;
+  margin:               0 1em 0 1em;
+  max-height:           320px;
+  max-width:            320px;
 }
-
-.post header {
-  margin-bottom:       1em !important;
-}
-
-.post footer {
-  padding-top:          1em !important;
-}
-
-.byline {
-  font-size:            0.9em !important;
-}
-
 
 // ===== ( comments ) =====
 

@@ -1,6 +1,6 @@
 <% @page_title = @post.title %>
 
-<section>
+<section class="post">
   <%= render partial: 'blog/show/post_header', locals: { post: @post } %>
 
   <%= sanitize @post.body %>

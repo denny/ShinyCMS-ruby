@@ -67,6 +67,8 @@ source 'https://rubygems.org' do
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
   gem 'sidekiq'
+  # This adds more details to the Sidekiq web dashboard
+  gem 'sidekiq-status'
 
   # Bot detection to protect forms (including registration, comments, etc)
   gem 'recaptcha'

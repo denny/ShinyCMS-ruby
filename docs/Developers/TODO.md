@@ -13,17 +13,16 @@
 
 * Some sort of file-picker (for image elements, CKEditor, etc)
     * https://ckeditor.com/docs/ckeditor5/latest/Features/MainApp/image-upload/ckfinder.html
-    * Integrate functionality from MahBucket here?
 
-* Site map
-    * https://github.com/kjvarga/sitemap_generator ?
+* Site map - https://github.com/kjvarga/sitemap_generator ?
 
 * Affiliate cookie
 
 ### Medium-ish
 
-* Access control groups
-    * Can be used to control access to file downloads and secure whole pages, but also to show/hide individual pieces of page content
+* Access control groups; should work at both a large concerns and small detail scale:
+    * Grant/deny access to file downloads, secure whole pages or sections of the site
+    * Show/hide individual pieces of page content - images, paragraphs, even individual words
 
 * Polls
 
@@ -31,15 +30,15 @@
 
 * Online shop
 
+* Autoresponders
+
+* Email sequences - define a series of emails, to be sent at defined intervals
+
 * Payment handling plugins
-    * Options include recurring subscriptions to access control groups (AKA paid membership)
+    * Pay to join an access control group - AKA 'paid membership'
+    * Pay to receive an email sequence - AKA 'buy a training course'
 
 * Forums
-
-* Autoresponders
-  	* Check out Heya - may or may not be useful to use / build on top of
-  	* https://github.com/honeybadger-io/heya
-  	* Oh, except the licence doesn't look great. Investigate that first.
 
 * Event listings
 
@@ -48,9 +47,17 @@
 
 ### Small-ish
 
+* Mock/VCR the Akismet tests (and anything else that currently needs a 'net connection)
+
+* Add a 'save form submission to database' form handler
+
 * Make a generic sidebar template that renders any partials in a specified directory
 
-* Add an admin UI for viewing/managing EmailRecipients
+* Add links to error messages, where helpful?
+    * https://guides.rubyonrails.org/i18n.html#using-safe-html-translations
+    * https://www.ruby-toolbox.com/projects/it
+
+* Re-assess use of helpers (vs models/libs/whatever) for Akismet and reCaptcha (and others?)
 
 * Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)
 
@@ -58,10 +65,10 @@
 
 * 'Deploy to Heroku' button: https://devcenter.heroku.com/articles/heroku-button
 
-* Generate a technical documentation site from the contents of /docs
-    * https://www.mkdocs.org + material theme https://squidfunk.github.io/mkdocs-material
-
 * 2FA: https://github.com/tinfoil/devise-two-factor
+
+* Check site config for internal consistency on startup
+    * e.g. if reCAPTCHA is enabled for registrations, the reCAPTCHA keys must be set
 
 * Configurable (per-site and per-user) menu order in admin area
 
@@ -77,9 +84,15 @@
 * More themes!
 
 * ¡español! :D
+    * Bonus points: https://www.ruby-toolbox.com/projects/route_translator
+    * Possibly interesting at same time: https://www.ruby-toolbox.com/projects/rack-user-locale
+        * Also: https://support.cloudflare.com/hc/en-us/articles/200168236-Configuring-Cloudflare-IP-Geolocation
 
 * Add tests for form actions being what they're supposed to be on new/edit pages,
   and for delete links being correct on list pages (to catch path helper issues)
+
+* Make textarea inputs grow as needed
+    * http://www.cryer.co.uk/resources/javascript/script21_auto_grow_text_box.htm
 
 ### Medium-ish
 
@@ -111,8 +124,12 @@
 
 ### Large-ish
 
+* Redo site settings and feature flags, using Sail? https://github.com/vinistock/sail#readme
+
 * Re-think mailer preview features
     * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
+
+* Invites: https://github.com/scambra/devise_invitable#readme
 
 * Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?
     * Think carefully about privacy implications of linking previous actions to current visitor
@@ -133,6 +150,14 @@
 
 * Replace hand-rolled trees and recursion (page sections, etc) with ClosureTree ?
     * https://github.com/ClosureTree/closure_tree
+
+* Wiki?
+    * Integrate an existing project? https://www.ruby-toolbox.com/categories/wiki_apps
+
+* Integrate a static site generator? https://www.ruby-toolbox.com/categories/static_website_generation
+
+* Run multiple ShinySites from one ShinyCMS installation?
+    * https://www.ruby-toolbox.com/categories/Multitenancy
 
 
 ## Done / In Progress
