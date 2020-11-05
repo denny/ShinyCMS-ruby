@@ -234,7 +234,8 @@ en:
     akismet_drop_blatant_spam: Drop 'blatant' spam
     akismet_log_blatant_spam: Log when dropping blatant spam
     all_comment_notifications_email: Email to notify of ALL comments
-    allowed_to_comment: Allowed to comment
+    allow_anonymous_comments: Allow anonymous comments
+    allow_unauthenticated_comments: Allow unauthenticated comments
     anon_votes_can_change: Anonymous up/downvotes can change
     comment_upvotes: Upvotes on comments
     comment_downvotes: Down-votes on comments
@@ -242,8 +243,9 @@ en:
     default_items_per_page: Default items per page
     default_items_per_page_in_admin_area: Default items per page in admin area
     post_login_redirect: Post-login redirect
-    recaptcha_comment_score: 'reCAPTCHA: Minimum score for comments'
-    recaptcha_registration_score: 'reCAPTCHA: Minimum score for user registration'
+    recaptcha_score_default: 'reCAPTCHA: Default minimum score'
+    recaptcha_score_for_comments: 'reCAPTCHA: Minimum score for comments'
+    recaptcha_score_for_registrations: 'reCAPTCHA: Minimum score for user registrations'
     site_name: Site name
     tag_view: Default tag view
     theme_name: Theme name

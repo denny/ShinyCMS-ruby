@@ -39,7 +39,7 @@ module ShinyForms
       return true unless feature_enabled? :recaptcha_for_forms
       return true unless @form.use_recaptcha?
 
-      verify_invisible_recaptcha( 'form' ) || verify_checkbox_recaptcha
+      verify_invisible_recaptcha( 'forms' ) || verify_checkbox_recaptcha
     end
 
     def passed_akismet?
@@ -64,16 +64,10 @@ module ShinyForms
       @form = ShinyForms::Form.find_by( slug: params[:slug] )
     end
 
-    def strong_params
+    def form_data
       # The perils of writing a generic form handler; calling .permit! here allows any and all params through.
       # Why even bother using strong params, in that case? Because a bunch of other stuff expects/requires it :)
       params.require( :shiny_form ).permit!
-    end
-
-    def form_data
-      data = strong_params
-      data.delete( %i[ g-recapcha-response g-recapcha-response-data ] )
-      data
     end
 
     def check_feature_flags
