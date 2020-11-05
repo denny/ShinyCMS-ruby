@@ -15,7 +15,8 @@ module ShinyForms
     end
 
     factory :template_email_form, class: 'ShinyForms::Form', parent: :form do
-      handler { 'template_email' }
+      handler  { 'template_email' }
+      filename { 'contact_form'   }
     end
   end
 end

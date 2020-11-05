@@ -1,0 +1,7 @@
+  <% category_capabilities = %w[ list add edit destroy skip ] %>
+  <% category = capability_category( :mailing_lists ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category_capabilities = %w[ list add skip remove skip ] %>
+  <% category = capability_category( :mailing_list_subscriptions ) %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>

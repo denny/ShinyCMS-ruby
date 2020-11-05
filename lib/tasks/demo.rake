@@ -50,8 +50,8 @@ namespace :shiny do
     end
 
     task confirm: %i[ environment dotenv ] do
-      msg = 'Loading the demo site data wipes the database. Are you sure? (y/N)'
-      $stdout.puts msg
+      msg = 'Loading the demo site data wipes the database. Are you sure? [y/N] '
+      $stdout.print msg
       unless $stdin.gets.chomp.downcase.in? %w[ y yes ]
         puts 'Thank you. No action taken, database is unchanged.'
         exit

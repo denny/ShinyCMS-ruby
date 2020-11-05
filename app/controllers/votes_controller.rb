@@ -54,12 +54,8 @@ class VotesController < MainController
     return if @voter.present?
 
     votable_ip = VotableIP.find_or_create_by!( ip_address: request.ip )
-    return if @resource.voted_on_by?( votable_ip ) && anon_votes_are_fixed?
+    return if @resource.voted_on_by?( votable_ip ) && Setting.not_true?( :anon_votes_can_change )
 
     @voter = votable_ip
-  end
-
-  def anon_votes_are_fixed?
-    Setting.true?( :anon_votes_are_fixed )
   end
 end

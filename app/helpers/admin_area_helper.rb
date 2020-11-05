@@ -55,12 +55,12 @@ module AdminAreaHelper
   end
 
   def render_admin_menu_section_start( text, icon = nil )
-    render partial: 'admin/menu/menu__section_start',
+    render partial: 'admin/menu/menu_section_start',
            locals: { text: text, icon: icon }
   end
 
   def render_admin_menu_section_end
-    render partial: 'admin/menu/menu__section_end'
+    render partial: 'admin/menu/menu_section_end'
   end
 
   def render_admin_menu_section( text, icon = nil, &block )
@@ -70,7 +70,7 @@ module AdminAreaHelper
   end
 
   def render_admin_menu_item( text, link, icon = nil )
-    render partial: 'admin/menu/menu__item',
+    render partial: 'admin/menu/menu_item',
            locals: { text: text, link: link, icon: icon }
   end
 

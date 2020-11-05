@@ -9,6 +9,8 @@
 module ShinyNewsletters
   # Send an edition of a newsletter to an individual subscriber on a list
   class SendToSubscriberJob < ApplicationJob
+    include Sidekiq::Status::Worker
+
     def perform( send, subscriber )
       return if subscriber.do_not_email?
       return if send.sent?

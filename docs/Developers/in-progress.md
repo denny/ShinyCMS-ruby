@@ -17,6 +17,8 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
 
 ### Features that don't exist in the Perl version but I seem to be working on them anyway
 
+* Admin UI for viewing/managing EmailRecipients
+
 * Plugin architecture
     * I've converted most of the existing features into Rails Engine plugins
     * Still to do:
@@ -29,12 +31,14 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
         * Move each plugin into its own separate gem
             * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
             * Look at Combustion, for minimal test apps for gems: https://github.com/pat/combustion
+            * List ShinyBlog on https://www.ruby-toolbox.com/categories/Blog_Engines
 
 * Blazer dashboards / charts / etc: https://github.com/ankane/blazer
     * This is merged, but needs a default dashboard and queries setting up
 
 * Algolia search backend: https://devcenter.heroku.com/articles/algoliasearch#using-with-rails
     * NB: Not free to non-commercial sites using the CMS :(
+    * Breaking news from Bundler: A new major version is available for Algolia! Please now use the https://rubygems.org/gems/algolia gem to get the latest features.
 
 * Multiple blog support
     * The Perl version had half-finished code for hosting multiple blogs on a single 'journal' site

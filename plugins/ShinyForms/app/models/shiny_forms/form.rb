@@ -58,7 +58,7 @@ module ShinyForms
     end
 
     def self.theme_templates
-      return unless theme_template_dir
+      return [] unless theme_template_dir
 
       template_names = []
 

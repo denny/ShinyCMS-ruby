@@ -14,8 +14,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     FeatureFlag.enable :news
     FeatureFlag.enable :comments
 
-    FeatureFlag.disable :recaptcha_on_comment_form
-    FeatureFlag.disable :akismet_on_comments
+    FeatureFlag.disable :recaptcha_for_comments
+    FeatureFlag.disable :akismet_for_comments
 
     @post = create :news_post
 
@@ -189,12 +189,10 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'adds a new top-level comment to the discussion, with a recaptcha check' do
-      allow_any_instance_of( DiscussionsController )
-        .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
-      allow( DiscussionsController )
-        .to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
+      allow_any_instance_of( DiscussionsController ).to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
+      allow( DiscussionsController ).to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
 
-      FeatureFlag.enable :recaptcha_on_comment_form
+      FeatureFlag.enable :recaptcha_for_comments
 
       title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
@@ -218,7 +216,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
     it 'classifies a new comment as spam after checking Akismet' do
       skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
 
-      FeatureFlag.enable :akismet_on_comments
+      FeatureFlag.enable :akismet_for_comments
 
       always_fail_author_name = 'viagra-test-123'
       title = Faker::Books::CultureSeries.unique.culture_ship
@@ -246,7 +244,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
     it "doesn't save a new comment if Akismet classifies it as 'blatant' spam" do
       skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
 
-      FeatureFlag.enable :akismet_on_comments
+      FeatureFlag.enable :akismet_for_comments
       allow_any_instance_of( Akismet::Client ).to receive( :check ).and_return( [ true, true ] )
 
       title = Faker::Books::CultureSeries.unique.culture_ship

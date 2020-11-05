@@ -48,7 +48,7 @@ setting1.update!(
   level: 'site',
   locked: false
 )
-setting1.values.create_or_find_by!( value: '' )
+setting1.values.find_or_create_by!( value: '' )
 
 setting2 = Setting.find_or_create_by!( name: 'default_section' )
 setting2.update!(
@@ -56,4 +56,4 @@ setting2.update!(
   level: 'site',
   locked: false
 )
-setting2.values.create_or_find_by!( value: '' )
+setting2.values.find_or_create_by!( value: '' )
