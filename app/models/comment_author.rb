@@ -9,6 +9,7 @@
 # Details of unauthenticated comment authors
 class CommentAuthor < ApplicationRecord
   include ShinyDemoDataProvider
+  include ShinySoftDelete
   include ShinyToken
 
   # Associations
@@ -16,11 +17,6 @@ class CommentAuthor < ApplicationRecord
   has_many :comments, as: :author, dependent: :nullify
 
   belongs_to :email_recipient, optional: true
-
-  # Plugin features
-
-  acts_as_paranoid
-  validates_as_paranoid
 
   # Instance methods
 

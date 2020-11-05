@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for discussion mailer previews (powered by RailsEmailPreview)
 RSpec.describe 'DiscussionMailerPreview', type: :request do
   before :each do
-    admin = create :email_admin
+    admin = create :mailer_admin
     sign_in admin
 
     u = create :user

@@ -10,6 +10,7 @@
 class Comment < ApplicationRecord
   include ShinyDemoDataProvider
   include ShinyShowHide
+  include ShinySoftDelete
 
   # Associations
 
@@ -22,8 +23,6 @@ class Comment < ApplicationRecord
   # Plugin features
 
   acts_as_votable
-  acts_as_paranoid
-  validates_as_paranoid
 
   # Validations
 

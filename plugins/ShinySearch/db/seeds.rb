@@ -25,7 +25,7 @@ setting.update!(
   level: 'site',
   locked: false
 )
-setting.values.create_or_find_by!( value: 'pg' )
+setting.values.find_or_create_by!( value: 'pg' )
 
 setting = Setting.find_or_create_by!( name: 'search_enabled_algolia' )
 setting.update!(
@@ -33,7 +33,7 @@ setting.update!(
   level: 'site',
   locked: false
 )
-setting.values.create_or_find_by!( value: 'true' )
+setting.values.find_or_create_by!( value: 'true' )
 
 setting = Setting.find_or_create_by!( name: 'search_enabled_postgres' )
 setting.update!(
@@ -41,4 +41,4 @@ setting.update!(
   level: 'site',
   locked: false
 )
-setting.values.create_or_find_by!( value: 'true' )
+setting.values.find_or_create_by!( value: 'true' )

@@ -11,8 +11,10 @@ module ShinyNewsletters
   class Edition < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyName
+    include ShinyPaging
     include ShinyShowHide
     include ShinySlugInMonth
+    include ShinySoftDelete
     include ShinyWithTemplate
 
     # Associations
@@ -20,8 +22,8 @@ module ShinyNewsletters
     belongs_to :template, inverse_of: :editions
 
     has_many :sends,    inverse_of: :edition, dependent: :restrict_with_error
-    has_many :elements, -> { order( :position) }, inverse_of: :edition, dependent: :destroy,
-                                                  class_name: 'EditionElement'
+    has_many :elements, -> { order( :position ) }, inverse_of: :edition, dependent: :destroy,
+                                                   class_name: 'EditionElement'
 
     accepts_nested_attributes_for :elements
 

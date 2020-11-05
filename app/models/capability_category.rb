@@ -8,14 +8,11 @@
 
 # Part of the Pundit-powered ACL - group capabilities by site area, e.g. :pages
 class CapabilityCategory < ApplicationRecord
+  include ShinySoftDelete
+
   # Associations
 
   has_many :capabilities, inverse_of: :category, foreign_key: :category_id, dependent: :restrict_with_error
-
-  # Plugin features
-
-  acts_as_paranoid
-  validates_as_paranoid
 
   # Class methods
 

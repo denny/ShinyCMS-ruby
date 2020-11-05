@@ -18,6 +18,6 @@ ActionView::Base.field_error_proc =
     else
       parts = html_tag.split( '>', 2 )
       parts[0] += ' class="field_with_errors">'
-      (parts[0] + parts[1]).html_safe
+      ( parts[0] + parts[1] ).html_safe
     end
   end

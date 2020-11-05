@@ -1,0 +1,11 @@
+<% return unless current_user.can?( :list, :email_recipients ) || current_user.can?( :list, :mailer_previews ) %>
+
+  <%= render_admin_menu_section( t( 'admin.email.menu' ), 'envelope-open' ) do %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :list, :email_recipients ),
+        t( 'admin.email_recipients.menu' ), main_app.email_recipients_path, 'envelope-closed' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :list, :mailer_previews ),
+        t( 'rails_email_preview.menu' ), rails_email_preview_path, 'envelope-letter' ) %>
+
+  <% end %>

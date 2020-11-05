@@ -61,15 +61,21 @@ Rails.application.routes.draw do
 
     get :admin, to: 'admin#index'
 
+    concern :paginatable do
+      get '(page/:page)', action: :index, on: :collection, as: ''
+    end
+    concern :searchable do
+      get :search, on: :collection
+    end
+
     scope path: 'admin', module: 'admin' do
       # Consent versions
-      get 'consent-versions/search', to: 'consent_versions#search'
-      resources :consent_versions, path: 'consent-versions'
+      resources :consent_versions, path: 'consent-versions', concerns: %i[ paginatable searchable ]
 
-      # Discussion and comment moderation
-      get :comments, to: 'comments#index'
-      put :comments, to: 'comments#update'
-      get 'comments/search', to: 'comments#search'
+      # Comment and discussion moderation
+      get 'comments(/page/:page)', to: 'comments#index', as: :comments
+      put 'comments',              to: 'comments#update'
+      get 'comments/search',       to: 'comments#search'
 
       scope path: 'comment' do
         put    ':id/show',    to: 'comments#show',          as: :show_comment
@@ -87,6 +93,12 @@ Rails.application.routes.draw do
         put ':id/unlock', to: 'discussions#unlock', as: :unlock_discussion
       end
 
+      # Email Recipients
+      resources :email_recipients, path: 'email-recipients', concerns: %i[ paginatable searchable ],
+                                   except: %i[ show new create ] do
+        put :'do-not-contact', on: :member, to: 'email_recipients#do_not_contact'
+      end
+
       # Feature Flags
       get 'feature-flags', to: 'feature_flags#index'
       put 'feature-flags', to: 'feature_flags#update'
@@ -96,19 +108,17 @@ Rails.application.routes.draw do
       put 'site-settings', to: 'site_settings#update'
 
       # Stats
-      get 'email-stats',                         to: 'email_stats#index'
+      get 'email-stats(/page/:page)',            to: 'email_stats#index', as: :email_stats
       get 'email-stats/user/:user_id',           to: 'email_stats#index', as: :user_email_stats
       get 'email-stats/recipient/:recipient_id', to: 'email_stats#index', as: :recipient_email_stats
       get 'email-stats/search',                  to: 'email_stats#search'
 
-      get 'web-stats',               to: 'web_stats#index'
-      get 'web-stats/user/:user_id', to: 'web_stats#index', as: :user_web_stats
-      get 'web-stats/search',        to: 'web_stats#search'
+      get 'web-stats(/page/:page)',              to: 'web_stats#index', as: :web_stats
+      get 'web-stats/user/:user_id',             to: 'web_stats#index', as: :user_web_stats
+      get 'web-stats/search',                    to: 'web_stats#search'
 
       # Users
-      get 'users/search', to: 'users#search'
-
-      resources :users, except: [ :show ]
+      resources :users, except: :show, concerns: %i[ paginatable searchable ]
     end
 
     ########################################
@@ -133,6 +143,8 @@ Rails.application.routes.draw do
     # Sidekiq Web provides a web dashboard for your sidekiq jobs and queues
     if sidekiq_web_enabled?
       require 'sidekiq/web'
+      require 'sidekiq-status/web'
+
       Sidekiq::Web.set :sessions, false
       authenticate :user, ->( user ) { user.can? :manage_sidekiq_jobs } do
         mount Sidekiq::Web, at: '/admin/sidekiq'

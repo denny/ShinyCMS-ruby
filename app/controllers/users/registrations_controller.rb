@@ -8,7 +8,7 @@
 
 # Controller to override or augment Devise user account features
 class Users::RegistrationsController < Devise::RegistrationsController
-  include FeatureFlagsHelper
+  include ShinyFeatureFlagHelper
   include RecaptchaHelper
 
   before_action :check_feature_flags, only: %i[ new create ]
@@ -38,7 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def pass_recaptcha
     return true if no_recaptcha_keys
-    return true if verify_invisible_recaptcha( 'registration' )
+    return true if verify_invisible_recaptcha( 'registrations' )
 
     verify_checkbox_recaptcha || false
   end

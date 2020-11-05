@@ -50,8 +50,8 @@ namespace :shiny do
     end
 
     task confirm: %i[ environment dotenv ] do
-      msg = 'Loading the demo site data wipes the database. Are you sure? (y/N)'
-      $stdout.puts msg
+      msg = 'Loading the demo site data wipes the database. Are you sure? [y/N] '
+      $stdout.print msg
       unless $stdin.gets.chomp.downcase.in? %w[ y yes ]
         puts 'Thank you. No action taken, database is unchanged.'
         exit
@@ -79,7 +79,7 @@ namespace :shiny do
     end
 
     def fix_primary_key_sequence( table_name )
-      ActiveRecord::Base.connection.execute(<<~SQL.squish)
+      ActiveRecord::Base.connection.execute( <<~SQL.squish )
         BEGIN;
         LOCK TABLE #{table_name} IN EXCLUSIVE MODE;
         SELECT setval( '#{table_name}_id_seq', COALESCE( ( SELECT MAX(id)+1 FROM #{table_name} ), 1 ), false );

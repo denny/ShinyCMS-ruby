@@ -14,6 +14,7 @@ module ShinyPages
     include ShinyName
     include ShinyShowHide
     include ShinySlugInSection
+    include ShinySoftDelete
     include ShinyWithTemplate
 
     # Associations

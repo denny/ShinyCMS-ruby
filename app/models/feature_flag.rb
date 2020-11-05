@@ -8,6 +8,8 @@
 
 # Model for feature flags
 class FeatureFlag < ApplicationRecord
+  include ShinySoftDelete
+
   # Validations
 
   validates :name, presence: true, uniqueness: true
@@ -16,11 +18,6 @@ class FeatureFlag < ApplicationRecord
   validates :enabled_for_logged_in, inclusion: { in: [ true, false ] }
   validates :enabled_for_admins,    inclusion: { in: [ true, false ] }
 
-  # Plugin features
-
-  acts_as_paranoid
-  validates_as_paranoid
-
   # Instance methods
 
   def enable
@@ -28,8 +25,7 @@ class FeatureFlag < ApplicationRecord
   end
 
   def disable
-    update! enabled: false, enabled_for_logged_in: false,
-            enabled_for_admins: false
+    update! enabled: false, enabled_for_logged_in: false, enabled_for_admins: false
   end
 
   # Class methods

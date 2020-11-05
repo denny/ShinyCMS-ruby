@@ -10,18 +10,14 @@ module ShinyLists
   # Model for subscriptions to mailing lists
   class Subscription < ApplicationRecord
     include ShinyDemoDataProvider
+    include ShinyPaging
+    include ShinySoftDelete
 
     # Associations
 
     belongs_to :subscriber,      inverse_of: :subscriptions, polymorphic: true
     belongs_to :list,            inverse_of: :subscriptions
     belongs_to :consent_version, inverse_of: :subscriptions
-
-    # Plugin config
-
-    acts_as_paranoid
-    validates_as_paranoid
-    paginates_per 20
 
     # Scopes
 

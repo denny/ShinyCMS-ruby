@@ -181,7 +181,7 @@ GEM
     amazing_print (1.2.2)
     ast (2.4.1)
     aws-eventstream (1.1.0)
-    aws-partitions (1.381.0)
+    aws-partitions (1.383.0)
     aws-sdk-core (3.109.1)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -190,19 +190,19 @@ GEM
     aws-sdk-kms (1.39.0)
       aws-sdk-core (~> 3, >= 3.109.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.83.0)
+    aws-sdk-s3 (1.83.1)
       aws-sdk-core (~> 3, >= 3.109.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.2)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.16)
-    blazer (2.2.7)
+    blazer (2.2.8)
       activerecord (>= 5)
       chartkick (>= 3.2)
       railties (>= 5)
       safely_block (>= 0.1.1)
-    bootsnap (1.4.8)
+    bootsnap (1.5.0)
       msgpack (~> 1.0)
     brakeman (4.10.0)
     builder (3.2.4)
@@ -217,8 +217,10 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
-    chartkick (3.4.1)
+    chartkick (3.4.2)
     childprocess (4.0.0)
+    chronic_duration (0.10.6)
+      numerizer (~> 0.1.1)
     ckeditor (5.1.0)
       orm_adapter (~> 0.5.0)
     codecov (0.2.12)
@@ -304,6 +306,8 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    kaminari_route_prefix (0.1.1)
+      kaminari (~> 1.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -335,6 +339,7 @@ GEM
     nio4r (2.5.4)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
+    numerizer (0.1.1)
     orm_adapter (0.5.0)
     overcommit (0.57.0)
       childprocess (>= 0.6.3, < 5)
@@ -352,7 +357,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (4.0.6)
-    puma (5.0.2)
+    puma (5.0.4)
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
@@ -404,7 +409,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    recaptcha (5.5.0)
+    recaptcha (5.6.0)
       json
     redis (4.2.2)
     regexp_parser (1.8.2)
@@ -433,16 +438,16 @@ GEM
     rspec-support (3.9.3)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (0.93.1)
+    rubocop (1.1.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.5)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8)
       rexml
-      rubocop-ast (>= 0.6.0)
+      rubocop-ast (>= 1.0.1)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.8.0)
+    rubocop-ast (1.1.0)
       parser (>= 2.7.1.5)
     rubocop-performance (1.8.1)
       rubocop (>= 0.87.0)
@@ -478,6 +483,9 @@ GEM
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
+    sidekiq-status (1.1.4)
+      chronic_duration
+      sidekiq (>= 3.0)
     simplecov (0.19.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -507,7 +515,7 @@ GEM
     unicode-display_width (1.7.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webmock (3.9.2)
+    webmock (3.9.3)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -521,7 +529,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.4.0)
+    zeitwerk (2.4.1)
 
 PLATFORMS
   ruby
@@ -543,7 +551,7 @@ DEPENDENCIES
   brakeman!
   bundler-audit!
   capybara (>= 2.15)!
-  chartkick (~> 3.4.1)!
+  chartkick (~> 3.4.2)!
   ckeditor!
   codecov!
   database_cleaner-active_record!
@@ -558,6 +566,7 @@ DEPENDENCIES
   i18n-tasks (~> 0.9.31)!
   image_processing (~> 1.12)!
   kaminari!
+  kaminari_route_prefix!
   letter_opener_web (~> 1.0)!
   listen (>= 3.0.5, < 3.3)!
   mini_magick!
@@ -589,6 +598,7 @@ DEPENDENCIES
   shiny_profiles!
   shiny_search!
   sidekiq!
+  sidekiq-status!
   webmock!
   webpacker (~> 5.2)!
 

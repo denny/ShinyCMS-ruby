@@ -5,7 +5,7 @@
 ### Generator
 
 Move into the base directory of your copy of the ShinyCMS code:
-`cd ShinyCMS`
+`cd ShinyCMS-ruby`
 
 Then, run the plugin generator:
 `rails g shiny:plugin plugins/ShinyThing`

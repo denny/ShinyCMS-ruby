@@ -10,16 +10,13 @@ module ShinyNewsletters
   # Model for newsletter sends - when an edition is sent to a list
   class Send < ApplicationRecord
     include ShinyDemoDataProvider
+    include ShinyPaging
+    include ShinySoftDelete
 
     # Associations
 
     belongs_to :edition
     belongs_to :list, class_name: 'ShinyLists::List'
-
-    # Plugin features
-
-    acts_as_paranoid
-    validates_as_paranoid
 
     # Attributes and aliases
 

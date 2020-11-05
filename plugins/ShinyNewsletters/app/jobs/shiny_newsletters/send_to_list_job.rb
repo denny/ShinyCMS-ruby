@@ -9,6 +9,8 @@
 module ShinyNewsletters
   # Job to check for sends that are ready to go, and get them going :)
   class SendToListJob < ApplicationJob
+    include Sidekiq::Status::Worker
+
     def perform( send )
       return if send.sent?
       return if send.sending?

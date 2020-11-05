@@ -34,7 +34,7 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
         edition_a = create :newsletter_edition, description: 'Always appetising apples'
         edition_b = create :newsletter_edition, description: 'Badly bruised bananas'
 
-        get shiny_newsletters.editions_search_path, params: { q: 'appetising apples' }
+        get shiny_newsletters.search_editions_path, params: { q: 'appetising apples' }
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.index.title' ).titlecase
@@ -231,7 +231,7 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
 
       edition1 = create :newsletter_edition
 
-      get shiny_newsletters.send_sample_path( edition1 )
+      get shiny_newsletters.send_sample_edition_path( edition1 )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_newsletters.editions_path

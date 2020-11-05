@@ -44,13 +44,6 @@ module RecaptchaHelper
   end
 
   def minimum_score( action )
-    score_for_action = "RECAPTCHA_#{action.capitalize}_SCORE"
-    general_score    = 'RECAPTCHA_SCORE'
-
-    setting( score_for_action.downcase.to_sym ) ||
-      ENV[ score_for_action ]                   ||
-      setting( general_score.downcase.to_sym )  ||
-      ENV[ general_score ]                      ||
-      0.5
+    Setting.get( "recaptcha_score_for_#{action}".to_sym ) || Setting.get( :recaptcha_score_default ) || 0.5
   end
 end

@@ -47,7 +47,7 @@ RSpec.describe Admin::UsersController, type: :request do
         user_x = create :user, public_name: 'BobX'
         user_y = create :user, public_name: 'BobY'
 
-        get users_search_path, params: { q: 'bobx' }
+        get search_users_path, params: { q: 'bobx' }
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
@@ -207,13 +207,15 @@ RSpec.describe Admin::UsersController, type: :request do
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
         expect( response.body ).to have_css 'th', text: I18n.t( 'capability.capabilities' )
+        expect( response.body ).to have_css 'td', text: I18n.t( 'list'   )
+        expect( response.body ).to have_css 'td', text: I18n.t( 'remove' )
       end
     end
 
     it 'updates the admin capabilities when the form is submitted' do
       user = create :user
 
-      capability_id = Capability.where( name: 'view_admin_area').pick( :id )
+      capability_id = Capability.where( name: 'view_admin_area' ).pick( :id )
       field_name = "user[capabilities[#{capability_id}]]"
 
       expect( user.capabilities.length ).to eq 0

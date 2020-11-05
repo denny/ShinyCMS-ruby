@@ -9,7 +9,6 @@
 module ShinyNewsletters
   # Base mailer class - ShinyNewsletters plugin for ShinyCMS
   class ApplicationMailer < ActionMailer::Base
-    include FeatureFlagsHelper
     include ShinyMailerHelper
 
     add_template_helper ShinyMailerHelper

@@ -11,13 +11,9 @@ module ShinyForms
   class Form < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyName
+    include ShinyPaging
     include ShinySlug
-
-    # Plugin features
-
-    acts_as_paranoid
-    validates_as_paranoid
-    paginates_per 20
+    include ShinySoftDelete
 
     # Validations
 
@@ -62,7 +58,7 @@ module ShinyForms
     end
 
     def self.theme_templates
-      return unless theme_template_dir
+      return [] unless theme_template_dir
 
       template_names = []
 

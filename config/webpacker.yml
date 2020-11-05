@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2020 Denny de la Haye ~ https://denny.me
@@ -14,7 +12,6 @@ default: &default
   public_root_path: public
   public_output_path: packs
   cache_path: tmp/cache/webpacker
-  check_yarn_integrity: false
   webpack_compile_output: true
 
   # Additional paths webpack should lookup modules
@@ -59,9 +56,6 @@ default: &default
 development:
   <<: *default
   compile: true
-
-  # Verifies that correct packages and versions are installed by inspecting package.json, yarn.lock, and node_modules
-  check_yarn_integrity: true
 
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:

@@ -12,8 +12,10 @@ module ShinyPost
 
   include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
   include ShinyClassName
+  include ShinyPaging
   include ShinyShowHide
   include ShinySlugInMonth
+  include ShinySoftDelete
   include ShinyTeaser
 
   included do
@@ -28,15 +30,15 @@ module ShinyPost
     validates :user_id,   presence: true
     validates :posted_at, presence: true
 
+    # Callbacks
+
     before_validation :set_posted_at, if: -> { posted_at.blank? }
+    after_commit      :build_atom_feed
 
     # Plugin features
 
     acts_as_taggable
     acts_as_votable
-    acts_as_paranoid
-    validates_as_paranoid
-    paginates_per 20
 
     searchable_by :title, :body, :slug if ShinyPlugin.loaded? :ShinySearch # TODO: author
 
@@ -78,6 +80,10 @@ module ShinyPost
 
     def set_posted_at
       self.posted_at = Time.zone.now.iso8601
+    end
+
+    def build_atom_feed
+      self.class.module_parent::BuildAtomFeedJob.perform_later
     end
 
     # Class methods

@@ -3,7 +3,7 @@
 <%= render partial: 'blog/index/page_title' %>
 
 <% @posts.each do |post| %>
-<section>
+<section class="post">
   <%= render partial: 'blog/index/post_header', locals: { post: post } %>
 
   <%= sanitize post.teaser( paragraphs: 3 ) %>
@@ -12,11 +12,7 @@
 </section>
 <% end %>
 
-<% if @posts.size == 0 %>
-<p>
-  <%= t( 'empty_list', items: 'blog posts' ) %>
-</p>
-<% end %>
+<%= render partial: 'includes/pager', locals: { paged: @posts, route_set: shiny_blog } %>
 
 <% @sidebar_position = 'right' %>
 <%= render partial: 'right_sidebar_join' %>
