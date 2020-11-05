@@ -277,11 +277,13 @@ en:
       admin_users: Admin Users
       comments: Comments
       discussions: Discussions
+      email_recipients: Email Recipients
       feature_flags: Feature Flags
       general: General
-      stats: Stats
+      mailer_previews: Mailer Previews
       settings: Site Settings
       spam_comments: Spam Comments
+      stats: Stats
       users: Users
 
     general:

@@ -20,7 +20,7 @@
   </tr>
 
   <% category = capability_category( :general ) %>
-  <% category_capabilities = %w[ view_admin_area view_admin_toolbar manage_sidekiq_jobs skip ] %>
+  <% category_capabilities = %w[ view_admin_area view_admin_toolbar manage_sidekiq_jobs skip skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% plugins_for_edit_capabilities.each do |plugin| %>
@@ -39,6 +39,22 @@
   <% category_capabilities = %w[ list add skip destroy skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
+  <% category = capability_category( :mailer_previews ) %>
+  <% category_capabilities = %w[ list show skip skip skip ] %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category = capability_category( :email_recipients ) %>
+  <% category_capabilities = %w[ list skip edit destroy skip ] %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category = capability_category( :users ) %>
+  <% category_capabilities = %w[ list add edit destroy view_admin_notes ] %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
+  <% category = capability_category( :admin_users ) %>
+  <% category_capabilities = %w[ list add edit destroy skip ] %>
+  <%= render_capability_category( f, category, category_capabilities, show ) %>
+
   <% category = capability_category( :stats ) %>
   <% category_capabilities = %w[ view_web view_email view_charts make_charts skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
@@ -49,13 +65,5 @@
 
   <% category = capability_category( :feature_flags ) %>
   <% category_capabilities = %w[ list skip edit skip skip ] %>
-  <%= render_capability_category( f, category, category_capabilities, show ) %>
-
-  <% category = capability_category( :users ) %>
-  <% category_capabilities = %w[ list add edit destroy view_admin_notes ] %>
-  <%= render_capability_category( f, category, category_capabilities, show ) %>
-
-  <% category = capability_category( :admin_users ) %>
-  <% category_capabilities = %w[ list add edit destroy skip ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 </table>
