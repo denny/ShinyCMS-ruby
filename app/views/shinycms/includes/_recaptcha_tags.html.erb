@@ -1,4 +1,4 @@
-<% return unless user_signed_in? %>
+<% return if user_signed_in? %>
 
 <% num ||= '' %>
 <% if flash[ :show_checkbox_recaptcha ] %>
@@ -6,6 +6,8 @@
 <% elsif recaptcha_v3_site_key.present? %>
   <% action ||= '' %>
   <%= recaptcha_v3 action: action, site_key: recaptcha_v3_site_key, id: "g-recaptcha-response#{num}" %>
-<% else %>
+<% elsif recaptcha_v2_site_key.present? %>
   <%= recaptcha_tags site_key: recaptcha_v2_site_key, id: "g-recaptcha-response#{num}" %>
+<% else %>
+  [ RECAPTCHA SITE KEY NOT FOUND ]
 <% end %>

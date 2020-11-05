@@ -12,10 +12,6 @@ module AkismetHelper
     ENV[ 'AKISMET_API_KEY' ].present?
   end
 
-  def drop_blatant_spam?
-    Setting.true? :akismet_drop_blatant_spam
-  end
-
   def akismet_confirm_spam( comment_ids )
     client = akismet_client
     comments = Comment.where( id: comment_ids )
@@ -69,7 +65,7 @@ module AkismetHelper
       created_at: comment.created_at || Time.zone.now.iso8601,
       type: 'comment'
     }
-    details[ :referer ] = referer if referer.present?
+    details[ :referrer ] = referer if referer.present?
     merge_comment_author_details( comment, details )
   end
 
@@ -88,7 +84,7 @@ module AkismetHelper
       created_at: Time.zone.now.iso8601,
       type: 'contact-form'
     }
-    details[ :referer ] = referer if referer.present?
+    details[ :referrer ] = referer if referer.present?
     merge_generic_form_author_details( form_data, details )
   end
 

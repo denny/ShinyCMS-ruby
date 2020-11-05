@@ -47,9 +47,15 @@ set_setting(
 )
 
 set_setting(
-  name: :allowed_to_comment,
-  value: 'Anonymous',
-  description: 'Lowest-ranking user-type (Anonymous/Pseudonymous/Authenticated/None) that is allowed to post comments'
+  name: :allow_unauthenticated_comments,
+  value: 'true',
+  description: 'Allow comments from people who are not logged in'
+)
+
+set_setting(
+  name: :allow_anonymous_comments,
+  value: 'true',
+  description: '(for this to work, allow_unauthenticated_comments must also be true)'
 )
 
 set_setting(
@@ -96,14 +102,21 @@ set_setting(
 )
 
 set_setting(
-  name: :recaptcha_comment_score,
+  name: :recaptcha_score_default,
+  value: '0.5',
+  locked: true,
+  description: 'Default minimum score for reCAPTCHA V3'
+)
+
+set_setting(
+  name: :recaptcha_score_for_comments,
   value: '0.6',
   locked: true,
   description: 'Minimum score for reCAPTCHA V3 on anon/pseudonymous comments'
 )
 
 set_setting(
-  name: :recaptcha_registration_score,
+  name: :recaptcha_score_for_registrations,
   value: '0.4',
   locked: true,
   description: 'Minimum score for reCAPTCHA V3 on user registration'

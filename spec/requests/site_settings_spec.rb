@@ -95,7 +95,7 @@ RSpec.describe SiteSettingsController, type: :request do
     it 'will update the value of a locked setting' do
       new_value = Faker::Books::CultureSeries.unique.culture_ship
 
-      s1 = Setting.find_by( name: 'recaptcha_comment_score' )
+      s1 = Setting.find_by( name: 'recaptcha_score_for_comments' )
       s1.values.create_or_find_by!( user: @user, value: @initial_value )
 
       put site_settings_path, params: {

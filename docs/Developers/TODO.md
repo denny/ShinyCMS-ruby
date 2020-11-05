@@ -13,19 +13,16 @@
 
 * Some sort of file-picker (for image elements, CKEditor, etc)
     * https://ckeditor.com/docs/ckeditor5/latest/Features/MainApp/image-upload/ckfinder.html
-    * Integrate functionality from MahBucket here?
 
-* Mock/VCR the Akismet tests (and anything else that currently needs a 'net connection)
-
-* Site map
-    * https://github.com/kjvarga/sitemap_generator ?
+* Site map - https://github.com/kjvarga/sitemap_generator ?
 
 * Affiliate cookie
 
 ### Medium-ish
 
-* Access control groups
-    * Can be used to control access to file downloads and secure whole pages, but also to show/hide individual pieces of page content
+* Access control groups; should work at both a large concerns and small detail scale:
+    * Grant/deny access to file downloads, secure whole pages or sections of the site
+    * Show/hide individual pieces of page content - images, paragraphs, even individual words
 
 * Polls
 
@@ -33,15 +30,15 @@
 
 * Online shop
 
+* Autoresponders
+
+* Email sequences - define a series of emails, to be sent at defined intervals
+
 * Payment handling plugins
-    * Options include recurring subscriptions to access control groups (AKA paid membership)
+    * Pay to join an access control group - AKA 'paid membership'
+    * Pay to receive an email sequence - AKA 'buy a training course'
 
 * Forums
-
-* Autoresponders
-  	* Check out Heya - may or may not be useful to use / build on top of
-  	* https://github.com/honeybadger-io/heya
-  	* Oh, except the licence doesn't look great. Investigate that first.
 
 * Event listings
 
@@ -50,7 +47,7 @@
 
 ### Small-ish
 
-* Redo site settings and feature flags, using Sail? https://github.com/vinistock/sail#readme
+* Mock/VCR the Akismet tests (and anything else that currently needs a 'net connection)
 
 * Add a 'save form submission to database' form handler
 
@@ -99,8 +96,6 @@
 
 ### Medium-ish
 
-* Invites: https://github.com/scambra/devise_invitable#readme
-
 * Add folding to page sections on /admin/pages
     * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
     * Decide 'intelligently' whether to fold all/none/some
@@ -129,8 +124,12 @@
 
 ### Large-ish
 
+* Redo site settings and feature flags, using Sail? https://github.com/vinistock/sail#readme
+
 * Re-think mailer preview features
     * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
+
+* Invites: https://github.com/scambra/devise_invitable#readme
 
 * Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?
     * Think carefully about privacy implications of linking previous actions to current visitor
