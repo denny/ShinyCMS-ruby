@@ -18,10 +18,10 @@ require 'dotenv/tasks'
 # These two tasks can be run in either order.
 
 namespace :shiny_newsletters do
-  namespace :sends do
+  namespace :scheduled do
     # :nocov:
-    desc 'ShinyCMS: add Newsletter send jobs to queue, if due'
-    task queue_if_due: %i[ environment dotenv ] do
+    desc 'ShinyCMS: check for and start any scheduled sends that are due'
+    task send: %i[ environment dotenv ] do
       ShinyNewsletters::Send.due_to_send.collect( &:start_sending )
     end
     # :nocov:
