@@ -22,6 +22,10 @@ module ShinyLists
     has_many :email_recipients, through: :subscriptions, inverse_of: :lists, source: :subscriber,
                                 source_type: 'EmailRecipient'
 
+    # Scopes
+
+    scope :recently_updated, -> { order( updated_at: :desc ) }
+
     # Instance methods
 
     def subscribe( subscriber, consent_version )

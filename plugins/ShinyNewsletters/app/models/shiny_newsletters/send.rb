@@ -28,6 +28,7 @@ module ShinyNewsletters
 
     scope :unscheduled, -> { where( started_sending_at: nil, send_at: nil ) }
     scope :scheduled,   -> { where( started_sending_at: nil ).where.not( send_at: nil ) }
+    scope :due_to_send, -> { where( started_sending_at: nil ).where( 'send_at < ?', Time.zone.now ) }
 
     scope :sending, -> { where.not( started_sending_at: nil ).where( sent_at: nil ) }
     scope :sent,    -> { where.not( sent_at: nil ) }
@@ -59,7 +60,7 @@ module ShinyNewsletters
     end
 
     def start_sending
-      SendToListJob.perform_now( self )
+      SendToListJob.perform_later( self )
     end
 
     def cancel_sending
