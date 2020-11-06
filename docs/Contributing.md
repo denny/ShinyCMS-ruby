@@ -4,20 +4,13 @@
 
 If you're interested in contributing to ShinyCMS ... let me start by saying "Thank you!" :)
 
-Here are some things to read that you might find useful:
+If you already know what feature or fix you want to work on, then it's the usual process; fork the repo, do your thing, submit a PR when you have your new code working. Please make sure it has full test coverage.
 
-* [Project goals](ProjectGoals.md)
+If you're generally interested in getting involved, but don't have a specific task in mind, here are some things to read that you might find useful:
 
-* Project progress:
-    * [Done](done.md)
-    * [In progress](in-progress.md)
-    * [Still to do](TODO.md)
+* [Project goals](Developers/ProjectGoals.md)
 
-* Instructions for [creating a new plugin](Plugins.md) (and related useful info)
-
-* Tools and tips for [working on mailers](Mailers.md) (features that send email)
-
-* Tools and rules for [testing](Testing.md) (this project has 100% test coverage)
+* [Developer documentation](Developers/index.md)
 
 
 ### Are you new to coding?
@@ -31,7 +24,7 @@ When I first started contributing to open source projects, I received a lot of i
 
 ## Code of Conduct
 
-This project has a [Code of Conduct](../code-of-conduct.md), which is intended
+This project has a [Code of Conduct](code-of-conduct.md), which is intended
 to make using ShinyCMS, or contributing to it, a harassment-free experience for
 everybody involved - regardless of who they are and what they do or don't know.
 
