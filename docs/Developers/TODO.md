@@ -131,6 +131,8 @@
 
 * Invites: https://github.com/scambra/devise_invitable#readme
 
+* Image galleries / multimedia galleries / etc
+
 * Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?
     * Think carefully about privacy implications of linking previous actions to current visitor
 
