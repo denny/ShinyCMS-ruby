@@ -746,6 +746,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rake-tasks/" class="md-nav__link">
+      Rake tasks
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -785,7 +797,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../Contributing/" class="md-nav__link">
+    <a href="../" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Contributing/" class="md-nav__link">
       Contributing
     </a>
   </li>
@@ -812,14 +836,14 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" checked>
     
-    <label class="md-nav__link" for="nav-3-3">
+    <label class="md-nav__link" for="nav-3-4">
       Project Progress
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Project Progress" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-3">
+      <label class="md-nav__title" for="nav-3-4">
         <span class="md-nav__icon md-icon"></span>
         Project Progress
       </label>
@@ -1022,16 +1046,28 @@
           
 
 
+  <li class="md-nav__item">
+    <a href="../demo-data/" class="md-nav__link">
+      Demo data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-8" type="checkbox" id="nav-3-8">
     
-    <label class="md-nav__link" for="nav-3-6">
+    <label class="md-nav__link" for="nav-3-8">
       Useful shared CMS code
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Useful shared CMS code" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-6">
+      <label class="md-nav__title" for="nav-3-8">
         <span class="md-nav__icon md-icon"></span>
         Useful shared CMS code
       </label>
@@ -1092,6 +1128,18 @@
   <li class="md-nav__item">
     <a href="../../Licensing/" class="md-nav__link">
       Licensing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../release-notes/" class="md-nav__link">
+      Release notes
     </a>
   </li>
 
@@ -1276,14 +1324,10 @@
 <p>Some sort of file-picker (for image elements, CKEditor, etc)</p>
 <ul>
 <li>https://ckeditor.com/docs/ckeditor5/latest/Features/MainApp/image-upload/ckfinder.html</li>
-<li>Integrate functionality from MahBucket here?</li>
 </ul>
 </li>
 <li>
-<p>Site map</p>
-<ul>
-<li>https://github.com/kjvarga/sitemap_generator ?</li>
-</ul>
+<p>Site map - https://github.com/kjvarga/sitemap_generator ?</p>
 </li>
 <li>
 <p>Affiliate cookie</p>
@@ -1292,9 +1336,10 @@
 <h3 id="medium-ish">Medium-ish</h3>
 <ul>
 <li>
-<p>Access control groups</p>
+<p>Access control groups; should work at both a large concerns and small detail scale:</p>
 <ul>
-<li>Can be used to control access to file downloads and secure whole pages, but also to show/hide individual pieces of page content</li>
+<li>Grant/deny access to file downloads, secure whole pages or sections of the site</li>
+<li>Show/hide individual pieces of page content - images, paragraphs, even individual words</li>
 </ul>
 </li>
 <li>
@@ -1307,21 +1352,20 @@
 <p>Online shop</p>
 </li>
 <li>
+<p>Autoresponders</p>
+</li>
+<li>
+<p>Email sequences - define a series of emails, to be sent at defined intervals</p>
+</li>
+<li>
 <p>Payment handling plugins</p>
 <ul>
-<li>Options include recurring subscriptions to access control groups (AKA paid membership)</li>
+<li>Pay to join an access control group - AKA 'paid membership'</li>
+<li>Pay to receive an email sequence - AKA 'buy a training course'</li>
 </ul>
 </li>
 <li>
 <p>Forums</p>
-</li>
-<li>
-<p>Autoresponders</p>
-<ul>
-<li>Check out Heya - may or may not be useful to use / build on top of</li>
-<li>https://github.com/honeybadger-io/heya</li>
-<li>Oh, except the licence doesn't look great. Investigate that first.</li>
-</ul>
 </li>
 <li>
 <p>Event listings</p>
@@ -1331,10 +1375,23 @@
 <h3 id="small-ish_1">Small-ish</h3>
 <ul>
 <li>
+<p>Mock/VCR the Akismet tests (and anything else that currently needs a 'net connection)</p>
+</li>
+<li>
+<p>Add a 'save form submission to database' form handler</p>
+</li>
+<li>
 <p>Make a generic sidebar template that renders any partials in a specified directory</p>
 </li>
 <li>
-<p>Add an admin UI for viewing/managing EmailRecipients</p>
+<p>Add links to error messages, where helpful?</p>
+<ul>
+<li>https://guides.rubyonrails.org/i18n.html#using-safe-html-translations</li>
+<li>https://www.ruby-toolbox.com/projects/it</li>
+</ul>
+</li>
+<li>
+<p>Re-assess use of helpers (vs models/libs/whatever) for Akismet and reCaptcha (and others?)</p>
 </li>
 <li>
 <p>Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)</p>
@@ -1346,13 +1403,13 @@
 <p>'Deploy to Heroku' button: https://devcenter.heroku.com/articles/heroku-button</p>
 </li>
 <li>
-<p>Generate a technical documentation site from the contents of /docs</p>
-<ul>
-<li>https://www.mkdocs.org + material theme https://squidfunk.github.io/mkdocs-material</li>
-</ul>
+<p>2FA: https://github.com/tinfoil/devise-two-factor</p>
 </li>
 <li>
-<p>2FA: https://github.com/tinfoil/devise-two-factor</p>
+<p>Check site config for internal consistency on startup</p>
+<ul>
+<li>e.g. if reCAPTCHA is enabled for registrations, the reCAPTCHA keys must be set</li>
+</ul>
 </li>
 <li>
 <p>Configurable (per-site and per-user) menu order in admin area</p>
@@ -1373,10 +1430,23 @@
 </li>
 <li>
 <p>¡español! :D</p>
+<ul>
+<li>Bonus points: https://www.ruby-toolbox.com/projects/route_translator</li>
+<li>Possibly interesting at same time: https://www.ruby-toolbox.com/projects/rack-user-locale<ul>
+<li>Also: https://support.cloudflare.com/hc/en-us/articles/200168236-Configuring-Cloudflare-IP-Geolocation</li>
+</ul>
+</li>
+</ul>
 </li>
 <li>
 <p>Add tests for form actions being what they're supposed to be on new/edit pages,
   and for delete links being correct on list pages (to catch path helper issues)</p>
+</li>
+<li>
+<p>Make textarea inputs grow as needed</p>
+<ul>
+<li>http://www.cryer.co.uk/resources/javascript/script21_auto_grow_text_box.htm</li>
+</ul>
 </li>
 </ul>
 <h3 id="medium-ish_1">Medium-ish</h3>
@@ -1435,10 +1505,19 @@
 <h3 id="large-ish_1">Large-ish</h3>
 <ul>
 <li>
+<p>Redo site settings and feature flags, using Sail? https://github.com/vinistock/sail#readme</p>
+</li>
+<li>
 <p>Re-think mailer preview features</p>
 <ul>
 <li>Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?</li>
 </ul>
+</li>
+<li>
+<p>Invites: https://github.com/scambra/devise_invitable#readme</p>
+</li>
+<li>
+<p>Image galleries / multimedia galleries / etc</p>
 </li>
 <li>
 <p>Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?</p>
@@ -1474,6 +1553,21 @@
 <p>Replace hand-rolled trees and recursion (page sections, etc) with ClosureTree ?</p>
 <ul>
 <li>https://github.com/ClosureTree/closure_tree</li>
+</ul>
+</li>
+<li>
+<p>Wiki?</p>
+<ul>
+<li>Integrate an existing project? https://www.ruby-toolbox.com/categories/wiki_apps</li>
+</ul>
+</li>
+<li>
+<p>Integrate a static site generator? https://www.ruby-toolbox.com/categories/static_website_generation</p>
+</li>
+<li>
+<p>Run multiple ShinySites from one ShinyCMS installation?</p>
+<ul>
+<li>https://www.ruby-toolbox.com/categories/Multitenancy</li>
 </ul>
 </li>
 </ul>
