@@ -21,6 +21,8 @@ This is as close as we get to a roadmap, for now :)
 
 * Instructions for [creating a new plugin](Plugins.md) (and related useful info)
 
+* Notes about the [demo site data](demo-data.md)
+
 * Tools and tips for [working on mailers](Mailers.md) (features that send email)
 
 * Tools and rules for [testing](Testing.md) (this project has 100% test coverage)

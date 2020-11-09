@@ -52,7 +52,9 @@
 
 ## Contributing to ShinyCMS (developer documentation)
 
-* [Index](Developers/Contributing.md)
+* [Index](Developers/index.md)
+
+* [Contributing](Contributing.md)
 
 * [Project goals](Developers/ProjectGoals.md)
 
@@ -68,6 +70,8 @@
 ## Other
 
 * [Credits](credits.md)
+
+* [Release notes](release-notes.md)
 
 * [Licensing](Licensing/index.md)
     * [GPL v2](Licensing/gnu-gpl-v2.0.md)

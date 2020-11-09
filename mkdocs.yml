@@ -64,9 +64,12 @@ nav:
       - MJML:          Features/MainApp/mjml.md
       - Pagination:    Features/MainApp/pagination.md
       - Soft Delete:   Features/MainApp/soft-delete.md
+      - Rake tasks:    rake-tasks.md
 
   - Developer Documentation:
-    - Contributing:    Developers/Contributing.md
+    - Index:           Developers/index.md
+
+    - Contributing:    Contributing.md
 
     - Project Goals:   Developers/ProjectGoals.md
 
@@ -79,6 +82,9 @@ nav:
 
     - Testing:         Developers/Testing.md
 
+    - Demo data:       Developers/demo-data.md
+
+
     - Useful shared CMS code:
       - Concerns:      Developers/Concerns.md
       - Helpers:       Developers/Helpers.md
@@ -86,6 +92,7 @@ nav:
       # Other libs:    Developers/app-libs.md
 
   - Licensing:         Licensing/index.md
+  - Release notes:     release-notes.md
   - Credits:           credits.md
   - Code of Conduct:   code-of-conduct.md
   - Index:             index.md
