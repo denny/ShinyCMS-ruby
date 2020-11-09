@@ -31,9 +31,11 @@ RSpec.describe Admin::EmailRecipientsController, type: :request do
     it 'displays an appropriate message if there are no email recipients yet' do
       get email_recipients_path
 
+      none_found = I18n.t( 'helpers.page_entries_info.one_page.display_entries', entry_name: 'email recipients', count: 0 )
+
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.email_recipients.index.title' ).titlecase
-      expect( response.body ).to have_css 'p', text: 'No email recipients found'
+      expect( response.body ).to have_css 'p', text: none_found
     end
   end
 
