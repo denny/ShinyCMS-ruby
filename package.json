@@ -7,7 +7,7 @@
     "@rails/ujs": "^6.0.3",
     "@rails/webpacker": "5.2.1",
     "acorn": "^8.0.4",
-    "core-js": "^3.6.5",
+    "core-js": "^3.7.0",
     "jquery": "^3.5.0",
     "jquery-ui": "^1.12.1",
     "minimist": "^1.2.2",
