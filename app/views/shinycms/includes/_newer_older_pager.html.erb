@@ -1,0 +1,12 @@
+<% route_set ||= nil %>
+<% if route_set.present? %>
+<%= link_to_prev_page paged, t( 'views.pagination.newer' ), route_set: route_set %>
+<span class="float-right">
+<%= link_to_next_page paged, t( 'views.pagination.older' ), route_set: route_set %>
+</span>
+<% else %>
+<%= link_to_prev_page paged, t( 'views.pagination.newer' ) %>
+<span class="float-right">
+<%= link_to_next_page paged, t( 'views.pagination.older' ) %>
+</span>
+<% end %>
