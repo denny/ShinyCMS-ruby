@@ -14,6 +14,12 @@
 
 <%= render partial: 'includes/newer_older_pager', locals: { paged: @posts, route_set: shiny_blog } %>
 
+<% if @posts.blank? %>
+<p>
+  <%= t( 'empty_list', items: t( 'models.names.shiny_blog_post' ).pluralize ) %>
+</p>
+<% end %>
+
 <% @sidebar_position = 'right' %>
 <%= render partial: 'right_sidebar_join' %>
 <%= render partial: 'sidebar' %>
