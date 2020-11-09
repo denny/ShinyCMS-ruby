@@ -39,7 +39,7 @@ en:
   are_you_sure: Are you sure?
 
   # Empty listing
-  empty_list: no %{items} found
+  empty_list: No %{items} found
 
   # Votes / Likes
   vote: Vote
