@@ -163,7 +163,7 @@ Rails.application.routes.draw do
 
     ########################################################################################################
     # This route explicitly intercepts any request starting with /admin that wasn't otherwise handled
-    match '/admin/*path', to: 'admin#not_found', as: :admin_404, via: %i[ get post put patch delete ]
+    match '/admin/*path', to: 'admin#not_found', as: :admin_not_found, via: %i[ get post put patch delete ]
 
     ########################################################################################################
     # This catch-all route matches anything and everything not already matched by a route defined before it.
