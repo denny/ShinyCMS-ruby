@@ -58,13 +58,12 @@ jobs:
       # Restore Node dependencies from cache, or install them
       - restore_cache:
           keys:
-            - yarn-cache-v6-{{ checksum "yarn.lock" }}
-            - yarn-cache-v6-
+            - yarn-cache-v7-{{ checksum "yarn.lock" }}
       - run:
           name: Install Node modules
           command: yarn install --cache-folder ~/.cache/yarn
       - save_cache:
-          key: yarn-cache-v6-{{ checksum "yarn.lock" }}
+          key: yarn-cache-v7-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -72,13 +71,13 @@ jobs:
       # Restore Webpacker assets from cache, or compile them
       - restore_cache:
           keys:
-            - webpacker-cache-v6-{{ .Revision }}
+            - webpacker-cache-v7-{{ .Revision }}
       - run:
           name: Compile webpacker assets
           command: bundle exec rails assets:precompile
 
       - save_cache:
-          key: webpacker-cache-v6-{{ .Revision }}
+          key: webpacker-cache-v7-{{ .Revision }}
           paths:
             - ~/ShinyCMS/public/packs-test/
 
