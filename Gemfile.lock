@@ -316,7 +316,7 @@ GEM
       actionmailer (>= 3.2)
       letter_opener (~> 1.0)
       railties (>= 3.2)
-    listen (3.2.1)
+    listen (3.3.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.7.0)
@@ -568,7 +568,7 @@ DEPENDENCIES
   kaminari!
   kaminari_route_prefix!
   letter_opener_web (~> 1.0)!
-  listen (>= 3.0.5, < 3.3)!
+  listen (>= 3.0.5, < 3.4)!
   mini_magick!
   mjml-rails!
   overcommit!
