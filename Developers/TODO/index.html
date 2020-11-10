@@ -891,19 +891,6 @@
     TODO
   </a>
   
-    <nav class="md-nav" aria-label="TODO">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#urgent-important" class="md-nav__link">
-    Urgent / Important
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1058,16 +1045,28 @@
           
 
 
+  <li class="md-nav__item">
+    <a href="../rake-tasks/" class="md-nav__link">
+      Rake tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-8" type="checkbox" id="nav-3-8">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-9" type="checkbox" id="nav-3-9">
     
-    <label class="md-nav__link" for="nav-3-8">
+    <label class="md-nav__link" for="nav-3-9">
       Useful shared CMS code
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Useful shared CMS code" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-8">
+      <label class="md-nav__title" for="nav-3-9">
         <span class="md-nav__icon md-icon"></span>
         Useful shared CMS code
       </label>
@@ -1208,19 +1207,6 @@
     TODO
   </a>
   
-    <nav class="md-nav" aria-label="TODO">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#urgent-important" class="md-nav__link">
-    Urgent / Important
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1313,10 +1299,6 @@
                 
                 <h1 id="shinycms-developer-documentation">ShinyCMS Developer Documentation</h1>
 <h2 id="todo">TODO</h2>
-<h3 id="urgent-important">Urgent / Important</h3>
-<ul>
-<li>Heroku Scheduler / Cron / Whenever / whatever for running scheduled Newsletter Send jobs</li>
-</ul>
 <h2 id="features-the-perl-version-has-which-the-ruby-version-doesnt-yet">Features the Perl version has, which the Ruby version doesn't. Yet. :)</h2>
 <h3 id="small-ish">Small-ish</h3>
 <ul>
@@ -1384,7 +1366,7 @@
 <p>Make a generic sidebar template that renders any partials in a specified directory</p>
 </li>
 <li>
-<p>Add links to error messages, where helpful?</p>
+<p>Add links to the in-page alerts, where helpful? e.g. "You must <a href="/login">log in</a> first"</p>
 <ul>
 <li>https://guides.rubyonrails.org/i18n.html#using-safe-html-translations</li>
 <li>https://www.ruby-toolbox.com/projects/it</li>
@@ -1413,6 +1395,9 @@
 </li>
 <li>
 <p>Configurable (per-site and per-user) menu order in admin area</p>
+<ul>
+<li>( Per-site is currently partially possible, by changing the order plugins appear in ENV['SHINYCMS_PLUGINS'] )</li>
+</ul>
 </li>
 <li>
 <p>In admin area, load the full dataset for user capabilities, feature flags,
@@ -1422,8 +1407,10 @@
   conditionals to implement.</p>
 </li>
 <li>
-<p>Add a polymorphic metatags model(s?)+concern+helper that can be added to anything
-  that might want them for SEO (pages/sections, shop items/categories, etc)</p>
+<p>Add a polymorphic metatags model+helpers so they can be added to anything that might want them for SEO</p>
+<ul>
+<li>pages/sections, shop items/categories, etc</li>
+</ul>
 </li>
 <li>
 <p>More themes!</p>
@@ -1432,10 +1419,7 @@
 <p>¡español! :D</p>
 <ul>
 <li>Bonus points: https://www.ruby-toolbox.com/projects/route_translator</li>
-<li>Possibly interesting at same time: https://www.ruby-toolbox.com/projects/rack-user-locale<ul>
-<li>Also: https://support.cloudflare.com/hc/en-us/articles/200168236-Configuring-Cloudflare-IP-Geolocation</li>
-</ul>
-</li>
+<li>Possibly interesting at same time: https://www.ruby-toolbox.com/projects/rack-user-locale</li>
 </ul>
 </li>
 <li>

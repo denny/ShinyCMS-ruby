@@ -284,6 +284,19 @@
     Configuration
   </a>
   
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#background-tasks" class="md-nav__link">
+    Background tasks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1009,16 +1022,28 @@
           
 
 
+  <li class="md-nav__item">
+    <a href="../Developers/rake-tasks/" class="md-nav__link">
+      Rake tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-8" type="checkbox" id="nav-3-8">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-9" type="checkbox" id="nav-3-9">
     
-    <label class="md-nav__link" for="nav-3-8">
+    <label class="md-nav__link" for="nav-3-9">
       Useful shared CMS code
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Useful shared CMS code" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-8">
+      <label class="md-nav__title" for="nav-3-9">
         <span class="md-nav__icon md-icon"></span>
         Useful shared CMS code
       </label>
@@ -1193,6 +1218,19 @@
     Configuration
   </a>
   
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#background-tasks" class="md-nav__link">
+    Background tasks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1250,6 +1288,8 @@ sidekiq
 <p>If you intend to use Blazer to generate charts and dashboards, you will need to <a href="../create-blazer-db-user.sql">create a read-only database user for Blazer</a> (sample SQL) and add its details to your ENV/config as <code>BLAZER_DATABASE_URL</code>.</p>
 <h2 id="configuration">Configuration</h2>
 <p>Configuration is split between ENV vars (usually in .env* files), Feature Flags, and Site Settings. See <a href="../Configuration/">configuration</a> for more details of each.</p>
+<h3 id="background-tasks">Background tasks</h3>
+<p>You may wish to schedule one or more <a href="../rake-tasks/">rake tasks</a> to run on a regular basis (e.g. hourly/daily), depending on your requirements.</p>
 <h2 id="themes">Themes</h2>
 <p>To build a site on top of ShinyCMS, you should start by <a href="../Themes/">creating a theme</a> for it. This keeps your site layout and design tweaks separate from the default CMS templates, making future updates to the CMS easier to manage.</p>
                 

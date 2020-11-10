@@ -791,6 +791,54 @@
     Rake tasks
   </a>
   
+    <nav class="md-nav" aria-label="Rake tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-new-admin-user" class="md-nav__link">
+    Create new admin user
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-flags" class="md-nav__link">
+    Feature Flags
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shinynewsletters-start-scheduled-sends" class="md-nav__link">
+    ShinyNewsletters: start scheduled sends
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-old-sessions" class="md-nav__link">
+    Remove old sessions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demo-site-data" class="md-nav__link">
+    Demo site data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugin-migrations-and-seed-data" class="md-nav__link">
+    Plugin migrations and seed data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -970,16 +1018,28 @@
           
 
 
+  <li class="md-nav__item">
+    <a href="../Developers/rake-tasks/" class="md-nav__link">
+      Rake tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-8" type="checkbox" id="nav-3-8">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-9" type="checkbox" id="nav-3-9">
     
-    <label class="md-nav__link" for="nav-3-8">
+    <label class="md-nav__link" for="nav-3-9">
       Useful shared CMS code
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Useful shared CMS code" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-8">
+      <label class="md-nav__title" for="nav-3-9">
         <span class="md-nav__icon md-icon"></span>
         Useful shared CMS code
       </label>
@@ -1120,6 +1180,54 @@
     Rake tasks
   </a>
   
+    <nav class="md-nav" aria-label="Rake tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-new-admin-user" class="md-nav__link">
+    Create new admin user
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-flags" class="md-nav__link">
+    Feature Flags
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shinynewsletters-start-scheduled-sends" class="md-nav__link">
+    ShinyNewsletters: start scheduled sends
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-old-sessions" class="md-nav__link">
+    Remove old sessions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demo-site-data" class="md-nav__link">
+    Demo site data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugin-migrations-and-seed-data" class="md-nav__link">
+    Plugin migrations and seed data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1137,17 +1245,38 @@
                 
                 <h1 id="shinycms-documentation">ShinyCMS Documentation</h1>
 <h2 id="rake-tasks">Rake tasks</h2>
-<p>ShinyCMS and its plugins include a number of rake tasks.</p>
-<p>The bulk of these are the 'install migrations' and 'load db seeds' tasks for each plugin; in the case that a plugin lacks one or both of these tasks, it will be because the nature of the plugin means that it doesn't store data in the database (e.g. ShinySearch) and/or it doesn't have any settings or feature flags (so far I don't think this is actually true of any plugin).</p>
-<p>Aside from those db loading tasks, here's what's left:</p>
-<pre><code>rails shiny:admin:create                # create a new super-admin user (all capabilities enabled)
-rails shiny:demo:load                   # reset database, create admin user, and load demo site data
-rails shiny:demo:dump                   # dump current database content into db/demo_data.rb
-rails shiny:feature:off[name]           # toggle a feature flag off
-rails shiny:feature:on[name]            # toggle a feature flag on
-rails shiny:features:list               # list feature flags and status
-rails shiny_newsletters:scheduled:send  # check for and start any scheduled sends that are due
+<p>ShinyCMS and its plugins include a number of rake tasks, in addition to those provided by Rails.</p>
+<p>You can use the command <code>rails --tasks</code> to see all the available tasks, or <code>rails --tasks | grep shiny</code> to show just the ShinyCMS tasks.</p>
+<h3 id="create-new-admin-user">Create new admin user</h3>
+<pre><code>rails shiny:admin:create    # ShinyCMS: create a new super-admin user
 </code></pre>
+<p>Prompts you for username, email, and password, and then uses those details to create a new CMS user with all admin capabilities enabled.</p>
+<h3 id="feature-flags">Feature Flags</h3>
+<pre><code>rails shiny:features:list        # ShinyCMS: list feature flags and status
+rails shiny:feature:on[name]     # ShinyCMS: toggle a feature flag on
+rails shiny:feature:off[name]    # ShinyCMS: toggle a feature flag off
+</code></pre>
+<p>These tasks can be used to enable and disable CMS features from the command line. This may be useful if you are unable to reach the CMS admin area on your website for some reason - for example, if you turn off the user logins feature, thereby logging yourself out along with everybody else.</p>
+<h3 id="shinynewsletters-start-scheduled-sends">ShinyNewsletters: start scheduled sends</h3>
+<pre><code>rails shiny_newsletters:scheduled:send    # ShinyCMS: check for and start any scheduled sends that are due
+</code></pre>
+<p>This task can be scheduled to run as a regular task, or run on an ad-hoc basis, as you prefer.</p>
+<h3 id="remove-old-sessions">Remove old sessions</h3>
+<pre><code>rails db:sessions:trim    # Trim old sessions from the table (default: &gt; 30 days)
+</code></pre>
+<p>Rails provides this task to remove older sessions (over 30 days old by default, or you can set SESSION_DAYS_TRIM_THRESHOLD for a different limit). You may wish to schedule this to run every night to prevent the sessions table in your database from growing too large.</p>
+<h3 id="demo-site-data">Demo site data</h3>
+<pre><code>rails shiny:demo:load    # ShinyCMS: reset database, create admin user, and load demo site data
+</code></pre>
+<p>This task allows you to quickly insert the demo site data so you can experiment with CMS features. Be aware that it will wipe the current contents of the database - back up anything you want to keep before running it!</p>
+<h3 id="plugin-migrations-and-seed-data">Plugin migrations and seed data</h3>
+<pre><code>rails shiny_[various]:db:seed               # ShinyCMS: load supporting data for **** plugin
+rails shiny_[various]:install:migrations    # Copy migrations from shiny_**** to application
+</code></pre>
+<p>The rest of the rake tasks added by ShinyCMS are the tasks to install migrations and load seed data for each plugin.</p>
+<p>Currently, running the main <code>rails db:seed</code> task also runs all of the plugin seed tasks, so you should not need to run these tasks separately.</p>
+<p>Similarly, the plugin tables are already included in the main <code>db/schema.rb</code> used to create the database, so you shouldn't need to run the install migration tasks, or the resulting migrations.</p>
+<p>In the case that a plugin does not provide a migration install task, it will be because that plugin doesn't store any data in the database (e.g. ShinySearch). All plugins currently provide a seed task, to add settings and feature flags if nothing else.</p>
                 
               
               

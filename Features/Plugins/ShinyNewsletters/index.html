@@ -543,6 +543,19 @@
     ShinyNewsletters
   </a>
   
+    <nav class="md-nav" aria-label="ShinyNewsletters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-sends" class="md-nav__link">
+    Scheduled sends
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -970,16 +983,28 @@
           
 
 
+  <li class="md-nav__item">
+    <a href="../../../Developers/rake-tasks/" class="md-nav__link">
+      Rake tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-8" type="checkbox" id="nav-3-8">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-9" type="checkbox" id="nav-3-9">
     
-    <label class="md-nav__link" for="nav-3-8">
+    <label class="md-nav__link" for="nav-3-9">
       Useful shared CMS code
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Useful shared CMS code" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-8">
+      <label class="md-nav__title" for="nav-3-9">
         <span class="md-nav__icon md-icon"></span>
         Useful shared CMS code
       </label>
@@ -1120,6 +1145,19 @@
     ShinyNewsletters
   </a>
   
+    <nav class="md-nav" aria-label="ShinyNewsletters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-sends" class="md-nav__link">
+    Scheduled sends
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1143,7 +1181,10 @@
 <li>Build HTML mailshots based on MJML templates (provided by a theme or custom built for you)</li>
 <li>Simple admin interface to fill in the editable content areas in each edition</li>
 </ul>
-<p>Support for scheduling sends is not working yet, but 'send now' does.</p>
+<h3 id="scheduled-sends">Scheduled sends</h3>
+<p>You can start any scheduled sends that are due by running the rake task <code>rails shiny_newsletters:scheduled:send</code></p>
+<p>On Heroku, you can use their Heroku Scheduler add-on to run this task daily, hourly, or every 10 minutes. The add-on itself is free, but you pay for the dyno time taken to run the task each time (unless you configure it to use the 'free' dyno type).</p>
+<p>In other environments you could set this task to run regularly via cron or a similar tool.</p>
                 
               
               
