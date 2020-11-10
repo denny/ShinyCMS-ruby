@@ -22,6 +22,7 @@ This is as close as we get to a roadmap, for now :)
 * Instructions for [creating a new plugin](Plugins.md) (and related useful info)
 
 * Notes about the [demo site data](demo-data.md)
+    * [Rake tasks](rake-tasks.md) for developers (dump new demo data)
 
 * Tools and tips for [working on mailers](Mailers.md) (features that send email)
 

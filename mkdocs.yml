@@ -83,6 +83,7 @@ nav:
     - Testing:         Developers/Testing.md
 
     - Demo data:       Developers/demo-data.md
+    - Rake tasks:      Developers/rake-tasks.md
 
 
     - Useful shared CMS code:
