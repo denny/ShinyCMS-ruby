@@ -2,6 +2,11 @@
 
 ## TODO
 
+## Next / Soon
+
+* Fix plugin generators to pass new rubocop config (enforced whitespace)
+
+
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
 ### Small-ish
@@ -15,13 +20,12 @@
 
 ### Medium-ish
 
-* Access control groups; should work at both a large concerns and small detail scale:
-    * Grant/deny access to file downloads, secure whole pages or sections of the site
-    * Show/hide individual pieces of page content - images, paragraphs, even individual words
-
 * Polls
 
 ### Large-ish
+
+* Access-controlled file downloads
+    * Can this be done with tokenised AWS links? And if yes, do I want that vendor lock-in? (Probably not?)
 
 * Online shop
 
@@ -41,6 +45,8 @@
 ## New features that I'd like to add / features that I'd like to totally rebuild
 
 ### Small-ish
+
+* Add 'unsubscribe reason' to ShinyLists
 
 * Mock/VCR the Akismet tests (and anything else that currently needs a 'net connection)
 

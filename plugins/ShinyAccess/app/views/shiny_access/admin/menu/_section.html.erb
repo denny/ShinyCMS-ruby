@@ -1,0 +1,11 @@
+<% return unless current_user.can? :list, :shiny_access %>
+
+  <%= render_admin_menu_section( t( 'shiny_access.admin.menu' ), 'rss' ) do %>
+
+    <%= render_admin_menu_item(
+        t( 'shiny_access.admin.groups.index.title' ), shiny_access.shiny_access_groups_path, 'list' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :add, :shiny_access ),
+        t( 'shiny_access.admin.groups.new.title' ), shiny_access.new_shiny_access_group_path, 'pencil' ) %>
+
+<% end %>

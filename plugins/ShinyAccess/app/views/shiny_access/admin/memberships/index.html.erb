@@ -1,0 +1,49 @@
+<% @page_title = t( '.title' ) %>
+
+<% if @memberships.present? %>
+<%= render partial: 'admin/includes/search', locals: { action: shiny_access.search_group_memberships_path( @memberships.first.group ), placeholder: t( '.search' ) } %>
+
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @memberships.each do |membership| %>
+    <tr>
+      <td>
+        <%= membership.user.name %>
+      </td>
+      <td>
+        <% if membership.active? %>
+        <%= I18n.t( '.began' ) %> (<%= display_time_on_date( membership.began_at ) %>)
+        <% else %>
+        <%= I18n.t( '.ended' ) %> (<%= display_time_on_date( membership.ended_at ) %>)
+        <% end %>
+      </td>
+      <td class="actions">
+        <%= link_to t( '.revoke' ), shiny_access.admin_group_unsubscribe_path( membership.group, membership ),
+            method: :put, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  <tbody>
+</table>
+
+<%= render partial: 'admin/includes/pager', locals: { paged: @memberships, route_set: shiny_access } %>
+
+<% else %>
+<p>
+  <%= t( 'empty_list', items: 'memberships' ) %>
+</p>
+<% end %>
