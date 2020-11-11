@@ -10,8 +10,5 @@ module ShinyAccess
   # Base model class for ShinyAccess
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
-    def url_helpers
-      ShinyAccess::Engine.routes.url_helpers
-    end
   end
 end
