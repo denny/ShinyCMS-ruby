@@ -39,7 +39,7 @@
       </td>
       <td class="actions">
         <%= link_to t( 'shiny_lists.unsubscribe' ), shiny_lists.admin_list_unsubscribe_path( subscription.list, subscription ),
-            method: :put, data: { confirm: t( 'are_you_sure' ) } %>
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>
     <% end %>
@@ -53,4 +53,3 @@
   <%= t( 'empty_list', items: 'subscriptions' ) %>
 </p>
 <% end %>
-

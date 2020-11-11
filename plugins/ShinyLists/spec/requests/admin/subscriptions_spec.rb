@@ -62,11 +62,11 @@ RSpec.describe 'List Subscription admin features', type: :request do
     end
   end
 
-  describe 'PUT /admin/list/:list_id/subscription/:id' do
+  describe 'DELETE /admin/list/:list_id/subscription/:id' do
     it 'unsubscribes the specified subscriber from the specified mailing list' do
       s1 = create :mailing_list_subscription, list: list
 
-      put shiny_lists.admin_list_unsubscribe_path( list, s1 )
+      delete shiny_lists.admin_list_unsubscribe_path( list, s1 )
 
       success_message = I18n.t( 'shiny_lists.admin.subscriptions.unsubscribe.success' )
 

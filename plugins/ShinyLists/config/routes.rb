@@ -31,8 +31,8 @@ ShinyLists::Engine.routes.draw do
       resources :lists, except: :show, concerns: %i[ paginatable searchable ] do
         resources :subscriptions, only: :index, concerns: %i[ paginatable searchable ]
       end
-      post 'list/:list_id/subscriptions',     to: 'subscriptions#subscribe',   as: :admin_list_subscribe
-      put  'list/:list_id/subscriptions/:id', to: 'subscriptions#unsubscribe', as: :admin_list_unsubscribe
+      post   'list/:list_id/subscriptions',     to: 'subscriptions#subscribe',   as: :admin_list_subscribe
+      delete 'list/:list_id/subscriptions/:id', to: 'subscriptions#unsubscribe', as: :admin_list_unsubscribe
     end
   end
 end
