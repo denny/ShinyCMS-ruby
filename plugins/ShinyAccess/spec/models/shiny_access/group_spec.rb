@@ -11,6 +11,31 @@ require 'rails_helper'
 # Tests for Access Group model
 module ShinyAccess
   RSpec.describe Group, type: :model do
-    pending "add some examples to (or delete) #{__FILE__}"
+    context 'instance methods' do
+      let( :test_group ) { create :access_group }
+      let( :test_user  ) { create :user }
+
+      describe '.member?' do
+        it 'returns true if the user is a member of the group' do
+          create :access_membership, group: test_group, user: test_user
+
+          expect( test_group.member?( test_user ) ).to be true
+        end
+
+        it 'returns false if the user is not a member of the group' do
+          expect( test_group.member?( test_user ) ).to be false
+        end
+      end
+    end
+
+    context 'concerns' do
+      it_should_behave_like ShinyDemoDataProvider do
+        let( :model ) { described_class }
+      end
+
+      it_should_behave_like ShinySlug do
+        let( :sluggish ) { create :access_group }
+      end
+    end
   end
 end
