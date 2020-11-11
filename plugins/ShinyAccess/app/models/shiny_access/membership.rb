@@ -9,6 +9,13 @@
 module ShinyAccess
   # Model for tracking memberships of access groups - part of the ShinyAccess plugin for ShinyCMS
   class Membership < ApplicationRecord
+    include ShinyDemoDataProvider
+
+    # Associations
+
+    belongs_to :group
+    belongs_to :user
+
     # Scopes
 
     scope :active, -> { where( ended_at: nil ) }
@@ -18,7 +25,7 @@ module ShinyAccess
 
     # Instance methods
 
-    def cancel!
+    def end
       update!( ended_at: Time.zone.now.iso8601 )
     end
   end

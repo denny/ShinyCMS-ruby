@@ -9,5 +9,18 @@
 module ShinyAccess
   # Model for access groups - part of the ShinyAccess plugin for ShinyCMS
   class Group < ApplicationRecord
+    include ShinyDemoDataProvider
+    include ShinyName
+    include ShinySlug
+
+    # Associations
+
+    has_many :memberships
+
+    # Instance methods
+
+    def member?( user )
+      memberships.exists?( user: user )
+    end
   end
 end
