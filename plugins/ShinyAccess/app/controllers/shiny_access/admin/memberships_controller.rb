@@ -44,9 +44,9 @@ module ShinyAccess
 
     # Note: this ends a membership, it does not delete the record of it
     def destroy
-      authorize Membership
+      authorize membership
 
-      if membership.cancel!
+      if membership.end
         redirect_to group_memberships_path( group ), notice: t( '.success' )
       else
         redirect_to group_memberships_path( group ), alert: t( '.failure' )
@@ -69,11 +69,7 @@ module ShinyAccess
     end
 
     def membership
-      memberships.find( params[:id] )
-    end
-
-    def strong_params
-      params.require( :membership ).permit( :q, :count )
+      memberships.find( params[ :id ] )
     end
   end
 end
