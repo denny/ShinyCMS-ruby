@@ -6,12 +6,18 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-FactoryBot.define do
-  factory :access_membership do
-    began_at { 1.day.ago }
-  end
+# Factory for access control group memberships
+module ShinyAccess
+  FactoryBot.define do
+    factory :access_membership, class: Membership do
+      began_at { 1.day.ago }
 
-  factory :inactive_access_membership, parent: :membership do
-    ended_at { 1.hour.ago }
+      association :group, factory: :access_group
+      association :user
+
+      trait :ended do
+        ended_at { 1.hour.ago }
+      end
+    end
   end
 end

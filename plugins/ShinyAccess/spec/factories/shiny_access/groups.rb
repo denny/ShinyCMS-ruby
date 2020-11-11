@@ -6,11 +6,11 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-FactoryBot.define do
-  factory :group do
-    internal_name { 'MyString' }
-    public_name { 'MyString' }
-    slug { 'MyString' }
-    description { 'MyText' }
+# Factory for access control groups
+module ShinyAccess
+  FactoryBot.define do
+    factory :access_group, class: Group do
+      internal_name { Faker::Books::CultureSeries.unique.culture_ship }
+    end
   end
 end
