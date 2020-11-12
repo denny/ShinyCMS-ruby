@@ -361,15 +361,15 @@ en:
         failure: Failed to remove spam flags
 
     consent_versions:
-      breadcrumb: Consent versions
-      menu: Consent versions
+      breadcrumb: Consent
+      menu: User consent
       index:
         title: Consent versions
         search: Search comments
       show:
         title: View consent version
       new:
-        title: Add consent version
+        title: Add new version
       edit:
         title: Update consent version
       create:
@@ -413,7 +413,7 @@ en:
 
     feature_flags:
       breadcrumb: Settings
-      menu: Feature Flags
+      menu: Feature flags
       index:
         title: Feature Flags
         feature: Feature
@@ -435,7 +435,7 @@ en:
 
     site_settings:
       breadcrumb: Settings
-      menu: Site settings
+      menu: Settings
       index:
         title: Site settings
         name: Name
