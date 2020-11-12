@@ -2,6 +2,13 @@
 
 ## TODO
 
+## Next / Soon
+
+* .strip incoming email addresses
+
+* Get rid of 'precision: 6' on all timestamps? Seems excessive...
+
+
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
 ### Small-ish
@@ -41,6 +48,10 @@
 ## New features that I'd like to add / features that I'd like to totally rebuild
 
 ### Small-ish
+
+* Handle timezones: https://prathamesh.tech/2019/07/11/use-time-use_zone-to-navigate-timezone
+
+* Add 'unsubscribe reason' to ShinyLists
 
 * Mock/VCR the Akismet tests (and anything else that currently needs a 'net connection)
 

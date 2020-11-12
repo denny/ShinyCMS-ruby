@@ -3,9 +3,9 @@
   <%= render_admin_menu_section( t( 'admin.consent_versions.menu' ), 'check' ) do %>
 
     <%= render_admin_menu_item(
-        t( 'admin.consent_versions.index.title' ), consent_versions_path, 'check' ) %>
+        t( 'admin.consent_versions.index.title' ), consent_versions_path, 'check-alt' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :add, :consent_versions ),
-        t( 'admin.consent_versions.new.title' ), new_consent_version_path, 'check' ) %>
+        t( 'admin.consent_versions.new.title' ), new_consent_version_path, 'plus' ) %>
 
   <% end %>
