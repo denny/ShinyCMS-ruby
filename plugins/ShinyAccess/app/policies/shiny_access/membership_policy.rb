@@ -17,7 +17,7 @@ module ShinyAccess
     end
 
     def index?
-      @this_user.can? :list, :access_groups
+      @this_user.can? :list, :access_group_memberships
     end
 
     def search?
@@ -25,11 +25,11 @@ module ShinyAccess
     end
 
     def create?
-      @this_user.can? :add, :access_groups
+      @this_user.can? :add, :access_group_memberships
     end
 
     def destroy?
-      @this_user.can? :destroy, :access_groups
+      @this_user.can? :destroy, :access_group_memberships
     end
   end
 end

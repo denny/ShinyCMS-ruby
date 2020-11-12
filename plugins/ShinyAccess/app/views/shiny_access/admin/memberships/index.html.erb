@@ -26,14 +26,14 @@
       </td>
       <td>
         <% if membership.active? %>
-        <%= I18n.t( '.began' ) %> (<%= display_time_on_date( membership.began_at ) %>)
+        <%= t( '.began' ) %> (<%= display_time_on_date( membership.began_at ) %>)
         <% else %>
-        <%= I18n.t( '.ended' ) %> (<%= display_time_on_date( membership.ended_at ) %>)
+        <%= t( '.ended' ) %> (<%= display_time_on_date( membership.ended_at ) %>)
         <% end %>
       </td>
       <td class="actions">
-        <%= link_to t( '.revoke' ), shiny_access.admin_group_unsubscribe_path( membership.group, membership ),
-            method: :put, data: { confirm: t( 'are_you_sure' ) } %>
+        <%= link_to t( '.cancel' ), shiny_access.group_membership_path( membership.group, membership ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>
     <% end %>

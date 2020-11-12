@@ -22,5 +22,11 @@ module ShinyAccess
     def member?( user )
       memberships.exists?( user: user )
     end
+
+    def add_member( user_id )
+      return false unless User.exists? id: user_id
+
+      memberships.create! user_id: user_id
+    end
   end
 end

@@ -38,7 +38,7 @@ en:
           search: Search group members
           began: Began
           ended: Ended
-          revoke: Revoke
+          cancel: Cancel
         create:
           success: New member added
           failure: Failed to add new member

@@ -311,15 +311,22 @@ ActiveRecord::Schema.define(version: 2020_11_11_195416) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_access_groups_on_deleted_at"
+    t.index ["slug"], name: "index_shiny_access_groups_on_slug"
   end
 
   create_table "shiny_access_memberships", force: :cascade do |t|
     t.bigint "group_id", null: false
     t.bigint "user_id", null: false
-    t.datetime "began_at", null: false
-    t.datetime "ended_at"
+    t.datetime "began_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "ended_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["began_at"], name: "index_shiny_access_memberships_on_began_at"
+    t.index ["deleted_at"], name: "index_shiny_access_memberships_on_deleted_at"
+    t.index ["ended_at"], name: "index_shiny_access_memberships_on_ended_at"
     t.index ["group_id"], name: "index_shiny_access_memberships_on_group_id"
     t.index ["user_id"], name: "index_shiny_access_memberships_on_user_id"
   end

@@ -35,7 +35,7 @@ module ShinyAccess
     def create
       authorize Membership
 
-      if memberships.create!( user_id: params[ :user_id ] )
+      if group.add_member( strong_params[ :user_id ] )
         redirect_to group_memberships_path( group ), notice: t( '.success' )
       else
         redirect_to group_memberships_path( group ), alert: t( '.failure' )
@@ -61,7 +61,7 @@ module ShinyAccess
     private
 
     def group
-      ShinyAccess::Group.find( params[ :group_id ] )
+      Group.find( params[ :group_id ] )
     end
 
     def memberships
@@ -70,6 +70,10 @@ module ShinyAccess
 
     def membership
       memberships.find( params[ :id ] )
+    end
+
+    def strong_params
+      params.require( :membership ).permit( :user_id )
     end
   end
 end

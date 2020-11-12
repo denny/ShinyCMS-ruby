@@ -16,6 +16,12 @@ module ShinyAccess
     belongs_to :group
     belongs_to :user
 
+    # Validations
+
+    validates :group,    presence: true
+    validates :user,     presence: true
+    validates :began_at, presence: true
+
     # Scopes
 
     scope :active, -> { where( ended_at: nil ) }
@@ -23,10 +29,26 @@ module ShinyAccess
     scope :active_first, -> { order( Arel.sql( 'ended_at is null' ) ) }
     scope :recent,       -> { order( began_at: :desc ) }
 
+    # Set default timestamp if necessary
+
+    before_validation :set_began_at, if: -> { began_at.blank? }
+
     # Instance methods
 
+    def active?
+      ended_at.blank?
+    end
+
     def end
+      return false unless active?
+
       update!( ended_at: Time.zone.now.iso8601 )
+    end
+
+    private
+
+    def set_began_at
+      self.began_at = Time.zone.now.iso8601
     end
   end
 end
