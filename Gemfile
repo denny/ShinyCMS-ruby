@@ -180,6 +180,9 @@ source 'https://rubygems.org' do
     # Wipe the test database before each test run
     gem 'database_cleaner-active_record'
 
+    # Rubocop integration for GitHub code-scanning
+    gem 'code-scanning-rubocop', require: false
+
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     # Rspec report formatter for Codecov
