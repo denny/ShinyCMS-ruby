@@ -12,6 +12,8 @@
   <%= render partial: 'news/show/comment_form', locals: { post: @post } %>
 </section>
 
+<%= render partial: 'shiny_posts/show/next_and_previous_post_links', locals: { post: @post } %>
+
 <%= render partial: 'news/show/discussion', locals: { post: @post } %>
 
 <% @sidebar_position = 'right' %>

@@ -2,9 +2,11 @@
 
 ## TODO
 
-### Urgent / Important
+## Next / Soon
 
-* Heroku Scheduler / Cron / Whenever / whatever for running scheduled Newsletter Send jobs
+* .strip incoming email addresses
+
+* Get rid of 'precision: 6' on all timestamps? Seems excessive...
 
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
@@ -47,13 +49,17 @@
 
 ### Small-ish
 
+* Handle timezones: https://prathamesh.tech/2019/07/11/use-time-use_zone-to-navigate-timezone
+
+* Add 'unsubscribe reason' to ShinyLists
+
 * Mock/VCR the Akismet tests (and anything else that currently needs a 'net connection)
 
 * Add a 'save form submission to database' form handler
 
 * Make a generic sidebar template that renders any partials in a specified directory
 
-* Add links to error messages, where helpful?
+* Add links to the in-page alerts, where helpful? e.g. "You must <a href="/login">log in</a> first"
     * https://guides.rubyonrails.org/i18n.html#using-safe-html-translations
     * https://www.ruby-toolbox.com/projects/it
 
@@ -71,6 +77,7 @@
     * e.g. if reCAPTCHA is enabled for registrations, the reCAPTCHA keys must be set
 
 * Configurable (per-site and per-user) menu order in admin area
+    * ( Per-site is currently partially possible, by changing the order plugins appear in ENV['SHINYCMS_PLUGINS'] )
 
 * In admin area, load the full dataset for user capabilities, feature flags,
   and possibly site settings, and stick them in some hashes, with some helper
@@ -78,15 +85,14 @@
   db and there are still a load of 'feature hidden by flag/capability/etc'
   conditionals to implement.
 
-* Add a polymorphic metatags model(s?)+concern+helper that can be added to anything
-  that might want them for SEO (pages/sections, shop items/categories, etc)
+* Add a polymorphic metatags model+helpers so they can be added to anything that might want them for SEO
+    * pages/sections, shop items/categories, etc
 
 * More themes!
 
 * ¡español! :D
     * Bonus points: https://www.ruby-toolbox.com/projects/route_translator
     * Possibly interesting at same time: https://www.ruby-toolbox.com/projects/rack-user-locale
-        * Also: https://support.cloudflare.com/hc/en-us/articles/200168236-Configuring-Cloudflare-IP-Geolocation
 
 * Add tests for form actions being what they're supposed to be on new/edit pages,
   and for delete links being correct on list pages (to catch path helper issues)
@@ -130,6 +136,8 @@
     * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
 
 * Invites: https://github.com/scambra/devise_invitable#readme
+
+* Image galleries / multimedia galleries / etc
 
 * Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?
     * Think carefully about privacy implications of linking previous actions to current visitor

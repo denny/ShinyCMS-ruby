@@ -58,6 +58,10 @@ If you intend to use Blazer to generate charts and dashboards, you will need to 
 
 Configuration is split between ENV vars (usually in .env* files), Feature Flags, and Site Settings. See [configuration](Configuration.md) for more details of each.
 
+### Background tasks
+
+You may wish to schedule one or more [rake tasks](rake-tasks.md) to run on a regular basis (e.g. hourly/daily), depending on your requirements.
+
 
 ## Themes
 

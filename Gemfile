@@ -7,10 +7,16 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Supporting methods for loading ShinyCMS plugin gems
-def plugin_names
-  return ENV[ 'SHINYCMS_PLUGINS' ].split( /[, ]+/ ) if ENV[ 'SHINYCMS_PLUGINS' ]
+def available_plugins
+  Dir[ 'plugins/*' ].sort.collect { |name| name.sub( 'plugins/', '' ) }
+end
 
-  Dir[ 'plugins/*' ].sort.collect { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
+def plugin_names
+  requested = ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
+
+  return requested.uniq.select { |name| available_plugins.include?( name ) } if requested
+
+  available_plugins
 end
 
 def underscore( camel_cased_word )
@@ -162,7 +168,7 @@ source 'https://rubygems.org' do
     gem 'letter_opener_web', '~> 1.0'
 
     # Reload dev server when files change
-    gem 'listen', '>= 3.0.5', '< 3.3'
+    gem 'listen', '>= 3.0.5', '< 3.4'
 
     # Helps you manage your git hooks
     gem 'overcommit', require: false
