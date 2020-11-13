@@ -168,20 +168,28 @@ module Shiny
       end
 
       def author
-        default = 'TODO: Write your name'
         if skip_git?
-          @author = default
+          @author = 'TODO: Write your name'
         else
-          @author = `git config user.name`.chomp rescue default
+          @author =
+            begin
+              `git config user.name`.chomp
+            rescue StandardError
+              'TODO: Write your name'
+            end
         end
       end
 
       def email
-        default = 'TODO: Write your email address'
         if skip_git?
-          @email = default
+          @email = 'TODO: Write your email address'
         else
-          @email = `git config user.email`.chomp rescue default
+          @email =
+            begin
+              `git config user.email`.chomp
+            rescue StandardError
+              'TODO: Write your email address'
+            end
         end
       end
 
