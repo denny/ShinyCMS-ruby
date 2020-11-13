@@ -223,6 +223,8 @@ GEM
       numerizer (~> 0.1.1)
     ckeditor (5.1.0)
       orm_adapter (~> 0.5.0)
+    code-scanning-rubocop (0.4.0)
+      rubocop (> 0.82.0)
     codecov (0.2.12)
       json
       simplecov
@@ -553,6 +555,7 @@ DEPENDENCIES
   capybara (>= 2.15)!
   chartkick (~> 3.4.2)!
   ckeditor!
+  code-scanning-rubocop!
   codecov!
   database_cleaner-active_record!
   devise!
