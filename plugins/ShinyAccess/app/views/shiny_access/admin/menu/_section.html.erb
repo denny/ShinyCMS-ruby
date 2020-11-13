@@ -1,11 +1,11 @@
-<% return unless current_user.can? :list, :shiny_access %>
+<% return unless current_user.can? :list, :access_groups %>
 
-  <%= render_admin_menu_section( t( 'shiny_access.admin.menu' ), 'rss' ) do %>
+  <%= render_admin_menu_section( t( 'shiny_access.admin.menu' ), 'lock-locked' ) do %>
 
     <%= render_admin_menu_item(
-        t( 'shiny_access.admin.groups.index.title' ), shiny_access.shiny_access_groups_path, 'list' ) %>
+        t( 'shiny_access.admin.groups.index.title' ), shiny_access.groups_path, 'lock-locked' ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :add, :shiny_access ),
-        t( 'shiny_access.admin.groups.new.title' ), shiny_access.new_shiny_access_group_path, 'pencil' ) %>
+    <%= render_admin_menu_item_if( current_user.can?( :add, :access_groups ),
+        t( 'shiny_access.admin.groups.new.title' ), shiny_access.new_group_path, 'lock-unlocked' ) %>
 
 <% end %>

@@ -14,9 +14,9 @@ en:
 
   shiny_access:
     admin:
-      breadcrumb: Access
       menu: Access
       groups:
+        breadcrumb: Access
         index:
           title: Access Groups
           search: Search groups

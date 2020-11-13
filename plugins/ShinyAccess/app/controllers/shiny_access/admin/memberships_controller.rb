@@ -42,7 +42,7 @@ module ShinyAccess
       end
     end
 
-    # Note: this ends a membership, it does not delete the record of it
+    # This marks a membership as ended - it doesn't delete the record of it
     def destroy
       authorize membership
 
@@ -55,7 +55,7 @@ module ShinyAccess
 
     # Override the breadcrumbs 'section' link to go back to the groups page
     def breadcrumb_link_text_and_path
-      [ t( 'shiny_access.admin.breadcrumb' ), groups_path ]
+      [ t( 'shiny_access.admin.groups.breadcrumb' ), groups_path ]
     end
 
     private
