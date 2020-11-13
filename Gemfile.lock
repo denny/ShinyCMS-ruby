@@ -1,7 +1,7 @@
 PATH
   remote: plugins/ShinyBlog
   specs:
-    shiny_blog (20.10)
+    shiny_blog (20.11)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -13,7 +13,7 @@ PATH
 PATH
   remote: plugins/ShinyForms
   specs:
-    shiny_forms (20.10)
+    shiny_forms (20.11)
       acts_as_paranoid
       kaminari
       pg (>= 0.18, < 2.0)
@@ -23,7 +23,7 @@ PATH
 PATH
   remote: plugins/ShinyInserts
   specs:
-    shiny_inserts (20.10)
+    shiny_inserts (20.11)
       acts_as_paranoid
       ckeditor
       kaminari
@@ -34,7 +34,7 @@ PATH
 PATH
   remote: plugins/ShinyLists
   specs:
-    shiny_lists (20.10)
+    shiny_lists (20.11)
       acts_as_paranoid
       kaminari
       pg (>= 0.18, < 2.0)
@@ -44,7 +44,7 @@ PATH
 PATH
   remote: plugins/ShinyNews
   specs:
-    shiny_news (20.10)
+    shiny_news (20.11)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -56,14 +56,14 @@ PATH
 PATH
   remote: plugins/ShinyNewsletters
   specs:
-    shiny_newsletters (20.10)
+    shiny_newsletters (20.11)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.4)
 
 PATH
   remote: plugins/ShinyPages
   specs:
-    shiny_pages (20.10)
+    shiny_pages (20.11)
       acts_as_paranoid
       ckeditor
       kaminari
@@ -74,14 +74,14 @@ PATH
 PATH
   remote: plugins/ShinyProfiles
   specs:
-    shiny_profiles (20.10)
+    shiny_profiles (20.11)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.4)
 
 PATH
   remote: plugins/ShinySearch
   specs:
-    shiny_search (20.10)
+    shiny_search (20.11)
       algoliasearch-rails
       pg (>= 0.18, < 2.0)
       pg_search
@@ -181,8 +181,8 @@ GEM
     amazing_print (1.2.2)
     ast (2.4.1)
     aws-eventstream (1.1.0)
-    aws-partitions (1.383.0)
-    aws-sdk-core (3.109.1)
+    aws-partitions (1.390.0)
+    aws-sdk-core (3.109.2)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
@@ -190,7 +190,7 @@ GEM
     aws-sdk-kms (1.39.0)
       aws-sdk-core (~> 3, >= 3.109.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.83.1)
+    aws-sdk-s3 (1.84.1)
       aws-sdk-core (~> 3, >= 3.109.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
@@ -202,7 +202,7 @@ GEM
       chartkick (>= 3.2)
       railties (>= 5)
       safely_block (>= 0.1.1)
-    bootsnap (1.5.0)
+    bootsnap (1.5.1)
       msgpack (~> 1.0)
     brakeman (4.10.0)
     builder (3.2.4)
@@ -288,7 +288,7 @@ GEM
       rails-i18n
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
-    image_processing (1.12.0)
+    image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
     iniparse (1.5.0)
@@ -316,7 +316,7 @@ GEM
       actionmailer (>= 3.2)
       letter_opener (~> 1.0)
       railties (>= 3.2)
-    listen (3.2.1)
+    listen (3.3.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.7.0)
@@ -328,7 +328,7 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (1.0.0)
     mimemagic (0.3.5)
-    mini_magick (4.10.1)
+    mini_magick (4.11.0)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.2)
@@ -344,7 +344,7 @@ GEM
     overcommit (0.57.0)
       childprocess (>= 0.6.3, < 5)
       iniparse (~> 1.4)
-    parallel (1.19.2)
+    parallel (1.20.0)
     parser (2.7.2.0)
       ast (~> 2.4.1)
     pg (1.2.3)
@@ -438,16 +438,16 @@ GEM
     rspec-support (3.9.3)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.1.0)
+    rubocop (1.3.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.5)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8)
       rexml
-      rubocop-ast (>= 1.0.1)
+      rubocop-ast (>= 1.1.1)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (1.1.0)
+    rubocop-ast (1.1.1)
       parser (>= 2.7.1.5)
     rubocop-performance (1.8.1)
       rubocop (>= 0.87.0)
@@ -515,7 +515,7 @@ GEM
     unicode-display_width (1.7.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webmock (3.9.3)
+    webmock (3.10.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -568,7 +568,7 @@ DEPENDENCIES
   kaminari!
   kaminari_route_prefix!
   letter_opener_web (~> 1.0)!
-  listen (>= 3.0.5, < 3.3)!
+  listen (>= 3.0.5, < 3.4)!
   mini_magick!
   mjml-rails!
   overcommit!

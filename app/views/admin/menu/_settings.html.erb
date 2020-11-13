@@ -4,7 +4,7 @@
   <%= render_admin_menu_section( t( 'admin.site_settings.menu' ), 'settings' ) do %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :settings ),
-        t( 'admin.site_settings.menu' ), admin_site_settings_path, 'settings' ) %>
+        t( 'admin.site_settings.index.title' ), admin_site_settings_path, 'settings' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :feature_flags ),
         t( 'admin.feature_flags.menu' ), feature_flags_path, 'toggle-off' ) %>

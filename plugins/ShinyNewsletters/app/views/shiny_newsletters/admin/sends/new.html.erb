@@ -3,11 +3,11 @@
 <%= form_for @send, url: shiny_newsletters.sends_path, method: :post do |f| %>
   <p>
     <%= f.label :edition_id, 'Newsletter Edition' %><br>
-    <%= f.select :edition_id, ShinyNewsletters::Edition.pluck( :internal_name, :id ) %>
+    <%= f.select :edition_id, ShinyNewsletters::Edition.recently_updated.limit( 20 ).pluck( :internal_name, :id ), include_blank: '' %>
   </p>
   <p>
     <%= f.label :list_id, 'Mailing List' %><br>
-    <%= f.select :list_id, ShinyLists::List.pluck( :internal_name, :id ) %>
+    <%= f.select :list_id, ShinyLists::List.recently_updated.limit( 20 ).pluck( :internal_name, :id ), include_blank: '' %>
   </p>
   <p>
     <%= f.label :send_at %><br>

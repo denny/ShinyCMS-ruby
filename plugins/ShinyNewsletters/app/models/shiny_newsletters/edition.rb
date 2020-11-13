@@ -27,6 +27,10 @@ module ShinyNewsletters
 
     accepts_nested_attributes_for :elements
 
+    # Scopes
+
+    scope :recently_updated, -> { order( updated_at: :desc ) }
+
     # Instance methods
 
     def sent?

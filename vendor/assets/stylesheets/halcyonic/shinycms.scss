@@ -56,6 +56,10 @@ a:hover {
   padding-left:         1em;
 }
 
+.centered-above-section {
+  text-align:           center;
+}
+
 .content tr {
   height:               3em;
 }
@@ -338,6 +342,17 @@ nav .sm li li a:hover {
   max-height:           320px;
   max-width:            320px;
 }
+
+.next-link {
+  width:        33%;
+}
+
+.prev-link {
+  float:        right;
+  text-align:   right;
+  width:        33%;
+}
+
 
 // ===== ( comments ) =====
 
