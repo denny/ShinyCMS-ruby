@@ -22,6 +22,10 @@
 
 ### Medium-ish
 
+* Mock/VCR the external services in the tests; letting other people make my tests flaky is a tedious waste of time
+    * This ShinyForms one fails with seed 51328 because Akismet doesn't like the email address Faker gives it:
+        * it 'sends a plain email (dump of form_data)' do
+
 * Polls
 
 ### Large-ish
