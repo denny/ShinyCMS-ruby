@@ -6,8 +6,6 @@
 
 * .strip incoming email addresses
 
-* Don't try to load non-existent plugins from SHINYCMS_PLUGINS - check for existence in configured_names?
-
 * Get rid of 'precision: 6' on all timestamps? Seems excessive...
 
 

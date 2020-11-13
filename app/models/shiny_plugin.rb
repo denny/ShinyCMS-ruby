@@ -114,7 +114,9 @@ class ShinyPlugin
   end
 
   def self.configured_names
-    ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
+    requested = ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
+
+    return requested.uniq.select { |name| all_names.include?( name ) } if requested.present?
   end
 
   def self.all_names
