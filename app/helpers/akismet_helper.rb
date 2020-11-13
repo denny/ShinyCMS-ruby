@@ -36,7 +36,7 @@ module AkismetHelper
     end
   end
 
-  # Note: Akismet throws "Akismet::Error: unknown error" for invalid API keys
+  # NB: Akismet throws "Akismet::Error: unknown error" for invalid API keys
   def akismet_check( request, content )
     akismet_client.check(
       request.ip,
