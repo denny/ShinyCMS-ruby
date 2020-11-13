@@ -124,7 +124,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
       s2 = create :insert_element, content: 'Original content'
       create :insert_element
 
-      # Note: the [1] here means 'the second item on the form'; it's not a db id
+      # The [1] here means 'the second item on the form'; it's not the db row id
       put shiny_inserts.inserts_path, params: {
         "insert_set[elements_attributes][1][id]": s2.id,
         "insert_set[elements_attributes][1][name]": s2.name,
@@ -148,7 +148,7 @@ RSpec.describe 'Admin: Inserts', type: :request do
       s2 = create :insert_element, content: 'Original content'
       create :insert_element
 
-      # Note: the [0] here means 'the first item on the form'; it's not a db id
+      # The [1] here means 'the second item on the form'; it's not the db row id
       put shiny_inserts.inserts_path, params: {
         "insert_set[elements_attributes][1][id]": s2.id,
         "insert_set[elements_attributes][1][name]": s1.name,
