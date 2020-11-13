@@ -4,7 +4,9 @@
 
 ## Next / Soon
 
-* Fix plugin generators to pass new rubocop config (enforced whitespace)
+* .strip incoming email addresses
+
+* Get rid of 'precision: 6' on all timestamps? Seems excessive...
 
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
@@ -45,6 +47,8 @@
 ## New features that I'd like to add / features that I'd like to totally rebuild
 
 ### Small-ish
+
+* Handle timezones: https://prathamesh.tech/2019/07/11/use-time-use_zone-to-navigate-timezone
 
 * Add 'unsubscribe reason' to ShinyLists
 

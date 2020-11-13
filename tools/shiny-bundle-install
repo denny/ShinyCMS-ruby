@@ -6,8 +6,6 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Utility script to be run during each release/deploy on Heroku
+# Run `bundle install`, picking up any relevant ENV vars first (in particular, SHINYCMS_PLUGINS)
 
-gem uninstall bundler --version 1.17.2
-bundle exec rails db:migrate
-bundle exec rails assets:precompile
+dotenv -f .env.development.local bundle install

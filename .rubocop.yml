@@ -22,7 +22,6 @@ AllCops:
     - db/migrate/*.rb
     - db/schema.rb
     - docs/*
-    - lib/generators/*/plugin/plugin_generator.rb
     - log/*
     - node_modules/**/*
     - plugins/*/db/migrate/*.rb
