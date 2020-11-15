@@ -12,10 +12,12 @@ module ShinyAccess
     include ShinyDemoDataProvider
     include ShinyName
     include ShinySlug
+    include ShinySoftDelete
 
     # Associations
 
     has_many :memberships
+    has_many :users, through: :memberships, inverse_of: :access_groups
 
     # Instance methods
 
@@ -30,3 +32,8 @@ module ShinyAccess
     end
   end
 end
+
+# Don't want to lose records of these without a bit of deliberate effort, in case they were paid memberships
+User.has_many :access_memberships, -> { active }, class_name: 'ShinyAccess::Membership', dependent: :restrict_with_error
+User.has_many :access_groups, through: :access_memberships, source: :group,
+                              class_name: 'ShinyAccess::Group', inverse_of: :users

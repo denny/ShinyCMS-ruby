@@ -10,11 +10,12 @@ module ShinyAccess
   # Model for tracking memberships of access groups - part of the ShinyAccess plugin for ShinyCMS
   class Membership < ApplicationRecord
     include ShinyDemoDataProvider
+    include ShinySoftDelete
 
     # Associations
 
-    belongs_to :group
-    belongs_to :user
+    belongs_to :group, inverse_of: :memberships
+    belongs_to :user, inverse_of: :access_memberships
 
     # Validations
 
@@ -43,6 +44,31 @@ module ShinyAccess
       return false unless active?
 
       update!( ended_at: Time.zone.now.iso8601 )
+    end
+
+    def self.admin_search( query )
+      # TODO: what people are most likely to want to search memberships by is the member's username/name/email/etc
+      case query.match?
+      when %r{\d\d\d\d-\d\d-\d\d\s+(-|to)\s+\d\d\d\d-\d\d-\d\d}
+        search_date_range( query )
+      when %r{\d\d\d\d-\d\d-\d\d}
+        search_single_date( query )
+      end
+    end
+
+    def self.search_date_range( query )
+      dates = query.split %r{\s+(-|to)\s+}
+      date1 = Time.zone.parse( dates[0] )
+      date2 = Time.zone.parse( dates[1] )
+
+      where( began_at: date1.beginning_of_day..date2.end_of_day )
+        .or.where( ended_at: date1.beginning_of_day..date2.end_of_day )
+    end
+
+    def self.search_single_date( query )
+      searched_date = Time.zone.parse( query )
+      where( began_at: searched_date.beginning_of_day..searched_date.end_of_day )
+        .or.where( ended_at: searched_date.beginning_of_day..searched_date.end_of_day )
     end
 
     private

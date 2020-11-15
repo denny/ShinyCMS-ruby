@@ -9,6 +9,9 @@
 module ShinyAccess
   # Admin controller for access group memberships - part of the ShinyAccess plugin for ShinyCMS
   class Admin::MembershipsController < AdminController
+    before_action :stash_group
+    before_action :stash_query, only: :search
+
     def index
       authorize Membership
 
@@ -22,11 +25,7 @@ module ShinyAccess
     def search
       authorize Membership
 
-      q = params[:q]
-      @memberships = memberships.where( 'date(began_at) = ?', q )
-                                .or( memberships.where( 'date(ended_at) = ?', q ) )
-                                .recent
-                                .page( page_number ).per( items_per_page )
+      @memberships = memberships.admin_search( @query ).active_first.recent.page( page_number ).per( items_per_page )
 
       authorize @memberships if @memberships.present?
       render :index
@@ -35,10 +34,10 @@ module ShinyAccess
     def create
       authorize Membership
 
-      if group.add_member( strong_params[ :user_id ] )
-        redirect_to group_memberships_path( group ), notice: t( '.success' )
+      if @group.add_member( user_for_create )
+        redirect_to group_memberships_path( @group ), notice: t( '.success' )
       else
-        redirect_to group_memberships_path( group ), alert: t( '.failure' )
+        redirect_to group_memberships_path( @group ), alert: t( '.failure' )
       end
     end
 
@@ -47,9 +46,9 @@ module ShinyAccess
       authorize membership
 
       if membership.end
-        redirect_to group_memberships_path( group ), notice: t( '.success' )
+        redirect_to group_memberships_path( @group ), notice: t( '.success' )
       else
-        redirect_to group_memberships_path( group ), alert: t( '.failure' )
+        redirect_to group_memberships_path( @group ), alert: t( '.failure' )
       end
     end
 
@@ -60,20 +59,31 @@ module ShinyAccess
 
     private
 
-    def group
-      Group.find( params[ :group_id ] )
+    def stash_group
+      @group = Group.find( params[ :group_id ] )
     end
 
     def memberships
-      group.memberships
+      @group.memberships
     end
 
     def membership
       memberships.find( params[ :id ] )
     end
 
+    def stash_query
+      params.permit( :q )
+      @query = params[ :q ]
+    end
+
     def strong_params
-      params.require( :membership ).permit( :user_id )
+      params.require( :membership ).permit( :user_id, :username )
+    end
+
+    def user_for_create
+      return User.find( strong_params[ :user_id ] ) if strong_params[ :user_id ].present?
+
+      User.find_by( username: strong_params[ :username ] )
     end
   end
 end

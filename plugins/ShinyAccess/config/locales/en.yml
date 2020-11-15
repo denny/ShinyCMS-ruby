@@ -39,6 +39,8 @@ en:
           began: Began
           ended: Ended
           cancel: Cancel
+          add_member: Add new member
+          username: Username
         create:
           success: New member added
           failure: Failed to add new member

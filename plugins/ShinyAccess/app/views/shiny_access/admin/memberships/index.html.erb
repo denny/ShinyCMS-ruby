@@ -1,7 +1,7 @@
 <% @page_title = t( '.title' ) %>
 
 <% if @memberships.present? %>
-<%= render partial: 'admin/includes/search', locals: { action: shiny_access.search_group_memberships_path( @memberships.first.group ), placeholder: t( '.search' ) } %>
+<%= render partial: 'admin/includes/search', locals: { action: shiny_access.search_group_memberships_path( @group ), placeholder: t( '.search' ) } %>
 
 <table class="table table-responsive-sm table-striped">
   <thead>
@@ -32,7 +32,7 @@
         <% end %>
       </td>
       <td class="actions">
-        <%= link_to t( '.cancel' ), shiny_access.group_membership_path( membership.group, membership ),
+        <%= link_to t( '.cancel' ), shiny_access.group_membership_path( @group, membership ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>
@@ -46,4 +46,10 @@
 <p>
   <%= t( 'empty_list', items: 'memberships' ) %>
 </p>
+<% end %>
+
+<%= form_tag shiny_access.group_memberships_path( @group ), method: :post do %>
+  <%= field_set_tag t( '.add_member' ) do %>
+    <%= text_field_tag :username, '', placeholder: t( '.username' ) %> <%= submit_tag t( 'add' ) %>
+  <% end %>
 <% end %>
