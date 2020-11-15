@@ -7,7 +7,7 @@ en:
     recaptcha_for_forms: Protect ShinyForms with reCAPTCHA
     akismet_for_forms: Detect spammy ShinyForm submissions with Akismet
   settings:
-    recaptcha_form_score: Minimum reCAPTCHA v3 score for ShinyForm submissions
+    recaptcha_score_for_forms: Minimum reCAPTCHA v3 score for ShinyForm submissions
 
   shiny_forms:
     forms:
