@@ -95,7 +95,7 @@ class DiscussionsController < MainController
   end
 
   def new_comment_details
-    comment_params = { author: find_author }
+    comment_params = { author: find_author, ip_address: request.ip }
     comment_params.merge!( strong_params.except( :author_type, :author_name, :author_email, :author_url ) )
     comment_params.merge!( discussion_id: @discussion.id )
   end
