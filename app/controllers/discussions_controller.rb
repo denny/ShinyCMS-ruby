@@ -63,7 +63,14 @@ class DiscussionsController < MainController
   end
 
   def new_comment_passes_checks_and_saves?
-    check_with_recaptcha && check_with_akismet && @new_comment.save
+    check_locks && check_with_recaptcha && check_with_akismet && @new_comment.save
+  end
+
+  def check_locks
+    return false if @discussion.locked?
+    return true  if @comment.blank?
+
+    !@comment.locked?
   end
 
   def check_with_recaptcha
