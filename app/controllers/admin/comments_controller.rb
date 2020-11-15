@@ -91,8 +91,8 @@ class Admin::CommentsController < AdminController
 
   def update_params
     params.permit(
-      :authenticity_token, :commit, :_method, spam_comments: {}
-    )[ :spam_comments ] || {}
+      :authenticity_token, :commit, :spam_or_ham, :_method, spam_comments: {}
+    ) || {}
   end
 
   def process_spam_comments
@@ -113,12 +113,13 @@ class Admin::CommentsController < AdminController
 
   def selected_comment_ids
     comment_ids = []
-    the_params = update_params
-    the_params.each_key do |name|
-      comment_id = name.match %r{comment_(\d+)}
+    update_params[ :spam_comments ].each_pair do |key, value|
+      next unless value == '1'
+
+      comment_id = key.match %r{comment_(\d+)}
       next if comment_id.nil?
 
-      comment_ids << comment_id[1].to_i if update_params[ name ] == '1'
+      comment_ids << comment_id[1].to_i
     end
     comment_ids
   end

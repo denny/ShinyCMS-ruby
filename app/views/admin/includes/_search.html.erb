@@ -1,4 +1,5 @@
-<% action ||= "#{url_for}/search"; label ||= nil; placeholder ||= '' %>
+<% action ||= url_for; action = "#{action}/search" unless action.ends_with? '/search' %>
+<% label  ||= nil; placeholder ||= '' %>
 <span class="float-right">
   <%= form_tag action, method: :get do |f| %>
     <% if label.present? %><%= label_tag label %><% end %>
