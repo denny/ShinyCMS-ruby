@@ -25,7 +25,9 @@ module ShinyAccess
     def search
       authorize Membership
 
-      @memberships = memberships.admin_search( @query ).active_first.recent.page( page_number ).per( items_per_page )
+      @memberships = memberships.admin_search( @query )
+                                .active_first.recent
+                                .page( page_number ).per( items_per_page )
 
       authorize @memberships if @memberships.present?
       render :index
