@@ -20,7 +20,7 @@ module ShinyAccess
     describe 'current_user_can_access?( :slug )' do
       it 'returns true if they do have active membership of the specified group' do
         group1 = create :access_group, slug: 'TestSuite'
-        group1.add_member( user1.id )
+        group1.add_member( user1 )
 
         expect( helper.current_user_can_access?( :TestSuite ) ).to be true
       end
