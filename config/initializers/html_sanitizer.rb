@@ -16,7 +16,7 @@ ActionView::Base.sanitized_allowed_tags = %w[
   h1 h2 h3 h4 h5 h6
   ul ol li
   blockquote code pre span
-  img video
+  img video source
   b i strong em
   small
 ]
@@ -25,6 +25,7 @@ ActionView::Base.sanitized_allowed_tags = %w[
 ActionView::Base.sanitized_allowed_attributes = %w[
   class
   href src
-  name title alt
+  name type
+  title alt
   height width
 ]
