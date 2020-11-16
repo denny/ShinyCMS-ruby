@@ -31,11 +31,27 @@ module ShinyAccess
         expect( helper.current_user_can_access?( :AnotherTest ) ).to be false
       end
 
+      it 'returns false if the group does not exist' do
+        expect( helper.current_user_can_access?( :NoSuchGroup ) ).to be false
+      end
+
       it 'returns false if their membership of the specified group has ended' do
         group1 = create :access_group, slug: 'MoarTest'
         create :access_membership, :ended, user: user1, group: group1
 
         expect( helper.current_user_can_access?( :MoarTest ) ).to be false
+      end
+    end
+
+    describe 'access_group_name( :slug )' do
+      it 'returns the name of the access group if it exists' do
+        group1 = create :access_group, slug: 'TestSuite'
+
+        expect( helper.access_group_name( :TestSuite ) ).to eq group1.name
+      end
+
+      it 'returns nil if the group does not exist' do
+        expect( helper.access_group_name( :NoSuchGroup ) ).to eq nil
       end
     end
   end

@@ -15,13 +15,23 @@
 </p>
 <% end %>
 
+<% if plugin_loaded? :ShinyAccess %>
+<% if current_user_can_access? :restricted_content %>
+<p>
+  You have access to view <%= access_group_name :restricted_content %>
+</p>
+<% end %>
+<% end %>
+
 <%= simple_format some_text %>
 
 <%= sanitize html_text %>
 
+<% if plugin_loaded? :ShinyInserts %>
 <p class="small">
   Contact:
   <% if insert_type?( 'the_email', 'short_text' ) %>
     <a href="mailto:<%= insert( 'the_email' ) %>"><%= insert( 'the_email' ) %></a>
   <% end %>
 </p>
+<% end %>
