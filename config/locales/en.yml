@@ -264,7 +264,7 @@ en:
     comments: Comments
     comment_notifications: Comment notifications
     recaptcha_for_comments: Protect comment form with reCAPTCHA
-    recaptcha_for_registration: Protect registration form with reCAPTCHA
+    recaptcha_for_registrations: Protect registration form with reCAPTCHA
     tags: Tags
     user_login: User Login
     user_registration: User Registration
