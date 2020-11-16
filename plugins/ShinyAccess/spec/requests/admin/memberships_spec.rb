@@ -26,12 +26,30 @@ RSpec.describe 'Access group membership admin features', type: :request do
     end
   end
 
-  describe 'GET /admin/access/groups/1/memberships/search?q=2019-12-31' do
-    it 'displays the list of matching memberships' do
+  describe 'GET /admin/access/groups/1/memberships/search?q={date/dates}' do
+    it 'displays the list of matching memberships for a single date' do
       member1 = create :access_membership, group: group1, began_at: 2.days.ago
       member2 = create :access_membership, group: group1
 
       get shiny_access.search_group_memberships_path( group1 ), params: { q: member1.began_at.iso8601 }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
+
+      expect( response.body ).to     have_css 'td', text: member1.user.username
+      expect( response.body ).not_to have_css 'td', text: member2.user.username
+    end
+
+    it 'displays the list of matching memberships for a date range' do
+      member1 = create :access_membership, group: group1, began_at: 3.days.ago
+      member2 = create :access_membership, group: group1
+
+      date1 = 4.days.ago.to_date.iso8601
+      date2 = 2.days.ago.to_date.iso8601
+
+      date_range = "#{date1} to #{date2}"
+
+      get shiny_access.search_group_memberships_path( group1 ), params: { q: date_range }
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
