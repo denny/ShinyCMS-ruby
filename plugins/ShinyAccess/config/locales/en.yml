@@ -34,10 +34,11 @@ en:
           success: Access group deleted
       memberships:
         index:
-          title: Access Group Memberships
-          search: Search group members
-          began: Began
-          ended: Ended
+          title: Memberships for '%{name}'
+          search: Search memberships
+          member: Member
+          from: From
+          to: To
           cancel: Cancel
           add_member: Add new member
           username: Username

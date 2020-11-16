@@ -22,7 +22,7 @@ RSpec.describe 'Access group membership admin features', type: :request do
       get shiny_access.group_memberships_path( group1 )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.describe 'Access group membership admin features', type: :request do
       get shiny_access.search_group_memberships_path( group1 ), params: { q: member1.began_at.iso8601 }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
 
       expect( response.body ).to     have_css 'td', text: member1.user.username
       expect( response.body ).not_to have_css 'td', text: member2.user.username
@@ -51,7 +51,7 @@ RSpec.describe 'Access group membership admin features', type: :request do
       expect( response      ).to redirect_to shiny_access.group_memberships_path( group1 )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_access.admin.memberships.create.success' )
     end
 
@@ -62,7 +62,7 @@ RSpec.describe 'Access group membership admin features', type: :request do
       expect( response      ).to redirect_to shiny_access.group_memberships_path( group1 )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_access.admin.memberships.create.failure' )
     end
   end
@@ -78,9 +78,10 @@ RSpec.describe 'Access group membership admin features', type: :request do
       follow_redirect!
       success_message = I18n.t( 'shiny_access.admin.memberships.destroy.success' )
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
       expect( response.body ).to have_css '.alert-success', text: success_message
-      expect( response.body ).to have_css 'td', text: I18n.t( 'shiny_access.admin.memberships.index.ended' )
+
+      expect( membership1.reload.ended_at ).not_to eq nil
     end
 
     it 'refuses to mark an already ended membership as ending today' do
@@ -93,7 +94,7 @@ RSpec.describe 'Access group membership admin features', type: :request do
       follow_redirect!
       failure_message = I18n.t( 'shiny_access.admin.memberships.destroy.failure' )
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
       expect( response.body ).to have_css '.alert-danger', text: failure_message
     end
   end

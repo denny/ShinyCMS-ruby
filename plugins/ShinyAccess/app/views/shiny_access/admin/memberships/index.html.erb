@@ -1,4 +1,4 @@
-<% @page_title = t( '.title' ) %>
+<% @page_title = t( '.title', name: @group.internal_name ) %>
 
 <% if @memberships.present? %>
 <%= render partial: 'admin/includes/search', locals: { action: shiny_access.search_group_memberships_path( @group ), placeholder: t( '.search' ) } %>
@@ -7,10 +7,13 @@
   <thead>
     <tr>
       <th>
-        Name
+        <%= t( '.member' ) %>
       </th>
-      <th>
-        Status
+      <th class="width20pc">
+        <%= t( '.from' ) %>
+      </th>
+      <th class="width20pc">
+        <%= t( '.to' ) %>
       </th>
       <th>
         &nbsp;
@@ -25,10 +28,13 @@
         <%= membership.user.name %>
       </td>
       <td>
-        <% if membership.active? %>
-        <%= t( '.began' ) %> (<%= display_time_on_date( membership.began_at ) %>)
+        <%= display_time_on_date_no_day( membership.began_at ) %>
+      </td>
+      <td>
+        <% if membership.ended_at.present? %>
+          <%= display_time_on_date_no_day( membership.ended_at ) %>
         <% else %>
-        <%= t( '.ended' ) %> (<%= display_time_on_date( membership.ended_at ) %>)
+          <%= display_time_on_date_no_day( membership.expires_at ) if membership.expires_at.present? %>
         <% end %>
       </td>
       <td class="actions">
@@ -50,6 +56,6 @@
 
 <%= form_tag shiny_access.group_memberships_path( @group ), method: :post do %>
   <%= field_set_tag t( '.add_member' ) do %>
-    <%= text_field_tag :username, '', placeholder: t( '.username' ) %> <%= submit_tag t( 'add' ) %>
+    <%= text_field_tag 'membership[username]', '', placeholder: t( '.username' ) %> <%= submit_tag t( 'add' ) %>
   <% end %>
 <% end %>
