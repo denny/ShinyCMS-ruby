@@ -46,7 +46,7 @@ RSpec.describe Admin::EmailStatsController, type: :request do
     it 'fetches the stats with matching details' do
       # TODO: factory for ahoy messages
 
-      get email_stats_search_path, params: { q: 'banana' }
+      get search_email_stats_path, params: { q: 'banana' }
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.email_stats.index.title' ).titlecase

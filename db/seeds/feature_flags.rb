@@ -18,14 +18,14 @@ def add_feature_flag( name:, description: nil, enabled: true )
   )
 end
 
-add_feature_flag( name: 'comments',                   description: 'Enable comment features' )
-add_feature_flag( name: 'comment_notifications',      description: 'Send notification emails for comments' )
-add_feature_flag( name: 'akismet_for_comments',       description: 'Flag spam comments with Akismet' )
-add_feature_flag( name: 'recaptcha_for_comments',     description: 'Protect comment forms with reCAPTCHA' )
-add_feature_flag( name: 'recaptcha_for_registration', description: 'Protect user registration form with reCAPTCHA' )
-add_feature_flag( name: 'tags',                       description: 'Enable tag features' )
-add_feature_flag( name: 'upvotes',                    description: "Enable up-votes (AKA 'likes')" )
-add_feature_flag( name: 'downvotes',                  description: 'Enable down-votes (requires up-votes)' )
+add_feature_flag( name: 'comments',                    description: 'Enable comment features' )
+add_feature_flag( name: 'comment_notifications',       description: 'Send notification emails for comments' )
+add_feature_flag( name: 'akismet_for_comments',        description: 'Flag spam comments with Akismet' )
+add_feature_flag( name: 'recaptcha_for_comments',      description: 'Protect comment forms with reCAPTCHA' )
+add_feature_flag( name: 'recaptcha_for_registrations', description: 'Protect user registration form with reCAPTCHA' )
+add_feature_flag( name: 'tags',                        description: 'Enable tag features' )
+add_feature_flag( name: 'upvotes',                     description: "Enable up-votes (AKA 'likes')" )
+add_feature_flag( name: 'downvotes',                   description: 'Enable down-votes (requires up-votes)' )
 
 # These two are disabled by default, to reduce the risk of brute force attacks on new/dev/demo sites
 add_feature_flag( name: 'user_login',        description: 'Allow users to log in',                enabled: false )
