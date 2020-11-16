@@ -32,9 +32,9 @@
       </td>
       <td>
         <% if subscription.active? %>
-        <%= I18n.t( 'shiny_lists.subscribed' ) %> (<%= subscription.subscribed_at.to_s( :shinydate ) %>)
+        <%= I18n.t( 'shiny_lists.subscribed' ) %> (<%= display_time_on_date( subscription.subscribed_at ) %>)
         <% else %>
-        <%= I18n.t( 'shiny_lists.unsubscribed' ) %> (<%= subscription.unsubscribed_at.to_s( :shinydate ) %>)
+        <%= I18n.t( 'shiny_lists.unsubscribed' ) %> (<%= display_time_on_date( subscription.unsubscribed_at ) %>)
         <% end %>
       </td>
       <td class="actions">

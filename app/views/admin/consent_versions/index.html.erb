@@ -30,8 +30,8 @@
         <%= version.slug %>
       </td>
       <td>
-        <%= version.created_at.to_s( :shinydate ) %>
-        <% if version.updated_at > version.created_at %>(<%= version.updated_at.to_s( :shinydate ) %>)<% end %>
+        <%= display_date( version.created_at ) %>
+        <% if version.updated_at > version.created_at %>(<%= display_date( version.updated_at ) %>)<% end %>
       </td>
       <td class="actions">
         <%# You shouldn't edit or delete consent versions that people have consented to! %>
