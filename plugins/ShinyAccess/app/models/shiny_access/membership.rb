@@ -55,7 +55,7 @@ module ShinyAccess
     def self.search_date_range( query )
       dates = query.split %r{\s+(-|to)\s+}
       date1 = Time.zone.parse( dates[0] )
-      date2 = Time.zone.parse( dates[1] )
+      date2 = Time.zone.parse( dates[2] )
 
       where( began_at: date1.beginning_of_day..date2.end_of_day )
         .or( where( ended_at: date1.beginning_of_day..date2.end_of_day ) )
