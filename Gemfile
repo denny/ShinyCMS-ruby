@@ -68,6 +68,9 @@ source 'https://rubygems.org' do
   # Authorisation
   gem 'pundit'
 
+  # Monitoring
+  gem 'bugsnag'
+
   # Soft delete
   gem 'acts_as_paranoid'
 
