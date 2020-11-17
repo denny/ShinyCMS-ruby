@@ -18,11 +18,14 @@
 * [User accounts](Features/MainApp/UserAccounts.md)
 * [Admin features](Features/MainApp/admin-features.md)
 
-* Basic CMS features ('brochure sites')
+* Basic CMS features
     * [Pages](Features/Plugins/ShinyPages.md)
     * [Inserts](Features/Plugins/ShinyInserts.md)
     * [Form handlers](Features/Plugins/ShinyForms.md)
     * [Search](Features/Plugins/ShinySearch.md)
+
+* Advanced CMS features
+    * [Access control](Features/Plugins/ShinyAccess.md)
 
 * Post regular updates
     * [Blog](Features/Plugins/ShinyBlog.md)
@@ -48,6 +51,8 @@
     * [Charts and dashboards](Features/MainApp/Charts.md)
 
 * [MJML email templates](Features/MainApp/mjml.md)
+
+* [Rake tasks](rake-tasks.md)
 
 
 ## Contributing to ShinyCMS (developer documentation)

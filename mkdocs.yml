@@ -37,6 +37,9 @@ nav:
       - Inserts:       Features/Plugins/ShinyInserts.md
       - Search:        Features/Plugins/ShinySearch.md
 
+    - More advanced features:
+      - Access control: Features/Plugins/ShinyAccess.md
+
     - Regular content updates:
       - Blog:          Features/Plugins/ShinyBlog.md
       - News section:  Features/Plugins/ShinyNews.md
