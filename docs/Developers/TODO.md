@@ -2,13 +2,6 @@
 
 ## TODO
 
-## Next / Soon
-
-* .strip incoming email addresses
-
-* Get rid of 'precision: 6' on all timestamps? Seems excessive...
-
-
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
 ### Small-ish
@@ -31,7 +24,8 @@
 ### Large-ish
 
 * Access-controlled file downloads
-    * Can this be done with tokenised AWS links? And if yes, do I want that vendor lock-in? (Probably not?)
+    * Can this be done with tokenised AWS links? (Probably)
+    * If so, do I want that vendor lock-in? (Probably not)
 
 * Online shop
 
