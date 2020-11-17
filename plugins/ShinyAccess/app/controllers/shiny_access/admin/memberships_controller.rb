@@ -15,19 +15,15 @@ module ShinyAccess
     def index
       authorize Membership
 
-      return if memberships.blank?
+      @memberships = memberships.page( page_number ).per( items_per_page )
 
-      @memberships = memberships.active_first.recent.page( page_number ).per( items_per_page )
-
-      authorize @memberships
+      authorize @memberships if @memberships.present?
     end
 
     def search
       authorize Membership
 
-      @memberships = memberships.admin_search( @query )
-                                .active_first.recent
-                                .page( page_number ).per( items_per_page )
+      @memberships = search_results.page( page_number ).per( items_per_page )
 
       authorize @memberships if @memberships.present?
       render :index
@@ -37,10 +33,12 @@ module ShinyAccess
       authorize Membership
 
       if @group.add_member( user_for_create )
-        redirect_to group_memberships_path( @group ), notice: t( '.success' )
+        flash[ :notice ] = t( '.success' )
       else
-        redirect_to group_memberships_path( @group ), alert: t( '.failure' )
+        flash[ :alert ] = t( '.failure' )
       end
+
+      redirect_to group_memberships_path( @group )
     end
 
     # This marks a membership as ended - it doesn't delete the record of it
@@ -48,10 +46,12 @@ module ShinyAccess
       authorize membership
 
       if membership.end
-        redirect_to group_memberships_path( @group ), notice: t( '.success' )
+        flash[ :notice ] = t( '.success' )
       else
-        redirect_to group_memberships_path( @group ), alert: t( '.failure' )
+        flash[ :alert ] = t( '.failure' )
       end
+
+      redirect_to group_memberships_path( @group )
     end
 
     # Override the breadcrumbs 'section' link to go back to the groups page
@@ -66,7 +66,7 @@ module ShinyAccess
     end
 
     def memberships
-      @group.memberships
+      @group.memberships.active_first.recent
     end
 
     def membership
@@ -76,6 +76,10 @@ module ShinyAccess
     def stash_query
       params.permit( :q )
       @query = params[ :q ]
+    end
+
+    def search_results
+      memberships.admin_search( @query )
     end
 
     def strong_params

@@ -53,9 +53,7 @@ module ShinyAccess
     end
 
     def self.search_date_range( query )
-      dates = query.split %r{\s+(-|to)\s+}
-      date1 = Time.zone.parse( dates[0] )
-      date2 = Time.zone.parse( dates[2] )
+      date1, date2 = start_and_end_dates_from_string( query )
 
       where( began_at: date1.beginning_of_day..date2.end_of_day )
         .or( where( ended_at: date1.beginning_of_day..date2.end_of_day ) )
@@ -66,6 +64,11 @@ module ShinyAccess
 
       where( began_at: searched_date.beginning_of_day..searched_date.end_of_day )
         .or( where( ended_at: searched_date.beginning_of_day..searched_date.end_of_day ) )
+    end
+
+    def self.start_and_end_dates_from_string( string )
+      dates = string.split %r{\s+(-|to)\s+}
+      [ Time.zone.parse( dates[0] ), Time.zone.parse( dates[2] ) ]
     end
 
     private
