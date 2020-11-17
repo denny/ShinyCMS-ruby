@@ -197,7 +197,7 @@ GEM
     aws-sigv4 (1.2.2)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.16)
-    blazer (2.2.8)
+    blazer (2.3.0)
       activerecord (>= 5)
       chartkick (>= 3.2)
       railties (>= 5)
@@ -258,7 +258,7 @@ GEM
       netaddr (>= 2.0.4, < 3)
       simpleidn
     errbase (0.2.0)
-    erubi (1.9.0)
+    erubi (1.10.0)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.1.0)
@@ -509,7 +509,7 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    tzinfo (1.2.7)
+    tzinfo (1.2.8)
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
