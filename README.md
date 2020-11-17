@@ -34,7 +34,10 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
 * [Newsletters](docs/Features/Plugins/ShinyNewsletters.md) ±
   * HTML mailshots, produced from MJML templates for cross-platform compatibility
 * [Basic form handlers](docs/Features/Plugins/ShinyForms.md) ±
-  * e.g. 'email form data to site owner' - useful for contact and enquiry forms
+  * e.g. 'email form data to site owner' - useful for contact and enquiry forms]
+  * Protected by [reCAPTCHA](https://developers.google.com/recaptcha/) and [Akismet](https://akismet.com/)
+* [Access control](docs/Features/Plugins/ShinyAccess.md) ±
+  * Create access groups, add/remove members, use helpers to show or hide content for different groups
 * [Site search](docs/Features/Plugins/ShinySearch.md) ±
   * Ready to support multiple search backends (default is pg_search multisearch)
 * [Tags](docs/Features/MainApp/Tags.md)
@@ -51,11 +54,8 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
 
 ### Planned features
 
-* Content Access Groups
-  * Control access to large items - file downloads, whole pages on the site
-  * Or smaller items within a page - specific images, page sections, even individual words
 * Payment handling plugins
-  * Including recurring subscriptions to content access groups - AKA paid membership
+  * Including recurring subscriptions to Access Groups - AKA paid membership
 * Online shop
 * Support for multiple blogs on a single site (in progress)
 * [Algolia](https://www.algolia.com/) support for search plugin (in progress)
@@ -88,16 +88,14 @@ All other supported [external services](docs/Services.md) are optional. If you a
 
 ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.2 and Rails 6.0.3.4).
 
-It has been tested on every release of Rails 6 so far, and with most versions of Ruby from 2.5.8 onwards ([view recent test results][test results] for ruby 2.5.8, 2.6.6, and 2.7.2).
+It has been tested on most Ruby versions from 2.5.8 onwards, and every release of Rails 6 so far.
 
-[Test results]: https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/190156596
-
-There are currently no plans to add support for Rails 5 or older Ruby versions.
+(Recent test results for [Ruby 2.5.8, 2.6.6, and 2.7.2](https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/190156596))
 
 
 ## Contributing
 
-If you're interested in contributing to ShinyCMS, please start by reading the [developer documentation](docs/Developers/index.md).
+See [contributing to ShinyCMS](docs/Contributing.md).
 
 
 ## Code of Conduct
