@@ -26,6 +26,8 @@ module ShinyAccess
     end
 
     def add_member( user )
+      return false if member? user
+
       memberships.create( user: user ).persisted?
     end
   end

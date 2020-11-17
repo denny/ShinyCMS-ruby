@@ -119,7 +119,7 @@ Rails.application.routes.draw do
 
       # Users
       resources :users, except: :show, concerns: %i[ paginatable searchable ]
-      get 'users/usernames', to: 'users#username_search', as: :username_search
+      get 'users/usernames', to: 'users#username_search', as: :search_usernames
     end
 
     ########################################

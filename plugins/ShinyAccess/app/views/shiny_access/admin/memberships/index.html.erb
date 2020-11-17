@@ -56,6 +56,6 @@
 
 <%= form_tag shiny_access.group_memberships_path( @group ), method: :post do %>
   <%= field_set_tag t( '.add_member' ) do %>
-    <%= text_field_tag 'membership[username]', '', placeholder: t( '.username' ) %> <%= submit_tag t( 'add' ) %>
+    <%= text_field_tag 'membership[username]', '', placeholder: t( '.username' ), id: :find_user_by_username %> <%= submit_tag t( 'add' ) %>
   <% end %>
 <% end %>
