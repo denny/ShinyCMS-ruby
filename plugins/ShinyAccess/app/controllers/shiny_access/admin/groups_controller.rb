@@ -9,11 +9,13 @@
 module ShinyAccess
   # Controller for access control group admin features - part of the ShinyAccess plugin for ShinyCMS
   class Admin::GroupsController < AdminController
+    before_action :stash_query, only: :search
+    before_action :stash_group, only: %i[ edit update destroy ]
+
     def index
       authorize Group
 
-      page_num = params[ :page ] || 1
-      @groups = Group.page( page_num )
+      @groups = groups.page( page_number ).per( items_per_page )
 
       authorize @groups if @groups.present?
     end
@@ -21,11 +23,7 @@ module ShinyAccess
     def search
       authorize Group
 
-      q = params[:q]
-      @groups = Group.where( 'internal_name ilike ?', "%#{q}%" )
-                     .or( Group.where( 'slug ilike ?', "%#{q}%" ) )
-                     .order( :internal_name )
-                     .page( page_number ).per( items_per_page )
+      @groups = groups.admin_search( @query ).page( page_number ).per( items_per_page )
 
       authorize @groups if @groups.present?
       render :index
@@ -37,7 +35,7 @@ module ShinyAccess
     end
 
     def create
-      @group = Group.new( group_params )
+      @group = Group.new( strong_params )
       authorize @group
 
       if @group.save
@@ -49,15 +47,13 @@ module ShinyAccess
     end
 
     def edit
-      @group = Group.find( params[:id] )
       authorize @group
     end
 
     def update
-      @group = Group.find( params[:id] )
       authorize @group
 
-      if @group.update( group_params )
+      if @group.update( strong_params )
         redirect_to edit_group_path( @group ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
@@ -66,16 +62,28 @@ module ShinyAccess
     end
 
     def destroy
-      group = Group.find( params[:id] )
-      authorize group
+      authorize @group
 
-      flash[ :notice ] = t( '.success' ) if group.destroy
+      flash[ :notice ] = t( '.success' ) if @group.destroy
       redirect_to groups_path
     end
 
     private
 
-    def group_params
+    def groups
+      Group.order( :internal_name )
+    end
+
+    def stash_group
+      @group = Group.find( params[:id] )
+    end
+
+    def stash_query
+      params.permit( :q )
+      @query = params[ :q ]
+    end
+
+    def strong_params
       params.require( :group ).permit(
         :internal_name, :public_name, :slug, :description
       )
