@@ -8,8 +8,6 @@
 
 # Controller for main site email-recipient features in ShinyCMS
 class Admin::EmailRecipientsController < AdminController
-  include ShinyPagingHelper
-
   def index
     authorize EmailRecipient
     @recipients = EmailRecipient.page( page_number ).per( items_per_page )
