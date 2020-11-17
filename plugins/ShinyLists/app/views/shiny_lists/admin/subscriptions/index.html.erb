@@ -32,14 +32,14 @@
       </td>
       <td>
         <% if subscription.active? %>
-        <%= I18n.t( 'shiny_lists.subscribed' ) %> (<%= subscription.subscribed_at.to_s( :shinydate ) %>)
+        <%= I18n.t( 'shiny_lists.subscribed' ) %> (<%= display_time_on_date( subscription.subscribed_at ) %>)
         <% else %>
-        <%= I18n.t( 'shiny_lists.unsubscribed' ) %> (<%= subscription.unsubscribed_at.to_s( :shinydate ) %>)
+        <%= I18n.t( 'shiny_lists.unsubscribed' ) %> (<%= display_time_on_date( subscription.unsubscribed_at ) %>)
         <% end %>
       </td>
       <td class="actions">
         <%= link_to t( 'shiny_lists.unsubscribe' ), shiny_lists.admin_list_unsubscribe_path( subscription.list, subscription ),
-            method: :put, data: { confirm: t( 'are_you_sure' ) } %>
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>
     <% end %>
@@ -53,4 +53,3 @@
   <%= t( 'empty_list', items: 'subscriptions' ) %>
 </p>
 <% end %>
-

@@ -5,10 +5,12 @@
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
 
-### 2020-11-09 - v20.11 - November 2020: The 'tricky second album' release
+### 2020-11-09  20.11  November 2020: The 'tricky second album' release
+
+    * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v20.11
 
     * Plugin versions:
-        * There have been code changes in every plugin since 20.10 release, so their version numbers have all been bumped to 20.11 too
+        * All raised to 20.11 - there have been code changes in every single plugin since the 20.10 release
 
     * Updates and changes since 20.10:
         * General:
@@ -76,7 +78,8 @@ This file contains information about changes (particularly breaking changes) bet
         * Added missing edit-capability templates in a few plugins, that were causing admins to lose capabilities when edited and saved via the web UI
 
 
-### 2020-10-01 - v20.10 - October 2020: The 'First Birthday' release
+### 2020-10-01  20.10  October 2020: The 'First Birthday' release
 
-    * This is the first release, tagged v20.10 on GitHub:
-        * https://github.com/denny/ShinyCMS-ruby/releases/tag/v20.10
+    * This is the first release, in celebration of 1 whole year working on this project!
+
+    * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v20.10

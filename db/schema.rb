@@ -12,7 +12,7 @@
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2020_10_31_050440) do
+ActiveRecord::Schema.define(version: 2020_11_11_195416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -302,6 +302,36 @@ ActiveRecord::Schema.define(version: 2020_10_31_050440) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deleted_at", precision: 6
     t.index ["deleted_at"], name: "index_settings_on_deleted_at"
+  end
+
+  create_table "shiny_access_groups", force: :cascade do |t|
+    t.string "internal_name", null: false
+    t.string "public_name"
+    t.string "slug", null: false
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_access_groups_on_deleted_at"
+    t.index ["slug"], name: "index_shiny_access_groups_on_slug"
+  end
+
+  create_table "shiny_access_memberships", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "began_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "expires_at", precision: 6
+    t.datetime "ended_at", precision: 6
+    t.text "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["began_at"], name: "index_shiny_access_memberships_on_began_at"
+    t.index ["deleted_at"], name: "index_shiny_access_memberships_on_deleted_at"
+    t.index ["ended_at"], name: "index_shiny_access_memberships_on_ended_at"
+    t.index ["expires_at"], name: "index_shiny_access_memberships_on_expires_at"
+    t.index ["group_id"], name: "index_shiny_access_memberships_on_group_id"
+    t.index ["user_id"], name: "index_shiny_access_memberships_on_user_id"
   end
 
   create_table "shiny_blog_posts", force: :cascade do |t|
@@ -641,6 +671,8 @@ ActiveRecord::Schema.define(version: 2020_10_31_050440) do
   add_foreign_key "comments", "discussions"
   add_foreign_key "setting_values", "settings"
   add_foreign_key "setting_values", "users"
+  add_foreign_key "shiny_access_memberships", "shiny_access_groups", column: "group_id"
+  add_foreign_key "shiny_access_memberships", "users"
   add_foreign_key "shiny_blog_posts", "users"
   add_foreign_key "shiny_inserts_elements", "shiny_inserts_sets", column: "set_id"
   add_foreign_key "shiny_lists_subscriptions", "consent_versions"

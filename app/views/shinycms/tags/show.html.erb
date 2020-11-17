@@ -16,8 +16,7 @@
         <% if item.class.include? ShinyPost %>
         <%= link_to item.title, item.path %>
           posted by <%= user_profile_link( item.author ) %>
-          at <%= item.posted_at.to_s( :time ) %>
-          on <%= item.posted_at.to_s( :shinydate ) %>
+          at <%= display_time_on_date( item.posted_at ) %>
         <% end %>
       </li>
       <% end %>

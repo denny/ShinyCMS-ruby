@@ -1,0 +1,61 @@
+<% @page_title = t( '.title', name: @group.internal_name ) %>
+
+<% if @memberships.present? %>
+<%= render partial: 'admin/includes/search', locals: { action: shiny_access.search_group_memberships_path( @group ), placeholder: t( '.search' ) } %>
+
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        <%= t( '.member' ) %>
+      </th>
+      <th class="width20pc">
+        <%= t( '.from' ) %>
+      </th>
+      <th class="width20pc">
+        <%= t( '.to' ) %>
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @memberships.each do |membership| %>
+    <tr>
+      <td>
+        <%= membership.user.name %>
+      </td>
+      <td>
+        <%= display_time_on_date_no_day( membership.began_at ) %>
+      </td>
+      <td>
+        <% if membership.ended_at.present? %>
+          <%= display_time_on_date_no_day( membership.ended_at ) %>
+        <% else %>
+          <%= display_time_on_date_no_day( membership.expires_at ) if membership.expires_at.present? %>
+        <% end %>
+      </td>
+      <td class="actions">
+        <%= link_to t( '.cancel' ), shiny_access.group_membership_path( @group, membership ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  <tbody>
+</table>
+
+<%= render partial: 'admin/includes/pager', locals: { paged: @memberships, route_set: shiny_access } %>
+
+<% else %>
+<p>
+  <%= t( 'empty_list', items: 'memberships' ) %>
+</p>
+<% end %>
+
+<%= form_tag shiny_access.group_memberships_path( @group ), method: :post do %>
+  <%= field_set_tag t( '.add_member' ) do %>
+    <%= text_field_tag 'membership[username]', '', placeholder: t( '.username' ), id: :find_user_by_username %> <%= submit_tag t( 'add' ) %>
+  <% end %>
+<% end %>

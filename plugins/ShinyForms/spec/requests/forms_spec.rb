@@ -53,7 +53,7 @@ RSpec.describe 'ShinyForms', type: :request do
 
     context 'with form.handler = template_email' do
       it 'sends a templated email' do
-        form = create :template_email_form, filename: 'contact_form'
+        form = create :template_email_form
 
         post shiny_forms.process_form_path( form.slug ), params: {
           shiny_form: {

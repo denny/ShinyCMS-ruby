@@ -12,7 +12,7 @@
     <% @recent_sends.each do |sent| %>
     <li>
       <%= link_to( sent.edition.name, sent.path ) %>
-      - sent at sent.sent_at.to_s( :time ) on sent.sent_at.to_s( :shinydate )
+      - sent at <%= display_time_on_date( sent.sent_at ) %>
     </li>
     <% end %>
   </ul>

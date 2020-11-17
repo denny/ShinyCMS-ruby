@@ -29,7 +29,7 @@
         <%= post.author.name %>
       </td>
       <td>
-        <%= post.posted_at.to_s( :time ) %> on <%= post.posted_at.to_s( :shinydate ) %>
+        <%= display_time_on_date( post.posted_at ) %>
       </td>
       <td class="actions">
         <%= link_to t( 'view'   ), post.path %>

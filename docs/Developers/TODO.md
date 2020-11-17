@@ -22,13 +22,16 @@
 
 ### Medium-ish
 
-* Access control groups; should work at both a large concerns and small detail scale:
-    * Grant/deny access to file downloads, secure whole pages or sections of the site
-    * Show/hide individual pieces of page content - images, paragraphs, even individual words
+* Mock/VCR the external services in the tests; letting other people make my tests flaky is a tedious waste of time
+    * This ShinyForms one fails with seed 51328 because Akismet doesn't like the email address Faker gives it:
+        * it 'sends a plain email (dump of form_data)' do
 
 * Polls
 
 ### Large-ish
+
+* Access-controlled file downloads
+    * Can this be done with tokenised AWS links? And if yes, do I want that vendor lock-in? (Probably not?)
 
 * Online shop
 

@@ -14,6 +14,12 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
 
 * User profile pages (with content such as recent comments, recent posts, etc)
 
+* Access control groups
+    * Can be used to control access to file downloads (when we have them) :)
+    * Or access to CMS features?
+    * Or to show/hide whole pages or sections
+    * Or to show/hide individual pieces of page content - images, paragraphs, even single words
+
 
 ### Features that don't exist in the Perl version but I seem to be working on them anyway
 
