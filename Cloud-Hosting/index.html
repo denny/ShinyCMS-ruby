@@ -9,24 +9,24 @@
         <meta name="description" content="Documentation for users and developers of ShinyCMS (Ruby version)">
       
       
-        <link rel="canonical" href="http://docs.shinycms.org/Features/Plugins/ShinyPages/">
+        <link rel="canonical" href="http://docs.shinycms.org/Cloud-Hosting/">
       
       
         <meta name="author" content="Denny de la Haye">
       
-      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
     
     
       
-        <title>Pages - ShinyCMS</title>
+        <title>Cloud hosting - ShinyCMS</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.bc7e593a.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.bc7e593a.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab28b872.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab28b872.min.css">
         
       
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shinycms-plugins" class="md-skip">
+        <a href="#shinycms-documentation" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Pages
+              Cloud hosting
             
           </span>
         </div>
@@ -190,10 +190,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
     
     <label class="md-nav__link" for="nav-1">
       Installation, configuration, deployment
@@ -213,7 +215,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../INSTALL/" class="md-nav__link">
+    <a href="../INSTALL/" class="md-nav__link">
       Local installation
     </a>
   </li>
@@ -225,7 +227,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Configuration/" class="md-nav__link">
+    <a href="../Configuration/" class="md-nav__link">
       Configuration
     </a>
   </li>
@@ -235,11 +237,142 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../../Cloud-Hosting/" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Cloud hosting
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
       Cloud hosting
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-hosting" class="md-nav__link">
+    Cloud hosting
+  </a>
+  
+    <nav class="md-nav" aria-label="Cloud hosting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#webserver" class="md-nav__link">
+    Webserver
+  </a>
+  
+    <nav class="md-nav" aria-label="Webserver">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heroku" class="md-nav__link">
+    Heroku
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    Database
+  </a>
+  
+    <nav class="md-nav" aria-label="Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-rds-heroku-postgres-add-on" class="md-nav__link">
+    AWS RDS / Heroku Postgres add-on
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sending-email" class="md-nav__link">
+    Sending email
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache" class="md-nav__link">
+    Cache
+  </a>
+  
+    <nav class="md-nav" aria-label="Cache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heroku-redis" class="md-nav__link">
+    Heroku Redis
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-storage" class="md-nav__link">
+    File storage
+  </a>
+  
+    <nav class="md-nav" aria-label="File storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-s3" class="md-nav__link">
+    AWS S3
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -249,7 +382,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Services/" class="md-nav__link">
+    <a href="../Services/" class="md-nav__link">
       External services
     </a>
   </li>
@@ -261,7 +394,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Themes/" class="md-nav__link">
+    <a href="../Themes/" class="md-nav__link">
       Themes
     </a>
   </li>
@@ -273,7 +406,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../demo-site/" class="md-nav__link">
+    <a href="../demo-site/" class="md-nav__link">
       Demo site
     </a>
   </li>
@@ -285,7 +418,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../tldr/" class="md-nav__link">
+    <a href="../tldr/" class="md-nav__link">
       tl,dr
     </a>
   </li>
@@ -300,12 +433,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       Features
@@ -325,7 +456,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../MainApp/UserAccounts/" class="md-nav__link">
+    <a href="../Features/MainApp/UserAccounts/" class="md-nav__link">
       User Accounts
     </a>
   </li>
@@ -337,7 +468,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../MainApp/admin-features/" class="md-nav__link">
+    <a href="../Features/MainApp/admin-features/" class="md-nav__link">
       Admin Features
     </a>
   </li>
@@ -347,12 +478,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
     
     <label class="md-nav__link" for="nav-2-3">
       Basic 'brochure site' features
@@ -370,49 +499,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Pages
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="./" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../Features/Plugins/ShinyPages/" class="md-nav__link">
       Pages
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#shinypages" class="md-nav__link">
-    ShinyPages
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -422,7 +513,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ShinyForms/" class="md-nav__link">
+    <a href="../Features/Plugins/ShinyForms/" class="md-nav__link">
       Forms
     </a>
   </li>
@@ -434,7 +525,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ShinyInserts/" class="md-nav__link">
+    <a href="../Features/Plugins/ShinyInserts/" class="md-nav__link">
       Inserts
     </a>
   </li>
@@ -446,7 +537,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ShinySearch/" class="md-nav__link">
+    <a href="../Features/Plugins/ShinySearch/" class="md-nav__link">
       Search
     </a>
   </li>
@@ -484,7 +575,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ShinyAccess/" class="md-nav__link">
+    <a href="../Features/Plugins/ShinyAccess/" class="md-nav__link">
       Access control
     </a>
   </li>
@@ -522,7 +613,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ShinyBlog/" class="md-nav__link">
+    <a href="../Features/Plugins/ShinyBlog/" class="md-nav__link">
       Blog
     </a>
   </li>
@@ -534,7 +625,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ShinyNews/" class="md-nav__link">
+    <a href="../Features/Plugins/ShinyNews/" class="md-nav__link">
       News section
     </a>
   </li>
@@ -546,7 +637,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../MainApp/Tags/" class="md-nav__link">
+    <a href="../Features/MainApp/Tags/" class="md-nav__link">
       Tags
     </a>
   </li>
@@ -584,7 +675,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ShinyLists/" class="md-nav__link">
+    <a href="../Features/Plugins/ShinyLists/" class="md-nav__link">
       Mailing Lists
     </a>
   </li>
@@ -596,7 +687,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ShinyNewsletters/" class="md-nav__link">
+    <a href="../Features/Plugins/ShinyNewsletters/" class="md-nav__link">
       Newsletters
     </a>
   </li>
@@ -634,7 +725,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../MainApp/Comments/" class="md-nav__link">
+    <a href="../Features/MainApp/Comments/" class="md-nav__link">
       Comments
     </a>
   </li>
@@ -646,7 +737,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../MainApp/Upvotes/" class="md-nav__link">
+    <a href="../Features/MainApp/Upvotes/" class="md-nav__link">
       Upvotes
     </a>
   </li>
@@ -658,7 +749,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ShinyProfiles/" class="md-nav__link">
+    <a href="../Features/Plugins/ShinyProfiles/" class="md-nav__link">
       Profile Pages
     </a>
   </li>
@@ -696,7 +787,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../MainApp/EmailStats/" class="md-nav__link">
+    <a href="../Features/MainApp/EmailStats/" class="md-nav__link">
       Email Stats
     </a>
   </li>
@@ -708,7 +799,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../MainApp/WebStats/" class="md-nav__link">
+    <a href="../Features/MainApp/WebStats/" class="md-nav__link">
       Web Stats
     </a>
   </li>
@@ -720,7 +811,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../MainApp/Charts/" class="md-nav__link">
+    <a href="../Features/MainApp/Charts/" class="md-nav__link">
       Charts
     </a>
   </li>
@@ -758,7 +849,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../MainApp/FeatureFlags/" class="md-nav__link">
+    <a href="../Features/MainApp/FeatureFlags/" class="md-nav__link">
       Feature Flags
     </a>
   </li>
@@ -770,7 +861,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../MainApp/SiteSettings/" class="md-nav__link">
+    <a href="../Features/MainApp/SiteSettings/" class="md-nav__link">
       Site Settings
     </a>
   </li>
@@ -808,7 +899,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../MainApp/mjml/" class="md-nav__link">
+    <a href="../Features/MainApp/mjml/" class="md-nav__link">
       MJML
     </a>
   </li>
@@ -820,7 +911,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../MainApp/pagination/" class="md-nav__link">
+    <a href="../Features/MainApp/pagination/" class="md-nav__link">
       Pagination
     </a>
   </li>
@@ -832,7 +923,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../MainApp/soft-delete/" class="md-nav__link">
+    <a href="../Features/MainApp/soft-delete/" class="md-nav__link">
       Soft Delete
     </a>
   </li>
@@ -844,7 +935,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../rake-tasks/" class="md-nav__link">
+    <a href="../rake-tasks/" class="md-nav__link">
       Rake tasks
     </a>
   </li>
@@ -887,7 +978,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Developers/" class="md-nav__link">
+    <a href="../Developers/" class="md-nav__link">
       Index
     </a>
   </li>
@@ -899,7 +990,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Contributing/" class="md-nav__link">
+    <a href="../Contributing/" class="md-nav__link">
       Contributing
     </a>
   </li>
@@ -911,7 +1002,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Developers/ProjectGoals/" class="md-nav__link">
+    <a href="../Developers/ProjectGoals/" class="md-nav__link">
       Project Goals
     </a>
   </li>
@@ -944,7 +1035,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Developers/TODO/" class="md-nav__link">
+    <a href="../Developers/TODO/" class="md-nav__link">
       TODO
     </a>
   </li>
@@ -956,7 +1047,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Developers/in-progress/" class="md-nav__link">
+    <a href="../Developers/in-progress/" class="md-nav__link">
       In Progress
     </a>
   </li>
@@ -968,7 +1059,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Developers/done/" class="md-nav__link">
+    <a href="../Developers/done/" class="md-nav__link">
       Done
     </a>
   </li>
@@ -985,7 +1076,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Developers/Plugins/" class="md-nav__link">
+    <a href="../Developers/Plugins/" class="md-nav__link">
       Plugins
     </a>
   </li>
@@ -997,7 +1088,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Developers/Testing/" class="md-nav__link">
+    <a href="../Developers/Testing/" class="md-nav__link">
       Testing
     </a>
   </li>
@@ -1009,7 +1100,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Developers/demo-data/" class="md-nav__link">
+    <a href="../Developers/demo-data/" class="md-nav__link">
       Demo data
     </a>
   </li>
@@ -1021,7 +1112,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Developers/rake-tasks/" class="md-nav__link">
+    <a href="../Developers/rake-tasks/" class="md-nav__link">
       Rake tasks
     </a>
   </li>
@@ -1054,7 +1145,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Developers/Concerns/" class="md-nav__link">
+    <a href="../Developers/Concerns/" class="md-nav__link">
       Concerns
     </a>
   </li>
@@ -1066,7 +1157,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Developers/Helpers/" class="md-nav__link">
+    <a href="../Developers/Helpers/" class="md-nav__link">
       Helpers
     </a>
   </li>
@@ -1078,7 +1169,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Developers/Mailers/" class="md-nav__link">
+    <a href="../Developers/Mailers/" class="md-nav__link">
       Mailers
     </a>
   </li>
@@ -1100,7 +1191,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Licensing/" class="md-nav__link">
+    <a href="../Licensing/" class="md-nav__link">
       Licensing
     </a>
   </li>
@@ -1112,7 +1203,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../release-notes/" class="md-nav__link">
+    <a href="../release-notes/" class="md-nav__link">
       Release notes
     </a>
   </li>
@@ -1124,7 +1215,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../credits/" class="md-nav__link">
+    <a href="../credits/" class="md-nav__link">
       Credits
     </a>
   </li>
@@ -1136,7 +1227,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../code-of-conduct/" class="md-nav__link">
+    <a href="../code-of-conduct/" class="md-nav__link">
       Code of Conduct
     </a>
   </li>
@@ -1148,7 +1239,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../.." class="md-nav__link">
+    <a href=".." class="md-nav__link">
       Index
     </a>
   </li>
@@ -1178,9 +1269,102 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#shinypages" class="md-nav__link">
-    ShinyPages
+  <a href="#cloud-hosting" class="md-nav__link">
+    Cloud hosting
   </a>
+  
+    <nav class="md-nav" aria-label="Cloud hosting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#webserver" class="md-nav__link">
+    Webserver
+  </a>
+  
+    <nav class="md-nav" aria-label="Webserver">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heroku" class="md-nav__link">
+    Heroku
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    Database
+  </a>
+  
+    <nav class="md-nav" aria-label="Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-rds-heroku-postgres-add-on" class="md-nav__link">
+    AWS RDS / Heroku Postgres add-on
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sending-email" class="md-nav__link">
+    Sending email
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache" class="md-nav__link">
+    Cache
+  </a>
+  
+    <nav class="md-nav" aria-label="Cache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heroku-redis" class="md-nav__link">
+    Heroku Redis
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-storage" class="md-nav__link">
+    File storage
+  </a>
+  
+    <nav class="md-nav" aria-label="File storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-s3" class="md-nav__link">
+    AWS S3
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1197,12 +1381,26 @@
               
                 
                 
-                <h1 id="shinycms-plugins">ShinyCMS Plugins</h1>
-<h2 id="shinypages">ShinyPages</h2>
-<p>This plugin provides content-managed 'brochure' pages, with layout controlled by page templates.</p>
-<p>Pages can be organised into sections or left at the top-level. Sections can also be organised into sections, to any depth. Menus are dynamically generated.</p>
-<p>Pages have defined content areas (headings, paragraphs, illustrative images, etc). These can be edited by site admins via an easy-to-use web UI.</p>
-<p>Layout and appearance of Pages is controlled by Page Templates. These can be provided by a theme or custom-built by a web developer/</p>
+                <h1 id="shinycms-documentation">ShinyCMS Documentation</h1>
+<h2 id="cloud-hosting">Cloud hosting</h2>
+<h3 id="webserver">Webserver</h3>
+<h4 id="heroku">Heroku</h4>
+<p>ShinyCMS has been tested with Heroku (currently, shinycms.org itself is hosted on Heroku).</p>
+<p>With the provided Procfile and supporting utility scripts, deployment on Heroku should be straightforward.</p>
+<h3 id="database">Database</h3>
+<h4 id="aws-rds-heroku-postgres-add-on">AWS RDS / Heroku Postgres add-on</h4>
+<p>ShinyCMS has been tested with AWS RDS Postgres, and the Heroku Postgres add-on (which is just AWS RDS Postgres anyway).</p>
+<p>There is some documentation to help with copying the demo site data into a Heroku add-on database.</p>
+<h3 id="sending-email">Sending email</h3>
+<p>If you enable any feature that sends email (user registrations, comment notifications, newsletters, etc), then you will need an email server or service. Anything supported by ActionMailer should work, but currently no cloud services have been tested, only standard SMTP.</p>
+<h3 id="cache">Cache</h3>
+<h4 id="heroku-redis">Heroku Redis</h4>
+<p>If you are using any feature that uses ActiveJob (including any feature that sends emails), you will need a caching backend for Sidekiq. Only the Heroku Redis add-on has been tested, but anything supported by ActionJob should work.</p>
+<h3 id="file-storage">File storage</h3>
+<h4 id="aws-s3">AWS S3</h4>
+<p>User uploaded files can be stored on AWS S3 instead of locally.</p>
+<p>To enable this feature you will need to have an AWS account, create an S3 bucket, and add the relevant keys to your ENV/config vars.</p>
+<p>AWS S3 offers a limited amount of free usage, followed by fairly inexpensive usage-based pricing.</p>
                 
               
               
@@ -1221,7 +1419,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../MainApp/admin-features/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../Configuration/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1230,19 +1428,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Admin Features
+                Configuration
               </div>
             </div>
           </a>
         
         
-          <a href="../ShinyForms/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../Services/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Forms
+                External services
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
@@ -1273,15 +1471,15 @@
       
     </div>
     
-      <script src="../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "../../..",
+          base: "..",
           features: [],
           search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
