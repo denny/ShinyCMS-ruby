@@ -1,6 +1,6 @@
 # ShinyCMS
 
-[ShinyCMS](https://shinycms.org/) is an open-source content management system built in Ruby on Rails, with support for [themes](docs/Themes.md), [plugins](docs/Developer/Plugins.md), and cloud hosting.
+[ShinyCMS](https://shinycms.org/) is an open-source content management system built in Ruby on Rails, with support for [themes](docs/Themes.md), [plugins](docs/Developer/Plugins.md), and [cloud hosting](docs/Cloud-Hosting.md).
 
 It is designed for professional web developers to use as a platform when building content-managed websites for their clients. It provides a number of features 'out of the box', with an easy-to-use admin interface for your clients to use when updating their site. You can also write your own plugins to add custom functionality.
 
@@ -65,7 +65,8 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
 
 ## Documentation
 
-[docs.shinycms.org] is generated from the documentation included in [/docs](docs/index.md).
+* Markdown: [/docs](docs/index.md)
+* Website: [docs.shinycms.org](https://docs.shinycms.org/) ([generated](https://shinycms.org/blog/2020/10/docs) from /docs)
 
 
 ## Installation and configuration
