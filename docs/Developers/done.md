@@ -12,6 +12,7 @@
     have pages at the top-level of your site, and to nest sections to any depth
 * Inserts (re-usable content fragments that can be pulled into any template)
     * Improvements: snappier name? ;) (Renamed from Shared Content to Inserts)
+* Access control for page content (for main site, not admin area)
 * Basic form handlers
     * Improvements: MJML email templates
 * Blog
@@ -36,6 +37,7 @@
         same ideas. The Ruby version uses ActiveRecord's native polymorphism,
         which is no doubt better than my hand-rolled version :)
         * MJML templates for reply notification emails
+        * Double opt-in required before sending notification emails
 * Tags
     * Currently enabled on blog posts and news posts
     * Ready to add to any other content type going forward
@@ -79,6 +81,7 @@
     * Disabled in default settings
     * Powered by Ahoy
 * Recoverable soft delete on almost all models (powered by ActsAsParanoid)
+* Admin page for viewing/managing (non-user) email recipients
 
 
 ## TODO / In Progress

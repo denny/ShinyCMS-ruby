@@ -14,16 +14,8 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
 
 * User profile pages (with content such as recent comments, recent posts, etc)
 
-* Access control groups
-    * Can be used to control access to file downloads (when we have them) :)
-    * Or access to CMS features?
-    * Or to show/hide whole pages or sections
-    * Or to show/hide individual pieces of page content - images, paragraphs, even single words
-
 
 ### Features that don't exist in the Perl version but I seem to be working on them anyway
-
-* Admin UI for viewing/managing EmailRecipients
 
 * Plugin architecture
     * I've converted most of the existing features into Rails Engine plugins
@@ -39,8 +31,9 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
             * Look at Combustion, for minimal test apps for gems: https://github.com/pat/combustion
             * List ShinyBlog on https://www.ruby-toolbox.com/categories/Blog_Engines
 
-* Blazer dashboards / charts / etc: https://github.com/ankane/blazer
-    * This is merged, but needs a default dashboard and queries setting up
+* Blazer charts (etc); feature is merged, but needs a default dashboard and queries setting up:
+    * https://github.com/resool/blazer-demo/commit/bd24fbbbc0d8ba2de5b33cd3ec2c58713cffbc2b
+    * https://github.com/resool/blazer-demo/commit/9d8ba40a223df6da668ca2b1786fdfc0b2fe0e76
 
 * Algolia search backend: https://devcenter.heroku.com/articles/algoliasearch#using-with-rails
     * NB: Not free to non-commercial sites using the CMS :(

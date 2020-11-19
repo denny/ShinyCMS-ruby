@@ -107,14 +107,14 @@ class DiscussionsController < MainController
   end
 
   def create_comment_author
-    author = CommentAuthor.create!(
+    author = CommentAuthor.new(
       name: strong_params[ :author_name ],
       website: strong_params[ :author_url ].presence,
       ip_address: request.ip
     )
     return author if strong_params[ :author_email ].blank?
 
-    recipient = EmailRecipient.create_or_find_by!( email: strong_params[ :author_email ] )
+    recipient = EmailRecipient.find_or_initialize_by( email: strong_params[ :author_email ] )
     author.update!( email_recipient: recipient )
     author
   end
