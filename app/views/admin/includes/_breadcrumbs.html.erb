@@ -16,6 +16,7 @@
 
       <%# Other engines %>
       <% elsif plugin_name == 'Blazer' %>
+        <% @do_not_yield = true if current_user_can? :view_charts %> <%# TODO: FIXME: This is vile; wrap Blazer in ShinyStats ASAP %>
         <% @page_title = controller_name.titlecase %> <%# TODO: i18n %>
         <%= link_to t( 'admin.stats.breadcrumb' ), blazer.root_path %>
       <% elsif plugin_name == 'RailsEmailPreview' %>
