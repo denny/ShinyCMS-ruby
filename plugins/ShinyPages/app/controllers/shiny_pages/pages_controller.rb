@@ -77,7 +77,7 @@ module ShinyPages
       slug = path_parts.pop
       section = traverse_path( path_parts, top_level_sections )
 
-      @page = section.pages&.find_by( slug: slug ) || section.sections&.find_by( slug: slug )&.default_page
+      @page = page_for_last_slug( section, slug )
       show_page && return if @page
 
       not_found
@@ -100,10 +100,13 @@ module ShinyPages
       slug = path_parts.shift
       section = sections&.find_by( slug: slug )
 
-      not_found && return unless section
       return section if path_parts.empty?
 
       traverse_path( path_parts, section.sections )
+    end
+
+    def page_for_last_slug( section, slug )
+      section&.pages&.find_by( slug: slug ) || section&.sections&.find_by( slug: slug )&.default_page
     end
 
     # 404 handler

@@ -126,5 +126,14 @@ RSpec.describe 'Pages', type: :request do
         expect( response.body ).to include 'a page that does not exist'
       end
     end
+
+    describe 'GET /non-existent-section/irrelevant-slug' do
+      it 'returns a 404 if a page is requested in a non-existent section' do
+        get '/non-existent-section/irrelevant-slug'
+
+        expect( response      ).to have_http_status :not_found
+        expect( response.body ).to include 'a page that does not exist'
+      end
+    end
   end
 end
