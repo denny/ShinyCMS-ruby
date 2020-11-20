@@ -12,6 +12,6 @@
         t( 'admin.email_stats.menu' ), email_stats_path, 'chart-pie' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :make_charts, :stats ),
-        t( 'admin.charts.menu' ), blazer_path, 'chart-line' ) %>
+        t( 'admin.blazer.menu' ), blazer_path, 'chart-line' ) %>
 
   <% end %>

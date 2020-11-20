@@ -474,16 +474,14 @@ en:
       menu: Stats
       breadcrumb: Stats
 
-    # Blazer
-    charts:
+    blazer:
       menu: Charts
-      # title: Charts
-    # checks:
-      # title: Checks
-    # dashboards:
-      # title: Dashboards
-    # queries:
-      # title: Queries
+      dashboards:
+        title: Dashboards
+      queries:
+        title: Queries
+      checks:
+        title: Checks
 
     web_stats:
       breadcrumb: Stats
