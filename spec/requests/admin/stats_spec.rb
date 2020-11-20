@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for the Blazer integration
 RSpec.describe 'Blazer (charts and dashboards)', type: :request do
   before :each do
-    admin = create :admin_user
+    admin = create :stats_admin
     sign_in admin
   end
 
@@ -21,7 +21,8 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
 
       expect( response      ).to have_http_status :ok
       # TODO: such test, wow
-      # expect( response.body ).to have_title I18n.t( 'admin.stats.title' )
+      expect( response.body ).to have_title 'Queries'
+      expect( response.body ).to have_css 'a', text: I18n.t( 'admin.stats.breadcrumb' )
     end
   end
 
