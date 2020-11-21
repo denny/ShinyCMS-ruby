@@ -2,6 +2,8 @@
 
 ## TODO
 
+* Tags don't honour show/hide status
+
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
 ### Small-ish
