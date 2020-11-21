@@ -110,9 +110,7 @@
     * Decide 'intelligently' whether to fold all/none/some
         * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
 
-* Wrap Blazer in a thin ShinyStats plugin, to give it:
-    * Standard authorisation and authentication (currently implemented _in the admin views_, ewww)
-    * Standard feature flagging, so people can choose not to load it
+* Wrap Blazer in a thin ShinyStats plugin, to give it standard auth and feature flagging
 
 * ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
   sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc

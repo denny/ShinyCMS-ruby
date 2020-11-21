@@ -54,34 +54,30 @@
       * The Perl version has role-based authorisation. The Ruby version has
       more flexible ACL-based authorisation (powered by Pundit).
       * MJML templates for all user account emails (welcome, forgot password, etc)
-* reCAPTCHA bot protection for registration and comment forms
+* reCAPTCHA bot protection for registrations, comments, and forms
     * Improvements: supports reCAPTCHA v3 with scores. Tries an invisible
     CAPTCHA first, falling back to an interactive CAPTCHA if that fails.
-* Akismet support, to flag potential spam comments
-    * Moderation queue in admin area
+* Akismet support, to flag potential spam comments and form submissions
+    * Comment moderation queue in admin area
     * Confirming/removing flag sends ham/spam training data to Akismet
     * Improvements: the Perl version doesn't feed back to Akismet (yet)
 
 ### Features that the Perl version didn't have, but the Ruby version does
 
 * Support for themes
-    * Override the core templates on a per-file, as-needed basis
+    * Low-lift; override the core templates on a per-file, as-needed basis
     * Two themes included
 * ShinyConcerns
     * While re-implementing various features I've tried to pull useful common
       functionality out into concerns, that might be handy building blocks for
       anybody else who wants to write a ShinyCMS plugin
-* Built-in email stats
-    * Track opens and/or link-clicks
-    * Disabled in default settings (privacy, yay!)
-    * Powered by Ahoy::Email
-* Built-in web stats
-    * Track visits, visitors, page views, etc
-    * Support for GDPR-friendly stats (IP masking, etc)
-    * Disabled in default settings
-    * Powered by Ahoy
 * Recoverable soft delete on almost all models (powered by ActsAsParanoid)
 * Admin page for viewing/managing (non-user) email recipients
+* Email open and click tracking (powered by Ahoy::Email)
+    * Disabled by default (privacy, yay!)
+* Web tracking (powered by Ahoy) - track visits, visitors, page views, etc
+    * Disabled by default, and has support for GDPR-friendly stats (IP masking, etc)
+* Build your own charts and dashboards to dig into the data gathered by Ahoy (powered by Blazer)
 
 
 ## TODO / In Progress
