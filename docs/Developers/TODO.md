@@ -2,7 +2,11 @@
 
 ## TODO
 
-* Tags don't honour show/hide status
+* Tag cloud/list don't honour show/hide status of content
+
+* On email recipients admin page, link to a summary of their comments and newsletter subscriptions (if any exist)
+
+* Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
