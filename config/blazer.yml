@@ -14,7 +14,8 @@ check_schedules:
   - "5 minutes"
 
 # Create audits
-audit: <%= Setting.true? :blazer_log_queries %>
+# FIXME: using the application models during initialisation upsets newer Rails versions
+audit: true # <%#= Setting.true? :blazer_log_queries %>
 
 # Enable anomaly detection; note: with trend, time series are sent to https://trendapi.org
 # anomaly_checks: trend / r
@@ -27,8 +28,9 @@ audit: <%= Setting.true? :blazer_log_queries %>
 mapbox_access_token: <%= ENV[ 'MAPBOX_ACCESS_TOKEN' ] %>
 <% end %>
 
-# If we're in dev environment, allow fallback to main database details
+# Database credentials; generally this should be a separate, read-only user
 <% database_url = ENV[ 'BLAZER_DATABASE_URL' ].presence %>
+# If we're in dev environment, allow fallback to main database credentials
 <% database_url ||= ENV[ 'DATABASE_URL' ] if Rails.env.development? %>
 
 data_sources:
@@ -62,7 +64,8 @@ data_sources:
 time_zone: <%= Rails.application.config.time_zone %>
 
 # Email to send checks from
-from_email: <%= Setting.get :site_email %>
+# FIXME: using the application models during initialisation upsets newer Rails versions
+# from_email: <%#= Setting.get :site_email %>
 
 # Display-name method
 user_name: username
