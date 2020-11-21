@@ -32,25 +32,30 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
 * [Mailing lists](docs/Features/Plugins/ShinyLists.md) ±
   * Double opt-in, user subscription management, 'do not contact' feature
 * [Newsletters](docs/Features/Plugins/ShinyNewsletters.md) ±
-  * HTML mailshots, produced from MJML templates for cross-platform compatibility
+  * HTML mailshots, generated from MJML templates for cross-platform compatibility
 * [Basic form handlers](docs/Features/Plugins/ShinyForms.md) ±
-  * e.g. 'email form data to site owner' - useful for contact and enquiry forms]
+  * e.g. 'email form data to site owner' - useful for contact and enquiry forms
   * Protected by [reCAPTCHA](https://developers.google.com/recaptcha/) and [Akismet](https://akismet.com/)
 * [Access control](docs/Features/Plugins/ShinyAccess.md) ±
-  * Create access groups, add/remove members, use helpers to show or hide content for different groups
+  * Create access groups, and add/remove members from them,
+  * Use the `current_user_can_access?( :group_name )` helper to show/hide content
 * [Site search](docs/Features/Plugins/ShinySearch.md) ±
   * Ready to support multiple search backends (default is pg_search multisearch)
 * [Tags](docs/Features/MainApp/Tags.md)
 * [Upvotes](docs/Features/MainApp/Upvotes.md) (AKA 'likes') on posts and comments
+  * Supports downvotes too, if you want a full rating/ranking system
 * [User profile pages](docs/Features/Plugins/ShinyProfiles.md) ±
-  * Links to user-provided content such as recent comments, recent blog posts, etc
+  * With links to user-generated content such as recent comments, recent blog posts, etc
 * [User accounts](docs/Features/MainApp/UserAccounts.md) and administration
   * ACL-based authorisation system for admins (powered by [Pundit](https://github.com/varvet/pundit))
   * Uses [reCAPTCHA](https://developers.google.com/recaptcha/) to block registration by bots
 * Web interface for [site settings](docs/Features/MainApp/SiteSettings.md) and [feature flags](docs/Features/MainApp/FeatureFlags.md)
-* Built-in tracking of [web stats](docs/Features/MainApp/WebStats.md) and [email stats](docs/Features/MainApp/EmailStats.md) (powered by [Ahoy](https://github.com/ankane/ahoy) and [Ahoy::Email](https://github.com/ankane/ahoy_email))
-* Build your own [charts and dashboards](docs/Features/MainApp/Charts.md) for viewing and analyzing stats (powered by [Blazer](https://github.com/ankane/blazer))
-* All emails are generated from [MJML](docs/Features/mjml.md) templates, producing reliably cross-platform HTML emails
+* All emails are generated from [MJML](docs/Features/mjml.md) templates, producing more reliably cross-platform HTML emails
+* Built-in tracking of [web stats](docs/Features/MainApp/WebStats.md) and [email stats](docs/Features/MainApp/EmailStats.md)
+  * Powered by [Ahoy](https://github.com/ankane/ahoy) and [Ahoy::Email](https://github.com/ankane/ahoy_email)
+* Build your own [charts and dashboards](docs/Features/MainApp/Charts.md) for viewing and analyzing stats
+  * Powered by [Blazer](https://github.com/ankane/blazer))
+  * Default dashboard config included, with a dozen chart-generating queries for you to use or learn from
 
 ### Planned features
 
@@ -59,7 +64,6 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
 * Online shop
 * Support for multiple blogs on a single site (in progress)
 * [Algolia](https://www.algolia.com/) support for search plugin (in progress)
-* Default dashboard and charts for Blazer
 * More themes!
 
 

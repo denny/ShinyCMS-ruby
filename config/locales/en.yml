@@ -260,6 +260,8 @@ en:
   feature_flags:
     off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
+    ahoy_email_tracking: Track email opens/clicks
+    ahoy_web_tracking: Track web visitor stats
     akismet_for_comments: Detect spam comments with Akismet
     comments: Comments
     comment_notifications: Comment notifications
@@ -474,16 +476,15 @@ en:
       menu: Stats
       breadcrumb: Stats
 
-    # Blazer
-    charts:
+    blazer:
       menu: Charts
-      # title: Charts
-    # checks:
-      # title: Checks
-    # dashboards:
-      # title: Dashboards
-    # queries:
-      # title: Queries
+      auth_fail: You do not have permission to view charts
+      dashboards:
+        title: Dashboards
+      queries:
+        title: Queries
+      checks:
+        title: Checks
 
     web_stats:
       breadcrumb: Stats

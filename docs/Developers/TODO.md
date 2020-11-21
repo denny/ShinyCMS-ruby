@@ -2,6 +2,12 @@
 
 ## TODO
 
+* Tag cloud/list don't honour show/hide status of content
+
+* On email recipients admin page, link to a summary of their comments and newsletter subscriptions (if any exist)
+
+* Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
+
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
 ### Small-ish
@@ -103,6 +109,8 @@
     * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
     * Decide 'intelligently' whether to fold all/none/some
         * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
+
+* Wrap Blazer in a thin ShinyStats plugin, to give it standard auth and feature flagging
 
 * ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
   sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc

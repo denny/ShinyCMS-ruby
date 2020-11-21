@@ -25,7 +25,7 @@
     <% @messages.each do |message| %>
     <tr>
       <td>
-        <%= message.sent_at %>
+        <%= display_time_on_date( message.sent_at ) %>
       </td>
       <td>
         <% if message.user %><%= link_to message.user.email, user_email_stats_path( message.user ) %><% end %>

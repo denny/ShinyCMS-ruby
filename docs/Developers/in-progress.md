@@ -31,10 +31,6 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
             * Look at Combustion, for minimal test apps for gems: https://github.com/pat/combustion
             * List ShinyBlog on https://www.ruby-toolbox.com/categories/Blog_Engines
 
-* Blazer charts (etc); feature is merged, but needs a default dashboard and queries setting up:
-    * https://github.com/resool/blazer-demo/commit/bd24fbbbc0d8ba2de5b33cd3ec2c58713cffbc2b
-    * https://github.com/resool/blazer-demo/commit/9d8ba40a223df6da668ca2b1786fdfc0b2fe0e76
-
 * Algolia search backend: https://devcenter.heroku.com/articles/algoliasearch#using-with-rails
     * NB: Not free to non-commercial sites using the CMS :(
     * Breaking news from Bundler: A new major version is available for Algolia! Please now use the https://rubygems.org/gems/algolia gem to get the latest features.

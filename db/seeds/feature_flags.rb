@@ -30,3 +30,7 @@ add_feature_flag( name: 'downvotes',                   description: 'Enable down
 # These two are disabled by default, to reduce the risk of brute force attacks on new/dev/demo sites
 add_feature_flag( name: 'user_login',        description: 'Allow users to log in',                enabled: false )
 add_feature_flag( name: 'user_registration', description: 'Allow new users to create an account', enabled: false )
+
+# These two are disabled by default for privacy reasons
+add_feature_flag( name: 'ahoy_web_tracking',   description: 'Track data about website visitors', enabled: false )
+add_feature_flag( name: 'ahoy_email_tracking', description: 'Track email opens and clicks',      enabled: false )
