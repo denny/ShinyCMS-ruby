@@ -1,7 +1,13 @@
-<% item_id = text.parameterize %>
+<%
+  item_id = text.parameterize
+  active = ''
+  if request.path.starts_with? link
+    active = 'c-active'
+  end
+%>
 <a name="<%= item_id %>"></a>
 <li class="c-sidebar-nav-item">
-  <a class="c-sidebar-nav-link" href="<%= link %>">
+  <a class="c-sidebar-nav-link <%= active %>" href="<%= link %>">
     <i class="cil-<%= icon %>"></i> <%= text %>
     <% badge ||= false %>
     <% if badge %>
