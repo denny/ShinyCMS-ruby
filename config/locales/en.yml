@@ -476,6 +476,7 @@ en:
 
     blazer:
       menu: Charts
+      auth_fail: You do not have permission to view charts
       dashboards:
         title: Dashboards
       queries:
