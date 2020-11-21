@@ -170,7 +170,7 @@ ActiveRecord::Schema.define(version: 2020_11_21_073328) do
   end
 
   create_table "comment_authors", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "website"
     t.inet "ip_address", null: false
     t.uuid "token", null: false
@@ -186,19 +186,19 @@ ActiveRecord::Schema.define(version: 2020_11_21_073328) do
     t.integer "discussion_id", null: false
     t.integer "number", null: false
     t.bigint "parent_id"
+    t.string "author_type"
+    t.bigint "author_id"
     t.string "title"
     t.text "body"
     t.string "ip_address"
     t.boolean "locked", default: false, null: false
     t.boolean "show_on_site", default: true, null: false
     t.boolean "spam", default: false, null: false
-    t.string "author_type"
-    t.bigint "author_id"
     t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deleted_at", precision: 6
-    t.index ["author_type", "author_id"], name: "index_comments_on_author_type_and_author_id"
+    t.index ["author_id", "author_type"], name: "index_comments_on_author_id_and_author_type"
     t.index ["deleted_at"], name: "index_comments_on_deleted_at"
     t.index ["number", "discussion_id"], name: "index_comments_on_number_and_discussion_id", unique: true
   end
