@@ -8,14 +8,18 @@
 
 # See https://github.com/ankane/blazer#readme for more info about this config file
 
+# Email to send checks from
+<% if ENV[ 'SHINYCMS_SITE_EMAIL' ].present? %>
+from_email: <%= ENV[ 'SHINYCMS_SITE_EMAIL' ] %>
+
 check_schedules:
   - "1 day"
   - "1 hour"
   - "5 minutes"
+<% end %>
 
-# Create audits
-# FIXME: using the application models during initialisation upsets newer Rails versions
-audit: true # <%#= Setting.true? :blazer_log_queries %>
+# Audit logs
+audit: <%= ENV.fetch( 'BLAZER_AUDIT_LOG', 'true' ) %>
 
 # Enable anomaly detection; note: with trend, time series are sent to https://trendapi.org
 # anomaly_checks: trend / r
@@ -62,10 +66,6 @@ data_sources:
     # use_transaction: false
 
 time_zone: <%= Rails.application.config.time_zone %>
-
-# Email to send checks from
-# FIXME: using the application models during initialisation upsets newer Rails versions
-# from_email: <%#= Setting.get :site_email %>
 
 # Display-name method
 user_name: username
