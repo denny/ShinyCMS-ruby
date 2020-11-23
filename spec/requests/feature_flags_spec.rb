@@ -52,7 +52,7 @@ RSpec.describe 'Feature Flags', type: :request do
       sign_in user
 
       FeatureFlag.find_or_create_by!( name: 'profile_pages' )
-                 .update!( enabled: false, enabled_for_admins: true )
+                 .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
 
       get shiny_profiles.profile_path( user.username )
 
@@ -74,7 +74,7 @@ RSpec.describe 'Feature Flags', type: :request do
       sign_in user
 
       FeatureFlag.find_or_create_by!( name: 'profile_pages' )
-                 .update!( enabled: false, enabled_for_admins: true )
+                 .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
 
       get shiny_profiles.profile_path( user.username )
 

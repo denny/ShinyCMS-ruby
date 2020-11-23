@@ -68,6 +68,9 @@ source 'https://rubygems.org' do
   # Authorisation
   gem 'pundit'
 
+  # Monitoring
+  gem 'bugsnag'
+
   # Soft delete
   gem 'acts_as_paranoid'
 
@@ -112,6 +115,8 @@ source 'https://rubygems.org' do
   gem 'ahoy_email'
   # Web stats
   gem 'ahoy_matey'
+  # Stats aggregation (save space by only keeping a summary of older data)
+  gem 'rollups'
   # Charts and dashboards
   gem 'blazer'
   # Charts

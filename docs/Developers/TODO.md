@@ -2,12 +2,11 @@
 
 ## TODO
 
-## Next / Soon
+* Tag cloud/list don't honour show/hide status of content
 
-* .strip incoming email addresses
+* On email recipients admin page, link to a summary of their comments and newsletter subscriptions (if any exist)
 
-* Get rid of 'precision: 6' on all timestamps? Seems excessive...
-
+* Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
@@ -22,13 +21,17 @@
 
 ### Medium-ish
 
-* Access control groups; should work at both a large concerns and small detail scale:
-    * Grant/deny access to file downloads, secure whole pages or sections of the site
-    * Show/hide individual pieces of page content - images, paragraphs, even individual words
+* Mock/VCR the external services in the tests; letting other people make my tests flaky is a tedious waste of time
+    * This ShinyForms one fails with seed 51328 because Akismet doesn't like the email address Faker gives it:
+        * it 'sends a plain email (dump of form_data)' do
 
 * Polls
 
 ### Large-ish
+
+* Access-controlled file downloads
+    * Can this be done with tokenised AWS links? (Probably)
+    * If so, do I want that vendor lock-in? (Probably not)
 
 * Online shop
 
@@ -106,6 +109,8 @@
     * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
     * Decide 'intelligently' whether to fold all/none/some
         * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
+
+* Wrap Blazer in a thin ShinyStats plugin, to give it standard auth and feature flagging
 
 * ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
   sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc

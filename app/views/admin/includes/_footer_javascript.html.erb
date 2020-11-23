@@ -24,6 +24,11 @@
               });
             }
           });
+
+          $( '#find_user_by_username' ).autocomplete({
+            source: '/admin/users/usernames',
+            minLength: 3
+          });
         });
       </script>
 

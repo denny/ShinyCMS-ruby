@@ -250,6 +250,12 @@ nav .sm li li a:hover {
   text-shadow:          none;
 }
 
+// Links in content area
+
+.content a {
+  color:                $blue !important;
+}
+
 
 // ===== ( homepage ) =====
 
@@ -336,11 +342,16 @@ nav .sm li li a:hover {
 
 // ===== ( blog & news posts ) =====
 
-.post img {
+// If there's an img tag in the first paragraph of the post, style it as a thumbnail
+.post p:first-of-type img {
   float:                right;
   margin:               0 1em 0 1em;
   max-height:           320px;
   max-width:            320px;
+}
+
+.post img {
+  max-width:            100%;
 }
 
 .next-link {

@@ -2,7 +2,7 @@
 
 <%= render partial: 'admin/includes/search', locals: { placeholder: t( '.search' ) } %>
 
-<%= form_for 'spam_comments', method: :put do |f| %>
+<%= form_for 'spam_comments', url: comments_path, method: :put do |f| %>
 <table class="table table-responsive-sm table-striped">
   <tbody>
     <% @comments.each do |comment| %>

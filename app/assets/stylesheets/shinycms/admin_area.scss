@@ -194,13 +194,15 @@ main p {
 // ========== ( drag-to-sort ) ==========
 
 .table-striped .ui-sortable-handle {
-  background:       image-url( 'shinycms/admin/icons/up-down-icon.png' ) center center no-repeat;
-  width:            1.5em;
+  font-size:        1.2em;
+  padding:          0 0 0 1em;
 }
 
 form .ui-sortable-handle {
-  background:       image-url( 'shinycms/admin/icons/up-down-icon.png' ) left 0.5em no-repeat;
-  width:            1.5em;
+  color:            $dark-colour;
+  font-size:        1.3em;
+  padding:          0.3em 0.2em 0 0;
+  vertical-align:   top;
 }
 
 .ui-sortable-handle {
@@ -224,6 +226,14 @@ form .ui-sortable-handle {
 
 .table-striped th {
   border-top:       0;
+}
+
+.table-striped th.page {
+  padding-left:     0.5em;
+}
+
+.table-striped .width5pc {
+  width:            5%;
 }
 
 .table-striped .width16pc {

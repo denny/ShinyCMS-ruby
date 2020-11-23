@@ -57,6 +57,19 @@ RSpec.describe Admin::UsersController, type: :request do
       end
     end
 
+    describe 'GET /admin/users/usernames?term=art' do
+      it 'returns the list of matching usernames' do
+        user_x = create :user, username: 'PartlyHere'
+        user_y = create :user, username: 'FullyThere'
+
+        get search_usernames_path, params: { term: 'art' }
+
+        expect( response      ).to     have_http_status :ok
+        expect( response.body ).to     include user_x.username
+        expect( response.body ).not_to include user_y.username
+      end
+    end
+
     describe 'GET /admin/user/new' do
       it 'loads the form to add a new user' do
         get new_user_path

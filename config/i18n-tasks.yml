@@ -77,6 +77,8 @@ search:
     - app/views
     - app/views/shinycms
     # FIXME
+    - plugins/ShinyAccess/app/controllers
+    - plugins/ShinyAccess/app/views
     - plugins/ShinyBlog/app/controllers
     - plugins/ShinyBlog/app/views
     - plugins/ShinyForms/app/controllers

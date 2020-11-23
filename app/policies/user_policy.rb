@@ -23,6 +23,10 @@ class UserPolicy
     index?
   end
 
+  def username_search?
+    search?
+  end
+
   def new?
     @this_user.can? :add, :users
   end

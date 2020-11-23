@@ -17,7 +17,25 @@
 # end
 
 ActiveSupport::Inflector.inflections( :en ) do |inflect|
+  # Acronyms used in the CMS code
   inflect.acronym 'IP'
   inflect.acronym 'HTML'
   inflect.acronym 'MJML'
+
+  # Some common acronyms that might be used in CMS content (and then b0rked by .titlecase)
+  inflect.acronym 'AI'
+  inflect.acronym 'API'
+  inflect.acronym 'BBC'
+  inflect.acronym 'CEO'
+  inflect.acronym 'CMS'
+  inflect.acronym 'CPU'
+  inflect.acronym 'CRM'
+  inflect.acronym 'CTO'
+  inflect.acronym 'EU'
+  inflect.acronym 'PR'
+  inflect.acronym 'UK'
+  inflect.acronym 'USA'
+  inflect.acronym 'USB'
+  inflect.acronym 'VIP'
+  inflect.acronym 'WWW'
 end

@@ -63,7 +63,14 @@ class DiscussionsController < MainController
   end
 
   def new_comment_passes_checks_and_saves?
-    check_with_recaptcha && check_with_akismet && @new_comment.save
+    check_locks && check_with_recaptcha && check_with_akismet && @new_comment.save
+  end
+
+  def check_locks
+    return false if @discussion.locked?
+    return true  if @comment.blank?
+
+    !@comment.locked?
   end
 
   def check_with_recaptcha
@@ -88,7 +95,7 @@ class DiscussionsController < MainController
   end
 
   def new_comment_details
-    comment_params = { author: find_author }
+    comment_params = { author: find_author, ip_address: request.ip }
     comment_params.merge!( strong_params.except( :author_type, :author_name, :author_email, :author_url ) )
     comment_params.merge!( discussion_id: @discussion.id )
   end
@@ -100,14 +107,14 @@ class DiscussionsController < MainController
   end
 
   def create_comment_author
-    author = CommentAuthor.create!(
+    author = CommentAuthor.new(
       name: strong_params[ :author_name ],
       website: strong_params[ :author_url ].presence,
       ip_address: request.ip
     )
     return author if strong_params[ :author_email ].blank?
 
-    recipient = EmailRecipient.create_or_find_by!( email: strong_params[ :author_email ] )
+    recipient = EmailRecipient.find_or_initialize_by( email: strong_params[ :author_email ] )
     author.update!( email_recipient: recipient )
     author
   end
