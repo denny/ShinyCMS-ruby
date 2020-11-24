@@ -171,6 +171,10 @@ Rails.application.routes.draw do
     # It has to be the last route set up, because it hijacks anything that gets this far.
     # This route gives us pages and sections at the top level, e.g. /foo instead of /pages/foo
     # TODO: figure out how to load a route last for the whole app, from inside a plugin's routes.rb
-    get '*path', to: 'shiny_pages/pages#show' if defined? ShinyPages
+    if defined? ShinyPages
+      get '*path', to: 'shiny_pages/pages#show', constraints: lambda { |req|
+        !req.path.starts_with?( '/rails/active_' )
+      }
+    end
   end
 end

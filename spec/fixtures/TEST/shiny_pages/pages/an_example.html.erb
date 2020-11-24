@@ -3,7 +3,7 @@
   <%= @page.name %>
 </h1>
 <p>
-  <img src="/images/<%= an_image %>" alt="">
+  <%= image_tag url_for( an_image ), class: 'classy' if an_image&.attached? %>
 </p>
 <h2>
   <%= a_heading %>
@@ -30,8 +30,8 @@
 <% if plugin_loaded? :ShinyInserts %>
 <p class="small">
   Contact:
-  <% if insert_type?( 'the_email', 'short_text' ) %>
-    <a href="mailto:<%= insert( 'the_email' ) %>"><%= insert( 'the_email' ) %></a>
+  <% if insert_type?( :the_email, :short_text ) %>
+    <a href="mailto:<%= insert( :the_email ) %>"><%= insert( :the_email ) %></a>
   <% end %>
 </p>
 <% end %>

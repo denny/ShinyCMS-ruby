@@ -10,11 +10,16 @@ module ShinyInserts
   # Helpers for Inserts - part of ShinyInserts plugin for ShinyCMS
   module MainSiteHelper
     def insert( name )
-      ShinyInserts::Set.first.elements.where( name: name ).pick( :content )
+      return unless name.is_a? Symbol
+
+      ShinyInserts::Set.first.elements.where( name: name.to_s ).pick( :content )
     end
 
     def insert_type?( name, type )
-      ShinyInserts::Set.first.elements.where( name: name ).pick( :element_type ) == type
+      return unless name.is_a? Symbol
+      return unless type.is_a? Symbol
+
+      ShinyInserts::Set.first.elements.where( name: name.to_s ).pick( :element_type ) == type.to_s
     end
 
     def inserts_exist?

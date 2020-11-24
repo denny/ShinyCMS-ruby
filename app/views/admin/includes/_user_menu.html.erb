@@ -2,9 +2,9 @@
 <ul class="c-header-nav ml-auto mr-4">
   <li class="c-header-nav-item dropdown">
     <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-      <% if current_user.profile_pic.present? %>
+      <% if current_user.profile_pic.attached? %>
       <div class="c-avatar">
-        <%= image_tag current_user.profile_pic.variant( resize: '36x36!' ).processed.service_url, alt: current_user.name, class: 'c-avatar-img' %>
+        <%= image_tag url_for( current_user.profile_pic.variant( resize: '36x36!' ) ), alt: current_user.name, class: 'c-avatar-img' %>
       </div>
       <% else %>
       <i class="cil-user user-menu-icon"></i>

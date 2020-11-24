@@ -416,6 +416,18 @@ table.elements {
   margin-left:      0.5em;
 }
 
+input.field_with_errors, select.field_with_errors, textarea.field_with_errors {
+  border:           2px solid $red;
+}
+
+// preview thumbnails for ShinyElements with type='image' (in edit forms for templated content, e.g. Pages)
+.admin-image-thumbnail {
+  border:           1px solid $light-grey;
+  max-height:       150px;
+  max-width:        100%;
+  vertical-align:   top;
+}
+
 // fieldset for bottom-of-page 'add new element' forms
 main fieldset {
   border:           1px solid $input-border;
@@ -430,10 +442,6 @@ main fieldset legend {
   font-size:        1em;
   margin:           0 0 0 0.5em;
   width:            initial;
-}
-
-input.field_with_errors, select.field_with_errors, textarea.field_with_errors {
-  border:           2px solid $red;
 }
 
 

@@ -52,7 +52,10 @@
 
 ### Small-ish
 
-* Handle timezones: https://prathamesh.tech/2019/07/11/use-time-use_zone-to-navigate-timezone
+* Handle timezones
+    * https://prathamesh.tech/2019/07/11/use-time-use_zone-to-navigate-timezones
+    * https://api.rubyonrails.org/classes/Time.html#method-c-use_zone
+    * https://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html
 
 * Add 'unsubscribe reason' to ShinyLists
 

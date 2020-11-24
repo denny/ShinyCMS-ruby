@@ -54,7 +54,7 @@
     <% end %>
     <%= f.fields_for :elements do |fields| %>
       <% this = @page.elements[fields.index] %>
-      <%= render partial: 'element', locals: { fields: fields, id: this.id, name: this.name, element_type: this.element_type, content: :content, filenames: filenames_for_image_select } %>
+      <%= render partial: 'element', locals: { fields: fields, id: this.id, name: this.name, element_type: this.element_type, content: :content, image: this.image } %>
     <% end %>
     <% if current_user.can? :edit, :page_templates %>
     </tbody>
