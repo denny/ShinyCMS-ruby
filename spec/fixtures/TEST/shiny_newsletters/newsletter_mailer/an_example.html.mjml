@@ -6,7 +6,9 @@
       <%= @elements[:a_heading] %>
     </mj-text>
 
-    <mj-image src="<%= @elements[:top_image].service_url if @elements[:top_image].present? %>" href="<%= main_app.root_url %>" alt="<%= @elements[:top_alt_text] %>" title="<%= @elements[:top_title_text] %>" />
+    <% if @elements[:top_image]&.attached? %>
+    <mj-image src="<%= url_for @elements[:top_image] %>" href="<%= main_app.root_url %>" alt="<%= @elements[:top_alt_text] %>" title="<%= @elements[:top_title_text] %>" />
+    <% end %>
 
     <mj-text>
       <%= simple_format @elements[:some_longer_text] %>

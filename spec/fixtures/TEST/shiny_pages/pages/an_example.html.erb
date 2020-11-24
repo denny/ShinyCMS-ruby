@@ -3,7 +3,7 @@
   <%= @page.name %>
 </h1>
 <p>
-  <%= image_tag an_image.service_url, class: 'classy' if an_image.present? %>
+  <%= image_tag url_for( an_image ), class: 'classy' if an_image&.attached? %>
 </p>
 <h2>
   <%= a_heading %>
