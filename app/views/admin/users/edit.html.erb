@@ -27,8 +27,8 @@
   <p>
     <%= f.label :profile_pic %>
     <br><%= f.file_field :profile_pic %>
-    <% if @user.profile_pic.present? %>
-    <br><%= image_tag @user.profile_pic.variant( resize: '200x200!' ).processed.service_url, class: 'user_icon' %>
+    <% if @user.profile_pic.attached? %>
+    <br><%= image_tag url_for( @user.profile_pic.variant( resize: '200x200!' ) ), class: 'user_icon' %>
     <% end %>
   </p>
 

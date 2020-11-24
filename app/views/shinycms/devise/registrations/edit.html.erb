@@ -33,8 +33,8 @@
     <div class="field">
       <%= f.label :profile_pic %>
       <br><%= f.file_field :profile_pic %>
-      <% if resource.profile_pic.present? %>
-      <br><%= image_tag resource.profile_pic.variant( resize: '200x200!' ).processed.service_url, class: 'user_icon' %>
+      <% if resource.profile_pic.attached? %>
+      <br><%= image_tag url_for( resource.profile_pic.variant( resize: '200x200!' ) ), class: 'user_icon' %>
       <% end %>
     </div>
 
