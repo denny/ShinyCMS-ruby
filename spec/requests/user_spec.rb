@@ -146,8 +146,10 @@ RSpec.describe 'User Accounts', type: :request do
       user = create :user, password: password
 
       post user_session_path, params: {
-        'user[login]': user.email,
-        'user[password]': password
+        user: {
+          login: user.username,
+          password: password
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -162,8 +164,10 @@ RSpec.describe 'User Accounts', type: :request do
       user = create :user, password: password
 
       post user_session_path, params: {
-        'user[login]': user.username,
-        'user[password]': password
+        user: {
+          login: user.username,
+          password: password
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -182,8 +186,10 @@ RSpec.describe 'User Accounts', type: :request do
 
       post user_session_path,
            params: {
-             'user[login]': user.username,
-             'user[password]': password
+             user: {
+               login: user.username,
+               password: password
+             }
            },
            headers: {
              'HTTP_REFERER': should_go_here
