@@ -23,7 +23,7 @@
 
               <!-- Feature #1 -->
               <section>
-                <%= link_to( image_tag image1, class: 'bordered-feature-image' ) if image1.attached? %>
+                <%= link_to image_tag( image1, class: 'bordered-feature-image' ), url_for( image1 ) if image1.attached? %>
                 <h2>
                   <%= heading1 %>
                 </h2>
@@ -35,7 +35,7 @@
 
               <!-- Feature #2 -->
               <section>
-                <%= link_to( image_tag image2, class: 'bordered-feature-image' ) if image2.attached? %>
+                <%= link_to image_tag( image2, class: 'bordered-feature-image' ), url_for( image2 ) if image2.attached? %>
                 <h2>
                   <%= heading2 %>
                 </h2>
@@ -47,7 +47,7 @@
 
               <!-- Feature #3 -->
               <section>
-                <%= link_to( image_tag image3, class: 'bordered-feature-image' ) if image3.attached? %>
+                <%= link_to image_tag( image3, class: 'bordered-feature-image' ), url_for( image3 ) if image3.attached? %>
                 <h2>
                   <%= heading3 %>
                 </h2>
@@ -59,7 +59,7 @@
 
               <!-- Feature #4 -->
               <section>
-                <%= link_to( image_tag image4, class: 'bordered-feature-image' ) if image4.attached? %>
+                <%= link_to image_tag( image4, class: 'bordered-feature-image' ), url_for( image4 ) if image4.attached? %>
                 <h2>
                   <%= heading4 %>
                 </h2>
