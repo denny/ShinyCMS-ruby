@@ -8,7 +8,7 @@
                 <a href="<%= banner_button_url %>" class="button-large"><%= banner_button_text %></a>
               </div>
               <div class="col-6 col-12-medium imp-medium">
-                <%= link_to( image_tag banner_image, class: 'banner-image' ) if banner_image.attached? %>
+                <%= link_to image_tag( banner_image, class: 'banner-image' ), url_for( banner_image ) if banner_image.attached? %>
               </div>
             </div>
           </div>
@@ -23,7 +23,7 @@
 
               <!-- Feature #1 -->
               <section>
-                <%= link_to( image_tag image1, class: 'bordered-feature-image' ) if image1.attached? %>
+                <%= link_to image_tag( image1, class: 'bordered-feature-image' ), url_for( image1 ) if image1.attached? %>
                 <h2>
                   <%= heading1 %>
                 </h2>
@@ -35,7 +35,7 @@
 
               <!-- Feature #2 -->
               <section>
-                <%= link_to( image_tag image2, class: 'bordered-feature-image' ) if image2.attached? %>
+                <%= link_to image_tag( image2, class: 'bordered-feature-image' ), url_for( image2 ) if image2.attached? %>
                 <h2>
                   <%= heading2 %>
                 </h2>
@@ -47,7 +47,7 @@
 
               <!-- Feature #3 -->
               <section>
-                <%= link_to( image_tag image3, class: 'bordered-feature-image' ) if image3.attached? %>
+                <%= link_to image_tag( image3, class: 'bordered-feature-image' ), url_for( image3 ) if image3.attached? %>
                 <h2>
                   <%= heading3 %>
                 </h2>
@@ -59,7 +59,7 @@
 
               <!-- Feature #4 -->
               <section>
-                <%= link_to( image_tag image4, class: 'bordered-feature-image' ) if image4.attached? %>
+                <%= link_to image_tag( image4, class: 'bordered-feature-image' ), url_for( image4 ) if image4.attached? %>
                 <h2>
                   <%= heading4 %>
                 </h2>
