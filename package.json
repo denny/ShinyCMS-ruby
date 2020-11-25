@@ -15,7 +15,7 @@
     "smartmenus": "^1.1.1"
   },
   "devDependencies": {
-    "webpack": "^4.44.2",
+    "webpack": "^5.6.0",
     "webpack-dev-server": "^3.11.0"
   }
 }
