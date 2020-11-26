@@ -214,9 +214,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'classifies a new comment as spam after checking Akismet' do
-      skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
-
       FeatureFlag.enable :akismet_for_comments
+      allow_any_instance_of( Akismet::Client ).to receive( :check ).and_return( [ true, false ] )
 
       always_fail_author_name = 'viagra-test-123'
       title = Faker::Books::CultureSeries.unique.culture_ship
@@ -242,8 +241,6 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it "doesn't save a new comment if Akismet classifies it as 'blatant' spam" do
-      skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
-
       FeatureFlag.enable :akismet_for_comments
       allow_any_instance_of( Akismet::Client ).to receive( :check ).and_return( [ true, true ] )
 
