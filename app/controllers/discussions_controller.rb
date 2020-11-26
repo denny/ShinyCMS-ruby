@@ -115,7 +115,7 @@ class DiscussionsController < MainController
     return author if strong_params[ :author_email ].blank?
 
     recipient = EmailRecipient.find_or_initialize_by( email: strong_params[ :author_email ] )
-    author.update!( email_recipient: recipient )
+    author.email_recipient = recipient
     author
   end
 
