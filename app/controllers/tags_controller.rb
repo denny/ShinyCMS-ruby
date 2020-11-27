@@ -32,12 +32,22 @@ class TagsController < MainController
     @tag = ActsAsTaggableOn::Tag.readonly.find_by( name: @tag_name )
     @tagged_items = {}
     taggable_models.each do |resource|
-      @tagged_items[ resource.name ] = resource.readonly.tagged_with( @tag_name )
+      @tagged_items[ resource.name ] = tagged_items_for resource
     end
     @element_types = @tagged_items.keys.sort
   end
 
   private
+
+  def tagged_items_for( resource )
+    # Currently everything with tags has a .published scope - but this may not always be the case
+    return resource.readonly.published.tagged_with( @tag_name ) if resource.respond_to? :published
+
+    # Everything with tags also includes ShinyShowHide currently - again, subject to change
+    # return resource.readonly.visible.tagged_with( @tag_name ) if resource.respond_to? :visible
+
+    # resource.readonly.tagged_with( @tag_name )
+  end
 
   def taggable_models
     [ taggable_models_in_core + ShinyPlugin.models_that_are_taggable ].flatten
