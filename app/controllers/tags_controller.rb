@@ -11,7 +11,7 @@ class TagsController < MainController
   before_action :check_feature_flags
 
   def index
-    @tags = all_tags
+    @tags = visible_tags
     if setting( :tag_view ) == 'list'
       render :list
     else
@@ -20,11 +20,11 @@ class TagsController < MainController
   end
 
   def cloud
-    @tags = all_tags
+    @tags = visible_tags
   end
 
   def list
-    @tags = all_tags
+    @tags = visible_tags
   end
 
   def show
@@ -39,8 +39,9 @@ class TagsController < MainController
 
   private
 
-  def all_tags
-    ActsAsTaggableOn::Tag.readonly.all
+  def visible_tags
+    ActsAsTaggableOn::Tagging.select { |tagged| tagged.taggable.show_on_site? }
+                             .collect( &:tag )
   end
 
   def tagged_items_for( resource )

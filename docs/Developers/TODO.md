@@ -2,7 +2,18 @@
 
 ## TODO
 
-* Tag cloud/list don't honour show/hide status of content
+* Tags (list/cloud/show/menu) don't honour show/hide status of content
+    * FIXED individual tag show page - no longer links to hidden content
+        * See TagsController.tagged_items_for()
+    * Half-fixed cloud/list pages (see TagsController.visible_tags)
+        * Hides tag if no visible content
+        * Otherwise, count still includes any hidden content
+    * Menu is driven by .most_used method from gem, no easy fix there
+    * Need better solution for cloud/list, that also fixes menu etc
+        * Move tags to a :hidden_tags context when content is hidden?
+            * Implement in ShinyShowHide
+
+* Once the above is fixed; replace full tag list on 404 page with the 20 most used tags and a 'see all' link
 
 * On email recipients admin page, link to a summary of their comments and newsletter subscriptions (if any exist)
 
