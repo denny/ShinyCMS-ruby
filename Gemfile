@@ -68,9 +68,6 @@ source 'https://rubygems.org' do
   # Authorisation
   gem 'pundit'
 
-  # Monitoring
-  gem 'bugsnag'
-
   # Soft delete
   gem 'acts_as_paranoid'
 
@@ -134,17 +131,26 @@ source 'https://rubygems.org' do
   # Better-looking console output
   gem 'amazing_print'
 
-  # Pry is a debugging tool - uncomment it here if you want to use it on the Rails console in production
-  gem 'pry-rails'
-
   group :production do
     # Fix request.ip if we're running behind Cloudflare's proxying service
     gem 'cloudflare-rails'
+
+    # Monitoring
+    if ENV[ 'BUGSNAG_API_KEY' ]
+      # Bug triage / application stability monitoring
+      gem 'bugsnag'
+    end
+
+    # Set SHINYCMS_PRY_CONSOLE=true in ENV to use Pry as your production Rails console
+    if ENV[ 'SHINYCMS_PRY_CONSOLE' ] && ENV[ 'SHINYCMS_PRY_CONSOLE' ] == 'true'
+      # Pry is a runtime developer console: https://pry.github.com
+      gem 'pry-rails'
+    end
   end
 
   group :development, :test do
-    # You can enable Pry here if you commented it out in production.
-    # gem 'pry-rails'
+    # Pry is a runtime developer console: https://pry.github.com
+    gem 'pry-rails'
 
     # Tests are good, m'kay?
     gem 'rspec-rails'
