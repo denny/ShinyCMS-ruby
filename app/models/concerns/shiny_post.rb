@@ -37,7 +37,7 @@ module ShinyPost
 
     # Plugin features
 
-    acts_as_taggable
+    acts_as_taggable_on :tags, :hidden_tags
     acts_as_votable
 
     searchable_by :title, :body, :slug if ShinyPlugin.loaded? :ShinySearch # TODO: author

@@ -11,6 +11,7 @@ class User < ApplicationRecord
   include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
   include ShinyEmail
   include ShinyPaging
+  # include ShinyShowHide
   include ShinySoftDelete
 
   # Plugin features
@@ -20,8 +21,11 @@ class User < ApplicationRecord
          :validatable, :confirmable, :lockable, :timeoutable, :trackable
   devise :pwned_password unless Rails.env.test?
 
-  # Upvotes AKA 'likes'
+  # Users can upvote (AKA 'like') and downvote things
   acts_as_voter
+
+  # User profiles tags (TODO: this will move into ShinyProfiles::Profile)
+  # acts_as_taggable
 
   if ShinyPlugin.all_loaded? :ShinySearch, :ShinyProfiles
     # TODO: all of these except username will be moving into ShinyProfiles::Profile
