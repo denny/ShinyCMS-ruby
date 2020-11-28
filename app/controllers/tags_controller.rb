@@ -11,7 +11,7 @@ class TagsController < MainController
   before_action :check_feature_flags
 
   def index
-    @tags = ActsAsTaggableOn::Tag.all
+    @tags = all_tags
     if setting( :tag_view ) == 'list'
       render :list
     else
@@ -20,11 +20,11 @@ class TagsController < MainController
   end
 
   def cloud
-    @tags = ActsAsTaggableOn::Tag.readonly.all
+    @tags = all_tags
   end
 
   def list
-    @tags = ActsAsTaggableOn::Tag.readonly.all
+    @tags = all_tags
   end
 
   def show
@@ -38,6 +38,10 @@ class TagsController < MainController
   end
 
   private
+
+  def all_tags
+    ActsAsTaggableOn::Tag.readonly.all
+  end
 
   def tagged_items_for( resource )
     # Currently everything with tags has a .published scope - but this may not always be the case
