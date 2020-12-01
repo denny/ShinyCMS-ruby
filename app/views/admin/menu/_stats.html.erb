@@ -6,12 +6,12 @@
   <%= render_admin_menu_section( t( 'admin.stats.menu' ), 'chart' ) do %>
 
     <%= render_admin_menu_item_if( current_user.can?( :view_web, :stats ),
-        t( 'admin.web_stats.menu' ), web_stats_path, 'bar-chart' ) %>
+        t( 'admin.web_stats.menu' ), main_app.web_stats_path, 'bar-chart' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :view_email, :stats ),
-        t( 'admin.email_stats.menu' ), email_stats_path, 'chart-pie' ) %>
+        t( 'admin.email_stats.menu' ), main_app.email_stats_path, 'chart-pie' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :make_charts, :stats ),
-        t( 'admin.blazer.menu' ), blazer_path, 'chart-line' ) %>
+        t( 'admin.blazer.menu' ), main_app.blazer_path, 'chart-line' ) %>
 
   <% end %>
