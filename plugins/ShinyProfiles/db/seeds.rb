@@ -10,9 +10,9 @@
 # rails shiny_profiles:db:seed
 
 # Add feature flag
-flag = FeatureFlag.find_or_create_by!( name: 'profile_pages' )
+flag = FeatureFlag.find_or_create_by!( name: 'user_profiles' )
 flag.update!(
-  description: 'Enable user profile pages, provided by ShinyProfiles plugin',
+  description: 'User profile pages (provided by ShinyProfiles plugin)',
   enabled: true,
   enabled_for_logged_in: true,
   enabled_for_admins: true

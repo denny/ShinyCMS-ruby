@@ -13,5 +13,10 @@ ShinyProfiles::Engine.routes.draw do
     get 'profile/:username',  to: 'profiles#show', as: :profile,
                               constraints: { username: User::USERNAME_REGEX }
     get 'profile',            to: 'profiles#profile_redirect', as: :profile_redirect
+
+    # Admin area
+    scope path: 'admin', module: 'admin' do
+      put 'profiles/:id', to: 'profiles#update', as: :user_profile
+    end
   end
 end
