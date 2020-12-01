@@ -47,6 +47,17 @@ RSpec.describe ShinyProfiles::ProfilesController, type: :request do
     end
   end
 
+  describe 'GET /profile/:username/edit' do
+    it "renders the user's edit-profile page" do
+      profile = create :user_profile
+
+      get shiny_profiles.edit_profile_path( profile.username )
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title profile.name
+    end
+  end
+
   describe 'GET /profile' do
     it 'redirects to the login page if a user is not currently logged in' do
       get shiny_profiles.profile_redirect_path

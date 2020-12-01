@@ -17,6 +17,10 @@ module ShinyProfiles
 
     belongs_to :user
 
+    has_many :links, -> { order( :position ) }, inverse_of: :profile, dependent: :destroy
+
+    accepts_nested_attributes_for :links
+
     # User profile pic (powered by ActiveStorage)
     has_one_attached :profile_pic, dependent: :purge_now
     # The dependent: :purge_now option is required to avoid an incompatibility issue with soft delete:

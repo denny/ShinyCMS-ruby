@@ -12,11 +12,16 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right pt-0">
       <div class="dropdown-header bg-light py-2"><strong><%= current_user.name %></strong></div>
+      <% if plugin_loaded? :ShinyProfiles && current_user.profile.present? %>
       <a class="dropdown-item" href="<%= shiny_profiles.profile_path( current_user.username ) %>">
         <i class="cil-user user-menu-icon"></i> <%= t( 'shiny_profiles.view_profile' ) %>
       </a>
-      <a class="dropdown-item" href="<%= main_app.edit_user_registration_path( current_user.username ) %>">
+      <a class="dropdown-item" href="<%= shiny_profiles.edit_profile_path( current_user.profile ) %>">
         <i class="cil-pencil user-menu-icon"></i> <%= t( 'shiny_profiles.edit_profile' ) %>
+      </a>
+      <% end %>
+      <a class="dropdown-item" href="<%= main_app.edit_user_registration_path( current_user.username ) %>">
+        <i class="cil-pencil user-menu-icon"></i> <%= t( 'admin.users.edit.title' ) %>
       </a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="<%= main_app.site_settings_path %>">

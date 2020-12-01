@@ -1,18 +1,9 @@
-<% @page_title = t( '.title', name: @profile.name ) %>
+<% @page_title = t( '.title' ) %>
 
-<%= form_for @profile, url: shiny_profiles.edit_profile_path( @profile ), method: :put do |f| %>
-  <p>
-    <%= f.label :username %>
-    <br><%= f.text_field :username, disabled: true %>
-  </p>
+<%= form_for @profile, url: shiny_profiles.admin_profile_path( @profile ), method: :put do |f| %>
   <p>
     <%= f.label :public_name %>
     <br><%= f.text_field :public_name %>
-  </p>
-
-  <p>
-    <%= f.label :email %>
-    <br><%= f.text_field :email %>
   </p>
   <p>
     <%= f.label :public_email %>

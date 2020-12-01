@@ -16,3 +16,11 @@ en:
     profiles:
       edit:
         title: "Editing %{name}'s profile"
+
+    admin:
+      profiles:
+        edit:
+          title: Edit user profile
+        update:
+          success: User profile details updated
+          failure: Failed to update user profile details

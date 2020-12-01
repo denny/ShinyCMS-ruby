@@ -8,6 +8,8 @@
 
 * Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
 
+* Finish adding support for links on user profiles
+
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
 ### Small-ish
