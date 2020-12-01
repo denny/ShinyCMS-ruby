@@ -215,6 +215,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
     it 'classifies a new comment as spam after checking Akismet' do
       FeatureFlag.enable :akismet_for_comments
+      allow_any_instance_of( Akismet::Client ).to receive( :open  )
       allow_any_instance_of( Akismet::Client ).to receive( :check ).and_return( [ true, false ] )
 
       always_fail_author_name = 'viagra-test-123'
@@ -242,6 +243,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
     it "doesn't save a new comment if Akismet classifies it as 'blatant' spam" do
       FeatureFlag.enable :akismet_for_comments
+      allow_any_instance_of( Akismet::Client ).to receive( :open  )
       allow_any_instance_of( Akismet::Client ).to receive( :check ).and_return( [ true, true ] )
 
       name  = Faker::Name.unique.name

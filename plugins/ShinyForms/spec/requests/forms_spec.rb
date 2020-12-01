@@ -13,6 +13,7 @@ RSpec.describe 'ShinyForms', type: :request do
   before :each do
     create :top_level_page
 
+    allow_any_instance_of( Akismet::Client ).to receive( :open  )
     allow_any_instance_of( Akismet::Client ).to receive( :check ).and_return( [ false, false ] )
     allow_any_instance_of( ShinyForms::FormsController ).to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
     allow( ShinyForms::FormsController ).to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
