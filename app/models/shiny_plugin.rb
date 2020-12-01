@@ -72,13 +72,6 @@ class ShinyPlugin
     loaded_names.include? plugin_name.to_s
   end
 
-  def self.all_loaded?( *plugin_names )
-    plugin_names.each do |name|
-      return false unless loaded? name
-    end
-    true
-  end
-
   def self.with_main_site_helpers
     loaded.select( &:main_site_helper )
   end
