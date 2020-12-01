@@ -63,7 +63,6 @@ class User < ApplicationRecord
   # Instance methods
 
   def name
-    # TODO: FIXME: crossing an architectural boundary here
     return profile.name if ShinyPlugin.loaded?( :ShinyProfiles ) && profile.present?
 
     username
