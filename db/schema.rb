@@ -273,15 +273,6 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
-  create_table "rollups", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "interval", null: false
-    t.datetime "time", null: false
-    t.jsonb "dimensions", default: {}, null: false
-    t.float "value"
-    t.index ["name", "interval", "time", "dimensions"], name: "index_rollups_on_name_and_interval_and_time_and_dimensions", unique: true
-  end
-
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
