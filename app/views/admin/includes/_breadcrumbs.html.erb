@@ -1,23 +1,26 @@
 <nav class="breadcrumbs">
   <ol class="breadcrumb border-0 m-0">
-    <li class="breadcrumb-item"><%= link_to t( 'home'             ), root_path  %></li>
+    <li class="breadcrumb-item"><%= link_to t( 'home'             ), main_app.root_path %></li>
     <li class="breadcrumb-item"><%= link_to t( 'admin.breadcrumb' ), admin_path %></li>
 
     <li class="breadcrumb-item">
       <% plugin_name = controller.class.name.split('::').first %>
 
-      <%# Allow controllers to override their 'section' breadcrumb link %>
-      <% if controller.respond_to? :breadcrumb_link_text_and_path %>
-        <%= link_to *controller.breadcrumb_link_text_and_path %>
-
       <%# ShinyCMS plugins %>
-      <% elsif plugin_loaded? plugin_name %>
-        <%= link_to *plugin_breadcrumb_link_text_and_path( plugin_name, controller_name ) %>
+      <% if plugin_loaded? plugin_name %>
+
+        <%# Allow plugin controllers to override their 'section' breadcrumb link %>
+        <% if controller.respond_to? :breadcrumb_link_text_and_path %>
+          <%= link_to *controller.breadcrumb_link_text_and_path %>
+        <% else %>
+          <%= link_to *plugin_breadcrumb_link_text_and_path( plugin_name, controller_name ) %>
+        <% end %>
 
       <%# Other engines %>
       <% elsif plugin_name == 'Blazer' %>
         <% @page_title = t( "admin.blazer.#{controller_name}.title" ) %>
         <%= link_to t( 'admin.stats.breadcrumb' ), blazer.root_path %>
+
       <% elsif plugin_name == 'RailsEmailPreview' %>
         <%= link_to t( 'rails_email_preview.breadcrumb' ), rails_email_preview.rep_root_path %>
 

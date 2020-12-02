@@ -26,6 +26,7 @@ en:
   add: Add
   edit: Edit
   post: Post
+  back: Back
   show: Show
   hide: Hide
   lock: Lock
@@ -70,6 +71,11 @@ en:
 
 
   # ========== ( Main Site ) ==========
+
+  devise:
+    registrations:
+      new:
+        title: Create user account
 
   discussions:
     anonymous: Anonymous

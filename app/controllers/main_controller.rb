@@ -71,7 +71,7 @@ class MainController < ApplicationController
 
     return admin_path if resource.can? :view_admin_area
 
-    return shiny_profiles.profile_path( resource.username ) if feature_enabled?( :profile_pages )
+    return shiny_profiles.profile_path( resource.username ) if feature_enabled?( :user_profiles )
 
     root_path
   end

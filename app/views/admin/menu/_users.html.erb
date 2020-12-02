@@ -3,9 +3,9 @@
   <%= render_admin_menu_section( t( 'admin.users.menu' ), 'people' ) do %>
 
     <%= render_admin_menu_item(
-        t( 'admin.users.index.title' ), users_path, 'people' ) %>
+        t( 'admin.users.index.title' ), main_app.users_path, 'people' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :add, :users ),
-        t( 'admin.users.new.title' ), new_user_path, 'user-follow' ) %>
+        t( 'admin.users.new.title' ), main_app.new_user_path, 'user-follow' ) %>
 
   <% end %>

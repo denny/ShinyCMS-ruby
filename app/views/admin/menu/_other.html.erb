@@ -5,6 +5,6 @@
     <% end %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :spam_comments ),
-        t( 'admin.comments.menu' ), comments_path, 'trash' ) %>
+        t( 'admin.comments.menu' ), main_app.comments_path, 'trash' ) %>
 
   <% end %>

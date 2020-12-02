@@ -17,8 +17,15 @@ module ShinyProfiles
     end
 
     def show
-      @user_profile = User.readonly.find_by( username: params[ :username ] )
-      return if @user_profile.present?
+      @profile = User.readonly.find_by( username: params[ :username ] )&.profile
+      return if @profile.present?
+
+      render 'errors/404', status: :not_found
+    end
+
+    def edit
+      @profile = User.readonly.find_by( username: params[ :username ] )&.profile
+      return if @profile.present?
 
       render 'errors/404', status: :not_found
     end
@@ -34,7 +41,7 @@ module ShinyProfiles
     private
 
     def check_feature_flags
-      enforce_feature_flags :profile_pages
+      enforce_feature_flags :user_profiles
     end
   end
 end

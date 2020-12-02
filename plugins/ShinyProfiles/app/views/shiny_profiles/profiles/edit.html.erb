@@ -1,0 +1,47 @@
+<% @page_title = t( '.title', name: @profile.name ) %>
+
+<%= form_for @profile, url: shiny_profiles.edit_profile_path( @profile ), method: :put do |f| %>
+  <p>
+    <%= f.label :username %>
+    <br><%= f.text_field :username, disabled: true %>
+  </p>
+  <p>
+    <%= f.label :public_name %>
+    <br><%= f.text_field :public_name %>
+  </p>
+
+  <p>
+    <%= f.label :email %>
+    <br><%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :public_email %>
+    <br><%= f.text_field :public_email %>
+  </p>
+
+  <p>
+    <%= f.label :profile_pic %>
+    <br><%= f.file_field :profile_pic %>
+    <% if @profile.profile_pic.attached? %>
+    <br><%= image_tag url_for( @profile.profile_pic.variant( resize: '200x200!' ) ), class: 'user_icon' %>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label :bio %>
+    <br><%= f.text_area :bio %>
+  </p>
+
+  <p>
+    <%= f.label :location %>
+    <br><%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.label :postcode %>
+    <br><%= f.text_field :postcode, class: 'textshort' %>
+  </p>
+
+  <p class="top-margin">
+    <%= submit_tag t( 'update' ) %>
+  </p>
+<% end %>
