@@ -1349,6 +1349,17 @@
                 
                 <h1 id="shinycms-developer-documentation">ShinyCMS Developer Documentation</h1>
 <h2 id="todo">TODO</h2>
+<ul>
+<li>
+<p>Tag cloud/list don't honour show/hide status of content</p>
+</li>
+<li>
+<p>Delete ahoy and session data when Akismet reports blatant spam? (make configurable)</p>
+</li>
+<li>
+<p>Finish adding support for links on user profiles</p>
+</li>
+</ul>
 <h2 id="features-the-perl-version-has-which-the-ruby-version-doesnt-yet">Features the Perl version has, which the Ruby version doesn't. Yet. :)</h2>
 <h3 id="small-ish">Small-ish</h3>
 <ul>
@@ -1367,18 +1378,7 @@
 </ul>
 <h3 id="medium-ish">Medium-ish</h3>
 <ul>
-<li>
-<p>Mock/VCR the external services in the tests; letting other people make my tests flaky is a tedious waste of time</p>
-<ul>
-<li>This ShinyForms one fails with seed 51328 because Akismet doesn't like the email address Faker gives it:<ul>
-<li>it 'sends a plain email (dump of form_data)' do</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Polls</p>
-</li>
+<li>Polls</li>
 </ul>
 <h3 id="large-ish">Large-ish</h3>
 <ul>
@@ -1416,7 +1416,12 @@
 <h3 id="small-ish_1">Small-ish</h3>
 <ul>
 <li>
-<p>Handle timezones: https://prathamesh.tech/2019/07/11/use-time-use_zone-to-navigate-timezone</p>
+<p>Handle timezones</p>
+<ul>
+<li>https://prathamesh.tech/2019/07/11/use-time-use_zone-to-navigate-timezones</li>
+<li>https://api.rubyonrails.org/classes/Time.html#method-c-use_zone</li>
+<li>https://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html</li>
+</ul>
 </li>
 <li>
 <p>Add 'unsubscribe reason' to ShinyLists</p>
@@ -1439,6 +1444,9 @@
 </li>
 <li>
 <p>Re-assess use of helpers (vs models/libs/whatever) for Akismet and reCaptcha (and others?)</p>
+</li>
+<li>
+<p>On email recipients admin page, link to a summary of their comments and newsletter subscriptions (if any exist)</p>
 </li>
 <li>
 <p>Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)</p>
@@ -1509,6 +1517,9 @@
 </ul>
 </li>
 </ul>
+</li>
+<li>
+<p>Wrap Blazer in a thin ShinyStats plugin, to give it standard auth and feature flagging</p>
 </li>
 <li>
 <p>ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable

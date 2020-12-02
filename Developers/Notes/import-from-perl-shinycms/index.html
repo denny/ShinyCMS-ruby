@@ -1167,17 +1167,10 @@
 <h2 id="general">General</h2>
 <p>We're assuming MySQL at Perl end, Postgres at Ruby end.</p>
 <h2 id="tables-for-features-that-have-been-re-implemented">Tables (for features that have been re-implemented)</h2>
-<p>blog_post -&gt; blog_posts
-    id (int-&gt; bigint)
-    title
-    url_title -&gt; slug
-    body
-    hidden (tinyint -&gt; boolean)
-    blog -&gt; blog_id
-    author -&gt; user_id
-    posted -&gt; posted_at, created_at, updated_at
-    discussion -&gt; [ gone - replaced by wibbly-wobbly polymorphy stuff ]</p>
-<p>cms_page -&gt; pages
+<p>user -&gt; User</p>
+<p>role -&gt; [ set of Capability ]</p>
+<p>user_role -&gt; [ set of UserCapability ]</p>
+<p>cms_page -&gt; ShinyPages::Page
     id (int-&gt; bigint)
     name
     url_title -&gt; slug
@@ -1186,30 +1179,30 @@
     template -&gt; template_id
     section -&gt; section_id
     menu_position -&gt; sort_order
-    hidden (tinyint -&gt; boolean)
-    -&gt; hidden_from_menu
+    show_on_site (tinyint -&gt; boolean)
+    -&gt; show_in_menus
     created -&gt; created_at, updated_at</p>
-<p>cms_page_element -&gt; page_elements
+<p>cms_page_element -&gt; ShinyPages::PageElements
     id (int-&gt; bigint)
     page - page_id
     name
     content
     type -&gt; element_type
     created -&gt; created_at, updated_at</p>
-<p>cms_template -&gt; page_templates
+<p>cms_template -&gt; ShinyPages::Template
     id (int-&gt; bigint)
     name
     -&gt; description
     template_file -&gt; filename
     created -&gt; created_at, updated_at</p>
-<p>cms_template_element -&gt; page_template_elements
+<p>cms_template_element -&gt; ShinyPages::TemplateElement
     id (int-&gt; bigint)
     template -&gt; template_id
     name
     -&gt; content
     type -&gt; element_type
     created -&gt; created_at, updated_at</p>
-<p>cms_section -&gt; page_sections
+<p>cms_section -&gt; ShinyPages::Section
     id (int-&gt; bigint)
     name
     description
@@ -1218,26 +1211,60 @@
     default_page -&gt; default_page_id
     -&gt; section_id
     menu_position -&gt; sort_order
-    hidden (tinyint -&gt; boolean)
-    -&gt; hidden_from_menu
+    show_on_site (tinyint -&gt; boolean)
+    -&gt; show_in_menus
     created -&gt; created_at, updated_at</p>
-<p>comment</p>
-<p>comment_like</p>
-<p>discussion</p>
-<p>news_item -&gt; news_posts</p>
-<p>mail_recipient
-mailing_list
-subscription</p>
-<p>newsletter
-newsletter_element
-newsletter_template
-newsletter_template_element</p>
-<p>shared_content -&gt; insert_elements</p>
+<p>shared_content -&gt; ShinyInserts::Element
+    id (int-&gt; bigint)
+    name
+    content
+    type -&gt; element_type
+    -&gt; set_id
+    created -&gt; created_at, updated_at</p>
+<p>blog_post -&gt; ShinyBlog::Post
+    id (int -&gt; bigint)
+    title
+    url_title -&gt; slug
+    body
+    hidden -&gt; show_on_site (tinyint -&gt; boolean)
+    blog -&gt; [ gone ]
+    author -&gt; user_id
+    posted -&gt; posted_at, created_at, updated_at
+    discussion -&gt; [ gone - replaced by wibbly-wobbly polymorphy stuff ]</p>
+<p>news_item -&gt; ShinyNews::Post
+    id (int -&gt; bigint)
+    title
+    url_title -&gt; slug
+    body
+    hidden -&gt; show_on_site (tinyint -&gt; boolean)
+    author -&gt; user_id
+    posted -&gt; posted_at, created_at, updated_at
+    discussion -&gt; [ gone - replaced by wibbly-wobbly polymorphy stuff ]</p>
+<p>discussion -&gt; Discussion
+    id (int -&gt; bigint)
+    resource_id (int -&gt; bigint)
+    resource_type (DBIC class -&gt; AR class)</p>
+<p>comment -&gt; Comment
+        -&gt; CommentAuthor
+    uid -&gt; id (int -&gt; bigint)
+    id -&gt; number
+    discussion -&gt; discussion_id (int -&gt; bigint)
+    ...</p>
+<p>mail_recipient -?&gt; EmailRecipient
+-&gt; confirmed_at ?? :-\</p>
+<p>mailing_list -&gt; ShinyLists::List
+subscription -&gt; ShinyLists::Subscription
+-&gt; ConsentVersion?? :-\</p>
+<p>newsletter -&gt; ShinyNewsletters::Edition
+           -&gt; ShinyNewsletters::Send
+newsletter_element -&gt; ShinyNewsletters::EditionElement
+newsletter_template -&gt; ShinyNewsletters::Template
+newsletter_template_element -&gt; ShinyNewsletters::TemplateElement</p>
 <p>tag
-tagset -&gt; taggings ??</p>
-<p>user
-role -&gt; ???
-user_role -&gt; ???</p>
+tagset -&gt; taggings ??
+-&gt; acts-as-taggable-on gem</p>
+<p>comment_like
+-&gt; votable gem :-\</p>
                 
               
               

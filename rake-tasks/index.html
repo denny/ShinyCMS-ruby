@@ -866,8 +866,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#remove-old-sessions" class="md-nav__link">
-    Remove old sessions
+  <a href="#delete-unwanted-session-data" class="md-nav__link">
+    Delete unwanted session data
   </a>
   
 </li>
@@ -1255,8 +1255,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#remove-old-sessions" class="md-nav__link">
-    Remove old sessions
+  <a href="#delete-unwanted-session-data" class="md-nav__link">
+    Delete unwanted session data
   </a>
   
 </li>
@@ -1311,7 +1311,10 @@ rails shiny:feature:off[name]    # ShinyCMS: toggle a feature flag off
 <pre><code>rails shiny_newsletters:scheduled:send    # ShinyCMS: check for and start any scheduled sends that are due
 </code></pre>
 <p>This task can be scheduled to run as a regular task, or run on an ad-hoc basis, as you prefer.</p>
-<h3 id="remove-old-sessions">Remove old sessions</h3>
+<h3 id="delete-unwanted-session-data">Delete unwanted session data</h3>
+<pre><code>rails shiny:sessions:clean    # ShinyCMS: delete data for short sessions
+</code></pre>
+<p>This task deletes session data for any sessions that lasted less than the specified number of seconds (e.g. <code>rails shiny:sessions:clean 3</code> will remove sessions that lasted less than 3 seconds in total) - not including sessions from the current date.</p>
 <pre><code>rails db:sessions:trim    # Trim old sessions from the table (default: &gt; 30 days)
 </code></pre>
 <p>Rails provides this task to remove older sessions (over 30 days old by default, or you can set SESSION_DAYS_TRIM_THRESHOLD for a different limit). You may wish to schedule this to run every night to prevent the sessions table in your database from growing too large.</p>
@@ -1320,13 +1323,13 @@ rails shiny:feature:off[name]    # ShinyCMS: toggle a feature flag off
 </code></pre>
 <p>This task allows you to quickly insert the demo site data so you can experiment with CMS features. Be aware that it will wipe the current contents of the database - back up anything you want to keep before running it!</p>
 <h3 id="plugin-migrations-and-seed-data">Plugin migrations and seed data</h3>
-<pre><code>rails shiny_[various]:db:seed               # ShinyCMS: load supporting data for **** plugin
+<pre><code>rails shiny_[various]:db:seed               # ShinyCMS: load supporting data for Shiny**** plugin
 rails shiny_[various]:install:migrations    # Copy migrations from shiny_**** to application
 </code></pre>
 <p>The rest of the rake tasks added by ShinyCMS are the tasks to install migrations and load seed data for each plugin.</p>
 <p>Currently, running the main <code>rails db:seed</code> task also runs all of the plugin seed tasks, so you should not need to run these tasks separately.</p>
-<p>Similarly, the plugin tables are already included in the main <code>db/schema.rb</code> used to create the database, so you shouldn't need to run the install migration tasks, or the resulting migrations.</p>
-<p>In the case that a plugin does not provide a migration install task, it will be because that plugin doesn't store any data in the database (e.g. ShinySearch). All plugins currently provide a seed task, to add settings and feature flags if nothing else.</p>
+<p>Similarly, the plugin tables are already included in the main <code>db/schema.rb</code> used to create the database - so you shouldn't need to run the install migration tasks, or the resulting migrations, as part of the standard install process.</p>
+<p>In the case that a plugin does not provide a migration install task, it will be because that plugin doesn't store any data in the database (e.g. ShinySearch). All plugins currently provide a seed task (to add settings and feature flags, if nothing else).</p>
                 
               
               
