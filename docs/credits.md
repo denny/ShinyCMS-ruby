@@ -13,4 +13,6 @@ creation of this software.
 
 * Michael Snook (@michaelsnook) and Ed Saperia (@edsaperia), for numerous contributions to the brainstorming around mailing lists and related features.
 
+* List of English language acronyms adapted from https://github.com/thingista/acronyms_and_more
+
 * Everybody who contributed code, thinking, bug reports, and feature requests to the original ShinyCMS.

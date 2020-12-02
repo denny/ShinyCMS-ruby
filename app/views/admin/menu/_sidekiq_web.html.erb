@@ -1,3 +1,3 @@
  <% return unless sidekiq_web_enabled? && current_user.can?( :manage_sidekiq_jobs ) %>
 
-  <%= render_admin_menu_item( t( 'admin.sidekiq_web.menu' ), sidekiq_web_path, 'applications' ) %>
+  <%= render_admin_menu_item( t( 'admin.sidekiq_web.menu' ), main_app.sidekiq_web_path, 'applications' ) %>

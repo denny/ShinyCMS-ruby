@@ -28,6 +28,15 @@ class Admin::UsersController < AdminController
     render :index
   end
 
+  def username_search
+    authorize User
+
+    # users = User.where( 'username ilike ?', "%#{params[ :term ]}%" ).pluck( :id, :username )
+    users = User.where( 'username ilike ?', "%#{params[ :term ]}%" ).pluck( :username )
+
+    render json: users
+  end
+
   def new
     @user = User.new
     authorize @user

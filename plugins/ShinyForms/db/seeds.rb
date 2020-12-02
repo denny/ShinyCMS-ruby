@@ -51,7 +51,7 @@ def set_setting( name:, value: '', description: nil, level: 'site', locked: fals
 end
 
 set_setting(
-  name: :recaptcha_form_score,
+  name: :recaptcha_score_for_forms,
   value: '0.6',
   locked: true,
   description: 'Minimum score for reCAPTCHA V3 on ShinyForm submissions'

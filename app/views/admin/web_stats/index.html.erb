@@ -6,7 +6,7 @@
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
-      <th>
+      <th colspan="2">
         Visit started
       </th>
       <th>
@@ -24,8 +24,11 @@
   <tbody>
     <% @visits.each do |visit| %>
     <tr>
+    <td class="width5pc">
+        <%= display_time( visit.started_at ) %>
+      </td>
       <td>
-        <%= visit.started_at %>
+        <%= display_date( visit.started_at ) %>
       </td>
       <td>
         <%= visit.ip %>

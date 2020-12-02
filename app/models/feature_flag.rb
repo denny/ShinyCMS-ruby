@@ -24,11 +24,29 @@ class FeatureFlag < ApplicationRecord
     update! enabled: true, enabled_for_logged_in: true, enabled_for_admins: true
   end
 
+  alias on enable
+
   def disable
     update! enabled: false, enabled_for_logged_in: false, enabled_for_admins: false
   end
 
+  alias off disable
+
   # Class methods
+
+  def self.enabled?( name, user = nil )
+    feature = find_by( name: name.to_s )
+
+    return false if feature.blank?
+    return true  if feature.enabled?
+
+    return false if user.blank?
+    return true  if feature.enabled_for_logged_in?
+
+    return false unless user.admin?
+
+    feature.enabled_for_admins?
+  end
 
   def self.enable( name )
     flag = find_by!( name: name.to_s )

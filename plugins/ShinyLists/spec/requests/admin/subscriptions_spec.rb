@@ -39,7 +39,7 @@ RSpec.describe 'List Subscription admin features', type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.subscriptions.index.title' ).titlecase
-      expect( response.body ).to have_css 'td', text: 2.days.ago.to_s( :shinydate )
+      expect( response.body ).to have_css 'td', text: 2.days.ago.to_s( :shinydate_with_day )
     end
   end
 
@@ -62,11 +62,11 @@ RSpec.describe 'List Subscription admin features', type: :request do
     end
   end
 
-  describe 'PUT /admin/list/:list_id/subscription/:id' do
+  describe 'DELETE /admin/list/:list_id/subscription/:id' do
     it 'unsubscribes the specified subscriber from the specified mailing list' do
       s1 = create :mailing_list_subscription, list: list
 
-      put shiny_lists.admin_list_unsubscribe_path( list, s1 )
+      delete shiny_lists.admin_list_unsubscribe_path( list, s1 )
 
       success_message = I18n.t( 'shiny_lists.admin.subscriptions.unsubscribe.success' )
 

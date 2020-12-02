@@ -9,6 +9,8 @@
 module ShinyInserts
   # Admin area controller for ShinyInserts plugin for ShinyCMS
   class Admin::InsertsController < AdminController
+    helper_method :load_html_editor?
+
     before_action :stash_insert_set
 
     # Displays main form, for updating/deleting the existing insert,
@@ -52,12 +54,6 @@ module ShinyInserts
       redirect_to shiny_inserts.inserts_path, alert: t( '.failure' )
     end
 
-    helper_method :load_html_editor?
-
-    def load_html_editor?
-      return true if action_name == :index
-    end
-
     private
 
     def stash_insert_set
@@ -73,6 +69,10 @@ module ShinyInserts
     # Permitted params for multi-item operations
     def insert_params
       params.require( :insert_set ).permit( elements_attributes: {} )
+    end
+
+    def load_html_editor?
+      return true if action_name == :index
     end
   end
 end

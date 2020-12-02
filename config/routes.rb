@@ -73,9 +73,9 @@ Rails.application.routes.draw do
       resources :consent_versions, path: 'consent-versions', concerns: %i[ paginatable searchable ]
 
       # Comment and discussion moderation
-      get 'comments(/page/:page)', to: 'comments#index', as: :comments
+      get 'comments(/page/:page)', to: 'comments#index',  as: :comments
       put 'comments',              to: 'comments#update'
-      get 'comments/search',       to: 'comments#search'
+      get 'comments/search',       to: 'comments#search', as: :search_comments
 
       scope path: 'comment' do
         put    ':id/show',    to: 'comments#show',          as: :show_comment
@@ -108,17 +108,18 @@ Rails.application.routes.draw do
       put 'site-settings', to: 'site_settings#update'
 
       # Stats
-      get 'email-stats(/page/:page)',            to: 'email_stats#index', as: :email_stats
-      get 'email-stats/user/:user_id',           to: 'email_stats#index', as: :user_email_stats
-      get 'email-stats/recipient/:recipient_id', to: 'email_stats#index', as: :recipient_email_stats
-      get 'email-stats/search',                  to: 'email_stats#search'
+      get 'email-stats(/page/:page)',            to: 'email_stats#index',  as: :email_stats
+      get 'email-stats/user/:user_id',           to: 'email_stats#index',  as: :user_email_stats
+      get 'email-stats/recipient/:recipient_id', to: 'email_stats#index',  as: :recipient_email_stats
+      get 'email-stats/search',                  to: 'email_stats#search', as: :search_email_stats
 
-      get 'web-stats(/page/:page)',              to: 'web_stats#index', as: :web_stats
-      get 'web-stats/user/:user_id',             to: 'web_stats#index', as: :user_web_stats
-      get 'web-stats/search',                    to: 'web_stats#search'
+      get 'web-stats(/page/:page)',              to: 'web_stats#index',  as: :web_stats
+      get 'web-stats/user/:user_id',             to: 'web_stats#index',  as: :user_web_stats
+      get 'web-stats/search',                    to: 'web_stats#search', as: :search_web_stats
 
       # Users
       resources :users, except: :show, concerns: %i[ paginatable searchable ]
+      get 'users/usernames', to: 'users#username_search', as: :search_usernames
     end
 
     ########################################
@@ -170,6 +171,10 @@ Rails.application.routes.draw do
     # It has to be the last route set up, because it hijacks anything that gets this far.
     # This route gives us pages and sections at the top level, e.g. /foo instead of /pages/foo
     # TODO: figure out how to load a route last for the whole app, from inside a plugin's routes.rb
-    get '*path', to: 'shiny_pages/pages#show' if defined? ShinyPages
+    if defined? ShinyPages
+      get '*path', to: 'shiny_pages/pages#show', constraints: lambda { |req|
+        !req.path.starts_with?( '/rails/active_' )
+      }
+    end
   end
 end

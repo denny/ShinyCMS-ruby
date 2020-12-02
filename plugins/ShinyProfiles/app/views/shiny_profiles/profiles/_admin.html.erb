@@ -1,4 +1,4 @@
-<% if current_user_can?( :view_admin_notes, :users ) && @user_profile.admin_notes.present? %>
+<% if current_user_can?( :view_admin_notes, :users ) && @profile.user.admin_notes.present? %>
 <section>
   <header>
     <h3>
@@ -6,6 +6,6 @@
     </h3>
   </header>
 
-  <%= simple_format @user_profile.admin_notes %>
+  <%= simple_format @profile.user.admin_notes %>
 </section>
 <% end %>

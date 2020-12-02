@@ -50,7 +50,7 @@ RSpec.describe Admin::CommentsController, type: :request do
         comment1 = create :comment, body: 'Zebras are zingy', spam: true
         comment2 = create :comment, body: 'Aardvarks are awesome', spam: true
 
-        get comments_search_path, params: { q: 'zing' }
+        get search_comments_path, params: { q: 'zing' }
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.comments.index.title' ).titlecase
@@ -74,7 +74,8 @@ RSpec.describe Admin::CommentsController, type: :request do
     end
 
     it 'deletes the selected comments if you say they are spam' do
-      skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
+      allow_any_instance_of( Akismet::Client ).to receive( :open )
+      allow_any_instance_of( Akismet::Client ).to receive( :spam ).and_return( true )
 
       @nested1.mark_as_spam
       @comment2.mark_as_spam
@@ -82,8 +83,8 @@ RSpec.describe Admin::CommentsController, type: :request do
       expect( @comment2.reload.spam? ).to be true
 
       put comments_path, params: {
+        spam_or_ham: 'spam',
         spam_comments: {
-          spam_or_ham: 'spam',
           "comment_#{@nested1.id}": 1,
           "comment_#{@comment2.id}": 0
         }
@@ -103,7 +104,8 @@ RSpec.describe Admin::CommentsController, type: :request do
     end
 
     it 'removes spam flags from the selected comments if you say they are not spam' do
-      skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
+      allow_any_instance_of( Akismet::Client ).to receive( :open )
+      allow_any_instance_of( Akismet::Client ).to receive( :ham  ).and_return( true )
 
       @nested1.mark_as_spam
       @comment2.mark_as_spam
@@ -111,8 +113,8 @@ RSpec.describe Admin::CommentsController, type: :request do
       expect( @comment2.reload.spam? ).to be true
 
       put comments_path, params: {
+        spam_or_ham: 'ham',
         spam_comments: {
-          spam_or_ham: 'ham',
           "comment_#{@nested1.id}": 1,
           "comment_#{@comment2.id}": 0
         }
@@ -132,16 +134,16 @@ RSpec.describe Admin::CommentsController, type: :request do
     end
 
     it 'reports an error if it fails to remove spam flags' do
-      skip 'Valid Akismet API KEY required' if ENV[ 'AKISMET_API_KEY' ].blank?
-
+      allow_any_instance_of( Akismet::Client ).to receive( :open )
+      allow_any_instance_of( Akismet::Client ).to receive( :ham  ).and_return( true )
       allow( Comment ).to receive( :mark_all_as_ham ).and_return( false )
 
       @nested1.mark_as_spam
       @comment2.mark_as_spam
 
       put comments_path, params: {
+        spam_or_ham: 'ham',
         spam_comments: {
-          spam_or_ham: 'ham',
           "comment_#{@nested1.id}": 1,
           "comment_#{@comment2.id}": 0
         }

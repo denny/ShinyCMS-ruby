@@ -1,5 +1,5 @@
 <% item_is_a_section = page_item.is_a?( ShinyPages::Section ) %>
-<% hidden_class_if_hidden = page_item.hidden? ? 'class="hidden"' : '' %>
+<% hidden_class_if_hidden = page_item.hidden? ? ' class="hidden"' : '' %>
 
   <% if item_is_a_section %>
   <tr id="sorted_section<%= page_item.id %>">
@@ -7,9 +7,9 @@
   <tr id="sorted_<%= page_item.id %>">
   <% end %>
     <% if current_user.can? :edit, :page_sections %>
-    <td class="handle"></td>
+    <td class="handle"><i class="cil-elevator"></i></td>
     <% end %>
-    <td style="padding-left: <%= indent %>em;" <%= hidden_class_if_hidden %>>
+    <td style="padding-left: <%= indent %>em;"<%= hidden_class_if_hidden %>>
       <% if item_is_a_section %><b><% end %><%= page_item.internal_name %><% if item_is_a_section %></b><% end %>
     </td>
     <td>

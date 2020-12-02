@@ -12,7 +12,7 @@
     <%= render partial: 'discussions/comment/footer', locals: { comment: comment } %>
   </footer>
 
-  <% unless comment.locked? %>
+  <% unless comment.locked? || comment.discussion.locked? %>
   <div id="reply_form_<%= comment.id %>" style="margin: 0; padding: 0;" hidden>
     <%= render partial: 'discussions/comment/form', locals: { comment: comment } %>
   </div>

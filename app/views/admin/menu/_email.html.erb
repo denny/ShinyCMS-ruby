@@ -6,6 +6,6 @@
         t( 'admin.email_recipients.menu' ), main_app.email_recipients_path, 'envelope-closed' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :mailer_previews ),
-        t( 'rails_email_preview.menu' ), rails_email_preview_path, 'envelope-letter' ) %>
+        t( 'rails_email_preview.menu' ), main_app.rails_email_preview_path, 'envelope-letter' ) %>
 
   <% end %>

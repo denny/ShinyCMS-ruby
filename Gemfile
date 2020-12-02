@@ -36,7 +36,7 @@ source 'https://rubygems.org' do
   gem 'pg', '>= 0.18', '< 2.0'
 
   # Webserver
-  gem 'puma', '~> 5.0'
+  gem 'puma', '~> 5.1'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails'
@@ -67,6 +67,9 @@ source 'https://rubygems.org' do
   gem 'devise-pwned_password'
   # Authorisation
   gem 'pundit'
+
+  # Monitoring
+  gem 'bugsnag'
 
   # Soft delete
   gem 'acts_as_paranoid'
@@ -112,6 +115,8 @@ source 'https://rubygems.org' do
   gem 'ahoy_email'
   # Web stats
   gem 'ahoy_matey'
+  # Stats aggregation (save space by only keeping a summary of older data)
+  gem 'rollups'
   # Charts and dashboards
   gem 'blazer'
   # Charts
@@ -131,6 +136,11 @@ source 'https://rubygems.org' do
 
   # Pry is a debugging tool - uncomment it here if you want to use it on the Rails console in production
   gem 'pry-rails'
+
+  group :production do
+    # Fix request.ip if we're running behind Cloudflare's proxying service
+    gem 'cloudflare-rails'
+  end
 
   group :development, :test do
     # You can enable Pry here if you commented it out in production.

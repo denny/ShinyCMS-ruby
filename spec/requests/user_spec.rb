@@ -16,7 +16,7 @@ RSpec.describe 'User Accounts', type: :request do
 
   before :each do
     FeatureFlag.enable :user_login
-    FeatureFlag.disable :profile_pages
+    FeatureFlag.disable :user_profiles
   end
 
   describe 'GET /account/register' do
@@ -53,7 +53,7 @@ RSpec.describe 'User Accounts', type: :request do
         .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
 
       FeatureFlag.enable :user_registration
-      FeatureFlag.enable :recaptcha_for_registration
+      FeatureFlag.enable :recaptcha_for_registrations
 
       get new_user_registration_path
 
@@ -67,7 +67,7 @@ RSpec.describe 'User Accounts', type: :request do
         .to receive( :recaptcha_v2_site_key ).and_return( 'A_KEY' )
 
       FeatureFlag.enable :user_registration
-      FeatureFlag.enable :recaptcha_for_registration
+      FeatureFlag.enable :recaptcha_for_registrations
 
       get new_user_registration_path
 
@@ -81,7 +81,7 @@ RSpec.describe 'User Accounts', type: :request do
         .to receive( :recaptcha_checkbox_site_key ).and_return( 'A_KEY' )
 
       FeatureFlag.enable :user_registration
-      FeatureFlag.enable :recaptcha_for_registration
+      FeatureFlag.enable :recaptcha_for_registrations
 
       get new_user_registration_path
 
@@ -146,8 +146,10 @@ RSpec.describe 'User Accounts', type: :request do
       user = create :user, password: password
 
       post user_session_path, params: {
-        'user[login]': user.email,
-        'user[password]': password
+        user: {
+          login: user.username,
+          password: password
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -162,8 +164,10 @@ RSpec.describe 'User Accounts', type: :request do
       user = create :user, password: password
 
       post user_session_path, params: {
-        'user[login]': user.username,
-        'user[password]': password
+        user: {
+          login: user.username,
+          password: password
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -182,8 +186,10 @@ RSpec.describe 'User Accounts', type: :request do
 
       post user_session_path,
            params: {
-             'user[login]': user.username,
-             'user[password]': password
+             user: {
+               login: user.username,
+               password: password
+             }
            },
            headers: {
              'HTTP_REFERER': should_go_here

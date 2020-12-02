@@ -118,8 +118,8 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( "#{i18n_root}.edit.title" ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( "#{i18n_root}.create.success" )
-      expect( response.body ).to include template1.elements.first.name
-      expect( response.body ).to include template1.elements.last.name
+      expect( response.body ).to include template1.elements.first.name.humanize
+      expect( response.body ).to include template1.elements.last.name.humanize
     end
 
     it 'updates the element order' do
@@ -160,7 +160,7 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
 
   describe 'GET /admin/newsletters/editions/:id' do
     it 'loads the form to edit an existing edition' do
-      edition1 = create :newsletter_edition
+      edition1 = create :newsletter_edition, :with_content
 
       get shiny_newsletters.edit_edition_path( edition1 )
 

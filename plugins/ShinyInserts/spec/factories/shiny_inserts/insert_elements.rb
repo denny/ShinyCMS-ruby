@@ -11,7 +11,6 @@ module ShinyInserts
   FactoryBot.define do
     factory :insert_element, class: 'ShinyInserts::Element' do
       name { Faker::Books::CultureSeries.unique.civs.underscore }
-      element_type { 'short_text' }
       set { ShinyInserts::Set.first }
     end
   end

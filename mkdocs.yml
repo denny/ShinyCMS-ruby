@@ -21,9 +21,10 @@ nav:
   - Installation, configuration, deployment:
     - Local installation: INSTALL.md
     - Configuration:      Configuration.md
+    - Cloud hosting:      Cloud-Hosting.md
     - External services:  Services.md
-    - Demo site:          demo-site.md
     - Themes:             Themes.md
+    - Demo site:          demo-site.md
 
     - tl,dr:              tldr.md
 
@@ -36,6 +37,9 @@ nav:
       - Forms:         Features/Plugins/ShinyForms.md
       - Inserts:       Features/Plugins/ShinyInserts.md
       - Search:        Features/Plugins/ShinySearch.md
+
+    - More advanced features:
+      - Access control: Features/Plugins/ShinyAccess.md
 
     - Regular content updates:
       - Blog:          Features/Plugins/ShinyBlog.md
