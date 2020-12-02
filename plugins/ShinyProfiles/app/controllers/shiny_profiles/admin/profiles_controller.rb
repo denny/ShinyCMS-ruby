@@ -18,12 +18,9 @@ module ShinyProfiles
       @profile = Profile.find( params[:id] )
       authorize @profile
 
-      if @profile.update( strong_params )
-        redirect_to admin_edit_profile_path( @profile ), notice: t( '.success' )
-      else
-        flash.now[ :alert ] = t( '.failure' )
-        render action: :edit
-      end
+      flash[ :notice ] = t( '.success' ) if @profile.update( strong_params )
+
+      redirect_to admin_edit_profile_path( @profile )
     end
 
     private

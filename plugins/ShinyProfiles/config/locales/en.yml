@@ -19,8 +19,8 @@ en:
 
     admin:
       profiles:
+        breadcrumb: User profiles
         edit:
           title: Edit user profile
         update:
           success: User profile details updated
-          failure: Failed to update user profile details

@@ -39,11 +39,11 @@ RSpec.describe ShinyProfiles::ProfilesController, type: :request do
       expect( response.body ).to have_title profile.name
     end
 
-    it "renders the CMS 404 page if the username doesn't exist" do
-      get shiny_profiles.profile_path( 'syzygy' )
+    it "renders the 404 page if the user doesn't exist" do
+      get shiny_profiles.profile_path( 'no.such.user' )
 
       expect( response      ).to have_http_status :not_found
-      expect( response.body ).to have_css 'h2', text: I18n.t( 'errors.not_found.title', resource_type: 'Profile' )
+      expect( response.body ).to have_title I18n.t( 'errors.not_found.title', resource_type: 'Profile' )
     end
   end
 
@@ -55,6 +55,13 @@ RSpec.describe ShinyProfiles::ProfilesController, type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title profile.name
+    end
+
+    it "renders the 404 page if the user doesn't exist" do
+      get shiny_profiles.edit_profile_path( 'no.such.user' )
+
+      expect( response      ).to have_http_status :not_found
+      expect( response.body ).to have_title I18n.t( 'errors.not_found.title', resource_type: 'Profile' )
     end
   end
 
