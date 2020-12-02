@@ -95,7 +95,7 @@ ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and genera
 
 It has been tested on most Ruby versions from 2.5.8 onwards, and every release of Rails 6 so far.
 
-(Recent test results for [Ruby 2.5.8, 2.6.6, and 2.7.2](https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/190156596))
+(Recent test results for [Ruby 2.5.8, 2.6.6, and 2.7.2](https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/205841352))
 
 
 ## Contributing
