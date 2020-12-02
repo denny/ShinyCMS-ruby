@@ -115,8 +115,6 @@ source 'https://rubygems.org' do
   gem 'ahoy_email'
   # Web stats
   gem 'ahoy_matey'
-  # Stats aggregation (save space by only keeping a summary of older data)
-  gem 'rollups'
   # Charts and dashboards
   gem 'blazer'
   # Charts
