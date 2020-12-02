@@ -8,8 +8,19 @@
 
 en:
   feature_flags:
-    profile_pages: Profile pages
+    user_profiles: User profile pages
 
   shiny_profiles:
     view_profile: View your profile
     edit_profile: Edit your profile
+    profiles:
+      edit:
+        title: "Editing %{name}'s profile"
+
+    admin:
+      profiles:
+        breadcrumb: User profiles
+        edit:
+          title: Edit user profile
+        update:
+          success: User profile details updated

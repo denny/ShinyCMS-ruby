@@ -76,26 +76,14 @@ search:
     - app/models
     - app/views
     - app/views/shinycms
+    # Check for usage in the plugin views and controllers too
+    <% plugin_names = Dir[ 'plugins/*' ].sort.collect { |plugin_name| plugin_name.sub( 'plugins/', '' ) } %>
+    <% plugin_names.each do |plugin_name| %>
+    - <%= "plugins/#{plugin_name}/app/controllers" %>
+    - <%= "plugins/#{plugin_name}/app/views" %>
+    <% end %>
     # FIXME
-    - plugins/ShinyAccess/app/controllers
-    - plugins/ShinyAccess/app/views
-    - plugins/ShinyBlog/app/controllers
-    - plugins/ShinyBlog/app/views
-    - plugins/ShinyForms/app/controllers
-    - plugins/ShinyForms/app/views
-    - plugins/ShinyInserts/app/controllers
-    - plugins/ShinyInserts/app/views
-    - plugins/ShinyLists/app/controllers
-    - plugins/ShinyLists/app/views
-    - plugins/ShinyNews/app/controllers
-    - plugins/ShinyNews/app/views
-    - plugins/ShinyNewsletters/app/views
-    - plugins/ShinyNewsletters/app/controllers
-    - plugins/ShinyPages/app/controllers
     - plugins/ShinyPages/app/models
-    - plugins/ShinyPages/app/views
-    - plugins/ShinySearch/app/controllers
-    - plugins/ShinySearch/app/views
 
   ## Files or `File.fnmatch` patterns to exclude from search. Some files are always excluded regardless of this setting:
   ##   %w(*.jpg *.png *.gif *.svg *.ico *.eot *.otf *.ttf *.woff *.woff2 *.pdf *.css *.sass *.scss *.less *.yml *.json)

@@ -12,7 +12,7 @@
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2020_11_21_073328) do
+ActiveRecord::Schema.define(version: 2020_11_30_234759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -577,6 +577,35 @@ ActiveRecord::Schema.define(version: 2020_11_21_073328) do
     t.index ["deleted_at"], name: "index_shiny_pages_templates_on_deleted_at"
   end
 
+  create_table "shiny_profiles_links", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "url", null: false
+    t.integer "position"
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_profiles_links_on_deleted_at"
+    t.index ["profile_id"], name: "index_shiny_profiles_links_on_profile_id"
+  end
+
+  create_table "shiny_profiles_profiles", force: :cascade do |t|
+    t.string "public_name"
+    t.string "public_email"
+    t.text "bio"
+    t.string "location"
+    t.string "postcode"
+    t.boolean "show_on_site", default: true, null: false
+    t.boolean "show_in_gallery", default: true, null: false
+    t.boolean "show_to_unauthenticated", default: true, null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: 6
+    t.index ["deleted_at"], name: "index_shiny_profiles_profiles_on_deleted_at"
+    t.index ["user_id"], name: "index_shiny_profiles_profiles_on_user_id"
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -698,6 +727,8 @@ ActiveRecord::Schema.define(version: 2020_11_21_073328) do
   add_foreign_key "shiny_pages_sections", "shiny_pages_pages", column: "default_page_id"
   add_foreign_key "shiny_pages_sections", "shiny_pages_sections", column: "section_id"
   add_foreign_key "shiny_pages_template_elements", "shiny_pages_templates", column: "template_id"
+  add_foreign_key "shiny_profiles_links", "shiny_profiles_profiles", column: "profile_id"
+  add_foreign_key "shiny_profiles_profiles", "users"
   add_foreign_key "taggings", "tags"
   add_foreign_key "user_capabilities", "capabilities"
   add_foreign_key "user_capabilities", "users"

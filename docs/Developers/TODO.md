@@ -15,9 +15,9 @@
 
 * Once the above is fixed; replace full tag list on 404 page with the 20 most used tags and a 'see all' link
 
-* On email recipients admin page, link to a summary of their comments and newsletter subscriptions (if any exist)
-
 * Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
+
+* Finish adding support for links on user profiles
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
@@ -31,10 +31,6 @@
 * Affiliate cookie
 
 ### Medium-ish
-
-* Mock/VCR the external services in the tests; letting other people make my tests flaky is a tedious waste of time
-    * This ShinyForms one fails with seed 51328 because Akismet doesn't like the email address Faker gives it:
-        * it 'sends a plain email (dump of form_data)' do
 
 * Polls
 
@@ -81,6 +77,8 @@
     * https://www.ruby-toolbox.com/projects/it
 
 * Re-assess use of helpers (vs models/libs/whatever) for Akismet and reCaptcha (and others?)
+
+* On email recipients admin page, link to a summary of their comments and newsletter subscriptions (if any exist)
 
 * Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)
 

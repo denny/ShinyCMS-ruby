@@ -8,7 +8,6 @@
 
 # Model for user accounts (largely powered by Devise)
 class User < ApplicationRecord
-  include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
   include ShinyEmail
   include ShinyPaging
   # include ShinyShowHide
@@ -23,14 +22,6 @@ class User < ApplicationRecord
 
   # Users can upvote (AKA 'like') and downvote things
   acts_as_voter
-
-  # User profiles tags (TODO: this will move into ShinyProfiles::Profile)
-  # acts_as_taggable
-
-  if ShinyPlugin.all_loaded? :ShinySearch, :ShinyProfiles
-    # TODO: all of these except username will be moving into ShinyProfiles::Profile
-    searchable_by :username, :public_name, :public_email, :bio, :website, :location, :postcode
-  end
 
   # Associations
 
@@ -63,11 +54,6 @@ class User < ApplicationRecord
 
   # Virtual attributes
 
-  # User profile pic (powered by ActiveStorage)
-  has_one_attached :profile_pic, dependent: :purge_now
-  # The dependent: :purge_now option is required to avoid an incompatibility issue with soft delete:
-  # https://github.com/ActsAsParanoid/acts_as_paranoid/issues/103
-
   # Allow authenticating by either username or email
   attr_writer :login
 
@@ -75,15 +61,12 @@ class User < ApplicationRecord
     @login || username || email
   end
 
-  # ShinySearch::Searchable expects this to exist
-  def hidden?
-    false
-  end
-
   # Instance methods
 
   def name
-    public_name.presence || username
+    return profile.name if ShinyPlugin.loaded?( :ShinyProfiles ) && profile.present?
+
+    username
   end
 
   def admin?

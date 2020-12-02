@@ -16,7 +16,7 @@ RSpec.describe 'User Accounts', type: :request do
 
   before :each do
     FeatureFlag.enable :user_login
-    FeatureFlag.disable :profile_pages
+    FeatureFlag.disable :user_profiles
   end
 
   describe 'GET /account/register' do

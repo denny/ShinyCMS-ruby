@@ -12,7 +12,7 @@ require 'rails_helper'
 RSpec.describe 'Feature Flags', type: :request do
   before :each do
     FeatureFlag.enable :user_login
-    FeatureFlag.enable :profile_pages
+    FeatureFlag.enable :user_profiles
   end
 
   describe 'GET /login' do
@@ -51,7 +51,7 @@ RSpec.describe 'Feature Flags', type: :request do
       user = create :user
       sign_in user
 
-      FeatureFlag.find_or_create_by!( name: 'profile_pages' )
+      FeatureFlag.find_or_create_by!( name: 'user_profiles' )
                  .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
 
       get shiny_profiles.profile_path( user.username )
@@ -64,22 +64,23 @@ RSpec.describe 'Feature Flags', type: :request do
         '.alerts',
         text: I18n.t(
           'feature_flags.off_alert',
-          feature_name: I18n.t( 'feature_flags.profile_pages' )
+          feature_name: I18n.t( 'feature_flags.user_profiles' )
         )
       )
     end
 
     it 'succeeds for admin user with Profile Pages feature only enabled for admins' do
       user = create :admin_user
+      create :user_profile, user: user
       sign_in user
 
-      FeatureFlag.find_or_create_by!( name: 'profile_pages' )
+      FeatureFlag.find_or_create_by!( name: 'user_profiles' )
                  .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
 
       get shiny_profiles.profile_path( user.username )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include user.username
+      expect( response.body ).to have_title user.profile.name
     end
   end
 end

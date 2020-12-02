@@ -176,7 +176,7 @@ Comment.create!([
 ])
 
 ActiveStorage::Attachment.create!([
-  {id: 1, name: "profile_pic", record_type: "User", record_id: 1, blob_id: 1},
+  {id: 1, name: "profile_pic", record_type: "ShinyProfiles::Profile", record_id: 1, blob_id: 1},
   {id: 2, name: "image", record_type: "ShinyPages::PageElement", record_id: 4, blob_id: 2},
   {id: 3, name: "image", record_type: "ShinyPages::PageElement", record_id: 5, blob_id: 3},
   {id: 4, name: "image", record_type: "ShinyPages::PageElement", record_id: 8, blob_id: 4},
