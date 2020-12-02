@@ -438,9 +438,6 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.4)
-    rollups (0.1.1)
-      activesupport (>= 5.1)
-      groupdate (>= 5.2)
     rspec-core (3.9.3)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.2)
@@ -605,7 +602,6 @@ DEPENDENCIES
   rails-pg-extras!
   rails_email_preview!
   recaptcha!
-  rollups!
   rspec-rails!
   rspec_junit_formatter!
   rubocop!
