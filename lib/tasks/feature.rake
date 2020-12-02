@@ -30,6 +30,7 @@ namespace :shiny do
     end
     # :nocov:
   end
+
   namespace :feature do
     # :nocov:
     desc 'ShinyCMS: toggle a feature flag on'

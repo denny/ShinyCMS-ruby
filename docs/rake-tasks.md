@@ -36,7 +36,13 @@ rails shiny_newsletters:scheduled:send    # ShinyCMS: check for and start any sc
 This task can be scheduled to run as a regular task, or run on an ad-hoc basis, as you prefer.
 
 
-### Remove old sessions
+### Delete unwanted session data
+
+```
+rails shiny:sessions:clean    # ShinyCMS: delete data for short sessions
+```
+
+This task deletes session data for any sessions that lasted less than the specified number of seconds (e.g. `rails shiny:sessions:clean 3` will remove sessions that lasted less than 3 seconds in total) - not including sessions from the current date.
 
 ```
 rails db:sessions:trim    # Trim old sessions from the table (default: > 30 days)
@@ -57,7 +63,7 @@ This task allows you to quickly insert the demo site data so you can experiment 
 ### Plugin migrations and seed data
 
 ```
-rails shiny_[various]:db:seed               # ShinyCMS: load supporting data for **** plugin
+rails shiny_[various]:db:seed               # ShinyCMS: load supporting data for Shiny**** plugin
 rails shiny_[various]:install:migrations    # Copy migrations from shiny_**** to application
 ```
 
@@ -65,6 +71,6 @@ The rest of the rake tasks added by ShinyCMS are the tasks to install migrations
 
 Currently, running the main `rails db:seed` task also runs all of the plugin seed tasks, so you should not need to run these tasks separately.
 
-Similarly, the plugin tables are already included in the main `db/schema.rb` used to create the database, so you shouldn't need to run the install migration tasks, or the resulting migrations.
+Similarly, the plugin tables are already included in the main `db/schema.rb` used to create the database - so you shouldn't need to run the install migration tasks, or the resulting migrations, as part of the standard install process.
 
-In the case that a plugin does not provide a migration install task, it will be because that plugin doesn't store any data in the database (e.g. ShinySearch). All plugins currently provide a seed task, to add settings and feature flags if nothing else.
+In the case that a plugin does not provide a migration install task, it will be because that plugin doesn't store any data in the database (e.g. ShinySearch). All plugins currently provide a seed task (to add settings and feature flags, if nothing else).

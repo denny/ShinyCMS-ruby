@@ -74,6 +74,7 @@ RSpec.describe Admin::CommentsController, type: :request do
     end
 
     it 'deletes the selected comments if you say they are spam' do
+      allow_any_instance_of( Akismet::Client ).to receive( :open )
       allow_any_instance_of( Akismet::Client ).to receive( :spam ).and_return( true )
 
       @nested1.mark_as_spam
@@ -103,7 +104,8 @@ RSpec.describe Admin::CommentsController, type: :request do
     end
 
     it 'removes spam flags from the selected comments if you say they are not spam' do
-      allow_any_instance_of( Akismet::Client ).to receive( :ham ).and_return( true )
+      allow_any_instance_of( Akismet::Client ).to receive( :open )
+      allow_any_instance_of( Akismet::Client ).to receive( :ham  ).and_return( true )
 
       @nested1.mark_as_spam
       @comment2.mark_as_spam
@@ -132,7 +134,8 @@ RSpec.describe Admin::CommentsController, type: :request do
     end
 
     it 'reports an error if it fails to remove spam flags' do
-      allow_any_instance_of( Akismet::Client ).to receive( :ham ).and_return( true )
+      allow_any_instance_of( Akismet::Client ).to receive( :open )
+      allow_any_instance_of( Akismet::Client ).to receive( :ham  ).and_return( true )
       allow( Comment ).to receive( :mark_all_as_ham ).and_return( false )
 
       @nested1.mark_as_spam
