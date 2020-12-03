@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shiny_lists (20.10)
+    shiny_lists (20.12)
       acts_as_paranoid
       kaminari
       pg (>= 0.18, < 2.0)

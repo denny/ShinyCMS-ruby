@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shiny_access (20.11)
+    shiny_access (20.12)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.4)
 

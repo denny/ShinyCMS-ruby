@@ -1,14 +1,14 @@
 PATH
   remote: plugins/ShinyAccess
   specs:
-    shiny_access (20.11)
+    shiny_access (20.12)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.4)
 
 PATH
   remote: plugins/ShinyBlog
   specs:
-    shiny_blog (20.11)
+    shiny_blog (20.12)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -20,7 +20,7 @@ PATH
 PATH
   remote: plugins/ShinyForms
   specs:
-    shiny_forms (20.11)
+    shiny_forms (20.12)
       acts_as_paranoid
       kaminari
       pg (>= 0.18, < 2.0)
@@ -30,7 +30,7 @@ PATH
 PATH
   remote: plugins/ShinyInserts
   specs:
-    shiny_inserts (20.11)
+    shiny_inserts (20.12)
       acts_as_paranoid
       ckeditor
       kaminari
@@ -41,7 +41,7 @@ PATH
 PATH
   remote: plugins/ShinyLists
   specs:
-    shiny_lists (20.11)
+    shiny_lists (20.12)
       acts_as_paranoid
       kaminari
       pg (>= 0.18, < 2.0)
@@ -51,7 +51,7 @@ PATH
 PATH
   remote: plugins/ShinyNews
   specs:
-    shiny_news (20.11)
+    shiny_news (20.12)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -63,14 +63,14 @@ PATH
 PATH
   remote: plugins/ShinyNewsletters
   specs:
-    shiny_newsletters (20.11)
+    shiny_newsletters (20.12)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.4)
 
 PATH
   remote: plugins/ShinyPages
   specs:
-    shiny_pages (20.11)
+    shiny_pages (20.12)
       acts_as_paranoid
       ckeditor
       kaminari
@@ -81,14 +81,14 @@ PATH
 PATH
   remote: plugins/ShinyProfiles
   specs:
-    shiny_profiles (20.11)
+    shiny_profiles (20.12)
       pg (>= 0.18, < 2.0)
       rails (~> 6.0.3, >= 6.0.3.4)
 
 PATH
   remote: plugins/ShinySearch
   specs:
-    shiny_search (20.11)
+    shiny_search (20.12)
       algoliasearch-rails
       pg (>= 0.18, < 2.0)
       pg_search
