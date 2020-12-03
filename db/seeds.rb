@@ -26,7 +26,7 @@ ShinyPlugin.loaded.each do |plugin|
 end
 
 # Load default dashboard data for Blazer
-require_relative 'seeds/blazer' unless ENV['DISABLE_BLAZER'].presence == 'true'
+require_relative 'seeds/blazer' unless ENV['DISABLE_BLAZER'].presence&.downcase == 'true'
 
 # If there are currently no super-admin users, show the command to create one
 demo = ( Rake.application.top_level_tasks.first == 'shiny:demo:load' )
