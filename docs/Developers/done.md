@@ -12,7 +12,7 @@
     have pages at the top-level of your site, and to nest sections to any depth
 * Inserts (re-usable content fragments that can be pulled into any template)
     * Improvements: snappier name? ;) (Renamed from Shared Content to Inserts)
-* Access control for page content (for main site, not admin area)
+* Access control for content on main site (separate from auth system for admin area)
 * Basic form handlers
     * Improvements: MJML email templates
 * Blog

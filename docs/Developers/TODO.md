@@ -2,6 +2,15 @@
 
 ## TODO
 
+* Move theme templates into vendor/themes/ or similar!
+    * Can I get all their assets into the same subtree too?
+        * vendor/themes/{theme_name}/[views|images|stylesheets|javascript] ??
+        * At worst, should be able to have:
+            * vendor/assets/images/{theme_name}/
+            * vendor/assets/stylesheets/{theme_name}/
+            * vendor/javascript/{theme_name}/
+            * vendor/views/themes/{theme_name}/
+
 * Tag cloud/list don't honour show/hide status of content
 
 * Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
