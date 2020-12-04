@@ -12,3 +12,8 @@ Rails.application.config.assets.version = '2020.01.04.1510'
 # Add additional assets to the asset load path.
 # Yarn node_modules folder
 Rails.application.config.assets.paths << Rails.root.join( 'node_modules' )
+
+# Themes
+# TODO: FIXME: Make this dynamic. Before filter?
+Rails.application.config.assets.paths << Rails.root.join( 'themes/halcyonic/images'   )
+Rails.application.config.assets.paths << Rails.root.join( 'themes/coming_soon/images' )

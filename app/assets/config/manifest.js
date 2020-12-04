@@ -28,8 +28,6 @@
 // Halcyonic
 //= link halcyonic.css
 //= link smartmenus.css
-//= link_tree ../../../vendor/assets/images/halcyonic
 
 // Coming Soon
 //= link coming_soon.css
-//= link_tree ../../../vendor/assets/images/coming_soon
