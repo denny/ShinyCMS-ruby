@@ -20,6 +20,7 @@ This file contains information about changes (particularly breaking changes) bet
             * recaptcha_for_registration -> recaptcha_for_registrations
             * profile_pages -> user_profiles
         * ShinyLists unsubscribe route changed from PUT to DELETE
+        * Assets and JavaScript files for themes have moved from app/ to vendor/
 
     * Fixes since 20.11
         * Fatal errors that could prevent the CMS from starting at all:
@@ -98,8 +99,6 @@ This file contains information about changes (particularly breaking changes) bet
         * Data:
             * Default data now includes a basic dashboard and charts for Blazer
             * Demo site data now includes the ActiveStorage tables
-        * Themes:
-             * Assets and JavaScript files for themes are now kept in vendor/ not app/
         * Tests:
             * Mocked Akismet gem .open and .check methods
                 * No longer need a network connection for the tests to run
