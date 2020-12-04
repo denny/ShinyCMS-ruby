@@ -1,3 +1,9 @@
+// ShinyCMS ~ https://shinycms.org
+//
+// Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+//
+// ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 // ========== Admin Area ==========
 
 //= link shinycms/admin_area.css
@@ -27,10 +33,3 @@
 // Coming Soon
 //= link coming_soon.css
 //= link_tree ../../../vendor/assets/images/coming_soon
-
-
-// ========== Plugins ==========
-// FIXME: this config should be in the plugin files, not the core manifest
-
-// ShinySearch
-//= link shiny_search/algolia-logo.png
