@@ -13,9 +13,9 @@ Rails.application.config.assets.version = '2020.01.04.1510'
 Rails.application.config.assets.paths << Rails.root.join( 'node_modules' )
 
 # Add theme images and stylesheets to the asset load path
-def add_all_theme_assets_to_asset_load_path
+def add_all_themes_to_asset_load_path
   available_themes.each do |theme_name|
-    add_to_asset_load_path( theme_name )
+    add_theme_to_asset_load_path( theme_name )
   end
 end
 
@@ -23,7 +23,7 @@ def available_themes
   Dir[ 'themes/*' ].sort.collect { |name| name.sub( 'themes/', '' ) }
 end
 
-def add_to_asset_load_path( theme_name )
+def add_theme_to_asset_load_path( theme_name )
   stylesheets_dir = Rails.root.join "themes/#{theme_name}/stylesheets"
   images_dir      = Rails.root.join "themes/#{theme_name}/images"
 
@@ -31,4 +31,4 @@ def add_to_asset_load_path( theme_name )
   Rails.application.config.assets.paths << images_dir      if Dir.exist? images_dir
 end
 
-add_all_theme_assets_to_asset_load_path
+add_all_themes_to_asset_load_path
