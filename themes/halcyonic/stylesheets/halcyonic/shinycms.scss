@@ -349,7 +349,7 @@ nav .sm li li a:hover {
 // If there's an img tag in the first paragraph of the post, style it as a thumbnail
 .post p:first-of-type img {
   float:                right;
-  margin:               0 1em 0 1em;
+  margin:               0 1em;
   max-height:           320px;
   max-width:            320px;
 }
@@ -372,7 +372,7 @@ nav .sm li li a:hover {
 // ===== ( comments ) =====
 
 .comment {
-  padding:              2em 1.5em 0.5em 1.5em !important;
+  padding:              2em 1.5em 0.5em !important;
 }
 
 .comment header {
@@ -399,7 +399,7 @@ nav .sm li li a:hover {
 }
 
 .comment_form p {
-  margin:               0.5em 0 0 0;
+  margin:               0.5em 0 0;
   padding:              0;
 }
 
