@@ -13,7 +13,8 @@
 
 
 // ========== Themes ==========
-// FIXME: this config should be in the theme files, not the core manifest
+
+// TODO: FIXME: get rid of the need to specify these here individually
 
 // Halcyonic
 //= link halcyonic.css
