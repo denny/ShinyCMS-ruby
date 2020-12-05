@@ -30,7 +30,7 @@ Rails.application.configure do
   config.cache_classes = false
   config.cache_store = :null_store
 
-  # This fixes (or hides?) a problem with plugin assets working in dev but not in test
+  # This fixes (or hides?) a problem with plugin assets
   config.assets.check_precompiled_asset = false
 
   # Configure public file server for tests with Cache-Control for performance.

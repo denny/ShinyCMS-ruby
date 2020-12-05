@@ -11,14 +11,5 @@
 
 //= link_tree ../images/shinycms
 
-
-// ========== Themes ==========
-
-// TODO: FIXME: get rid of the need to specify these here individually
-
-// Halcyonic
-//= link halcyonic.css
+// Only used by Halcyonic theme currently, but probably generally useful...?
 //= link smartmenus.css
-
-// Coming Soon
-//= link coming_soon.css

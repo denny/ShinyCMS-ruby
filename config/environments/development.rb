@@ -15,6 +15,9 @@ Rails.application.configure do
   # for the ones that provide various capabilities - e.g. taggable/searchable/etc
   config.eager_load = true
 
+  # This fixes (or hides?) a problem with theme assets
+  config.assets.check_precompiled_asset = false
+
   # Show full error reports.
   config.consider_all_requests_local = true
 
