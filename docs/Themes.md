@@ -21,15 +21,17 @@ You will need to create your own template files for any template-controlled cont
 
 There are sample templates for both of these features in the included Halcyonic theme, to get you started.
 
-### Supporting files (images, stylesheets, JavaScript)
+### Supporting files
 
-You should put theme-specific CSS into `themes/{theme_name}/stylesheets` and images into `themes/{theme_name}/images` - so for our example 'my_site_name' theme, these would be `themes/my_site_name/images` and `themes/my_site_name/stylesheets`.
+#### Images and stylesheets
 
-Currently you'll need to add a `//= link` line for your top-level stylesheet in `app/assets/config/manifest.js` to get Rails to pick your CSS up.
+You should put theme-specific CSS into `themes/{theme_name}/stylesheets` and images into `themes/{theme_name}/images` - so for our example 'my_site_name' theme, these would be `themes/my_site_name/stylesheets` and `themes/my_site_name/images`.
 
-If your theme needs some JavaScript, that goes in `vendor/javascript/my_site_name`, and is loaded by Webpacker based on the files in `app/javascript/packs`.
+#### JavaScript
 
-(Eventually the CMS will pick up all theme assets automatically, but for now this is how it works.)
+Currently, if your theme needs some JavaScript then you should put the files in `vendor/javascript/my_site_name`, and configure Webpacker to load it via a file in `app/javascript/packs`.
+
+(Eventually theme JavaScript will also live under themes/ and be loaded automatically, but for now this is how it works.)
 
 
 ## Using your theme

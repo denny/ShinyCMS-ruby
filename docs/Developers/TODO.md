@@ -2,9 +2,7 @@
 
 ## TODO
 
-* Moving themes assets into new themes/ directory; mostly done, except:
-    * Stylesheet config (still need a //= link line in manifest currently)
-    * JavaScript (ugh)
+* Move theme JavaScript assets into themes/ directory
 
 * Tag cloud/list don't honour show/hide status of content
 
