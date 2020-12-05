@@ -11,8 +11,8 @@ require 'rails_helper'
 # Tests for ShinyCMS theme model
 RSpec.describe Theme, type: :model do
   before :all do
-    FileUtils.mkdir 'app/views/themes/test1'
-    FileUtils.mkdir 'app/views/themes/test2'
+    FileUtils.mkdir_p 'themes/test1/views'
+    FileUtils.mkdir_p 'themes/test2/views'
   end
 
   before :each do
@@ -20,8 +20,8 @@ RSpec.describe Theme, type: :model do
   end
 
   after :all do
-    FileUtils.rmdir 'app/views/themes/test1'
-    FileUtils.rmdir 'app/views/themes/test2'
+    FileUtils.rmtree 'themes/test1'
+    FileUtils.rmtree 'themes/test2'
   end
 
   context 'when there are no theme settings' do

@@ -39,42 +39,42 @@ cd {your-site-name}
 ... unless you're using one of them, in which case skip step 3.
 
 ```bash
-git rm -r app/views/themes
+git rm -r themes/*
 ```
 
 ### 3. Create new theme
 
 ```bash
 # Pretty much every site will have some 'brochure' pages, and custom header and footer content
-mkdir -p app/views/themes/{site-name}/shiny_pages/pages
-mkdir -p app/views/themes/{site-name}/includes
+mkdir -p themes/{site-name}/views/shiny_pages/pages
+mkdir -p themes/{site-name}/views/includes
 # If you're not happy with the default layout, you can override that in here
-mkdir -p app/views/themes/{site-name}/layouts
+mkdir -p themes/{site-name}/views/layouts
 # You only need the next one if your new site will be using the ShinyNewsletters plugin
-mkdir -p app/views/themes/{site-name}/shiny_newsletters/newsletter_mailer
+mkdir -p themes/{site-name}/views/shiny_newsletters/newsletter_mailer
 
 # Page templates; most sites will want one for homepage and at least one for other pages
-touch app/views/themes/{site-name}/shiny_pages/pages/homepage-template.html.erb
-touch app/views/themes/{site-name}/shiny_pages/pages/standard-page-template.html.erb
+touch themes/{site-name}/views/shiny_pages/pages/homepage-template.html.erb
+touch themes/{site-name}/views/shiny_pages/pages/standard-page-template.html.erb
 # Partials for top and bottom of page - most sites will probably want to override these
-touch app/views/themes/{site-name}/includes/_header.html.erb
-touch app/views/themes/{site-name}/includes/_footer.html.erb
+touch themes/{site-name}/views/includes/_header.html.erb
+touch themes/{site-name}/views/includes/_footer.html.erb
 # Layout - if the default one isn't right for you, override it here
-touch app/views/themes/{site-name}/layouts/main_site.html.erb
+touch themes/{site-name}/views/layouts/main_site.html.erb
 # Newsletter templates - at least one pair (MJML for HTML part, ERB for plain text part)
-touch app/views/themes/{site-name}/shiny_newsletters/newsletter_mailer/newsletter-template.html.mjml
-touch app/views/themes/{site-name}/shiny_newsletters/newsletter_mailer/newsletter-template.text.erb
+touch themes/{site-name}/views/shiny_newsletters/newsletter_mailer/newsletter-template.html.mjml
+touch themes/{site-name}/views/shiny_newsletters/newsletter_mailer/newsletter-template.text.erb
 ```
 
 ### 4. Build your site locally
 
 * Figure out what ENV settings you want/need in .env.development.local
-  * Some of these will feed into setting your config vars on Heroku later
+    * Some of these will feed into setting your config vars on Heroku later
 * Set up the Site Settings and Feature Flags appropriately
 * Fill out those template files that got touched above
-  * And create any more that you need
+    * And create any more that you need
 * Create the Page Templates and Pages in the CMS admin area
-  * Likewise for Newsletter Templates, if you're using that feature
+    * Likewise for Newsletter Templates, if you're using that feature
 * etc etc
 
 ### 5. Create new Heroku pipeline, with staging and production apps

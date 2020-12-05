@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 Rails.application.configure do
   # Settings specified here take precedence over those in config/application.rb
 
@@ -14,6 +20,9 @@ Rails.application.configure do
   # We need eager load enabled so that we can use .descendants to check all the models
   # for the ones that provide various capabilities - e.g. taggable/searchable/etc
   config.eager_load = true
+
+  # This fixes (or hides?) a problem with theme assets
+  config.assets.check_precompiled_asset = false
 
   # Show full error reports.
   config.consider_all_requests_local = true

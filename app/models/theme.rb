@@ -34,7 +34,7 @@ class Theme
   # Class methods
 
   def self.view_path( theme_name )
-    "app/views/themes/#{theme_name}"
+    "themes/#{theme_name}/views"
   end
 
   def self.base_directory_exists?( theme_name )

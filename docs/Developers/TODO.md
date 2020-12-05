@@ -2,14 +2,7 @@
 
 ## TODO
 
-* Move theme templates into vendor/themes/ or similar!
-    * Can I get all their assets into the same subtree too?
-        * vendor/themes/{theme_name}/[views|images|stylesheets|javascript] ??
-        * At worst, should be able to have:
-            * vendor/assets/images/{theme_name}/
-            * vendor/assets/stylesheets/{theme_name}/
-            * vendor/javascript/{theme_name}/
-            * vendor/views/themes/{theme_name}/
+* Move theme JavaScript assets into themes/ directory
 
 * Tag cloud/list don't honour show/hide status of content
 
