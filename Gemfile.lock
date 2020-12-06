@@ -235,6 +235,8 @@ GEM
     cloudflare-rails (1.0.0)
       httparty
       rails (>= 5.0, < 6.1.0)
+    code_analyzer (0.5.2)
+      sexp_processor
     codecov (0.2.12)
       json
       simplecov
@@ -269,6 +271,7 @@ GEM
       simpleidn
     errbase (0.2.0)
     erubi (1.10.0)
+    erubis (2.7.0)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.1.0)
@@ -412,6 +415,14 @@ GEM
     rails-pg-extras (1.2.4)
       activerecord
       ruby-pg-extras (= 1.2.4)
+    rails_best_practices (1.20.0)
+      activesupport
+      code_analyzer (>= 0.5.1)
+      erubis
+      i18n
+      json
+      require_all (~> 3.0)
+      ruby-progressbar
     rails_email_preview (2.2.2)
       rails (>= 4.2)
       request_store
@@ -434,6 +445,7 @@ GEM
     regexp_parser (1.8.2)
     request_store (1.5.0)
       rack (>= 1.4)
+    require_all (3.0.0)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -600,6 +612,7 @@ DEPENDENCIES
   rails (~> 6.0.3)!
   rails-i18n!
   rails-pg-extras!
+  rails_best_practices!
   rails_email_preview!
   recaptcha!
   rspec-rails!
