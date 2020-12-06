@@ -5,13 +5,14 @@ CheckDestroyReturnValueCheck: { }
 DefaultScopeIsEvilCheck: { }
 DryBundlerInCapistranoCheck: { }
 HashSyntaxCheck: { }
-# This was a data migration, not seed data
+# Ignored file contains a data migration, not seed data
 IsolateSeedDataCheck: { ignored_files: 'db/migrate/20201004150130_change_comment_author_to_polymorphic\.rb' }
 KeepFindersOnTheirOwnModelCheck: { }
 LawOfDemeterCheck: { }
 MoveCodeIntoControllerCheck: { }
 MoveCodeIntoHelperCheck: { array_count: 3 }
-#MoveCodeIntoModelCheck: { use_count: 2 }   # 2
+# Ignoring user capability checks in admin menus, and paginator partial checking page details
+MoveCodeIntoModelCheck: { use_count: 2, ignored_files: [ 'app/views(/\w+)?/admin/menu/\w+\.html\.erb', 'app/views/admin/kaminari/_paginator\.html\.erb' ] }
 MoveFinderToNamedScopeCheck: { }
 MoveModelLogicIntoModelCheck: { use_count: 4 }
 NeedlessDeepNestingCheck: { nested_count: 2 }
@@ -23,7 +24,7 @@ ProtectMassAssignmentCheck: { }
 RemoveEmptyHelpersCheck: { }
 RemoveTabCheck: { }
 RemoveTrailingWhitespaceCheck: { }
-# Exemptions are: the method used to control access to Blazer (set in config/blazer.yml), and two methods that change default Devise behaviour
+# Exceptions are the method used to control access to Blazer (set in config/blazer.yml), and two methods that change default Devise behaviour
 RemoveUnusedMethodsInControllersCheck: { except_methods: [ 'ApplicationController#current_user_can_view_charts?', 'MainController#after_sign_in_path_for', 'RegistrationsController#after_update_path_for' ] }
 #RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }      # 10
 #RemoveUnusedMethodsInModelsCheck: { except_methods: [] }       # 12
