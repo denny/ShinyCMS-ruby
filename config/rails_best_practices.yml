@@ -5,7 +5,7 @@ CheckDestroyReturnValueCheck: { }
 DefaultScopeIsEvilCheck: { }
 DryBundlerInCapistranoCheck: { }
 HashSyntaxCheck: { }
-#IsolateSeedDataCheck: { }  # 2
+IsolateSeedDataCheck: { ignored_files: 'db/migrate/20201004150130_change_comment_author_to_polymorphic\.rb' }
 KeepFindersOnTheirOwnModelCheck: { }
 LawOfDemeterCheck: { }
 ## LongLineCheck: { max_line_length: 80 }
