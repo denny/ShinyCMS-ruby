@@ -5,10 +5,10 @@ CheckDestroyReturnValueCheck: { }
 DefaultScopeIsEvilCheck: { }
 DryBundlerInCapistranoCheck: { }
 HashSyntaxCheck: { }
+# This was a data migration, not seed data
 IsolateSeedDataCheck: { ignored_files: 'db/migrate/20201004150130_change_comment_author_to_polymorphic\.rb' }
 KeepFindersOnTheirOwnModelCheck: { }
 LawOfDemeterCheck: { }
-## LongLineCheck: { max_line_length: 80 }
 MoveCodeIntoControllerCheck: { }
 MoveCodeIntoHelperCheck: { array_count: 3 }
 #MoveCodeIntoModelCheck: { use_count: 2 }   # 2
