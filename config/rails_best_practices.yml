@@ -23,7 +23,8 @@ ProtectMassAssignmentCheck: { }
 RemoveEmptyHelpersCheck: { }
 RemoveTabCheck: { }
 RemoveTrailingWhitespaceCheck: { }
-#RemoveUnusedMethodsInControllersCheck: { except_methods: [] }  # 3
+# Exemptions are: the method used to control access to Blazer (set in config/blazer.yml), and two methods that change default Devise behaviour
+RemoveUnusedMethodsInControllersCheck: { except_methods: [ 'ApplicationController#current_user_can_view_charts?', 'MainController#after_sign_in_path_for', 'RegistrationsController#after_update_path_for' ] }
 #RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }      # 10
 #RemoveUnusedMethodsInModelsCheck: { except_methods: [] }       # 12
 ReplaceComplexCreationWithFactoryMethodCheck: { attribute_assignment_count: 2 }
