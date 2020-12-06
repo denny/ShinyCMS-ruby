@@ -187,14 +187,14 @@ ActiveRecord::Schema.define(version: 2020_12_06_144100) do
     t.bigint "discussion_id", null: false
     t.integer "number", null: false
     t.bigint "parent_id"
-    t.string "author_type"
-    t.bigint "author_id"
     t.string "title"
     t.text "body"
     t.string "ip_address"
     t.boolean "locked", default: false, null: false
     t.boolean "show_on_site", default: true, null: false
     t.boolean "spam", default: false, null: false
+    t.string "author_type"
+    t.bigint "author_id"
     t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -358,13 +358,13 @@ ActiveRecord::Schema.define(version: 2020_12_06_144100) do
     t.string "handler", null: false
     t.string "email_to"
     t.string "filename"
-    t.string "redirect_to"
+    t.boolean "use_recaptcha", default: true
+    t.boolean "use_akismet", default: true
     t.string "success_message"
+    t.string "redirect_to"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deleted_at", precision: 6
-    t.boolean "use_recaptcha", default: true
-    t.boolean "use_akismet", default: true
     t.index ["deleted_at"], name: "index_shiny_forms_forms_on_deleted_at"
   end
 

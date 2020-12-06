@@ -28,7 +28,7 @@ ShinyBlog::Post.create!([
 ])
 
 ShinyForms::Form.create!([
-  {id: 1, internal_name: "Contact Page", public_name: "Contact us", slug: "contact", description: nil, handler: "plain_email", email_to: nil, filename: nil, redirect_to: nil, success_message: nil, use_recaptcha: true, use_akismet: true, deleted_at: nil}
+  {id: 1, internal_name: "Contact Page", public_name: "Contact us", slug: "contact", description: nil, handler: "plain_email", email_to: nil, filename: nil, success_message: nil, redirect_to: nil, use_recaptcha: true, use_akismet: true, deleted_at: nil}
 ])
 
 ShinyLists::List.create!([
@@ -100,12 +100,16 @@ ShinyPages::TemplateElement.create!([
   {id: 32, name: "text_content", content: nil, element_type: "long_text", position: 3, template_id: 5, deleted_at: nil}
 ])
 
+ShinyProfiles::Profile.create!([
+  {id: 1, public_name: nil, public_email: nil, bio: nil, location: nil, postcode: nil, show_on_site: true, show_in_gallery: true, show_to_unauthenticated: false, user_id: @shiny_admin.id, deleted_at: nil}
+])
+
 ShinyPages::Page.create!([
   {id: 1, internal_name: "Home", public_name: "ShinyCMS Demo", slug: "home", description: "Demo site home page - uses Halcyonic index template", position: 1, show_in_menus: false, show_on_site: true, section_id: nil, template_id: 1, deleted_at: nil},
-  {id: 2, internal_name: "No sidebar", public_name: "", slug: "none", description: "", position: 4, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 2, deleted_at: nil},
-  {id: 3, internal_name: "Right sidebar", public_name: "", slug: "right", description: "", position: 8, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 3, deleted_at: nil},
-  {id: 4, internal_name: "Left sidebar", public_name: "", slug: "left", description: "", position: 6, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 4, deleted_at: nil},
-  {id: 5, internal_name: "Double sidebar", public_name: "", slug: "double", description: "Embrace the healing power of AND", position: 8, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 5, deleted_at: nil},
+  {id: 2, internal_name: "No sidebar", public_name: "", slug: "none", description: "", position: 3, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 2, deleted_at: nil},
+  {id: 3, internal_name: "Right sidebar", public_name: "", slug: "right", description: "", position: 6, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 3, deleted_at: nil},
+  {id: 4, internal_name: "Left sidebar", public_name: "", slug: "left", description: "", position: 5, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 4, deleted_at: nil},
+  {id: 5, internal_name: "Double sidebar", public_name: "", slug: "double", description: "Embrace the healing power of AND", position: 4, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 5, deleted_at: nil},
   {id: 6, internal_name: "Contact Us", public_name: "", slug: "contact", description: "Contact form", position: 2, show_in_menus: true, show_on_site: true, section_id: nil, template_id: 6, deleted_at: nil}
 ])
 
