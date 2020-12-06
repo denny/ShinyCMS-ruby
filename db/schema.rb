@@ -12,7 +12,7 @@
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2020_11_30_234759) do
+ActiveRecord::Schema.define(version: 2020_12_06_144100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deleted_at", precision: 6
+    t.index ["category_id"], name: "index_capabilities_on_category_id"
     t.index ["deleted_at"], name: "index_capabilities_on_deleted_at"
   end
 
@@ -183,17 +184,17 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "discussion_id", null: false
+    t.bigint "discussion_id", null: false
     t.integer "number", null: false
     t.bigint "parent_id"
-    t.string "author_type"
-    t.bigint "author_id"
     t.string "title"
     t.text "body"
     t.string "ip_address"
     t.boolean "locked", default: false, null: false
     t.boolean "show_on_site", default: true, null: false
     t.boolean "spam", default: false, null: false
+    t.string "author_type"
+    t.bigint "author_id"
     t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -201,6 +202,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.index ["author_id", "author_type"], name: "index_comments_on_author_id_and_author_type"
     t.index ["deleted_at"], name: "index_comments_on_deleted_at"
     t.index ["number", "discussion_id"], name: "index_comments_on_number_and_discussion_id", unique: true
+    t.index ["parent_id"], name: "index_comments_on_parent_id"
   end
 
   create_table "consent_versions", force: :cascade do |t|
@@ -356,13 +358,13 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "handler", null: false
     t.string "email_to"
     t.string "filename"
-    t.string "redirect_to"
+    t.boolean "use_recaptcha", default: true
+    t.boolean "use_akismet", default: true
     t.string "success_message"
+    t.string "redirect_to"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deleted_at", precision: 6
-    t.boolean "use_recaptcha", default: true
-    t.boolean "use_akismet", default: true
     t.index ["deleted_at"], name: "index_shiny_forms_forms_on_deleted_at"
   end
 
@@ -540,6 +542,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deleted_at", precision: 6
+    t.index ["default_page_id"], name: "index_shiny_pages_sections_on_default_page_id"
     t.index ["deleted_at"], name: "index_shiny_pages_sections_on_deleted_at"
     t.index ["section_id", "slug"], name: "index_page_sections_on_section_id_and_slug", unique: true
     t.index ["section_id"], name: "index_shiny_pages_sections_on_section_id"

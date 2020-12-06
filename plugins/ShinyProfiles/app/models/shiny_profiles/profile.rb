@@ -10,6 +10,7 @@ module ShinyProfiles
   # Model for user profile pages (and related features)
   class Profile < ApplicationRecord
     include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
+    include ShinyDemoDataProvider
     include ShinyShowHide
     include ShinySoftDelete
 
