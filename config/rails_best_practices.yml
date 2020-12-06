@@ -4,7 +4,7 @@ CheckSaveReturnValueCheck: { }
 CheckDestroyReturnValueCheck: { }
 DefaultScopeIsEvilCheck: { }
 DryBundlerInCapistranoCheck: { }
-##HashSyntaxCheck: { }  # 5
+HashSyntaxCheck: { }
 #IsolateSeedDataCheck: { }  # 2
 KeepFindersOnTheirOwnModelCheck: { }
 LawOfDemeterCheck: { }
