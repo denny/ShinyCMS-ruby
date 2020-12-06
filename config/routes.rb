@@ -95,7 +95,7 @@ Rails.application.routes.draw do
 
       # Email Recipients
       resources :email_recipients, path: 'email-recipients', concerns: %i[ paginatable searchable ],
-                                   except: %i[ show new create ] do
+                                   only: %i[ index destroy ] do
         put :'do-not-contact', on: :member, to: 'email_recipients#do_not_contact'
       end
 
