@@ -50,8 +50,8 @@ module ShinyNewsletters
 
           expect( update_successful ).to be false
           expect( template.errors.size ).to eq 1
-          expect( template.errors.first.first  ).to eq :filename
-          expect( template.errors.first.second ).to eq I18n.t( 'errors.messages.invalid_mjml' )
+          expect( template.errors.key?( :filename ) ).to be true
+          expect( template.errors.full_messages_for( :filename ).first ).to eq "Filename #{I18n.t( 'errors.messages.invalid_mjml' )}"
         end
       end
     end
