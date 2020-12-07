@@ -9,43 +9,28 @@
 # Config file for Rails Best Practices gem
 # https://github.com/flyerhzm/rails_best_practices#readme / https://rails-bestpractices.com
 
-# Currently need to run this twice - once for main app and once for plugins:
+# Currently need to run this twice - once for main app and once for plugins -
+# because some plugins are included in results of first run and others aren't
 # rails_best_practices .
 # rails_best_practices plugins -c config/rails_best_practices.yml
 
-AddModelVirtualAttributeCheck: { }
-AlwaysAddDbIndexCheck: { }
-CheckSaveReturnValueCheck: { }
-CheckDestroyReturnValueCheck: { }
-DefaultScopeIsEvilCheck: { }
-DryBundlerInCapistranoCheck: { }
-HashSyntaxCheck: { }
+
+# Fail
+
+#ProtectMassAssignmentCheck: { }                     # 0 / 15  # Only in plugins??
+#ReplaceInstanceVariableWithLocalVariableCheck: { }  # 64
+#SimplifyRenderInControllersCheck: { }               # 21 / 16
+#SimplifyRenderInViewsCheck: { }                     # 40 / 33
+## UseBeforeFilterCheck: { customize_count: 2 }      # 14 / 8
+
+
+# Pass with some exceptions
 
 # Ignored file contains a data migration, not seed data
 IsolateSeedDataCheck: { ignored_files: 'db/migrate/20201004150130_change_comment_author_to_polymorphic\.rb' }
 
-KeepFindersOnTheirOwnModelCheck: { }
-LawOfDemeterCheck: { }
-MoveCodeIntoControllerCheck: { }
-MoveCodeIntoHelperCheck: { array_count: 3 }
-
 # Ignoring user capability checks in admin menus, and paginator partial checking page details
 MoveCodeIntoModelCheck: { use_count: 2, ignored_files: [ 'app/views(/\w+)?/admin/menu/\w+\.html\.erb', 'app/views/admin/kaminari/_paginator\.html\.erb' ] }
-
-MoveFinderToNamedScopeCheck: { }
-MoveModelLogicIntoModelCheck: { use_count: 4 }
-NeedlessDeepNestingCheck: { nested_count: 2 }
-NotRescueExceptionCheck: { }
-NotUseDefaultRouteCheck: { }
-NotUseTimeAgoInWordsCheck: { }
-OveruseRouteCustomizationsCheck: { customize_count: 3 }
-
-# This seems odd. Doesn't trigger for main app, only plugins.
-#ProtectMassAssignmentCheck: { } # 10
-
-RemoveEmptyHelpersCheck: { }
-RemoveTabCheck: { }
-RemoveTrailingWhitespaceCheck: { }
 
 # Exceptions are:
 # - the method used to control access to Blazer (set in config/blazer.yml)
@@ -57,30 +42,73 @@ RemoveUnusedMethodsInControllersCheck: { except_methods: [
   'ApplicationController#current_user_can_view_charts?',
   'MainController#after_sign_in_path_for',
   'RegistrationsController#after_update_path_for',
-  'ShinyPages::Admin::PagesController#sort',
-  'ShinyPages::Admin::PagesController#load_html_editor?',
-  'ShinyPages::Admin::TemplatesController#load_html_editor?',
+  'ShinyAccess::Admin::MembershipsController#breadcrumb_link_text_and_path',
   'ShinyBlog::Admin::BlogPostsController#load_html_editor?',
   'ShinyInserts::Admin::InsertsController#load_html_editor?',
+  'ShinyLists::Admin::SubscriptionsController#breadcrumb_link_text_and_path',
   'ShinyNews::Admin::NewsPostsController#load_html_editor?',
-  'ShinyAccess::Admin::MembershipsController#breadcrumb_link_text_and_path',
-  'ShinyLists::Admin::SubscriptionsController#breadcrumb_link_text_and_path'
+  'ShinyPages::Admin::PagesController#load_html_editor?',
+  'ShinyPages::Admin::PagesController#sort',
+  'ShinyPages::Admin::TemplatesController#load_html_editor?'
 ] }
 
-#RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }  # 10
-#RemoveUnusedMethodsInModelsCheck: { except_methods: [] }   # 12
+# First six used in templates, last four in mailers
+RemoveUnusedMethodsInHelpersCheck: { except_methods: [
+  'ShinyAccess::MainSiteHelper#current_user_can_access?',
+  'ShinyAccess::MainSiteHelper#access_group_name',
+  'ShinyForms::MainSiteHelper#find_form_by_slug',
+  'ShinyInserts::MainSiteHelper#insert',
+  'ShinyInserts::MainSiteHelper#insert_type?',
+  'ShinyLists::MainSiteHelper#find_list_by_slug',
+  'ShinyMailerHelper#add_view_paths',
+  'ShinyMailerHelper#default_email',
+  'ShinyMailerHelper#track_opens?',
+  'ShinyMailerHelper#track_clicks?'
+] }
 
+# First two are aliases; next two override Devise behaviour; rest are in use, probably.
+RemoveUnusedMethodsInModelsCheck: { except_methods: [
+  'FeatureFlag#on',
+  'FeatureFlag#off',
+  'User#find_first_by_auth_conditions',
+  'User#send_devise_notification',
+  'ShinyForms::Form#action',
+  'ShinyForms::Form#template_file_exists?',
+  'ShinyForms::FormHandler#plain_email',
+  'ShinyForms::FormHandler#store_in_database', # Okay, this one is a very stubby stub :)
+  'ShinyForms::FormHandler#template_email',
+  'ShinyNewsletters::Edition#items_in_same_month',
+  'ShinyNewsletters::Send#send_at_time',
+  'ShinyPages::Page#default_page?',
+  'ShinyPages::Page#top_level_menu_items'
+] }
+
+
+# Pass
+
+AddModelVirtualAttributeCheck: { }
+AlwaysAddDbIndexCheck: { }
+CheckSaveReturnValueCheck: { }
+CheckDestroyReturnValueCheck: { }
+DefaultScopeIsEvilCheck: { }
+DryBundlerInCapistranoCheck: { }
+HashSyntaxCheck: { }
+KeepFindersOnTheirOwnModelCheck: { }
+LawOfDemeterCheck: { }
+MoveCodeIntoControllerCheck: { }
+MoveCodeIntoHelperCheck: { array_count: 3 }
+MoveFinderToNamedScopeCheck: { }
+MoveModelLogicIntoModelCheck: { use_count: 4 }
+NeedlessDeepNestingCheck: { nested_count: 2 }
+NotRescueExceptionCheck: { }
+NotUseDefaultRouteCheck: { }
+NotUseTimeAgoInWordsCheck: { }
+OveruseRouteCustomizationsCheck: { customize_count: 3 }
+RemoveEmptyHelpersCheck: { }
+RemoveTabCheck: { }
+RemoveTrailingWhitespaceCheck: { }
 ReplaceComplexCreationWithFactoryMethodCheck: { attribute_assignment_count: 2 }
-
-#ReplaceInstanceVariableWithLocalVariableCheck: { }  # 64
-
 RestrictAutoGeneratedRoutesCheck: { }
-
-#SimplifyRenderInControllersCheck: { }  # 21
-#SimplifyRenderInViewsCheck: { }        # 40
-
-## UseBeforeFilterCheck: { customize_count: 2 }   # 14
-
 UseModelAssociationCheck: { }
 UseMultipartAlternativeAsContentTypeOfEmailCheck: { }
 UseParenthesesInMethodDefCheck: { }
