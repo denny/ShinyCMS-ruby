@@ -222,9 +222,6 @@ en:
   # ========== ( Models ) ==========
 
   models:
-    capability_category:
-      not_found: CapabilityCategory.name_for generated '%{name}', which is not in database
-
     setting_value:
       one_per_user: You can only have one setting per value per user
 

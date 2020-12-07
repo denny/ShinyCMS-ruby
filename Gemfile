@@ -152,6 +152,9 @@ source 'https://rubygems.org' do
     # Fill test objects with fake data
     gem 'faker'
 
+    # Best practices
+    gem 'rails_best_practices'
+
     # Utils for working with translation strings
     # gem 'i18n-debug'
     gem 'i18n-tasks', '~> 0.9.31'

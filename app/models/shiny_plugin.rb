@@ -52,12 +52,6 @@ class ShinyPlugin
     File.exist? "#{view_path}/#{template_path}"
   end
 
-  def admin_index_path( area = nil )
-    path_part = area || name.underscore.sub( 'shiny_', '' )
-
-    engine.routes.url_helpers.public_send( "#{path_part}_path" )
-  end
-
   # Class methods
 
   # Returns an array of the currently enabled plugins

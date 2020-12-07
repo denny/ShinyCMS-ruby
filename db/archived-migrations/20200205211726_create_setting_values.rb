@@ -9,6 +9,6 @@ class CreateSettingValues < ActiveRecord::Migration[6.0]
     end
 
     add_foreign_key :setting_values, :settings, column: :setting_id
-	  add_foreign_key :setting_values, :users,    column: :user_id
+    add_foreign_key :setting_values, :users,    column: :user_id
   end
 end
