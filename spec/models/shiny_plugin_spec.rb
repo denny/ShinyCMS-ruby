@@ -50,14 +50,5 @@ RSpec.describe ShinyPlugin, type: :model do
         expect( models.first.name ).to eq 'ShinyBlog::Post'
       end
     end
-
-    describe '.admin_index_path' do
-      it 'returns the approriate path' do
-        plugin = ShinyPlugin.new( 'ShinyBlog' )
-        path = plugin.admin_index_path( 'blog_posts' )
-
-        expect( path ).to be_a String
-      end
-    end
   end
 end
