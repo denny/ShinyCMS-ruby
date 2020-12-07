@@ -21,7 +21,12 @@
 #ReplaceInstanceVariableWithLocalVariableCheck: { }  # 64
 #SimplifyRenderInControllersCheck: { }               # 21 / 16
 #SimplifyRenderInViewsCheck: { }                     # 40 / 33
-## UseBeforeFilterCheck: { customize_count: 2 }      # 14 / 8
+
+# Everything this picks up is protected by both Devise and Pundit
+# (via inheritance from main app's AdminController):
+# before_action :authenticate_user!
+# after_action :verify_authorized
+#UseBeforeFilterCheck: { customize_count: 2 }  # 14 / 8
 
 
 # Pass with some exceptions
