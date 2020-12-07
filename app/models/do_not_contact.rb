@@ -33,10 +33,6 @@ class DoNotContact < ApplicationRecord
     exists? email: canonicalise_and_redact( email )
   end
 
-  def self.includes?( email )
-    include? email
-  end
-
   def self.canonicalise_and_redact( email )
     new_email = EmailAddress.new( email )
     return email if new_email.redacted?
