@@ -13,7 +13,7 @@ module ShinyPages
   RSpec.describe PageElement, type: :model do
     context 'concerns' do
       it_should_behave_like ShinyElement do
-        let( :page    ) { create :page }
+        let( :page    ) { create :page                     }
         let( :element ) { create :page_element, page: page }
       end
 

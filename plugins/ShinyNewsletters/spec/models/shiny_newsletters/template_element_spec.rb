@@ -12,7 +12,7 @@ require 'rails_helper'
 module ShinyNewsletters
   RSpec.describe TemplateElement, type: :model do
     it_should_behave_like ShinyElement do
-      let( :template ) { create :newsletter_template }
+      let( :template ) { create :newsletter_template                             }
       let( :element  ) { create :newsletter_template_element, template: template }
     end
 

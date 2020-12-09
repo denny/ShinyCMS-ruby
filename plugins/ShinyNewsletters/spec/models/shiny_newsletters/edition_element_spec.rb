@@ -12,7 +12,7 @@ require 'rails_helper'
 module ShinyNewsletters
   RSpec.describe EditionElement, type: :model do
     it_should_behave_like ShinyElement do
-      let( :edition ) { create :newsletter_edition }
+      let( :edition ) { create :newsletter_edition                           }
       let( :element ) { create :newsletter_edition_element, edition: edition }
     end
 

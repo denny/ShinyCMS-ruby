@@ -13,7 +13,7 @@ module ShinyLists
   RSpec.describe List, type: :model do
     context 'instance methods' do
       let( :list ) { create :mailing_list }
-      let( :user ) { create :user }
+      let( :user ) { create :user         }
 
       describe '.subscribed?' do
         it 'returns true if the email address is subscribed' do

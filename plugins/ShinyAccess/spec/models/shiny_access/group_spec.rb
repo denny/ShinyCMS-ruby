@@ -13,7 +13,7 @@ module ShinyAccess
   RSpec.describe Group, type: :model do
     context 'instance methods' do
       let( :test_group ) { create :access_group }
-      let( :test_user  ) { create :user }
+      let( :test_user  ) { create :user         }
 
       describe '.member?' do
         it 'returns true if the user is a member of the group' do
