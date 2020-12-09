@@ -27,12 +27,6 @@ RSpec/AnyInstance:
     - 'spec/requests/discussions_spec.rb'
     - 'spec/requests/user_spec.rb'
 
-# Offense count: 3
-RSpec/BeforeAfterAll:
-  Exclude:
-    - 'plugins/ShinySearch/spec/requests/search_spec.rb'
-    - 'spec/models/theme_spec.rb'
-
 # Offense count: 6
 # Cop supports --auto-correct.
 RSpec/ContextMethod:
@@ -78,14 +72,6 @@ RSpec/ExampleWording:
     - 'spec/models/theme_spec.rb'
     - 'spec/requests/ahoy_email_spec.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: Include.
-# Include: spec/factories.rb, spec/factories/**/*.rb, features/support/factories/**/*.rb
-RSpec/FactoryBot/FactoryClassName:
-  Exclude:
-    - 'spec/factories/ahoy_messages.rb'
-
 # Offense count: 19
 # Configuration parameters: Include, CustomTransform, IgnoreMethods, SpecSuffixOnly.
 # Include: **/*_spec*rb*, **/spec/**/*
@@ -126,19 +112,6 @@ RSpec/InstanceVariable:
 RSpec/ItBehavesLike:
   Enabled: false
 
-# Offense count: 1
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: allow, expect
-RSpec/MessageExpectation:
-  Exclude:
-    - 'plugins/ShinySearch/spec/requests/search_spec.rb'
-
-# Offense count: 1
-# Configuration parameters: .
-# SupportedStyles: have_received, receive
-RSpec/MessageSpies:
-  EnforcedStyle: receive
-
 # Offense count: 388
 RSpec/MultipleExpectations:
   Max: 11
@@ -146,26 +119,3 @@ RSpec/MultipleExpectations:
 # Offense count: 3
 RSpec/NestedGroups:
   Max: 4
-
-# Offense count: 2
-RSpec/RepeatedExample:
-  Exclude:
-    - 'spec/requests/user_spec.rb'
-
-# Offense count: 2
-RSpec/RepeatedExampleGroupDescription:
-  Exclude:
-    - 'spec/requests/admin/stats_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: and_return, block
-RSpec/ReturnFromStub:
-  Exclude:
-    - 'spec/support/shared_examples/shiny_email_example.rb'
-
-# Offense count: 2
-RSpec/ScatteredSetup:
-  Exclude:
-    - 'spec/requests/user_spec.rb'

@@ -89,6 +89,12 @@ Rails/OutputSafety:
   Exclude:
     - config/initializers/field_with_errors.rb
 
+# There's no database activity in these before all blocks, so this cop doesn't apply
+RSpec/BeforeAfterAll:
+  Exclude:
+    - spec/models/theme_spec.rb
+    - spec/support/faker.rb
+
 # Disabling this allows 'compact' class names, e.g. Admin::PagesController
 Style/ClassAndModuleChildren:
   Enabled: false
