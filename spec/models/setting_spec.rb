@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for Setting model (combines with SettingValue to store site settings data)
 RSpec.describe Setting, type: :model do
-  context 'class methods' do
+  describe 'class methods' do
     describe '.get' do
       it 'returns the specified setting' do
         setting = create :setting, name: 'foo'

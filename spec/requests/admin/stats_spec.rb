@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for the Blazer integration
 RSpec.describe 'Blazer (charts and dashboards)', type: :request do
   describe 'GET /stats' do
-    context 'as a stats admin user' do
+    context 'when logged in as a stats admin user' do
       before do
         admin = create :stats_admin
         sign_in admin
@@ -28,7 +28,7 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
       end
     end
 
-    context 'as an admin user without access to the stats feature' do
+    context 'when logged in as an admin user without stats access' do
       before do
         admin = create :page_admin
         sign_in admin

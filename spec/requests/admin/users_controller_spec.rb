@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for user admin features
 RSpec.describe Admin::UsersController, type: :request do
-  context 'With a normal user admin' do
+  context 'with a normal user admin' do
     before do
       admin = create :user_admin
       sign_in admin

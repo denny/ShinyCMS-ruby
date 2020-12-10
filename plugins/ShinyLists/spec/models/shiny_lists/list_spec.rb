@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for mailing list model
 module ShinyLists
   RSpec.describe List, type: :model do
-    context 'instance methods' do
+    describe 'instance methods' do
       let( :list ) { create :mailing_list }
       let( :user ) { create :user         }
 
@@ -28,7 +28,7 @@ module ShinyLists
       end
     end
 
-    context 'concerns' do
+    describe 'concerns' do
       it_behaves_like ShinyDemoDataProvider do
         let( :model ) { described_class }
       end

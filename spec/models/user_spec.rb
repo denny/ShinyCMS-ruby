@@ -10,14 +10,7 @@ require 'rails_helper'
 
 # Tests for user model
 RSpec.describe User, type: :model do
-  context 'factory' do
-    it 'can create a user' do
-      user = create :user
-      expect( user.username ).to match( /\w+/ )
-    end
-  end
-
-  context 'overridden find_first_by_auth_conditions method' do
+  describe 'overridden find_first_by_auth_conditions method' do
     before do
       @user = create :user
     end
@@ -47,7 +40,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context 'concerns' do
+  describe 'concerns' do
     it_behaves_like ShinyEmail do
       let( :addressee ) { create :user }
     end

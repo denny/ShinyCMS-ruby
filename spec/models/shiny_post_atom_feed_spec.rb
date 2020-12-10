@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for ShinyPostAtomFeed model
 RSpec.describe ShinyPostAtomFeed, type: :model do
-  context 'instance methods' do
+  describe 'instance methods' do
     describe 'ENV fetcher methods' do
       it 'reads the ENV vars' do
         bucket = 'shinycms-feed-tests'

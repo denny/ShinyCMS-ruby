@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for Access Group membership model
 module ShinyAccess
   RSpec.describe Membership, type: :model do
-    context 'scopes' do
+    describe 'scopes' do
       describe '.active' do
         it 'does not include memberships that have ended' do
           group = create :access_group
@@ -23,7 +23,7 @@ module ShinyAccess
       end
     end
 
-    context 'instance methods' do
+    describe 'instance methods' do
       describe '.end' do
         it 'sets the ended_at timestamp' do
           membership1 = create :access_membership
@@ -34,7 +34,7 @@ module ShinyAccess
       end
     end
 
-    context 'concerns' do
+    describe 'concerns' do
       it_behaves_like ShinyDemoDataProvider do
         let( :model ) { described_class }
       end

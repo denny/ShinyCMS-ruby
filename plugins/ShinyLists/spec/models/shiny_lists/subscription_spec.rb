@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for mailing list subscriptions model
 module ShinyLists
   RSpec.describe Subscription, type: :model do
-    context 'scopes' do
+    describe 'scopes' do
       let( :list ) { create :mailing_list }
 
       describe '.active' do
@@ -24,7 +24,7 @@ module ShinyLists
       end
     end
 
-    context 'instance methods' do
+    describe 'instance methods' do
       describe '.unsubscribe' do
         it 'sets the unsubscribed timestamp' do
           sub1 = create :mailing_list_subscription
@@ -35,7 +35,7 @@ module ShinyLists
       end
     end
 
-    context 'concerns' do
+    describe 'concerns' do
       it_behaves_like ShinyDemoDataProvider do
         let( :model ) { described_class }
       end

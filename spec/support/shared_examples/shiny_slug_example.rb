@@ -8,8 +8,8 @@
 
 # Shared test code, for testing methods mixed-in by the ShinySlug concern
 RSpec.shared_examples ShinySlug do
-  context 'generation' do
-    it 'can create a slug' do
+  describe 'slug generation' do
+    it 'can generate a slug' do
       sluggish.slug = nil
       expect( sluggish.slug ).to be_blank
 

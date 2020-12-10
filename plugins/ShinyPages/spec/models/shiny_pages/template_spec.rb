@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for page template model
 module ShinyPages
   RSpec.describe Template, type: :model do
-    context 'instance methods' do
+    describe 'instance methods' do
       describe '.pages' do
         it 'returns the associated pages' do
           template = create :page_template
@@ -42,7 +42,7 @@ module ShinyPages
       end
     end
 
-    context 'class methods' do
+    describe 'class methods' do
       describe '.available_templates' do
         it 'returns the names of the template files in pages/templates' do
           expect( described_class.available_templates.size  ).to eq 2
@@ -52,7 +52,7 @@ module ShinyPages
       end
     end
 
-    context 'concerns' do
+    describe 'concerns' do
       it_behaves_like ShinyDemoDataProvider do
         let( :model ) { described_class }
       end

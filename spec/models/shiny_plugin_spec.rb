@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for ShinyPlugin model
 RSpec.describe ShinyPlugin, type: :model do
-  context 'class methods' do
+  describe 'class methods' do
     describe '.loaded' do
       it 'returns an array of plugin instances' do
         expect( described_class.loaded       ).to be_an Array
@@ -39,7 +39,7 @@ RSpec.describe ShinyPlugin, type: :model do
     end
   end
 
-  context 'instance methods' do
+  describe 'instance methods' do
     describe '.models_with_demo_data' do
       it 'returns an array of models' do
         plugin = described_class.new( 'ShinyBlog' )

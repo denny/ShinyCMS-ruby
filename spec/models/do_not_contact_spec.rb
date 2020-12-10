@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for 'do not contact' model - stores one-way encypted email addresses
 RSpec.describe DoNotContact, type: :model do
-  context 'a new email address added to the DoNotContact list' do
+  describe 'a new email address added to the DoNotContact list' do
     it 'is stored in canonicalised and redacted form' do
       nope = create :do_not_contact, email: 'ShinyCMS+tests@example.com'
 
@@ -26,7 +26,7 @@ RSpec.describe DoNotContact, type: :model do
     end
   end
 
-  context 'checking whether the DoNotContact list includes a given email' do
+  describe 'checking whether the DoNotContact list includes a given email' do
     it 'matches when using a non-redacted, non-canonical address as input' do
       nope = create :do_not_contact, email: 'ShinyCMS+tests@example.com'
 

@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for Access Group model
 module ShinyAccess
   RSpec.describe Group, type: :model do
-    context 'instance methods' do
+    describe 'instance methods' do
       let( :test_group ) { create :access_group }
       let( :test_user  ) { create :user         }
 
@@ -28,7 +28,7 @@ module ShinyAccess
       end
     end
 
-    context 'concerns' do
+    describe 'concerns' do
       it_behaves_like ShinyDemoDataProvider do
         let( :model ) { described_class }
       end

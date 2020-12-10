@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for newsletter template model
 module ShinyNewsletters
   RSpec.describe Template, type: :model do
-    context 'class methods' do
+    describe 'class methods' do
       describe '.file_exists?' do
         it 'returns true if the template file exists on the disk' do
           template = create :newsletter_template, filename: 'an_example'
@@ -41,7 +41,7 @@ module ShinyNewsletters
       end
     end
 
-    context 'validations' do
+    describe 'validations' do
       describe 'mjml_syntax' do
         it 'fails to create a new Template if the template file is not valid MJML' do
           template = create :newsletter_template
@@ -56,7 +56,7 @@ module ShinyNewsletters
       end
     end
 
-    context 'concerns' do
+    describe 'concerns' do
       it_behaves_like ShinyDemoDataProvider do
         let( :model ) { described_class }
       end

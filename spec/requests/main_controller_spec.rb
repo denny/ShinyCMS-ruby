@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for main site base controller
 RSpec.describe MainController, type: :request do
-  context 'helper methods' do
+  describe 'helper methods' do
     describe 'feed_url()' do
       it 'returns an appropriate feed URL when the AWS S3 ENV vars are set' do
         create :top_level_page

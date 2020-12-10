@@ -9,14 +9,14 @@
 # Tests for news post model
 module ShinyNews
   RSpec.describe Post, type: :model do
-    context 'factory' do
+    describe 'factory' do
       it 'can create a news post' do
         post = create :news_post
         expect( described_class.first ).to eq post
       end
     end
 
-    context 'concerns' do
+    describe 'concerns' do
       it_behaves_like ShinyDemoDataProvider do
         let( :model ) { described_class }
       end

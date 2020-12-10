@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for newsletter edition model
 module ShinyNewsletters
   RSpec.describe Edition, type: :model do
-    context 'concerns' do
+    describe 'concerns' do
       it_behaves_like ShinyDemoDataProvider do
         let( :model ) { described_class }
       end

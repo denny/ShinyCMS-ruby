@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for feature flag model
 RSpec.describe FeatureFlag, type: :model do
-  context 'instance methods' do
+  describe 'instance methods' do
     describe '.enabled?' do
       it 'returns false if the feature is not enabled' do
         flag = create :feature_flag

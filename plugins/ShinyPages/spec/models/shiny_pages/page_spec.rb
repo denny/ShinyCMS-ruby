@@ -30,7 +30,7 @@ module ShinyPages
     end
 
     describe 'check that pages are sorted by position (not by .id or .created_at)' do
-      context 'at top level' do
+      context 'when at top level' do
         it 'returns the pages ordered by position, nulls/defaults last' do
           s0 = create :page_section
 
@@ -51,7 +51,7 @@ module ShinyPages
         end
       end
 
-      context 'within a section' do
+      context 'when in a section' do
         it 'returns the pages in that section ordered by assigned position, nulls/defaults last' do
           s0 = create :page_section
           s1 = create :page_section
@@ -74,7 +74,7 @@ module ShinyPages
       end
     end
 
-    context 'concerns' do
+    describe 'concerns' do
       it_behaves_like ShinyDemoDataProvider do
         let( :model ) { described_class }
       end
