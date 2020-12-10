@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for viewing email stats in admin area
 RSpec.describe Admin::EmailStatsController, type: :request do
-  before :each do
+  before do
     admin = create :stats_admin
     sign_in admin
   end

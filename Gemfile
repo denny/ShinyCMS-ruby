@@ -165,6 +165,8 @@ source 'https://rubygems.org' do
     gem 'rubocop', require: false
     # Rails-specific linting
     gem 'rubocop-rails', require: false
+    # Tests need linting-love too!
+    gem 'rubocop-rspec', require: false
     # Performance-related analysis
     gem 'rubocop-performance', require: false
 

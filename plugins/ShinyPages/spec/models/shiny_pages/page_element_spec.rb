@@ -11,13 +11,13 @@ require 'rails_helper'
 # Tests for page element model
 module ShinyPages
   RSpec.describe PageElement, type: :model do
-    context 'concerns' do
-      it_should_behave_like ShinyElement do
-        let( :page    ) { create :page }
+    describe 'concerns' do
+      it_behaves_like ShinyElement do
+        let( :page    ) { create :page                     }
         let( :element ) { create :page_element, page: page }
       end
 
-      it_should_behave_like ShinyDemoDataProvider do
+      it_behaves_like ShinyDemoDataProvider do
         let( :model ) { described_class }
       end
     end

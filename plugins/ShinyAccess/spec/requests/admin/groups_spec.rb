@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for access group admin features
 RSpec.describe 'Access Group admin features', type: :request do
-  before :each do
+  before do
     admin = create :access_admin
     sign_in admin
   end

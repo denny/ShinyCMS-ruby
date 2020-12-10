@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for user profile model
 module ShinyProfiles
   RSpec.describe Profile, type: :model do
-    context 'Instance methods' do
+    describe 'Instance methods' do
       describe '.name' do
         it 'returns the public_name if one is set' do
           profile = create :user_profile

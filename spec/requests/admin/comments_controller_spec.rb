@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for admin/moderation features for individual comments
 RSpec.describe Admin::CommentsController, type: :request do
-  before :each do
+  before do
     admin = create :discussion_admin
     sign_in admin
 

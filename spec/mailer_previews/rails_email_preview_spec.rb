@@ -10,13 +10,13 @@ require 'rails_helper'
 
 # Tests for the RailsEmailPreview engine, which powers admin previews of site emails
 RSpec.describe RailsEmailPreview, type: :request do
-  before :each do
+  before do
     admin = create :mailer_admin
     sign_in admin
   end
 
   describe 'when I load the index page' do
-    it 'it shows the list of emails' do
+    it 'shows the list of emails' do
       get rails_email_preview.rep_emails_path
 
       expect( response.body ).to have_title I18n.t( 'rails_email_preview.emails.index.title' ).titlecase

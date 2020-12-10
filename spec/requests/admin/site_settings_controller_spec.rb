@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for the site settings features in the admin area
 RSpec.describe Admin::SiteSettingsController, type: :request do
-  before :each do
+  before do
     admin = create :settings_admin
     sign_in admin
   end

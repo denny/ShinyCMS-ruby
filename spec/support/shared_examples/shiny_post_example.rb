@@ -45,7 +45,7 @@ RSpec.shared_examples ShinyPost do
   end
 
   describe 'scopes' do
-    before :each do
+    before do
       @older = post.class.create!(
         title: Faker::Books::CultureSeries.unique.culture_ship,
         body: 'Testing',

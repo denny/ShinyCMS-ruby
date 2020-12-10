@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for site setting features on main site
 RSpec.describe SiteSettingsController, type: :request do
-  before :each do
+  before do
     @user = create :user
     sign_in @user
 

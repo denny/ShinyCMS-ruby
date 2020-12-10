@@ -15,7 +15,7 @@ RSpec.describe EmailRecipientMailer, type: :mailer do
       recipient = create :email_recipient
       recipient.set_confirm_token
 
-      email = EmailRecipientMailer.confirm( recipient )
+      email = described_class.confirm( recipient )
 
       subject = I18n.t(
         'email_recipient_mailer.confirm.subject',

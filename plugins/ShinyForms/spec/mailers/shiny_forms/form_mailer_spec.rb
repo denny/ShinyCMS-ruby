@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for the generic form mailer
 module ShinyForms
   RSpec.describe FormMailer, type: :mailer do
-    before :each do
+    before do
       FeatureFlag.enable :shiny_forms_emails
 
       @default_subject = I18n.t( 'shiny_forms.mailers.form_mailer.default_subject', site_name: Setting.get( :site_name ) )
@@ -21,7 +21,7 @@ module ShinyForms
       it 'generates a plain text email containing the form data' do
         form1 = create :plain_email_form
 
-        email1 = FormMailer.plain( form1, form1.internal_name, { message: 'Plain text email' } )
+        email1 = described_class.plain( form1, form1.internal_name, { message: 'Plain text email' } )
 
         expect { email1.deliver_later }.to have_enqueued_job
 
@@ -34,7 +34,7 @@ module ShinyForms
       it 'generates an MJML-templated email containing the form data' do
         form1 = create :template_email_form
 
-        email1 = FormMailer.with_template( form1, form1.internal_name, { message: 'Templated email' }, form1.filename )
+        email1 = described_class.with_template( form1, form1.internal_name, { message: 'Templated email' }, form1.filename )
 
         expect { email1.deliver_later }.to have_enqueued_job
 

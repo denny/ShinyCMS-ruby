@@ -10,12 +10,12 @@ require 'rails_helper'
 
 # Tests for model holding details of unauthenticated comment authors
 RSpec.describe CommentAuthor, type: :model do
-  context 'factory' do
+  describe 'factory' do
     describe 'create' do
       it 'generates a comment author instance' do
         author = create :comment_author
 
-        expect( author ).to be_a CommentAuthor
+        expect( author ).to be_a described_class
       end
     end
   end

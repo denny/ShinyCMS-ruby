@@ -10,8 +10,8 @@ require 'rails_helper'
 
 # Tests for 'do not contact' model - stores one-way encypted email addresses
 RSpec.describe DoNotContact, type: :model do
-  context 'when adding a new email address to the DoNotContact list' do
-    it 'it is stored in canonicalised and redacted form' do
+  describe 'a new email address added to the DoNotContact list' do
+    it 'is stored in canonicalised and redacted form' do
       nope = create :do_not_contact, email: 'ShinyCMS+tests@example.com'
 
       expect( nope.email ).not_to eq 'ShinyCMS+tests@example.com'
@@ -19,20 +19,20 @@ RSpec.describe DoNotContact, type: :model do
       expect( nope.email ).to     eq '{c33ca35ec7c29c231cc1d2d8c0639e91ddb79b48}@example.com'
     end
 
-    it "it is stored 'as is' if it's already redacted" do
+    it "is stored 'as is' if it's already redacted" do
       nope = create :do_not_contact, email: '{c33ca35ec7c29c231cc1d2d8c0639e91ddb79b48}@example.com'
 
       expect( nope.email ).to eq '{c33ca35ec7c29c231cc1d2d8c0639e91ddb79b48}@example.com'
     end
   end
 
-  context 'when checking whether the DoNotContact list includes a given email' do
-    it 'a match is found when using a non-redacted, non-canonical address as input' do
+  describe 'checking whether the DoNotContact list includes a given email' do
+    it 'matches when using a non-redacted, non-canonical address as input' do
       nope = create :do_not_contact, email: 'ShinyCMS+tests@example.com'
 
       expect( nope.email ).to eq '{c33ca35ec7c29c231cc1d2d8c0639e91ddb79b48}@example.com'
 
-      expect( DoNotContact.include?( 'ShinyCMS+TEST@example.com' ) ).to be true
+      expect( described_class.include?( 'ShinyCMS+TEST@example.com' ) ).to be true
     end
   end
 end

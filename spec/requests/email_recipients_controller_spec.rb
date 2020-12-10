@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for main site features for email recipients
 RSpec.describe EmailRecipientsController, type: :request do
-  before :each do
+  before do
     create :top_level_page
   end
 
