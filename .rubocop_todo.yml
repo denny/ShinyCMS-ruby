@@ -29,10 +29,6 @@ RSpec/ContextWording:
 RSpec/DescribedClass:
   Enabled: false
 
-# Offense count: 25
-RSpec/DescribedClassModuleWrapping:
-  Enabled: false
-
 # Offense count: 268
 # Configuration parameters: Max.
 RSpec/ExampleLength:
@@ -70,7 +66,3 @@ RSpec/InstanceVariable:
     - 'spec/requests/votes_spec.rb'
     - 'spec/support/shared_examples/pagination_example.rb'
     - 'spec/support/shared_examples/shiny_post_example.rb'
-
-# Offense count: 3
-RSpec/NestedGroups:
-  Max: 4
