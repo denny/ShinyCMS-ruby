@@ -51,5 +51,9 @@ RSpec.describe User, type: :model do
     it_should_behave_like ShinyEmail do
       let( :addressee ) { create :user }
     end
+
+    it_should_behave_like 'VoteableVoter' do
+      let( :voter ) { create :user }
+    end
   end
 end

@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for discussion model
 RSpec.describe Discussion, type: :model do
-  context 'factory' do
+  describe 'factory' do
     it 'can create a discussion' do
       news_post  = create :news_post
       discussion = create :discussion, resource: news_post
@@ -20,7 +20,7 @@ RSpec.describe Discussion, type: :model do
   end
 
   context 'methods' do
-    context '.recently_active' do
+    describe '.recently_active' do
       before :each do
         @active_last_week = create :news_post
         @active_this_week = create :news_post
@@ -33,7 +33,7 @@ RSpec.describe Discussion, type: :model do
         create :discussion, resource: @an_inactive_post, comment_count: 0
       end
 
-      describe 'without params' do
+      context 'without params' do
         it 'fetches the most active discussions from the last week, most active first' do
           active, counts = Discussion.recently_active
 
@@ -42,7 +42,7 @@ RSpec.describe Discussion, type: :model do
         end
       end
 
-      describe 'with params' do
+      context 'with params' do
         it 'fetches the most active discussions from the specified timespan' do
           active, counts = Discussion.recently_active( days: 14 )
 
@@ -51,7 +51,7 @@ RSpec.describe Discussion, type: :model do
         end
       end
 
-      describe 'when discussions have no comments' do
+      context 'when discussions have no comments' do
         it "doesn't include them" do
           active, _counts = Discussion.recently_active
 

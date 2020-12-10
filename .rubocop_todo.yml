@@ -16,16 +16,6 @@ RSpec/AnyInstance:
     - 'spec/requests/discussions_spec.rb'
     - 'spec/requests/user_spec.rb'
 
-# Offense count: 6
-# Cop supports --auto-correct.
-RSpec/ContextMethod:
-  Exclude:
-    - 'spec/models/discussion_spec.rb'
-    - 'spec/models/feature_flag_spec.rb'
-    - 'spec/models/setting_spec.rb'
-    - 'spec/support/shared_examples/voteable_example.rb'
-    - 'spec/support/shared_examples/voteable_voter_example.rb'
-
 # Offense count: 59
 # Configuration parameters: Prefixes.
 # Prefixes: when, with, without
