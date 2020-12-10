@@ -42,7 +42,7 @@ class CreateShinyNewslettersTables < ActiveRecord::Migration[6.0]
 
       t.references :template, references: :shiny_newsletters_templates, foreign_key: { to_table: :shiny_newsletters_templates }, null: false
 
-      t.timestamp :published_at, precision: 6
+      t.timestamp :published_at
       t.timestamps
     end
 
@@ -61,9 +61,9 @@ class CreateShinyNewslettersTables < ActiveRecord::Migration[6.0]
       t.references :edition, references: :shiny_newsletters_editions, foreign_key: { to_table: :shiny_newsletters_editions }, null: false
       t.references :list, references: :shiny_lists_lists, foreign_key: { to_table: :shiny_lists_lists }, null: false
 
-      t.timestamp :send_at, precision: 6
-      t.timestamp :started_sending_at, precision: 6
-      t.timestamp :finished_sending_at, precision: 6
+      t.timestamp :send_at
+      t.timestamp :started_sending_at
+      t.timestamp :finished_sending_at
       t.timestamps
     end
   end
