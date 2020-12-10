@@ -99,7 +99,9 @@ RSpec/BeforeAfterAll:
 RSpec/DescribedClassModuleWrapping:
   Enabled: false
 
-# Disabling this for now, although open to discussion/persuasion on its merits
+# Disabling these two for now (but open to discussion/persuasion on their merits)
+RSpec/ExampleLength:
+  Enabled: false
 RSpec/MultipleExpectations:
   Enabled: false
 

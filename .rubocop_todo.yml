@@ -21,11 +21,6 @@ RSpec/AnyInstance:
 RSpec/ContextWording:
   Enabled: false
 
-# Offense count: 267
-# Configuration parameters: Max.
-RSpec/ExampleLength:
-  Enabled: false
-
 # Offense count: 245
 # Configuration parameters: AssignmentOnly.
 RSpec/InstanceVariable:
