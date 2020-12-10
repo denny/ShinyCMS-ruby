@@ -115,7 +115,7 @@ Style/ConditionalAssignment:
 Style/IpAddresses:
   Exclude:
     - db/demo_data.rb
-    - spec/requests/admin_spec.rb
+    - spec/requests/admin_controller_spec.rb
 
 # I'd rather use one style of regex everywhere, and this one is clearer when working with URLs:
 # %r{/(path)/parts/} rather than /\/(path)\/parts\//

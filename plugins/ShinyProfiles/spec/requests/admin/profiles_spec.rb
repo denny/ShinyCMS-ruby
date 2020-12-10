@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for admin area controller
-RSpec.describe ShinyProfiles::Admin::ProfilesController, type: :request do
+RSpec.describe 'ShinyProfiles::Admin::ProfilesController', type: :request do
   before :each do
     admin = create :user_admin
     sign_in admin
