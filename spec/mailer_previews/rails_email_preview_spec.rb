@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for the RailsEmailPreview engine, which powers admin previews of site emails
 RSpec.describe RailsEmailPreview, type: :request do
-  before :each do
+  before do
     admin = create :mailer_admin
     sign_in admin
   end

@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for main site usage of feature flags
 RSpec.describe 'Feature Flags', type: :request do
-  before :each do
+  before do
     FeatureFlag.enable :user_login
     FeatureFlag.enable :user_profiles
   end

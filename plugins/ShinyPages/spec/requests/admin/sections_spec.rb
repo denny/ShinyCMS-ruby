@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for page section admin features
 RSpec.describe 'Admin: Page Sections', type: :request do
-  before :each do
+  before do
     admin = create :page_admin
     sign_in admin
   end

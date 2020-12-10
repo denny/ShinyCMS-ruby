@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
   end
 
   context 'overridden find_first_by_auth_conditions method' do
-    before :each do
+    before do
       @user = create :user
     end
 

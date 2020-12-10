@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for discussion admin/moderation features (hide/lock/etc)
 RSpec.describe Admin::DiscussionsController, type: :request do
-  before :each do
+  before do
     @admin = create :discussion_admin
     sign_in @admin
 

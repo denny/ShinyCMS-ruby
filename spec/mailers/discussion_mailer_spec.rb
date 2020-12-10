@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for the discussion mailer (reply notifications)
 RSpec.describe DiscussionMailer, type: :mailer do
-  before :each do
+  before do
     FeatureFlag.enable :comment_notifications
 
     @site_name = ::Setting.get( :site_name ) || I18n.t( 'site_name' )

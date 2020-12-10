@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for the generic form mailer
 module ShinyForms
   RSpec.describe FormMailer, type: :mailer do
-    before :each do
+    before do
       FeatureFlag.enable :shiny_forms_emails
 
       @default_subject = I18n.t( 'shiny_forms.mailers.form_mailer.default_subject', site_name: Setting.get( :site_name ) )

@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for discussion model
 RSpec.describe Discussion, type: :model do
   describe '.recently_active' do
-    before :each do
+    before do
       @active_last_week = create :news_post
       @active_this_week = create :news_post
       @less_active_post = create :news_post

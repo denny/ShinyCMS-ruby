@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for user account features on main site (powered by Devise)
 RSpec.describe 'User Accounts', type: :request do
-  before :each do
+  before do
     FeatureFlag.enable :user_login
     FeatureFlag.disable :user_profiles
 
@@ -18,7 +18,7 @@ RSpec.describe 'User Accounts', type: :request do
   end
 
   describe 'GET /account/register' do
-    before :each do
+    before do
       FeatureFlag.enable :user_registration
       FeatureFlag.enable :recaptcha_for_registrations
     end
@@ -196,7 +196,7 @@ RSpec.describe 'User Accounts', type: :request do
   end
 
   describe 'POST /account/register' do
-    before :each do
+    before do
       FeatureFlag.enable :user_registration
     end
 

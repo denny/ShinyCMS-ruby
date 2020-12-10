@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin::News', type: :request do
-  before :each do
+  before do
     @admin = create :news_admin
     sign_in @admin
   end

@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for discussion and comment features on main site
 RSpec.describe 'Discussions/Comments', type: :request do
-  before :each do
+  before do
     FeatureFlag.enable :news
     FeatureFlag.enable :comments
 

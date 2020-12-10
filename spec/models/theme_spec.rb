@@ -15,7 +15,7 @@ RSpec.describe Theme, type: :model do
     FileUtils.mkdir_p 'themes/test2/views'
   end
 
-  before :each do
+  before do
     allow( described_class ).to receive( :env_shinycms_theme ).and_return( 'test1' )
   end
 

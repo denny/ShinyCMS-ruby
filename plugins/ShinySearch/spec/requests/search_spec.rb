@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Search:', type: :request do
-  before :each do
+  before do
     FeatureFlag.enable :user_profiles
 
     @profile = create :user_profile, public_name: 'Success'

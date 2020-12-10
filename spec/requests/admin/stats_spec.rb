@@ -12,7 +12,7 @@ require 'rails_helper'
 RSpec.describe 'Blazer (charts and dashboards)', type: :request do
   describe 'GET /stats' do
     context 'as a stats admin user' do
-      before :each do
+      before do
         admin = create :stats_admin
         sign_in admin
       end
@@ -29,7 +29,7 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
     end
 
     context 'as an admin user without access to the stats feature' do
-      before :each do
+      before do
         admin = create :page_admin
         sign_in admin
       end

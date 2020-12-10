@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Blog', type: :request do
-  before :each do
+  before do
     FeatureFlag.enable :blog
   end
 

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'News', type: :request do
-  before :each do
+  before do
     FeatureFlag.enable :news
   end
 
