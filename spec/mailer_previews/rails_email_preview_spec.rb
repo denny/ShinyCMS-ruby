@@ -16,7 +16,7 @@ RSpec.describe RailsEmailPreview, type: :request do
   end
 
   describe 'when I load the index page' do
-    it 'it shows the list of emails' do
+    it 'shows the list of emails' do
       get rails_email_preview.rep_emails_path
 
       expect( response.body ).to have_title I18n.t( 'rails_email_preview.emails.index.title' ).titlecase

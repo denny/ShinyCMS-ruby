@@ -21,7 +21,7 @@ module ShinyPages
         expect( page2.section.default_page ).to eq page1
       end
 
-      it 'it returns the specified page if a default has been explicitly set' do
+      it 'returns the specified page if a default has been explicitly set' do
         section = create :page_section
 
         page1 = create :page, section: section
@@ -34,7 +34,7 @@ module ShinyPages
     end
 
     describe 'when I call Section.default_section' do
-      it 'it returns the correct section' do
+      it 'returns the correct section' do
         create :page_section
         section2 = create :page_section, slug: 'default'
 

@@ -18,7 +18,7 @@ module ShinyNewsletters
           expect( template.file_exists? ).to eq true
         end
 
-        it 'it returns false if the template file does not exist' do
+        it 'returns false if the template file does not exist' do
           template = build :newsletter_template, filename: 'NO-SUCH-FILE'
           expect( template.file_exists? ).to eq false
         end
