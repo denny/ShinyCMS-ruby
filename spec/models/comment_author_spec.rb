@@ -15,7 +15,7 @@ RSpec.describe CommentAuthor, type: :model do
       it 'generates a comment author instance' do
         author = create :comment_author
 
-        expect( author ).to be_a CommentAuthor
+        expect( author ).to be_a described_class
       end
     end
   end

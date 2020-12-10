@@ -16,7 +16,7 @@ module ShinyNewsletters
         list1 = create :mailing_list, subscriber_count: 1
         send1 = create :newsletter_send, list: list1
 
-        SendToListJob.perform_now( send1 )
+        described_class.perform_now( send1 )
 
         expect( send1.sent? ).to be true
       end
@@ -26,7 +26,7 @@ module ShinyNewsletters
       it 'queues a send-to-list job' do
         send1 = create :newsletter_send
 
-        expect { SendToListJob.perform_later( send1 ) }.to have_enqueued_job
+        expect { described_class.perform_later( send1 ) }.to have_enqueued_job
       end
     end
   end

@@ -32,7 +32,7 @@ RSpec.describe DoNotContact, type: :model do
 
       expect( nope.email ).to eq '{c33ca35ec7c29c231cc1d2d8c0639e91ddb79b48}@example.com'
 
-      expect( DoNotContact.include?( 'ShinyCMS+TEST@example.com' ) ).to be true
+      expect( described_class.include?( 'ShinyCMS+TEST@example.com' ) ).to be true
     end
   end
 end

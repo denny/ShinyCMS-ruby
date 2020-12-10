@@ -14,7 +14,7 @@ module ShinyBlog
     context 'factory' do
       it 'can create a blog post' do
         post = create :blog_post
-        expect( ShinyBlog::Post.first ).to eq post
+        expect( described_class.first ).to eq post
       end
     end
 

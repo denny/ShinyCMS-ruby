@@ -45,9 +45,9 @@ module ShinyPages
     context 'class methods' do
       describe '.available_templates' do
         it 'returns the names of the template files in pages/templates' do
-          expect( ShinyPages::Template.available_templates.size  ).to eq 2
-          expect( ShinyPages::Template.available_templates.first ).to eq 'an_example'
-          expect( ShinyPages::Template.available_templates.last  ).to eq 'contact_form'
+          expect( described_class.available_templates.size  ).to eq 2
+          expect( described_class.available_templates.first ).to eq 'an_example'
+          expect( described_class.available_templates.last  ).to eq 'contact_form'
         end
       end
     end

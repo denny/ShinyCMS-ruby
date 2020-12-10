@@ -40,7 +40,7 @@ module ShinyPages
 
         ::Setting.set( :default_section, to: 'default' )
 
-        expect( Section.default_section ).to eq section2
+        expect( described_class.default_section ).to eq section2
       end
     end
 

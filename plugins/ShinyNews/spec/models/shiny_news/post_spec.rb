@@ -12,7 +12,7 @@ module ShinyNews
     context 'factory' do
       it 'can create a news post' do
         post = create :news_post
-        expect( ShinyNews::Post.first ).to eq post
+        expect( described_class.first ).to eq post
       end
     end
 

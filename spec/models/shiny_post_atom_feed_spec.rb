@@ -16,7 +16,7 @@ RSpec.describe ShinyPostAtomFeed, type: :model do
         bucket = 'shinycms-feed-tests'
         ENV[ 'AWS_S3_FEEDS_BUCKET' ] = bucket
 
-        feeder = ShinyPostAtomFeed.new( :blog )
+        feeder = described_class.new( :blog )
 
         expect(  feeder.__send__( :aws_s3_feeds_bucket ) ).to eq bucket
         region = feeder.__send__( :aws_s3_feeds_region )
