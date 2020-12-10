@@ -71,13 +71,6 @@ RSpec/InstanceVariable:
     - 'spec/support/shared_examples/pagination_example.rb'
     - 'spec/support/shared_examples/shiny_post_example.rb'
 
-# Offense count: 34
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: it_behaves_like, it_should_behave_like
-RSpec/ItBehavesLike:
-  Enabled: false
-
 # Offense count: 3
 RSpec/NestedGroups:
   Max: 4

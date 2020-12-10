@@ -11,12 +11,12 @@ require 'rails_helper'
 # Tests for newsletter edition element model
 module ShinyNewsletters
   RSpec.describe EditionElement, type: :model do
-    it_should_behave_like ShinyElement do
+    it_behaves_like ShinyElement do
       let( :edition ) { create :newsletter_edition                           }
       let( :element ) { create :newsletter_edition_element, edition: edition }
     end
 
-    it_should_behave_like ShinyDemoDataProvider do
+    it_behaves_like ShinyDemoDataProvider do
       let( :model ) { described_class }
     end
   end

@@ -29,11 +29,11 @@ module ShinyLists
     end
 
     context 'concerns' do
-      it_should_behave_like ShinyDemoDataProvider do
+      it_behaves_like ShinyDemoDataProvider do
         let( :model ) { described_class }
       end
 
-      it_should_behave_like ShinySlug do
+      it_behaves_like ShinySlug do
         let( :sluggish ) { create :mailing_list }
       end
     end

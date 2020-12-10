@@ -59,11 +59,11 @@ RSpec.describe EmailRecipient, type: :model do
   end
 
   context 'concerns' do
-    it_should_behave_like ShinyEmail do
+    it_behaves_like ShinyEmail do
       let( :addressee ) { create :email_recipient }
     end
 
-    it_should_behave_like ShinyToken do
+    it_behaves_like ShinyToken do
       let( :tokenised ) { create :email_recipient }
     end
   end
