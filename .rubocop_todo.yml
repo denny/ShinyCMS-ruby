@@ -78,10 +78,6 @@ RSpec/InstanceVariable:
 RSpec/ItBehavesLike:
   Enabled: false
 
-# Offense count: 387
-RSpec/MultipleExpectations:
-  Max: 11
-
 # Offense count: 3
 RSpec/NestedGroups:
   Max: 4

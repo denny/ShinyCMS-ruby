@@ -95,6 +95,10 @@ RSpec/BeforeAfterAll:
     - spec/models/theme_spec.rb
     - spec/support/faker.rb
 
+# Disabling this for now, although open to discussion/persuasion on its merits
+RSpec/MultipleExpectations:
+  Enabled: false
+
 # Disabling this allows 'compact' class names, e.g. Admin::PagesController
 Style/ClassAndModuleChildren:
   Enabled: false
