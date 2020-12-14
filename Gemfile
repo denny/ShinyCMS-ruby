@@ -68,9 +68,6 @@ source 'https://rubygems.org' do
   # Authorisation
   gem 'pundit'
 
-  # Monitoring
-  gem 'bugsnag'
-
   # Soft delete
   gem 'acts_as_paranoid'
 
@@ -136,6 +133,11 @@ source 'https://rubygems.org' do
   gem 'pry-rails'
 
   group :production do
+    if ENV[ 'BUGSNAG_API_KEY' ]
+      # Bugsnag is an error monitoring service
+      gem 'bugsnag'
+    end
+
     # Fix request.ip if we're running behind Cloudflare's proxying service
     gem 'cloudflare-rails'
   end
