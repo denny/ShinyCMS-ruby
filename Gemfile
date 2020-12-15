@@ -132,12 +132,12 @@ source 'https://rubygems.org' do
   # Pry is a debugging tool - uncomment it here if you want to use it on the Rails console in production
   gem 'pry-rails'
 
-  group :production do
-    if ENV[ 'BUGSNAG_API_KEY' ]
-      # Bugsnag is an error monitoring service
-      gem 'bugsnag'
-    end
+  if ENV[ 'BUGSNAG_API_KEY' ]
+    # Bugsnag is an error monitoring service
+    gem 'bugsnag'
+  end
 
+  group :production do
     # Fix request.ip if we're running behind Cloudflare's proxying service
     gem 'cloudflare-rails'
   end
