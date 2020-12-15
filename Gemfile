@@ -68,9 +68,6 @@ source 'https://rubygems.org' do
   # Authorisation
   gem 'pundit'
 
-  # Monitoring
-  gem 'bugsnag'
-
   # Soft delete
   gem 'acts_as_paranoid'
 
@@ -134,6 +131,11 @@ source 'https://rubygems.org' do
 
   # Pry is a debugging tool - uncomment it here if you want to use it on the Rails console in production
   gem 'pry-rails'
+
+  if ENV[ 'BUGSNAG_API_KEY' ]
+    # Bugsnag is an error monitoring service
+    gem 'bugsnag'
+  end
 
   group :production do
     # Fix request.ip if we're running behind Cloudflare's proxying service
