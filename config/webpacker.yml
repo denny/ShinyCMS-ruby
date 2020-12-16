@@ -14,11 +14,11 @@ default: &default
   cache_path: tmp/cache/webpacker
   webpack_compile_output: true
 
-  # Allow themes to include JavaScript
+  # Allow themes to include JavaScript loaded by webpacker
   # TODO: Allow plugins to do so as well
-  # TODO: FIXME: Get rid of hardcoded paths here (glob? loop?)
-  # NB: No ERB support - this file is parsed by Ruby and JavaScript
-  additional_paths: [ 'themes/halcyonic/javascript', 'themes/coming_soon/javascript' ]
+  # This configuration requires the files to be in /themes/javascript/theme_name
+  # whereas ideally they'd be in /themes/theme_name/javascript
+  additional_paths: [ 'themes/javascript' ]
 
   # Reload manifest.json on all requests so we reload latest compiled packs
   cache_manifest: false
