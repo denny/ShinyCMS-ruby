@@ -4,7 +4,7 @@
 
 * Adding a new theme should require zero modifications to the main app code
     * Currently this fails for themes with JavaScript, which need to be:
-        * Required in /app/javascript/packs/themes.js
+        * Required by a file in /app/javascript/packs/{theme-name}.js
         * Added to additional_paths in /config/webpacker.yml
 
 * Tag cloud/list don't honour show/hide status of content
