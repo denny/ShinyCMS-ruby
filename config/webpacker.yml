@@ -17,6 +17,7 @@ default: &default
   # Allow themes to include JavaScript
   # TODO: Allow plugins to do so as well
   # TODO: FIXME: Get rid of hardcoded paths here (glob? loop?)
+  # NB: No ERB support - this file is parsed by Ruby and JavaScript
   additional_paths: [ 'themes/halcyonic/javascript', 'themes/coming_soon/javascript' ]
 
   # Reload manifest.json on all requests so we reload latest compiled packs
