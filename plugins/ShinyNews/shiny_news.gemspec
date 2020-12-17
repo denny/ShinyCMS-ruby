@@ -43,7 +43,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'acts_as_paranoid'
 
   # Tags
-  spec.add_dependency 'acts-as-taggable-on'
+  # spec.add_dependency 'acts-as-taggable-on'
 
   # Pagination
   spec.add_dependency 'kaminari'

@@ -2,13 +2,12 @@ PATH
   remote: .
   specs:
     shiny_blog (20.12)
-      acts-as-taggable-on
       acts_as_paranoid
       ckeditor
       kaminari
       pg (>= 0.18, < 2.0)
       pundit
-      rails (~> 6.0.3, >= 6.0.3.4)
+      rails (>= 6.0.3.4, < 6.2)
 
 GEM
   remote: https://rubygems.org/
@@ -68,8 +67,6 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
-    acts-as-taggable-on (6.5.0)
-      activerecord (>= 5.0, < 6.1)
     acts_as_paranoid (0.7.0)
       activerecord (>= 5.2, < 7.0)
       activesupport (>= 5.2, < 7.0)
