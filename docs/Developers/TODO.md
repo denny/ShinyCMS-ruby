@@ -2,8 +2,6 @@
 
 ## TODO
 
-* Move theme JavaScript assets into themes/ directory
-
 * Tag cloud/list don't honour show/hide status of content
 
 * Blazer currently doesn't restrict people without 'edit' capability to view-only
