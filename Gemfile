@@ -29,8 +29,8 @@ end
 
 # The actual Gemfile!
 source 'https://rubygems.org' do
-  # Rails 6
-  gem 'rails', '~> 6.0.3'
+  # Rails 6.1
+  gem 'rails', '~> 6.1.0'
 
   # Database
   gem 'pg', '>= 0.18', '< 2.0'
@@ -95,7 +95,7 @@ source 'https://rubygems.org' do
   gem 'acts_as_list'
 
   # Tags
-  gem 'acts-as-taggable-on'
+  # gem 'acts-as-taggable-on'
 
   # Likes
   gem 'acts_as_votable'
