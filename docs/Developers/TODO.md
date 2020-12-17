@@ -1,5 +1,13 @@
 # ShinyCMS Developer Documentation
 
+## Remaining Rails 6.1 issues
+
+* acts-as-taggable-on is not 6.1 compatible yet
+    * Temporarily commented out tag features throughout, hence reduced coverage
+
+* Deprecation warnings from votable and devise (I think)
+
+
 ## TODO
 
 * Tag cloud/list don't honour show/hide status of content
