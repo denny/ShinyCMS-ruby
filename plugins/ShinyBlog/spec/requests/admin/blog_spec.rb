@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for blog admin features
 RSpec.describe 'Admin: Blog Posts', type: :request do
-  before :each do
+  before do
     @admin = create :blog_admin
     sign_in @admin
   end

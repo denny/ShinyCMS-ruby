@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for main site form features
 RSpec.describe 'ShinyForms', type: :request do
-  before :each do
+  before do
     create :top_level_page
 
     allow_any_instance_of( Akismet::Client ).to receive( :open  )

@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for mailing list admin features
 RSpec.describe 'Mailing List admin features', type: :request do
-  before :each do
+  before do
     admin = create :list_admin
     sign_in admin
   end

@@ -10,9 +10,5 @@ module ShinyPages
   # Base model class for ShinyPages - part of the ShinyPages plugin for ShinyCMS
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
-
-    def self.capability_category_name
-      'pages'
-    end
   end
 end

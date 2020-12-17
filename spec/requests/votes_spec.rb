@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for the up/down vote features on the main site (powered by ActsAsVotable)
 RSpec.describe 'Votes', type: :request do
-  before :each do
+  before do
     FeatureFlag.enable :news
     FeatureFlag.enable :comments
 

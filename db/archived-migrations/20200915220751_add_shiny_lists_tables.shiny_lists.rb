@@ -24,8 +24,8 @@ class AddShinyListsTables < ActiveRecord::Migration[6.0]
 
       t.references :consent_version, foreign_key: true, null: false
 
-      t.timestamp :subscribed_at, precision: 6, null: false, default: -> { 'CURRENT_TIMESTAMP' }
-      t.timestamp :unsubscribed_at, precision: 6
+      t.timestamp :subscribed_at, null: false, default: -> { 'CURRENT_TIMESTAMP' }
+      t.timestamp :unsubscribed_at
       t.timestamps
     end
   end

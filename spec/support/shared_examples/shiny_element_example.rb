@@ -8,8 +8,8 @@
 
 # Shared test code, for testing the methods mixed-in by the ShinyElement concern
 RSpec.shared_examples ShinyElement do
-  context 'format_name' do
-    it 'returns a valid element name' do
+  describe '.format_name' do
+    it 'updates the record to have a valid element name' do
       # rubocop:disable Rails/SkipsModelValidations
       element.update_attribute( :name, 'Format Me Please!' )
       # rubocop:enable Rails/SkipsModelValidations

@@ -8,6 +8,6 @@ class CreateCapabilities < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-	add_foreign_key :capabilities, :capability_categories, column: :category_id
+    add_foreign_key :capabilities, :capability_categories, column: :category_id
   end
 end

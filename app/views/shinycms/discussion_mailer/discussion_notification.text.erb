@@ -2,6 +2,6 @@
 
 <%= t( 'discussion_mailer.they_said' ) %>:
 
-<% if @comment.title.present? %><%= @comment.title %>
+<% if @comment.title? %><%= @comment.title %>
 
 <% end %><%= @comment.body %>

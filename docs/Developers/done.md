@@ -12,7 +12,7 @@
     have pages at the top-level of your site, and to nest sections to any depth
 * Inserts (re-usable content fragments that can be pulled into any template)
     * Improvements: snappier name? ;) (Renamed from Shared Content to Inserts)
-* Access control for page content (for main site, not admin area)
+* Access control for content on main site (separate from auth system for admin area)
 * Basic form handlers
     * Improvements: MJML email templates
 * Blog
@@ -54,6 +54,8 @@
       * The Perl version has role-based authorisation. The Ruby version has
       more flexible ACL-based authorisation (powered by Pundit).
       * MJML templates for all user account emails (welcome, forgot password, etc)
+* User profile pages
+    * With links to user-generated content, e.g. recent comments/blog posts/etc
 * reCAPTCHA bot protection for registrations, comments, and forms
     * Improvements: supports reCAPTCHA v3 with scores. Tries an invisible
     CAPTCHA first, falling back to an interactive CAPTCHA if that fails.
@@ -73,6 +75,7 @@
       anybody else who wants to write a ShinyCMS plugin
 * Recoverable soft delete on almost all models (powered by ActsAsParanoid)
 * Admin page for viewing/managing (non-user) email recipients
+* Double opt-in for comment notification emails, newsletter subscriptions, etc
 * Email open and click tracking (powered by Ahoy::Email)
     * Disabled by default (privacy, yay!)
 * Web tracking (powered by Ahoy) - track visits, visitors, page views, etc
@@ -82,9 +85,6 @@
 
 ## TODO / In Progress
 
-See the [TODO](TODO.md) list for features from the original ShinyCMS that I haven't started implementing
-in this version yet... as well as ideas for new features, that I'm trying to resist building until I've
-caught up with the Perl feature list.
+See the [TODO](TODO.md) list for features from the original ShinyCMS that I haven't started implementing in this version yet... as well as ideas for new features, that I'm trying to resist building until I've caught up with the Perl feature list.
 
-See the [in-progress](in-progress.md) list for features that I am currently working on
-(with notes on where I'm up to, and links to useful docs).
+See the [in-progress](in-progress.md) list for features that I am currently working on (with notes on where I'm up to, and links to useful docs).

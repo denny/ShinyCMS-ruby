@@ -7,11 +7,11 @@
 -->
 
 <html>
-  <%= render partial: 'themes/halcyonic/includes/head' %>
+  <%= render partial: 'includes/head' %>
 
   <body<% unless @page&.default_page? %> class="subpage"<% end %>>
     <div id="page-wrapper">
-      <%= render partial: 'themes/halcyonic/includes/header' %>
+      <%= render partial: 'includes/header' %>
 
       <% unless controller_name == 'pages' && response.status != 404 %>
       <section id="content" class="content">
@@ -35,12 +35,12 @@
       </section>
       <% end %>
 
-      <%= render partial: 'themes/halcyonic/includes/footer' %>
+      <%= render partial: 'includes/footer' %>
 
       <% if current_user_can? :view_admin_toolbar %>
         <%= render partial: 'admin/includes/admin_toolbar' %>
       <% end %>
     </div>
-    <%= render partial: 'themes/halcyonic/includes/footer_javascript' %>
+    <%= render partial: 'includes/footer_javascript' %>
   </body>
 </html>

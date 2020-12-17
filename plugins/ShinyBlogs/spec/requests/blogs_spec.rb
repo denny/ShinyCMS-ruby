@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Blogs', type: :request do
-  before :each do
+  before do
     FeatureFlag.enable :shiny_blogs
     @blog = create :shiny_blogs_blog
   end

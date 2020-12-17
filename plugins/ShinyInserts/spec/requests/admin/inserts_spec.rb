@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin: Inserts', type: :request do
-  before :each do
+  before do
     admin = create :insert_admin
     sign_in admin
   end

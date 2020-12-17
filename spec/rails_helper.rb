@@ -66,11 +66,11 @@ RSpec.configure do |config|
     FeatureFlag.enable :ahoy_email_tracking
   end
 
-  config.before :each do
+  config.before do
     WebMock.enable!
   end
 
-  config.after :each do
+  config.after do
     WebMock.disable!
   end
 

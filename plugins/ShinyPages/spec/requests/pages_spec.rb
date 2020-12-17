@@ -22,7 +22,7 @@ RSpec.describe 'Pages', type: :request do
   end
 
   context 'with at least one top-level page defined' do
-    before :each do
+    before do
       @page = create :top_level_page
     end
 

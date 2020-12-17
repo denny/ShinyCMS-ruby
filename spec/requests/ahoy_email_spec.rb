@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for email open/click tracking (powered by Ahoy::Email)
 RSpec.describe 'Ahoy email tracking', type: :request do
   describe 'GET /ahoy/messages/xxx/open.gif' do
-    it 'it records an open event' do
+    it 'records an open event' do
       message = create :ahoy_message
 
       expect( message.opened_at ).to be_nil
@@ -24,7 +24,7 @@ RSpec.describe 'Ahoy email tracking', type: :request do
   end
 
   describe 'GET /ahoy/messages/xxx/click' do
-    it 'it records a click event' do
+    it 'records a click event' do
       message = create :ahoy_message
 
       url = 'http://example.com'

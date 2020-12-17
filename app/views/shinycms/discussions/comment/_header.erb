@@ -1,7 +1,7 @@
     <span class="float-right">
       <%= link_to "##{comment.number}", "#{request.fullpath}##{comment.number}" %>
     </span>
-    <% if comment.title.present? %>
+    <% if comment.title? %>
     <h2>
       <%= comment.title %>
     </h2>

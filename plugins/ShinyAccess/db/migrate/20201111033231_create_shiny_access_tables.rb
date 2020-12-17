@@ -13,13 +13,13 @@ class CreateShinyAccessTables < ActiveRecord::Migration[6.0]
       t.references :group, references: :shiny_access_groups, foreign_key: { to_table: :shiny_access_groups }, null: false
       t.references :user, foreign_key: true, null: false
 
-      t.timestamp :began_at,   precision: 6, null: false, default: -> { 'CURRENT_TIMESTAMP' }
-      t.timestamp :expires_at, precision: 6
-      t.timestamp :ended_at,   precision: 6
+      t.timestamp :began_at, null: false, default: -> { 'CURRENT_TIMESTAMP' }
+      t.timestamp :expires_at
+      t.timestamp :ended_at
       t.text :notes
 
       t.timestamps
-      t.timestamp :deleted_at, precision: 6
+      t.timestamp :deleted_at
     end
 
     add_index :shiny_access_groups, :deleted_at

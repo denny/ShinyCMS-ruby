@@ -11,14 +11,14 @@ require 'rails_helper'
 # Tests for blog post model - ShinyBlogs plugin for ShinyCMS
 module ShinyBlogs
   RSpec.describe BlogPost, type: :model do
-    context 'factory' do
+    describe 'factory' do
       it 'can create a blog post' do
         post = create :shiny_blogs_blog_post
-        expect( ShinyBlogs::BlogPost.first ).to eq post
+        expect( described_class.first ).to eq post
       end
     end
 
-    context 'methods' do
+    describe 'methods' do
       it 'can create a slug' do
         post = create :shiny_blogs_blog_post
 
@@ -50,11 +50,11 @@ module ShinyBlogs
       end
     end
 
-    it_should_behave_like 'Voteable' do
+    it_behaves_like 'Voteable' do
       let( :item ) { create :shiny_blogs_blog_post }
     end
 
-    it_should_behave_like ShinyDemoDataProvider do
+    it_behaves_like ShinyDemoDataProvider do
       let( :model ) { described_class }
     end
   end

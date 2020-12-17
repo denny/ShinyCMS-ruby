@@ -10,7 +10,7 @@
 RSpec.shared_examples ShinyEmail do
   describe '.do_not_email?' do
     it 'returns true if the email is not confirmed' do
-      allow( addressee ).to receive( :confirmed_at ) { nil }
+      allow( addressee ).to receive( :confirmed_at ).and_return nil
 
       expect( addressee.do_not_email? ).to be true
     end

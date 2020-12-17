@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for the discussion mailer (reply notifications)
 RSpec.describe DiscussionMailer, type: :mailer do
-  before :each do
+  before do
     FeatureFlag.enable :comment_notifications
 
     @site_name = ::Setting.get( :site_name ) || I18n.t( 'site_name' )
@@ -25,7 +25,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
       top   = create :top_level_comment, discussion: @discussion, author: user
       reply = create :nested_comment, parent: top, discussion: @discussion
 
-      email = DiscussionMailer.parent_comment_notification( reply )
+      email = described_class.parent_comment_notification( reply )
 
       subject = I18n.t(
         'discussion_mailer.parent_comment_notification.subject',
@@ -43,7 +43,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
 
       reply = create :nested_comment, parent: top, discussion: @discussion
 
-      email = DiscussionMailer.parent_comment_notification( reply )
+      email = described_class.parent_comment_notification( reply )
 
       subject = I18n.t(
         'discussion_mailer.parent_comment_notification.subject',
@@ -59,7 +59,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
     it 'generates email to author/owner of resource that discussion is attached to' do
       comment = create :top_level_comment, discussion: @discussion
 
-      email = DiscussionMailer.discussion_notification( comment )
+      email = described_class.discussion_notification( comment )
 
       subject = I18n.t(
         'discussion_mailer.discussion_notification.subject',
@@ -78,7 +78,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
 
       comment = create :top_level_comment, discussion: @discussion
 
-      email = DiscussionMailer.overview_notification( comment )
+      email = described_class.overview_notification( comment )
 
       subject = I18n.t(
         'discussion_mailer.overview_notification.subject',

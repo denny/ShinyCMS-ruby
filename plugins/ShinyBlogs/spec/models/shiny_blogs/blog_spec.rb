@@ -11,15 +11,15 @@ require 'rails_helper'
 # Tests for blog model - ShinyBlogs plugin for ShinyCMS
 module ShinyBlogs
   RSpec.describe Blog, type: :model do
-    context 'factory' do
+    describe 'factory' do
       it 'can create a blog' do
         blog = create :shiny_blogs_blog
 
-        expect( ShinyBlogs::Blog.first ).to eq blog
+        expect( described_class.first ).to eq blog
       end
     end
 
-    context 'scopes' do
+    describe 'scopes' do
       it 'can fetch the visible posts (not hidden, not future-dated)' do
         blog = create :shiny_blogs_blog
         create :shiny_blogs_blog_post, blog: blog, show_on_site: false
@@ -39,7 +39,7 @@ module ShinyBlogs
       end
     end
 
-    context 'methods' do
+    describe 'methods' do
       describe '.name' do
         it 'returns the public_name if one is set' do
           blog = create :shiny_blogs_blog, public_name: Faker::Books::CultureSeries.unique.culture_ship
@@ -70,7 +70,7 @@ module ShinyBlogs
       end
     end
 
-    it_should_behave_like ShinyDemoDataProvider do
+    it_behaves_like ShinyDemoDataProvider do
       let( :model ) { described_class }
     end
   end

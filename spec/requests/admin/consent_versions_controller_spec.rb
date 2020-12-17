@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for consent version admin features
 RSpec.describe Admin::ConsentVersionsController, type: :request do
-  before :each do
+  before do
     admin = create :consent_admin
     sign_in admin
   end

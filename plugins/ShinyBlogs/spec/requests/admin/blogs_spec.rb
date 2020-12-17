@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for blog (not blog post) admin features - ShinyBlogs plugin for ShinyCMS
 RSpec.describe 'Admin::Blogs', type: :request do
-  before :each do
+  before do
     @admin = create :multi_blog_admin
     sign_in @admin
   end
