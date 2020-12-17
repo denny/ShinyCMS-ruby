@@ -1256,16 +1256,11 @@
 <p>Features that I'm halfway through implementing (with notes on where I'm up to, what I'm stuck on, links to useful docs, etc)</p>
 <h3 id="features-that-exist-in-the-perl-version">Features that exist in the Perl version</h3>
 <ul>
-<li>
-<p>Newsletters (HTML mailshots) and mailing lists</p>
-<ul>
+<li>Newsletters (HTML mailshots) and mailing lists<ul>
 <li>Nearly done!</li>
 <li>Add a nice default template or two, from https://mjml.io/templates/newsletter-email</li>
 <li>Do some end-to-end testing, i.e. 'try to use it'</li>
 </ul>
-</li>
-<li>
-<p>User profile pages (with content such as recent comments, recent posts, etc)</p>
 </li>
 </ul>
 <h3 id="features-that-dont-exist-in-the-perl-version-but-i-seem-to-be-working-on-them-anyway">Features that don't exist in the Perl version but I seem to be working on them anyway</h3>
@@ -1281,8 +1276,7 @@
 </ul>
 </li>
 <li>Look into moving Users into a plugin<ul>
-<li>Ideally, move all the non-Devise User/Account functionality into concerns and helpers, so
-  you could include those into any site with Devise-powered auth and then use any ShinyPlugin</li>
+<li>Ideally, move all the non-Devise User/Account functionality into concerns and helpers, so you could include those into any site with Devise-powered auth and then use any ShinyPlugin</li>
 </ul>
 </li>
 <li>Move each plugin into its own separate gem<ul>
@@ -1291,6 +1285,16 @@
 <li>List ShinyBlog on https://www.ruby-toolbox.com/categories/Blog_Engines</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Themes</p>
+<ul>
+<li>Webpacker config<ul>
+<li>Currently themes with JavaScript need an entry point file at <code>/app/javascript/packs/{theme-name}.js</code>, which seems messy and wrong</li>
+<li>Theme JavaScript is currently in <code>/themes/javascript/theme_name</code> - ideally it would be in <code>/themes/theme_name/javascript</code></li>
 </ul>
 </li>
 </ul>

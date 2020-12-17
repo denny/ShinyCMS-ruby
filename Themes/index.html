@@ -302,22 +302,16 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#template-files" class="md-nav__link">
-    Template files
-  </a>
-  
-    <nav class="md-nav" aria-label="Template files">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#template-files-for-templated-content-pages-newsletters" class="md-nav__link">
-    Template files for templated content (Pages, Newsletters)
+  <a href="#overriding-the-default-templates" class="md-nav__link">
+    Overriding the default templates
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#creating-template-files-for-templated-content-pages-newsletters" class="md-nav__link">
+    Creating template files for templated content (Pages, Newsletters)
+  </a>
   
 </li>
         
@@ -1244,22 +1238,16 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#template-files" class="md-nav__link">
-    Template files
-  </a>
-  
-    <nav class="md-nav" aria-label="Template files">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#template-files-for-templated-content-pages-newsletters" class="md-nav__link">
-    Template files for templated content (Pages, Newsletters)
+  <a href="#overriding-the-default-templates" class="md-nav__link">
+    Overriding the default templates
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#creating-template-files-for-templated-content-pages-newsletters" class="md-nav__link">
+    Creating template files for templated content (Pages, Newsletters)
+  </a>
   
 </li>
         
@@ -1316,27 +1304,28 @@
                 
                 
                 <h1 id="shinycms-themes">ShinyCMS: Themes</h1>
-<p>The recommended way to start building a site on ShinyCMS is to create a theme for it... this keeps your own site's markup separate from the CMS templates, making it easier to apply future updates.</p>
+<p>The recommended way to start building a new site on ShinyCMS is to create a theme for it (unless you intend to use one of the default themes, with no modifications and no additional templates required).</p>
 <h2 id="making-a-theme">Making a theme</h2>
-<h3 id="template-files">Template files</h3>
-<p>The ShinyCMS theme engine falls back to the default template set if a template is not present in the current theme, which means that you can start building your own theme by simply creating a subdirectory for it in <code>themes</code> - e.g. <code>themes/my_site_name</code>. Even an empty directory is a valid theme!</p>
+<p>ShinyCMS falls back to the default template set whenever a template it needs is not present in the currently configured theme - which means that you can start building your own theme by simply creating a subdirectory for it in <code>/themes</code> - e.g. <code>/themes/my_site_name</code>. Even an empty directory is a valid theme (although not a very interesting one) :)</p>
 <blockquote>
-<p>Because themes start with a directory in the themes folder, valid theme names must be valid directory names on whatever operating system you intend to deploy ShinyCMS on. Something in snake-case is a safe bet on most platforms.</p>
+<p>Because themes are based on a directory in the <code>/themes</code> folder, valid theme names must be valid directory names on whatever operating system you intend to deploy ShinyCMS on. Something in <code>snake_case</code> is a safe bet on most platforms... e.g. <code>/themes/my_site_name</code></p>
 </blockquote>
-<p>Once you've created your theme directory, create a views directory inside it - e.g. <code>themes/my_site_name/views/</code> - and you can now copy any template that you want to edit or override into that directory from <code>app/views/shinycms</code> and make your desired changes. ShinyCMS will pick up your modified version whenever you tell it to use your theme.</p>
-<p>This system allows you to fetch future updates to the ShinyCMS default templates without that overwriting any customisations you have made to templates for your own site. Instead, the new templates can be used as a reference guide for any changes you might need to make to your own templates. It also means that making multiple variations on an existing theme should be very quick and easy.</p>
-<h4 id="template-files-for-templated-content-pages-newsletters">Template files for templated content (Pages, Newsletters)</h4>
-<p>You will need to create your own template files for any template-controlled content you have in the CMS, and create the appropriate Template entries in the admin area. For most people this will include the Templates to define the layout of the content section of your <a href="Plugins/ShinyPages">Pages</a>, and if you're using the <a href="Plugins/ShinyNewsletters">Newsletters</a> feature you'll need to create at least one pair (MJML and plain text) of Templates for the content section of those.</p>
+<p>Keeping your site's changes separated out into your own theme means that you can fetch future updates to the ShinyCMS default templates without that overwriting any customisations you have made to templates for your own site. Instead, the new default templates can be used as a reference guide for any updates you might need to make to your theme templates.</p>
+<h3 id="overriding-the-default-templates">Overriding the default templates</h3>
+<p>Once you've created your theme directory, create a views directory inside it - e.g. <code>themes/my_site_name/views/</code> - then copy any template that you want to edit or override into that directory and make your desired changes. ShinyCMS will give templates in your theme preference over the default templates whenever you tell it to use your theme.</p>
+<p>Your theme templates need to be kept in the same structure they have in the main app and plugin <code>app/views</code> folders for the overriding to work correctly. For example, if you are overriding the main site footer template then you would start with <code>cp app/views/shinycms/includes/_footer.html.erb themes/my_site_name/views/includes/</code>. If you're overriding the index page for the ShinyBlog plugin, you would start with <code>cp plugins/ShinyBlog/app/views/shiny_blog/blog/index.html.erb themes/my_site_name/views/shiny_blog/blog/</code>.</p>
+<h3 id="creating-template-files-for-templated-content-pages-newsletters">Creating template files for templated content (Pages, Newsletters)</h3>
+<p>You will need to create your own template files for any template-controlled content you have in the CMS, and create the appropriate Template entries in the admin area. For most people this will include the Templates to define the layout of the content section of your <a href="Plugins/ShinyPages">Pages</a>, and if you're using the <a href="Plugins/ShinyNewsletters">Newsletters</a> feature you'll need to create at least one pair of Templates (MJML and plain text) for the content section of those.</p>
 <p>There are sample templates for both of these features in the included Halcyonic theme, to get you started.</p>
 <h3 id="supporting-files">Supporting files</h3>
 <h4 id="images-and-stylesheets">Images and stylesheets</h4>
 <p>You should put theme-specific CSS into <code>themes/{theme_name}/stylesheets</code> and images into <code>themes/{theme_name}/images</code> - so for our example 'my_site_name' theme, these would be <code>themes/my_site_name/stylesheets</code> and <code>themes/my_site_name/images</code>.</p>
 <h4 id="javascript">JavaScript</h4>
-<p>Currently, if your theme needs some JavaScript then you should put the files in <code>vendor/javascript/my_site_name</code>, and configure Webpacker to load it via a file in <code>app/javascript/packs</code>.</p>
-<p>(Eventually theme JavaScript will also live under themes/ and be loaded automatically, but for now this is how it works.)</p>
+<p>Currently, if your theme needs some JavaScript then you should put the files in <code>themes/javascript/my_site_name</code>, and configure Webpacker to load it by adding a file in <code>/app/javascript/packs</code> containing <code>require( 'my_site_name' )</code>.</p>
+<p>Eventually the plan is that theme JavaScript will go in <code>/themes/my_site_name/javascript</code> and be loaded automatically, but dynamically adding things to Webpacker's config seems to be difficult, so for now this is how it works. :-\</p>
 <h2 id="using-your-theme">Using your theme</h2>
 <p>The default theme can be set in ENV['SHINYCMS_THEME'] and on the Settings page in the admin area. If both are set, the latter takes priority.</p>
-<p>(You can also choose to make this setting user-overridable - in which case a user's setting will take priority for them - but this is not a well-tested feature currently.)</p>
+<p>You can also choose to make this setting user-overridable, in which case a user's setting will take priority for them - but this configuration is experimental and currently untested.</p>
                 
               
               
