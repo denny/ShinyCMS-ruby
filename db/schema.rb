@@ -12,7 +12,7 @@
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2020_11_30_234759) do
+ActiveRecord::Schema.define(version: 2020_12_06_144100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -116,8 +116,8 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "check_type"
     t.text "message"
     t.datetime "last_run_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_blazer_checks_on_creator_id"
     t.index ["query_id"], name: "index_blazer_checks_on_query_id"
   end
@@ -126,8 +126,8 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.bigint "dashboard_id"
     t.bigint "query_id"
     t.integer "position"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["dashboard_id"], name: "index_blazer_dashboard_queries_on_dashboard_id"
     t.index ["query_id"], name: "index_blazer_dashboard_queries_on_query_id"
   end
@@ -135,8 +135,8 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
   create_table "blazer_dashboards", force: :cascade do |t|
     t.bigint "creator_id"
     t.text "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_blazer_dashboards_on_creator_id"
   end
 
@@ -146,8 +146,8 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.text "description"
     t.text "statement"
     t.string "data_source"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_blazer_queries_on_creator_id"
   end
 
@@ -155,17 +155,18 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "name", null: false
     t.bigint "category_id"
     t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["category_id"], name: "index_capabilities_on_category_id"
     t.index ["deleted_at"], name: "index_capabilities_on_deleted_at"
   end
 
   create_table "capability_categories", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_capability_categories_on_deleted_at"
   end
 
@@ -175,32 +176,33 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.inet "ip_address", null: false
     t.uuid "token", null: false
     t.bigint "email_recipient_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_comment_authors_on_deleted_at"
     t.index ["email_recipient_id"], name: "index_comment_authors_on_email_recipient_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "discussion_id", null: false
+    t.bigint "discussion_id", null: false
     t.integer "number", null: false
     t.bigint "parent_id"
-    t.string "author_type"
-    t.bigint "author_id"
     t.string "title"
     t.text "body"
     t.string "ip_address"
     t.boolean "locked", default: false, null: false
     t.boolean "show_on_site", default: true, null: false
     t.boolean "spam", default: false, null: false
-    t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["author_id", "author_type"], name: "index_comments_on_author_id_and_author_type"
     t.index ["deleted_at"], name: "index_comments_on_deleted_at"
     t.index ["number", "discussion_id"], name: "index_comments_on_number_and_discussion_id", unique: true
+    t.index ["parent_id"], name: "index_comments_on_parent_id"
   end
 
   create_table "consent_versions", force: :cascade do |t|
@@ -208,9 +210,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "slug", null: false
     t.text "display_text", null: false
     t.text "admin_notes"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_consent_versions_on_deleted_at"
   end
 
@@ -219,18 +221,18 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.bigint "resource_id"
     t.boolean "locked", default: false, null: false
     t.boolean "show_on_site", default: true, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_discussions_on_deleted_at"
     t.index ["resource_type", "resource_id"], name: "index_discussions_on_resource_type_and_resource_id"
   end
 
   create_table "do_not_contacts", force: :cascade do |t|
     t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_do_not_contacts_on_deleted_at"
     t.index ["email"], name: "index_do_not_contacts_on_email", unique: true
   end
@@ -241,11 +243,11 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "canonical_email", null: false
     t.uuid "token", default: -> { "gen_random_uuid()" }, null: false
     t.uuid "confirm_token"
-    t.datetime "confirm_sent_at", precision: 6
-    t.datetime "confirmed_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "confirm_sent_at"
+    t.datetime "confirmed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_email_recipients_on_deleted_at"
     t.index ["email"], name: "index_email_recipients_on_email", unique: true
     t.index ["token"], name: "index_email_recipients_on_token", unique: true
@@ -257,9 +259,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.boolean "enabled", default: false, null: false
     t.boolean "enabled_for_logged_in", default: false, null: false
     t.boolean "enabled_for_admins", default: false, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_feature_flags_on_deleted_at"
     t.index ["name"], name: "index_feature_flags_on_name", unique: true
   end
@@ -268,25 +270,16 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.text "content"
     t.string "searchable_type"
     t.bigint "searchable_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
-  end
-
-  create_table "rollups", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "interval", null: false
-    t.datetime "time", null: false
-    t.jsonb "dimensions", default: {}, null: false
-    t.float "value"
-    t.index ["name", "interval", "time", "dimensions"], name: "index_rollups_on_name_and_interval_and_time_and_dimensions", unique: true
   end
 
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
@@ -295,9 +288,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.bigint "setting_id", null: false
     t.bigint "user_id"
     t.string "value"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_setting_values_on_deleted_at"
     t.index ["setting_id", "user_id"], name: "index_setting_values_on_setting_id_and_user_id", unique: true
   end
@@ -307,9 +300,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "description"
     t.string "level", default: "site", null: false
     t.boolean "locked", default: true, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_settings_on_deleted_at"
   end
 
@@ -318,9 +311,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "public_name"
     t.string "slug", null: false
     t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_access_groups_on_deleted_at"
     t.index ["slug"], name: "index_shiny_access_groups_on_slug"
   end
@@ -328,13 +321,13 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
   create_table "shiny_access_memberships", force: :cascade do |t|
     t.bigint "group_id", null: false
     t.bigint "user_id", null: false
-    t.datetime "began_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "expires_at", precision: 6
-    t.datetime "ended_at", precision: 6
+    t.datetime "began_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "expires_at"
+    t.datetime "ended_at"
     t.text "notes"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["began_at"], name: "index_shiny_access_memberships_on_began_at"
     t.index ["deleted_at"], name: "index_shiny_access_memberships_on_deleted_at"
     t.index ["ended_at"], name: "index_shiny_access_memberships_on_ended_at"
@@ -349,10 +342,10 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.text "body"
     t.boolean "show_on_site", default: true, null: false
     t.bigint "user_id", null: false
-    t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_blog_posts_on_deleted_at"
     t.index ["user_id"], name: "index_shiny_blog_posts_on_user_id"
   end
@@ -365,13 +358,13 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "handler", null: false
     t.string "email_to"
     t.string "filename"
-    t.string "redirect_to"
-    t.string "success_message"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
     t.boolean "use_recaptcha", default: true
     t.boolean "use_akismet", default: true
+    t.string "success_message"
+    t.string "redirect_to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_forms_forms_on_deleted_at"
   end
 
@@ -380,18 +373,18 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "content"
     t.string "element_type", default: "short_text", null: false
     t.bigint "set_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_inserts_elements_on_deleted_at"
     t.index ["name"], name: "index_insert_elements_on_name", unique: true
     t.index ["set_id"], name: "index_shiny_inserts_elements_on_set_id"
   end
 
   create_table "shiny_inserts_sets", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_inserts_sets_on_deleted_at"
   end
 
@@ -400,9 +393,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "public_name"
     t.string "slug", null: false
     t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_lists_lists_on_deleted_at"
   end
 
@@ -411,11 +404,11 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "subscriber_type", null: false
     t.bigint "subscriber_id", null: false
     t.bigint "consent_version_id", null: false
-    t.datetime "subscribed_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "unsubscribed_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "subscribed_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "unsubscribed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["consent_version_id"], name: "index_shiny_lists_subscriptions_on_consent_version_id"
     t.index ["deleted_at"], name: "index_shiny_lists_subscriptions_on_deleted_at"
     t.index ["list_id"], name: "index_shiny_lists_subscriptions_on_list_id"
@@ -428,10 +421,10 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.text "body"
     t.boolean "show_on_site", default: true, null: false
     t.bigint "user_id", null: false
-    t.datetime "posted_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "posted_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_news_posts_on_deleted_at"
     t.index ["user_id"], name: "index_shiny_news_posts_on_user_id"
   end
@@ -442,9 +435,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "element_type", default: "short_text", null: false
     t.integer "position"
     t.bigint "edition_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_newsletters_edition_elements_on_deleted_at"
     t.index ["edition_id"], name: "index_shiny_newsletters_edition_elements_on_edition_id"
   end
@@ -459,10 +452,10 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "subject"
     t.boolean "show_on_site", default: true, null: false
     t.bigint "template_id", null: false
-    t.datetime "published_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "published_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_newsletters_editions_on_deleted_at"
     t.index ["template_id"], name: "index_shiny_newsletters_editions_on_template_id"
   end
@@ -470,12 +463,12 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
   create_table "shiny_newsletters_sends", force: :cascade do |t|
     t.bigint "edition_id", null: false
     t.bigint "list_id", null: false
-    t.datetime "send_at", precision: 6
-    t.datetime "started_sending_at", precision: 6
-    t.datetime "finished_sending_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "send_at"
+    t.datetime "started_sending_at"
+    t.datetime "finished_sending_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_newsletters_sends_on_deleted_at"
     t.index ["edition_id"], name: "index_shiny_newsletters_sends_on_edition_id"
     t.index ["list_id"], name: "index_shiny_newsletters_sends_on_list_id"
@@ -487,9 +480,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "element_type", default: "short_text", null: false
     t.integer "position"
     t.bigint "template_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_newsletters_template_elements_on_deleted_at"
     t.index ["template_id"], name: "index_shiny_newsletters_template_elements_on_template_id"
   end
@@ -498,9 +491,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "name", null: false
     t.text "description"
     t.string "filename", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_newsletters_templates_on_deleted_at"
   end
 
@@ -510,9 +503,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "element_type", default: "short_text", null: false
     t.integer "position"
     t.bigint "page_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_pages_page_elements_on_deleted_at"
     t.index ["page_id"], name: "index_shiny_pages_page_elements_on_page_id"
   end
@@ -527,9 +520,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.boolean "show_on_site", default: true, null: false
     t.bigint "section_id"
     t.bigint "template_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_pages_pages_on_deleted_at"
     t.index ["section_id", "slug"], name: "index_pages_on_section_id_and_slug", unique: true
     t.index ["section_id"], name: "index_shiny_pages_pages_on_section_id"
@@ -546,9 +539,10 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.boolean "show_on_site", default: true, null: false
     t.bigint "section_id"
     t.bigint "default_page_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["default_page_id"], name: "index_shiny_pages_sections_on_default_page_id"
     t.index ["deleted_at"], name: "index_shiny_pages_sections_on_deleted_at"
     t.index ["section_id", "slug"], name: "index_page_sections_on_section_id_and_slug", unique: true
     t.index ["section_id"], name: "index_shiny_pages_sections_on_section_id"
@@ -560,9 +554,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "element_type", default: "short_text", null: false
     t.integer "position"
     t.bigint "template_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_pages_template_elements_on_deleted_at"
     t.index ["template_id"], name: "index_shiny_pages_template_elements_on_template_id"
   end
@@ -571,9 +565,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "name", null: false
     t.text "description"
     t.string "filename", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_pages_templates_on_deleted_at"
   end
 
@@ -582,9 +576,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.string "url", null: false
     t.integer "position"
     t.bigint "profile_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_profiles_links_on_deleted_at"
     t.index ["profile_id"], name: "index_shiny_profiles_links_on_profile_id"
   end
@@ -599,9 +593,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.boolean "show_in_gallery", default: true, null: false
     t.boolean "show_to_unauthenticated", default: true, null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_shiny_profiles_profiles_on_deleted_at"
     t.index ["user_id"], name: "index_shiny_profiles_profiles_on_user_id"
   end
@@ -636,9 +630,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
   create_table "user_capabilities", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "capability_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_user_capabilities_on_deleted_at"
     t.index ["user_id", "capability_id"], name: "index_user_capabilities_on_user_id_and_capability_id", unique: true
   end
@@ -670,9 +664,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at", precision: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -683,8 +677,8 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
 
   create_table "votable_ips", force: :cascade do |t|
     t.string "ip_address", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "votes", force: :cascade do |t|
@@ -695,8 +689,8 @@ ActiveRecord::Schema.define(version: 2020_11_30_234759) do
     t.boolean "vote_flag"
     t.string "vote_scope"
     t.integer "vote_weight"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
     t.index ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id"
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"

@@ -8,7 +8,7 @@
 
 # Shared tests for methods and behaviour mixed-in by the ShinyPaginationHelper
 RSpec.shared_examples 'Pagination' do |factory, base_url, match_tag, match_text|
-  before :each do
+  before do
     @items = []
     Array( 1..12 ).reverse_each do |age|
       item = create factory.to_sym, posted_at: age.hours.ago

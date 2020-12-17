@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for the web stats controller
 RSpec.describe Admin::WebStatsController, type: :request do
-  before :each do
+  before do
     admin = create :stats_admin
     sign_in admin
   end

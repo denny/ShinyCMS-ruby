@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shiny_news (20.10)
+    shiny_news (20.12)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor

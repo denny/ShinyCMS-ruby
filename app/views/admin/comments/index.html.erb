@@ -16,10 +16,10 @@
           at <%= display_time_on_date( comment.posted_at ) %>
           <% if comment.author&.website&.present? %> - <%= comment.author.website %><% end %>
         </small>
-        <% if comment.title.present? %>
+        <% if comment.title? %>
           <br><%= comment.title %>
         <% end %>
-        <% if comment.body.present? %>
+        <% if comment.body? %>
           <br><%= truncate( comment.body, length: 450, separator: ' ' ) %>
         <% end %>
       </td>

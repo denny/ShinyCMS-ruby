@@ -15,7 +15,7 @@ class CreateShinyProfilesTables < ActiveRecord::Migration[6.0]
       t.belongs_to :user, foreign_key: true, null: false
 
       t.timestamps
-      t.datetime :deleted_at, precision: 6, index: true
+      t.datetime :deleted_at, index: true
     end
 
     create_table :shiny_profiles_links do |t|
@@ -26,7 +26,7 @@ class CreateShinyProfilesTables < ActiveRecord::Migration[6.0]
       t.belongs_to :profile, foreign_key: { to_table: :shiny_profiles_profiles }, null: false
 
       t.timestamps
-      t.datetime :deleted_at, precision: 6, index: true
+      t.datetime :deleted_at, index: true
     end
   end
 end

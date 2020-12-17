@@ -112,8 +112,6 @@ source 'https://rubygems.org' do
   gem 'ahoy_email'
   # Web stats
   gem 'ahoy_matey'
-  # Stats aggregation (save space by only keeping a summary of older data)
-  gem 'rollups'
   # Charts and dashboards
   gem 'blazer'
   # Charts
@@ -131,15 +129,14 @@ source 'https://rubygems.org' do
   # Better-looking console output
   gem 'amazing_print'
 
+  if ENV[ 'BUGSNAG_API_KEY' ]
+    # Bugsnag is an error monitoring service
+    gem 'bugsnag'
+  end
+
   group :production do
     # Fix request.ip if we're running behind Cloudflare's proxying service
     gem 'cloudflare-rails'
-
-    # Monitoring
-    if ENV[ 'BUGSNAG_API_KEY' ]
-      # Bug triage / application stability monitoring
-      gem 'bugsnag'
-    end
 
     # Set SHINYCMS_PRY_CONSOLE=true in ENV to use Pry as your production Rails console
     if ENV[ 'SHINYCMS_PRY_CONSOLE' ] && ENV[ 'SHINYCMS_PRY_CONSOLE' ] == 'true'
@@ -160,6 +157,9 @@ source 'https://rubygems.org' do
     # Fill test objects with fake data
     gem 'faker'
 
+    # Best practices
+    gem 'rails_best_practices'
+
     # Utils for working with translation strings
     # gem 'i18n-debug'
     gem 'i18n-tasks', '~> 0.9.31'
@@ -170,6 +170,8 @@ source 'https://rubygems.org' do
     gem 'rubocop', require: false
     # Rails-specific linting
     gem 'rubocop-rails', require: false
+    # Tests need linting-love too!
+    gem 'rubocop-rspec', require: false
     # Performance-related analysis
     gem 'rubocop-performance', require: false
 

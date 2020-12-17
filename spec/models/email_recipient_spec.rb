@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for EmailRecipient model
 RSpec.describe EmailRecipient, type: :model do
-  context 'instance methods' do
+  describe 'instance methods' do
     describe '.confirm' do
       it 'successfully confirms a matching email recipient' do
         recipient = create :email_recipient
@@ -58,12 +58,12 @@ RSpec.describe EmailRecipient, type: :model do
     end
   end
 
-  context 'concerns' do
-    it_should_behave_like ShinyEmail do
+  describe 'concerns' do
+    it_behaves_like ShinyEmail do
       let( :addressee ) { create :email_recipient }
     end
 
-    it_should_behave_like ShinyToken do
+    it_behaves_like ShinyToken do
       let( :tokenised ) { create :email_recipient }
     end
   end

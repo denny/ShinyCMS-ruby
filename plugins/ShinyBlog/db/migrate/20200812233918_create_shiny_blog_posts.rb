@@ -16,7 +16,7 @@ class CreateShinyBlogPosts < ActiveRecord::Migration[6.0]
 
       t.belongs_to :user, foreign_key: true, null: false
 
-      t.timestamp :posted_at, precision: 6, null: false, default: -> { 'CURRENT_TIMESTAMP' }
+      t.timestamp :posted_at, null: false, default: -> { 'CURRENT_TIMESTAMP' }
       t.timestamps
     end
   end

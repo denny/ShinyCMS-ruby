@@ -3,11 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Search:', type: :request do
-  before :all do
+  before do
     FeatureFlag.enable :user_profiles
-  end
 
-  before :each do
     @profile = create :user_profile, public_name: 'Success'
   end
 
@@ -34,7 +32,7 @@ RSpec.describe 'Search:', type: :request do
       allow_any_instance_of( ShinySearch::MainSiteHelper ).to receive( :algolia_search_is_enabled? ).and_return( false )
       allow_any_instance_of( ShinySearch::MainSiteHelper ).to receive( :pg_search_is_enabled?      ).and_return( false )
 
-      expect( Rails.logger ).to receive( :error ).with(
+      allow( Rails.logger ).to receive( :error ).with(
         'Search feature is enabled, but no search back-ends are enabled'
       )
 

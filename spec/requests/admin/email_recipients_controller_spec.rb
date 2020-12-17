@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for email recipient admin features
 RSpec.describe Admin::EmailRecipientsController, type: :request do
-  before :each do
+  before do
     admin = create :email_recipient_admin
     sign_in admin
   end

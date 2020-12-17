@@ -15,6 +15,8 @@
 
 * Once the above is fixed; replace full tag list on 404 page with the 20 most used tags and a 'see all' link
 
+* Blazer currently doesn't restrict people without 'edit' capability to view-only
+
 * Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
 
 * Finish adding support for links on user profiles
@@ -23,7 +25,7 @@
 
 ### Small-ish
 
-* Some sort of file-picker (for image elements, CKEditor, etc)
+* Some sort of file-picker for CKEditor
     * https://ckeditor.com/docs/ckeditor5/latest/Features/MainApp/image-upload/ckfinder.html
 
 * Site map - https://github.com/kjvarga/sitemap_generator ?
@@ -60,6 +62,8 @@
 ### Small-ish
 
 * Handle timezones
+    * https://planetruby.github.io/gems/2020/01-local-time
+    * https://github.com/basecamp/local_time#readme
     * https://prathamesh.tech/2019/07/11/use-time-use_zone-to-navigate-timezones
     * https://api.rubyonrails.org/classes/Time.html#method-c-use_zone
     * https://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html
@@ -126,6 +130,8 @@
 
 * ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
   sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
+
+* Multi-channel notifications: https://github.com/excid3/noticed#readme
 
 * Tests for rake tasks
     * https://thoughtbot.com/blog/test-rake-tasks-like-a-boss ? (old)

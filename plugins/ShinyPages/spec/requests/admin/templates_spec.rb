@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for page template admin features
 RSpec.describe 'Admin: Page Templates', type: :request do
-  before :each do
+  before do
     admin = create :page_template_admin
     sign_in admin
   end

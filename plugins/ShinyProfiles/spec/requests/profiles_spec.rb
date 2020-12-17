@@ -9,8 +9,8 @@
 require 'rails_helper'
 
 # Tests for main site controller
-RSpec.describe ShinyProfiles::ProfilesController, type: :request do
-  before :each do
+RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
+  before do
     FeatureFlag.enable :user_login
     FeatureFlag.enable :user_profiles
   end

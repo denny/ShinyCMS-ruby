@@ -10,16 +10,19 @@ require 'rails_helper'
 
 # Tests for user account features on main site (powered by Devise)
 RSpec.describe 'User Accounts', type: :request do
-  before :each do
+  before do
+    FeatureFlag.enable :user_login
+    FeatureFlag.disable :user_profiles
+
     @page = create :top_level_page
   end
 
-  before :each do
-    FeatureFlag.enable :user_login
-    FeatureFlag.disable :user_profiles
-  end
-
   describe 'GET /account/register' do
+    before do
+      FeatureFlag.enable :user_registration
+      FeatureFlag.enable :recaptcha_for_registrations
+    end
+
     it 'redirects to the site homepage if user registrations are not enabled' do
       FeatureFlag.disable :user_registration
 
@@ -40,8 +43,6 @@ RSpec.describe 'User Accounts', type: :request do
     end
 
     it 'renders the user registration page if user registrations are enabled' do
-      FeatureFlag.enable :user_registration
-
       get new_user_registration_path
 
       expect( response      ).to have_http_status :ok
@@ -51,9 +52,6 @@ RSpec.describe 'User Accounts', type: :request do
     it 'includes the V3 reCAPTCHA code if a V3 key was set' do
       allow_any_instance_of( Users::RegistrationsController )
         .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
-
-      FeatureFlag.enable :user_registration
-      FeatureFlag.enable :recaptcha_for_registrations
 
       get new_user_registration_path
 
@@ -66,9 +64,6 @@ RSpec.describe 'User Accounts', type: :request do
       allow_any_instance_of( Users::RegistrationsController )
         .to receive( :recaptcha_v2_site_key ).and_return( 'A_KEY' )
 
-      FeatureFlag.enable :user_registration
-      FeatureFlag.enable :recaptcha_for_registrations
-
       get new_user_registration_path
 
       expect( response      ).to have_http_status :ok
@@ -79,9 +74,6 @@ RSpec.describe 'User Accounts', type: :request do
     it 'includes the checkbox reCAPTCHA code if only that key is set' do
       allow_any_instance_of( Users::RegistrationsController )
         .to receive( :recaptcha_checkbox_site_key ).and_return( 'A_KEY' )
-
-      FeatureFlag.enable :user_registration
-      FeatureFlag.enable :recaptcha_for_registrations
 
       get new_user_registration_path
 
@@ -147,7 +139,7 @@ RSpec.describe 'User Accounts', type: :request do
 
       post user_session_path, params: {
         user: {
-          login: user.username,
+          login: user.email,
           password: password
         }
       }
@@ -204,9 +196,11 @@ RSpec.describe 'User Accounts', type: :request do
   end
 
   describe 'POST /account/register' do
-    it 'creates a new user, checking V3 reCAPTCHA if a V3 key is set' do
+    before do
       FeatureFlag.enable :user_registration
+    end
 
+    it 'creates a new user, checking V3 reCAPTCHA if a V3 key is set' do
       username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
@@ -217,9 +211,11 @@ RSpec.describe 'User Accounts', type: :request do
         .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
 
       post user_registration_path, params: {
-        'user[username]': username,
-        'user[password]': password,
-        'user[email]': email
+        user: {
+          username: username,
+          password: password,
+          email: email
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -232,8 +228,6 @@ RSpec.describe 'User Accounts', type: :request do
     end
 
     it 'creates a new user, checking V2 invisible reCAPTCHA if no V3 key present' do
-      FeatureFlag.enable :user_registration
-
       username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
@@ -244,9 +238,11 @@ RSpec.describe 'User Accounts', type: :request do
         .to receive( :recaptcha_v2_site_key ).and_return( 'A_KEY' )
 
       post user_registration_path, params: {
-        'user[username]': username,
-        'user[password]': password,
-        'user[email]': email
+        user: {
+          username: username,
+          password: password,
+          email: email
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -259,8 +255,6 @@ RSpec.describe 'User Accounts', type: :request do
     end
 
     it 'falls back to checkbox reCAPTCHA if invisible reCAPTCHA fails' do
-      FeatureFlag.enable :user_registration
-
       username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
@@ -271,9 +265,11 @@ RSpec.describe 'User Accounts', type: :request do
         .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
 
       post user_registration_path, params: {
-        'user[username]': username,
-        'user[password]': password,
-        'user[email]': email
+        user: {
+          username: username,
+          password: password,
+          email: email
+        }
       }
 
       expect( response      ).to have_http_status :found

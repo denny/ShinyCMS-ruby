@@ -13,7 +13,7 @@ require 'rails_helper'
 RSpec.describe 'Admin: Newsletter Editions', type: :request do
   i18n_root = 'shiny_newsletters.admin.editions'
 
-  before :each do
+  before do
     admin = create :newsletter_admin
     sign_in admin
   end

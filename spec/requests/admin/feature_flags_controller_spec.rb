@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for feature flags administration
 RSpec.describe Admin::FeatureFlagsController, type: :request do
-  before :each do
+  before do
     admin = create :feature_flags_admin
     sign_in admin
   end

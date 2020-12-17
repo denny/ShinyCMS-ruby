@@ -12,7 +12,7 @@ require 'rails_helper'
 RSpec.describe 'List Subscription admin features', type: :request do
   let( :list ) { create :mailing_list }
 
-  before :each do
+  before do
     admin = create :list_admin
     sign_in admin
   end
