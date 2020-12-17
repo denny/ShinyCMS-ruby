@@ -1,3 +1,4 @@
+<% return # FIXME: More horrific bodgery for Rails 6.1 testing %>
 <li>
   <%= link_to t( 'tags.index.title' ), main_app.tags_path %>
   <% menu_tags = ActsAsTaggableOn::Tag.most_used( 5 ) %>

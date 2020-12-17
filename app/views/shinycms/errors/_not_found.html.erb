@@ -31,7 +31,7 @@
 <% end %>
 
 <% if feature_enabled? :tags %>
-  <% tags = ActsAsTaggableOn::Tag.order( :name ) %>
+  <% tags = [] # ActsAsTaggableOn::Tag.order( :name ) # FIXME: commented out to test Rails 6.1 %>
   <% if tags.size > 0 %>
 <section>
   <header>

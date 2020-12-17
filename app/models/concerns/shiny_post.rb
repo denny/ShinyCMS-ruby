@@ -38,6 +38,10 @@ module ShinyPost
     # Plugin features
 
     # acts_as_taggable
+    # FIXME: horrible bodge to get test suite to limp along a bit further with Rails 6.1
+    def tag_list
+      nil
+    end
     acts_as_votable
 
     searchable_by :title, :body, :slug if ShinyPlugin.loaded? :ShinySearch # TODO: author
