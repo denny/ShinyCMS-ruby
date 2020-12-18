@@ -19,7 +19,7 @@ class UniqueInCollectionValidator < ActiveRecord::Validations::UniquenessValidat
 
     return unless unique_in_collection?( record, attribute, value )
 
-    remove_irrelevant_errors( record, attribute, uniqueness_error_count )
+    remove_irrelevant_errors( record, attribute )
   end
 
   private
@@ -28,7 +28,7 @@ class UniqueInCollectionValidator < ActiveRecord::Validations::UniquenessValidat
     options[ :collection ].call( record ).where( attribute => value ).where.not( id: record.id ).blank?
   end
 
-  def remove_irrelevant_errors( record, attribute, irrelevant_error_count )
-    record.errors[ attribute ].pop( irrelevant_error_count )
+  def remove_irrelevant_errors( record, attribute )
+    record.errors.delete attribute.to_sym, :taken
   end
 end

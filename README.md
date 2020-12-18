@@ -91,11 +91,9 @@ All other supported [external services](docs/Services.md) are optional. If you a
 
 ### Ruby and Rails versions
 
-ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.2 and Rails 6.0.3.4).
+ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.2 and Rails 6.1.0).
 
 It has been tested on most Ruby versions from 2.5.8 onwards, and every release of Rails 6 so far.
-
-(Recent test results for [Ruby 2.5.8, 2.6.6, and 2.7.2](https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/205841352))
 
 
 ## Contributing

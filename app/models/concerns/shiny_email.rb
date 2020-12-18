@@ -13,7 +13,7 @@ module ShinyEmail
   included do
     # Validations
 
-    validates :email, presence: true, uniqueness: true, case_sensitive: false
+    validates :email, presence: true, uniqueness: true
     validates :canonical_email, presence: true
     validates_with EmailAddress::ActiveRecordValidator, fields: %i[ email canonical_email ]
 

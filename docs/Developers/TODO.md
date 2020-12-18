@@ -2,13 +2,20 @@
 
 ## TODO
 
-* Tag cloud/list don't honour show/hide status of content
+* Tag cloud/list show and count tags on hidden content
 
 * Blazer currently doesn't restrict people without 'edit' capability to view-only
 
 * Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
 
 * Finish adding support for links on user profiles
+
+### Rails 6.1 issues
+
+* Deprecation warnings from Devise (I think) when user.save fails
+* Installing acts-as-votable from GitHub to fix its deprecation warnings
+* acts-as-taggable-on downgraded from 6.5.0 to 5.0.0 to get it to install
+
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
