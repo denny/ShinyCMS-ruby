@@ -113,7 +113,7 @@ source 'https://rubygems.org' do
   # Web stats
   gem 'ahoy_matey'
   # Charts and dashboards
-  gem 'blazer'
+  gem 'blazer', '2.3.1'  # https://github.com/ankane/blazer/issues/315
   # Charts
   gem 'chartkick', '~> 3.4.2'
   # Date ranges

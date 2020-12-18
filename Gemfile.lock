@@ -197,13 +197,13 @@ GEM
     amazing_print (1.2.2)
     ast (2.4.1)
     aws-eventstream (1.1.0)
-    aws-partitions (1.406.0)
+    aws-partitions (1.409.0)
     aws-sdk-core (3.110.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-kms (1.39.0)
+    aws-sdk-kms (1.40.0)
       aws-sdk-core (~> 3, >= 3.109.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-s3 (1.86.2)
@@ -302,7 +302,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.31)
+    i18n-tasks (0.9.32)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -317,7 +317,7 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     iniparse (1.5.0)
     jmespath (1.4.0)
-    json (2.3.1)
+    json (2.4.1)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -554,7 +554,7 @@ GEM
     unicode-display_width (1.7.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webmock (3.10.0)
+    webmock (3.11.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -585,7 +585,7 @@ DEPENDENCIES
   amazing_print!
   aws-sdk-s3!
   bcrypt (~> 3.1.16)!
-  blazer!
+  blazer (= 2.3.1)!
   bootsnap (>= 1.4.2)!
   brakeman!
   bundler-audit!
