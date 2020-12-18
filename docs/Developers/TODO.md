@@ -12,9 +12,10 @@
 
 ### Rails 6.1 issues
 
-* Deprecation warnings from Devise (I think)
-* Currently installing acts-as-votable from GitHub to pick up a recent fix
+* Deprecation warnings from Devise (I think) when user.save fails
+* Installing acts-as-votable from GitHub to fix its deprecation warnings
 * acts-as-taggable-on downgraded from 6.5.0 to 5.0.0 to get it to install
+
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
