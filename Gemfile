@@ -29,11 +29,11 @@ end
 
 # The actual Gemfile!
 source 'https://rubygems.org' do
-  # Rails 6
-  gem 'rails', '~> 6.0.3'
+  # Rails 6.1
+  gem 'rails', '~> 6.1.0'
 
-  # Database
-  gem 'pg', '>= 0.18', '< 2.0'
+  # Postgres
+  gem 'pg', '~> 1.2.3'
 
   # Webserver
   gem 'puma', '~> 5.1'
@@ -98,7 +98,7 @@ source 'https://rubygems.org' do
   gem 'acts-as-taggable-on'
 
   # Likes
-  gem 'acts_as_votable'
+  gem 'acts_as_votable', git: 'https://github.com/ryanto/acts_as_votable'
 
   # Pagination
   gem 'kaminari'
@@ -113,7 +113,7 @@ source 'https://rubygems.org' do
   # Web stats
   gem 'ahoy_matey'
   # Charts and dashboards
-  gem 'blazer'
+  gem 'blazer', '2.3.1'  # https://github.com/ankane/blazer/issues/315
   # Charts
   gem 'chartkick', '~> 3.4.2'
   # Date ranges

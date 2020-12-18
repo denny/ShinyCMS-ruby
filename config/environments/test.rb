@@ -57,7 +57,7 @@ Rails.application.configure do
   config.active_support.deprecation = :stderr
 
   # Raise error for missing translations.
-  config.action_view.raise_on_missing_translations = true
+  config.i18n.raise_on_missing_translations = true
 
   # Don't do MX lookups when running tests
   EmailAddress::Config.configure( host_validation: :syntax )
