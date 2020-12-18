@@ -3,7 +3,7 @@
   "author": "Denny de la Haye (denny.me)",
   "private": true,
   "dependencies": {
-    "@rails/activestorage": "^6.0.3-4",
+    "@rails/activestorage": "^6.1.0",
     "@rails/ujs": "^6.1.0",
     "@rails/webpacker": "^5.2.1",
     "acorn": "^8.0.4",
