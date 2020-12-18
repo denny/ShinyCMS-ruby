@@ -4,9 +4,9 @@ PATH
     shiny_lists (20.12)
       acts_as_paranoid
       kaminari
-      pg (>= 0.18, < 2.0)
+      pg (~> 1.2.3)
       pundit
-      rails (>= 6.0.3.4, < 6.2)
+      rails (~> 6.1.0)
 
 GEM
   remote: https://rubygems.org/

@@ -5,9 +5,9 @@ PATH
       acts_as_paranoid
       ckeditor
       kaminari
-      pg (>= 0.18, < 2.0)
+      pg (~> 1.2.3)
       pundit
-      rails (>= 6.0.3.4, < 6.2)
+      rails (~> 6.1.0)
 
 GEM
   remote: https://rubygems.org/

@@ -1,22 +1,20 @@
 # ShinyCMS Developer Documentation
 
-## Remaining Rails 6.1 issues
-
-* acts-as-taggable-on is not 6.1 compatible yet
-    * Temporarily commented out tag features throughout, hence reduced coverage
-
-* Deprecation warnings from votable and devise (I think)
-
-
 ## TODO
 
-* Tag cloud/list don't honour show/hide status of content
+* Tag cloud/list show and count tags on hidden content
 
 * Blazer currently doesn't restrict people without 'edit' capability to view-only
 
 * Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
 
 * Finish adding support for links on user profiles
+
+### Rails 6.1 issues
+
+* Deprecation warnings from Devise (I think)
+* Currently installing acts-as-votable from GitHub to pick up a recent fix
+* acts-as-taggable-on downgraded from 6.5.0 to 5.0.0 to get it to install
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 

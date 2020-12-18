@@ -32,8 +32,8 @@ source 'https://rubygems.org' do
   # Rails 6.1
   gem 'rails', '~> 6.1.0'
 
-  # Database
-  gem 'pg', '>= 0.18', '< 2.0'
+  # Postgres
+  gem 'pg', '~> 1.2.3'
 
   # Webserver
   gem 'puma', '~> 5.1'
@@ -95,10 +95,10 @@ source 'https://rubygems.org' do
   gem 'acts_as_list'
 
   # Tags
-  # gem 'acts-as-taggable-on'
+  gem 'acts-as-taggable-on'
 
   # Likes
-  gem 'acts_as_votable'
+  gem 'acts_as_votable', git: 'https://github.com/ryanto/acts_as_votable'
 
   # Pagination
   gem 'kaminari'

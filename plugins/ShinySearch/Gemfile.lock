@@ -3,9 +3,9 @@ PATH
   specs:
     shiny_search (20.12)
       algoliasearch-rails
-      pg (>= 0.18, < 2.0)
+      pg (~> 1.2.3)
       pg_search
-      rails (>= 6.0.3.4, < 6.2)
+      rails (~> 6.1.0)
 
 GEM
   remote: https://rubygems.org/

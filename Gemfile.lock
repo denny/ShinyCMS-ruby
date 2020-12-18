@@ -1,20 +1,27 @@
+GIT
+  remote: https://github.com/ryanto/acts_as_votable
+  revision: 585020dd6ca734b41c35d8cef5193097fecd2705
+  specs:
+    acts_as_votable (0.12.1)
+
 PATH
   remote: plugins/ShinyAccess
   specs:
     shiny_access (20.12)
-      pg (>= 0.18, < 2.0)
-      rails (>= 6.0.3.4, < 6.2)
+      pg (~> 1.2.3)
+      rails (~> 6.1.0)
 
 PATH
   remote: plugins/ShinyBlog
   specs:
     shiny_blog (20.12)
+      acts-as-taggable-on
       acts_as_paranoid
       ckeditor
       kaminari
-      pg (>= 0.18, < 2.0)
+      pg (~> 1.2.3)
       pundit
-      rails (>= 6.0.3.4, < 6.2)
+      rails (~> 6.1.0)
 
 PATH
   remote: plugins/ShinyForms
@@ -22,9 +29,9 @@ PATH
     shiny_forms (20.12)
       acts_as_paranoid
       kaminari
-      pg (>= 0.18, < 2.0)
+      pg (~> 1.2.3)
       pundit
-      rails (>= 6.0.3.4, < 6.2)
+      rails (~> 6.1.0)
 
 PATH
   remote: plugins/ShinyInserts
@@ -33,9 +40,9 @@ PATH
       acts_as_paranoid
       ckeditor
       kaminari
-      pg (>= 0.18, < 2.0)
+      pg (~> 1.2.3)
       pundit
-      rails (>= 6.0.3.4, < 6.2)
+      rails (~> 6.1.0)
 
 PATH
   remote: plugins/ShinyLists
@@ -43,27 +50,28 @@ PATH
     shiny_lists (20.12)
       acts_as_paranoid
       kaminari
-      pg (>= 0.18, < 2.0)
+      pg (~> 1.2.3)
       pundit
-      rails (>= 6.0.3.4, < 6.2)
+      rails (~> 6.1.0)
 
 PATH
   remote: plugins/ShinyNews
   specs:
     shiny_news (20.12)
+      acts-as-taggable-on
       acts_as_paranoid
       ckeditor
       kaminari
-      pg (>= 0.18, < 2.0)
+      pg (~> 1.2.3)
       pundit
-      rails (>= 6.0.3.4, < 6.2)
+      rails (~> 6.1.0)
 
 PATH
   remote: plugins/ShinyNewsletters
   specs:
     shiny_newsletters (20.12)
-      pg (>= 0.18, < 2.0)
-      rails (>= 6.0.3.4, < 6.2)
+      pg (~> 1.2.3)
+      rails (~> 6.1.0)
 
 PATH
   remote: plugins/ShinyPages
@@ -72,25 +80,25 @@ PATH
       acts_as_paranoid
       ckeditor
       kaminari
-      pg (>= 0.18, < 2.0)
+      pg (~> 1.2.3)
       pundit
-      rails (>= 6.0.3.4, < 6.2)
+      rails (~> 6.1.0)
 
 PATH
   remote: plugins/ShinyProfiles
   specs:
     shiny_profiles (20.12)
-      pg (>= 0.18, < 2.0)
-      rails (>= 6.0.3.4, < 6.2)
+      pg (~> 1.2.3)
+      rails (~> 6.1.0)
 
 PATH
   remote: plugins/ShinySearch
   specs:
     shiny_search (20.12)
       algoliasearch-rails
-      pg (>= 0.18, < 2.0)
+      pg (~> 1.2.3)
       pg_search
-      rails (>= 6.0.3.4, < 6.2)
+      rails (~> 6.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -160,12 +168,13 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    acts-as-taggable-on (5.0.0)
+      activerecord (>= 4.2.8)
     acts_as_list (1.0.2)
       activerecord (>= 4.2)
     acts_as_paranoid (0.7.0)
       activerecord (>= 5.2, < 7.0)
       activesupport (>= 5.2, < 7.0)
-    acts_as_votable (0.12.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ahoy_email (1.1.0)
@@ -566,6 +575,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-session_store!
+  acts-as-taggable-on!
   acts_as_list!
   acts_as_paranoid!
   acts_as_votable!
@@ -602,7 +612,7 @@ DEPENDENCIES
   mini_magick!
   mjml-rails!
   overcommit!
-  pg (>= 0.18, < 2.0)!
+  pg (~> 1.2.3)!
   pry-rails!
   puma (~> 5.1)!
   pundit!
