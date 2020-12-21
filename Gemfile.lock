@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/ryanto/acts_as_votable
-  revision: 585020dd6ca734b41c35d8cef5193097fecd2705
+  revision: f33008fce84042d2e4378776484248a2216bef80
   specs:
-    acts_as_votable (0.12.1)
+    acts_as_votable (0.13.1)
 
 PATH
   remote: plugins/ShinyAccess
