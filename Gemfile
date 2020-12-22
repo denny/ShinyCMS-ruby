@@ -159,7 +159,7 @@ source 'https://rubygems.org' do
 
     # Utils for working with translation strings
     # gem 'i18n-debug'
-    gem 'i18n-tasks', '~> 0.9.31'
+    gem 'i18n-tasks', '~> 0.9.33'
   end
 
   group :development do

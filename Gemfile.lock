@@ -221,8 +221,6 @@ GEM
     bootsnap (1.5.1)
       msgpack (~> 1.0)
     brakeman (4.10.0)
-    bugsnag (6.18.0)
-      concurrent-ruby (~> 1.0)
     builder (3.2.4)
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
@@ -304,7 +302,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.32)
+    i18n-tasks (0.9.33)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -443,7 +441,7 @@ GEM
       rake (>= 0.8.7)
       thor (~> 1.0)
     rainbow (3.0.0)
-    rake (13.0.1)
+    rake (13.0.3)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -590,7 +588,6 @@ DEPENDENCIES
   blazer (= 2.3.1)!
   bootsnap (>= 1.4.2)!
   brakeman!
-  bugsnag!
   bundler-audit!
   capybara (>= 2.15)!
   chartkick (~> 3.4.2)!
@@ -606,7 +603,7 @@ DEPENDENCIES
   faker!
   fasterer!
   groupdate!
-  i18n-tasks (~> 0.9.31)!
+  i18n-tasks (~> 0.9.33)!
   image_processing (~> 1.12)!
   kaminari!
   kaminari_route_prefix!
