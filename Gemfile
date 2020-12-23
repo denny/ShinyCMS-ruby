@@ -98,7 +98,7 @@ source 'https://rubygems.org' do
   gem 'acts-as-taggable-on'
 
   # Likes
-  gem 'acts_as_votable', git: 'https://github.com/ryanto/acts_as_votable'
+  gem 'acts_as_votable'
 
   # Pagination
   gem 'kaminari'
