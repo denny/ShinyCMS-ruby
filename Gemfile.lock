@@ -1,9 +1,3 @@
-GIT
-  remote: https://github.com/ryanto/acts_as_votable
-  revision: 585020dd6ca734b41c35d8cef5193097fecd2705
-  specs:
-    acts_as_votable (0.12.1)
-
 PATH
   remote: plugins/ShinyAccess
   specs:
@@ -175,6 +169,7 @@ GEM
     acts_as_paranoid (0.7.0)
       activerecord (>= 5.2, < 7.0)
       activesupport (>= 5.2, < 7.0)
+    acts_as_votable (0.13.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ahoy_email (1.1.0)
@@ -221,6 +216,8 @@ GEM
     bootsnap (1.5.1)
       msgpack (~> 1.0)
     brakeman (4.10.0)
+    bugsnag (6.18.0)
+      concurrent-ruby (~> 1.0)
     builder (3.2.4)
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
@@ -590,6 +587,7 @@ DEPENDENCIES
   blazer (= 2.3.1)!
   bootsnap (>= 1.4.2)!
   brakeman!
+  bugsnag!
   bundler-audit!
   capybara (>= 2.15)!
   chartkick (~> 3.4.2)!
