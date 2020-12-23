@@ -302,7 +302,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.32)
+    i18n-tasks (0.9.33)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -441,7 +441,7 @@ GEM
       rake (>= 0.8.7)
       thor (~> 1.0)
     rainbow (3.0.0)
-    rake (13.0.1)
+    rake (13.0.3)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -603,7 +603,7 @@ DEPENDENCIES
   faker!
   fasterer!
   groupdate!
-  i18n-tasks (~> 0.9.31)!
+  i18n-tasks (~> 0.9.33)!
   image_processing (~> 1.12)!
   kaminari!
   kaminari_route_prefix!
