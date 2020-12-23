@@ -221,8 +221,6 @@ GEM
     bootsnap (1.5.1)
       msgpack (~> 1.0)
     brakeman (4.10.0)
-    bugsnag (6.18.0)
-      concurrent-ruby (~> 1.0)
     builder (3.2.4)
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
@@ -246,8 +244,8 @@ GEM
       rails (>= 5.0, < 6.2.0)
     code_analyzer (0.5.2)
       sexp_processor
-    codecov (0.2.13)
-      simplecov (~> 0.18.0)
+    codecov (0.2.15)
+      simplecov (>= 0.15, < 0.21)
     coderay (1.1.3)
     colorize (0.8.1)
     concurrent-ruby (1.1.7)
@@ -269,7 +267,7 @@ GEM
       devise (~> 4)
       pwned (~> 2.0.0)
     diff-lcs (1.4.4)
-    docile (1.3.2)
+    docile (1.3.4)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -528,10 +526,12 @@ GEM
     sidekiq-status (1.1.4)
       chronic_duration
       sidekiq (>= 3.0)
-    simplecov (0.18.5)
+    simplecov (0.20.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.2)
     simpleidn (0.1.1)
       unf (~> 0.1.4)
     sprockets (4.0.2)
@@ -590,7 +590,6 @@ DEPENDENCIES
   blazer (= 2.3.1)!
   bootsnap (>= 1.4.2)!
   brakeman!
-  bugsnag!
   bundler-audit!
   capybara (>= 2.15)!
   chartkick (~> 3.4.2)!
