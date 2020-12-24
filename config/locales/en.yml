@@ -26,11 +26,13 @@ en:
   add: Add
   edit: Edit
   post: Post
+  back: Back
   show: Show
   hide: Hide
   lock: Lock
   unlock: Unlock
   update: Update
+  remove: Remove
   delete: Delete
   destroy: Delete
 
@@ -38,7 +40,7 @@ en:
   are_you_sure: Are you sure?
 
   # Empty listing
-  empty_list: no %{items} found
+  empty_list: No %{items} found
 
   # Votes / Likes
   vote: Vote
@@ -55,6 +57,8 @@ en:
       previous: "&lsaquo; Prev"
       next: "Next &rsaquo;"
       truncate: "&hellip;"
+      newer: '« newer'
+      older: 'older »'
   helpers:
     page_entries_info:
       one_page:
@@ -67,6 +71,11 @@ en:
 
 
   # ========== ( Main Site ) ==========
+
+  devise:
+    registrations:
+      new:
+        title: Create user account
 
   discussions:
     anonymous: Anonymous
@@ -213,9 +222,6 @@ en:
   # ========== ( Models ) ==========
 
   models:
-    capability_category:
-      not_found: CapabilityCategory.name_for generated '%{name}', which is not in database
-
     setting_value:
       one_per_user: You can only have one setting per value per user
 
@@ -230,14 +236,21 @@ en:
   # Particularly not the first one!!
   settings:
     admin_ip_list: Admin IP list
+    akismet_drop_blatant_spam: Drop 'blatant' spam
+    akismet_log_blatant_spam: Log when dropping blatant spam
     all_comment_notifications_email: Email to notify of ALL comments
-    allowed_to_comment: Allowed to comment
+    allow_anonymous_comments: Allow anonymous comments
+    allow_unauthenticated_comments: Allow unauthenticated comments
+    anon_votes_can_change: Anonymous up/downvotes can change
+    comment_upvotes: Upvotes on comments
+    comment_downvotes: Down-votes on comments
     default_email: Default email address
     default_items_per_page: Default items per page
     default_items_per_page_in_admin_area: Default items per page in admin area
     post_login_redirect: Post-login redirect
-    recaptcha_comment_score: 'reCAPTCHA: Minimum score for comments'
-    recaptcha_registration_score: 'reCAPTCHA: Minimum score for user registration'
+    recaptcha_score_default: 'reCAPTCHA: Default minimum score'
+    recaptcha_score_for_comments: 'reCAPTCHA: Minimum score for comments'
+    recaptcha_score_for_registrations: 'reCAPTCHA: Minimum score for user registrations'
     site_name: Site name
     tag_view: Default tag view
     theme_name: Theme name
@@ -250,16 +263,18 @@ en:
   feature_flags:
     off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
-    akismet_on_comments: Detect spam comments with Akismet
+    ahoy_email_tracking: Track email opens/clicks
+    ahoy_web_tracking: Track web visitor stats
+    akismet_for_comments: Detect spam comments with Akismet
     comments: Comments
-    comment_votes: Comment votes ('likes')
-    comment_downvotes: Comment downvotes ('dislikes')
     comment_notifications: Comment notifications
-    recaptcha_on_registration_form: Protect registration form with reCAPTCHA
-    recaptcha_on_comment_form: Protect comment form with reCAPTCHA
+    recaptcha_for_comments: Protect comment form with reCAPTCHA
+    recaptcha_for_registrations: Protect registration form with reCAPTCHA
     tags: Tags
     user_login: User Login
     user_registration: User Registration
+    upvotes: Upvotes ('likes')
+    downvotes: Down-votes
 
 
   # ========== ( User Capabilities ) ==========
@@ -271,11 +286,13 @@ en:
       admin_users: Admin Users
       comments: Comments
       discussions: Discussions
+      email_recipients: Email Recipients
       feature_flags: Feature Flags
       general: General
-      stats: Stats
+      mailer_previews: Mailer Previews
       settings: Site Settings
       spam_comments: Spam Comments
+      stats: Stats
       users: Users
 
     general:
@@ -296,13 +313,14 @@ en:
   # ==================== ( Admin Area ) ==============================
 
   rails_email_preview:
+    breadcrumb: Mailers
+    menu: Mailer previews
     emails:
       index:
         title: All mailers
       show:
         title: Preview email
         breadcrumb_list: Emails
-
   rep:
     base:
       email:
@@ -348,15 +366,15 @@ en:
         failure: Failed to remove spam flags
 
     consent_versions:
-      breadcrumb: Consent versions
-      menu: Consent versions
+      breadcrumb: Consent
+      menu: User consent
       index:
         title: Consent versions
         search: Search comments
       show:
         title: View consent version
       new:
-        title: Add consent version
+        title: Add new version
       edit:
         title: Update consent version
       create:
@@ -374,9 +392,22 @@ en:
       show_comments: Show comments
       lock_comments: Lock comments
 
-    emails:
-      breadcrumb: Emails
-      menu: Emails
+    email:
+      menu: Email
+
+    email_recipients:
+      breadcrumb: Email Recipients
+      menu: Email recipients
+      index:
+        title: Manage email recipients
+        search: Search email recipients
+        confirmed: Confirmed
+        unconfirmed: Not Confirmed
+        do_not_contact: Do Not Contact
+      do_not_contact:
+        success: Email address added to Do Not Contact list
+      destroy:
+        success: Email recipient deleted
 
     email_stats:
       breadcrumb: Stats
@@ -387,7 +418,7 @@ en:
 
     feature_flags:
       breadcrumb: Settings
-      menu: Feature Flags
+      menu: Feature flags
       index:
         title: Feature Flags
         feature: Feature
@@ -409,7 +440,7 @@ en:
 
     site_settings:
       breadcrumb: Settings
-      menu: Site settings
+      menu: Settings
       index:
         title: Site settings
         name: Name
@@ -448,16 +479,15 @@ en:
       menu: Stats
       breadcrumb: Stats
 
-    # Blazer
-    charts:
+    blazer:
       menu: Charts
-      # title: Charts
-    # checks:
-      # title: Checks
-    # dashboards:
-      # title: Dashboards
-    # queries:
-      # title: Queries
+      auth_fail: You do not have permission to view charts
+      dashboards:
+        title: Dashboards
+      queries:
+        title: Queries
+      checks:
+        title: Checks
 
     web_stats:
       breadcrumb: Stats

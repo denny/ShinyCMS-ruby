@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for newsletter send admin features
 
 RSpec.describe 'Admin: Newsletter Sends', type: :request do
-  before :each do
+  before do
     admin = create :newsletter_send_admin
     sign_in admin
   end

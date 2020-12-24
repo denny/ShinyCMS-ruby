@@ -73,6 +73,16 @@ module ShinyPost
       posted_at.strftime( '%Y' )
     end
 
+    def next_post
+      self.class.published.where( 'posted_at > ?', posted_at ).order( posted_at: :asc ).first
+    end
+
+    def prev_post
+      self.class.published.where( 'posted_at < ?', posted_at ).order( posted_at: :desc ).first
+    end
+
+    alias_method :previous_post, :prev_post
+
     # Used by SlugInMonth validator
     def items_in_same_month
       self.class.readonly.published.where( posted_at: posted_at.all_month )

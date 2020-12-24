@@ -11,16 +11,25 @@ module ShinyEmail
   extend ActiveSupport::Concern
 
   included do
+    # Validations
+
     validates :email, presence: true, uniqueness: true, case_sensitive: false
     validates :canonical_email, presence: true
     validates_with EmailAddress::ActiveRecordValidator, fields: %i[ email canonical_email ]
 
-    # TODO: figure out how this interacts with Devise when user updates email
-    before_validation :generate_canonical_email, if:
-      -> { canonical_email.blank? || email_changed? }
+    # Before actions
 
-    # Redact emails as part of deletion - in case we're also using soft delete
+    before_validation :strip_email, if: -> { email_changed? }
+    before_validation :generate_canonical_email, if: -> { canonical_email.blank? || email_changed? }
+
+    # Redact emails as part of deletion (to avoid naughty data retention if we only soft delete)
     before_destroy :redact_emails!
+
+    # Instance methods
+
+    def strip_email
+      self.email = email.strip
+    end
 
     def generate_canonical_email
       self.canonical_email = EmailAddress.canonical( email )

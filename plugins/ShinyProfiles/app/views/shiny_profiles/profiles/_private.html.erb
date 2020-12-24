@@ -1,4 +1,4 @@
-<% if @user_profile == current_user %>
+<% if @profile == current_user %>
 <section>
   <header>
     <h3>
@@ -7,11 +7,11 @@
   </header>
 
   <p>
-    Account created: <%= display_date_at_time( @user_profile.created_at ) %>
+    Account created: <%= display_date_at_time( @profile.created_at ) %>
   </p>
   <p>
-    Last login: <%= display_date_at_time( @user_profile.last_sign_in_at ) %>
-    from <%= @user_profile.last_sign_in_ip_was %>
+    Last login: <%= display_date_at_time( @profile.last_sign_in_at ) %>
+    from <%= @profile.last_sign_in_ip_was %>
   </p>
 </section>
 <% end %>

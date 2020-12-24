@@ -1,0 +1,7 @@
+<% return unless post %>
+<span class="next-link">
+<%= link_to "« #{post.next_post.title}", post.next_post.path if post.next_post.present? %>
+</span>
+<span class="prev-link">
+<%= link_to "#{post.prev_post.title} »", post.prev_post.path if post.prev_post.present? %>
+</span>

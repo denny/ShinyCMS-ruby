@@ -1,0 +1,17 @@
+<mj-section>
+  <mj-column>
+
+    <mj-text>
+      From: "<%= @form_data[ :name ] %>" &lt;<%= @form_data[ :email ] %>&gt;
+    </mj-text>
+
+    <mj-text>
+      <%= @form_data[ :message ] %>
+    </mj-text>
+
+    <mj-text>
+      [ sent via the <%= site_name %> contact form ]
+    </mj-text>
+
+  </mj-column>
+</mj-section>

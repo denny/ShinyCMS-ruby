@@ -24,7 +24,7 @@ module ShinyHTMLTemplate
 
       # Never parse HTML with a regex.
       erb.scan(
-        %r{<%=\s+(sanitize|simple_format)?\(?\s*(\w+)\s*\)?\s+%>}
+        %r{<%=\s+(sanitize|simple_format|image_tag\(?\s*url_for)?\(?\s*(\w+)\s*\)?(,\s+.*?)?\s*\)?\s+%>}
       ).uniq.each do |result|
         added = add_element result[0], result[1]
         raise ActiveRecord::Rollback unless added
@@ -35,7 +35,7 @@ module ShinyHTMLTemplate
 
     # Get a list of available template files from the disk
     def self.available_templates
-      return unless template_dir
+      return [] unless template_dir
 
       template_names = []
 
@@ -45,16 +45,6 @@ module ShinyHTMLTemplate
       end
 
       template_names.sort
-    end
-
-    private
-
-    def add_element( formatting, name )
-      return add_image_element name   if formatting.nil? && name.include?( 'image' )
-      return add_default_element name if formatting.nil?
-      return add_html_element name    if formatting == 'sanitize'
-
-      add_long_text_element name      if formatting == 'simple_format'
     end
   end
 end

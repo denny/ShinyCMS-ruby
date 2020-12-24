@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+  This set of templates is heavily based on Halcyonic by HTML5 UP:
+  https://html5up.net/halcyonic | html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license:
+  html5up.net/license
+-->
+
+<html>
+  <%= render partial: 'includes/head' %>
+
+  <body<% unless @page&.default_page? %> class="subpage"<% end %>>
+    <div id="page-wrapper">
+      <%= render partial: 'includes/header' %>
+
+      <% unless controller_name == 'pages' && response.status != 404 %>
+      <section id="content" class="content">
+        <div class="container">
+          <div class="row">
+            <% if @sidebar_position == 'left' || @sidebar_position == 'both' %>
+            <div class="col-3 col-12-medium">
+            <% elsif @sidebar_position == 'right' %>
+            <div class="col-9 col-12-medium">
+            <% else %>
+            <div class="col-12">
+            <% end %>
+      <% end %>
+
+<%= yield %>
+
+      <% unless controller_name == 'pages' && response.status != 404 %>
+            </div>
+          </div>
+        </div>
+      </section>
+      <% end %>
+
+      <%= render partial: 'includes/footer' %>
+
+      <% if current_user_can? :view_admin_toolbar %>
+        <%= render partial: 'admin/includes/admin_toolbar' %>
+      <% end %>
+    </div>
+    <%= render partial: 'includes/footer_javascript' %>
+  </body>
+</html>

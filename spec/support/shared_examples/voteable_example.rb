@@ -8,7 +8,7 @@
 
 # Shared test code, for testing the methods mixed-in by acts_as_voteable
 RSpec.shared_examples 'Voteable' do
-  context '.vote_up' do
+  describe '.vote_up' do
     it 'adds a vote to the item' do
       voter = create :user
 

@@ -1,0 +1,39 @@
+<% @page_title = t( '.title' ) %>
+
+<%= render partial: 'admin/includes/search', locals: { action: shiny_access.search_groups_path, placeholder: t( '.search' ) } %>
+
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Members
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+    <tr>
+      <td>
+        <%= group.internal_name %>
+      </td>
+      <td>
+        <%= link_to group.memberships.active.count, shiny_access.group_memberships_path( group ) %>
+      </td>
+      <td class="actions">
+        <%= link_to t( 'edit'   ), shiny_access.edit_group_path( group ) %>
+        <%= link_to t( 'delete' ), shiny_access.group_path( group ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  <tbody>
+</table>
+
+<%= render partial: 'admin/includes/pager', locals: { paged: @groups, route_set: shiny_access } %>

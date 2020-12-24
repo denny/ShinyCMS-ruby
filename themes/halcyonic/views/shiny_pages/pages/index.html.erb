@@ -1,0 +1,143 @@
+        <div id="banner" class="banner">
+          <div class="container">
+            <div class="row">
+              <div class="col-6 col-12-medium">
+                <p>
+                  <%= sanitize banner_text %>
+                </p>
+                <a href="<%= banner_button_url %>" class="button-large"><%= banner_button_text %></a>
+              </div>
+              <div class="col-6 col-12-medium imp-medium">
+                <%= link_to image_tag( banner_image, class: 'banner-image' ), url_for( banner_image ) if banner_image.attached? %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section><%# closes the header section %>
+
+      <!-- Features -->
+      <section id="features">
+        <div class="container">
+          <div class="row">
+            <div class="col-3 col-6-medium col-12-small">
+
+              <!-- Feature #1 -->
+              <section>
+                <%= link_to image_tag( image1, class: 'bordered-feature-image' ), url_for( image1 ) if image1.attached? %>
+                <h2>
+                  <%= heading1 %>
+                </h2>
+                <%= simple_format paragraph1 %>
+              </section>
+
+            </div>
+            <div class="col-3 col-6-medium col-12-small">
+
+              <!-- Feature #2 -->
+              <section>
+                <%= link_to image_tag( image2, class: 'bordered-feature-image' ), url_for( image2 ) if image2.attached? %>
+                <h2>
+                  <%= heading2 %>
+                </h2>
+                <%= simple_format paragraph2 %>
+              </section>
+
+            </div>
+            <div class="col-3 col-6-medium col-12-small">
+
+              <!-- Feature #3 -->
+              <section>
+                <%= link_to image_tag( image3, class: 'bordered-feature-image' ), url_for( image3 ) if image3.attached? %>
+                <h2>
+                  <%= heading3 %>
+                </h2>
+                <%= simple_format paragraph3 %>
+              </section>
+
+            </div>
+            <div class="col-3 col-6-medium col-12-small">
+
+              <!-- Feature #4 -->
+              <section>
+                <%= link_to image_tag( image4, class: 'bordered-feature-image' ), url_for( image4 ) if image4.attached? %>
+                <h2>
+                  <%= heading4 %>
+                </h2>
+                <%= simple_format paragraph4 %>
+              </section>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Content -->
+      <section id="content">
+        <div class="container">
+          <div class="row aln-center">
+            <div class="col-4 col-12-medium">
+
+              <!-- Box #1 -->
+              <section>
+                <header>
+                  <h2>Who We Are</h2>
+                  <h3>A subheading about who we are</h3>
+                </header>
+                <%= image_tag image5 if image5.attached? %>
+                <p>
+                  Duis neque nisi, dapibus sed mattis quis, rutrum accumsan magna sed.
+                  Suspendisse eu varius nibh. Suspendisse vitae magna eget odio amet mollis
+                  justo facilisis quis. Sed sagittis amet lorem ipsum.
+                </p>
+              </section>
+
+            </div>
+            <div class="col-4 col-6-medium col-12-small">
+
+              <!-- Box #2 -->
+              <section>
+                <header>
+                  <h2>What We Do</h2>
+                  <h3>A subheading about what we do</h3>
+                </header>
+                <ul class="check-list">
+                  <li>Sed mattis quis rutrum accum</li>
+                  <li>Eu varius nibh suspendisse lorem</li>
+                  <li>Magna eget odio amet mollis justo</li>
+                  <li>Facilisis quis sagittis mauris</li>
+                  <li>Amet tellus gravida lorem ipsum</li>
+                </ul>
+              </section>
+
+            </div>
+            <div class="col-4 col-6-medium col-12-small">
+
+              <!-- Box #3 -->
+              <section>
+                <header>
+                  <h2>What People Are Saying</h2>
+                  <h3>And a final subheading about our clients</h3>
+                </header>
+                <ul class="quote-list">
+                  <li>
+                    <%= image_tag image6 if image6.attached? %>
+                    <p>"Neque nisidapibus mattis"</p>
+                    <span>Jane Doe, CEO of UntitledCorp</span>
+                  </li>
+                  <li>
+                    <%= image_tag image7 if image7.attached? %>
+                    <p>"Lorem ipsum consequat!"</p>
+                    <span>John Doe, President of FakeBiz</span>
+                  </li>
+                  <li>
+                    <%= image_tag image8 if image8.attached? %>
+                    <p>"Magna veroeros amet tempus"</p>
+                    <span>Mary Smith, CFO of UntitledBiz</span>
+                  </li>
+                </ul>
+              </section>
+
+            </div>
+          </div>
+        </div>
+      </section>

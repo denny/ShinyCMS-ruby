@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Blog', type: :request do
-  before :each do
+  before do
     FeatureFlag.enable :blog
   end
 
@@ -54,10 +54,8 @@ RSpec.describe 'Blog', type: :request do
     it 'displays an appropriate message if there are no blog posts yet' do
       get shiny_blog.view_blog_path
 
-      no_posts = I18n.t( 'helpers.page_entries_info.one_page.display_entries', entry_name: 'posts', count: 0 )
-
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css 'p', text: no_posts
+      expect( response.body ).to have_css 'p', text: I18n.t( 'empty_list', items: 'blog posts' )
     end
   end
 

@@ -21,21 +21,22 @@ flag.update!(
 
 # Admin capabilities
 
-templates_cc = CapabilityCategory.find_or_create_by!( name: 'newsletter_templates' )
-editions_cc  = CapabilityCategory.find_or_create_by!( name: 'newsletter_editions'  )
-sends_cc     = CapabilityCategory.find_or_create_by!( name: 'newsletter_sends'     )
+def add_capabilities( capability_data )
+  capability_data.each_key do |category_name|
+    category = CapabilityCategory.find_or_create_by!( name: category_name )
 
-editions_cc.capabilities.find_or_create_by!( name: 'list'    )
-editions_cc.capabilities.find_or_create_by!( name: 'add'     )
-editions_cc.capabilities.find_or_create_by!( name: 'edit'    )
-editions_cc.capabilities.find_or_create_by!( name: 'destroy' )
+    capability_data[ category_name ].each do |capability_name|
+      category.capabilities.find_or_create_by( name: capability_name )
+    end
+  end
+end
 
-templates_cc.capabilities.find_or_create_by!( name: 'list'    )
-templates_cc.capabilities.find_or_create_by!( name: 'add'     )
-templates_cc.capabilities.find_or_create_by!( name: 'edit'    )
-templates_cc.capabilities.find_or_create_by!( name: 'destroy' )
-
-sends_cc.capabilities.find_or_create_by!( name: 'list'    )
-sends_cc.capabilities.find_or_create_by!( name: 'add'     )
-sends_cc.capabilities.find_or_create_by!( name: 'edit'    )
-sends_cc.capabilities.find_or_create_by!( name: 'destroy' )
+# rubocop:disable Layout/HashAlignment
+add_capabilities(
+  {
+    newsletter_editions:  %w[ list add edit destroy ],
+    newsletter_sends:     %w[ list add edit destroy ],
+    newsletter_templates: %w[ list add edit destroy ]
+  }
+)
+# rubocop:enable Layout/HashAlignment

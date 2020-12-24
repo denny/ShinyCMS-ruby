@@ -19,7 +19,7 @@ module ShinyNewsletters
 
         send1.list.subscribe( subscriber1, consent1 )
 
-        expect { SendToSubscriberJob.perform_later( send1, subscriber1 ) }.to have_enqueued_job
+        expect { described_class.perform_later( send1, subscriber1 ) }.to have_enqueued_job
       end
     end
 
@@ -31,7 +31,7 @@ module ShinyNewsletters
 
         send1.list.subscribe( subscriber1, consent1 )
 
-        result = SendToSubscriberJob.perform_now( send1, subscriber1 )
+        result = described_class.perform_now( send1, subscriber1 )
 
         expect( result ).to be_a Mail::Message
       end
@@ -41,7 +41,7 @@ module ShinyNewsletters
           subscriber1 = create :email_recipient, :confirmed
           send1       = create :newsletter_send_sent
 
-          expect( SendToSubscriberJob.perform_now( send1, subscriber1 ) ).to be_nil
+          expect( described_class.perform_now( send1, subscriber1 ) ).to be_nil
         end
       end
     end

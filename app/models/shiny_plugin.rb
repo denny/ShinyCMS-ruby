@@ -52,12 +52,6 @@ class ShinyPlugin
     File.exist? "#{view_path}/#{template_path}"
   end
 
-  def admin_index_path( area = nil )
-    path_part = area || name.underscore.sub( 'shiny_', '' )
-
-    engine.routes.url_helpers.public_send( "#{path_part}_path" )
-  end
-
   # Class methods
 
   # Returns an array of the currently enabled plugins
@@ -70,13 +64,6 @@ class ShinyPlugin
 
   def self.loaded?( plugin_name )
     loaded_names.include? plugin_name.to_s
-  end
-
-  def self.all_loaded?( *plugin_names )
-    plugin_names.each do |name|
-      return false unless loaded? name
-    end
-    true
   end
 
   def self.with_main_site_helpers
@@ -114,7 +101,9 @@ class ShinyPlugin
   end
 
   def self.configured_names
-    ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
+    requested = ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
+
+    return requested.uniq.select { |name| all_names.include?( name ) } if requested.present?
   end
 
   def self.all_names

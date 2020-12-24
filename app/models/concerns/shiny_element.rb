@@ -19,10 +19,13 @@ module ShinyElement
   private_constant :ANCHORED_ELEMENT_NAME_REGEX
 
   included do
+    # Associations
+
+    has_one_attached :image
+
     # Validations
 
-    validates :name, presence: true
-    validates :name, format:   ANCHORED_ELEMENT_NAME_REGEX
+    validates :name, presence: true, format: ANCHORED_ELEMENT_NAME_REGEX
 
     before_validation :format_name, if: -> { name.present? }
 

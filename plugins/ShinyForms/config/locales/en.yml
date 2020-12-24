@@ -4,6 +4,10 @@ en:
   feature_flags:
     shiny_forms: Form handlers
     shiny_forms_emails: Form handlers can send emails
+    recaptcha_for_forms: Protect ShinyForms with reCAPTCHA
+    akismet_for_forms: Detect spammy ShinyForm submissions with Akismet
+  settings:
+    recaptcha_score_for_forms: Minimum reCAPTCHA v3 score for ShinyForm submissions
 
   shiny_forms:
     forms:

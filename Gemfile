@@ -7,10 +7,16 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Supporting methods for loading ShinyCMS plugin gems
-def plugin_names
-  return ENV[ 'SHINYCMS_PLUGINS' ].split( /[, ]+/ ) if ENV[ 'SHINYCMS_PLUGINS' ]
+def available_plugins
+  Dir[ 'plugins/*' ].sort.collect { |name| name.sub( 'plugins/', '' ) }
+end
 
-  Dir[ 'plugins/*' ].sort.collect { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
+def plugin_names
+  requested = ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
+
+  return requested.uniq.select { |name| available_plugins.include?( name ) } if requested
+
+  available_plugins
 end
 
 def underscore( camel_cased_word )
@@ -30,7 +36,7 @@ source 'https://rubygems.org' do
   gem 'pg', '>= 0.18', '< 2.0'
 
   # Webserver
-  gem 'puma', '~> 5.0'
+  gem 'puma', '~> 5.1'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails'
@@ -62,11 +68,16 @@ source 'https://rubygems.org' do
   # Authorisation
   gem 'pundit'
 
+  # Monitoring
+  gem 'bugsnag'
+
   # Soft delete
   gem 'acts_as_paranoid'
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
   gem 'sidekiq'
+  # This adds more details to the Sidekiq web dashboard
+  gem 'sidekiq-status'
 
   # Bot detection to protect forms (including registration, comments, etc)
   gem 'recaptcha'
@@ -124,6 +135,11 @@ source 'https://rubygems.org' do
   # Pry is a debugging tool - uncomment it here if you want to use it on the Rails console in production
   gem 'pry-rails'
 
+  group :production do
+    # Fix request.ip if we're running behind Cloudflare's proxying service
+    gem 'cloudflare-rails'
+  end
+
   group :development, :test do
     # You can enable Pry here if you commented it out in production.
     # gem 'pry-rails'
@@ -136,6 +152,9 @@ source 'https://rubygems.org' do
     # Fill test objects with fake data
     gem 'faker'
 
+    # Best practices
+    gem 'rails_best_practices'
+
     # Utils for working with translation strings
     # gem 'i18n-debug'
     gem 'i18n-tasks', '~> 0.9.31'
@@ -146,6 +165,8 @@ source 'https://rubygems.org' do
     gem 'rubocop', require: false
     # Rails-specific linting
     gem 'rubocop-rails', require: false
+    # Tests need linting-love too!
+    gem 'rubocop-rspec', require: false
     # Performance-related analysis
     gem 'rubocop-performance', require: false
 
@@ -160,7 +181,7 @@ source 'https://rubygems.org' do
     gem 'letter_opener_web', '~> 1.0'
 
     # Reload dev server when files change
-    gem 'listen', '>= 3.0.5', '< 3.3'
+    gem 'listen', '>= 3.0.5', '< 3.4'
 
     # Helps you manage your git hooks
     gem 'overcommit', require: false

@@ -21,9 +21,10 @@ nav:
   - Installation, configuration, deployment:
     - Local installation: INSTALL.md
     - Configuration:      Configuration.md
+    - Cloud hosting:      Cloud-Hosting.md
     - External services:  Services.md
-    - Demo site:          demo-site.md
     - Themes:             Themes.md
+    - Demo site:          demo-site.md
 
     - tl,dr:              tldr.md
 
@@ -36,6 +37,9 @@ nav:
       - Forms:         Features/Plugins/ShinyForms.md
       - Inserts:       Features/Plugins/ShinyInserts.md
       - Search:        Features/Plugins/ShinySearch.md
+
+    - More advanced features:
+      - Access control: Features/Plugins/ShinyAccess.md
 
     - Regular content updates:
       - Blog:          Features/Plugins/ShinyBlog.md
@@ -64,9 +68,12 @@ nav:
       - MJML:          Features/MainApp/mjml.md
       - Pagination:    Features/MainApp/pagination.md
       - Soft Delete:   Features/MainApp/soft-delete.md
+      - Rake tasks:    rake-tasks.md
 
   - Developer Documentation:
-    - Contributing:    Developers/Contributing.md
+    - Index:           Developers/index.md
+
+    - Contributing:    Contributing.md
 
     - Project Goals:   Developers/ProjectGoals.md
 
@@ -79,6 +86,10 @@ nav:
 
     - Testing:         Developers/Testing.md
 
+    - Demo data:       Developers/demo-data.md
+    - Rake tasks:      Developers/rake-tasks.md
+
+
     - Useful shared CMS code:
       - Concerns:      Developers/Concerns.md
       - Helpers:       Developers/Helpers.md
@@ -86,6 +97,7 @@ nav:
       # Other libs:    Developers/app-libs.md
 
   - Licensing:         Licensing/index.md
+  - Release notes:     release-notes.md
   - Credits:           credits.md
   - Code of Conduct:   code-of-conduct.md
   - Index:             index.md

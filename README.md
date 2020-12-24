@@ -1,6 +1,6 @@
 # ShinyCMS
 
-[ShinyCMS](https://shinycms.org/) is an open-source content management system built in Ruby on Rails, with support for [themes](docs/Themes.md), [plugins](docs/Developer/Plugins.md), and cloud hosting.
+[ShinyCMS](https://shinycms.org/) is an open-source content management system built in Ruby on Rails, with support for [themes](docs/Themes.md), [plugins](docs/Developer/Plugins.md), and [cloud hosting](docs/Cloud-Hosting.md).
 
 It is designed for professional web developers to use as a platform when building content-managed websites for their clients. It provides a number of features 'out of the box', with an easy-to-use admin interface for your clients to use when updating their site. You can also write your own plugins to add custom functionality.
 
@@ -32,40 +32,45 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
 * [Mailing lists](docs/Features/Plugins/ShinyLists.md) ±
   * Double opt-in, user subscription management, 'do not contact' feature
 * [Newsletters](docs/Features/Plugins/ShinyNewsletters.md) ±
-  * HTML mailshots, produced from MJML templates for cross-platform compatibility
+  * HTML mailshots, generated from MJML templates for cross-platform compatibility
 * [Basic form handlers](docs/Features/Plugins/ShinyForms.md) ±
   * e.g. 'email form data to site owner' - useful for contact and enquiry forms
+  * Protected by [reCAPTCHA](https://developers.google.com/recaptcha/) and [Akismet](https://akismet.com/)
+* [Access control](docs/Features/Plugins/ShinyAccess.md) ±
+  * Create access groups, and add/remove members from them,
+  * Use the `current_user_can_access?( :group_name )` helper to show/hide content
 * [Site search](docs/Features/Plugins/ShinySearch.md) ±
   * Ready to support multiple search backends (default is pg_search multisearch)
 * [Tags](docs/Features/MainApp/Tags.md)
 * [Upvotes](docs/Features/MainApp/Upvotes.md) (AKA 'likes') on posts and comments
+  * Supports downvotes too, if you want a full rating/ranking system
 * [User profile pages](docs/Features/Plugins/ShinyProfiles.md) ±
-  * Links to user-provided content such as recent comments, recent blog posts, etc
+  * With links to user-generated content such as recent comments, recent blog posts, etc
 * [User accounts](docs/Features/MainApp/UserAccounts.md) and administration
   * ACL-based authorisation system for admins (powered by [Pundit](https://github.com/varvet/pundit))
   * Uses [reCAPTCHA](https://developers.google.com/recaptcha/) to block registration by bots
 * Web interface for [site settings](docs/Features/MainApp/SiteSettings.md) and [feature flags](docs/Features/MainApp/FeatureFlags.md)
-* Built-in tracking of [web stats](docs/Features/MainApp/WebStats.md) and [email stats](docs/Features/MainApp/EmailStats.md) (powered by [Ahoy](https://github.com/ankane/ahoy) and [Ahoy::Email](https://github.com/ankane/ahoy_email))
-* Build your own [charts and dashboards](docs/Features/MainApp/Charts.md) for viewing and analyzing stats (powered by [Blazer](https://github.com/ankane/blazer))
-* All emails are generated from [MJML](docs/Features/mjml.md) templates, producing reliably cross-platform HTML emails
+* All emails are generated from [MJML](docs/Features/mjml.md) templates, producing more reliably cross-platform HTML emails
+* Built-in tracking of [web stats](docs/Features/MainApp/WebStats.md) and [email stats](docs/Features/MainApp/EmailStats.md)
+  * Powered by [Ahoy](https://github.com/ankane/ahoy) and [Ahoy::Email](https://github.com/ankane/ahoy_email)
+* Build your own [charts and dashboards](docs/Features/MainApp/Charts.md) for viewing and analyzing stats
+  * Powered by [Blazer](https://github.com/ankane/blazer))
+  * Default dashboard config included, with a dozen chart-generating queries for you to use or learn from
 
 ### Planned features
 
-* Content Access Groups
-  * Control access to large items - file downloads, whole pages on the site
-  * Or smaller items within a page - specific images, page sections, even individual words
 * Payment handling plugins
-  * Including recurring subscriptions to content access groups - AKA paid membership
+  * Including recurring subscriptions to Access Groups - AKA paid membership
 * Online shop
 * Support for multiple blogs on a single site (in progress)
 * [Algolia](https://www.algolia.com/) support for search plugin (in progress)
-* Default dashboard and charts for Blazer
 * More themes!
 
 
 ## Documentation
 
-Documentation can be found on the [ShinyCMS documentation](https://docs.shinycms.org/) website in HTML format, and in [/docs](docs/index.md) in Markdown format.
+* Markdown: [/docs](docs/index.md)
+* Website: [docs.shinycms.org](https://docs.shinycms.org/) ([generated](https://shinycms.org/blog/2020/10/docs) from /docs)
 
 
 ## Installation and configuration
@@ -88,16 +93,14 @@ All other supported [external services](docs/Services.md) are optional. If you a
 
 ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.2 and Rails 6.0.3.4).
 
-It has been tested on every release of Rails 6 so far, and with most versions of Ruby from 2.5.8 onwards ([view recent test results][test results] for ruby 2.5.8, 2.6.6, and 2.7.2).
+It has been tested on most Ruby versions from 2.5.8 onwards, and every release of Rails 6 so far.
 
-[Test results]: https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/190156596
-
-There are currently no plans to add support for Rails 5 or older Ruby versions.
+(Recent test results for [Ruby 2.5.8, 2.6.6, and 2.7.2](https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/205841352))
 
 
 ## Contributing
 
-If you're interested in contributing to ShinyCMS, please start by reading the [developer documentation](docs/Developers/index.md).
+See [contributing to ShinyCMS](docs/Contributing.md).
 
 
 ## Code of Conduct

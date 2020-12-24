@@ -3,19 +3,18 @@
   "author": "Denny de la Haye (denny.me)",
   "private": true,
   "dependencies": {
-    "@rails/activestorage": "^6.0.3",
-    "@rails/ujs": "^6.0.3",
-    "@rails/webpacker": "5.2.1",
+    "@rails/activestorage": "^6.0.3-4",
+    "@rails/ujs": "^6.0.3-4",
+    "@rails/webpacker": "^5.2.1",
     "acorn": "^8.0.4",
-    "core-js": "^3.6.5",
-    "jquery": "^3.5.0",
+    "core-js": "^3.8.1",
+    "jquery": "^3.5.1",
     "jquery-ui": "^1.12.1",
-    "minimist": "^1.2.2",
+    "minimist": "^1.2.5",
     "mjml": "^4.7.1",
     "smartmenus": "^1.1.1"
   },
   "devDependencies": {
-    "webpack": "^4.44.2",
     "webpack-dev-server": "^3.11.0"
   }
 }

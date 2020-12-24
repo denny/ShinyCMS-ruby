@@ -13,7 +13,7 @@ module ShinyBlog
   RSpec.describe BuildAtomFeedJob do
     describe '.perform_later' do
       it 'queues the job' do
-        expect { BuildAtomFeedJob.perform_later }.to have_enqueued_job
+        expect { described_class.perform_later }.to have_enqueued_job
       end
     end
 
@@ -28,7 +28,7 @@ module ShinyBlog
           <feed xmlns="http://www.w3.org/2005/Atom"
         TOP
 
-        BuildAtomFeedJob.perform_now
+        described_class.perform_now
 
         file_content = File.read Rails.root.join( 'public/feeds/atom/blog.xml' )
 

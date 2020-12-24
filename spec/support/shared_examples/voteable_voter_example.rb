@@ -8,11 +8,9 @@
 
 # Shared test code, for testing the methods mixed-in by acts_as_voteable
 RSpec.shared_examples 'VoteableVoter' do
-  context '.up_votes' do
+  describe '.up_votes' do
     it 'adds a vote to the item' do
-      news_post  = create :news_post
-      discussion = create :discussion, resource: news_post
-      comment    = create :comment, discussion: discussion
+      comment = create :comment
 
       expect( voter.voted_for?( comment ) ).to be false
       voter.up_votes comment

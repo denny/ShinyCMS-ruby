@@ -20,14 +20,8 @@ module ShinyFeatureFlagHelper
   end
 
   def feature_enabled?( feature_name )
-    feature = FeatureFlag.find_by( name: feature_name.to_s )
+    return FeatureFlag.enabled? feature_name unless defined? current_user
 
-    return false if feature.blank?
-    return true  if feature.enabled?
-
-    # return false unless current_user&.can? :view_admin_area
-    return false unless current_user&.admin?
-
-    feature.enabled_for_admins?
+    FeatureFlag.enabled? feature_name, current_user
   end
 end

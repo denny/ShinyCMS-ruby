@@ -3,8 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Search:', type: :request do
-  before :each do
-    @user = create :user, public_name: 'Success'
+  before do
+    FeatureFlag.enable :user_profiles
+
+    @profile = create :user_profile, public_name: 'Success'
   end
 
   describe 'GET /search' do
@@ -22,7 +24,7 @@ RSpec.describe 'Search:', type: :request do
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shiny_search.search.results.title', query: 'Success' )
-      expect( response.body ).to     have_link @user.name, href: shiny_profiles.profile_path( @user.username )
+      expect( response.body ).to     have_link @profile.name, href: shiny_profiles.profile_path( @profile.username )
       expect( response.body ).not_to have_css 'p', text: I18n.t( 'shiny_search.search.no_results.no_results' )
     end
 
@@ -30,7 +32,7 @@ RSpec.describe 'Search:', type: :request do
       allow_any_instance_of( ShinySearch::MainSiteHelper ).to receive( :algolia_search_is_enabled? ).and_return( false )
       allow_any_instance_of( ShinySearch::MainSiteHelper ).to receive( :pg_search_is_enabled?      ).and_return( false )
 
-      expect( Rails.logger ).to receive( :error ).with(
+      allow( Rails.logger ).to receive( :error ).with(
         'Search feature is enabled, but no search back-ends are enabled'
       )
 
@@ -48,7 +50,7 @@ RSpec.describe 'Search:', type: :request do
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shiny_search.search.results.title', query: 'Success' )
-      expect( response.body ).to     have_link @user.name, href: shiny_profiles.profile_path( @user.username )
+      expect( response.body ).to     have_link @profile.name, href: shiny_profiles.profile_path( @profile.username )
       expect( response.body ).not_to have_css 'p', text: I18n.t( 'shiny_search.search.no_results.no_results' )
     end
   end
@@ -60,7 +62,7 @@ RSpec.describe 'Search:', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shiny_search.search.results.title', query: 'Success' )
       # TODO
-      # expect( response.body ).to     have_link @user.name, href: shiny_profiles.profile_path( @user.username )
+      # expect( response.body ).to     have_link @profile.name, href: shiny_profiles.profile_path( @profile.username )
       # expect( response.body ).not_to have_css 'p', text: I18n.t( 'shiny_search.search.no_results.no_results' )
     end
   end
@@ -72,7 +74,7 @@ RSpec.describe 'Search:', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shiny_search.search.results.title', query: 'FAIL' )
       expect( response.body ).to     have_css 'p', text: I18n.t( 'shiny_search.search.no_results.no_results' )
-      expect( response.body ).not_to have_link @user.name, href: shiny_profiles.profile_path( @user.username )
+      expect( response.body ).not_to have_link @profile.name, href: shiny_profiles.profile_path( @profile.username )
     end
   end
 end

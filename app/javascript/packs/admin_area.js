@@ -5,3 +5,4 @@
 // ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 // require( 'jquery-ui/ui/widgets/sortable' )
+// require( 'jquery-ui/ui/widgets/autocomplete' )

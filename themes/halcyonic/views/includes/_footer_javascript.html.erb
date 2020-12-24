@@ -1,0 +1,31 @@
+<%= javascript_pack_tag 'application' %>
+<%= javascript_pack_tag 'halcyonic'   %>
+
+<script src="/js/smartmenus/jquery.smartmenus.min.js"></script>
+<script>
+$(function() {
+  $('#menu').smartmenus({
+    mainMenuSubOffsetX: 10,
+    mainMenuSubOffsetY: 0,
+    // subMenusSubOffsetX: 6,
+    // subMenusSubOffsetY: -6
+  });
+});
+</script>
+
+<script>
+function toggleHidden( wrapper_id ) {
+  var wrapper = document.getElementById( wrapper_id );
+  if ( wrapper.hidden ) {
+    wrapper.hidden = false;
+  } else {
+    wrapper.hidden = true;
+  }
+}
+function show( wrapper_id ) {
+  document.getElementById( wrapper_id ).hidden = false;
+}
+function hide( wrapper_id ) {
+  document.getElementById( wrapper_id ).hidden = true;
+}
+</script>

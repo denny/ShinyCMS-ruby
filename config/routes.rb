@@ -72,10 +72,10 @@ Rails.application.routes.draw do
       # Consent versions
       resources :consent_versions, path: 'consent-versions', concerns: %i[ paginatable searchable ]
 
-      # Discussion and comment moderation
-      get 'comments(/page/:page)', to: 'comments#index', as: :comments
+      # Comment and discussion moderation
+      get 'comments(/page/:page)', to: 'comments#index',  as: :comments
       put 'comments',              to: 'comments#update'
-      get 'comments/search',       to: 'comments#search'
+      get 'comments/search',       to: 'comments#search', as: :search_comments
 
       scope path: 'comment' do
         put    ':id/show',    to: 'comments#show',          as: :show_comment
@@ -93,6 +93,12 @@ Rails.application.routes.draw do
         put ':id/unlock', to: 'discussions#unlock', as: :unlock_discussion
       end
 
+      # Email Recipients
+      resources :email_recipients, path: 'email-recipients', concerns: %i[ paginatable searchable ],
+                                   only: %i[ index destroy ] do
+        put :'do-not-contact', on: :member, to: 'email_recipients#do_not_contact'
+      end
+
       # Feature Flags
       get 'feature-flags', to: 'feature_flags#index'
       put 'feature-flags', to: 'feature_flags#update'
@@ -102,17 +108,18 @@ Rails.application.routes.draw do
       put 'site-settings', to: 'site_settings#update'
 
       # Stats
-      get 'email-stats(/page/:page)',            to: 'email_stats#index', as: :email_stats
-      get 'email-stats/user/:user_id',           to: 'email_stats#index', as: :user_email_stats
-      get 'email-stats/recipient/:recipient_id', to: 'email_stats#index', as: :recipient_email_stats
-      get 'email-stats/search',                  to: 'email_stats#search'
+      get 'email-stats(/page/:page)',            to: 'email_stats#index',  as: :email_stats
+      get 'email-stats/user/:user_id',           to: 'email_stats#index',  as: :user_email_stats
+      get 'email-stats/recipient/:recipient_id', to: 'email_stats#index',  as: :recipient_email_stats
+      get 'email-stats/search',                  to: 'email_stats#search', as: :search_email_stats
 
-      get 'web-stats(/page/:page)',              to: 'web_stats#index', as: :web_stats
-      get 'web-stats/user/:user_id',             to: 'web_stats#index', as: :user_web_stats
-      get 'web-stats/search',                    to: 'web_stats#search'
+      get 'web-stats(/page/:page)',              to: 'web_stats#index',  as: :web_stats
+      get 'web-stats/user/:user_id',             to: 'web_stats#index',  as: :user_web_stats
+      get 'web-stats/search',                    to: 'web_stats#search', as: :search_web_stats
 
       # Users
       resources :users, except: :show, concerns: %i[ paginatable searchable ]
+      get 'users/usernames', to: 'users#username_search', as: :search_usernames
     end
 
     ########################################
@@ -137,6 +144,8 @@ Rails.application.routes.draw do
     # Sidekiq Web provides a web dashboard for your sidekiq jobs and queues
     if sidekiq_web_enabled?
       require 'sidekiq/web'
+      require 'sidekiq-status/web'
+
       Sidekiq::Web.set :sessions, false
       authenticate :user, ->( user ) { user.can? :manage_sidekiq_jobs } do
         mount Sidekiq::Web, at: '/admin/sidekiq'
@@ -155,13 +164,17 @@ Rails.application.routes.draw do
 
     ########################################################################################################
     # This route explicitly intercepts any request starting with /admin that wasn't otherwise handled
-    match '/admin/*path', to: 'admin#not_found', as: :admin_404, via: %i[ get post put patch delete ]
+    match '/admin/*path', to: 'admin#not_found', as: :admin_not_found, via: %i[ get post put patch delete ]
 
     ########################################################################################################
     # This catch-all route matches anything and everything not already matched by a route defined before it.
     # It has to be the last route set up, because it hijacks anything that gets this far.
     # This route gives us pages and sections at the top level, e.g. /foo instead of /pages/foo
     # TODO: figure out how to load a route last for the whole app, from inside a plugin's routes.rb
-    get '*path', to: 'shiny_pages/pages#show' if defined? ShinyPages
+    if defined? ShinyPages
+      get '*path', to: 'shiny_pages/pages#show', constraints: lambda { |req|
+        !req.path.starts_with?( '/rails/active_' )
+      }
+    end
   end
 end

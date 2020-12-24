@@ -22,7 +22,7 @@ RSpec.describe 'Pages', type: :request do
   end
 
   context 'with at least one top-level page defined' do
-    before :each do
+    before do
       @page = create :top_level_page
     end
 
@@ -60,7 +60,7 @@ RSpec.describe 'Pages', type: :request do
 
     describe 'GET /section-name/page-name' do
       it 'fetches the specified page from the specified section' do
-        page = create :page_in_section
+        page = create :page_in_section, :with_content
 
         get "/#{page.section.slug}/#{page.slug}"
 
@@ -98,7 +98,7 @@ RSpec.describe 'Pages', type: :request do
 
     describe 'GET /section-name/subsection-name/page-name' do
       it 'fetches the specified page from the specified subsection' do
-        p = create :page_in_subsection
+        p = create :page_in_nested_section
 
         get "/#{p.section.section.slug}/#{p.section.slug}/#{p.slug}"
 
@@ -121,6 +121,15 @@ RSpec.describe 'Pages', type: :request do
         page = create :page_in_section
 
         get "/#{page.section.slug}/non-existent-slug"
+
+        expect( response      ).to have_http_status :not_found
+        expect( response.body ).to include 'a page that does not exist'
+      end
+    end
+
+    describe 'GET /non-existent-section/irrelevant-slug' do
+      it 'returns a 404 if a page is requested in a non-existent section' do
+        get '/non-existent-section/irrelevant-slug'
 
         expect( response      ).to have_http_status :not_found
         expect( response.body ).to include 'a page that does not exist'

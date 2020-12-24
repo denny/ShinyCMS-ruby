@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-# Be sure to restart your server when you modify this file.
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Add new inflection rules using the following format. Inflections
 # are locale specific, and you may define rules for as many different
@@ -13,7 +17,25 @@
 # end
 
 ActiveSupport::Inflector.inflections( :en ) do |inflect|
+  # Acronyms used in the CMS code
   inflect.acronym 'IP'
   inflect.acronym 'HTML'
   inflect.acronym 'MJML'
+
+  # Some common acronyms that might be used in CMS content (and then b0rked by .titlecase)
+  inflect.acronym 'AI'
+  inflect.acronym 'API'
+  inflect.acronym 'BBC'
+  inflect.acronym 'CEO'
+  inflect.acronym 'CMS'
+  inflect.acronym 'CPU'
+  inflect.acronym 'CRM'
+  inflect.acronym 'CTO'
+  inflect.acronym 'EU'
+  inflect.acronym 'PR'
+  inflect.acronym 'UK'
+  inflect.acronym 'USA'
+  inflect.acronym 'USB'
+  inflect.acronym 'VIP'
+  inflect.acronym 'WWW'
 end

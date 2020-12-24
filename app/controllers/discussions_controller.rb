@@ -63,17 +63,30 @@ class DiscussionsController < MainController
   end
 
   def new_comment_passes_checks_and_saves?
-    return true if passes_akismet_check? && passes_recaptcha? && @new_comment.save
-
-    # raise ActiveRecord::Rollback
+    check_locks && check_with_recaptcha && check_with_akismet && @new_comment.save
   end
 
-  def passes_akismet_check?
-    return true unless akismet_enabled? && akismet_api_key_is_set?
+  def check_locks
+    return false if @discussion.locked?
+    return true  if @comment.blank?
+
+    !@comment.locked?
+  end
+
+  def check_with_recaptcha
+    return true if user_signed_in?
+    return true unless feature_enabled? :recaptcha_for_comments
+
+    verify_invisible_recaptcha( 'comments' ) || verify_checkbox_recaptcha
+  end
+
+  def check_with_akismet
+    return true if user_signed_in?
+    return true unless akismet_api_key_is_set? && feature_enabled?( :akismet_for_comments )
 
     spam, blatant = akismet_check( request, @new_comment )
-    if blatant && drop_blatant_spam?
-      Rails.logger.info( "Blatant spam comment dropped: #{@new_comment}" ) if log_blatant_spam?
+    if blatant && Setting.true?( :akismet_drop_blatant_spam )
+      Rails.logger.info( "Blatant spam comment dropped: #{@new_comment}" ) if Setting.true? :akismet_log_blatant_spam
       return false
     end
 
@@ -81,46 +94,33 @@ class DiscussionsController < MainController
     true
   end
 
-  def passes_recaptcha?
-    return true unless feature_enabled? :recaptcha_on_comment_form
-    return true if     @new_comment.authenticated_author?
-
-    verify_invisible_recaptcha( 'comment' ) || verify_checkbox_recaptcha
-  end
-
-  def log_blatant_spam?
-    Setting.true?( :log_blatant_spam )
-  end
-
   def new_comment_details
-    form_params = { author: find_author }
-    form_params.merge!( strong_params.except( :author_name, :author_email, :author_url ) )
-    form_params.merge!( discussion_id: @discussion.id )
+    comment_params = { author: find_author, ip_address: request.ip }
+    comment_params.merge!( strong_params.except( :author_type, :author_name, :author_email, :author_url ) )
+    comment_params.merge!( discussion_id: @discussion.id )
   end
 
   def find_author
-    author = current_user if user_signed_in?
-    author ||= create_comment_author if strong_params[ :author_name ].present?
-    author
+    return create_comment_author if strong_params[ :author_name ].present?
+
+    current_user if user_signed_in? && strong_params[ :author_type ] != 'anonymous'
   end
 
   def create_comment_author
-    author = CommentAuthor.create!(
+    author = CommentAuthor.new(
       name: strong_params[ :author_name ],
       website: strong_params[ :author_url ].presence,
       ip_address: request.ip
     )
     return author if strong_params[ :author_email ].blank?
 
-    recipient = EmailRecipient.find_or_create_by!( email: strong_params[ :author_email ] )
-    author.update!( email_recipient: recipient )
+    recipient = EmailRecipient.find_or_initialize_by( email: strong_params[ :author_email ] )
+    author.email_recipient = recipient
     author
   end
 
   def strong_params
-    params.require( :comment ).permit(
-      %i[ title body author_name author_email author_url g-recaptcha-response[comment] g-recaptcha-response ]
-    )
+    params.require( :comment ).permit( %i[ title body author_type author_name author_email author_url ] )
   end
 
   def check_feature_flags

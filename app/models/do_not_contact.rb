@@ -17,6 +17,7 @@ class DoNotContact < ApplicationRecord
 
   # Before/after actions
 
+  before_validation :strip_email, if: -> { email_changed? }
   before_save :redact_email
 
   # Class methods
@@ -32,10 +33,6 @@ class DoNotContact < ApplicationRecord
     exists? email: canonicalise_and_redact( email )
   end
 
-  def self.includes?( email )
-    include? email
-  end
-
   def self.canonicalise_and_redact( email )
     new_email = EmailAddress.new( email )
     return email if new_email.redacted?
@@ -44,6 +41,10 @@ class DoNotContact < ApplicationRecord
   end
 
   private
+
+  def strip_email
+    self.email = email.strip
+  end
 
   def redact_email
     self.email = DoNotContact.canonicalise_and_redact( email )

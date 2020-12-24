@@ -55,18 +55,22 @@ end
 
 RSpec.configure do |config|
   config.before( :suite ) do
-    # Wipe the test database, then load the required seed data
-    # (feature flags, capabilities and their categories, etc)
     DatabaseCleaner.clean_with :truncation
+
+    # Load feature flags, capabilities, etc
     ShinyCMS::Application.load_tasks
     Rake::Task['db:seed'].invoke
+
+    # These default to off for privacy, but we want to test the integration
+    FeatureFlag.enable :ahoy_web_tracking
+    FeatureFlag.enable :ahoy_email_tracking
   end
 
-  config.before :each do
+  config.before do
     WebMock.enable!
   end
 
-  config.after :each do
+  config.after do
     WebMock.disable!
   end
 

@@ -26,6 +26,12 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def current_user_can_view_charts?
+    return true if current_user&.can? :view_charts, :stats
+
+    redirect_to main_app.admin_path, alert: t( 'admin.blazer.auth_fail' )
+  end
+
   def recaptcha_v3_site_key
     ENV[ 'RECAPTCHA_V3_SITE_KEY' ]
   end

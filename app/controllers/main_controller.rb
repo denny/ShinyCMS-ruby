@@ -17,7 +17,7 @@ class MainController < ApplicationController
   before_action :set_view_paths
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  after_action  :track_ahoy_visit
+  after_action  :track_ahoy_event, if: :ahoy_web_tracking_enabled?
 
   # Strong params config for Devise
   # rubocop:disable Layout/MultilineArrayLineBreaks
@@ -71,7 +71,7 @@ class MainController < ApplicationController
 
     return admin_path if resource.can? :view_admin_area
 
-    return shiny_profiles.profile_path( resource.username ) if feature_enabled?( :profile_pages )
+    return shiny_profiles.profile_path( resource.username ) if feature_enabled?( :user_profiles )
 
     root_path
   end
@@ -104,9 +104,12 @@ class MainController < ApplicationController
     request.referer.present? && request.referer != new_user_session_url
   end
 
-  # Track all actions with Ahoy
-  def track_ahoy_visit
-    ahoy.track 'Ran action', request.path_parameters
+  def ahoy_web_tracking_enabled?
+    FeatureFlag.enabled? :ahoy_web_tracking
+  end
+
+  def track_ahoy_event
+    ahoy.track "#{controller_name}: #{action_name}", request.path_parameters
   end
 
   def feeds_base_url

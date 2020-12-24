@@ -18,11 +18,14 @@
 * [User accounts](Features/MainApp/UserAccounts.md)
 * [Admin features](Features/MainApp/admin-features.md)
 
-* Basic CMS features ('brochure sites')
+* Basic CMS features
     * [Pages](Features/Plugins/ShinyPages.md)
     * [Inserts](Features/Plugins/ShinyInserts.md)
     * [Form handlers](Features/Plugins/ShinyForms.md)
     * [Search](Features/Plugins/ShinySearch.md)
+
+* Advanced CMS features
+    * [Access control](Features/Plugins/ShinyAccess.md)
 
 * Post regular updates
     * [Blog](Features/Plugins/ShinyBlog.md)
@@ -49,10 +52,14 @@
 
 * [MJML email templates](Features/MainApp/mjml.md)
 
+* [Rake tasks](rake-tasks.md)
+
 
 ## Contributing to ShinyCMS (developer documentation)
 
-* [Index](Developers/Contributing.md)
+* [Index](Developers/index.md)
+
+* [Contributing](Contributing.md)
 
 * [Project goals](Developers/ProjectGoals.md)
 
@@ -68,6 +75,8 @@
 ## Other
 
 * [Credits](credits.md)
+
+* [Release notes](release-notes.md)
 
 * [Licensing](Licensing/index.md)
     * [GPL v2](Licensing/gnu-gpl-v2.0.md)

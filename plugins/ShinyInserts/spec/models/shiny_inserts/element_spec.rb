@@ -11,12 +11,12 @@ require 'rails_helper'
 # Tests for insert elements
 module ShinyInserts
   RSpec.describe Element, type: :model do
-    context 'concerns' do
-      it_should_behave_like ShinyElement do
+    describe 'concerns' do
+      it_behaves_like ShinyElement do
         let( :element ) { create :insert_element }
       end
 
-      it_should_behave_like ShinyDemoDataProvider do
+      it_behaves_like ShinyDemoDataProvider do
         let( :model ) { described_class }
       end
     end

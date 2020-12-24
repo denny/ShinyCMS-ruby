@@ -1,0 +1,14 @@
+<% section_id = text.parameterize %>
+<a name="<%= section_id %>"></a>
+<% expand ||= false %>
+<li class="c-sidebar-nav-item c-sidebar-nav-dropdown <%= 'c-show' if expand %>" id="<%= section_id %>">
+  <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#<%= section_id %>">
+    <% icon ||= false %>
+    <% if icon %><i class="cil-<%= icon %>"></i><% end %> <b><%= text %></b>
+    <% badge ||= false %>
+    <% if badge %>
+    <% badge_style ||= 'info' %>
+    <span class="badge badge-<%= badge_style %>"><%= badge %></span>
+    <% end %>
+  </a>
+  <ul class="c-sidebar-nav-dropdown-items">

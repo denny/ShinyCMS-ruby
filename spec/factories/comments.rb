@@ -22,5 +22,6 @@ FactoryBot.define do
   end
 
   factory :nested_comment, parent: :comment do
+    association :parent, factory: :top_level_comment
   end
 end

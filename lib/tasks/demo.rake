@@ -50,8 +50,8 @@ namespace :shiny do
     end
 
     task confirm: %i[ environment dotenv ] do
-      msg = 'Loading the demo site data wipes the database. Are you sure? (y/N)'
-      $stdout.puts msg
+      msg = 'Loading the demo site data wipes the database. Are you sure? (y/N) '
+      $stdout.print msg
       unless $stdin.gets.chomp.downcase.in? %w[ y yes ]
         puts 'Thank you. No action taken, database is unchanged.'
         exit
@@ -111,7 +111,11 @@ namespace :shiny do
     end
 
     def models_with_demo_data
-      models = ApplicationRecord.models_with_demo_data
+      models = [
+        'ActiveStorage::Attachment',
+        'ActiveStorage::Blob',
+        ApplicationRecord.models_with_demo_data
+      ].flatten
 
       # Have to bodge load order here to fix dependency issues
       change_insert_order( models )
@@ -124,13 +128,16 @@ namespace :shiny do
 
     def models_to_reorder
       # FIXME: can the plugins provide a load order for their models?
-      # rubocop:disable Layout/MultilineArrayLineBreaks
       %w[
-        Discussion Comment
-        ShinyPages::Page ShinyPages::PageElement
-        ShinyNewsletters::Edition ShinyNewsletters::EditionElement ShinyNewsletters::Send
+        ShinyPages::Page
+        ShinyPages::PageElement
+        ShinyNewsletters::Edition
+        ShinyNewsletters::EditionElement
+        ShinyNewsletters::Send
+        Discussion
+        Comment
+        ActiveStorage::Attachment
       ]
-      # rubocop:enable Layout/MultilineArrayLineBreaks
     end
 
     def remove_models_from_list( model_names )

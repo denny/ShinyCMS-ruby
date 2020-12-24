@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for page admin features
 RSpec.describe 'Admin: Pages', type: :request do
-  before :each do
+  before do
     admin = create :page_admin
     sign_in admin
   end
@@ -21,8 +21,8 @@ RSpec.describe 'Admin: Pages', type: :request do
       page = create :page, :hidden
       subpage = create :page_in_section
       create :page_in_section, :hidden
-      create :page_in_subsection
-      hidden_subpage = create :page_in_subsection, :hidden
+      create :page_in_nested_section
+      hidden_subpage = create :page_in_nested_section, :hidden
       hidden_section = create :page_section, :hidden
       create :page, section: hidden_section
 
@@ -111,14 +111,14 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.pages.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_pages.admin.pages.create.success' )
-      expect( response.body ).to include template.elements.first.name
-      expect( response.body ).to include template.elements.last.name
+      expect( response.body ).to have_css 'label', text:  template.elements.first.name.humanize
+      expect( response.body ).to have_css 'label', text: template.elements.last.name.humanize
     end
   end
 
   describe 'GET /admin/page/:id' do
     it 'loads the form to edit an existing page' do
-      page = create :top_level_page
+      page = create :top_level_page, :with_content
 
       get shiny_pages.edit_page_path( page )
 
@@ -127,18 +127,17 @@ RSpec.describe 'Admin: Pages', type: :request do
     end
 
     it 'shows the appropriate input type for each element type' do
-      page = create :page_with_one_of_each_element_type
+      page = create :page_with_element_type_content
 
       get shiny_pages.edit_page_path( page )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.pages.edit.title' ).titlecase
 
-      expect( response.body ).to have_field 'page[elements_attributes][4][content]',  type: 'text',     with: 'SHORT!'
-      expect( response.body ).to have_field 'page[elements_attributes][5][content]',  type: 'textarea', with: 'LONG!'
-      expect( response.body ).to have_field 'page[elements_attributes][6][content]',  type: 'select',
-                                                                                      with: 'ShinyCMS-logo.png'
-      expect( response.body ).to have_field 'page[elements_attributes][7][content]',  type: 'textarea', with: 'HTML!'
+      expect( response.body ).to have_field 'page[elements_attributes][0][image]',   type: 'file'
+      expect( response.body ).to have_field 'page[elements_attributes][1][content]', type: 'text',     with: 'SHORT!'
+      expect( response.body ).to have_field 'page[elements_attributes][2][content]', type: 'textarea', with: 'LONG!'
+      expect( response.body ).to have_field 'page[elements_attributes][3][content]', type: 'textarea', with: 'HTML!'
       cke_regex = %r{<textarea [^>]*id="(?<cke_id>page_elements_attributes_\d+_content)"[^>]*>\nHTML!</textarea>}.freeze
       matches = response.body.match cke_regex
       expect( response.body ).to include "CKEDITOR.replace('#{matches[:cke_id]}'"

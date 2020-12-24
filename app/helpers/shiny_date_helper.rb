@@ -7,17 +7,27 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Useful methods for displaying/saving dates and times
+# TODO: FIXME: all the timezone-related code in here is wrong and needs replacing :)
 module ShinyDateHelper
   def display_date_at_time( timestamp )
     return unless timestamp.is_a? Time
 
-    date = timestamp.localtime.to_s :shinydate
+    date = timestamp.localtime.to_s :shinydate_with_day
     time = timestamp.localtime.to_s :time
 
     I18n.t( 'shiny_date_helper.date_at_time', time: time, date: date )
   end
 
   def display_time_on_date( timestamp )
+    return unless timestamp.is_a? Time
+
+    date = timestamp.localtime.to_s :shinydate_with_day
+    time = timestamp.localtime.to_s :time
+
+    I18n.t( 'shiny_date_helper.time_on_date', time: time, date: date )
+  end
+
+  def display_time_on_date_no_day( timestamp )
     return unless timestamp.is_a? Time
 
     date = timestamp.localtime.to_s :shinydate
@@ -29,7 +39,7 @@ module ShinyDateHelper
   def display_date( timestamp )
     return unless timestamp.is_a? Time
 
-    timestamp.localtime.to_s :shinydate
+    timestamp.localtime.to_s :shinydate_with_day
   end
 
   def display_time( timestamp )

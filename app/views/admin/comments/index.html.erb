@@ -2,7 +2,7 @@
 
 <%= render partial: 'admin/includes/search', locals: { placeholder: t( '.search' ) } %>
 
-<%= form_for 'spam_comments', method: :put do |f| %>
+<%= form_for 'spam_comments', url: comments_path, method: :put do |f| %>
 <table class="table table-responsive-sm table-striped">
   <tbody>
     <% @comments.each do |comment| %>
@@ -16,10 +16,10 @@
           at <%= display_time_on_date( comment.posted_at ) %>
           <% if comment.author&.website&.present? %> - <%= comment.author.website %><% end %>
         </small>
-        <% if comment.title.present? %>
+        <% if comment.title? %>
           <br><%= comment.title %>
         <% end %>
-        <% if comment.body.present? %>
+        <% if comment.body? %>
           <br><%= truncate( comment.body, length: 450, separator: ' ' ) %>
         <% end %>
       </td>

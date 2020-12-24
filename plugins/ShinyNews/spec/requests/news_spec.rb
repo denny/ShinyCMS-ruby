@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'News', type: :request do
-  before :each do
+  before do
     FeatureFlag.enable :news
   end
 
@@ -51,10 +51,8 @@ RSpec.describe 'News', type: :request do
 
       get shiny_news.view_news_path
 
-      no_posts = I18n.t( 'helpers.page_entries_info.one_page.display_entries', entry_name: 'posts', count: 0 )
-
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css 'p', text: no_posts
+      expect( response.body ).to have_css 'p', text: I18n.t( 'empty_list', items: 'news posts' )
     end
   end
 
