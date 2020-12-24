@@ -28,6 +28,11 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
             * Look at Combustion, for minimal test apps for gems: https://github.com/pat/combustion
             * List ShinyBlog on https://www.ruby-toolbox.com/categories/Blog_Engines
 
+* Themes
+    * Webpacker config
+        * Currently themes with JavaScript need an entry point file at `/app/javascript/packs/{theme-name}.js`, which seems messy and wrong
+        * Theme JavaScript is currently in `/themes/javascript/theme_name` - ideally it would be in `/themes/theme_name/javascript`
+
 * Algolia search backend: https://devcenter.heroku.com/articles/algoliasearch#using-with-rails
     * NB: Not free to non-commercial sites using the CMS :(
     * Breaking news from Bundler: A new major version is available for Algolia! Please now use the https://rubygems.org/gems/algolia gem to get the latest features.
