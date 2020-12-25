@@ -164,7 +164,7 @@ GEM
       zeitwerk (~> 2.3)
     acts-as-taggable-on (5.0.0)
       activerecord (>= 4.2.8)
-    acts_as_list (1.0.2)
+    acts_as_list (1.0.3)
       activerecord (>= 4.2)
     acts_as_paranoid (0.7.0)
       activerecord (>= 5.2, < 7.0)
@@ -216,8 +216,6 @@ GEM
     bootsnap (1.5.1)
       msgpack (~> 1.0)
     brakeman (4.10.0)
-    bugsnag (6.18.0)
-      concurrent-ruby (~> 1.0)
     builder (3.2.4)
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
@@ -587,7 +585,6 @@ DEPENDENCIES
   blazer (= 2.3.1)!
   bootsnap (>= 1.4.2)!
   brakeman!
-  bugsnag!
   bundler-audit!
   capybara (>= 2.15)!
   chartkick (~> 3.4.2)!
