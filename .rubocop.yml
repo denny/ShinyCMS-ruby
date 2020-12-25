@@ -179,6 +179,8 @@ Style/MissingElse:
 # Enabling these leads to less readable code in my opinion
 Layout/MultilineMethodArgumentLineBreaks:
   Enabled: false
+Layout/SpaceBeforeBrackets:
+  Enabled: false
 Lint/ConstantResolution:
   Enabled: false
 Style/MethodCallWithArgsParentheses:
