@@ -12,7 +12,7 @@ version: 2
 
 references:
   app: &app
-    image: circleci/ruby:3.0.0-node
+    image: cimg/ruby:3.0.0-node
     environment:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
