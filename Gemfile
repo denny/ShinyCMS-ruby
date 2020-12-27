@@ -60,7 +60,9 @@ source 'https://rubygems.org' do
   # User authentication
   gem 'devise'
   # Sessions
-  gem 'activerecord-session_store'
+  # FIXME: temporarily installing from GitHub to pick up an unreleased fix for Ruby 3.0.0
+  # gem 'activerecord-session_store'
+  gem 'activerecord-session_store', git: 'https://github.com/rails/activerecord-session_store'
   # Stronger password encryption
   gem 'bcrypt', '~> 3.1.16'
   # Check user passwords against known data leaks
@@ -104,6 +106,9 @@ source 'https://rubygems.org' do
   gem 'kaminari'
   # Allow passing route helpers (for Rails engines) into pagination blocks
   gem 'kaminari_route_prefix'
+
+  # Generate Atom feeds
+  gem 'rss'
 
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'

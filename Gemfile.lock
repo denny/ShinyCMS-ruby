@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/rails/activerecord-session_store
+  revision: f188efbc49a522123cc8acc805143824176d01c1
+  specs:
+    activerecord-session_store (1.1.3)
+      actionpack (>= 5.2)
+      activerecord (>= 5.2)
+      multi_json (~> 1.11, >= 1.11.2)
+      rack (>= 2.0.0, < 3)
+      railties (>= 5.2)
+
 PATH
   remote: plugins/ShinyAccess
   specs:
@@ -143,12 +154,6 @@ GEM
     activerecord (6.1.0)
       activemodel (= 6.1.0)
       activesupport (= 6.1.0)
-    activerecord-session_store (1.1.3)
-      actionpack (>= 4.0)
-      activerecord (>= 4.0)
-      multi_json (~> 1.11, >= 1.11.2)
-      rack (>= 1.5.2, < 3)
-      railties (>= 4.0)
     activestorage (6.1.0)
       actionpack (= 6.1.0)
       activejob (= 6.1.0)
@@ -216,8 +221,6 @@ GEM
     bootsnap (1.5.1)
       msgpack (~> 1.0)
     brakeman (4.10.1)
-    bugsnag (6.18.0)
-      concurrent-ruby (~> 1.0)
     builder (3.2.4)
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
@@ -241,13 +244,15 @@ GEM
       rails (>= 5.0, < 6.2.0)
     code_analyzer (0.5.2)
       sexp_processor
-    codecov (0.2.15)
-      simplecov (>= 0.15, < 0.21)
+    codecov (0.2.12)
+      json
+      simplecov
     coderay (1.1.3)
     colorize (0.8.1)
     concurrent-ruby (1.1.7)
     connection_pool (2.2.3)
-    crack (0.4.4)
+    crack (0.4.5)
+      rexml
     crass (1.0.6)
     database_cleaner (1.8.5)
     database_cleaner-active_record (1.8.0)
@@ -282,9 +287,9 @@ GEM
       railties (>= 5.0.0)
     faker (2.15.1)
       i18n (>= 1.6, < 2)
-    fasterer (0.8.3)
+    fasterer (0.7.1)
       colorize (~> 0.7)
-      ruby_parser (>= 3.14.1)
+      ruby_parser (>= 3.13.0)
     ffi (1.14.2)
     geocoder (1.6.4)
     globalid (0.4.2)
@@ -461,17 +466,19 @@ GEM
     rspec-mocks (3.10.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
-    rspec-rails (4.0.1)
+    rspec-rails (4.0.2)
       actionpack (>= 4.2)
       activesupport (>= 4.2)
       railties (>= 4.2)
-      rspec-core (~> 3.9)
-      rspec-expectations (~> 3.9)
-      rspec-mocks (~> 3.9)
-      rspec-support (~> 3.9)
+      rspec-core (~> 3.10)
+      rspec-expectations (~> 3.10)
+      rspec-mocks (~> 3.10)
+      rspec-support (~> 3.10)
     rspec-support (3.10.0)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
+    rss (0.2.9)
+      rexml
     rubocop (1.7.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.5)
@@ -587,7 +594,6 @@ DEPENDENCIES
   blazer (= 2.3.1)!
   bootsnap (>= 1.4.2)!
   brakeman!
-  bugsnag!
   bundler-audit!
   capybara (>= 2.15)!
   chartkick (~> 3.4.2)!
@@ -624,6 +630,7 @@ DEPENDENCIES
   recaptcha!
   rspec-rails!
   rspec_junit_formatter!
+  rss!
   rubocop!
   rubocop-performance!
   rubocop-rails!

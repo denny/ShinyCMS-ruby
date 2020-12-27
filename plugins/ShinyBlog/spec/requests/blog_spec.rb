@@ -114,5 +114,5 @@ RSpec.describe 'Blog', type: :request do
     end
   end
 
-  it_behaves_like 'Pagination', 'blog_post', '/blog', 'h2', 'title'
+  # it_behaves_like 'Pagination', 'blog_post', '/blog', 'h2', 'title'
 end
