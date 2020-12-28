@@ -11,7 +11,6 @@ module ShinyForms
   class Form < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyName
-    include ShinyPaging
     include ShinySlug
     include ShinySoftDelete
 

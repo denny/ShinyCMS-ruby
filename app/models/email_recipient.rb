@@ -11,7 +11,6 @@
 class EmailRecipient < ApplicationRecord
   include ShinyDemoDataProvider
   include ShinyEmail
-  include ShinyPaging
   include ShinySoftDelete
   include ShinyToken
 
