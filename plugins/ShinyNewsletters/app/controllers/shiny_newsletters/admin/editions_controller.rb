@@ -13,7 +13,7 @@ module ShinyNewsletters
 
     def index
       authorize Edition
-      @editions = Edition.page( page_number ).per( items_per_page )
+      @pagy, @editions = pagy( Edition.order( updated_at: :desc ), items: items_per_page )
       authorize @editions if @editions.present?
     end
 
@@ -21,11 +21,12 @@ module ShinyNewsletters
       authorize Edition
 
       q = params[:q]
-      @editions = Edition.where( 'internal_name ilike ?', "%#{q}%" )
-                         .or( Edition.where( 'public_name ilike ?', "%#{q}%" )
-                         .or( Edition.where( 'description ilike ?', "%#{q}%" ) ) )
-                         .order( updated_at: :desc )
-                         .page( page_number ).per( items_per_page )
+      @pagy, @editions = pagy(
+        Edition.where( 'internal_name ilike ?', "%#{q}%" )
+               .or( Edition.where( 'public_name ilike ?', "%#{q}%" )
+               .or( Edition.where( 'description ilike ?', "%#{q}%" ) ) )
+               .order( updated_at: :desc ), items: items_per_page
+      )
 
       authorize @editions if @editions.present?
       render :index

@@ -22,13 +22,13 @@ module ShinyNewsletters
       @scheduled = Send.scheduled if page_number == 1
       authorize @scheduled if @scheduled.present?
 
-      @sends = Send.unscheduled.page( page_number ).per( items_per_page )
+      @pagy, @sends = pagy( Send.unscheduled, items: items_per_page )
       authorize @sends if @sends.present?
     end
 
     def sent
       authorize Send
-      @sent = Send.sent.recent.page( page_number ).per( items_per_page )
+      @pagy, @sent = pagy( Send.sent, items: items_per_page )
       authorize @sent if @sent.present?
     end
 
@@ -36,10 +36,11 @@ module ShinyNewsletters
       authorize Send
 
       q = params[:q]
-      @sends = Send.where( 'date(started_sending_at) = ?', q )
-                   .or( Send.where( 'date(finished_sending_at) = ?', q ) )
-                   .order( sent_at: :desc )
-                   .page( page_number ).per( items_per_page )
+      @pagy, @sends = pagy(
+        Send.where( 'date(started_sending_at) = ?', q )
+            .or( Send.where( 'date(finished_sending_at) = ?', q ) )
+            .order( sent_at: :desc ), items: items_per_page
+      )
 
       authorize @sends if @sends.present?
       render :index
