@@ -8,6 +8,8 @@
 
 # Controller for users section of ShinyCMS admin area
 class Admin::UsersController < AdminController
+  helper_method :pagy_url_for
+
   def index
     authorize User
     @pagy, @users = pagy( User.order( :username ), items: items_per_page )
@@ -91,5 +93,11 @@ class Admin::UsersController < AdminController
       :profile_pic, :bio, :website, :location, :postcode, :admin_notes,
       capabilities: {}
     )
+  end
+
+  # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+  def pagy_url_for( page, _pagy )
+    params = request.query_parameters.merge( only_path: true, page: page )
+    url_for( params )
   end
 end

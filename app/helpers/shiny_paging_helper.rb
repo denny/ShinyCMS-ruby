@@ -11,13 +11,6 @@ module ShinyPagingHelper
   include Pagy::Frontend
   include Pagy::Backend
 
-  # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
-  def pagy_url_for( page, _pagy )
-    params = request.query_parameters.merge( only_path: true )
-    params = params.merge( page: page ) unless page == 1
-    url_for( params )
-  end
-
   def page_number
     return 1 if params[:page].blank?
     return 1 if params[:page].match?( /\D/ )

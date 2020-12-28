@@ -8,6 +8,8 @@
 
 # Controller for viewing email stats in ShinyCMS admin area
 class Admin::EmailStatsController < AdminController
+  helper_method :pagy_url_for
+
   def index
     authorize Ahoy::Message
 
@@ -54,5 +56,11 @@ class Admin::EmailStatsController < AdminController
 
   def email_recipient
     EmailRecipient.find( params[ :recipient_id ] )
+  end
+
+  # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+  def pagy_url_for( page, _pagy )
+    params = request.query_parameters.merge( only_path: true, page: page )
+    url_for( params )
   end
 end

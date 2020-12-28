@@ -10,6 +10,8 @@
 class Admin::ConsentVersionsController < AdminController
   before_action :stash_consent_version, only: %i[ show edit update destroy ]
 
+  helper_method :pagy_url_for
+
   def index
     authorize ConsentVersion
 
@@ -84,5 +86,11 @@ class Admin::ConsentVersionsController < AdminController
 
   def consent_version_params
     params.require( :consent_version ).permit( :name, :slug, :display_text, :admin_notes )
+  end
+
+  # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+  def pagy_url_for( page, _pagy )
+    params = request.query_parameters.merge( only_path: true, page: page )
+    url_for( params )
   end
 end
