@@ -14,7 +14,7 @@ module ShinyNews
     before_action :check_feature_flags
 
     def index
-      @posts = Post.readonly.recent.page( page_number ).per( items_per_page )
+      @pagy, @posts = pagy( Post.readonly.recent, items: items_per_page )
     end
 
     def month
