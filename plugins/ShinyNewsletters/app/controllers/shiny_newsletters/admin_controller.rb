@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyNewsletters
-  # Base controller for ewsletter features in admin area - part of ShinyNewsletters plugin for ShinyCMS
+  # Base controller for Newsletter admin features - part of ShinyNewsletters plugin for ShinyCMS
   # Inherits from ShinyCMS AdminController
   class AdminController < ::AdminController
     helper Rails.application.routes.url_helpers
