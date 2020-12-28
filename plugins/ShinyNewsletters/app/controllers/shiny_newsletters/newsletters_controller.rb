@@ -11,6 +11,8 @@ module ShinyNewsletters
   class NewslettersController < MainController
     include ShinyPagingHelper
 
+    helper_method :pagy_url_for
+
     def index
       authenticate_user! unless params[:token]
 
@@ -44,6 +46,12 @@ module ShinyNewsletters
       newsletters_sent_to_subscribed_lists.sent_in_month( params[:year].to_i, params[:month].to_i ).each do |sent|
         return sent if sent.edition.slug == params[:slug]
       end
+    end
+
+    # Override pager link format (to newsletters/page/NN rather than newsletters?page=NN)
+    def pagy_url_for( page, _pagy )
+      params = request.query_parameters.merge( only_path: true, page: page )
+      url_for( params )
     end
   end
 end

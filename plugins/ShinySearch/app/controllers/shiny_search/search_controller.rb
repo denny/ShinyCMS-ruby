@@ -18,6 +18,8 @@ module ShinySearch
     SEARCH_BACKENDS = %w[ algolia pg ].freeze
     private_constant :SEARCH_BACKENDS
 
+    helper_method :pagy_url_for
+
     def index
       return unless @query
 
@@ -71,6 +73,12 @@ module ShinySearch
 
     def check_feature_flags
       enforce_feature_flags :search
+    end
+
+    # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+    def pagy_url_for( page, _pagy )
+      params = request.query_parameters.merge( only_path: true, page: page )
+      url_for( params )
     end
   end
 end

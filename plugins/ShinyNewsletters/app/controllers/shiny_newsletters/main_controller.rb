@@ -11,15 +11,5 @@ module ShinyNewsletters
   # Inherits from ShinyCMS MainController
   class MainController < ::MainController
     helper Rails.application.routes.url_helpers
-
-    helper_method :pagy_url_for
-
-    private
-
-    # Override pager link format (to newsletters/page/NN rather than newsletters?page=NN)
-    def pagy_url_for( page, _pagy )
-      params = request.query_parameters.merge( only_path: true, page: page )
-      url_for( params )
-    end
   end
 end
