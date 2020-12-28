@@ -11,13 +11,6 @@ module ShinyPagingHelper
   include Pagy::Frontend
   include Pagy::Backend
 
-  def page_number
-    return 1 if params[:page].blank?
-    return 1 if params[:page].match?( /\D/ )
-
-    params[:page].to_i
-  end
-
   def items_per_page
     items = params[:items].presence || params[:count].presence || params[:per].presence
 

@@ -19,7 +19,7 @@ module ShinyNewsletters
       @sending = Send.sending
       authorize @sending if @sending.present?
 
-      @scheduled = Send.scheduled if page_number == 1
+      @scheduled = Send.scheduled if viewing_first_page?
       authorize @scheduled if @scheduled.present?
 
       @pagy, @sends = pagy( Send.unscheduled, items: items_per_page )
@@ -116,6 +116,10 @@ module ShinyNewsletters
     end
 
     private
+
+    def viewing_first_page?
+      params[:page] == 1 || params[:page].blank?
+    end
 
     def strong_params
       temp_params = params.require( :send ).permit( :edition_id, :list_id, :send_at, :send_at_time, :send_now )
