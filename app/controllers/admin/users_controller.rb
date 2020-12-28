@@ -10,9 +10,7 @@
 class Admin::UsersController < AdminController
   def index
     authorize User
-
     @pagy, @users = pagy( User.order( :username ), items: items_per_page )
-
     authorize @users if @users.present?
   end
 

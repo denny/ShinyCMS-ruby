@@ -13,8 +13,7 @@ class Admin::ConsentVersionsController < AdminController
   def index
     authorize ConsentVersion
 
-    page_num = params[ :page ] || 1
-    @consent_versions = ConsentVersion.order( updated_at: :desc ).page( page_num )
+    @pagy, @consent_versions = pagy( ConsentVersion.order( updated_at: :desc ), items: items_per_page )
 
     authorize @consent_versions if @consent_versions.present?
   end
@@ -23,10 +22,11 @@ class Admin::ConsentVersionsController < AdminController
     authorize ConsentVersion
 
     q = params[:q]
-    @consent_versions = ConsentVersion.where( 'name ilike ?', "%#{q}%" )
-                                      .or( ConsentVersion.where( 'slug ilike ?', "%#{q}%" ) )
-                                      .order( updated_at: :desc )
-                                      .page( page_number ).per( items_per_page )
+    @pagy, @consent_versions = pagy(
+      ConsentVersion.where( 'name ilike ?', "%#{q}%" )
+                    .or( ConsentVersion.where( 'slug ilike ?', "%#{q}%" ) )
+                    .order( updated_at: :desc ), items: items_per_page
+    )
 
     authorize @consent_versions if @consent_versions.present?
     render :index

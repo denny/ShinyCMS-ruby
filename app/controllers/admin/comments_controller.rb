@@ -15,7 +15,7 @@ class Admin::CommentsController < AdminController
   # Display spam comment moderation page
   def index
     authorize Comment
-    @comments = Comment.spam.page( page_number )
+    @pagy, @comments = pagy( Comment.spam.page( page_number ), items: items_per_page )
     authorize @comments if @comments.present?
   end
 
@@ -23,10 +23,11 @@ class Admin::CommentsController < AdminController
     authorize Comment
 
     q = params[:q]
-    @comments = Comment.spam.where( 'title ilike ?', "%#{q}%" )
-                       .or( Comment.spam.where( 'body ilike ?', "%#{q}%" ) )
-                       .order( posted_at: :desc )
-                       .page( page_number ).per( items_per_page )
+    @pagy, @comments = pagy(
+      Comment.spam.where( 'title ilike ?', "%#{q}%" )
+             .or( Comment.spam.where( 'body ilike ?', "%#{q}%" ) )
+             .order( posted_at: :desc ), items: items_per_page
+    )
 
     authorize @comments if @comments.present?
     render :index

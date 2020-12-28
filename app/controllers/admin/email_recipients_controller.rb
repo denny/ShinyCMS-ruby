@@ -10,7 +10,7 @@
 class Admin::EmailRecipientsController < AdminController
   def index
     authorize EmailRecipient
-    @recipients = EmailRecipient.page( page_number ).per( items_per_page )
+    @pagy, @recipients = pagy( EmailRecipient.order( updated_at: :desc ), items: items_per_page )
     authorize @recipients
   end
 
@@ -18,10 +18,11 @@ class Admin::EmailRecipientsController < AdminController
     authorize EmailRecipient
 
     q = params[:q]
-    @recipients = EmailRecipient.where( 'email ilike ?', "%#{q}%" )
-                                .or( EmailRecipient.where( 'name ilike ?', "%#{q}%" ) )
-                                .order( updated_at: :desc )
-                                .page( page_number ).per( items_per_page )
+    @pagy, @recipients = pagy(
+      EmailRecipient.where( 'email ilike ?', "%#{q}%" )
+                    .or( EmailRecipient.where( 'name ilike ?', "%#{q}%" ) )
+                    .order( updated_at: :desc ), items: items_per_page
+    )
 
     authorize @recipients if @recipients.present?
     render :index

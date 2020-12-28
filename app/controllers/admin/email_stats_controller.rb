@@ -15,7 +15,7 @@ class Admin::EmailStatsController < AdminController
     messages = messages_to_user      if params[ :user_id ]
     messages = messages_to_recipient if params[ :recipient_id ]
 
-    @messages = messages.page( page_number ).per( items_per_page )
+    @pagy, @messages = pagy( messages, items: items_per_page )
 
     authorize @messages if @messages.present?
   end
@@ -24,10 +24,11 @@ class Admin::EmailStatsController < AdminController
     authorize Ahoy::Message
 
     q = params[:q]
-    @messages = Ahoy::Message.where( 'mailer ilike ?', "%#{q}%" )
-                             .or( Ahoy::Message.where( 'subject ilike ?', "%#{q}%" ) )
-                             .order( sent_at: :desc )
-                             .page( page_number ).per( items_per_page )
+    @pagy, @messages = pagy(
+      Ahoy::Message.where( 'mailer ilike ?', "%#{q}%" )
+                   .or( Ahoy::Message.where( 'subject ilike ?', "%#{q}%" ) )
+                   .order( sent_at: :desc ), items: items_per_page
+    )
 
     authorize @messages if @messages.present?
     render :index
