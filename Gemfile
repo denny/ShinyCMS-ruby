@@ -101,6 +101,8 @@ source 'https://rubygems.org' do
   gem 'acts_as_votable'
 
   # Pagination
+  gem 'pagy'
+  # Pagination
   gem 'kaminari'
   # Allow passing route helpers (for Rails engines) into pagination blocks
   gem 'kaminari_route_prefix'

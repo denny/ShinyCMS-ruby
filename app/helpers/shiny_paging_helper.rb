@@ -8,6 +8,16 @@
 
 # Methods to help with paging
 module ShinyPagingHelper
+  include Pagy::Frontend
+  include Pagy::Backend
+
+  # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+  def pagy_url_for( page, _pagy )
+    params = request.query_parameters.merge( only_path: true )
+    params = params.merge( page: page ) unless page == 1
+    url_for( params )
+  end
+
   def page_number
     return 1 if params[:page].blank?
     return 1 if params[:page].match?( /\D/ )
@@ -16,11 +26,11 @@ module ShinyPagingHelper
   end
 
   def items_per_page
-    count = params[:count].presence || params[:size].presence || params[:per].presence
+    items = params[:items].presence || params[:count].presence || params[:per].presence
 
-    return default_items_per_page if count.blank?
-    return default_items_per_page if count.match?( /\D/ )
+    return default_items_per_page if items.blank?
+    return default_items_per_page if items.match?( /\D/ )
 
-    count.to_i
+    items.to_i
   end
 end

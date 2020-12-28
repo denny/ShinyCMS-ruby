@@ -14,6 +14,10 @@
 
 * acts-as-taggable-on downgraded from 6.5.0 to 5.0.0 to get it to install
 
+### Ruby 3.0.0 issues
+
+* Kaminari pagination is b0rked; assess alternatives
+
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
