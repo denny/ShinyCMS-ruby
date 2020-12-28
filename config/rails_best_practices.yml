@@ -34,8 +34,8 @@
 # Ignored file contains a data migration, not seed data
 IsolateSeedDataCheck: { ignored_files: 'db/migrate/20201004150130_change_comment_author_to_polymorphic\.rb' }
 
-# Ignoring user capability checks in admin menus, and paginator partial checking page details
-MoveCodeIntoModelCheck: { use_count: 2, ignored_files: [ 'app/views(/\w+)?/admin/menu/\w+\.html\.erb', 'app/views/admin/kaminari/_paginator\.html\.erb' ] }
+# Ignoring user capability checks in admin menus
+MoveCodeIntoModelCheck: { use_count: 2, ignored_files: [ 'app/views(/\w+)?/admin/menu/\w+\.html\.erb' ] }
 
 # Exceptions are:
 # - the method used to control access to Blazer (set in config/blazer.yml)
