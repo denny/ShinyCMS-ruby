@@ -2,7 +2,11 @@ PATH
   remote: plugins/ShinyAccess
   specs:
     shiny_access (20.12)
+      acts-as-taggable-on
+      acts_as_paranoid
+      pagy
       pg (~> 1.2.3)
+      pundit
       rails (~> 6.1.0)
 
 PATH
@@ -12,7 +16,7 @@ PATH
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
-      kaminari
+      pagy
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.0)
@@ -22,7 +26,7 @@ PATH
   specs:
     shiny_forms (20.12)
       acts_as_paranoid
-      kaminari
+      pagy
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.0)
@@ -33,7 +37,7 @@ PATH
     shiny_inserts (20.12)
       acts_as_paranoid
       ckeditor
-      kaminari
+      pagy
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.0)
@@ -43,7 +47,7 @@ PATH
   specs:
     shiny_lists (20.12)
       acts_as_paranoid
-      kaminari
+      pagy
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.0)
@@ -55,7 +59,7 @@ PATH
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
-      kaminari
+      pagy
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.0)
@@ -64,7 +68,11 @@ PATH
   remote: plugins/ShinyNewsletters
   specs:
     shiny_newsletters (20.12)
+      acts_as_paranoid
+      ckeditor
+      pagy
       pg (~> 1.2.3)
+      pundit
       rails (~> 6.1.0)
 
 PATH
@@ -73,7 +81,7 @@ PATH
     shiny_pages (20.12)
       acts_as_paranoid
       ckeditor
-      kaminari
+      pagy
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.0)
@@ -82,16 +90,24 @@ PATH
   remote: plugins/ShinyProfiles
   specs:
     shiny_profiles (20.12)
+      acts_as_paranoid
+      pagy
       pg (~> 1.2.3)
+      pundit
       rails (~> 6.1.0)
 
 PATH
   remote: plugins/ShinySearch
   specs:
     shiny_search (20.12)
+      acts-as-taggable-on
+      acts_as_paranoid
       algoliasearch-rails
+      ckeditor
+      pagy
       pg (~> 1.2.3)
       pg_search
+      pundit
       rails (~> 6.1.0)
 
 GEM
@@ -315,20 +331,6 @@ GEM
     iniparse (1.5.0)
     jmespath (1.4.0)
     json (2.5.1)
-    kaminari (1.2.1)
-      activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.2.1)
-      kaminari-activerecord (= 1.2.1)
-      kaminari-core (= 1.2.1)
-    kaminari-actionview (1.2.1)
-      actionview
-      kaminari-core (= 1.2.1)
-    kaminari-activerecord (1.2.1)
-      activerecord
-      kaminari-core (= 1.2.1)
-    kaminari-core (1.2.1)
-    kaminari_route_prefix (0.1.1)
-      kaminari (~> 1.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -606,8 +608,6 @@ DEPENDENCIES
   groupdate!
   i18n-tasks (~> 0.9.33)!
   image_processing (~> 1.12)!
-  kaminari!
-  kaminari_route_prefix!
   letter_opener_web (~> 1.0)!
   listen (>= 3.0.5, < 3.4)!
   mini_magick!

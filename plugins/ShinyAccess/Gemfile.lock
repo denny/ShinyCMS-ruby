@@ -2,7 +2,11 @@ PATH
   remote: .
   specs:
     shiny_access (20.12)
+      acts-as-taggable-on
+      acts_as_paranoid
+      pagy
       pg (~> 1.2.3)
+      pundit
       rails (~> 6.1.0)
 
 GEM
@@ -67,6 +71,11 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    acts-as-taggable-on (5.0.0)
+      activerecord (>= 4.2.8)
+    acts_as_paranoid (0.7.0)
+      activerecord (>= 5.2, < 7.0)
+      activesupport (>= 5.2, < 7.0)
     builder (3.2.4)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
@@ -98,7 +107,10 @@ GEM
     nio4r (2.5.4)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
+    pagy (3.10.0)
     pg (1.2.3)
+    pundit (2.1.0)
+      activesupport (>= 3.0.0)
     rack (2.2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -171,4 +183,4 @@ DEPENDENCIES
   shiny_access!
 
 BUNDLED WITH
-   2.1.4
+   2.2.3
