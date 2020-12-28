@@ -52,7 +52,9 @@ class Admin::WebStatsController < AdminController
 
   # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
   def pagy_url_for( page, _pagy )
+    # :nocov:
     params = request.query_parameters.merge( only_path: true, page: page )
     url_for( params )
+    # :nocov:
   end
 end
