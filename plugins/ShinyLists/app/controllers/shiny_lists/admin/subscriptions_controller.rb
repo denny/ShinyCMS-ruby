@@ -15,8 +15,10 @@ module ShinyLists
       return if list.subscriptions.blank?
 
       # TODO: How do I order this by subscriber.email ?
-      @subscriptions = list.subscriptions.recent.order( Arel.sql( 'unsubscribed_at is null' ) )
-                           .page( page_number ).per( items_per_page )
+      @pagy, @subscriptions = pagy(
+        list.subscriptions.recent.order( Arel.sql( 'unsubscribed_at is null' ) ),
+        items: items_per_page
+      )
 
       authorize @subscriptions
     end
@@ -25,10 +27,11 @@ module ShinyLists
       authorize Subscription
 
       q = params[:q]
-      @subscriptions = subscriptions.where( 'date(subscribed_at) = ?', q )
-                                    .or( subscriptions.where( 'date(unsubscribed_at) = ?', q ) )
-                                    .order( subscribed_at: :desc )
-                                    .page( page_number ).per( items_per_page )
+      @pagy, @subscriptions = pagy(
+        subscriptions.where( 'date(subscribed_at) = ?', q )
+                     .or( subscriptions.where( 'date(unsubscribed_at) = ?', q ) )
+                     .order( subscribed_at: :desc ), items: items_per_page
+      )
 
       authorize @subscriptions if @subscriptions.present?
       render :index

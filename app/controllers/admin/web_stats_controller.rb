@@ -8,13 +8,15 @@
 
 # Controller for viewing web stats in ShinyCMS admin area
 class Admin::WebStatsController < AdminController
+  helper_method :pagy_url_for
+
   def index
     authorize Ahoy::Visit
 
     visits = ahoy_visits
     visits = visits_by_user if params[ :user_id ]
 
-    @visits = visits.page( page_number ).per( items_per_page )
+    @pagy, @visits = pagy( visits, items: items_per_page )
 
     authorize @visits if @visits.present?
   end
@@ -24,10 +26,11 @@ class Admin::WebStatsController < AdminController
 
     q = params[:q]
 
-    @visits = Ahoy::Visit.where( 'referrer ilike ?', "%#{q}%" )
-                         .or( Ahoy::Visit.where( 'landing_page ilike ?', "%#{q}%" ) )
-                         .order( started_at: :desc )
-                         .page( page_number ).per( items_per_page )
+    @pagy, @visits = pagy(
+      Ahoy::Visit.where( 'referrer ilike ?', "%#{q}%" )
+                 .or( Ahoy::Visit.where( 'landing_page ilike ?', "%#{q}%" ) )
+                 .order( started_at: :desc ), items: items_per_page
+    )
 
     authorize @visits if @visits.present?
     render :index
@@ -45,5 +48,13 @@ class Admin::WebStatsController < AdminController
 
   def user
     User.find( params[ :user_id ] )
+  end
+
+  # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+  def pagy_url_for( page, _pagy )
+    # :nocov:
+    params = request.query_parameters.merge( only_path: true, page: page )
+    url_for( params )
+    # :nocov:
   end
 end

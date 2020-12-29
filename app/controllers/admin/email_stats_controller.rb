@@ -8,6 +8,8 @@
 
 # Controller for viewing email stats in ShinyCMS admin area
 class Admin::EmailStatsController < AdminController
+  helper_method :pagy_url_for
+
   def index
     authorize Ahoy::Message
 
@@ -15,7 +17,7 @@ class Admin::EmailStatsController < AdminController
     messages = messages_to_user      if params[ :user_id ]
     messages = messages_to_recipient if params[ :recipient_id ]
 
-    @messages = messages.page( page_number ).per( items_per_page )
+    @pagy, @messages = pagy( messages, items: items_per_page )
 
     authorize @messages if @messages.present?
   end
@@ -24,10 +26,11 @@ class Admin::EmailStatsController < AdminController
     authorize Ahoy::Message
 
     q = params[:q]
-    @messages = Ahoy::Message.where( 'mailer ilike ?', "%#{q}%" )
-                             .or( Ahoy::Message.where( 'subject ilike ?', "%#{q}%" ) )
-                             .order( sent_at: :desc )
-                             .page( page_number ).per( items_per_page )
+    @pagy, @messages = pagy(
+      Ahoy::Message.where( 'mailer ilike ?', "%#{q}%" )
+                   .or( Ahoy::Message.where( 'subject ilike ?', "%#{q}%" ) )
+                   .order( sent_at: :desc ), items: items_per_page
+    )
 
     authorize @messages if @messages.present?
     render :index
@@ -53,5 +56,13 @@ class Admin::EmailStatsController < AdminController
 
   def email_recipient
     EmailRecipient.find( params[ :recipient_id ] )
+  end
+
+  # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+  def pagy_url_for( page, _pagy )
+    # :nocov:
+    params = request.query_parameters.merge( only_path: true, page: page )
+    url_for( params )
+    # :nocov:
   end
 end

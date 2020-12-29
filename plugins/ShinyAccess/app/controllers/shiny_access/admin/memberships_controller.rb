@@ -14,16 +14,14 @@ module ShinyAccess
 
     def index
       authorize Membership
-
-      @memberships = memberships.page( page_number ).per( items_per_page )
-
+      @pagy, @memberships = pagy( memberships, items: items_per_page )
       authorize @memberships if @memberships.present?
     end
 
     def search
       authorize Membership
 
-      @memberships = search_results.page( page_number ).per( items_per_page )
+      @pagy, @memberships = pagy( search_results, items: items_per_page )
 
       authorize @memberships if @memberships.present?
       render :index

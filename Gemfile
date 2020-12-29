@@ -29,11 +29,11 @@ end
 
 # The actual Gemfile!
 source 'https://rubygems.org' do
-  # Rails 6
-  gem 'rails', '~> 6.0.3'
+  # Rails 6.1
+  gem 'rails', '~> 6.1.0'
 
-  # Database
-  gem 'pg', '>= 0.18', '< 2.0'
+  # Postgres
+  gem 'pg', '~> 1.2.3'
 
   # Webserver
   gem 'puma', '~> 5.1'
@@ -60,7 +60,9 @@ source 'https://rubygems.org' do
   # User authentication
   gem 'devise'
   # Sessions
-  gem 'activerecord-session_store'
+  # FIXME: temporarily installing from GitHub to pick up an unreleased fix for Ruby 3.0.0
+  # gem 'activerecord-session_store'
+  gem 'activerecord-session_store', git: 'https://github.com/rails/activerecord-session_store'
   # Stronger password encryption
   gem 'bcrypt', '~> 3.1.16'
   # Check user passwords against known data leaks
@@ -101,9 +103,10 @@ source 'https://rubygems.org' do
   gem 'acts_as_votable'
 
   # Pagination
-  gem 'kaminari'
-  # Allow passing route helpers (for Rails engines) into pagination blocks
-  gem 'kaminari_route_prefix'
+  gem 'pagy'
+
+  # Generate Atom feeds
+  gem 'rss'
 
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'
@@ -113,7 +116,7 @@ source 'https://rubygems.org' do
   # Web stats
   gem 'ahoy_matey'
   # Charts and dashboards
-  gem 'blazer'
+  gem 'blazer', '2.3.1'  # https://github.com/ankane/blazer/issues/315
   # Charts
   gem 'chartkick', '~> 3.4.2'
   # Date ranges
@@ -129,12 +132,12 @@ source 'https://rubygems.org' do
   # Better-looking console output
   gem 'amazing_print'
 
-  if ENV[ 'BUGSNAG_API_KEY' ]
-    # Bugsnag is an error monitoring service
-    gem 'bugsnag'
-  end
-
   group :production do
+    if ENV[ 'BUGSNAG_API_KEY' ]
+      # Bugsnag is an error monitoring service
+      gem 'bugsnag'
+    end
+
     # Fix request.ip if we're running behind Cloudflare's proxying service
     gem 'cloudflare-rails'
 
@@ -162,7 +165,7 @@ source 'https://rubygems.org' do
 
     # Utils for working with translation strings
     # gem 'i18n-debug'
-    gem 'i18n-tasks', '~> 0.9.31'
+    gem 'i18n-tasks', '~> 0.9.33'
   end
 
   group :development do

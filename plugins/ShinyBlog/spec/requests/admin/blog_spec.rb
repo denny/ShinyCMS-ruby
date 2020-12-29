@@ -39,16 +39,11 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
 
       get shiny_blog.blog_posts_path
 
-      pager_info = I18n.t(
-        'helpers.page_entries_info.more_pages.display_entries',
-        entry_name: 'posts', first: 1, last: 10, total: 12
-      ).gsub( '&nbsp;', ' ' ).gsub( /<\/?b>/, '' )
-      # WARNING: this    ^ is not a standard ASCII space :eyeroll:
-      # TODO: figure out how to match this i18n HTML fragment properly
+      pager_info = 'Displaying items 1-10 of 12 in total'  # FIXME: i18n
 
       expect( response ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
-      expect( response.body ).to have_css '#pager-info', text: pager_info
+      expect( response.body ).to have_css '.pager-info', text: pager_info
     end
 
     it 'fetches the second page of blog posts' do
@@ -56,15 +51,11 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
 
       get shiny_blog.blog_posts_path, params: { page: 2 }
 
-      pager_info = I18n.t(
-        'helpers.page_entries_info.more_pages.display_entries',
-        entry_name: 'posts', first: 11, last: 12, total: 12
-      ).gsub( '&nbsp;', ' ' ).gsub( /<\/?b>/, '' )
-      # WARNING: this    ^ is not a standard ASCII space
+      pager_info = 'Displaying items 11-12 of 12 in total'  # FIXME: i18n
 
       expect( response ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
-      expect( response.body ).to have_css '#pager-info', text: pager_info
+      expect( response.body ).to have_css '.pager-info', text: pager_info
     end
   end
 

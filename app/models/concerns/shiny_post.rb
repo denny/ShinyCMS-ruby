@@ -12,7 +12,6 @@ module ShinyPost
 
   include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
   include ShinyClassName
-  include ShinyPaging
   include ShinyShowHide
   include ShinySlugInMonth
   include ShinySoftDelete

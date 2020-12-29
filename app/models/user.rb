@@ -9,8 +9,6 @@
 # Model for user accounts (largely powered by Devise)
 class User < ApplicationRecord
   include ShinyEmail
-  include ShinyPaging
-  # include ShinyShowHide
   include ShinySoftDelete
 
   # Plugin features
@@ -39,16 +37,16 @@ class User < ApplicationRecord
   # Validations
 
   # Allowed characters for usernames: a-z A-Z 0-9 . _ -
-  USERNAME_REGEX = %r{[-_.a-zA-Z0-9]+}.freeze
+  USERNAME_REGEX = %r{[-_.a-zA-Z0-9]+}
   public_constant :USERNAME_REGEX
-  ANCHORED_USERNAME_REGEX = %r{\A#{USERNAME_REGEX}\z}.freeze
+  ANCHORED_USERNAME_REGEX = %r{\A#{USERNAME_REGEX}\z}
   private_constant :ANCHORED_USERNAME_REGEX
 
   # The next line allows you to re-use usernames of soft-deleted users...
   # but only if you get rid of the unique key in the db as well :-\
   # validates_uniqueness_of_without_deleted :username
 
-  validates :username, presence: true, case_sensitive: false, uniqueness: true
+  validates :username, presence: true, uniqueness: true
   validates :username, length: { maximum: 50 }
   validates :username, format: ANCHORED_USERNAME_REGEX
 

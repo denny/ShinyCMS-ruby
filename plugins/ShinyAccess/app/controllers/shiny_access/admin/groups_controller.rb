@@ -14,16 +14,14 @@ module ShinyAccess
 
     def index
       authorize Group
-
-      @groups = groups.page( page_number ).per( items_per_page )
-
+      @pagy, @groups = pagy( groups, items: items_per_page )
       authorize @groups if @groups.present?
     end
 
     def search
       authorize Group
 
-      @groups = groups.admin_search( @query ).page( page_number ).per( items_per_page )
+      @pagy, @groups = pagy( groups.admin_search( @query ), items: items_per_page )
 
       authorize @groups if @groups.present?
       render :index

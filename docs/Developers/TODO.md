@@ -21,6 +21,14 @@
 
 * Finish adding support for links on user profiles
 
+* Allow pagination URLs to specify /items/N instead of ?items=N
+* Switch pagination to use JS helpers, to give site builders more flexibility
+
+### Rails 6.1 issues
+
+* acts-as-taggable-on downgraded from 6.5.0 to 5.0.0 to get it to install
+
+
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
 ### Small-ish
@@ -69,8 +77,6 @@
     * https://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html
 
 * Add 'unsubscribe reason' to ShinyLists
-
-* Mock/VCR the Akismet tests (and anything else that currently needs a 'net connection)
 
 * Add a 'save form submission to database' form handler
 

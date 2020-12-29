@@ -309,18 +309,38 @@ form .ui-sortable-handle {
   margin-top:       2em;
 }
 
-.pager .page-link {
+.pagy-bootstrap-nav {
+  -webkit-align-items:     center;
+  -webkit-justify-content: center;
+  align-items:             center;
+  display:                 -webkit-flex;
+  display:                 flex;
+  justify-content:         center;
+}
+
+.pagination {
+  -webkit-align-self: center;
+  align-self:         center;
+  font-size:          0.8em;
+  margin:             1em;
+}
+
+.pager .page-link,
+.pagination .page-link,
+.pagination .disabled .page-link {
   background:       none;
   color:            $dark-colour;
 }
 
-.pager .active .page-link {
+.pager .active .page-link,
+.pagination .active .page-link {
   background:       $dark-colour;
   border-color:     $dark-colour;
   color:            $white;
 }
 
 .pager-info {
+  color:            $dark-colour;
   font-size:        0.8em;
   text-align:       center;
 }

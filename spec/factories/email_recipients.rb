@@ -16,7 +16,12 @@ FactoryBot.define do
     confirm_token   { SecureRandom.uuid  }
 
     trait :confirmed do
-      after :create, &:confirm
+      # FIXME: "no receiver given"
+      # after :create, &:confirm
+      # https://github.com/thoughtbot/factory_bot/issues/698 ?
+      # rubocop:disable Style/SymbolProc
+      after( :create ) { |recipient| recipient.confirm }
+      # rubocop:enable Style/SymbolProc
     end
   end
 end

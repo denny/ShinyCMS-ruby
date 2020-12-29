@@ -18,13 +18,15 @@ module ShinySearch
     SEARCH_BACKENDS = %w[ algolia pg ].freeze
     private_constant :SEARCH_BACKENDS
 
+    helper_method :pagy_url_for
+
     def index
       return unless @query
 
       backend = search_params[ :engine ].presence || Setting.get( :default_search_backend )
       backend = nil unless SEARCH_BACKENDS.include? backend
 
-      @results = perform_search( backend )
+      @pagy, @results = perform_search( backend )
     end
 
     private
@@ -38,19 +40,27 @@ module ShinySearch
         Rails.logger.error 'Search feature is enabled, but no search back-ends are enabled'
       end
 
-      []
+      [ nil, [] ] # Minimum required to render the 'no results' page
     end
 
     def pg_search
       @search_backend = :pg
-      @pageable = PgSearch.multisearch( @query ).includes( :searchable ).page( page_number ).per( items_per_page )
-      @pageable.collect( &:searchable )
+
+      # TODO: investigate performance of this with a large resultset
+      pagy, results = pagy_array(
+        PgSearch.multisearch( @query ).includes( :searchable ).collect( &:searchable ),
+        items: items_per_page
+      )
+
+      [ pagy, results ]
     end
 
     def algolia_search
       @search_backend = :algolia
+
       # TODO: get results from Algolia search API
-      []
+
+      [ nil, [] ]
     end
 
     def stash_query_string
@@ -58,11 +68,17 @@ module ShinySearch
     end
 
     def search_params
-      params.permit( :query, :q, :engine, :page, :count, :size, :per )
+      params.permit( :query, :q, :engine, :page, :count, :items, :per )
     end
 
     def check_feature_flags
       enforce_feature_flags :search
+    end
+
+    # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+    def pagy_url_for( page, _pagy )
+      params = request.query_parameters.merge( only_path: true, page: page )
+      url_for( params )
     end
   end
 end

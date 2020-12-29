@@ -10,7 +10,6 @@ module ShinyLists
   # Model for subscriptions to mailing lists
   class Subscription < ApplicationRecord
     include ShinyDemoDataProvider
-    include ShinyPaging
     include ShinySoftDelete
 
     # Associations
