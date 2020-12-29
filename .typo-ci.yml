@@ -16,11 +16,11 @@ dictionaries:
 excluded_files:
   - Gemfile.lock
   - yarn.lock
+  - config/initializers/pagy.rb
   - node_modules/**/*
   - vendor/**/*
-  - config/initializers/pagy.rb
 
-  excluded_words:
+excluded_words:
   - ShinyCMS
   - ilike
 
