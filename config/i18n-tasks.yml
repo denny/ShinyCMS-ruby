@@ -114,26 +114,23 @@ search:
 
 ## Do not consider these keys missing:
 ignore_missing:
-  # I have no idea
-  - shiny_pages.admin.pages.index.title
-  - shiny_pages.admin.pages.new.title
   # jQuery
   - date.month_names
-  - error
+#  - error
 #  - errors.messages.not_saved
 # - 'errors.messages.{accepted,blank,invalid,too_short,too_long}'
 # - '{devise,simple_form}.*'
 
 ## Consider these keys used:
 ignore_unused:
+  - destroy
   # These are used by a couple of plugins, I think it makes sense to leave them in core locale for now
   - admin.elements.{html,image,long_text,short_text}
   # Devise
   - devise.*
   - errors.messages.*
-  - destroy
-# - 'activerecord.attributes.*'
 # - '{devise,kaminari,will_paginate}.*'
+# - 'activerecord.attributes.*'
 # - 'simple_form.{yes,no}'
 # - 'simple_form.{placeholders,hints,labels}.*'
 # - 'simple_form.{error_notification,required}.:'
