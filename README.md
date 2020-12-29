@@ -55,7 +55,7 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
   * Powered by [Ahoy](https://github.com/ankane/ahoy) and [Ahoy::Email](https://github.com/ankane/ahoy_email)
 * Build your own [charts and dashboards](docs/Features/MainApp/Charts.md) for viewing and analyzing stats
   * Powered by [Blazer](https://github.com/ankane/blazer))
-  * Default dashboard config included, with a dozen chart-generating queries for you to use or learn from
+  * Default config includes a dozen useful charts and queries to get you started
 
 ### Planned features
 
@@ -75,11 +75,11 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
 
 ## Installation and configuration
 
-Please start by reading the [installation guide](docs/INSTALL.md) (or [tl,dr](docs/tldr.md) for the very short version).
+Please start by reading the [installation guide](docs/INSTALL.md) ([tl,dr](docs/tldr.md)).
 
 ### Demo site
 
-Theme templates and sample data for a [demo site](docs/demo-site.md) are provided, so you can try all of the CMS features without doing any data-entry work first. You can run the demo site on a free Heroku plan, using the free/hobby pricing level for all the required dynos and add-ons.
+Theme templates and sample data for a [demo site](docs/demo-site.md) are provided, so you can try all of the CMS features without doing any data-entry work first. You can run the demo site locally or on a free Heroku plan.
 
 ### System dependencies
 
@@ -87,15 +87,13 @@ You will need a webserver, a Postgres-compatible database server, and a Sidekiq-
 
 You will need a mail server if you intend to enable any of the features that send emails; user registrations, reply notifications, etc. Anything supported by ActionMailer should work.
 
-All other supported [external services](docs/Services.md) are optional. If you add config details for them (in ENV / .env* files / Heroku config) then they will be used, otherwise either the related CMS features will be unavailable or they will have reduced functionality.
+All other supported [external services](docs/Services.md) are optional. If you add config details for them (in ENV / .env* files / Heroku config) then they will be used, otherwise the related CMS features will be unavailable or will have reduced functionality.
 
 ### Ruby and Rails versions
 
-ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.2 and Rails 6.0.3.4).
+ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.2 and Rails 6.1.0).
 
 It has been tested on most Ruby versions from 2.5.8 onwards, and every release of Rails 6 so far.
-
-(Recent test results for [Ruby 2.5.8, 2.6.6, and 2.7.2](https://travis-ci.com/github/denny/ShinyCMS-ruby/builds/205841352))
 
 
 ## Contributing
@@ -122,7 +120,7 @@ ShinyCMS includes code from other open source and free software projects, which 
 ## Current Status
 
 [![CircleCI](https://img.shields.io/circleci/build/github/denny/ShinyCMS-ruby?label=CircleCI&logo=circleci&logoColor=white&style=for-the-badge)](https://circleci.com/gh/denny/ShinyCMS-ruby)
-[![Travis CI](https://img.shields.io/travis/com/denny/ShinyCMS-ruby?label=Travis%20CI&logo=travis&logoColor=white&style=for-the-badge)](https://travis-ci.com/denny/ShinyCMS-ruby)
+ShinyCMS-ruby)
 [![Codecov](https://img.shields.io/codecov/c/github/denny/ShinyCMS-ruby?label=Codecov&logo=codecov&logoColor=white&style=for-the-badge)](https://codecov.io/gh/denny/ShinyCMS-ruby)
 
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)

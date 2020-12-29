@@ -11,7 +11,7 @@
   </p>
   <p>
     <%= f.label :tag_list, 'Tags' %><br>
-    <%= f.text_field :tag_list, value: @post.tag_list.join(', ') %>
+    <%= f.text_field :tag_list, value: @post.tag_list&.join(', ') %>
   </p>
   <% if current_user.can? :change_author, :blog_posts %>
   <p>

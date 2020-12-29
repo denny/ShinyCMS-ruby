@@ -29,11 +29,11 @@ end
 
 # The actual Gemfile!
 source 'https://rubygems.org' do
-  # Rails 6
-  gem 'rails', '~> 6.0.3'
+  # Rails 6.1
+  gem 'rails', '~> 6.1.0'
 
-  # Database
-  gem 'pg', '>= 0.18', '< 2.0'
+  # Postgres
+  gem 'pg', '~> 1.2.3'
 
   # Webserver
   gem 'puma', '~> 5.1'
@@ -101,9 +101,7 @@ source 'https://rubygems.org' do
   gem 'acts_as_votable'
 
   # Pagination
-  gem 'kaminari'
-  # Allow passing route helpers (for Rails engines) into pagination blocks
-  gem 'kaminari_route_prefix'
+  gem 'pagy'
 
   # CKEditor: WYSIWYG editor for admin area
   gem 'ckeditor'
@@ -113,7 +111,7 @@ source 'https://rubygems.org' do
   # Web stats
   gem 'ahoy_matey'
   # Charts and dashboards
-  gem 'blazer'
+  gem 'blazer', '2.3.1'  # https://github.com/ankane/blazer/issues/315
   # Charts
   gem 'chartkick', '~> 3.4.2'
   # Date ranges
@@ -132,12 +130,12 @@ source 'https://rubygems.org' do
   # Pry is a debugging tool - uncomment it here if you want to use it on the Rails console in production
   gem 'pry-rails'
 
-  if ENV[ 'BUGSNAG_API_KEY' ]
-    # Bugsnag is an error monitoring service
-    gem 'bugsnag'
-  end
-
   group :production do
+    if ENV[ 'BUGSNAG_API_KEY' ]
+      # Bugsnag is an error monitoring service
+      gem 'bugsnag'
+    end
+
     # Fix request.ip if we're running behind Cloudflare's proxying service
     gem 'cloudflare-rails'
   end
@@ -159,7 +157,7 @@ source 'https://rubygems.org' do
 
     # Utils for working with translation strings
     # gem 'i18n-debug'
-    gem 'i18n-tasks', '~> 0.9.31'
+    gem 'i18n-tasks', '~> 0.9.33'
   end
 
   group :development do

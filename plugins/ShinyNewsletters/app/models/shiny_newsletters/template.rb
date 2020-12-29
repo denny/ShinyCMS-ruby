@@ -11,7 +11,6 @@ module ShinyNewsletters
   class Template < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyMJMLTemplate
-    include ShinyPaging
     include ShinySoftDelete
 
     # Associations

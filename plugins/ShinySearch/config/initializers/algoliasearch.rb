@@ -10,7 +10,6 @@
 if ENV['ALGOLIASEARCH_APPLICATION_ID']
   AlgoliaSearch.configuration = {
     application_id: ENV['ALGOLIASEARCH_APPLICATION_ID'],
-    api_key: ENV['ALGOLIASEARCH_API_KEY'],
-    pagination_backend: :kaminari
+    api_key: ENV['ALGOLIASEARCH_API_KEY']
   }
 end

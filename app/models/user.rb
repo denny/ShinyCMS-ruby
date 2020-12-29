@@ -9,7 +9,6 @@
 # Model for user accounts (largely powered by Devise)
 class User < ApplicationRecord
   include ShinyEmail
-  include ShinyPaging
   include ShinySoftDelete
 
   # Plugin features
@@ -47,7 +46,7 @@ class User < ApplicationRecord
   # but only if you get rid of the unique key in the db as well :-\
   # validates_uniqueness_of_without_deleted :username
 
-  validates :username, presence: true, case_sensitive: false, uniqueness: true
+  validates :username, presence: true, uniqueness: true
   validates :username, length: { maximum: 50 }
   validates :username, format: ANCHORED_USERNAME_REGEX
 

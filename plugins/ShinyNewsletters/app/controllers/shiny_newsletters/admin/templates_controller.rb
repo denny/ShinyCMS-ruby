@@ -13,7 +13,7 @@ module ShinyNewsletters
 
     def index
       authorize Template
-      @templates = Template.order( :name ).page( page_number ).per( items_per_page )
+      @pagy, @templates = pagy( Template.order( :name ), items: items_per_page )
       authorize @templates if @templates.present?
     end
 
@@ -21,10 +21,11 @@ module ShinyNewsletters
       authorize Template
 
       q = params[:q]
-      @templates = Template.where( 'name ilike ?', "%#{q}%" )
-                           .or( Template.where( 'description ilike ?', "%#{q}%" ) )
-                           .order( :name )
-                           .page( page_number ).per( items_per_page )
+      @pagy, @templates = pagy(
+        Template.where( 'name ilike ?', "%#{q}%" )
+                .or( Template.where( 'description ilike ?', "%#{q}%" ) )
+                .order( :name ), items: items_per_page
+      )
 
       authorize @templates if @templates.present?
       render :index

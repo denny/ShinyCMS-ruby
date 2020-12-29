@@ -4,7 +4,7 @@
 #
 # Copyright 2009-2020 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+# ShinyCMS is free software; you can r  'ShinyNews::AdminController#pagy_url_for',
 
 # Config file for Rails Best Practices gem
 # https://github.com/flyerhzm/rails_best_practices#readme / https://rails-bestpractices.com
@@ -34,27 +34,53 @@
 # Ignored file contains a data migration, not seed data
 IsolateSeedDataCheck: { ignored_files: 'db/migrate/20201004150130_change_comment_author_to_polymorphic\.rb' }
 
-# Ignoring user capability checks in admin menus, and paginator partial checking page details
-MoveCodeIntoModelCheck: { use_count: 2, ignored_files: [ 'app/views(/\w+)?/admin/menu/\w+\.html\.erb', 'app/views/admin/kaminari/_paginator\.html\.erb' ] }
+# Ignoring user capability checks in admin menus
+MoveCodeIntoModelCheck: { use_count: 2, ignored_files: [ 'app/views(/\w+)?/admin/menu/\w+\.html\.erb' ] }
 
 # Exceptions are:
+# - the endpoint that implements the drag-to-sort feature for pages+sections in the admin area
 # - the method used to control access to Blazer (set in config/blazer.yml)
 # - two methods that change default Devise behaviour
-# - the endpoint that powers drag-to-sort for pages+sections in the admin area
-# - a helper method in several admin controllers that triggers loading of the CKEditor JavaScript
-# - a helper method in two admin controllers that overrides the section link in the breadcrumbs
+# - the `breadcrumb_link_text_and_path` helper method (in 2 admin controllers) that overrides the section link in the admin area breadcrumbs
+# - the `load_html_editor?` helper method (in 5 admin controllers) that triggers loading of the CKEditor JavaScript
+# - the `pagy_url_for` helper method (in 4 main site controllers and 14 admin controllers) that makes Pagy generate nicer URLs
 RemoveUnusedMethodsInControllersCheck: { except_methods: [
+  'ShinyPages::Admin::PagesController#sort',
+
   'ApplicationController#current_user_can_view_charts?',
+
   'MainController#after_sign_in_path_for',
   'RegistrationsController#after_update_path_for',
+
   'ShinyAccess::Admin::MembershipsController#breadcrumb_link_text_and_path',
+  'ShinyLists::Admin::SubscriptionsController#breadcrumb_link_text_and_path',
+
   'ShinyBlog::Admin::BlogPostsController#load_html_editor?',
   'ShinyInserts::Admin::InsertsController#load_html_editor?',
-  'ShinyLists::Admin::SubscriptionsController#breadcrumb_link_text_and_path',
   'ShinyNews::Admin::NewsPostsController#load_html_editor?',
   'ShinyPages::Admin::PagesController#load_html_editor?',
-  'ShinyPages::Admin::PagesController#sort',
-  'ShinyPages::Admin::TemplatesController#load_html_editor?'
+  'ShinyPages::Admin::TemplatesController#load_html_editor?',
+
+  'ShinyBlog::BlogController#pagy_url_for',
+  'ShinyNews::NewsController#pagy_url_for',
+  'ShinyNewsletters::NewslettersController#pagy_url_for',
+  'ShinySearch::SearchController#pagy_url_for',
+
+  'ShinyAccess::AdminController#pagy_url_for',
+  'ShinyBlog::AdminController#pagy_url_for',
+  'ShinyForms::AdminController#pagy_url_for',
+  'ShinyNews::AdminController#pagy_url_for',
+  'ShinyNewsletters::AdminController#pagy_url_for',
+  'ShinyLists::AdminController#pagy_url_for',
+  'ShinyPages::AdminController#pagy_url_for',
+  'ShinySearch::AdminController#pagy_url_for',
+
+  'Admin::CommentsController#pagy_url_for',
+  'Admin::ConsentVersionsController#pagy_url_for',
+  'Admin::EmailRecipientsController#pagy_url_for',
+  'Admin::EmailStatsController#pagy_url_for',
+  'Admin::UsersController#pagy_url_for',
+  'Admin::WebStatsController#pagy_url_for'
 ] }
 
 # First six used in templates, last four in mailers

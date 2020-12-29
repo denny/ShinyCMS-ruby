@@ -17,7 +17,7 @@
     <% end %>
   </ul>
 
-  <%= render partial: 'includes/pager', locals: { paged: @recent_sends, route_set: shiny_newsletters } %>
+  <%= render partial: 'includes/newer_older_pager', locals: { pagy: @pagy } %>
 
   <% else %>
   <p>

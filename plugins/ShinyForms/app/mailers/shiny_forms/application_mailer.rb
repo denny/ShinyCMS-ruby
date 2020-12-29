@@ -11,7 +11,7 @@ module ShinyForms
   class ApplicationMailer < ActionMailer::Base
     include ShinyMailerHelper
 
-    add_template_helper ShinyMailerHelper
+    helper ShinyMailerHelper
 
     before_action :set_view_paths
 

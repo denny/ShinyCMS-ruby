@@ -32,13 +32,30 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
-  spec.add_dependency 'rails', '>= 6.0.3.4', '< 6.2'
+  spec.add_dependency 'rails', '~> 6.1.0'
 
-  spec.add_dependency 'pg', '>= 0.18', '< 2.0'
+  spec.add_dependency 'pg', '~> 1.2.3'
 
+  # Search back-ends
   spec.add_dependency 'algoliasearch-rails'
   spec.add_dependency 'pg_search'
 
+  # Authorisation
+  spec.add_dependency 'pundit'
+
+  # Soft delete
+  spec.add_dependency 'acts_as_paranoid'
+
+  # Tags
+  spec.add_dependency 'acts-as-taggable-on'
+
+  # Pagination
+  spec.add_dependency 'pagy'
+
+  # CKEditor: WYSIWYG editor for admin area
+  spec.add_dependency 'ckeditor'
+
+  # Testing
   spec.add_development_dependency 'factory_bot_rails'
   spec.add_development_dependency 'faker'
   spec.add_development_dependency 'rspec-rails'

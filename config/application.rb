@@ -29,8 +29,8 @@ Bundler.require( *Rails.groups )
 module ShinyCMS
   # Application Config
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    # Initialize configuration defaults for Rails
+    config.load_defaults 6.1
 
     # Settings in config/environments/* take precedence over those set here.
     # Application configuration can go into files in config/initializers

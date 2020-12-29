@@ -8,9 +8,11 @@
 
 # Controller for main site email-recipient features in ShinyCMS
 class Admin::EmailRecipientsController < AdminController
+  helper_method :pagy_url_for
+
   def index
     authorize EmailRecipient
-    @recipients = EmailRecipient.page( page_number ).per( items_per_page )
+    @pagy, @recipients = pagy( EmailRecipient.order( updated_at: :desc ), items: items_per_page )
     authorize @recipients
   end
 
@@ -18,10 +20,11 @@ class Admin::EmailRecipientsController < AdminController
     authorize EmailRecipient
 
     q = params[:q]
-    @recipients = EmailRecipient.where( 'email ilike ?', "%#{q}%" )
-                                .or( EmailRecipient.where( 'name ilike ?', "%#{q}%" ) )
-                                .order( updated_at: :desc )
-                                .page( page_number ).per( items_per_page )
+    @pagy, @recipients = pagy(
+      EmailRecipient.where( 'email ilike ?', "%#{q}%" )
+                    .or( EmailRecipient.where( 'name ilike ?', "%#{q}%" ) )
+                    .order( updated_at: :desc ), items: items_per_page
+    )
 
     authorize @recipients if @recipients.present?
     render :index
@@ -45,5 +48,11 @@ class Admin::EmailRecipientsController < AdminController
     flash[ :notice ] = t( '.success' ) if recipient.destroy
 
     redirect_to email_recipients_path
+  end
+
+  # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+  def pagy_url_for( page, _pagy )
+    params = request.query_parameters.merge( only_path: true, page: page )
+    url_for( params )
   end
 end
