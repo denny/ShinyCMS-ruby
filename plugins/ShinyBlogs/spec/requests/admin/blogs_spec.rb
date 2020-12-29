@@ -35,7 +35,7 @@ RSpec.describe 'Admin::Blogs', type: :request do
     it 'creates a new blog when a complete form is submitted' do
       post shiny_blogs.blogs_path, params: {
         blog: {
-          user_id: @admin.id,
+          user_id:       @admin.id,
           internal_name: Faker::Books::CultureSeries.unique.culture_ship
         }
       }
@@ -79,7 +79,7 @@ RSpec.describe 'Admin::Blogs', type: :request do
 
       put shiny_blogs.blog_path( blog ), params: {
         blog: {
-          user_id: @admin.id,
+          user_id:       @admin.id,
           internal_name: Faker::Books::CultureSeries.unique.culture_ship
         }
       }
@@ -99,7 +99,7 @@ RSpec.describe 'Admin::Blogs', type: :request do
 
       put shiny_blogs.blog_path( blog ), params: {
         blog: {
-          user_id: @admin.id,
+          user_id:       @admin.id,
           internal_name: ''
         }
       }

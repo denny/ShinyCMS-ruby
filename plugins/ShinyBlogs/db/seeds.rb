@@ -17,24 +17,24 @@
 # Feature flags
 flag1 = FeatureFlag.find_or_create_by!( name: 'shiny_blogs' )
 flag1.update!(
-  description: 'Enable multi-blogs feature, provided by ShinyBlogs plugin',
-  enabled: true,
+  description:           'Enable multi-blogs feature, provided by ShinyBlogs plugin',
+  enabled:               true,
   enabled_for_logged_in: true,
-  enabled_for_admins: true
+  enabled_for_admins:    true
 )
 flag2 = FeatureFlag.find_or_create_by!( name: 'shiny_blogs_votes' )
 flag2.update!(
-  description: 'Enable votes on blog posts',
-  enabled: true,
+  description:           'Enable votes on blog posts',
+  enabled:               true,
   enabled_for_logged_in: true,
-  enabled_for_admins: true
+  enabled_for_admins:    true
 )
 flag3 = FeatureFlag.find_or_create_by!( name: 'shiny_blogs_downvotes' )
 flag3.update!(
-  description: 'Enable down-votes on blog posts',
-  enabled: true,
+  description:           'Enable down-votes on blog posts',
+  enabled:               true,
   enabled_for_logged_in: true,
-  enabled_for_admins: true
+  enabled_for_admins:    true
 )
 
 # Admin capabilities
