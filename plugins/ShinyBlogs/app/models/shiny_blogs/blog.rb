@@ -13,18 +13,13 @@ module ShinyBlogs
     include ShinyName
     include ShinyShowHide
     include ShinySlug
+    include ShinySoftDelete
 
     # Associations
 
     belongs_to :user, inverse_of: :shiny_blogs_blogs
 
     has_many :all_posts, inverse_of: :blog, class_name: 'BlogPost', dependent: :restrict_with_error
-
-    # Plugin features
-
-    acts_as_paranoid
-    validates_as_paranoid
-    paginates_per 20
 
     # Aliases
 
