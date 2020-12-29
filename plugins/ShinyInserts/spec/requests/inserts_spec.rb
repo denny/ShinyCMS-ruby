@@ -13,7 +13,7 @@ RSpec.describe 'Inserts', type: :request do
     it 'fetches the page, including the content of the insert element' do
       page   = create :top_level_page
       insert = create :insert_element,
-                      name: 'the_email',
+                      name:    'the_email',
                       content: Faker::Internet.unique.email
 
       get '/'

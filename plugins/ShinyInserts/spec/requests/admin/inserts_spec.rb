@@ -26,8 +26,8 @@ RSpec.describe 'Admin: Inserts', type: :request do
   describe 'POST /admin/inserts/create' do
     it 'adds a new Short Text element' do
       post shiny_inserts.create_insert_path, params: {
-        'insert_element[name]': 'new_insert',
-        'insert_element[content]': 'NEW AND IMPROVED!',
+        'insert_element[name]':         'new_insert',
+        'insert_element[content]':      'NEW AND IMPROVED!',
         'insert_element[element_type]': 'short_text'
       }
 
@@ -42,8 +42,8 @@ RSpec.describe 'Admin: Inserts', type: :request do
 
     it 'adds a new element, with an empty content string' do
       post shiny_inserts.create_insert_path, params: {
-        'insert_element[name]': 'insert_is_empty',
-        'insert_element[content]': '',
+        'insert_element[name]':         'insert_is_empty',
+        'insert_element[content]':      '',
         'insert_element[element_type]': 'short_text'
       }
 
@@ -58,8 +58,8 @@ RSpec.describe 'Admin: Inserts', type: :request do
 
     it 'adds a new element, with a NULL content string' do
       post shiny_inserts.create_insert_path, params: {
-        'insert_element[name]': 'insert_is_null',
-        'insert_element[content]': nil,
+        'insert_element[name]':         'insert_is_null',
+        'insert_element[content]':      nil,
         'insert_element[element_type]': 'short_text'
       }
 
@@ -126,9 +126,9 @@ RSpec.describe 'Admin: Inserts', type: :request do
 
       # The [1] here means 'the second item on the form'; it's not the db row id
       put shiny_inserts.inserts_path, params: {
-        "insert_set[elements_attributes][1][id]": s2.id,
-        "insert_set[elements_attributes][1][name]": s2.name,
-        "insert_set[elements_attributes][1][content]": 'Updated content',
+        "insert_set[elements_attributes][1][id]":           s2.id,
+        "insert_set[elements_attributes][1][name]":         s2.name,
+        "insert_set[elements_attributes][1][content]":      'Updated content',
         "insert_set[elements_attributes][1][element_type]": s2.element_type
       }
 
@@ -150,9 +150,9 @@ RSpec.describe 'Admin: Inserts', type: :request do
 
       # The [1] here means 'the second item on the form'; it's not the db row id
       put shiny_inserts.inserts_path, params: {
-        "insert_set[elements_attributes][1][id]": s2.id,
-        "insert_set[elements_attributes][1][name]": s1.name,
-        "insert_set[elements_attributes][1][content]": 'Updated content',
+        "insert_set[elements_attributes][1][id]":           s2.id,
+        "insert_set[elements_attributes][1][name]":         s1.name,
+        "insert_set[elements_attributes][1][content]":      'Updated content',
         "insert_set[elements_attributes][1][element_type]": s2.element_type
       }
 

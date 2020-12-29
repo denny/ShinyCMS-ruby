@@ -54,8 +54,8 @@ class ShinyPostAtomFeed
     # TODO: mock this
     # :nocov:
     s3 = Aws::S3::Resource.new(
-      region: aws_s3_feeds_region,
-      access_key_id: aws_s3_feeds_access_key_id,
+      region:            aws_s3_feeds_region,
+      access_key_id:     aws_s3_feeds_access_key_id,
       secret_access_key: aws_s3_feeds_secret_access_key
     )
 

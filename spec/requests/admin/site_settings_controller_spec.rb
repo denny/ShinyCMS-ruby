@@ -44,10 +44,10 @@ RSpec.describe Admin::SiteSettingsController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'admin.site_settings.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.site_settings.update.success' )
       expect( response.body ).to     have_field "settings[level_#{s1.id}]",
-                                                id: "settings_level_#{s1.id}_user",
+                                                id:      "settings_level_#{s1.id}_user",
                                                 checked: true
       expect( response.body ).not_to have_field "settings[level_#{s1.id}]",
-                                                id: "settings_level_#{s1.id}_site",
+                                                id:      "settings_level_#{s1.id}_site",
                                                 checked: true
     end
 
@@ -107,13 +107,13 @@ RSpec.describe Admin::SiteSettingsController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'admin.site_settings.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-danger', text: I18n.t( 'admin.site_settings.update.failure' )
       expect( response.body ).to     have_field "settings[level_#{s1.id}]",
-                                                id: "settings_level_#{s1.id}_site",
+                                                id:       "settings_level_#{s1.id}_site",
                                                 disabled: true,
-                                                checked: true
+                                                checked:  true
       expect( response.body ).not_to have_field "settings[level_#{s1.id}]",
-                                                id: "settings_level_#{s1.id}_user",
+                                                id:       "settings_level_#{s1.id}_user",
                                                 disabled: true,
-                                                checked: true
+                                                checked:  true
     end
 
     it 'will update the value of a locked setting' do

@@ -65,9 +65,9 @@ class FeatureFlag < ApplicationRecord
       flag = find( flag_id )
       flag_params = params['flags'][flag_id]
       return false unless flag.update(
-        enabled: flag_params['enabled'],
+        enabled:               flag_params['enabled'],
         enabled_for_logged_in: flag_params['enabled_for_logged_in'],
-        enabled_for_admins: flag_params['enabled_for_admins']
+        enabled_for_admins:    flag_params['enabled_for_admins']
       )
     end
     true

@@ -38,19 +38,19 @@ Rails.application.routes.draw do
     get 'tags/:tags', to: 'tags#show',  as: :show_tags
 
     devise_for  :users,
-                path: '',
+                path:        '',
                 controllers: {
                   registrations: 'users/registrations',
-                  sessions: 'users/sessions'
+                  sessions:      'users/sessions'
                 },
-                path_names: {
-                  sign_in: '/login',
-                  sign_out: '/logout',
+                path_names:  {
+                  sign_in:      '/login',
+                  sign_out:     '/logout',
                   registration: '/account',
-                  sign_up: 'register',
+                  sign_up:      'register',
                   confirmation: '/account/confirm',
-                  password: '/account/password',
-                  unlock: '/account/unlock'
+                  password:     '/account/password',
+                  unlock:       '/account/unlock'
                 }
 
     post   'vote/:type/:id/:flag', to: 'votes#create',  as: :create_vote

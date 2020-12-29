@@ -12,8 +12,8 @@
 # Add feature flag
 flag = FeatureFlag.find_or_create_by!( name: 'user_profiles' )
 flag.update!(
-  description: 'User profile pages (provided by ShinyProfiles plugin)',
-  enabled: true,
+  description:           'User profile pages (provided by ShinyProfiles plugin)',
+  enabled:               true,
   enabled_for_logged_in: true,
-  enabled_for_admins: true
+  enabled_for_admins:    true
 )

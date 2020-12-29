@@ -34,9 +34,9 @@ class EmailRecipient < ApplicationRecord
 
   def set_confirm_token
     update!(
-      confirm_token: SecureRandom.uuid,
+      confirm_token:   SecureRandom.uuid,
       confirm_sent_at: Time.zone.now,
-      confirmed_at: nil
+      confirmed_at:    nil
     )
   end
 
