@@ -2,10 +2,11 @@
 
 [ShinyCMS](https://shinycms.org/) is an open-source content management system built in Ruby on Rails, with support for [themes](docs/Themes.md), [plugins](docs/Developer/Plugins.md), and [cloud hosting](docs/Cloud-Hosting.md).
 
-It is designed for professional web developers to use as a platform when building content-managed websites for their clients. It provides a number of features 'out of the box', with an easy-to-use admin interface for your clients to use when updating their site. You can also write your own plugins to add custom functionality.
+ShinyCMS is primarily intended for use by professional web developers, as a platform to build content-managed websites on top of. It provides a number of features 'out of the box', which all integrate into its easy-to-use admin area. Access to admin features is managed by a highly granular ACL system.
 
-To build a basic site on top of ShinyCMS, you just need to know HTML and ERB well enough to make any custom page templates that your site needs, or to modify those provided (at least until more ready-made themes are available; themes are easy to make, and theme contributions are very welcome).
+Web developers can also add custom functionality by writing their own plugins. A number of helpers and concerns are provided to help you build new features quickly, and with a consistent look-and-feel to the rest of the system.
 
+The current version of ShinyCMS runs on Ruby 3.0 and Rails 6.1
 
 ## Features
 
@@ -91,7 +92,7 @@ All other supported [external services](docs/Services.md) are optional. If you a
 
 ### Ruby and Rails versions
 
-ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 2.7.2 and Rails 6.1.0).
+ShinyCMS requires Rails 6 (which in turn requires Ruby 2.5 or later), and generally uses the most recent stable release of both Ruby and Rails (currently Ruby 3.0.0 and Rails 6.1.0).
 
 It has been tested on most Ruby versions from 2.5.8 onwards, and every release of Rails 6 so far.
 
@@ -120,15 +121,14 @@ ShinyCMS includes code from other open source and free software projects, which 
 ## Current Status
 
 [![CircleCI](https://img.shields.io/circleci/build/github/denny/ShinyCMS-ruby?label=CircleCI&logo=circleci&logoColor=white&style=for-the-badge)](https://circleci.com/gh/denny/ShinyCMS-ruby)
-ShinyCMS-ruby)
 [![Codecov](https://img.shields.io/codecov/c/github/denny/ShinyCMS-ruby?label=Codecov&logo=codecov&logoColor=white&style=for-the-badge)](https://codecov.io/gh/denny/ShinyCMS-ruby)
-
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
-[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/denny/ShinyCMS-ruby?label=CodeFactor&logo=codefactor&logoColor=white&style=for-the-badge)](https://www.codefactor.io/repository/github/denny/shinycms-ruby)
-<a href="https://codebeat.co/projects/github-com-denny-shinycms-ruby-main"><img src="https://codebeat.co/badges/97ed8fca-23b4-469e-a7fb-fd3ec7f8e4d5" alt="CodeBeat (code quality)" height="28px"></a>
-
 [![Dependabot](https://img.shields.io/static/v1?label=Dependabot&color=brightgreen&message=enabled&logo=dependabot&style=for-the-badge)](https://rubydoc.info/github/denny/ShinyCMS-ruby)
 <a href="https://hakiri.io/github/denny/ShinyCMS-ruby/main"><img src="https://hakiri.io/github/denny/ShinyCMS-ruby/main.svg" alt="Security" height="28px"></a>
+
+[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
+[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/denny/ShinyCMS-ruby?label=CodeFactor&logo=codefactor&logoColor=white&style=for-the-badge)](https://www.codefactor.io/repository/github/denny/shinycms-ruby)
+<a href="https://codebeat.co/projects/github-com-denny-shinycms-ruby-main"><img src="https://codebeat.co/badges/97ed8fca-23b4-469e-a7fb-fd3ec7f8e4d5" alt="CodeBeat (code quality)" height="28px"></a>
 
 ![GitHub code size](https://img.shields.io/github/languages/code-size/denny/ShinyCMS-ruby?logo=github&style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/denny/ShinyCMS-ruby?logo=github&style=for-the-badge)

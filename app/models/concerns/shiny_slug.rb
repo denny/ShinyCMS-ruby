@@ -11,7 +11,7 @@ module ShinySlug
   extend ActiveSupport::Concern
 
   # Allowed characters for slugs: a-z A-Z 0-9 . _ -
-  SLUG_REGEX = %r{\A[-_.a-zA-Z0-9]+\z}.freeze
+  SLUG_REGEX = %r{\A[-_.a-zA-Z0-9]+\z}
   private_constant :SLUG_REGEX
 
   included do
