@@ -11,11 +11,13 @@ module ShinyNewsletters
   class NewslettersController < MainController
     include ShinyPagingHelper
 
+    helper_method :pagy_url_for
+
     def index
       authenticate_user! unless params[:token]
 
       if subscriber
-        @recent_sends = newsletters_sent_to_subscribed_lists&.recent&.page( page_number )&.per( items_per_page )
+        @pagy, @recent_sends = pagy_countless( newsletters_sent_to_subscribed_lists&.recent, items: items_per_page )
       else
         flash.now[:alert] = t( '.subscriber_not_found' )
       end
@@ -44,6 +46,12 @@ module ShinyNewsletters
       newsletters_sent_to_subscribed_lists.sent_in_month( params[:year].to_i, params[:month].to_i ).each do |sent|
         return sent if sent.edition.slug == params[:slug]
       end
+    end
+
+    # Override pager link format (to newsletters/page/NN rather than newsletters?page=NN)
+    def pagy_url_for( page, _pagy )
+      params = request.query_parameters.merge( only_path: true, page: page )
+      url_for( params )
     end
   end
 end

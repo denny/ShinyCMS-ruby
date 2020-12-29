@@ -103,9 +103,7 @@ source 'https://rubygems.org' do
   gem 'acts_as_votable'
 
   # Pagination
-  gem 'kaminari'
-  # Allow passing route helpers (for Rails engines) into pagination blocks
-  gem 'kaminari_route_prefix'
+  gem 'pagy'
 
   # Generate Atom feeds
   gem 'rss'

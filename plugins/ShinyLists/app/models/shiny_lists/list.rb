@@ -11,7 +11,6 @@ module ShinyLists
   class List < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyName
-    include ShinyPaging
     include ShinySlug
     include ShinySoftDelete
 

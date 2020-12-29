@@ -4,7 +4,7 @@ PATH
     shiny_inserts (20.12)
       acts_as_paranoid
       ckeditor
-      kaminari
+      pagy
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.0)
@@ -92,18 +92,6 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    kaminari (1.2.1)
-      activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.2.1)
-      kaminari-activerecord (= 1.2.1)
-      kaminari-core (= 1.2.1)
-    kaminari-actionview (1.2.1)
-      actionview
-      kaminari-core (= 1.2.1)
-    kaminari-activerecord (1.2.1)
-      activerecord
-      kaminari-core (= 1.2.1)
-    kaminari-core (1.2.1)
     loofah (2.8.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -120,6 +108,7 @@ GEM
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    pagy (3.10.0)
     pg (1.2.3)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
@@ -195,4 +184,4 @@ DEPENDENCIES
   shiny_inserts!
 
 BUNDLED WITH
-   2.1.4
+   2.2.3

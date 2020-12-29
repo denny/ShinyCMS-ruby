@@ -55,7 +55,7 @@ To build a basic site on top of ShinyCMS, you just need to know HTML and ERB wel
   * Powered by [Ahoy](https://github.com/ankane/ahoy) and [Ahoy::Email](https://github.com/ankane/ahoy_email)
 * Build your own [charts and dashboards](docs/Features/MainApp/Charts.md) for viewing and analyzing stats
   * Powered by [Blazer](https://github.com/ankane/blazer))
-  * Default dashboard config included, with a dozen chart-generating queries for you to use or learn from
+  * Default config includes a dozen useful charts and queries to get you started
 
 ### Planned features
 
@@ -120,7 +120,7 @@ ShinyCMS includes code from other open source and free software projects, which 
 ## Current Status
 
 [![CircleCI](https://img.shields.io/circleci/build/github/denny/ShinyCMS-ruby?label=CircleCI&logo=circleci&logoColor=white&style=for-the-badge)](https://circleci.com/gh/denny/ShinyCMS-ruby)
-[![Travis CI](https://img.shields.io/travis/com/denny/ShinyCMS-ruby?label=Travis%20CI&logo=travis&logoColor=white&style=for-the-badge)](https://travis-ci.com/denny/ShinyCMS-ruby)
+ShinyCMS-ruby)
 [![Codecov](https://img.shields.io/codecov/c/github/denny/ShinyCMS-ruby?label=Codecov&logo=codecov&logoColor=white&style=for-the-badge)](https://codecov.io/gh/denny/ShinyCMS-ruby)
 
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)

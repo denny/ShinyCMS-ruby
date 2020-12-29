@@ -19,16 +19,16 @@ module ShinyNewsletters
       @sending = Send.sending
       authorize @sending if @sending.present?
 
-      @scheduled = Send.scheduled if page_number == 1
+      @scheduled = Send.scheduled if viewing_first_page?
       authorize @scheduled if @scheduled.present?
 
-      @sends = Send.unscheduled.page( page_number ).per( items_per_page )
+      @pagy, @sends = pagy( Send.unscheduled, items: items_per_page )
       authorize @sends if @sends.present?
     end
 
     def sent
       authorize Send
-      @sent = Send.sent.recent.page( page_number ).per( items_per_page )
+      @pagy, @sent = pagy( Send.sent, items: items_per_page )
       authorize @sent if @sent.present?
     end
 
@@ -36,10 +36,11 @@ module ShinyNewsletters
       authorize Send
 
       q = params[:q]
-      @sends = Send.where( 'date(started_sending_at) = ?', q )
-                   .or( Send.where( 'date(finished_sending_at) = ?', q ) )
-                   .order( sent_at: :desc )
-                   .page( page_number ).per( items_per_page )
+      @pagy, @sends = pagy(
+        Send.where( 'date(started_sending_at) = ?', q )
+            .or( Send.where( 'date(finished_sending_at) = ?', q ) )
+            .order( sent_at: :desc ), items: items_per_page
+      )
 
       authorize @sends if @sends.present?
       render :index
@@ -115,6 +116,10 @@ module ShinyNewsletters
     end
 
     private
+
+    def viewing_first_page?
+      params[:page] == 1 || params[:page].blank?
+    end
 
     def strong_params
       temp_params = params.require( :send ).permit( :edition_id, :list_id, :send_at, :send_at_time, :send_now )

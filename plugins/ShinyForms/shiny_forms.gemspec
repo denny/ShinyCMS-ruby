@@ -43,7 +43,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'acts_as_paranoid'
 
   # Pagination
-  spec.add_dependency 'kaminari'
+  spec.add_dependency 'pagy'
 
   # Testing
   spec.add_development_dependency 'factory_bot_rails'

@@ -1,9 +1,5 @@
-<% route_set ||= nil %>
-<% if route_set.present? %>
-<%#= paginate paged, window: 3, views_prefix: 'admin', route_set: route_set %>
-<% else %>
-<%#= paginate paged, window: 3, views_prefix: 'admin' %>
-<% end %>
-<p id="pager-info">
-  <%= page_entries_info paged %>
+<%== pagy_bootstrap_nav pagy %>
+
+<p class="pager-info">
+  <%== pagy_info pagy %>
 </p>

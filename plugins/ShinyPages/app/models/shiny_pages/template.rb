@@ -11,7 +11,6 @@ module ShinyPages
   class Template < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyHTMLTemplate
-    include ShinyPaging
     include ShinySoftDelete
 
     # Associations

@@ -9,7 +9,6 @@
 # Model for user accounts (largely powered by Devise)
 class User < ApplicationRecord
   include ShinyEmail
-  include ShinyPaging
   include ShinySoftDelete
 
   # Plugin features
