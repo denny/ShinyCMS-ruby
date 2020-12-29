@@ -11,6 +11,7 @@
 * Finish adding support for links on user profiles
 
 * Allow pagination URLs to specify /items/N instead of ?items=N
+* Switch pagination to use JS helpers, to give site builders more flexibility
 
 ### Rails 6.1 issues
 
