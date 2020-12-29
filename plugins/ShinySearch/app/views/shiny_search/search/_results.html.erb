@@ -18,7 +18,7 @@
   <% if @results.blank? %>
     <%= render partial: 'search/no_results' %>
   <% else %>
-    <%= render partial: 'includes/pagy_pager', locals: { pagy: @pagy } %>
+    <%= render partial: 'includes/pager', locals: { pagy: @pagy } %>
   <% end %>
 </section>
 
