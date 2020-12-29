@@ -27,7 +27,7 @@ SQL
 query = Blazer::Query.where( name: 'New user accounts' ).first_or_create!(
   description: 'Number of new user accounts created on each day in this range, split by confirmation status',
   data_source: 'shinycms',
-  statement: sql
+  statement:   sql
 )
 dashboard.queries << query unless dashboard.queries.exists? query.id
 
@@ -44,7 +44,7 @@ SQL
 query = Blazer::Query.where( name: 'New comment authors' ).first_or_create!(
   description: 'Number of first-time pseudonymous commenters for each day in this range',
   data_source: 'shinycms',
-  statement: sql
+  statement:   sql
 )
 dashboard.queries << query unless dashboard.queries.exists? query.id
 
@@ -62,7 +62,7 @@ SQL
 query = Blazer::Query.where( name: 'New email recipients' ).first_or_create!(
   description: 'Number of new email recipients (subscribers who are not users) created on each day in this range',
   data_source: 'shinycms',
-  statement: sql
+  statement:   sql
 )
 dashboard.queries << query unless dashboard.queries.exists? query.id
 
@@ -81,7 +81,7 @@ SQL
 query = Blazer::Query.where( name: 'New comments' ).first_or_create!(
   description: 'Number of comments posted on each day in this range, for each type of content with comments',
   data_source: 'shinycms',
-  statement: sql
+  statement:   sql
 )
 dashboard.queries << query unless dashboard.queries.exists? query.id
 
@@ -104,7 +104,7 @@ SQL
 query = Blazer::Query.where( name: 'All visits' ).first_or_create!(
   description: 'Total number of visits on each day in this range, and split by login status',
   data_source: 'shinycms',
-  statement: sql
+  statement:   sql
 )
 dashboard.queries << query unless dashboard.queries.exists? query.id
 
@@ -137,7 +137,7 @@ SQL
 query = Blazer::Query.where( name: 'Popular web browsers' ).first_or_create!(
   description: "Total number of visits between these dates, split by web browser used (shows top 4 and 'other')",
   data_source: 'shinycms',
-  statement: sql
+  statement:   sql
 )
 dashboard.queries << query unless dashboard.queries.exists? query.id
 
@@ -153,7 +153,7 @@ SQL
 query = Blazer::Query.where( name: 'Device types' ).first_or_create!(
   description: 'Number of visits between these dates from each device type listed',
   data_source: 'shinycms',
-  statement: sql
+  statement:   sql
 )
 dashboard.queries << query unless dashboard.queries.exists? query.id
 
@@ -190,7 +190,7 @@ if ShinyPlugin.loaded? :ShinyAccess
   query = Blazer::Query.where( name: 'Memberships that began on these dates' ).first_or_create!(
     description: 'Number of access control group memberships that began on each day in this range',
     data_source: 'shinycms',
-    statement: sql
+    statement:   sql
   )
   dashboard.queries << query unless dashboard.queries.exists? query.id
 
@@ -208,7 +208,7 @@ if ShinyPlugin.loaded? :ShinyAccess
   query = Blazer::Query.where( name: 'Memberships that ended on these dates' ).first_or_create!(
     description: 'Number of access control group memberships that ended on each day in this range',
     data_source: 'shinycms',
-    statement: sql
+    statement:   sql
   )
   dashboard.queries << query unless dashboard.queries.exists? query.id
 end
@@ -229,7 +229,7 @@ if ShinyPlugin.loaded? :ShinyLists
   query = Blazer::Query.where( name: 'Mailing list subscriptions' ).first_or_create!(
     description: 'Number of mailing list subscriptions on each day in this range',
     data_source: 'shinycms',
-    statement: sql
+    statement:   sql
   )
   dashboard.queries << query unless dashboard.queries.exists? query.id
 
@@ -247,7 +247,7 @@ if ShinyPlugin.loaded? :ShinyLists
   query = Blazer::Query.where( name: 'Mailing list unsubscribes' ).first_or_create!(
     description: 'Number of mailing list unsubscribes on each day in this range',
     data_source: 'shinycms',
-    statement: sql
+    statement:   sql
   )
   dashboard.queries << query unless dashboard.queries.exists? query.id
 end

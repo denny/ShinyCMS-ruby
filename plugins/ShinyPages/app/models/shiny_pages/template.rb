@@ -11,7 +11,6 @@ module ShinyPages
   class Template < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyHTMLTemplate
-    include ShinyPaging
     include ShinySoftDelete
 
     # Associations
@@ -26,7 +25,7 @@ module ShinyPages
 
     # Add another validation at the end, because it uses methods included/defined above
     validates :filename, inclusion: {
-      in: available_templates,
+      in:      available_templates,
       message: I18n.t( 'models.shiny_pages.template.template_file_must_exist' )
     }
   end

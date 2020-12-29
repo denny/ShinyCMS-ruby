@@ -36,6 +36,19 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'pg', '~> 1.2.3'
 
+  # Authorisation
+  spec.add_dependency 'pundit'
+
+  # Soft delete
+  spec.add_dependency 'acts_as_paranoid'
+
+  # Tags
+  spec.add_dependency 'acts-as-taggable-on'
+
+  # Pagination
+  spec.add_dependency 'pagy'
+
+  # Testing
   spec.add_development_dependency 'factory_bot_rails'
   spec.add_development_dependency 'faker'
   spec.add_development_dependency 'rspec-rails'

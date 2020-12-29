@@ -11,7 +11,6 @@ module ShinyNewsletters
   class Template < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyMJMLTemplate
-    include ShinyPaging
     include ShinySoftDelete
 
     # Associations
@@ -26,7 +25,7 @@ module ShinyNewsletters
 
     # Add another validation at the end, because it uses methods included/defined above
     validates :filename, inclusion: {
-      in: available_templates,
+      in:      available_templates,
       message: I18n.t( 'models.shiny_newsletters.template.template_file_must_exist' )
     }
   end

@@ -8,19 +8,15 @@
 
 # Methods to help with paging
 module ShinyPagingHelper
-  def page_number
-    return 1 if params[:page].blank?
-    return 1 if params[:page].match?( /\D/ )
-
-    params[:page].to_i
-  end
+  include Pagy::Frontend
+  include Pagy::Backend
 
   def items_per_page
-    count = params[:count].presence || params[:size].presence || params[:per].presence
+    items = params[:items].presence || params[:count].presence || params[:per].presence
 
-    return default_items_per_page if count.blank?
-    return default_items_per_page if count.match?( /\D/ )
+    return default_items_per_page if items.blank?
+    return default_items_per_page if items.match?( /\D/ )
 
-    count.to_i
+    items.to_i
   end
 end

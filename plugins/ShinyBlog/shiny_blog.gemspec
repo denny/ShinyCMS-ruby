@@ -46,7 +46,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'acts-as-taggable-on'
 
   # Pagination
-  spec.add_dependency 'kaminari'
+  spec.add_dependency 'pagy'
 
   # CKEditor: WYSIWYG editor for admin area
   spec.add_dependency 'ckeditor'

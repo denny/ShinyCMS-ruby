@@ -67,7 +67,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
     it 'adds a new template when the form is submitted' do
       post shiny_pages.templates_path, params: {
         template: {
-          name: 'Test',
+          name:     'Test',
           filename: 'an_example'
         }
       }
@@ -82,7 +82,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
     it 'adds the right number of elements to the new template' do
       post shiny_pages.templates_path, params: {
         template: {
-          name: 'Another Test',
+          name:     'Another Test',
           filename: 'an_example'
         }
       }
@@ -131,9 +131,9 @@ RSpec.describe 'Admin: Page Templates', type: :request do
           name: 'Updated by test'
         },
         elements: {
-          "element_#{e_id}_name": 'updated_element_name',
+          "element_#{e_id}_name":    'updated_element_name',
           "element_#{e_id}_content": 'Default content',
-          "element_#{e_id}_type": 'html'
+          "element_#{e_id}_type":    'html'
         }
       }
 
@@ -162,7 +162,7 @@ RSpec.describe 'Admin: Page Templates', type: :request do
       expect( last_element.position ).to eq ids.size
 
       put shiny_pages.template_path( template ), params: {
-        template: {
+        template:   {
           name: template.name
         },
         sort_order: query_string

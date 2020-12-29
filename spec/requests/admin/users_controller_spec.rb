@@ -27,12 +27,12 @@ RSpec.describe Admin::UsersController, type: :request do
         expect( response.body ).to include user.username
       end
 
-      it 'sets page size and page number correctly if params are present' do
+      it 'handles page number and items-per-page params correctly' do
         user1 = create :user, username: 'aaaaa_again_with_the_apples'
         user2 = create :user, username: 'aaaaa_bendy_bananas'
         user3 = create :user, username: 'aaaaa_cool_cucumbers'
 
-        get users_path, params: { page: 2, count: 2 }
+        get users_path, params: { page: 2, items: 2 }
 
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'admin.users.index.title' ).titlecase
@@ -99,7 +99,7 @@ RSpec.describe Admin::UsersController, type: :request do
           user: {
             username: 'test',
             password: Faker::Internet.unique.password,
-            email: Faker::Internet.unique.email
+            email:    Faker::Internet.unique.email
           }
         }
 
@@ -114,7 +114,7 @@ RSpec.describe Admin::UsersController, type: :request do
           user: {
             username: username,
             password: Faker::Internet.unique.password,
-            email: Faker::Internet.unique.email( name: username )
+            email:    Faker::Internet.unique.email( name: username )
           }
         }
 

@@ -13,10 +13,10 @@
 
 flag = FeatureFlag.find_or_create_by!( name: 'access' )
 flag.update!(
-  description: 'Enable access control features (provided by ShinyAccess plugin)',
-  enabled: true,
+  description:           'Enable access control features (provided by ShinyAccess plugin)',
+  enabled:               true,
   enabled_for_logged_in: true,
-  enabled_for_admins: true
+  enabled_for_admins:    true
 )
 
 # Admin capabilities

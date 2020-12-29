@@ -30,7 +30,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
       subject = I18n.t(
         'discussion_mailer.parent_comment_notification.subject',
         reply_author_name: reply.author_name_or_anon,
-        site_name: @site_name
+        site_name:         @site_name
       )
 
       expect( email.subject ).to eq subject
@@ -48,7 +48,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
       subject = I18n.t(
         'discussion_mailer.parent_comment_notification.subject',
         reply_author_name: reply.author_name_or_anon,
-        site_name: @site_name
+        site_name:         @site_name
       )
 
       expect( email.subject ).to eq subject
@@ -64,8 +64,8 @@ RSpec.describe DiscussionMailer, type: :mailer do
       subject = I18n.t(
         'discussion_mailer.discussion_notification.subject',
         comment_author_name: comment.author_name_or_anon,
-        content_type: I18n.t( 'models.names.shiny_blog_post' ),
-        site_name: @site_name
+        content_type:        I18n.t( 'models.names.shiny_blog_post' ),
+        site_name:           @site_name
       )
 
       expect( email.subject ).to eq subject
@@ -83,7 +83,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
       subject = I18n.t(
         'discussion_mailer.overview_notification.subject',
         comment_author_name: comment.author_name_or_anon,
-        site_name: @site_name
+        site_name:           @site_name
       )
 
       expect( email.subject ).to eq subject

@@ -1,14 +1,23 @@
 GIT
-  remote: https://github.com/ryanto/acts_as_votable
-  revision: 585020dd6ca734b41c35d8cef5193097fecd2705
+  remote: https://github.com/rails/activerecord-session_store
+  revision: f188efbc49a522123cc8acc805143824176d01c1
   specs:
-    acts_as_votable (0.12.1)
+    activerecord-session_store (1.1.3)
+      actionpack (>= 5.2)
+      activerecord (>= 5.2)
+      multi_json (~> 1.11, >= 1.11.2)
+      rack (>= 2.0.0, < 3)
+      railties (>= 5.2)
 
 PATH
   remote: plugins/ShinyAccess
   specs:
     shiny_access (20.12)
+      acts-as-taggable-on
+      acts_as_paranoid
+      pagy
       pg (~> 1.2.3)
+      pundit
       rails (~> 6.1.0)
 
 PATH
@@ -18,7 +27,7 @@ PATH
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
-      kaminari
+      pagy
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.0)
@@ -28,7 +37,7 @@ PATH
   specs:
     shiny_forms (20.12)
       acts_as_paranoid
-      kaminari
+      pagy
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.0)
@@ -39,7 +48,7 @@ PATH
     shiny_inserts (20.12)
       acts_as_paranoid
       ckeditor
-      kaminari
+      pagy
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.0)
@@ -49,7 +58,7 @@ PATH
   specs:
     shiny_lists (20.12)
       acts_as_paranoid
-      kaminari
+      pagy
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.0)
@@ -61,7 +70,7 @@ PATH
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
-      kaminari
+      pagy
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.0)
@@ -70,7 +79,11 @@ PATH
   remote: plugins/ShinyNewsletters
   specs:
     shiny_newsletters (20.12)
+      acts_as_paranoid
+      ckeditor
+      pagy
       pg (~> 1.2.3)
+      pundit
       rails (~> 6.1.0)
 
 PATH
@@ -79,7 +92,7 @@ PATH
     shiny_pages (20.12)
       acts_as_paranoid
       ckeditor
-      kaminari
+      pagy
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.0)
@@ -88,16 +101,24 @@ PATH
   remote: plugins/ShinyProfiles
   specs:
     shiny_profiles (20.12)
+      acts_as_paranoid
+      pagy
       pg (~> 1.2.3)
+      pundit
       rails (~> 6.1.0)
 
 PATH
   remote: plugins/ShinySearch
   specs:
     shiny_search (20.12)
+      acts-as-taggable-on
+      acts_as_paranoid
       algoliasearch-rails
+      ckeditor
+      pagy
       pg (~> 1.2.3)
       pg_search
+      pundit
       rails (~> 6.1.0)
 
 GEM
@@ -149,12 +170,6 @@ GEM
     activerecord (6.1.0)
       activemodel (= 6.1.0)
       activesupport (= 6.1.0)
-    activerecord-session_store (1.1.3)
-      actionpack (>= 4.0)
-      activerecord (>= 4.0)
-      multi_json (~> 1.11, >= 1.11.2)
-      rack (>= 1.5.2, < 3)
-      railties (>= 4.0)
     activestorage (6.1.0)
       actionpack (= 6.1.0)
       activejob (= 6.1.0)
@@ -170,11 +185,12 @@ GEM
       zeitwerk (~> 2.3)
     acts-as-taggable-on (5.0.0)
       activerecord (>= 4.2.8)
-    acts_as_list (1.0.2)
+    acts_as_list (1.0.3)
       activerecord (>= 4.2)
     acts_as_paranoid (0.7.0)
       activerecord (>= 5.2, < 7.0)
       activesupport (>= 5.2, < 7.0)
+    acts_as_votable (0.13.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ahoy_email (1.1.0)
@@ -197,7 +213,7 @@ GEM
     amazing_print (1.2.2)
     ast (2.4.1)
     aws-eventstream (1.1.0)
-    aws-partitions (1.409.0)
+    aws-partitions (1.413.0)
     aws-sdk-core (3.110.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -206,9 +222,9 @@ GEM
     aws-sdk-kms (1.40.0)
       aws-sdk-core (~> 3, >= 3.109.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.86.2)
+    aws-sdk-s3 (1.87.0)
       aws-sdk-core (~> 3, >= 3.109.0)
-      aws-sdk-kms (~> 1.26)
+      aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.2)
       aws-eventstream (~> 1, >= 1.0.2)
@@ -220,7 +236,9 @@ GEM
       safely_block (>= 0.1.1)
     bootsnap (1.5.1)
       msgpack (~> 1.0)
-    brakeman (4.10.0)
+    brakeman (4.10.1)
+    bugsnag (6.18.0)
+      concurrent-ruby (~> 1.0)
     builder (3.2.4)
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
@@ -244,13 +262,15 @@ GEM
       rails (>= 5.0, < 6.2.0)
     code_analyzer (0.5.2)
       sexp_processor
-    codecov (0.2.13)
-      simplecov (~> 0.18.0)
+    codecov (0.2.12)
+      json
+      simplecov
     coderay (1.1.3)
     colorize (0.8.1)
     concurrent-ruby (1.1.7)
     connection_pool (2.2.3)
-    crack (0.4.4)
+    crack (0.4.5)
+      rexml
     crass (1.0.6)
     database_cleaner (1.8.5)
     database_cleaner-active_record (1.8.0)
@@ -267,12 +287,12 @@ GEM
       devise (~> 4)
       pwned (~> 2.0.0)
     diff-lcs (1.4.4)
-    docile (1.3.2)
+    docile (1.3.4)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
-    email_address (0.1.18)
+    email_address (0.1.19)
       netaddr (>= 2.0.4, < 3)
       simpleidn
     errbase (0.2.0)
@@ -285,10 +305,10 @@ GEM
       railties (>= 5.0.0)
     faker (2.15.1)
       i18n (>= 1.6, < 2)
-    fasterer (0.8.3)
+    fasterer (0.7.1)
       colorize (~> 0.7)
-      ruby_parser (>= 3.14.1)
-    ffi (1.13.1)
+      ruby_parser (>= 3.13.0)
+    ffi (1.14.2)
     geocoder (1.6.4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -302,7 +322,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.32)
+    i18n-tasks (0.9.33)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -317,21 +337,7 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     iniparse (1.5.0)
     jmespath (1.4.0)
-    json (2.4.1)
-    kaminari (1.2.1)
-      activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.2.1)
-      kaminari-activerecord (= 1.2.1)
-      kaminari-core (= 1.2.1)
-    kaminari-actionview (1.2.1)
-      actionview
-      kaminari-core (= 1.2.1)
-    kaminari-activerecord (1.2.1)
-      activerecord
-      kaminari-core (= 1.2.1)
-    kaminari-core (1.2.1)
-    kaminari_route_prefix (0.1.1)
-      kaminari (~> 1.0)
+    json (2.5.1)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -359,7 +365,7 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.2)
-    mjml-rails (4.6.0)
+    mjml-rails (4.6.1)
     msgpack (1.3.3)
     multi_json (1.15.0)
     multi_xml (0.6.0)
@@ -372,8 +378,9 @@ GEM
     overcommit (0.57.0)
       childprocess (>= 0.6.3, < 5)
       iniparse (~> 1.4)
+    pagy (3.10.0)
     parallel (1.20.1)
-    parser (2.7.2.0)
+    parser (3.0.0.0)
       ast (~> 2.4.1)
     pg (1.2.3)
     pg_search (2.3.5)
@@ -441,7 +448,7 @@ GEM
       rake (>= 0.8.7)
       thor (~> 1.0)
     rainbow (3.0.0)
-    rake (13.0.1)
+    rake (13.0.3)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -456,26 +463,28 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.4)
-    rspec-core (3.10.0)
+    rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
-    rspec-expectations (3.10.0)
+    rspec-expectations (3.10.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-mocks (3.10.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
-    rspec-rails (4.0.1)
+    rspec-rails (4.0.2)
       actionpack (>= 4.2)
       activesupport (>= 4.2)
       railties (>= 4.2)
-      rspec-core (~> 3.9)
-      rspec-expectations (~> 3.9)
-      rspec-mocks (~> 3.9)
-      rspec-support (~> 3.9)
-    rspec-support (3.10.0)
+      rspec-core (~> 3.10)
+      rspec-expectations (~> 3.10)
+      rspec-mocks (~> 3.10)
+      rspec-support (~> 3.10)
+    rspec-support (3.10.1)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.6.1)
+    rss (0.2.9)
+      rexml
+    rubocop (1.7.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.5)
       rainbow (>= 2.2.2, < 4.0)
@@ -526,10 +535,12 @@ GEM
     sidekiq-status (1.1.4)
       chronic_duration
       sidekiq (>= 3.0)
-    simplecov (0.18.5)
+    simplecov (0.20.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.2)
     simpleidn (0.1.1)
       unf (~> 0.1.4)
     sprockets (4.0.2)
@@ -588,6 +599,7 @@ DEPENDENCIES
   blazer (= 2.3.1)!
   bootsnap (>= 1.4.2)!
   brakeman!
+  bugsnag!
   bundler-audit!
   capybara (>= 2.15)!
   chartkick (~> 3.4.2)!
@@ -603,15 +615,14 @@ DEPENDENCIES
   faker!
   fasterer!
   groupdate!
-  i18n-tasks (~> 0.9.31)!
+  i18n-tasks (~> 0.9.33)!
   image_processing (~> 1.12)!
-  kaminari!
-  kaminari_route_prefix!
   letter_opener_web (~> 1.0)!
   listen (>= 3.0.5, < 3.4)!
   mini_magick!
   mjml-rails!
   overcommit!
+  pagy!
   pg (~> 1.2.3)!
   pry-rails!
   puma (~> 5.1)!
@@ -624,6 +635,7 @@ DEPENDENCIES
   recaptcha!
   rspec-rails!
   rspec_junit_formatter!
+  rss!
   rubocop!
   rubocop-performance!
   rubocop-rails!
@@ -646,4 +658,4 @@ DEPENDENCIES
   webpacker (~> 5.2)!
 
 BUNDLED WITH
-   2.1.4
+   2.2.3

@@ -3,6 +3,6 @@
 <span class="float-right">
   <%= form_tag action, method: :get do |f| %>
     <% if label.present? %><%= label_tag label %><% end %>
-    <%= text_field_tag :q, '', placeholder: placeholder, class: 'textshort' %>
+    <%= text_field_tag :q, '', placeholder: placeholder %>
   <% end %>
 </span>

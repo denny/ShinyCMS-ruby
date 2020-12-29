@@ -8,9 +8,11 @@
 
 # Controller for users section of ShinyCMS admin area
 class Admin::UsersController < AdminController
+  helper_method :pagy_url_for
+
   def index
     authorize User
-    @users = User.order( :username ).page( page_number ).per( items_per_page )
+    @pagy, @users = pagy( User.order( :username ), items: items_per_page )
     authorize @users if @users.present?
   end
 
@@ -18,11 +20,12 @@ class Admin::UsersController < AdminController
     authorize User
 
     q = params[:q]
-    @users =  User.where( 'username ilike ?', "%#{q}%" )
-                  .or( User.where( 'public_name  ilike ?', "%#{q}%" )
-                  .or( User.where( 'public_email ilike ?', "%#{q}%" ) ) )
-                  .order( :username )
-                  .page( page_number ).per( items_per_page )
+    @pagy, @users = pagy(
+      User.where( 'username ilike ?', "%#{q}%" )
+          .or( User.where( 'public_name  ilike ?', "%#{q}%" )
+          .or( User.where( 'public_email ilike ?', "%#{q}%" ) ) )
+          .order( :username ), items: items_per_page
+    )
 
     authorize @users if @users.present?
     render :index
@@ -90,5 +93,11 @@ class Admin::UsersController < AdminController
       :profile_pic, :bio, :website, :location, :postcode, :admin_notes,
       capabilities: {}
     )
+  end
+
+  # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+  def pagy_url_for( page, _pagy )
+    params = request.query_parameters.merge( only_path: true, page: page )
+    url_for( params )
   end
 end

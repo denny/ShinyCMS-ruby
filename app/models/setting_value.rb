@@ -19,7 +19,7 @@ class SettingValue < ApplicationRecord
 
   validates :setting_id, presence: true
   validates :user_id,    uniqueness: {
-    scope: :setting,
+    scope:   :setting,
     message: I18n.t( 'models.setting_value.one_per_user' )
   }
 end

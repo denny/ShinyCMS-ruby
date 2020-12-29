@@ -17,8 +17,7 @@ module ShinyForms
 
     def index
       authorize Form
-      page_num = params[ :page ] || 1
-      @forms = Form.page( page_num )
+      @pagy, @forms = pagy( Form.all, items: items_per_page )
       authorize @forms if @forms.present?
     end
 
@@ -26,10 +25,11 @@ module ShinyForms
       authorize Form
 
       q = params[:q]
-      @forms = Form.where( 'internal_name ilike ?', "%#{q}%" )
-                   .or( Form.where( 'slug ilike ?', "%#{q}%" ) )
-                   .order( :internal_name )
-                   .page( page_number ).per( items_per_page )
+      @pagy, @forms = pagy(
+        Form.where( 'internal_name ilike ?', "%#{q}%" )
+            .or( Form.where( 'slug ilike ?', "%#{q}%" ) )
+            .order( :internal_name ), items: items_per_page
+      )
 
       authorize @forms if @forms.present?
       render :index

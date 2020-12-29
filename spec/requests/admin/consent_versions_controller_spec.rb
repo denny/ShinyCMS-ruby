@@ -79,7 +79,7 @@ RSpec.describe Admin::ConsentVersionsController, type: :request do
     it 'adds a new consent version when the form is filled in correctly' do
       post consent_versions_path, params: {
         consent_version: {
-          name: Faker::Books::CultureSeries.unique.culture_ship,
+          name:         Faker::Books::CultureSeries.unique.culture_ship,
           display_text: Faker::Lorem.paragraph
         }
       }
