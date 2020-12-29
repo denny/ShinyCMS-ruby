@@ -9,6 +9,8 @@
 module ShinyBlogs
   # Main site blog features - part of the ShinyBlogs plugin for ShinyCMS
   class BlogsController < MainController
+    include ShinyPagingHelper
+
     before_action :check_feature_flags
     before_action :set_blog, except: :index
 
@@ -19,8 +21,7 @@ module ShinyBlogs
     def recent
       return set_blog_failure if @blog.blank?
 
-      page_num = params[:page] || 1
-      @posts = @blog.posts.recent.page( page_num )
+      @pagy, @posts = pagy( @blog.posts.recent, items: items_per_page )
     end
 
     def month
