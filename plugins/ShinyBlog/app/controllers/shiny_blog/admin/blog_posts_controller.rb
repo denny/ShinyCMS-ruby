@@ -21,7 +21,7 @@ module ShinyBlog
 
     def index
       authorize Post
-      @posts = Post.order( posted_at: :desc ).page( page_number ).per( items_per_page )
+      @pagy, @posts = pagy( Post.order( posted_at: :desc ), items: items_per_page )
       authorize @posts if @posts.present?
     end
 
@@ -29,10 +29,11 @@ module ShinyBlog
       authorize Post
 
       q = params[:q]
-      @posts = Post.where( 'title ilike ?', "%#{q}%" )
-                   .or( Post.where( 'body ilike ?', "%#{q}%" ) )
-                   .order( posted_at: :desc )
-                   .page( page_number ).per( items_per_page )
+      @pagy, @posts = pagy(
+        Post.where( 'title ilike ?', "%#{q}%" )
+            .or( Post.where( 'body ilike ?', "%#{q}%" ) )
+            .order( posted_at: :desc ), items: items_per_page
+      )
 
       authorize @posts if @posts.present?
       render :index

@@ -6,6 +6,7 @@
       <%= @page_title %>
     </h2>
   </header>
+
   <ul>
   <% @results.each do |result| %>
     <li>
@@ -13,12 +14,11 @@
     </li>
   <% end %>
   </ul>
+
   <% if @results.blank? %>
     <%= render partial: 'search/no_results' %>
   <% else %>
-    <% if @pageable %>
-    <%= render partial: 'includes/pager', locals: { paged: @pageable, route_set: shiny_search } %>
-    <% end %>
+    <%= render partial: 'includes/pager', locals: { pagy: @pagy } %>
   <% end %>
 </section>
 

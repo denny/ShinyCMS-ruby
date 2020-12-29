@@ -1,0 +1,27 @@
+# frozen_string_literal: true
+
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Config for Typo CI (https://github.com/marketplace/typo-ci / https://typoci.com)
+
+# Languages/dictionaries to use (supported: de en en_GB es fr it pt pt_BR tr)
+dictionaries:
+  - en_GB
+  - en
+
+excluded_files:
+  - Gemfile.lock
+  - yarn.lock
+  - config/initializers/pagy.rb
+  - node_modules/**/*
+  - vendor/**/*
+
+excluded_words:
+  - ShinyCMS
+  - ilike
+
+spellcheck_filenames: true

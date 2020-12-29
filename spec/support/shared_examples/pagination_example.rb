@@ -30,10 +30,7 @@ RSpec.shared_examples 'Pagination' do |factory, base_url, match_tag, match_text|
 
     describe 'specifying the first page, but not specifying a count' do
       it 'shows the first ten items' do
-        get "#{base_url}?page=1"
-        params = { page: 1 }
-
-        get "#{base_url}?#{params.to_query}"
+        get "#{base_url}/page/1"
 
         expect( response.body ).to have_css match_tag, text: @items[0].public_send( match_text )
         expect( response.body ).to have_css match_tag, text: @items[9].public_send( match_text )
@@ -44,9 +41,9 @@ RSpec.shared_examples 'Pagination' do |factory, base_url, match_tag, match_text|
 
     describe 'specifying the first page, and a count of 5 items' do
       it 'shows the first 5 items' do
-        params = { page: 1, count: 5 }
+        params = { items: 5 }
 
-        get "#{base_url}?#{params.to_query}"
+        get "#{base_url}/page/1?#{params.to_query}"
 
         expect( response.body ).to have_css match_tag, text: @items[0].public_send( match_text )
         expect( response.body ).to have_css match_tag, text: @items[4].public_send( match_text )
@@ -57,8 +54,7 @@ RSpec.shared_examples 'Pagination' do |factory, base_url, match_tag, match_text|
 
     describe 'specifying a count of 5 items, but not specifying a page' do
       it 'shows the first 5 items' do
-        get "#{base_url}?count=5"
-        params = { count: 5 }
+        params = { items: 5 }
 
         get "#{base_url}?#{params.to_query}"
 
@@ -71,10 +67,7 @@ RSpec.shared_examples 'Pagination' do |factory, base_url, match_tag, match_text|
 
     describe 'requesting the second page with default count' do
       it 'shows the last two items' do
-        get "#{base_url}?page=2"
-        params = { page: 2 }
-
-        get "#{base_url}?#{params.to_query}"
+        get "#{base_url}/page/2"
 
         expect( response.body ).not_to have_css match_tag, text: @items[1].public_send( match_text )
 
@@ -85,9 +78,9 @@ RSpec.shared_examples 'Pagination' do |factory, base_url, match_tag, match_text|
 
     describe 'specifying the second page, and a count of 5 items' do
       it 'shows items 6 to 10' do
-        params = { page: 2, count: 5 }
+        params = { items: 5 }
 
-        get "#{base_url}?#{params.to_query}"
+        get "#{base_url}/page/2?#{params.to_query}"
 
         expect( response.body ).not_to have_css match_tag, text: @items[4].public_send( match_text )
 
