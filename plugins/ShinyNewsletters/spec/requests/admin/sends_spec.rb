@@ -105,7 +105,7 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
 
       post shiny_newsletters.sends_path, params: {
         send: {
-          list_id: list1.id,
+          list_id:    list1.id,
           edition_id: edition1.id
         }
       }
@@ -152,7 +152,7 @@ RSpec.describe 'Admin: Newsletter Sends', type: :request do
 
       put shiny_newsletters.send_path( send1 ), params: {
         send: {
-          list_id: send1.list.id,
+          list_id:    send1.list.id,
           edition_id: edition2.id
         }
       }

@@ -38,8 +38,8 @@ RSpec.describe 'ShinyForms', type: :request do
 
         post shiny_forms.process_form_path( form.slug ), params: {
           shiny_form: {
-            name: Faker::Name.unique.name,
-            email: Faker::Internet.unique.email,
+            name:    Faker::Name.unique.name,
+            email:   Faker::Internet.unique.email,
             subject: Faker::Books::CultureSeries.unique.culture_ship,
             message: Faker::Lorem.paragraphs.join( "\n\n" )
           }
@@ -59,8 +59,8 @@ RSpec.describe 'ShinyForms', type: :request do
 
         post shiny_forms.process_form_path( form.slug ), params: {
           shiny_form: {
-            name: Faker::Name.unique.name,
-            email: Faker::Internet.unique.email,
+            name:    Faker::Name.unique.name,
+            email:   Faker::Internet.unique.email,
             subject: Faker::Books::CultureSeries.unique.culture_ship,
             message: Faker::Lorem.paragraphs.join( "\n\n" )
           }
@@ -79,7 +79,7 @@ RSpec.describe 'ShinyForms', type: :request do
 
       post shiny_forms.process_form_path( form.slug ), params: {
         shiny_form: {
-          email: Faker::Internet.unique.email,
+          email:   Faker::Internet.unique.email,
           message: Faker::Lorem.paragraph
         }
       }

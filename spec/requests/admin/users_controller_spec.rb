@@ -99,7 +99,7 @@ RSpec.describe Admin::UsersController, type: :request do
           user: {
             username: 'test',
             password: Faker::Internet.unique.password,
-            email: Faker::Internet.unique.email
+            email:    Faker::Internet.unique.email
           }
         }
 
@@ -114,7 +114,7 @@ RSpec.describe Admin::UsersController, type: :request do
           user: {
             username: username,
             password: Faker::Internet.unique.password,
-            email: Faker::Internet.unique.email( name: username )
+            email:    Faker::Internet.unique.email( name: username )
           }
         }
 

@@ -10,11 +10,11 @@
 
 def add_feature_flag( name:, description: nil, enabled: true )
   FeatureFlag.find_or_create_by(
-    name: name,
-    description: description,
-    enabled: enabled,
+    name:                  name,
+    description:           description,
+    enabled:               enabled,
     enabled_for_logged_in: enabled,
-    enabled_for_admins: enabled
+    enabled_for_admins:    enabled
   )
 end
 

@@ -118,7 +118,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       post discussion_path( @discussion ), params: {
         comment: {
           title: title,
-          body: body
+          body:  body
         }
       }
 
@@ -141,7 +141,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       post discussion_path( @discussion ), params: {
         comment: {
           title: title,
-          body: body
+          body:  body
         }
       }
 
@@ -160,10 +160,10 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
       post discussion_path( @discussion ), params: {
         comment: {
-          author_name: name,
+          author_name:  name,
           author_email: Faker::Internet.unique.email,
-          title: title,
-          body: Faker::Lorem.paragraph
+          title:        title,
+          body:         Faker::Lorem.paragraph
         }
       }
 
@@ -180,7 +180,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       post discussion_path( @discussion ), params: {
         comment: {
           title: nil,
-          body: nil
+          body:  nil
         }
       }
 
@@ -200,7 +200,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       post discussion_path( @discussion ), params: {
         comment: {
           title: title,
-          body: body
+          body:  body
         }
       }
 
@@ -224,8 +224,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
       post discussion_path( @discussion ), params: {
         comment: {
-          title: title,
-          body: body,
+          title:       title,
+          body:        body,
           author_name: always_fail_author_name
         }
       }
@@ -257,10 +257,10 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
       post discussion_path( @discussion ), params: {
         comment: {
-          author_name: name,
+          author_name:  name,
           author_email: email,
-          title: title,
-          body: body
+          title:        title,
+          body:         body
         }
       }
 
@@ -282,7 +282,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       post comment_path( @discussion, @comment.number ), params: {
         comment: {
           title: title,
-          body: body
+          body:  body
         }
       }
 
@@ -299,7 +299,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       post comment_path( @discussion, @comment.number ), params: {
         comment: {
           title: nil,
-          body: nil
+          body:  nil
         }
       }
 

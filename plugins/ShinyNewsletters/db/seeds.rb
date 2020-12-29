@@ -13,10 +13,10 @@
 
 flag = FeatureFlag.find_or_create_by!( name: 'newsletters' )
 flag.update!(
-  description: 'Enable newsletter features (provided by ShinyNewsletters plugin)',
-  enabled: true,
+  description:           'Enable newsletter features (provided by ShinyNewsletters plugin)',
+  enabled:               true,
   enabled_for_logged_in: true,
-  enabled_for_admins: true
+  enabled_for_admins:    true
 )
 
 # Admin capabilities
@@ -31,7 +31,6 @@ def add_capabilities( capability_data )
   end
 end
 
-# rubocop:disable Layout/HashAlignment
 add_capabilities(
   {
     newsletter_editions:  %w[ list add edit destroy ],
@@ -39,4 +38,3 @@ add_capabilities(
     newsletter_templates: %w[ list add edit destroy ]
   }
 )
-# rubocop:enable Layout/HashAlignment

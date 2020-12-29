@@ -37,10 +37,10 @@ module AdminAreaHelper
 
   def render_capability_category( form, category, capabilities, show )
     render partial: 'capability_category', locals: {
-      f: form,
-      category: category,
+      f:                     form,
+      category:              category,
       category_capabilities: capabilities,
-      show: show
+      show:                  show
     }
   end
 
@@ -48,15 +48,15 @@ module AdminAreaHelper
     return if capability == 'skip'
 
     render partial: 'capability_checkbox', locals: {
-      f: form,
+      f:          form,
       capability: capability,
-      category: capability_category
+      category:   capability_category
     }
   end
 
   def render_admin_menu_section_start( text, icon = nil )
     render partial: 'admin/menu/menu_section_start',
-           locals: { text: text, icon: icon }
+           locals:  { text: text, icon: icon }
   end
 
   def render_admin_menu_section_end
@@ -71,7 +71,7 @@ module AdminAreaHelper
 
   def render_admin_menu_item( text, link, icon = nil )
     render partial: 'admin/menu/menu_item',
-           locals: { text: text, link: link, icon: icon }
+           locals:  { text: text, link: link, icon: icon }
   end
 
   def render_admin_menu_item_if( condition, text, link, icon = nil )

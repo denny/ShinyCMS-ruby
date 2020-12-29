@@ -13,7 +13,7 @@ module RecaptchaHelper
 
     verify_recaptcha(
       secret_key: self.class.recaptcha_checkbox_secret_key,
-      env: Rails.env
+      env:        Rails.env
     )
   end
 
@@ -26,7 +26,7 @@ module RecaptchaHelper
 
     verify_recaptcha(
       secret_key: self.class.recaptcha_v2_secret_key,
-      env: Rails.env
+      env:        Rails.env
     )
   end
 
@@ -36,10 +36,10 @@ module RecaptchaHelper
     min_score = minimum_score( action ).to_f
 
     verify_recaptcha(
-      action: action,
+      action:        action,
       minimum_score: min_score,
-      secret_key: self.class.recaptcha_v3_secret_key,
-      env: Rails.env
+      secret_key:    self.class.recaptcha_v3_secret_key,
+      env:           Rails.env
     )
   end
 

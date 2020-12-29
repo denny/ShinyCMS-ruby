@@ -25,10 +25,10 @@ module ShinyWithTemplate
     def add_elements
       template.elements.each do |template_element|
         elements.create!(
-          name: template_element.name,
-          content: template_element.content,
+          name:         template_element.name,
+          content:      template_element.content,
           element_type: template_element.element_type,
-          position: template_element.position
+          position:     template_element.position
         )
       end
     end

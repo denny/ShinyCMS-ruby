@@ -108,8 +108,8 @@ class DiscussionsController < MainController
 
   def create_comment_author
     author = CommentAuthor.new(
-      name: strong_params[ :author_name ],
-      website: strong_params[ :author_url ].presence,
+      name:       strong_params[ :author_name ],
+      website:    strong_params[ :author_url ].presence,
       ip_address: request.ip
     )
     return author if strong_params[ :author_email ].blank?

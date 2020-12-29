@@ -13,10 +13,10 @@
 
 flag = FeatureFlag.find_or_create_by!( name: 'pages' )
 flag.update!(
-  description: "Enable 'brochure pages', provided by ShinyPages plugin",
-  enabled: true,
+  description:           "Enable 'brochure pages', provided by ShinyPages plugin",
+  enabled:               true,
   enabled_for_logged_in: true,
-  enabled_for_admins: true
+  enabled_for_admins:    true
 )
 
 # Admin capabilities
@@ -45,15 +45,15 @@ templates_cc.capabilities.find_or_create_by!( name: 'destroy' )
 setting1 = Setting.find_or_create_by!( name: 'default_page' )
 setting1.update!(
   description: 'Default top-level page (either its name or its slug)',
-  level: 'site',
-  locked: false
+  level:       'site',
+  locked:      false
 )
 setting1.values.find_or_create_by!( value: '' )
 
 setting2 = Setting.find_or_create_by!( name: 'default_section' )
 setting2.update!(
   description: 'Default top-level section (either its name or its slug)',
-  level: 'site',
-  locked: false
+  level:       'site',
+  locked:      false
 )
 setting2.values.find_or_create_by!( value: '' )

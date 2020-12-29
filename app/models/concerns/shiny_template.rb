@@ -51,28 +51,28 @@ module ShinyTemplate
 
     def add_short_text_element( name )
       elements.create(
-        name: name,
+        name:         name,
         element_type: 'short_text'
       )
     end
 
     def add_long_text_element( name )
       elements.create(
-        name: name,
+        name:         name,
         element_type: 'long_text'
       )
     end
 
     def add_html_element( name )
       elements.create(
-        name: name,
+        name:         name,
         element_type: 'html'
       )
     end
 
     def add_image_element( name )
       elements.create(
-        name: name,
+        name:         name,
         element_type: 'image'
       )
     end

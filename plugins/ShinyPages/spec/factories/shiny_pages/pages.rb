@@ -31,8 +31,8 @@ module ShinyPages
             when 'image'
               test_file = Rails.root.join( 'app/assets/images/shinycms/spiral.png' )
               test_blob = ActiveStorage::Blob.create_after_upload!(
-                io: File.open( test_file ),
-                filename: 'spiral.png',
+                io:           File.open( test_file ),
+                filename:     'spiral.png',
                 content_type: 'image/png'
               ).signed_id
               element.image.attach test_blob

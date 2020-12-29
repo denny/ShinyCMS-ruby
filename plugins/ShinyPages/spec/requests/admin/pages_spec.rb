@@ -67,8 +67,8 @@ RSpec.describe 'Admin: Pages', type: :request do
       post shiny_pages.pages_path, params: {
         page: {
           internal_name: 'Test',
-          slug: 'account',
-          template_id: template.id
+          slug:          'account',
+          template_id:   template.id
         }
       }
 
@@ -83,7 +83,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       post shiny_pages.pages_path, params: {
         page: {
           internal_name: 'Test',
-          template_id: template.id
+          template_id:   template.id
         }
       }
 
@@ -101,7 +101,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       post shiny_pages.pages_path, params: {
         page: {
           internal_name: 'Test',
-          template_id: template.id
+          template_id:   template.id
         }
       }
 
@@ -184,7 +184,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       put shiny_pages.page_path( page ), params: {
         page: {
           internal_name: 'Updated by test',
-          slug: ''
+          slug:          ''
         }
       }
 
@@ -218,7 +218,7 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( last_element.position ).to eq ids.size
 
       put shiny_pages.page_path( page ), params: {
-        page: {
+        page:       {
           internal_name: page.internal_name
         },
         sort_order: query_string
