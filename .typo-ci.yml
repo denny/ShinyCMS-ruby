@@ -18,8 +18,9 @@ excluded_files:
   - yarn.lock
   - node_modules/**/*
   - vendor/**/*
+  - config/initializers/pagy.rb
 
-excluded_words:
+  excluded_words:
   - ShinyCMS
   - ilike
 
