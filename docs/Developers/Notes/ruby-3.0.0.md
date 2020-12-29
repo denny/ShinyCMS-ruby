@@ -18,7 +18,5 @@
 
 6. kaminari is not happy :(
     * Short-term, to get test suite to pass:
-        * Comment out it_behaves_like Pagination at bottom of blog and news request spec
-        * Comment out paginate calls in pager partials
-    * Medium-term: time to switch to a different paging engine?
-        * https://github.com/ddnexus/pagy ?
+        * Commented out it_behaves_like Pagination at bottom of blog and news request spec
+    * Medium-term: switched to Pagy - https://github.com/ddnexus/pagy
