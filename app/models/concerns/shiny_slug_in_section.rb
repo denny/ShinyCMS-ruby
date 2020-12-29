@@ -14,7 +14,7 @@ module ShinySlugInSection
 
   included do
     validates :slug, uniqueness: {
-      scope: :section,
+      scope:   :section,
       message: I18n.t( 'errors.messages.slug_not_unique_in_section' )
     }
   end

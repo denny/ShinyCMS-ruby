@@ -90,8 +90,8 @@ module ShinyForms
 
     # Add another validation here, because it uses the class methods above
     validates :filename, inclusion: {
-      in: Form.available_templates,
-      message: I18n.t( 'shiny_forms.models.forms.template_file_must_exist' ),
+      in:        Form.available_templates,
+      message:   I18n.t( 'shiny_forms.models.forms.template_file_must_exist' ),
       allow_nil: true
     }
   end

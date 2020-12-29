@@ -13,26 +13,26 @@
 
 flag = FeatureFlag.find_or_create_by!( name: 'blog' )
 flag.update!(
-  description: 'Enable blog section, provided by ShinyBlog plugin',
-  enabled: true,
+  description:           'Enable blog section, provided by ShinyBlog plugin',
+  enabled:               true,
   enabled_for_logged_in: true,
-  enabled_for_admins: true
+  enabled_for_admins:    true
 )
 
 flag = FeatureFlag.find_or_create_by!( name: 'blog_votes' )
 flag.update!(
-  description: 'Enable votes on blog posts',
-  enabled: true,
+  description:           'Enable votes on blog posts',
+  enabled:               true,
   enabled_for_logged_in: true,
-  enabled_for_admins: true
+  enabled_for_admins:    true
 )
 
 flag = FeatureFlag.find_or_create_by!( name: 'blog_downvotes' )
 flag.update!(
-  description: 'Enable down-votes on blog posts',
-  enabled: true,
+  description:           'Enable down-votes on blog posts',
+  enabled:               true,
   enabled_for_logged_in: true,
-  enabled_for_admins: true
+  enabled_for_admins:    true
 )
 
 # Add admin capabilities

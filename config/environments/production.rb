@@ -84,12 +84,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     # SMTP server - the server you send email through - e.g. smtp.sendgrid.net
-    address: ENV['MAILER_ADDRESS'],
-    port: ENV['MAILER_PORT'],
+    address:        ENV['MAILER_ADDRESS'],
+    port:           ENV['MAILER_PORT'],
     # HELO/EHLO domain - the domain your emails come from - e.g. shinycms.org
-    domain: ENV['MAILER_DOMAIN'],
-    user_name: ENV['MAILER_USER_NAME'],
-    password: ENV['MAILER_PASSWORD'],
+    domain:         ENV['MAILER_DOMAIN'],
+    user_name:      ENV['MAILER_USER_NAME'],
+    password:       ENV['MAILER_PASSWORD'],
     # 'plain', 'login', or 'cram_md5'
     authentication: ( ENV['MAILER_AUTHENTICATION'] || 'plain' ).to_sym
   }

@@ -18,7 +18,6 @@ def add_capabilities( capability_data )
   end
 end
 
-# rubocop:disable Layout/HashAlignment
 add_capabilities(
   {
     general:          %w[ view_admin_area view_admin_toolbar manage_sidekiq_jobs ],
@@ -35,4 +34,3 @@ add_capabilities(
     admin_users:      %w[ list add edit destroy ]
   }
 )
-# rubocop:enable Layout/HashAlignment

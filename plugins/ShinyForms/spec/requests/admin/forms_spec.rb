@@ -53,7 +53,7 @@ RSpec.describe 'ShinyForms Admin', type: :request do
       post shiny_forms.forms_path, params: {
         form: {
           internal_name: Faker::Books::CultureSeries.unique.culture_ship,
-          handler: 'plain_email'
+          handler:       'plain_email'
         }
       }
 

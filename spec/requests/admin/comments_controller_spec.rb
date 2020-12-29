@@ -83,9 +83,9 @@ RSpec.describe Admin::CommentsController, type: :request do
       expect( @comment2.reload.spam? ).to be true
 
       put comments_path, params: {
-        spam_or_ham: 'spam',
+        spam_or_ham:   'spam',
         spam_comments: {
-          "comment_#{@nested1.id}": 1,
+          "comment_#{@nested1.id}":  1,
           "comment_#{@comment2.id}": 0
         }
       }
@@ -113,9 +113,9 @@ RSpec.describe Admin::CommentsController, type: :request do
       expect( @comment2.reload.spam? ).to be true
 
       put comments_path, params: {
-        spam_or_ham: 'ham',
+        spam_or_ham:   'ham',
         spam_comments: {
-          "comment_#{@nested1.id}": 1,
+          "comment_#{@nested1.id}":  1,
           "comment_#{@comment2.id}": 0
         }
       }
@@ -142,9 +142,9 @@ RSpec.describe Admin::CommentsController, type: :request do
       @comment2.mark_as_spam
 
       put comments_path, params: {
-        spam_or_ham: 'ham',
+        spam_or_ham:   'ham',
         spam_comments: {
-          "comment_#{@nested1.id}": 1,
+          "comment_#{@nested1.id}":  1,
           "comment_#{@comment2.id}": 0
         }
       }

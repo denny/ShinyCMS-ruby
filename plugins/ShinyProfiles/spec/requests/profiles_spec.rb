@@ -98,7 +98,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
 
       post user_session_path, params: {
         user: {
-          login: user.username,
+          login:    user.username,
           password: password
         }
       }
@@ -119,7 +119,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
 
       post user_session_path, params: {
         user: {
-          login: user.username,
+          login:    user.username,
           password: password
         }
       }

@@ -15,7 +15,7 @@ module ShinySlugInMonth
   included do
     validates :slug, unique_in_collection: {
       collection: ->( record ) { record.items_in_same_month },
-      message: I18n.t( 'errors.messages.slug_not_unique_in_month' )
+      message:    I18n.t( 'errors.messages.slug_not_unique_in_month' )
     }
   end
 end
