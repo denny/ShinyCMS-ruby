@@ -67,8 +67,6 @@
 
 * Add 'unsubscribe reason' to ShinyLists
 
-* Mock/VCR the Akismet tests (and anything else that currently needs a 'net connection)
-
 * Add a 'save form submission to database' form handler
 
 * Make a generic sidebar template that renders any partials in a specified directory
