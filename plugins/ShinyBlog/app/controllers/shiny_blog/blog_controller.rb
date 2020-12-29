@@ -16,7 +16,7 @@ module ShinyBlog
     helper_method :pagy_url_for
 
     def index
-      @pagy, @posts = pagy( Post.readonly.recent, items: items_per_page )
+      @pagy, @posts = pagy_countless( Post.readonly.recent, items: items_per_page )
     end
 
     def month
