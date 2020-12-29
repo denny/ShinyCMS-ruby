@@ -36,6 +36,10 @@ en:
   delete: Delete
   destroy: Delete
 
+  # Paging
+  newer: Newer
+  older: Older
+
   # Confirmation dialogue
   are_you_sure: Are you sure?
 
