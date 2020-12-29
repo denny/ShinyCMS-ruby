@@ -237,8 +237,6 @@ GEM
     bootsnap (1.5.1)
       msgpack (~> 1.0)
     brakeman (4.10.1)
-    bugsnag (6.18.0)
-      concurrent-ruby (~> 1.0)
     builder (3.2.4)
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
@@ -305,9 +303,9 @@ GEM
       railties (>= 5.0.0)
     faker (2.15.1)
       i18n (>= 1.6, < 2)
-    fasterer (0.7.1)
+    fasterer (0.8.3)
       colorize (~> 0.7)
-      ruby_parser (>= 3.13.0)
+      ruby_parser (>= 3.14.1)
     ffi (1.14.2)
     geocoder (1.6.4)
     globalid (0.4.2)
@@ -599,7 +597,6 @@ DEPENDENCIES
   blazer (= 2.3.1)!
   bootsnap (>= 1.4.2)!
   brakeman!
-  bugsnag!
   bundler-audit!
   capybara (>= 2.15)!
   chartkick (~> 3.4.2)!
