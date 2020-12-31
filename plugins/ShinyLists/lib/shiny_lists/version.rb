@@ -8,6 +8,6 @@
 
 # Version number ('Ubuntu style', YY.MM) - ShinyLists plugin for ShinyCMS
 module ShinyLists
-  VERSION = '20.12'
+  VERSION = '21.01'
   public_constant :VERSION
 end

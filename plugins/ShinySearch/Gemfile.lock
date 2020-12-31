@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shiny_search (20.12)
+    shiny_search (21.01)
       acts-as-taggable-on
       acts_as_paranoid
       algoliasearch-rails
