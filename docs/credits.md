@@ -9,7 +9,9 @@ creation of this software.
 
 * aj (@ajkln) of [HTML5 UP](https://html5up.net) for the [Halcyonic theme](https://html5up.net/halcyonic) that the demo site uses, and the [Coming Soon](https://html5up.net/eventually) theme that is also included. All the great design in both themes is entirely aj's work (any errors will doubtless be mine, introduced as I cut the original HTML up to make view templates).
 
-* Maximo (@maxvlc) and Luigi (@007lva), for reporting issues with running the demo site.
+* Luigi (@007lva) for code quality improvements, as well as various helpful issue reports over the length of the project so far.
+
+* Maximo (@maxvlc) for reporting early issues with running the demo site.
 
 * Michael Snook (@michaelsnook) and Ed Saperia (@edsaperia), for numerous contributions to the brainstorming around mailing lists and related features.
 

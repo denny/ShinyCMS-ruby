@@ -37,13 +37,8 @@ module ShinyHTMLTemplate
     def self.available_templates
       return [] unless template_dir
 
-      template_names = []
-
       filenames = Dir.glob '*.html.erb', base: template_dir
-      filenames.each do |filename|
-        template_names << filename.remove( '.html.erb' )
-      end
-
+      template_names = filenames.collect { |filename| filename.remove( '.html.erb' ) }
       template_names.sort
     end
   end
