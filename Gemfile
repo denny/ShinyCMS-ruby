@@ -164,7 +164,8 @@ source 'https://rubygems.org' do
     gem 'rails_best_practices'
 
     # Ruby Critic generates easy-to-read reports from various static analysis tools
-    gem 'rubycritic', require: false
+    # FIXME: install this manually (gem install rubycritic) until reek is ruby3 compatible
+    # gem 'rubycritic', '~> 4.5.0', require: false
 
     # Utils for working with translation strings
     # gem 'i18n-debug'
