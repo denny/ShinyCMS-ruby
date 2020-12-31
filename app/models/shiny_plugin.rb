@@ -8,7 +8,7 @@
 
 # Provides convenience methods for interacting with ShinyCMS plugins
 class ShinyPlugin
-  attr_accessor :name
+  attr_reader :name
 
   def initialize( name )
     return unless ShinyPlugin.all_names.include? name

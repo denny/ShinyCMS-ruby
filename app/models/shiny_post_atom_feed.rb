@@ -14,7 +14,7 @@ class ShinyPostAtomFeed
 
   include Rails.application.routes.url_helpers
 
-  attr_accessor :name, :feed
+  attr_reader :name, :feed
 
   def initialize( feed_name )
     return unless %i[ blog news ].include? feed_name
@@ -42,9 +42,10 @@ class ShinyPostAtomFeed
   private
 
   def write_file_to_local_disk( file_path )
-    File.open file_path, 'w' do |f|
-      f.write feed.to_feed( 'atom' )
-      f.write "\n"
+    feed_text = feed.to_feed( 'atom' )
+
+    File.open file_path, 'w' do |feed_file|
+      feed_file.write "#{feed_text}\n"
     end
   end
 
@@ -89,9 +90,9 @@ class ShinyPostAtomFeed
 
   def add_feed_author
     author = feed.class::Author.new
-    name = author.class::Name.new
-    name.content = site_name # TODO
-    author.name = name
+    author_name = author.class::Name.new
+    author_name.content = site_name # TODO
+    author.name = author_name
     feed.authors << author
   end
 
