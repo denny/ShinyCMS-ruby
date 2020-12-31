@@ -6,6 +6,7 @@ PATH
       acts_as_paranoid
       algoliasearch-rails
       ckeditor
+      nokogiri (>= 1.11.0.rc4)
       pagy
       pg (~> 1.2.3)
       pg_search
@@ -115,11 +116,12 @@ GEM
     method_source (1.0.0)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
-    mini_portile2 (2.4.0)
+    mini_portile2 (2.5.0)
     minitest (5.14.2)
     nio4r (2.5.4)
-    nokogiri (1.10.10)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.11.0.rc4)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     pagy (3.10.0)
     pg (1.2.3)
@@ -128,6 +130,7 @@ GEM
       activesupport (>= 5.2)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
+    racc (1.5.2)
     rack (2.2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
