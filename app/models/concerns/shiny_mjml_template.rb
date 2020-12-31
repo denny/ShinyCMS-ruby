@@ -41,13 +41,8 @@ module ShinyMJMLTemplate
     def self.available_templates
       return [] unless template_dir
 
-      template_names = []
-
       filenames = Dir.glob '*.mjml', base: template_dir
-      filenames.each do |filename|
-        template_names << filename.remove( '.html.mjml' )
-      end
-
+      template_names = filenames.map { |filename| template_names << filename.remove( '.html.mjml' ) }
       template_names.sort
     end
   end

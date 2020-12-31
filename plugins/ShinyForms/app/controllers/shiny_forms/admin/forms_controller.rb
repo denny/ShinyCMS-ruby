@@ -88,9 +88,9 @@ module ShinyForms
 
     def set_form_handlers
       handlers = ShinyForms::FormHandler::FORM_HANDLERS
-      @form_handlers = []
-      handlers.each do |handler|
-        @form_handlers << [ I18n.t( "shiny_forms.admin.forms.handlers.#{handler}" ), handler ]
+
+      @form_handlers = handlers.map do |handler|
+        [ I18n.t( "shiny_forms.admin.forms.handlers.#{handler}" ), handler ]
       end
     end
 
