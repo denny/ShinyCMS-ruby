@@ -5,13 +5,13 @@
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
 
-### 2021-01-01  21.01  January 2021: "Update ALL the things!!"
+### 2021-01-01  21.1  January 2021: 'Happy New Year / Happy New Rails / Happy New Ruby!!'
 
-    * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.01
+    * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.1
 
     * Headlines:
         * Rails 6.1 !
-        * Ruby  3.0 !!
+        * Ruby 3.0 !!
 
     * Also notable:
         * Pagination now uses Pagy rather than Kaminari
@@ -20,51 +20,48 @@ This file contains information about changes (particularly breaking changes) bet
     * Possibly contentious Rubocop config change of the month ;)
         * Layout/HashAlignment -> EnforcedStyle: table
 
-    * Plugin versions all increased to 21.01
+    * Plugin versions all increased to 21.1
 
     * Added
         * Pagy - new pagination gem, replacing Kaminari
         * rubocop-rspec
-            * This triggered quite a few minor changes in spec files, nothing major though
+            * This triggered lots of minor changes to spec files, nothing major though
             * Still two types of warning left to address (see .rubocop_todo.yml)
         * rails_best_practices
         * Typo CI (https://github.com/marketplace/typo-ci)
         * ActiveStorage added a new table, and a new column to an existing table
-        * Database indexes
-            * capabilities.category_id, comments.parent_id, shiny_pages_sections.default_page_id
+        * Database indexes on capabilities.category_id, comments.parent_id, and shiny_pages_sections.default_page_id
 
     * Changed
-        * As headlined; two particularly significant version bumps this month:
+        * As headlined, two particularly significant version bumps this month:
             * Rails, from 6.0 to 6.1
-                * This triggered a downgrade in acts-as-taggable-on, from 6.5.0 to 5.0.0
-                    * This had no noticeable impact on functionality
             * Ruby, from 2.7 to 3.0
-                * This also triggered downgrades, in codecov and fasterer
-                    * Again, no noticeable impact from either of these
-                * Required an unreleased fix for ActiveRecord-session-store
-                    * Currently installing from GitHub HEAD
-        * (Almost) all theme files moved into a top-level /themes folder
-            * Currently, adding a theme still requires some changes/additions to the main app code, which is an annoying crossing of boundaries
+                * This triggered downgrades in the codecov and fasterer gems
+                    * No noticeable impact from either of these
+                * Needs an unreleased fix for ActiveRecord-session-store
+                    * Hence, this gem is currently installing from GitHub HEAD
+        * Finished moving (almost) all theme files into the top-level /themes folder
             * Theme JavaScript files still not ideally located, but better than before
+            * Currently, adding a theme still requires some changes/additions to the main app code, which is an annoying crossing of boundaries
         * Human-readable names for capability categories now come via i18n rather than various model methods
         * ActiveRecord timestamp defaults overriden, to not include microseconds
         * In test and dev environment config:
-            * Disable precompiled asset check
-            * Change name of an i18n-related setting
+            * Explicitly disabled precompiled asset check
+                * This fixed possibly spurious issues with assets for themes and plugins
+            * Changed name of an i18n-related setting
 
     * Frozen
-        * Blazer is currently locked to version 2.3.1, as 2.4.0 has a breaking change for us
+        * Blazer is currently locked to version 2.3.1, as 2.4.0 has a breaking change
             * https://github.com/ankane/blazer/issues/315
         * MJML is currently locked to version 4.7.1, as 4.8.0 has a breaking change
 
     * Removed
         * As mentioned above, Travis CI has been removed
-            * This is due to them withdrawing their support for open source projects
-                * https://travis-ci.community/t/10567
-            * This means that there is currently no automated testing against older Ruby versions
-        * Kaminari - pagination gem, replaced by Pagy
-            * The ShinyPaging concern has also been removed, as this was entirely related to Kaminari
-            * The ShinyPagingHelper was retained but is smaller now
+            * The company was sold and the new owners do not support open source :(
+                * See https://travis-ci.community/t/10567 for more background
+            * This means that there is currently no CI set up for older Ruby versions
+        * Kaminari (pagination gem, replaced by Pagy)
+        * The ShinyPaging concern (only existed to load Kaminari)
 
 
 ### 2020-12-03  20.12  December 2020: The 'ShinyAccess and ActiveStorage' Edition
