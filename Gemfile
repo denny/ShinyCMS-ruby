@@ -129,6 +129,9 @@ source 'https://rubygems.org' do
   # Also image processing
   gem 'mini_magick'
 
+  # HTML & XML parser
+  gem 'nokogiri', '>= 1.11.0.rc4'
+
   # Better-looking console output
   gem 'amazing_print'
 

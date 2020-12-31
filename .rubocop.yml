@@ -51,8 +51,9 @@ Metrics/BlockLength:
     - config/environments/*
     - config/routes.rb
     - lib/tasks/*.rake
-    - plugins/*/spec/**/*.rb
-    - plugins/*/config/routes.rb
+    - plugins/Shiny*/config/routes.rb
+    - plugins/Shiny*/shiny_*.gemspec
+    - plugins/Shiny*/spec/**/*.rb
     - spec/**/*.rb
 
 # This config file is easier to understand laid out as it is, not as this cop wants it

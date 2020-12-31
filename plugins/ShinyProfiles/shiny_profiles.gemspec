@@ -45,6 +45,9 @@ Gem::Specification.new do |spec|
   # Pagination
   spec.add_dependency 'pagy'
 
+  # HTML & XML parser
+  spec.add_dependency 'nokogiri', '>= 1.11.0.rc4'
+
   # Testing
   spec.add_development_dependency 'factory_bot_rails'
   spec.add_development_dependency 'faker'
