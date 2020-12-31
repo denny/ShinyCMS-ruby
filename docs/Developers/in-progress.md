@@ -22,7 +22,7 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
         * Move concerns and helpers into a plugin (ShinyToolbox?)
             * Eventually, break them up into multiple plugins (ShinyPostTools, ShinyTemplateTools, etc)
         * Look into moving Users into a plugin
-            * Ideally, move all the non-Devise User/Account functionality into concerns and helpers, so you could include those into any site with Devise-powered auth and then use any ShinyPlugin
+            * Ideally, move all the non-Devise User/Account functionality into concerns and helpers, so that people could include those into the user model of any site with Devise-powered auth, and then use any ShinyPlugin
         * Move each plugin into its own separate gem
             * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
             * Look at Combustion, for minimal test apps for gems: https://github.com/pat/combustion
