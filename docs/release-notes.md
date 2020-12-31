@@ -5,6 +5,67 @@
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
 
+### 2021-01-01  21.01  January 2021: 'Wishing you a Happy New Year, a Happy New Rails, and a Happy New Ruby!'
+
+    * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.01
+
+    * Headlines:
+        * Rails 6.1 !
+        * Ruby 3.0 !!
+
+    * Also notable:
+        * Pagination now uses Pagy rather than Kaminari
+        * Travis CI removed, as they no longer support open source projects :(
+
+    * Possibly contentious Rubocop config change of the month ;)
+        * Layout/HashAlignment -> EnforcedStyle: table
+
+    * Plugin versions all increased to 21.01
+
+    * Added
+        * Pagy - new pagination gem, replacing Kaminari
+        * rubocop-rspec
+            * This triggered lots of minor changes to spec files, nothing major though
+            * Still two types of warning left to address (see .rubocop_todo.yml)
+        * rails_best_practices
+        * rubycritic
+            * Currently commented out in Gemfile due to Ruby 3.0 issues in its dependency chain, but config file included and all ready to go when reek catches up
+        * Typo CI config (https://github.com/marketplace/typo-ci)
+        * ActiveStorage added a new table, and a new column to an existing table
+        * Database indexes on capabilities.category_id, comments.parent_id, and shiny_pages_sections.default_page_id
+
+    * Changed
+        * As headlined, two particularly significant version bumps this month:
+            * Rails, from 6.0 to 6.1
+            * Ruby, from 2.7 to 3.0
+                * This triggered downgrades in the codecov and fasterer gems
+                    * No noticeable impact from either of these
+                * Needs an unreleased fix for ActiveRecord-session-store
+                    * Hence, this gem is currently installing from GitHub HEAD
+        * Finished moving (almost) all theme files into the top-level /themes folder
+            * Theme JavaScript files still not ideally located, but better than it was
+                * Hooking up a theme with JavaScript requires creating a pack file at `/app/javascript/packs/{theme_name}.js`, which is clearly not how that boundary should work. The fix is probably themes-as-installable-gems. (Hold my beer?)
+        * Human-readable names for capability categories now come via i18n rather than various model methods
+        * ActiveRecord timestamp defaults overriden, to not include microseconds
+        * In test and dev environment config:
+            * Explicitly disabled precompiled asset check
+                * This got rid of hopefully spurious errors about theme and plugin assets
+            * Updated the name of an i18n-related setting
+
+    * Frozen
+        * Blazer is currently locked to version 2.3.1, as 2.4.0 has a breaking change
+            * https://github.com/ankane/blazer/issues/315
+        * MJML is currently locked to version 4.7.1, as 4.8.0 has a breaking change
+
+    * Removed
+        * As mentioned above, Travis CI has been removed
+            * The company was sold and the new owners do not support open source :(
+                * See https://travis-ci.community/t/10567 for more background
+            * This means that there is currently no CI set up for older Ruby versions
+        * Kaminari (pagination gem, replaced by Pagy)
+        * The ShinyPaging concern (only existed to load Kaminari)
+
+
 ### 2020-12-03  20.12  December 2020: The 'ShinyAccess and ActiveStorage' Edition
 
     * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v20.12

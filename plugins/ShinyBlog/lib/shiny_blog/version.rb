@@ -8,6 +8,6 @@
 
 # Version number ('Ubuntu style', YY.MM) - ShinyBlog plugin for ShinyCMS
 module ShinyBlog
-  VERSION = '20.12'
+  VERSION = '21.01'
   public_constant :VERSION
 end

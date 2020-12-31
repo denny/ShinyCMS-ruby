@@ -2,6 +2,8 @@
 
 ## TODO
 
+* Check whether the demo data lost the tags at some point
+
 * Tag cloud/list show and count tags on hidden content
 
 * Blazer currently doesn't restrict people without 'edit' capability to view-only
@@ -11,11 +13,6 @@
 * Finish adding support for links on user profiles
 
 * Allow pagination URLs to specify /items/N instead of ?items=N
-* Switch pagination to use JS helpers, to give site builders more flexibility
-
-### Rails 6.1 issues
-
-* acts-as-taggable-on downgraded from 6.5.0 to 5.0.0 to get it to install
 
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
@@ -113,6 +110,8 @@
 
 * Make textarea inputs grow as needed
     * http://www.cryer.co.uk/resources/javascript/script21_auto_grow_text_box.htm
+
+* Switch pagination to use JS helpers, to give site builders more flexibility?
 
 ### Medium-ish
 

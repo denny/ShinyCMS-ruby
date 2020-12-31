@@ -13,10 +13,7 @@ class Admin::WebStatsController < AdminController
   def index
     authorize Ahoy::Visit
 
-    visits = ahoy_visits
-    visits = visits_by_user if params[ :user_id ]
-
-    @pagy, @visits = pagy( visits, items: items_per_page )
+    @pagy, @visits = pagy( recent_visits, items: items_per_page )
 
     authorize @visits if @visits.present?
   end
@@ -27,9 +24,9 @@ class Admin::WebStatsController < AdminController
     q = params[:q]
 
     @pagy, @visits = pagy(
-      Ahoy::Visit.where( 'referrer ilike ?', "%#{q}%" )
-                 .or( Ahoy::Visit.where( 'landing_page ilike ?', "%#{q}%" ) )
-                 .order( started_at: :desc ), items: items_per_page
+      recent_visits.where( 'referrer ilike ?', "%#{q}%" )
+                   .or( recent_visits.where( 'landing_page ilike ?', "%#{q}%" ) ),
+      items: items_per_page
     )
 
     authorize @visits if @visits.present?
@@ -38,15 +35,15 @@ class Admin::WebStatsController < AdminController
 
   private
 
-  def ahoy_visits
-    Ahoy::Visit.order( started_at: :desc )
-  end
+  def recent_visits
+    return Ahoy::Visit.order( started_at: :desc ) unless user
 
-  def visits_by_user
-    ahoy_visits.where( user: user )
+    Ahoy::Visit.where( user: user ).order( started_at: :desc )
   end
 
   def user
+    return if params[ :user_id ].blank?
+
     User.find( params[ :user_id ] )
   end
 
