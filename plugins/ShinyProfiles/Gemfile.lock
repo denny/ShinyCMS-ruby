@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shiny_profiles (20.12)
+    shiny_profiles (21.1)
       acts_as_paranoid
       pagy
       pg (~> 1.2.3)

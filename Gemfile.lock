@@ -12,7 +12,7 @@ GIT
 PATH
   remote: plugins/ShinyAccess
   specs:
-    shiny_access (20.12)
+    shiny_access (21.1)
       acts-as-taggable-on
       acts_as_paranoid
       pagy
@@ -23,7 +23,7 @@ PATH
 PATH
   remote: plugins/ShinyBlog
   specs:
-    shiny_blog (20.12)
+    shiny_blog (21.1)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -35,7 +35,7 @@ PATH
 PATH
   remote: plugins/ShinyForms
   specs:
-    shiny_forms (20.12)
+    shiny_forms (21.1)
       acts_as_paranoid
       pagy
       pg (~> 1.2.3)
@@ -45,7 +45,7 @@ PATH
 PATH
   remote: plugins/ShinyInserts
   specs:
-    shiny_inserts (20.12)
+    shiny_inserts (21.1)
       acts_as_paranoid
       ckeditor
       pagy
@@ -56,7 +56,7 @@ PATH
 PATH
   remote: plugins/ShinyLists
   specs:
-    shiny_lists (20.12)
+    shiny_lists (21.1)
       acts_as_paranoid
       pagy
       pg (~> 1.2.3)
@@ -66,7 +66,7 @@ PATH
 PATH
   remote: plugins/ShinyNews
   specs:
-    shiny_news (20.12)
+    shiny_news (21.1)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -78,7 +78,7 @@ PATH
 PATH
   remote: plugins/ShinyNewsletters
   specs:
-    shiny_newsletters (20.12)
+    shiny_newsletters (21.1)
       acts_as_paranoid
       ckeditor
       pagy
@@ -89,7 +89,7 @@ PATH
 PATH
   remote: plugins/ShinyPages
   specs:
-    shiny_pages (20.12)
+    shiny_pages (21.1)
       acts_as_paranoid
       ckeditor
       pagy
@@ -100,7 +100,7 @@ PATH
 PATH
   remote: plugins/ShinyProfiles
   specs:
-    shiny_profiles (20.12)
+    shiny_profiles (21.1)
       acts_as_paranoid
       pagy
       pg (~> 1.2.3)
@@ -110,7 +110,7 @@ PATH
 PATH
   remote: plugins/ShinySearch
   specs:
-    shiny_search (20.12)
+    shiny_search (21.1)
       acts-as-taggable-on
       acts_as_paranoid
       algoliasearch-rails

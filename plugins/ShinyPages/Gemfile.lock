@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shiny_pages (20.12)
+    shiny_pages (21.1)
       acts_as_paranoid
       ckeditor
       pagy
