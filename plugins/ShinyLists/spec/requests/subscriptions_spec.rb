@@ -65,7 +65,7 @@ RSpec.describe 'List subscriptions', type: :request do
 
       post shiny_lists.list_subscribe_path( list1.slug ), params: {
         subscription: {
-          consent_version: consent1.slug,
+          consent_version:      consent1.slug,
           consent_confirmation: '1'
         }
       }
@@ -84,8 +84,8 @@ RSpec.describe 'List subscriptions', type: :request do
 
       post shiny_lists.list_subscribe_path( list1.slug ), params: {
         subscription: {
-          email: Faker::Internet.unique.email,
-          consent_version: consent1.slug,
+          email:                Faker::Internet.unique.email,
+          consent_version:      consent1.slug,
           consent_confirmation: '1'
         }
       }
@@ -109,7 +109,7 @@ RSpec.describe 'List subscriptions', type: :request do
 
       post shiny_lists.list_subscribe_path( list1.slug ), params: {
         subscription: {
-          consent_version: consent1.slug,
+          consent_version:      consent1.slug,
           consent_confirmation: '1'
         }
       }
@@ -131,7 +131,7 @@ RSpec.describe 'List subscriptions', type: :request do
 
       post shiny_lists.list_subscribe_path( 'no-such-list' ), params: {
         subscription: {
-          consent_version: consent1.slug,
+          consent_version:      consent1.slug,
           consent_confirmation: '1'
         }
       }
@@ -176,7 +176,7 @@ RSpec.describe 'List subscriptions', type: :request do
 
       post shiny_lists.list_subscribe_path( list1.slug ), params: {
         subscription: {
-          consent_version: consent1.slug,
+          consent_version:      consent1.slug,
           consent_confirmation: '1'
         }
       }

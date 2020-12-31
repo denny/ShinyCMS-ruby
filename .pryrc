@@ -38,12 +38,12 @@ if Rails.env.development? || Rails.env.test? || ENV[ 'SHINYCMS_PRY_CONSOLE' ]&.d
   ) do |context, nesting, pry, seperator|
     format(
       '%<app_name>s %<rails_env>s [%<in_count>s] %<name>s(%<context>s)%<nesting>s%<separator>s ',
-      name: prompt_name( pry.config.prompt_name ),
-      app_name: app_name_for_pry_prompt,
+      name:      prompt_name( pry.config.prompt_name ),
+      app_name:  app_name_for_pry_prompt,
       rails_env: rails_env_for_pry_prompt,
-      in_count: pry.input_ring.count,
-      context: Pry.view_clip( context ),
-      nesting: ( nesting.positive? ? ":#{nesting}" : '' ),
+      in_count:  pry.input_ring.count,
+      context:   Pry.view_clip( context ),
+      nesting:   ( nesting.positive? ? ":#{nesting}" : '' ),
       separator: seperator
     )
   end

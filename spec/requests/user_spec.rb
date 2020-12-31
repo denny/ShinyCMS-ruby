@@ -139,7 +139,7 @@ RSpec.describe 'User Accounts', type: :request do
 
       post user_session_path, params: {
         user: {
-          login: user.email,
+          login:    user.email,
           password: password
         }
       }
@@ -157,7 +157,7 @@ RSpec.describe 'User Accounts', type: :request do
 
       post user_session_path, params: {
         user: {
-          login: user.username,
+          login:    user.username,
           password: password
         }
       }
@@ -177,9 +177,9 @@ RSpec.describe 'User Accounts', type: :request do
       should_go_here = "http://www.example.com/#{different_page.slug}"
 
       post user_session_path,
-           params: {
+           params:  {
              user: {
-               login: user.username,
+               login:    user.username,
                password: password
              }
            },
@@ -214,7 +214,7 @@ RSpec.describe 'User Accounts', type: :request do
         user: {
           username: username,
           password: password,
-          email: email
+          email:    email
         }
       }
 
@@ -241,7 +241,7 @@ RSpec.describe 'User Accounts', type: :request do
         user: {
           username: username,
           password: password,
-          email: email
+          email:    email
         }
       }
 
@@ -268,7 +268,7 @@ RSpec.describe 'User Accounts', type: :request do
         user: {
           username: username,
           password: password,
-          email: email
+          email:    email
         }
       }
 
@@ -284,7 +284,7 @@ RSpec.describe 'User Accounts', type: :request do
       post user_registration_path, params: {
         'user[username]': username,
         'user[password]': password,
-        'user[email]': email
+        'user[email]':    email
       }
 
       expect( response      ).to have_http_status :found
@@ -317,7 +317,7 @@ RSpec.describe 'User Accounts', type: :request do
       new_name = Faker::Internet.unique.username
       put user_registration_path, params: {
         user: {
-          username: new_name,
+          username:         new_name,
           current_password: user.password
         }
       }

@@ -31,9 +31,9 @@ RSpec.describe Admin::FeatureFlagsController, type: :request do
       flag = FeatureFlag.enable :user_registration
 
       put feature_flags_path, params: {
-        "features[flags][#{flag.id}][enabled]": true,
+        "features[flags][#{flag.id}][enabled]":               true,
         "features[flags][#{flag.id}][enabled_for_logged_in]": true,
-        "features[flags][#{flag.id}][enabled_for_admins]": true
+        "features[flags][#{flag.id}][enabled_for_admins]":    true
       }
 
       expect( response      ).to     have_http_status :found

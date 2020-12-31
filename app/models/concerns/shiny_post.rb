@@ -48,8 +48,6 @@ module ShinyPost
     delegate :show_on_site, to: :discussion, allow_nil: true, prefix: true
     delegate :locked, to: :discussion, allow_nil: true, prefix: true
 
-    attr_writer :posted_at_time
-
     # Scopes and default sort order
 
     scope :not_future_dated, -> { where( 'posted_at <= ?', Time.zone.now.iso8601 ) }

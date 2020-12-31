@@ -61,7 +61,7 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       post shiny_newsletters.editions_path, params: {
         edition: {
           internal_name: Faker::Books::CultureSeries.unique.culture_ship,
-          template_id: template1.id
+          template_id:   template1.id
         }
       }
 
@@ -92,8 +92,8 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       post shiny_newsletters.editions_path, params: {
         edition: {
           internal_name: Faker::Books::CultureSeries.unique.culture_ship,
-          template_id: template1.id,
-          slug: edition1.slug
+          template_id:   template1.id,
+          slug:          edition1.slug
         }
       }
 
@@ -108,7 +108,7 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       post shiny_newsletters.editions_path, params: {
         edition: {
           internal_name: Faker::Books::CultureSeries.unique.culture_ship,
-          template_id: template1.id
+          template_id:   template1.id
         }
       }
 
@@ -142,7 +142,7 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( last_element.position ).to eq ids.size
 
       put shiny_newsletters.edition_path( edition ), params: {
-        edition: {
+        edition:    {
           internal_name: edition.internal_name
         },
         sort_order: query_string
@@ -209,7 +209,7 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       put shiny_newsletters.edition_path( edition ), params: {
         edition: {
           internal_name: 'Updated by test',
-          slug: ''
+          slug:          ''
         }
       }
 

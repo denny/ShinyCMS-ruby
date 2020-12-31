@@ -68,7 +68,7 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
     it 'adds a new template when the form is submitted' do
       post shiny_newsletters.templates_path, params: {
         template: {
-          name: 'Test',
+          name:     'Test',
           filename: 'an_example'
         }
       }
@@ -83,7 +83,7 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
     it 'adds the right number of elements to the new template' do
       post shiny_newsletters.templates_path, params: {
         template: {
-          name: 'Another test',
+          name:     'Another test',
           filename: 'an_example'
         }
       }
@@ -128,10 +128,10 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
       e_id = ShinyNewsletters::TemplateElement.last.id
 
       put shiny_newsletters.template_path( template ), params: {
-        'template[name]': 'Updated by test',
-        "elements[element_#{e_id}_name]": 'updated_element_name',
+        'template[name]':                    'Updated by test',
+        "elements[element_#{e_id}_name]":    'updated_element_name',
         "elements[element_#{e_id}_content]": 'Default content',
-        "elements[element_#{e_id}_type]": 'html'
+        "elements[element_#{e_id}_type]":    'html'
       }
 
       expect( response      ).to have_http_status :found
@@ -159,7 +159,7 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
       expect( last_element.position ).to eq ids.size
 
       put shiny_newsletters.template_path( template ), params: {
-        template: {
+        template:   {
           name: template.name
         },
         sort_order: query_string

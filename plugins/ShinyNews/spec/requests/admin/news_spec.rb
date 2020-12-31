@@ -45,8 +45,8 @@ RSpec.describe 'Admin::News', type: :request do
       post shiny_news.news_posts_path, params: {
         post: {
           user_id: @admin.id,
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: Faker::Lorem.paragraph
+          title:   Faker::Books::CultureSeries.unique.culture_ship,
+          body:    Faker::Lorem.paragraph
         }
       }
 
@@ -64,8 +64,8 @@ RSpec.describe 'Admin::News', type: :request do
       post shiny_news.news_posts_path, params: {
         post: {
           user_id: @admin.id,
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: nil
+          title:   Faker::Books::CultureSeries.unique.culture_ship,
+          body:    nil
         }
       }
 
@@ -80,9 +80,9 @@ RSpec.describe 'Admin::News', type: :request do
       post shiny_news.news_posts_path, params: {
         post: {
           user_id: @admin.id,
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: Faker::Lorem.paragraph,
-          slug: post_from_this_month.slug
+          title:   Faker::Books::CultureSeries.unique.culture_ship,
+          body:    Faker::Lorem.paragraph,
+          slug:    post_from_this_month.slug
         }
       }
 
@@ -97,9 +97,9 @@ RSpec.describe 'Admin::News', type: :request do
       post shiny_news.news_posts_path, params: {
         post: {
           user_id: @admin.id,
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: Faker::Lorem.paragraph,
-          slug: post_from_last_month.slug
+          title:   Faker::Books::CultureSeries.unique.culture_ship,
+          body:    Faker::Lorem.paragraph,
+          slug:    post_from_last_month.slug
         }
       }
 
@@ -131,8 +131,8 @@ RSpec.describe 'Admin::News', type: :request do
       put shiny_news.news_post_path( post ), params: {
         post: {
           user_id: @admin.id,
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: nil
+          title:   Faker::Books::CultureSeries.unique.culture_ship,
+          body:    nil
         }
       }
 
@@ -147,8 +147,8 @@ RSpec.describe 'Admin::News', type: :request do
       put shiny_news.news_post_path( post ), params: {
         post: {
           user_id: @admin.id,
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: Faker::Lorem.paragraph
+          title:   Faker::Books::CultureSeries.unique.culture_ship,
+          body:    Faker::Lorem.paragraph
         }
       }
 
@@ -168,11 +168,11 @@ RSpec.describe 'Admin::News', type: :request do
 
       put shiny_news.news_post_path( post ), params: {
         post: {
-          user_id: @admin.id,
-          title: Faker::Books::CultureSeries.unique.culture_ship,
-          body: Faker::Lorem.paragraph,
+          user_id:                 @admin.id,
+          title:                   Faker::Books::CultureSeries.unique.culture_ship,
+          body:                    Faker::Lorem.paragraph,
           discussion_show_on_site: '1',
-          discussion_locked: '1'
+          discussion_locked:       '1'
         }
       }
 

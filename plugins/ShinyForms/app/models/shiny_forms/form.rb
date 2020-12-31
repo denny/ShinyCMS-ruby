@@ -59,25 +59,18 @@ module ShinyForms
     def self.theme_templates
       return [] unless theme_template_dir
 
-      template_names = []
-
       filenames = Dir.glob '*.mjml', base: theme_template_dir
-      filenames.each do |filename|
-        template_names << filename.remove( '.html.mjml' )
-      end
-
-      template_names.sort
+      template_names( filenames )
     end
 
     def self.default_templates
-      template_names = []
-
       filenames = Dir.glob '*.mjml', base: default_template_dir
-      filenames.each do |filename|
-        template_names << filename.remove( '.html.mjml' )
-      end
+      template_names( filenames )
+    end
 
-      template_names.sort
+    def self.template_names( filenames )
+      base_names = filenames.collect { |filename| filename.remove( '.html.mjml' ) }
+      base_names.sort
     end
 
     def self.theme_template_dir
@@ -90,8 +83,8 @@ module ShinyForms
 
     # Add another validation here, because it uses the class methods above
     validates :filename, inclusion: {
-      in: Form.available_templates,
-      message: I18n.t( 'shiny_forms.models.forms.template_file_must_exist' ),
+      in:        Form.available_templates,
+      message:   I18n.t( 'shiny_forms.models.forms.template_file_must_exist' ),
       allow_nil: true
     }
   end

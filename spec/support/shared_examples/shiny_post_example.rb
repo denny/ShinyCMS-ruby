@@ -47,21 +47,21 @@ RSpec.shared_examples ShinyPost do
   describe 'scopes' do
     before do
       @older = post.class.create!(
-        title: Faker::Books::CultureSeries.unique.culture_ship,
-        body: 'Testing',
-        user: User.first,
+        title:     Faker::Books::CultureSeries.unique.culture_ship,
+        body:      'Testing',
+        user:      User.first,
         posted_at: 1.day.ago
       )
       @hidden = post.class.create!(
-        title: Faker::Books::CultureSeries.unique.culture_ship,
-        body: 'Testing',
-        user: User.first,
+        title:        Faker::Books::CultureSeries.unique.culture_ship,
+        body:         'Testing',
+        user:         User.first,
         show_on_site: false
       )
       @future = post.class.create!(
-        title: Faker::Books::CultureSeries.unique.culture_ship,
-        body: 'Testing',
-        user: User.first,
+        title:     Faker::Books::CultureSeries.unique.culture_ship,
+        body:      'Testing',
+        user:      User.first,
         posted_at: 1.day.since
       )
     end

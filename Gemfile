@@ -129,6 +129,9 @@ source 'https://rubygems.org' do
   # Also image processing
   gem 'mini_magick'
 
+  # HTML & XML parser
+  gem 'nokogiri', '>= 1.11.0.rc4'
+
   # Better-looking console output
   gem 'amazing_print'
 
@@ -162,6 +165,10 @@ source 'https://rubygems.org' do
 
     # Best practices
     gem 'rails_best_practices'
+
+    # Ruby Critic generates easy-to-read reports from various static analysis tools
+    # FIXME: install this manually (gem install rubycritic) until reek is ruby3 compatible
+    # gem 'rubycritic', '~> 4.5.0', require: false
 
     # Utils for working with translation strings
     # gem 'i18n-debug'
