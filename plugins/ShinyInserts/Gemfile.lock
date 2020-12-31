@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shiny_inserts (21.1)
+    shiny_inserts (21.01)
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)

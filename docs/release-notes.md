@@ -5,9 +5,9 @@
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
 
-### 2021-01-01  21.1  January 2021: 'Happy New Year / Happy New Rails / Happy New Ruby!!'
+### 2021-01-01  21.01  January 2021: 'Wishing you a Happy New Year, a Happy New Rails, and a Happy New Ruby!'
 
-    * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.1
+    * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.01
 
     * Headlines:
         * Rails 6.1 !
@@ -20,7 +20,7 @@ This file contains information about changes (particularly breaking changes) bet
     * Possibly contentious Rubocop config change of the month ;)
         * Layout/HashAlignment -> EnforcedStyle: table
 
-    * Plugin versions all increased to 21.1
+    * Plugin versions all increased to 21.01
 
     * Added
         * Pagy - new pagination gem, replacing Kaminari
@@ -28,7 +28,9 @@ This file contains information about changes (particularly breaking changes) bet
             * This triggered lots of minor changes to spec files, nothing major though
             * Still two types of warning left to address (see .rubocop_todo.yml)
         * rails_best_practices
-        * Typo CI (https://github.com/marketplace/typo-ci)
+        * rubycritic
+            * Currently commented out in Gemfile due to Ruby 3.0 issues in its dependency chain, but config file included and all ready to go when reek catches up
+        * Typo CI config (https://github.com/marketplace/typo-ci)
         * ActiveStorage added a new table, and a new column to an existing table
         * Database indexes on capabilities.category_id, comments.parent_id, and shiny_pages_sections.default_page_id
 
@@ -41,14 +43,14 @@ This file contains information about changes (particularly breaking changes) bet
                 * Needs an unreleased fix for ActiveRecord-session-store
                     * Hence, this gem is currently installing from GitHub HEAD
         * Finished moving (almost) all theme files into the top-level /themes folder
-            * Theme JavaScript files still not ideally located, but better than before
-            * Currently, adding a theme still requires some changes/additions to the main app code, which is an annoying crossing of boundaries
+            * Theme JavaScript files still not ideally located, but better than it was
+                * Hooking up a theme with JavaScript requires creating a pack file at `/app/javascript/packs/{theme_name}.js`, which is clearly not how that boundary should work. The fix is probably themes-as-installable-gems. (Hold my beer?)
         * Human-readable names for capability categories now come via i18n rather than various model methods
         * ActiveRecord timestamp defaults overriden, to not include microseconds
         * In test and dev environment config:
             * Explicitly disabled precompiled asset check
-                * This fixed possibly spurious issues with assets for themes and plugins
-            * Changed name of an i18n-related setting
+                * This got rid of hopefully spurious errors about theme and plugin assets
+            * Updated the name of an i18n-related setting
 
     * Frozen
         * Blazer is currently locked to version 2.3.1, as 2.4.0 has a breaking change
