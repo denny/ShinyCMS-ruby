@@ -9,7 +9,7 @@
         <meta name="description" content="Documentation for users and developers of ShinyCMS (Ruby version)">
       
       
-        <link rel="canonical" href="http://docs.shinycms.org/Developers/demo-data/">
+        <link rel="canonical" href="http://docs.shinycms.org/Developers/code-quality/">
       
       
         <meta name="author" content="Denny de la Haye">
@@ -19,7 +19,7 @@
     
     
       
-        <title>Demo data - ShinyCMS</title>
+        <title>ShinyCMS Developer Documentation - ShinyCMS</title>
       
     
     
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Demo data
+              ShinyCMS Developer Documentation
             
           </span>
         </div>
@@ -822,12 +822,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Developer Documentation
@@ -967,69 +965,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Demo data
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="./" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../demo-data/" class="md-nav__link">
       Demo data
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#demo-site-data" class="md-nav__link">
-    Demo site data
-  </a>
-  
-    <nav class="md-nav" aria-label="Demo site data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#to-load-the-existing-demo-data" class="md-nav__link">
-    To load the existing demo data
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#to-create-a-new-version-of-the-demo-data" class="md-nav__link">
-    To create a new version of the demo data
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1196,23 +1136,30 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#demo-site-data" class="md-nav__link">
-    Demo site data
+  <a href="#code-quality" class="md-nav__link">
+    Code Quality
   </a>
   
-    <nav class="md-nav" aria-label="Demo site data">
+    <nav class="md-nav" aria-label="Code Quality">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#to-load-the-existing-demo-data" class="md-nav__link">
-    To load the existing demo data
+  <a href="#rubocop" class="md-nav__link">
+    Rubocop
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#to-create-a-new-version-of-the-demo-data" class="md-nav__link">
-    To create a new version of the demo data
+  <a href="#ruby-critic" class="md-nav__link">
+    Ruby Critic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-services" class="md-nav__link">
+    Other services
   </a>
   
 </li>
@@ -1236,14 +1183,18 @@
                 
                 
                 <h1 id="shinycms-developer-documentation">ShinyCMS Developer Documentation</h1>
-<h2 id="demo-site-data">Demo site data</h2>
-<p>The demo site data can be loaded and updated using the <code>rails shiny:demo:*</code> rake tasks:</p>
-<h3 id="to-load-the-existing-demo-data">To load the existing demo data</h3>
-<p>Run <code>rails shiny:demo:load</code> (and reply 'Y' to the 'Are you sure?' question) - this will first run <code>rails db:reset</code> (losing any data that is currently in the database!) and then it will load in the demo site data. Finally, it will prompt you to enter login details for a new super-admin account, and it will create that for you.</p>
-<p>If you're reloading the demo data frequently for some reason, you may wish to set some or all of the following ENV vars to save you from having to type the details in each time the admin account is recreated: SHINYCMS_ADMIN_USERNAME, SHINYCMS_ADMIN_EMAIL, SHINYCMS_ADMIN_PASSWORD.</p>
-<p>Using these ENV vars has obvious security implications - particularly the last one! Please do not use them in a production environment, or on a shared server, or anywhere else that it might be a bad idea to publicly share the login details for your CMS admin account.</p>
-<h3 id="to-create-a-new-version-of-the-demo-data">To create a new version of the demo data</h3>
-<p>Run <code>rails shiny:demo:dump</code> - this will dump the current contents of the database into <code>db/demo_data.rb</code> (for each model that includes the ShinyDemoDataProvider concern)</p>
+<h2 id="code-quality">Code Quality</h2>
+<p>ShinyCMS includes config files and/or gems for a number of code quality tools and services.</p>
+<h3 id="rubocop">Rubocop</h3>
+<p>Rubocop is a linter which helps keep the code style consistent throughout the project, and in line with best practices that have been largely agreed in the Ruby community. There are a few items in the ShinyCMS rubocop configuration that are not default, mostly around whitespace and alignment.</p>
+<p>Please make sure your code passes rubocop with the ShinyCMS config before submitting a PR; you can usually just use <code>rubocop -a</code> to autocorrect the whitespace for you.</p>
+<h3 id="ruby-critic">Ruby Critic</h3>
+<p>This is a tool you install and run locally. Currently it's having some dependency version issues with Ruby 3.0 and has been commented out in the ShinyCMS Gemfile, so you'll need to install it manually: <code>gem install rubycritic</code></p>
+<p>Ruby Critic runs three static code analysis tools - flog, reek - and then generates easy-to-read HTML reports of what they find. A config file is included at .rubycritic.yml which specifies which paths it should run the tools against - mainly it's the <code>app</code> directory in the main app and each plugin.</p>
+<p>You generate an up-to-date report by running <code>rubycritic</code>. You can then find the report in <code>ShinyCMS/tmp/rubycritic/</code> and open it in any web browser to find files with potential code quality issues (complexity, duplication, etc).</p>
+<h3 id="other-services">Other services</h3>
+<p>ShinyCMS is also checked for code quality with CodeClimate, CodeBeat, and CodeFactor, and there are config files for some of these where necessary/helpful (usually to ignore certain files).</p>
+<p>ShinyCMS is also checked with Hakiri and Dependabot for potential security issues in the ShinyCMS code and/or its dependencies.</p>
                 
               
               
@@ -1258,41 +1209,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../Testing/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Testing
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../rake-tasks/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Rake tasks
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

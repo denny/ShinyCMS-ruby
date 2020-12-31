@@ -1157,45 +1157,31 @@
                 
                 <h1 id="shinycms-developer-docs">ShinyCMS Developer Docs</h1>
 <h2 id="ruby-300-notes">Ruby 3.0.0 notes</h2>
-<ol>
+<ul>
 <li>
-<p>Add <code>rss</code> gem to Gemfile (no longer in core)</p>
+<p>Added <code>rss</code> gem to Gemfile (no longer in core)</p>
 </li>
 <li>
-<p><code>bundle update</code></p>
+<p>Installing <code>activerecord_session-store</code> from GitHub, to pick up an unreleased fix</p>
 </li>
 <li>
-<p>Change Gemfile to get <code>activerecord_session-store</code> from GitHub (unreleased fix)</p>
-</li>
-<li>
-<p>Change <code>:confirmed</code> trait in email recipient factory from Symbol.to_proc to long form</p>
+<p>Changed <code>:confirmed</code> trait in email recipient factory from Symbol.to_proc to long form</p>
 <ul>
 <li>Fixes error about "missing receiver", whatever that is</li>
 </ul>
 </li>
 <li>
-<p>REP is throwing a load of warnings:</p>
+<p>REP is throwing a load of warnings</p>
 <ul>
-<li>code -g lib/rails_email_preview/main_app_route_delegator.rb:11<ul>
-<li>Change <code>respond_to?</code> to <code>respond_to_missing?</code><ul>
+<li>Local fix:<ul>
+<li>code -g lib/rails_email_preview/main_app_route_delegator.rb:11</li>
+<li>Change <code>respond_to?</code> to <code>respond_to_missing?</code></li>
+</ul>
+</li>
 <li>PR? Check how far back <code>respond_to_missing?</code> exists first</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-</li>
-<li>
-<p>kaminari is not happy :(</p>
-<ul>
-<li>Short-term, to get test suite to pass:<ul>
-<li>Commented out it_behaves_like Pagination at bottom of blog and news request spec</li>
-</ul>
-</li>
-<li>Medium-term: switched to Pagy - https://github.com/ddnexus/pagy</li>
-</ul>
-</li>
-</ol>
                 
               
               
