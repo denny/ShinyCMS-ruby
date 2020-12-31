@@ -60,14 +60,17 @@ module ShinyForms
       return [] unless theme_template_dir
 
       filenames = Dir.glob '*.mjml', base: theme_template_dir
-      template_names = filenames.collect { |filename| filename.remove( '.html.mjml' ) }
-      template_names.sort
+      template_names( filenames )
     end
 
     def self.default_templates
       filenames = Dir.glob '*.mjml', base: default_template_dir
-      template_names = filenames.collect { |filename| template_names << filename.remove( '.html.mjml' ) }
-      template_names.sort
+      template_names( filenames )
+    end
+
+    def self.template_names( filenames )
+      temp_names = filenames.collect { |filename| filename.remove( '.html.mjml' ) }
+      temp_names.sort
     end
 
     def self.theme_template_dir
