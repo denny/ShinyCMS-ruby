@@ -163,6 +163,9 @@ source 'https://rubygems.org' do
     # Best practices
     gem 'rails_best_practices'
 
+    # Ruby Critic generates easy-to-read reports from various static analysis tools
+    gem 'rubycritic', require: false
+
     # Utils for working with translation strings
     # gem 'i18n-debug'
     gem 'i18n-tasks', '~> 0.9.33'
