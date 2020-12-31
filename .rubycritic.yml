@@ -1,0 +1,10 @@
+branch: 'main'
+no_browser: true
+paths:
+  - app/
+  - config/
+  - lib/
+  - plugins/*/app/
+  - plugins/*/config/
+  - themes/
+  - tools/
