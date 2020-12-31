@@ -2,7 +2,6 @@ branch: 'main'
 no_browser: true
 paths:
   - app/
-  - config/
   - lib/
   - themes/
   - tools/
