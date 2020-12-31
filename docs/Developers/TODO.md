@@ -2,6 +2,8 @@
 
 ## TODO
 
+* Check whether the demo data lost the tags at some point
+
 * Tag cloud/list show and count tags on hidden content
 
 * Blazer currently doesn't restrict people without 'edit' capability to view-only
