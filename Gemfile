@@ -139,10 +139,8 @@ source 'https://rubygems.org' do
   gem 'pry-rails'
 
   group :production do
-    if ENV[ 'BUGSNAG_API_KEY' ]
-      # Bugsnag is an error monitoring service
-      gem 'bugsnag'
-    end
+    # Bugsnag is an error monitoring service
+    gem 'bugsnag'
 
     # Fix request.ip if we're running behind Cloudflare's proxying service
     gem 'cloudflare-rails'
