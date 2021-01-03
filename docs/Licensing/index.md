@@ -1,6 +1,6 @@
 # ShinyCMS: Licensing
 
-ShinyCMS is copyright 2009-2020 Denny de la Haye (https://denny.me)
+ShinyCMS is copyright 2009-2021 Denny de la Haye (https://denny.me)
 
 ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later). There are copies of both v2 and v3 of the GPL included with the ShinyCMS code, or you can read them online:
 * [GNU GPL v2](gnu-gpl-v2.0.md) / https://opensource.org/licenses/gpl-2.0
