@@ -2,6 +2,8 @@
 
 ## TODO
 
+* "Mjml: warning You don't appear to have an internet connection. Try the --offline flag to use the cache for registry queries."
+
 * Check whether the demo data lost the tags at some point
 
 * Tag cloud/list show and count tags on hidden content
