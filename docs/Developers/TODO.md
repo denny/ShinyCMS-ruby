@@ -3,10 +3,14 @@
 ## TODO
 
 * "Mjml: warning You don't appear to have an internet connection. Try the --offline flag to use the cache for registry queries."
+    * Newsletter plugin tests tend to top the 'slowest tests' list - related?
 
-* Check whether the demo data lost the tags at some point
+* Demo data has lost the tags at some point
 
-* Tag cloud/list show and count tags on hidden content
+* Tag cloud and tag list pages show (and count) tags on hidden content
+
+* Investigate alternatives to Blazer?
+    * https://github.com/ankane/blazer/pull/316 :(
 
 * Blazer currently doesn't restrict people without 'edit' capability to view-only
 
@@ -14,7 +18,8 @@
 
 * Finish adding support for links on user profiles
 
-* Allow pagination URLs to specify /items/N instead of ?items=N
+* Add 'items' extra to Pagy: https://ddnexus.github.io/pagy/extras/items.html
+    * Allow pagination URLs to specify /items/N instead of ?items=N
 
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
@@ -98,11 +103,6 @@
   db and there are still a load of 'feature hidden by flag/capability/etc'
   conditionals to implement.
 
-* Add a polymorphic metatags model+helpers so they can be added to anything that might want them for SEO
-    * pages/sections, shop items/categories, etc
-
-* More themes!
-
 * ¡español! :D
     * Bonus points: https://www.ruby-toolbox.com/projects/route_translator
     * Possibly interesting at same time: https://www.ruby-toolbox.com/projects/rack-user-locale
@@ -117,12 +117,17 @@
 
 ### Medium-ish
 
+* More themes!
+
 * Add folding to page sections on /admin/pages
     * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
     * Decide 'intelligently' whether to fold all/none/some
         * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
 
 * Wrap Blazer in a thin ShinyStats plugin, to give it standard auth and feature flagging
+
+* Add a polymorphic metatags model+helpers so they can be added to anything that might want them for SEO
+    * pages/sections, shop items/categories, etc
 
 * ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
   sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
@@ -150,6 +155,9 @@
 ### Large-ish
 
 * Redo site settings and feature flags, using Sail? https://github.com/vinistock/sail#readme
+
+* Investigate RBS - https://github.com/ruby/rbs#readme
+    * https://honeyryderchuck.gitlab.io/httpx/2020/10/16/rbs-duck-typing-at-httpx.html
 
 * Re-think mailer preview features
     * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
@@ -189,9 +197,6 @@
 
 ## Done / In Progress
 
-See the [done](done.md) list for features from the original ShinyCMS that I have already implemented
-in this version - as well as a few new ones that snuck in along the way - with notes on improvements
-from the Perl version where applicable.
+See the [done](done.md) list for features from the original ShinyCMS that I have already implemented in this version - as well as a few new ones that snuck in along the way - with notes on improvements from the Perl version where applicable.
 
-See the [in-progress](in-progress.md) list for features that I am currently working on
-(with notes on where I'm up to, links to useful docs, etc).
+See the [in-progress](in-progress.md) list for features that I am currently working on (with notes on where I'm up to, links to useful docs, etc).
