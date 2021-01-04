@@ -10,6 +10,5 @@ module ShinyProfiles
   # Base controller for admin features of ShinyProfiles plugin for ShinyCMS
   # Inherits from ShinyCMS AdminController
   class AdminController < ::AdminController
-    helper Rails.application.routes.url_helpers
   end
 end

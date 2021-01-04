@@ -10,16 +10,5 @@ module ShinyAccess
   # Base controller for ShinyAccess admin features
   # Inherits from ShinyCMS AdminController
   class AdminController < ::AdminController
-    helper Rails.application.routes.url_helpers
-
-    helper_method :pagy_url_for
-
-    private
-
-    # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
-    def pagy_url_for( page, _pagy )
-      params = request.query_parameters.merge( only_path: true, page: page )
-      url_for( params )
-    end
   end
 end
