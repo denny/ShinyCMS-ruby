@@ -25,12 +25,8 @@ class ShinyPostAtomFeedEntry
   def build( post )
     @post = post
 
-    add_entry_id
-    add_entry_title
-    add_entry_author
-    add_entry_updated
-    add_entry_summary
-    add_entry_link
+    add_entry_id && add_entry_title && add_entry_author &&
+      add_entry_updated && add_entry_summary && add_entry_link
 
     entry.parent = feed
   end
