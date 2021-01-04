@@ -37,14 +37,6 @@ module ShinyPages
       head :ok
     end
 
-    def section_id?( item_id )
-      item_id.to_s.start_with? 'section'
-    end
-
-    def extract_section_id( section_string )
-      section_string.sub( %r{^section}, '' ).to_i
-    end
-
     def new
       @page = Page.new
       authorize @page
@@ -105,6 +97,14 @@ module ShinyPages
         :internal_name, :public_name, :slug, :description, :template_id, :section_id,
         :position, :show_on_site, :show_in_menus, elements_attributes: {}
       )
+    end
+
+    def section_id?( item_id )
+      item_id.to_s.start_with? 'section'
+    end
+
+    def extract_section_id( section_string )
+      section_string.sub( %r{^section}, '' ).to_i
     end
 
     # Return true if the page we're on might need a WYSIWYG HTML editor
