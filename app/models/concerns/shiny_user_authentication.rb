@@ -21,8 +21,6 @@ module ShinyUserAuthentication
       @login || username || email
     end
 
-    attr_writer :login
-
     # Instance methods
 
     # Queue email sends

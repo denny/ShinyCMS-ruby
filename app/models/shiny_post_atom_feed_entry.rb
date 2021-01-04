@@ -14,7 +14,7 @@ class ShinyPostAtomFeedEntry
 
   include Rails.application.routes.url_helpers
 
-  attr_accessor :feed, :entry, :post
+  attr_reader :entry, :feed, :post
 
   def initialize( feed )
     @feed  = feed
@@ -23,7 +23,7 @@ class ShinyPostAtomFeedEntry
   end
 
   def build( post )
-    self.post = post
+    @post = post
 
     add_entry_id
     add_entry_title
