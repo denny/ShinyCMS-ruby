@@ -46,8 +46,9 @@ class ShinyPostAtomFeedEntry
   end
 
   def add_entry_author
-    author = entry.class::Author.new
-    name = entry.class::Author::Name.new
+    class_author = entry.class::Author
+    author = class_author.new
+    name = class_author::Name.new
     name.content = post.author.name
     author.name = name
     entry.authors << author
