@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Definitions of settings managed by Sail
+# (values only used when creating/resetting the database)
+
+# Documentation for each cast_type: https://github.com/vinistock/sail/wiki
+
+site_name:
+  description: The name of the website
+  value: 'MyShinySite'
+  cast_type: string
+  group: general
+
+show_holding_page:
+  description: Set this to true to display a holding page instead of the main site
+  value: 'false'
+  cast_type: boolean
+  group: feature_flags

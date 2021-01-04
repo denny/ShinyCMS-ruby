@@ -137,6 +137,9 @@ Rails.application.routes.draw do
     # RailsEmailPreview provides previews of site emails in the admin area
     mount RailsEmailPreview::Engine, at: '/admin/email-previews'
 
+    # Sail handles CMS settings/configuration
+    mount Sail::Engine, at: '/admin/settings'
+
     def sidekiq_web_enabled?
       ENV['DISABLE_SIDEKIQ_WEB']&.downcase != 'true'
     end

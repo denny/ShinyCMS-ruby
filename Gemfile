@@ -70,6 +70,9 @@ source 'https://rubygems.org' do
   # Authorisation
   gem 'pundit'
 
+  # Sail provides settings/configuration features
+  gem 'sail'
+
   # Soft delete
   gem 'acts_as_paranoid'
 

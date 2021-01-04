@@ -308,6 +308,8 @@ GEM
     errbase (0.2.0)
     erubi (1.10.0)
     erubis (2.7.0)
+    et-orbi (1.2.4)
+      tzinfo
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.1.0)
@@ -319,6 +321,9 @@ GEM
       colorize (~> 0.7)
       ruby_parser (>= 3.13.0)
     ffi (1.14.2)
+    fugit (1.4.1)
+      et-orbi (~> 1.1, >= 1.1.8)
+      raabro (~> 1.4)
     geocoder (1.6.4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -408,6 +413,7 @@ GEM
     pundit (2.1.0)
       activesupport (>= 3.0.0)
     pwned (2.0.2)
+    raabro (1.4.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-proxy (0.6.5)
@@ -527,6 +533,9 @@ GEM
       sexp_processor (~> 4.9)
     safely_block (0.3.0)
       errbase (>= 0.1.1)
+    sail (3.5.1)
+      fugit
+      rails (>= 5.0.0)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -653,6 +662,7 @@ DEPENDENCIES
   rubocop-performance!
   rubocop-rails!
   rubocop-rspec!
+  sail!
   sassc-rails!
   seed_dump!
   shiny_access!

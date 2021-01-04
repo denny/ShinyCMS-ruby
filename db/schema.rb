@@ -12,7 +12,7 @@
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2020_12_27_180917) do
+ActiveRecord::Schema.define(version: 2021_01_04_175617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -280,6 +280,35 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
+  create_table "sail_entries", force: :cascade do |t|
+    t.string "value", null: false
+    t.bigint "setting_id"
+    t.bigint "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_sail_entries_on_profile_id"
+    t.index ["setting_id"], name: "index_sail_entries_on_setting_id"
+  end
+
+  create_table "sail_profiles", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_sail_profiles_on_name", unique: true
+  end
+
+  create_table "sail_settings", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "value", null: false
+    t.string "group"
+    t.integer "cast_type", limit: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_settings_on_name", unique: true
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -709,6 +738,8 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
   add_foreign_key "capabilities", "capability_categories", column: "category_id"
   add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "discussions"
+  add_foreign_key "sail_entries", "sail_profiles", column: "profile_id"
+  add_foreign_key "sail_entries", "sail_settings", column: "setting_id"
   add_foreign_key "setting_values", "settings"
   add_foreign_key "setting_values", "users"
   add_foreign_key "shiny_access_memberships", "shiny_access_groups", column: "group_id"
