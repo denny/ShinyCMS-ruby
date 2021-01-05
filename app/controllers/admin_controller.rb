@@ -20,7 +20,10 @@ class AdminController < ApplicationController
 
   layout 'admin/layouts/admin_area'
 
+  helper Rails.application.routes.url_helpers
+
   helper_method :load_html_editor?
+  helper_method :pagy_url_for
 
   def index
     skip_authorization
@@ -96,5 +99,11 @@ class AdminController < ApplicationController
 
   def load_html_editor?
     false
+  end
+
+  # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+  def pagy_url_for( page, _pagy )
+    params = request.query_parameters.merge( only_path: true, page: page )
+    url_for( params )
   end
 end

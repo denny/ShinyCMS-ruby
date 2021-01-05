@@ -21,8 +21,6 @@ module ShinyUserAuthentication
       @login || username || email
     end
 
-    attr_writer :login
-
     # Instance methods
 
     # Queue email sends
@@ -39,10 +37,10 @@ module ShinyUserAuthentication
       if login
         where_clause = 'lower( username ) = :value OR lower( email ) = :value'
         where( conditions ).find_by( [ where_clause, { value: login.downcase } ] )
-      elsif conditions[ :username ].nil?
-        find_by( conditions )
-      else
+      elsif conditions[ :username ].present?
         find_by( username: conditions[ :username ] )
+      else
+        find_by( conditions )
       end
     end
   end

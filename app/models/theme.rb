@@ -8,12 +8,12 @@
 
 # Theme model, to group some repeated code
 class Theme
-  attr_accessor :name
+  attr_reader :name
 
   def initialize( theme_name )
     return unless Theme.base_directory_exists?( theme_name )
 
-    self.name = theme_name
+    @name = theme_name
   end
 
   # Delegations

@@ -159,6 +159,8 @@
 * Investigate RBS - https://github.com/ruby/rbs#readme
     * https://honeyryderchuck.gitlab.io/httpx/2020/10/16/rbs-duck-typing-at-httpx.html
 
+* View Components sound very interesting... https://viewcomponent.org
+
 * Re-think mailer preview features
     * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
 
