@@ -9,19 +9,21 @@
 module ShinyForms
   # Basic form handlers, provided by ShinyForms plugin for ShinyCMS
   class FormHandler
-    FORM_HANDLERS = %w[ store_in_database plain_email template_email ].freeze
+    FORM_HANDLERS = %w[ store_in_database send_plain_email send_templated_email ].freeze
     public_constant :FORM_HANDLERS
 
     def store_in_database( form, form_data )
       # TODO: Add shiny_forms_submissions table, save form submissions in it, create admin page for reading it
     end
 
-    def plain_email( form, form_data )
-      FormMailer.plain( form.email_to, form.internal_name, form_data ).deliver_later
+    def send_plain_email( form, form_data )
+      FormMailer.with( to: form.email_to, form_name: form.internal_name, form_data: form_data )
+                .plain.deliver_later
     end
 
-    def template_email( form, form_data )
-      FormMailer.with_template( form.email_to, form.internal_name, form_data, form.filename ).deliver_later
+    def send_templated_email( form, form_data )
+      FormMailer.with( to: form.email_to, form_name: form.internal_name, form_data: form_data )
+                .templated( filename: form.filename ).deliver_later
     end
   end
 end
