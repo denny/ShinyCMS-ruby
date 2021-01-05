@@ -46,9 +46,8 @@ class ShinyPostAtomFeedEntry
   end
 
   def add_entry_author
-    class_author = entry.class::Author
-    author = class_author.new
-    name = class_author::Name.new
+    author = entry.class::Author.new
+    name = author.class::Name.new
     name.content = post.author.name
     author.name = name
     entry.authors << author
@@ -62,7 +61,7 @@ class ShinyPostAtomFeedEntry
 
   def add_entry_summary
     summary = entry.class::Summary.new
-    summary.content = html_escape( feed_entry_summary )
+    summary.content = html_escape( feed_entry_summary( post.teaser ) )
     summary.type = 'html'
     entry.summary = summary
   end
@@ -73,11 +72,11 @@ class ShinyPostAtomFeedEntry
     entry.links << link
   end
 
-  def feed_entry_summary
-    return post.teaser unless post.body_longer_than_teaser?
+  def feed_entry_summary( teaser )
+    return teaser unless post.body_longer_than_teaser?
 
     <<~SUMMARY
-      #{post.teaser}
+      #{teaser}
 
       <p>#{I18n.t( 'models.shiny_post_atom_feed_entry.read_more' )}</p>
     SUMMARY
