@@ -11,11 +11,11 @@ module ShinyForms
   FactoryBot.define do
     factory :form, class: 'ShinyForms::Form', aliases: [ :plain_email_form ] do
       internal_name { Faker::Books::CultureSeries.unique.culture_ship }
-      handler { 'plain_email' }
+      handler { 'send_plain_email' }
     end
 
     factory :template_email_form, class: 'ShinyForms::Form', parent: :form do
-      handler  { 'template_email' }
+      handler  { 'send_templated_email' }
       filename { 'contact_form'   }
     end
   end
