@@ -191,3 +191,25 @@ ActiveStorage::Attachment.create!([
   {id: 9, name: "image", record_type: "ShinyPages::PageElement", record_id: 19, blob_id: 9},
   {id: 10, name: "image", record_type: "ShinyPages::PageElement", record_id: 20, blob_id: 10}
 ])
+
+ActsAsTaggableOn::Tag.create!([
+  {id: 2, name: "news", taggings_count: 1},
+  {id: 3, name: "first post", taggings_count: 2},
+  {id: 5, name: "meta", taggings_count: 1},
+  {id: 1, name: "demo", taggings_count: 3},
+  {id: 4, name: "blog", taggings_count: 2},
+  {id: 6, name: "screenshots", taggings_count: 1}
+])
+
+ActsAsTaggableOn::Tagging.create!([
+  {id: 1, tag_id: 1, taggable_type: "ShinyNews::Post", taggable_id: 1, tagger_type: nil, tagger_id: nil, context: "tags"},
+  {id: 2, tag_id: 2, taggable_type: "ShinyNews::Post", taggable_id: 1, tagger_type: nil, tagger_id: nil, context: "tags"},
+  {id: 3, tag_id: 3, taggable_type: "ShinyNews::Post", taggable_id: 1, tagger_type: nil, tagger_id: nil, context: "tags"},
+  {id: 4, tag_id: 1, taggable_type: "ShinyBlog::Post", taggable_id: 1, tagger_type: nil, tagger_id: nil, context: "tags"},
+  {id: 5, tag_id: 4, taggable_type: "ShinyBlog::Post", taggable_id: 1, tagger_type: nil, tagger_id: nil, context: "tags"},
+  {id: 6, tag_id: 3, taggable_type: "ShinyBlog::Post", taggable_id: 1, tagger_type: nil, tagger_id: nil, context: "tags"},
+  {id: 7, tag_id: 5, taggable_type: "ShinyBlog::Post", taggable_id: 1, tagger_type: nil, tagger_id: nil, context: "tags"},
+  {id: 8, tag_id: 1, taggable_type: "ShinyBlog::Post", taggable_id: 2, tagger_type: nil, tagger_id: nil, context: "tags"},
+  {id: 9, tag_id: 4, taggable_type: "ShinyBlog::Post", taggable_id: 2, tagger_type: nil, tagger_id: nil, context: "tags"},
+  {id: 10, tag_id: 6, taggable_type: "ShinyBlog::Post", taggable_id: 2, tagger_type: nil, tagger_id: nil, context: "tags"}
+])

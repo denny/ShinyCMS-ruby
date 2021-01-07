@@ -128,6 +128,7 @@ namespace :shiny do
         ShinyNewsletters::Edition ShinyNewsletters::EditionElement ShinyNewsletters::Send
         Discussion Comment
         ActiveStorage::Blob ActiveStorage::Attachment
+        ActsAsTaggableOn::Tag ActsAsTaggableOn::Tagging
       ]
       # rubocop:enable Layout/MultilineArrayLineBreaks
     end
