@@ -20,7 +20,8 @@ RSpec.describe 'Sail settings engine', type: :request do
       get '/admin/settings'
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.site_settings.index.title' ).titlecase
+      expect( response.body ).to have_title 'Sail dashboard'
+      expect( response.body ).to have_css '.title', text: 'Sail dashboard'
     end
   end
 end
