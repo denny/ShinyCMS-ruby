@@ -1,17 +1,4 @@
 
-ActiveStorage::Blob.create!([
-  {id: 1, key: "895rvyi7qj4ualqt88luf96va7m8", filename: "spiral.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 14483, checksum: "Rs5sddWFZwP6wSO4YWE1Yg=="},
-  {id: 2, key: "oowwayhz329vwcbtuzxpitu5z5n8", filename: "banner.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 203393, checksum: "vxj9Z514JggEw282O3QH+g=="},
-  {id: 3, key: "hbyoxqbk9mvqy8mv502ltmam0p7m", filename: "pages.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 176087, checksum: "hrMduxxNxkV26EkKlhimwg=="},
-  {id: 4, key: "9011khp94z80gtlgvyko3dawis9y", filename: "blog.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 391167, checksum: "YaaNOr7GWayfoJSLRQpJUA=="},
-  {id: 5, key: "9hdpixublgkvhvfsiwfvedfwsfn3", filename: "nested-comments.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 76843, checksum: "ogOwEnzdJBY82zYiWYH/tQ=="},
-  {id: 6, key: "126zjg7e0toqp1l6em0viojbmnzt", filename: "spam-comment-moderation.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 102164, checksum: "Hfbp6FOjcENdbnyYpgHVbw=="},
-  {id: 7, key: "qh356fq0wryhuq2ztszxkcij1tv7", filename: "pic05.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 3303, checksum: "ertDUTfVVXCzN7LyXVIwhg=="},
-  {id: 8, key: "294ggc7m54j3ctwdm9kb7iwcudrk", filename: "pic06.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1557, checksum: "ZNUE+uSMU2cXw1RusWPZDg=="},
-  {id: 9, key: "6two6sr5sst8ooq3z5niy52zp909", filename: "pic07.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1594, checksum: "mYzPOdIEPlSxliI3ap23wQ=="},
-  {id: 10, key: "7z2smstul4ri2t0h7ke9a1hi81db", filename: "pic08.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1672, checksum: "2NFqN8YfXdXKw0IUsXGU1Q=="}
-])
-
 CommentAuthor.create!([
   {id: 1, name: "ShinyCMS", website: "https://shinycms.org", ip_address: "127.0.0.1", token: "6cfe74c8-5e99-4589-9430-ac0b70e7ec1f", email_recipient_id: nil, deleted_at: nil},
   {id: 2, name: "Pill Pusher", website: "http://spammy.website", ip_address: "127.0.0.1", token: "6de0eecc-8b3d-44ba-aee5-0e9ccbd42006", email_recipient_id: nil, deleted_at: nil},
@@ -177,6 +164,19 @@ Comment.create!([
   {id: 5, discussion_id: 2, number: 1, parent_id: nil, title: "BEST BITCOIN ADVICE", body: "Prey on the misfortunate of others in the coolest ponzi scheme ever to sweep the Internet!!", ip_address: nil, locked: false, show_on_site: true, spam: true, author_type: nil, author_id: nil, posted_at: "2020-06-05 01:23:13", deleted_at: nil},
   {id: 6, discussion_id: 2, number: 2, parent_id: nil, title: nil, body: "Rise to every occasion with our bargain blue diamonds!", ip_address: nil, locked: false, show_on_site: true, spam: true, author_type: "CommentAuthor", author_id: 2, posted_at: "2020-06-05 22:56:48", deleted_at: nil},
   {id: 7, discussion_id: 2, number: 3, parent_id: nil, title: nil, body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst.", ip_address: nil, locked: false, show_on_site: true, spam: true, author_type: "CommentAuthor", author_id: 3, posted_at: "2020-06-05 23:01:17", deleted_at: nil}
+])
+
+ActiveStorage::Blob.create!([
+  {id: 1, key: "895rvyi7qj4ualqt88luf96va7m8", filename: "spiral.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 14483, checksum: "Rs5sddWFZwP6wSO4YWE1Yg==", service_name: "local"},
+  {id: 2, key: "oowwayhz329vwcbtuzxpitu5z5n8", filename: "banner.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 203393, checksum: "vxj9Z514JggEw282O3QH+g==", service_name: "local"},
+  {id: 3, key: "hbyoxqbk9mvqy8mv502ltmam0p7m", filename: "pages.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 176087, checksum: "hrMduxxNxkV26EkKlhimwg==", service_name: "local"},
+  {id: 4, key: "9011khp94z80gtlgvyko3dawis9y", filename: "blog.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 391167, checksum: "YaaNOr7GWayfoJSLRQpJUA==", service_name: "local"},
+  {id: 5, key: "9hdpixublgkvhvfsiwfvedfwsfn3", filename: "nested-comments.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 76843, checksum: "ogOwEnzdJBY82zYiWYH/tQ==", service_name: "local"},
+  {id: 6, key: "126zjg7e0toqp1l6em0viojbmnzt", filename: "spam-comment-moderation.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 102164, checksum: "Hfbp6FOjcENdbnyYpgHVbw==", service_name: "local"},
+  {id: 7, key: "qh356fq0wryhuq2ztszxkcij1tv7", filename: "pic05.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 3303, checksum: "ertDUTfVVXCzN7LyXVIwhg==", service_name: "local"},
+  {id: 8, key: "294ggc7m54j3ctwdm9kb7iwcudrk", filename: "pic06.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1557, checksum: "ZNUE+uSMU2cXw1RusWPZDg==", service_name: "local"},
+  {id: 9, key: "6two6sr5sst8ooq3z5niy52zp909", filename: "pic07.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1594, checksum: "mYzPOdIEPlSxliI3ap23wQ==", service_name: "local"},
+  {id: 10, key: "7z2smstul4ri2t0h7ke9a1hi81db", filename: "pic08.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1672, checksum: "2NFqN8YfXdXKw0IUsXGU1Q==", service_name: "local"}
 ])
 
 ActiveStorage::Attachment.create!([
