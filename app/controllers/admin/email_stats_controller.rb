@@ -25,10 +25,11 @@ class Admin::EmailStatsController < AdminController
   def search
     authorize Ahoy::Message
 
-    q = params[:q]
+    search_term = params[:q]
+
     @pagy, @messages = pagy(
-      Ahoy::Message.where( 'mailer ilike ?', "%#{q}%" )
-                   .or( Ahoy::Message.where( 'subject ilike ?', "%#{q}%" ) )
+      Ahoy::Message.where( 'mailer ilike ?', "%#{search_term}%" )
+                   .or( Ahoy::Message.where( 'subject ilike ?', "%#{search_term}%" ) )
                    .order( sent_at: :desc ), items: items_per_page
     )
 

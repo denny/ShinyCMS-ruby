@@ -28,10 +28,11 @@ module ShinyBlog
     def search
       authorize Post
 
-      query = params[:q]
+      search_term = params[:q]
+
       @pagy, @posts = pagy(
-        Post.where( 'title ilike ?', "%#{query}%" )
-            .or( Post.where( 'body ilike ?', "%#{query}%" ) )
+        Post.where( 'title ilike ?', "%#{search_term}%" )
+            .or( Post.where( 'body ilike ?', "%#{search_term}%" ) )
             .order( posted_at: :desc ), items: items_per_page
       )
 

@@ -19,11 +19,12 @@ class Admin::UsersController < AdminController
   def search
     authorize User
 
-    q = params[:q]
+    search_term = params[:q]
+
     @pagy, @users = pagy(
-      User.where( 'username ilike ?', "%#{q}%" )
-          .or( User.where( 'public_name  ilike ?', "%#{q}%" )
-          .or( User.where( 'public_email ilike ?', "%#{q}%" ) ) )
+      User.where( 'username ilike ?', "%#{search_term}%" )
+          .or( User.where( 'public_name  ilike ?', "%#{search_term}%" )
+          .or( User.where( 'public_email ilike ?', "%#{search_term}%" ) ) )
           .order( :username ), items: items_per_page
     )
 

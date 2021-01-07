@@ -21,11 +21,11 @@ class Admin::WebStatsController < AdminController
   def search
     authorize Ahoy::Visit
 
-    q = params[:q]
+    search_term = params[:q]
 
     @pagy, @visits = pagy(
-      recent_visits.where( 'referrer ilike ?', "%#{q}%" )
-                   .or( recent_visits.where( 'landing_page ilike ?', "%#{q}%" ) ),
+      recent_visits.where( 'referrer ilike ?', "%#{search_term}%" )
+                   .or( recent_visits.where( 'landing_page ilike ?', "%#{search_term}%" ) ),
       items: items_per_page
     )
 

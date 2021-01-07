@@ -24,10 +24,11 @@ module ShinyForms
     def search
       authorize Form
 
-      q = params[:q]
+      search_term = params[:q]
+
       @pagy, @forms = pagy(
-        Form.where( 'internal_name ilike ?', "%#{q}%" )
-            .or( Form.where( 'slug ilike ?', "%#{q}%" ) )
+        Form.where( 'internal_name ilike ?', "%#{search_term}%" )
+            .or( Form.where( 'slug ilike ?', "%#{search_term}%" ) )
             .order( :internal_name ), items: items_per_page
       )
 
