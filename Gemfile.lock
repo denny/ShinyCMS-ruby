@@ -10,6 +10,13 @@ GIT
       railties (>= 5.2)
 
 PATH
+  remote: /home/denny/code/denny/sail
+  specs:
+    sail (3.5.1)
+      fugit
+      rails (>= 5.0.0)
+
+PATH
   remote: plugins/ShinyAccess
   specs:
     shiny_access (21.01)
@@ -533,9 +540,6 @@ GEM
       sexp_processor (~> 4.9)
     safely_block (0.3.0)
       errbase (>= 0.1.1)
-    sail (3.5.1)
-      fugit
-      rails (>= 5.0.0)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)

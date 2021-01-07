@@ -71,7 +71,8 @@ source 'https://rubygems.org' do
   gem 'pundit'
 
   # Sail provides settings/configuration features
-  gem 'sail'
+  # TODO: Investigate issue with sessions - https://github.com/vinistock/sail/issues/326
+  gem 'sail', path: '/home/denny/code/denny/sail'
 
   # Soft delete
   gem 'acts_as_paranoid'
