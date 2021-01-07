@@ -23,7 +23,7 @@ ShinyLists::List.create!([
 ])
 
 ShinyNews::Post.create!([
-  {id: 1, title: "No news is good news?", slug: "no-news", body: "Insert imaginative demo content here...", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-05-14 14:06:33", deleted_at: nil, tag_list: nil}
+  {id: 1, title: "No news is good news?", slug: "no-news", body: "<p>Insert imaginative demo content here...</p>\r\n", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-05-14 14:06:33", deleted_at: nil, tag_list: nil}
 ])
 
 ShinyNewsletters::Template.create!([
