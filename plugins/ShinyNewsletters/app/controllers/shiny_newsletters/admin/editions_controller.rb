@@ -20,11 +20,12 @@ module ShinyNewsletters
     def search
       authorize Edition
 
-      q = params[:q]
+      search_term = params[:q]
+
       @pagy, @editions = pagy(
-        Edition.where( 'internal_name ilike ?', "%#{q}%" )
-               .or( Edition.where( 'public_name ilike ?', "%#{q}%" )
-               .or( Edition.where( 'description ilike ?', "%#{q}%" ) ) )
+        Edition.where( 'internal_name ilike ?', "%#{search_term}%" )
+               .or( Edition.where( 'public_name ilike ?', "%#{search_term}%" )
+               .or( Edition.where( 'description ilike ?', "%#{search_term}%" ) ) )
                .order( updated_at: :desc ), items: items_per_page
       )
 

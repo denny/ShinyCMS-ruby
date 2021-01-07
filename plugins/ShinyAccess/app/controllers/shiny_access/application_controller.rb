@@ -7,7 +7,6 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyAccess
-  # Base controller for the ShinyAccess plugin for ShinyCMS (see also MainController, AdminController)
-  class ApplicationController < ActionController::Base
-  end
+  # Plugin controllers inherit from MainController or AdminController; nothing inherits from here
+  class ApplicationController < ActionController::Base; end
 end

@@ -10,6 +10,5 @@ module ShinyInserts
   # Base controller for admin features of ShinyInserts plugin for ShinyCMS
   # Inherits from ShinyCMS AdminController
   class AdminController < ::AdminController
-    helper Rails.application.routes.url_helpers
   end
 end

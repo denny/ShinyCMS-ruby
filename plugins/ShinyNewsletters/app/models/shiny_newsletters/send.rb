@@ -19,8 +19,6 @@ module ShinyNewsletters
 
     # Attributes and aliases
 
-    attr_writer :send_at_time
-
     alias_attribute :sent_at, :finished_sending_at
 
     # Scopes

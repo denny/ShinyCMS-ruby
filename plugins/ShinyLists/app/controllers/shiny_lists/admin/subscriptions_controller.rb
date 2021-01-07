@@ -26,10 +26,11 @@ module ShinyLists
     def search
       authorize Subscription
 
-      q = params[:q]
+      search_term = params[:q]
+
       @pagy, @subscriptions = pagy(
-        subscriptions.where( 'date(subscribed_at) = ?', q )
-                     .or( subscriptions.where( 'date(unsubscribed_at) = ?', q ) )
+        subscriptions.where( 'date(subscribed_at) = ?', search_term )
+                     .or( subscriptions.where( 'date(unsubscribed_at) = ?', search_term ) )
                      .order( subscribed_at: :desc ), items: items_per_page
       )
 

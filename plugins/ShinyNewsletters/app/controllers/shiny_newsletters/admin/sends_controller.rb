@@ -35,10 +35,11 @@ module ShinyNewsletters
     def search
       authorize Send
 
-      q = params[:q]
+      search_term = params[:q]
+
       @pagy, @sends = pagy(
-        Send.where( 'date(started_sending_at) = ?', q )
-            .or( Send.where( 'date(finished_sending_at) = ?', q ) )
+        Send.where( 'date(started_sending_at) = ?', search_term )
+            .or( Send.where( 'date(finished_sending_at) = ?', search_term ) )
             .order( sent_at: :desc ), items: items_per_page
       )
 

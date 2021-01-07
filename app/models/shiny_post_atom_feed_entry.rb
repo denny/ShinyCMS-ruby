@@ -14,7 +14,7 @@ class ShinyPostAtomFeedEntry
 
   include Rails.application.routes.url_helpers
 
-  attr_accessor :feed, :entry, :post
+  attr_reader :entry, :feed, :post
 
   def initialize( feed )
     @feed  = feed
@@ -23,14 +23,10 @@ class ShinyPostAtomFeedEntry
   end
 
   def build( post )
-    self.post = post
+    @post = post
 
-    add_entry_id
-    add_entry_title
-    add_entry_author
-    add_entry_updated
-    add_entry_summary
-    add_entry_link
+    add_entry_id && add_entry_title && add_entry_author &&
+      add_entry_updated && add_entry_summary && add_entry_link
 
     entry.parent = feed
   end
@@ -51,7 +47,7 @@ class ShinyPostAtomFeedEntry
 
   def add_entry_author
     author = entry.class::Author.new
-    name = entry.class::Author::Name.new
+    name = author.class::Name.new
     name.content = post.author.name
     author.name = name
     entry.authors << author
@@ -65,7 +61,7 @@ class ShinyPostAtomFeedEntry
 
   def add_entry_summary
     summary = entry.class::Summary.new
-    summary.content = html_escape( feed_entry_summary )
+    summary.content = html_escape( feed_entry_summary( post.teaser ) )
     summary.type = 'html'
     entry.summary = summary
   end
@@ -76,11 +72,11 @@ class ShinyPostAtomFeedEntry
     entry.links << link
   end
 
-  def feed_entry_summary
-    return post.teaser unless post.body_longer_than_teaser?
+  def feed_entry_summary( teaser )
+    return teaser unless post.body_longer_than_teaser?
 
     <<~SUMMARY
-      #{post.teaser}
+      #{teaser}
 
       <p>#{I18n.t( 'models.shiny_post_atom_feed_entry.read_more' )}</p>
     SUMMARY

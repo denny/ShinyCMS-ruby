@@ -18,10 +18,11 @@ module ShinyLists
     def search
       authorize List
 
-      q = params[:q]
+      search_term = params[:q]
+
       @pagy, @lists = pagy(
-        List.where( 'internal_name ilike ?', "%#{q}%" )
-            .or( List.where( 'slug ilike ?', "%#{q}%" ) )
+        List.where( 'internal_name ilike ?', "%#{search_term}%" )
+            .or( List.where( 'slug ilike ?', "%#{search_term}%" ) )
             .order( :internal_name ), items: items_per_page
       )
 
