@@ -111,10 +111,8 @@ namespace :shiny do
     end
 
     def models_with_demo_data
-      model_names = [ ApplicationRecord.models_with_demo_data ].flatten
-
-      # Have to rearrange load order here to avoid foreign key issues
-      change_insert_order( model_names )
+      # Have to rearrange insert order here to avoid foreign key issues
+      change_insert_order( ApplicationRecord.models_with_demo_data )
     end
 
     def change_insert_order( model_names )
