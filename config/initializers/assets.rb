@@ -20,7 +20,7 @@ def add_all_themes_to_asset_load_path
 end
 
 def available_themes
-  Dir[ 'themes/*' ].sort.collect { |name| name.sub( 'themes/', '' ) }
+  Dir[ 'themes/*' ].collect { |name| name.sub( 'themes/', '' ) }
 end
 
 def add_theme_to_asset_load_path( theme_name )
