@@ -10,7 +10,7 @@ require_relative 'lib/gemfile_plugins_helper'
 
 source 'https://rubygems.org' do
   # Rails 6.1
-  gem 'rails', '~> 6.1.0'
+  gem 'rails', '~> 6.1.1'
 
   # Postgres
   gem 'pg', '~> 1.2.3'
