@@ -69,8 +69,7 @@ module ShinyForms
     end
 
     def self.template_names( filenames )
-      base_names = filenames.collect { |filename| filename.remove( '.html.mjml' ) }
-      base_names.sort
+      filenames.collect { |filename| filename.remove( '.html.mjml' ) }
     end
 
     def self.theme_template_dir

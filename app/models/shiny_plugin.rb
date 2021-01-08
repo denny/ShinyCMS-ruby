@@ -107,6 +107,6 @@ class ShinyPlugin
   end
 
   def self.all_names
-    Dir[ 'plugins/*' ].sort.collect { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
+    Dir[ 'plugins/*' ].collect { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
   end
 end
