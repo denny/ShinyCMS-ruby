@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.name        = 'shiny_access'
   spec.version     = ShinyAccess::VERSION
   spec.authors     = [ 'Denny de la Haye' ]
-  spec.email       = [ '2020@denny.me' ]
+  spec.email       = [ '2021@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
   spec.summary     = 'ShinyAccess plugin for ShinyCMS'
   spec.description = 'The ShinyAccess plugin provides access control features for ShinyCMS sites'

@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.name        = 'shiny_news'
   spec.version     = ShinyNews::VERSION
   spec.authors     = [ 'Denny de la Haye' ]
-  spec.email       = [ '2020@shinycms.org' ]
+  spec.email       = [ '2021@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
   spec.summary     = 'ShinyNews plugin for ShinyCMS'
   spec.description = 'The ShinyNews plugin provides a news section for ShinyCMS'
