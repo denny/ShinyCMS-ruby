@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.name        = 'shiny_profiles'
   spec.version     = ShinyProfiles::VERSION
   spec.authors     = [ 'Denny de la Haye' ]
-  spec.email       = [ '2020@denny.me' ]
+  spec.email       = [ '2021@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
   spec.summary     = 'ShinyProfiles plugin for ShinyCMS'
   spec.description = 'The ShinyProfiles plugin provides user profile pages for ShinyCMS'

@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.name        = 'shiny_inserts'
   spec.version     = ShinyInserts::VERSION
   spec.authors     = [ 'Denny de la Haye' ]
-  spec.email       = [ '2020@denny.me' ]
+  spec.email       = [ '2021@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
   spec.summary     = 'ShinyInserts plugin for ShinyCMS'
   spec.description = 'The ShinyInserts plugin provides reusable content fragments for ShinyCMS'

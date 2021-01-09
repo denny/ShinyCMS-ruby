@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.name        = 'shiny_pages'
   spec.version     = ShinyPages::VERSION
   spec.authors     = [ 'Denny de la Haye' ]
-  spec.email       = [ '2020@denny.me' ]
+  spec.email       = [ '2021@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
   spec.summary     = 'ShinyPages plugin for ShinyCMS'
   spec.description = "The ShinyPages plugin provides content-managed 'brochure pages' for ShinyCMS"

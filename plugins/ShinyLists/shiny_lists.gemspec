@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.name        = 'shiny_lists'
   spec.version     = ShinyLists::VERSION
   spec.authors     = [ 'Denny de la Haye' ]
-  spec.email       = [ '2020@denny.me' ]
+  spec.email       = [ '2021@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
   spec.summary     = 'ShinyLists plugin for ShinyCMS'
   spec.description = 'The ShinyLists plugin adds mailing lists features to ShinyCMS'
