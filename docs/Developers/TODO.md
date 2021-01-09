@@ -2,24 +2,22 @@
 
 ## TODO
 
-* "Mjml: warning You don't appear to have an internet connection. Try the --offline flag to use the cache for registry queries."
-    * Newsletter plugin tests tend to top the 'slowest tests' list - related?
-
-* Demo data has lost the tags at some point
-
-* Tag cloud and tag list pages show (and count) tags on hidden content
-
-* Investigate alternatives to Blazer?
-    * https://github.com/ankane/blazer/pull/316 :(
-
-* Blazer currently doesn't restrict people without 'edit' capability to view-only
-
-* Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
-
 * Finish adding support for links on user profiles
 
 * Add 'items' extra to Pagy: https://ddnexus.github.io/pagy/extras/items.html
     * Allow pagination URLs to specify /items/N instead of ?items=N
+
+* Tag cloud and tag list pages show (and count) tags on hidden content
+
+* Blazer:
+    * Investigate alternatives? https://github.com/ankane/blazer/pull/316 :(
+    * Fix admin ACL; currently if you can view, you can add/update/delete too
+
+* Various email-sending tests (Forms, Newsletters, etc) throw this when run offline:
+    * "Mjml: warning You don't appear to have an internet connection. Try the --offline flag to use the cache for registry queries."
+    * Newsletter plugin tests tend to top the 'slowest tests' list - related?
+
+* Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
 
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
