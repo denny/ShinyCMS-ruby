@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.name        = 'shiny_blog'
   spec.version     = ShinyBlog::VERSION
   spec.authors     = [ 'Denny de la Haye' ]
-  spec.email       = [ '2020@shinycms.org' ]
+  spec.email       = [ '2021@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
   spec.summary     = 'ShinyCMS blog plugin'
   spec.description = 'Blog plugin for ShinyCMS'
