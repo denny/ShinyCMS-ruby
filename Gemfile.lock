@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/envato/zxcvbn-ruby
+  revision: e6a9c3eca458ae46f90825538deebb5d71c555fc
+  specs:
+    zxcvbn-ruby (1.2.0)
+
+GIT
   remote: https://github.com/rails/activerecord-session_store
   revision: f188efbc49a522123cc8acc805143824176d01c1
   specs:
@@ -669,6 +675,7 @@ DEPENDENCIES
   sidekiq-status!
   webmock!
   webpacker (~> 5.2)!
+  zxcvbn-ruby!
 
 BUNDLED WITH
    2.2.3

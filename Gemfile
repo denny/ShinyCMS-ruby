@@ -47,6 +47,10 @@ source 'https://rubygems.org' do
   gem 'bcrypt', '~> 3.1.16'
   # Check user passwords against known data leaks
   gem 'devise-pwned_password'
+  # Check password complexity
+  # FIXME: installing from GitHub until they release 1.2.x for ruby 3.x
+  # gem 'zxcvbn-ruby', require: 'zxcvbn'
+  gem 'zxcvbn-ruby', require: 'zxcvbn', git: 'https://github.com/envato/zxcvbn-ruby'
   # Authorisation
   gem 'pundit'
 

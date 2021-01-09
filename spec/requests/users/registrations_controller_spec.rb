@@ -8,8 +8,8 @@
 
 require 'rails_helper'
 
-# Tests for user account features on main site (powered by Devise)
-RSpec.describe 'User Accounts', type: :request do
+# Tests for user account registration/update features on main site (powered by Devise)
+RSpec.describe Users::RegistrationsController, type: :request do
   before do
     FeatureFlag.enable :user_login
     FeatureFlag.disable :user_profiles
@@ -50,7 +50,7 @@ RSpec.describe 'User Accounts', type: :request do
     end
 
     it 'includes the V3 reCAPTCHA code if a V3 key was set' do
-      allow_any_instance_of( Users::RegistrationsController )
+      allow_any_instance_of( described_class )
         .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
 
       get new_user_registration_path
@@ -61,7 +61,7 @@ RSpec.describe 'User Accounts', type: :request do
     end
 
     it 'includes the V2 reCAPTCHA code if only a V2 key was set' do
-      allow_any_instance_of( Users::RegistrationsController )
+      allow_any_instance_of( described_class )
         .to receive( :recaptcha_v2_site_key ).and_return( 'A_KEY' )
 
       get new_user_registration_path
@@ -72,7 +72,7 @@ RSpec.describe 'User Accounts', type: :request do
     end
 
     it 'includes the checkbox reCAPTCHA code if only that key is set' do
-      allow_any_instance_of( Users::RegistrationsController )
+      allow_any_instance_of( described_class )
         .to receive( :recaptcha_checkbox_site_key ).and_return( 'A_KEY' )
 
       get new_user_registration_path
@@ -80,118 +80,6 @@ RSpec.describe 'User Accounts', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_button I18n.t( 'user.register' )
       # TODO: look for checkbox html
-    end
-  end
-
-  describe 'GET /login' do
-    it 'renders the user login page if user logins are enabled' do
-      get new_user_session_path
-
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_button I18n.t( 'user.log_in' )
-    end
-
-    it 'redirects to the site homepage if user logins are not enabled' do
-      FeatureFlag.disable :user_login
-
-      get new_user_session_path
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css(
-        '.alerts',
-        text: I18n.t(
-          'feature_flags.off_alert',
-          feature_name: I18n.t( 'feature_flags.user_login' )
-        )
-      )
-      expect( response.body ).not_to have_button I18n.t( 'user.log_in' )
-    end
-
-    it 'defaults to assuming that user logins are not enabled' do
-      FeatureFlag.find_by( name: 'user_login' ).update!( name: 'test' )
-
-      get new_user_session_path
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css(
-        '.alerts',
-        text: I18n.t(
-          'feature_flags.off_alert',
-          feature_name: I18n.t( 'feature_flags.user_login' )
-        )
-      )
-      expect( response.body ).not_to have_button I18n.t( 'user.log_in' )
-
-      FeatureFlag.find_by( name: 'test' ).update!( name: 'user_login' )
-    end
-  end
-
-  describe 'POST /login' do
-    it 'logs the user in using their email address' do
-      password = 'shinycms unimaginative test passphrase'
-      user = create :user, password: password
-
-      post user_session_path, params: {
-        user: {
-          login:    user.email,
-          password: password
-        }
-      }
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_link I18n.t( 'user.log_out' )
-    end
-
-    it 'logs the user in using their username' do
-      password = 'shinycms unimaginative test passphrase'
-      user = create :user, password: password
-
-      post user_session_path, params: {
-        user: {
-          login:    user.username,
-          password: password
-        }
-      }
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_link I18n.t( 'user.log_out' )
-    end
-
-    it 'redirects back to the referring page after login, if it knows it' do
-      password = 'shinycms unimaginative test passphrase'
-      user = create :user, password: password
-
-      different_page = create :top_level_page
-      should_go_here = "http://www.example.com/#{different_page.slug}"
-
-      post user_session_path,
-           params:  {
-             user: {
-               login:    user.username,
-               password: password
-             }
-           },
-           headers: {
-             'HTTP_REFERER': should_go_here
-           }
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to should_go_here
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css 'h1', text: different_page.name
     end
   end
 
@@ -205,9 +93,9 @@ RSpec.describe 'User Accounts', type: :request do
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
-      allow( Users::RegistrationsController )
+      allow( described_class )
         .to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
-      allow_any_instance_of( Users::RegistrationsController )
+      allow_any_instance_of( described_class )
         .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
 
       post user_registration_path, params: {
@@ -232,9 +120,9 @@ RSpec.describe 'User Accounts', type: :request do
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
-      allow( Users::RegistrationsController )
+      allow( described_class )
         .to receive( :recaptcha_v2_secret_key ).and_return( 'A_KEY' )
-      allow_any_instance_of( Users::RegistrationsController )
+      allow_any_instance_of( described_class )
         .to receive( :recaptcha_v2_site_key ).and_return( 'A_KEY' )
 
       post user_registration_path, params: {
@@ -259,9 +147,9 @@ RSpec.describe 'User Accounts', type: :request do
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
 
-      allow_any_instance_of( Users::RegistrationsController )
+      allow_any_instance_of( described_class )
         .to receive( :recaptcha_checkbox_site_key ).and_return( 'A_KEY' )
-      allow_any_instance_of( Users::RegistrationsController )
+      allow_any_instance_of( described_class )
         .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
 
       post user_registration_path, params: {
@@ -278,7 +166,7 @@ RSpec.describe 'User Accounts', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'textarea.g-recaptcha-response'
 
-      allow( Users::RegistrationsController )
+      allow( described_class )
         .to receive( :recaptcha_checkbox_secret_key ).and_return( 'A_KEY' )
 
       post user_registration_path, params: {

@@ -17,7 +17,25 @@ Rails.application.routes.draw do
     # TODO: figure out what to do here if ShinyPages isn't loaded...
     root to: 'shiny_pages/pages#index' if defined? ShinyPages
 
-    get  :discussions,             to: 'discussions#index', as: :discussions
+    # Authentication / User Accounts: /account /login /logout
+    devise_for  :users,
+                path:        '',
+                controllers: {
+                  registrations: 'users/registrations',
+                  sessions:      'users/sessions'
+                },
+                path_names:  {
+                  sign_in:      '/login',
+                  sign_out:     '/logout',
+                  registration: '/account',
+                  sign_up:      'register',
+                  confirmation: '/account/confirm',
+                  password:     '/account/password',
+                  unlock:       '/account/unlock'
+                }
+    get  'account/password/test/:password', to: 'users/passwords#test', as: :test_password
+
+    get  'discussions',            to: 'discussions#index', as: :discussions
     get  'discussion/:id',         to: 'discussions#show',  as: :discussion
     post 'discussion/:id',         to: 'discussions#add_comment'
     get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
@@ -36,22 +54,6 @@ Rails.application.routes.draw do
     get 'tags/list',  to: 'tags#list',  as: :tag_list
     get 'tag/:tag',   to: 'tags#show',  as: :tag
     get 'tags/:tags', to: 'tags#show',  as: :show_tags
-
-    devise_for  :users,
-                path:        '',
-                controllers: {
-                  registrations: 'users/registrations',
-                  sessions:      'users/sessions'
-                },
-                path_names:  {
-                  sign_in:      '/login',
-                  sign_out:     '/logout',
-                  registration: '/account',
-                  sign_up:      'register',
-                  confirmation: '/account/confirm',
-                  password:     '/account/password',
-                  unlock:       '/account/unlock'
-                }
 
     post   'vote/:type/:id/:flag', to: 'votes#create',  as: :create_vote
     delete 'vote/:type/:id',       to: 'votes#destroy', as: :destroy_vote
@@ -134,14 +136,17 @@ Rails.application.routes.draw do
     # CKEditor provides the WYSIWYG editor used in the admin area
     mount Ckeditor::Engine, at: '/admin/ckeditor'
 
+    # LetterOpener catches all emails sent in development, with a webmail UI to view them
+    mount LetterOpenerWeb::Engine, at: '/dev/outbox' if Rails.env.development?
+
     # RailsEmailPreview provides previews of site emails in the admin area
     mount RailsEmailPreview::Engine, at: '/admin/email-previews'
 
+    # Sidekiq Web provides a web dashboard for Sidekiq jobs and queues
     def sidekiq_web_enabled?
       ENV['DISABLE_SIDEKIQ_WEB']&.downcase != 'true'
     end
 
-    # Sidekiq Web provides a web dashboard for your sidekiq jobs and queues
     if sidekiq_web_enabled?
       require 'sidekiq/web'
       require 'sidekiq-status/web'
@@ -151,9 +156,6 @@ Rails.application.routes.draw do
         mount Sidekiq::Web, at: '/admin/sidekiq'
       end
     end
-
-    # LetterOpener catches all emails sent in development, with a webmail UI to view them
-    mount LetterOpenerWeb::Engine, at: '/dev/outbox' if Rails.env.development?
 
     ########################################
     # ShinyCMS plugins

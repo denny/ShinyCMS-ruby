@@ -2,6 +2,11 @@
 
 ## TODO
 
+* Pull admin search methods from controllers to models
+    * Handle user account/profile split
+
+* Check whether creating a user account creates a user profile
+
 * "Mjml: warning You don't appear to have an internet connection. Try the --offline flag to use the cache for registry queries."
     * Newsletter plugin tests tend to top the 'slowest tests' list - related?
 
