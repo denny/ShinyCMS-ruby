@@ -2,8 +2,6 @@
 
 ## TODO
 
-* Update node version 12->14
-
 * Pull admin search methods from controllers to models
     * Handle user account/profile split
 
