@@ -135,5 +135,14 @@ RSpec.describe 'Pages', type: :request do
         expect( response.body ).to include 'a page that does not exist'
       end
     end
+
+    describe 'GET /not-html-404.xml' do
+      it 'still returns a 404 even if a non-existent non-HTML resource is requested' do
+        get '/not-html-404.xml'
+
+        expect( response      ).to have_http_status :not_found
+        expect( response.body ).to include 'a page that does not exist'
+      end
+    end
   end
 end
