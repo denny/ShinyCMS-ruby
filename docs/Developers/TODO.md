@@ -2,6 +2,12 @@
 
 ## TODO
 
+* Update node version 12->14
+
+* Pull admin search methods from controllers to models
+    * Handle user account/profile split
+
+* Check whether creating a user account creates a user profile
 * Finish adding support for links on user profiles
 
 * Add 'items' extra to Pagy: https://ddnexus.github.io/pagy/extras/items.html

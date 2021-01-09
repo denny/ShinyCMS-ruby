@@ -18,7 +18,7 @@ RSpec/AnyInstance:
     - 'plugins/ShinySearch/spec/requests/search_spec.rb'
     - 'spec/requests/admin/comments_controller_spec.rb'
     - 'spec/requests/discussions_spec.rb'
-    - 'spec/requests/user_spec.rb'
+    - 'spec/requests/users/registrations_controller_spec.rb'
 
 # Offense count: 245
 # Configuration parameters: AssignmentOnly.
