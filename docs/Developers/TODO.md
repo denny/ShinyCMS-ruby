@@ -11,6 +11,7 @@
 
 * Blazer:
     * Investigate alternatives? https://github.com/ankane/blazer/pull/316 :(
+        * daru-view ?? https://github.com/SciRuby/daru-view#readme
     * Fix admin ACL; currently if you can view, you can add/update/delete too
 
 * Various email-sending tests (Forms, Newsletters, etc) throw this when run offline:
