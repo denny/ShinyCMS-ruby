@@ -16,10 +16,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.2.3'
 
   # Webserver
-  gem 'puma', '~> 5.1'
-
-  # Load ENV from .env(.*) files
-  gem 'dotenv-rails'
+  gem 'puma', '~> 5.1', groups: %i[ development production ]
 
   # Locales for the 'not USA' bits of the world
   gem 'rails-i18n'
@@ -115,8 +112,10 @@ source 'https://rubygems.org' do
   # Better-looking console output
   gem 'amazing_print'
 
-  # Pry is a debugging tool - uncomment it here if you want to use it on the Rails console in production
-  gem 'pry-rails'
+  # Pry is a debugging tool for the Rails console
+  # Uncomment the first line if you want to use it in production, the second otherwise
+  gem 'pry-rails', groups: %i[ development test production ]
+  # gem 'pry-rails', groups: %i[ development test ]
 
   group :production do
     # Bugsnag is an error monitoring service
@@ -127,8 +126,8 @@ source 'https://rubygems.org' do
   end
 
   group :development, :test do
-    # You can enable Pry here if you commented it out in production.
-    # gem 'pry-rails'
+    # Load ENV from .env(.*) files
+    gem 'dotenv-rails'
 
     # Tests are good, m'kay?
     gem 'rspec-rails'
@@ -137,13 +136,6 @@ source 'https://rubygems.org' do
     gem 'factory_bot_rails'
     # Fill test objects with fake data
     gem 'faker'
-
-    # Best practices
-    gem 'rails_best_practices'
-
-    # Ruby Critic generates easy-to-read reports from various static analysis tools
-    # FIXME: install this manually (gem install rubycritic) until reek is ruby3 compatible
-    # gem 'rubycritic', '~> 4.5.0', require: false
 
     # Utils for working with translation strings
     # gem 'i18n-debug'
@@ -167,6 +159,13 @@ source 'https://rubygems.org' do
     # Check for slow code
     gem 'fasterer', require: false
 
+    # Best practices
+    gem 'rails_best_practices'
+
+    # Ruby Critic generates easy-to-read reports from various static analysis tools
+    # FIXME: install this manually (gem install rubycritic) until reek is ruby3 compatible
+    # gem 'rubycritic', '~> 4.5.0', require: false
+
     # Capture all emails sent by the system, and view them in a dev webmail inbox
     gem 'letter_opener_web', '~> 1.0'
 
@@ -184,17 +183,18 @@ source 'https://rubygems.org' do
   end
 
   group :test do
-    # Integration tests (request specs)
-    gem 'capybara', '>= 2.15'
     # Wipe the test database before each test run
     gem 'database_cleaner-active_record'
+
+    # Integration tests (request specs)
+    gem 'capybara', '>= 2.15'
+
+    # Intercept calls to external services (notably, the Algolia API)
+    gem 'webmock'
 
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     # Rspec report formatter for Codecov
     gem 'rspec_junit_formatter'
-
-    # Used to intercept calls to the Algolia API
-    gem 'webmock'
   end
 end
