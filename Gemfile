@@ -18,6 +18,9 @@ source 'https://rubygems.org' do
   # Webserver
   gem 'puma', '~> 5.1', groups: %i[ development production ]
 
+  # Load ENV from .env(.*) files
+  gem 'dotenv-rails'
+
   # Locales for the 'not USA' bits of the world
   gem 'rails-i18n'
 
@@ -126,9 +129,6 @@ source 'https://rubygems.org' do
   end
 
   group :development, :test do
-    # Load ENV from .env(.*) files
-    gem 'dotenv-rails'
-
     # Tests are good, m'kay?
     gem 'rspec-rails'
 
