@@ -8,7 +8,8 @@
 
 # Admin controller for managing consent versions
 class Admin::ConsentVersionsController < AdminController
-  before_action :stash_consent_version, only: %i[ show edit update destroy ]
+  before_action :stash_new_consent_version, only: %i[ new create ]
+  before_action :stash_consent_version,     only: %i[ show edit update destroy ]
 
   helper_method :pagy_url_for
 
@@ -40,12 +41,10 @@ class Admin::ConsentVersionsController < AdminController
   end
 
   def new
-    @consent_version = ConsentVersion.new
     authorize @consent_version
   end
 
   def create
-    @consent_version = ConsentVersion.new( consent_version_params )
     authorize @consent_version
 
     if @consent_version.save
@@ -81,11 +80,17 @@ class Admin::ConsentVersionsController < AdminController
 
   private
 
+  def stash_new_consent_version
+    @consent_version = ConsentVersion.new( consent_version_params )
+  end
+
   def stash_consent_version
     @consent_version = ConsentVersion.find( params[:id] )
   end
 
   def consent_version_params
+    return unless params[ :consent_version ]
+
     params.require( :consent_version ).permit( :name, :slug, :display_text, :admin_notes )
   end
 
