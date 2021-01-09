@@ -100,7 +100,7 @@ module ShinyPages
       slug = path_parts.shift
       section = sections&.find_by( slug: slug )
 
-      return section if path_parts.empty?
+      return section if path_parts.empty? || section.nil?
 
       traverse_path( path_parts, section.sections )
     end
