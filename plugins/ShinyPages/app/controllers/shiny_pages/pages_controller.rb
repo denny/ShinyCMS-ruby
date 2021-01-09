@@ -11,6 +11,8 @@ module ShinyPages
   class PagesController < MainController
     include ShinyPages::MainSiteHelper
 
+    before_action :enforce_html_format
+
     # Handle requests for the root page
     # /  (or /pages)
     def index
@@ -112,6 +114,10 @@ module ShinyPages
     # 404 handler
     def not_found
       render 'errors/404', status: :not_found
+    end
+
+    def enforce_html_format
+      request.format = :html
     end
   end
 end
