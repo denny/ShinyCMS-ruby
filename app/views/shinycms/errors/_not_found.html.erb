@@ -40,7 +40,7 @@
     </h2>
   </header>
 
-  <div class="twelve-columns">
+  <div class="six-columns">
     <% tags.each do |tag| %>
       <%= link_to tag.name, main_app.tag_path( tag.name ) %> (<%= tag.taggings_count %>)<br>
     <% end %>
