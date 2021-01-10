@@ -97,9 +97,7 @@ class Admin::UsersController < AdminController
     return unless params[ :user ]
 
     params.require( :user ).permit(
-      :username, :email, :password, :public_name, :public_email,
-      :profile_pic, :bio, :website, :location, :postcode, :admin_notes,
-      capabilities: {}
+      :username, :email, :password, :admin_notes, capabilities: {}
     )
   end
 
