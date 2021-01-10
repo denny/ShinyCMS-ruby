@@ -31,7 +31,7 @@ class User < ApplicationRecord
   # Instance methods
 
   def name
-    return profile.name if ShinyPlugin.loaded?( :ShinyProfiles ) && profile.present?
+    return profile.name if respond_to? :profile
 
     username
   end
