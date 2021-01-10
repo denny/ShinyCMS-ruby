@@ -16,14 +16,14 @@ module ShinyForms
     before_action { @form_name = params[:form_name] }
     before_action { @form_data = params[:form_data] }
 
-    def plain
+    def plain_email
       mail to: @to, subject: email_subject, &:text
     end
 
-    def templated( filename: )
-      return unless Form.template_file_exists?( filename )
+    def html_email( template_file: )
+      return unless Form.template_file_exists?( template_file )
 
-      mail to: @to, subject: email_subject, template_name: filename do |format|
+      mail to: @to, subject: email_subject, template_name: template_file do |format|
         format.html
         format.text
       end
