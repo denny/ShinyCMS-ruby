@@ -15,6 +15,7 @@ module ShinyPost
   include ShinyShowHide
   include ShinySlugInMonth
   include ShinySoftDelete
+  include ShinyTags
   include ShinyTeaser
 
   included do
