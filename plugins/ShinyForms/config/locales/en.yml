@@ -22,8 +22,8 @@ en:
         menu: Forms
         toolbar: Forms
         handlers:
-          plain_email: Send plain unformatted email
-          template_email: Send email formatted with template
+          send_plain_email: Send plain text email
+          send_html_email: Send HTML email
         index:
           title: List form handlers
           search: Search form handlers

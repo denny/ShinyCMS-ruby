@@ -2,7 +2,7 @@
 
 # ShinyForms plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.name        = 'shiny_forms'
   spec.version     = ShinyForms::VERSION
   spec.authors     = [ 'Denny de la Haye' ]
-  spec.email       = [ '2020@denny.me' ]
+  spec.email       = [ '2021@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
   spec.summary     = 'ShinyForms plugin for ShinyCMS'
   spec.description = 'The ShinyForms plugin provides some generic form handlers for ShinyCMS'

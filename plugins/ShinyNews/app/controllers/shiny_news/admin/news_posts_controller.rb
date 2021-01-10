@@ -2,7 +2,7 @@
 
 # ShinyNews plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -28,10 +28,11 @@ module ShinyNews
     def search
       authorize Post
 
-      q = params[:q]
+      search_term = params[:q]
+
       @pagy, @posts = pagy(
-        Post.where( 'title ilike ?', "%#{q}%" )
-            .or( Post.where( 'body ilike ?', "%#{q}%" ) )
+        Post.where( 'title ilike ?', "%#{search_term}%" )
+            .or( Post.where( 'body ilike ?', "%#{search_term}%" ) )
             .order( posted_at: :desc ), items: items_per_page
       )
 

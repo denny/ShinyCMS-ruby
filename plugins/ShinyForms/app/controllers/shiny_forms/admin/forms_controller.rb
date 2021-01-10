@@ -2,7 +2,7 @@
 
 # ShinyForms plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -24,10 +24,11 @@ module ShinyForms
     def search
       authorize Form
 
-      q = params[:q]
+      search_term = params[:q]
+
       @pagy, @forms = pagy(
-        Form.where( 'internal_name ilike ?', "%#{q}%" )
-            .or( Form.where( 'slug ilike ?', "%#{q}%" ) )
+        Form.where( 'internal_name ilike ?', "%#{search_term}%" )
+            .or( Form.where( 'slug ilike ?', "%#{search_term}%" ) )
             .order( :internal_name ), items: items_per_page
       )
 

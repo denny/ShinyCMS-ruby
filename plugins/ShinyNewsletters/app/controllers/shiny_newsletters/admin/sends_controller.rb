@@ -2,7 +2,7 @@
 
 # ShinyNewsletters plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -35,10 +35,11 @@ module ShinyNewsletters
     def search
       authorize Send
 
-      q = params[:q]
+      search_term = params[:q]
+
       @pagy, @sends = pagy(
-        Send.where( 'date(started_sending_at) = ?', q )
-            .or( Send.where( 'date(finished_sending_at) = ?', q ) )
+        Send.where( 'date(started_sending_at) = ?', search_term )
+            .or( Send.where( 'date(finished_sending_at) = ?', search_term ) )
             .order( sent_at: :desc ), items: items_per_page
       )
 

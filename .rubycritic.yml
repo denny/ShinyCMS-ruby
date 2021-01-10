@@ -2,7 +2,9 @@ branch: 'main'
 no_browser: true
 paths:
   - app/
-  - lib/
+  - lib/tasks
+  - lib/generators/shiny
+  - lib/templates/shiny
   - themes/
   - tools/
   - plugins/ShinyAccess/app/

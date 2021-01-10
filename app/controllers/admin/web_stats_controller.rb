@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -21,11 +21,11 @@ class Admin::WebStatsController < AdminController
   def search
     authorize Ahoy::Visit
 
-    q = params[:q]
+    search_term = params[:q]
 
     @pagy, @visits = pagy(
-      recent_visits.where( 'referrer ilike ?', "%#{q}%" )
-                   .or( recent_visits.where( 'landing_page ilike ?', "%#{q}%" ) ),
+      recent_visits.where( 'referrer ilike ?', "%#{search_term}%" )
+                   .or( recent_visits.where( 'landing_page ilike ?', "%#{search_term}%" ) ),
       items: items_per_page
     )
 
