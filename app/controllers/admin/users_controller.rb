@@ -8,7 +8,8 @@
 
 # Controller for users section of ShinyCMS admin area
 class Admin::UsersController < AdminController
-  before_action :stash_user, only: %i[ edit update destroy ]
+  before_action :stash_new_user, only: %i[ new create ]
+  before_action :stash_user,     only: %i[ edit update destroy ]
 
   helper_method :pagy_url_for
 
@@ -42,12 +43,10 @@ class Admin::UsersController < AdminController
   end
 
   def new
-    @user = User.new
     authorize @user
   end
 
   def create
-    @user = User.new( user_params )
     authorize @user
 
     if @user.save
@@ -86,11 +85,17 @@ class Admin::UsersController < AdminController
 
   private
 
+  def stash_new_user
+    @user = User.new( strong_params )
+  end
+
   def stash_user
     @user = User.find( params[:id] )
   end
 
-  def user_params
+  def strong_params
+    return unless params[ :user ]
+
     params.require( :user ).permit(
       :username, :email, :password, :public_name, :public_email,
       :profile_pic, :bio, :website, :location, :postcode, :admin_notes,
