@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -25,10 +25,11 @@ class Admin::EmailStatsController < AdminController
   def search
     authorize Ahoy::Message
 
-    q = params[:q]
+    search_term = params[:q]
+
     @pagy, @messages = pagy(
-      Ahoy::Message.where( 'mailer ilike ?', "%#{q}%" )
-                   .or( Ahoy::Message.where( 'subject ilike ?', "%#{q}%" ) )
+      Ahoy::Message.where( 'mailer ilike ?', "%#{search_term}%" )
+                   .or( Ahoy::Message.where( 'subject ilike ?', "%#{search_term}%" ) )
                    .order( sent_at: :desc ), items: items_per_page
     )
 

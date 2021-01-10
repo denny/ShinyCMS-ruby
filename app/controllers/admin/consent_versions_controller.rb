@@ -2,13 +2,14 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Admin controller for managing consent versions
 class Admin::ConsentVersionsController < AdminController
-  before_action :stash_consent_version, only: %i[ show edit update destroy ]
+  before_action :stash_new_consent_version, only: %i[ new create ]
+  before_action :stash_consent_version,     only: %i[ show edit update destroy ]
 
   helper_method :pagy_url_for
 
@@ -23,10 +24,11 @@ class Admin::ConsentVersionsController < AdminController
   def search
     authorize ConsentVersion
 
-    q = params[:q]
+    search_term = params[:q]
+
     @pagy, @consent_versions = pagy(
-      ConsentVersion.where( 'name ilike ?', "%#{q}%" )
-                    .or( ConsentVersion.where( 'slug ilike ?', "%#{q}%" ) )
+      ConsentVersion.where( 'name ilike ?', "%#{search_term}%" )
+                    .or( ConsentVersion.where( 'slug ilike ?', "%#{search_term}%" ) )
                     .order( updated_at: :desc ), items: items_per_page
     )
 
@@ -39,12 +41,10 @@ class Admin::ConsentVersionsController < AdminController
   end
 
   def new
-    @consent_version = ConsentVersion.new
     authorize @consent_version
   end
 
   def create
-    @consent_version = ConsentVersion.new( consent_version_params )
     authorize @consent_version
 
     if @consent_version.save
@@ -80,11 +80,17 @@ class Admin::ConsentVersionsController < AdminController
 
   private
 
+  def stash_new_consent_version
+    @consent_version = ConsentVersion.new( consent_version_params )
+  end
+
   def stash_consent_version
     @consent_version = ConsentVersion.find( params[:id] )
   end
 
   def consent_version_params
+    return unless params[ :consent_version ]
+
     params.require( :consent_version ).permit( :name, :slug, :display_text, :admin_notes )
   end
 

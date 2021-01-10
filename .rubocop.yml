@@ -155,6 +155,9 @@ Layout/HashAlignment:
 Layout/FirstArrayElementIndentation:
   Exclude:
     - db/demo_data.rb
+Layout/FirstMethodArgumentLineBreak:
+  Exclude:
+    - db/demo_data.rb
 Layout/LeadingEmptyLines:
   Exclude:
     - db/demo_data.rb

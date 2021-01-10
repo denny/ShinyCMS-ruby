@@ -2,7 +2,7 @@
 
 # ShinyPages plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -10,6 +10,8 @@ module ShinyPages
   # Main site controller - ShinyPages plugin for ShinyCMS
   class PagesController < MainController
     include ShinyPages::MainSiteHelper
+
+    before_action :enforce_html_format
 
     # Handle requests for the root page
     # /  (or /pages)
@@ -100,7 +102,7 @@ module ShinyPages
       slug = path_parts.shift
       section = sections&.find_by( slug: slug )
 
-      return section if path_parts.empty?
+      return section if path_parts.empty? || section.nil?
 
       traverse_path( path_parts, section.sections )
     end
@@ -112,6 +114,10 @@ module ShinyPages
     # 404 handler
     def not_found
       render 'errors/404', status: :not_found
+    end
+
+    def enforce_html_format
+      request.format = :html
     end
   end
 end

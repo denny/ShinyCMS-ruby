@@ -2,7 +2,7 @@
 
 # ShinyPages plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -27,12 +27,11 @@ module ShinyPages
     def sort
       authorize Section, :edit?
 
-      params[ :sorted ].each_with_index do |item_id, index|
-        if item_id.to_s.start_with? 'section'
-          item_id = item_id.to_s.sub( %r{^section}, '' ).to_i
-          Section.find( item_id ).update!( position: index + 1 )
+      params[ :sorted ].each.with_index( 1 ) do |item_id, index|
+        if section_id?( item_id )
+          Section.find( extract_section_id( item_id ) ).update!( position: index )
         else
-          Page.find( item_id ).update!( position: index + 1 )
+          Page.find( item_id ).update!( position: index )
         end
       end
       head :ok
@@ -98,6 +97,14 @@ module ShinyPages
         :internal_name, :public_name, :slug, :description, :template_id, :section_id,
         :position, :show_on_site, :show_in_menus, elements_attributes: {}
       )
+    end
+
+    def section_id?( item_id )
+      item_id.to_s.start_with? 'section'
+    end
+
+    def extract_section_id( section_string )
+      section_string.sub( %r{^section}, '' ).to_i
     end
 
     # Return true if the page we're on might need a WYSIWYG HTML editor

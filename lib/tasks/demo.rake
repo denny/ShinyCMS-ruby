@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -111,14 +111,8 @@ namespace :shiny do
     end
 
     def models_with_demo_data
-      models = [
-        'ActiveStorage::Attachment',
-        'ActiveStorage::Blob',
-        ApplicationRecord.models_with_demo_data
-      ].flatten
-
-      # Have to bodge load order here to fix dependency issues
-      change_insert_order( models )
+      # Have to rearrange insert order here to avoid foreign key issues
+      change_insert_order( ApplicationRecord.models_with_demo_data )
     end
 
     def change_insert_order( model_names )
@@ -130,10 +124,11 @@ namespace :shiny do
     def models_to_reorder
       # rubocop:disable Layout/MultilineArrayLineBreaks
       %w[
-        ShinyNewsletters::Edition ShinyNewsletters::EditionElement ShinyNewsletters::Send
         ShinyPages::Page ShinyPages::PageElement
+        ShinyNewsletters::Edition ShinyNewsletters::EditionElement ShinyNewsletters::Send
         Discussion Comment
-        ActiveStorage::Attachment
+        ActiveStorage::Blob ActiveStorage::Attachment
+        ActsAsTaggableOn::Tag ActsAsTaggableOn::Tagging
       ]
       # rubocop:enable Layout/MultilineArrayLineBreaks
     end

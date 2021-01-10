@@ -2,7 +2,7 @@
 
 # ShinyNewsletters plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -20,10 +20,11 @@ module ShinyNewsletters
     def search
       authorize Template
 
-      q = params[:q]
+      search_term = params[:q]
+
       @pagy, @templates = pagy(
-        Template.where( 'name ilike ?', "%#{q}%" )
-                .or( Template.where( 'description ilike ?', "%#{q}%" ) )
+        Template.where( 'name ilike ?', "%#{search_term}%" )
+                .or( Template.where( 'description ilike ?', "%#{search_term}%" ) )
                 .order( :name ), items: items_per_page
       )
 
