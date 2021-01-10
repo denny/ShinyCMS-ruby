@@ -65,7 +65,7 @@ class Admin::UsersController < AdminController
     authorize @user
     @user.skip_reconfirmation!
 
-    if @user.update_without_password( user_params )
+    if @user.update_without_password( strong_params )
       redirect_to edit_user_path( @user ), notice: t( '.success' )
     else
       flash.now[ :alert ] = t( '.failure' )
