@@ -40,11 +40,11 @@ class TagsController < MainController
   private
 
   def visible_tags
-    ActsAsTaggableOn::Tagging.select { |tagged| tagged.taggable.visible? }.collect( &:tag )
+    ActsAsTaggableOn::Tagging.where( context: 'tags' ).collect( &:tag ).uniq
   end
 
   def tagged_items_for( resource )
-    resource.readonly.tagged_with( @tag_name )
+    resource.readonly.tagged_with( @tag_name, on: :tags )
   end
 
   def taggable_models
