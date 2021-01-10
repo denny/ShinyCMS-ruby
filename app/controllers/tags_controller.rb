@@ -12,7 +12,7 @@ class TagsController < MainController
 
   def index
     @tags = visible_tags
-    if setting( :tag_view ) == 'list'
+    if Setting.get( :tag_view ) == 'list'
       render :list
     else
       render :cloud
@@ -40,18 +40,11 @@ class TagsController < MainController
   private
 
   def visible_tags
-    ActsAsTaggableOn::Tagging.select { |tagged| tagged.taggable.show_on_site? }
-                             .collect( &:tag )
+    ActsAsTaggableOn::Tagging.select { |tagged| tagged.taggable.visible? }.collect( &:tag )
   end
 
   def tagged_items_for( resource )
-    # Currently everything with tags has a .published scope - but this may not always be the case
-    return resource.readonly.published.tagged_with( @tag_name ) if resource.respond_to? :published
-
-    # Everything with tags also includes ShinyShowHide currently - again, subject to change
-    # return resource.readonly.visible.tagged_with( @tag_name ) if resource.respond_to? :visible
-
-    # resource.readonly.tagged_with( @tag_name )
+    resource.readonly.tagged_with( @tag_name )
   end
 
   def taggable_models

@@ -6,21 +6,20 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Wrapper around acts-as-taggable-on; hides tags that are on hidden content
+# Wrapper around ActsAsTaggableOn
+# Keeps show/hide status of tags in sync with show/hide status of tagged resource
 module ShinyTags
   extend ActiveSupport::Concern
 
   included do
-    # Set up two tag contexts - main and hidden
+    # Create two contexts; one for normal tags, one to stash hidden tags in
 
     acts_as_taggable_on :tags, :hidden_tags
 
-    # Callbacks
+    # Adjust show/hide context for tags based on resource show/hide status
 
-    # rubocop:disable Style/RedundantSelf
-    before_commit :show_tags, if: -> { !self.hidden? && self.hidden_tag_list.present? }
-    before_commit :hide_tags, if: -> { self.hidden?  && self.tag_list.present?        }
-    # rubocop:enable Style/RedundantSelf
+    before_commit :show_tags, if: -> { visible? && hidden_tag_list.present? }
+    before_commit :hide_tags, if: -> { hidden?  && tag_list.present?        }
 
     # Instance methods
 
