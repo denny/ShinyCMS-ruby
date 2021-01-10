@@ -26,11 +26,13 @@ module ShinyTags
     def show_tags
       self.tag_list = hidden_tag_list
       self.hidden_tag_list = nil
+      save!
     end
 
     def hide_tags
       self.hidden_tag_list = tag_list
       self.tag_list = nil
+      save!
     end
   end
 end
