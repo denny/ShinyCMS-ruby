@@ -35,4 +35,12 @@ class User < ApplicationRecord
 
     username
   end
+
+  # Class methods
+
+  def self.admin_search( search_term )
+    where( 'username ilike ?', "%#{search_term}%" )
+      .or( where( 'email ilike ?', "%#{search_term}%" ) )
+      .order( :username )
+  end
 end

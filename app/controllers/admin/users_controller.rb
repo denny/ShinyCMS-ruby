@@ -22,13 +22,7 @@ class Admin::UsersController < AdminController
   def search
     authorize User
 
-    search_term = params[:q]
-
-    @pagy, @users = pagy(
-      User.where( 'username ilike ?', "%#{search_term}%" )
-          .or( User.where( 'email ilike ?', "%#{search_term}%" ) )
-          .order( :username ), items: items_per_page
-    )
+    @pagy, @users = pagy( User.admin_search( params[:q] ), items: items_per_page )
 
     authorize @users if @users.present?
     render :index
