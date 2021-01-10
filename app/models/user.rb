@@ -31,9 +31,8 @@ class User < ApplicationRecord
   # Instance methods
 
   def name
-    return profile.name if respond_to? :profile
-
-    username
+    profile ||= nil
+    profile&.name || username
   end
 
   # Class methods
