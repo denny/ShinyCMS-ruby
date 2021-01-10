@@ -28,6 +28,8 @@ This is as close as we get to a roadmap, for now :)
 
 * Tools and rules for [testing](Testing.md) (this project has 100% test coverage)
 
+* Tools for checking [code quality](code-quality.md)
+
 
 ## Code of Conduct
 

@@ -2,18 +2,18 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Theme model, to group some repeated code
 class Theme
-  attr_accessor :name
+  attr_reader :name
 
   def initialize( theme_name )
     return unless Theme.base_directory_exists?( theme_name )
 
-    self.name = theme_name
+    @name = theme_name
   end
 
   # Delegations

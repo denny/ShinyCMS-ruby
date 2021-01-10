@@ -2,7 +2,7 @@
 
 # ShinyForms plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -21,7 +21,11 @@ module ShinyForms
       it 'generates a plain text email containing the form data' do
         form1 = create :plain_email_form
 
-        email1 = described_class.plain( form1, form1.internal_name, { message: 'Plain text email' } )
+        email1 = described_class.with(
+          to:        form1.email_to,
+          form_name: form1.internal_name,
+          form_data: { message: 'Plain text email' }
+        ).plain_email
 
         expect { email1.deliver_later }.to have_enqueued_job
 
@@ -30,11 +34,15 @@ module ShinyForms
       end
     end
 
-    describe '.with_template' do
-      it 'generates an MJML-templated email containing the form data' do
+    describe '.html_email' do
+      it 'generates an MJML-templated HTML-format email containing the form data' do
         form1 = create :template_email_form
 
-        email1 = described_class.with_template( form1, form1.internal_name, { message: 'Templated email' }, form1.filename )
+        email1 = described_class.with(
+          to:        form1.email_to,
+          form_name: form1.internal_name,
+          form_data: { message: 'Templated email' }
+        ).html_email( template_file: form1.filename )
 
         expect { email1.deliver_later }.to have_enqueued_job
 

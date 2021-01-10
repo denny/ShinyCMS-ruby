@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -46,20 +46,17 @@ RSpec.describe AdminController, type: :request do
       expect( response.body ).to include 'This site does not have any content'
     end
 
-    it 'redirects to the user-configured post_login_redirect, if one is set' do
+    it 'redirects a page admin to the admin pages+sections list' do
       admin = create :page_admin
       sign_in admin
-
-      Setting.find_by( name: 'post_login_redirect' )
-             .values.create!( user_id: admin.id, value: '/admin/pages/new' )
 
       get admin_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_pages.new_page_path
+      expect( response      ).to redirect_to shiny_pages.pages_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.pages.new.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.pages.index.title' ).titlecase
     end
   end
 
@@ -111,14 +108,5 @@ RSpec.describe AdminController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.alert', text: I18n.t( 'admin.invalid_url', request_path: 'does/not/exist' )
     end
-  end
-
-  describe 'GET /admin redirects to the appropriate admin area for:' do
-    include_examples '/admin redirect', 'user_admin', '/admin/users', 'users'
-    include_examples '/admin redirect', 'page_admin', '/admin/pages', 'pages',      'shiny_pages'
-    include_examples '/admin redirect', 'blog_admin', '/admin/blog',  'blog_posts', 'shiny_blog'
-    include_examples '/admin redirect', 'news_admin', '/admin/news',  'news_posts', 'shiny_news'
-    include_examples '/admin redirect', 'list_admin', '/admin/lists', 'lists',      'shiny_lists'
-    include_examples '/admin redirect', 'newsletter_admin', '/admin/newsletters/editions', 'editions', 'shiny_newsletters'
   end
 end

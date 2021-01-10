@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -20,16 +20,18 @@ class AdminController < ApplicationController
 
   layout 'admin/layouts/admin_area'
 
+  helper Rails.application.routes.url_helpers
+
   helper_method :load_html_editor?
+  helper_method :pagy_url_for
 
   def index
     skip_authorization
-    if current_user.not_admin?
-      redirect_to root_path
-    elsif user_redirect.present?
-      redirect_to user_redirect
+
+    if ShinyPlugin.loaded?( :ShinyPages ) && current_user.can?( :list, :pages )
+      redirect_to shiny_pages.pages_path
     else
-      redirect_to primary_admin_path
+      redirect_to root_path
     end
   end
 
@@ -60,41 +62,13 @@ class AdminController < ApplicationController
     current_user&.cache_capabilities
   end
 
-  def user_redirect
-    custom = Setting.find_by( name: :post_login_redirect ).value_for current_user
-    return custom if custom&.start_with? '/'
-  end
-
-  # Return the 'most useful' admin path that a user has access to
-  # FIXME: this is horrible :D and totally ignores separation of plugins
-  def primary_admin_path
-    return unless current_user.admin?
-
-    return primary_admin_path_web_content if primary_admin_path_web_content
-    return primary_admin_path_email       if primary_admin_path_email
-    return primary_admin_path_stats       if primary_admin_path_stats
-
-    return main_app.users_path if current_user.can? :list, :users
-  end
-
-  def primary_admin_path_web_content
-    return shiny_pages.pages_path     if current_user.can? :list, :pages
-    return shiny_blog.blog_posts_path if current_user.can? :list, :blog_posts
-    return shiny_news.news_posts_path if current_user.can? :list, :news_posts
-    return main_app.comments_path     if current_user.can? :list, :spam_comments
-  end
-
-  def primary_admin_path_email
-    return shiny_newsletters.editions_path if current_user.can? :list, :newsletter_editions
-    return shiny_lists.lists_path          if current_user.can? :list, :mailing_lists
-  end
-
-  def primary_admin_path_stats
-    return main_app.web_stats_path    if current_user.can? :view_web,   :stats
-    return main_app.email_stats_path  if current_user.can? :view_email, :stats
-  end
-
   def load_html_editor?
     false
+  end
+
+  # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+  def pagy_url_for( page, _pagy )
+    params = request.query_parameters.merge( only_path: true, page: page )
+    url_for( params )
   end
 end
