@@ -23,7 +23,7 @@ en:
         toolbar: Forms
         handlers:
           send_plain_email: Send plain text email
-          send_templated_email: Send HTML email
+          send_html_email: Send HTML email
         index:
           title: List form handlers
           search: Search form handlers
