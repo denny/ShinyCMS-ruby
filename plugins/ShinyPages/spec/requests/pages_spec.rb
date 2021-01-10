@@ -2,7 +2,7 @@
 
 # ShinyPages plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -128,8 +128,17 @@ RSpec.describe 'Pages', type: :request do
     end
 
     describe 'GET /non-existent-section/irrelevant-slug' do
-      it 'returns a 404 if a page is requested in a non-existent section' do
-        get '/non-existent-section/irrelevant-slug'
+      it 'returns a 404 if a page is requested in nested non-existent sections' do
+        get '/non-existent-section/and-another/irrelevant-slug'
+
+        expect( response      ).to have_http_status :not_found
+        expect( response.body ).to include 'a page that does not exist'
+      end
+    end
+
+    describe 'GET /not-html-404.xml' do
+      it 'still returns a 404 even if a non-existent non-HTML resource is requested' do
+        get '/not-html-404.xml'
 
         expect( response      ).to have_http_status :not_found
         expect( response.body ).to include 'a page that does not exist'

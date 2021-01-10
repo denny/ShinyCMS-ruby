@@ -2,7 +2,7 @@
 
 # ShinyLists plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -26,10 +26,11 @@ module ShinyLists
     def search
       authorize Subscription
 
-      q = params[:q]
+      search_term = params[:q]
+
       @pagy, @subscriptions = pagy(
-        subscriptions.where( 'date(subscribed_at) = ?', q )
-                     .or( subscriptions.where( 'date(unsubscribed_at) = ?', q ) )
+        subscriptions.where( 'date(subscribed_at) = ?', search_term )
+                     .or( subscriptions.where( 'date(unsubscribed_at) = ?', search_term ) )
                      .order( subscribed_at: :desc ), items: items_per_page
       )
 

@@ -2,7 +2,7 @@
 
 # ShinyForms plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -69,8 +69,7 @@ module ShinyForms
     end
 
     def self.template_names( filenames )
-      base_names = filenames.collect { |filename| filename.remove( '.html.mjml' ) }
-      base_names.sort
+      filenames.collect { |filename| filename.remove( '.html.mjml' ) }
     end
 
     def self.theme_template_dir

@@ -2,7 +2,8 @@
 
 ## TODO
 
-* Check whether the demo data lost the tags at some point
+* Pull admin search methods from controllers to models
+    * Handle user account/profile split
 
 * Tags (list/cloud/show/menu) don't honour show/hide status of content
     * FIXED individual tag show page - no longer links to hidden content
@@ -17,13 +18,22 @@
 
 * Once the above is fixed; replace full tag list on 404 page with the 20 most used tags and a 'see all' link
 
-* Blazer currently doesn't restrict people without 'edit' capability to view-only
-
-* Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
-
+* Check whether creating a user account creates a user profile
 * Finish adding support for links on user profiles
 
-* Allow pagination URLs to specify /items/N instead of ?items=N
+* Add 'items' extra to Pagy: https://ddnexus.github.io/pagy/extras/items.html
+    * Allow pagination URLs to specify /items/N instead of ?items=N
+
+* Blazer:
+    * Investigate alternatives? https://github.com/ankane/blazer/pull/316 :(
+        * daru-view ?? https://github.com/SciRuby/daru-view#readme
+    * Fix admin ACL; currently if you can view, you can add/update/delete too
+
+* Various email-sending tests (Forms, Newsletters, etc) throw this when run offline:
+    * "Mjml: warning You don't appear to have an internet connection. Try the --offline flag to use the cache for registry queries."
+    * Newsletter plugin tests tend to top the 'slowest tests' list - related?
+
+* Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
 
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
@@ -107,11 +117,6 @@
   db and there are still a load of 'feature hidden by flag/capability/etc'
   conditionals to implement.
 
-* Add a polymorphic metatags model+helpers so they can be added to anything that might want them for SEO
-    * pages/sections, shop items/categories, etc
-
-* More themes!
-
 * ¡español! :D
     * Bonus points: https://www.ruby-toolbox.com/projects/route_translator
     * Possibly interesting at same time: https://www.ruby-toolbox.com/projects/rack-user-locale
@@ -126,12 +131,17 @@
 
 ### Medium-ish
 
+* More themes!
+
 * Add folding to page sections on /admin/pages
     * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
     * Decide 'intelligently' whether to fold all/none/some
         * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
 
 * Wrap Blazer in a thin ShinyStats plugin, to give it standard auth and feature flagging
+
+* Add a polymorphic metatags model+helpers so they can be added to anything that might want them for SEO
+    * pages/sections, shop items/categories, etc
 
 * ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
   sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
@@ -159,6 +169,11 @@
 ### Large-ish
 
 * Redo site settings and feature flags, using Sail? https://github.com/vinistock/sail#readme
+
+* Investigate RBS - https://github.com/ruby/rbs#readme
+    * https://honeyryderchuck.gitlab.io/httpx/2020/10/16/rbs-duck-typing-at-httpx.html
+
+* View Components sound very interesting... https://viewcomponent.org
 
 * Re-think mailer preview features
     * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
@@ -198,9 +213,6 @@
 
 ## Done / In Progress
 
-See the [done](done.md) list for features from the original ShinyCMS that I have already implemented
-in this version - as well as a few new ones that snuck in along the way - with notes on improvements
-from the Perl version where applicable.
+See the [done](done.md) list for features from the original ShinyCMS that I have already implemented in this version - as well as a few new ones that snuck in along the way - with notes on improvements from the Perl version where applicable.
 
-See the [in-progress](in-progress.md) list for features that I am currently working on
-(with notes on where I'm up to, links to useful docs, etc).
+See the [in-progress](in-progress.md) list for features that I am currently working on (with notes on where I'm up to, links to useful docs, etc).

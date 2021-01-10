@@ -2,12 +2,11 @@
 
 # ShinyLists plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyLists
-  # Base controller for the ShinyLists plugin for ShinyCMS (see also MainController, AdminController)
-  class ApplicationController < ActionController::Base
-  end
+  # Plugin controllers inherit from MainController or AdminController; nothing inherits from here
+  class ApplicationController < ActionController::Base; end
 end

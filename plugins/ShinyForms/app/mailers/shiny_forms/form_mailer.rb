@@ -2,7 +2,7 @@
 
 # ShinyForms plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -11,23 +11,19 @@ module ShinyForms
   class FormMailer < ApplicationMailer
     before_action :check_feature_flags
 
-    def plain( to, form_name, form_data )
-      email_to = build_to( to )
-      return if email_to.blank?
+    before_action { @to = params[:to] || Setting.get( :default_email ) }
 
-      set_form_data( form_name, form_data )
+    before_action { @form_name = params[:form_name] }
+    before_action { @form_data = params[:form_data] }
 
-      mail to: email_to, subject: email_subject, &:text
+    def plain_email
+      mail to: @to, subject: email_subject, &:text
     end
 
-    def with_template( to, form_name, form_data, filename )
-      email_to = build_to( to )
-      return if email_to.blank?
-      return unless Form.template_file_exists?( filename )
+    def html_email( template_file: )
+      return unless Form.template_file_exists?( template_file )
 
-      set_form_data( form_name, form_data )
-
-      mail to: email_to, subject: email_subject, template_name: filename do |format|
+      mail to: @to, subject: email_subject, template_name: template_file do |format|
         format.html
         format.text
       end
@@ -35,21 +31,12 @@ module ShinyForms
 
     private
 
-    def build_to( form_handler_email_to )
-      form_handler_email_to || Setting.get( :default_email )
-    end
-
     def email_subject
       form_data_subject = @form_data['subject'] || nil
 
       return "[#{site_name}] #{form_data_subject}" if form_data_subject.present?
 
       I18n.t( 'shiny_forms.mailers.form_mailer.default_subject', site_name: site_name )
-    end
-
-    def set_form_data( form_name, form_data )
-      @form_name = form_name
-      @form_data = form_data
     end
 
     def check_feature_flags

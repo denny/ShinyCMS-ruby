@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -20,7 +20,7 @@ def add_all_themes_to_asset_load_path
 end
 
 def available_themes
-  Dir[ 'themes/*' ].sort.collect { |name| name.sub( 'themes/', '' ) }
+  Dir[ 'themes/*' ].collect { |name| name.sub( 'themes/', '' ) }
 end
 
 def add_theme_to_asset_load_path( theme_name )
