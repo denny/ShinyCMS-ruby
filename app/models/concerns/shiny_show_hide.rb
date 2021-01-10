@@ -33,6 +33,10 @@ module ShinyShowHide
       update( show_on_site: false )
     end
 
+    def visible?
+      show_on_site?
+    end
+
     def hidden?
       !show_on_site?
     end
