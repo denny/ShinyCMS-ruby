@@ -43,17 +43,17 @@ RSpec.describe Admin::UsersController, type: :request do
     end
 
     describe 'GET /admin/users/search?q=bobx' do
-      it 'fetches the list of users with matching names' do
-        user_x = create :user, public_name: 'BobX'
-        user_y = create :user, public_name: 'BobY'
+      it 'fetches the list of users with matching email addresses' do
+        user_a = create :user, email: 'testamy@example.com'
+        user_b = create :user, email: 'testbob@example.com'
 
-        get search_users_path, params: { q: 'bobx' }
+        get search_users_path, params: { q: 'stbob' }
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
 
-        expect( response.body ).to     have_css 'td', text: user_x.username
-        expect( response.body ).not_to have_css 'td', text: user_y.username
+        expect( response.body ).not_to have_css 'td', text: user_a.username
+        expect( response.body ).to     have_css 'td', text: user_b.username
       end
     end
 
@@ -192,8 +192,11 @@ RSpec.describe Admin::UsersController, type: :request do
         expect( response.body ).to     have_css 'td', text: u3.username
       end
 
-      it 'fails gracefully when attempting to delete a non-existent user' do
-        delete user_path( 999 )
+      it 'fails gracefully when attempting to delete a user with non-deletable content' do
+        u1 = create :user
+        create :blog_post, author: u1
+
+        delete user_path( u1 )
 
         expect( response      ).to have_http_status :found
         expect( response      ).to redirect_to users_path

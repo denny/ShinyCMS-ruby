@@ -23,8 +23,7 @@ class Admin::UsersController < AdminController
 
     @pagy, @users = pagy(
       User.where( 'username ilike ?', "%#{search_term}%" )
-          .or( User.where( 'public_name  ilike ?', "%#{search_term}%" )
-          .or( User.where( 'public_email ilike ?', "%#{search_term}%" ) ) )
+          .or( User.where( 'email ilike ?', "%#{search_term}%" ) )
           .order( :username ), items: items_per_page
     )
 
@@ -79,11 +78,11 @@ class Admin::UsersController < AdminController
     user = User.find( params[:id] )
     authorize user
 
-    flash[ :notice ] = t( '.success' ) if user.destroy
-    redirect_to users_path
-  rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-    skip_authorization
-    redirect_to users_path, alert: t( '.failure' )
+    if user.destroy
+      redirect_to users_path, notice: t( '.success' )
+    else
+      redirect_to users_path, alert: t( '.failure' )
+    end
   end
 
   private
