@@ -1363,25 +1363,45 @@
 <h2 id="todo">TODO</h2>
 <ul>
 <li>
-<p>"Mjml: warning You don't appear to have an internet connection. Try the --offline flag to use the cache for registry queries."</p>
+<p>Pull admin search methods from controllers to models</p>
+<ul>
+<li>Handle user account/profile split</li>
+</ul>
 </li>
 <li>
-<p>Check whether the demo data lost the tags at some point</p>
-</li>
-<li>
-<p>Tag cloud/list show and count tags on hidden content</p>
-</li>
-<li>
-<p>Blazer currently doesn't restrict people without 'edit' capability to view-only</p>
-</li>
-<li>
-<p>Delete ahoy and session data when Akismet reports blatant spam? (make configurable)</p>
+<p>Check whether creating a user account creates a user profile</p>
 </li>
 <li>
 <p>Finish adding support for links on user profiles</p>
 </li>
 <li>
-<p>Allow pagination URLs to specify /items/N instead of ?items=N</p>
+<p>Add 'items' extra to Pagy: https://ddnexus.github.io/pagy/extras/items.html</p>
+<ul>
+<li>Allow pagination URLs to specify /items/N instead of ?items=N</li>
+</ul>
+</li>
+<li>
+<p>Tag cloud and tag list pages show (and count) tags on hidden content</p>
+</li>
+<li>
+<p>Blazer:</p>
+<ul>
+<li>Investigate alternatives? https://github.com/ankane/blazer/pull/316 :(<ul>
+<li>daru-view ?? https://github.com/SciRuby/daru-view#readme</li>
+</ul>
+</li>
+<li>Fix admin ACL; currently if you can view, you can add/update/delete too</li>
+</ul>
+</li>
+<li>
+<p>Various email-sending tests (Forms, Newsletters, etc) throw this when run offline:</p>
+<ul>
+<li>"Mjml: warning You don't appear to have an internet connection. Try the --offline flag to use the cache for registry queries."</li>
+<li>Newsletter plugin tests tend to top the 'slowest tests' list - related?</li>
+</ul>
+</li>
+<li>
+<p>Delete ahoy and session data when Akismet reports blatant spam? (make configurable)</p>
 </li>
 </ul>
 <h2 id="features-the-perl-version-has-which-the-ruby-version-doesnt-yet">Features the Perl version has, which the Ruby version doesn't. Yet. :)</h2>
@@ -1503,15 +1523,6 @@
   conditionals to implement.</p>
 </li>
 <li>
-<p>Add a polymorphic metatags model+helpers so they can be added to anything that might want them for SEO</p>
-<ul>
-<li>pages/sections, shop items/categories, etc</li>
-</ul>
-</li>
-<li>
-<p>More themes!</p>
-</li>
-<li>
 <p>¡español! :D</p>
 <ul>
 <li>Bonus points: https://www.ruby-toolbox.com/projects/route_translator</li>
@@ -1535,6 +1546,9 @@
 <h3 id="medium-ish_1">Medium-ish</h3>
 <ul>
 <li>
+<p>More themes!</p>
+</li>
+<li>
 <p>Add folding to page sections on /admin/pages</p>
 <ul>
 <li>Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)</li>
@@ -1546,6 +1560,12 @@
 </li>
 <li>
 <p>Wrap Blazer in a thin ShinyStats plugin, to give it standard auth and feature flagging</p>
+</li>
+<li>
+<p>Add a polymorphic metatags model+helpers so they can be added to anything that might want them for SEO</p>
+<ul>
+<li>pages/sections, shop items/categories, etc</li>
+</ul>
 </li>
 <li>
 <p>ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
@@ -1595,6 +1615,15 @@
 <ul>
 <li>
 <p>Redo site settings and feature flags, using Sail? https://github.com/vinistock/sail#readme</p>
+</li>
+<li>
+<p>Investigate RBS - https://github.com/ruby/rbs#readme</p>
+<ul>
+<li>https://honeyryderchuck.gitlab.io/httpx/2020/10/16/rbs-duck-typing-at-httpx.html</li>
+</ul>
+</li>
+<li>
+<p>View Components sound very interesting... https://viewcomponent.org</p>
 </li>
 <li>
 <p>Re-think mailer preview features</p>
@@ -1661,11 +1690,8 @@
 </li>
 </ul>
 <h2 id="done-in-progress">Done / In Progress</h2>
-<p>See the <a href="../done/">done</a> list for features from the original ShinyCMS that I have already implemented
-in this version - as well as a few new ones that snuck in along the way - with notes on improvements
-from the Perl version where applicable.</p>
-<p>See the <a href="../in-progress/">in-progress</a> list for features that I am currently working on
-(with notes on where I'm up to, links to useful docs, etc).</p>
+<p>See the <a href="../done/">done</a> list for features from the original ShinyCMS that I have already implemented in this version - as well as a few new ones that snuck in along the way - with notes on improvements from the Perl version where applicable.</p>
+<p>See the <a href="../in-progress/">in-progress</a> list for features that I am currently working on (with notes on where I'm up to, links to useful docs, etc).</p>
                 
               
               
