@@ -8,6 +8,8 @@
 
 # Controller for users section of ShinyCMS admin area
 class Admin::UsersController < AdminController
+  before_action :stash_user, only: %i[ edit update destroy ]
+
   helper_method :pagy_url_for
 
   def index
@@ -57,12 +59,10 @@ class Admin::UsersController < AdminController
   end
 
   def edit
-    @user = User.find( params[:id] )
     authorize @user
   end
 
   def update
-    @user = User.find( params[:id] )
     authorize @user
     @user.skip_reconfirmation!
 
@@ -75,10 +75,9 @@ class Admin::UsersController < AdminController
   end
 
   def destroy
-    user = User.find( params[:id] )
-    authorize user
+    authorize @user
 
-    if user.destroy
+    if @user.destroy
       redirect_to users_path, notice: t( '.success' )
     else
       redirect_to users_path, alert: t( '.failure' )
@@ -86,6 +85,10 @@ class Admin::UsersController < AdminController
   end
 
   private
+
+  def stash_user
+    @user = User.find( params[:id] )
+  end
 
   def user_params
     params.require( :user ).permit(
