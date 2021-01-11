@@ -2,6 +2,8 @@
 
 ## TODO
 
+* Make sure tags persist through the create/hide/update/show/hide/etc flows
+
 * Pull admin search methods from controllers to models
     * Handle user account/profile split
 
