@@ -27,3 +27,7 @@ def underscore( camel_cased_word )
   word = word.tr( '-', '_' )
   word.downcase
 end
+
+def env_var_true?( env_var_name )
+  [ 'TRUE', 'YES', 'ON', '1', 1 ].include?( ENV[ env_var_name.to_s.upcase ] )
+end

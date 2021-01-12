@@ -31,8 +31,16 @@ class User < ApplicationRecord
   # Instance methods
 
   def name
-    profile ||= nil
-    profile&.name || username
+    # TODO: FIXME: ffs
+    if  ShinyPlugin.loaded?( :ShinyProfiles ) &&
+        FeatureFlag.enabled?( :user_profiles ) &&
+        respond_to?( :profile ) &&
+        profile.present?
+
+      return profile.name
+    end
+
+    username
   end
 
   # Class methods
