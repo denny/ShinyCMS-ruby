@@ -65,4 +65,10 @@ class EmailRecipient < ApplicationRecord
     # TODO: make this configurable
     7.days
   end
+
+  def self.admin_search( search_term )
+    where( 'email ilike ?', "%#{search_term}%" )
+      .or( where( 'name ilike ?', "%#{search_term}%" ) )
+      .order( updated_at: :desc )
+  end
 end

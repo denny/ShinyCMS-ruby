@@ -11,20 +11,16 @@ module ShinyLists
   class Admin::ListsController < AdminController
     def index
       authorize List
+
       @pagy, @lists = pagy( List.order( updated_at: :desc ), items: items_per_page )
+
       authorize @lists if @lists.present?
     end
 
     def search
       authorize List
 
-      search_term = params[:q]
-
-      @pagy, @lists = pagy(
-        List.where( 'internal_name ilike ?', "%#{search_term}%" )
-            .or( List.where( 'slug ilike ?', "%#{search_term}%" ) )
-            .order( :internal_name ), items: items_per_page
-      )
+      @pagy, @lists = pagy( List.admin_search( params[:q] ), items: items_per_page )
 
       authorize @lists if @lists.present?
       render :index
