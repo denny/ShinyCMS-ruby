@@ -11,8 +11,8 @@ class TagsController < MainController
   before_action :check_feature_flags
 
   def index
-    @tags = ActsAsTaggableOn::Tag.all
-    if setting( :tag_view ) == 'list'
+    @tags = visible_tags
+    if Setting.get( :tag_view ) == 'list'
       render :list
     else
       render :cloud
@@ -20,11 +20,11 @@ class TagsController < MainController
   end
 
   def cloud
-    @tags = ActsAsTaggableOn::Tag.readonly.all
+    @tags = visible_tags
   end
 
   def list
-    @tags = ActsAsTaggableOn::Tag.readonly.all
+    @tags = visible_tags
   end
 
   def show
@@ -32,12 +32,20 @@ class TagsController < MainController
     @tag = ActsAsTaggableOn::Tag.readonly.find_by( name: @tag_name )
     @tagged_items = {}
     taggable_models.each do |resource|
-      @tagged_items[ resource.name ] = resource.readonly.tagged_with( @tag_name )
+      @tagged_items[ resource.name ] = tagged_items_for resource
     end
     @element_types = @tagged_items.keys.sort
   end
 
   private
+
+  def visible_tags
+    ActsAsTaggableOn::Tagging.where( context: 'tags' ).collect( &:tag ).uniq
+  end
+
+  def tagged_items_for( resource )
+    resource.readonly.tagged_with( @tag_name, on: :tags )
+  end
 
   def taggable_models
     [ taggable_models_in_core + ShinyPlugin.models_that_are_taggable ].flatten

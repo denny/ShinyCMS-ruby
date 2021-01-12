@@ -31,9 +31,8 @@ class User < ApplicationRecord
   # Instance methods
 
   def name
-    return profile.name if ShinyPlugin.loaded?( :ShinyProfiles ) && profile.present?
-
-    username
+    profile ||= nil
+    profile&.name || username
   end
 
   # Class methods

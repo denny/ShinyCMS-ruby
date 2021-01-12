@@ -97,7 +97,7 @@ namespace :shiny do
       models_with_demo_data.each do |model|
         puts "Dumping: #{model}"
         dump = SeedDump.dump(
-          model.constantize, exclude: %i[created_at updated_at]
+          model.constantize, exclude: %i[created_at updated_at tag_list hidden_tag_list]
         )
         next unless dump # no data to dump
 

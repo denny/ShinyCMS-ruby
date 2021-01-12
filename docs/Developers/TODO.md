@@ -2,16 +2,18 @@
 
 ## TODO
 
+* Make sure tags persist through the create/hide/update/show/hide/etc flows
+
 * Pull admin search methods from controllers to models
     * Handle user account/profile split
+
+* Show/hide/visible/published/etc stuff might benefit from a rethink/refactor soon
 
 * Check whether creating a user account creates a user profile
 * Finish adding support for links on user profiles
 
 * Add 'items' extra to Pagy: https://ddnexus.github.io/pagy/extras/items.html
     * Allow pagination URLs to specify /items/N instead of ?items=N
-
-* Tag cloud and tag list pages show (and count) tags on hidden content
 
 * Blazer:
     * Investigate alternatives? https://github.com/ankane/blazer/pull/316 :(
