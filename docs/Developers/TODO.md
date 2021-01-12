@@ -2,16 +2,11 @@
 
 ## TODO
 
-* Pull admin search methods from controllers to models
-    * Handle user account/profile split
-
 * Check whether creating a user account creates a user profile
 * Finish adding support for links on user profiles
 
 * Add 'items' extra to Pagy: https://ddnexus.github.io/pagy/extras/items.html
     * Allow pagination URLs to specify /items/N instead of ?items=N
-
-* Tag cloud and tag list pages show (and count) tags on hidden content
 
 * Blazer:
     * Investigate alternatives? https://github.com/ankane/blazer/pull/316 :(
@@ -21,6 +16,8 @@
 * Various email-sending tests (Forms, Newsletters, etc) throw this when run offline:
     * "Mjml: warning You don't appear to have an internet connection. Try the --offline flag to use the cache for registry queries."
     * Newsletter plugin tests tend to top the 'slowest tests' list - related?
+
+* Consider refactoring show/hide/visible/published/etc stuff
 
 * Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
 

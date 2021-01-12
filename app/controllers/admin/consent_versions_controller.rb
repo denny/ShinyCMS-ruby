@@ -24,13 +24,7 @@ class Admin::ConsentVersionsController < AdminController
   def search
     authorize ConsentVersion
 
-    search_term = params[:q]
-
-    @pagy, @consent_versions = pagy(
-      ConsentVersion.where( 'name ilike ?', "%#{search_term}%" )
-                    .or( ConsentVersion.where( 'slug ilike ?', "%#{search_term}%" ) )
-                    .order( updated_at: :desc ), items: items_per_page
-    )
+    @pagy, @consent_versions = pagy( ConsentVersion.admin_search( params[:q] ), items: items_per_page )
 
     authorize @consent_versions if @consent_versions.present?
     render :index

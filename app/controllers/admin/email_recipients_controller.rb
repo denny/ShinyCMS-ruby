@@ -19,13 +19,7 @@ class Admin::EmailRecipientsController < AdminController
   def search
     authorize EmailRecipient
 
-    search_term = params[:q]
-
-    @pagy, @recipients = pagy(
-      EmailRecipient.where( 'email ilike ?', "%#{search_term}%" )
-                    .or( EmailRecipient.where( 'name ilike ?', "%#{search_term}%" ) )
-                    .order( updated_at: :desc ), items: items_per_page
-    )
+    @pagy, @recipients = pagy( EmailRecipient.admin_search( params[:q] ), items: items_per_page )
 
     authorize @recipients if @recipients.present?
     render :index

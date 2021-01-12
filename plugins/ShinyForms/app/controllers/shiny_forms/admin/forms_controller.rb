@@ -17,20 +17,16 @@ module ShinyForms
 
     def index
       authorize Form
+
       @pagy, @forms = pagy( Form.all, items: items_per_page )
+
       authorize @forms if @forms.present?
     end
 
     def search
       authorize Form
 
-      search_term = params[:q]
-
-      @pagy, @forms = pagy(
-        Form.where( 'internal_name ilike ?', "%#{search_term}%" )
-            .or( Form.where( 'slug ilike ?', "%#{search_term}%" ) )
-            .order( :internal_name ), items: items_per_page
-      )
+      @pagy, @forms = pagy( Form.admin_search( params[:q] ), items: items_per_page )
 
       authorize @forms if @forms.present?
       render :index

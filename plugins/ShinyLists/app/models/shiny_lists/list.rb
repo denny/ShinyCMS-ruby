@@ -38,6 +38,14 @@ module ShinyLists
     def subscribed?( email_address )
       email_recipients.exists?( email: email_address ) || users.exists?( email: email_address )
     end
+
+    # Class methods
+
+    def self.admin_search( search_term )
+      where( 'internal_name ilike ?', "%#{search_term}%" )
+        .or( where( 'slug ilike ?', "%#{search_term}%" ) )
+        .order( :internal_name )
+    end
   end
 end
 

@@ -123,9 +123,13 @@ source 'https://rubygems.org' do
   gem 'amazing_print'
 
   # Pry is a debugging tool for the Rails console
-  # Uncomment the first line if you want to use it in production, the second otherwise
-  gem 'pry-rails', groups: %i[ development test production ]
-  # gem 'pry-rails', groups: %i[ development test ]
+  if env_var_true?( :shinycms_pry_console )
+    # Set ENV['SHINYCMS_PRY_CONSOLE']=true to explicitly enable PRY in this environment
+    gem 'pry-rails'
+  else
+    # Otherwise, it will only be enabled in dev and test environments
+    gem 'pry-rails', groups: %i[ development test ]
+  end
 
   group :production do
     # Bugsnag is an error monitoring service

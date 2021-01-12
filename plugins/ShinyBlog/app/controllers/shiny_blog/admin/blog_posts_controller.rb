@@ -17,24 +17,21 @@ module ShinyBlog
     before_action :set_post_for_create, only: :create
     before_action :set_post, only: %i[ edit update destroy ]
 
+    helper_method :admin_tag_list
     helper_method :load_html_editor?
 
     def index
       authorize Post
+
       @pagy, @posts = pagy( Post.order( posted_at: :desc ), items: items_per_page )
+
       authorize @posts if @posts.present?
     end
 
     def search
       authorize Post
 
-      search_term = params[:q]
-
-      @pagy, @posts = pagy(
-        Post.where( 'title ilike ?', "%#{search_term}%" )
-            .or( Post.where( 'body ilike ?', "%#{search_term}%" ) )
-            .order( posted_at: :desc ), items: items_per_page
-      )
+      @pagy, @posts = pagy( Post.admin_search( params[:q] ), items: items_per_page )
 
       authorize @posts if @posts.present?
       render :index
