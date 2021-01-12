@@ -21,6 +21,10 @@ RSpec.describe TagsController, type: :request do
 
   describe 'GET /tags/list' do
     it 'displays the tag list' do
+      post1 = create :blog_post
+      post1.tag_list = 'shiny'
+      post1.save!
+
       get tag_list_path
 
       expect( response      ).to have_http_status :ok
