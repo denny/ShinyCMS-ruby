@@ -80,6 +80,12 @@ module ShinyForms
       Rails.root.join 'plugins/ShinyForms/app/views/shiny_forms/form_mailer'
     end
 
+    def self.admin_search( search_term )
+      where( 'internal_name ilike ?', "%#{search_term}%" )
+        .or( where( 'slug ilike ?', "%#{search_term}%" ) )
+        .order( :internal_name )
+    end
+
     # Add another validation here, because it uses the class methods above
     validates :filename, inclusion: {
       in:        Form.available_templates,

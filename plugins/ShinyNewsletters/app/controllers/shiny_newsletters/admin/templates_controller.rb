@@ -13,20 +13,16 @@ module ShinyNewsletters
 
     def index
       authorize Template
+
       @pagy, @templates = pagy( Template.order( :name ), items: items_per_page )
+
       authorize @templates if @templates.present?
     end
 
     def search
       authorize Template
 
-      search_term = params[:q]
-
-      @pagy, @templates = pagy(
-        Template.where( 'name ilike ?', "%#{search_term}%" )
-                .or( Template.where( 'description ilike ?', "%#{search_term}%" ) )
-                .order( :name ), items: items_per_page
-      )
+      @pagy, @templates = pagy( Template.admin_search( params[:q] ), items: items_per_page )
 
       authorize @templates if @templates.present?
       render :index

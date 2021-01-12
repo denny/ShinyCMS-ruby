@@ -22,20 +22,16 @@ module ShinyBlog
 
     def index
       authorize Post
+
       @pagy, @posts = pagy( Post.order( posted_at: :desc ), items: items_per_page )
+
       authorize @posts if @posts.present?
     end
 
     def search
       authorize Post
 
-      search_term = params[:q]
-
-      @pagy, @posts = pagy(
-        Post.where( 'title ilike ?', "%#{search_term}%" )
-            .or( Post.where( 'body ilike ?', "%#{search_term}%" ) )
-            .order( posted_at: :desc ), items: items_per_page
-      )
+      @pagy, @posts = pagy( Post.admin_search( params[:q] ), items: items_per_page )
 
       authorize @posts if @posts.present?
       render :index
