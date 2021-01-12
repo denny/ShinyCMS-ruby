@@ -10,12 +10,12 @@ ConsentVersion.create!([
 ])
 
 ShinyBlog::Post.create!([
-  {id: 1, title: "Demo content", slug: "demo-content", body: "<p>I&#39;m never sure what to do about demo content for ShinyCMS. The Perl version ended up with a weird mixture of content about the CMS, extracts from a book with suitably friendly licensing, and word salad from the Futurama Lorem Ipsum generator.</p>\r\n\r\n<p>Now here we are with the Ruby version, and apparently I haven&#39;t learned my lesson - so I&#39;m starting with content about the CMS again. Or in this case, meta-content.</p>\r\n", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-02-08 07:24:27", deleted_at: nil, tag_list: nil},
-  {id: 2, title: "Homepage updates", slug: "updates", body: "<p>I&#39;m not feeling very well this week - I don&#39;t think I&#39;ve got the dreaded corona virus, I&#39;m not coughing, but I&#39;m extremely wiped out. So, instead of tackling anything too brain-taxing in the odd bit of time I do feel up to looking at personal projects, I&#39;m just updating the demo site content a bit - specifically, I&#39;m updating the &#39;features&#39; block on the homepage, including making some screenshots.</p>\r\n\r\n<p>I thought there should probably be more than one post in the blog feature screenshot, so ... here we are ;)</p>\r\n", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-06-05 01:03:47", deleted_at: nil, tag_list: nil}
+  {id: 1, title: "Demo content", slug: "demo-content", body: "<p>I&#39;m never sure what to do about demo content for ShinyCMS. The Perl version ended up with a weird mixture of content about the CMS, extracts from a book with suitably friendly licensing, and word salad from the Futurama Lorem Ipsum generator.</p>\r\n\r\n<p>Now here we are with the Ruby version, and apparently I haven&#39;t learned my lesson - so I&#39;m starting with content about the CMS again. Or in this case, meta-content.</p>\r\n", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-02-08 07:24:27", deleted_at: nil},
+  {id: 2, title: "Homepage updates", slug: "updates", body: "<p>I&#39;m not feeling very well this week - I don&#39;t think I&#39;ve got the dreaded corona virus, I&#39;m not coughing, but I&#39;m extremely wiped out. So, instead of tackling anything too brain-taxing in the odd bit of time I do feel up to looking at personal projects, I&#39;m just updating the demo site content a bit - specifically, I&#39;m updating the &#39;features&#39; block on the homepage, including making some screenshots.</p>\r\n\r\n<p>I thought there should probably be more than one post in the blog feature screenshot, so ... here we are ;)</p>\r\n", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-06-05 01:03:47", deleted_at: nil}
 ])
 
 ShinyForms::Form.create!([
-  {id: 1, internal_name: "Contact Page", public_name: "Contact us", slug: "contact", description: nil, handler: "plain_email", email_to: nil, filename: nil, success_message: nil, redirect_to: nil, use_recaptcha: true, use_akismet: true, deleted_at: nil}
+  {id: 1, internal_name: "Contact Page", public_name: "Contact us", slug: "contact", description: nil, handler: "plain_email", email_to: nil, filename: nil, use_recaptcha: true, use_akismet: true, success_message: nil, redirect_to: nil, deleted_at: nil}
 ])
 
 ShinyLists::List.create!([
@@ -23,7 +23,7 @@ ShinyLists::List.create!([
 ])
 
 ShinyNews::Post.create!([
-  {id: 1, title: "No news is good news?", slug: "no-news", body: "<p>Insert imaginative demo content here...</p>\r\n", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-05-14 14:06:33", deleted_at: nil, tag_list: nil}
+  {id: 1, title: "No news is good news?", slug: "no-news", body: "<p>Insert imaginative demo content here...</p>\r\n", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-05-14 14:06:33", deleted_at: nil}
 ])
 
 ShinyNewsletters::Template.create!([
@@ -94,7 +94,7 @@ ShinyProfiles::Profile.create!([
 ShinyPages::Page.create!([
   {id: 1, internal_name: "Home", public_name: "ShinyCMS Demo", slug: "home", description: "Demo site home page - uses Halcyonic index template", position: 1, show_in_menus: false, show_on_site: true, section_id: nil, template_id: 1, deleted_at: nil},
   {id: 2, internal_name: "No sidebar", public_name: "", slug: "none", description: "", position: 3, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 2, deleted_at: nil},
-  {id: 3, internal_name: "Right sidebar", public_name: "", slug: "right", description: "", position: 6, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 3, deleted_at: nil},
+  {id: 3, internal_name: "Right sidebar", public_name: "", slug: "right", description: "", position: 7, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 3, deleted_at: nil},
   {id: 4, internal_name: "Left sidebar", public_name: "", slug: "left", description: "", position: 5, show_in_menus: true, show_on_site: true, section_id: 2, template_id: 4, deleted_at: nil},
   {id: 5, internal_name: "Double sidebar", public_name: "", slug: "double", description: "Embrace the healing power of AND", position: 4, show_in_menus: true, show_on_site: true, section_id: 1, template_id: 5, deleted_at: nil},
   {id: 6, internal_name: "Contact Us", public_name: "", slug: "contact", description: "Contact form", position: 2, show_in_menus: true, show_on_site: true, section_id: nil, template_id: 6, deleted_at: nil}
@@ -193,11 +193,11 @@ ActiveStorage::Attachment.create!([
 ])
 
 ActsAsTaggableOn::Tag.create!([
+  {id: 1, name: "demo", taggings_count: 3},
   {id: 2, name: "news", taggings_count: 1},
   {id: 3, name: "first post", taggings_count: 2},
-  {id: 5, name: "meta", taggings_count: 1},
-  {id: 1, name: "demo", taggings_count: 3},
   {id: 4, name: "blog", taggings_count: 2},
+  {id: 5, name: "meta", taggings_count: 1},
   {id: 6, name: "screenshots", taggings_count: 1}
 ])
 

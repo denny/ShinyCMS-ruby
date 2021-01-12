@@ -17,6 +17,7 @@ module ShinyBlog
     before_action :set_post_for_create, only: :create
     before_action :set_post, only: %i[ edit update destroy ]
 
+    helper_method :admin_tag_list
     helper_method :load_html_editor?
 
     def index

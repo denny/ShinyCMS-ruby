@@ -18,7 +18,7 @@
 <section>
   <header>
     <h2>
-      Search the site
+      <%= t( '.search_title' ) %>
     </h2>
   </header>
 
@@ -31,20 +31,24 @@
 <% end %>
 
 <% if feature_enabled? :tags %>
-  <% tags = ActsAsTaggableOn::Tag.order( :name ) %>
+  <% tags = ActsAsTaggableOn::Tag.most_used( 24 ).order( :name ) %>
   <% if tags.size > 0 %>
 <section>
   <header>
     <h2>
-      Browse tags
+      <%= t( '.tags_title' ) %>
     </h2>
   </header>
 
-  <div class="twelve-columns">
+  <div class="six-columns">
     <% tags.each do |tag| %>
-      <%= link_to tag.name, tag_path( tag.name ) %> (<%= tag.taggings_count %>)<br>
+      <%= link_to tag.name, main_app.tag_path( tag.name ) %> (<%= tag.taggings_count %>)<br>
     <% end %>
   </div>
+
+  <p>
+    <%= link_to t( '.all_tags' ), main_app.tags_path %>
+  </p>
 </section>
   <% end %>
 <% end %>

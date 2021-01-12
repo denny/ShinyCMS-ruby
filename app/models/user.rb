@@ -31,6 +31,7 @@ class User < ApplicationRecord
   # Instance methods
 
   def name
+    # TODO: FIXME: ffs
     if  ShinyPlugin.loaded?( :ShinyProfiles ) &&
         FeatureFlag.enabled?( :user_profiles ) &&
         respond_to?( :profile ) &&
