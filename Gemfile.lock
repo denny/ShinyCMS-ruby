@@ -245,7 +245,7 @@ GEM
     aws-sigv4 (1.2.2)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.16)
-    blazer (2.3.1)
+    blazer (2.4.0)
       activerecord (>= 5)
       chartkick (>= 3.2)
       railties (>= 5)
@@ -311,7 +311,7 @@ GEM
     email_address (0.1.19)
       netaddr (>= 2.0.4, < 3)
       simpleidn
-    errbase (0.2.0)
+    errbase (0.2.1)
     erubi (1.10.0)
     erubis (2.7.0)
     factory_bot (6.1.0)
@@ -328,8 +328,6 @@ GEM
     geocoder (1.6.4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    groupdate (5.2.1)
-      activesupport (>= 5)
     hashdiff (1.0.1)
     highline (2.0.3)
     httparty (0.18.1)
@@ -614,7 +612,7 @@ DEPENDENCIES
   amazing_print!
   aws-sdk-s3!
   bcrypt (~> 3.1.16)!
-  blazer (= 2.3.1)!
+  blazer!
   bootsnap (>= 1.4.2)!
   brakeman!
   bugsnag!
@@ -632,7 +630,6 @@ DEPENDENCIES
   factory_bot_rails!
   faker!
   fasterer!
-  groupdate!
   i18n-tasks (~> 0.9.33)!
   image_processing (~> 1.12)!
   letter_opener_web (~> 1.0)!

@@ -102,12 +102,11 @@ source 'https://rubygems.org' do
   gem 'ahoy_email'
   # Web stats
   gem 'ahoy_matey'
+
   # Charts and dashboards
-  gem 'blazer', '2.3.1'  # https://github.com/ankane/blazer/issues/315
+  gem 'blazer'
   # Charts
   gem 'chartkick', '~> 3.4.2'
-  # Date ranges
-  gem 'groupdate'
 
   # Image storage on S3
   gem 'aws-sdk-s3'
