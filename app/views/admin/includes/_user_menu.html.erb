@@ -2,7 +2,7 @@
 <ul class="c-header-nav ml-auto mr-4">
   <li class="c-header-nav-item dropdown">
     <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-      <% if current_user.profile&.profile_pic&.attached? %>
+      <% if current_user.profile&.profile_pic&.attached? && controller.class.superclass.name != 'Blazer::BaseController' %>
       <div class="c-avatar">
         <%= image_tag url_for( current_user.profile.profile_pic.variant( resize: '36x36!' ) ), alt: current_user.name, class: 'c-avatar-img' %>
       </div>
