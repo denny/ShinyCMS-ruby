@@ -104,7 +104,7 @@ source 'https://rubygems.org' do
   gem 'ahoy_matey'
 
   # Charts and dashboards
-  gem 'blazer', require: false
+  gem 'blazer'
   # Charts
   gem 'chartkick', '~> 3.4.2'
   # Date ranges
