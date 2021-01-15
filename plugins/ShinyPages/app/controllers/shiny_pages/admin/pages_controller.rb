@@ -11,6 +11,9 @@ module ShinyPages
   class Admin::PagesController < AdminController
     include ShinySortable
 
+    before_action :stash_new_page, only: %i[ new create ]
+    before_action :stash_page,     only: %i[ edit update ]
+
     helper_method :load_html_editor?
 
     def index
@@ -18,9 +21,8 @@ module ShinyPages
       authorize Section
 
       @top_level_items = ShinyPages::Page.all_top_level_items
-      @top_level_items.each do |item|
-        authorize item
-      end
+
+      @top_level_items.collect { |item| authorize item }
     end
 
     # Endpoint for drag-to-sort of pages and sections (on admin index view)
@@ -38,12 +40,10 @@ module ShinyPages
     end
 
     def new
-      @page = Page.new
       authorize @page
     end
 
     def create
-      @page = Page.new( page_params )
       authorize @page
 
       if @page.save
@@ -55,15 +55,13 @@ module ShinyPages
     end
 
     def edit
-      @page = Page.find( params[:id] )
       authorize @page
     end
 
     def update
-      @page = Page.find( params[:id] )
       authorize @page
 
-      if sort_elements && @page.update( page_params )
+      if sort_elements && @page.update( strong_params )
         redirect_to shiny_pages.edit_page_path( @page ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
@@ -71,19 +69,11 @@ module ShinyPages
       end
     end
 
-    def sort_elements
-      return true if params[ :sort_order ].blank?
-      return true unless current_user.can? :edit, :page_templates
-
-      sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
-      apply_sort_order( @page.elements, sort_order )
-    end
-
     def destroy
-      page = Page.find( params[:id] )
-      authorize page
+      @page = Page.find( params[:id] )
+      authorize @page
 
-      flash[ :notice ] = t( '.success' ) if page.destroy
+      flash[ :notice ] = t( '.success' ) if @page.destroy
       redirect_to shiny_pages.pages_path
     rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
       skip_authorization
@@ -92,11 +82,30 @@ module ShinyPages
 
     private
 
-    def page_params
+    def stash_new_page
+      @page = Page.new( strong_params )
+    end
+
+    def stash_page
+      @page = Page.find( params[:id] )
+    end
+
+    def strong_params
+      return if params[ :page ].blank?
+
       params.require( :page ).permit(
         :internal_name, :public_name, :slug, :description, :template_id, :section_id,
         :position, :show_on_site, :show_in_menus, elements_attributes: {}
       )
+    end
+
+    def sort_elements
+      return true unless ( new_order = params[ :sort_order ] )
+      return true unless current_user.can? :edit, :page_templates
+
+      sort_order = parse_sortable_param( new_order, :sorted )
+
+      apply_sort_order( @page.elements, sort_order )
     end
 
     def section_id?( item_id )
