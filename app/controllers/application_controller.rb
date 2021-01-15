@@ -26,12 +26,12 @@ class ApplicationController < ActionController::Base
 
   # Prevent Blazer from unhelpfully removing all of the ShinyCMS helpers
   def self.clear_helpers
-    super unless name == 'Blazer::BaseController'
+    super unless self == Blazer::BaseController
   end
 
   private
 
-  def current_user_can_view_charts?
+  def blazer_authorize
     return true if current_user&.can? :view_charts, :stats
 
     redirect_to main_app.admin_path, alert: t( 'admin.blazer.auth_fail' )
