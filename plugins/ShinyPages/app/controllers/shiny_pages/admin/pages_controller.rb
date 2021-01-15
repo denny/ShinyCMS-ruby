@@ -12,7 +12,7 @@ module ShinyPages
     include ShinySortable
 
     before_action :stash_new_page, only: %i[ new create ]
-    before_action :stash_page,     only: %i[ edit update ]
+    before_action :stash_page,     only: %i[ edit update destroy ]
 
     helper_method :load_html_editor?
 
@@ -70,14 +70,11 @@ module ShinyPages
     end
 
     def destroy
-      @page = Page.find( params[:id] )
       authorize @page
 
       flash[ :notice ] = t( '.success' ) if @page.destroy
+
       redirect_to shiny_pages.pages_path
-    rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-      skip_authorization
-      redirect_to shiny_pages.pages_path, alert: t( '.failure' )
     end
 
     private
