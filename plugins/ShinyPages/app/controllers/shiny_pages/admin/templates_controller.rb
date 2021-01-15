@@ -66,12 +66,13 @@ module ShinyPages
     def destroy
       authorize @template
 
-      flash[ :notice ] = t( '.success' ) if @template.destroy
+      if @template.destroy
+        flash[ :notice ] = t( '.success' )
+      else
+        flash[ :alert  ] = t( '.failure' )
+      end
 
       redirect_to shiny_pages.templates_path
-    rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-      skip_authorization
-      redirect_to shiny_pages.templates_path, alert: t( '.failure' )
     end
 
     private
@@ -93,9 +94,10 @@ module ShinyPages
     end
 
     def sort_elements
-      return true if params[ :sort_order ].blank?
+      return true unless ( new_order = params[ :sort_order ] )
 
-      sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
+      sort_order = parse_sortable_param( new_order, :sorted )
+
       apply_sort_order( @template.elements, sort_order )
     end
 
