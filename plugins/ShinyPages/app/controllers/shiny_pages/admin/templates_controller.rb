@@ -11,6 +11,8 @@ module ShinyPages
   class Admin::TemplatesController < AdminController
     include ShinySortable
 
+    before_action :stash_template, only: %i[ edit update destroy ]
+
     helper_method :load_html_editor?
 
     def index
@@ -31,12 +33,12 @@ module ShinyPages
     end
 
     def new
-      @template = ShinyPages::Template.new
+      @template = Template.new
       authorize @template
     end
 
     def create
-      @template = ShinyPages::Template.new( strong_params )
+      @template = Template.new( strong_params )
       authorize @template
 
       if @template.save
@@ -48,12 +50,10 @@ module ShinyPages
     end
 
     def edit
-      @template = ShinyPages::Template.find( params[:id] )
       authorize @template
     end
 
     def update
-      @template = ShinyPages::Template.find( params[:id] )
       authorize @template
 
       if sort_elements && @template.update( strong_params )
@@ -64,18 +64,11 @@ module ShinyPages
       end
     end
 
-    def sort_elements
-      return true if params[ :sort_order ].blank?
-
-      sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
-      apply_sort_order( @template.elements, sort_order )
-    end
-
     def destroy
-      template = ShinyPages::Template.find( params[:id] )
-      authorize template
+      authorize @template
 
-      flash[ :notice ] = t( '.success' ) if template.destroy
+      flash[ :notice ] = t( '.success' ) if @template.destroy
+
       redirect_to shiny_pages.templates_path
     rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
       skip_authorization
@@ -83,6 +76,17 @@ module ShinyPages
     end
 
     private
+
+    def stash_template
+      @template = Template.find( params[:id] )
+    end
+
+    def sort_elements
+      return true if params[ :sort_order ].blank?
+
+      sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
+      apply_sort_order( @template.elements, sort_order )
+    end
 
     def strong_params
       params.require( :template ).permit(

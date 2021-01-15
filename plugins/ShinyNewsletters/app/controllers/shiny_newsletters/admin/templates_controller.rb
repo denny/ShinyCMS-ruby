@@ -11,6 +11,10 @@ module ShinyNewsletters
   class Admin::TemplatesController < AdminController
     include ShinySortable
 
+    before_action :stash_template, only: %i[ edit update destroy ]
+
+    helper_method :load_html_editor?
+
     def index
       authorize Template
 
@@ -34,7 +38,7 @@ module ShinyNewsletters
     end
 
     def create
-      @template = Template.new( template_params )
+      @template = Template.new( strong_params )
       authorize @template
 
       if @template.save
@@ -46,20 +50,34 @@ module ShinyNewsletters
     end
 
     def edit
-      @template = Template.find( params[:id] )
       authorize @template
     end
 
     def update
-      @template = Template.find( params[:id] )
       authorize @template
 
-      if sort_elements && @template.update( template_params )
+      if sort_elements && @template.update( strong_params )
         redirect_to shiny_newsletters.edit_template_path( @template ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render :edit
       end
+    end
+
+    def destroy
+      authorize @template
+
+      flash[ :notice ] = t( '.success' ) if @template.destroy
+      redirect_to shiny_newsletters.templates_path
+    rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
+      skip_authorization
+      redirect_to shiny_newsletters.templates_path, alert: t( '.failure' )
+    end
+
+    private
+
+    def stash_template
+      @template = Template.find( params[:id] )
     end
 
     def sort_elements
@@ -69,21 +87,15 @@ module ShinyNewsletters
       apply_sort_order( @template.elements, sort_order )
     end
 
-    def destroy
-      template = Template.find( params[:id] )
-      authorize template
-
-      flash[ :notice ] = t( '.success' ) if template.destroy
-      redirect_to shiny_newsletters.templates_path
-    rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-      skip_authorization
-      redirect_to shiny_newsletters.templates_path, alert: t( '.failure' )
+    def strong_params
+      params.require( :template ).permit(
+        :name, :description, :filename, elements_attributes: {}
+      )
     end
 
-    private
-
-    def template_params
-      params.require( :template ).permit( :name, :description, :filename, elements_attributes: {} )
+    # Return true if the page we're on might need a WYSIWYG HTML editor
+    def load_html_editor?
+      action_name == 'edit'
     end
   end
 end
