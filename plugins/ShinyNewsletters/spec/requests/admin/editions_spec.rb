@@ -244,11 +244,11 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
 
   describe 'DELETE /admin/newsletters/editions/:id' do
     it 'deletes the specified edition' do
-      p1 = create :newsletter_edition
-      p2 = create :newsletter_edition
-      p3 = create :newsletter_edition
+      e1 = create :newsletter_edition
+      e2 = create :newsletter_edition
+      e3 = create :newsletter_edition
 
-      delete shiny_newsletters.edition_path( p2 )
+      delete shiny_newsletters.edition_path( e2 )
 
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to shiny_newsletters.editions_path
@@ -256,13 +256,16 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( "#{i18n_root}.index.title" ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( "#{i18n_root}.destroy.success" )
-      expect( response.body ).to     have_css 'td', text: p1.internal_name
-      expect( response.body ).not_to have_css 'td', text: p2.internal_name
-      expect( response.body ).to     have_css 'td', text: p3.internal_name
+      expect( response.body ).to     have_css 'td', text: e1.internal_name
+      expect( response.body ).not_to have_css 'td', text: e2.internal_name
+      expect( response.body ).to     have_css 'td', text: e3.internal_name
     end
 
-    it 'fails gracefully when attempting to delete a non-existent edition' do
-      delete shiny_newsletters.edition_path( 999 )
+    it 'refuses to delete an edition which has been sent' do
+      e1 = create :newsletter_edition
+      create :newsletter_send, edition: e1
+
+      delete shiny_newsletters.edition_path( e1 )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_newsletters.editions_path
@@ -270,6 +273,7 @@ RSpec.describe 'Admin: Newsletter Editions', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( "#{i18n_root}.index.title" ).titlecase
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( "#{i18n_root}.destroy.failure" )
+      expect( response.body ).to have_css 'td', text: e1.internal_name
     end
   end
 end

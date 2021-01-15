@@ -12,7 +12,7 @@ module ShinyNewsletters
     include ShinySortable
 
     before_action :stash_new_edition, only: %i[ new create ]
-    before_action :stash_edition,     only: %i[ edit update send_sample ]
+    before_action :stash_edition,     only: %i[ edit update send_sample destroy ]
 
     helper_method :load_html_editor?
 
@@ -72,14 +72,15 @@ module ShinyNewsletters
     end
 
     def destroy
-      @edition = Edition.find( params[:id] )
       authorize @edition
 
-      flash[ :notice ] = t( '.success' ) if @edition.destroy
+      if @edition.destroy
+        flash[ :notice ] = t( '.success' )
+      else
+        flash[ :alert  ] = t( '.failure' )
+      end
+
       redirect_to shiny_newsletters.editions_path
-    rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-      skip_authorization
-      redirect_to shiny_newsletters.editions_path, alert: t( '.failure' )
     end
 
     private
