@@ -102,8 +102,9 @@ module ShinyNewsletters
     end
 
     def sort_elements
-      return true unless ( new_order = params[ :sort_order ] )
       return true unless current_user.can? :edit, :newsletter_templates
+
+      return true unless ( new_order = params[ :sort_order ] )
 
       sort_order = parse_sortable_param( new_order, :sorted )
 

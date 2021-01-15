@@ -20,7 +20,7 @@ module ShinyPages
       authorize Page
       authorize Section
 
-      @top_level_items = ShinyPages::Page.all_top_level_items
+      @top_level_items = Page.all_top_level_items
 
       @top_level_items.collect { |item| authorize item }
     end
@@ -36,6 +36,7 @@ module ShinyPages
           Page.find( item_id ).update!( position: index )
         end
       end
+
       head :ok
     end
 
@@ -97,8 +98,9 @@ module ShinyPages
     end
 
     def sort_elements
-      return true unless ( new_order = params[ :sort_order ] )
       return true unless current_user.can? :edit, :page_templates
+
+      return true unless ( new_order = params[ :sort_order ] )
 
       sort_order = parse_sortable_param( new_order, :sorted )
 
