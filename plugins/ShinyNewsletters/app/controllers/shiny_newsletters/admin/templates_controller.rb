@@ -11,7 +11,8 @@ module ShinyNewsletters
   class Admin::TemplatesController < AdminController
     include ShinySortable
 
-    before_action :stash_template, only: %i[ edit update destroy ]
+    before_action :stash_new_template, only: %i[ new create ]
+    before_action :stash_template,     only: %i[ edit update destroy ]
 
     helper_method :load_html_editor?
 
@@ -33,12 +34,10 @@ module ShinyNewsletters
     end
 
     def new
-      @template = Template.new
       authorize @template
     end
 
     def create
-      @template = Template.new( strong_params )
       authorize @template
 
       if @template.save
@@ -76,8 +75,18 @@ module ShinyNewsletters
 
     private
 
+    def stash_new_template
+      @template = Template.new( strong_params )
+    end
+
     def stash_template
       @template = Template.find( params[:id] )
+    end
+
+    def strong_params
+      params.require( :template ).permit(
+        :name, :description, :filename, elements_attributes: {}
+      )
     end
 
     def sort_elements
@@ -85,12 +94,6 @@ module ShinyNewsletters
 
       sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
       apply_sort_order( @template.elements, sort_order )
-    end
-
-    def strong_params
-      params.require( :template ).permit(
-        :name, :description, :filename, elements_attributes: {}
-      )
     end
 
     # Return true if the page we're on might need a WYSIWYG HTML editor
