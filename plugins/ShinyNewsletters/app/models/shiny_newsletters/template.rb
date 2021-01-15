@@ -20,7 +20,7 @@ module ShinyNewsletters
     # Class methods
 
     def self.template_dir
-      Theme.current.template_dir( 'shiny_newsletters/newsletter_mailer' ) if Theme.current.present?
+      Theme.current&.template_dir 'shiny_newsletters/newsletter_mailer'
     end
 
     def self.admin_search( search_term )

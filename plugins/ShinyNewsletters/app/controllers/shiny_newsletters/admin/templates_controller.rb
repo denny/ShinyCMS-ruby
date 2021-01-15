@@ -11,6 +11,11 @@ module ShinyNewsletters
   class Admin::TemplatesController < AdminController
     include ShinySortable
 
+    before_action :stash_new_template, only: %i[ new create ]
+    before_action :stash_template,     only: %i[ edit update destroy ]
+
+    helper_method :load_html_editor?
+
     def index
       authorize Template
 
@@ -29,12 +34,10 @@ module ShinyNewsletters
     end
 
     def new
-      @template = Template.new
       authorize @template
     end
 
     def create
-      @template = Template.new( template_params )
       authorize @template
 
       if @template.save
@@ -46,15 +49,13 @@ module ShinyNewsletters
     end
 
     def edit
-      @template = Template.find( params[:id] )
       authorize @template
     end
 
     def update
-      @template = Template.find( params[:id] )
       authorize @template
 
-      if sort_elements && @template.update( template_params )
+      if sort_elements && @template.update( strong_params )
         redirect_to shiny_newsletters.edit_template_path( @template ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
@@ -62,28 +63,47 @@ module ShinyNewsletters
       end
     end
 
-    def sort_elements
-      return true if params[ :sort_order ].blank?
-
-      sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
-      apply_sort_order( @template.elements, sort_order )
-    end
-
     def destroy
-      template = Template.find( params[:id] )
-      authorize template
+      authorize @template
 
-      flash[ :notice ] = t( '.success' ) if template.destroy
+      if @template.destroy
+        flash[ :notice ] = t( '.success' )
+      else
+        flash[ :alert  ] = t( '.failure' )
+      end
+
       redirect_to shiny_newsletters.templates_path
-    rescue ActiveRecord::NotNullViolation, ActiveRecord::RecordNotFound
-      skip_authorization
-      redirect_to shiny_newsletters.templates_path, alert: t( '.failure' )
     end
 
     private
 
-    def template_params
-      params.require( :template ).permit( :name, :description, :filename, elements_attributes: {} )
+    def stash_new_template
+      @template = Template.new( strong_params )
+    end
+
+    def stash_template
+      @template = Template.find( params[:id] )
+    end
+
+    def strong_params
+      return if params[ :template ].blank?
+
+      params.require( :template ).permit(
+        :name, :description, :filename, elements_attributes: {}
+      )
+    end
+
+    def sort_elements
+      return true unless ( new_order = params[ :sort_order ] )
+
+      sort_order = parse_sortable_param( new_order, :sorted )
+
+      apply_sort_order( @template.elements, sort_order )
+    end
+
+    # Return true if the page we're on might need a WYSIWYG HTML editor
+    def load_html_editor?
+      action_name == 'edit'
     end
   end
 end

@@ -11,9 +11,16 @@ module ShinyNewsletters
   class Admin::EditionsController < AdminController
     include ShinySortable
 
+    before_action :stash_new_edition, only: %i[ new create ]
+    before_action :stash_edition,     only: %i[ edit update send_sample destroy ]
+
+    helper_method :load_html_editor?
+
     def index
       authorize Edition
+
       @pagy, @editions = pagy( Edition.order( updated_at: :desc ), items: items_per_page )
+
       authorize @editions if @editions.present?
     end
 
@@ -27,12 +34,10 @@ module ShinyNewsletters
     end
 
     def new
-      @edition = Edition.new
       authorize @edition
     end
 
     def create
-      @edition = Edition.new( edition_params )
       authorize @edition
 
       if @edition.save
@@ -44,15 +49,13 @@ module ShinyNewsletters
     end
 
     def edit
-      @edition = Edition.find( params[:id] )
       authorize @edition
     end
 
     def update
-      @edition = Edition.find( params[:id] )
       authorize @edition
 
-      if sort_elements && @edition.update( edition_params )
+      if sort_elements && @edition.update( strong_params )
         redirect_to shiny_newsletters.edit_edition_path( @edition ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
@@ -60,40 +63,57 @@ module ShinyNewsletters
       end
     end
 
-    def sort_elements
-      return true if params[ :sort_order ].blank?
-      return true unless current_user.can? :edit, :newsletter_templates
-
-      sort_order = parse_sortable_param( params[ :sort_order ], :sorted )
-      apply_sort_order( @edition.elements, sort_order )
-    end
-
     def send_sample
-      edition = Edition.find( params[:id] )
-      authorize edition
+      authorize @edition
 
-      flash[ :notice ] = t( '.success' ) if edition.send_sample( current_user )
+      flash[ :notice ] = t( '.success' ) if @edition.send_sample( current_user )
 
       redirect_to shiny_newsletters.editions_path
     end
 
     def destroy
-      edition = Edition.find( params[:id] )
-      authorize edition
+      authorize @edition
 
-      flash[ :notice ] = t( '.success' ) if edition.destroy
+      if @edition.destroy
+        flash[ :notice ] = t( '.success' )
+      else
+        flash[ :alert  ] = t( '.failure' )
+      end
+
       redirect_to shiny_newsletters.editions_path
-    rescue ActiveRecord::RecordNotFound, ActiveRecord::NotNullViolation
-      skip_authorization
-      redirect_to shiny_newsletters.editions_path, alert: t( '.failure' )
     end
 
     private
 
-    def edition_params
+    def stash_new_edition
+      @edition = Edition.new( strong_params )
+    end
+
+    def stash_edition
+      @edition = Edition.find( params[:id] )
+    end
+
+    def strong_params
+      return if params[ :edition ].blank?
+
       params.require( :edition ).permit(
         :internal_name, :public_name, :slug, :description, :template_id, :show_on_site, elements_attributes: {}
       )
+    end
+
+    def sort_elements
+      return true unless current_user.can? :edit, :newsletter_templates
+
+      return true unless ( new_order = params[ :sort_order ] )
+
+      sort_order = parse_sortable_param( new_order, :sorted )
+
+      apply_sort_order( @edition.elements, sort_order )
+    end
+
+    # Return true if the page we're on might need a WYSIWYG HTML editor
+    def load_html_editor?
+      action_name == 'edit'
     end
   end
 end

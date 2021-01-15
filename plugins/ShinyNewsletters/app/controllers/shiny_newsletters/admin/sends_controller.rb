@@ -11,6 +11,8 @@ module ShinyNewsletters
   class Admin::SendsController < AdminController
     include ShinyDateHelper
 
+    before_action :stash_send, only: %i[ show edit update destroy start_sending cancel_sending ]
+
     before_action :convert_send_at_to_utc
 
     def index
@@ -44,8 +46,6 @@ module ShinyNewsletters
     end
 
     def show
-      authorize Send
-      @send = Send.find( params[:id] )
       authorize @send
     end
 
@@ -67,12 +67,10 @@ module ShinyNewsletters
     end
 
     def edit
-      @send = Send.find( params[:id] )
       authorize @send
     end
 
     def update
-      @send = Send.find( params[:id] )
       authorize @send
 
       if @send.update( strong_params )
@@ -84,44 +82,47 @@ module ShinyNewsletters
     end
 
     def start_sending
-      send = Send.find( params[:id] )
-      authorize send
+      authorize @send
 
-      send.update!( send_at: Time.zone.now ) if send.scheduled?
+      @send.update!( send_at: Time.zone.now ) if @send.scheduled?
 
-      flash[ :notice ] = t( '.success' ) if send.start_sending
+      flash[ :notice ] = t( '.success' ) if @send.start_sending
 
       redirect_to shiny_newsletters.sends_path
     end
 
     def cancel_sending
-      send = Send.find( params[:id] )
-      authorize send
+      authorize @send
 
-      flash[ :notice ] = t( '.success' ) if send.cancel_sending
+      flash[ :notice ] = t( '.success' ) if @send.cancel_sending
 
       redirect_to shiny_newsletters.sends_path
     end
 
     def destroy
-      send = Send.find( params[:id] )
-      authorize send
+      authorize @send
 
-      flash[ :notice ] = t( '.success' ) if send.destroy
+      flash[ :notice ] = t( '.success' ) if @send.destroy
 
       redirect_to shiny_newsletters.sends_path
     end
 
     private
 
-    def viewing_first_page?
-      params[:page] == 1 || params[:page].blank?
+    def stash_send
+      @send = Send.find( params[:id] )
     end
 
     def strong_params
+      return if params[ :send ].blank?
+
       temp_params = params.require( :send ).permit( :edition_id, :list_id, :send_at, :send_at_time, :send_now )
 
       combine_date_and_time_params( temp_params, :send_at )
+    end
+
+    def viewing_first_page?
+      params[:page] == 1 || params[:page].blank?
     end
 
     def convert_send_at_to_utc
