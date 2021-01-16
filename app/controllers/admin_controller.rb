@@ -58,10 +58,6 @@ class AdminController < ApplicationController
     current_user&.cache_capabilities
   end
 
-  def load_html_editor?
-    false
-  end
-
   # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
   def pagy_url_for( page, _pagy )
     params = request.query_parameters.merge( only_path: true, page: page )
