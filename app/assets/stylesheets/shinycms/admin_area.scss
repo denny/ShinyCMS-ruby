@@ -67,6 +67,10 @@ $input-bg:          $white;
 
 // ==================== ( global styles ) ====================
 
+* {
+  font-family:      'Roboto', sans-serif;
+}
+
 body {
   color:            $dark-colour;
   font-family:      'Roboto', sans-serif;
@@ -462,6 +466,15 @@ main fieldset legend {
   font-size:        1em;
   margin:           0 0 0 0.5em;
   width:            initial;
+}
+
+
+// ==================== ( Sail (settings) ) ====================
+
+#settings-dashboard h3 {
+  color:            $dark-colour;
+  font-size:        1.5em;
+  margin-top:       0.5em;
 }
 
 
