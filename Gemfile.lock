@@ -186,6 +186,8 @@ GEM
     activerecord (6.1.1)
       activemodel (= 6.1.1)
       activesupport (= 6.1.1)
+    activerecord-analyze (0.4.1)
+      rails (>= 5.1.0)
     activestorage (6.1.1)
       actionpack (= 6.1.1)
       activejob (= 6.1.1)
@@ -601,6 +603,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-analyze!
   activerecord-session_store!
   acts-as-taggable-on!
   acts_as_list!

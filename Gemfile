@@ -176,6 +176,9 @@ source 'https://rubygems.org' do
     # FIXME: install this manually (gem install rubycritic) until reek is ruby3 compatible
     # gem 'rubycritic', '~> 4.5.0', require: false
 
+    # Add .analyze method to ActiveRecord objects
+    gem 'activerecord-analyze'
+
     # Capture all emails sent by the system, and view them in a dev webmail inbox
     gem 'letter_opener_web', '~> 1.0'
 
