@@ -4,6 +4,9 @@
   <%= render_admin_menu_section( t( 'admin.site_settings.menu' ), 'settings' ) do %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :settings ),
+        t( 'admin.sail.menu' ), sail.root_path, 'settings' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :list, :settings ),
         t( 'admin.site_settings.index.title' ), main_app.admin_site_settings_path, 'settings' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :feature_flags ),
