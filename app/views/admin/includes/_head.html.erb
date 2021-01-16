@@ -12,11 +12,16 @@
 
     <% if controller.kind_of? Blazer::BaseController %>
     <%# TODO: use Shadow DOM to get rid of styling collisions? %>
-    <%= stylesheet_link_tag "blazer/application" %>
-    <%= javascript_include_tag "blazer/application" %>
+    <%= stylesheet_link_tag    'blazer/application' %>
+    <%= javascript_include_tag 'blazer/application' %>
     <script>
-      <%= blazer_js_var "rootPath", root_path %>
+      <%= blazer_js_var 'rootPath', root_path %>
     </script>
+    <% end %>
+
+    <% if controller.is_a? Sail::ApplicationController %>
+    <%= stylesheet_link_tag    'sail/application', media: 'all' %>
+    <%= javascript_include_tag 'sail/application', async: true %>
     <% end %>
 
     <%= stylesheet_link_tag 'https://unpkg.com/@coreui/coreui@3.0.0/dist/css/coreui.min.css' %>
