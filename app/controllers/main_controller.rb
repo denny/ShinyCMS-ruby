@@ -38,10 +38,6 @@ class MainController < ApplicationController
 
   layout 'layouts/main_site'
 
-  def default_items_per_page
-    Setting.get_int( :default_items_per_page ) || 10
-  end
-
   def feed_url( name )
     "#{feeds_base_url}/feeds/atom/#{name}.xml"
   end
