@@ -22,7 +22,6 @@ class AdminController < ApplicationController
 
   helper Rails.application.routes.url_helpers
 
-  helper_method :load_html_editor?
   helper_method :pagy_url_for
 
   def index

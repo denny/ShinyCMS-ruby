@@ -10,13 +10,16 @@
 
     <%= favicon_link_tag asset_path( 'shinycms/favicon.ico' ) %>
 
-    <% if controller.kind_of? Blazer::BaseController %>
-    <%# TODO: use Shadow DOM to get rid of styling collisions? %>
+    <% if blazer_controller? %>
     <%= stylesheet_link_tag "blazer/application" %>
     <%= javascript_include_tag "blazer/application" %>
     <script>
       <%= blazer_js_var "rootPath", root_path %>
     </script>
+    <% end %>
+
+    <% unless blazer_controller? || rep_controller? %>
+    <%= javascript_include_tag Ckeditor.cdn_url if try :load_html_editor? %>
     <% end %>
 
     <%= stylesheet_link_tag 'https://unpkg.com/@coreui/coreui@3.0.0/dist/css/coreui.min.css' %>
@@ -27,5 +30,3 @@
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Noto+Sans+TC|Ubuntu|Roboto+Condensed|Roboto&display=swap' %>
 
     <%= stylesheet_link_tag 'shinycms/admin_area', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-    <%= javascript_include_tag Ckeditor.cdn_url if nil.try :​load_html_editor? %>
