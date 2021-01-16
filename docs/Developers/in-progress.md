@@ -15,6 +15,9 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
 
 ### Features that don't exist in the Perl version but I seem to be working on them anyway
 
+* Redo site settings and feature flags using Sail
+    * https://github.com/vinistock/sail#readme
+
 * Plugin architecture
     * I've converted most of the existing features into Rails Engine plugins
     * Still to do:
@@ -46,10 +49,6 @@ Features that I'm halfway through implementing (with notes on where I'm up to, w
 
 ## Done / TODO
 
-See the [done](done.md) list for features from the original ShinyCMS that I have already implemented
-in this version - as well as a few new ones that snuck in along the way - with notes on improvements
-from the Perl version where applicable.
+See the [done](done.md) list for features from the original ShinyCMS that I have already implemented in this version - as well as a few new ones that snuck in along the way - with notes on improvements from the Perl version where applicable.
 
-See the [TODO](TODO.md) list for features from the original ShinyCMS that I haven't started implementing
-in this version yet... as well as ideas for new features, that I'm trying to resist building until I've
-caught up with the Perl feature list.
+See the [TODO](TODO.md) list for features from the original ShinyCMS that I haven't started implementing in this version yet... as well as ideas for new features, that I'm trying to resist building until I've caught up with the Perl feature list.

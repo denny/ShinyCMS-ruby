@@ -19,4 +19,10 @@ module ShinyPagingHelper
 
     items.to_i
   end
+
+  def default_items_per_page
+    return Setting.get_int( :default_items_per_page_in_admin_area ) || 20 if is_a? AdminController
+
+    Setting.get_int( :default_items_per_page ) || 10
+  end
 end
