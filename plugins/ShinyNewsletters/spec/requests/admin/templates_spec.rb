@@ -194,8 +194,11 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
       expect( response.body ).not_to have_css 'td', text: t2.name
     end
 
-    it 'fails gracefully when attempting to delete a non-existent template' do
-      delete shiny_newsletters.template_path( 999 )
+    it 'fails gracefully when attempting to delete a template which is in use' do
+      t1 = create :newsletter_template
+      create :newsletter_edition, template: t1
+
+      delete shiny_newsletters.template_path( t1 )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_newsletters.templates_path
@@ -203,6 +206,7 @@ RSpec.describe 'Admin: Newsletter Templates', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.templates.index.title' ).titlecase
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_newsletters.admin.templates.destroy.failure' )
+      expect( response.body ).to have_css 'td', text: t1.name
     end
   end
 end

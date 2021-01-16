@@ -9,7 +9,7 @@
 module ShinyForms
   # Basic form handlers, provided by ShinyForms plugin for ShinyCMS
   class FormHandler
-    FORM_HANDLERS = %w[ store_in_database send_plain_email send_templated_email ].freeze
+    FORM_HANDLERS = %w[ store_in_database send_plain_email send_html_email ].freeze
     public_constant :FORM_HANDLERS
 
     def store_in_database( form, form_data )
@@ -18,12 +18,12 @@ module ShinyForms
 
     def send_plain_email( form, form_data )
       FormMailer.with( to: form.email_to, form_name: form.internal_name, form_data: form_data )
-                .plain.deliver_later
+                .plain_email.deliver_later
     end
 
-    def send_templated_email( form, form_data )
+    def send_html_email( form, form_data )
       FormMailer.with( to: form.email_to, form_name: form.internal_name, form_data: form_data )
-                .templated( filename: form.filename ).deliver_later
+                .html_email( template_file: form.filename ).deliver_later
     end
   end
 end

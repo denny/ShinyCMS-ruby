@@ -15,8 +15,8 @@ module ShinyForms
     end
 
     factory :template_email_form, class: 'ShinyForms::Form', parent: :form do
-      handler  { 'send_templated_email' }
-      filename { 'contact_form'   }
+      handler  { 'send_html_email' }
+      filename { 'contact_form'    }
     end
   end
 end

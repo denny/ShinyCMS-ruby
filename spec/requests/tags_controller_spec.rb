@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -21,6 +21,10 @@ RSpec.describe TagsController, type: :request do
 
   describe 'GET /tags/list' do
     it 'displays the tag list' do
+      post1 = create :blog_post
+      post1.tag_list = 'shiny'
+      post1.save!
+
       get tag_list_path
 
       expect( response      ).to have_http_status :ok

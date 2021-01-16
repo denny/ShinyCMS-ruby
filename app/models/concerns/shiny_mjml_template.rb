@@ -35,6 +35,18 @@ module ShinyMJMLTemplate
       end
     end
 
+    def file_content
+      File.read file_path
+    end
+
+    def file_content_with_erb_removed
+      file_content.gsub! %r{<%=? [^%]+ %>}, ''
+    end
+
+    def file_path
+      "#{self.class.template_dir}/#{filename}.html.mjml"
+    end
+
     # Class methods
 
     # Get a list of available template files from the disk
@@ -42,8 +54,7 @@ module ShinyMJMLTemplate
       return [] unless template_dir
 
       filenames = Dir.glob '*.mjml', base: template_dir
-      template_names = filenames.collect { |filename| filename.remove( '.html.mjml' ) }
-      template_names.sort
+      filenames.collect { |filename| filename.remove( '.html.mjml' ) }
     end
   end
 end

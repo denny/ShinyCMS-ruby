@@ -25,6 +25,8 @@ class ConsentVersion < ApplicationRecord
   before_update  :before_update
   before_destroy :before_destroy
 
+  # Instance methods
+
   def before_update
     return if subscriptions.blank?
 
@@ -35,5 +37,13 @@ class ConsentVersion < ApplicationRecord
     return if subscriptions.blank?
 
     raise HasBeenAgreedTo, 'You cannot delete a consent version that people have already agreed to'
+  end
+
+  # Class methods
+
+  def self.admin_search( search_term )
+    where( 'name ilike ?', "%#{search_term}%" )
+      .or( where( 'slug ilike ?', "%#{search_term}%" ) )
+      .order( updated_at: :desc )
   end
 end

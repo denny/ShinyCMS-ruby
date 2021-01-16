@@ -22,8 +22,10 @@ module ShinyForms
         form1 = create :plain_email_form
 
         email1 = described_class.with(
-          to: form1.email_to, form_name: form1.internal_name, form_data: { message: 'Plain text email' }
-        ).plain
+          to:        form1.email_to,
+          form_name: form1.internal_name,
+          form_data: { message: 'Plain text email' }
+        ).plain_email
 
         expect { email1.deliver_later }.to have_enqueued_job
 
@@ -32,13 +34,15 @@ module ShinyForms
       end
     end
 
-    describe '.templated' do
-      it 'generates an MJML-templated email containing the form data' do
+    describe '.html_email' do
+      it 'generates an MJML-templated HTML-format email containing the form data' do
         form1 = create :template_email_form
 
         email1 = described_class.with(
-          to: form1.email_to, form_name: form1.internal_name, form_data: { message: 'Templated email' }
-        ).templated( filename: form1.filename )
+          to:        form1.email_to,
+          form_name: form1.internal_name,
+          form_data: { message: 'Templated email' }
+        ).html_email( template_file: form1.filename )
 
         expect { email1.deliver_later }.to have_enqueued_job
 

@@ -24,9 +24,14 @@ class ApplicationController < ActionController::Base
     ENV[ 'RECAPTCHA_CHECKBOX_SECRET_KEY' ]
   end
 
+  # Prevent Blazer from unhelpfully removing all of the ShinyCMS helpers
+  def self.clear_helpers
+    super unless self == Blazer::BaseController
+  end
+
   private
 
-  def current_user_can_view_charts?
+  def blazer_authorize
     return true if current_user&.can? :view_charts, :stats
 
     redirect_to main_app.admin_path, alert: t( 'admin.blazer.auth_fail' )

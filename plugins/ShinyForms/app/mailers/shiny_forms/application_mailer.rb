@@ -15,6 +15,7 @@ module ShinyForms
 
     before_action :set_view_paths
 
+    # No point in tracking email being delivered to site admins (is there?)
     track open: false, click: false
 
     default from: -> { default_email }

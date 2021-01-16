@@ -41,7 +41,6 @@ en:
           failure: Failed to update page details
         destroy:
           success: Page deleted
-          failure: Failed to delete page
 
       sections:
         breadcrumb: Pages

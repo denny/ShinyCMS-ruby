@@ -6,37 +6,20 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Supporting methods for loading ShinyCMS plugin gems
-def available_plugins
-  Dir[ 'plugins/*' ].sort.collect { |name| name.sub( 'plugins/', '' ) }
-end
+require_relative 'lib/gemfile_plugins_helper'
 
-def plugin_names
-  requested = ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
-
-  return requested.uniq.select { |name| available_plugins.include?( name ) } if requested
-
-  available_plugins
-end
-
-def underscore( camel_cased_word )
-  word = camel_cased_word.to_s
-  word = word.gsub( /([A-Z\d]+)([A-Z][a-z])/, '\1_\2' )
-  word = word.gsub( /([a-z\d])([A-Z])/, '\1_\2' )
-  word = word.tr( '-', '_' )
-  word.downcase
-end
-
-# The actual Gemfile!
 source 'https://rubygems.org' do
+  # Ruby 3.0
+  ruby '~> 3.0.0'
+
   # Rails 6.1
-  gem 'rails', '~> 6.1.0'
+  gem 'rails', '~> 6.1.1'
 
   # Postgres
   gem 'pg', '~> 1.2.3'
 
   # Webserver
-  gem 'puma', '~> 5.1'
+  gem 'puma', '~> 5.1', groups: %i[ development production ]
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails'
@@ -67,6 +50,10 @@ source 'https://rubygems.org' do
   gem 'bcrypt', '~> 3.1.16'
   # Check user passwords against known data leaks
   gem 'devise-pwned_password'
+  # Check password complexity
+  # FIXME: installing from GitHub until they release 1.2.x for ruby 3.x
+  # gem 'zxcvbn-ruby', require: 'zxcvbn'
+  gem 'zxcvbn-ruby', require: 'zxcvbn', git: 'https://github.com/envato/zxcvbn-ruby'
   # Authorisation
   gem 'pundit'
 
@@ -119,12 +106,11 @@ source 'https://rubygems.org' do
   gem 'ahoy_email'
   # Web stats
   gem 'ahoy_matey'
+
   # Charts and dashboards
-  gem 'blazer', '2.3.1'  # https://github.com/ankane/blazer/issues/315
+  gem 'blazer'
   # Charts
   gem 'chartkick', '~> 3.4.2'
-  # Date ranges
-  gem 'groupdate'
 
   # Image storage on S3
   gem 'aws-sdk-s3'
@@ -139,8 +125,14 @@ source 'https://rubygems.org' do
   # Better-looking console output
   gem 'amazing_print'
 
-  # Pry is a debugging tool - uncomment it here if you want to use it on the Rails console in production
-  gem 'pry-rails'
+  # Pry is a debugging tool for the Rails console
+  if env_var_true?( :shinycms_pry_console )
+    # Set ENV['SHINYCMS_PRY_CONSOLE']=true to explicitly enable PRY in this environment
+    gem 'pry-rails'
+  else
+    # Otherwise, it will only be enabled in dev and test environments
+    gem 'pry-rails', groups: %i[ development test ]
+  end
 
   group :production do
     # Bugsnag is an error monitoring service
@@ -151,9 +143,6 @@ source 'https://rubygems.org' do
   end
 
   group :development, :test do
-    # You can enable Pry here if you commented it out in production.
-    # gem 'pry-rails'
-
     # Tests are good, m'kay?
     gem 'rspec-rails'
 
@@ -161,13 +150,6 @@ source 'https://rubygems.org' do
     gem 'factory_bot_rails'
     # Fill test objects with fake data
     gem 'faker'
-
-    # Best practices
-    gem 'rails_best_practices'
-
-    # Ruby Critic generates easy-to-read reports from various static analysis tools
-    # FIXME: install this manually (gem install rubycritic) until reek is ruby3 compatible
-    # gem 'rubycritic', '~> 4.5.0', require: false
 
     # Utils for working with translation strings
     # gem 'i18n-debug'
@@ -191,6 +173,13 @@ source 'https://rubygems.org' do
     # Check for slow code
     gem 'fasterer', require: false
 
+    # Best practices
+    gem 'rails_best_practices'
+
+    # Ruby Critic generates easy-to-read reports from various static analysis tools
+    # FIXME: install this manually (gem install rubycritic) until reek is ruby3 compatible
+    # gem 'rubycritic', '~> 4.5.0', require: false
+
     # Capture all emails sent by the system, and view them in a dev webmail inbox
     gem 'letter_opener_web', '~> 1.0'
 
@@ -208,17 +197,18 @@ source 'https://rubygems.org' do
   end
 
   group :test do
-    # Integration tests (request specs)
-    gem 'capybara', '>= 2.15'
     # Wipe the test database before each test run
     gem 'database_cleaner-active_record'
+
+    # Integration tests (request specs)
+    gem 'capybara', '>= 2.15'
+
+    # Intercept calls to external services (notably, the Algolia API)
+    gem 'webmock'
 
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     # Rspec report formatter for Codecov
     gem 'rspec_junit_formatter'
-
-    # Used to intercept calls to the Algolia API
-    gem 'webmock'
   end
 end

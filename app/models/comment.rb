@@ -117,4 +117,10 @@ class Comment < ApplicationRecord
   def self.mark_all_as_ham( comment_ids )
     _shut_up_rubocop = where( id: comment_ids ).update( spam: false )
   end
+
+  def self.admin_search( search_term )
+    spam.where( 'title ilike ?', "%#{search_term}%" )
+        .or( spam.where( 'body ilike ?', "%#{search_term}%" ) )
+        .order( posted_at: :desc )
+  end
 end

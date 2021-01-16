@@ -14,7 +14,6 @@ module ShinyMainSiteHelper
   include ShinyPluginHelper
   include ShinySettingsHelper
   include ShinySiteNameHelper
+  include ShinyTagsHelper
   include ShinyUserHelper
-
-  include ActsAsTaggableOn::TagsHelper
 end
