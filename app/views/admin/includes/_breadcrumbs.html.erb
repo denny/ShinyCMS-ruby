@@ -24,6 +24,10 @@
       <% elsif plugin_name == 'RailsEmailPreview' %>
         <%= link_to t( 'rails_email_preview.breadcrumb' ), rails_email_preview.rep_root_path %>
 
+      <% elsif plugin_name == 'Sail' %>
+        <% @page_title = t( "admin.sail.#{controller_name}.title" ) %>
+        <%= link_to t( 'admin.sail.breadcrumb' ), sail.root_path %>
+
       <%# ShinyCMS core features %>
       <% else %>
         <%= link_to t( "admin.#{controller_name}.breadcrumb" ), controller: controller_name, action: :index %>
