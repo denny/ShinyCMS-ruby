@@ -422,6 +422,14 @@ en:
     other:
       menu: Other
 
+    sail:
+      breadcrumb: Settings
+      menu: Settings (Sail)
+      profiles:
+        title: Setting profiles
+      settings:
+        title: Settings
+
     sidekiq_web:
       menu: Sidekiq dashboard
 
