@@ -8,6 +8,20 @@
 
 # Configuration for Sail (settings engine)
 
+Rails.application.config.to_prepare do
+  # Make Sail appear inside our admin UI
+  ::Sail::ApplicationController.layout 'admin/layouts/admin_area'
+
+  # Make the main_app url helpers available to Sail's views
+  ::Sail::ApplicationController.helper MainAppRouteDelegator
+
+  # Other helpers used in ShinyCMS admin area views (menus, breadcrumbs, etc)
+  ::Sail::ApplicationController.helper AdminAreaHelper
+  ::Sail::ApplicationController.helper ShinyPluginHelper
+  ::Sail::ApplicationController.helper ShinyUserHelper
+  ::Sail::ApplicationController.helper SidekiqHelper
+end
+
 Sail.configure do |config|
   # config.dashboard_auth_lambda = -> { redirect_to( '/admin' ) unless current_user&.can?( :edit, :settings ) }
 
