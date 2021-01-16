@@ -84,7 +84,7 @@ class MainController < ApplicationController
     end
 
     # Apply the configured theme, if any, by adding it above the defaults
-    prepend_view_path Theme.current( current_user ).view_path if Theme.current( current_user )
+    prepend_view_path Theme.current( current_user )&.view_path
   end
 
   # Check user's password against pwned password service and warn if necessary
