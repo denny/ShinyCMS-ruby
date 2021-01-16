@@ -15,12 +15,16 @@ require 'shiny_profiles/version'
 Gem::Specification.new do |spec|
   spec.name        = 'shiny_profiles'
   spec.version     = ShinyProfiles::VERSION
+  spec.license     = 'GPL'
+
   spec.authors     = [ 'Denny de la Haye' ]
   spec.email       = [ '2021@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
+
   spec.summary     = 'ShinyProfiles plugin for ShinyCMS'
   spec.description = 'The ShinyProfiles plugin provides user profile pages for ShinyCMS'
-  spec.license     = 'GPL'
+
+  spec.required_ruby_version = '~> 3.0'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
