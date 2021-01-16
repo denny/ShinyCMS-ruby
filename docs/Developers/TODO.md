@@ -2,38 +2,33 @@
 
 ## TODO
 
-* Check whether creating a user account creates a user profile
+### Current / next / urgent
+
 * Finish adding support for links on user profiles
+    * Check whether creating a user account creates a user profile
 
-* Add 'items' extra to Pagy: https://ddnexus.github.io/pagy/extras/items.html
-    * Allow pagination URLs to specify /items/N instead of ?items=N
-
-* Blazer:
-    * Investigate alternatives? https://github.com/ankane/blazer/pull/316 :(
-        * daru-view ?? https://github.com/SciRuby/daru-view#readme
-    * Fix admin ACL; currently if you can view, you can add/update/delete too
-
-* Various email-sending tests (Forms, Newsletters, etc) throw this when run offline:
+* Investigate: tests of MJML mailers (Forms, Newsletters, etc) throw this when run offline:
     * "Mjml: warning You don't appear to have an internet connection. Try the --offline flag to use the cache for registry queries."
-    * Newsletter plugin tests tend to top the 'slowest tests' list - related?
-
-* Consider refactoring show/hide/visible/published/etc stuff
-
-* Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
+        * Newsletter plugin tests tend to top the 'slowest tests' list - related?
 
 
 ## Features the Perl version has, which the Ruby version doesn't. Yet. :)
 
 ### Small-ish
 
-* Some sort of file-picker for CKEditor
-    * https://ckeditor.com/docs/ckeditor5/latest/Features/MainApp/image-upload/ckfinder.html
+* Add 'items' extra to Pagy: https://ddnexus.github.io/pagy/extras/items.html
+    * Allow pagination URLs to specify /items/N instead of ?items=N
 
-* Site map - https://github.com/kjvarga/sitemap_generator ?
+* Site map / sitemaps
+    * 1. User-facing type - tie into search, tags, 404, etc
+    * 2. SEO type: https://github.com/kjvarga/sitemap_generator ?
 
 * Affiliate cookie
 
 ### Medium-ish
+
+* Some sort of file-picker for CKEditor
+    * https://ckeditor.com/docs/ckeditor5/latest/Features/MainApp/image-upload/ckfinder.html
 
 * Polls
 
@@ -115,7 +110,13 @@
 
 * Switch pagination to use JS helpers, to give site builders more flexibility?
 
+* Delete ahoy and session data when Akismet reports blatant spam? (make configurable)
+
 ### Medium-ish
+
+* Refactor show/hide/visible/published/etc stuff
+    * ShowHide could become a polymorphic acts_as_showable sort of thing?
+        * show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
 
 * More themes!
 
@@ -124,13 +125,14 @@
     * Decide 'intelligently' whether to fold all/none/some
         * (e.g. if there are >20 pages in total, fold any section containing >10 pages; if there are >10 sections and >100 pages in total, fold all sections; etc)
 
-* Wrap Blazer in a thin ShinyStats plugin, to give it standard auth and feature flagging
+* Blazer:
+    * Investigate alternatives? https://github.com/ankane/blazer/pull/316 :(
+        * daru-view ?? https://github.com/SciRuby/daru-view#readme
+    * Fix admin ACL; currently if you can view, you can add/update/delete too
+        * Wrap in a thin ShinyStats plugin, to give it standard auth and feature flagging
 
 * Add a polymorphic metatags model+helpers so they can be added to anything that might want them for SEO
     * pages/sections, shop items/categories, etc
-
-* ShowHide could be abstracted more AND be more useful, as a polymorphic acts_as_showable
-  sort of thing - giving us show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
 
 * Multi-channel notifications: https://github.com/excid3/noticed#readme
 
@@ -153,8 +155,6 @@
     * https://support.cloudflare.com/hc/en-us/articles/200168236-Configuring-Cloudflare-IP-Geolocation
 
 ### Large-ish
-
-* Redo site settings and feature flags, using Sail? https://github.com/vinistock/sail#readme
 
 * Investigate RBS - https://github.com/ruby/rbs#readme
     * https://honeyryderchuck.gitlab.io/httpx/2020/10/16/rbs-duck-typing-at-httpx.html
