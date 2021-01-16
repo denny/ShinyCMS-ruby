@@ -22,7 +22,6 @@ class AdminController < ApplicationController
 
   helper Rails.application.routes.url_helpers
 
-  helper_method :load_html_editor?
   helper_method :pagy_url_for
 
   def index
@@ -56,10 +55,6 @@ class AdminController < ApplicationController
 
   def cache_user_capabilities
     current_user&.cache_capabilities
-  end
-
-  def load_html_editor?
-    false
   end
 
   # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
