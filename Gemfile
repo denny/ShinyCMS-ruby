@@ -172,9 +172,8 @@ source 'https://rubygems.org' do
     # Best practices
     gem 'rails_best_practices'
 
-    # Ruby Critic generates easy-to-read reports from various static analysis tools
-    # FIXME: install this manually (gem install rubycritic) until reek is ruby3 compatible
-    # gem 'rubycritic', '~> 4.5.0', require: false
+    # Ruby Critic generates easy-to-read reports from multiple static analysis tools
+    gem 'rubycritic', '~> 4.5.0', require: false
 
     # Capture all emails sent by the system, and view them in a dev webmail inbox
     gem 'letter_opener_web', '~> 1.0'

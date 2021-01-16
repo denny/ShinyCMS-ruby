@@ -38,10 +38,6 @@ class MainController < ApplicationController
 
   layout 'layouts/main_site'
 
-  def default_items_per_page
-    Setting.get_int( :default_items_per_page ) || 10
-  end
-
   def feed_url( name )
     "#{feeds_base_url}/feeds/atom/#{name}.xml"
   end
@@ -88,7 +84,7 @@ class MainController < ApplicationController
     end
 
     # Apply the configured theme, if any, by adding it above the defaults
-    prepend_view_path Theme.current( current_user ).view_path if Theme.current( current_user )
+    prepend_view_path Theme.current( current_user )&.view_path
   end
 
   # Check user's password against pwned password service and warn if necessary
