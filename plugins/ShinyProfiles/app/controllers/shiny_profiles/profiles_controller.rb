@@ -10,6 +10,7 @@ module ShinyProfiles
   # Main site controller for profile pages, provided by ShinyProfiles plugin for ShinyCMS
   class ProfilesController < MainController
     before_action :check_feature_flags, only: %i[ show ]
+    before_action :stash_profile, only: %i[ show edit ]
 
     def index
       # TODO: searchable gallery of public user profiles
@@ -39,7 +40,7 @@ module ShinyProfiles
     private
 
     def stash_profile
-      @profile = Profile.find_by username: params[ :username ]
+      @profile = Profile.with_username params[ :username ]
     end
 
     def check_feature_flags

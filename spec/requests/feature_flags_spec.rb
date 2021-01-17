@@ -71,7 +71,6 @@ RSpec.describe 'Feature Flags', type: :request do
 
     it 'succeeds for admin user with Profile Pages feature only enabled for admins' do
       user = create :admin_user
-      create :user_profile, user: user
       sign_in user
 
       FeatureFlag.find_or_create_by!( name: 'user_profiles' )

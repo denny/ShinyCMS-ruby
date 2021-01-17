@@ -5,8 +5,12 @@ require 'rails_helper'
 RSpec.describe 'Search:', type: :request do
   before do
     FeatureFlag.enable :user_profiles
+  end
 
-    @profile = create :user_profile, public_name: 'Success'
+  let( :profile ) do
+    test_user = create :user
+    test_user.profile.update!( public_name: 'Success' )
+    test_user.profile
   end
 
   describe 'GET /search' do
@@ -20,11 +24,13 @@ RSpec.describe 'Search:', type: :request do
 
   describe 'GET /search?query=Success' do
     it 'displays the search results using the default search back-end (pg_search)' do
+      profile
+
       get shiny_search.search_path, params: { query: 'Success' }
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shiny_search.search.results.title', query: 'Success' )
-      expect( response.body ).to     have_link @profile.name, href: shiny_profiles.profile_path( @profile.username )
+      expect( response.body ).to     have_link profile.name, href: shiny_profiles.profile_path( profile.username )
       expect( response.body ).not_to have_css 'p', text: I18n.t( 'shiny_search.search.no_results.no_results' )
     end
 
@@ -46,35 +52,41 @@ RSpec.describe 'Search:', type: :request do
 
   describe 'GET /search?engine=pg&query=Success' do
     it 'displays the search results, explicitly using the pg_search back-end' do
+      profile
+
       get shiny_search.search_path, params: { engine: 'pg', query: 'Success' }
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shiny_search.search.results.title', query: 'Success' )
-      expect( response.body ).to     have_link @profile.name, href: shiny_profiles.profile_path( @profile.username )
+      expect( response.body ).to     have_link profile.name, href: shiny_profiles.profile_path( profile.username )
       expect( response.body ).not_to have_css 'p', text: I18n.t( 'shiny_search.search.no_results.no_results' )
     end
   end
 
   describe 'GET /search?engine=algolia&query=Success' do
     it 'displays the search results, using the Algolia search back-end' do
+      profile
+
       get shiny_search.search_path, params: { engine: 'algolia', query: 'Success' }
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shiny_search.search.results.title', query: 'Success' )
       # TODO
-      # expect( response.body ).to     have_link @profile.name, href: shiny_profiles.profile_path( @profile.username )
+      # expect( response.body ).to     have_link profile.name, href: shiny_profiles.profile_path( profile.username )
       # expect( response.body ).not_to have_css 'p', text: I18n.t( 'shiny_search.search.no_results.no_results' )
     end
   end
 
   describe 'GET /search?query=FAIL' do
     it 'displays the lack of search results' do
+      profile
+
       get "#{shiny_search.search_path}?query=FAIL"
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shiny_search.search.results.title', query: 'FAIL' )
       expect( response.body ).to     have_css 'p', text: I18n.t( 'shiny_search.search.no_results.no_results' )
-      expect( response.body ).not_to have_link @profile.name, href: shiny_profiles.profile_path( @profile.username )
+      expect( response.body ).not_to have_link profile.name, href: shiny_profiles.profile_path( profile.username )
     end
   end
 end

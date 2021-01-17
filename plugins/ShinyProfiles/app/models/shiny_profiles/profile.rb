@@ -48,10 +48,10 @@ module ShinyProfiles
 
     # Class methods
 
-    def self.find_by( username: )
-      # TODO: create profile here if it doesn't already exist ??
+    def self.with_username( username )
       user = ::User.find_by( username: username )
-      find_by( user: user ).readonly
+      find_by( user: user )
+      # TODO: create profile here if it doesn't already exist but user does ??
     end
   end
 end
