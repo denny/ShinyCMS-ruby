@@ -17,14 +17,12 @@ module ShinyProfiles
     end
 
     def show
-      @profile = User.readonly.find_by( username: params[ :username ] )&.profile
       return if @profile.present?
 
       render 'errors/404', status: :not_found
     end
 
     def edit
-      @profile = User.readonly.find_by( username: params[ :username ] )&.profile
       return if @profile.present?
 
       render 'errors/404', status: :not_found
@@ -39,6 +37,10 @@ module ShinyProfiles
     end
 
     private
+
+    def stash_profile
+      @profile = Profile.find_by username: params[ :username ]
+    end
 
     def check_feature_flags
       enforce_feature_flags :user_profiles

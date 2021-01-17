@@ -10,12 +10,10 @@ module ShinyProfiles
   # Controller for admin updates to user profiles - part of the ShinyProfiles plugin for ShinyCMS
   class Admin::ProfilesController < AdminController
     def edit
-      @profile = Profile.find( params[:id] )
       authorize @profile
     end
 
     def update
-      @profile = Profile.find( params[:id] )
       authorize @profile
 
       flash[ :notice ] = t( '.success' ) if @profile.update( strong_params )
@@ -24,6 +22,10 @@ module ShinyProfiles
     end
 
     private
+
+    def stash_profile
+      @profile = Profile.find params[ :id ]
+    end
 
     def strong_params
       params.require( :profile ).permit(
