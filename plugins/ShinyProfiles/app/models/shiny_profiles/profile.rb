@@ -49,3 +49,5 @@ module ShinyProfiles
 end
 
 ::User.has_one :profile, inverse_of: :user, class_name: 'ShinyProfiles::Profile', dependent: :destroy
+
+::User.after_create :create_profile
