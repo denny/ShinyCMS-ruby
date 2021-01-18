@@ -1,23 +1,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>
-      <%= "#{@page_title.titlecase} - " if @page_title %>ShinyCMS
-    </title>
-
     <%= csrf_meta_tags %>
     <%= csp_meta_tag   %>
 
     <%= favicon_link_tag asset_path( 'shinycms/favicon.ico' ) %>
 
     <% if blazer_controller? %>
+    <% @page_title = t( "admin.blazer.#{controller_name}.title" ) %>
+
     <%= stylesheet_link_tag    'blazer/application' %>
     <%= javascript_include_tag 'blazer/application' %>
+
     <script>
       <%= blazer_js_var 'rootPath', root_path %>
     </script>
 
     <% elsif sail_controller? %>
+    <% @page_title = t( "admin.sail.#{controller_name}.title" ) %>
+
     <%= stylesheet_link_tag    'sail/application', media: 'all' %>
     <%= javascript_include_tag 'sail/application', async: true %>
 
@@ -33,3 +34,7 @@
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Noto+Sans+TC|Ubuntu|Roboto+Condensed|Roboto&display=swap' %>
 
     <%= stylesheet_link_tag 'shinycms/admin_area', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <title>
+      <%= "#{@page_title.titlecase} - " if @page_title %>ShinyCMS
+    </title>
