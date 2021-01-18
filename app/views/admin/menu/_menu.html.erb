@@ -5,17 +5,17 @@
   <%= render partial: "#{plugin.name.underscore}/admin/menu/section" %>
   <% end %>
 
-  <%= render partial: 'admin/menu/users' %>
-
   <%= render partial: 'admin/menu/email' %>
-
-  <%= render partial: 'admin/menu/other' %>
-
-  <%= render partial: 'admin/menu/stats' %>
 
   <%= render partial: 'admin/menu/consent_versions' %>
 
+  <%= render partial: 'admin/menu/users' %>
+
+  <%= render partial: 'admin/menu/other' %>
+
   <%= render partial: 'admin/menu/settings' %>
+
+  <%= render partial: 'admin/menu/stats' %>
 
   <%= render partial: 'admin/menu/sidekiq_web' %>
 </ul>
