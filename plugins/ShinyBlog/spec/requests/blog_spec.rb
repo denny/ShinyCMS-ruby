@@ -69,7 +69,7 @@ RSpec.describe 'Blog', type: :request do
       expect( response ).to have_http_status :ok
     end
 
-    it "displays the 404 page if the post doesn't exist" do
+    it "displays the 404 page if the post doesn't exist", :production_error_responses do
       post = create :blog_post
 
       # get shiny_blog.view_blog_post_path( post )

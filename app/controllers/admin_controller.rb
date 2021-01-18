@@ -22,7 +22,6 @@ class AdminController < ApplicationController
 
   helper Rails.application.routes.url_helpers
 
-  helper_method :load_html_editor?
   helper_method :pagy_url_for
 
   def index
@@ -41,10 +40,6 @@ class AdminController < ApplicationController
     redirect_to admin_path, alert: t( 'admin.invalid_url', request_path: bad_path )
   end
 
-  def default_items_per_page
-    Setting.get_int( :default_items_per_page_in_admin_area ) || Setting.get_int( :default_items_per_page ) || 10
-  end
-
   private
 
   # Check whether a list of permitted admin IP addresses has been defined,
@@ -60,10 +55,6 @@ class AdminController < ApplicationController
 
   def cache_user_capabilities
     current_user&.cache_capabilities
-  end
-
-  def load_html_editor?
-    false
   end
 
   # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)

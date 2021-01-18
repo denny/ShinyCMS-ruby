@@ -14,15 +14,17 @@ module ShinyProfiles
     describe 'Instance methods' do
       describe '.name' do
         it 'returns the public_name if one is set' do
-          profile = create :user_profile
+          user = create :user
+          user.profile.update!( public_name: 'Testy McTestface' )
 
-          expect( profile.name ).to eq profile.public_name
+          expect( user.profile.name ).to eq user.profile.public_name
         end
 
         it "returns the user's username if no public_name is set" do
-          profile = create :user_profile, public_name: nil
+          user = create :user
+          user.profile.update!( public_name: nil )
 
-          expect( profile.name ).to eq profile.user.username
+          expect( user.profile.name ).to eq user.username
         end
       end
     end

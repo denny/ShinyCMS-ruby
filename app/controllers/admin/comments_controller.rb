@@ -24,13 +24,7 @@ class Admin::CommentsController < AdminController
   def search
     authorize Comment
 
-    search_term = params[:q]
-
-    @pagy, @comments = pagy(
-      Comment.spam.where( 'title ilike ?', "%#{search_term}%" )
-             .or( Comment.spam.where( 'body ilike ?', "%#{search_term}%" ) )
-             .order( posted_at: :desc ), items: items_per_page
-    )
+    @pagy, @comments = pagy( Comment.admin_search( params[:q] ), items: items_per_page )
 
     authorize @comments if @comments.present?
     render :index

@@ -48,5 +48,14 @@ module ShinyNewsletters
     def items_in_same_month
       self.class.readonly.where( updated_at: Time.zone.now.all_month )
     end
+
+    # Class methods
+
+    def self.admin_search( search_term )
+      where( 'internal_name ilike ?', "%#{search_term}%" )
+        .or( where( 'public_name ilike ?', "%#{search_term}%" )
+        .or( where( 'description ilike ?', "%#{search_term}%" ) ) )
+        .order( updated_at: :desc )
+    end
   end
 end

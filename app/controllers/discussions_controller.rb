@@ -24,11 +24,7 @@ class DiscussionsController < MainController
 
   def show; end
 
-  def show_thread
-    return if @comment.present?
-
-    render 'errors/404', status: :not_found, locals: { resource_type: 'comment' }
-  end
+  def show_thread; end
 
   def add_comment
     @new_comment = @discussion.comments.new( new_comment_details )
@@ -53,13 +49,11 @@ class DiscussionsController < MainController
   private
 
   def stash_discussion
-    @discussion = Discussion.readonly.find( params[ :id ] )
-  rescue ActiveRecord::RecordNotFound
-    render 'errors/404', status: :not_found
+    @discussion = Discussion.readonly.find params[ :id ]
   end
 
   def stash_comment
-    @comment = @discussion.comments.find_by( number: params[ :number ] ) || nil
+    @comment = @discussion.find_comment( number: params[ :number ] )
   end
 
   def new_comment_passes_checks_and_saves?

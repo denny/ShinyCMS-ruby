@@ -30,10 +30,6 @@ AllCops:
     - tmp/**/*
     - tools/**/*
 
-# This breaks CI tests that run against older versions
-Gemspec/RequiredRubyVersion:
-  Enabled: false
-
 # Disabling cops for a few lines here and there is handy
 Style/DisableCopsWithinSourceCodeDirective:
   Enabled: false

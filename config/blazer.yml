@@ -71,4 +71,4 @@ time_zone: <%= Rails.application.config.time_zone %>
 user_name: username
 
 # Custom before_action to use for auth (defined in ApplicationController)
-before_action_method: current_user_can_view_charts?
+before_action_method: blazer_authorize

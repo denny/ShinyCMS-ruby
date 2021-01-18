@@ -20,9 +20,14 @@ module ShinyNewsletters
     # Class methods
 
     def self.template_dir
-      Theme.current.template_dir( 'shiny_newsletters/newsletter_mailer' ) if Theme.current.present?
+      Theme.current&.template_dir 'shiny_newsletters/newsletter_mailer'
     end
 
+    def self.admin_search( search_term )
+      where( 'name ilike ?', "%#{search_term}%" )
+        .or( where( 'description ilike ?', "%#{search_term}%" ) )
+        .order( :name )
+    end
     # Add another validation at the end, because it uses methods included/defined above
     validates :filename, inclusion: {
       in:      available_templates,

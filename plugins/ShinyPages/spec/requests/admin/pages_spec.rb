@@ -253,17 +253,6 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response.body ).not_to have_css 'td', text: p2.internal_name
       expect( response.body ).to     have_css 'td', text: p3.internal_name
     end
-
-    it 'fails gracefully when attempting to delete a non-existent page' do
-      delete shiny_pages.page_path( 999 )
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_pages.pages_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.pages.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_pages.admin.pages.destroy.failure' )
-    end
   end
 
   describe 'PUT /admin/pages/sort' do

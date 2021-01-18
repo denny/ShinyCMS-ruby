@@ -37,6 +37,9 @@ module ShinyCMS
     # -- all .rb files in that directory are automatically loaded after
     # loading the framework and any gems in your application.
 
+    # Smarter error pages
+    config.exceptions_app = routes
+
     # Remove routes for Action Mailbox (just to make `rails routes` more readable)
     initializer(
       :remove_actionmailbox_routes, after: :add_routing_paths

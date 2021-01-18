@@ -10,25 +10,16 @@ module ShinyProfiles
   # Main site controller for profile pages, provided by ShinyProfiles plugin for ShinyCMS
   class ProfilesController < MainController
     before_action :check_feature_flags, only: %i[ show ]
+    before_action :stash_profile, only: %i[ show edit ]
 
     def index
       # TODO: searchable gallery of public user profiles
       redirect_to main_app.root_path
     end
 
-    def show
-      @profile = User.readonly.find_by( username: params[ :username ] )&.profile
-      return if @profile.present?
+    def show; end
 
-      render 'errors/404', status: :not_found
-    end
-
-    def edit
-      @profile = User.readonly.find_by( username: params[ :username ] )&.profile
-      return if @profile.present?
-
-      render 'errors/404', status: :not_found
-    end
+    def edit; end
 
     def profile_redirect
       if user_signed_in?
@@ -39,6 +30,10 @@ module ShinyProfiles
     end
 
     private
+
+    def stash_profile
+      @profile = Profile.for_username params[ :username ]
+    end
 
     def check_feature_flags
       enforce_feature_flags :user_profiles

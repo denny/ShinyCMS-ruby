@@ -78,6 +78,14 @@ module ShinyNewsletters
 
       url_helpers.user_view_newsletter_path( sent_year, sent_month, edition.slug )
     end
+
+    # Class methods
+
+    def self.admin_search( search_term )
+      where( 'date(started_sending_at) = ?', search_term )
+        .or( where( 'date(finished_sending_at) = ?', search_term ) )
+        .order( sent_at: :desc )
+    end
   end
 end
 

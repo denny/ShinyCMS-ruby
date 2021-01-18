@@ -31,6 +31,7 @@ en:
   hide: Hide
   lock: Lock
   unlock: Unlock
+  search: Search
   update: Update
   remove: Remove
   delete: Delete
@@ -128,6 +129,9 @@ en:
     not_found:
       title: '%{resource_type} not found'
       explanation: The URL you have reached is for a %{resource_type} that does not exist.
+      search_title: Search the site
+      tags_title: Popular tags
+      all_tags: All tags...
 
   site_settings:
     index:

@@ -9,14 +9,14 @@
 # Validator to check for MJML syntax errors in MJML template files
 class MJMLSyntaxValidator < ActiveModel::Validator
   def validate( record )
-    file = "#{record.class.template_dir}/#{record.filename}.html.mjml"
+    file = Tempfile.new [ 'shinycms-', '.mjml' ]
 
-    mjml = File.read file
-    mjml.gsub! %r{<%=? [^>]+ %>}, '' # Remove ERB tags
+    file.write record.file_content_with_erb_removed
+    file.rewind
 
-    parser = Mjml::Parser.new mjml
-    parser.render
-  rescue Mjml::Parser::ParseError
-    record.errors.add( :filename, :invalid_mjml )
+    valid = system "node_modules/mjml/bin/mjml --validate #{file.path} 2>/dev/null"
+    file.delete
+
+    record.errors.add( :filename, :invalid_mjml ) unless valid
   end
 end

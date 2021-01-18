@@ -273,16 +273,5 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
       expect( response.body ).not_to have_css 'td', text: p2.title
       expect( response.body ).to     have_css 'td', text: p3.title
     end
-
-    it 'fails gracefully when attempting to delete a non-existent blog post' do
-      delete shiny_blog.blog_post_path( 999 )
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_blog.blog_posts_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_blog.admin.blog_posts.set_post.not_found' )
-    end
   end
 end

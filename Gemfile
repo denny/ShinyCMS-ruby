@@ -102,12 +102,11 @@ source 'https://rubygems.org' do
   gem 'ahoy_email'
   # Web stats
   gem 'ahoy_matey'
+
   # Charts and dashboards
-  gem 'blazer', '2.3.1'  # https://github.com/ankane/blazer/issues/315
+  gem 'blazer'
   # Charts
   gem 'chartkick', '~> 3.4.2'
-  # Date ranges
-  gem 'groupdate'
 
   # Image storage on S3
   gem 'aws-sdk-s3'
@@ -123,9 +122,13 @@ source 'https://rubygems.org' do
   gem 'amazing_print'
 
   # Pry is a debugging tool for the Rails console
-  # Uncomment the first line if you want to use it in production, the second otherwise
-  gem 'pry-rails', groups: %i[ development test production ]
-  # gem 'pry-rails', groups: %i[ development test ]
+  if env_var_true?( :shinycms_pry_console )
+    # Set ENV['SHINYCMS_PRY_CONSOLE']=true to explicitly enable PRY in this environment
+    gem 'pry-rails'
+  else
+    # Otherwise, it will only be enabled in dev and test environments
+    gem 'pry-rails', groups: %i[ development test ]
+  end
 
   group :production do
     # Bugsnag is an error monitoring service
@@ -169,9 +172,11 @@ source 'https://rubygems.org' do
     # Best practices
     gem 'rails_best_practices'
 
-    # Ruby Critic generates easy-to-read reports from various static analysis tools
-    # FIXME: install this manually (gem install rubycritic) until reek is ruby3 compatible
-    # gem 'rubycritic', '~> 4.5.0', require: false
+    # Ruby Critic generates easy-to-read reports from multiple static analysis tools
+    gem 'rubycritic', '~> 4.5.0', require: false
+
+    # Add .analyze method to ActiveRecord objects
+    gem 'activerecord-analyze'
 
     # Capture all emails sent by the system, and view them in a dev webmail inbox
     gem 'letter_opener_web', '~> 1.0'

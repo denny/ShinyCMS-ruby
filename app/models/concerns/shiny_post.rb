@@ -15,6 +15,7 @@ module ShinyPost
   include ShinyShowHide
   include ShinySlugInMonth
   include ShinySoftDelete
+  include ShinyTags
   include ShinyTeaser
 
   included do
@@ -36,7 +37,6 @@ module ShinyPost
 
     # Plugin features
 
-    acts_as_taggable
     acts_as_votable
 
     searchable_by :title, :body, :slug if ShinyPlugin.loaded? :ShinySearch # TODO: author
@@ -106,7 +106,10 @@ module ShinyPost
     end
 
     def self.find_post( year, month, slug )
-      posts_in_month( year, month ).find_by( slug: slug )
+      post = posts_in_month( year, month ).find_by( slug: slug )
+      return post if post
+
+      raise ActiveRecord::RecordNotFound
     end
   end
 end
