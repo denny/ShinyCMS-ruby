@@ -8,6 +8,22 @@
 
 # Helper methods for admin area
 module AdminAreaHelper
+  def blazer_controller?
+    controller.is_a? Blazer::BaseController
+  end
+
+  def rep_controller?
+    controller.is_a? RailsEmailPreview::ApplicationController
+  end
+
+  def sail_controller?
+    controller.is_a? Sail::ApplicationController
+  end
+
+  def shiny_controller?
+    !( blazer_controller? || rep_controller? || sail_controller? )
+  end
+
   def plugin_breadcrumb_link_text_and_path( plugin_name, controller_name )
     [
       I18n.t( "#{plugin_name.underscore}.admin.#{controller_name}.breadcrumb" ),

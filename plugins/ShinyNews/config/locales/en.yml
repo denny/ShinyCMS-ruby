@@ -65,5 +65,3 @@ en:
           failure: Failed to update news post
         destroy:
           success: News post deleted
-        set_post:
-          not_found: News post not found

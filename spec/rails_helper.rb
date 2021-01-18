@@ -109,4 +109,10 @@ RSpec.configure do |config|
   # Allow request specs to use have_* matchers, like so:
   # expect( response.body ).to have_title 'My Page Title'
   config.include Capybara::RSpecMatchers, type: :request
+
+  config.include ErrorResponses
+
+  config.around( production_error_responses: true ) do |test|
+    disable_detailed_exceptions( &test )
+  end
 end

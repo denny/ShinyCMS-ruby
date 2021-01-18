@@ -207,16 +207,5 @@ RSpec.describe 'Admin::News', type: :request do
       expect( response.body ).not_to have_css 'td', text: p2.title
       expect( response.body ).to     have_css 'td', text: p3.title
     end
-
-    it 'fails gracefully when attempting to delete a non-existent news post' do
-      delete shiny_news.news_post_path( 999 )
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_news.news_posts_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_news.admin.news_posts.set_post.not_found' )
-    end
   end
 end

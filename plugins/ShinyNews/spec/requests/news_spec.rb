@@ -66,7 +66,7 @@ RSpec.describe 'News', type: :request do
       expect( response ).to have_http_status :ok
     end
 
-    it "displays the 404 page if the post doesn't exist" do
+    it "displays the 404 page if the post doesn't exist", :production_error_responses do
       post = create :news_post
 
       # get shiny_news.view_news_post_path( post )

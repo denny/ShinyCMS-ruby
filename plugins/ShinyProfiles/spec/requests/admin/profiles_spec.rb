@@ -17,9 +17,9 @@ RSpec.describe 'ShinyProfiles::Admin::ProfilesController', type: :request do
 
   describe 'GET /admin/profiles/123/edit' do
     it "renders the user's edit-profile page" do
-      profile = create :user_profile
+      user = create :user
 
-      get shiny_profiles.admin_edit_profile_path( profile )
+      get shiny_profiles.admin_edit_profile_path( user.profile )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_profiles.admin.profiles.edit.title' ).titlecase
@@ -28,18 +28,18 @@ RSpec.describe 'ShinyProfiles::Admin::ProfilesController', type: :request do
 
   describe 'PUT /admin/profiles/123' do
     it 'saves the new profile details' do
-      profile = create :user_profile
+      user = create :user
 
       new_email = Faker::Internet.unique.email.sub( '@', ' AT ' )
 
-      put shiny_profiles.admin_profile_path( profile ), params: {
+      put shiny_profiles.admin_profile_path( user.profile ), params: {
         profile: {
           public_email: new_email
         }
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_profiles.admin_edit_profile_path( profile )
+      expect( response      ).to redirect_to shiny_profiles.admin_edit_profile_path( user.profile )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_field 'profile[public_email]', with: new_email

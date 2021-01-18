@@ -45,7 +45,22 @@ module ShinyProfiles
     def name
       public_name.presence || username
     end
+
+    # Class methods
+
+    def self.for_username( username )
+      user = ::User.find_by( username: username )
+      raise ActiveRecord::RecordNotFound if user.blank?
+
+      profile = find_by( user: user )
+      # TODO: Create profile if blank? (in case ShinyProfiles enabled after account created)
+      raise ActiveRecord::RecordNotFound if profile.blank?
+
+      profile
+    end
   end
 end
 
 ::User.has_one :profile, inverse_of: :user, class_name: 'ShinyProfiles::Profile', dependent: :destroy
+
+::User.after_create :create_profile

@@ -107,7 +107,7 @@ RSpec.describe 'Pages', type: :request do
       end
     end
 
-    describe 'GET /non-existent-slug' do
+    describe 'GET /non-existent-slug', :production_error_responses do
       it 'returns a 404 if no matching page or section is found at top-level' do
         get '/non-existent-slug'
 
@@ -116,7 +116,7 @@ RSpec.describe 'Pages', type: :request do
       end
     end
 
-    describe 'GET /existing-section/non-existent-slug' do
+    describe 'GET /existing-section/non-existent-slug', :production_error_responses do
       it 'returns a 404 if no matching page or sub-section is found in section' do
         page = create :page_in_section
 
@@ -127,7 +127,7 @@ RSpec.describe 'Pages', type: :request do
       end
     end
 
-    describe 'GET /non-existent-section/irrelevant-slug' do
+    describe 'GET /non-existent-section/irrelevant-slug', :production_error_responses do
       it 'returns a 404 if a page is requested in nested non-existent sections' do
         get '/non-existent-section/and-another/irrelevant-slug'
 
@@ -136,7 +136,7 @@ RSpec.describe 'Pages', type: :request do
       end
     end
 
-    describe 'GET /not-html-404.xml' do
+    describe 'GET /not-html-404.xml', :production_error_responses do
       it 'still returns a 404 even if a non-existent non-HTML resource is requested' do
         get '/not-html-404.xml'
 
