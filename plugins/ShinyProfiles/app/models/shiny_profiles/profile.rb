@@ -45,7 +45,17 @@ module ShinyProfiles
     def name
       public_name.presence || username
     end
+
+    # Class methods
+
+    def self.with_username( username )
+      user = ::User.find_by( username: username )
+      find_by( user: user )
+      # TODO: create profile here if it doesn't already exist but user does ??
+    end
   end
 end
 
 ::User.has_one :profile, inverse_of: :user, class_name: 'ShinyProfiles::Profile', dependent: :destroy
+
+::User.after_create :create_profile

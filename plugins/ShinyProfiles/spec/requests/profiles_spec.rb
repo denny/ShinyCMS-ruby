@@ -31,12 +31,12 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
 
   describe 'GET /profile/:username' do
     it "renders the user's profile page" do
-      profile = create :user_profile
+      user = create :user
 
-      get shiny_profiles.profile_path( profile.username )
+      get shiny_profiles.profile_path( user.profile.username )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title profile.name
+      expect( response.body ).to have_title user.profile.name
     end
 
     it "renders the 404 page if the user doesn't exist" do
@@ -49,12 +49,12 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
 
   describe 'GET /profile/:username/edit' do
     it "renders the user's edit-profile page" do
-      profile = create :user_profile
+      user = create :user
 
-      get shiny_profiles.edit_profile_path( profile.username )
+      get shiny_profiles.edit_profile_path( user.profile.username )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title profile.name
+      expect( response.body ).to have_title user.profile.name
     end
 
     it "renders the 404 page if the user doesn't exist" do
@@ -77,16 +77,16 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
     end
 
     it "redirects to the user's profile page when user is already logged in" do
-      profile = create :user_profile
-      sign_in profile.user
+      user = create :user
+      sign_in user
 
       get shiny_profiles.profile_redirect_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_profiles.profile_path( profile.username )
+      expect( response      ).to redirect_to shiny_profiles.profile_path( user.profile.username )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title profile.name
+      expect( response.body ).to have_title user.profile.name
     end
   end
 
@@ -94,7 +94,6 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
     it "redirects to the user's profile page if user profiles are enabled" do
       password = Faker::Books::CultureSeries.book
       user = create :user, password: password
-      create :user_profile, user: user
 
       post user_session_path, params: {
         user: {
