@@ -40,6 +40,13 @@ class Discussion < ApplicationRecord
     update( locked: false )
   end
 
+  def find_comment( number: )
+    comment = comments.find_by( number: number )
+    return comment if comment.present?
+
+    raise ActiveRecord::RecordNotFound
+  end
+
   def next_comment_number
     ( all_comments.maximum( :number ) || 0 ) + 1
   end

@@ -10,12 +10,20 @@
 
 # Routes for main app (ShinyCMS core)
 Rails.application.routes.draw do
+  get 'errors/not_found'
+  get 'errors/internal_server_error'
   scope format: false do
     ########################################
     # Main site
 
     # TODO: figure out what to do here if ShinyPages isn't loaded...
     root to: 'shiny_pages/pages#index' if defined? ShinyPages
+
+    # Smarter error pages
+    match '404',  to: 'errors#not_found',             via: :all
+    match '500',  to: 'errors#internal_server_error', via: :all
+
+    get '/errors/test500', to: 'errors#test500'
 
     # Authentication / User Accounts: /account /login /logout
     devise_for  :users,

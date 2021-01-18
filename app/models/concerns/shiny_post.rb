@@ -106,7 +106,10 @@ module ShinyPost
     end
 
     def self.find_post( year, month, slug )
-      posts_in_month( year, month ).find_by( slug: slug )
+      post = posts_in_month( year, month ).find_by( slug: slug )
+      return post if post
+
+      raise ActiveRecord::RecordNotFound
     end
   end
 end
