@@ -53,10 +53,10 @@ module ShinyProfiles
       raise ActiveRecord::RecordNotFound if user.blank?
 
       profile = find_by( user: user )
-      return profile if profile
+      # TODO: Create profile if blank? (in case ShinyProfiles enabled after account created)
+      raise ActiveRecord::RecordNotFound if profile.blank?
 
-      # TODO: Create profile here?? (in case ShinyProfiles enabled after account created)
-      raise ActiveRecord::RecordNotFound
+      profile
     end
   end
 end

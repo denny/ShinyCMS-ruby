@@ -29,9 +29,6 @@ module ShinyBlog
 
     def show
       @post = Post.find_post( *post_path_params )
-      return if @post.present?
-
-      render 'errors/not_found', status: :not_found, locals: { resource_type: I18n.t( 'models.names.shiny_blog_post' ) }
     end
 
     private

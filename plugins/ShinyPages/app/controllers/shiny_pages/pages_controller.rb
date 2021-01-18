@@ -38,23 +38,22 @@ module ShinyPages
     # Figure out whether we're at top level or going deeper
     def show
       path_parts = params[ :path ].split '/'
+
       if path_parts.size == 1
         show_top_level( path_parts.first )
-        return
+      else
+        show_in_section( path_parts )
       end
-
-      show_in_section( path_parts ) && return
     end
 
     private
 
-    # Handle requests with a single-part path
-    # /pages/foo
+    # Handle requests with a single-part path - e.g. /foo
     def show_top_level( slug )
       return if show_top_level_page( slug )
       return if show_top_level_section( slug )
 
-      not_found
+      raise ActiveRecord::RecordNotFound, 'Page not found'
     end
 
     def show_top_level_page( slug )
@@ -73,8 +72,7 @@ module ShinyPages
       true
     end
 
-    # Handle requests with a multi-part path
-    # /pages/foo/bar, /pages/foo/bar/baz, /pages/etc/etc/etc
+    # Handle requests with a multi-part path - e.g. /foo/bar, /foo/bar/baz, etc
     def show_in_section( path_parts )
       slug = path_parts.pop
       section = traverse_path( path_parts, top_level_sections )
@@ -82,19 +80,18 @@ module ShinyPages
       @page = page_for_last_slug( section, slug )
       show_page && return if @page
 
-      not_found
+      raise ActiveRecord::RecordNotFound, 'Page not found'
     end
 
     # Render the page with the appropriate template
     def show_page
-      unless @page.template.file_exists?
+      if @page.template.file_exists?
+        render template: "shiny_pages/pages/#{@page.template.filename}", locals: @page.elements_hash
+      else
         # rubocop:disable Rails/RenderInline
         render status: :failed_dependency, inline: I18n.t( 'shiny_pages.page.template_file_missing' )
         # rubocop:enable Rails/RenderInline
-        return
       end
-
-      render template: "shiny_pages/pages/#{@page.template.filename}", locals: @page.elements_hash
     end
 
     # Find the correct section to look for the specified (or default) page in
@@ -109,11 +106,6 @@ module ShinyPages
 
     def page_for_last_slug( section, slug )
       section&.pages&.find_by( slug: slug ) || section&.sections&.find_by( slug: slug )&.default_page
-    end
-
-    # 404 handler
-    def not_found
-      render '/errors/not_found', status: :not_found
     end
 
     def enforce_html_format
