@@ -1,4 +1,4 @@
-<% resource_type ||= controller.class.name.sub( %r{.*\:\:}, '' ).remove( 'Controller' ).underscore.humanize.singularize %>
+<% resource_type ||= 'page' %>
 
 <% @page_title = t( '.title', resource_type: resource_type.capitalize ) %>
 
@@ -24,7 +24,7 @@
 
   <p>
     <%= form_with name: 'search', url: shiny_search.search_path do |f| %>
-      <%= f.text_field 'query' %> <%= f.submit 'Search', class: 'button' %>
+      <%= f.text_field 'query' %> <%= f.submit t( 'search' ), class: 'button' %>
     <% end %>
   </p>
 </section>

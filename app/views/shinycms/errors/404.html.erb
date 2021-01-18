@@ -1,3 +1,0 @@
-<% resource_type ||= controller.class.name.sub( %r{.*\:\:}, '' ).remove( 'Controller' ).underscore.humanize.singularize %>
-
-<%= render partial: 'errors/not_found', locals: { resource_type: resource_type } %>
