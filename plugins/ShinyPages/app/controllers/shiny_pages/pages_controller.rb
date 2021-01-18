@@ -113,7 +113,7 @@ module ShinyPages
 
     # 404 handler
     def not_found
-      render 'errors/404', status: :not_found
+      render '/errors/not_found', status: :not_found
     end
 
     def enforce_html_format

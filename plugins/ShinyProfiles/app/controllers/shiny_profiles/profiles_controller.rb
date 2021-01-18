@@ -20,14 +20,14 @@ module ShinyProfiles
       @profile = User.readonly.find_by( username: params[ :username ] )&.profile
       return if @profile.present?
 
-      render 'errors/404', status: :not_found
+      render 'errors/not_found', status: :not_found
     end
 
     def edit
       @profile = User.readonly.find_by( username: params[ :username ] )&.profile
       return if @profile.present?
 
-      render 'errors/404', status: :not_found
+      render 'errors/not_found', status: :not_found
     end
 
     def profile_redirect

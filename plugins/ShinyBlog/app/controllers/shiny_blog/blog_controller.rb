@@ -31,7 +31,7 @@ module ShinyBlog
       @post = Post.find_post( *post_path_params )
       return if @post.present?
 
-      render 'errors/404', status: :not_found, locals: { resource_type: I18n.t( 'models.names.shiny_blog_post' ) }
+      render 'errors/not_found', status: :not_found, locals: { resource_type: I18n.t( 'models.names.shiny_blog_post' ) }
     end
 
     private

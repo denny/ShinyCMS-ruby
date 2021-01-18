@@ -43,7 +43,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       get shiny_profiles.profile_path( 'no.such.user' )
 
       expect( response      ).to have_http_status :not_found
-      expect( response.body ).to have_title I18n.t( 'errors.not_found.title', resource_type: 'Profile' )
+      expect( response.body ).to have_title I18n.t( 'errors.not_found.title', resource_type: 'Page' )
     end
   end
 
@@ -61,7 +61,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       get shiny_profiles.edit_profile_path( 'no.such.user' )
 
       expect( response      ).to have_http_status :not_found
-      expect( response.body ).to have_title I18n.t( 'errors.not_found.title', resource_type: 'Profile' )
+      expect( response.body ).to have_title I18n.t( 'errors.not_found.title', resource_type: 'Page' )
     end
   end
 
