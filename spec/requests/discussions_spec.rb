@@ -81,12 +81,12 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response.body ).to have_css 'h2', text: @nested.title
     end
 
-    it "renders the 404 page if the discussion doesn't exist" do
+    it "renders the 404 page if the discussion doesn't exist", :production_error_responses do
       get discussion_path( 999 )
 
       expect( response      ).to have_http_status :not_found
       expect( response.body ).to have_css 'h2', text: I18n.t(
-        'errors.not_found.title', resource_type: 'Discussion'
+        'errors.not_found.title', resource_type: 'Page'
       )
     end
   end
@@ -100,12 +100,12 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response.body ).to have_css 'h2', text: @nested.title
     end
 
-    it "renders the 404 page if the comment doesn't exist" do
+    it "renders the 404 page if the comment doesn't exist", :production_error_responses do
       get comment_path( @discussion, 999 )
 
       expect( response      ).to have_http_status :not_found
       expect( response.body ).to have_css 'h2', text: I18n.t(
-        'errors.not_found.title', resource_type: 'Comment'
+        'errors.not_found.title', resource_type: 'Page'
       )
     end
   end
