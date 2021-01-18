@@ -48,10 +48,15 @@ module ShinyProfiles
 
     # Class methods
 
-    def self.with_username( username )
+    def self.for_username( username )
       user = ::User.find_by( username: username )
-      find_by( user: user )
-      # TODO: create profile here if it doesn't already exist but user does ??
+      raise ActiveRecord::RecordNotFound if user.blank?
+
+      profile = find_by( user: user )
+      return profile if profile
+
+      # TODO: Create profile here?? (in case ShinyProfiles enabled after account created)
+      raise ActiveRecord::RecordNotFound
     end
   end
 end

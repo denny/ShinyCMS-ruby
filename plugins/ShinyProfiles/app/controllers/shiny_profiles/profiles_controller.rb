@@ -17,17 +17,9 @@ module ShinyProfiles
       redirect_to main_app.root_path
     end
 
-    def show
-      return if @profile.present?
+    def show; end
 
-      render 'errors/not_found', status: :not_found
-    end
-
-    def edit
-      return if @profile.present?
-
-      render 'errors/not_found', status: :not_found
-    end
+    def edit; end
 
     def profile_redirect
       if user_signed_in?
@@ -40,7 +32,7 @@ module ShinyProfiles
     private
 
     def stash_profile
-      @profile = Profile.with_username params[ :username ]
+      @profile = Profile.for_username params[ :username ]
     end
 
     def check_feature_flags
