@@ -62,27 +62,27 @@ module AdminAreaHelper
     }
   end
 
-  def render_admin_menu_section_start( text, icon = nil )
+  def render_admin_menu_section_start( text, icon = nil, show: nil )
     render partial: 'admin/menu/menu_section_start',
-           locals:  { text: text, icon: icon }
+           locals:  { text: text, icon: icon, show: show }
   end
 
   def render_admin_menu_section_end
     render partial: 'admin/menu/menu_section_end'
   end
 
-  def render_admin_menu_section( text, icon = nil, &block )
-    section = render_admin_menu_section_start( text, icon )
+  def render_admin_menu_section( text, icon = nil, show: nil, &block )
+    section = render_admin_menu_section_start( text, icon, show: show )
     section << capture( &block )
     section << render_admin_menu_section_end
   end
 
-  def render_admin_menu_item( text, link, icon = nil )
+  def render_admin_menu_item( text, link, icon = nil, active: nil )
     render partial: 'admin/menu/menu_item',
-           locals:  { text: text, link: link, icon: icon }
+           locals:  { text: text, link: link, icon: icon, set_as_active: active }
   end
 
-  def render_admin_menu_item_if( condition, text, link, icon = nil )
-    render_admin_menu_item( text, link, icon ) if condition
+  def render_admin_menu_item_if( condition, text, link, icon = nil, active: nil )
+    render_admin_menu_item( text, link, icon, active: active ) if condition
   end
 end
