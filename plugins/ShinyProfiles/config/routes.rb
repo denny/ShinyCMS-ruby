@@ -15,6 +15,7 @@ ShinyProfiles::Engine.routes.draw do
                                   constraints: { username: User::USERNAME_REGEX }
     get 'profile/:username/edit', to: 'profiles#edit', as: :edit_profile,
                                   constraints: { username: User::USERNAME_REGEX }
+    put 'profile/:username',      to: 'profiles#update'
 
     # Admin area
     scope path: 'admin', module: 'admin' do
