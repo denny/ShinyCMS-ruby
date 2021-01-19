@@ -22,7 +22,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       get shiny_profiles.profiles_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title page.name
@@ -50,6 +50,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
   describe 'GET /profile/:username/edit' do
     it "renders the user's edit-profile page" do
       user = create :user
+      sign_in user
 
       get shiny_profiles.edit_profile_path( user.username )
 
@@ -57,11 +58,20 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       expect( response.body ).to have_title user.profile.name
     end
 
-    it "renders the 404 page if the user doesn't exist", :production_error_responses do
-      get shiny_profiles.edit_profile_path( 'no.such.user' )
+    it "redirects if the profile doesn't belong to the current user" do
+      create :top_level_page
 
-      expect( response      ).to have_http_status :not_found
-      expect( response.body ).to have_title I18n.t( 'errors.not_found.title', resource_type: 'Page' )
+      user1 = create :user
+      user2 = create :user
+      sign_in user2
+
+      get shiny_profiles.edit_profile_path( user1.username )
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to main_app.root_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_profiles.profiles.edit.not_authorized' )
     end
   end
 
@@ -124,7 +134,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'h1', text: page.name
@@ -134,6 +144,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
   describe 'PUT /profile/:username' do
     it "updates the user's profile details" do
       user = create :user
+      sign_in user
 
       new_name = Faker::Books::CultureSeries.unique.culture_ship
 
@@ -153,6 +164,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
 
     it 'fails gracefully if required details are missing' do
       user = create :user
+      sign_in user
 
       put shiny_profiles.profile_path( user.username ), params: {
         profile: {

@@ -19,10 +19,11 @@ en:
         links: Links
         name: Name
         url: URL
-
+        not_authorized: You are not allowed to edit that profile
       update:
         success: Profile details updated
         failure: Failed to update profile details
+        not_authorized: You are not allowed to edit that profile
 
     admin:
       profiles:

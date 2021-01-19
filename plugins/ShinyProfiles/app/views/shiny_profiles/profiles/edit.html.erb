@@ -34,17 +34,12 @@
   </p>
 
   <%= label_tag t( '.links' ) %>
-  <%= hidden_field_tag :sort_order, '', id: :sort_order %>
-  <span id="sortable">
-    <%= f.fields_for :links do |fields| %>
-    <% this = @profile.links[fields.index] %>
-    <p id="sorted_<%= this.id %>">
-      <%= fields.text_field :name, placeholder: t( '.name' ) %>
-      <%= fields.text_field :url,  placeholder: t( '.url'  ) %>
-      <i class="handle cil-elevator"></i>
-    </p>
-    <% end %>
-  </span>
+  <%= f.fields_for :links do |fields| %>
+  <p>
+    <%= fields.text_field :name, placeholder: t( '.name' ) %>
+    <%= fields.text_field :url,  placeholder: t( '.url'  ) %>
+  </p>
+  <% end %>
   <p>
     <%= text_field_tag 'profile[new_link_name]', nil, placeholder: t( '.name' ) %>
     <%= text_field_tag 'profile[new_link_url]',  nil, placeholder: t( '.url'  )  %>

@@ -9,8 +9,10 @@
 module ShinyProfiles
   # Main site controller for profile pages, provided by ShinyProfiles plugin for ShinyCMS
   class ProfilesController < MainController
-    before_action :check_feature_flags, only: %i[ show ]
-    before_action :stash_profile, only: %i[ show edit update ]
+    before_action :check_feature_flags
+    before_action :authenticate_user!, except: %i[ index show profile_redirect ]
+    before_action :stash_profile,      only:   %i[ show edit update ]
+    before_action :authorize_user!,    except: %i[ index show profile_redirect ]
 
     def index
       # TODO: searchable gallery of public user profiles
@@ -42,6 +44,12 @@ module ShinyProfiles
 
     def stash_profile
       @profile = Profile.for_username params[ :username ]
+    end
+
+    def authorize_user!
+      return true if current_user == @profile&.user
+
+      redirect_to main_app.root_path, alert: t( '.not_authorized' )
     end
 
     def strong_params
