@@ -147,6 +147,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       expect( response      ).to redirect_to shiny_profiles.edit_profile_path( user.username )
       follow_redirect!
       expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shiny_profiles.profiles.update.success' )
       expect( response.body ).to have_field 'profile[public_name]', with: new_name
     end
 
