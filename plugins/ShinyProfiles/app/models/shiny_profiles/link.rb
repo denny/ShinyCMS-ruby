@@ -28,11 +28,5 @@ module ShinyProfiles
     validates :profile, presence: true
     validates :name,    presence: true
     validates :url,     presence: true
-
-    # Instance methods
-
-    def hidden?
-      false
-    end
   end
 end
