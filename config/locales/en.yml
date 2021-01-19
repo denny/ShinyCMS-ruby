@@ -154,6 +154,7 @@ en:
     log_in: Log in
     log_out: Log out
     register: Register
+    edit_account: Edit account details
     site_settings: Site settings
 
 
