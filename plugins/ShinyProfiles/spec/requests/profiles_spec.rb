@@ -33,7 +33,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
     it "renders the user's profile page" do
       user = create :user
 
-      get shiny_profiles.profile_path( user.profile.username )
+      get shiny_profiles.profile_path( user.username )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title user.profile.name
@@ -51,7 +51,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
     it "renders the user's edit-profile page" do
       user = create :user
 
-      get shiny_profiles.edit_profile_path( user.profile.username )
+      get shiny_profiles.edit_profile_path( user.username )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title user.profile.name
@@ -83,7 +83,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       get shiny_profiles.profile_redirect_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_profiles.profile_path( user.profile.username )
+      expect( response      ).to redirect_to shiny_profiles.profile_path( user.username )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title user.profile.name
@@ -128,6 +128,39 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'h1', text: page.name
+    end
+  end
+
+  describe 'PUT /profile/:username' do
+    it "updates the user's profile details" do
+      user = create :user
+
+      new_name = Faker::Books::CultureSeries.unique.culture_ship
+
+      put shiny_profiles.profile_path( user.username ), params: {
+        profile: {
+          public_name: new_name
+        }
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_profiles.edit_profile_path( user.username )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_field 'profile[public_name]', with: new_name
+    end
+
+    it 'fails gracefully if required details are missing' do
+      user = create :user
+
+      put shiny_profiles.profile_path( user.username ), params: {
+        profile: {
+          new_link_url: 'http://example.com'
+        }
+      }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.alerts', text: 'oh no'
     end
   end
 end
