@@ -23,10 +23,10 @@ Rails.application.config.to_prepare do
 end
 
 Sail.configure do |config|
-  # config.dashboard_auth_lambda = -> { redirect_to( '/admin' ) unless current_user&.can?( :edit, :settings ) }
+  config.dashboard_auth_lambda = -> { redirect_to( '/admin' ) unless current_user&.can?( :edit, :settings ) }
 
-  # config.cache_life_span = 72.hours
-  # config.days_until_stale = nil
+  config.cache_life_span = 72.hours
+  config.days_until_stale = nil
 
   ## Defaults
   # Defines an authorization lambda to access the dashboard as a before action.

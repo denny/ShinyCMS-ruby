@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -22,6 +22,16 @@ RSpec.describe 'Sail settings engine', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.sail.settings.title' )
       expect( response.body ).to have_css '.active', text: I18n.t( 'admin.sail.settings.title' )
+    end
+
+    it 'denies access if not authorized' do
+      wrong_admin = create :stats_admin
+      sign_in wrong_admin
+
+      get '/admin/settings'
+
+      expect( response ).to have_http_status :found
+      expect( response ).to redirect_to '/admin'
     end
   end
 end
