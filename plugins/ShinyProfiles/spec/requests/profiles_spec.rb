@@ -58,7 +58,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       expect( response.body ).to have_title user.profile.name
     end
 
-    it "redirects if the profile doesn't belong to the current user" do
+    it "redirects if the profile doesn't belong to the logged-in user" do
       create :top_level_page
 
       user1 = create :user
@@ -160,6 +160,28 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.notices', text: I18n.t( 'shiny_profiles.profiles.update.success' )
       expect( response.body ).to have_field 'profile[public_name]', with: new_name
+    end
+
+    it "redirects if the profile doesn't belong to the logged-in user" do
+      create :top_level_page
+
+      user1 = create :user
+      user2 = create :user
+      sign_in user2
+
+      new_name = Faker::Books::CultureSeries.unique.culture_ship
+
+      put shiny_profiles.profile_path( user1.username ), params: {
+        profile: {
+          public_name: new_name
+        }
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to main_app.root_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_profiles.profiles.update.not_authorized' )
     end
 
     it 'fails gracefully if required details are missing' do
