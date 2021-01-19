@@ -15,7 +15,14 @@ en:
     edit_profile: Edit your profile
     profiles:
       edit:
-        title: "Editing %{name}'s profile"
+        title: Editing %{name}'s profile
+        links: Links
+        name: Name
+        url: URL
+
+      update:
+        success: Profile details updated
+        failure: Failed to update profile details
 
     admin:
       profiles:

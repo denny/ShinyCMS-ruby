@@ -31,9 +31,9 @@ module ShinyProfiles
 
     def update
       if add_new_link && @profile.update( strong_params )
-        redirect_to shiny_profiles.edit_profile_path( @profile.username ), notice: 'woo yay houpla'
+        redirect_to shiny_profiles.edit_profile_path( @profile.username ), notice: t( '.success' )
       else
-        flash[ :alert ] = 'oh no :('
+        flash[ :alert ] = t( '.failure' )
         render :edit
       end
     end
@@ -52,12 +52,12 @@ module ShinyProfiles
     end
 
     def add_new_link
-      name = params[ :profile ].delete( :new_link_name )
-      url  = params[ :profile ].delete( :new_link_url  )
+      name = params[ :profile ]&.delete( :new_link_name )
+      url  = params[ :profile ]&.delete( :new_link_url  )
 
       return true if url.blank?
 
-      @profile.links.create!( name: name, url: url )
+      @profile.links.create( name: name, url: url ).persisted?
     end
 
     def check_feature_flags
