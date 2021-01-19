@@ -1,19 +1,11 @@
 <% @page_title = t( '.title', name: @profile.name ) %>
 
-<%= form_for @profile, url: shiny_profiles.edit_profile_path( @profile ), method: :put do |f| %>
-  <p>
-    <%= f.label :username %>
-    <br><%= f.text_field :username, disabled: true %>
-  </p>
+<%= form_for @profile, url: shiny_profiles.profile_path( @profile.username ), method: :put do |f| %>
   <p>
     <%= f.label :public_name %>
     <br><%= f.text_field :public_name %>
   </p>
 
-  <p>
-    <%= f.label :email %>
-    <br><%= f.text_field :email %>
-  </p>
   <p>
     <%= f.label :public_email %>
     <br><%= f.text_field :public_email %>
@@ -39,6 +31,25 @@
   <p>
     <%= f.label :postcode %>
     <br><%= f.text_field :postcode, class: 'textshort' %>
+  </p>
+
+  <p>
+    <%= label_tag 'Links' %>
+  </p>
+  <%= hidden_field_tag :sort_order, '', id: :sort_order %>
+  <span id="sortable">
+    <%= f.fields_for :links do |fields| %>
+    <% this = @profile.links[fields.index] %>
+    <p id="sorted_<%= this.id %>">
+      <%= fields.text_field :name, placeholder: 'Name' %>
+      <%= fields.text_field :url,  placeholder: 'URL'  %>
+      <i class="handle cil-elevator"></i>
+    </p>
+    <% end %>
+  </span>
+  <p>
+    <%= text_field_tag 'profile[new_link_name]', nil, placeholder: 'Name' %>
+    <%= text_field_tag 'profile[new_link_url]',  nil, placeholder: 'URL'  %>
   </p>
 
   <p class="top-margin">

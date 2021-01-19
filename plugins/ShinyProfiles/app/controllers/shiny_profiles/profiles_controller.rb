@@ -10,7 +10,7 @@ module ShinyProfiles
   # Main site controller for profile pages, provided by ShinyProfiles plugin for ShinyCMS
   class ProfilesController < MainController
     before_action :check_feature_flags, only: %i[ show ]
-    before_action :stash_profile, only: %i[ show edit ]
+    before_action :stash_profile, only: %i[ show edit update ]
 
     def index
       # TODO: searchable gallery of public user profiles
@@ -18,8 +18,6 @@ module ShinyProfiles
     end
 
     def show; end
-
-    def edit; end
 
     def profile_redirect
       if user_signed_in?
@@ -29,10 +27,37 @@ module ShinyProfiles
       end
     end
 
+    def edit; end
+
+    def update
+      if add_new_link && @profile.update( strong_params )
+        redirect_to shiny_profiles.edit_profile_path( @profile.username ), notice: 'woo yay houpla'
+      else
+        flash[ :alert ] = 'oh no :('
+        render :edit
+      end
+    end
+
     private
 
     def stash_profile
       @profile = Profile.for_username params[ :username ]
+    end
+
+    def strong_params
+      params.require( :profile ).permit(
+        :public_name, :public_email, :profile_pic, :bio, :location, :postcode,
+        :new_link_name, :new_link_url, links_attributes: {}
+      )
+    end
+
+    def add_new_link
+      name = params[ :profile ].delete( :new_link_name )
+      url  = params[ :profile ].delete( :new_link_url  )
+
+      return true if url.blank?
+
+      @profile.links.create!( name: name, url: url )
     end
 
     def check_feature_flags
