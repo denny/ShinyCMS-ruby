@@ -11,14 +11,196 @@
 
 # Documentation for each cast_type: https://github.com/vinistock/sail/wiki
 
+# General
+
 site_name:
   description: The name of the website
-  value: 'MyShinySite'
-  cast_type: string
   group: general
+  cast_type: string
+  value: 'MyShinySite'
 
-show_holding_page:
-  description: Set this to true to display a holding page instead of the main site
-  value: 'false'
+holding_page:
+  description: Show a holding page instead of main site
+  group: general
   cast_type: boolean
-  group: feature_flags
+  value: false
+
+# Security
+
+admin_ip_list:
+  description: If set, only these IP addresses can see admin area (comma-separated list)
+  group: security
+  cast_type: string
+
+# Features
+
+comments:
+  description: Comments
+  group: features
+  cast_type: boolean
+  value: true
+
+tags:
+  description: Tags
+  group: features
+  cast_type: boolean
+  value: true
+
+upvotes:
+  description: Up-votes AKA 'likes'
+  group: features
+  cast_type: boolean
+  value: true
+
+user_logins:
+  description: Allow existing users to log in
+  group: features
+  cast_type: boolean
+  value: false
+
+user_registrations:
+  description: Allow new users to create an account
+  group: features
+  cast_type: boolean
+  value: false
+
+# Email
+
+emails:
+  description: Allow site to send emails
+  group: email
+  cast_type: boolean
+  value: false
+
+default_email:
+  description: Default address to send emails from
+  group: email
+  cast_type: string
+
+comment_reply_notifications:
+  description: Notify author of comment being replied to
+  group: email
+  cast_type: boolean
+  value: true
+
+author_comment_notifications:
+  description: Notify author of content being commented on
+  group: email
+  cast_type: boolean
+  value: true
+
+admin_comment_notifications:
+  description: Notify site admin of all comments
+  group: email
+  cast_type: boolean
+  value: true
+
+## Feature settings
+
+# Stats and tracking
+email_tracking:
+  description: Track email opens and clicks
+  group: stats
+  cast_type: boolean
+  value: false
+
+web_tracking:
+  description: Track website traffic
+  group: stats
+  cast_type: boolean
+  value: false
+
+# Comments
+allow_unauthenticated_comments:
+  description: Allow comments from users who are not logged in
+  group: comments
+  cast_type: boolean
+  value: true
+
+allow_anonymous_comments:
+  description: Allow anonymous comments (requires allow_unauthenticated_comments)
+  group: comments
+  cast_type: boolean
+  value: true
+
+# Upvotes
+downvotes:
+  description: Allow down-votes
+  group: upvotes
+  cast_type: boolean
+  value: true
+
+anonymous_votes_can_change:
+  description: Allow up/down votes changes from same IP address
+  group: upvotes
+  cast_type: boolean
+  value: true
+
+# Akismet (spam flagging) settings
+akismet:
+  description: Flag suspected spam with Akismet
+  group: akismet
+  cast_type: boolean
+  value: true
+
+drop_blatant_spam:
+  description: Delete comments flagged as 'blatant' spam
+  group: akismet
+  cast_type: boolean
+  value: true
+
+log_blatant_spam:
+  description: Log when dropping blatant spam
+  group: akismet
+  cast_type: boolean
+  value: true
+
+# reCaptcha (bot detection) settings
+recaptcha:
+  description: Bot detection
+  group: recaptcha
+  cast_type: boolean
+  value: true
+
+recaptcha_score_default:
+  description: reCaptcha v3 minimum score
+  group: recaptcha
+  cast_type: float
+  value: 0.5
+
+recaptcha_score_for_comments:
+  description: reCaptcha v3 minimum score for comments
+  group: recaptcha
+  cast_type: float
+  value: 0.6
+
+recaptcha_score_for_registrations:
+  description: reCaptcha v3 minimum score for user registrations
+  group: recaptcha
+  cast_type: float
+  value: 0.4
+
+# Appearance
+
+items_per_page:
+  description: Number of items to show per page on main site
+  group: appearance
+  cast_type: integer
+  value: 10
+
+admin_area_items_per_page:
+  description: Number of items to show per page in admin area
+  group: appearance
+  cast_type: integer
+  value: 20
+
+tag_view:
+  description: Show 'list' or 'cloud' view at /tags
+  group: appearance
+  cast_type: string
+  value: cloud
+
+theme_name:
+  description: Name of theme to use on main site
+  group: appearance
+  cast_type: string
