@@ -25,6 +25,8 @@ end
 Sail.configure do |config|
   config.dashboard_auth_lambda = -> { redirect_to( '/admin' ) unless current_user&.can?( :edit, :settings ) }
 
+  config.back_link_path = nil
+
   config.cache_life_span = 72.hours
   config.days_until_stale = nil
 
