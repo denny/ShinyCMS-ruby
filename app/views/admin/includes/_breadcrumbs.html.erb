@@ -25,6 +25,7 @@
 
       <% elsif sail_controller? %>
         <%= link_to t( 'admin.sail.breadcrumb' ), sail.root_path %>
+        <%= hidden_field_tag( :auto_search_enabled, Sail.configuration.enable_search_auto_submit ) %>
 
       <%# ShinyCMS core features %>
       <% else %>
