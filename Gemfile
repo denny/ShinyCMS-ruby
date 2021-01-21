@@ -123,7 +123,7 @@ source 'https://rubygems.org' do
 
   # Pry is a debugging tool for the Rails console
   if env_var_true?( :shinycms_pry_console )
-    # Set ENV['SHINYCMS_PRY_CONSOLE']=true to explicitly enable PRY in this environment
+    # Set ENV['SHINYCMS_PRY_CONSOLE']=true to explicitly enable Pry in this environment
     gem 'pry-rails'
   else
     # Otherwise, it will only be enabled in dev and test environments
