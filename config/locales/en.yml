@@ -450,6 +450,8 @@ en:
       index:
         title: List users
         search: Search users
+        edit_account: Edit account
+        delete_account: Delete account
       new:
         title: Add new user
       edit:

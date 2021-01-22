@@ -34,3 +34,7 @@ en:
           title: Edit user profile
         update:
           success: User profile details updated
+      users:
+        index:
+          view_profile: View profile
+          edit_profile: Edit profile
