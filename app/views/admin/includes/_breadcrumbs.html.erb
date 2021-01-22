@@ -6,15 +6,15 @@
     <li class="breadcrumb-item">
       <% plugin_name = controller.class.name.split('::').first %>
 
+      <%# Allow controllers to override their breadcrumb 'section' link %>
+      <% if controller.respond_to? :breadcrumb_link_text_and_path %>
+        <%= link_to *controller.breadcrumb_link_text_and_path %>
+      <% else %>
+
       <%# ShinyCMS plugins %>
       <% if plugin_loaded? plugin_name %>
 
-        <%# Allow plugin controllers to override their 'section' breadcrumb link %>
-        <% if controller.respond_to? :breadcrumb_link_text_and_path %>
-          <%= link_to *controller.breadcrumb_link_text_and_path %>
-        <% else %>
-          <%= link_to *plugin_breadcrumb_link_text_and_path( plugin_name, controller_name ) %>
-        <% end %>
+      <%= link_to *plugin_breadcrumb_link_text_and_path( plugin_name, controller_name ) %>
 
       <%# Other engines %>
       <% elsif plugin_name == 'Blazer' %>
@@ -28,6 +28,7 @@
       <% else %>
         <%= link_to t( "admin.#{controller_name}.breadcrumb" ), controller: controller_name, action: :index %>
 
+      <% end %>
       <% end %>
     </li>
 
