@@ -10,7 +10,7 @@ ShinyProfiles::Engine.routes.draw do
   scope format: false do
     # Main site
     get 'profiles',               to: 'profiles#index'
-    get 'profile',                to: 'profiles#no_username', as: :current_user_profile
+    get 'profile',                to: 'profiles#profile_redirect', as: :profile_redirect
     get 'profile/:username',      to: 'profiles#show', as: :profile, constraints: User::USERNAME_ROUTE_CONSTRAINT
     get 'profile/:username/edit', to: 'profiles#edit', as: :edit_profile, constraints: User::USERNAME_ROUTE_CONSTRAINT
     put 'profile/:username',      to: 'profiles#update', constraints: User::USERNAME_ROUTE_CONSTRAINT
