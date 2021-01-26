@@ -41,18 +41,6 @@
     <br><%= f.text_field :postcode, class: 'textshort' %>
   </p>
 
-  <span id="links">
-  <%= label_tag t( '.links' ) %>
-  <%= f.fields_for :links do |fields| %>
-  <p>
-    <%= fields.text_field :name, placeholder: t( '.name' ) %>
-    <%= fields.text_field :url,  placeholder: t( '.url'  ) %>
-    <input type="button" value="-" onclick="this.parentNode.remove()">
-  </p>
-  <% end %>
-  </span>
-  <input type="button" value="+" onclick="add_link_inputs()">
-
   <p class="top-margin">
     <%= submit_tag t( 'update' ) %>
   </p>
