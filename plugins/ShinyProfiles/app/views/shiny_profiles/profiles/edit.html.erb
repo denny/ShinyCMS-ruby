@@ -45,15 +45,3 @@
     <%= submit_tag t( 'update' ) %>
   </p>
 <% end %>
-
-<script>
-  function add_link_inputs {
-    document.findElementById( 'links' ).insertAdjacentHTML(
-      'afterend',
-      '<p>
-        <%= text_field_tag 'profile[new_link_name]', nil, placeholder: t( '.name' ) %>
-        <%= text_field_tag 'profile[new_link_url]',  nil, placeholder: t( '.url'  ) %>
-      </p>'
-    );
-  }
-</script>
