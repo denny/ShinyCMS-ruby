@@ -24,7 +24,6 @@ en:
         not_authorized: You are not allowed to edit that profile
       update:
         success: Profile details updated
-        failure: Failed to update profile details
         not_authorized: You are not allowed to edit that profile
       authorize_user:
         not_authorized: NOT USED (workaround for i18n-tasks bug)
