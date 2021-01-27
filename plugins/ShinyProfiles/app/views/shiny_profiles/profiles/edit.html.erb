@@ -33,19 +33,48 @@
     <br><%= f.text_field :postcode, class: 'textshort' %>
   </p>
 
+  <%
+    remove_link_button = %Q{<input type="button" class="no-border" value="&#10134;" alt="#{t( '.remove_link' )}" title="#{t( '.remove_link' )}" onclick="this.parentNode.remove()">}
+    add_link_button    = %Q{<input type="button" id="add-link-button" class="no-border" value="&#10133;" alt="#{t( '.add_link' )}" title="#{t( '.add_link' )}" onclick="add_link_inputs()">}
+
+    @new_link_form = %Q{
+      <p>
+        #{text_field_tag 'profile[new_link_name]', nil, placeholder: t( '.name' )}
+        #{text_field_tag 'profile[new_link_url]',  nil, placeholder: t( '.url'  ), class: 'long'}
+        #{remove_link_button}
+        #{add_link_button}
+      </p>
+    }
+  %>
+
+  <span id="links">
   <%= label_tag t( '.links' ) %>
   <%= f.fields_for :links do |fields| %>
   <p>
     <%= fields.text_field :name, placeholder: t( '.name' ) %>
-    <%= fields.text_field :url,  placeholder: t( '.url'  ) %>
+    <%= fields.text_field :url,  placeholder: t( '.url'  ), class: 'long' %>
+    <%= remove_link_button.html_safe %>
+    <% if fields.index == @profile.links.size %>
+    <%= add_link_button.html_safe %>
+    <% end %>
   </p>
   <% end %>
-  <p>
-    <%= text_field_tag 'profile[new_link_name]', nil, placeholder: t( '.name' ) %>
-    <%= text_field_tag 'profile[new_link_url]',  nil, placeholder: t( '.url'  )  %>
-  </p>
+  <% if @profile.links.empty? %>
+  <%= @new_link_form.html_safe %>
+  </span>
+  <br>
+  <% end %>
 
   <p class="top-margin">
-    <%= submit_tag t( 'update' ) %>
+    <%= submit_tag t( 'update' ), class: 'button' %>
   </p>
 <% end %>
+
+<script>
+  function add_link_inputs() {
+    document.getElementById( 'add-link-button' ).remove()
+    document.getElementById( 'links' ).insertAdjacentHTML(
+      'beforeend', '<%= @new_link_form.gsub( "\n", "\\\n" ).html_safe %>'
+    );
+  }
+</script>
