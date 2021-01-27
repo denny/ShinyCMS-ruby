@@ -54,16 +54,15 @@
     <%= fields.text_field :name, placeholder: t( '.name' ) %>
     <%= fields.text_field :url,  placeholder: t( '.url'  ), class: 'long' %>
     <%= remove_link_button.html_safe %>
-    <% if fields.index == @profile.links.size %>
+    <% if fields.index == @profile.links.size - 1 %>
     <%= add_link_button.html_safe %>
     <% end %>
   </p>
   <% end %>
   <% if @profile.links.empty? %>
   <%= @new_link_form.html_safe %>
-  </span>
-  <br>
   <% end %>
+  </span>
 
   <p class="top-margin">
     <%= submit_tag t( 'update' ), class: 'button' %>
