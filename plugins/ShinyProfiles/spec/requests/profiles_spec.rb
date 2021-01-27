@@ -187,19 +187,5 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_profiles.profiles.update.not_authorized' )
     end
-
-    it 'fails gracefully if required details are missing' do
-      user = create :user
-      sign_in user
-
-      put shiny_profiles.profile_path( user.username ), params: {
-        profile: {
-          new_link_url: 'http://example.com'
-        }
-      }
-
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_profiles.profiles.update.failure' )
-    end
   end
 end
