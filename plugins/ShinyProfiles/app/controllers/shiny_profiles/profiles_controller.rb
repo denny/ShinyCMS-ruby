@@ -28,12 +28,9 @@ module ShinyProfiles
     def edit; end
 
     def update
-      if add_new_links && @profile.update( strong_params )
-        redirect_to shiny_profiles.edit_profile_path( @profile.username ), notice: t( '.success' )
-      else
-        flash[ :alert ] = t( '.failure' )
-        render :edit
-      end
+      flash[ :notice ] = t( '.success' ) if add_new_links && @profile.update( strong_params )
+
+      redirect_to shiny_profiles.edit_profile_path( @profile.username )
     end
 
     private
