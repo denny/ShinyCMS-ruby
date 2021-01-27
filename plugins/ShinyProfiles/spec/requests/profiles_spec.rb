@@ -187,5 +187,30 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_profiles.profiles.update.not_authorized' )
     end
+
+    it 'adds profile links' do
+      user = create :user
+      sign_in user
+
+      name1 = Faker::Books::CultureSeries.culture_ship
+      name2 = Faker::Books::CultureSeries.culture_ship
+      url1  = Faker::Internet.url
+      url2  = Faker::Internet.url
+
+      put shiny_profiles.profile_path( user.username ), params: {
+        profile: {
+          public_name:   nil, # Blows up without this?
+          new_link_name: [ name1, name2 ],
+          new_link_url:  [ url1,  url2  ]
+        }
+      }
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_profiles.edit_profile_path( user.username )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shiny_profiles.profiles.update.success' )
+      expect( response.body ).to have_field 'profile[links_attributes][0][name]', with: name1
+    end
   end
 end
