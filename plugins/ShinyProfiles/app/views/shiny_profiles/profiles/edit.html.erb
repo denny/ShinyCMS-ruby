@@ -39,8 +39,8 @@
 
     @new_link_form = %Q{
       <p>
-        #{text_field_tag 'profile[new_link_name]', nil, placeholder: t( '.name' )}
-        #{text_field_tag 'profile[new_link_url]',  nil, placeholder: t( '.url'  ), class: 'long'}
+        #{text_field_tag 'profile[new_link_name][]', nil, placeholder: t( '.name' )}
+        #{text_field_tag 'profile[new_link_url][]',  nil, placeholder: t( '.url'  ), class: 'long'}
         #{remove_link_button}
         #{add_link_button}
       </p>

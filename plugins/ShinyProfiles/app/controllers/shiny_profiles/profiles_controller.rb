@@ -28,7 +28,7 @@ module ShinyProfiles
     def edit; end
 
     def update
-      if add_new_link && @profile.update( strong_params )
+      if add_new_links && @profile.update( strong_params )
         redirect_to shiny_profiles.edit_profile_path( @profile.username ), notice: t( '.success' )
       else
         flash[ :alert ] = t( '.failure' )
@@ -55,13 +55,19 @@ module ShinyProfiles
       )
     end
 
-    def add_new_link
-      name = params[ :profile ]&.delete( :new_link_name )
-      url  = params[ :profile ]&.delete( :new_link_url  )
+    def add_new_links
+      names = params[ :profile ]&.delete( :new_link_name )
+      urls  = params[ :profile ]&.delete( :new_link_url  )
 
-      return true if url.blank?
+      return true if urls.nil?
 
-      @profile.links.create( name: name, url: url ).persisted?
+      urls.each_with_index do |url, i|
+        next if url.blank?
+
+        name = names[i] || url
+
+        @profile.links.create!( name: name, url: url )
+      end
     end
 
     def check_feature_flags
