@@ -48,7 +48,7 @@ module ShinyProfiles
     def strong_params
       params.require( :profile ).permit(
         :public_name, :public_email, :profile_pic, :bio, :location, :postcode,
-        :new_link_name, :new_link_url, links_attributes: {}
+        new_link_name: [], new_link_url: [], links_attributes: {}
       )
     end
 
