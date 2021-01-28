@@ -23,7 +23,7 @@ module ShinyProfiles
 
     has_many :links, -> { order( :position ) }, inverse_of: :profile, dependent: :destroy
 
-    accepts_nested_attributes_for :links
+    accepts_nested_attributes_for :links, allow_destroy: true
 
     # User profile pic (powered by ActiveStorage)
     has_one_attached :profile_pic, dependent: :purge_now
