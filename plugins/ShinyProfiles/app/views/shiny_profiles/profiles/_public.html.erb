@@ -13,6 +13,20 @@
   <%= simple_format @profile.bio %>
   <% end %>
 
+  <% if @profile.links.present? %>
+  <h3>
+    Links
+  </h3>
+
+  <ul>
+    <% @profile.links.each do |link| %>
+    <li>
+      <%= link_to link.name, link.url %>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
+
   <br>
 
   <p>
