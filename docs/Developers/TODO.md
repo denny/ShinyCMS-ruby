@@ -4,8 +4,6 @@
 
 ### Current / next / urgent
 
-* Finish adding support for links on user profiles
-
 * Investigate: tests of MJML mailers (Forms, Newsletters, etc) throw this when run offline:
     * "Mjml: warning You don't appear to have an internet connection. Try the --offline flag to use the cache for registry queries."
         * Newsletter plugin tests tend to top the 'slowest tests' list - related?

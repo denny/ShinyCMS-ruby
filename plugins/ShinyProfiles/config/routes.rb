@@ -15,9 +15,6 @@ ShinyProfiles::Engine.routes.draw do
     get 'profile/:username/edit', to: 'profiles#edit', as: :edit_profile, constraints: User::USERNAME_ROUTE_CONSTRAINT
     put 'profile/:username',      to: 'profiles#update', constraints: User::USERNAME_ROUTE_CONSTRAINT
 
-    delete 'profile/:username/link/:id', to: 'links#destroy', as: :profile_link,
-                                         constraints: User::USERNAME_ROUTE_CONSTRAINT
-
     # Admin area
     scope path: 'admin', module: 'admin' do
       get 'profiles/:id/edit', to: 'profiles#edit',   as: :admin_edit_profile
