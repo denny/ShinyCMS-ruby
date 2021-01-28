@@ -53,7 +53,8 @@
   <p>
     <%= fields.text_field :name, placeholder: t( '.name' ) %>
     <%= fields.text_field :url,  placeholder: t( '.url'  ), class: 'long' %>
-    <%= remove_link_button.html_safe %>
+    <input type="button" class="no-border" value="&#10134;" alt="#{t( '.remove_link' )}" title="#{t( '.remove_link' )}" onclick="remove_link(<%= fields.index %>, this.parentNode)">
+    <%= fields.hidden_field :_destroy %>
     <% if fields.index == @profile.links.size - 1 %>
     <%= add_link_button.html_safe %>
     <% end %>
@@ -75,5 +76,15 @@
     document.getElementById( 'links' ).insertAdjacentHTML(
       'beforeend', '<%= @new_link_form.gsub( "\n", "\\\n" ).html_safe %>'
     );
+  }
+
+  function remove_link( row_id, row ) {
+    destroy = document.getElementById( 'profile_links_attributes_' + row_id + '__destroy' )
+    links   = document.getElementById( 'links' )
+
+    links.appendChild( destroy )
+    destroy.value = 'true'
+
+    row.remove()
   }
 </script>
