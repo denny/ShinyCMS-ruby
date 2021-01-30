@@ -92,6 +92,9 @@ source 'https://rubygems.org' do
   # Pagination
   gem 'pagy'
 
+  # Generate SEO sitemaps
+  gem 'sitemap_generator'
+
   # Generate Atom feeds
   gem 'rss'
 

@@ -47,6 +47,18 @@ module ShinyPages
       self == Page.default_page
     end
 
+    def path
+      full_path = slug
+
+      parent = section
+      while parent.present?
+        full_path = "#{parent.slug}/#{full_path}"
+        parent = parent.section
+      end
+
+      "/#{full_path}"
+    end
+
     # Class methods
 
     def self.all_top_level_pages

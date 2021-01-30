@@ -10,6 +10,9 @@
 # ActiveStorage
 /storage/
 
+# Sitemaps
+/public/*sitemap.xml*
+
 # Atom feeds
 /public/feeds/atom/*.xml
 
