@@ -13,6 +13,10 @@ module ShinyPages
       ShinyPages::Page.readonly.default_page
     end
 
+    def top_level_menu_items
+      ShinyPages::Page.readonly.top_level_menu_items
+    end
+
     def find_top_level_page( slug )
       top_level_pages&.find_by( slug: slug )
     end
