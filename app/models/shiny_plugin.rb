@@ -30,16 +30,20 @@ class ShinyPlugin
     @main_site_helper ||= name.constantize::MainSiteHelper if defined? name.constantize::MainSiteHelper
   end
 
-  def models_with_demo_data
-    base_model.descendants.select { |model| model.respond_to?( :dump_for_demo? ) }
-  end
-
   def models_that_are_taggable
     base_model.descendants.select( &:taggable? )
   end
 
   def models_that_are_votable
     base_model.descendants.select( &:votable? )
+  end
+
+  def models_with_demo_data
+    base_model.descendants.select { |model| model.respond_to?( :dump_for_demo? ) }
+  end
+
+  def models_with_sitemap_data
+    base_model.descendants.select { |model| model.respond_to?( :sitemap_data ) }
   end
 
   def view_path
