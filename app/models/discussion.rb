@@ -53,6 +53,10 @@ class Discussion < ApplicationRecord
 
   # Class methods
 
+  def self.most_recent_comment
+    comments.order( posted_at: :desc ).first
+  end
+
   def self.recently_active( days: 7, count: 10 )
     counts = Comment.visible.since( days.days.ago ).group( :discussion_id )
                     .order( 'count(id) desc' ).limit( count ).count

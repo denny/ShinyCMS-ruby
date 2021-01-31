@@ -80,17 +80,28 @@ module ShinyPost
 
     alias_method :previous_post, :prev_post
 
-    # Used by SlugInMonth validator
-    def items_in_same_month
-      self.class.readonly.published.where( posted_at: posted_at.all_month )
-    end
-
     def set_posted_at
       self.posted_at = Time.zone.now.iso8601
     end
 
     def build_atom_feed
       self.class.module_parent::BuildAtomFeedJob.perform_later
+    end
+
+    def content_updated_at
+      dates = [ posted_at, updated_at ]
+      dates.push most_recent_comment_posted_at if most_recent_comment_posted_at
+
+      dates.max
+    end
+
+    def most_recent_comment_posted_at
+      discussion&.comments&.order( :posted_at )&.last&.posted_at
+    end
+
+    # Used by SlugInMonth validator
+    def items_in_same_month
+      self.class.readonly.published.where( posted_at: posted_at.all_month )
     end
 
     # Class methods
@@ -113,7 +124,7 @@ module ShinyPost
     end
 
     def self.sitemap_items
-      recent.readonly.collect { |post| ShinySEO::SitemapItem.new post }
+      recent.readonly
     end
   end
 end
