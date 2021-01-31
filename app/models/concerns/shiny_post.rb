@@ -96,7 +96,7 @@ module ShinyPost
     end
 
     def most_recent_comment_posted_at
-      discussion&.comments&.order( :posted_at )&.last&.posted_at
+      discussion&.most_recent_comment&.posted_at
     end
 
     # Used by SlugInMonth validator

@@ -16,7 +16,9 @@ module ShinySEO
         create :top_level_page
         create :page_in_nested_section, created_at: 1.year.ago, updated_at: 3.months.ago
         create :blog_post
-        create :news_post
+        p1 = create :news_post
+        d1 = create :discussion, resource: p1
+        create :comment, discussion: d1
 
         SitemapGenerator::Sitemap.verbose = false
 

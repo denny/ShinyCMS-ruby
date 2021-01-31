@@ -51,11 +51,11 @@ class Discussion < ApplicationRecord
     ( all_comments.maximum( :number ) || 0 ) + 1
   end
 
-  # Class methods
-
-  def self.most_recent_comment
+  def most_recent_comment
     comments.order( posted_at: :desc ).first
   end
+
+  # Class methods
 
   def self.recently_active( days: 7, count: 10 )
     counts = Comment.visible.since( days.days.ago ).group( :discussion_id )
