@@ -107,7 +107,7 @@ module ShinyPages
 
     def self.sitemap_items
       # Excludes the default page because the sitemap_generator gem includes root_path by default
-      visible.readonly.where.not( id: default_page.id ).collect { |page| ShinySEO::SitemapItem.new( page ) }
+      visible.readonly.where.not id: default_page.id
     end
   end
 end

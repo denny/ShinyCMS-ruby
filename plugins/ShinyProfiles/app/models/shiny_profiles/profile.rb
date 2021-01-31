@@ -67,7 +67,7 @@ module ShinyProfiles
     end
 
     def self.sitemap_items
-      visible.readonly.collect { |profile| ShinySEO::SitemapItem.new profile }
+      visible.readonly
     end
   end
 end
