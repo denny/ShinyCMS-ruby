@@ -38,15 +38,11 @@ class VotesController < MainController
   end
 
   def votable_models
-    [ votable_models_in_core + votable_models_in_plugins ].flatten
+    [ main_app_votable_models + ShinyPlugin.votable_models ].flatten
   end
 
-  def votable_models_in_core
+  def main_app_votable_models
     ApplicationRecord.descendants.select( &:votable? ).collect( &:name ).sort
-  end
-
-  def votable_models_in_plugins
-    ShinyPlugin.models_that_are_votable.collect( &:name )
   end
 
   def find_voter
