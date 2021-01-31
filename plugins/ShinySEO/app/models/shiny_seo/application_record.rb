@@ -10,8 +10,5 @@ module ShinySEO
   # Base model class for ShinySEO
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
-    def url_helpers
-      ShinySEO::Engine.routes.url_helpers
-    end
   end
 end
