@@ -16,23 +16,15 @@ module ShinySEO
 
       @resource = resource
 
-      @url = "#{base_url}#{resource.path}"
+      @url = "#{Sitemap.base_url}#{resource.path}"
 
       @content_updated    = explicit_content_updated_at || resource.updated_at
-      @content_updated_at = @content_updated_obj.iso8601
+      @content_updated_at = @content_updated.iso8601
 
       @update_frequency = explicit_update_frequency || guesstimate_update_frequency
     end
 
     private
-
-    def base_url
-      hostname = ENV[ 'SITE_HOSTNAME'     ].presence || 'localhost:3000'
-      protocol = ENV[ 'SITE_URL_PROTOCOL' ].presence || 'https'
-      protocol = 'http' if Rails.env.development? || Rails.env.test?
-
-      Rails.application.routes.url_helpers.root_url( host: hostname, protocol: protocol ).chop
-    end
 
     def explicit_content_updated_at
       @resource.content_updated_at if @resource.respond_to? :content_updated_at

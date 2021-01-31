@@ -23,10 +23,7 @@ module ShinySEO
       end
     end
 
-    private
-
-    # TODO: resolve duplicate; base_url is in Sitemap and SitemapItem
-    def base_url
+    def self.base_url
       hostname = ENV[ 'SITE_HOSTNAME'     ].presence || 'localhost:3000'
       protocol = ENV[ 'SITE_URL_PROTOCOL' ].presence || 'https'
       protocol = 'http' if Rails.env.development? || Rails.env.test?
@@ -34,32 +31,36 @@ module ShinySEO
       Rails.application.routes.url_helpers.root_url( host: hostname, protocol: protocol )
     end
 
-    def aws_sdk_config_present?
-      ENV[ 'AWS_S3_FEEDS_ACCESS_KEY_ID' ] && ENV[ 'AWS_S3_FEEDS_SECRET_ACCESS_KEY' ] &&
-        ENV[ 'AWS_S3_FEEDS_BUCKET' ] && ENV[ 'AWS_S3_FEEDS_REGION' ]
-    end
+    class << self
+      private
 
-    def use_aws_sdk_adapter
-      require 'aws-sdk-s3'
+      def aws_sdk_config_present?
+        ENV[ 'AWS_S3_FEEDS_ACCESS_KEY_ID' ] && ENV[ 'AWS_S3_FEEDS_SECRET_ACCESS_KEY' ] &&
+          ENV[ 'AWS_S3_FEEDS_BUCKET' ] && ENV[ 'AWS_S3_FEEDS_REGION' ]
+      end
 
-      SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
-        's3_bucket',
-        aws_secret_access_key: aws_s3_feeds_secret_access_key,
-        aws_access_key_id:     ENV[ 'AWS_S3_FEEDS_ACCESS_KEY_ID' ],
-        aws_region:            ENV[ 'AWS_S3_FEEDS_REGION' ],
-        aws_endpoint:          s3_endpoint
-      )
-    end
+      def use_aws_sdk_adapter
+        require 'aws-sdk-s3'
 
-    def s3_endpoint
-      s3_bucket = ENV[ 'AWS_S3_FEEDS_BUCKET' ]
-      s3_region = ENV[ 'AWS_S3_FEEDS_REGION' ]
+        SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
+          's3_bucket',
+          aws_secret_access_key: aws_s3_feeds_secret_access_key,
+          aws_access_key_id:     ENV[ 'AWS_S3_FEEDS_ACCESS_KEY_ID' ],
+          aws_region:            ENV[ 'AWS_S3_FEEDS_REGION' ],
+          aws_endpoint:          s3_endpoint
+        )
+      end
 
-      "https://#{s3_bucket}.s3.#{s3_region}.amazonaws.com"
-    end
+      def s3_endpoint
+        s3_bucket = ENV[ 'AWS_S3_FEEDS_BUCKET' ]
+        s3_region = ENV[ 'AWS_S3_FEEDS_REGION' ]
 
-    def aws_s3_feeds_secret_access_key
-      ENV[ 'AWS_S3_FEEDS_SECRET_ACCESS_KEY' ].presence
+        "https://#{s3_bucket}.s3.#{s3_region}.amazonaws.com"
+      end
+
+      def aws_s3_feeds_secret_access_key
+        ENV[ 'AWS_S3_FEEDS_SECRET_ACCESS_KEY' ].presence
+      end
     end
   end
 end
