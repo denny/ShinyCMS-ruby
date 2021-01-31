@@ -17,6 +17,7 @@ Rails.application.configure do
   # ShinyCMS needs eager load enabled, for ActiveRecord::Base.descendants to work properly
   # (Used to find models that have various capabilities - e.g. taggable/searchable/etc)
   config.eager_load = true
+  config.rake_eager_load = true
 
   # Show full error reports
   config.consider_all_requests_local = true
