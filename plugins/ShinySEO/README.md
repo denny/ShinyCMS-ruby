@@ -32,6 +32,10 @@ rails sitemap:create      # Generate sitemaps but don't ping search engines
 rails sitemap:refresh     # Generate sitemaps and ping search engines
 ```
 
+By default, the new sitemap file or files are written to public/sitemap*.xml.gz
+
+If you have AWS_S3_FEEDS_* details in your ENV then the files will be written to that AWS S3 bucket instead. This is useful if your site is hosted on a cloud service without permanent storage, e.g. Heroku.
+
 
 ## Contributing
 
