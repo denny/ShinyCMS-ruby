@@ -94,8 +94,9 @@ Rails.application.configure do
     authentication: ( ENV['MAILER_AUTHENTICATION'] || 'plain' ).to_sym
   }
   # The domain name used to construct any URLs in your emails
-  url_protocol = ENV[ 'SITE_URL_PROTOCOL' ].presence || 'https'
-  config.action_mailer.default_url_options = { host: ENV['SITE_HOSTNAME'], protocol: url_protocol }
+  hostname = ENV[ 'MAILER_HOST' ]
+  protocol = ENV[ 'SHINYCMS_USE_HTTPS' ].present? ? 'https' : 'http'
+  config.action_mailer.default_url_options = { host: hostname, protocol: protocol }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

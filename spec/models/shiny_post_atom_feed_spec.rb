@@ -13,13 +13,16 @@ RSpec.describe ShinyPostAtomFeed, type: :model do
   describe 'instance methods' do
     describe 'ENV fetcher methods' do
       it 'reads the ENV vars' do
-        bucket = 'shinycms-feed-tests'
+        bucket = 'atom-feed-tests'
+        region = 'test'
+
         ENV[ 'AWS_S3_FEEDS_BUCKET' ] = bucket
+        ENV[ 'AWS_S3_FEEDS_REGION' ] = region
+        ENV[ 'SHINYCMS_USE_HTTPS'  ] = 'true'
 
         feeder = described_class.new( :blog )
 
         expect(  feeder.__send__( :aws_s3_feeds_bucket ) ).to eq bucket
-        region = feeder.__send__( :aws_s3_feeds_region )
         expect(  feeder.__send__( :aws_s3_base_url     ) ).to eq "https://#{bucket}.s3.#{region}.amazonaws.com"
 
         expect(  feeder.__send__( :aws_s3_feeds_secret_access_key ) ).to eq nil

@@ -113,7 +113,7 @@ class ShinyPostAtomFeed
   def aws_s3_base_url
     return if aws_s3_feeds_bucket.blank?
 
-    http = ENV[ 'MAILER_URL_PROTOCOL' ].presence || 'https'
+    http = ENV[ 'SHINYCMS_USE_HTTPS' ].present? ? 'https' : 'http'
 
     "#{http}://#{aws_s3_feeds_domain}"
   end
