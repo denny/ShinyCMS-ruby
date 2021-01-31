@@ -9,7 +9,7 @@
 module ShinySEO
   # An item to be fed into SitemapGenerator; see [ShinySEO/]config/sitemap.rb
   class SitemapItem
-    attr_reader :url, :content_updated_at, :check_for_updates
+    attr_reader :url, :content_updated_at, :update_frequency
 
     def initialize( resource )
       return if resource.nil?
@@ -18,15 +18,14 @@ module ShinySEO
 
       @url = "#{base_url}#{resource.path}"
 
-      @content_updated_obj = explicit_content_updated_at || resource.updated_at
-      @content_updated_at  = @content_updated_obj.iso8601
+      @content_updated    = explicit_content_updated_at || resource.updated_at
+      @content_updated_at = @content_updated_obj.iso8601
 
-      @check_for_updates = explicit_update_frequency || guesstimate_update_frequency
+      @update_frequency = explicit_update_frequency || guesstimate_update_frequency
     end
 
     private
 
-    # Find the hostname and protocol to use when creating URLs
     def base_url
       hostname = ENV[ 'SITE_HOSTNAME'     ].presence || 'localhost:3000'
       protocol = ENV[ 'SITE_URL_PROTOCOL' ].presence || 'https'
@@ -45,7 +44,7 @@ module ShinySEO
 
     # TODO: CHECK ASSUMPTIONS!!! Are these the correct strings?
     #
-    # How often do we expect the content to change in future? How soon should they check back?
+    # How often should they check back, how soon do we expect the content to change again?
     def guesstimate_update_frequency
       return 'daily'   if daily?
       return 'weekly'  if weekly?
@@ -55,15 +54,15 @@ module ShinySEO
     end
 
     def daily?
-      @resource.created_at < 1.week.ago  || @content_updated_obj < 2.days.ago
+      @resource.created_at < 1.week.ago  || @content_updated < 2.days.ago
     end
 
     def weekly?
-      @resource.created_at < 1.month.ago || @content_updated_obj < 2.weeks.ago
+      @resource.created_at < 1.month.ago || @content_updated < 2.weeks.ago
     end
 
     def monthly?
-      @resource.created_at < 1.year.ago  || @content_updated_obj < 3.months.ago
+      @resource.created_at < 1.year.ago  || @content_updated < 3.months.ago
     end
   end
 end
