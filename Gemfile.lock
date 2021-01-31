@@ -123,6 +123,14 @@ PATH
       rails (~> 6.1.0)
 
 PATH
+  remote: plugins/ShinySEO
+  specs:
+    shiny_seo (21.1)
+      pg (>= 0.18, < 2.0)
+      rails (~> 6.1.1)
+      sitemap_generator
+
+PATH
   remote: plugins/ShinySearch
   specs:
     shiny_search (21.01)
@@ -718,6 +726,7 @@ DEPENDENCIES
   shiny_pages!
   shiny_profiles!
   shiny_search!
+  shiny_seo!
   sidekiq!
   sidekiq-status!
   sitemap_generator!

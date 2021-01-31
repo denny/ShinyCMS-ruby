@@ -111,5 +111,9 @@ module ShinyPost
 
       raise ActiveRecord::RecordNotFound
     end
+
+    def self.sitemap_items
+      recent.readonly.collect { |post| ShinySEO::SitemapItem.new post }
+    end
   end
 end

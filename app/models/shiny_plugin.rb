@@ -42,8 +42,8 @@ class ShinyPlugin
     base_model.descendants.select { |model| model.respond_to?( :dump_for_demo? ) }
   end
 
-  def models_with_sitemap_data
-    base_model.descendants.select { |model| model.respond_to?( :sitemap_data ) }
+  def models_with_sitemap_items
+    base_model.descendants.select { |model| model.respond_to?( :sitemap_items ) }
   end
 
   def view_path
@@ -86,18 +86,22 @@ class ShinyPlugin
     with_views.select { |plugin| plugin.template_exists?( template_path ) }
   end
 
-  def self.models_with_demo_data
-    # Used by the rake task that dumps the demo site data
-    # Returns names rather than objects to allow the rake task to bodge the dump order
-    with_models.collect( &:models_with_demo_data ).flatten.collect( &:name ).sort
-  end
-
   def self.models_that_are_taggable
     with_models.collect( &:models_that_are_taggable ).flatten.sort_by( &:name )
   end
 
   def self.models_that_are_votable
     with_models.collect( &:models_that_are_votable ).flatten.sort_by( &:name )
+  end
+
+  def self.models_with_demo_data
+    # Used by the rake task that dumps the demo site data
+    # Returns names rather than objects to allow the rake task to bodge the dump order
+    with_models.collect( &:models_with_demo_data ).flatten.collect( &:name ).sort
+  end
+
+  def self.models_with_sitemap_items
+    with_models.collect( &:models_with_sitemap_items ).flatten.sort_by( &:name )
   end
 
   def self.loaded_names

@@ -104,5 +104,9 @@ module ShinyPages
         .where( slug: name_or_slug ) )
         .first
     end
+
+    def self.sitemap_items
+      visible.readonly.where.not( id: default_page.id ).collect { |page| ShinySEO::SitemapItem.new( page ) }
+    end
   end
 end
