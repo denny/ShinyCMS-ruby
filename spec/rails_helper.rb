@@ -9,7 +9,6 @@
 # Config for test suite (anything Rails-specific can go in here)
 
 require 'spec_helper'
-require 'database_cleaner'
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path( '../config/environment', __dir__ )
