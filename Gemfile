@@ -173,7 +173,7 @@ source 'https://rubygems.org' do
     gem 'rails_best_practices'
 
     # Ruby Critic generates easy-to-read reports from multiple static analysis tools
-    gem 'rubycritic', '~> 4.5.0', require: false
+    gem 'rubycritic', '~> 4.6.0', require: false
 
     # Add .analyze method to ActiveRecord objects
     gem 'activerecord-analyze'
