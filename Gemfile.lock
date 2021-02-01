@@ -401,7 +401,7 @@ GEM
     mini_portile2 (2.5.0)
     minitest (5.14.3)
     mjml-rails (4.6.1)
-    msgpack (1.4.1)
+    msgpack (1.4.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     netaddr (2.0.4)
@@ -557,7 +557,7 @@ GEM
       ffi (~> 1.9)
     ruby_parser (3.15.1)
       sexp_processor (~> 4.9)
-    rubycritic (4.5.2)
+    rubycritic (4.6.0)
       flay (~> 2.8)
       flog (~> 4.4)
       launchy (>= 2.0.0)
@@ -565,7 +565,7 @@ GEM
       rainbow (~> 3.0)
       reek (~> 6.0, < 7.0)
       ruby_parser (~> 3.8)
-      simplecov (>= 0.17.0)
+      simplecov (>= 0.17.0, < 0.21)
       tty-which (~> 0.4.0)
       virtus (~> 1.0)
     safely_block (0.3.0)
@@ -590,7 +590,7 @@ GEM
     sidekiq-status (1.1.4)
       chronic_duration
       sidekiq (>= 3.0)
-    simplecov (0.21.2)
+    simplecov (0.20.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
@@ -703,7 +703,7 @@ DEPENDENCIES
   rubocop-performance!
   rubocop-rails!
   rubocop-rspec!
-  rubycritic (~> 4.5.0)!
+  rubycritic (~> 4.6.0)!
   sassc-rails!
   seed_dump!
   shiny_access!
