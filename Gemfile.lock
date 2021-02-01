@@ -18,7 +18,7 @@ GIT
 PATH
   remote: plugins/ShinyAccess
   specs:
-    shiny_access (21.01)
+    shiny_access (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
@@ -30,7 +30,7 @@ PATH
 PATH
   remote: plugins/ShinyBlog
   specs:
-    shiny_blog (21.01)
+    shiny_blog (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -43,7 +43,7 @@ PATH
 PATH
   remote: plugins/ShinyForms
   specs:
-    shiny_forms (21.01)
+    shiny_forms (21.02)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
       pagy
@@ -54,7 +54,7 @@ PATH
 PATH
   remote: plugins/ShinyInserts
   specs:
-    shiny_inserts (21.01)
+    shiny_inserts (21.02)
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
@@ -66,7 +66,7 @@ PATH
 PATH
   remote: plugins/ShinyLists
   specs:
-    shiny_lists (21.01)
+    shiny_lists (21.02)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
       pagy
@@ -77,7 +77,7 @@ PATH
 PATH
   remote: plugins/ShinyNews
   specs:
-    shiny_news (21.01)
+    shiny_news (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -90,7 +90,7 @@ PATH
 PATH
   remote: plugins/ShinyNewsletters
   specs:
-    shiny_newsletters (21.01)
+    shiny_newsletters (21.02)
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
@@ -102,7 +102,7 @@ PATH
 PATH
   remote: plugins/ShinyPages
   specs:
-    shiny_pages (21.01)
+    shiny_pages (21.02)
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
@@ -114,7 +114,7 @@ PATH
 PATH
   remote: plugins/ShinyProfiles
   specs:
-    shiny_profiles (21.01)
+    shiny_profiles (21.02)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
       pagy
@@ -125,7 +125,7 @@ PATH
 PATH
   remote: plugins/ShinySearch
   specs:
-    shiny_search (21.01)
+    shiny_search (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       algoliasearch-rails
