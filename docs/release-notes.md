@@ -5,6 +5,59 @@
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
 
+### 2021-02-01  21.02  February 2021: The 'quiet after the storm' release
+
+    * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.02
+
+    * Plugin versions all updated to 21.02, as they all have changes since 21.01
+        * Only minor changes in many though, often just the admin search method move
+
+    * Headlines:
+        * Quiet month, after last month's upgrade extravaganza!
+        * No really big changes this month; not that many smaller ones either :)
+
+    * Bug fixes:
+        * Tags on hidden content no longer show up on tag list and tag cloud pages
+            * Added ShinyTags concern and helpers to enable this
+        * User profile instantiation in dev is more robust now (lazy-loading issue resolved)
+        * More robust handling of 404s for non-HTML formats (usually hits from malware)
+
+    * Added:
+        * ShinyUserAuthentication and ShinyUserAuthorization concerns
+            * Splitting out auth code from User model
+        * ShinyUserContent concern - splitting off relations to user-owned content
+        * Links on user profiles, with a JS UI that very nearly works properly
+        * ErrorController - more standard way to provide 'smart' 404 (etc) pages
+            * Changes in several places to raise RecordNotFound to trigger 404 'neatly'
+            * Added rspec support for optionally raising production-style errors in test env
+        * Some support for manually overriding open/active status of admin menu items
+        * lib/gemfile_plugins_helper.rb - new home for plugin-supporting methods from Gemfile
+        * rubycritic - now uncommented in the Gemfile, reek fixed their ruby 3.0 issues
+        * zxcvbn-ruby - intelligent password complexity checker
+            * PasswordsController - JSON endpoint for getting password scores and advice
+        * activerecord-analyze - adds .analyze method to AR objects, for investigating issues
+
+    * Updated:
+        * Rails, from 6.1.0 to 6.1.1
+        * Puma, from 5.1 to 5.2
+        * Blazer, from 2.3.1 to 2.4.0
+            * Fixed the issue with recent versions by overriding the clear_helpers method
+        * MJMLSyntaxValidator rewritten - uses mjml directly rather than Mjml::Parser gem
+        * Admin area 'quick search' methods moved from controllers to models
+        * Minor code-quality tweaks in various admin controllers and some models
+            * In controllers, mostly setting instance variables in before_actions
+            * In models, several accessors changed from read/write to read-only
+        * Split user session and user registration tests into two separate files
+
+    * Removed:
+        * groupdate gem - this is related to Blazer, but wasn't being used
+        * Various post-login redirect code, particularly for admins
+            * It was architecturally horrible, and didn't offer enough value to justify that
+        * user_profile factory - profiles are auto-created along with users now
+            * There were quite a lot of very minor spec updates to adapt to this
+        * Static 404 and 500 pages
+
+
 ### 2021-01-01  21.01  January 2021: 'Wishing you a Happy New Year, a Happy New Rails, and a Happy New Ruby!'
 
     * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.01
