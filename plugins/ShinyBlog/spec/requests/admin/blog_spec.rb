@@ -180,7 +180,7 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
     end
   end
 
-  describe 'GET //admin/blog/:id/edit' do
+  describe 'GET /3admin/blog/:id/edit' do
     it 'loads the form to edit an existing blog post' do
       post = create :blog_post
 
@@ -254,7 +254,7 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
     end
   end
 
-  describe 'DELETE //admin/blog/:id' do
+  describe 'DELETE /admin/blog/:id' do
     it 'deletes the specified blog post' do
       p1 = create :blog_post
       p2 = create :blog_post
