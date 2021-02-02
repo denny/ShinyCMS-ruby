@@ -23,8 +23,6 @@ module Shiny
       public_task :create_root
       public_task :apply_rails_template
 
-      alias plugin_path app_path
-
       def name
         @name ||=
           begin
@@ -162,27 +160,8 @@ module Shiny
         raise Error, "Invalid plugin name '#{original_name}' - constant #{camelized} is already in use."
       end
 
-      def dummy_path( path = nil )
-        @dummy_path = path if path
-        @dummy_path || options[:dummy_path]
-      end
-
       def mute( &block )
         shell.mute( &block )
-      end
-
-      def rails_app_path
-        APP_PATH.sub( '/config/application', '' ) if defined?( APP_PATH )
-      end
-
-      def inside_application?
-        rails_app_path && destination_root.start_with?( rails_app_path.to_s )
-      end
-
-      def relative_path
-        return unless inside_application?
-
-        app_path.sub( /^#{rails_app_path}\//, '' )
       end
     end
     # rubocop:enable Metrics/ClassLength

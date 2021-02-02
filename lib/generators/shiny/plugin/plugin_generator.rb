@@ -16,21 +16,11 @@
 # * A bunch of supporting code moved into separate files
 # * Some stuff in the templates to tie the resulting plugin into ShinyCMS
 
-require 'rails/generators/rails/app/app_generator'
-require 'date'
-
 require_relative './plugin_generator_base'
-require_relative './plugin_builder'
 
 module Shiny
   module Generators
     class PluginGenerator < PluginGeneratorBase # :nodoc:
-      add_shared_options_for 'plugin'
-
-      public_task :set_default_accessors!
-      public_task :create_root
-      public_task :apply_rails_template
-
       alias plugin_path app_path
 
       def initialize( *args )
@@ -126,10 +116,6 @@ module Shiny
       def dummy_path( path = nil )
         @dummy_path = path if path
         @dummy_path || options[:dummy_path]
-      end
-
-      def mute( &block )
-        shell.mute( &block )
       end
 
       def rails_app_path
