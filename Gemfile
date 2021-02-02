@@ -131,7 +131,10 @@ source 'https://rubygems.org' do
   end
 
   group :production do
-    # Bugsnag is an error monitoring service
+    # Airbrake - error monitoring and APM
+    gem 'airbrake'
+
+    # Bugsnag - error monitoring and bug triage
     gem 'bugsnag'
 
     # Fix request.ip if we're running behind Cloudflare's proxying service
