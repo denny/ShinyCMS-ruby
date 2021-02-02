@@ -1,23 +1,65 @@
 # frozen_string_literal: true
 
+# ShinyNews plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
-RSpec.describe 'Admin::News', type: :request do
+# Tests for news admin features
+RSpec.describe 'Admin::News Posts', type: :request do
   before do
     @admin = create :news_admin
     sign_in @admin
   end
 
-  describe 'GET //admin/news' do
-    it 'fetches the list of news posts' do
+  describe 'GET /admin/news' do
+    it 'fetches the list of news posts with less than one page of posts' do
+      create :news_post
+      create :news_post
+      create :news_post
+
       get shiny_news.news_posts_path
 
       expect( response ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
     end
+
+    it 'fetches the list of news posts when its empty' do
+      get shiny_news.news_posts_path
+
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
+    end
+
+    it 'fetches the list of news posts with more than one page of posts' do
+      create_list :news_post, 12
+
+      get shiny_news.news_posts_path
+
+      pager_info = 'Displaying items 1-10 of 12 in total'  # FIXME: i18n
+
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
+      expect( response.body ).to have_css '.pager-info', text: pager_info
+    end
+
+    it 'fetches the second page of news posts' do
+      create_list :news_post, 12
+
+      get shiny_news.news_posts_path, params: { page: 2 }
+
+      pager_info = 'Displaying items 11-12 of 12 in total'  # FIXME: i18n
+
+      expect( response ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
+      expect( response.body ).to have_css '.pager-info', text: pager_info
+    end
   end
 
-  describe 'GET //admin/news/search?q=zing' do
+  describe 'GET /admin/news/search?q=zing' do
     it 'fetches the list of matching news posts' do
       post1 = create :news_post, body: 'Zebras are zingy'
       post2 = create :news_post, body: 'Aardvarks are awesome'
@@ -32,7 +74,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
   end
 
-  describe 'GET //admin/news/new' do
+  describe 'GET /admin/news/new' do
     it 'loads the form to create a new news post' do
       get shiny_news.new_news_post_path
 
@@ -58,6 +100,30 @@ RSpec.describe 'Admin::News', type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news_posts.create.success' )
+    end
+
+    it 'creates a linked discussion if requested' do
+      post shiny_news.news_posts_path, params: {
+        post: {
+          user_id:                 @admin.id,
+          title:                   Faker::Books::CultureSeries.unique.culture_ship,
+          body:                    Faker::Lorem.paragraph,
+          discussion_show_on_site: '1',
+          discussion_locked:       '1'
+        }
+      }
+
+      post = ShinyNews::Post.last
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_news.edit_news_post_path( post )
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_news.admin.news_posts.create.success' )
+
+      expect( post.discussion         ).to be_present
+      expect( post.discussion.hidden? ).to be false
+      expect( post.discussion.locked? ).to be true
     end
 
     it 'fails to create a new news post when an incomplete form is submitted' do
@@ -114,7 +180,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
   end
 
-  describe 'GET //admin/news/:id/edit' do
+  describe 'GET /admin/news/:id/edit' do
     it 'loads the form to edit an existing news post' do
       post = create :news_post
 
@@ -188,7 +254,7 @@ RSpec.describe 'Admin::News', type: :request do
     end
   end
 
-  describe 'DELETE //admin/news/:id' do
+  describe 'DELETE /admin/news/:id' do
     it 'deletes the specified news post' do
       p1 = create :news_post
       p2 = create :news_post
