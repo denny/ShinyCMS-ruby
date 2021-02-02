@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shiny_access (21.01)
+    shiny_access (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)

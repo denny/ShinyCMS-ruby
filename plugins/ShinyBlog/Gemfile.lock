@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shiny_blog (21.01)
+    shiny_blog (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor

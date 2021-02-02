@@ -18,7 +18,7 @@ GIT
 PATH
   remote: plugins/ShinyAccess
   specs:
-    shiny_access (21.01)
+    shiny_access (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
@@ -30,7 +30,7 @@ PATH
 PATH
   remote: plugins/ShinyBlog
   specs:
-    shiny_blog (21.01)
+    shiny_blog (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -43,7 +43,7 @@ PATH
 PATH
   remote: plugins/ShinyForms
   specs:
-    shiny_forms (21.01)
+    shiny_forms (21.02)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
       pagy
@@ -54,7 +54,7 @@ PATH
 PATH
   remote: plugins/ShinyInserts
   specs:
-    shiny_inserts (21.01)
+    shiny_inserts (21.02)
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
@@ -66,7 +66,7 @@ PATH
 PATH
   remote: plugins/ShinyLists
   specs:
-    shiny_lists (21.01)
+    shiny_lists (21.02)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
       pagy
@@ -77,7 +77,7 @@ PATH
 PATH
   remote: plugins/ShinyNews
   specs:
-    shiny_news (21.01)
+    shiny_news (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -90,7 +90,7 @@ PATH
 PATH
   remote: plugins/ShinyNewsletters
   specs:
-    shiny_newsletters (21.01)
+    shiny_newsletters (21.02)
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
@@ -102,7 +102,7 @@ PATH
 PATH
   remote: plugins/ShinyPages
   specs:
-    shiny_pages (21.01)
+    shiny_pages (21.02)
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
@@ -114,7 +114,7 @@ PATH
 PATH
   remote: plugins/ShinyProfiles
   specs:
-    shiny_profiles (21.01)
+    shiny_profiles (21.02)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
       pagy
@@ -133,7 +133,7 @@ PATH
 PATH
   remote: plugins/ShinySearch
   specs:
-    shiny_search (21.01)
+    shiny_search (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       algoliasearch-rails
@@ -264,7 +264,7 @@ GEM
       chartkick (>= 3.2)
       railties (>= 5)
       safely_block (>= 0.1.1)
-    bootsnap (1.6.0)
+    bootsnap (1.7.0)
       msgpack (~> 1.0)
     brakeman (5.0.0)
     bugsnag (6.19.0)
@@ -273,7 +273,7 @@ GEM
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
       thor (>= 0.18, < 2)
-    capybara (3.35.1)
+    capybara (3.35.3)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -303,10 +303,10 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    database_cleaner (1.8.5)
-    database_cleaner-active_record (1.8.0)
-      activerecord
-      database_cleaner (~> 1.8.0)
+    database_cleaner-active_record (2.0.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     device_detector (1.0.5)
@@ -409,7 +409,7 @@ GEM
     mini_portile2 (2.5.0)
     minitest (5.14.3)
     mjml-rails (4.6.1)
-    msgpack (1.4.1)
+    msgpack (1.4.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     netaddr (2.0.4)
@@ -536,7 +536,7 @@ GEM
       rspec-core (>= 2, < 4, != 2.12.0)
     rss (0.2.9)
       rexml
-    rubocop (1.9.0)
+    rubocop (1.9.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -565,7 +565,7 @@ GEM
       ffi (~> 1.9)
     ruby_parser (3.15.1)
       sexp_processor (~> 4.9)
-    rubycritic (4.5.2)
+    rubycritic (4.6.0)
       flay (~> 2.8)
       flog (~> 4.4)
       launchy (>= 2.0.0)
@@ -573,7 +573,7 @@ GEM
       rainbow (~> 3.0)
       reek (~> 6.0, < 7.0)
       ruby_parser (~> 3.8)
-      simplecov (>= 0.17.0)
+      simplecov (>= 0.17.0, < 0.21)
       tty-which (~> 0.4.0)
       virtus (~> 1.0)
     safely_block (0.3.0)
@@ -598,7 +598,7 @@ GEM
     sidekiq-status (1.1.4)
       chronic_duration
       sidekiq (>= 3.0)
-    simplecov (0.21.2)
+    simplecov (0.20.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
@@ -637,7 +637,7 @@ GEM
       equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webmock (3.11.1)
+    webmock (3.11.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -713,7 +713,7 @@ DEPENDENCIES
   rubocop-performance!
   rubocop-rails!
   rubocop-rspec!
-  rubycritic (~> 4.5.0)!
+  rubycritic (~> 4.6.0)!
   sassc-rails!
   seed_dump!
   shiny_access!

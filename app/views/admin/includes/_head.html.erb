@@ -1,10 +1,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>
-      <%= "#{@page_title.titlecase} - " if @page_title %>ShinyCMS
-    </title>
-
     <%= csrf_meta_tags %>
     <%= csp_meta_tag   %>
 
@@ -16,6 +12,7 @@
     <script>
       <%= blazer_js_var "rootPath", root_path %>
     </script>
+    <% @page_title = t( "admin.blazer.#{controller_name}.title" ) %>
     <% end %>
 
     <% unless blazer_controller? || rep_controller? %>
@@ -30,3 +27,7 @@
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Noto+Sans+TC|Ubuntu|Roboto+Condensed|Roboto&display=swap' %>
 
     <%= stylesheet_link_tag 'shinycms/admin_area', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <title>
+      <%= "#{@page_title.titlecase} - " if @page_title %>ShinyCMS
+    </title>
