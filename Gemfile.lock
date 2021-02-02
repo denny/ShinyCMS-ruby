@@ -221,6 +221,10 @@ GEM
       device_detector
       geocoder (>= 1.4.5)
       safely_block (>= 0.2.1)
+    airbrake (11.0.1)
+      airbrake-ruby (~> 5.1)
+    airbrake-ruby (5.2.0)
+      rbtree3 (~> 0.5)
     akismet (3.0.0)
     algoliasearch (1.27.5)
       httpclient (~> 2.8, >= 2.8.3)
@@ -491,6 +495,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rbtree3 (0.6.0)
     recaptcha (5.6.0)
       json
     redis (4.2.5)
@@ -655,6 +660,7 @@ DEPENDENCIES
   acts_as_votable!
   ahoy_email!
   ahoy_matey!
+  airbrake!
   akismet!
   amazing_print!
   aws-sdk-s3!
