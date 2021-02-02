@@ -15,7 +15,6 @@ module Rails
 
     def app
       directory 'app'
-      empty_directory_with_keep_file "app/assets/images/#{namespaced_name}"
     end
 
     def readme
@@ -44,15 +43,6 @@ module Rails
     def config
       template 'config/routes.rb'
       template 'config/locales/en.yml'
-    end
-
-    def assets_manifest
-      template 'rails/engine_manifest.js', "app/assets/config/#{underscored_name}_manifest.js"
-    end
-
-    def stylesheets
-      copy_file 'rails/stylesheets.css',
-                "app/assets/stylesheets/#{namespaced_name}/application.css"
     end
 
     def bin( force: false )
