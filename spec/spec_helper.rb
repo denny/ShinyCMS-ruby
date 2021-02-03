@@ -38,6 +38,29 @@ FileUtils.cp_r 'spec/fixtures/TEST', test_theme unless Dir.exist? test_theme
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  # Different behaviour when only running one spec file
+  if config.files_to_run.one?
+    # Use the documentation formatter for detailed output, unless a formatter
+    # has already been configured (e.g. via a command-line flag).
+    config.default_formatter = 'doc'
+  else
+    # Only overwrite coverage when running the full test suite
+    SimpleCov.start do
+      add_filter '/spec/'
+    end
+
+    if ENV['CI'] == 'true'
+      require 'codecov'
+      SimpleCov.formatter = SimpleCov::Formatter::Codecov
+    end
+
+    if ENV[ 'SHOW_SLOW_SPECS' ]
+      # Show the slowest examples and example groups at the end of the run,
+      # to help surface any specs that are running particularly slow.
+      config.profile_examples = ENV[ 'SHOW_SLOW_SPECS' ]
+    end
+  end
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -89,21 +112,6 @@ RSpec.configure do |config|
   #   - http://www.teaisaweso.me/blog/2013/05/27/rspecs-new-message-expectation-syntax/
   #   - http://rspec.info/blog/2014/05/notable-changes-in-rspec-3/#zero-monkey-patching-mode
   config.disable_monkey_patching!
-
-  # Many RSpec users commonly either run the entire suite or an individual
-  # file, and it's useful to allow more verbose output when running an
-  # individual spec file.
-  if config.files_to_run.one?
-    # Use the documentation formatter for detailed output,
-    # unless a formatter has already been configured
-    # (e.g. via a command-line flag).
-    config.default_formatter = 'doc'
-  end
-
-  # Print the 10 slowest examples and example groups at the
-  # end of the spec run, to help surface which specs are running
-  # particularly slow.
-  # config.profile_examples = 10
 
   # Run specs in random order to surface order dependencies. If you find an
   # order dependency and want to debug it, you can fix the order by providing

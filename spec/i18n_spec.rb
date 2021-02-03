@@ -6,6 +6,9 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# This is my slowest test file by almost an order of magnitude, so ...
+return if ENV['CI'] == 'true'
+
 require 'i18n/tasks'
 
 # Tests to check i18n strings are all present and current
