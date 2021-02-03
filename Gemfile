@@ -57,8 +57,7 @@ source 'https://rubygems.org' do
   # Authorisation
   gem 'pundit'
 
-  # Sail provides settings/configuration features
-  # TODO: Investigate issue with sessions - https://github.com/vinistock/sail/issues/326
+  # Sail provides a control panel for managing settings
   gem 'sail', path: '/home/denny/code/denny/sail'
 
   # Soft delete
