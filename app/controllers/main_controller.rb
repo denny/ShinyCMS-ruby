@@ -9,6 +9,7 @@
 # Base controller for 'main site'; end-user-facing ShinyCMS features
 class MainController < ApplicationController
   include ShinyMainSiteHelper
+  include ShinyS3
 
   ShinyPlugin.with_main_site_helpers.each do |plugin|
     helper plugin.main_site_helper
@@ -110,25 +111,5 @@ class MainController < ApplicationController
 
   def feeds_base_url
     aws_s3_feeds_base_url || main_app.root_url.to_s.chop
-  end
-
-  def aws_s3_feeds_base_url
-    ENV[ 'AWS_S3_FEEDS_BASE_URL' ].presence || aws_s3_feeds_endpoint
-  end
-
-  def aws_s3_feeds_endpoint
-    return if aws_s3_feeds_bucket.blank? || aws_s3_feeds_region.blank?
-
-    http = ENV[ 'SHINYCMS_USE_HTTPS' ].present? ? 'https' : 'http'
-
-    "#{http}://#{aws_s3_feeds_bucket}.s3.#{aws_s3_feeds_region}.amazonaws.com"
-  end
-
-  def aws_s3_feeds_bucket
-    ENV[ 'AWS_S3_FEEDS_BUCKET' ].presence
-  end
-
-  def aws_s3_feeds_region
-    ENV[ 'AWS_S3_FEEDS_REGION' ].presence
   end
 end
