@@ -3,51 +3,20 @@
 
       <% if sail_controller? %>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <%= javascript_include_tag 'sail/application', async: true  %>
+
+      <button id="btn-guide" type="button" class="search-button" style="margin-left: 1em; display: none;">
+        <%= I18n.t("sail.guide") %>
+      </button>
       <script>
-        for(i = 0; i < cardTitles.length; i++) cardTitles[i].addEventListener("click", flipCard);
+        $( '#btn-guide' ).insertAfter( $( '#btn-profiles' ) ).show()
       </script>
 
       <% else %>
       <%= javascript_pack_tag 'application' %>
-      <%#= javascript_pack_tag 'admin_area'  %>
+      <%#= javascript_pack_tag 'admin_area' %>
 
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-      <script>
-        $( function() {
-          $( '#sortable' ).sortable({
-            handle: '.handle',
-            update: function( e, ui ) {
-              $( '#sort_order' ).val( $( this ).sortable( 'serialize' ) );
-            }
-          });
-
-          $( '#live-sortable' ).sortable({
-            handle: '.handle',
-            update: function( e, ui ) {
-              Rails.ajax({
-                url:  $( this ).data( 'url' ),
-                type: 'PUT',
-                data: $( this ).sortable( 'serialize' ),
-              });
-            }
-          });
-
-          $( '#find_user_by_username' ).autocomplete({
-            source: '/admin/users/usernames',
-            minLength: 3
-          });
-        });
-      </script>
-
-      <script>
-        function toggleShowHandles( show_handles ) {
-          var handles = document.getElementsByClassName( 'handle' );
-          var count = handles.length;
-
-          for ( var i = 0; i < count; i++ ) {
-            handles[i].hidden = !show_handles;
-          }
-        }
-      </script>
+      <script src="/js/admin-area.js"></script>
 
       <% end %>

@@ -4,3 +4,7 @@
 <%= render partial: 'admin/includes/breadcrumbs' %>
 
 <%= render partial: 'admin/includes/user_menu' %>
+
+<% if sail_controller? %>
+<%# bodge bodge bodge %><div style="display: none;"><summary style="display: none;"></summary></div>
+<% end %>
