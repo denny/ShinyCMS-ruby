@@ -38,6 +38,29 @@ FileUtils.cp_r 'spec/fixtures/TEST', test_theme unless Dir.exist? test_theme
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  # Different behaviour when only running one spec file
+  if config.files_to_run.one?
+    # Use the documentation formatter for detailed output, unless a formatter
+    # has already been configured (e.g. via a command-line flag).
+    config.default_formatter = 'doc'
+  else
+    # Only overwrite coverage when running the full test suite
+    SimpleCov.start do
+      add_filter '/spec/'
+    end
+
+    if ENV['CI'] == 'true'
+      require 'codecov'
+      SimpleCov.formatter = SimpleCov::Formatter::Codecov
+    end
+
+    if ENV[ 'SHOW_SLOW_SPECS' ]
+      # Show the slowest examples and example groups at the end of the run,
+      # to help surface any specs that are running particularly slow.
+      config.profile_examples = ENV[ 'SHOW_SLOW_SPECS' ]
+    end
+  end
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
