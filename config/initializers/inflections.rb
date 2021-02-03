@@ -22,6 +22,7 @@ ActiveSupport::Inflector.inflections( :en ) do |inflect|
   inflect.acronym 'HTML'
   inflect.acronym 'MJML'
   inflect.acronym 'SEO'
+  inflect.acronym 'URL'
 
   # Some common acronyms that might be used in CMS content (and then b0rked by .titlecase)
   inflect.acronym 'AI'

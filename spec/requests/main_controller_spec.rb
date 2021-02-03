@@ -23,7 +23,7 @@ RSpec.describe MainController, type: :request do
         ENV['AWS_S3_FEEDS_BUCKET'] = nil
         ENV['AWS_S3_FEEDS_REGION'] = nil
 
-        expect( response.body ).to include 'https://test_bucket.s3.eu-test-1.amazonaws.com/feeds/atom/blog.xml'
+        expect( response.body ).to include 'http://test_bucket.s3.eu-test-1.amazonaws.com/feeds/atom/blog.xml'
       end
     end
   end

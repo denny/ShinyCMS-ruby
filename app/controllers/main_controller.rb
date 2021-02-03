@@ -109,19 +109,19 @@ class MainController < ApplicationController
   end
 
   def feeds_base_url
-    aws_s3_base_url || main_app.root_url.to_s.chop
+    aws_s3_feeds_base_url || main_app.root_url.to_s.chop
   end
 
-  def aws_s3_base_url
-    return if aws_s3_feeds_bucket.blank?
-
-    http = ENV[ 'MAILER_URL_PROTOCOL' ].presence || 'https'
-
-    "#{http}://#{aws_s3_feeds_domain}"
+  def aws_s3_feeds_base_url
+    ENV[ 'AWS_S3_FEEDS_BASE_URL' ].presence || aws_s3_feeds_endpoint
   end
 
-  def aws_s3_feeds_domain
-    ENV[ 'AWS_S3_FEEDS_DOMAIN' ].presence || "#{aws_s3_feeds_bucket}.s3.#{aws_s3_feeds_region}.amazonaws.com"
+  def aws_s3_feeds_endpoint
+    return if aws_s3_feeds_bucket.blank? || aws_s3_feeds_region.blank?
+
+    http = ENV[ 'SHINYCMS_USE_HTTPS' ].present? ? 'https' : 'http'
+
+    "#{http}://#{aws_s3_feeds_bucket}.s3.#{aws_s3_feeds_region}.amazonaws.com"
   end
 
   def aws_s3_feeds_bucket

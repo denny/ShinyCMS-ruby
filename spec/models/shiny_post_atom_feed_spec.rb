@@ -18,17 +18,14 @@ RSpec.describe ShinyPostAtomFeed, type: :model do
 
         ENV[ 'AWS_S3_FEEDS_BUCKET' ] = bucket
         ENV[ 'AWS_S3_FEEDS_REGION' ] = region
-        ENV[ 'SHINYCMS_USE_HTTPS'  ] = 'true'
 
         feeder = described_class.new( :blog )
 
-        expect(  feeder.__send__( :aws_s3_feeds_bucket ) ).to eq bucket
-        expect(  feeder.__send__( :aws_s3_base_url     ) ).to eq "https://#{bucket}.s3.#{region}.amazonaws.com"
+        expect(  feeder.__send__( :aws_s3_feeds_bucket   ) ).to eq bucket
+        expect(  feeder.__send__( :aws_s3_feeds_base_url ) ).to eq "http://#{bucket}.s3.#{region}.amazonaws.com"
 
         expect(  feeder.__send__( :aws_s3_feeds_secret_access_key ) ).to eq nil
         expect(  feeder.__send__( :aws_s3_feeds_access_key_id     ) ).to eq nil
-
-        ENV[ 'AWS_S3_FEEDS_BUCKET' ] = ''
       end
     end
   end
