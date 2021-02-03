@@ -25,7 +25,7 @@ PATH
 PATH
   remote: plugins/ShinyAccess
   specs:
-    shiny_access (21.01)
+    shiny_access (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
@@ -37,7 +37,7 @@ PATH
 PATH
   remote: plugins/ShinyBlog
   specs:
-    shiny_blog (21.01)
+    shiny_blog (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -50,7 +50,7 @@ PATH
 PATH
   remote: plugins/ShinyForms
   specs:
-    shiny_forms (21.01)
+    shiny_forms (21.02)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
       pagy
@@ -61,7 +61,7 @@ PATH
 PATH
   remote: plugins/ShinyInserts
   specs:
-    shiny_inserts (21.01)
+    shiny_inserts (21.02)
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
@@ -73,7 +73,7 @@ PATH
 PATH
   remote: plugins/ShinyLists
   specs:
-    shiny_lists (21.01)
+    shiny_lists (21.02)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
       pagy
@@ -84,7 +84,7 @@ PATH
 PATH
   remote: plugins/ShinyNews
   specs:
-    shiny_news (21.01)
+    shiny_news (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -97,7 +97,7 @@ PATH
 PATH
   remote: plugins/ShinyNewsletters
   specs:
-    shiny_newsletters (21.01)
+    shiny_newsletters (21.02)
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
@@ -109,7 +109,7 @@ PATH
 PATH
   remote: plugins/ShinyPages
   specs:
-    shiny_pages (21.01)
+    shiny_pages (21.02)
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
@@ -121,7 +121,7 @@ PATH
 PATH
   remote: plugins/ShinyProfiles
   specs:
-    shiny_profiles (21.01)
+    shiny_profiles (21.02)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
       pagy
@@ -132,7 +132,7 @@ PATH
 PATH
   remote: plugins/ShinySearch
   specs:
-    shiny_search (21.01)
+    shiny_search (21.02)
       acts-as-taggable-on
       acts_as_paranoid
       algoliasearch-rails
@@ -193,7 +193,7 @@ GEM
     activerecord (6.1.1)
       activemodel (= 6.1.1)
       activesupport (= 6.1.1)
-    activerecord-analyze (0.4.1)
+    activerecord-analyze (0.5.0)
       rails (>= 5.1.0)
     activestorage (6.1.1)
       actionpack (= 6.1.1)
@@ -228,6 +228,10 @@ GEM
       device_detector
       geocoder (>= 1.4.5)
       safely_block (>= 0.2.1)
+    airbrake (11.0.1)
+      airbrake-ruby (~> 5.1)
+    airbrake-ruby (5.2.0)
+      rbtree3 (~> 0.5)
     akismet (3.0.0)
     algoliasearch (1.27.5)
       httpclient (~> 2.8, >= 2.8.3)
@@ -236,19 +240,19 @@ GEM
       algoliasearch (>= 1.26.0, < 2.0.0)
       json (>= 1.5.1)
     amazing_print (1.2.2)
-    ast (2.4.1)
+    ast (2.4.2)
     aws-eventstream (1.1.0)
-    aws-partitions (1.414.0)
-    aws-sdk-core (3.110.0)
+    aws-partitions (1.422.0)
+    aws-sdk-core (3.112.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-kms (1.40.0)
-      aws-sdk-core (~> 3, >= 3.109.0)
+    aws-sdk-kms (1.42.0)
+      aws-sdk-core (~> 3, >= 3.112.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.87.0)
-      aws-sdk-core (~> 3, >= 3.109.0)
+    aws-sdk-s3 (1.88.0)
+      aws-sdk-core (~> 3, >= 3.112.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.2)
@@ -258,27 +262,27 @@ GEM
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.16)
-    blazer (2.4.0)
+    blazer (2.4.1)
       activerecord (>= 5)
       chartkick (>= 3.2)
       railties (>= 5)
       safely_block (>= 0.1.1)
-    bootsnap (1.5.1)
+    bootsnap (1.7.0)
       msgpack (~> 1.0)
-    brakeman (4.10.1)
+    brakeman (5.0.0)
     bugsnag (6.19.0)
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
       thor (>= 0.18, < 2)
-    capybara (3.34.0)
+    capybara (3.35.3)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
-      regexp_parser (~> 1.5)
+      regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     chartkick (3.4.2)
     childprocess (4.0.0)
@@ -291,22 +295,21 @@ GEM
       rails (>= 5.0, < 6.2.0)
     code_analyzer (0.5.2)
       sexp_processor
-    codecov (0.2.12)
-      json
-      simplecov
+    codecov (0.4.2)
+      simplecov (>= 0.15, < 0.22)
     coderay (1.1.3)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     colorize (0.8.1)
-    concurrent-ruby (1.1.7)
+    concurrent-ruby (1.1.8)
     connection_pool (2.2.3)
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    database_cleaner (1.8.5)
-    database_cleaner-active_record (1.8.0)
-      activerecord
-      database_cleaner (~> 1.8.0)
+    database_cleaner-active_record (2.0.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     device_detector (1.0.5)
@@ -397,7 +400,7 @@ GEM
     listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    loofah (2.8.0)
+    loofah (2.9.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -414,7 +417,7 @@ GEM
     mini_portile2 (2.5.0)
     minitest (5.14.3)
     mjml-rails (4.6.1)
-    msgpack (1.3.3)
+    msgpack (1.4.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     netaddr (2.0.4)
@@ -443,7 +446,7 @@ GEM
       pry (>= 0.10.4)
     psych (3.3.0)
     public_suffix (4.0.6)
-    puma (5.1.1)
+    puma (5.2.0)
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
@@ -478,9 +481,9 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
-    rails-pg-extras (1.2.4)
+    rails-pg-extras (1.4.0)
       activerecord
-      ruby-pg-extras (= 1.2.4)
+      ruby-pg-extras (= 1.4.0)
     rails_best_practices (1.20.0)
       activesupport
       code_analyzer (>= 0.5.1)
@@ -505,6 +508,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rbtree3 (0.6.0)
     recaptcha (5.6.0)
       json
     redis (4.2.5)
@@ -513,7 +517,7 @@ GEM
       parser (~> 3.0.0)
       psych (~> 3.1)
       rainbow (>= 2.0, < 4.0)
-    regexp_parser (1.8.2)
+    regexp_parser (2.0.3)
     request_store (1.5.0)
       rack (>= 1.4)
     require_all (3.0.0)
@@ -542,7 +546,7 @@ GEM
       rspec-core (>= 2, < 4, != 2.12.0)
     rss (0.2.9)
       rexml
-    rubocop (1.8.1)
+    rubocop (1.9.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -551,7 +555,7 @@ GEM
       rubocop-ast (>= 1.2.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.4.0)
+    rubocop-ast (1.4.1)
       parser (>= 2.7.1.5)
     rubocop-performance (1.9.2)
       rubocop (>= 0.90.0, < 2.0)
@@ -560,10 +564,10 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 0.90.0, < 2.0)
-    rubocop-rspec (2.1.0)
+    rubocop-rspec (2.2.0)
       rubocop (~> 1.0)
       rubocop-ast (>= 1.1.0)
-    ruby-pg-extras (1.2.4)
+    ruby-pg-extras (1.4.0)
       pg
       terminal-table
     ruby-progressbar (1.11.0)
@@ -571,7 +575,7 @@ GEM
       ffi (~> 1.9)
     ruby_parser (3.15.1)
       sexp_processor (~> 4.9)
-    rubycritic (4.5.2)
+    rubycritic (4.6.0)
       flay (~> 2.8)
       flog (~> 4.4)
       launchy (>= 2.0.0)
@@ -579,7 +583,7 @@ GEM
       rainbow (~> 3.0)
       reek (~> 6.0, < 7.0)
       ruby_parser (~> 3.8)
-      simplecov (>= 0.17.0)
+      simplecov (>= 0.17.0, < 0.21)
       tty-which (~> 0.4.0)
       virtus (~> 1.0)
     safely_block (0.3.0)
@@ -597,14 +601,14 @@ GEM
       activesupport (>= 4)
     semantic_range (2.3.1)
     sexp_processor (4.15.2)
-    sidekiq (6.1.2)
+    sidekiq (6.1.3)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
     sidekiq-status (1.1.4)
       chronic_duration
       sidekiq (>= 3.0)
-    simplecov (0.21.2)
+    simplecov (0.20.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
@@ -621,7 +625,7 @@ GEM
       sprockets (>= 3.0.0)
     terminal-table (2.0.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
-    thor (1.0.1)
+    thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
     tty-which (0.4.2)
@@ -641,7 +645,7 @@ GEM
       equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webmock (3.11.1)
+    webmock (3.11.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -669,6 +673,7 @@ DEPENDENCIES
   acts_as_votable!
   ahoy_email!
   ahoy_matey!
+  airbrake!
   akismet!
   amazing_print!
   aws-sdk-s3!
@@ -702,7 +707,7 @@ DEPENDENCIES
   pagy!
   pg (~> 1.2.3)!
   pry-rails!
-  puma (~> 5.1)!
+  puma (~> 5.2)!
   pundit!
   rails (~> 6.1.1)!
   rails-i18n!
@@ -717,7 +722,7 @@ DEPENDENCIES
   rubocop-performance!
   rubocop-rails!
   rubocop-rspec!
-  rubycritic (~> 4.5.0)!
+  rubycritic (~> 4.6.0)!
   sail!
   sassc-rails!
   seed_dump!

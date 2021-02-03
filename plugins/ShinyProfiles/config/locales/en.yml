@@ -15,7 +15,18 @@ en:
     edit_profile: Edit your profile
     profiles:
       edit:
-        title: "Editing %{name}'s profile"
+        title: Editing %{name}'s profile
+        links: Links
+        name: Name
+        url: URL
+        add_link: Add another link
+        remove_link: Remove this link
+        not_authorized: You are not allowed to edit that profile
+      update:
+        success: Profile details updated
+        not_authorized: You are not allowed to edit that profile
+      authorize_user:
+        not_authorized: NOT USED (workaround for i18n-tasks bug)
 
     admin:
       profiles:
@@ -24,3 +35,7 @@ en:
           title: Edit user profile
         update:
           success: User profile details updated
+      users:
+        index:
+          view_profile: View profile
+          edit_profile: Edit profile

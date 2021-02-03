@@ -6,6 +6,9 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# Explicitly require the main app User model here, to fix reloader glitches in dev env
+require_dependency 'user'
+
 module ShinyProfiles
   # Model for user profile pages (and related features)
   class Profile < ApplicationRecord
@@ -20,7 +23,7 @@ module ShinyProfiles
 
     has_many :links, -> { order( :position ) }, inverse_of: :profile, dependent: :destroy
 
-    accepts_nested_attributes_for :links
+    accepts_nested_attributes_for :links, allow_destroy: true
 
     # User profile pic (powered by ActiveStorage)
     has_one_attached :profile_pic, dependent: :purge_now

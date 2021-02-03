@@ -20,9 +20,11 @@ class User < ApplicationRecord
 
   # Allowed characters for usernames: a-z A-Z 0-9 . _ -
   USERNAME_REGEX = %r{[a-zA-Z0-9][-_.a-zA-Z0-9]*}
-  public_constant :USERNAME_REGEX
+  private_constant :USERNAME_REGEX
   ANCHORED_USERNAME_REGEX = %r{\A#{USERNAME_REGEX}\z}
   private_constant :ANCHORED_USERNAME_REGEX
+  USERNAME_ROUTE_CONSTRAINT = { username: USERNAME_REGEX }.freeze
+  public_constant :USERNAME_ROUTE_CONSTRAINT
 
   validates :username, presence: true, uniqueness: true
   validates :username, length: { maximum: 50 }

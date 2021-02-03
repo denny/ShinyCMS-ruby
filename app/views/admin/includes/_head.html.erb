@@ -16,6 +16,8 @@
       <%= blazer_js_var 'rootPath', root_path %>
     </script>
 
+    <% @page_title = t( "admin.blazer.#{controller_name}.title" ) %>
+
     <% elsif sail_controller? %>
     <% @page_title = t( "admin.sail.#{controller_name}.title" ) %>
 

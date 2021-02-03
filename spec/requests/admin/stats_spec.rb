@@ -21,10 +21,9 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
         get blazer_path
 
         expect( response      ).to have_http_status :ok
-        # FIXME: setting @page_title in _breadcrumbs.html.erb isn't being picked up by _head.html.erb
-        # expect( response.body ).to have_title I18n.t( 'admin.blazer.queries' )
-        expect( response.body ).to have_link I18n.t( 'admin.stats.breadcrumb' )
-        expect( response.body ).to have_link 'New Query', href: '/admin/stats/queries/new'
+        expect( response.body ).to have_title I18n.t( 'admin.blazer.queries.title' )
+        expect( response.body ).to have_link  I18n.t( 'admin.stats.breadcrumb' )
+        expect( response.body ).to have_link  'New Query', href: '/admin/stats/queries/new'
       end
     end
 
