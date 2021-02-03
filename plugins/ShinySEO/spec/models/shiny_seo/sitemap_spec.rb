@@ -28,5 +28,31 @@ module ShinySEO
         expect( result.link_count ).to eq 6 # two pages, two posts, two post author profiles
       end
     end
+
+    describe 'initialize' do
+      before do
+        @original_adapter = SitemapGenerator::Sitemap.adapter
+      end
+
+      after do
+        SitemapGenerator::Sitemap.adapter = @original_adapter
+      end
+
+      it 'uses the S3 adapter if S3 config is present' do
+        sitemapper = described_class.new
+
+        allow( sitemapper ).to receive( :aws_s3_feeds_bucket ).and_return 'test'
+        allow( sitemapper ).to receive( :aws_s3_feeds_region ).and_return 'test'
+
+        allow( sitemapper ).to receive( :aws_s3_feeds_access_key_id ).and_return 'test'
+        allow( sitemapper ).to receive( :aws_s3_feeds_secret_access_key ).and_return 'test'
+
+        sitemapper.__send__( :use_aws_sdk_adapter_if_configured )
+
+        adapter = SitemapGenerator::Sitemap.adapter
+
+        expect( adapter ).to be_a SitemapGenerator::AwsSdkAdapter
+      end
+    end
   end
 end

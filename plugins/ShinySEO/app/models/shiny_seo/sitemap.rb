@@ -37,8 +37,6 @@ module ShinySEO
     def use_aws_sdk_adapter_if_configured
       return unless aws_s3_feeds_config_present?
 
-      # TODO: mock this
-      # :nocov:
       require 'aws-sdk-s3'
 
       SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
@@ -48,7 +46,6 @@ module ShinySEO
         aws_region:            aws_s3_feeds_region,
         aws_endpoint:          aws_s3_feeds_endpoint
       )
-      # :nocov:
     end
   end
 end

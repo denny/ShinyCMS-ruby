@@ -17,12 +17,12 @@ module ShinyS3
 
   private
 
-  def aws_s3_feeds_access_key_id
-    ENV[ 'AWS_S3_FEEDS_ACCESS_KEY_ID' ].presence
-  end
-
   def aws_s3_feeds_secret_access_key
     ENV[ 'AWS_S3_FEEDS_SECRET_ACCESS_KEY' ].presence
+  end
+
+  def aws_s3_feeds_access_key_id
+    ENV[ 'AWS_S3_FEEDS_ACCESS_KEY_ID' ].presence
   end
 
   def aws_s3_feeds_bucket

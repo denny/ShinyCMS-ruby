@@ -10,20 +10,23 @@ require 'rails_helper'
 
 # Tests for main site base controller
 RSpec.describe MainController, type: :request do
-  describe 'helper methods' do
+  describe 's3 helper methods' do
     describe 'feed_url()' do
-      it 'returns an appropriate feed URL when the AWS S3 ENV vars are set' do
+      it 'includes an S3 feed URL in the page when S3 config is present' do
         create :top_level_page
 
-        ENV['AWS_S3_FEEDS_BUCKET'] = 'test_bucket'
-        ENV['AWS_S3_FEEDS_REGION'] = 'eu-test-1'
+        bucket = 'main-controller-test'
+        region = 'a-test-1'
+
+        allow_any_instance_of( described_class ).to receive( :aws_s3_feeds_bucket ).and_return bucket
+        allow_any_instance_of( described_class ).to receive( :aws_s3_feeds_region ).and_return region
+
+        allow_any_instance_of( described_class ).to receive( :aws_s3_feeds_access_key_id ).and_return 'test'
+        allow_any_instance_of( described_class ).to receive( :aws_s3_feeds_secret_access_key ).and_return 'test'
 
         get main_app.root_path
 
-        ENV['AWS_S3_FEEDS_BUCKET'] = nil
-        ENV['AWS_S3_FEEDS_REGION'] = nil
-
-        expect( response.body ).to include 'http://test_bucket.s3.eu-test-1.amazonaws.com/feeds/atom/blog.xml'
+        expect( response.body ).to include "http://#{bucket}.s3.#{region}.amazonaws.com/feeds/atom/blog.xml"
       end
     end
   end
