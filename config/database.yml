@@ -32,7 +32,7 @@ development:
 
 test:
   <<: *default
-  database: shinycms_test
+  database: shinycms_test<%= ENV['TEST_ENV_NUMBER'] %>
 
 
 # For security reasons, you should never put your production database details,
