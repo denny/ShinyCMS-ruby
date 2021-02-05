@@ -10,6 +10,9 @@
 # ActiveStorage
 /storage/
 
+# Test theme - until I figure out reliable deletion after parallel test runs
+themes/TEST
+
 # Atom feeds
 /public/feeds/atom/*.xml
 
