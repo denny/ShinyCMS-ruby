@@ -145,6 +145,9 @@ source 'https://rubygems.org' do
     # Tests are good, m'kay?
     gem 'rspec-rails'
 
+    # Run tests in parallel on multi-core machines
+    gem 'parallel_tests'
+
     # Create test objects
     gem 'factory_bot_rails'
     # Fill test objects with fake data

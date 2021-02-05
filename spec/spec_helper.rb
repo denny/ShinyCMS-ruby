@@ -127,6 +127,6 @@ RSpec.configure do |config|
 
   config.after( :suite ) do
     # Remove TEST theme templates from main tree
-    FileUtils.rm_rf test_theme if Dir.exist? test_theme
+    # FileUtils.rm_rf test_theme if Dir.exist? test_theme
   end
 end
