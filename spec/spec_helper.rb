@@ -45,9 +45,11 @@ RSpec.configure do |config|
       SimpleCov.formatter = SimpleCov::Formatter::Codecov
     end
 
-    # Show the three slowest examples and example groups at the end of the run,
-    # to help surface any specs that are running particularly slow.
-    config.profile_examples = 3
+    if ENV[ 'SHOW_SLOW_SPECS' ]
+      # Show the slowest examples and example groups at the end of the run,
+      # to help surface any specs that are running particularly slow.
+      config.profile_examples = ENV[ 'SHOW_SLOW_SPECS' ]
+    end
   end
 
   # rspec-expectations config goes here. You can use an alternate
