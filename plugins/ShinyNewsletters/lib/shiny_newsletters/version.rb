@@ -8,6 +8,6 @@
 
 # Version number ('Ubuntu style'; year and month)
 module ShinyNewsletters
-  VERSION = '21.01'
+  VERSION = '21.02'
   public_constant :VERSION
 end

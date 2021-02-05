@@ -10,6 +10,10 @@
 
 # Several of these were copied or adapted from https://github.com/resool/blazer-demo
 
+return if Rails.env.test?
+
+# :nocov:
+
 # Dashboard
 dashboard = Blazer::Dashboard.where( name: 'Default Dashboard' ).first_or_create!
 

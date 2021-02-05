@@ -118,7 +118,7 @@ RSpec.describe Users::SessionsController, type: :request do
              }
            },
            headers: {
-             'HTTP_REFERER': should_go_here
+             HTTP_REFERER: should_go_here
            }
 
       expect( response      ).to have_http_status :found

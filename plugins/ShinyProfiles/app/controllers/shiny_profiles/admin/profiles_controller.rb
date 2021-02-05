@@ -23,6 +23,11 @@ module ShinyProfiles
       redirect_to admin_edit_profile_path( @profile )
     end
 
+    # Override the breadcrumbs section link to go back to the user list
+    def breadcrumb_link_text_and_path
+      [ t( 'admin.users.breadcrumb' ), main_app.users_path ]
+    end
+
     private
 
     def stash_profile

@@ -27,9 +27,12 @@
         <%= user.email %>
       </td>
       <td class="actions">
-        <%= link_to t( 'view'   ), shiny_profiles.profile_path( user.username ) %>
-        <%= link_to t( 'edit'   ), edit_user_path( user ) %>
-        <%= link_to t( 'delete' ), user_path( user ),
+        <% if plugin_loaded? :ShinyProfiles %>
+        <%= link_to t( 'shiny_profiles.admin.users.index.view_profile' ), shiny_profiles.profile_path( user.username ) %>
+        <%= link_to t( 'shiny_profiles.admin.users.index.edit_profile' ), shiny_profiles.admin_edit_profile_path( user.profile ) %>
+        <% end %>
+        <%= link_to t( '.edit_account'   ), edit_user_path( user ) %>
+        <%= link_to t( '.delete_account' ), user_path( user ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>

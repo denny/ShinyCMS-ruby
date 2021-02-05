@@ -19,7 +19,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.2.3'
 
   # Webserver
-  gem 'puma', '~> 5.1', groups: %i[ development production ]
+  gem 'puma', '~> 5.2', groups: %i[ development production ]
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails'
@@ -123,7 +123,7 @@ source 'https://rubygems.org' do
 
   # Pry is a debugging tool for the Rails console
   if env_var_true?( :shinycms_pry_console )
-    # Set ENV['SHINYCMS_PRY_CONSOLE']=true to explicitly enable PRY in this environment
+    # Set ENV['SHINYCMS_PRY_CONSOLE']=true to explicitly enable Pry in this environment
     gem 'pry-rails'
   else
     # Otherwise, it will only be enabled in dev and test environments
@@ -131,7 +131,10 @@ source 'https://rubygems.org' do
   end
 
   group :production do
-    # Bugsnag is an error monitoring service
+    # Airbrake - error monitoring and APM
+    gem 'airbrake'
+
+    # Bugsnag - error monitoring and bug triage
     gem 'bugsnag'
 
     # Fix request.ip if we're running behind Cloudflare's proxying service
@@ -173,7 +176,7 @@ source 'https://rubygems.org' do
     gem 'rails_best_practices'
 
     # Ruby Critic generates easy-to-read reports from multiple static analysis tools
-    gem 'rubycritic', '~> 4.5.0', require: false
+    gem 'rubycritic', '~> 4.6.0', require: false
 
     # Add .analyze method to ActiveRecord objects
     gem 'activerecord-analyze'

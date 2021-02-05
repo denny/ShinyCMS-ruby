@@ -9,12 +9,16 @@ require '<%= namespaced_name %>/version'
 Gem::Specification.new do |spec|
   spec.name        = '<%= name %>'
   spec.version     = <%= camelized_modules %>::VERSION
+  spec.license     = 'GPL'
+
   spec.authors     = [ '<%= author %>' ]
   spec.email       = [ '<%= email %>' ]
   spec.homepage    = 'https://shinycms.org'
+
   spec.summary     = '<%= camelized_modules %> plugin for ShinyCMS'
   spec.description = 'The <%= camelized_modules %> plugin provides a ??? feature for ShinyCMS'
-  spec.license     = 'GPL'
+
+  spec.required_ruby_version = '~> 3.0'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
@@ -26,12 +30,21 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
-  <%= '# ' if options.dev? || options.edge? -%>spec.add_dependency 'rails', '<%= Array(rails_version_specifier).join("', '") %>'
-<% unless options[:skip_active_record] -%>
+  spec.add_dependency 'rails', '<%= Array(rails_version_specifier).join("', '") %>'
 
-  spec.add_dependency 'pg', '>= 0.18', '< 2.0'
-<% end -%>
+  spec.add_dependency 'pg', '~> 1.2.3'
 
+  # Authorisation
+  spec.add_dependency 'pundit'
+
+  # Soft delete
+  spec.add_dependency 'acts_as_paranoid'
+
+  # Pagination
+  spec.add_dependency 'pagy'
+
+  # Testing
   spec.add_development_dependency 'factory_bot_rails'
+  spec.add_development_dependency 'faker'
   spec.add_development_dependency 'rspec-rails'
 end

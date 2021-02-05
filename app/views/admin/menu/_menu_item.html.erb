@@ -1,7 +1,8 @@
 <%
+  set_as_active ||= false
   item_id = text.parameterize
   active = ''
-  if request.path.starts_with? link
+  if set_as_active || request.path.starts_with?( link )
     active = 'c-active'
   end
 %>
