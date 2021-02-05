@@ -176,7 +176,7 @@ source 'https://rubygems.org' do
     gem 'fasterer', require: false
 
     # Best practices
-    gem 'rails_best_practices'
+    gem 'rails_best_practices', require: false
 
     # Ruby Critic generates easy-to-read reports from multiple static analysis tools
     gem 'rubycritic', '~> 4.6.0', require: false
@@ -214,5 +214,8 @@ source 'https://rubygems.org' do
     gem 'codecov', require: false
     # Rspec report formatter for Codecov
     gem 'rspec_junit_formatter'
+
+    # Show test failure details instantly, in-line with progress dots
+    gem 'rspec-instafail'
   end
 end

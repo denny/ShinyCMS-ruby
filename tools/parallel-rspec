@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2021 Denny de la Haye ~ https://denny.me
@@ -10,4 +8,4 @@
 #
 # Not used on CircleCI because that has its own parallelisation thing going on.
 
-parallel_rspec spec/ plugins/
+parallel_rspec --first-is-1 spec/ plugins/

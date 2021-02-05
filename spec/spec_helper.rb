@@ -44,11 +44,17 @@ RSpec.configure do |config|
     # has already been configured (e.g. via a command-line flag).
     config.default_formatter = 'doc'
   else
+    # This setting specifies which spec files to load when `rspec` is run without
+    # filename arguments. The default value is just the spec files in the main app's
+    # spec/ directory. The pattern below also loads the spec files from each plugin.
+    config.pattern = '**/*_spec.rb,../plugins/*/spec/**/*_spec.rb'
+
     # Only overwrite coverage when running the full test suite
     SimpleCov.start do
       add_filter '/spec/'
     end
 
+    # We can only be in CI if we're running the whole suite
     if ENV['CI'] == 'true'
       require 'codecov'
       SimpleCov.formatter = SimpleCov::Formatter::Codecov
