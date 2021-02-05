@@ -8,6 +8,5 @@
 
 # Utility script to be run during each release/deploy on Heroku
 
-gem uninstall bundler --version 1.17.2
 bundle exec rails db:migrate
 bundle exec rails assets:precompile
