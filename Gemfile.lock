@@ -428,6 +428,8 @@ GEM
       iniparse (~> 1.4)
     pagy (3.10.0)
     parallel (1.20.1)
+    parallel_tests (3.4.0)
+      parallel
     parser (3.0.0.0)
       ast (~> 2.4.1)
     path_expander (1.1.0)
@@ -520,11 +522,17 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.4)
+    rspec (3.10.0)
+      rspec-core (~> 3.10.0)
+      rspec-expectations (~> 3.10.0)
+      rspec-mocks (~> 3.10.0)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
+    rspec-instafail (1.0.0)
+      rspec
     rspec-mocks (3.10.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
@@ -702,6 +710,7 @@ DEPENDENCIES
   nokogiri (>= 1.11.0.rc4)!
   overcommit!
   pagy!
+  parallel_tests!
   pg (~> 1.2.3)!
   pry-rails!
   puma (~> 5.2)!
@@ -712,6 +721,7 @@ DEPENDENCIES
   rails_best_practices!
   rails_email_preview!
   recaptcha!
+  rspec-instafail!
   rspec-rails!
   rspec_junit_formatter!
   rss!

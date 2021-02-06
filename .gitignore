@@ -16,6 +16,9 @@
 # Atom feeds
 /public/feeds/atom/*.xml
 
+# Test theme - until I figure out reliable deletion after parallel test runs
+themes/TEST
+
 # Test output
 /coverage/
 /spec/reports/
