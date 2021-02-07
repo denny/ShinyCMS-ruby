@@ -22,12 +22,10 @@ module ShinySEO
 
     def generate
       SitemapGenerator::Sitemap.create do
-        ShinyPlugin.models_with_sitemap_items.each do |model|
-          model.sitemap_items.each do |resource|
-            item = ShinySEO::SitemapItem.new resource
+        ShinyPlugin.models_with_sitemap_items.collect( &:sitemap_items ).flatten.each do |resource|
+          item = ShinySEO::SitemapItem.new resource
 
-            add item.path, lastmod: item.content_updated_at, changefreq: item.update_frequency
-          end
+          add item.path, lastmod: item.content_updated_at, changefreq: item.update_frequency
         end
       end
     end
