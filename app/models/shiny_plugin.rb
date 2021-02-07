@@ -30,16 +30,12 @@ class ShinyPlugin
     @main_site_helper ||= name.constantize::MainSiteHelper if defined? name.constantize::MainSiteHelper
   end
 
-  def models_with_demo_data
-    base_model.descendants.select { |model| model.respond_to?( :dump_for_demo? ) }
+  def models_that_are( method )
+    base_model.descendants.select( &method )
   end
 
-  def models_that_are_taggable
-    base_model.descendants.select( &:taggable? )
-  end
-
-  def models_that_are_votable
-    base_model.descendants.select( &:votable? )
+  def models_that_respond_to( method )
+    base_model.descendants.select { |model| model.respond_to?( method ) }
   end
 
   def view_path
@@ -66,6 +62,22 @@ class ShinyPlugin
     loaded_names.include? plugin_name.to_s
   end
 
+  def self.taggable_models
+    models_that_are :taggable?
+  end
+
+  def self.votable_models
+    models_that_are :votable?
+  end
+
+  def self.models_with_demo_data
+    models_that_respond_to :dump_for_demo?
+  end
+
+  def self.models_with_sitemap_items
+    models_that_respond_to :sitemap_items
+  end
+
   def self.with_main_site_helpers
     loaded.select( &:main_site_helper )
   end
@@ -82,18 +94,12 @@ class ShinyPlugin
     with_views.select { |plugin| plugin.template_exists?( template_path ) }
   end
 
-  def self.models_with_demo_data
-    # Used by the rake task that dumps the demo site data
-    # Returns names rather than objects to allow the rake task to bodge the dump order
-    with_models.collect( &:models_with_demo_data ).flatten.collect( &:name ).sort
+  def self.models_that_are( method )
+    with_models.collect { |plugin| plugin.models_that_are method }.flatten.sort_by( &:name )
   end
 
-  def self.models_that_are_taggable
-    with_models.collect( &:models_that_are_taggable ).flatten.sort_by( &:name )
-  end
-
-  def self.models_that_are_votable
-    with_models.collect( &:models_that_are_votable ).flatten.sort_by( &:name )
+  def self.models_that_respond_to( method )
+    with_models.collect { |plugin| plugin.models_that_respond_to method }.flatten.sort_by( &:name )
   end
 
   def self.loaded_names

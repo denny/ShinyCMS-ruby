@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
-# ShinyCMS ~ https://shinycms.org
+# ShinySEO plugin for ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Run `bundle install`, picking up any relevant ENV vars first (in particular, SHINYCMS_PLUGINS)
-
-dotenv -f .env.development.local bundle install
+module ShinySEO
+  # Base helper module for ShinySEO
+  module ApplicationHelper
+  end
+end

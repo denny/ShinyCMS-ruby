@@ -84,6 +84,11 @@ Rails/OutputSafety:
   Exclude:
     - config/initializers/field_with_errors.rb
 
+# This isn't an ActiveRecord create method
+Rails/SaveBang:
+  Exclude:
+    - plugins/ShinySEO/app/models/shiny_seo/sitemap.rb
+
 # There's no database activity in these before all blocks, so this cop doesn't apply
 RSpec/BeforeAfterAll:
   Exclude:

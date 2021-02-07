@@ -14,14 +14,14 @@ RSpec.describe ShinyPlugin, type: :model do
     describe '.loaded' do
       it 'returns an array of plugin instances' do
         expect( described_class.loaded       ).to be_an Array
-        expect( described_class.loaded.first ).to be_a described_class
+        expect( described_class.loaded.first ).to be_a  described_class
       end
     end
 
     describe '.loaded_names' do
       it 'returns an array of plugin names' do
         expect( described_class.loaded_names       ).to be_an Array
-        expect( described_class.loaded_names.first ).to be_a String
+        expect( described_class.loaded_names.first ).to be_a  String
       end
     end
 
@@ -31,23 +31,24 @@ RSpec.describe ShinyPlugin, type: :model do
       end
     end
 
-    describe '.models_with_demo_data' do
-      it 'returns an array of model class names' do
-        expect( described_class.models_with_demo_data       ).to be_an Array
-        expect( described_class.models_with_demo_data.first ).to be_a String
+    describe '.models_that_respond_to' do
+      it 'returns an array of models from the whole app' do
+        models = described_class.models_that_respond_to :dump_for_demo?
+
+        expect( models       ).to be_an Array
+        expect( models.first ).to be    ShinyAccess::Group
       end
     end
   end
 
   describe 'instance methods' do
-    describe '.models_with_demo_data' do
-      it 'returns an array of models' do
+    describe '.models_that_respond_to( :method? )' do
+      it 'returns an array of models from this plugin' do
         plugin = described_class.new( 'ShinyBlog' )
-        models = plugin.models_with_demo_data
+        models = plugin.models_that_respond_to :dump_for_demo?
 
-        expect( models            ).to be_an Array
-        expect( models.first      ).to be_a Class
-        expect( models.first.name ).to eq 'ShinyBlog::Post'
+        expect( models       ).to be_an Array
+        expect( models.first ).to be    ShinyBlog::Post
       end
     end
   end

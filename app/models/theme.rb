@@ -52,11 +52,13 @@ class Theme
     return if user.blank?
 
     theme_name = Setting.get :theme_name, user
+
     Theme.new( theme_name ).presence
   end
 
   def self.site_theme
     theme_name = Setting.get :theme_name
+
     Theme.new( theme_name ).presence
   end
 
@@ -65,6 +67,6 @@ class Theme
   end
 
   def self.env_shinycms_theme
-    ENV['SHINYCMS_THEME']
+    ENV.fetch( 'SHINYCMS_THEME', nil )
   end
 end

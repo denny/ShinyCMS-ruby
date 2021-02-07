@@ -1,0 +1,11 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# This is just a shorthand script for running the tests in parallel on multi-core machines.
+#
+# Not used on CircleCI because that has its own parallelisation thing going on.
+
+parallel_rspec --first-is-1 spec/ plugins/

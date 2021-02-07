@@ -1,0 +1,21 @@
+# ShinySEO plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Translation strings for English
+
+en:
+  feature_flags:
+    shiny_seo: ShinySEO
+
+  shiny_seo:
+    admin:
+      menu: SEO
+      sitemaps:
+        index:
+          title: Sitemaps
+      metatags:
+        index:
+          title: Meta-tags

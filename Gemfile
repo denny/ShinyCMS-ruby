@@ -92,6 +92,9 @@ source 'https://rubygems.org' do
   # Pagination
   gem 'pagy'
 
+  # Generate SEO sitemaps
+  gem 'sitemap_generator'
+
   # Generate Atom feeds
   gem 'rss'
 
@@ -145,6 +148,9 @@ source 'https://rubygems.org' do
     # Tests are good, m'kay?
     gem 'rspec-rails'
 
+    # Run tests in parallel on multi-core machines
+    gem 'parallel_tests'
+
     # Create test objects
     gem 'factory_bot_rails'
     # Fill test objects with fake data
@@ -173,7 +179,7 @@ source 'https://rubygems.org' do
     gem 'fasterer', require: false
 
     # Best practices
-    gem 'rails_best_practices'
+    gem 'rails_best_practices', require: false
 
     # Ruby Critic generates easy-to-read reports from multiple static analysis tools
     gem 'rubycritic', '~> 4.6.0', require: false
@@ -211,5 +217,8 @@ source 'https://rubygems.org' do
     gem 'codecov', require: false
     # Rspec report formatter for Codecov
     gem 'rspec_junit_formatter'
+
+    # Show test failure details instantly, in-line with progress dots
+    gem 'rspec-instafail'
   end
 end

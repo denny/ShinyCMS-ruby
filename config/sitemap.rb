@@ -6,6 +6,4 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Run Sidekiq in dev, picking up any relevant ENV vars (SIDEKIQ_CONCURRENCY, SIDEKIQ_PREFIX, etc)
-
-dotenv -f .env.development.local sidekiq
+ShinySEO::Sitemap.new.generate

@@ -11,6 +11,7 @@ require 'rss'
 # Model to assist in building Atom feed entries from ShinyPosts
 class ShinyPostAtomFeedEntry
   include ShinySiteNameHelper
+  include ShinySiteURL
 
   include Rails.application.routes.url_helpers
 
@@ -35,7 +36,7 @@ class ShinyPostAtomFeedEntry
 
   def add_entry_id
     id = entry.class::Id.new
-    id.content = "#{base_url}#{post.path}"
+    id.content = "#{site_base_url}#{post.path}"
     entry.id = id
   end
 
@@ -68,7 +69,7 @@ class ShinyPostAtomFeedEntry
 
   def add_entry_link
     link = entry.class::Link.new
-    link.href = "#{base_url}#{post.path}"
+    link.href = "#{site_base_url}#{post.path}"
     entry.links << link
   end
 
@@ -84,13 +85,5 @@ class ShinyPostAtomFeedEntry
 
   def html_escape( html )
     html.gsub( '&', '&amp;' ).gsub( '<', '&lt;' ).gsub( '>', '&gt;' )
-  end
-
-  def default_url_options
-    Rails.application.config.action_mailer.default_url_options
-  end
-
-  def base_url
-    root_url.to_s.chop
   end
 end

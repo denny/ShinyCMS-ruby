@@ -20,6 +20,7 @@ Rails.application.configure do
   # We need eager load enabled so that we can use .descendants to check all the models
   # for the ones that provide various capabilities - e.g. taggable/searchable/etc
   config.eager_load = true
+  config.rake_eager_load = true
 
   # This fixes (or hides?) a problem with theme assets
   config.assets.check_precompiled_asset = false

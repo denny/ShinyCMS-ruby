@@ -48,10 +48,10 @@ class TagsController < MainController
   end
 
   def taggable_models
-    [ taggable_models_in_core + ShinyPlugin.models_that_are_taggable ].flatten
+    [ main_app_taggable_models + ShinyPlugin.taggable_models ].flatten
   end
 
-  def taggable_models_in_core
+  def main_app_taggable_models
     ApplicationRecord.descendants.select( &:taggable? )
   end
 

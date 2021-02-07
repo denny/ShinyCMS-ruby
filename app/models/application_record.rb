@@ -11,10 +11,10 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   def self.models_with_demo_data
-    [ core_models_with_demo_data + ShinyPlugin.models_with_demo_data ].flatten.sort
+    [ main_app_models_with_demo_data + ShinyPlugin.models_with_demo_data ].flatten
   end
 
-  def self.core_models_with_demo_data
-    descendants.select { |model| model.respond_to?( :dump_for_demo? ) }.collect( &:name ).sort
+  def self.main_app_models_with_demo_data
+    descendants.select { |model| model.respond_to? :dump_for_demo? }
   end
 end

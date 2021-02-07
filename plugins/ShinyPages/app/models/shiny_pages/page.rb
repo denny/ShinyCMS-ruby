@@ -47,6 +47,18 @@ module ShinyPages
       self == Page.default_page
     end
 
+    def path
+      full_path = slug
+
+      parent = section
+      while parent.present?
+        full_path = "#{parent.slug}/#{full_path}"
+        parent = parent.section
+      end
+
+      "/#{full_path}"
+    end
+
     # Class methods
 
     def self.all_top_level_pages
@@ -91,6 +103,11 @@ module ShinyPages
         .or( top_level_pages
         .where( slug: name_or_slug ) )
         .first
+    end
+
+    def self.sitemap_items
+      # Excludes the default page because the sitemap_generator gem includes root_path by default
+      visible.readonly.where.not id: default_page.id
     end
   end
 end

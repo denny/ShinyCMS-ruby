@@ -180,7 +180,7 @@ Rails.application.routes.draw do
     # This catch-all route matches anything and everything not already matched by a route defined before it.
     # It has to be the last route set up, because it hijacks anything that gets this far.
     # This route gives us pages and sections at the top level, e.g. /foo instead of /pages/foo
-    # TODO: figure out how to load a route last for the whole app, from inside a plugin's routes.rb
+    # TODO: work out how to load this (last!) from plugins/ShinyPages/config/routes.rb instead of here
     if defined? ShinyPages
       get '*path', to: 'shiny_pages/pages#show', constraints: lambda { |req|
         !req.path.starts_with?( '/rails/active_' )
