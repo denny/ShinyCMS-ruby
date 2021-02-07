@@ -21,16 +21,21 @@ module ShinySEO
     end
 
     def generate
+      items_to_add = items_for_sitemap
       SitemapGenerator::Sitemap.create do
-        ShinyPlugin.models_with_sitemap_items.collect( &:sitemap_items ).flatten.each do |resource|
-          item = ShinySEO::SitemapItem.new resource
-
+        items_to_add.each do |item|
           add item.path, lastmod: item.content_updated_at, changefreq: item.update_frequency
         end
       end
     end
 
     private
+
+    def items_for_sitemap
+      ShinyPlugin.models_with_sitemap_items
+                 .collect( &:sitemap_items ).flatten
+                 .collect { |resource| SitemapItem.new( resource ) }
+    end
 
     def use_aws_sdk_adapter_if_configured
       return unless aws_s3_feeds_config_present?
