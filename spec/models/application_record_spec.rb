@@ -12,13 +12,15 @@ require 'rails_helper'
 RSpec.describe ApplicationRecord, type: :model do
   describe 'methods on base model' do
     describe '.models_with_demo_data' do
-      it 'returns an array of model names, including blog posts and not including user data' do
+      it 'returns an array of models, including blog posts and not including user data' do
         demo_models = described_class.models_with_demo_data
 
         expect( demo_models ).to be_an Array
 
-        expect( demo_models ).to     include 'ShinyBlog::Post'
-        expect( demo_models ).not_to include 'User'
+        demo_model_names = demo_models.collect( &:name )
+
+        expect( demo_model_names ).to     include 'ShinyBlog::Post'
+        expect( demo_model_names ).not_to include 'User'
       end
     end
   end

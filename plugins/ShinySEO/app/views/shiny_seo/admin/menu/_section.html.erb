@@ -1,0 +1,11 @@
+<% return unless current_user.can? :list, :shiny_seo %>
+
+  <%= render_admin_menu_section( t( 'shiny_seo.admin.menu' ), 'rss' ) do %>
+
+    <%= render_admin_menu_item(
+        t( 'shiny_seo.admin.sitemaps.index.title' ), shiny_seo.sitemaps_path, 'list' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :add, :shiny_seo ),
+        t( 'shiny_seo.admin.metatags.index.title' ), shiny_seo.metatags_path, 'list' ) %>
+
+<% end %>

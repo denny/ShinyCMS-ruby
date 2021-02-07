@@ -11,21 +11,20 @@ require 'rails_helper'
 # Tests for ShinyPostAtomFeed model
 RSpec.describe ShinyPostAtomFeed, type: :model do
   describe 'instance methods' do
-    describe 'ENV fetcher methods' do
-      it 'reads the ENV vars' do
-        bucket = 'shinycms-feed-tests'
-        ENV[ 'AWS_S3_FEEDS_BUCKET' ] = bucket
-
+    describe 'S3 helper methods' do
+      it 'generates an S3 base url when S3 config is present' do
         feeder = described_class.new( :blog )
 
-        expect(  feeder.__send__( :aws_s3_feeds_bucket ) ).to eq bucket
-        region = feeder.__send__( :aws_s3_feeds_region )
-        expect(  feeder.__send__( :aws_s3_base_url     ) ).to eq "https://#{bucket}.s3.#{region}.amazonaws.com"
+        bucket = 'atom-feed-tests'
+        region = 'test'
 
-        expect(  feeder.__send__( :aws_s3_feeds_secret_access_key ) ).to eq nil
-        expect(  feeder.__send__( :aws_s3_feeds_access_key_id     ) ).to eq nil
+        allow( feeder ).to receive( :aws_s3_feeds_bucket ).and_return bucket
+        allow( feeder ).to receive( :aws_s3_feeds_region ).and_return region
 
-        ENV[ 'AWS_S3_FEEDS_BUCKET' ] = ''
+        allow( feeder ).to receive( :aws_s3_feeds_access_key_id ).and_return 'test'
+        allow( feeder ).to receive( :aws_s3_feeds_secret_access_key ).and_return 'test'
+
+        expect( feeder.__send__( :feeds_base_url ) ).to eq "http://#{bucket}.s3.#{region}.amazonaws.com"
       end
     end
   end

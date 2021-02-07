@@ -7,15 +7,16 @@
     <%= favicon_link_tag asset_path( 'shinycms/favicon.ico' ) %>
 
     <% if blazer_controller? %>
-    <%= stylesheet_link_tag "blazer/application" %>
-    <%= javascript_include_tag "blazer/application" %>
-    <script>
-      <%= blazer_js_var "rootPath", root_path %>
-    </script>
     <% @page_title = t( "admin.blazer.#{controller_name}.title" ) %>
-    <% end %>
 
-    <% unless blazer_controller? || rep_controller? %>
+    <%= stylesheet_link_tag    'blazer/application' %>
+    <%= javascript_include_tag 'blazer/application' %>
+
+    <script>
+      <%= blazer_js_var 'rootPath', root_path %>
+    </script>
+
+    <% elsif shiny_controller? %>
     <%= javascript_include_tag Ckeditor.cdn_url if try :load_html_editor? %>
     <% end %>
 

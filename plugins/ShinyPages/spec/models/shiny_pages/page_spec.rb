@@ -11,66 +11,84 @@ require 'rails_helper'
 # Tests for page model
 module ShinyPages
   RSpec.describe Page, type: :model do
-    describe 'when I call Page.default_page' do
-      it 'without a setting, it returns the first page created' do
-        page1 = create :page, slug: 'first'
-        create :page, slug: 'default'
+    describe 'class methods' do
+      describe '.default_page' do
+        context 'without a setting' do
+          it 'returns the first page created' do
+            page1 = create :page, slug: 'first'
+            create :page, slug: 'default'
 
-        expect( described_class.default_page ).to eq page1
-      end
+            expect( described_class.default_page ).to eq page1
+          end
+        end
 
-      it 'with a setting, it returns the specified page, not the first page' do
-        create :page, slug: 'first'
-        page2 = create :page, slug: 'default'
+        context 'with a setting' do
+          it 'returns the specified page, not the first page' do
+            create :page, slug: 'first'
+            page2 = create :page, slug: 'default'
 
-        ::Setting.set( :default_page, to: 'default' )
+            ::Setting.set( :default_page, to: 'default' )
 
-        expect( described_class.default_page ).to eq page2
+            expect( described_class.default_page ).to eq page2
+          end
+        end
       end
     end
 
-    describe 'check that pages are sorted by position (not by .id or .created_at)' do
-      context 'when at top level' do
-        it 'returns the pages ordered by position, nulls/defaults last' do
-          s0 = create :page_section
+    describe 'instance methods' do
+      describe '.path' do
+        it 'provides the correct path for a top level page' do
+          p1 = create :top_level_page
 
-          p1 = create :top_level_page, position: 6
-          p2 = create :top_level_page
-          p3 = create :page, section: s0
-          p4 = create :top_level_page, position: 2
-          p5 = create :top_level_page, position: 5
+          expect( p1.path ).to eq "/#{p1.slug}"
+        end
 
-          expect( described_class.top_level.first  ).to eq p4
-          expect( described_class.top_level.second ).to eq p5
-          expect( described_class.top_level.third  ).to eq p1
-          expect( described_class.top_level.last   ).to eq p2
+        it 'provides the correct path for a page in a sub-section' do
+          p1 = create :page_in_nested_section
 
-          expect( described_class.top_level.size   ).to eq 4
-          expect( s0.all_pages.first                      ).to eq p3
-          # expect( Page.top_level      ).not_to include p3
+          expect( p1.path ).to eq "/#{p1.section.section.slug}/#{p1.section.slug}/#{p1.slug}"
         end
       end
+    end
 
-      context 'when in a section' do
-        it 'returns the pages in that section ordered by assigned position, nulls/defaults last' do
-          s0 = create :page_section
-          s1 = create :page_section
+    describe 'sort order' do
+      it 'orders the top level pages by specified position, nulls/defaults last' do
+        s0 = create :page_section
 
-          p1 = create :page, section: s0, position: 6
-          p2 = create :page, section: s0
-          p3 = create :page, section: s1
-          p4 = create :page, section: s0, position: 2
-          p5 = create :page, section: s0, position: 5
+        p1 = create :top_level_page, position: 6
+        p2 = create :top_level_page
+        p3 = create :page, section: s0
+        p4 = create :top_level_page, position: 2
+        p5 = create :top_level_page, position: 5
 
-          expect( s0.all_pages.first  ).to eq p4
-          expect( s0.all_pages.second ).to eq p5
-          expect( s0.all_pages.third  ).to eq p1
-          expect( s0.all_pages.last   ).to eq p2
+        expect( described_class.top_level.first  ).to eq p4
+        expect( described_class.top_level.second ).to eq p5
+        expect( described_class.top_level.third  ).to eq p1
+        expect( described_class.top_level.last   ).to eq p2
 
-          expect( s0.all_pages.size   ).to eq 4
-          expect( s1.all_pages.first  ).to eq p3
-          # expect( s0.pages          ).not_to include p3
-        end
+        expect( described_class.top_level.size   ).to eq 4
+        expect( s0.all_pages.first               ).to eq p3
+        expect( described_class.top_level        ).not_to include p3
+      end
+
+      it 'orders the pages in a section by specified position, nulls/defaults last' do
+        s0 = create :page_section
+        s1 = create :page_section
+
+        p1 = create :page, section: s0, position: 6
+        p2 = create :page, section: s0
+        p3 = create :page, section: s1
+        p4 = create :page, section: s0, position: 2
+        p5 = create :page, section: s0, position: 5
+
+        expect( s0.all_pages.first  ).to eq p4
+        expect( s0.all_pages.second ).to eq p5
+        expect( s0.all_pages.third  ).to eq p1
+        expect( s0.all_pages.last   ).to eq p2
+
+        expect( s0.all_pages.size   ).to eq 4
+        expect( s1.all_pages.first  ).to eq p3
+        # expect( s0.pages          ).not_to include p3
       end
     end
 

@@ -1,7 +1,8 @@
 <ul id="menu" class="sm sm-clean">
-
-  <%= render partial: 'shiny_pages/menu/pages', locals: {
-    items: ShinyPages::Page.top_level_menu_items, path: '/' } %>
+  <% if plugin_loaded? :ShinyPages %>
+  <%= render partial: 'shiny_pages/menu/pages',
+             locals: { items: top_level_menu_items, path: '/' } %>
+  <% end %>
 
   <% plugins_with_main_site_menu_templates.each do |plugin| %>
     <%= render partial: "#{plugin.name.underscore}/menu/section" %>
@@ -10,5 +11,4 @@
   <% if feature_enabled? :tags %>
   <%= render partial: 'menu/tags' %>
   <% end %>
-
 </ul>
