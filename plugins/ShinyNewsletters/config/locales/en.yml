@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # ShinyNewsletters plugin for ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2021 Denny de la Haye ~ https://denny.me
@@ -105,7 +103,7 @@ en:
   models:
     shiny_newsletters:
       template:
-        template_file_must_exist: '(template file must be in themes/{theme-name}/shiny_newsletters/newsletter_mailer)'
+        template_file_must_exist: '(template file must be in themes/{theme-name}/views/shiny_newsletters/newsletter_mailer)'
 
   errors:
     messages:
