@@ -37,13 +37,16 @@ module ShinySEO
 
       require 'aws-sdk-s3'
 
-      SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
-        's3_bucket',
+      SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new( 's3_bucket', **s3_config )
+    end
+
+    def s3_config
+      {
         aws_secret_access_key: aws_s3_feeds_secret_access_key,
         aws_access_key_id:     aws_s3_feeds_access_key_id,
         aws_region:            aws_s3_feeds_region,
         aws_endpoint:          aws_s3_feeds_endpoint
-      )
+      }
     end
   end
 end
