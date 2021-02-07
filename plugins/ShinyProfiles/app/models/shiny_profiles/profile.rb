@@ -49,6 +49,10 @@ module ShinyProfiles
       public_name.presence || username
     end
 
+    def path
+      url_helpers.profile_path username
+    end
+
     # Class methods
 
     def self.for_username( username )
@@ -60,6 +64,10 @@ module ShinyProfiles
       raise ActiveRecord::RecordNotFound if profile.blank?
 
       profile
+    end
+
+    def self.sitemap_items
+      visible.readonly
     end
   end
 end

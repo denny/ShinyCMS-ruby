@@ -51,6 +51,16 @@ rails db:sessions:trim    # Trim old sessions from the table (default: > 30 days
 Rails provides this task to remove older sessions (over 30 days old by default, or you can set SESSION_DAYS_TRIM_THRESHOLD for a different limit). You may wish to schedule this to run every night to prevent the sessions table in your database from growing too large.
 
 
+### Sitemaps
+
+```
+rails sitemap:create     # Generate sitemaps but don't ping search engines
+rails sitemap:refresh    # Generate sitemaps and ping search engines
+```
+
+These tasks are provided by the [sitemap_generator](https://github.com/kjvarga/sitemap_generator#readme) gem. They use the configuration file at `config/sitemap.rb`, and write the generated sitemap file to `public/sitemap.xml.gz`.
+
+
 ### Demo site data
 
 ```

@@ -35,6 +35,9 @@ namespace :shiny do
         end
       end
 
+      # Allow the demo data to replace @shiny_admin's user profile page
+      @shiny_admin.profile.destroy_fully!
+
       Setting.set :theme_name, to: 'halcyonic'
 
       skip_callbacks_on_templated_models
@@ -111,26 +114,15 @@ namespace :shiny do
     end
 
     def models_with_demo_data
-      # Have to rearrange insert order here to avoid foreign key issues
-      change_insert_order( ApplicationRecord.models_with_demo_data )
+      model_names = ApplicationRecord.models_with_demo_data.collect( &:name ).sort
+      # Have to kludge insert order here to avoid foreign key issues
+      # TODO: allow plugins to provide a suggested load order for their models?
+      change_insert_order( model_names )
     end
 
     def change_insert_order( model_names )
       model_names = remove_models_from_list( model_names )
       add_models_to_end_of_list( model_names )
-    end
-
-    # TODO: allow plugins to provide a suggested load order for their models?
-    def models_to_reorder
-      # rubocop:disable Layout/MultilineArrayLineBreaks
-      %w[
-        ShinyPages::Page ShinyPages::PageElement
-        ShinyNewsletters::Edition ShinyNewsletters::EditionElement ShinyNewsletters::Send
-        Discussion Comment
-        ActiveStorage::Blob ActiveStorage::Attachment
-        ActsAsTaggableOn::Tag ActsAsTaggableOn::Tagging
-      ]
-      # rubocop:enable Layout/MultilineArrayLineBreaks
     end
 
     def remove_models_from_list( model_names )
@@ -142,6 +134,18 @@ namespace :shiny do
 
     def add_models_to_end_of_list( model_names )
       model_names.push( *models_to_reorder )
+    end
+
+    def models_to_reorder
+      # rubocop:disable Layout/MultilineArrayLineBreaks
+      %w[
+        ShinyPages::Page ShinyPages::PageElement
+        ShinyNewsletters::Edition ShinyNewsletters::EditionElement ShinyNewsletters::Send
+        Discussion Comment
+        ActiveStorage::Blob ActiveStorage::Attachment
+        ActsAsTaggableOn::Tag ActsAsTaggableOn::Tagging
+      ]
+      # rubocop:enable Layout/MultilineArrayLineBreaks
     end
     # :nocov:
   end

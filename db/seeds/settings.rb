@@ -125,7 +125,7 @@ set_setting(
 set_setting(
   name:        :site_name,
   value:       'MyShinySite',
-  description: 'Default email address to send from'
+  description: 'The name of the content site'
 )
 
 set_setting(

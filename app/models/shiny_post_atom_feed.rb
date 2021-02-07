@@ -10,9 +10,9 @@ require 'rss'
 
 # Model to assist in building Atom feeds from ShinyPosts
 class ShinyPostAtomFeed
+  include ShinyS3
   include ShinySiteNameHelper
-
-  include Rails.application.routes.url_helpers
+  include ShinySiteURL
 
   attr_reader :name, :feed
 
@@ -50,7 +50,7 @@ class ShinyPostAtomFeed
   end
 
   def write_file_to_aws_s3
-    return if aws_s3_feeds_bucket.blank?
+    return unless aws_s3_feeds_config_present?
 
     # TODO: mock this
     # :nocov:
@@ -102,39 +102,7 @@ class ShinyPostAtomFeed
     feed.updated = updated
   end
 
-  def default_url_options
-    Rails.application.config.action_mailer.default_url_options
-  end
-
   def feeds_base_url
-    aws_s3_base_url || root_url.to_s.chop
-  end
-
-  def aws_s3_base_url
-    return if aws_s3_feeds_bucket.blank?
-
-    http = ENV[ 'MAILER_URL_PROTOCOL' ].presence || 'https'
-
-    "#{http}://#{aws_s3_feeds_domain}"
-  end
-
-  def aws_s3_feeds_bucket
-    ENV[ 'AWS_S3_FEEDS_BUCKET' ].presence
-  end
-
-  def aws_s3_feeds_region
-    ENV[ 'AWS_S3_FEEDS_REGION' ].presence
-  end
-
-  def aws_s3_feeds_access_key_id
-    ENV[ 'AWS_S3_FEEDS_ACCESS_KEY_ID' ].presence
-  end
-
-  def aws_s3_feeds_secret_access_key
-    ENV[ 'AWS_S3_FEEDS_SECRET_ACCESS_KEY' ].presence
-  end
-
-  def aws_s3_feeds_domain
-    ENV[ 'AWS_S3_FEEDS_DOMAIN' ].presence || "#{aws_s3_feeds_bucket}.s3.#{aws_s3_feeds_region}.amazonaws.com"
+    aws_s3_feeds_base_url || site_base_url
   end
 end
