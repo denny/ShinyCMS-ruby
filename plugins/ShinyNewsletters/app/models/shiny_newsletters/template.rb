@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyNewsletters
-  # Model for newsletter templates
+  # Model for newsletter templates - part of the ShinyNewsletters plugin for ShinyCMS
   class Template < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyMJMLTemplate
@@ -28,6 +28,7 @@ module ShinyNewsletters
         .or( where( 'description ilike ?', "%#{search_term}%" ) )
         .order( :name )
     end
+
     # Add another validation at the end, because it uses methods included/defined above
     validates :filename, inclusion: {
       in:      available_templates,
