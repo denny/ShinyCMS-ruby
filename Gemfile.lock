@@ -304,6 +304,8 @@ GEM
     colorize (0.8.1)
     concurrent-ruby (1.1.8)
     connection_pool (2.2.3)
+    coverband (5.1.0)
+      redis
     crack (0.4.5)
       rexml
     crass (1.0.6)
@@ -693,6 +695,7 @@ DEPENDENCIES
   ckeditor!
   cloudflare-rails!
   codecov!
+  coverband!
   database_cleaner-active_record!
   devise!
   devise-pwned_password!

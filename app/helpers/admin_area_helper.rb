@@ -20,6 +20,10 @@ module AdminAreaHelper
     !blazer_controller? && !rep_controller?
   end
 
+  def coverband_web_ui_enabled?
+    ENV['DISABLE_SIDEKIQ_WEB']&.downcase != 'true'
+  end
+
   def plugin_breadcrumb_link_text_and_path( plugin_name, controller_name )
     [
       I18n.t( "#{plugin_name.underscore}.admin.#{controller_name}.breadcrumb" ),

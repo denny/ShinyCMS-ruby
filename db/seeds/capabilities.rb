@@ -20,7 +20,7 @@ end
 
 add_capabilities(
   {
-    general:          %w[ view_admin_area view_admin_toolbar manage_sidekiq_jobs ],
+    general:          %w[ view_admin_area view_admin_toolbar manage_sidekiq_jobs view_code_usage ],
     discussions:      %w[ show hide lock unlock ],
     comments:         %w[ show hide lock unlock destroy ],
     spam_comments:    %w[ list add destroy ],
