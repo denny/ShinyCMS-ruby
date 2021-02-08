@@ -20,7 +20,7 @@
   </tr>
 
   <% category = capability_category( :general ) %>
-  <% category_capabilities = %w[ view_admin_area view_admin_toolbar manage_sidekiq_jobs skip skip ] %>
+  <% category_capabilities = %w[ view_admin_area view_admin_toolbar manage_sidekiq_jobs skip view_code_usage ] %>
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% plugins_for_edit_capabilities.each do |plugin| %>

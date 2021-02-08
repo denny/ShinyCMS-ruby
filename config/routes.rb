@@ -165,6 +165,17 @@ Rails.application.routes.draw do
       end
     end
 
+    # Coverband provides a web UI for viewing code usage information
+    def coverband_web_ui_enabled?
+      ENV['DISABLE_COVERBAND_WEB_UI']&.downcase != 'true'
+    end
+
+    if coverband_web_ui_enabled?
+      authenticate :user, ->( user ) { user.can? :view_code_usage } do
+        mount Coverband::Reporters::Web.new, at: '/admin/coverband', as: :coverband unless Rails.env.test?
+      end
+    end
+
     ########################################
     # ShinyCMS plugins
 

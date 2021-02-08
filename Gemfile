@@ -22,7 +22,10 @@ source 'https://rubygems.org' do
   gem 'puma', '~> 5.2', groups: %i[ development production ]
 
   # Load ENV from .env(.*) files
-  gem 'dotenv-rails'
+  gem 'dotenv-rails', require: 'dotenv/rails-now'
+
+  # Find out which bits of your code are used more/less in actual use
+  gem 'coverband', groups: %i[ development production ]
 
   # Locales for the 'not USA' bits of the world
   gem 'rails-i18n'

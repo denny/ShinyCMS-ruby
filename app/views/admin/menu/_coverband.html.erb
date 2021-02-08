@@ -1,0 +1,3 @@
+ <% return unless coverband_web_ui_enabled? && current_user.can?( :view_code_usage ) %>
+
+  <%= render_admin_menu_item( t( 'admin.coverband.menu' ), main_app.coverband_path, 'spreadsheet' ) %>
