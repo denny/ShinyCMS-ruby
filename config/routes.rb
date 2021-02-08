@@ -172,7 +172,7 @@ Rails.application.routes.draw do
 
     if coverband_web_ui_enabled?
       authenticate :user, ->( user ) { user.can? :view_code_usage } do
-        mount Coverband::Reporters::Web.new, at: '/admin/coverband', as: :coverband
+        mount Coverband::Reporters::Web.new, at: '/admin/coverband', as: :coverband unless Rails.env.test?
       end
     end
 

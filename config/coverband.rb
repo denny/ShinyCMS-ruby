@@ -8,6 +8,8 @@
 
 # Coverband config
 
+return if Rails.env.test?
+
 Coverband.configure do |config|
   config.track_views = true
 end
