@@ -166,11 +166,11 @@ Rails.application.routes.draw do
     end
 
     # Coverband provides a web UI for viewing code usage information
-    def coverband_web_enabled?
-      ENV['DISABLE_COVERBAND_WEB']&.downcase != 'true'
+    def coverband_web_ui_enabled?
+      ENV['DISABLE_COVERBAND_WEB_UI']&.downcase != 'true'
     end
 
-    if coverband_web_enabled?
+    if coverband_web_ui_enabled?
       authenticate :user, ->( user ) { user.can? :view_code_usage } do
         mount Coverband::Reporters::Web.new, at: '/admin/coverband', as: :coverband
       end
