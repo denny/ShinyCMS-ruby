@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@rails/activestorage": "^6.1.1",
-    "@rails/ujs": "^6.1.1",
+    "@rails/ujs": "^6.1.2",
     "@rails/webpacker": "^5.2.1",
     "acorn": "^8.0.5",
     "core-js": "^3.8.3",
