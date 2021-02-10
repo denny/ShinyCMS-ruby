@@ -13,7 +13,7 @@ source 'https://rubygems.org' do
   ruby '~> 3.0.0'
 
   # Rails 6.1
-  gem 'rails', '~> 6.1.1'
+  gem 'rails', '~> 6.1.2'
 
   # Postgres
   gem 'pg', '~> 1.2.3'
