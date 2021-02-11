@@ -12,20 +12,19 @@ module ShinyNewsletters
     include ShinyDateHelper
 
     before_action :stash_send, only: %i[ show edit update destroy start_sending cancel_sending ]
+    before_action :stash_send_for_create, only: %i[ create ]
+    before_action :stash_sending_and_scheduled, only: %i[ index ]
 
     before_action :convert_send_at_to_utc
 
     def index
       authorize Send
 
-      @sending = Send.sending
-      authorize @sending if @sending.present?
-
-      @scheduled = Send.scheduled if viewing_first_page?
-      authorize @scheduled if @scheduled.present?
-
       @pagy, @sends = pagy( Send.unscheduled, items: items_per_page )
-      authorize @sends if @sends.present?
+
+      authorize @sends     if @sends.present?
+      authorize @sending   if @sending.present?
+      authorize @scheduled if @scheduled.present?
     end
 
     def sent
@@ -55,7 +54,6 @@ module ShinyNewsletters
     end
 
     def create
-      @send = Send.new( strong_params )
       authorize @send
 
       if @send.save
@@ -113,6 +111,15 @@ module ShinyNewsletters
       @send = Send.find( params[:id] )
     end
 
+    def stash_send_for_create
+      @send = Send.new( strong_params )
+    end
+
+    def stash_sending_and_scheduled
+      @sending   = Send.sending
+      @scheduled = Send.scheduled if viewing_first_page?
+    end
+
     def strong_params
       return if params[ :send ].blank?
 
@@ -122,7 +129,7 @@ module ShinyNewsletters
     end
 
     def viewing_first_page?
-      params[:page] == 1 || params[:page].blank?
+      ( params[:page] || 1 ) == 1
     end
 
     def convert_send_at_to_utc
