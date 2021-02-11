@@ -19,7 +19,7 @@
     
     
       
-        <title>frozen_string_literal: true - ShinyCMS</title>
+        <title>Ruby console snippet to find database tables that need indexes... - ShinyCMS</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#frozen_string_literal-true" class="md-skip">
+        <a href="#ruby-console-snippet-to-find-database-tables-that-need-indexes" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              frozen_string_literal: true
+              Ruby console snippet to find database tables that need indexes...
             
           </span>
         </div>
@@ -1152,22 +1152,18 @@
               
                 
                 
-                <h1 id="frozen_string_literal-true">frozen_string_literal: true</h1>
-<h1 id="shinycms-httpsshinycmsorg">ShinyCMS ~ https://shinycms.org</h1>
-<h1 id="_1"></h1>
-<h1 id="copyright-2009-2021-denny-de-la-haye-httpsdennyme">Copyright 2009-2021 Denny de la Haye ~ https://denny.me</h1>
-<h1 id="_2"></h1>
-<h1 id="shinycms-is-free-software-you-can-redistribute-it-andor-modify-it-under-the-terms-of-the-gpl-version-2-or-later">ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)</h1>
-<h1 id="ruby-console-snippet-to-find-database-tables-that-need-indexes">Ruby console snippet to find database tables that need indexes...</h1>
-<p>c = ActiveRecord::Base.connection</p>
-<p>c.tables.collect do |t|
-  columns = c.columns(t).collect(&amp;:name).select {|x| x.ends_with?("_id" || x.ends_with("_type"))}
+                <h1 id="ruby-console-snippet-to-find-database-tables-that-need-indexes">Ruby console snippet to find database tables that need indexes...</h1>
+<pre><code class="language-ruby">c = ActiveRecord::Base.connection
+
+c.tables.collect do |t|
+  columns = c.columns(t).collect(&amp;:name).select {|x| x.ends_with?(&quot;_id&quot; || x.ends_with(&quot;_type&quot;))}
   indexed_columns = c.indexes(t).collect(&amp;:columns).flatten.uniq
   unindexed = columns - indexed_columns
   unless unindexed.empty?
-    puts "#{t}: #{unindexed.join(", ")}"
+    puts &quot;#{t}: #{unindexed.join(&quot;, &quot;)}&quot;
   end
-end</p>
+end
+</code></pre>
                 
               
               

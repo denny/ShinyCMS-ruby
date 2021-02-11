@@ -873,6 +873,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#sitemaps" class="md-nav__link">
+    Sitemaps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#demo-site-data" class="md-nav__link">
     Demo site data
   </a>
@@ -1274,6 +1281,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#sitemaps" class="md-nav__link">
+    Sitemaps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#demo-site-data" class="md-nav__link">
     Demo site data
   </a>
@@ -1330,6 +1344,11 @@ rails shiny:feature:off[name]    # ShinyCMS: toggle a feature flag off
 <pre><code>rails db:sessions:trim    # Trim old sessions from the table (default: &gt; 30 days)
 </code></pre>
 <p>Rails provides this task to remove older sessions (over 30 days old by default, or you can set SESSION_DAYS_TRIM_THRESHOLD for a different limit). You may wish to schedule this to run every night to prevent the sessions table in your database from growing too large.</p>
+<h3 id="sitemaps">Sitemaps</h3>
+<pre><code>rails sitemap:create     # Generate sitemaps but don't ping search engines
+rails sitemap:refresh    # Generate sitemaps and ping search engines
+</code></pre>
+<p>These tasks are provided by the <a href="https://github.com/kjvarga/sitemap_generator#readme">sitemap_generator</a> gem. They use the configuration file at <code>config/sitemap.rb</code>, and write the generated sitemap file to <code>public/sitemap.xml.gz</code>.</p>
 <h3 id="demo-site-data">Demo site data</h3>
 <pre><code>rails shiny:demo:load    # ShinyCMS: reset database, create admin user, and load demo site data
 </code></pre>
