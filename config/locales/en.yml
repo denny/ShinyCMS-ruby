@@ -286,6 +286,7 @@ en:
       view_admin_area: View admin area
       view_admin_toolbar: View admin toolbar
       manage_sidekiq_jobs: Manage Sidekiq jobs
+      view_code_usage: View code usage
 
     stats:
       view_web: View web stats
@@ -372,6 +373,9 @@ en:
         failure: Failed to update consent version
       destroy:
         success: Consent version deleted
+
+    coverband:
+      menu: Code usage
 
     discussion:
       toolbar: Discussion
