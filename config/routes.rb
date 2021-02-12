@@ -41,7 +41,9 @@ Rails.application.routes.draw do
                   password:     '/account/password',
                   unlock:       '/account/unlock'
                 }
-    get  'account/password/test/:password', to: 'users/passwords#test', as: :test_password
+    devise_scope :user do
+      get 'account/password-report/:password', to: 'users/registrations#password_report', as: :password_report
+    end
 
     get  'discussions',            to: 'discussions#index', as: :discussions
     get  'discussion/:id',         to: 'discussions#show',  as: :discussion
