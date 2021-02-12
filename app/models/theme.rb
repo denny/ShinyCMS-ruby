@@ -45,19 +45,21 @@ class Theme
 
   # Find and return the current theme (if any)
   def self.current( user = nil )
+    return unless database_exists?
+
     user_theme( user ) || site_theme || default_theme
   end
 
   def self.user_theme( user )
     return if user.blank?
 
-    theme_name = Setting&.get :theme_name, user
+    theme_name = Setting.get :theme_name, user
 
     Theme.new( theme_name ).presence
   end
 
   def self.site_theme
-    theme_name = Setting&.get :theme_name
+    theme_name = Setting.get :theme_name
 
     Theme.new( theme_name ).presence
   end
@@ -68,5 +70,11 @@ class Theme
 
   def self.env_shinycms_theme
     ENV.fetch( 'SHINYCMS_THEME', nil )
+  end
+
+  def self.database_exists?
+    ActiveRecord::Base.connection.active?
+  rescue ActiveRecord::NoDatabaseError
+    false
   end
 end
