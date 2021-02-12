@@ -23,11 +23,11 @@ ShinyPages::Engine.routes.draw do
         put :sort, on: :collection
       end
 
-      resources :pages, except: :show, concerns: %i[ paginatable searchable sortable ]
+      resources :pages, except: %i[ index show ], concerns: %i[ paginatable searchable sortable ]
 
       scope path: :pages do
         resources :sections,  except: :show
-        resources :templates, except: :show, concerns: %i[ paginatable searchable ]
+        resources :templates, except: %i[ index show ], concerns: %i[ paginatable searchable ]
       end
     end
 

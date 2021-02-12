@@ -20,8 +20,8 @@ ShinyAccess::Engine.routes.draw do
       end
 
       scope path: :access do
-        resources :groups, except: :show, concerns: %i[ paginatable searchable ] do
-          resources :memberships, only: %i[ index create destroy ], concerns: %i[ paginatable searchable ]
+        resources :groups, except: %i[ index show ], concerns: %i[ paginatable searchable ] do
+          resources :memberships, only: %i[ create destroy ], concerns: %i[ paginatable searchable ]
         end
       end
     end

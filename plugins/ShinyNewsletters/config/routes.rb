@@ -30,11 +30,13 @@ ShinyNewsletters::Engine.routes.draw do
       end
 
       scope path: :newsletters do
-        resources :editions, except: :show, concerns: %i[ paginatable searchable ] do
+        resources :editions, except: %i[ index show ], concerns: %i[ paginatable searchable ] do
           get 'send-sample', on: :member
         end
 
-        resources :sends, concerns: %i[ paginatable searchable ] do
+        resources :templates, except: %i[ index show ], concerns: %i[ paginatable searchable ]
+
+        resources :sends, except: :index, concerns: %i[ paginatable searchable ] do
           put :start,  on: :member, to: 'sends#start_sending'
           put :pause,  on: :member, to: 'sends#pause_sending'
           put :resume, on: :member, to: 'sends#resume_sending'
@@ -42,8 +44,6 @@ ShinyNewsletters::Engine.routes.draw do
         end
         get 'sent(/page/:page)',     to: 'sends#sent', as: :sent
         get 'sends/new/:edition_id', to: 'sends#new',  as: :new_send_for_edition
-
-        resources :templates, except: :show, concerns: %i[ paginatable searchable ]
       end
     end
   end

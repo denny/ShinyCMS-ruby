@@ -29,7 +29,7 @@ ShinyNews::Engine.routes.draw do
         get :search, on: :collection
       end
 
-      resources :news_posts, path: 'news', except: :show, concerns: %i[ paginatable searchable ]
+      resources :news_posts, path: 'news', except: %i[ index show ], concerns: %i[ paginatable searchable ]
     end
   end
 end

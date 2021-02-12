@@ -29,7 +29,7 @@ ShinyBlog::Engine.routes.draw do
         get :search, on: :collection
       end
 
-      resources :blog_posts, path: 'blog', except: :show, concerns: %i[ paginatable searchable ]
+      resources :blog_posts, path: 'blog', except: %i[ index show ], concerns: %i[ paginatable searchable ]
     end
   end
 end

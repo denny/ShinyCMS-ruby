@@ -20,7 +20,7 @@ ShinyForms::Engine.routes.draw do
         get :search, on: :collection
       end
 
-      resources :forms, except: :show, concerns: %i[ paginatable searchable ]
+      resources :forms, except: %i[ index show ], concerns: %i[ paginatable searchable ]
     end
   end
 end

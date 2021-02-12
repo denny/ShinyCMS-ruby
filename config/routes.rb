@@ -80,7 +80,7 @@ Rails.application.routes.draw do
 
     scope path: 'admin', module: 'admin' do
       # Consent versions
-      resources :consent_versions, path: 'consent-versions', concerns: %i[ paginatable searchable ]
+      resources :consent_versions, path: 'consent-versions', except: :index, concerns: %i[ paginatable searchable ]
 
       # Comment and discussion moderation
       get 'comments(/page/:page)', to: 'comments#index',  as: :comments
@@ -104,8 +104,7 @@ Rails.application.routes.draw do
       end
 
       # Email Recipients
-      resources :email_recipients, path: 'email-recipients', concerns: %i[ paginatable searchable ],
-                                   only: %i[ index destroy ] do
+      resources :email_recipients, path: 'email-recipients', only: :destroy, concerns: %i[ paginatable searchable ] do
         put :'do-not-contact', on: :member, to: 'email_recipients#do_not_contact'
       end
 
@@ -128,8 +127,9 @@ Rails.application.routes.draw do
       get 'web-stats/search',                    to: 'web_stats#search', as: :search_web_stats
 
       # Users
-      resources :users, except: :show, concerns: %i[ paginatable searchable ]
-      get 'users/usernames', to: 'users#username_search', as: :search_usernames
+      resources :users, except: %i[ index show ], concerns: %i[ paginatable searchable ] do
+        get :usernames, on: :collection, to: 'users#username_search', as: :search_usernames
+      end
     end
 
     ########################################
