@@ -51,13 +51,13 @@ class Theme
   def self.user_theme( user )
     return if user.blank?
 
-    theme_name = Setting.get :theme_name, user
+    theme_name = Setting&.get :theme_name, user
 
     Theme.new( theme_name ).presence
   end
 
   def self.site_theme
-    theme_name = Setting.get :theme_name
+    theme_name = Setting&.get :theme_name
 
     Theme.new( theme_name ).presence
   end
