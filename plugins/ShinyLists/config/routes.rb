@@ -21,15 +21,15 @@ ShinyLists::Engine.routes.draw do
 
     # Admin area
     scope path: 'admin', module: 'admin' do
-      concern :paginatable do
+      concern :with_paging do
         get '(page/:page)', action: :index, on: :collection, as: ''
       end
-      concern :searchable do
+      concern :with_search do
         get :search, action: :search, on: :collection
       end
 
-      resources :lists, except: %i[ index show ], concerns: %i[ paginatable searchable ] do
-        resources :subscriptions, only: %i[ create destroy  ], concerns: %i[ paginatable searchable ]
+      resources :lists, except: %i[ index show ], concerns: %i[ with_paging with_search ] do
+        resources :subscriptions, only: %i[ create destroy  ], concerns: %i[ with_paging with_search ]
       end
     end
   end

@@ -22,14 +22,14 @@ ShinyBlog::Engine.routes.draw do
 
     # Admin area
     scope path: 'admin', module: 'admin' do
-      concern :paginatable do
+      concern :with_paging do
         get '(page/:page)', action: :index, on: :collection, as: ''
       end
-      concern :searchable do
+      concern :with_search do
         get :search, on: :collection
       end
 
-      resources :blog_posts, path: 'blog', except: %i[ index show ], concerns: %i[ paginatable searchable ]
+      resources :blog_posts, path: 'blog', except: %i[ index show ], concerns: %i[ with_paging with_search ]
     end
   end
 end

@@ -22,21 +22,21 @@ ShinyNewsletters::Engine.routes.draw do
 
     # Admin area
     scope path: :admin, module: :admin do
-      concern :paginatable do
+      concern :with_paging do
         get '(page/:page)', action: :index, on: :collection, as: ''
       end
-      concern :searchable do
+      concern :with_search do
         get :search, action: :search, on: :collection
       end
 
       scope path: :newsletters do
-        resources :editions, except: %i[ index show ], concerns: %i[ paginatable searchable ] do
+        resources :editions, except: %i[ index show ], concerns: %i[ with_paging with_search ] do
           get 'send-sample', on: :member
         end
 
-        resources :templates, except: %i[ index show ], concerns: %i[ paginatable searchable ]
+        resources :templates, except: %i[ index show ], concerns: %i[ with_paging with_search ]
 
-        resources :sends, except: :index, concerns: %i[ paginatable searchable ] do
+        resources :sends, except: :index, concerns: %i[ with_paging with_search ] do
           put :start,  on: :member, to: 'sends#start_sending'
           put :pause,  on: :member, to: 'sends#pause_sending'
           put :resume, on: :member, to: 'sends#resume_sending'
