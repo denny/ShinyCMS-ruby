@@ -98,6 +98,10 @@ RSpec/ExampleLength:
 RSpec/MultipleExpectations:
   Enabled: false
 
+# If I skip a spec temporarily, there's probably a reason!
+RSpec/Pending:
+  Enabled: false
+
 # Disabling this allows 'compact' class names, e.g. Admin::PagesController
 Style/ClassAndModuleChildren:
   Enabled: false
