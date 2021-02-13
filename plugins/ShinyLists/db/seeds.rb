@@ -29,9 +29,9 @@ lists_cc.capabilities.find_or_create_by!( name: 'add'     )
 lists_cc.capabilities.find_or_create_by!( name: 'edit'    )
 lists_cc.capabilities.find_or_create_by!( name: 'destroy' )
 
-subscriptions_cc.capabilities.find_or_create_by!( name: 'list'   )
-subscriptions_cc.capabilities.find_or_create_by!( name: 'add'    )
-subscriptions_cc.capabilities.find_or_create_by!( name: 'remove' )
+subscriptions_cc.capabilities.find_or_create_by!( name: 'list'    )
+subscriptions_cc.capabilities.find_or_create_by!( name: 'add'     )
+subscriptions_cc.capabilities.find_or_create_by!( name: 'destroy' )
 
 # Consent version used when a list admin manually subscribes somebody
 

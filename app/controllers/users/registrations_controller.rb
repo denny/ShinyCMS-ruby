@@ -11,6 +11,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   include ShinyFeatureFlagHelper
   include RecaptchaHelper
 
+  include PasswordReportAction
+
   before_action :check_feature_flags, only: %i[ new create ]
 
   def new

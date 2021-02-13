@@ -41,7 +41,9 @@ Rails.application.routes.draw do
                   password:     '/account/password',
                   unlock:       '/account/unlock'
                 }
-    get  'account/password/test/:password', to: 'users/passwords#test', as: :test_password
+    devise_scope :user do
+      get 'account/password-report/:password', to: 'users/registrations#password_report', as: :password_report
+    end
 
     get  'discussions',            to: 'discussions#index', as: :discussions
     get  'discussion/:id',         to: 'discussions#show',  as: :discussion
@@ -71,16 +73,16 @@ Rails.application.routes.draw do
 
     get :admin, to: 'admin#index'
 
-    concern :paginatable do
+    concern :with_paging do
       get '(page/:page)', action: :index, on: :collection, as: ''
     end
-    concern :searchable do
+    concern :with_search do
       get :search, on: :collection
     end
 
     scope path: 'admin', module: 'admin' do
       # Consent versions
-      resources :consent_versions, path: 'consent-versions', concerns: %i[ paginatable searchable ]
+      resources :consent_versions, path: 'consent-versions', except: :index, concerns: %i[ with_paging with_search ]
 
       # Comment and discussion moderation
       get 'comments(/page/:page)', to: 'comments#index',  as: :comments
@@ -104,8 +106,7 @@ Rails.application.routes.draw do
       end
 
       # Email Recipients
-      resources :email_recipients, path: 'email-recipients', concerns: %i[ paginatable searchable ],
-                                   only: %i[ index destroy ] do
+      resources :email_recipients, path: 'email-recipients', only: :destroy, concerns: %i[ with_paging with_search ] do
         put :'do-not-contact', on: :member, to: 'email_recipients#do_not_contact'
       end
 
@@ -128,7 +129,7 @@ Rails.application.routes.draw do
       get 'web-stats/search',                    to: 'web_stats#search', as: :search_web_stats
 
       # Users
-      resources :users, except: :show, concerns: %i[ paginatable searchable ]
+      resources :users, except: %i[ index show ], concerns: %i[ with_paging with_search ]
       get 'users/usernames', to: 'users#username_search', as: :search_usernames
     end
 

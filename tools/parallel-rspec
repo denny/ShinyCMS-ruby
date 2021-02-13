@@ -4,8 +4,10 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# This is just a shorthand script for running the tests in parallel on multi-core machines.
+# This script uses the parallel_tests gem to run the tests in parallel on multi-core machines
 #
-# Not used on CircleCI because that has its own parallelisation thing going on.
+# More details:
+# https://docs.shinycms.org/Developers/Testing/#parallel-test-runs
+# https://github.com/grosser/parallel_tests#readme
 
-parallel_rspec --first-is-1 spec/ plugins/
+RAILS_ENV=test PARALLEL_TEST_FIRST_IS_1=true parallel_rspec spec/ plugins/

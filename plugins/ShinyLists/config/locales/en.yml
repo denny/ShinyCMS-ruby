@@ -70,9 +70,9 @@ en:
         index:
           title: Subscriptions
           search: Search subscriptions
-        subscribe:
+        create:
           success: Subscribed
           # failure: Failed to create subscription
-        unsubscribe:
+        destroy:
           success: Unsubscribed
           # failure: Failed to unsubscribe

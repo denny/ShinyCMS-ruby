@@ -24,12 +24,12 @@ module ShinyLists
       index?
     end
 
-    def subscribe?
+    def create?
       @this_user.can? :add, :mailing_list_subscriptions
     end
 
-    def unsubscribe?
-      @this_user.can? :remove, :mailing_list_subscriptions
+    def destroy?
+      @this_user.can? :destroy, :mailing_list_subscriptions
     end
   end
 end

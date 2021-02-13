@@ -2,7 +2,6 @@ no_browser: true
 paths:
   - app
   - lib/generators/shiny
-  - lib/templates/shiny
   - plugins/ShinyAccess/app
   - plugins/ShinyBlog/app
   - plugins/ShinyForms/app
@@ -13,3 +12,4 @@ paths:
   - plugins/ShinyPages/app
   - plugins/ShinyProfiles/app
   - plugins/ShinySearch/app
+  - plugins/ShinySEO/app

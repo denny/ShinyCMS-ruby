@@ -9,10 +9,10 @@
 require 'rails_helper'
 
 # Tests for password-related features on main site
-RSpec.describe Users::PasswordsController, type: :request do
+RSpec.describe PasswordReportAction, type: :request do
   describe 'GET /account/password/test/Hunter2' do
     it 'returns a JSON assessment (score and suggestions) for the proposed password' do
-      get test_password_path( 'Hunter2' )
+      get password_report_path( 'Hunter2' )
 
       expect( response ).to have_http_status :ok
 
