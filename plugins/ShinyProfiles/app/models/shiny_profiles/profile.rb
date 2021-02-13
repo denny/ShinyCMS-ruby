@@ -12,10 +12,11 @@ require_dependency 'user'
 module ShinyProfiles
   # Model for user profile pages (and related features)
   class Profile < ApplicationRecord
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyShowHide
+    include ShinyCMS::ShinySoftDelete
+
     include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
-    include ShinyDemoDataProvider
-    include ShinyShowHide
-    include ShinySoftDelete
 
     # Associations
 

@@ -9,8 +9,8 @@
 module ShinyBlog
   # Model for blog posts, from ShinyBlog plugin for ShinyCMS
   class Post < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinyPost
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyPost
 
     # Associations
 

@@ -9,12 +9,13 @@
 module ShinyPages
   # Model for page sections - part of the ShinyPages plugin for ShinyCMS
   class Section < ApplicationRecord
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyName
+    include ShinyCMS::ShinySlugInSection
+    include ShinyCMS::ShinyShowHide
+    include ShinyCMS::ShinySoftDelete
+
     include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
-    include ShinyDemoDataProvider
-    include ShinyName
-    include ShinySlugInSection
-    include ShinyShowHide
-    include ShinySoftDelete
 
     # Associations
 

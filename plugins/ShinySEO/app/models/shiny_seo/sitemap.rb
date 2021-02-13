@@ -9,8 +9,8 @@
 module ShinySEO
   # A thin wrapper around the sitemap_generator gem - part of the ShinySEO plugin for ShinyCMS
   class Sitemap
-    include ShinyS3
-    include ShinySiteURL
+    include ShinyCMS::ShinyS3
+    include ShinyCMS::ShinySiteURL
 
     include Rails.application.routes.url_helpers
 

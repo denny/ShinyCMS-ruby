@@ -9,9 +9,9 @@
 module ShinyNewsletters
   # Model for newsletter templates - part of the ShinyNewsletters plugin for ShinyCMS
   class Template < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinyMJMLTemplate
-    include ShinySoftDelete
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyMJMLTemplate
+    include ShinyCMS::ShinySoftDelete
 
     # Associations
 
