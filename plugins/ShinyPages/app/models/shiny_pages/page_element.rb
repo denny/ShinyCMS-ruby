@@ -12,7 +12,7 @@ module ShinyPages
     include ShinyCMS::ShinyDemoDataProvider
     include ShinyCMS::ShinyElement
 
-    include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
+    include ShinySearch::Searchable if ShinyCMS::ShinyPlugin.loaded? :ShinySearch
 
     # Assocations
 
@@ -22,7 +22,7 @@ module ShinyPages
 
     acts_as_list scope: :page
 
-    searchable_by :content if ShinyPlugin.loaded? :ShinySearch # TODO
+    searchable_by :content if ShinyCMS::ShinyPlugin.loaded? :ShinySearch # TODO
 
     # Validations
 

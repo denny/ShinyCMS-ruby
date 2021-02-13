@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Explicitly require the main app User model here, to fix reloader glitches in dev env
-require_dependency 'user'
+require_dependency 'shinycms/user'
 
 module ShinyProfiles
   # Model for user profile pages (and related features)
@@ -16,7 +16,7 @@ module ShinyProfiles
     include ShinyCMS::ShinyShowHide
     include ShinyCMS::ShinySoftDelete
 
-    include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
+    include ShinySearch::Searchable if ShinyCMS::ShinyPlugin.loaded? :ShinySearch
 
     # Associations
 
@@ -42,7 +42,9 @@ module ShinyProfiles
 
     # Plugins
 
-    searchable_by :username, :public_name, :public_email, :bio, :location, :postcode if ShinyPlugin.loaded? :ShinySearch
+    if ShinyCMS::ShinyPlugin.loaded? :ShinySearch
+      searchable_by :username, :public_name, :public_email, :bio, :location, :postcode
+    end
 
     # Instance methods
 
