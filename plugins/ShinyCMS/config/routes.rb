@@ -6,18 +6,12 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Rails routing guide: http://guides.rubyonrails.org/routing.html
+# Routes for ShinyCMS core plugin
 
-# Routes for main app (ShinyCMS core)
-Rails.application.routes.draw do
-  get 'errors/not_found'
-  get 'errors/internal_server_error'
+ShinyCMS::Engine.routes.draw do
   scope format: false do
     ########################################
     # Main site
-
-    # TODO: figure out what to do here if ShinyPages isn't loaded...
-    root to: 'shiny_pages/pages#index' if defined? ShinyPages
 
     # Smarter error pages
     match '404',  to: 'errors#not_found',             via: :all
@@ -25,12 +19,13 @@ Rails.application.routes.draw do
 
     get '/errors/test500', to: 'errors#test500'
 
-    # Authentication / User Accounts: /account /login /logout
+    # User Accounts / Authentication
     devise_for  :users,
+                class_name:  'ShinyCMS::User',
                 path:        '',
                 controllers: {
-                  registrations: 'users/registrations',
-                  sessions:      'users/sessions'
+                  registrations: 'shinycms/users/registrations',
+                  sessions:      'shinycms/users/sessions'
                 },
                 path_names:  {
                   sign_in:      '/login',
@@ -41,9 +36,7 @@ Rails.application.routes.draw do
                   password:     '/account/password',
                   unlock:       '/account/unlock'
                 }
-    devise_scope :user do
-      get 'account/password-report/:password', to: 'users/registrations#password_report', as: :password_report
-    end
+    get  'account/password/test/:password', to: 'users/passwords#test', as: :test_password
 
     get  'discussions',            to: 'discussions#index', as: :discussions
     get  'discussion/:id',         to: 'discussions#show',  as: :discussion
@@ -73,16 +66,16 @@ Rails.application.routes.draw do
 
     get :admin, to: 'admin#index'
 
-    concern :with_paging do
+    concern :paginatable do
       get '(page/:page)', action: :index, on: :collection, as: ''
     end
-    concern :with_search do
+    concern :searchable do
       get :search, on: :collection
     end
 
     scope path: 'admin', module: 'admin' do
       # Consent versions
-      resources :consent_versions, path: 'consent-versions', except: :index, concerns: %i[ with_paging with_search ]
+      resources :consent_versions, path: 'consent-versions', concerns: %i[ paginatable searchable ]
 
       # Comment and discussion moderation
       get 'comments(/page/:page)', to: 'comments#index',  as: :comments
@@ -106,7 +99,8 @@ Rails.application.routes.draw do
       end
 
       # Email Recipients
-      resources :email_recipients, path: 'email-recipients', only: :destroy, concerns: %i[ with_paging with_search ] do
+      resources :email_recipients, path: 'email-recipients', concerns: %i[ paginatable searchable ],
+                                   only: %i[ index destroy ] do
         put :'do-not-contact', on: :member, to: 'email_recipients#do_not_contact'
       end
 
@@ -129,27 +123,18 @@ Rails.application.routes.draw do
       get 'web-stats/search',                    to: 'web_stats#search', as: :search_web_stats
 
       # Users
-      resources :users, except: %i[ index show ], concerns: %i[ with_paging with_search ]
+      resources :users, except: :show, concerns: %i[ paginatable searchable ]
       get 'users/usernames', to: 'users#username_search', as: :search_usernames
     end
 
     ########################################
-    # Rails engines
+    # Rails engines provided by gems
 
-    # AhoyEmail provides email tracking features
-    mount AhoyEmail::Engine, at: '/ahoy'
-
-    # Blazer provides charts and dashboards in the admin area
-    mount Blazer::Engine, at: '/admin/stats'
-
-    # CKEditor provides the WYSIWYG editor used in the admin area
+    # CKEditor provides the WYSIWYG editor used in the ShinyCMS admin area
     mount Ckeditor::Engine, at: '/admin/ckeditor'
 
     # LetterOpener catches all emails sent in development, with a webmail UI to view them
     mount LetterOpenerWeb::Engine, at: '/dev/outbox' if Rails.env.development?
-
-    # RailsEmailPreview provides previews of site emails in the admin area
-    mount RailsEmailPreview::Engine, at: '/admin/email-previews'
 
     # Sidekiq Web provides a web dashboard for Sidekiq jobs and queues
     def sidekiq_web_enabled?
@@ -161,6 +146,7 @@ Rails.application.routes.draw do
       require 'sidekiq-status/web'
 
       Sidekiq::Web.set :sessions, false
+
       authenticate :user, ->( user ) { user.can? :manage_sidekiq_jobs } do
         mount Sidekiq::Web, at: '/admin/sidekiq'
       end
@@ -175,28 +161,6 @@ Rails.application.routes.draw do
       authenticate :user, ->( user ) { user.can? :view_code_usage } do
         mount Coverband::Reporters::Web.new, at: '/admin/coverband', as: :coverband unless Rails.env.test?
       end
-    end
-
-    ########################################
-    # ShinyCMS plugins
-
-    ShinyPlugin.loaded.each do |plugin|
-      mount plugin.engine, at: '/' if plugin.engine.present?
-    end
-
-    ########################################################################################################
-    # This route explicitly intercepts any request starting with /admin that wasn't otherwise handled
-    match '/admin/*path', to: 'admin#not_found', as: :admin_not_found, via: %i[ get post put patch delete ]
-
-    ########################################################################################################
-    # This catch-all route matches anything and everything not already matched by a route defined before it.
-    # It has to be the last route set up, because it hijacks anything that gets this far.
-    # This route gives us pages and sections at the top level, e.g. /foo instead of /pages/foo
-    # TODO: work out how to load this (last!) from plugins/ShinyPages/config/routes.rb instead of here
-    if defined? ShinyPages
-      get '*path', to: 'shiny_pages/pages#show', constraints: lambda { |req|
-        !req.path.starts_with?( '/rails/active_' )
-      }
     end
   end
 end
