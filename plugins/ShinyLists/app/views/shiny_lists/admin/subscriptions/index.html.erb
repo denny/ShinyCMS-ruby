@@ -38,7 +38,7 @@
         <% end %>
       </td>
       <td class="actions">
-        <%= link_to t( 'shiny_lists.unsubscribe' ), shiny_lists.admin_list_unsubscribe_path( subscription.list, subscription ),
+        <%= link_to t( 'shiny_lists.unsubscribe' ), shiny_lists.list_subscriptions_path( subscription.list, subscription ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>
