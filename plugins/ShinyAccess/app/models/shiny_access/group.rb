@@ -17,7 +17,7 @@ module ShinyAccess
     # Associations
 
     has_many :memberships
-    has_many :users, through: :memberships, inverse_of: :access_groups
+    has_many :users, through: :memberships, inverse_of: :access_groups, class_name: 'ShinyCMS::User'
 
     # Instance methods
 
@@ -43,6 +43,7 @@ module ShinyAccess
 end
 
 # Don't want to lose records of these without a bit of deliberate effort, in case they were paid memberships
-User.has_many :access_memberships, -> { active }, class_name: 'ShinyAccess::Membership', dependent: :restrict_with_error
-User.has_many :access_groups, through: :access_memberships, source: :group,
-                              class_name: 'ShinyAccess::Group', inverse_of: :users
+ShinyCMS::User.has_many :access_memberships, -> { active }, inverse_of: :user,
+                        dependent: :restrict_with_error, class_name: 'ShinyAccess::Membership'
+ShinyCMS::User.has_many :access_groups, through: :access_memberships, source: :group, inverse_of: :users,
+                        class_name: 'ShinyAccess::Group'

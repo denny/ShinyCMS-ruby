@@ -11,7 +11,7 @@ module ShinyForms
   class FormMailer < ApplicationMailer
     before_action :check_feature_flags
 
-    before_action { @to = params[:to] || Setting.get( :default_email ) }
+    before_action { @to = params[:to] || ShinyCMS::Setting.get( :default_email ) }
 
     before_action { @form_name = params[:form_name] }
     before_action { @form_data = params[:form_data] }
