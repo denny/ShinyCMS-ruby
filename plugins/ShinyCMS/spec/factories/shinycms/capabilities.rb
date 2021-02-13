@@ -8,7 +8,7 @@
 
 # Factory for Capability model
 FactoryBot.define do
-  factory :capability do
+  factory :capability, class: 'ShinyCMS::Capability' do
     name { Faker::Books::CultureSeries.unique.civs.underscore }
 
     association :category, factory: :capability_category

@@ -8,7 +8,7 @@
 
 # Factory for VotableIP model
 FactoryBot.define do
-  factory :votable_ip do
+  factory :votable_ip, class: 'ShinyCMS::VotableIP' do
     ip_address { Faker::Internet.unique.ip_v4_address }
   end
 end

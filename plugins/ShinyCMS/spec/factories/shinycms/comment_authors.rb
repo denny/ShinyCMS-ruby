@@ -8,7 +8,7 @@
 
 # Factory for unauthenticated comment authors
 FactoryBot.define do
-  factory :comment_author do
+  factory :comment_author, class: 'ShinyCMS::CommentAuthor' do
     name { Faker::Name.unique.name }
     ip_address { Faker::Internet.unique.ip_v4_address }
     token { SecureRandom.uuid }

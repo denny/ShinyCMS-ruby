@@ -8,7 +8,7 @@
 
 # Factory for UserCapability model
 FactoryBot.define do
-  factory :user_capability do
+  factory :user_capability, class: 'ShinyCMS::UserCapability' do
     association :user
     association :capability
   end

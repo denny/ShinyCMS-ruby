@@ -8,7 +8,7 @@
 
 # Factory for Discussion model
 FactoryBot.define do
-  factory :discussion do
+  factory :discussion, class: 'ShinyCMS::Discussion' do
     transient do
       comment_count { 0 }
       comments_posted_at { Time.zone.now.iso8601 }

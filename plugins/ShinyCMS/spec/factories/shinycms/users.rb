@@ -8,7 +8,7 @@
 
 # Factory for User model (note, plugins tend to add to this collection)
 FactoryBot.define do
-  factory :user do
+  factory :user, class: 'ShinyCMS::User' do
     username     { Faker::Internet.unique.username( specifier: 5 ) }
     password     { Faker::Internet.unique.password }
     email        { Faker::Internet.unique.email( name: username ) }

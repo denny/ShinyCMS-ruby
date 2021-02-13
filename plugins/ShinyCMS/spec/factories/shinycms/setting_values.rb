@@ -8,7 +8,7 @@
 
 # Factory for SettingValue model (used together with Setting model/factory)
 FactoryBot.define do
-  factory :setting_value, aliases: [ :default_setting_value ] do
+  factory :setting_value, class: 'ShinyCMS::SettingValue', aliases: [ :default_setting_value ] do
     value { Faker::Books::CultureSeries.unique.culture_ship }
   end
 

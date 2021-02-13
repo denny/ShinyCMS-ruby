@@ -8,7 +8,7 @@
 
 # Factory for Comment model
 FactoryBot.define do
-  factory :comment do
+  factory :comment, class: 'ShinyCMS::Comment' do
     sequence( :number )
     title  { Faker::Books::CultureSeries.unique.culture_ship }
     body   { Faker::Lorem.paragraph }

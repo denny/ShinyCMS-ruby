@@ -8,7 +8,7 @@
 
 # Factory for EmailRecipient model (no user account but we want to send them email - newsletters, reply notifications, etc)
 FactoryBot.define do
-  factory :email_recipient do
+  factory :email_recipient, class: 'ShinyCMS::EmailRecipient' do
     name  { Faker::Name.unique.name      }
     email { Faker::Internet.unique.email }
 

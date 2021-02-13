@@ -8,7 +8,7 @@
 
 # Factory for FeatureFlag model
 FactoryBot.define do
-  factory :feature_flag do
+  factory :feature_flag, class: 'ShinyCMS::FeatureFlag' do
     name { Faker::Books::CultureSeries.unique.civs.underscore }
   end
 end

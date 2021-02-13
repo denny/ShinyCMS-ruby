@@ -8,7 +8,7 @@
 
 # Factory for Consent model (holds details of things users can agree to, e.g. 'subscribe to mailing list')
 FactoryBot.define do
-  factory :consent_version do
+  factory :consent_version, class: 'ShinyCMS::ConsentVersion' do
     name { Faker::Books::CultureSeries.unique.culture_ship }
     display_text { Faker::Lorem.paragraph }
   end

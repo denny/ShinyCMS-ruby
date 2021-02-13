@@ -8,7 +8,7 @@
 
 # Factory for Setting model (used together with SettingValue model/factory)
 FactoryBot.define do
-  factory :setting do
+  factory :setting, class: 'ShinyCMS::Setting' do
     name   { Faker::Books::CultureSeries.unique.civs.underscore }
     level  { 'site' }
     locked { false  }
