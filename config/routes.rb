@@ -129,9 +129,8 @@ Rails.application.routes.draw do
       get 'web-stats/search',                    to: 'web_stats#search', as: :search_web_stats
 
       # Users
-      resources :users, except: %i[ index show ], concerns: %i[ with_paging with_search ] do
-        get :usernames, on: :collection, to: 'users#username_search', as: :search_usernames
-      end
+      resources :users, except: %i[ index show ], concerns: %i[ with_paging with_search ]
+      get 'users/usernames', to: 'users#username_search', as: :search_usernames
     end
 
     ########################################
