@@ -9,8 +9,9 @@
 module ShinySearch
   # Main site controller for ShinySearch plugin for ShinyCMS
   class SearchController < MainController
+    include ShinyCMS::ShinyPagingHelper
+
     include ShinySearch::MainSiteHelper
-    include ShinyPagingHelper
 
     before_action :check_feature_flags
     before_action :stash_query_string

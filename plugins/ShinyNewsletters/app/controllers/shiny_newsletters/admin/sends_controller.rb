@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Admin controller for newsletter sends - part of ShinyNewsletters plugin for ShinyCMS
   class Admin::SendsController < AdminController
-    include ShinyDateHelper
+    include ShinyCMS::ShinyDateHelper
 
     before_action :stash_send, only: %i[ show edit update destroy start_sending cancel_sending ]
     before_action :stash_send_for_create, only: %i[ create ]
