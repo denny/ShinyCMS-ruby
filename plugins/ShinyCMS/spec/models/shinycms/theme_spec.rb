@@ -46,7 +46,7 @@ RSpec.describe ShinyCMS::Theme, type: :model do
 
   context 'when there is a site-wide theme name setting' do
     it 'returns the configured theme' do
-      allow( Setting ).to receive( :get ).and_return( 'test2' )
+      allow( ShinyCMS::Setting ).to receive( :get ).and_return( 'test2' )
 
       expect( described_class.current.name ).to eq 'test2'
     end
@@ -54,7 +54,7 @@ RSpec.describe ShinyCMS::Theme, type: :model do
 
   context 'when there is a user-level theme name setting' do
     it "returns the user's chosen theme if valid" do
-      setting = Setting.find_by( name: 'theme_name' )
+      setting = ShinyCMS::Setting.find_by( name: 'theme_name' )
       setting.update!( level: 'user' )
       user    = create :admin_user
       create :setting_value, user_id: user.id, setting_id: setting.id, value: 'test2'
@@ -63,7 +63,7 @@ RSpec.describe ShinyCMS::Theme, type: :model do
     end
 
     it "returns the site's default theme if the user theme is invalid" do
-      setting = Setting.find_by( name: 'theme_name' )
+      setting = ShinyCMS::Setting.find_by( name: 'theme_name' )
       setting.update!( level: 'user' )
       user    = create :user
       create :setting_value, user_id: user.id, setting_id: setting.id, value: 'test3'

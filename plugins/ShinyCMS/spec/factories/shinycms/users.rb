@@ -17,7 +17,7 @@ FactoryBot.define do
 
   factory :admin_user, parent: :user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'general' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'general' )
       capability1 = category.capabilities.find_by( name: 'view_admin_area'    )
       capability2 = category.capabilities.find_by( name: 'view_admin_toolbar' )
       create :user_capability, user: admin, capability: capability1
@@ -30,7 +30,7 @@ FactoryBot.define do
 
   factory :consent_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'consent_versions' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'consent_versions' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )
@@ -46,7 +46,7 @@ FactoryBot.define do
 
   factory :discussion_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'discussions' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'discussions' )
 
       show   = category.capabilities.find_by( name: 'show'   )
       hide   = category.capabilities.find_by( name: 'hide'   )
@@ -58,7 +58,7 @@ FactoryBot.define do
       create :user_capability, user: admin, capability: lock
       create :user_capability, user: admin, capability: unlock
 
-      category = CapabilityCategory.find_by( name: 'comments' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'comments' )
 
       show    = category.capabilities.find_by( name: 'show'   )
       hide    = category.capabilities.find_by( name: 'hide'    )
@@ -72,7 +72,7 @@ FactoryBot.define do
       create :user_capability, user: admin, capability: unlock
       create :user_capability, user: admin, capability: destroy
 
-      category = CapabilityCategory.find_by( name: 'spam_comments' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'spam_comments' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )
@@ -86,7 +86,7 @@ FactoryBot.define do
 
   factory :email_recipient_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'email_recipients' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'email_recipients' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       edit    = category.capabilities.find_by( name: 'edit'    )
@@ -100,7 +100,7 @@ FactoryBot.define do
 
   factory :mailer_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'mailer_previews' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'mailer_previews' )
 
       list = category.capabilities.find_by( name: 'list' )
       show = category.capabilities.find_by( name: 'show' )
@@ -112,7 +112,7 @@ FactoryBot.define do
 
   factory :feature_flags_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'feature_flags' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'feature_flags' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       edit    = category.capabilities.find_by( name: 'edit'    )
@@ -124,7 +124,7 @@ FactoryBot.define do
 
   factory :stats_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'stats' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'stats' )
 
       web     = category.capabilities.find_by( name: 'view_web'    )
       email   = category.capabilities.find_by( name: 'view_email'  )
@@ -140,7 +140,7 @@ FactoryBot.define do
 
   factory :settings_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'settings' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'settings' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       edit    = category.capabilities.find_by( name: 'edit'    )
@@ -152,7 +152,7 @@ FactoryBot.define do
 
   factory :user_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'users' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'users' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )
@@ -170,7 +170,7 @@ FactoryBot.define do
 
   factory :super_admin, parent: :user_admin do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'admin_users' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'admin_users' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )

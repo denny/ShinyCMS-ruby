@@ -41,7 +41,7 @@ RSpec.describe ShinyCMS::User, type: :model do
   end
 
   describe 'concerns' do
-    it_behaves_like ShinyEmail do
+    it_behaves_like ShinyCMS::ShinyEmail do
       let( :addressee ) { create :user }
     end
 
