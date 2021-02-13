@@ -35,6 +35,16 @@ PATH
       rails (~> 6.1.2, >= 6.1.2.1)
 
 PATH
+  remote: plugins/ShinyCMS
+  specs:
+    shinycms (21.2.14)
+      acts_as_paranoid
+      pagy
+      pg (~> 1.2.3)
+      pundit
+      rails (~> 6.1.2, >= 6.1.2.1)
+
+PATH
   remote: plugins/ShinyForms
   specs:
     shiny_forms (21.02)
@@ -737,6 +747,7 @@ DEPENDENCIES
   shiny_profiles!
   shiny_search!
   shiny_seo!
+  shinycms!
   sidekiq!
   sidekiq-status!
   sitemap_generator!

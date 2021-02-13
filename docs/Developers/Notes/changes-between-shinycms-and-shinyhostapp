@@ -1,0 +1,6 @@
+Significant changes in js config gank here:
+	modified:   config/webpack/environment.js
+
+These disappeared. Do I care?
+	deleted:    bin/spring
+	deleted:    bin/yarn
