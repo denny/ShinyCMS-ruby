@@ -114,7 +114,7 @@ module ShinyCMS
     end
 
     def self.all_names
-      Dir[ 'plugins/*' ].collect { |plugin_name| plugin_name.sub( 'plugins/', '' ) }
+      Dir[ 'plugins/*' ].collect { |plugin_name| plugin_name.sub( 'plugins/', '' ) } - [ 'ShinyCMS' ]
     end
   end
 end

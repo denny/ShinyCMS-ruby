@@ -9,7 +9,7 @@
 # Supporting methods for loading ShinyCMS plugin gems
 
 def available_plugins
-  Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ) }
+  Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ) } - [ 'ShinyCMS' ]
 end
 
 def plugin_names
@@ -25,9 +25,7 @@ def underscore( camel_cased_word )
   word = word.gsub( /([A-Z\d]+)([A-Z][a-z])/, '\1_\2' )
   word = word.gsub( /([a-z\d])([A-Z])/, '\1_\2' )
   word = word.tr( '-', '_' )
-  word = word.downcase
-  word = 'shinycms' if word == 'shiny_cms'
-  word
+  word.downcase
 end
 
 def env_var_true?( env_var_name )

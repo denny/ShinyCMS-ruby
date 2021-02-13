@@ -30,7 +30,10 @@ source 'https://rubygems.org' do
   # Locales for the 'not USA' bits of the world
   gem 'rails-i18n'
 
-  # Enable ShinyCMS plugins
+  # ShinyCMS core plugin
+  gem 'shinycms', path: 'plugins/ShinyCMS'
+
+  # ShinyCMS feature plugins
   plugin_names.each do |plugin_name|
     gem_name = underscore( plugin_name )
     gem gem_name, path: "plugins/#{plugin_name}"
