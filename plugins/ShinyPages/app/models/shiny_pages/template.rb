@@ -20,7 +20,7 @@ module ShinyPages
     # Class methods
 
     def self.template_dir
-      Theme.current&.template_dir 'shiny_pages/pages'
+      ShinyCMS::Theme.current&.template_dir 'shiny_pages/pages'
     end
 
     def self.admin_search( search_term )
