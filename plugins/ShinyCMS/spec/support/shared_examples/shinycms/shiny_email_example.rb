@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Shared test code, for testing methods and behaviour mixed-in by the ShinyEmail concern
-RSpec.shared_examples ShinyEmail do
+RSpec.shared_examples ShinyCMS::ShinyEmail do
   describe '.do_not_email?' do
     it 'returns true if the email is not confirmed' do
       allow( addressee ).to receive( :confirmed_at ).and_return nil

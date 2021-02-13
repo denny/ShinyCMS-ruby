@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Shared test code, for testing methods mixed-in by the ShinyToken concern
-RSpec.shared_examples ShinyToken do
+RSpec.shared_examples ShinyCMS::ShinyToken do
   describe 'token generation' do
     it 'generates a token when saved, if none is present' do
       tokenised.token = nil

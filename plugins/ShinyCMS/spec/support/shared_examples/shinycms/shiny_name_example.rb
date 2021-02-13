@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Shared test code, for testing methods and behaviour mixed-in by the ShinyName concern
-RSpec.shared_examples ShinyName do
+RSpec.shared_examples ShinyCMS::ShinyName do
   describe '.name' do
     it 'returns the public_name if one is set' do
       named.public_name = Faker::Books::CultureSeries.unique.culture_ship

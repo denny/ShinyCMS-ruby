@@ -6,8 +6,8 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Shared tests for methods and behaviour mixed-in by the ShinyPaginationHelper
-RSpec.shared_examples 'Pagination' do |factory, base_url, match_tag, match_text|
+# Shared tests for methods and behaviour mixed-in by the ShinyPagingHelper
+RSpec.shared_examples ShinyCMS::ShinyPagingHelper do |factory, base_url, match_tag, match_text|
   before do
     @items = []
     Array( 1..12 ).reverse_each do |age|
