@@ -7,9 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinySEO
-  # Base controller for ShinySEO admin features
-  # Inherits from ShinyCMS AdminController
-  class AdminController < ::AdminController
+  class AdminController < ShinyCMS::AdminController
     helper Rails.application.routes.url_helpers
   end
 end

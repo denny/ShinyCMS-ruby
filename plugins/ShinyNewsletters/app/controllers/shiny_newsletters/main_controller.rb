@@ -7,9 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyNewsletters
-  # Base controller for newsletter features on main site - part of ShinyNewsletters plugin for ShinyCMS
-  # Inherits from ShinyCMS MainController
-  class MainController < ::MainController
+  class MainController < ShinyCMS::MainController
     helper Rails.application.routes.url_helpers
   end
 end

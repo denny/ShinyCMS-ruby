@@ -7,8 +7,5 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyForms
-  # Base controller for admin features of ShinyForms plugin for ShinyCMS
-  # Inherits from ShinyCMS AdminController
-  class AdminController < ::AdminController
-  end
+  class AdminController < ShinyCMS::AdminController; end
 end
