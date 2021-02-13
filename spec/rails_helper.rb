@@ -61,8 +61,8 @@ RSpec.configure do |config|
     Rake::Task['db:seed'].invoke
 
     # These default to off for privacy, but we want to test the integration
-    FeatureFlag.enable :ahoy_web_tracking
-    FeatureFlag.enable :ahoy_email_tracking
+    ShinyCMS::FeatureFlag.enable :ahoy_web_tracking
+    ShinyCMS::FeatureFlag.enable :ahoy_email_tracking
   end
 
   config.before do
