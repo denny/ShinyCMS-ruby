@@ -6,28 +6,30 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Pundit policy for administration of discussions
-class DiscussionPolicy
-  attr_reader :this_user, :record
+module ShinyCMS
+  # Pundit policy for administration of discussions
+  class DiscussionPolicy
+    attr_reader :this_user, :record
 
-  def initialize( this_user, record )
-    @this_user = this_user
-    @record = record
-  end
+    def initialize( this_user, record )
+      @this_user = this_user
+      @record = record
+    end
 
-  def show?
-    hide?
-  end
+    def show?
+      hide?
+    end
 
-  def hide?
-    @this_user.can? :hide, :discussions
-  end
+    def hide?
+      @this_user.can? :hide, :discussions
+    end
 
-  def lock?
-    @this_user.can? :lock, :discussions
-  end
+    def lock?
+      @this_user.can? :lock, :discussions
+    end
 
-  def unlock?
-    lock?
+    def unlock?
+      lock?
+    end
   end
 end

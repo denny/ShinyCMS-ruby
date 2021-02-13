@@ -6,9 +6,11 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Helper methods for Sidekiq
-module SidekiqHelper
-  def sidekiq_web_enabled?
-    ENV['DISABLE_SIDEKIQ_WEB']&.downcase != 'true'
+module ShinyCMS
+  # Helper methods for Sidekiq
+  module SidekiqHelper
+    def sidekiq_web_enabled?
+      ENV['DISABLE_SIDEKIQ_WEB']&.downcase != 'true'
+    end
   end
 end

@@ -6,15 +6,17 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Provides .name method for anything with public_name and internal_name attributes
-module ShinyName
-  extend ActiveSupport::Concern
+module ShinyCMS
+  # Provides .name method for anything with public_name and internal_name attributes
+  module ShinyName
+    extend ActiveSupport::Concern
 
-  included do
-    validates :internal_name, presence: true
+    included do
+      validates :internal_name, presence: true
 
-    def name
-      public_name.presence || internal_name
+      def name
+        public_name.presence || internal_name
+      end
     end
   end
 end

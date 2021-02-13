@@ -6,23 +6,25 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Common attributes and behaviours that all template element models share
-module ShinyTemplateElement
-  extend ActiveSupport::Concern
+module ShinyCMS
+  # Common attributes and behaviours that all template element models share
+  module ShinyTemplateElement
+    extend ActiveSupport::Concern
 
-  include ShinyElement
+    include ShinyElement
 
-  included do
-    # Associations
+    included do
+      # Associations
 
-    belongs_to :template, inverse_of: :elements
+      belongs_to :template, inverse_of: :elements
 
-    # Plugin features
+      # Plugin features
 
-    acts_as_list scope: :template
+      acts_as_list scope: :template
 
-    # Validations
+      # Validations
 
-    validates :template, presence: true
+      validates :template, presence: true
+    end
   end
 end

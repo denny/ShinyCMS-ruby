@@ -6,17 +6,19 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Smarter error pages
-class ErrorsController < MainController
-  def not_found
-    render status: :not_found
-  end
+module ShinyCMS
+  # Smarter error pages
+  class ErrorsController < MainController
+    def not_found
+      render status: :not_found
+    end
 
-  def internal_server_error
-    render status: :internal_server_error
-  end
+    def internal_server_error
+      render status: :internal_server_error
+    end
 
-  def test500
-    raise StandardError, 'Boom.'
+    def test500
+      raise StandardError, 'Boom.'
+    end
   end
 end

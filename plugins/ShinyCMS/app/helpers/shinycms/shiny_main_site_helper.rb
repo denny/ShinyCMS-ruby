@@ -6,14 +6,16 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Includes all of the helpers that might be useful in templates and/or controllers on the main site
-module ShinyMainSiteHelper
-  include ShinyConsentHelper
-  include ShinyDiscussionHelper
-  include ShinyFeatureFlagHelper
-  include ShinyPluginHelper
-  include ShinySettingsHelper
-  include ShinySiteNameHelper
-  include ShinyTagsHelper
-  include ShinyUserHelper
+module ShinyCMS
+  # Includes all of the helpers that might be useful in templates and/or controllers on the main site
+  module ShinyMainSiteHelper
+    include ShinyConsentHelper
+    include ShinyDiscussionHelper
+    include ShinyFeatureFlagHelper
+    include ShinyPluginHelper
+    include ShinySettingsHelper
+    include ShinySiteNameHelper
+    include ShinyTagsHelper
+    include ShinyUserHelper
+  end
 end

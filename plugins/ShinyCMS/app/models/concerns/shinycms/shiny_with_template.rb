@@ -6,36 +6,38 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Common behaviour for templated content - e.g. ShinyPages::Page, ShinyNewsletters::Edition
-module ShinyWithTemplate
-  extend ActiveSupport::Concern
+module ShinyCMS
+  # Common behaviour for templated content - e.g. ShinyPages::Page, ShinyNewsletters::Edition
+  module ShinyWithTemplate
+    extend ActiveSupport::Concern
 
-  included do
-    # Validations
+    included do
+      # Validations
 
-    validates :template, presence: true
+      validates :template, presence: true
 
-    # Before/after actions
+      # Before/after actions
 
-    after_create :add_elements
+      after_create :add_elements
 
-    # Instance methods
+      # Instance methods
 
-    # Add the elements specified by the template
-    def add_elements
-      template.elements.each do |template_element|
-        elements.create!(
-          name:         template_element.name,
-          content:      template_element.content,
-          element_type: template_element.element_type,
-          position:     template_element.position
-        )
+      # Add the elements specified by the template
+      def add_elements
+        template.elements.each do |template_element|
+          elements.create!(
+            name:         template_element.name,
+            content:      template_element.content,
+            element_type: template_element.element_type,
+            position:     template_element.position
+          )
+        end
       end
-    end
 
-    # Returns a hash of all the elements for this item, to feed to render as local params
-    def elements_hash
-      elements.collect { |element| [ element.name.to_sym, ( element.image.presence || element.content ) ] }.to_h
+      # Returns a hash of all the elements for this item, to feed to render as local params
+      def elements_hash
+        elements.collect { |element| [ element.name.to_sym, ( element.image.presence || element.content ) ] }.to_h
+      end
     end
   end
 end

@@ -6,20 +6,22 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Pundit policy for feature flag administration
-class FeatureFlagPolicy
-  attr_reader :this_user, :record
+module ShinyCMS
+  # Pundit policy for feature flag administration
+  class FeatureFlagPolicy
+    attr_reader :this_user, :record
 
-  def initialize( this_user, record )
-    @this_user = this_user
-    @record = record
-  end
+    def initialize( this_user, record )
+      @this_user = this_user
+      @record = record
+    end
 
-  def index?
-    @this_user.can? :list, :feature_flags
-  end
+    def index?
+      @this_user.can? :list, :feature_flags
+    end
 
-  def update?
-    @this_user.can? :edit, :feature_flags
+    def update?
+      @this_user.can? :edit, :feature_flags
+    end
   end
 end

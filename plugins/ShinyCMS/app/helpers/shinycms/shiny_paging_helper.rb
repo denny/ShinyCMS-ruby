@@ -6,23 +6,25 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Methods to help with paging
-module ShinyPagingHelper
-  include Pagy::Frontend
-  include Pagy::Backend
+module ShinyCMS
+  # Methods to help with paging
+  module ShinyPagingHelper
+    include Pagy::Frontend
+    include Pagy::Backend
 
-  def items_per_page
-    items = params[:items].presence || params[:count].presence || params[:per].presence
+    def items_per_page
+      items = params[:items].presence || params[:count].presence || params[:per].presence
 
-    return default_items_per_page if items.blank?
-    return default_items_per_page if items.match?( /\D/ )
+      return default_items_per_page if items.blank?
+      return default_items_per_page if items.match?( /\D/ )
 
-    items.to_i
-  end
+      items.to_i
+    end
 
-  def default_items_per_page
-    return Setting.get_int( :default_items_per_page_in_admin_area ) || 20 if is_a? AdminController
+    def default_items_per_page
+      return Setting.get_int( :default_items_per_page_in_admin_area ) || 20 if is_a? AdminController
 
-    Setting.get_int( :default_items_per_page ) || 10
+      Setting.get_int( :default_items_per_page ) || 10
+    end
   end
 end

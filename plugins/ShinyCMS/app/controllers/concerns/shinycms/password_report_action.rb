@@ -6,13 +6,15 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Controller for non-Devise, non-admin, password-related features
-module PasswordReportAction
-  extend ActiveSupport::Concern
+module ShinyCMS
+  # Controller for non-Devise, non-admin, password-related features
+  module PasswordReportAction
+    extend ActiveSupport::Concern
 
-  included do
-    def password_report
-      render json: Zxcvbn.test( params[ :password ] )
+    included do
+      def password_report
+        render json: Zxcvbn.test( params[ :password ] )
+      end
     end
   end
 end

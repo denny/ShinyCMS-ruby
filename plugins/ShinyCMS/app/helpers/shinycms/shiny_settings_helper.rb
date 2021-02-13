@@ -6,9 +6,11 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Helper method for retrieving site settings
-module ShinySettingsHelper
-  def setting( name )
-    Setting.get( name, current_user )
+module ShinyCMS
+  # Helper method for retrieving site settings
+  module ShinySettingsHelper
+    def setting( name )
+      Setting.get( name, current_user )
+    end
   end
 end

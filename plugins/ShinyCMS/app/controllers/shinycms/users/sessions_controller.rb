@@ -6,15 +6,17 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# User login controller; almost entirely handled by Devise
-class Users::SessionsController < Devise::SessionsController
-  include ShinyFeatureFlagHelper
+module ShinyCMS
+  # User login controller; almost entirely handled by Devise
+  class Users::SessionsController < Devise::SessionsController
+    include ShinyFeatureFlagHelper
 
-  before_action :check_feature_flags
+    before_action :check_feature_flags
 
-  private
+    private
 
-  def check_feature_flags
-    enforce_feature_flags :user_login
+    def check_feature_flags
+      enforce_feature_flags :user_login
+    end
   end
 end

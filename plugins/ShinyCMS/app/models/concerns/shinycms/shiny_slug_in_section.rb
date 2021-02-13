@@ -6,16 +6,18 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Validator for slugs that only need to be unique within a section (e.g. page.slug / page_section.slug / etc)
-module ShinySlugInSection
-  extend ActiveSupport::Concern
+module ShinyCMS
+  # Validator for slugs that only need to be unique within a section (e.g. page.slug / page_section.slug / etc)
+  module ShinySlugInSection
+    extend ActiveSupport::Concern
 
-  include ShinySlug
+    include ShinySlug
 
-  included do
-    validates :slug, uniqueness: {
-      scope:   :section,
-      message: I18n.t( 'errors.messages.slug_not_unique_in_section' )
-    }
+    included do
+      validates :slug, uniqueness: {
+        scope:   :section,
+        message: I18n.t( 'errors.messages.slug_not_unique_in_section' )
+      }
+    end
   end
 end

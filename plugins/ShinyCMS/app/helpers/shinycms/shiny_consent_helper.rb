@@ -6,9 +6,11 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Helper method for retrieving consent versions
-module ShinyConsentHelper
-  def consent_version( slug )
-    ConsentVersion.find_by( slug: slug )
+module ShinyCMS
+  # Helper method for retrieving consent versions
+  module ShinyConsentHelper
+    def consent_version( slug )
+      ConsentVersion.find_by( slug: slug )
+    end
   end
 end

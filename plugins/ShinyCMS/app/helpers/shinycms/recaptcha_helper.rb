@@ -6,44 +6,46 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Helper methods for using Google reCAPTCHA
-module RecaptchaHelper
-  def verify_checkbox_recaptcha
-    return if self.class.recaptcha_checkbox_secret_key.blank?
+module ShinyCMS
+  # Helper methods for using Google reCAPTCHA
+  module RecaptchaHelper
+    def verify_checkbox_recaptcha
+      return if self.class.recaptcha_checkbox_secret_key.blank?
 
-    verify_recaptcha(
-      secret_key: self.class.recaptcha_checkbox_secret_key,
-      env:        Rails.env
-    )
-  end
+      verify_recaptcha(
+        secret_key: self.class.recaptcha_checkbox_secret_key,
+        env:        Rails.env
+      )
+    end
 
-  def verify_invisible_recaptcha( action = nil )
-    verify_invisible_recaptcha_v3( action ) || verify_invisible_recaptcha_v2
-  end
+    def verify_invisible_recaptcha( action = nil )
+      verify_invisible_recaptcha_v3( action ) || verify_invisible_recaptcha_v2
+    end
 
-  def verify_invisible_recaptcha_v2
-    return if self.class.recaptcha_v2_secret_key.blank?
+    def verify_invisible_recaptcha_v2
+      return if self.class.recaptcha_v2_secret_key.blank?
 
-    verify_recaptcha(
-      secret_key: self.class.recaptcha_v2_secret_key,
-      env:        Rails.env
-    )
-  end
+      verify_recaptcha(
+        secret_key: self.class.recaptcha_v2_secret_key,
+        env:        Rails.env
+      )
+    end
 
-  def verify_invisible_recaptcha_v3( action )
-    return if self.class.recaptcha_v3_secret_key.blank?
+    def verify_invisible_recaptcha_v3( action )
+      return if self.class.recaptcha_v3_secret_key.blank?
 
-    min_score = minimum_score( action ).to_f
+      min_score = minimum_score( action ).to_f
 
-    verify_recaptcha(
-      action:        action,
-      minimum_score: min_score,
-      secret_key:    self.class.recaptcha_v3_secret_key,
-      env:           Rails.env
-    )
-  end
+      verify_recaptcha(
+        action:        action,
+        minimum_score: min_score,
+        secret_key:    self.class.recaptcha_v3_secret_key,
+        env:           Rails.env
+      )
+    end
 
-  def minimum_score( action )
-    Setting.get( "recaptcha_score_for_#{action}".to_sym ) || Setting.get( :recaptcha_score_default ) || 0.5
+    def minimum_score( action )
+      Setting.get( "recaptcha_score_for_#{action}".to_sym ) || Setting.get( :recaptcha_score_default ) || 0.5
+    end
   end
 end

@@ -6,10 +6,12 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Links users and capabilities
-class UserCapability < ApplicationRecord
-  include ShinySoftDelete
+module ShinyCMS
+  # Links users and capabilities
+  class UserCapability < ApplicationRecord
+    include ShinySoftDelete
 
-  belongs_to :user
-  belongs_to :capability
+    belongs_to :user
+    belongs_to :capability
+  end
 end

@@ -6,98 +6,100 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Controller for users section of ShinyCMS admin area
-class Admin::UsersController < AdminController
-  before_action :stash_new_user, only: %i[ new create ]
-  before_action :stash_user,     only: %i[ edit update destroy ]
+module ShinyCMS
+  # Controller for users section of ShinyCMS admin area
+  class Admin::UsersController < AdminController
+    before_action :stash_new_user, only: %i[ new create ]
+    before_action :stash_user,     only: %i[ edit update destroy ]
 
-  helper_method :pagy_url_for
+    helper_method :pagy_url_for
 
-  def index
-    authorize User
-    @pagy, @users = pagy( User.order( :username ), items: items_per_page )
-    authorize @users if @users.present?
-  end
-
-  def search
-    authorize User
-
-    @pagy, @users = pagy( User.admin_search( params[:q] ), items: items_per_page )
-
-    authorize @users if @users.present?
-    render :index
-  end
-
-  def username_search
-    authorize User
-
-    users = User.where( 'username ilike ?', "%#{params[ :term ]}%" ).pluck( :username )
-
-    render json: users
-  end
-
-  def new
-    authorize @user
-  end
-
-  def create
-    authorize @user
-
-    if @user.save
-      redirect_to edit_user_path( @user ), notice: t( '.success' )
-    else
-      flash.now[ :alert ] = t( '.failure' )
-      render action: :new
+    def index
+      authorize User
+      @pagy, @users = pagy( User.order( :username ), items: items_per_page )
+      authorize @users if @users.present?
     end
-  end
 
-  def edit
-    authorize @user
-  end
+    def search
+      authorize User
 
-  def update
-    authorize @user
-    @user.skip_reconfirmation!
+      @pagy, @users = pagy( User.admin_search( params[:q] ), items: items_per_page )
 
-    if @user.update_without_password( strong_params )
-      redirect_to edit_user_path( @user ), notice: t( '.success' )
-    else
-      flash.now[ :alert ] = t( '.failure' )
-      render action: :edit
+      authorize @users if @users.present?
+      render :index
     end
-  end
 
-  def destroy
-    authorize @user
+    def username_search
+      authorize User
 
-    if @user.destroy
-      redirect_to users_path, notice: t( '.success' )
-    else
-      redirect_to users_path, alert: t( '.failure' )
+      users = User.where( 'username ilike ?', "%#{params[ :term ]}%" ).pluck( :username )
+
+      render json: users
     end
-  end
 
-  private
+    def new
+      authorize @user
+    end
 
-  def stash_new_user
-    @user = User.new( strong_params )
-  end
+    def create
+      authorize @user
 
-  def stash_user
-    @user = User.find( params[:id] )
-  end
+      if @user.save
+        redirect_to edit_user_path( @user ), notice: t( '.success' )
+      else
+        flash.now[ :alert ] = t( '.failure' )
+        render action: :new
+      end
+    end
 
-  def strong_params
-    return unless params[ :user ]
+    def edit
+      authorize @user
+    end
 
-    params.require( :user ).permit(
-      :username, :email, :password, :admin_notes, capabilities: {}
-    )
-  end
+    def update
+      authorize @user
+      @user.skip_reconfirmation!
 
-  # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
-  def pagy_url_for( page, _pagy )
-    params = request.query_parameters.merge( only_path: true, page: page )
-    url_for( params )
+      if @user.update_without_password( strong_params )
+        redirect_to edit_user_path( @user ), notice: t( '.success' )
+      else
+        flash.now[ :alert ] = t( '.failure' )
+        render action: :edit
+      end
+    end
+
+    def destroy
+      authorize @user
+
+      if @user.destroy
+        redirect_to users_path, notice: t( '.success' )
+      else
+        redirect_to users_path, alert: t( '.failure' )
+      end
+    end
+
+    private
+
+    def stash_new_user
+      @user = User.new( strong_params )
+    end
+
+    def stash_user
+      @user = User.find( params[:id] )
+    end
+
+    def strong_params
+      return unless params[ :user ]
+
+      params.require( :user ).permit(
+        :username, :email, :password, :admin_notes, capabilities: {}
+      )
+    end
+
+    # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+    def pagy_url_for( page, _pagy )
+      params = request.query_parameters.merge( only_path: true, page: page )
+      url_for( params )
+    end
   end
 end

@@ -6,13 +6,15 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Used to mark models which supply data to the demo site data dump process
-module ShinyDemoDataProvider
-  extend ActiveSupport::Concern
+module ShinyCMS
+  # Used to mark models which supply data to the demo site data dump process
+  module ShinyDemoDataProvider
+    extend ActiveSupport::Concern
 
-  included do
-    def self.dump_for_demo?
-      true
+    included do
+      def self.dump_for_demo?
+        true
+      end
     end
   end
 end

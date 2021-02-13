@@ -6,9 +6,11 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Helper to return your site name - included by ShinyMainSiteHelper and ShinyMailerHelper
-module ShinySiteNameHelper
-  def site_name
-    ::Setting.get( :site_name ) || I18n.t( 'site_name' )
+module ShinyCMS
+  # Helper to return your site name - included by ShinyMainSiteHelper and ShinyMailerHelper
+  module ShinySiteNameHelper
+    def site_name
+      ::Setting.get( :site_name ) || I18n.t( 'site_name' )
+    end
   end
 end

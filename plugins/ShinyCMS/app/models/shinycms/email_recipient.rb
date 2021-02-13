@@ -6,69 +6,71 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Store details of people you send email to, who don't have a user account
-# e.g. newsletter subscribers, pseudonymous comment reply notifications
-class EmailRecipient < ApplicationRecord
-  include ShinyDemoDataProvider
-  include ShinyEmail
-  include ShinySoftDelete
-  include ShinyToken
+module ShinyCMS
+  # Store details of people you send email to, who don't have a user account
+  # e.g. newsletter subscribers, pseudonymous comment reply notifications
+  class EmailRecipient < ApplicationRecord
+    include ShinyDemoDataProvider
+    include ShinyEmail
+    include ShinySoftDelete
+    include ShinyToken
 
-  # Associations
+    # Associations
 
-  has_many :comment_authors, dependent: :nullify
+    has_many :comment_authors, dependent: :nullify
 
-  # Email stats (powered by Ahoy)
-  has_many :messages, as: :user, dependent: :nullify, class_name: 'Ahoy::Message'
+    # Email stats (powered by Ahoy)
+    has_many :messages, as: :user, dependent: :nullify, class_name: 'Ahoy::Message'
 
-  # Scopes
+    # Scopes
 
-  scope :confirmed, -> { where.not( confirmed_at: nil ) }
+    scope :confirmed, -> { where.not( confirmed_at: nil ) }
 
-  # Before/after actions
+    # Before/after actions
 
-  after_create :send_confirm_email
-  before_destroy :redact_emails!
+    after_create :send_confirm_email
+    before_destroy :redact_emails!
 
-  # Instance methods
+    # Instance methods
 
-  def set_confirm_token
-    update!(
-      confirm_token:   SecureRandom.uuid,
-      confirm_sent_at: Time.zone.now,
-      confirmed_at:    nil
-    )
-  end
+    def set_confirm_token
+      update!(
+        confirm_token:   SecureRandom.uuid,
+        confirm_sent_at: Time.zone.now,
+        confirmed_at:    nil
+      )
+    end
 
-  def send_confirm_email
-    set_confirm_token
-    EmailRecipientMailer.confirm( self ).deliver_later
-  end
+    def send_confirm_email
+      set_confirm_token
+      EmailRecipientMailer.confirm( self ).deliver_later
+    end
 
-  def confirm
-    return false if confirm_expired?
+    def confirm
+      return false if confirm_expired?
 
-    update!( confirmed_at: Time.zone.now, confirm_token: nil )
-  end
+      update!( confirmed_at: Time.zone.now, confirm_token: nil )
+    end
 
-  def confirmed?
-    confirmed_at.present?
-  end
+    def confirmed?
+      confirmed_at.present?
+    end
 
-  def confirm_expired?
-    confirm_sent_at < self.class.confirm_token_valid_for.ago
-  end
+    def confirm_expired?
+      confirm_sent_at < self.class.confirm_token_valid_for.ago
+    end
 
-  # Class methods
+    # Class methods
 
-  def self.confirm_token_valid_for
-    # TODO: make this configurable
-    7.days
-  end
+    def self.confirm_token_valid_for
+      # TODO: make this configurable
+      7.days
+    end
 
-  def self.admin_search( search_term )
-    where( 'email ilike ?', "%#{search_term}%" )
-      .or( where( 'name ilike ?', "%#{search_term}%" ) )
-      .order( updated_at: :desc )
+    def self.admin_search( search_term )
+      where( 'email ilike ?', "%#{search_term}%" )
+        .or( where( 'name ilike ?', "%#{search_term}%" ) )
+        .order( updated_at: :desc )
+    end
   end
 end

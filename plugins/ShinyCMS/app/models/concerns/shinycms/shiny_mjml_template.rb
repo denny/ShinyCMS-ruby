@@ -6,55 +6,57 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Common behaviour for ERB MJML content templates - e.g. ShinyNewsletters::Template
-module ShinyMJMLTemplate
-  extend ActiveSupport::Concern
+module ShinyCMS
+  # Common behaviour for ERB MJML content templates - e.g. ShinyNewsletters::Template
+  module ShinyMJMLTemplate
+    extend ActiveSupport::Concern
 
-  include ShinyTemplate
+    include ShinyTemplate
 
-  included do
-    # Validations
+    included do
+      # Validations
 
-    validates :filename, mjml_syntax: true, if: -> { filename_changed? }
+      validates :filename, mjml_syntax: true, if: -> { filename_changed? }
 
-    # Instance methods
+      # Instance methods
 
-    # Create template elements, based on the content of the template file
-    def add_elements
-      raise ActiveRecord::Rollback unless file_exists?
+      # Create template elements, based on the content of the template file
+      def add_elements
+        raise ActiveRecord::Rollback unless file_exists?
 
-      file = "#{self.class.template_dir}/#{filename}.html.mjml"
-      mjml = File.read file
+        file = "#{self.class.template_dir}/#{filename}.html.mjml"
+        mjml = File.read file
 
-      # I am so, so sorry.
-      mjml.scan(
-        %r{<%=\s+(sanitize|simple_format|url_for)?\(?\s*@elements\[\s*:(\w+)\]\s*\)?\s+%>}
-      ).uniq.each do |result|
-        added = add_element result[0], result[1]
-        raise ActiveRecord::Rollback unless added
+        # I am so, so sorry.
+        mjml.scan(
+          %r{<%=\s+(sanitize|simple_format|url_for)?\(?\s*@elements\[\s*:(\w+)\]\s*\)?\s+%>}
+        ).uniq.each do |result|
+          added = add_element result[0], result[1]
+          raise ActiveRecord::Rollback unless added
+        end
       end
-    end
 
-    def file_content
-      File.read file_path
-    end
+      def file_content
+        File.read file_path
+      end
 
-    def file_content_with_erb_removed
-      file_content.gsub! %r{<%=? [^%]+ %>}, ''
-    end
+      def file_content_with_erb_removed
+        file_content.gsub! %r{<%=? [^%]+ %>}, ''
+      end
 
-    def file_path
-      "#{self.class.template_dir}/#{filename}.html.mjml"
-    end
+      def file_path
+        "#{self.class.template_dir}/#{filename}.html.mjml"
+      end
 
-    # Class methods
+      # Class methods
 
-    # Get a list of available template files from the disk
-    def self.available_templates
-      return [] unless template_dir
+      # Get a list of available template files from the disk
+      def self.available_templates
+        return [] unless template_dir
 
-      filenames = Dir.glob '*.mjml', base: template_dir
-      filenames.collect { |filename| filename.remove( '.html.mjml' ) }
+        filenames = Dir.glob '*.mjml', base: template_dir
+        filenames.collect { |filename| filename.remove( '.html.mjml' ) }
+      end
     end
   end
 end

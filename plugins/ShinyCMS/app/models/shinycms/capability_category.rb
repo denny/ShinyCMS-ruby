@@ -6,11 +6,13 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Part of the Pundit-powered ACL - group capabilities by site area, e.g. :pages
-class CapabilityCategory < ApplicationRecord
-  include ShinySoftDelete
+module ShinyCMS
+  # Part of the Pundit-powered ACL - group capabilities by site area, e.g. :pages
+  class CapabilityCategory < ApplicationRecord
+    include ShinySoftDelete
 
-  # Associations
+    # Associations
 
-  has_many :capabilities, inverse_of: :category, foreign_key: :category_id, dependent: :restrict_with_error
+    has_many :capabilities, inverse_of: :category, foreign_key: :category_id, dependent: :restrict_with_error
+  end
 end
