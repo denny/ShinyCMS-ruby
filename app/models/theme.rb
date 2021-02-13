@@ -75,6 +75,8 @@ class Theme
   def self.database_exists?
     ActiveRecord::Base.connection.active?
   rescue ActiveRecord::NoDatabaseError
+    # :nocov:
     false
+    # :nocov:
   end
 end
