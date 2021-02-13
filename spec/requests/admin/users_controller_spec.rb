@@ -223,8 +223,8 @@ RSpec.describe Admin::UsersController, type: :request do
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
         expect( response.body ).to have_css 'th', text: I18n.t( 'capability.capabilities' )
-        expect( response.body ).to have_css 'td', text: I18n.t( 'list'   )
-        expect( response.body ).to have_css 'td', text: I18n.t( 'remove' )
+        expect( response.body ).to have_css 'td', text: I18n.t( 'list'    )
+        expect( response.body ).to have_css 'td', text: I18n.t( 'destroy' )
       end
     end
 
