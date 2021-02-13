@@ -36,13 +36,13 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - Gemfile
-    - app/models/concerns/*.rb
     - config/environments/*
     - config/routes.rb
     - lib/tasks/*.rake
     - plugins/Shiny*/config/routes.rb
     - plugins/Shiny*/shiny_*.gemspec
     - plugins/Shiny*/spec/**/*.rb
+    - plugins/ShinyCMS/app/models/concerns/shinycms/*.rb
     - spec/**/*.rb
 
 # Spec files with I18n.t calls in them are more readable with longer single lines
@@ -61,7 +61,7 @@ Layout/MultilineArrayLineBreaks:
 # This method is not useless - it allows user registrations to be feature-flagged
 Lint/UselessMethodDefinition:
   Exclude:
-    - app/controllers/users/registrations_controller.rb
+    - plugins/ShinyCMS/app/controllers/shinycms/users/registrations_controller.rb
 
 # I like chaining methods, it's aesthetically pleasing :-p
 Performance/ChainArrayAllocation:
