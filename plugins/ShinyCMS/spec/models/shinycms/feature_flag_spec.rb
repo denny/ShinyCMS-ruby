@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for feature flag model
-RSpec.describe FeatureFlag, type: :model do
+RSpec.describe ShinyCMS::FeatureFlag, type: :model do
   describe 'instance methods' do
     describe '.enabled?' do
       it 'returns false if the feature is not enabled' do

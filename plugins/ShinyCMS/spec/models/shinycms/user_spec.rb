@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for user model
-RSpec.describe User, type: :model do
+RSpec.describe ShinyCMS::User, type: :model do
   describe 'overridden find_first_by_auth_conditions method' do
     before do
       @user = create :user

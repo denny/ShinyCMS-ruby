@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for EmailRecipient model
-RSpec.describe EmailRecipient, type: :model do
+RSpec.describe ShinyCMS::EmailRecipient, type: :model do
   describe 'instance methods' do
     describe '.confirm' do
       it 'successfully confirms a matching email recipient' do

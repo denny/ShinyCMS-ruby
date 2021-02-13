@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for discussion model
-RSpec.describe Discussion, type: :model do
+RSpec.describe ShinyCMS::Discussion, type: :model do
   describe '.recently_active' do
     before do
       @active_last_week = create :news_post

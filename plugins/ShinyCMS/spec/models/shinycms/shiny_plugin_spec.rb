@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for ShinyPlugin model
-RSpec.describe ShinyPlugin, type: :model do
+RSpec.describe ShinyCMS::ShinyPlugin, type: :model do
   describe 'class methods' do
     describe '.loaded' do
       it 'returns an array of plugin instances' do

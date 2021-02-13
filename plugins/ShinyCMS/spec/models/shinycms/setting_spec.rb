@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for Setting model (combines with SettingValue to store site settings data)
-RSpec.describe Setting, type: :model do
+RSpec.describe ShinyCMS::Setting, type: :model do
   describe 'class methods' do
     describe '.get' do
       it 'returns the specified setting' do

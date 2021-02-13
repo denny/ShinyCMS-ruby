@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for ShinyCMS theme model
-RSpec.describe Theme, type: :model do
+RSpec.describe ShinyCMS::Theme, type: :model do
   before :all do
     FileUtils.mkdir_p 'themes/test1/views'
     FileUtils.mkdir_p 'themes/test2/views'

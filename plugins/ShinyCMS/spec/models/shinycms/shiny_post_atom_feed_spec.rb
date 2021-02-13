@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for ShinyPostAtomFeed model
-RSpec.describe ShinyPostAtomFeed, type: :model do
+RSpec.describe ShinyCMS::ShinyPostAtomFeed, type: :model do
   describe 'instance methods' do
     describe 'S3 helper methods' do
       it 'generates an S3 base url when S3 config is present' do
