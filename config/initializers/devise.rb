@@ -20,7 +20,7 @@ Devise.setup do |config|
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
-  config.parent_controller = 'MainController'
+  config.parent_controller = 'ShinyCMS::MainController'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -30,11 +30,11 @@ Devise.setup do |config|
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
-  # config.mailer = 'UserMailer'
+  config.mailer = 'ShinyCMS::UserMailer'
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
-  config.parent_mailer = 'ApplicationMailer'
+  config.parent_mailer = 'ShinyCMS::ApplicationMailer'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
@@ -299,7 +299,8 @@ Devise.setup do |config|
   #
   # The router that invoked `devise_for`, in the example above, would be:
   # config.router_name = :my_engine
-  #
+  config.router_name = :shinycms
+
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
