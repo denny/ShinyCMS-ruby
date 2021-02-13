@@ -32,12 +32,20 @@ module Shiny
             underscored.gsub!( /([a-z\d])([A-Z])/, '\1_\2' )
             underscored.downcase!
 
+            underscored = 'shinycms' if underscored == 'shiny_cms'
+
             underscored
           end
       end
 
       def underscored_name
-        @underscored_name ||= original_name.underscore
+        return @underscored_name if @underscored_name
+
+        @underscored_name = original_name.underscore
+
+        @underscored_name = 'shinycms' if @underscored_name == 'shiny_cms'
+
+        @underscored_name
       end
 
       def namespaced_name
