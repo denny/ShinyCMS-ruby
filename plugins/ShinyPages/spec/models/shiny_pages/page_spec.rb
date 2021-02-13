@@ -27,7 +27,7 @@ module ShinyPages
             create :page, slug: 'first'
             page2 = create :page, slug: 'default'
 
-            ::Setting.set( :default_page, to: 'default' )
+            ShinyCMS::Setting.set( :default_page, to: 'default' )
 
             expect( described_class.default_page ).to eq page2
           end

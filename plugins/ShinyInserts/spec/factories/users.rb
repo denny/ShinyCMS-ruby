@@ -10,7 +10,7 @@
 FactoryBot.define do
   factory :insert_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'inserts' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'inserts' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )

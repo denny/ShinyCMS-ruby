@@ -10,7 +10,7 @@
 FactoryBot.define do
   factory :page_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'pages' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'pages' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )
@@ -22,7 +22,7 @@ FactoryBot.define do
       create :user_capability, user: admin, capability: edit
       create :user_capability, user: admin, capability: destroy
 
-      category = CapabilityCategory.find_by( name: 'page_sections' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'page_sections' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )
@@ -38,7 +38,7 @@ FactoryBot.define do
 
   factory :page_template_admin, parent: :page_admin do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'page_templates' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'page_templates' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )

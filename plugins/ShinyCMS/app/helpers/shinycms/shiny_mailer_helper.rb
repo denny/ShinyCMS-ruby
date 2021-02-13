@@ -23,15 +23,15 @@ module ShinyCMS
     end
 
     def default_email
-      ::Setting.get( :default_email ) || ENV[ 'DEFAULT_EMAIL' ]
+      Setting.get( :default_email ) || ENV[ 'DEFAULT_EMAIL' ]
     end
 
     def track_opens?
-      ::Setting.true?( :track_opens )
+      Setting.true?( :track_opens )
     end
 
     def track_clicks?
-      ::Setting.true?( :track_clicks )
+      Setting.true?( :track_clicks )
     end
   end
 end
