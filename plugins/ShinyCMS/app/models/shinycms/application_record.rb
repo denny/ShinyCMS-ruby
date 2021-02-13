@@ -11,6 +11,11 @@ module ShinyCMS
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
 
+    # Don't ask me why Rails is failing to use its own methods consistently...
+    def self.table_name
+      name.tableize.sub( '/', '_' )
+    end
+
     def self.models_with_demo_data
       [ main_app_models_with_demo_data + ShinyPlugin.models_with_demo_data ].flatten
     end

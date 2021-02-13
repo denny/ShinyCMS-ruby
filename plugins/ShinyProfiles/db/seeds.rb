@@ -10,7 +10,7 @@
 # rails shiny_profiles:db:seed
 
 # Add feature flag
-flag = FeatureFlag.find_or_create_by!( name: 'user_profiles' )
+flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'user_profiles' )
 flag.update!(
   description:           'User profile pages (provided by ShinyProfiles plugin)',
   enabled:               true,

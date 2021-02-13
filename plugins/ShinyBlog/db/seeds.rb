@@ -11,7 +11,7 @@
 
 # Add feature flags
 
-flag = FeatureFlag.find_or_create_by!( name: 'blog' )
+flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'blog' )
 flag.update!(
   description:           'Enable blog section, provided by ShinyBlog plugin',
   enabled:               true,
@@ -19,7 +19,7 @@ flag.update!(
   enabled_for_admins:    true
 )
 
-flag = FeatureFlag.find_or_create_by!( name: 'blog_votes' )
+flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'blog_votes' )
 flag.update!(
   description:           'Enable votes on blog posts',
   enabled:               true,
@@ -27,7 +27,7 @@ flag.update!(
   enabled_for_admins:    true
 )
 
-flag = FeatureFlag.find_or_create_by!( name: 'blog_downvotes' )
+flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'blog_downvotes' )
 flag.update!(
   description:           'Enable down-votes on blog posts',
   enabled:               true,
@@ -37,7 +37,7 @@ flag.update!(
 
 # Add admin capabilities
 
-category = CapabilityCategory.find_or_create_by!( name: 'blog_posts' )
+category = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'blog_posts' )
 category.capabilities.find_or_create_by!( name: 'list'          )
 category.capabilities.find_or_create_by!( name: 'add'           )
 category.capabilities.find_or_create_by!( name: 'edit'          )

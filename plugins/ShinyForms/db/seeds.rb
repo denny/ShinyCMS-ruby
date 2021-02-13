@@ -12,7 +12,7 @@
 # Feature flags
 
 def add_feature_flag( name:, description: nil, enabled: true )
-  FeatureFlag.find_or_create_by(
+  ShinyCMS::FeatureFlag.find_or_create_by(
     name:                  name,
     description:           description,
     enabled:               enabled,
@@ -28,7 +28,7 @@ add_feature_flag( name: 'akismet_for_forms',   description: 'Protect ShinyForms 
 
 # Admin capabilities
 
-forms_cc = CapabilityCategory.find_or_create_by!( name: 'forms' )
+forms_cc = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'forms' )
 forms_cc.capabilities.find_or_create_by!( name: 'list'    )
 forms_cc.capabilities.find_or_create_by!( name: 'add'     )
 forms_cc.capabilities.find_or_create_by!( name: 'edit'    )
@@ -37,7 +37,7 @@ forms_cc.capabilities.find_or_create_by!( name: 'destroy' )
 # Settings
 
 def set_setting( name:, value: '', description: nil, level: 'site', locked: false )
-  setting = Setting.find_or_create_by!( name: name.to_s )
+  setting = ShinyCMS::Setting.find_or_create_by!( name: name.to_s )
   setting.unlock
 
   setting.update!( description: description ) if description.present?
@@ -45,7 +45,7 @@ def set_setting( name:, value: '', description: nil, level: 'site', locked: fals
 
   setting_value = setting.values.find_or_create_by!( user: nil )
 
-  setting_value.update!( value: value ) unless Setting.get( name ) == value
+  setting_value.update!( value: value ) unless ShinyCMS::Setting.get( name ) == value
 
   setting.lock if locked
 end
