@@ -17,14 +17,14 @@
 # end
 
 ActiveSupport::Inflector.inflections( :en ) do |inflect|
-  # Acronyms used in the CMS code
+  # Acronyms used in the ShinyCMS code
   inflect.acronym 'IP'
   inflect.acronym 'HTML'
   inflect.acronym 'MJML'
   inflect.acronym 'SEO'
   inflect.acronym 'URL'
 
-  # Some common acronyms that might be used in CMS content (and then b0rked by .titlecase)
+  # Some common acronyms that might be used in CMS content
   inflect.acronym 'AI'
   inflect.acronym 'API'
   inflect.acronym 'BBC'
@@ -35,6 +35,8 @@ ActiveSupport::Inflector.inflections( :en ) do |inflect|
   inflect.acronym 'CTO'
   inflect.acronym 'EU'
   inflect.acronym 'PR'
+  inflect.acronym 'REST'
+  inflect.acronym 'RESTful'
   inflect.acronym 'UK'
   inflect.acronym 'USA'
   inflect.acronym 'USB'

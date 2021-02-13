@@ -57,7 +57,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with :truncation
 
     # Load feature flags, capabilities, etc
-    ShinyCMS::Application.load_tasks
+    Rails.application.load_tasks
     Rake::Task['db:seed'].invoke
 
     # These default to off for privacy, but we want to test the integration
