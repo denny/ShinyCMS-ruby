@@ -14,9 +14,9 @@ module ShinyBlog
 
     # Associations
 
-    belongs_to :user, inverse_of: :blog_posts
+    belongs_to :user, inverse_of: :blog_posts, class_name: 'ShinyCMS::User'
 
-    has_one :discussion, as: :resource, dependent: :destroy
+    has_one :discussion, as: :resource, dependent: :destroy, class_name: 'ShinyCMS::Discussion'
 
     # Instance methods
 
@@ -37,4 +37,4 @@ module ShinyBlog
 end
 
 # Add inverse association for authors of blog posts
-::User.has_many :blog_posts, dependent: :restrict_with_error, class_name: 'ShinyBlog::Post'
+ShinyCMS::User.has_many :blog_posts, dependent: :restrict_with_error, class_name: 'ShinyBlog::Post'
