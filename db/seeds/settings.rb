@@ -9,7 +9,7 @@
 # Seed data for Settings
 
 def set_setting( name:, value: '', description: nil, level: 'site', locked: false )
-  setting = Setting.find_or_create_by!( name: name.to_s )
+  setting = ShinyCMS::Setting.find_or_create_by!( name: name.to_s )
   setting.unlock
 
   setting.update!( description: description ) if description.present?
@@ -17,7 +17,7 @@ def set_setting( name:, value: '', description: nil, level: 'site', locked: fals
 
   setting_value = setting.values.find_or_create_by!( user: nil )
 
-  setting_value.update!( value: value ) unless Setting.get( name ) == value
+  setting_value.update!( value: value ) unless ShinyCMS::Setting.get( name ) == value
 
   setting.lock if locked
 end
