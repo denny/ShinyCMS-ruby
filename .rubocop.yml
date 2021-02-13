@@ -85,8 +85,8 @@ Rails/SaveBang:
 # There's no database activity in these before all blocks, so this cop doesn't apply
 RSpec/BeforeAfterAll:
   Exclude:
-    - spec/models/theme_spec.rb
-    - spec/support/faker.rb
+    - plugins/ShinyCMS/spec/models/shinycms/theme_spec.rb
+    - plugins/ShinyCMS/spec/support/faker.rb
 
 # Currently inclined to keep this approach, for readability etc
 RSpec/DescribedClassModuleWrapping:
@@ -123,7 +123,7 @@ Style/DisableCopsWithinSourceCodeDirective:
 Style/IpAddresses:
   Exclude:
     - db/demo_data.rb
-    - spec/requests/admin_controller_spec.rb
+    - plugins/ShinyCMS/spec/requests/shinycms/admin_controller_spec.rb
 
 # I'd rather use one style of regex everywhere, and this one is clearer when working with URLs:
 # %r{/(path)/parts/} rather than /\/(path)\/parts\//
