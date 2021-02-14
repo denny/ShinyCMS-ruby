@@ -9,12 +9,12 @@
 require 'rails_helper'
 
 # Tests for AWS S3 helper methods
-RSpec.describe ShinyS3, type: :module do
+RSpec.describe ShinyCMS::ShinyS3, type: :module do
   describe 'aws_s3_feeds_region' do
     it 'returns the value of the corresponding ENV var' do
       ENV[ 'AWS_S3_FEEDS_REGION' ] = 'a-test-1'
 
-      test = MainController.new
+      test = ShinyCMS::MainController.new
 
       result = test.__send__( :aws_s3_feeds_region )
 
@@ -24,7 +24,7 @@ RSpec.describe ShinyS3, type: :module do
 
   describe 'aws_s3_feeds_access_key_id' do
     it 'returns nil (not an empty string) when the corresponding ENV var is not set' do
-      test = MainController.new
+      test = ShinyCMS::MainController.new
 
       result = test.__send__( :aws_s3_feeds_access_key_id )
 

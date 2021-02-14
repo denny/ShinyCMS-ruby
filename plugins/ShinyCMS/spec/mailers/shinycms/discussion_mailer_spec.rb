@@ -9,11 +9,11 @@
 require 'rails_helper'
 
 # Tests for the discussion mailer (reply notifications)
-RSpec.describe DiscussionMailer, type: :mailer do
+RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
   before do
-    FeatureFlag.enable :comment_notifications
+    ShinyCMS::FeatureFlag.enable :comment_notifications
 
-    @site_name = Setting.get( :site_name ) || I18n.t( 'site_name' )
+    @site_name = ShinyCMS::Setting.get( :site_name ) || I18n.t( 'site_name' )
 
     blog_post   = create :blog_post
     @discussion = create :discussion, resource: blog_post
@@ -28,7 +28,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
       email = described_class.parent_comment_notification( reply )
 
       subject = I18n.t(
-        'discussion_mailer.parent_comment_notification.subject',
+        'shinycms.discussion_mailer.parent_comment_notification.subject',
         reply_author_name: reply.author_name_or_anon,
         site_name:         @site_name
       )
@@ -46,7 +46,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
       email = described_class.parent_comment_notification( reply )
 
       subject = I18n.t(
-        'discussion_mailer.parent_comment_notification.subject',
+        'shinycms.discussion_mailer.parent_comment_notification.subject',
         reply_author_name: reply.author_name_or_anon,
         site_name:         @site_name
       )
@@ -62,7 +62,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
       email = described_class.discussion_notification( comment )
 
       subject = I18n.t(
-        'discussion_mailer.discussion_notification.subject',
+        'shinycms.discussion_mailer.discussion_notification.subject',
         comment_author_name: comment.author_name_or_anon,
         content_type:        I18n.t( 'models.names.shiny_blog_post' ),
         site_name:           @site_name
@@ -81,7 +81,7 @@ RSpec.describe DiscussionMailer, type: :mailer do
       email = described_class.overview_notification( comment )
 
       subject = I18n.t(
-        'discussion_mailer.overview_notification.subject',
+        'shinycms.discussion_mailer.overview_notification.subject',
         comment_author_name: comment.author_name_or_anon,
         site_name:           @site_name
       )
