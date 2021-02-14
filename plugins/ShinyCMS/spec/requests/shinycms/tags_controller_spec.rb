@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for tagging features on main site (powered by ActsAsTaggableOn)
-RSpec.describe TagsController, type: :request do
+RSpec.describe ShinyCMS::TagsController, type: :request do
   describe 'GET /tags/cloud' do
     it 'displays the tag cloud' do
       get tag_cloud_path
@@ -41,7 +41,7 @@ RSpec.describe TagsController, type: :request do
     end
 
     it "displays the tag list if tag_view is set to 'list'" do
-      Setting.set( :tag_view, to: 'list' )
+      ShinyCMS::Setting.set( :tag_view, to: 'list' )
 
       get tags_path
 

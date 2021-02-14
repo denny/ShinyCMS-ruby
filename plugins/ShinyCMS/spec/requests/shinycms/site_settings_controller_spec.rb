@@ -9,13 +9,13 @@
 require 'rails_helper'
 
 # Tests for site setting features on main site
-RSpec.describe SiteSettingsController, type: :request do
+RSpec.describe ShinyCMS::SiteSettingsController, type: :request do
   before do
     @user = create :user
     sign_in @user
 
     # Use one of the standard/existing settings to avoid 'missing translation' errors
-    @setting = Setting.find_by( name: 'theme_name' )
+    @setting = ShinyCMS::Setting.find_by( name: 'theme_name' )
     @setting.update!( level: 'user' )
 
     @setting_value = create :setting_value, setting: @setting, user: @user
@@ -95,7 +95,7 @@ RSpec.describe SiteSettingsController, type: :request do
     it 'will update the value of a locked setting' do
       new_value = Faker::Books::CultureSeries.unique.culture_ship
 
-      s1 = Setting.find_by( name: 'recaptcha_score_for_comments' )
+      s1 = ShinyCMS::Setting.find_by( name: 'recaptcha_score_for_comments' )
       s1.values.create_or_find_by!( user: @user, value: @initial_value )
 
       put site_settings_path, params: {

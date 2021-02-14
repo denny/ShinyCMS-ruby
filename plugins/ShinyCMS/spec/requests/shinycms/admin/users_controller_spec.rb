@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for user admin features
-RSpec.describe Admin::UsersController, type: :request do
+RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
   context 'with a normal user admin' do
     before do
       admin = create :user_admin
@@ -20,7 +20,7 @@ RSpec.describe Admin::UsersController, type: :request do
       it 'fetches the list of users in the admin area' do
         user = create :user
 
-        get users_path
+        get shinycms.users_path
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
@@ -32,7 +32,7 @@ RSpec.describe Admin::UsersController, type: :request do
         user2 = create :user, username: 'aaaaa_bendy_bananas'
         user3 = create :user, username: 'aaaaa_cool_cucumbers'
 
-        get users_path, params: { page: 2, items: 2 }
+        get shinycms.users_path, params: { page: 2, items: 2 }
 
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'admin.users.index.title' ).titlecase
@@ -47,7 +47,7 @@ RSpec.describe Admin::UsersController, type: :request do
         user_a = create :user, email: 'testamy@example.com'
         user_b = create :user, email: 'testbob@example.com'
 
-        get search_users_path, params: { q: 'stbob' }
+        get shinycms.search_users_path, params: { q: 'stbob' }
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
@@ -62,7 +62,7 @@ RSpec.describe Admin::UsersController, type: :request do
         user_x = create :user, username: 'PartlyHere'
         user_y = create :user, username: 'FullyThere'
 
-        get search_usernames_path, params: { term: 'art' }
+        get shinycms.search_usernames_path, params: { term: 'art' }
 
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     include user_x.username
@@ -72,7 +72,7 @@ RSpec.describe Admin::UsersController, type: :request do
 
     describe 'GET /admin/user/new' do
       it 'loads the form to add a new user' do
-        get new_user_path
+        get shinycms.new_user_path
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.new.title' ).titlecase
@@ -81,7 +81,7 @@ RSpec.describe Admin::UsersController, type: :request do
 
     describe 'POST /admin/user/new' do
       it 'fails when the form is submitted without all the details' do
-        post users_path, params: {
+        post shinycms.users_path, params: {
           user: {
             username: Faker::Internet.unique.username
           }
@@ -95,7 +95,7 @@ RSpec.describe Admin::UsersController, type: :request do
       it 'fails when the username collides with an existing username' do
         create :user, username: 'test'
 
-        post users_path, params: {
+        post shinycms.users_path, params: {
           user: {
             username: 'test',
             password: Faker::Internet.unique.password,
@@ -110,7 +110,8 @@ RSpec.describe Admin::UsersController, type: :request do
 
       it 'adds a new user when the form is submitted' do
         username = Faker::Internet.unique.username
-        post users_path, params: {
+
+        post shinycms.users_path, params: {
           user: {
             username: username,
             password: Faker::Internet.unique.password,
@@ -119,7 +120,7 @@ RSpec.describe Admin::UsersController, type: :request do
         }
 
         expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to edit_user_path( User.last )
+        expect( response      ).to redirect_to edit_user_path( ShinyCMS::User.last )
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
@@ -131,7 +132,7 @@ RSpec.describe Admin::UsersController, type: :request do
       it 'loads the form to edit an existing user, without the section for editing abilities' do
         user = create :user
 
-        get edit_user_path( user )
+        get shinycms.edit_user_path( user )
 
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'admin.users.edit.title' ).titlecase
@@ -143,7 +144,7 @@ RSpec.describe Admin::UsersController, type: :request do
       it 'fails to update the user when submitted with a blank username' do
         user = create :user
 
-        put user_path( user ), params: {
+        put shinycms.user_path( user ), params: {
           user: {
             username: ''
           }
@@ -157,7 +158,7 @@ RSpec.describe Admin::UsersController, type: :request do
       it 'updates the user when the form is submitted' do
         user = create :user
 
-        put user_path( user ), params: {
+        put shinycms.user_path( user ), params: {
           user: {
             username: 'new_username'
           }
@@ -179,7 +180,7 @@ RSpec.describe Admin::UsersController, type: :request do
         u2 = create :user
         u3 = create :user
 
-        delete user_path( u2 )
+        delete shinycms.user_path( u2 )
 
         expect( response      ).to     have_http_status :found
         expect( response      ).to     redirect_to users_path
@@ -196,7 +197,7 @@ RSpec.describe Admin::UsersController, type: :request do
         u1 = create :user
         create :blog_post, author: u1
 
-        delete user_path( u1 )
+        delete shinycms.user_path( u1 )
 
         expect( response      ).to have_http_status :found
         expect( response      ).to redirect_to users_path
@@ -218,7 +219,7 @@ RSpec.describe Admin::UsersController, type: :request do
       it "includes section for editing user's admin capabilities" do
         user = create :user
 
-        get edit_user_path( user )
+        get shinycms.edit_user_path( user )
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
@@ -231,12 +232,12 @@ RSpec.describe Admin::UsersController, type: :request do
     it 'updates the admin capabilities when the form is submitted' do
       user = create :user
 
-      capability_id = Capability.where( name: 'view_admin_area' ).pick( :id )
+      capability_id = ShinyCMS::Capability.where( name: 'view_admin_area' ).pick( :id )
       field_name = "user[capabilities[#{capability_id}]]"
 
       expect( user.capabilities.length ).to eq 0
 
-      put user_path( user ), params: {
+      put shinycms.user_path( user ), params: {
         "#{field_name}": 'on'
       }
 

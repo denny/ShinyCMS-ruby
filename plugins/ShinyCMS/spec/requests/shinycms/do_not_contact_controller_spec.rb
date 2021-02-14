@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for ShinyCMS 'do not contact' feature
-RSpec.describe DoNotContactController, type: :request do
+RSpec.describe ShinyCMS::DoNotContactController, type: :request do
   describe 'GET /email/do-not-contact' do
     it 'displays the do-not-contact form' do
       get do_not_contact_path

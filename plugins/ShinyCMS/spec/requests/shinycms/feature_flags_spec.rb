@@ -9,10 +9,10 @@
 require 'rails_helper'
 
 # Tests for main site usage of feature flags
-RSpec.describe 'Feature Flags', type: :request do
+RSpec.describe 'Feature Flags (main site)', type: :request do
   before do
-    FeatureFlag.enable :user_login
-    FeatureFlag.enable :user_profiles
+    ShinyCMS::FeatureFlag.enable :user_login
+    ShinyCMS::FeatureFlag.enable :user_profiles
   end
 
   describe 'GET /login' do
@@ -26,8 +26,8 @@ RSpec.describe 'Feature Flags', type: :request do
     it "fails with 'User Login = Off'" do
       create :top_level_page
 
-      FeatureFlag.find_or_create_by!( name: 'user_login' )
-                 .update!( enabled: false )
+      ShinyCMS::FeatureFlag.find_or_create_by!( name: 'user_login' )
+                           .update!( enabled: false )
 
       get new_user_session_path
 
@@ -51,8 +51,8 @@ RSpec.describe 'Feature Flags', type: :request do
       user = create :user
       sign_in user
 
-      FeatureFlag.find_or_create_by!( name: 'user_profiles' )
-                 .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
+      ShinyCMS::FeatureFlag.find_or_create_by!( name: 'user_profiles' )
+                           .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
 
       get shiny_profiles.profile_path( user.username )
 
@@ -73,8 +73,8 @@ RSpec.describe 'Feature Flags', type: :request do
       user = create :admin_user
       sign_in user
 
-      FeatureFlag.find_or_create_by!( name: 'user_profiles' )
-                 .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
+      ShinyCMS::FeatureFlag.find_or_create_by!( name: 'user_profiles' )
+                           .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
 
       get shiny_profiles.profile_path( user.username )
 

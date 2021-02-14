@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for main site base controller
-RSpec.describe MainController, type: :request do
+RSpec.describe ShinyCMS::MainController, type: :request do
   describe 's3 helper methods' do
     describe 'feed_url()' do
       it 'includes an S3 feed URL in the page when S3 config is present' do

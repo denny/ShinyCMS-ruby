@@ -11,11 +11,11 @@ require 'rails_helper'
 # Tests for discussion and comment features on main site
 RSpec.describe 'Discussions/Comments', type: :request do
   before do
-    FeatureFlag.enable :news
-    FeatureFlag.enable :comments
+    ShinyCMS::FeatureFlag.enable :news
+    ShinyCMS::FeatureFlag.enable :comments
 
-    FeatureFlag.disable :recaptcha_for_comments
-    FeatureFlag.disable :akismet_for_comments
+    ShinyCMS::FeatureFlag.disable :recaptcha_for_comments
+    ShinyCMS::FeatureFlag.disable :akismet_for_comments
 
     @post = create :news_post
 
@@ -192,7 +192,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       allow_any_instance_of( DiscussionsController ).to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
       allow( DiscussionsController ).to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
 
-      FeatureFlag.enable :recaptcha_for_comments
+      ShinyCMS::FeatureFlag.enable :recaptcha_for_comments
 
       title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
@@ -214,7 +214,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it 'classifies a new comment as spam after checking Akismet' do
-      FeatureFlag.enable :akismet_for_comments
+      ShinyCMS::FeatureFlag.enable :akismet_for_comments
       allow_any_instance_of( Akismet::Client ).to receive( :open  )
       allow_any_instance_of( Akismet::Client ).to receive( :check ).and_return( [ true, false ] )
 
@@ -242,7 +242,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
     end
 
     it "doesn't save a new comment if Akismet classifies it as 'blatant' spam" do
-      FeatureFlag.enable :akismet_for_comments
+      ShinyCMS::FeatureFlag.enable :akismet_for_comments
       allow_any_instance_of( Akismet::Client ).to receive( :open  )
       allow_any_instance_of( Akismet::Client ).to receive( :check ).and_return( [ true, true ] )
 
@@ -251,9 +251,9 @@ RSpec.describe 'Discussions/Comments', type: :request do
       title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
 
-      comment_count         = Comment.count
-      comment_author_count  = CommentAuthor.count
-      email_recipient_count = EmailRecipient.count
+      comment_count         = ShinyCMS::Comment.count
+      comment_author_count  = ShinyCMS::CommentAuthor.count
+      email_recipient_count = ShinyCMS::EmailRecipient.count
 
       post discussion_path( @discussion ), params: {
         comment: {
@@ -268,9 +268,9 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response.body ).not_to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
       expect( response.body ).not_to have_css 'h2', text: title
 
-      expect( Comment.count        ).to eq comment_count
-      expect( CommentAuthor.count  ).to eq comment_author_count
-      expect( EmailRecipient.count ).to eq email_recipient_count
+      expect( ShinyCMS::Comment.count        ).to eq comment_count
+      expect( ShinyCMS::CommentAuthor.count  ).to eq comment_author_count
+      expect( ShinyCMS::EmailRecipient.count ).to eq email_recipient_count
     end
   end
 

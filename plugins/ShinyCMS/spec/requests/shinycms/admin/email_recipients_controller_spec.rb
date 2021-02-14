@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for email recipient admin features
-RSpec.describe Admin::EmailRecipientsController, type: :request do
+RSpec.describe ShinyCMS::Admin::EmailRecipientsController, type: :request do
   before do
     admin = create :email_recipient_admin
     sign_in admin
@@ -21,7 +21,7 @@ RSpec.describe Admin::EmailRecipientsController, type: :request do
       create :email_recipient
       create :email_recipient
 
-      get email_recipients_path
+      get shinycms.email_recipients_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.email_recipients.index.title' ).titlecase
@@ -29,7 +29,7 @@ RSpec.describe Admin::EmailRecipientsController, type: :request do
     end
 
     it 'displays an appropriate message if there are no email recipients yet' do
-      get email_recipients_path
+      get shinycms.email_recipients_path
 
       none_found = 'No items found'  # TODO: i18n
 
@@ -44,7 +44,7 @@ RSpec.describe Admin::EmailRecipientsController, type: :request do
       recipient1 = create :email_recipient, name: 'Awesome Alice'
       recipient2 = create :email_recipient, name: 'B-movie Bob'
 
-      get search_email_recipients_path, params: { q: 'movie' }
+      get shinycms.search_email_recipients_path, params: { q: 'movie' }
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'admin.email_recipients.index.title' ).titlecase
@@ -60,7 +60,7 @@ RSpec.describe Admin::EmailRecipientsController, type: :request do
 
       email1 = recipient1.email
 
-      put do_not_contact_email_recipient_path( recipient1 )
+      put shinycms.do_not_contact_email_recipient_path( recipient1 )
 
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to email_recipients_path
@@ -70,7 +70,7 @@ RSpec.describe Admin::EmailRecipientsController, type: :request do
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.email_recipients.do_not_contact.success' )
       expect( response.body ).to     have_css 'td', text: recipient1.name
 
-      expect( DoNotContact.include?( email1 ) ).to be true
+      expect( ShinyCMS::DoNotContact.include?( email1 ) ).to be true
     end
 
     describe 'DELETE /admin/email-recipients/:id' do
@@ -79,7 +79,7 @@ RSpec.describe Admin::EmailRecipientsController, type: :request do
         recipient2 = create :email_recipient
         recipient3 = create :email_recipient
 
-        delete email_recipient_path( recipient2 )
+        delete shinycms.email_recipient_path( recipient2 )
 
         expect( response      ).to     have_http_status :found
         expect( response      ).to     redirect_to email_recipients_path

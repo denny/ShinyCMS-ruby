@@ -9,10 +9,10 @@
 require 'rails_helper'
 
 # Tests for the up/down vote features on the main site (powered by ActsAsVotable)
-RSpec.describe 'Votes', type: :request do
+RSpec.describe ShinyCMS::VotesController, type: :request do
   before do
-    FeatureFlag.enable :news
-    FeatureFlag.enable :comments
+    ShinyCMS::FeatureFlag.enable :news
+    ShinyCMS::FeatureFlag.enable :comments
 
     post = create :news_post
 

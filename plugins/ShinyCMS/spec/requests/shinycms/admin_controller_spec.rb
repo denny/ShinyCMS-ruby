@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for admin base controller, and other general admin features
-RSpec.describe AdminController, type: :request do
+RSpec.describe ShinyCMS::AdminController, type: :request do
   describe 'GET /' do
     it 'shows the admin toolbar on the main site, if you are an admin' do
       create :top_level_page
@@ -65,7 +65,7 @@ RSpec.describe AdminController, type: :request do
       admin = create :page_admin
       sign_in admin
 
-      Setting.set( :admin_ip_list, to: '127.0.0.1' )
+      ShinyCMS::Setting.set( :admin_ip_list, to: '127.0.0.1' )
 
       get admin_path
 
@@ -80,7 +80,7 @@ RSpec.describe AdminController, type: :request do
       admin = create :page_admin
       sign_in admin
 
-      Setting.set( :admin_ip_list, to: '10.10.10.10' )
+      ShinyCMS::Setting.set( :admin_ip_list, to: '10.10.10.10' )
 
       get admin_path
 
