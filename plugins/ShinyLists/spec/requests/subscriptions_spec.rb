@@ -15,6 +15,11 @@ RSpec.describe 'List subscriptions', type: :request do
     ShinyCMS::FeatureFlag.enable :user_login
   end
 
+  # Rails inflection is hard to reason with
+  def shinycms
+    shiny_cms
+  end
+
   describe 'GET /subscriptions' do
     it "displays a logged-in user's subscriptions" do
       user1 = create :user
@@ -30,7 +35,7 @@ RSpec.describe 'List subscriptions', type: :request do
       get shiny_lists.user_list_subscriptions_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_cms.new_user_session_path
+      expect( response      ).to redirect_to shinycms.new_user_session_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.alerts', text: I18n.t( 'devise.failure.unauthenticated' )

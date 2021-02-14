@@ -15,6 +15,11 @@ RSpec.describe ShinyProfiles::ProfilesController, type: :request do
     ShinyCMS::FeatureFlag.enable :user_profiles
   end
 
+  # Rails inflection is not my friend
+  def shinycms
+    shiny_cms
+  end
+
   describe 'GET /profiles' do
     it 'redirects to the site homepage until the profile gallery feature is built :)' do
       page = create :top_level_page
@@ -81,7 +86,7 @@ RSpec.describe ShinyProfiles::ProfilesController, type: :request do
         get shiny_profiles.profile_redirect_path
 
         expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to shiny_cms.new_user_session_path
+        expect( response      ).to redirect_to shinycms.new_user_session_path
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_button I18n.t( 'shinycms.user.log_in' )
@@ -109,7 +114,7 @@ RSpec.describe ShinyProfiles::ProfilesController, type: :request do
       password = Faker::Books::CultureSeries.book
       user = create :user, password: password
 
-      post shiny_cms.user_session_path, params: {
+      post shinycms.user_session_path, params: {
         user: {
           login:    user.username,
           password: password
@@ -130,7 +135,7 @@ RSpec.describe ShinyProfiles::ProfilesController, type: :request do
       ShinyCMS::FeatureFlag.disable :user_profiles
       page = create :top_level_page
 
-      post shiny_cms.user_session_path, params: {
+      post shinycms.user_session_path, params: {
         user: {
           login:    user.username,
           password: password
