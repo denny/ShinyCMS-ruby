@@ -25,7 +25,7 @@ module ShinyProfiles
 
     # Override the breadcrumbs section link to go back to the user list
     def breadcrumb_link_text_and_path
-      [ t( 'admin.users.breadcrumb' ), shinycms.users_path ]
+      [ t( 'shinycms.admin.users.breadcrumb' ), shinycms.users_path ]
     end
 
     private

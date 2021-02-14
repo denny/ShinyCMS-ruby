@@ -21,8 +21,6 @@ en:
   #    delete: 'Delete'
   #    next: 'Next'
 
-  home: Home
-
   # Generic verbs (useful for submit buttons, action links, etc)
   add: Add
   view: View
@@ -89,6 +87,8 @@ en:
         title: Recent comments
 
   shinycms:
+    home: Home
+
     do_not_contact:
       new:
         title: Do Not Contact list
@@ -309,7 +309,7 @@ en:
         long_text: Long Text
         image: Image
         html: HTML
-      unknown_element_type: UNKNOWN ELEMENT TYPE
+        unknown_type: UNKNOWN ELEMENT TYPE
 
       comments:
         breadcrumb: Comments

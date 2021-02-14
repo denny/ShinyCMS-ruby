@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for main site controller
-RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
+RSpec.describe ShinyProfiles::ProfilesController, type: :request do
   before do
     ShinyCMS::FeatureFlag.enable :user_login
     ShinyCMS::FeatureFlag.enable :user_profiles
@@ -81,10 +81,10 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
         get shiny_profiles.profile_redirect_path
 
         expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to shinycms.new_user_session_path
+        expect( response      ).to redirect_to shiny_cms.new_user_session_path
         follow_redirect!
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_button I18n.t( 'user.log_in' )
+        expect( response.body ).to have_button I18n.t( 'shinycms.user.log_in' )
       end
     end
 
@@ -109,7 +109,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       password = Faker::Books::CultureSeries.book
       user = create :user, password: password
 
-      post shinycms.user_session_path, params: {
+      post shiny_cms.user_session_path, params: {
         user: {
           login:    user.username,
           password: password
@@ -130,7 +130,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       ShinyCMS::FeatureFlag.disable :user_profiles
       page = create :top_level_page
 
-      post shinycms.user_session_path, params: {
+      post shiny_cms.user_session_path, params: {
         user: {
           login:    user.username,
           password: password
