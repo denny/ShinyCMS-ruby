@@ -27,8 +27,8 @@ source 'https://rubygems.org' do
   # Find out which bits of your code are used more/less in actual use
   gem 'coverband', groups: %i[ development production ]
 
-  # Locales for the 'not USA' bits of the world
-  gem 'rails-i18n'
+  # Immutable data structures
+  gem 'persistent-dmnd'
 
   # ShinyCMS core plugin
   gem 'shinycms', path: 'plugins/ShinyCMS'
@@ -38,6 +38,9 @@ source 'https://rubygems.org' do
     gem_name = underscore( plugin_name )
     gem gem_name, path: "plugins/#{plugin_name}"
   end
+
+  # Locales for the 'not USA' bits of the world
+  gem 'rails-i18n'
 
   # Reduce boot times through caching; required in config/boot.rb
   # gem 'bootsnap', '>= 1.4.2', require: false

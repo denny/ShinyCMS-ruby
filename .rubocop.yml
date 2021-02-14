@@ -63,6 +63,13 @@ Lint/UselessMethodDefinition:
   Exclude:
     - plugins/ShinyCMS/app/controllers/shinycms/users/registrations_controller.rb
 
+# Experimenting; may as well enjoy the view while I'm at it
+Naming/AsciiIdentifiers:
+  Exclude:
+    - plugins/ShinyCMS/app/models/shinycms/shiny_plugin.rb
+    - plugins/ShinyCMS/app/models/shinycms/plugins.rb
+    - plugins/ShinyCMS/app/models/concerns/shinycms/plugins_sugar.rb
+
 # I like chaining methods, it's aesthetically pleasing :-p
 Performance/ChainArrayAllocation:
   Enabled: false
