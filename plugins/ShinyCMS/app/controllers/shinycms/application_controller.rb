@@ -25,11 +25,6 @@ module ShinyCMS
       ENV[ 'RECAPTCHA_CHECKBOX_SECRET_KEY' ]
     end
 
-    # Prevent Blazer from unhelpfully removing all of the ShinyCMS helpers
-    def self.clear_helpers
-      super unless self == Blazer::BaseController
-    end
-
     private
 
     def set_view_paths
@@ -40,12 +35,6 @@ module ShinyCMS
       ShinyPlugin.with_views.each do |plugin|
         prepend_view_path plugin.view_path
       end
-    end
-
-    def blazer_authorize
-      return true if current_user&.can? :view_charts, :stats
-
-      redirect_to shinycms.admin_path, alert: t( 'admin.blazer.auth_fail' )
     end
 
     # Rails inflection is Made Of Fail
