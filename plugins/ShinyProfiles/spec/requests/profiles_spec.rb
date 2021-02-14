@@ -11,8 +11,8 @@ require 'rails_helper'
 # Tests for main site controller
 RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
   before do
-    FeatureFlag.enable :user_login
-    FeatureFlag.enable :user_profiles
+    ShinyCMS::FeatureFlag.enable :user_login
+    ShinyCMS::FeatureFlag.enable :user_profiles
   end
 
   describe 'GET /profiles' do
@@ -127,7 +127,7 @@ RSpec.describe 'ShinyProfiles::ProfilesController', type: :request do
       password = Faker::Books::CultureSeries.book
       user = create :user, password: password
 
-      FeatureFlag.disable :user_profiles
+      ShinyCMS::FeatureFlag.disable :user_profiles
       page = create :top_level_page
 
       post user_session_path, params: {
