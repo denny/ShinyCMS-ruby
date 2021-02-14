@@ -15,7 +15,7 @@ module ShinyAccess
     # Associations
 
     belongs_to :group, inverse_of: :memberships
-    belongs_to :user, inverse_of: :access_memberships
+    belongs_to :user,  inverse_of: :access_memberships, class_name: 'ShinyCMS::User'
 
     # Validations
 

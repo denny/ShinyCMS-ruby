@@ -85,9 +85,9 @@ module ShinyAccess
     end
 
     def user_for_create
-      return User.find( strong_params[ :user_id ] ) if strong_params[ :user_id ].present?
+      return ShinyCMS::User.find( strong_params[ :user_id ] ) if strong_params[ :user_id ].present?
 
-      User.find_by( username: strong_params[ :username ] )
+      ShinyCMS::User.find_by( username: strong_params[ :username ] )
     end
   end
 end
