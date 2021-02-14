@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Base controller for the admin area in ShinyCMS
+  # ShinyCMS base controller for the admin area
   class AdminController < ApplicationController
     include Pundit
 
@@ -19,11 +19,11 @@ module ShinyCMS
 
     after_action :verify_authorized
 
-    layout 'admin/layouts/admin_area'
-
     helper Rails.application.routes.url_helpers
 
     helper_method :pagy_url_for
+
+    layout 'admin/layouts/admin_area'
 
     def index
       skip_authorization

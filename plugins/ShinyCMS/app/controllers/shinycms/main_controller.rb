@@ -7,44 +7,49 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Base controller for 'main site'; end-user-facing ShinyCMS features
+  # ShinyCMS base controller for the main/content site
   class MainController < ApplicationController
     include ShinyMainSiteHelper
     include ShinyS3
+
+    before_action :add_theme_view_path
+
+    before_action :configure_permitted_parameters, if: :devise_controller?
+
+    after_action  :track_ahoy_event, if: :ahoy_web_tracking_enabled?
+
+    helper_method :shinycms, :feed_url, :recaptcha_v2_site_key, :recaptcha_v3_site_key, :recaptcha_checkbox_site_key
 
     ShinyPlugin.with_main_site_helpers.each do |plugin|
       helper plugin.main_site_helper
     end
 
-    before_action :set_view_paths
-    before_action :configure_permitted_parameters, if: :devise_controller?
-
-    after_action  :track_ahoy_event, if: :ahoy_web_tracking_enabled?
+    layout 'layouts/main_site'
 
     # Strong params config for Devise
+    SIGN_UP_PARAMS = %i[ username email password password_confirmation ].freeze
+    SIGN_IN_PARAMS = %i[ username email password password_confirmation login remember_me ].freeze
     # rubocop:disable Layout/MultilineArrayLineBreaks
-    SIGN_UP_PARAMS = %i[
-      username email password password_confirmation
-    ].freeze
-    private_constant :SIGN_UP_PARAMS
-    SIGN_IN_PARAMS = %i[
-      username email password password_confirmation login remember_me
-    ].freeze
-    private_constant :SIGN_IN_PARAMS
     ACCOUNT_UPDATE_PARAMS = %i[
       username email password password_confirmation current_password
       display_name display_email profile_pic bio website location postcode
     ].freeze
-    private_constant :ACCOUNT_UPDATE_PARAMS
     # rubocop:enable Layout/MultilineArrayLineBreaks
+    private_constant :SIGN_UP_PARAMS
+    private_constant :SIGN_IN_PARAMS
+    private_constant :ACCOUNT_UPDATE_PARAMS
 
-    layout 'layouts/main_site'
-
-    def feed_url( name )
-      "#{feeds_base_url}/feeds/atom/#{name}.xml"
+    def self.recaptcha_v3_secret_key
+      ENV[ 'RECAPTCHA_V3_SECRET_KEY' ]
     end
 
-    helper_method :feed_url
+    def self.recaptcha_v2_secret_key
+      ENV[ 'RECAPTCHA_V2_SECRET_KEY' ]
+    end
+
+    def self.recaptcha_checkbox_secret_key
+      ENV[ 'RECAPTCHA_CHECKBOX_SECRET_KEY' ]
+    end
 
     protected
 
@@ -76,16 +81,12 @@ module ShinyCMS
 
     private
 
-    def set_view_paths
-      # Add the default templates directory to the top of view_paths
-      prepend_view_path 'plugins/ShinyCMS/app/views/shinycms'
+    def feed_url( name )
+      "#{feeds_base_url}/feeds/atom/#{name}.xml"
+    end
 
-      # Add the default templates directory for any loaded plugins above that
-      ShinyPlugin.with_views.each do |plugin|
-        prepend_view_path plugin.view_path
-      end
-
-      # Apply the configured theme, if any, by adding it above the defaults
+    def add_theme_view_path
+      # Apply the configured theme, if any, by adding its view path at the top of the list
       prepend_view_path Theme.current( current_user )&.view_path
     end
 
