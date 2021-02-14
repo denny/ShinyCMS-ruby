@@ -50,7 +50,7 @@ module ShinyCMS
 
         @cached_capabilities =
           capabilities.joins( :category )
-                      .pluck( 'capability_categories.name', :name )
+                      .pluck( 'shinycms_capability_categories.name', :name )
                       .group_by( &:shift )
                       .each_value( &:flatten! )
       end
