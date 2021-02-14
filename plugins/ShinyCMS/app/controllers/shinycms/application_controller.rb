@@ -25,6 +25,13 @@ module ShinyCMS
       ENV[ 'RECAPTCHA_CHECKBOX_SECRET_KEY' ]
     end
 
+    # Rails inflection is Made Of Fail
+    def shinycms
+      shiny_cms
+    end
+
+    helper_method :shinycms
+
     # Prevent Blazer from unhelpfully removing all of the ShinyCMS helpers
     def self.clear_helpers
       super unless self == Blazer::BaseController
