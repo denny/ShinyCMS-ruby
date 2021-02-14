@@ -9,7 +9,7 @@
 module ShinyCMS
   # Load ShinyCMS routes inside uncooperative engines - e.g. Blazer
   # (Inspired by RailsEmailPreview, which has this feature built in)
-  module MainAppRouteDelegator
+  module RouteDelegator
     def method_missing( method, *args, &block )
       if main_app_route_method?( method )
         main_app.__send__( method, *args )
