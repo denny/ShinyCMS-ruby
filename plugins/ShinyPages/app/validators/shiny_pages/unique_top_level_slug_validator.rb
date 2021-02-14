@@ -6,21 +6,24 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Validator for top-level slugs (possible with pages and page sections)
-# to make sure they don't collide with controller namespaces
-class SafeTopLevelSlugValidator < ActiveModel::Validator
-  def validate( record )
-    return if record.section.present?
+module ShinyPages
+  module TopLevelSlugValidator
+    # Validator to check that top-level page/section slugs don't collide with controller namespaces
+    class UniqueTopLevelSlugValidator < ActiveModel::Validator
+      def validate( record )
+        return if record.section.present?
 
-    record.errors.add( :slug, :slug_not_safe_at_top_level ) if unsafe?( record.slug )
-  end
+        record.errors.add( :slug, :slug_not_safe_at_top_level ) if unsafe?( record.slug )
+      end
 
-  private
+      private
 
-  def unsafe?( slug )
-    Rails.application.routes.routes.any? do |route|
-      route.path.spec.to_s.match( %r{\A/(?<part>[^/]+)/} ) do |m|
-        slug == m[ :part ]
+      def unsafe?( slug )
+        Rails.application.routes.routes.any? do |route|
+          route.path.spec.to_s.match( %r{\A/(?<part>[^/]+)/} ) do |m|
+            slug == m[ :part ]
+          end
+        end
       end
     end
   end
