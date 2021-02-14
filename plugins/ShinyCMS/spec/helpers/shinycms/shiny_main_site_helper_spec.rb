@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for some of the methods in the main site helper module
-RSpec.describe ShinyMainSiteHelper, type: :helper do
+RSpec.describe ShinyCMS::ShinyMainSiteHelper, type: :helper do
   describe 'setting' do
     it 'returns the setting value' do
       s1 = create :setting, name: 'testing_testing'

@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for the email recipient mailer (email address verification)
-RSpec.describe EmailRecipientMailer, type: :mailer do
+RSpec.describe ShinyCMS::EmailRecipientMailer, type: :mailer do
   describe '.confirm' do
     it 'generates an email to an unconfirmed email recipient' do
       recipient = create :email_recipient
@@ -18,8 +18,8 @@ RSpec.describe EmailRecipientMailer, type: :mailer do
       email = described_class.confirm( recipient )
 
       subject = I18n.t(
-        'email_recipient_mailer.confirm.subject',
-        site_name: Setting.get( :site_name )
+        'shinycms.email_recipient_mailer.confirm.subject',
+        site_name: ShinyCMS::Setting.get( :site_name )
       )
 
       expect( email.subject ).to eq subject
