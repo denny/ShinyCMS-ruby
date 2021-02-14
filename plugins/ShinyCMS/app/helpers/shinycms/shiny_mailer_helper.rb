@@ -15,11 +15,13 @@ module ShinyCMS
 
     def add_view_paths( plugin_path = nil )
       # Add the default templates directory to the top of view_paths
-      prepend_view_path 'app/views/shinycms'
+      prepend_view_path 'plugins/ShinyCMS/app/views/shinycms'
+
       # If a plugin view path was passed in, add that above the main app path
       prepend_view_path plugin_path if valid_plugin_path?
+
       # Apply the configured theme, if any, by adding it above the defaults
-      prepend_view_path ::Theme.current.view_path if ::Theme.current
+      prepend_view_path Theme.current.view_path if Theme.current
     end
 
     def default_email
