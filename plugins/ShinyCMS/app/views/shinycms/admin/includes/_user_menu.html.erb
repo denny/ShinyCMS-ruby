@@ -1,8 +1,9 @@
-<% if user_signed_in? %>
+<% return unless user_signed_in? %>
+
 <ul class="c-header-nav ml-auto mr-4">
   <li class="c-header-nav-item dropdown">
     <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-      <% if current_user.profile&.profile_pic&.attached? && controller.is_a?( ::AdminController ) %>
+      <% if controller.is_a?( ShinyCMS::AdminController ) && current_user.profile&.profile_pic&.attached? %>
       <div class="c-avatar">
         <%= image_tag url_for( current_user.profile.profile_pic.variant( resize: '36x36!' ) ), alt: current_user.name, class: 'c-avatar-img' %>
       </div>
@@ -21,17 +22,16 @@
       </a>
       <% end %>
       <a class="dropdown-item" href="<%= shinycms.edit_user_registration_path( current_user.username ) %>">
-        <i class="cil-pencil user-menu-icon"></i> <%= t( 'admin.users.edit.title' ) %>
+        <i class="cil-pencil user-menu-icon"></i> <%= t( 'shinycms.admin.users.edit.title' ) %>
       </a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="<%= shinycms.site_settings_path %>">
-        <i class="cil-settings user-menu-icon"></i> <%= t( 'user.site_settings' ) %>
+        <i class="cil-settings user-menu-icon"></i> <%= t( 'shinycms.user.site_settings' ) %>
       </a>
       <div class="dropdown-divider"></div>
       <a rel="nofollow" data-method="delete" class="dropdown-item" href="<%= shinycms.destroy_user_session_path %>">
-        <i class="cil-account-logout user-menu-icon"></i> <%= t( 'user.log_out' ) %>
+        <i class="cil-account-logout user-menu-icon"></i> <%= t( 'shinycms.user.log_out' ) %>
       </a>
     </div>
   </li>
 </ul>
-<% end %>
