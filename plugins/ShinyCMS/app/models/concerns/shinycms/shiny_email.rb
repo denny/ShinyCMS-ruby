@@ -29,7 +29,7 @@ module ShinyCMS
       # Instance methods
 
       def strip_email
-        self.email = email.strip
+        self.email = email&.strip
       end
 
       def generate_canonical_email
