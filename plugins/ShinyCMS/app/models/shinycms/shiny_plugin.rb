@@ -49,6 +49,10 @@ module ShinyCMS
       File.exist? "#{view_path}/#{template_path}"
     end
 
+    def routes
+      engine.routes.routes.routes # er, okay
+    end
+
     # Class methods
 
     # Returns an array of the currently enabled plugins
@@ -61,6 +65,10 @@ module ShinyCMS
 
     def self.loaded?( plugin_name )
       loaded_names.include? plugin_name.to_s
+    end
+
+    def self.all_routes
+      loaded.collect( &:routes ) + ShinyCMS::Engine.routes.routes.routes
     end
 
     def self.taggable_models
