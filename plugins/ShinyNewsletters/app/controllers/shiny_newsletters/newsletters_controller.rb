@@ -33,7 +33,7 @@ module ShinyNewsletters
     private
 
     def subscriber
-      current_user || EmailRecipient.confirmed.find_by( token: params[:token] )
+      current_user || ShinyCMS::EmailRecipient.confirmed.find_by( token: params[:token] )
     end
 
     def newsletters_sent_to_subscribed_lists
