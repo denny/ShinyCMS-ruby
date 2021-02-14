@@ -6,7 +6,7 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# This base controller is currently only used (inherited from) by Blazer
+# Currently only Blazer inherits from this base controller
 class ApplicationController < ActionController::Base
   helper ShinyCMS::AdminAreaHelper
   helper ShinyCMS::SidekiqHelper
@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # Controls access to Blazer features in admin area (set in config/blazer.yml)
   def blazer_authorize
     return true if current_user&.can? :view_charts, :stats
 
