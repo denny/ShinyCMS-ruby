@@ -19,11 +19,11 @@ module ShinyPages
       private
 
       def unsafe?( slug )
-        Rails.application.routes.routes.any? do |route|
-          route.path.spec.to_s.match( %r{\A/(?<part>[^/]+)/} ) do |m|
-            slug == m[ :part ]
-          end
-        end
+        all_routes.any? { |route| route.path.spec.to_s.start_with? "/#{slug}/" }
+      end
+
+      def all_routes
+        ( [ Rails.application.routes.routes.routes ] + [ ShinyCMS::ShinyPlugin.all_routes ] ).flatten
       end
     end
   end

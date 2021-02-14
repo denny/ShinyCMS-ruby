@@ -40,7 +40,7 @@ RSpec.describe 'Pages', type: :request do
         page.template.update_column( :filename, 'no-such-file' )
         # rubocop:enable Rails/SkipsModelValidations
 
-        Setting.set( :default_page, to: page.slug )
+        ShinyCMS::Setting.set( :default_page, to: page.slug )
 
         get '/'
 
