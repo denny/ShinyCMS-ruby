@@ -23,8 +23,8 @@ namespace :shiny do
       @shiny_admin.skip_confirmation!
       @shiny_admin.save!
 
-      User.transaction do
-        Capability.all.find_each do |capability|
+      ShinyCMS::User.transaction do
+        ShinyCMS::Capability.all.find_each do |capability|
           @shiny_admin.user_capabilities.create! capability: capability
         end
       end
@@ -37,7 +37,7 @@ namespace :shiny do
       password = ENV['password'] || ENV['SHINYCMS_ADMIN_PASSWORD']
       email    = ENV['email'   ] || ENV['SHINYCMS_ADMIN_EMAIL'   ]
 
-      admin = User.new( username: username, password: password, email: email )
+      admin = ShinyCMS::User.new( username: username, password: password, email: email )
       admin.valid?
 
       while admin.errors.messages.key? :username
@@ -47,7 +47,7 @@ namespace :shiny do
         puts 'Please choose a username for your admin account:'
         username = $stdin.gets.strip
 
-        admin = User.new( username: username, password: password, email: email )
+        admin = ShinyCMS::User.new( username: username, password: password, email: email )
         admin.valid?
       end
 
@@ -58,7 +58,7 @@ namespace :shiny do
         puts 'Please set the password of your admin account:'
         password = $stdin.gets.strip
 
-        admin = User.new( username: username, password: password, email: email )
+        admin = ShinyCMS::User.new( username: username, password: password, email: email )
         admin.valid?
       end
 
@@ -69,7 +69,7 @@ namespace :shiny do
         puts 'Please set the email address of your admin account:'
         email = $stdin.gets.strip
 
-        admin = User.new( username: username, password: password, email: email )
+        admin = ShinyCMS::User.new( username: username, password: password, email: email )
         admin.valid?
       end
 
