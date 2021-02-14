@@ -18,3 +18,23 @@
 
 en:
   site_name: MyShinySite
+
+  rails_email_preview:
+    breadcrumb: Mailers
+    menu: Mailer previews
+    emails:
+      index:
+        title: All mailers
+      show:
+        title: Preview email
+        breadcrumb_list: Emails
+  rep:
+    base:
+      email:
+        one: 1 email
+        other: '%{count} emails'
+      in: in
+      mailer:
+        one: 1 mailer
+        other: '%{count} mailers'
+      loading: Loading...
