@@ -1,0 +1,20 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# English locale strings for the demo ShinyHostApp that comes with ShinyCMS
+
+# To use the locales
+#     I18n.t 'hello'
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#     I18n.locale = :es
+#
+# To learn more, please read the Rails Internationalization guide:
+# https://guides.rubyonrails.org/i18n.html
+
+en:
+  site_name: MyShinySite
