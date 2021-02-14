@@ -4,6 +4,8 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# English locale strings for ShinyCMS features provided by the ShinyNews plugin
+
 en:
   feature_flags:
     news: News section

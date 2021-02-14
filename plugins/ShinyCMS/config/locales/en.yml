@@ -4,18 +4,9 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# To use the locales
-#     I18n.t 'hello'
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#     I18n.locale = :es
-#
-# To learn more, please read the Rails Internationalization guide: https://guides.rubyonrails.org/i18n.html
+# English locale strings for ShinyCMS core features and functionality
 
 en:
-  site_name: ShinySite
-
   home: Home
 
   # Generic verbs, used by buttons etc, both on main site and in admin area
