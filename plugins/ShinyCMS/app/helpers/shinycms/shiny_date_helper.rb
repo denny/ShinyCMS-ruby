@@ -16,7 +16,7 @@ module ShinyCMS
       date = timestamp.localtime.to_s :shinydate_with_day
       time = timestamp.localtime.to_s :time
 
-      I18n.t( 'shiny_date_helper.date_at_time', time: time, date: date )
+      I18n.t( 'shinycms.shiny_date_helper.date_at_time', time: time, date: date )
     end
 
     def display_time_on_date( timestamp )
@@ -25,7 +25,7 @@ module ShinyCMS
       date = timestamp.localtime.to_s :shinydate_with_day
       time = timestamp.localtime.to_s :time
 
-      I18n.t( 'shiny_date_helper.time_on_date', time: time, date: date )
+      I18n.t( 'shinycms.shiny_date_helper.time_on_date', time: time, date: date )
     end
 
     def display_time_on_date_no_day( timestamp )
@@ -34,7 +34,7 @@ module ShinyCMS
       date = timestamp.localtime.to_s :shinydate
       time = timestamp.localtime.to_s :time
 
-      I18n.t( 'shiny_date_helper.time_on_date', time: time, date: date )
+      I18n.t( 'shinycms.shiny_date_helper.time_on_date', time: time, date: date )
     end
 
     def display_date( timestamp )
