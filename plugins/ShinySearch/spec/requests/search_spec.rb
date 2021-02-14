@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Search:', type: :request do
+RSpec.describe ShinySearch::SearchController, type: :request do
   before do
-    FeatureFlag.enable :user_profiles
+    ShinyCMS::FeatureFlag.enable :user_profiles
   end
 
   let( :profile ) do

@@ -24,7 +24,7 @@ module ShinySearch
     def index
       return unless @query
 
-      backend = search_params[ :engine ].presence || Setting.get( :default_search_backend )
+      backend = search_params[ :engine ].presence || ShinyCMS::Setting.get( :default_search_backend )
       backend = nil unless SEARCH_BACKENDS.include? backend
 
       @pagy, @results = perform_search( backend )
