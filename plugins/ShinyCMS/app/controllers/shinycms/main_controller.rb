@@ -18,7 +18,7 @@ module ShinyCMS
 
     after_action  :track_ahoy_event, if: :ahoy_web_tracking_enabled?
 
-    helper_method :shinycms, :feed_url, :recaptcha_v2_site_key, :recaptcha_v3_site_key, :recaptcha_checkbox_site_key
+    helper_method :feed_url
 
     ShinyPlugin.with_main_site_helpers.each do |plugin|
       helper plugin.main_site_helper
@@ -38,18 +38,6 @@ module ShinyCMS
     private_constant :SIGN_UP_PARAMS
     private_constant :SIGN_IN_PARAMS
     private_constant :ACCOUNT_UPDATE_PARAMS
-
-    def self.recaptcha_v3_secret_key
-      ENV[ 'RECAPTCHA_V3_SECRET_KEY' ]
-    end
-
-    def self.recaptcha_v2_secret_key
-      ENV[ 'RECAPTCHA_V2_SECRET_KEY' ]
-    end
-
-    def self.recaptcha_checkbox_secret_key
-      ENV[ 'RECAPTCHA_CHECKBOX_SECRET_KEY' ]
-    end
 
     protected
 
