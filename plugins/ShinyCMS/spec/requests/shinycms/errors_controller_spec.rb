@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for ShinyCMS error handlers
-RSpec.describe ErrorsController, type: :request do
+RSpec.describe ShinyCMS::ErrorsController, type: :request do
   describe 'GET /no-such-path', :production_error_responses do
     it 'returns our Not Found page, with a 404 status' do
       get '/no-such-path'
@@ -18,9 +18,9 @@ RSpec.describe ErrorsController, type: :request do
     end
   end
 
-  describe 'GET /errors/test500', :production_error_responses do
+  describe 'GET /test/500', :production_error_responses do
     it 'returns our error page, with a 500 status' do
-      get '/errors/test500'
+      get '/test/500'
 
       expect( response ).to have_http_status :internal_server_error
     end

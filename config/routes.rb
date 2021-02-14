@@ -9,8 +9,6 @@
 # Routes for main app (ShinyHostApp)
 
 Rails.application.routes.draw do
-  get 'errors/not_found'
-  get 'errors/internal_server_error'
   scope format: false do
     if defined? ShinyCMS
       # Currently, if ShinyPages is loaded, then we assume it controls the root path

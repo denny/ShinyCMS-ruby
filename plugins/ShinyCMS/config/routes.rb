@@ -17,7 +17,7 @@ ShinyCMS::Engine.routes.draw do
     match '404',  to: 'errors#not_found',             via: :all
     match '500',  to: 'errors#internal_server_error', via: :all
 
-    get '/errors/test500', to: 'errors#test500'
+    get '/test/500', to: 'errors#test500' if Rails.env.test?
 
     # User Accounts / Authentication
     devise_for  :users,
