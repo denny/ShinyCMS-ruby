@@ -18,6 +18,8 @@ module ShinyPages
 
     include ShinySearch::Searchable if ShinyCMS::ShinyPlugin.loaded? :ShinySearch
 
+    include TopLevelSlugValidator
+
     # Associations
 
     belongs_to :section,  inverse_of: :all_pages, optional: true
@@ -29,7 +31,7 @@ module ShinyPages
 
     # Validations
 
-    validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
+    validates :slug, unique_top_level_slug: true, if: -> { section.blank? }
 
     # Plugin features
 
