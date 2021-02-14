@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'News', type: :request do
   before do
-    FeatureFlag.enable :news
+    ShinyCMS::FeatureFlag.enable :news
   end
 
   describe 'GET /news' do

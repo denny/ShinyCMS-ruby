@@ -8,9 +8,9 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Blog', type: :request do
+RSpec.describe ShinyBlog::BlogController, type: :request do
   before do
-    FeatureFlag.enable :blog
+    ShinyCMS::FeatureFlag.enable :blog
   end
 
   describe 'GET /blog' do

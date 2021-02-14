@@ -49,19 +49,19 @@ RSpec.shared_examples ShinyCMS::ShinyPost do
       @older = post.class.create!(
         title:     Faker::Books::CultureSeries.unique.culture_ship,
         body:      'Testing',
-        user:      User.first,
+        user:      ShinyCMS::User.first,
         posted_at: 1.day.ago
       )
       @hidden = post.class.create!(
         title:        Faker::Books::CultureSeries.unique.culture_ship,
         body:         'Testing',
-        user:         User.first,
+        user:         ShinyCMS::User.first,
         show_on_site: false
       )
       @future = post.class.create!(
         title:     Faker::Books::CultureSeries.unique.culture_ship,
         body:      'Testing',
-        user:      User.first,
+        user:      ShinyCMS::User.first,
         posted_at: 1.day.since
       )
     end
