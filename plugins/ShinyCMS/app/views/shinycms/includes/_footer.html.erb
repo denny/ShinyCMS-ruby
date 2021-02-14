@@ -1,17 +1,17 @@
 <p>
   <% if user_signed_in? %>
   Welcome back <%= user_profile_link %>! &nbsp;
-  [ <%= link_to t( 'user.edit_account' ), main_app.edit_user_registration_path %>
+  [ <%= link_to t( 'shinycms.user.edit_account' ), shinycms.edit_user_registration_path %>
   | <%= link_to t( 'shiny_profiles.edit_profile' ),shiny_profiles.edit_profile_path( current_user.username ) %>
-  | <%= link_to t( 'site_settings.index.title' ), main_app.site_settings_path %>
-  | <%= link_to t( 'user.log_out' ), main_app.destroy_user_session_path, data: {}, method: :delete %>
+  | <%= link_to t( 'site_settings.index.title' ), shinycms.site_settings_path %>
+  | <%= link_to t( 'shinycms.user.log_out' ), shinycms.destroy_user_session_path, data: {}, method: :delete %>
   ]
   <% else %>
   <% if feature_enabled? :user_logins %>
-  <%= link_to t( 'user.log_in'   ), main_app.new_user_session_path %>
+  <%= link_to t( 'shinycms.user.log_in'   ), shinycms.new_user_session_path %>
   <% end %>
   <% if feature_enabled? :user_registration %>
-  / <%= link_to t( 'user.register' ), main_app.new_user_registration_path %>
+  / <%= link_to t( 'shinycms.user.register' ), shinycms.new_user_registration_path %>
   <% end %>
   <% end %>
 </p>

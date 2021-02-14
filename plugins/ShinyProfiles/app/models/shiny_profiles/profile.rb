@@ -59,7 +59,7 @@ module ShinyProfiles
     # Class methods
 
     def self.for_username( username )
-      user = ::User.find_by( username: username )
+      user = ShinyCMS::User.find_by( username: username )
       raise ActiveRecord::RecordNotFound if user.blank?
 
       profile = find_by( user: user )

@@ -45,7 +45,7 @@ module ShinyCMS
     def blazer_authorize
       return true if current_user&.can? :view_charts, :stats
 
-      redirect_to main_app.admin_path, alert: t( 'admin.blazer.auth_fail' )
+      redirect_to shinycms.admin_path, alert: t( 'admin.blazer.auth_fail' )
     end
 
     # Rails inflection is Made Of Fail

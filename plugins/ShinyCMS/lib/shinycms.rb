@@ -10,4 +10,8 @@ require 'shinycms/engine'
 
 # Namespace wrapper
 module ShinyCMS
+  # Rails inflection is Made Of Fail
+  def shinycms
+    shiny_cms
+  end
 end

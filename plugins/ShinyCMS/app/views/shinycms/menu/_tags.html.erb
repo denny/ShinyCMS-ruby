@@ -1,11 +1,11 @@
 <li>
-  <%= link_to t( 'tags.index.title' ), shinycms.tags_path %>
+  <%= link_to t( 'shinycms.tags.title' ), shinycms.tags_path %>
   <% menu_tags = ActsAsTaggableOn::Tag.most_used( 5 ) %>
   <% if menu_tags.present? %>
   <ul>
     <% menu_tags.each do |menu_tag| %>
     <li>
-      <%= link_to "#{menu_tag.name} (#{menu_tag.taggings_count})", shinycms.tag_path( menu_tag.name ) %>
+      <%= link_to "#{menu_tag.name} (#{taggings_count( menu_tag )})", shinycms.tag_path( menu_tag.name ) %>
     </li>
     <% end %>
   </ul>

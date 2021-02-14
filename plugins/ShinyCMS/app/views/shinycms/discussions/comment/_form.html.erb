@@ -3,10 +3,10 @@
 <% comment ||= nil %>
 <% if comment.present? %>
   <% discussion = comment.discussion %>
-  <% form_url = main_app.comment_path( discussion, comment.number ) %>
+  <% form_url = shinycms.comment_path( discussion, comment.number ) %>
   <% num = "_#{comment.number}" %>
 <% else %>
-  <% form_url = main_app.discussion_path( discussion ) %>
+  <% form_url = shinycms.discussion_path( discussion ) %>
 <% end %>
 
 <%= form_for Comment.new, url: form_url, html: { id: "comment#{num}_form", class: 'comment_form' } do |f| %>
@@ -30,13 +30,13 @@
     </label>
   <% else %>
     <%= radio_button_tag 'comment[author_type]', 'authenticated', false, disabled: true %>
-    <%= link_to t( 'user.log_in' ), main_app.new_user_session_path %>
+    <%= link_to t( 'user.log_in' ), shinycms.new_user_session_path %>
   <% end %>
 <% else %>
   <% if user_signed_in? %>
     <%= current_user.name %>
   <% else %>
-    <%= link_to t( '.log_in_to_post' ), main_app.new_user_session_path %>
+    <%= link_to t( '.log_in_to_post' ), shinycms.new_user_session_path %>
   <% end %>
 <% end %>
   </p>
