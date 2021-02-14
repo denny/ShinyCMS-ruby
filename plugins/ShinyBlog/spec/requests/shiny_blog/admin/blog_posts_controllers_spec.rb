@@ -9,11 +9,13 @@
 require 'rails_helper'
 
 # Tests for blog admin features
-RSpec.describe 'Admin: Blog Posts', type: :request do
+RSpec.describe ShinyBlog::Admin::BlogPostsController, type: :request do
   before do
-    @admin = create :blog_admin
-    sign_in @admin
+    admin = create :blog_admin
+    sign_in admin
   end
+
+  let( :admin ) { ShinyCMS::User.first }
 
   describe 'GET /admin/blog' do
     it 'fetches the list of blog posts with less than one page of posts' do
@@ -86,7 +88,7 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
     it 'creates a new blog post when a complete form is submitted' do
       post shiny_blog.blog_posts_path, params: {
         post: {
-          user_id: @admin.id,
+          user_id: admin.id,
           title:   Faker::Books::CultureSeries.unique.culture_ship,
           body:    Faker::Lorem.paragraph
         }
@@ -105,7 +107,7 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
     it 'creates a linked discussion if requested' do
       post shiny_blog.blog_posts_path, params: {
         post: {
-          user_id:                 @admin.id,
+          user_id:                 admin.id,
           title:                   Faker::Books::CultureSeries.unique.culture_ship,
           body:                    Faker::Lorem.paragraph,
           discussion_show_on_site: '1',
@@ -129,7 +131,7 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
     it 'fails to create a new blog post when an incomplete form is submitted' do
       post shiny_blog.blog_posts_path, params: {
         post: {
-          user_id: @admin.id,
+          user_id: admin.id,
           title:   Faker::Books::CultureSeries.unique.culture_ship,
           body:    nil
         }
@@ -145,7 +147,7 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
 
       post shiny_blog.blog_posts_path, params: {
         post: {
-          user_id: @admin.id,
+          user_id: admin.id,
           title:   Faker::Books::CultureSeries.unique.culture_ship,
           body:    Faker::Lorem.paragraph,
           slug:    post_from_this_month.slug
@@ -162,7 +164,7 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
 
       post shiny_blog.blog_posts_path, params: {
         post: {
-          user_id: @admin.id,
+          user_id: admin.id,
           title:   Faker::Books::CultureSeries.unique.culture_ship,
           body:    Faker::Lorem.paragraph,
           slug:    post_from_last_month.slug
@@ -196,7 +198,7 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
 
       put shiny_blog.blog_post_path( post ), params: {
         post: {
-          user_id: @admin.id,
+          user_id: admin.id,
           title:   Faker::Books::CultureSeries.unique.culture_ship,
           body:    nil
         }
@@ -212,7 +214,7 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
 
       put shiny_blog.blog_post_path( post ), params: {
         post: {
-          user_id: @admin.id,
+          user_id: admin.id,
           title:   Faker::Books::CultureSeries.unique.culture_ship,
           body:    Faker::Lorem.paragraph
         }
@@ -234,7 +236,7 @@ RSpec.describe 'Admin: Blog Posts', type: :request do
 
       put shiny_blog.blog_post_path( post ), params: {
         post: {
-          user_id:                 @admin.id,
+          user_id:                 admin.id,
           title:                   Faker::Books::CultureSeries.unique.culture_ship,
           body:                    Faker::Lorem.paragraph,
           discussion_show_on_site: '0',
