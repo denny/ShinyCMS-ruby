@@ -92,12 +92,10 @@ RSpec/BeforeAfterAll:
 RSpec/DescribedClassModuleWrapping:
   Enabled: false
 
-# This one is just Wrong; it's ignoring config/initializers/inflections.rb
+# This is ignoring config/initializers/inflections.rb (as about half of Rails does)
 RSpec/FilePath:
   Exclude:
-    - plugins/ShinyCMS/spec/lib/shinycms/route_delegator_spec.rb
-    - plugins/ShinyCMS/spec/requests/shinycms/errors_controller_spec.rb
-    - plugins/ShinyCMS/spec/models/shinycms/*.rb
+    - plugins/ShinyCMS/spec/*/shinycms/**/*_spec.rb
 
 # Disabling these two for now (but open to discussion/persuasion on their merits)
 RSpec/ExampleLength:
