@@ -95,6 +95,7 @@ RSpec/DescribedClassModuleWrapping:
 # This one is just Wrong; it's ignoring config/initializers/inflections.rb
 RSpec/FilePath:
   Exclude:
+    - plugins/ShinyCMS/spec/lib/shinycms/route_delegator_spec.rb
     - plugins/ShinyCMS/spec/models/shinycms/*.rb
 
 # Disabling these two for now (but open to discussion/persuasion on their merits)
