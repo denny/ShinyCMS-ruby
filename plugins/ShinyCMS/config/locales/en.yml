@@ -50,17 +50,14 @@ en:
 
     discussions:
       anonymous: Anonymous
+      pseudonymous: Pseudonymous
       comment:
         form:
           comment: Comment
-          anonymous: Anonymous
-          pseudonymous: Pseudonymous
           log_in_to_post: Log in to post a comment
           name: Name
           email: Email
           url: URL
-        posted_by:
-          anonymous: Anonymous
       comments: Comments
       n_total: '%{count} total'
       n_recent_comments:

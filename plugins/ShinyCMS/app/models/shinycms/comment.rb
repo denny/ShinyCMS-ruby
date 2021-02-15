@@ -90,7 +90,7 @@ module ShinyCMS
     end
 
     def author_name_or_anon
-      author&.name&.presence || I18n.t( 'discussions.anonymous' )
+      author&.name&.presence || I18n.t( 'shinycms.discussions.anonymous' )
     end
 
     def authenticated_author?

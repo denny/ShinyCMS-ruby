@@ -1,7 +1,7 @@
     <% if comment.locked? %>
-    <span class="locked"><%= t('discussions.comment_locked' ) %></span>
+    <span class="locked"><%= t( 'shinycms.discussions.comment_locked' ) %></span>
     <% else %>
-    <a onclick="toggleHidden('reply_form_<%= comment.id %>')"><%= t( 'discussions.reply' ) %></a>
+    <a onclick="toggleHidden('reply_form_<%= comment.id %>')"><%= t( 'shinycms.discussions.reply' ) %></a>
 
     <% if feature_enabled?( :comment_votes ) %>
       <span class="float-right smaller">

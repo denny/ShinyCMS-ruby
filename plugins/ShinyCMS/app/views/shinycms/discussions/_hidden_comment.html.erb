@@ -1,6 +1,6 @@
 <section style="margin-left: <%= depth %>em;">
   <p>
-    <i><%= t( 'discussions.hidden_comment' ) %></i>
+    <i><%= t( 'shinycms.discussions.hidden_comment' ) %></i>
   </p>
 
   <% if current_user_can?( :hide, :comments ) || current_user_can?( :lock, :comments ) %>

@@ -168,7 +168,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested1.title
       expect( response.body ).not_to have_css 'h2', text: @comment1.title
-      expect( response.body ).to     have_css 'i',  text: I18n.t( 'discussions.hidden_comment' )
+      expect( response.body ).to     have_css 'i',  text: I18n.t( 'shinycms.discussions.hidden_comment' )
     end
   end
 
