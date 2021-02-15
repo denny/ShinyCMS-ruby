@@ -55,7 +55,7 @@ RSpec.describe ShinyBlog::BlogController, type: :request do
       get shiny_blog.view_blog_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css 'p', text: I18n.t( 'empty_list', items: 'blog posts' )
+      expect( response.body ).to have_css 'p', text: I18n.t( 'shinycms.empty_list', items: 'blog posts' )
     end
   end
 

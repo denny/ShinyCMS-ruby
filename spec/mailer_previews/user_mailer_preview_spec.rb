@@ -14,7 +14,7 @@ RSpec.describe UserMailerPreview, type: :request do
     admin = create :mailer_admin
     sign_in admin
 
-    @site_name = ::Setting.get( :site_name ) || I18n.t( 'site_name' )
+    @site_name = ShinyCMS::Setting.get( :site_name ) || I18n.t( 'site_name' )
   end
 
   describe '.confirmation_instructions' do
