@@ -28,9 +28,9 @@
         <%= display_time_on_date( message.sent_at ) %>
       </td>
       <td>
-        <% if message.user_type == 'EmailRecipient' %>
+        <% if message.user_type == 'ShinyCMS::EmailRecipient' %>
           <%= link_to message.user.email, recipient_email_stats_path( message.user ) %>
-        <% elsif message.user_type == 'User' %>
+        <% elsif message.user_type == 'ShinyCMS::User' %>
           <%= link_to message.user.email, user_email_stats_path( message.user ) %>
         <% end %>
       </td>
@@ -50,6 +50,6 @@
 
 <% else %>
 <p>
-  <%= t( 'empty_list', items: 'stats' ) %>
+  <%= t( 'shinycms.empty_list', items: 'stats' ) %>
 </p>
 <% end %>

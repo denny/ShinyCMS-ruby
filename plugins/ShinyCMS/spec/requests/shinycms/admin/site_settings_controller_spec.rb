@@ -38,7 +38,7 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       }
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to admin_site_settings_path
+      expect( response      ).to     redirect_to shinycms.admin_site_settings_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.site_settings.index.title' ).titlecase
@@ -62,7 +62,7 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       }
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to admin_site_settings_path
+      expect( response      ).to     redirect_to shinycms.admin_site_settings_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.site_settings.index.title' ).titlecase
@@ -82,7 +82,7 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_site_settings_path
+      expect( response      ).to redirect_to shinycms.admin_site_settings_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.site_settings.index.title' ).titlecase
@@ -101,7 +101,7 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       }
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to admin_site_settings_path
+      expect( response      ).to     redirect_to shinycms.admin_site_settings_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.site_settings.index.title' ).titlecase
@@ -127,7 +127,7 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       }
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to admin_site_settings_path
+      expect( response      ).to     redirect_to shinycms.admin_site_settings_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.site_settings.index.title' ).titlecase

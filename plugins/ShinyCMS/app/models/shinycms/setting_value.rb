@@ -21,7 +21,7 @@ module ShinyCMS
     validates :setting_id, presence: true
     validates :user_id,    uniqueness: {
       scope:   :setting,
-      message: I18n.t( 'models.setting_value.one_per_user' )
+      message: I18n.t( 'shinycms.models.setting_value.one_per_user' )
     }
   end
 end

@@ -30,7 +30,7 @@ RSpec.describe ShinyCMS::VotesController, type: :request do
     it 'up-votes the comment once, despite two attempts' do
       expect( @comment.get_upvotes.size ).to eq 0
 
-      post create_vote_path( 'comment', @comment, 'up' )
+      post shinycms.create_vote_path( 'comment', @comment, 'up' )
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to @comment.path
@@ -55,7 +55,7 @@ RSpec.describe ShinyCMS::VotesController, type: :request do
       expect( @comment.get_downvotes.size ).to eq 0
 
       sign_in @voter
-      post create_vote_path( 'comment', @comment, 'down' )
+      post shinycms.create_vote_path( 'comment', @comment, 'down' )
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to @comment.path
@@ -72,7 +72,7 @@ RSpec.describe ShinyCMS::VotesController, type: :request do
       @comment.upvote_by @voter
       expect( @comment.get_upvotes.size ).to eq 1
 
-      delete destroy_vote_path( 'comment', @comment )
+      delete shinycms.destroy_vote_path( 'comment', @comment )
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to @comment.path

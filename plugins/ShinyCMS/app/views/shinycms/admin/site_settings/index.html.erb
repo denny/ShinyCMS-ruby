@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_with url: admin_site_settings_path, method: :put, local: true do %>
+<%= form_with url: shinycms.admin_site_settings_path, method: :put, local: true do %>
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
@@ -18,7 +18,7 @@
   <% @settings.each do |setting| %>
   <tr class="showfocus">
     <td>
-      <%= label :settings, "value_#{setting.id}", t( "settings.#{setting.name}" ) %>
+      <%= label :settings, "value_#{setting.id}", t( "shinycms.settings.#{setting.name}" ) %>
     </td>
     <td>
       <%= text_field :settings, "value_#{setting.id}", value: setting.value %>

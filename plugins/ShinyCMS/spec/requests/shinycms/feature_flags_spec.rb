@@ -38,7 +38,7 @@ RSpec.describe 'Feature Flags (main site)', type: :request do
       expect( response.body ).to have_css(
         '.alerts',
         text: I18n.t(
-          'feature_flags.off_alert',
+          'shinycms.feature_flags.off_alert',
           feature_name: I18n.t( 'shinycms.feature_flags.user_login' )
         )
       )
@@ -63,7 +63,7 @@ RSpec.describe 'Feature Flags (main site)', type: :request do
       expect( response.body ).to have_css(
         '.alerts',
         text: I18n.t(
-          'feature_flags.off_alert',
+          'shinycms.feature_flags.off_alert',
           feature_name: I18n.t( 'shinycms.feature_flags.user_profiles' )
         )
       )

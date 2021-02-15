@@ -12,7 +12,7 @@ require 'rails_helper'
 RSpec.describe ShinyCMS::DoNotContactController, type: :request do
   describe 'GET /email/do-not-contact' do
     it 'displays the do-not-contact form' do
-      get do_not_contact_path
+      get shinycms.do_not_contact_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shinycms.do_not_contact.new.title' )
@@ -21,10 +21,10 @@ RSpec.describe ShinyCMS::DoNotContactController, type: :request do
 
   describe 'POST /email/do-not-contact' do
     it 'adds a valid email to the do-not-contact list' do
-      post do_not_contact_path, params: { email: Faker::Internet.unique.email }
+      post shinycms.do_not_contact_path, params: { email: Faker::Internet.unique.email }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to do_not_contact_path
+      expect( response      ).to redirect_to shinycms.do_not_contact_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shinycms.do_not_contact.new.title' )
@@ -36,10 +36,10 @@ RSpec.describe ShinyCMS::DoNotContactController, type: :request do
 
       create :do_not_contact, email: email_address
 
-      post do_not_contact_path, params: { email: email_address }
+      post shinycms.do_not_contact_path, params: { email: email_address }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to do_not_contact_path
+      expect( response      ).to redirect_to shinycms.do_not_contact_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shinycms.do_not_contact.new.title' )
@@ -47,10 +47,10 @@ RSpec.describe ShinyCMS::DoNotContactController, type: :request do
     end
 
     it 'fails to add an invalid email to the do-not-contact list' do
-      post do_not_contact_path, params: { email: 'This is not an email address' }
+      post shinycms.do_not_contact_path, params: { email: 'This is not an email address' }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to do_not_contact_path
+      expect( response      ).to redirect_to shinycms.do_not_contact_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shinycms.do_not_contact.new.title' )
