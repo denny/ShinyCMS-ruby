@@ -175,9 +175,11 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
         .to receive( :recaptcha_checkbox_secret_key ).and_return( 'A_KEY' )
 
       post shinycms.user_registration_path, params: {
-        'user[username]': username,
-        'user[password]': password,
-        'user[email]':    email
+        user: {
+          username: username,
+          password: password,
+          email:    email
+        }
       }
 
       expect( response      ).to have_http_status :found
@@ -204,7 +206,8 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
 
   describe 'PUT /account/update' do
     it 'updates the user when you submit the edit form' do
-      user = create :user
+      password = Faker::Books::CultureSeries.unique.culture_ship
+      user = create :user, password: password
       sign_in user
 
       new_name = Faker::Internet.unique.username
@@ -212,7 +215,7 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
       put shinycms.user_registration_path, params: {
         user: {
           username:         new_name,
-          current_password: user.password
+          current_password: password
         }
       }
 
