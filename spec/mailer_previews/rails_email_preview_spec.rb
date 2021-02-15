@@ -20,7 +20,7 @@ RSpec.describe RailsEmailPreview, type: :request do
       get rails_email_preview.rep_emails_path
 
       expect( response.body ).to have_title I18n.t( 'rails_email_preview.emails.index.title' ).titlecase
-      expect( response.body ).to have_link text: I18n.t( 'devise.mailer.confirmation_instructions.subject' )
+      expect( response.body ).to have_link text: I18n.t( 'shinycms.user_mailer.confirmation_instructions.subject' )
     end
   end
 end
