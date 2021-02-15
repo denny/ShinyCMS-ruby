@@ -37,8 +37,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
       get discussions_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'discussions.index.title' )
-      expect( response.body ).to have_css 'h2', text: I18n.t( 'discussions.index.recently_active' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.discussions.index.title' )
+      expect( response.body ).to have_css 'h2', text: I18n.t( 'shinycms.discussions.index.recently_active' )
     end
   end
 
@@ -47,7 +47,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       get "/news/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}"
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css 'h3', text: I18n.t( 'discussions.comments' )
+      expect( response.body ).to have_css 'h3', text: I18n.t( 'shinycms.discussions.comments' )
       expect( response.body ).to have_css 'h2', text: @comment.title
       expect( response.body ).to have_css 'h2', text: @nested.title
     end
@@ -58,8 +58,8 @@ RSpec.describe 'Discussions/Comments', type: :request do
       get "/news/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}"
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css 'h3', text: I18n.t( 'discussions.comments' )
-      expect( response.body ).to have_css 'p',  text: I18n.t( 'empty_list', items: 'comments' )
+      expect( response.body ).to have_css 'h3', text: I18n.t( 'shinycms.discussions.comments' )
+      expect( response.body ).to have_css 'p',  text: I18n.t( 'shinycms.empty_list', items: 'comments' )
     end
 
     it 'loads a news post with no discussion attached' do
@@ -68,7 +68,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       get "/news/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}"
 
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).not_to have_css 'h3', text: I18n.t( 'discussions.comments' )
+      expect( response.body ).not_to have_css 'h3', text: I18n.t( 'shinycms.discussions.comments' )
     end
   end
 
@@ -126,7 +126,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response      ).to redirect_to discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.discussions.add_comment.success' )
       expect( response.body ).to have_css 'h2', text: title
       expect( response.body ).to include body
     end
@@ -149,7 +149,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response      ).to redirect_to discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.discussions.add_comment.success' )
       expect( response.body ).to have_css 'h2', text: title
       expect( response.body ).to have_css 'h3', text: user.username
     end
@@ -171,7 +171,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response      ).to redirect_to discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.discussions.add_comment.success' )
       expect( response.body ).to have_css 'h2', text: title
       expect( response.body ).to have_css 'h3', text: name
     end
@@ -185,7 +185,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.alerts', text: I18n.t( 'discussions.add_comment.failure' )
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shinycms.discussions.add_comment.failure' )
     end
 
     it 'adds a new top-level comment to the discussion, with a recaptcha check' do
@@ -208,7 +208,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response      ).to redirect_to discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.discussions.add_comment.success' )
       expect( response.body ).to have_css 'h2', text: title
       expect( response.body ).to include body
     end
@@ -237,7 +237,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
 
       expect( Comment.last.spam ).to be true
 
-      expect( response.body ).not_to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
+      expect( response.body ).not_to have_css '.notices', text: I18n.t( 'shinycms.discussions.add_comment.success' )
       expect( response.body ).not_to have_css 'h2', text: title
     end
 
@@ -265,7 +265,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).not_to have_css '.notices', text: I18n.t( 'discussions.add_comment.success' )
+      expect( response.body ).not_to have_css '.notices', text: I18n.t( 'shinycms.discussions.add_comment.success' )
       expect( response.body ).not_to have_css 'h2', text: title
 
       expect( ShinyCMS::Comment.count        ).to eq comment_count
@@ -290,7 +290,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       expect( response      ).to redirect_to discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'discussions.add_reply.success' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.discussions.add_reply.success' )
       expect( response.body ).to have_css 'h2', text: title
       expect( response.body ).to include body
     end
@@ -304,7 +304,7 @@ RSpec.describe 'Discussions/Comments', type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.alerts', text: I18n.t( 'discussions.add_reply.failure' )
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shinycms.discussions.add_reply.failure' )
     end
   end
 end

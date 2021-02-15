@@ -22,7 +22,7 @@ RSpec.describe ShinyCMS::Admin::FeatureFlagsController, type: :request do
       get shinycms.feature_flags_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.feature_flags.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.feature_flags.index.title' ).titlecase
     end
   end
 
@@ -37,11 +37,11 @@ RSpec.describe ShinyCMS::Admin::FeatureFlagsController, type: :request do
       }
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to feature_flags_path
+      expect( response      ).to     redirect_to shinycms.feature_flags_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.feature_flags.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.feature_flags.update.success' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.feature_flags.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.feature_flags.update.success' )
     end
 
     it 'fails gracefully if an update is invalid' do
@@ -52,11 +52,11 @@ RSpec.describe ShinyCMS::Admin::FeatureFlagsController, type: :request do
       }
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to feature_flags_path
+      expect( response      ).to     redirect_to shinycms.feature_flags_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.feature_flags.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-danger', text: I18n.t( 'admin.feature_flags.update.failure' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.feature_flags.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-danger', text: I18n.t( 'shinycms.admin.feature_flags.update.failure' )
     end
   end
 end

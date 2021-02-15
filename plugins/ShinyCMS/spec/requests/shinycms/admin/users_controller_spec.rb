@@ -23,7 +23,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         get shinycms.users_path
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
         expect( response.body ).to include user.username
       end
 
@@ -35,7 +35,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         get shinycms.users_path, params: { page: 2, items: 2 }
 
         expect( response      ).to     have_http_status :ok
-        expect( response.body ).to     have_title I18n.t( 'admin.users.index.title' ).titlecase
+        expect( response.body ).to     have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
         expect( response.body ).to     have_css 'td', text: user3.username
         expect( response.body ).not_to have_css 'td', text: user2.username
         expect( response.body ).not_to have_css 'td', text: user1.username
@@ -50,7 +50,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         get shinycms.search_users_path, params: { q: 'stbob' }
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
 
         expect( response.body ).not_to have_css 'td', text: user_a.username
         expect( response.body ).to     have_css 'td', text: user_b.username
@@ -75,7 +75,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         get shinycms.new_user_path
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.new.title' ).titlecase
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.new.title' ).titlecase
       end
     end
 
@@ -88,8 +88,8 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         }
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.new.title' ).titlecase
-        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.create.failure' )
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.new.title' ).titlecase
+        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shinycms.admin.users.create.failure' )
       end
 
       it 'fails when the username collides with an existing username' do
@@ -104,8 +104,8 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         }
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.new.title' ).titlecase
-        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.create.failure' )
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.new.title' ).titlecase
+        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shinycms.admin.users.create.failure' )
       end
 
       it 'adds a new user when the form is submitted' do
@@ -123,8 +123,8 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         expect( response      ).to redirect_to edit_user_path( ShinyCMS::User.last )
         follow_redirect!
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
-        expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.users.create.success' )
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase
+        expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shinycms.admin.users.create.success' )
       end
     end
 
@@ -135,8 +135,8 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         get shinycms.edit_user_path( user )
 
         expect( response      ).to     have_http_status :ok
-        expect( response.body ).to     have_title I18n.t( 'admin.users.edit.title' ).titlecase
-        expect( response.body ).not_to have_css 'th', text: I18n.t( 'capability.capabilities' )
+        expect( response.body ).to     have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase
+        expect( response.body ).not_to have_css 'th', text: I18n.t( 'shinycms.capability.capabilities' )
       end
     end
 
@@ -151,8 +151,8 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         }
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
-        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.update.failure' )
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase
+        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shinycms.admin.users.update.failure' )
       end
 
       it 'updates the user when the form is submitted' do
@@ -168,8 +168,8 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         expect( response      ).to redirect_to edit_user_path( user )
         follow_redirect!
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
-        expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.users.update.success' )
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase
+        expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shinycms.admin.users.update.success' )
         expect( response.body ).to include 'new_username'
       end
     end
@@ -186,8 +186,8 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         expect( response      ).to     redirect_to users_path
         follow_redirect!
         expect( response      ).to     have_http_status :ok
-        expect( response.body ).to     have_title I18n.t( 'admin.users.index.title' ).titlecase
-        expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.users.destroy.success' )
+        expect( response.body ).to     have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
+        expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.users.destroy.success' )
         expect( response.body ).to     have_css 'td', text: u1.username
         expect( response.body ).not_to have_css 'td', text: u2.username
         expect( response.body ).to     have_css 'td', text: u3.username
@@ -203,8 +203,8 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         expect( response      ).to redirect_to users_path
         follow_redirect!
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.index.title' ).titlecase
-        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.users.destroy.failure' )
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
+        expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shinycms.admin.users.destroy.failure' )
       end
     end
   end
@@ -222,8 +222,8 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         get shinycms.edit_user_path( user )
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
-        expect( response.body ).to have_css 'th', text: I18n.t( 'capability.capabilities' )
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase
+        expect( response.body ).to have_css 'th', text: I18n.t( 'shinycms.capability.capabilities' )
         expect( response.body ).to have_css 'td', text: I18n.t( 'list'    )
         expect( response.body ).to have_css 'td', text: I18n.t( 'destroy' )
       end
@@ -245,8 +245,8 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
       expect( response      ).to redirect_to edit_user_path( user )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.users.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.users.update.success' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shinycms.admin.users.update.success' )
       expect( response.body ).to have_field field_name, with: 'on'
       user.reload
       expect( user.capabilities.length ).to eq 1

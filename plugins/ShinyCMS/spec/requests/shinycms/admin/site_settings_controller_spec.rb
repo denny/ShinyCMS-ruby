@@ -22,7 +22,7 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       get shinycms.admin_site_settings_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.site_settings.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.site_settings.index.title' ).titlecase
     end
   end
 
@@ -41,8 +41,8 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       expect( response      ).to     redirect_to admin_site_settings_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.site_settings.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.site_settings.update.success' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.site_settings.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.site_settings.update.success' )
       expect( response.body ).to     have_field "settings[level_#{s1.id}]",
                                                 id:      "settings_level_#{s1.id}_user",
                                                 checked: true
@@ -65,8 +65,8 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       expect( response      ).to     redirect_to admin_site_settings_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.site_settings.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.site_settings.update.success' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.site_settings.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.site_settings.update.success' )
       expect( response.body ).not_to include 'Original'
       expect( response.body ).to     include 'Updated'
     end
@@ -85,8 +85,8 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       expect( response      ).to redirect_to admin_site_settings_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.site_settings.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-info', text: I18n.t( 'admin.site_settings.update.unchanged' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.site_settings.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-info', text: I18n.t( 'shinycms.admin.site_settings.update.unchanged' )
       expect( response.body ).to have_field "settings[value_#{s1.id}]", with: 'Unchanging'
     end
 
@@ -104,8 +104,8 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       expect( response      ).to     redirect_to admin_site_settings_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.site_settings.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-danger', text: I18n.t( 'admin.site_settings.update.failure' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.site_settings.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-danger', text: I18n.t( 'shinycms.admin.site_settings.update.failure' )
       expect( response.body ).to     have_field "settings[level_#{s1.id}]",
                                                 id:       "settings_level_#{s1.id}_site",
                                                 disabled: true,
@@ -130,8 +130,8 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       expect( response      ).to     redirect_to admin_site_settings_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.site_settings.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.site_settings.update.success' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.site_settings.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.site_settings.update.success' )
       expect( response.body ).to     have_field "settings[value_#{s1.id}]", with: '127.0.0.1, 4.3.2.1'
       expect( response.body ).not_to have_field "settings[value_#{s1.id}]", with: '127.0.0.1, 1.2.3.4'
     end

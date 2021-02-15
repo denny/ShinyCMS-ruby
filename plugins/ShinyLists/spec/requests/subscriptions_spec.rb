@@ -15,11 +15,6 @@ RSpec.describe 'List subscriptions', type: :request do
     ShinyCMS::FeatureFlag.enable :user_login
   end
 
-  # Rails inflection is hard to reason with
-  def shinycms
-    shiny_cms
-  end
-
   describe 'GET /subscriptions' do
     it "displays a logged-in user's subscriptions" do
       user1 = create :user

@@ -7,8 +7,9 @@
 # English locale strings for ShinyCMS features provided by the ShinyAccess plugin
 
 en:
-  feature_flags:
-    access: Access Control
+  shinycms:
+    feature_flags:
+      access: Access Control
 
   shiny_access:
     admin:

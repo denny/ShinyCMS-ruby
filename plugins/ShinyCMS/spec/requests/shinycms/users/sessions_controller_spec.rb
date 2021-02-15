@@ -17,7 +17,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
     create :top_level_page
   end
 
-  # Rails inflection is a problem
+  # Devise ignores the bodge in spec/support/inflection_kludge, so here it is again
   def shinycms
     shiny_cms
   end
@@ -42,8 +42,8 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
       expect( response.body ).to have_css(
         '.alerts',
         text: I18n.t(
-          'feature_flags.off_alert',
-          feature_name: I18n.t( 'feature_flags.user_login' )
+          'shinycms.feature_flags.off_alert',
+          feature_name: I18n.t( 'shinycms.feature_flags.user_login' )
         )
       )
       expect( response.body ).not_to have_button I18n.t( 'shinycms.user.log_in' )

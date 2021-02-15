@@ -15,7 +15,7 @@ RSpec.describe ShinyCMS::TagsController, type: :request do
       get tag_cloud_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'tags.cloud.title' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.tags.cloud.title' )
     end
   end
 
@@ -28,7 +28,7 @@ RSpec.describe ShinyCMS::TagsController, type: :request do
       get tag_list_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'tags.list.title' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.tags.list.title' )
     end
   end
 
@@ -37,7 +37,7 @@ RSpec.describe ShinyCMS::TagsController, type: :request do
       get tags_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'tags.cloud.title' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.tags.cloud.title' )
     end
 
     it "displays the tag list if tag_view is set to 'list'" do
@@ -46,7 +46,7 @@ RSpec.describe ShinyCMS::TagsController, type: :request do
       get tags_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'tags.list.title' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.tags.list.title' )
     end
   end
 
@@ -55,7 +55,7 @@ RSpec.describe ShinyCMS::TagsController, type: :request do
       get tag_path( 'test' )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'tags.show.title', tag: 'test' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.tags.show.title', tag: 'test' )
     end
   end
 end

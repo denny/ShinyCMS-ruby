@@ -27,7 +27,7 @@ module ShinyCMS
         flash[ :show_checkbox_recaptcha ] = true
         flash[ :username ] = params[ :username ]
         flash[ :email    ] = params[ :email    ]
-        redirect_to action: :new
+        redirect_to shinycms.new_user_registration_path
       end
     end
 

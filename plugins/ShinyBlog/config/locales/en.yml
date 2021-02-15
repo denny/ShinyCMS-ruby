@@ -7,10 +7,11 @@
 # English locale strings for ShinyCMS features provided by the ShinyBlog plugin
 
 en:
-  feature_flags:
-    blog: Blog
-    blog_votes: Votes on blog posts
-    blog_downvotes: Down-votes on blog posts
+  shinycms:
+    feature_flags:
+      blog: Blog
+      blog_votes: Votes on blog posts
+      blog_downvotes: Down-votes on blog posts
 
   capability:
     category:

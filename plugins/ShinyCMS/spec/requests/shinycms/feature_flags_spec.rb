@@ -20,7 +20,7 @@ RSpec.describe 'Feature Flags (main site)', type: :request do
       get new_user_session_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include I18n.t( 'user.log_in' )
+      expect( response.body ).to include I18n.t( 'shinycms.user.log_in' )
     end
 
     it "fails with 'User Login = Off'" do
@@ -39,7 +39,7 @@ RSpec.describe 'Feature Flags (main site)', type: :request do
         '.alerts',
         text: I18n.t(
           'feature_flags.off_alert',
-          feature_name: I18n.t( 'feature_flags.user_login' )
+          feature_name: I18n.t( 'shinycms.feature_flags.user_login' )
         )
       )
     end
@@ -64,7 +64,7 @@ RSpec.describe 'Feature Flags (main site)', type: :request do
         '.alerts',
         text: I18n.t(
           'feature_flags.off_alert',
-          feature_name: I18n.t( 'feature_flags.user_profiles' )
+          feature_name: I18n.t( 'shinycms.feature_flags.user_profiles' )
         )
       )
     end

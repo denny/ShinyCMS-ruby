@@ -20,7 +20,7 @@ RSpec.describe ShinyCMS::Admin::EmailStatsController, type: :request do
       get shinycms.email_stats_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.email_stats.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.email_stats.index.title' ).titlecase
     end
 
     it 'fetches the email stats for a specific user' do
@@ -29,7 +29,7 @@ RSpec.describe ShinyCMS::Admin::EmailStatsController, type: :request do
       get shinycms.user_email_stats_path( user.id )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.email_stats.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.email_stats.index.title' ).titlecase
     end
 
     it 'fetches the email stats for a specific recipient (without a user account)' do
@@ -38,7 +38,7 @@ RSpec.describe ShinyCMS::Admin::EmailStatsController, type: :request do
       get shinycms.recipient_email_stats_path( recipient.id )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.email_stats.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.email_stats.index.title' ).titlecase
     end
   end
 
@@ -49,7 +49,7 @@ RSpec.describe ShinyCMS::Admin::EmailStatsController, type: :request do
       get shinycms.search_email_stats_path, params: { q: 'banana' }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.email_stats.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.email_stats.index.title' ).titlecase
 
       # expect( response.body ).to     have_css 'td', text: 'apple'
       expect( response.body ).not_to have_css 'td', text: 'banana'

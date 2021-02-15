@@ -7,10 +7,9 @@
 # English locale strings for ShinyCMS features provided by the ShinyNewsletters plugin
 
 en:
-  cancel: Cancel
-
-  feature_flags:
-    newsletters: Newsletters
+  shinycms:
+    feature_flags:
+      newsletters: Newsletters
 
   capability:
     category:

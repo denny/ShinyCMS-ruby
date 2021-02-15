@@ -106,7 +106,7 @@ RSpec.describe ShinyCMS::AdminController, type: :request do
       expect( response      ).to redirect_to shiny_pages.pages_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.alert', text: I18n.t( 'admin.invalid_url', request_path: 'does/not/exist' )
+      expect( response.body ).to have_css '.alert', text: I18n.t( 'shinycms.admin.invalid_url', request_path: 'does/not/exist' )
     end
   end
 end

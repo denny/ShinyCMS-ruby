@@ -41,7 +41,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       get shinycms.comments_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.comments.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
       expect( response.body ).to have_css 'td', text: comment3.title
     end
 
@@ -53,7 +53,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
         get shinycms.search_comments_path, params: { q: 'zing' }
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.comments.index.title' ).titlecase
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
 
         expect( response.body ).to     have_css 'td', text: comment1.title
         expect( response.body ).not_to have_css 'td', text: comment2.title
@@ -69,8 +69,8 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response      ).to     redirect_to comments_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.comments.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-danger', text: I18n.t( 'admin.comments.update.spam_or_ham' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-danger', text: I18n.t( 'shinycms.admin.comments.update.spam_or_ham' )
     end
 
     it 'deletes the selected comments if you say they are spam' do
@@ -94,8 +94,8 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response      ).to     redirect_to comments_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.comments.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.comments.process_spam_comments.success' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.comments.process_spam_comments.success' )
       expect( response.body ).to     have_css 'td', text: @comment2.title
       expect( response.body ).not_to have_css 'td', text: @nested1.title
 
@@ -124,8 +124,8 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response      ).to     redirect_to comments_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.comments.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.comments.process_ham_comments.success' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.comments.process_ham_comments.success' )
       expect( response.body ).to     have_css 'td', text: @comment2.title
       expect( response.body ).not_to have_css 'td', text: @nested1.title
 
@@ -153,8 +153,8 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response      ).to redirect_to comments_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.comments.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.comments.process_ham_comments.failure' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shinycms.admin.comments.process_ham_comments.failure' )
     end
   end
 
@@ -168,7 +168,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested1.title
       expect( response.body ).not_to have_css 'h2', text: @comment1.title
-      expect( response.body ).to     have_css 'i',  text: I18n.t( 'discussions.hidden_comment' )
+      expect( response.body ).to     have_css 'i',  text: I18n.t( 'shinycms.discussions.hidden_comment' )
     end
   end
 
@@ -185,7 +185,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested1.title
       expect( response.body ).to     have_css 'h2', text: @comment1.title
-      expect( response.body ).not_to have_css 'i',  text: I18n.t( 'discussions.hidden_comment' )
+      expect( response.body ).not_to have_css 'i',  text: I18n.t( 'shinycms.discussions.hidden_comment' )
     end
   end
 

@@ -7,13 +7,14 @@
 # English locale strings for ShinyCMS features provided by the ShinySearch plugin
 
 en:
-  feature_flags:
-    search: Search
+  shinycms:
+    feature_flags:
+      search: Search
 
-  settings:
-    default_search_backend: Default search back-end
-    search_enabled_algolia: Enable Agolia search backend
-    search_enabled_postgres: Enable Postgres search backend
+    settings:
+      default_search_backend: Default search back-end
+      search_enabled_algolia: Enable Agolia search backend
+      search_enabled_postgres: Enable Postgres search backend
 
   shiny_search:
     search:

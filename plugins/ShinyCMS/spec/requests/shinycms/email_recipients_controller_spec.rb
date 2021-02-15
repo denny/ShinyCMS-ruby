@@ -24,7 +24,7 @@ RSpec.describe ShinyCMS::EmailRecipientsController, type: :request do
       expect( response ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'email_recipients.confirm.success' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.email_recipients.confirm.success' )
     end
 
     it "shows an error message if the token doesn't exist" do
@@ -34,7 +34,7 @@ RSpec.describe ShinyCMS::EmailRecipientsController, type: :request do
       expect( response ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.alerts', text: I18n.t( 'email_recipients.confirm.token_not_found' )
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shinycms.email_recipients.confirm.token_not_found' )
     end
 
     it 'shows an error message if the token has expired' do
@@ -48,7 +48,7 @@ RSpec.describe ShinyCMS::EmailRecipientsController, type: :request do
       expect( response ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.alerts', text: I18n.t( 'email_recipients.confirm.token_expired' )
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shinycms.email_recipients.confirm.token_expired' )
     end
   end
 end

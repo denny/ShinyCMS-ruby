@@ -22,7 +22,7 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       get shinycms.consent_versions_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.consent_versions.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.consent_versions.index.title' ).titlecase
       expect( response.body ).to have_css 'td', text: version.name
     end
   end
@@ -35,7 +35,7 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       get shinycms.search_consent_versions_path, params: { q: 'zing' }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.consent_versions.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.consent_versions.index.title' ).titlecase
 
       expect( response.body ).to     have_css 'td', text: consent1.name
       expect( response.body ).not_to have_css 'td', text: consent2.name
@@ -49,7 +49,7 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       get shinycms.consent_version_path( version1 )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.consent_versions.show.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.consent_versions.show.title' ).titlecase
       expect( response.body ).to have_css 'p', text: version1.name
     end
   end
@@ -59,7 +59,7 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       get shinycms.new_consent_version_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.consent_versions.new.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.consent_versions.new.title' ).titlecase
     end
   end
 
@@ -72,8 +72,8 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.consent_versions.new.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.consent_versions.create.failure' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.consent_versions.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shinycms.admin.consent_versions.create.failure' )
     end
 
     it 'adds a new consent version when the form is filled in correctly' do
@@ -88,8 +88,8 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       expect( response      ).to redirect_to edit_consent_version_path( ConsentVersion.last )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.consent_versions.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.consent_versions.create.success' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.consent_versions.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shinycms.admin.consent_versions.create.success' )
     end
   end
 
@@ -100,8 +100,8 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       get shinycms.edit_consent_version_path( version )
 
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.consent_versions.edit.title' ).titlecase
-      expect( response.body ).not_to have_css 'th', text: I18n.t( 'capability.capabilities' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.consent_versions.edit.title' ).titlecase
+      expect( response.body ).not_to have_css 'th', text: I18n.t( 'shinycms.capability.capabilities' )
     end
   end
 
@@ -116,8 +116,8 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.consent_versions.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.consent_versions.update.failure' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.consent_versions.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shinycms.admin.consent_versions.update.failure' )
     end
 
     it 'raises an error if the consent version has already been agreed to by some people' do
@@ -141,8 +141,8 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       expect( response      ).to redirect_to edit_consent_version_path( version )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.consent_versions.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'admin.consent_versions.update.success' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.consent_versions.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shinycms.admin.consent_versions.update.success' )
       expect( response.body ).to have_field 'consent_version[slug]', with: 'new-slug'
     end
   end
@@ -159,8 +159,8 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       expect( response      ).to     redirect_to consent_versions_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.consent_versions.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.consent_versions.destroy.success' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.consent_versions.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.consent_versions.destroy.success' )
       expect( response.body ).to     have_css 'td', text: version1.name
       expect( response.body ).not_to have_css 'td', text: version2.name
       expect( response.body ).to     have_css 'td', text: version3.name

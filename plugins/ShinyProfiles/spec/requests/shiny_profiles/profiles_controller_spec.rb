@@ -15,11 +15,6 @@ RSpec.describe ShinyProfiles::ProfilesController, type: :request do
     ShinyCMS::FeatureFlag.enable :user_profiles
   end
 
-  # Rails inflection is not my friend
-  def shinycms
-    shiny_cms
-  end
-
   describe 'GET /profiles' do
     it 'redirects to the site homepage until the profile gallery feature is built :)' do
       page = create :top_level_page

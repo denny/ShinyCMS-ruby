@@ -20,7 +20,7 @@ RSpec.describe ShinyCMS::Admin::WebStatsController, type: :request do
       get shinycms.web_stats_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.web_stats.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.web_stats.index.title' ).titlecase
     end
 
     it 'fetches the web stats for a specific user' do
@@ -29,7 +29,7 @@ RSpec.describe ShinyCMS::Admin::WebStatsController, type: :request do
       get shinycms.user_web_stats_path( user.id )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.web_stats.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.web_stats.index.title' ).titlecase
     end
   end
 
@@ -40,7 +40,7 @@ RSpec.describe ShinyCMS::Admin::WebStatsController, type: :request do
       get shinycms.search_web_stats_path, params: { q: 'banana' }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.web_stats.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.web_stats.index.title' ).titlecase
 
       # expect( response.body ).to     have_css 'td', text: 'apple'
       expect( response.body ).not_to have_css 'td', text: 'banana'

@@ -44,7 +44,7 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
         follow_redirect!
         expect( response      ).to have_http_status :ok
         # FIXME: losing alert on double-redirect?
-        # expect( response.body ).to have_css '.alerts', text: I18n.t( 'admin.blazer.auth_fail' )
+        # expect( response.body ).to have_css '.alerts', text: I18n.t( 'shinycms.admin.blazer.auth_fail' )
       end
     end
   end

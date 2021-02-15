@@ -17,6 +17,11 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
     @page = create :top_level_page
   end
 
+  # Devise ignores the bodge in spec/support/inflection_kludge, so here it is again
+  def shinycms
+    shiny_cms
+  end
+
   describe 'GET /account/register' do
     before do
       ShinyCMS::FeatureFlag.enable :user_registration
@@ -35,18 +40,18 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
       expect( response.body ).to have_css(
         '.alerts',
         text: I18n.t(
-          'feature_flags.off_alert',
-          feature_name: I18n.t( 'feature_flags.user_registration' )
+          'shinycms.feature_flags.off_alert',
+          feature_name: I18n.t( 'shinycms.feature_flags.user_registration' )
         )
       )
-      expect( response.body ).not_to have_button I18n.t( 'user.register' )
+      expect( response.body ).not_to have_button I18n.t( 'shinycms.user.register' )
     end
 
     it 'renders the user registration page if user registrations are enabled' do
       get shinycms.new_user_registration_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_button I18n.t( 'user.register' )
+      expect( response.body ).to have_button I18n.t( 'shinycms.user.register' )
     end
 
     it 'includes the V3 reCAPTCHA code if a V3 key was set' do
@@ -56,7 +61,7 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
       get shinycms.new_user_registration_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_button I18n.t( 'user.register' )
+      expect( response.body ).to have_button I18n.t( 'shinycms.user.register' )
       # TODO: look for V3 html
     end
 
@@ -67,7 +72,7 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
       get shinycms.new_user_registration_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_button I18n.t( 'user.register' )
+      expect( response.body ).to have_button I18n.t( 'shinycms.user.register' )
       # TODO: look for V2 html
     end
 
@@ -78,7 +83,7 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
       get shinycms.new_user_registration_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_button I18n.t( 'user.register' )
+      expect( response.body ).to have_button I18n.t( 'shinycms.user.register' )
       # TODO: look for checkbox html
     end
   end

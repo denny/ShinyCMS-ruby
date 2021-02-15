@@ -13,7 +13,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
   before do
     ShinyCMS::FeatureFlag.enable :comment_notifications
 
-    @site_name = ShinyCMS::Setting.get( :site_name ) || I18n.t( 'site_name' )
+    @site_name = ShinyCMS::Setting.get( :site_name ) || I18n.t( 'shinycms.site_name' )
 
     blog_post   = create :blog_post
     @discussion = create :discussion, resource: blog_post
@@ -64,7 +64,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
       subject = I18n.t(
         'shinycms.discussion_mailer.discussion_notification.subject',
         comment_author_name: comment.author_name_or_anon,
-        content_type:        I18n.t( 'models.names.shiny_blog_post' ),
+        content_type:        I18n.t( 'shinycms.models.names.shiny_blog_post' ),
         site_name:           @site_name
       )
 
@@ -74,7 +74,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
 
   describe '.overview_notification' do
     it 'generates notification email to comment overview address' do
-      Setting.set( :all_comment_notifications_email, to: 'test@example.com' )
+      ShinyCMS::Setting.set( :all_comment_notifications_email, to: 'test@example.com' )
 
       comment = create :top_level_comment, discussion: @discussion
 

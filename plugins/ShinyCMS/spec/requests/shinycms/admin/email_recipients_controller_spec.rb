@@ -24,7 +24,7 @@ RSpec.describe ShinyCMS::Admin::EmailRecipientsController, type: :request do
       get shinycms.email_recipients_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.email_recipients.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.email_recipients.index.title' ).titlecase
       expect( response.body ).to have_css 'td', text: recipient1.name
     end
 
@@ -34,7 +34,7 @@ RSpec.describe ShinyCMS::Admin::EmailRecipientsController, type: :request do
       none_found = 'No items found'  # TODO: i18n
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.email_recipients.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.email_recipients.index.title' ).titlecase
       expect( response.body ).to have_css 'p', text: none_found
     end
   end
@@ -47,7 +47,7 @@ RSpec.describe ShinyCMS::Admin::EmailRecipientsController, type: :request do
       get shinycms.search_email_recipients_path, params: { q: 'movie' }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.email_recipients.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.email_recipients.index.title' ).titlecase
 
       expect( response.body ).to     have_css 'td', text: recipient2.name
       expect( response.body ).not_to have_css 'td', text: recipient1.name
@@ -66,8 +66,8 @@ RSpec.describe ShinyCMS::Admin::EmailRecipientsController, type: :request do
       expect( response      ).to     redirect_to email_recipients_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.email_recipients.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.email_recipients.do_not_contact.success' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.email_recipients.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.email_recipients.do_not_contact.success' )
       expect( response.body ).to     have_css 'td', text: recipient1.name
 
       expect( ShinyCMS::DoNotContact.include?( email1 ) ).to be true
@@ -85,8 +85,8 @@ RSpec.describe ShinyCMS::Admin::EmailRecipientsController, type: :request do
         expect( response      ).to     redirect_to email_recipients_path
         follow_redirect!
         expect( response      ).to     have_http_status :ok
-        expect( response.body ).to     have_title I18n.t( 'admin.email_recipients.index.title' ).titlecase
-        expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.email_recipients.destroy.success' )
+        expect( response.body ).to     have_title I18n.t( 'shinycms.admin.email_recipients.index.title' ).titlecase
+        expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.email_recipients.destroy.success' )
         expect( response.body ).to     have_css 'td', text: recipient1.name
         expect( response.body ).not_to have_css 'td', text: recipient2.name
         expect( response.body ).to     have_css 'td', text: recipient3.name

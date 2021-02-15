@@ -15,7 +15,7 @@
   <% @flags.each do |flag| %>
   <tr>
     <td>
-      <%= t( "feature_flags.#{flag.name}" ) %>
+      <%= t( "shinycms.feature_flags.#{flag.name}" ) %>
     </td>
     <td>
       <label><%= f.check_box "features[flags][#{flag.id}][enabled]", checked: flag.enabled? %> <%= t( '.everybody' ) %></label>

@@ -15,7 +15,7 @@ RSpec.describe ShinyCMS::DoNotContactController, type: :request do
       get do_not_contact_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'do_not_contact.new.title' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.do_not_contact.new.title' )
     end
   end
 
@@ -27,8 +27,8 @@ RSpec.describe ShinyCMS::DoNotContactController, type: :request do
       expect( response      ).to redirect_to do_not_contact_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'do_not_contact.new.title' )
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'do_not_contact.create.success' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.do_not_contact.new.title' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.do_not_contact.create.success' )
     end
 
     it 'lets people know if they try to add a duplicate email to the do-not-contact list' do
@@ -42,8 +42,8 @@ RSpec.describe ShinyCMS::DoNotContactController, type: :request do
       expect( response      ).to redirect_to do_not_contact_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'do_not_contact.new.title' )
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'do_not_contact.create.duplicate' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.do_not_contact.new.title' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.do_not_contact.create.duplicate' )
     end
 
     it 'fails to add an invalid email to the do-not-contact list' do
@@ -53,8 +53,8 @@ RSpec.describe ShinyCMS::DoNotContactController, type: :request do
       expect( response      ).to redirect_to do_not_contact_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'do_not_contact.new.title' )
-      expect( response.body ).to have_css '.alerts', text: I18n.t( 'do_not_contact.create.failure' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.do_not_contact.new.title' )
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shinycms.do_not_contact.create.failure' )
     end
   end
 end
