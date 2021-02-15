@@ -63,7 +63,7 @@ RSpec.describe ShinyCMS::Admin::EmailRecipientsController, type: :request do
       put shinycms.do_not_contact_email_recipient_path( recipient1 )
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to email_recipients_path
+      expect( response      ).to     redirect_to shinycms.email_recipients_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.email_recipients.index.title' ).titlecase
@@ -82,7 +82,7 @@ RSpec.describe ShinyCMS::Admin::EmailRecipientsController, type: :request do
         delete shinycms.email_recipient_path( recipient2 )
 
         expect( response      ).to     have_http_status :found
-        expect( response      ).to     redirect_to email_recipients_path
+        expect( response      ).to     redirect_to shinycms.email_recipients_path
         follow_redirect!
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'shinycms.admin.email_recipients.index.title' ).titlecase

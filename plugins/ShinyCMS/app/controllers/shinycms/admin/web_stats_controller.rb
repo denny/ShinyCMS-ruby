@@ -45,7 +45,7 @@ module ShinyCMS
     def user
       return if params[ :user_id ].blank?
 
-      User.find( params[ :user_id ] )
+      ShinyCMS::User.find( params[ :user_id ] )
     end
 
     # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)

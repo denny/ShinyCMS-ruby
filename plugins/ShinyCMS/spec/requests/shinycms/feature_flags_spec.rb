@@ -17,7 +17,7 @@ RSpec.describe 'Feature Flags (main site)', type: :request do
 
   describe 'GET /login' do
     it "succeeds with 'User Login = On'" do
-      get new_user_session_path
+      get shinycms.new_user_session_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include I18n.t( 'shinycms.user.log_in' )
@@ -29,10 +29,10 @@ RSpec.describe 'Feature Flags (main site)', type: :request do
       ShinyCMS::FeatureFlag.find_or_create_by!( name: 'user_login' )
                            .update!( enabled: false )
 
-      get new_user_session_path
+      get shinycms.new_user_session_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css(
@@ -57,7 +57,7 @@ RSpec.describe 'Feature Flags (main site)', type: :request do
       get shiny_profiles.profile_path( user.username )
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css(

@@ -31,7 +31,7 @@ module ShinyCMS
       if ShinyPlugin.loaded?( :ShinyPages ) && current_user.can?( :list, :pages )
         redirect_to shiny_pages.pages_path
       else
-        redirect_to root_path
+        redirect_to main_app.root_path
       end
     end
 
@@ -51,7 +51,7 @@ module ShinyCMS
 
       return if allowed.strip.split( /\s*,\s*|\s+/ ).include? request.remote_ip
 
-      redirect_to root_path
+      redirect_to main_app.root_path
     end
 
     def cache_user_capabilities

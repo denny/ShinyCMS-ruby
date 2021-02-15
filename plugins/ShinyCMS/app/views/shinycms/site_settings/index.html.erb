@@ -10,7 +10,7 @@
     <% @settings.each do |setting| %>
     <tr>
       <td>
-        <%= label :settings, "value_#{setting.id}", t( "settings.#{setting.name}" ) %>
+        <%= label :settings, "value_#{setting.id}", t( "shinycms.settings.#{setting.name}" ) %>
       </td>
       <td>
         <%= text_field :settings, "value_#{setting.id}", value: setting( setting.name ) %>

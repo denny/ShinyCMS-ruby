@@ -85,7 +85,7 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to edit_consent_version_path( ConsentVersion.last )
+      expect( response      ).to redirect_to shinycms.edit_consent_version_path( ShinyCMS::ConsentVersion.last )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.consent_versions.edit.title' ).titlecase
@@ -138,7 +138,7 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to edit_consent_version_path( version )
+      expect( response      ).to redirect_to shinycms.edit_consent_version_path( version )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.consent_versions.edit.title' ).titlecase
@@ -156,7 +156,7 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       delete shinycms.consent_version_path( version2 )
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to consent_versions_path
+      expect( response      ).to     redirect_to shinycms.consent_versions_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.consent_versions.index.title' ).titlecase
