@@ -12,6 +12,7 @@ module ShinyCMS
     include ShinyDemoDataProvider
     include ShinyShowHide
     include ShinySoftDelete
+    include ShinyWithVotes
 
     # Associations
 
@@ -20,10 +21,6 @@ module ShinyCMS
     belongs_to :author, optional: true, polymorphic: true, inverse_of: :comments
 
     has_many :comments, -> { not_spam }, inverse_of: :parent, foreign_key: :parent_id, dependent: :destroy
-
-    # Plugin features
-
-    acts_as_votable
 
     # Validations
 

@@ -18,6 +18,7 @@ module ShinyCMS
     include ShinySoftDelete
     include ShinyTags
     include ShinyTeaser
+    include ShinyWithVotes
 
     included do
       # Associations
@@ -37,8 +38,6 @@ module ShinyCMS
       after_commit      :build_atom_feed
 
       # Plugin features
-
-      acts_as_votable
 
       searchable_by :title, :body, :slug if ShinyPlugin.loaded? :ShinySearch # TODO: author
 
