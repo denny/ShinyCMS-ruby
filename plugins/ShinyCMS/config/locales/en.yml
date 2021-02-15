@@ -7,11 +7,6 @@
 # English locale strings for ShinyCMS core features and functionality
 
 en:
-  devise:
-    registrations:
-      new:
-        title: Create user account
-
   #ckeditor:
   #  page_title: 'CKEditor File Manager'
   #  confirm_delete: 'Delete file?'
@@ -47,6 +42,11 @@ en:
 
   shinycms:
     home: Home
+
+    devise:
+      registrations:
+        new:
+          title: Create user account
 
     discussions:
       anonymous: Anonymous
@@ -177,7 +177,6 @@ en:
 
     email_recipient_mailer:
       confirm:
-        welcome: Welcome, %{name}!
         hello: Hello %{name},
         subject: Confirm your email address for %{site_name}
 
