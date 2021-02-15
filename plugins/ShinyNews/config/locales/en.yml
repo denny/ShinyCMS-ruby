@@ -20,9 +20,9 @@ en:
       news_posts:
         change_author: Change author
 
-  models:
-    names:
-      shiny_news_post: news post
+    models:
+      names:
+        shiny_news_post: news post
 
   shiny_news:
     menu:

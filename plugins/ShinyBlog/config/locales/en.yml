@@ -20,9 +20,9 @@ en:
       blog_posts:
         change_author: Change author
 
-  models:
-    names:
-      shiny_blog_post: blog post
+    models:
+      names:
+        shiny_blog_post: blog post
 
   shiny_blog:
     menu:
