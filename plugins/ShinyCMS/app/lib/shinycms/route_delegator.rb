@@ -6,9 +6,15 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# The ShinyCMS route delegator is a mildly complicated routing bodge which
+# helps ShinyCMS embed non-ShinyCMS engines into the ShinyCMS admin area,
+# even if they weren't designed with that sort of embedded usage in mind.
+#
+# The idea was copied from RailsEmailPreview, which has this feature built-in.
+# (Which made REP much easier to integrate with ShinyCMS - thank you!)
+
 module ShinyCMS
-  # Load ShinyCMS routes inside uncooperative engines - e.g. Blazer
-  # (Inspired by RailsEmailPreview, which has this feature built in)
+  # Rescue calls to 'missing' ShinyCMS route helpers coming from inside other engines
   module RouteDelegator
     def method_missing( method, *args, &block )
       if main_app_route_method?( method )

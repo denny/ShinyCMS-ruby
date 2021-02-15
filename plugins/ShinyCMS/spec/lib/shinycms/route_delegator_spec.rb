@@ -8,14 +8,23 @@
 
 require 'rails_helper'
 
-# Tests for the main_app route delegator (a complex routing bodge sort-of copied from
-# RailsEmailPreview (all errors mine!) and used to try to get Blazer to render inside
-# my admin layout without wrecking everything - with some but not total success)
+# Tests for the ShinyCMS route delegator
 RSpec.describe ShinyCMS::RouteDelegator, type: :helper do
-  describe 'method_missing' do
-    it 'fails correctly for a method which is missing from main app too' do
-      expect { Ckeditor::PicturesController.new.render( inline: '<%= w0rks? %>' ) }
-        .to raise_error ActionView::Template::Error
+  describe 'trying to use a path helper method not defined in the engine' do
+    context 'when the path helper method is defined in the main app' do
+      it 'finds a path helper method which is not defined in the engine but is defined in the main app' do
+        # (Note: for this test, it only matters that the path helper exists, not what the route actually does)
+        result = Blazer::BaseController.render( inline: '<%= admin_not_found_path( "real-route" ) %>' )
+
+        expect( result ).to eq '/admin/real-route'
+      end
+    end
+
+    context 'when the path helper method is not defined in the main app either' do
+      it 'fails for a path helper method which is not defined in the main app either' do
+        expect { Blazer::BaseController.render( inline: '<%= no_such_route_path %>' ) }
+          .to raise_error ActionView::Template::Error
+      end
     end
   end
 end
