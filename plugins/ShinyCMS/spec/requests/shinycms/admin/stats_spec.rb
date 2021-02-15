@@ -37,10 +37,11 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
         get main_app.blazer_path
 
         expect( response      ).to have_http_status :found
+        # Using the shinycms.admin_path helper here gives '/admin/admin'??
         expect( response      ).to redirect_to '/admin'
         follow_redirect!
         expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to '/admin/pages'
+        expect( response      ).to redirect_to shiny_pages.pages_path
         follow_redirect!
         expect( response      ).to have_http_status :ok
         # FIXME: losing alert on double-redirect?
