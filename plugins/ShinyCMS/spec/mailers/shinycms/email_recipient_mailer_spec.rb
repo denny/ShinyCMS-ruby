@@ -19,7 +19,7 @@ RSpec.describe ShinyCMS::EmailRecipientMailer, type: :mailer do
 
       subject = I18n.t(
         'shinycms.email_recipient_mailer.confirm.subject',
-        site_name: ShinyCMS::Setting.get( :site_name )
+        site_name: ShinyCMS::Setting.get( :site_name ) || I18n.t( 'site_name' )
       )
 
       expect( email.subject ).to eq subject

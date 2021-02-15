@@ -13,11 +13,11 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
   before do
     ShinyCMS::FeatureFlag.enable :comment_notifications
 
-    @site_name = ShinyCMS::Setting.get( :site_name ) || I18n.t( 'site_name' )
-
     blog_post   = create :blog_post
     @discussion = create :discussion, resource: blog_post
   end
+
+  let( :site_name ) { ShinyCMS::Setting.get( :site_name ) || I18n.t( 'site_name' ) }
 
   describe '.parent_comment_notification' do
     it 'generates an email to an authenticated parent comment author' do
@@ -30,7 +30,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
       subject = I18n.t(
         'shinycms.discussion_mailer.parent_comment_notification.subject',
         reply_author_name: reply.author_name_or_anon,
-        site_name:         @site_name
+        site_name:         site_name
       )
 
       expect( email.subject ).to eq subject
@@ -48,7 +48,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
       subject = I18n.t(
         'shinycms.discussion_mailer.parent_comment_notification.subject',
         reply_author_name: reply.author_name_or_anon,
-        site_name:         @site_name
+        site_name:         site_name
       )
 
       expect( email.subject ).to eq subject
@@ -65,7 +65,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
         'shinycms.discussion_mailer.discussion_notification.subject',
         comment_author_name: comment.author_name_or_anon,
         content_type:        I18n.t( 'shinycms.models.names.shiny_blog_post' ),
-        site_name:           @site_name
+        site_name:           site_name
       )
 
       expect( email.subject ).to eq subject
@@ -83,7 +83,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
       subject = I18n.t(
         'shinycms.discussion_mailer.overview_notification.subject',
         comment_author_name: comment.author_name_or_anon,
-        site_name:           @site_name
+        site_name:           site_name
       )
 
       expect( email.subject ).to eq subject
