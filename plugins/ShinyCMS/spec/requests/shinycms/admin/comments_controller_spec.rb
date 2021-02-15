@@ -66,7 +66,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       put shinycms.comments_path, params: {}
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to comments_path
+      expect( response      ).to     redirect_to shinycms.comments_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
@@ -91,7 +91,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       }
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to comments_path
+      expect( response      ).to     redirect_to shinycms.comments_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
@@ -121,7 +121,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       }
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to comments_path
+      expect( response      ).to     redirect_to shinycms.comments_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
@@ -136,7 +136,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
     it 'reports an error if it fails to remove spam flags' do
       allow_any_instance_of( Akismet::Client ).to receive( :open )
       allow_any_instance_of( Akismet::Client ).to receive( :ham  ).and_return( true )
-      allow( Comment ).to receive( :mark_all_as_ham ).and_return( false )
+      allow( ShinyCMS::Comment ).to receive( :mark_all_as_ham ).and_return( false )
 
       @nested1.mark_as_spam
       @comment2.mark_as_spam
@@ -150,7 +150,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to comments_path
+      expect( response      ).to redirect_to shinycms.comments_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
@@ -168,7 +168,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested1.title
       expect( response.body ).not_to have_css 'h2', text: @comment1.title
-      expect( response.body ).to     have_css 'i',  text: I18n.t( 'shinycms.discussions.hidden_comment' )
+      expect( response.body ).to     have_css 'i',  text: I18n.t( 'discussions.hidden_comment' )
     end
   end
 
@@ -185,7 +185,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested1.title
       expect( response.body ).to     have_css 'h2', text: @comment1.title
-      expect( response.body ).not_to have_css 'i',  text: I18n.t( 'shinycms.discussions.hidden_comment' )
+      expect( response.body ).not_to have_css 'i',  text: I18n.t( 'discussions.hidden_comment' )
     end
   end
 

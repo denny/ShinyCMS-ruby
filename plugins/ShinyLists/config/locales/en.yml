@@ -11,10 +11,10 @@ en:
     feature_flags:
       mailing_lists: Mailing lists
 
-  capability:
-    category:
-      mailing_lists: Mailing lists
-      mailing_list_subscriptions: List subscriptions
+    capability:
+      category:
+        mailing_lists: Mailing lists
+        mailing_list_subscriptions: List subscriptions
 
   shiny_lists:
     name: Name

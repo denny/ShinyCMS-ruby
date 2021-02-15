@@ -13,12 +13,12 @@ en:
       blog_votes: Votes on blog posts
       blog_downvotes: Down-votes on blog posts
 
-  capability:
-    category:
-      blog_posts: Blog posts
+    capability:
+      category:
+        blog_posts: Blog posts
 
-    blog_posts:
-      change_author: Change author
+      blog_posts:
+        change_author: Change author
 
   models:
     names:

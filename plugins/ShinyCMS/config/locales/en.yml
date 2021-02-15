@@ -33,6 +33,7 @@ en:
   lock: Lock
   unlock: Unlock
   search: Search
+  cancel: Cancel
   update: Update
   delete: Delete
   destroy: Delete

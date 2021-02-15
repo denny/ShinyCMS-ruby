@@ -31,7 +31,7 @@ RSpec.describe ShinyCMS::Admin::DiscussionsController, type: :request do
       put shinycms.hide_discussion_path( @discussion )
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to discussion_path( @discussion )
+      expect( response      ).to     redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).not_to have_css 'h2', text: @nested.title
@@ -47,7 +47,7 @@ RSpec.describe ShinyCMS::Admin::DiscussionsController, type: :request do
       put shinycms.show_discussion_path( @discussion )
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to discussion_path( @discussion )
+      expect( response      ).to redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'h2', text: @comment1.title
@@ -60,7 +60,7 @@ RSpec.describe ShinyCMS::Admin::DiscussionsController, type: :request do
       put shinycms.lock_discussion_path( @discussion )
 
       expect( response ).to have_http_status :found
-      expect( response ).to redirect_to discussion_path( @discussion )
+      expect( response ).to redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
       expect( response ).to have_http_status :ok
 
@@ -76,7 +76,7 @@ RSpec.describe ShinyCMS::Admin::DiscussionsController, type: :request do
       put shinycms.unlock_discussion_path( @discussion )
 
       expect( response ).to have_http_status :found
-      expect( response ).to redirect_to discussion_path( @discussion )
+      expect( response ).to redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
       expect( response ).to have_http_status :ok
 

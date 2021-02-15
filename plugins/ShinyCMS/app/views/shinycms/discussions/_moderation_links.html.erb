@@ -7,14 +7,14 @@
 <div class="float-right smaller">
   Discussion:
   <% if discussion.hidden? %>
-    <%= link_to t( 'show' ), show_discussion_path( discussion ) %>
+    <%= link_to t( 'show' ), shinycms.show_discussion_path( discussion ) %>
   <% else %>
-    <%= link_to t( 'hide' ), hide_discussion_path( discussion ) %>
+    <%= link_to t( 'hide' ), shinycms.hide_discussion_path( discussion ) %>
   <% end %>
   /
   <% if discussion.locked? %>
-    <%= link_to t( 'unlock' ), unlock_discussion_path( discussion ) %>
+    <%= link_to t( 'unlock' ), shinycms.unlock_discussion_path( discussion ) %>
   <% else %>
-    <%= link_to t( 'lock' ), lock_discussion_path( discussion ) %>
+    <%= link_to t( 'lock' ), shinycms.lock_discussion_path( discussion ) %>
   <% end %>
 </div>

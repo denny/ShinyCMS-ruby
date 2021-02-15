@@ -15,11 +15,11 @@ en:
       default_page: Default page
       default_section: Default section
 
-  capability:
-    category:
-      pages: Pages
-      page_sections: Page Sections
-      page_templates: Page Templates
+    capability:
+      category:
+        pages: Pages
+        page_sections: Page Sections
+        page_templates: Page Templates
 
   shiny_pages:
     admin:

@@ -11,9 +11,9 @@ en:
     feature_flags:
       inserts: Inserts
 
-  capability:
-    category:
-      inserts: Inserts
+    capability:
+      category:
+        inserts: Inserts
 
   shiny_inserts:
     admin:

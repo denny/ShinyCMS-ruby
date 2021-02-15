@@ -13,7 +13,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
   before do
     ShinyCMS::FeatureFlag.enable :comment_notifications
 
-    @site_name = ShinyCMS::Setting.get( :site_name ) || I18n.t( 'shinycms.site_name' )
+    @site_name = ShinyCMS::Setting.get( :site_name ) || I18n.t( 'site_name' )
 
     blog_post   = create :blog_post
     @discussion = create :discussion, resource: blog_post

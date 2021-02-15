@@ -11,11 +11,11 @@ en:
     feature_flags:
       newsletters: Newsletters
 
-  capability:
-    category:
-      newsletter_templates: Newsletter templates
-      newsletter_editions: Newsletter editions
-      newsletter_sends: Newsletter sends
+    capability:
+      category:
+        newsletter_templates: Newsletter templates
+        newsletter_editions: Newsletter editions
+        newsletter_sends: Newsletter sends
 
   shiny_newsletters:
     newsletters:

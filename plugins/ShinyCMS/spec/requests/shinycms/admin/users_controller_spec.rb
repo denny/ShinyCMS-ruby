@@ -120,7 +120,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         }
 
         expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to edit_user_path( ShinyCMS::User.last )
+        expect( response      ).to redirect_to shinycms.edit_user_path( ShinyCMS::User.last )
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase
@@ -165,7 +165,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         }
 
         expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to edit_user_path( user )
+        expect( response      ).to redirect_to shinycms.edit_user_path( user )
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase
@@ -183,7 +183,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         delete shinycms.user_path( u2 )
 
         expect( response      ).to     have_http_status :found
-        expect( response      ).to     redirect_to users_path
+        expect( response      ).to     redirect_to shinycms.users_path
         follow_redirect!
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
@@ -200,7 +200,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         delete shinycms.user_path( u1 )
 
         expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to users_path
+        expect( response      ).to redirect_to shinycms.users_path
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
@@ -242,7 +242,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to edit_user_path( user )
+      expect( response      ).to redirect_to shinycms.edit_user_path( user )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase

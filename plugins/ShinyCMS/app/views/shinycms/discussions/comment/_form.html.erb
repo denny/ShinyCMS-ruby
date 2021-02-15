@@ -9,7 +9,7 @@
   <% form_url = shinycms.discussion_path( discussion ) %>
 <% end %>
 
-<%= form_for Comment.new, url: form_url, html: { id: "comment#{num}_form", class: 'comment_form' } do |f| %>
+<%= form_for ShinyCMS::Comment.new, url: form_url, html: { id: "comment#{num}_form", class: 'comment_form' } do |f| %>
   <p>
     Post as:
 <% if allow_unauthenticated_comments? %>

@@ -38,7 +38,7 @@ module ShinyCMS
     def not_found
       skip_authorization
       bad_path = params[:path]
-      redirect_to admin_path, alert: t( 'admin.invalid_url', request_path: bad_path )
+      redirect_to admin_path, alert: t( 'shinycms.admin.invalid_url', request_path: bad_path )
     end
 
     private

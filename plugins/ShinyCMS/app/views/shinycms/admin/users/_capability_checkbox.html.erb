@@ -6,8 +6,8 @@
       <% else %>
       <input type="checkbox" name="user[capabilities[<%= c.id %>]]">
       <% end %>
-      <% if I18n.exists?( "capability.#{c.category.name}.#{c.name}" ) %>
-      <%= t( "capability.#{c.category.name}.#{c.name}" ) %>
+      <% if I18n.exists?( "shinycms.capability.#{c.category.name}.#{c.name}" ) %>
+      <%= t( "shinycms.capability.#{c.category.name}.#{c.name}" ) %>
       <% else %>
       <%= t( c.name ) %>
       <% end %>

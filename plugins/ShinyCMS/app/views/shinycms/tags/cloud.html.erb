@@ -6,6 +6,6 @@
 
 <section>
   <% tag_cloud( @tags.shuffle, %w[ tagsize1 tagsize2 tagsize3 tagsize4 ] ) do |tag, css_class| %>
-    <%= link_to tag.name, tag_path( tag.name ), class: css_class %>&nbsp;
+    <%= link_to tag.name, shinycms.tag_path( tag.name ), class: css_class %>&nbsp;
   <% end %>
 </section>

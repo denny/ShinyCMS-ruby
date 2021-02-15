@@ -24,6 +24,6 @@ class ApplicationController < ActionController::Base
   def blazer_authorize
     return true if current_user&.can? :view_charts, :stats
 
-    redirect_to shiny_core.admin_path, alert: t( 'shiny_core.admin.blazer.auth_fail' )
+    redirect_to shiny_core.admin_path, alert: t( 'shinycms.admin.blazer.auth_fail' )
   end
 end
