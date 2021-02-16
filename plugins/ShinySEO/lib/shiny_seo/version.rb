@@ -8,6 +8,6 @@
 
 # Version number ('Ubuntu style'; year and month)
 module ShinySEO
-  VERSION = '21.1'
+  VERSION = '21.02'
   public_constant :VERSION
 end

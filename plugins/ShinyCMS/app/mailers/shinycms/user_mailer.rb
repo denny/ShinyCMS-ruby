@@ -23,7 +23,7 @@ module ShinyCMS
 
       return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
 
-      mail to: user.email_to, subject: t( '.subject', site_name: site_name ) do |format|
+      mail to: user.email_to, subject: subject_for( :confirmation ) do |format|
         format.html
         format.text
       end
@@ -35,7 +35,7 @@ module ShinyCMS
 
       return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
 
-      mail to: user.email_to, subject: t( '.subject', site_name: site_name ) do |format|
+      mail to: user.email_to, subject: subject_for( :reset_password ) do |format|
         format.html
         format.text
       end
@@ -46,7 +46,7 @@ module ShinyCMS
 
       return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
 
-      mail to: user.email_to, subject: t( '.subject', site_name: site_name ) do |format|
+      mail to: user.email_to, subject: subject_for( :password_changed ) do |format|
         format.html
         format.text
       end
@@ -57,7 +57,7 @@ module ShinyCMS
 
       return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
 
-      mail to: user.email_to, subject: t( '.subject', site_name: site_name ) do |format|
+      mail to: user.email_to, subject: subject_for( :email_changed ) do |format|
         format.html
         format.text
       end
@@ -69,10 +69,14 @@ module ShinyCMS
 
       return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
 
-      mail to: user.email_to, subject: t( '.subject', site_name: site_name ) do |format|
+      mail to: user.email_to, subject: subject_for( :unlock ) do |format|
         format.html
         format.text
       end
+    end
+
+    def subject_for( mailer_name )
+      t( "shinycms.user_mailer.#{mailer_name}_instructions.subject", site_name: site_name )
     end
   end
 end

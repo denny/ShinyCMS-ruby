@@ -37,7 +37,7 @@ PATH
 PATH
   remote: plugins/ShinyCMS
   specs:
-    shinycms (21.2.14)
+    shinycms (21.02.14)
       acts_as_paranoid
       pagy
       pg (~> 1.2.3)
@@ -129,7 +129,7 @@ PATH
 PATH
   remote: plugins/ShinySEO
   specs:
-    shiny_seo (21.1)
+    shiny_seo (21.02)
       pg (>= 0.18, < 2.0)
       rails (~> 6.1.2, >= 6.1.2.1)
       sitemap_generator
@@ -247,7 +247,7 @@ GEM
     amazing_print (1.2.2)
     ast (2.4.2)
     aws-eventstream (1.1.0)
-    aws-partitions (1.426.0)
+    aws-partitions (1.427.0)
     aws-sdk-core (3.112.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -256,7 +256,7 @@ GEM
     aws-sdk-kms (1.42.0)
       aws-sdk-core (~> 3, >= 3.112.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.88.0)
+    aws-sdk-s3 (1.88.1)
       aws-sdk-core (~> 3, >= 3.112.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
@@ -371,7 +371,7 @@ GEM
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
     httpclient (2.8.3)
-    i18n (1.8.8)
+    i18n (1.8.9)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.33)
       activesupport (>= 4.0.2)
@@ -431,7 +431,7 @@ GEM
     overcommit (0.57.0)
       childprocess (>= 0.6.3, < 5)
       iniparse (~> 1.4)
-    pagy (3.10.0)
+    pagy (3.11.0)
     parallel (1.20.1)
     parallel_tests (3.4.0)
       parallel
@@ -485,9 +485,9 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
-    rails-pg-extras (1.4.0)
+    rails-pg-extras (1.5.2)
       activerecord
-      ruby-pg-extras (= 1.4.0)
+      ruby-pg-extras (= 1.5.2)
     rails_best_practices (1.20.0)
       activesupport
       code_analyzer (>= 0.5.1)
@@ -577,7 +577,7 @@ GEM
     rubocop-rspec (2.2.0)
       rubocop (~> 1.0)
       rubocop-ast (>= 1.1.0)
-    ruby-pg-extras (1.4.0)
+    ruby-pg-extras (1.5.2)
       pg
       terminal-table
     ruby-progressbar (1.11.0)

@@ -7,11 +7,6 @@
 # English locale strings for ShinyCMS core features and functionality
 
 en:
-  devise:
-    registrations:
-      new:
-        title: Create user account
-
   #ckeditor:
   #  page_title: 'CKEditor File Manager'
   #  confirm_delete: 'Delete file?'
@@ -33,6 +28,7 @@ en:
   lock: Lock
   unlock: Unlock
   search: Search
+  cancel: Cancel
   update: Update
   delete: Delete
   destroy: Delete
@@ -40,54 +36,53 @@ en:
   # Confirmation dialogue
   are_you_sure: Are you sure?
 
-  # Empty listing
-  empty_list: No %{items} found
-
   # ========== ( Main Site ) ==========
 
   # Views and Controllers
 
-  discussions:
-    anonymous: Anonymous
-    comment:
-      form:
-        comment: Comment
-        anonymous: Anonymous
-        pseudonymous: Pseudonymous
-        log_in_to_post: Log in to post a comment
-        name: Name
-        email: Email
-        url: URL
-      posted_by:
-        anonymous: Anonymous
-    comments: Comments
-    n_total: '%{count} total'
-    n_recent_comments:
-      one: 1 recent comment
-      other: '%{count} recent comments'
-    new_comment: Add a new comment
-    reply: Reply to this comment
-    hidden_comment: This comment has been hidden by a moderator.
-    comment_locked: Comment locked
-    spam: Spam
-    add_comment:
-      success: New comment posted
-      failure: Failed to post new comment
-    add_reply:
-      success: New comment posted
-      failure: Failed to post new comment
-    index:
-      title: Discussions
-      recently_active: Recently active discussions
-    save_comment:
-      success: New comment posted
-      failure: Failed to post new comment
-    profile:
-      content:
-        title: Recent comments
-
   shinycms:
     home: Home
+
+    devise:
+      registrations:
+        new:
+          title: Create user account
+
+    discussions:
+      anonymous: Anonymous
+      pseudonymous: Pseudonymous
+      comment:
+        form:
+          comment: Comment
+          log_in_to_post: Log in to post a comment
+          name: Name
+          email: Email
+          url: URL
+      comments: Comments
+      n_total: '%{count} total'
+      n_recent_comments:
+        one: 1 recent comment
+        other: '%{count} recent comments'
+      new_comment: Add a new comment
+      reply: Reply to this comment
+      hidden_comment: This comment has been hidden by a moderator.
+      comment_locked: Comment locked
+      spam: Spam
+      add_comment:
+        success: New comment posted
+        failure: Failed to post new comment
+      add_reply:
+        success: New comment posted
+        failure: Failed to post new comment
+      index:
+        title: Discussions
+        recently_active: Recently active discussions
+      save_comment:
+        success: New comment posted
+        failure: Failed to post new comment
+      profile:
+        content:
+          title: Recent comments
 
     do_not_contact:
       new:
@@ -108,6 +103,8 @@ en:
         token_not_found: Failed to find email address; please check URL and try again
         token_expired: Your confirmation link has expired; please request a new email and try again
         # failure: Failed to confirm email address; please try again, or alert site admins
+
+    empty_list: No %{items} found
 
     errors:
       messages:
@@ -164,40 +161,49 @@ en:
     # Mailers
 
     discussion_mailer:
-      they_said: They said
       parent_comment_notification:
+        hello: Hello %{name},
         subject: '%{reply_author_name} replied to your comment on %{site_name}'
+        they_said: They said
         you_said: You said
       discussion_notification:
+        hello: Hello %{name},
         subject: '%{comment_author_name} commented on your %{content_type} on %{site_name}'
+        they_said: They said
       overview_notification:
+        hello: Hello %{name},
         subject: '%{comment_author_name} commented on %{site_name}'
+        they_said: They said
 
     email_recipient_mailer:
       confirm:
+        hello: Hello %{name},
         subject: Confirm your email address for %{site_name}
 
     user_mailer:
-      welcome: Welcome, %{name}!
-      hello: Hello %{name},
       confirmation_instructions:
+        welcome: Welcome, %{name}!
         subject: 'Please confirm your registration on %{site_name}'
         instructions: You can confirm your email address by clicking the link below
         link_text: Confirm my address
       password_changed_instructions:
+        hello: Hello %{name},
         subject: 'Your password has been changed on %{site_name}'
         text: We're contacting you to notify you that your password has been changed.
       reset_password_instructions:
+        hello: Hello %{name},
         subject: 'Instructions for resetting your password on %{site_name}'
         instructions: Someone has requested a link to change your password. You can do this through the link below.
         link_text: Change my password
         if_not_you: If you didn't request this, please ignore this email.
         no_change: Your password won't change unless you click the link above and create a new one.
       email_changed_instructions:
+        hello: Hello %{name},
         subject: 'Changing your email address on %{site_name}'
         email_changing: We're contacting you to notify you that your email is being changed to
         email_changed: We're contacting you to notify you that your email has been changed to
       unlock_instructions:
+        hello: Hello %{name},
         subject: 'Your account on %{site_name} has been locked'
         explanation: Your account has been locked due to an excessive number of unsuccessful sign in attempts.
         instructions: Click the link below to unlock your account

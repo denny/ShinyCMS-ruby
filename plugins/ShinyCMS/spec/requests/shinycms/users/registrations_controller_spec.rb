@@ -9,54 +9,59 @@
 require 'rails_helper'
 
 # Tests for user account registration/update features on main site (powered by Devise)
-RSpec.describe Users::RegistrationsController, type: :request do
+RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
   before do
-    FeatureFlag.enable :user_login
-    FeatureFlag.disable :user_profiles
+    ShinyCMS::FeatureFlag.enable :user_login
+    ShinyCMS::FeatureFlag.disable :user_profiles
 
     @page = create :top_level_page
   end
 
+  # Devise ignores the bodge in spec/support/inflection_kludge, so here it is again
+  def shinycms
+    shiny_cms
+  end
+
   describe 'GET /account/register' do
     before do
-      FeatureFlag.enable :user_registration
-      FeatureFlag.enable :recaptcha_for_registrations
+      ShinyCMS::FeatureFlag.enable :user_registration
+      ShinyCMS::FeatureFlag.enable :recaptcha_for_registrations
     end
 
     it 'redirects to the site homepage if user registrations are not enabled' do
-      FeatureFlag.disable :user_registration
+      ShinyCMS::FeatureFlag.disable :user_registration
 
-      get new_user_registration_path
+      get shinycms.new_user_registration_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css(
         '.alerts',
         text: I18n.t(
-          'feature_flags.off_alert',
-          feature_name: I18n.t( 'feature_flags.user_registration' )
+          'shinycms.feature_flags.off_alert',
+          feature_name: I18n.t( 'shinycms.feature_flags.user_registration' )
         )
       )
-      expect( response.body ).not_to have_button I18n.t( 'user.register' )
+      expect( response.body ).not_to have_button I18n.t( 'shinycms.user.register' )
     end
 
     it 'renders the user registration page if user registrations are enabled' do
-      get new_user_registration_path
+      get shinycms.new_user_registration_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_button I18n.t( 'user.register' )
+      expect( response.body ).to have_button I18n.t( 'shinycms.user.register' )
     end
 
     it 'includes the V3 reCAPTCHA code if a V3 key was set' do
       allow_any_instance_of( described_class )
         .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
 
-      get new_user_registration_path
+      get shinycms.new_user_registration_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_button I18n.t( 'user.register' )
+      expect( response.body ).to have_button I18n.t( 'shinycms.user.register' )
       # TODO: look for V3 html
     end
 
@@ -64,10 +69,10 @@ RSpec.describe Users::RegistrationsController, type: :request do
       allow_any_instance_of( described_class )
         .to receive( :recaptcha_v2_site_key ).and_return( 'A_KEY' )
 
-      get new_user_registration_path
+      get shinycms.new_user_registration_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_button I18n.t( 'user.register' )
+      expect( response.body ).to have_button I18n.t( 'shinycms.user.register' )
       # TODO: look for V2 html
     end
 
@@ -75,17 +80,17 @@ RSpec.describe Users::RegistrationsController, type: :request do
       allow_any_instance_of( described_class )
         .to receive( :recaptcha_checkbox_site_key ).and_return( 'A_KEY' )
 
-      get new_user_registration_path
+      get shinycms.new_user_registration_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_button I18n.t( 'user.register' )
+      expect( response.body ).to have_button I18n.t( 'shinycms.user.register' )
       # TODO: look for checkbox html
     end
   end
 
   describe 'POST /account/register' do
     before do
-      FeatureFlag.enable :user_registration
+      ShinyCMS::FeatureFlag.enable :user_registration
     end
 
     it 'creates a new user, checking V3 reCAPTCHA if a V3 key is set' do
@@ -98,7 +103,7 @@ RSpec.describe Users::RegistrationsController, type: :request do
       allow_any_instance_of( described_class )
         .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
 
-      post user_registration_path, params: {
+      post shinycms.user_registration_path, params: {
         user: {
           username: username,
           password: password,
@@ -107,7 +112,7 @@ RSpec.describe Users::RegistrationsController, type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include(
@@ -125,7 +130,7 @@ RSpec.describe Users::RegistrationsController, type: :request do
       allow_any_instance_of( described_class )
         .to receive( :recaptcha_v2_site_key ).and_return( 'A_KEY' )
 
-      post user_registration_path, params: {
+      post shinycms.user_registration_path, params: {
         user: {
           username: username,
           password: password,
@@ -134,7 +139,7 @@ RSpec.describe Users::RegistrationsController, type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include(
@@ -152,7 +157,7 @@ RSpec.describe Users::RegistrationsController, type: :request do
       allow_any_instance_of( described_class )
         .to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
 
-      post user_registration_path, params: {
+      post shinycms.user_registration_path, params: {
         user: {
           username: username,
           password: password,
@@ -161,7 +166,7 @@ RSpec.describe Users::RegistrationsController, type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to new_user_registration_path
+      expect( response      ).to redirect_to shinycms.new_user_registration_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'textarea.g-recaptcha-response'
@@ -169,14 +174,16 @@ RSpec.describe Users::RegistrationsController, type: :request do
       allow( described_class )
         .to receive( :recaptcha_checkbox_secret_key ).and_return( 'A_KEY' )
 
-      post user_registration_path, params: {
-        'user[username]': username,
-        'user[password]': password,
-        'user[email]':    email
+      post shinycms.user_registration_path, params: {
+        user: {
+          username: username,
+          password: password,
+          email:    email
+        }
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include(
@@ -190,7 +197,7 @@ RSpec.describe Users::RegistrationsController, type: :request do
       user = create :user
       sign_in user
 
-      get edit_user_registration_path
+      get shinycms.edit_user_registration_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'Edit User'
@@ -199,19 +206,21 @@ RSpec.describe Users::RegistrationsController, type: :request do
 
   describe 'PUT /account/update' do
     it 'updates the user when you submit the edit form' do
-      user = create :user
+      password = Faker::Books::CultureSeries.unique.culture_ship
+      user = create :user, password: password
       sign_in user
 
       new_name = Faker::Internet.unique.username
-      put user_registration_path, params: {
+
+      put shinycms.user_registration_path, params: {
         user: {
           username:         new_name,
-          current_password: user.password
+          current_password: password
         }
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to edit_user_registration_path
+      expect( response      ).to redirect_to shinycms.edit_user_registration_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.notices', text: I18n.t( 'devise.registrations.updated' )

@@ -9,14 +9,14 @@
 require 'rails_helper'
 
 # Tests for admin base controller, and other general admin features
-RSpec.describe AdminController, type: :request do
+RSpec.describe ShinyCMS::AdminController, type: :request do
   describe 'GET /' do
     it 'shows the admin toolbar on the main site, if you are an admin' do
       create :top_level_page
       admin = create :page_admin
       sign_in admin
 
-      get root_path
+      get main_app.root_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css '.shinycms-admin-toolbar'
@@ -25,7 +25,7 @@ RSpec.describe AdminController, type: :request do
     it 'does not show the admin toolbar on the main site, if you are not an admin' do
       create :top_level_page
 
-      get root_path
+      get main_app.root_path
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).not_to have_css '.shinycms-admin-toolbar'
@@ -37,10 +37,10 @@ RSpec.describe AdminController, type: :request do
       user = create :user
       sign_in user
 
-      get admin_path
+      get shinycms.admin_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'This site does not have any content'
@@ -50,7 +50,7 @@ RSpec.describe AdminController, type: :request do
       admin = create :page_admin
       sign_in admin
 
-      get admin_path
+      get shinycms.admin_path
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_pages.pages_path
@@ -65,9 +65,9 @@ RSpec.describe AdminController, type: :request do
       admin = create :page_admin
       sign_in admin
 
-      Setting.set( :admin_ip_list, to: '127.0.0.1' )
+      ShinyCMS::Setting.set( :admin_ip_list, to: '127.0.0.1' )
 
-      get admin_path
+      get shinycms.admin_path
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_pages.pages_path
@@ -80,12 +80,12 @@ RSpec.describe AdminController, type: :request do
       admin = create :page_admin
       sign_in admin
 
-      Setting.set( :admin_ip_list, to: '10.10.10.10' )
+      ShinyCMS::Setting.set( :admin_ip_list, to: '10.10.10.10' )
 
-      get admin_path
+      get shinycms.admin_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'This site does not have any content'
@@ -100,13 +100,13 @@ RSpec.describe AdminController, type: :request do
       get '/admin/does/not/exist'
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to admin_path
+      expect( response      ).to redirect_to shinycms.admin_path
       follow_redirect!
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_pages.pages_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.alert', text: I18n.t( 'admin.invalid_url', request_path: 'does/not/exist' )
+      expect( response.body ).to have_css '.alert', text: I18n.t( 'shinycms.admin.invalid_url', request_path: 'does/not/exist' )
     end
   end
 end

@@ -5,7 +5,7 @@
 %>
 
 <h3 class="centered-above-section">
-  <%= t( 'discussions.comments' ) %>
+  <%= t( 'shinycms.discussions.comments' ) %>
 </h3>
 
 <% if resource.discussion.comments.top_level.present? %>
@@ -14,7 +14,7 @@
 <% else %>
   <section>
     <p>
-      <%= t( 'empty_list', items: 'comments' ) %>
+      <%= t( 'shinycms.empty_list', items: 'comments' ) %>
     </p>
   </section>
 <% end %>

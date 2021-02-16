@@ -9,14 +9,14 @@
 require 'rails_helper'
 
 # Tests for admin/moderation features for individual comments
-RSpec.describe Admin::CommentsController, type: :request do
+RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
   before do
     admin = create :discussion_admin
     sign_in admin
 
-    FeatureFlag.enable :blog
-    FeatureFlag.enable :news
-    FeatureFlag.enable :comments
+    ShinyCMS::FeatureFlag.enable :blog
+    ShinyCMS::FeatureFlag.enable :news
+    ShinyCMS::FeatureFlag.enable :comments
 
     blog = create :blog_post
     @news = create :news_post
@@ -38,10 +38,10 @@ RSpec.describe Admin::CommentsController, type: :request do
       create :comment, spam: true
       comment3 = create :comment, spam: true
 
-      get comments_path
+      get shinycms.comments_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.comments.index.title' ).titlecase
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
       expect( response.body ).to have_css 'td', text: comment3.title
     end
 
@@ -50,10 +50,10 @@ RSpec.describe Admin::CommentsController, type: :request do
         comment1 = create :comment, body: 'Zebras are zingy', spam: true
         comment2 = create :comment, body: 'Aardvarks are awesome', spam: true
 
-        get search_comments_path, params: { q: 'zing' }
+        get shinycms.search_comments_path, params: { q: 'zing' }
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.comments.index.title' ).titlecase
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
 
         expect( response.body ).to     have_css 'td', text: comment1.title
         expect( response.body ).not_to have_css 'td', text: comment2.title
@@ -63,14 +63,14 @@ RSpec.describe Admin::CommentsController, type: :request do
 
   describe 'PUT /admin/comments' do
     it 'reminds you that you need to select spam or not spam, if you do neither' do
-      put comments_path, params: {}
+      put shinycms.comments_path, params: {}
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to comments_path
+      expect( response      ).to     redirect_to shinycms.comments_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.comments.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-danger', text: I18n.t( 'admin.comments.update.spam_or_ham' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-danger', text: I18n.t( 'shinycms.admin.comments.update.spam_or_ham' )
     end
 
     it 'deletes the selected comments if you say they are spam' do
@@ -82,7 +82,7 @@ RSpec.describe Admin::CommentsController, type: :request do
       expect( @nested1.reload.spam?  ).to be true
       expect( @comment2.reload.spam? ).to be true
 
-      put comments_path, params: {
+      put shinycms.comments_path, params: {
         spam_or_ham:   'spam',
         spam_comments: {
           "comment_#{@nested1.id}":  1,
@@ -91,15 +91,15 @@ RSpec.describe Admin::CommentsController, type: :request do
       }
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to comments_path
+      expect( response      ).to     redirect_to shinycms.comments_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.comments.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.comments.process_spam_comments.success' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.comments.process_spam_comments.success' )
       expect( response.body ).to     have_css 'td', text: @comment2.title
       expect( response.body ).not_to have_css 'td', text: @nested1.title
 
-      expect( Comment.where( id: @nested1.id ) ).to be_blank
+      expect( ShinyCMS::Comment.where( id: @nested1.id ) ).to be_blank
       expect( @comment2.reload.spam? ).to be true
     end
 
@@ -112,7 +112,7 @@ RSpec.describe Admin::CommentsController, type: :request do
       expect( @nested1.reload.spam?  ).to be true
       expect( @comment2.reload.spam? ).to be true
 
-      put comments_path, params: {
+      put shinycms.comments_path, params: {
         spam_or_ham:   'ham',
         spam_comments: {
           "comment_#{@nested1.id}":  1,
@@ -121,11 +121,11 @@ RSpec.describe Admin::CommentsController, type: :request do
       }
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to comments_path
+      expect( response      ).to     redirect_to shinycms.comments_path
       follow_redirect!
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'admin.comments.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'admin.comments.process_ham_comments.success' )
+      expect( response.body ).to     have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
+      expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.comments.process_ham_comments.success' )
       expect( response.body ).to     have_css 'td', text: @comment2.title
       expect( response.body ).not_to have_css 'td', text: @nested1.title
 
@@ -136,12 +136,12 @@ RSpec.describe Admin::CommentsController, type: :request do
     it 'reports an error if it fails to remove spam flags' do
       allow_any_instance_of( Akismet::Client ).to receive( :open )
       allow_any_instance_of( Akismet::Client ).to receive( :ham  ).and_return( true )
-      allow( Comment ).to receive( :mark_all_as_ham ).and_return( false )
+      allow( ShinyCMS::Comment ).to receive( :mark_all_as_ham ).and_return( false )
 
       @nested1.mark_as_spam
       @comment2.mark_as_spam
 
-      put comments_path, params: {
+      put shinycms.comments_path, params: {
         spam_or_ham:   'ham',
         spam_comments: {
           "comment_#{@nested1.id}":  1,
@@ -150,17 +150,17 @@ RSpec.describe Admin::CommentsController, type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to comments_path
+      expect( response      ).to redirect_to shinycms.comments_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'admin.comments.index.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'admin.comments.process_ham_comments.failure' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shinycms.admin.comments.process_ham_comments.failure' )
     end
   end
 
   describe 'PUT /admin/comment/1/hide' do
     it 'hides the comment' do
-      put hide_comment_path( @comment1 )
+      put shinycms.hide_comment_path( @comment1 )
 
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to @comment1.anchored_path
@@ -168,7 +168,7 @@ RSpec.describe Admin::CommentsController, type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested1.title
       expect( response.body ).not_to have_css 'h2', text: @comment1.title
-      expect( response.body ).to     have_css 'i',  text: I18n.t( 'discussions.hidden_comment' )
+      expect( response.body ).to     have_css 'i',  text: I18n.t( 'shinycms.discussions.hidden_comment' )
     end
   end
 
@@ -177,7 +177,7 @@ RSpec.describe Admin::CommentsController, type: :request do
       @comment1.hide
       expect( @comment1.hidden? ).to be true
 
-      put show_comment_path( @comment1 )
+      put shinycms.show_comment_path( @comment1 )
 
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to @comment1.anchored_path
@@ -185,13 +185,13 @@ RSpec.describe Admin::CommentsController, type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested1.title
       expect( response.body ).to     have_css 'h2', text: @comment1.title
-      expect( response.body ).not_to have_css 'i',  text: I18n.t( 'discussions.hidden_comment' )
+      expect( response.body ).not_to have_css 'i',  text: I18n.t( 'shinycms.discussions.hidden_comment' )
     end
   end
 
   describe 'PUT /admin/comment/1/lock' do
     it 'locks the comment' do
-      put lock_comment_path( @comment2 )
+      put shinycms.lock_comment_path( @comment2 )
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to @comment2.anchored_path
@@ -207,7 +207,7 @@ RSpec.describe Admin::CommentsController, type: :request do
       @comment2.lock
       expect( @comment2.reload.locked? ).to be true
 
-      put unlock_comment_path( @comment2 )
+      put shinycms.unlock_comment_path( @comment2 )
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to @comment2.anchored_path
@@ -220,7 +220,7 @@ RSpec.describe Admin::CommentsController, type: :request do
 
   describe 'PUT /admin/comment/1/is-spam' do
     it 'marks the comment as spam' do
-      put spam_comment_path( @comment1 )
+      put shinycms.spam_comment_path( @comment1 )
       @comment1.reload
 
       expect( response ).to have_http_status :found
@@ -234,7 +234,7 @@ RSpec.describe Admin::CommentsController, type: :request do
 
   describe 'DELETE /admin/comment/1/delete' do
     it 'removes the comment' do
-      delete destroy_comment_path( @comment2 )
+      delete shinycms.destroy_comment_path( @comment2 )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to @news.path( anchor: 'comments' )

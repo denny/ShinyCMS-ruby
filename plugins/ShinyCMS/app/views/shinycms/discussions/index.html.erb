@@ -15,10 +15,10 @@
         <%= link_to discussion.resource.title, discussion.resource.path %>
       </td>
       <td>
-        <%= t( 'discussions.n_recent_comments', count: recent_count ) %>
+        <%= t( 'shinycms.discussions.n_recent_comments', count: recent_count ) %>
       </td>
       <td>
-        (<%= t( 'discussions.n_total', count: discussion.comments.visible.count ) %>)
+        (<%= t( 'shinycms.discussions.n_total', count: discussion.comments.visible.count ) %>)
       </td>
       <td>
         <%= discussion.resource.class.translated_name.titlecase %>
@@ -29,7 +29,7 @@
 
   <% if @active_discussions.blank? %>
     <p>
-      <%= t( 'empty_list', items: 'recently-active discussions' ) %>
+      <%= t( 'shinycms.empty_list', items: 'recently-active discussions' ) %>
     </p>
   <% end %>
 </section>

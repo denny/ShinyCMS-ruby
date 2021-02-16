@@ -12,9 +12,14 @@ require 'rails_helper'
 module ShinyForms
   RSpec.describe FormMailer, type: :mailer do
     before do
-      FeatureFlag.enable :shiny_forms_emails
+      ShinyCMS::FeatureFlag.enable :shiny_forms_emails
+    end
 
-      @default_subject = I18n.t( 'shiny_forms.mailers.form_mailer.default_subject', site_name: Setting.get( :site_name ) )
+    let( :default_subject ) do
+      I18n.t(
+        'shiny_forms.mailers.form_mailer.default_subject',
+        site_name: ShinyCMS::Setting.get( :site_name )
+      )
     end
 
     describe '.plain' do
@@ -29,7 +34,7 @@ module ShinyForms
 
         expect { email1.deliver_later }.to have_enqueued_job
 
-        expect( email1.subject ).to eq @default_subject
+        expect( email1.subject ).to eq default_subject
         expect( email1.body    ).to include 'message: Plain text email'
       end
     end
@@ -46,7 +51,7 @@ module ShinyForms
 
         expect { email1.deliver_later }.to have_enqueued_job
 
-        expect( email1.subject ).to eq @default_subject
+        expect( email1.subject ).to eq default_subject
         expect( email1.parts.second.body ).to include 'Templated email'
       end
     end

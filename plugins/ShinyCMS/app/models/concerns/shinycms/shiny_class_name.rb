@@ -15,7 +15,7 @@ module ShinyCMS
       # Class methods
 
       def self.translated_name
-        I18n.t( "models.names.#{i18n_label}" )
+        I18n.t( "shinycms.models.names.#{i18n_label}" )
       end
 
       def self.i18n_label

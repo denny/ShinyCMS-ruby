@@ -80,7 +80,7 @@ module ShinyCMS
       <<~SUMMARY
         #{teaser}
 
-        <p>#{I18n.t( 'models.shiny_post_atom_feed_entry.read_more' )}</p>
+        <p>#{I18n.t( 'shinycms.models.shiny_post_atom_feed_entry.read_more' )}</p>
       SUMMARY
     end
 

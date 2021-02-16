@@ -16,7 +16,7 @@ module ShinyCMS
     included do
       validates :slug, uniqueness: {
         scope:   :section,
-        message: I18n.t( 'errors.messages.slug_not_unique_in_section' )
+        message: I18n.t( 'shinycms.errors.messages.slug_not_unique_in_section' )
       }
     end
   end

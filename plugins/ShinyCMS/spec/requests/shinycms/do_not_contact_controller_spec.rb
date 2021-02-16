@@ -9,26 +9,26 @@
 require 'rails_helper'
 
 # Tests for ShinyCMS 'do not contact' feature
-RSpec.describe DoNotContactController, type: :request do
+RSpec.describe ShinyCMS::DoNotContactController, type: :request do
   describe 'GET /email/do-not-contact' do
     it 'displays the do-not-contact form' do
-      get do_not_contact_path
+      get shinycms.do_not_contact_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'do_not_contact.new.title' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.do_not_contact.new.title' )
     end
   end
 
   describe 'POST /email/do-not-contact' do
     it 'adds a valid email to the do-not-contact list' do
-      post do_not_contact_path, params: { email: Faker::Internet.unique.email }
+      post shinycms.do_not_contact_path, params: { email: Faker::Internet.unique.email }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to do_not_contact_path
+      expect( response      ).to redirect_to shinycms.do_not_contact_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'do_not_contact.new.title' )
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'do_not_contact.create.success' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.do_not_contact.new.title' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.do_not_contact.create.success' )
     end
 
     it 'lets people know if they try to add a duplicate email to the do-not-contact list' do
@@ -36,25 +36,25 @@ RSpec.describe DoNotContactController, type: :request do
 
       create :do_not_contact, email: email_address
 
-      post do_not_contact_path, params: { email: email_address }
+      post shinycms.do_not_contact_path, params: { email: email_address }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to do_not_contact_path
+      expect( response      ).to redirect_to shinycms.do_not_contact_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'do_not_contact.new.title' )
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'do_not_contact.create.duplicate' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.do_not_contact.new.title' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.do_not_contact.create.duplicate' )
     end
 
     it 'fails to add an invalid email to the do-not-contact list' do
-      post do_not_contact_path, params: { email: 'This is not an email address' }
+      post shinycms.do_not_contact_path, params: { email: 'This is not an email address' }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to do_not_contact_path
+      expect( response      ).to redirect_to shinycms.do_not_contact_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'do_not_contact.new.title' )
-      expect( response.body ).to have_css '.alerts', text: I18n.t( 'do_not_contact.create.failure' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.do_not_contact.new.title' )
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shinycms.do_not_contact.create.failure' )
     end
   end
 end

@@ -76,13 +76,13 @@ module ShinyLists
     end
 
     def subscriber_for_subscribe
-      User.find_by( email: subscription_params[:email] ) ||
-        EmailRecipient.find_by( email: subscription_params[:email] ) ||
-        EmailRecipient.create!( email: subscription_params[:email] )
+      ShinyCMS::User.find_by( email: subscription_params[:email] ) ||
+        ShinyCMS::EmailRecipient.find_by( email: subscription_params[:email] ) ||
+        ShinyCMS::EmailRecipient.create!( email: subscription_params[:email] )
     end
 
     def admin_consent
-      ConsentVersion.find_by( slug: 'shiny-lists-admin-subscribe' )
+      ShinyCMS::ConsentVersion.find_by( slug: 'shiny-lists-admin-subscribe' )
     end
 
     def subscription_params

@@ -31,14 +31,14 @@ module ShinyCMS
       if ShinyPlugin.loaded?( :ShinyPages ) && current_user.can?( :list, :pages )
         redirect_to shiny_pages.pages_path
       else
-        redirect_to root_path
+        redirect_to main_app.root_path
       end
     end
 
     def not_found
       skip_authorization
       bad_path = params[:path]
-      redirect_to admin_path, alert: t( 'admin.invalid_url', request_path: bad_path )
+      redirect_to admin_path, alert: t( 'shinycms.admin.invalid_url', request_path: bad_path )
     end
 
     private
@@ -51,7 +51,7 @@ module ShinyCMS
 
       return if allowed.strip.split( /\s*,\s*|\s+/ ).include? request.remote_ip
 
-      redirect_to root_path
+      redirect_to main_app.root_path
     end
 
     def cache_user_capabilities

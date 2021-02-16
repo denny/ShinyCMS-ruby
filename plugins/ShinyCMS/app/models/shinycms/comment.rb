@@ -12,6 +12,7 @@ module ShinyCMS
     include ShinyDemoDataProvider
     include ShinyShowHide
     include ShinySoftDelete
+    include ShinyWithVotes
 
     # Associations
 
@@ -20,10 +21,6 @@ module ShinyCMS
     belongs_to :author, optional: true, polymorphic: true, inverse_of: :comments
 
     has_many :comments, -> { not_spam }, inverse_of: :parent, foreign_key: :parent_id, dependent: :destroy
-
-    # Plugin features
-
-    acts_as_votable
 
     # Validations
 
@@ -90,7 +87,7 @@ module ShinyCMS
     end
 
     def author_name_or_anon
-      author&.name&.presence || I18n.t( 'discussions.anonymous' )
+      author&.name&.presence || I18n.t( 'shinycms.discussions.anonymous' )
     end
 
     def authenticated_author?

@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for date helper methods
-RSpec.describe ShinyDateHelper, type: :helper do
+RSpec.describe ShinyCMS::ShinyDateHelper, type: :helper do
   describe 'display_date_at_time( utc_time )' do
     it 'returns a nicely-formatted date and time string, in localtime, date first' do
       input = Time.zone.now

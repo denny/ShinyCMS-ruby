@@ -7,18 +7,19 @@
 # English locale strings for ShinyCMS features provided by the ShinyPages plugin
 
 en:
-  feature_flags:
-    pages: Pages
-
-  settings:
-    default_page: Default page
-    default_section: Default section
-
-  capability:
-    category:
+  shinycms:
+    feature_flags:
       pages: Pages
-      page_sections: Page Sections
-      page_templates: Page Templates
+
+    settings:
+      default_page: Default page
+      default_section: Default section
+
+    capability:
+      category:
+        pages: Pages
+        page_sections: Page Sections
+        page_templates: Page Templates
 
   shiny_pages:
     admin:

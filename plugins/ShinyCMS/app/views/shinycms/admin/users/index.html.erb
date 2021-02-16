@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= render partial: 'admin/includes/search', locals: { placeholder: t( '.search' ) } %>
+<%= render partial: 'admin/includes/search', locals: { placeholder: t( '.search' ), action: shinycms.search_users_path } %>
 
 <table class="table table-responsive-sm table-striped">
   <thead>

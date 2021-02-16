@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for discussion mailer previews (powered by RailsEmailPreview)
-RSpec.describe 'DiscussionMailerPreview', type: :request do
+RSpec.describe DiscussionMailerPreview, type: :request do
   before do
     admin = create :mailer_admin
     sign_in admin
@@ -21,7 +21,7 @@ RSpec.describe 'DiscussionMailerPreview', type: :request do
     create :top_level_comment, discussion: d
     create :nested_comment, discussion: d, parent: c
 
-    Setting.set( :all_comment_notifications_email, to: 'test@example.com' )
+    ShinyCMS::Setting.set( :all_comment_notifications_email, to: 'test@example.com' )
   end
 
   describe '.overview_notification' do

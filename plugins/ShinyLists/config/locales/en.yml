@@ -7,13 +7,14 @@
 # English locale strings for ShinyCMS features provided by the ShinyLists plugin
 
 en:
-  feature_flags:
-    mailing_lists: Mailing lists
-
-  capability:
-    category:
+  shinycms:
+    feature_flags:
       mailing_lists: Mailing lists
-      mailing_list_subscriptions: List subscriptions
+
+    capability:
+      category:
+        mailing_lists: Mailing lists
+        mailing_list_subscriptions: List subscriptions
 
   shiny_lists:
     name: Name

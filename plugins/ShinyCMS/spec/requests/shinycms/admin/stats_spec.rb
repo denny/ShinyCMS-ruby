@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for the Blazer integration
 RSpec.describe 'Blazer (charts and dashboards)', type: :request do
-  describe 'GET /stats' do
+  describe 'GET /admin/stats' do
     context 'when logged in as a stats admin user' do
       before do
         admin = create :stats_admin
@@ -18,11 +18,11 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
       end
 
       it 'generates the correct button link' do
-        get blazer_path
+        get main_app.blazer_path
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'admin.blazer.queries.title' )
-        expect( response.body ).to have_link  I18n.t( 'admin.stats.breadcrumb' )
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.blazer.queries.title' )
+        expect( response.body ).to have_link  I18n.t( 'shinycms.admin.stats.breadcrumb' )
         expect( response.body ).to have_link  'New Query', href: '/admin/stats/queries/new'
       end
     end
@@ -34,17 +34,18 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
       end
 
       it 'does not allow access' do
-        get blazer_path
+        get main_app.blazer_path
 
         expect( response      ).to have_http_status :found
+        # Using the shinycms.admin_path helper here gives '/admin/admin'??
         expect( response      ).to redirect_to '/admin'
         follow_redirect!
         expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to '/admin/pages'
+        expect( response      ).to redirect_to shiny_pages.pages_path
         follow_redirect!
         expect( response      ).to have_http_status :ok
         # FIXME: losing alert on double-redirect?
-        # expect( response.body ).to have_css '.alerts', text: I18n.t( 'admin.blazer.auth_fail' )
+        # expect( response.body ).to have_css '.alerts', text: I18n.t( 'shinycms.admin.blazer.auth_fail' )
       end
     end
   end

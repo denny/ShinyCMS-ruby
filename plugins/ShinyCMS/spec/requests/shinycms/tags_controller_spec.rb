@@ -9,13 +9,13 @@
 require 'rails_helper'
 
 # Tests for tagging features on main site (powered by ActsAsTaggableOn)
-RSpec.describe TagsController, type: :request do
+RSpec.describe ShinyCMS::TagsController, type: :request do
   describe 'GET /tags/cloud' do
     it 'displays the tag cloud' do
-      get tag_cloud_path
+      get shinycms.tag_cloud_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'tags.cloud.title' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.tags.cloud.title' )
     end
   end
 
@@ -25,37 +25,37 @@ RSpec.describe TagsController, type: :request do
       post1.tag_list = 'shiny'
       post1.save!
 
-      get tag_list_path
+      get shinycms.tag_list_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'tags.list.title' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.tags.list.title' )
     end
   end
 
   describe 'GET /tags' do
     it 'displays the tag cloud if tag_view is not set' do
-      get tags_path
+      get shinycms.tags_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'tags.cloud.title' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.tags.cloud.title' )
     end
 
     it "displays the tag list if tag_view is set to 'list'" do
-      Setting.set( :tag_view, to: 'list' )
+      ShinyCMS::Setting.set( :tag_view, to: 'list' )
 
-      get tags_path
+      get shinycms.tags_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'tags.list.title' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.tags.list.title' )
     end
   end
 
   describe 'GET /tag/test' do
     it 'displays content with the appropriate tag' do
-      get tag_path( 'test' )
+      get shinycms.tag_path( 'test' )
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'tags.show.title', tag: 'test' )
+      expect( response.body ).to have_title I18n.t( 'shinycms.tags.show.title', tag: 'test' )
     end
   end
 end

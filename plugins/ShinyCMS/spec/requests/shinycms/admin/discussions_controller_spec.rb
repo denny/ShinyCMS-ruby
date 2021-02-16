@@ -9,12 +9,12 @@
 require 'rails_helper'
 
 # Tests for discussion admin/moderation features (hide/lock/etc)
-RSpec.describe Admin::DiscussionsController, type: :request do
+RSpec.describe ShinyCMS::Admin::DiscussionsController, type: :request do
   before do
     @admin = create :discussion_admin
     sign_in @admin
 
-    FeatureFlag.enable :comments
+    ShinyCMS::FeatureFlag.enable :comments
 
     post = create :blog_post
     @discussion = create :discussion, resource: post
@@ -28,10 +28,10 @@ RSpec.describe Admin::DiscussionsController, type: :request do
 
   describe 'PUT /admin/discussion/1/hide' do
     it 'hides the discussion' do
-      put hide_discussion_path( @discussion )
+      put shinycms.hide_discussion_path( @discussion )
 
       expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to discussion_path( @discussion )
+      expect( response      ).to     redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).not_to have_css 'h2', text: @nested.title
@@ -44,10 +44,10 @@ RSpec.describe Admin::DiscussionsController, type: :request do
       @discussion.hide
       expect( @discussion.reload.hidden? ).to be true
 
-      put show_discussion_path( @discussion )
+      put shinycms.show_discussion_path( @discussion )
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to discussion_path( @discussion )
+      expect( response      ).to redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'h2', text: @comment1.title
@@ -57,10 +57,10 @@ RSpec.describe Admin::DiscussionsController, type: :request do
 
   describe 'PUT /admin/discussion/1/lock' do
     it 'locks the discussion' do
-      put lock_discussion_path( @discussion )
+      put shinycms.lock_discussion_path( @discussion )
 
       expect( response ).to have_http_status :found
-      expect( response ).to redirect_to discussion_path( @discussion )
+      expect( response ).to redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
       expect( response ).to have_http_status :ok
 
@@ -73,10 +73,10 @@ RSpec.describe Admin::DiscussionsController, type: :request do
       @discussion.lock
       expect( @discussion.reload.locked? ).to be true
 
-      put unlock_discussion_path( @discussion )
+      put shinycms.unlock_discussion_path( @discussion )
 
       expect( response ).to have_http_status :found
-      expect( response ).to redirect_to discussion_path( @discussion )
+      expect( response ).to redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
       expect( response ).to have_http_status :ok
 

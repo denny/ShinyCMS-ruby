@@ -7,21 +7,22 @@
 # English locale strings for ShinyCMS features provided by the ShinyNews plugin
 
 en:
-  feature_flags:
-    news: News section
-    news_votes: Votes on news posts
-    news_downvotes: Down-votes on news posts
+  shinycms:
+    feature_flags:
+      news: News section
+      news_votes: Votes on news posts
+      news_downvotes: Down-votes on news posts
 
-  capability:
-    category:
-      news_posts: News
+    capability:
+      category:
+        news_posts: News
 
-    news_posts:
-      change_author: Change author
+      news_posts:
+        change_author: Change author
 
-  models:
-    names:
-      shiny_news_post: news post
+    models:
+      names:
+        shiny_news_post: news post
 
   shiny_news:
     menu:

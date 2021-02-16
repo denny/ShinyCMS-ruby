@@ -10,7 +10,7 @@
 <% end %>
 
 <% if controller_name == 'users' || controller_name == 'profiles' %>
-    <%= t( 'admin.users.toolbar' ) %>:
+    <%= t( 'shinycms.admin.users.toolbar' ) %>:
   <% if current_user_can? :add, :users %>
     <%= link_to t( 'add'  ), shinycms.new_user_path %> /
   <% end %>
@@ -24,7 +24,7 @@
 <% end %>
 
 <% if @discussion.present? %>
-  <%= t( 'admin.discussion.toolbar' ) %>:
+  <%= t( 'shinycms.admin.discussion.toolbar' ) %>:
 <% if current_user_can? :hide, :discussions %>
   <% if @discussion.hidden? %>
     <%= link_to t( 'show' ), shinycms.show_discussion_path( @discussion ) %>
@@ -44,11 +44,11 @@
 <% end %>
 
   <% if Rails.env.development? %>
-    <%= link_to t( 'admin.letter_opener_web' ), shinycms.letter_opener_web_path %>
+    <%= link_to t( 'shinycms.admin.letter_opener_web' ), shinycms.letter_opener_web_path %>
     |
   <% end %>
   <% if current_user_can? :view_admin_area %>
-    <%= link_to t( 'admin.toolbar' ), shinycms.admin_path %>
+    <%= link_to t( 'shinycms.admin.toolbar' ), shinycms.admin_path %>
   <% end %>
   </div>
 </nav>

@@ -7,8 +7,9 @@
 # English locale strings for ShinyCMS features provided by the ShinySEO plugin
 
 en:
-  feature_flags:
-    shiny_seo: ShinySEO
+  shinycms:
+    feature_flags:
+      shiny_seo: ShinySEO
 
   shiny_seo:
     admin:

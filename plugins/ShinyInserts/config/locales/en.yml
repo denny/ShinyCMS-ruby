@@ -7,12 +7,13 @@
 # English locale strings for ShinyCMS features provided by the ShinyInserts plugin
 
 en:
-  feature_flags:
-    inserts: Inserts
-
-  capability:
-    category:
+  shinycms:
+    feature_flags:
       inserts: Inserts
+
+    capability:
+      category:
+        inserts: Inserts
 
   shiny_inserts:
     admin:

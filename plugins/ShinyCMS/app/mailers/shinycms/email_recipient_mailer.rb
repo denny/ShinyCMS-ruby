@@ -19,10 +19,14 @@ module ShinyCMS
 
       return if DoNotContact.include? recipient.email # TODO: make this happen without explicit call
 
-      mail to: recipient.email_to, subject: t( '.subject', site_name: site_name ) do |format|
+      mail to: recipient.email_to, subject: confirm_subject do |format|
         format.html
         format.text
       end
+    end
+
+    def confirm_subject
+      t( 'shinycms.email_recipient_mailer.confirm.subject', site_name: site_name )
     end
   end
 end

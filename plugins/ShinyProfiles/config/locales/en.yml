@@ -7,8 +7,9 @@
 # English locale strings for ShinyCMS features provided by the ShinyProfiles plugin
 
 en:
-  feature_flags:
-    user_profiles: User profile pages
+  shinycms:
+    feature_flags:
+      user_profiles: User profile pages
 
   shiny_profiles:
     view_profile: View your profile

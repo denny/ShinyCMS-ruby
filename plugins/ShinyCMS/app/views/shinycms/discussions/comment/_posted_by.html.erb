@@ -1,6 +1,6 @@
 Posted by
 <% if comment.author.blank? %>
-  <%= t( '.anonymous' ) %>
+  <%= t( 'shinycms.discussions.anonymous' ) %>
 <% elsif comment.authenticated_author? %>
     <%= user_profile_link( comment.author ) %>
 <% else %>

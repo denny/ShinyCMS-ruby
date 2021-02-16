@@ -9,26 +9,31 @@
 require 'rails_helper'
 
 # Tests for user authentication (login/logout) features on main site (powered by Devise)
-RSpec.describe Users::SessionsController, type: :request do
+RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
   before do
-    FeatureFlag.enable :user_login
-    FeatureFlag.disable :user_profiles
+    ShinyCMS::FeatureFlag.enable :user_login
+    ShinyCMS::FeatureFlag.disable :user_profiles
 
-    @page = create :top_level_page
+    create :top_level_page
+  end
+
+  # Devise ignores the bodge in spec/support/inflection_kludge, so here it is again
+  def shinycms
+    shiny_cms
   end
 
   describe 'GET /login' do
     it 'renders the user login page if user logins are enabled' do
-      get new_user_session_path
+      get shinycms.new_user_session_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_button I18n.t( 'user.log_in' )
+      expect( response.body ).to have_button I18n.t( 'shinycms.user.log_in' )
     end
 
     it 'redirects to the site homepage if user logins are not enabled' do
-      FeatureFlag.disable :user_login
+      ShinyCMS::FeatureFlag.disable :user_login
 
-      get new_user_session_path
+      get shinycms.new_user_session_path
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path
@@ -37,17 +42,17 @@ RSpec.describe Users::SessionsController, type: :request do
       expect( response.body ).to have_css(
         '.alerts',
         text: I18n.t(
-          'feature_flags.off_alert',
-          feature_name: I18n.t( 'feature_flags.user_login' )
+          'shinycms.feature_flags.off_alert',
+          feature_name: I18n.t( 'shinycms.feature_flags.user_login' )
         )
       )
-      expect( response.body ).not_to have_button I18n.t( 'user.log_in' )
+      expect( response.body ).not_to have_button I18n.t( 'shinycms.user.log_in' )
     end
 
     it 'defaults to assuming that user logins are not enabled' do
-      FeatureFlag.find_by( name: 'user_login' ).update!( name: 'test' )
+      ShinyCMS::FeatureFlag.find_by( name: 'user_login' ).update!( name: 'test' )
 
-      get new_user_session_path
+      get shinycms.new_user_session_path
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to root_path
@@ -56,13 +61,13 @@ RSpec.describe Users::SessionsController, type: :request do
       expect( response.body ).to have_css(
         '.alerts',
         text: I18n.t(
-          'feature_flags.off_alert',
-          feature_name: I18n.t( 'feature_flags.user_login' )
+          'shinycms.feature_flags.off_alert',
+          feature_name: I18n.t( 'shinycms.feature_flags.user_login' )
         )
       )
-      expect( response.body ).not_to have_button I18n.t( 'user.log_in' )
+      expect( response.body ).not_to have_button I18n.t( 'shinycms.user.log_in' )
 
-      FeatureFlag.find_by( name: 'test' ).update!( name: 'user_login' )
+      ShinyCMS::FeatureFlag.find_by( name: 'test' ).update!( name: 'user_login' )
     end
   end
 
@@ -71,7 +76,7 @@ RSpec.describe Users::SessionsController, type: :request do
       password = 'shinycms unimaginative test passphrase'
       user = create :user, password: password
 
-      post user_session_path, params: {
+      post shinycms.user_session_path, params: {
         user: {
           login:    user.email,
           password: password
@@ -82,14 +87,14 @@ RSpec.describe Users::SessionsController, type: :request do
       expect( response      ).to redirect_to root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_link I18n.t( 'user.log_out' )
+      expect( response.body ).to have_link I18n.t( 'shinycms.user.log_out' )
     end
 
     it 'logs the user in using their username' do
       password = 'shinycms unimaginative test passphrase'
       user = create :user, password: password
 
-      post user_session_path, params: {
+      post shinycms.user_session_path, params: {
         user: {
           login:    user.username,
           password: password
@@ -100,7 +105,7 @@ RSpec.describe Users::SessionsController, type: :request do
       expect( response      ).to redirect_to root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_link I18n.t( 'user.log_out' )
+      expect( response.body ).to have_link I18n.t( 'shinycms.user.log_out' )
     end
 
     it 'redirects back to the referring page after login, if it knows it' do
@@ -110,7 +115,7 @@ RSpec.describe Users::SessionsController, type: :request do
       different_page = create :top_level_page
       should_go_here = "http://www.example.com/#{different_page.slug}"
 
-      post user_session_path,
+      post shinycms.user_session_path,
            params:  {
              user: {
                login:    user.username,

@@ -11,8 +11,8 @@ require 'rails_helper'
 # Tests for main site list subscription features
 RSpec.describe 'List subscriptions', type: :request do
   before do
-    FeatureFlag.enable :mailing_lists
-    FeatureFlag.enable :user_login
+    ShinyCMS::FeatureFlag.enable :mailing_lists
+    ShinyCMS::FeatureFlag.enable :user_login
   end
 
   describe 'GET /subscriptions' do
@@ -90,7 +90,7 @@ RSpec.describe 'List subscriptions', type: :request do
         }
       }
 
-      recipient1 = EmailRecipient.last
+      recipient1 = ShinyCMS::EmailRecipient.last
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_lists.token_list_subscriptions_path( recipient1.token )

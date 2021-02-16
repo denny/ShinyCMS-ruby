@@ -9,37 +9,37 @@
 require 'rails_helper'
 
 # Tests for main site usage of feature flags
-RSpec.describe 'Feature Flags', type: :request do
+RSpec.describe 'Feature Flags (main site)', type: :request do
   before do
-    FeatureFlag.enable :user_login
-    FeatureFlag.enable :user_profiles
+    ShinyCMS::FeatureFlag.enable :user_login
+    ShinyCMS::FeatureFlag.enable :user_profiles
   end
 
   describe 'GET /login' do
     it "succeeds with 'User Login = On'" do
-      get new_user_session_path
+      get shinycms.new_user_session_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to include I18n.t( 'user.log_in' )
+      expect( response.body ).to include I18n.t( 'shinycms.user.log_in' )
     end
 
     it "fails with 'User Login = Off'" do
       create :top_level_page
 
-      FeatureFlag.find_or_create_by!( name: 'user_login' )
-                 .update!( enabled: false )
+      ShinyCMS::FeatureFlag.find_or_create_by!( name: 'user_login' )
+                           .update!( enabled: false )
 
-      get new_user_session_path
+      get shinycms.new_user_session_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css(
         '.alerts',
         text: I18n.t(
-          'feature_flags.off_alert',
-          feature_name: I18n.t( 'feature_flags.user_login' )
+          'shinycms.feature_flags.off_alert',
+          feature_name: I18n.t( 'shinycms.feature_flags.user_login' )
         )
       )
     end
@@ -51,20 +51,20 @@ RSpec.describe 'Feature Flags', type: :request do
       user = create :user
       sign_in user
 
-      FeatureFlag.find_or_create_by!( name: 'user_profiles' )
-                 .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
+      ShinyCMS::FeatureFlag.find_or_create_by!( name: 'user_profiles' )
+                           .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
 
       get shiny_profiles.profile_path( user.username )
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css(
         '.alerts',
         text: I18n.t(
-          'feature_flags.off_alert',
-          feature_name: I18n.t( 'feature_flags.user_profiles' )
+          'shinycms.feature_flags.off_alert',
+          feature_name: I18n.t( 'shinycms.feature_flags.user_profiles' )
         )
       )
     end
@@ -73,8 +73,8 @@ RSpec.describe 'Feature Flags', type: :request do
       user = create :admin_user
       sign_in user
 
-      FeatureFlag.find_or_create_by!( name: 'user_profiles' )
-                 .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
+      ShinyCMS::FeatureFlag.find_or_create_by!( name: 'user_profiles' )
+                           .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
 
       get shiny_profiles.profile_path( user.username )
 

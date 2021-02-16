@@ -17,7 +17,8 @@ module ShinyLists
     # Assocations
 
     has_many :subscriptions, inverse_of: :list, dependent: :destroy
-    has_many :users, through: :subscriptions, inverse_of: :lists, source: :subscriber, source_type: 'ShinyMS::User'
+    has_many :users, through: :subscriptions, inverse_of: :lists, source: :subscriber,
+                     source_type: 'ShinyCMS::User'
     has_many :email_recipients, through: :subscriptions, inverse_of: :lists, source: :subscriber,
                                 source_type: 'ShinyCMS::EmailRecipient'
 

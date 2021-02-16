@@ -9,6 +9,8 @@
 module ShinyCMS
   # Controller for vote features on a ShinyCMS site
   class VotesController < MainController
+    include ShinyVotesHelper
+
     before_action :find_resource
     before_action :find_voter
 
@@ -31,19 +33,23 @@ module ShinyCMS
     private
 
     def find_resource
-      type = params[ :type ].classify
-      return head( :bad_request ) unless votable_models.include? type
+      type = class_from_votable_url params[ :type ]
+      return head( :bad_request ) unless votable_model_names.include? type
 
       @resource = type.constantize.find( params[ :id ] )
       return head( :not_found ) if @resource.blank?
     end
 
-    def votable_models
-      [ main_app_votable_models + ShinyPlugin.votable_models ].flatten
+    def votable_model_names
+      [ core_votable_models + plugin_votable_models ].flatten.collect( &:name )
     end
 
-    def main_app_votable_models
-      ApplicationRecord.descendants.select( &:votable? ).collect( &:name ).sort
+    def core_votable_models
+      ShinyCMS::ApplicationRecord.descendants.select( &:votable? )
+    end
+
+    def plugin_votable_models
+      ShinyPlugin.votable_models
     end
 
     def find_voter
