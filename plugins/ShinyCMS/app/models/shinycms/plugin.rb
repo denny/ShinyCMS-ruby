@@ -8,11 +8,11 @@
 
 module ShinyCMS
   # Provides convenience methods for interacting with ShinyCMS plugins
-  class ShinyPlugin
+  class Plugin
     attr_reader :name
 
     def initialize( name )
-      return unless ShinyPlugin.all_names.include? name
+      return unless Plugin.all_names.include? name
 
       @name = name
     end
@@ -59,7 +59,7 @@ module ShinyCMS
     def self.loaded
       return @loaded if @loaded
 
-      loaded_plugins = loaded_names.collect { |name| ShinyPlugin.new( name ) }
+      loaded_plugins = loaded_names.collect { |name| Plugin.new( name ) }
       @loaded = loaded_plugins
     end
 

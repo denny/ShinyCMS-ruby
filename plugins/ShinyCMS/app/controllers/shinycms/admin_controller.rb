@@ -28,7 +28,7 @@ module ShinyCMS
     def index
       skip_authorization
 
-      if ShinyPlugin.loaded?( :ShinyPages ) && current_user.can?( :list, :pages )
+      if Plugin.loaded?( :ShinyPages ) && current_user.can?( :list, :pages )
         redirect_to shiny_pages.pages_path
       else
         redirect_to main_app.root_path

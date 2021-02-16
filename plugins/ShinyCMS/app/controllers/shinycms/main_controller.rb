@@ -20,7 +20,7 @@ module ShinyCMS
 
     helper_method :feed_url
 
-    ShinyPlugin.with_main_site_helpers.each do |plugin|
+    Plugin.with_main_site_helpers.each do |plugin|
       helper plugin.main_site_helper
     end
 

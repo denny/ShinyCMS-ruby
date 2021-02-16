@@ -49,7 +49,7 @@ module ShinyCMS
     end
 
     def taggable_models
-      [ main_app_taggable_models + ShinyPlugin.taggable_models ].flatten
+      [ main_app_taggable_models + Plugin.taggable_models ].flatten
     end
 
     def main_app_taggable_models

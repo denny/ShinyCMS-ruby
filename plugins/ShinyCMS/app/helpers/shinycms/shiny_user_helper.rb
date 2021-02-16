@@ -22,7 +22,7 @@ module ShinyCMS
     end
 
     def user_profile_link( user = current_user )
-      return user.name unless ShinyPlugin.loaded? :ShinyProfiles
+      return user.name unless Plugin.loaded? :ShinyProfiles
 
       link_to user.name, shiny_profiles.profile_path( user.username )
     end

@@ -32,9 +32,9 @@ module ShinySEO
     private
 
     def items_for_sitemap
-      ShinyCMS::ShinyPlugin.models_with_sitemap_items
-                           .collect( &:sitemap_items ).flatten
-                           .collect { |resource| SitemapItem.new( resource ) }
+      ShinyCMS::Plugin.models_with_sitemap_items
+                      .collect( &:sitemap_items ).flatten
+                      .collect { |resource| SitemapItem.new( resource ) }
     end
 
     def use_aws_sdk_adapter_if_configured

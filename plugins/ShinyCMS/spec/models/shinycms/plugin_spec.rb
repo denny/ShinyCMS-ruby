@@ -8,8 +8,8 @@
 
 require 'rails_helper'
 
-# Tests for ShinyPlugin model
-RSpec.describe ShinyCMS::ShinyPlugin, type: :model do
+# Tests for Plugin model (represents a single plugin)
+RSpec.describe ShinyCMS::Plugin, type: :model do
   describe 'class methods' do
     describe '.loaded' do
       it 'returns an array of plugin instances' do

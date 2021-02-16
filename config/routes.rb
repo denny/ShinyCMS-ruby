@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
       # ShinyCMS feature plugins
       # require "#{ShinyCMS::Engine.root}/route_helpers/mount_all_plugins"
-      ShinyCMS::ShinyPlugin.loaded.each do |plugin|
+      ShinyCMS::Plugin.loaded.each do |plugin|
         mount plugin.engine, at: '/' if plugin.engine.present?
       end
 
