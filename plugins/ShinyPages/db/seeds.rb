@@ -11,7 +11,7 @@
 
 # Feature flag
 
-flag = FeatureFlag.find_or_create_by!( name: 'pages' )
+flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'pages' )
 flag.update!(
   description:           "Enable 'brochure pages', provided by ShinyPages plugin",
   enabled:               true,
@@ -21,9 +21,9 @@ flag.update!(
 
 # Admin capabilities
 
-pages_cc = CapabilityCategory.find_or_create_by!( name: 'pages' )
-sections_cc = CapabilityCategory.find_or_create_by!( name: 'page_sections' )
-templates_cc = CapabilityCategory.find_or_create_by!( name: 'page_templates' )
+pages_cc = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'pages' )
+sections_cc = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'page_sections' )
+templates_cc = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'page_templates' )
 
 pages_cc.capabilities.find_or_create_by!( name: 'list'    )
 pages_cc.capabilities.find_or_create_by!( name: 'add'     )
@@ -42,7 +42,7 @@ templates_cc.capabilities.find_or_create_by!( name: 'destroy' )
 
 # Site settings
 
-setting1 = Setting.find_or_create_by!( name: 'default_page' )
+setting1 = ShinyCMS::Setting.find_or_create_by!( name: 'default_page' )
 setting1.update!(
   description: 'Default top-level page (either its name or its slug)',
   level:       'site',
@@ -50,7 +50,7 @@ setting1.update!(
 )
 setting1.values.find_or_create_by!( value: '' )
 
-setting2 = Setting.find_or_create_by!( name: 'default_section' )
+setting2 = ShinyCMS::Setting.find_or_create_by!( name: 'default_section' )
 setting2.update!(
   description: 'Default top-level section (either its name or its slug)',
   level:       'site',

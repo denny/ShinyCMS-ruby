@@ -30,6 +30,6 @@
 
 <% else %>
 <p>
-  <%= t( 'empty_list', items: 'pages' ) %>
+  <%= t( 'shinycms.empty_list', items: ShinyPages::Page.translated_name ) %>
 </p>
 <% end %>

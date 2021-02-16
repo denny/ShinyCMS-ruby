@@ -1,10 +1,4 @@
 GIT
-  remote: https://github.com/envato/zxcvbn-ruby
-  revision: e6a9c3eca458ae46f90825538deebb5d71c555fc
-  specs:
-    zxcvbn-ruby (1.2.0)
-
-GIT
   remote: https://github.com/rails/activerecord-session_store
   revision: f188efbc49a522123cc8acc805143824176d01c1
   specs:
@@ -35,6 +29,16 @@ PATH
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
+      pagy
+      pg (~> 1.2.3)
+      pundit
+      rails (~> 6.1.2, >= 6.1.2.1)
+
+PATH
+  remote: plugins/ShinyCMS
+  specs:
+    shinycms (21.02.14)
+      acts_as_paranoid
       pagy
       pg (~> 1.2.3)
       pundit
@@ -125,7 +129,7 @@ PATH
 PATH
   remote: plugins/ShinySEO
   specs:
-    shiny_seo (21.1)
+    shiny_seo (21.02)
       pg (>= 0.18, < 2.0)
       rails (~> 6.1.2, >= 6.1.2.1)
       sitemap_generator
@@ -268,8 +272,6 @@ GEM
       chartkick (>= 3.2)
       railties (>= 5)
       safely_block (>= 0.1.1)
-    bootsnap (1.7.2)
-      msgpack (~> 1.0)
     brakeman (5.0.0)
     bugsnag (6.19.0)
       concurrent-ruby (~> 1.0)
@@ -415,7 +417,6 @@ GEM
     mini_portile2 (2.5.0)
     minitest (5.14.3)
     mjml-rails (4.6.1)
-    msgpack (1.4.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     netaddr (2.0.4)
@@ -667,6 +668,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.2)
+    zxcvbn-ruby (1.2.0)
 
 PLATFORMS
   ruby
@@ -686,7 +688,6 @@ DEPENDENCIES
   aws-sdk-s3!
   bcrypt (~> 3.1.16)!
   blazer!
-  bootsnap (>= 1.4.2)!
   brakeman!
   bugsnag!
   bundler-audit!
@@ -707,7 +708,7 @@ DEPENDENCIES
   i18n-tasks (~> 0.9.33)!
   image_processing (~> 1.12)!
   letter_opener_web (~> 1.0)!
-  listen (>= 3.0.5, < 3.5)!
+  listen (~> 3.3)!
   mini_magick!
   mjml-rails!
   nokogiri (>= 1.11.0.rc4)!
@@ -746,6 +747,7 @@ DEPENDENCIES
   shiny_profiles!
   shiny_search!
   shiny_seo!
+  shinycms!
   sidekiq!
   sidekiq-status!
   sitemap_generator!

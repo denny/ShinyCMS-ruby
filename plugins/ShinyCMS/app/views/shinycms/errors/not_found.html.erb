@@ -1,0 +1,54 @@
+<% resource_type ||= 'page' %>
+
+<% @page_title = t( '.title', resource_type: resource_type.capitalize ) %>
+
+<section>
+  <header>
+    <h2>
+      <%= @page_title %>
+    </h2>
+  </header>
+
+  <p>
+    <%= t( '.explanation', resource_type: resource_type.downcase ) %>
+  </p>
+</section>
+
+<% if feature_enabled? :search %>
+<section>
+  <header>
+    <h2>
+      <%= t( '.search_title' ) %>
+    </h2>
+  </header>
+
+  <p>
+    <%= form_with name: 'search', url: shiny_search.search_path do |f| %>
+      <%= f.text_field 'query' %> <%= f.submit t( 'search' ), class: 'button' %>
+    <% end %>
+  </p>
+</section>
+<% end %>
+
+<% if feature_enabled? :tags %>
+  <% tags = ActsAsTaggableOn::Tag.most_used( 24 ).order( :name ) %>
+  <% if tags.size > 0 %>
+<section>
+  <header>
+    <h2>
+      <%= t( '.tags_title' ) %>
+    </h2>
+  </header>
+
+  <div class="six-columns">
+    <% tags.each do |tag| %>
+      <%= link_to tag.name, shinycms.tag_path( tag.name ) %> (<%= tag.taggings_count %>)<br>
+    <% end %>
+  </div>
+
+  <p>
+    <%= link_to t( '.all_tags' ), shinycms.tags_path %>
+  </p>
+</section>
+  <% end %>
+<% end %>

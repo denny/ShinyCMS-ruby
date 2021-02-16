@@ -10,7 +10,7 @@
 
 def add_capabilities( capability_data )
   capability_data.each_key do |category_name|
-    category = CapabilityCategory.find_or_create_by!( name: category_name )
+    category = ShinyCMS::CapabilityCategory.find_or_create_by!( name: category_name )
 
     capability_data[ category_name ].each do |capability_name|
       category.capabilities.find_or_create_by( name: capability_name )

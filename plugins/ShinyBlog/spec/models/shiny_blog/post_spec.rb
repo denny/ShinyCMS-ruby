@@ -20,11 +20,11 @@ module ShinyBlog
     end
 
     describe 'concerns' do
-      it_behaves_like ShinyDemoDataProvider do
+      it_behaves_like ShinyCMS::ShinyDemoDataProvider do
         let( :model ) { described_class }
       end
 
-      it_behaves_like ShinyPost do
+      it_behaves_like ShinyCMS::ShinyPost do
         let( :post ) { create :blog_post }
       end
 

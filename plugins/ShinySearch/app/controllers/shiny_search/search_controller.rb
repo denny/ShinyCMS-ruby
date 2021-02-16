@@ -9,8 +9,9 @@
 module ShinySearch
   # Main site controller for ShinySearch plugin for ShinyCMS
   class SearchController < MainController
+    include ShinyCMS::ShinyPagingHelper
+
     include ShinySearch::MainSiteHelper
-    include ShinyPagingHelper
 
     before_action :check_feature_flags
     before_action :stash_query_string
@@ -23,7 +24,7 @@ module ShinySearch
     def index
       return unless @query
 
-      backend = search_params[ :engine ].presence || Setting.get( :default_search_backend )
+      backend = search_params[ :engine ].presence || ShinyCMS::Setting.get( :default_search_backend )
       backend = nil unless SEARCH_BACKENDS.include? backend
 
       @pagy, @results = perform_search( backend )

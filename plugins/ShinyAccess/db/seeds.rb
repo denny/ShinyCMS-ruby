@@ -11,7 +11,7 @@
 
 # Feature flag
 
-flag = FeatureFlag.find_or_create_by!( name: 'access' )
+flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'access' )
 flag.update!(
   description:           'Enable access control features (provided by ShinyAccess plugin)',
   enabled:               true,
@@ -21,8 +21,8 @@ flag.update!(
 
 # Admin capabilities
 
-group_cc = CapabilityCategory.find_or_create_by!( name: 'access_groups' )
-membership_cc = CapabilityCategory.find_or_create_by!( name: 'access_group_memberships' )
+group_cc = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'access_groups' )
+membership_cc = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'access_group_memberships' )
 
 group_cc.capabilities.find_or_create_by!( name: 'list'    )
 group_cc.capabilities.find_or_create_by!( name: 'add'     )

@@ -9,14 +9,14 @@
 module ShinyNews
   # Model for news posts, from ShinyNews plugin for ShinyCMS
   class Post < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinyPost
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyPost
 
     # Associations
 
-    belongs_to :user, inverse_of: :news_posts
+    belongs_to :user, inverse_of: :news_posts, class_name: 'ShinyCMS::User'
 
-    has_one :discussion, as: :resource, dependent: :destroy
+    has_one :discussion, as: :resource, dependent: :destroy, class_name: 'ShinyCMS::Discussion'
 
     # Instance methods
 
@@ -37,4 +37,4 @@ module ShinyNews
 end
 
 # Add inverse association for authors of news posts
-::User.has_many :news_posts, dependent: :restrict_with_error, class_name: 'ShinyNews::Post'
+ShinyCMS::User.has_many :news_posts, dependent: :restrict_with_error, class_name: 'ShinyNews::Post'

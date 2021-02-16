@@ -10,7 +10,7 @@
 FactoryBot.define do
   factory :access_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'access_groups' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'access_groups' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )
@@ -22,7 +22,7 @@ FactoryBot.define do
       create :user_capability, user: admin, capability: edit
       create :user_capability, user: admin, capability: destroy
 
-      category = CapabilityCategory.find_by( name: 'access_group_memberships' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'access_group_memberships' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )

@@ -9,12 +9,16 @@
 module ShinyPages
   # Model for page sections - part of the ShinyPages plugin for ShinyCMS
   class Section < ApplicationRecord
-    include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
-    include ShinyDemoDataProvider
-    include ShinyName
-    include ShinySlugInSection
-    include ShinyShowHide
-    include ShinySoftDelete
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyClassName
+    include ShinyCMS::ShinyName
+    include ShinyCMS::ShinySlugInSection
+    include ShinyCMS::ShinyShowHide
+    include ShinyCMS::ShinySoftDelete
+
+    include ShinySearch::Searchable if ShinyCMS::ShinyPlugin.loaded? :ShinySearch
+
+    include TopLevelSlugValidator
 
     # Associations
 
@@ -25,11 +29,11 @@ module ShinyPages
 
     # Validations
 
-    validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
+    validates :slug, unique_top_level_slug: true, if: -> { section.blank? }
 
     # Plugin features
 
-    searchable_by :public_name, :slug if ShinyPlugin.loaded? :ShinySearch
+    searchable_by :public_name, :slug if ShinyCMS::ShinyPlugin.loaded? :ShinySearch
 
     # Scopes and sorting
 
@@ -102,7 +106,7 @@ module ShinyPages
 
     # Return the default top-level section
     def self.default_section
-      name_or_slug = ::Setting.get :default_section
+      name_or_slug = ShinyCMS::Setting.get :default_section
       top_level_sections.where( internal_name: name_or_slug )
                         .or( top_level_sections
                         .where( slug: name_or_slug ) )

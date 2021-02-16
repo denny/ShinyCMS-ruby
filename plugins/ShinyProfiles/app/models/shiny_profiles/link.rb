@@ -9,9 +9,10 @@
 module ShinyProfiles
   # Model for user profile pages (and related features)
   class Link < ApplicationRecord
-    include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
-    include ShinyDemoDataProvider
-    include ShinySoftDelete
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinySoftDelete
+
+    include ShinySearch::Searchable if ShinyCMS::ShinyPlugin.loaded? :ShinySearch
 
     # Associations
 
@@ -21,7 +22,7 @@ module ShinyProfiles
 
     acts_as_list scope: :profile
 
-    searchable_by :name, :url if ShinyPlugin.loaded? :ShinySearch # TODO
+    searchable_by :name, :url if ShinyCMS::ShinyPlugin.loaded? :ShinySearch # TODO
 
     # Validations
 

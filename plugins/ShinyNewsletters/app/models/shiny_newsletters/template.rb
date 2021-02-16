@@ -9,9 +9,9 @@
 module ShinyNewsletters
   # Model for newsletter templates - part of the ShinyNewsletters plugin for ShinyCMS
   class Template < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinyMJMLTemplate
-    include ShinySoftDelete
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyMJMLTemplate
+    include ShinyCMS::ShinySoftDelete
 
     # Associations
 
@@ -20,7 +20,7 @@ module ShinyNewsletters
     # Class methods
 
     def self.template_dir
-      Theme.current&.template_dir 'shiny_newsletters/newsletter_mailer'
+      ShinyCMS::Theme.current&.template_dir 'shiny_newsletters/newsletter_mailer'
     end
 
     def self.admin_search( search_term )

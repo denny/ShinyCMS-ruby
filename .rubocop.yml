@@ -36,13 +36,13 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - Gemfile
-    - app/models/concerns/*.rb
     - config/environments/*
     - config/routes.rb
     - lib/tasks/*.rake
     - plugins/Shiny*/config/routes.rb
     - plugins/Shiny*/shiny_*.gemspec
     - plugins/Shiny*/spec/**/*.rb
+    - plugins/ShinyCMS/app/models/concerns/shinycms/*.rb
     - spec/**/*.rb
 
 # Spec files with I18n.t calls in them are more readable with longer single lines
@@ -61,7 +61,7 @@ Layout/MultilineArrayLineBreaks:
 # This method is not useless - it allows user registrations to be feature-flagged
 Lint/UselessMethodDefinition:
   Exclude:
-    - app/controllers/users/registrations_controller.rb
+    - plugins/ShinyCMS/app/controllers/shinycms/users/registrations_controller.rb
 
 # I like chaining methods, it's aesthetically pleasing :-p
 Performance/ChainArrayAllocation:
@@ -85,12 +85,17 @@ Rails/SaveBang:
 # There's no database activity in these before all blocks, so this cop doesn't apply
 RSpec/BeforeAfterAll:
   Exclude:
-    - spec/models/theme_spec.rb
-    - spec/support/faker.rb
+    - plugins/ShinyCMS/spec/models/shinycms/theme_spec.rb
+    - plugins/ShinyCMS/spec/support/faker.rb
 
 # Currently inclined to keep this approach, for readability etc
 RSpec/DescribedClassModuleWrapping:
   Enabled: false
+
+# This is ignoring config/initializers/inflections.rb (as about half of Rails does)
+RSpec/FilePath:
+  Exclude:
+    - plugins/ShinyCMS/spec/*/shinycms/**/*_spec.rb
 
 # Disabling these two for now (but open to discussion/persuasion on their merits)
 RSpec/ExampleLength:
@@ -123,7 +128,7 @@ Style/DisableCopsWithinSourceCodeDirective:
 Style/IpAddresses:
   Exclude:
     - db/demo_data.rb
-    - spec/requests/admin_controller_spec.rb
+    - plugins/ShinyCMS/spec/requests/shinycms/admin_controller_spec.rb
 
 # I'd rather use one style of regex everywhere, and this one is clearer when working with URLs:
 # %r{/(path)/parts/} rather than /\/(path)\/parts\//

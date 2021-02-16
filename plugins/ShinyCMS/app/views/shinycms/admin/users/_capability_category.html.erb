@@ -1,0 +1,10 @@
+  <tr class="<%= show %>collapse collapse_capabilities">
+    <td>
+      <%= t( "shinycms.capability.category.#{category.name}" ) %>
+    </td>
+    <% category_capabilities.each do |capability_name| %>
+    <td class="width16pc">
+      <%= render_capability_checkbox( f, capability_name, category ) %>
+    </td>
+    <% end %>
+  </tr>

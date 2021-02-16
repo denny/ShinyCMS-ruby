@@ -68,12 +68,6 @@ search:
 
   ## Root directories for relative keys resolution.
   relative_roots:
-    - app/controllers
-    - app/helpers
-    - app/mailers
-    - app/models
-    - app/views
-    - app/views/shinycms
     # Check for usage in the plugin views and controllers too
     <% plugin_names = Dir[ 'plugins/*' ].sort.collect { |plugin_name| plugin_name.sub( 'plugins/', '' ) } %>
     <% plugin_names.each do |plugin_name| %>
@@ -82,6 +76,12 @@ search:
     <% end %>
     # FIXME
     - plugins/ShinyPages/app/models
+    - plugins/ShinyCMS/app/helpers
+    - plugins/ShinyCMS/app/mailers
+    - plugins/ShinyCMS/app/mailers/shinycms
+    #- plugins/ShinyCMS/app/views/shinycms
+    # REP, and whatever else is still in main_app
+    - app/views/
 
   ## Files or `File.fnmatch` patterns to exclude from search. Some files are always excluded regardless of this setting:
   ##   %w(*.jpg *.png *.gif *.svg *.ico *.eot *.otf *.ttf *.woff *.woff2 *.pdf *.css *.sass *.scss *.less *.yml *.json)
@@ -112,21 +112,19 @@ search:
 
 ## Do not consider these keys missing:
 ignore_missing:
+  - devise.*
+  - errors.messages.not_saved
   # jQuery
   - date.month_names
 #  - error
-#  - errors.messages.not_saved
 # - 'errors.messages.{accepted,blank,invalid,too_short,too_long}'
 # - '{devise,simple_form}.*'
 
 ## Consider these keys used:
 ignore_unused:
-  - destroy
-  # These are used by a couple of plugins, I think it makes sense to leave them in core locale for now
-  - admin.elements.{html,image,long_text,short_text}
-  # Devise
-  - devise.*
-  - errors.messages.*
+  - shinycms.admin.elements.{html,image,long_text,short_text}
+  - shinycms.errors.messages.*
+#  - devise.*
 # - '{devise,kaminari,will_paginate}.*'
 # - 'activerecord.attributes.*'
 # - 'simple_form.{yes,no}'

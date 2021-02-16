@@ -1,0 +1,34 @@
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag   %>
+
+    <%= favicon_link_tag asset_path( 'shinycms/favicon.ico' ) %>
+
+    <% if blazer_controller? %>
+    <% @page_title = t( "shinycms.admin.blazer.#{controller_name}.title" ) %>
+
+    <%= stylesheet_link_tag    'blazer/application' %>
+    <%= javascript_include_tag 'blazer/application' %>
+
+    <script>
+      <%= blazer_js_var 'rootPath', root_path %>
+    </script>
+
+    <% elsif shiny_controller? %>
+    <%= javascript_include_tag Ckeditor.cdn_url if try :load_html_editor? %>
+    <% end %>
+
+    <%= stylesheet_link_tag 'https://unpkg.com/@coreui/coreui@3.0.0/dist/css/coreui.min.css' %>
+    <%= stylesheet_link_tag 'https://unpkg.com/@coreui/icons@1.0.0/css/free.min.css' %>
+
+    <%= stylesheet_link_tag 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' %>
+
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Noto+Sans+TC|Ubuntu|Roboto+Condensed|Roboto&display=swap' %>
+
+    <%= stylesheet_link_tag 'shinycms/admin_area', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <title>
+      <%= "#{@page_title.titlecase} - " if @page_title %>ShinyCMS
+    </title>

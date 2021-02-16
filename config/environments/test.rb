@@ -11,8 +11,10 @@
 # your test database is "scratch space" for the test suite and is wiped
 # and recreated between test runs. Don't rely on the data there!
 
+require 'active_support/core_ext/integer/time'
+
 Rails.application.configure do
-  # Settings here will take precedence over those in config/application.rb
+  # Settings specified here will take precedence over those in config/application.rb
 
   # ShinyCMS needs eager load enabled, for ActiveRecord::Base.descendants to work properly
   # (Used to find models that have various capabilities - e.g. taggable/searchable/etc)
@@ -50,11 +52,18 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
   config.action_mailer.default_url_options = { host: 'example.com' }
 
+  # Annotate rendered view with file names.
+  # config.action_view.annotate_rendered_view_with_filenames = true
+
   # Store uploaded files on the local file system in a temporary directory.
   config.active_storage.service = :test
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  # Raise exceptions for disallowed deprecations
+  config.active_support.disallowed_deprecation = :raise
+  # Tell Active Support which deprecation messages to disallow.
+  config.active_support.disallowed_deprecation_warnings = []
 
   # Raise error for missing translations.
   config.i18n.raise_on_missing_translations = true

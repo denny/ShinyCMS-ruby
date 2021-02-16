@@ -7,19 +7,20 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Explicitly require the main app User model here, to fix reloader glitches in dev env
-require_dependency 'user'
+require_dependency 'shinycms/user'
 
 module ShinyProfiles
   # Model for user profile pages (and related features)
   class Profile < ApplicationRecord
-    include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
-    include ShinyDemoDataProvider
-    include ShinyShowHide
-    include ShinySoftDelete
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyShowHide
+    include ShinyCMS::ShinySoftDelete
+
+    include ShinySearch::Searchable if ShinyCMS::ShinyPlugin.loaded? :ShinySearch
 
     # Associations
 
-    belongs_to :user
+    belongs_to :user, inverse_of: :profile, class_name: 'ShinyCMS::User'
 
     has_many :links, -> { order( :position ) }, inverse_of: :profile, dependent: :destroy
 
@@ -41,7 +42,9 @@ module ShinyProfiles
 
     # Plugins
 
-    searchable_by :username, :public_name, :public_email, :bio, :location, :postcode if ShinyPlugin.loaded? :ShinySearch
+    if ShinyCMS::ShinyPlugin.loaded? :ShinySearch
+      searchable_by :username, :public_name, :public_email, :bio, :location, :postcode
+    end
 
     # Instance methods
 
@@ -56,7 +59,7 @@ module ShinyProfiles
     # Class methods
 
     def self.for_username( username )
-      user = ::User.find_by( username: username )
+      user = ShinyCMS::User.find_by( username: username )
       raise ActiveRecord::RecordNotFound if user.blank?
 
       profile = find_by( user: user )
@@ -72,6 +75,6 @@ module ShinyProfiles
   end
 end
 
-::User.has_one :profile, inverse_of: :user, class_name: 'ShinyProfiles::Profile', dependent: :destroy
+ShinyCMS::User.has_one :profile, inverse_of: :user, class_name: 'ShinyProfiles::Profile', dependent: :destroy
 
-::User.after_create :create_profile
+ShinyCMS::User.after_create :create_profile

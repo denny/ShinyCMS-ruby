@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shiny_seo (21.1)
+    shiny_seo (21.02)
       pg (>= 0.18, < 2.0)
       rails (~> 6.1.2, >= 6.1.2.1)
       sitemap_generator

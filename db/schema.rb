@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["creator_id"], name: "index_blazer_queries_on_creator_id"
   end
 
-  create_table "capabilities", force: :cascade do |t|
+  create_table "shinycms_capabilities", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "category_id"
     t.string "description"
@@ -169,7 +169,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["deleted_at"], name: "index_capabilities_on_deleted_at"
   end
 
-  create_table "capability_categories", force: :cascade do |t|
+  create_table "shinycms_capability_categories", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -177,7 +177,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["deleted_at"], name: "index_capability_categories_on_deleted_at"
   end
 
-  create_table "comment_authors", force: :cascade do |t|
+  create_table "shinycms_comment_authors", force: :cascade do |t|
     t.string "name", null: false
     t.string "website"
     t.inet "ip_address", null: false
@@ -190,7 +190,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["email_recipient_id"], name: "index_comment_authors_on_email_recipient_id"
   end
 
-  create_table "comments", force: :cascade do |t|
+  create_table "shinycms_comments", force: :cascade do |t|
     t.bigint "discussion_id", null: false
     t.integer "number", null: false
     t.bigint "parent_id"
@@ -212,7 +212,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["parent_id"], name: "index_comments_on_parent_id"
   end
 
-  create_table "consent_versions", force: :cascade do |t|
+  create_table "shinycms_consent_versions", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
     t.text "display_text", null: false
@@ -223,7 +223,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["deleted_at"], name: "index_consent_versions_on_deleted_at"
   end
 
-  create_table "discussions", force: :cascade do |t|
+  create_table "shinycms_discussions", force: :cascade do |t|
     t.string "resource_type"
     t.bigint "resource_id"
     t.boolean "locked", default: false, null: false
@@ -235,7 +235,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["resource_type", "resource_id"], name: "index_discussions_on_resource_type_and_resource_id"
   end
 
-  create_table "do_not_contacts", force: :cascade do |t|
+  create_table "shinycms_do_not_contacts", force: :cascade do |t|
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -244,7 +244,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["email"], name: "index_do_not_contacts_on_email", unique: true
   end
 
-  create_table "email_recipients", force: :cascade do |t|
+  create_table "shinycms_email_recipients", force: :cascade do |t|
     t.string "name"
     t.string "email", null: false
     t.string "canonical_email", null: false
@@ -260,7 +260,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["token"], name: "index_email_recipients_on_token", unique: true
   end
 
-  create_table "feature_flags", force: :cascade do |t|
+  create_table "shinycms_feature_flags", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
     t.boolean "enabled", default: false, null: false
@@ -291,7 +291,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  create_table "setting_values", force: :cascade do |t|
+  create_table "shinycms_setting_values", force: :cascade do |t|
     t.bigint "setting_id", null: false
     t.bigint "user_id"
     t.string "value"
@@ -302,7 +302,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["setting_id", "user_id"], name: "index_setting_values_on_setting_id_and_user_id", unique: true
   end
 
-  create_table "settings", force: :cascade do |t|
+  create_table "shinycms_settings", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
     t.string "level", default: "site", null: false
@@ -607,34 +607,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["user_id"], name: "index_shiny_profiles_profiles_on_user_id"
   end
 
-  create_table "taggings", id: :serial, force: :cascade do |t|
-    t.integer "tag_id"
-    t.string "taggable_type"
-    t.integer "taggable_id"
-    t.string "tagger_type"
-    t.integer "tagger_id"
-    t.string "context", limit: 128
-    t.datetime "created_at"
-    t.index ["context"], name: "index_taggings_on_context"
-    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-    t.index ["tag_id"], name: "index_taggings_on_tag_id"
-    t.index ["taggable_id", "taggable_type", "context"], name: "taggings_taggable_context_idx"
-    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
-    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
-    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
-    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
-    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
-  end
-
-  create_table "tags", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "taggings_count", default: 0
-    t.index ["name"], name: "index_tags_on_name", unique: true
-  end
-
-  create_table "user_capabilities", force: :cascade do |t|
+  create_table "shinycms_user_capabilities", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "capability_id", null: false
     t.datetime "created_at", null: false
@@ -644,7 +617,7 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["user_id", "capability_id"], name: "index_user_capabilities_on_user_id_and_capability_id", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "shinycms_users", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "email", default: "", null: false
     t.string "canonical_email", null: false
@@ -682,10 +655,37 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  create_table "votable_ips", force: :cascade do |t|
+  create_table "shinycms_votable_ips", force: :cascade do |t|
     t.string "ip_address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "taggings", id: :serial, force: :cascade do |t|
+    t.integer "tag_id"
+    t.string "taggable_type"
+    t.integer "taggable_id"
+    t.string "tagger_type"
+    t.integer "tagger_id"
+    t.string "context", limit: 128
+    t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "taggings_taggable_context_idx"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
+  end
+
+  create_table "tags", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "votes", force: :cascade do |t|
@@ -706,18 +706,13 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "capabilities", "capability_categories", column: "category_id"
-  add_foreign_key "comments", "comments", column: "parent_id"
-  add_foreign_key "comments", "discussions"
-  add_foreign_key "setting_values", "settings"
-  add_foreign_key "setting_values", "users"
   add_foreign_key "shiny_access_memberships", "shiny_access_groups", column: "group_id"
-  add_foreign_key "shiny_access_memberships", "users"
-  add_foreign_key "shiny_blog_posts", "users"
+  add_foreign_key "shiny_access_memberships", "shinycms_users", column: "user_id"
+  add_foreign_key "shiny_blog_posts", "shinycms_users", column: "user_id"
   add_foreign_key "shiny_inserts_elements", "shiny_inserts_sets", column: "set_id"
-  add_foreign_key "shiny_lists_subscriptions", "consent_versions"
+  add_foreign_key "shiny_lists_subscriptions", "shinycms_consent_versions", column: "consent_version_id"
   add_foreign_key "shiny_lists_subscriptions", "shiny_lists_lists", column: "list_id"
-  add_foreign_key "shiny_news_posts", "users"
+  add_foreign_key "shiny_news_posts", "shinycms_users", column: "user_id"
   add_foreign_key "shiny_newsletters_edition_elements", "shiny_newsletters_editions", column: "edition_id"
   add_foreign_key "shiny_newsletters_editions", "shiny_newsletters_templates", column: "template_id"
   add_foreign_key "shiny_newsletters_sends", "shiny_lists_lists", column: "list_id"
@@ -730,8 +725,13 @@ ActiveRecord::Schema.define(version: 2020_12_27_180917) do
   add_foreign_key "shiny_pages_sections", "shiny_pages_sections", column: "section_id"
   add_foreign_key "shiny_pages_template_elements", "shiny_pages_templates", column: "template_id"
   add_foreign_key "shiny_profiles_links", "shiny_profiles_profiles", column: "profile_id"
-  add_foreign_key "shiny_profiles_profiles", "users"
+  add_foreign_key "shiny_profiles_profiles", "shinycms_users", column: "user_id"
+  add_foreign_key "shinycms_capabilities", "shinycms_capability_categories", column: "category_id"
+  add_foreign_key "shinycms_comments", "shinycms_comments", column: "parent_id"
+  add_foreign_key "shinycms_comments", "shinycms_discussions", column: "discussion_id"
+  add_foreign_key "shinycms_setting_values", "shinycms_settings", column: "setting_id"
+  add_foreign_key "shinycms_setting_values", "shinycms_users", column: "user_id"
+  add_foreign_key "shinycms_user_capabilities", "shinycms_capabilities", column: "capability_id"
+  add_foreign_key "shinycms_user_capabilities", "shinycms_users", column: "user_id"
   add_foreign_key "taggings", "tags"
-  add_foreign_key "user_capabilities", "capabilities"
-  add_foreign_key "user_capabilities", "users"
 end

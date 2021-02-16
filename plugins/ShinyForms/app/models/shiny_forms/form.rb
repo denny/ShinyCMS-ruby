@@ -9,10 +9,10 @@
 module ShinyForms
   # Model for forms, from ShinyForms plugin for ShinyCMS
   class Form < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinyName
-    include ShinySlug
-    include ShinySoftDelete
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyName
+    include ShinyCMS::ShinySlug
+    include ShinyCMS::ShinySoftDelete
 
     # Validations
 
@@ -73,7 +73,7 @@ module ShinyForms
     end
 
     def self.theme_template_dir
-      Theme.current&.template_dir 'shiny_forms/form_mailer'
+      ShinyCMS::Theme.current&.template_dir 'shiny_forms/form_mailer'
     end
 
     def self.default_template_dir

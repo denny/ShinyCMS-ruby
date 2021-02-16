@@ -30,35 +30,40 @@ source 'https://rubygems.org' do
   # Locales for the 'not USA' bits of the world
   gem 'rails-i18n'
 
-  # Enable ShinyCMS plugins
+  # ShinyCMS core plugin
+  gem 'shinycms', path: 'plugins/ShinyCMS'
+
+  # ShinyCMS feature plugins
   plugin_names.each do |plugin_name|
     gem_name = underscore( plugin_name )
     gem gem_name, path: "plugins/#{plugin_name}"
   end
 
   # Reduce boot times through caching; required in config/boot.rb
-  gem 'bootsnap', '>= 1.4.2', require: false
+  # gem 'bootsnap', '>= 1.4.2', require: false
   # Use faster SCSS gem for stylesheets
   gem 'sassc-rails'
   # Transpile app-like JavaScript. More info: https://github.com/rails/webpacker
   gem 'webpacker', '~> 5.2'
 
-  # User authentication
-  gem 'devise'
   # Sessions
-  # FIXME: temporarily installing from GitHub to pick up an unreleased fix for Ruby 3.0.0
+  # FIXME: Installing from GitHub because Ruby 3.0.0 is merged but not released:
+  # https://github.com/rails/activerecord-session_store/pull/159
+  # https://github.com/rails/activerecord-session_store/issues/171
   # gem 'activerecord-session_store'
   gem 'activerecord-session_store', git: 'https://github.com/rails/activerecord-session_store'
   # Stronger password encryption
   gem 'bcrypt', '~> 3.1.16'
+
+  # User authentication
+  gem 'devise'
+  # Authorisation
+  gem 'pundit'
+
   # Check user passwords against known data leaks
   gem 'devise-pwned_password'
   # Check password complexity
-  # FIXME: installing from GitHub until they release 1.2.x for ruby 3.x
-  # gem 'zxcvbn-ruby', require: 'zxcvbn'
-  gem 'zxcvbn-ruby', require: 'zxcvbn', git: 'https://github.com/envato/zxcvbn-ruby'
-  # Authorisation
-  gem 'pundit'
+  gem 'zxcvbn-ruby', require: 'zxcvbn'
 
   # Soft delete
   gem 'acts_as_paranoid'
@@ -74,35 +79,42 @@ source 'https://rubygems.org' do
   # Spam comment detection
   gem 'akismet'
 
-  # Validate email addresses
+  # Email address validation
   gem 'email_address'
 
-  # Email preview
-  gem 'rails_email_preview'
-
-  # MJML emails
+  # MJML email rendering
   gem 'mjml-rails'
 
-  # Sortable lists (elements of template, etc)
+  # Email previews
+  gem 'rails_email_preview'
+
+  # Pagination
+  gem 'pagy'
+
+  # Sortable lists
   gem 'acts_as_list'
+
+  # WYSIWYG editor
+  gem 'ckeditor'
+
+  # Image storage on S3
+  gem 'aws-sdk-s3'
+  # Image processing, for resizing etc
+  gem 'image_processing', '~> 1.12'
+  # Also image processing
+  gem 'mini_magick'
 
   # Tags
   gem 'acts-as-taggable-on'
 
-  # Likes
+  # Upvotes (AKA 'Likes') and downvotes
   gem 'acts_as_votable'
-
-  # Pagination
-  gem 'pagy'
 
   # Generate SEO sitemaps
   gem 'sitemap_generator'
 
   # Generate Atom feeds
   gem 'rss'
-
-  # CKEditor: WYSIWYG editor for admin area
-  gem 'ckeditor'
 
   # Email stats
   gem 'ahoy_email'
@@ -114,13 +126,6 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 3.4.2'
 
-  # Image storage on S3
-  gem 'aws-sdk-s3'
-  # Image processing, for resizing etc
-  gem 'image_processing', '~> 1.12'
-  # Also image processing
-  gem 'mini_magick'
-
   # HTML & XML parser
   gem 'nokogiri', '>= 1.11.0.rc4'
 
@@ -129,10 +134,10 @@ source 'https://rubygems.org' do
 
   # Pry is a debugging tool for the Rails console
   if env_var_true?( :shinycms_pry_console )
-    # Set ENV['SHINYCMS_PRY_CONSOLE']=true to explicitly enable Pry in this environment
+    # Set SHINYCMS_PRY_CONSOLE=true in ENV to enable Pry in that environment
     gem 'pry-rails'
   else
-    # Otherwise, it will only be enabled in dev and test environments
+    # Pry is always enabled in dev and test environments
     gem 'pry-rails', groups: %i[ development test ]
   end
 
@@ -143,21 +148,16 @@ source 'https://rubygems.org' do
     # Bugsnag - error monitoring and bug triage
     gem 'bugsnag'
 
-    # Fix request.ip if we're running behind Cloudflare's proxying service
+    # Fix request.ip when running behind Cloudflare proxying
     gem 'cloudflare-rails'
   end
 
   group :development, :test do
-    # Tests are good, m'kay?
+    # Tests
     gem 'rspec-rails'
 
     # Run tests in parallel on multi-core machines
     gem 'parallel_tests'
-
-    # Create test objects
-    gem 'factory_bot_rails'
-    # Fill test objects with fake data
-    gem 'faker'
 
     # Utils for working with translation strings
     # gem 'i18n-debug'
@@ -194,7 +194,7 @@ source 'https://rubygems.org' do
     gem 'letter_opener_web', '~> 1.0'
 
     # Reload dev server when files change
-    gem 'listen', '>= 3.0.5', '< 3.5'
+    gem 'listen', '~> 3.3'
 
     # Helps you manage your git hooks
     gem 'overcommit', require: false
@@ -209,6 +209,11 @@ source 'https://rubygems.org' do
   group :test do
     # Wipe the test database before each test run
     gem 'database_cleaner-active_record'
+
+    # Create test objects
+    gem 'factory_bot_rails'
+    # Fill test objects with fake data
+    gem 'faker'
 
     # Integration tests (request specs)
     gem 'capybara', '>= 2.15'

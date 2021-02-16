@@ -1,11 +1,11 @@
 
-CommentAuthor.create!([
+ShinyCMS::CommentAuthor.create!([
   {id: 1, name: "ShinyCMS", website: "https://shinycms.org", ip_address: "127.0.0.1", token: "6cfe74c8-5e99-4589-9430-ac0b70e7ec1f", email_recipient_id: nil, deleted_at: nil},
   {id: 2, name: "Pill Pusher", website: "http://spammy.website", ip_address: "127.0.0.1", token: "6de0eecc-8b3d-44ba-aee5-0e9ccbd42006", email_recipient_id: nil, deleted_at: nil},
   {id: 3, name: "Lorem Long", website: "", ip_address: "127.0.0.1", token: "99b0c809-899e-4394-8c62-92e520e51985", email_recipient_id: nil, deleted_at: nil}
 ])
 
-ConsentVersion.create!([
+ShinyCMS::ConsentVersion.create!([
   {id: 2, name: "Newsletter subscription (3rd September 2020)", slug: "newsletter-2020-09-03", display_text: "Your ideas are intriguing to me, and I wish to subscribe to your newsletter.", admin_notes: "Consent text for the homepage newsletter subscribe form (part of the demo site data).", deleted_at: nil}
 ])
 
@@ -151,12 +151,12 @@ ShinyNewsletters::Send.create!([
   {id: 1, edition_id: 1, list_id: 1, send_at: nil, started_sending_at: nil, finished_sending_at: nil, deleted_at: nil}
 ])
 
-Discussion.create!([
+ShinyCMS::Discussion.create!([
   {id: 1, resource_type: "ShinyBlog::Post", resource_id: 1, locked: false, show_on_site: true, deleted_at: nil},
   {id: 2, resource_type: "ShinyBlog::Post", resource_id: 2, locked: false, show_on_site: true, deleted_at: nil}
 ])
 
-Comment.create!([
+ShinyCMS::Comment.create!([
   {id: 1, discussion_id: 1, number: 1, parent_id: nil, title: "Properly nested comments...", body: "Ask for them by name - do not accept inferior substitutes!", ip_address: nil, locked: false, show_on_site: true, spam: false, author_type: "User", author_id: 1, posted_at: "2020-02-28 18:56:25", deleted_at: nil},
   {id: 2, discussion_id: 1, number: 2, parent_id: nil, title: "", body: "Yes, this is indeed a comment thread. The nested comments feature was added to ShinyCMS (Ruby version) in February 2020.\r\n\r\n(And to the Perl version in August 2010)", ip_address: nil, locked: false, show_on_site: true, spam: false, author_type: "CommentAuthor", author_id: 1, posted_at: "2020-02-28 19:02:46", deleted_at: nil},
   {id: 3, discussion_id: 1, number: 3, parent_id: 1, title: "Nested comments FTW!", body: "", ip_address: nil, locked: true, show_on_site: true, spam: false, author_type: nil, author_id: nil, posted_at: "2020-02-28 19:03:55", deleted_at: nil},

@@ -1,0 +1,26 @@
+<% if @discussion.show_on_site? %>
+
+<% if @discussion.comments.top_level.present? %>
+  <%= render partial: 'discussions/top_level',
+             locals: { comments: @discussion.comments.top_level } %>
+<% else %>
+  <section>
+    <p>
+      <%= t( 'shinycms.empty_list', items: 'comments' ) %>
+    </p>
+  </section>
+<% end %>
+
+<p>
+  <button class="button" onclick="toggleHidden('comment_form')" style="font-size: 1em; height: 2em;">
+    <%= t( 'shinycms.discussions.new_comment' ) %>
+  </button>
+</p>
+
+<div id="comment_form" class="comment_form" hidden>
+  <section>
+    <%= render partial: 'discussions/comment/form', locals: { discussion: @discussion } %>
+  </section>
+</div>
+
+<% end %>

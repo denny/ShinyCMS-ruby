@@ -9,12 +9,12 @@
                   <ul class="link-list last-child">
                     <li><%= link_to t( 'shiny_profiles.view_profile' ), shiny_profiles.profile_path( current_user.username ) %></li>
                     <li><%= link_to t( 'shiny_profiles.edit_profile' ), shiny_profiles.edit_profile_path( current_user.username ) %></li>
-                    <li><%= link_to t( 'user.edit_account' ), main_app.edit_user_registration_path %></li>
-                    <li><%= link_to t( 'user.log_out' ), main_app.destroy_user_session_path, data: {}, method: :delete %></li>
+                    <li><%= link_to t( 'shinycms.user.edit_account' ), shinycms.edit_user_registration_path %></li>
+                    <li><%= link_to t( 'shinycms.user.log_out' ), shinycms.destroy_user_session_path, data: {}, method: :delete %></li>
                   </ul>
                   <% elsif feature_enabled? :user_login %>
                   <h2>Log in</h2>
-                  <%= form_for( :user, url: main_app.user_session_path, method: :post ) do |f| %>
+                  <%= form_for( :user, url: shinycms.user_session_path, method: :post ) do |f| %>
                     <div class="field">
                       <%= f.text_field :login, autocomplete: 'email', placeholder: 'Username or email' %>
                     </div>
@@ -25,7 +25,7 @@
                       <%= f.check_box :remember_me %> <%= f.label :remember_me %>
                     </div>
                     <div class="field">
-                      <%= f.submit t( 'user.log_in' ), class: 'button' %>
+                      <%= f.submit t( 'shinycms.user.log_in' ), class: 'button' %>
                     </div>
                   <% end %>
                 <% end %>
@@ -41,10 +41,10 @@
                       <div class="col-4 col-12-small">
                         <ul class="link-list last-child">
                           <% if user_signed_in? %>
-                          <li><%= link_to t( 'user.site_settings' ), main_app.site_settings_path %></li>
+                          <li><%= link_to t( 'shinycms.user.site_settings' ), shinycms.site_settings_path %></li>
                           <% else %>
                           <% if feature_enabled?( :user_registration ) %>
-                          <li>Click here to <%= link_to t( 'user.register' ).downcase, new_user_registration_path %></li>
+                          <li>Click here to <%= link_to t( 'shinycms.user.register' ).downcase, shinycms.new_user_registration_path %></li>
                           <% end %>
                           <% end %>
                           <li><a href="#">Sed mattis quis rutrum</a></li>

@@ -13,9 +13,9 @@ RSpec.describe UserMailerPreview, type: :request do
   before do
     admin = create :mailer_admin
     sign_in admin
-
-    @site_name = ::Setting.get( :site_name ) || I18n.t( 'site_name' )
   end
+
+  let( :site_name ) { ShinyCMS::Setting.get( :site_name ) || I18n.t( 'site_name' ) }
 
   describe '.confirmation_instructions' do
     it 'shows the confirmation instructions email' do
@@ -24,7 +24,7 @@ RSpec.describe UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'user_mailer.confirmation_instructions.subject', site_name: @site_name )
+        .to have_content I18n.t( 'shinycms.user_mailer.confirmation_instructions.subject', site_name: site_name )
     end
   end
 
@@ -35,7 +35,7 @@ RSpec.describe UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'user_mailer.reset_password_instructions.subject', site_name: @site_name )
+        .to have_content I18n.t( 'shinycms.user_mailer.reset_password_instructions.subject', site_name: site_name )
     end
   end
 
@@ -46,7 +46,7 @@ RSpec.describe UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'user_mailer.password_changed_instructions.subject', site_name: @site_name )
+        .to have_content I18n.t( 'shinycms.user_mailer.password_changed_instructions.subject', site_name: site_name )
     end
   end
 
@@ -57,7 +57,7 @@ RSpec.describe UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'user_mailer.email_changed_instructions.subject', site_name: @site_name )
+        .to have_content I18n.t( 'shinycms.user_mailer.email_changed_instructions.subject', site_name: site_name )
     end
   end
 
@@ -68,7 +68,7 @@ RSpec.describe UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'user_mailer.unlock_instructions.subject', site_name: @site_name )
+        .to have_content I18n.t( 'shinycms.user_mailer.unlock_instructions.subject', site_name: site_name )
     end
   end
 end

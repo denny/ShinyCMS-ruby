@@ -1,0 +1,37 @@
+<% if current_user_can?( :hide, :comments ) || current_user_can?( :lock, :comments ) %>
+
+<span class="float-right smaller">
+  Comment:
+
+<% if current_user_can?( :hide, :comments ) %>
+  <% if comment.hidden? %>
+    <%= link_to t( 'show' ), shinycms.show_comment_path( comment ), method: :put %>
+  <% else %>
+    <%= link_to t( 'hide' ), shinycms.hide_comment_path( comment ), method: :put %>
+  <% end %>
+  /
+<% end %>
+
+<% if current_user_can?( :lock, :comments ) %>
+  <% if comment.locked? %>
+    <%= link_to t( 'unlock' ), shinycms.unlock_comment_path( comment ), method: :put %>
+  <% else %>
+    <%= link_to t( 'lock' ), shinycms.lock_comment_path( comment ), method: :put %>
+  <% end %>
+  /
+<% end %>
+
+  <% if current_user_can?( :destroy, :spam_comments ) %>
+    <%= link_to t( 'shinycms.discussions.spam' ), shinycms.spam_comment_path( comment ), method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+  /
+  <% elsif current_user_can?( :flag, :spam_comments ) %>
+    <%= link_to t( 'shinycms.discussions.spam' ), shinycms.spam_comment_path( comment ), method: :put %>
+  /
+  <% end %>
+
+  <% if current_user_can?( :destroy, :comments ) %>
+    <%= link_to t( 'delete' ), shinycms.destroy_comment_path( comment ), method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+  <% end %>
+</span>
+
+<% end %>

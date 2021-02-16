@@ -1,0 +1,11 @@
+<%= t( 'shinycms.upvotes.vote' ) %>:
+
+<% if current_user&.voted_up_on?( resource ) %>
+  <%= link_to t( 'shinycms.upvotes.remove_upvote' ),
+              destroy_vote_path( resource.class.name.underscore, resource.id ), method: :delete %>
+<% else %>
+  <%= link_to t( 'shinycms.upvotes.add_upvote' ),
+              create_vote_path( resource.class.name.underscore, resource.id, 'up' ), method: :post %>
+<% end %>
+
+(<%= resource.get_upvotes.size %>)

@@ -35,7 +35,7 @@ module ShinyAccess
     end
 
     describe 'concerns' do
-      it_behaves_like ShinyDemoDataProvider do
+      it_behaves_like ShinyCMS::ShinyDemoDataProvider do
         let( :model ) { described_class }
       end
     end

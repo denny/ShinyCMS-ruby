@@ -9,14 +9,14 @@
 module ShinyLists
   # Model for subscriptions to mailing lists
   class Subscription < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinySoftDelete
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinySoftDelete
 
     # Associations
 
     belongs_to :subscriber,      inverse_of: :subscriptions, polymorphic: true
     belongs_to :list,            inverse_of: :subscriptions
-    belongs_to :consent_version, inverse_of: :subscriptions
+    belongs_to :consent_version, inverse_of: :subscriptions, class_name: 'ShinyCMS::ConsentVersion'
 
     # Scopes
 
@@ -36,5 +36,5 @@ module ShinyLists
   end
 end
 
-::ConsentVersion.has_many :subscriptions, inverse_of: :consent_version, dependent: :restrict_with_error,
-                                          class_name: 'ShinyLists::Subscription'
+ShinyCMS::ConsentVersion.has_many :subscriptions, inverse_of: :consent_version, dependent: :restrict_with_error,
+                                  class_name: 'ShinyLists::Subscription'

@@ -13,29 +13,29 @@
 # Offense count: 28
 RSpec/AnyInstance:
   Exclude:
+    - 'plugins/ShinyCMS/spec/requests/shinycms/admin/comments_controller_spec.rb'
+    - 'plugins/ShinyCMS/spec/requests/shinycms/discussions_spec.rb'
+    - 'plugins/ShinyCMS/spec/requests/shinycms/main_controller_spec.rb'
+    - 'plugins/ShinyCMS/spec/requests/shinycms/users/registrations_controller_spec.rb'
     - 'plugins/ShinyForms/spec/requests/forms_spec.rb'
     - 'plugins/ShinyLists/spec/requests/subscriptions_spec.rb'
-    - 'plugins/ShinySearch/spec/requests/search_spec.rb'
-    - 'spec/requests/admin/comments_controller_spec.rb'
-    - 'spec/requests/discussions_spec.rb'
-    - 'spec/requests/main_controller_spec.rb'
-    - 'spec/requests/users/registrations_controller_spec.rb'
+    - 'plugins/ShinySearch/spec/requests/shiny_search/search_controller_spec.rb'
 
 # Offense count: 240
 # Configuration parameters: AssignmentOnly.
 RSpec/InstanceVariable:
   Exclude:
+    - 'plugins/ShinyCMS/spec/mailers/shinycms/discussion_mailer_spec.rb'
+    - 'plugins/ShinyCMS/spec/models/shinycms/discussion_spec.rb'
+    - 'plugins/ShinyCMS/spec/models/shinycms/user_spec.rb'
+    - 'plugins/ShinyCMS/spec/requests/shinycms/admin/comments_controller_spec.rb'
+    - 'plugins/ShinyCMS/spec/requests/shinycms/admin/discussions_controller_spec.rb'
+    - 'plugins/ShinyCMS/spec/requests/shinycms/discussions_spec.rb'
+    - 'plugins/ShinyCMS/spec/requests/shinycms/site_settings_controller_spec.rb'
+    - 'plugins/ShinyCMS/spec/requests/shinycms/votes_spec.rb'
+    - 'plugins/ShinyCMS/spec/support/shared_examples/shinycms/pagination_example.rb'
+    - 'plugins/ShinyCMS/spec/support/shared_examples/shinycms/shiny_post_example.rb'
     - 'plugins/ShinyBlog/spec/requests/admin/blog_spec.rb'
     - 'plugins/ShinyNews/spec/requests/admin/news_spec.rb'
     - 'plugins/ShinyPages/spec/requests/pages_spec.rb'
     - 'spec/mailer_previews/user_mailer_preview_spec.rb'
-    - 'spec/mailers/discussion_mailer_spec.rb'
-    - 'spec/models/discussion_spec.rb'
-    - 'spec/models/user_spec.rb'
-    - 'spec/requests/admin/comments_controller_spec.rb'
-    - 'spec/requests/admin/discussions_controller_spec.rb'
-    - 'spec/requests/discussions_spec.rb'
-    - 'spec/requests/site_settings_controller_spec.rb'
-    - 'spec/requests/votes_spec.rb'
-    - 'spec/support/shared_examples/pagination_example.rb'
-    - 'spec/support/shared_examples/shiny_post_example.rb'

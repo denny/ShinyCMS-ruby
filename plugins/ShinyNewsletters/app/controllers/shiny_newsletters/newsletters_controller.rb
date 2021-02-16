@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Controller for main site newsletter features - from the ShinyNewsletters plugin for ShinyCMS
   class NewslettersController < MainController
-    include ShinyPagingHelper
+    include ShinyCMS::ShinyPagingHelper
 
     helper_method :pagy_url_for
 
@@ -33,7 +33,7 @@ module ShinyNewsletters
     private
 
     def subscriber
-      current_user || EmailRecipient.confirmed.find_by( token: params[:token] )
+      current_user || ShinyCMS::EmailRecipient.confirmed.find_by( token: params[:token] )
     end
 
     def newsletters_sent_to_subscribed_lists

@@ -53,7 +53,7 @@ RSpec.describe 'Admin: Page Sections', type: :request do
       post shiny_pages.sections_path, params: {
         section: {
           internal_name: Faker::Books::CultureSeries.unique.culture_ship,
-          slug:          'tags'
+          slug:          'test'
         }
       }
 

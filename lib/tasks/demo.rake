@@ -29,8 +29,8 @@ namespace :shiny do
       @shiny_admin.skip_confirmation!
       @shiny_admin.save!
 
-      User.transaction do
-        Capability.all.find_each do |capability|
+      ShinyCMS::User.transaction do
+        ShinyCMS::Capability.all.find_each do |capability|
           @shiny_admin.user_capabilities.create! capability: capability
         end
       end
@@ -38,7 +38,7 @@ namespace :shiny do
       # Allow the demo data to replace @shiny_admin's user profile page
       @shiny_admin.profile.destroy_fully!
 
-      Setting.set :theme_name, to: 'halcyonic'
+      ShinyCMS::Setting.set :theme_name, to: 'halcyonic'
 
       skip_callbacks_on_templated_models
       require Rails.root.join 'db/demo_data.rb'
@@ -46,7 +46,7 @@ namespace :shiny do
 
       fix_primary_key_sequences
 
-      FeatureFlag.enable :user_login
+      ShinyCMS::FeatureFlag.enable :user_login
 
       puts 'Demo data loaded and admin account created.'
       puts "You can log in as '#{@shiny_admin.username}' now."
@@ -94,7 +94,7 @@ namespace :shiny do
       Rails.application.eager_load!
 
       # FIXME: bodge to deal with collision between seed data and demo data
-      ConsentVersion.find_by( slug: 'shiny-lists-admin-subscribe' )&.delete
+      ShinyCMS::ConsentVersion.find_by( slug: 'shiny-lists-admin-subscribe' )&.delete
 
       big_dump = ''
       models_with_demo_data.each do |model|
@@ -141,7 +141,7 @@ namespace :shiny do
       %w[
         ShinyPages::Page ShinyPages::PageElement
         ShinyNewsletters::Edition ShinyNewsletters::EditionElement ShinyNewsletters::Send
-        Discussion Comment
+        ShinyCMS::Discussion ShinyCMS::Comment
         ActiveStorage::Blob ActiveStorage::Attachment
         ActsAsTaggableOn::Tag ActsAsTaggableOn::Tagging
       ]

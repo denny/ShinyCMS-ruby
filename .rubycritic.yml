@@ -1,5 +1,6 @@
 no_browser: true
 paths:
+  - plugins/ShinyCMS/app
   - app
   - lib/generators/shiny
   - plugins/ShinyAccess/app

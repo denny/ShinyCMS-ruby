@@ -7,9 +7,10 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 Rails.application.config.to_prepare do
-  # Make Blazer appear inside our admin UI
-  ::Blazer::BaseController.layout 'admin/layouts/admin_area'
+  # Embed Blazer in the ShinyCMS admin UI
+  ::Blazer::BaseController.prepend_view_path 'plugins/ShinyCMS/app/views/shinycms'
+  ::Blazer::BaseController.layout 'admin/layouts/admin_area.html.erb'
 
-  # Make the main_app url helpers available to Blazer's views
-  ::Blazer::BaseController.helper MainAppRouteDelegator
+  # Make ShinyCMS url_helpers available to Blazer's views
+  ::Blazer::BaseController.helper ShinyCMS::RouteDelegator
 end

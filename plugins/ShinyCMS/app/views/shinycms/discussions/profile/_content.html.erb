@@ -1,0 +1,21 @@
+<% comments = recent_comments_by_user( @user_profile, 5 ) %>
+
+<% if comments.present? %>
+<script>
+  document.getElementsByClassName('user-profile-content')[0].style='display: block;';
+</script>
+
+<header style="margin: 0;">
+  <h3>
+    <%= t( 'shinycms.discussions.profile.content.title' ) %>
+  </h3>
+</header>
+
+<ul style="list-style: none; margin-left: 0;">
+  <% comments.each do |comment| %>
+  <li>
+    <%= link_to ( comment.title || 'Untitled' ), comment.anchored_path %>
+  </li>
+  <% end %>
+</ul>
+<% end %>
