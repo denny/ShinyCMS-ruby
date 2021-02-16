@@ -25,14 +25,6 @@ module ShinyNews
         posted_year, posted_month, slug, anchor: anchor
       )
     end
-
-    # Class methods
-
-    def self.admin_search( search_term )
-      where( 'title ilike ?', "%#{search_term}%" )
-        .or( where( 'body ilike ?', "%#{search_term}%" ) )
-        .order( posted_at: :desc )
-    end
   end
 end
 
