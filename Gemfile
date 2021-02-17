@@ -181,8 +181,6 @@ source 'https://rubygems.org' do
     gem 'brakeman', require: false
     # Check gems for security issues
     gem 'bundler-audit', require: false
-    # Check for slow code
-    gem 'fasterer', require: false
 
     # Best practices
     gem 'rails_best_practices', require: false
