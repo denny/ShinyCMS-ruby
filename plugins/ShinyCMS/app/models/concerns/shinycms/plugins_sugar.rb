@@ -54,7 +54,10 @@ module ShinyCMS
       delegate :models_that_respond_to, to: :new
       delegate :models_that_are,        to: :new
 
-      delegate :with_models, to: :new
+      delegate :with_main_site_helpers, to: :new
+      delegate :with_models,            to: :new
+      delegate :with_views,             to: :new
+      delegate :with_template,          to: :new
     end
   end
 end

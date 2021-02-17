@@ -49,15 +49,15 @@ module ShinyCMS
     end
 
     def with_main_site_helpers
-      Plugins.new( _plugins.select { |plugin| plugin.respond_to? :main_site_helper }.to_a )
+      Plugins.new( _plugins.select { |plugin| plugin.respond_to? :main_site_helper } )
     end
 
     def with_models
-      Plugins.new( _plugins.select { |plugin| plugin.respond_to? :base_model }.to_a )
+      Plugins.new( _plugins.select { |plugin| plugin.respond_to? :base_model } )
     end
 
     def with_views
-      Plugins.new( a💎[ _plugins.select( &:view_path ) ] )
+      Plugins.new( _plugins.select { |plugin| plugin.respond_to? :view_path } )
     end
 
     def with_template( template_path )
@@ -65,7 +65,7 @@ module ShinyCMS
     end
 
     def all_routes
-      💎ify[ _plugins.collect( &:routes ) ].to_a
+      💎ify[ _plugins.collect( &:routes ).flatten ].to_a
     end
 
     def models_that_are( method )
