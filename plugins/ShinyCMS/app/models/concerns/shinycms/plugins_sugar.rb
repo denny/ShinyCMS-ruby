@@ -6,7 +6,7 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# TODO: ONCE TESTS ARE PASSING ... replace body of each class method in ShinyPlugin
+# TODO: ONCE TESTS ARE PASSING ... replace body of each class method in Plugin
 # with a call to the corresponding method below, and re-run tests!
 
 module ShinyCMS
@@ -18,50 +18,44 @@ module ShinyCMS
 
     included do
       def taggable_models
-        a💎[ models_that_are :taggable? ]
+        models_that_are :taggable?
       end
 
       def votable_models
-        a💎[ models_that_are :votable? ]
+        models_that_are :votable?
       end
 
       def models_with_demo_data
-        a💎[ models_that_respond_to :dump_for_demo? ]
+        models_that_respond_to :dump_for_demo?
       end
 
       def models_with_sitemap_items
-        a💎[ models_that_respond_to :sitemap_items ]
+        models_that_respond_to :sitemap_items
+      end
+
+      def _unshift( plugin )
+        Plugins.new( _plugins.unshift( build_plugin( plugin ) ) )
       end
     end
 
     class_methods do
-      def all_routes
-        Plugins.new.all_routes
+      def all
+        new._unshift( 'ShinyCMS' )
       end
 
-      def taggable_models
-        Plugins.new.taggable_models
-      end
+      delegate :names,      to: :new
+      delegate :all_routes, to: :new
 
-      def votable_models
-        Plugins.new.votable_models
-      end
+      delegate :taggable_models, to: :new
+      delegate :votable_models,  to: :new
 
-      def models_with_demo_data
-        Plugins.new.models_with_demo_data
-      end
+      delegate :models_with_demo_data,     to: :new
+      delegate :models_with_sitemap_items, to: :new
 
-      def models_with_sitemap_items
-        Plugins.new.models_with_sitemap_items
-      end
+      delegate :models_that_respond_to, to: :new
+      delegate :models_that_are,        to: :new
 
-      def models_that_respond_to( method )
-        Plugins.new.models_that_respond_to( method )
-      end
-
-      def models_that_are( boolean_method )
-        Plugins.new.models_that_are( boolean_method )
-      end
+      delegate :with_models, to: :new
     end
   end
 end

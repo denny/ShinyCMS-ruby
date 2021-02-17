@@ -6,9 +6,6 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# TODO: ONCE TESTS ARE PASSING ... replace body of each class method in ShinyPlugin
-# with a call to the corresponding method below, and re-run tests!
-
 module ShinyCMS
   # Interface to the ShinyCMS plugins
   class Plugins
@@ -16,88 +13,115 @@ module ShinyCMS
 
     include PluginsSugar
 
-    def initialize( plugins = nil, include_core: false )
-      @plugins = plugins || include_core ? all_plugins : feature_plugins
+    def initialize( plugins = nil )
+      plugins = build_plugins( plugins ) if plugins&.to_a&.all? String
+
+      unless plugins.nil? || plugins.to_a.all?( ShinyCMS::Plugin )
+        raise ArgumentError, 'You must pass in Plugin objects or plugin names'
+      end
+
+      @_plugins = plugins || all_feature_plugins
     end
 
     # Instance methods
 
+    delegate :include?, to: :names
+
+    delegate :each, to: :_plugins
+
+    delegate :collect, to: :_plugins
+
     def names
-      a💎[ @plugins.collect( &:name ) ]
+      💎ify[ _plugins.collect( &:name ) ].to_a
     end
 
-    def includes_core_plugin?
-      names.include? 'ShinyCMS'
+    def add( plugin_name )
+      return self if _plugins.include? plugin_name
+
+      Plugins.new( _plugins.add( build_plugin( plugin_name ) ) )
     end
 
-    # Get new/filtered collections
+    def remove( plugin_name )
+      return self unless include? plugin_name
+
+      # TODO: find plugin by name instead of wastefully instantiating
+      Plugins.new( _plugins.delete( build_plugin( plugin_name ) ) )
+    end
 
     def with_main_site_helpers
-      Plugins.new( a💎[ @plugins.select( &:main_site_helper ) ] )
+      Plugins.new( a💎[ _plugins.select( &:main_site_helper ) ] )
     end
 
     def with_models
-      Plugins.new( a💎[ @plugins.select( &:base_model ) ] )
+      Plugins.new( _plugins.select { |plugin| plugin.respond_to? :base_model }.to_a )
     end
 
     def with_views
-      Plugins.new( a💎[ @plugins.select( &:view_path ) ] )
+      Plugins.new( a💎[ _plugins.select( &:view_path ) ] )
     end
 
     def with_template( template_path )
       Plugins.new( a💎[ with_views.select { |plugin| plugin.template_exists?( template_path ) } ] )
     end
 
-    def with_core_plugin
-      return self if includes_core_plugin?
-
-      Plugins.new( @plugins + core_plugin )
-    end
-
-    def without_core_plugin
-      return self unless includes_core_plugin?
-
-      Plugins.new( @plugins - core_plugin )
-    end
-
-    # Get a collection of Rails objects from a collection of plugins
-
     def all_routes
-      a💎[ @plugins.collect( &:routes ) ]
+      💎ify[ _plugins.collect( &:routes ) ].to_a
     end
 
     def models_that_are( method )
-      a💎[ with_models.collect { |plugin| plugin.models_that_are method }.flatten.sort_by( &:name ) ]
+      💎ify[ with_models.collect { |plugin| plugin.models_that_are method }.flatten.sort_by( &:name ) ].to_a
     end
 
     def models_that_respond_to( method )
-      a💎[ with_models.collect { |plugin| plugin.models_that_respond_to method }.flatten.sort_by( &:name ) ]
+      💎ify[ with_models.collect { |plugin| plugin.models_that_respond_to method }.flatten.sort_by( &:name ) ].to_a
     end
 
     private
 
-    def all_plugins
-      a💎[ plugin_names_in_config_that_exist.collect { |name| ShinyPlugin.new( name ) } ]
-    end
-
-    def feature_plugins
-      a💎[ ( plugin_names_in_config_that_exist - 'ShinyCMS' ).collect { |name| ShinyPlugin.new( name ) } ]
-    end
+    attr_reader :_plugins
 
     def core_plugin
-      a💎[ ShinyPlugin.new( 'ShinyCMS' ) ]
+      Plugin.new( 'ShinyCMS' )
     end
 
-    def plugin_names_on_disk
-      a💎[ Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ) } ]
+    def all_feature_plugins
+      build_plugins( all_feature_plugin_names )
     end
 
-    def plugin_names_in_config
-      a💎[ ENV.fetch( 'SHINYCMS_PLUGINS', '' ).split( /[, ]+/ ).uniq.presence ]
+    def build_plugins( plugins )
+      return plugins if plugins.all? { |plugin| plugin.is_a? ShinyCMS::Plugin }
+
+      💎ify[ plugins&.collect { |plugin| build_plugin( plugin ) } ]
+    end
+
+    def build_plugin( plugin )
+      return plugin if plugin.is_a? ShinyCMS::Plugin
+      return ShinyCMS::Plugin.new( plugin ) if plugin.is_a? String
+
+      raise ArgumentError, 'Must be a ShinyCMS::Plugin or a plugin name'
+    end
+
+    def all_feature_plugin_names
+      return plugin_names_in_config_that_exist unless plugin_names_in_config_that_exist.include? 'ShinyCMS'
+
+      plugin_names_in_config_that_exist.delete( 'ShinyCMS' )
     end
 
     def plugin_names_in_config_that_exist
-      a💎[ plugin_names_in_config.select { |name| plugin_names_on_disk.include?( name ) } ]
+      plugin_names_in_config.select { |name| plugin_exists?( name ) }
+    end
+
+    def plugin_names_in_config
+      names = ENV.fetch( 'SHINYCMS_PLUGINS', '' ).split( /[, ]+/ ).uniq.presence
+      @plugin_names_in_config = 💎ify[ names ] if names
+    end
+
+    def plugin_exists?( name )
+      plugin_names_on_disk.include?( name )
+    end
+
+    def plugin_names_on_disk
+      💎ify[ Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ) } ]
     end
   end
 end

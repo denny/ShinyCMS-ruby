@@ -12,7 +12,7 @@ module ShinyCMS
     attr_reader :name
 
     def initialize( name )
-      return unless Plugin.all_names.include? name
+      return unless [ 'ShinyCMS', Plugin.all_names ].flatten.include? name
 
       @name = name
     end
@@ -57,6 +57,8 @@ module ShinyCMS
 
     # Returns an array of the currently enabled plugins
     def self.loaded
+      # return Plugins.new
+
       return @loaded if @loaded
 
       loaded_plugins = loaded_names.collect { |name| Plugin.new( name ) }
@@ -72,19 +74,19 @@ module ShinyCMS
     end
 
     def self.taggable_models
-      models_that_are :taggable?
+      Plugins.taggable_models
     end
 
     def self.votable_models
-      models_that_are :votable?
+      Plugins.votable_models
     end
 
     def self.models_with_demo_data
-      models_that_respond_to :dump_for_demo?
+      Plugins.models_with_demo_data
     end
 
     def self.models_with_sitemap_items
-      models_that_respond_to :sitemap_items
+      Plugins.models_with_sitemap_items
     end
 
     def self.with_main_site_helpers
@@ -92,7 +94,7 @@ module ShinyCMS
     end
 
     def self.with_models
-      loaded.select( &:base_model )
+      Plugins.with_models
     end
 
     def self.with_views
@@ -104,15 +106,15 @@ module ShinyCMS
     end
 
     def self.models_that_are( method )
-      with_models.collect { |plugin| plugin.models_that_are method }.flatten.sort_by( &:name )
+      Plugins.models_that_are( method )
     end
 
     def self.models_that_respond_to( method )
-      with_models.collect { |plugin| plugin.models_that_respond_to method }.flatten.sort_by( &:name )
+      Plugins.models_that_respond_to( method )
     end
 
     def self.loaded_names
-      configured_names || all_names
+      Plugins.new.names
     end
 
     def self.configured_names
