@@ -15,19 +15,19 @@ module ShinyCMS
 
     included do
       def taggable_models
-        models_that_are :taggable?
+        models_that_are( :taggable? ).to_a
       end
 
       def votable_models
-        models_that_are :votable?
+        models_that_are( :votable? ).to_a
       end
 
       def models_with_demo_data
-        models_that_respond_to :dump_for_demo?
+        models_that_respond_to( :dump_for_demo? ).to_a
       end
 
       def models_with_sitemap_items
-        models_that_respond_to :sitemap_items
+        models_that_respond_to( :sitemap_items ).to_a
       end
 
       def unshift( plugin )
@@ -40,9 +40,26 @@ module ShinyCMS
         new.unshift( 'ShinyCMS' )
       end
 
-      delegate :all_routes, to: :all
+      def all_routes
+        all.all_routes.to_a
+      end
 
-      delegate :names,    to: :new
+      def names
+        new.names.to_a
+      end
+
+      def loaded
+        new.to_a
+      end
+
+      def with_main_site_helpers
+        new.with_main_site_helpers.to_a
+      end
+
+      def with_views
+        new.with_views.to_a
+      end
+
       delegate :include?, to: :new
 
       delegate :taggable_models, to: :new
@@ -54,9 +71,9 @@ module ShinyCMS
       delegate :models_that_respond_to, to: :new
       delegate :models_that_are,        to: :new
 
-      delegate :with_main_site_helpers, to: :new
-      delegate :with_models,            to: :new
-      delegate :with_views,             to: :new
+      # delegate :with_main_site_helpers, to: :new
+      # delegate :with_models,            to: :new
+      # delegate :with_views,             to: :new
       delegate :with_template,          to: :new
     end
   end

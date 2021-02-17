@@ -57,11 +57,11 @@ module ShinyCMS
 
     # Returns an array of the currently enabled plugins
     def self.loaded
-      Plugins.new.to_a
+      Plugins.loaded
     end
 
     def self.loaded?( plugin_name )
-      Plugins.include? plugin_name.to_s
+      Plugins.include? plugin_name
     end
 
     def self.all_routes
@@ -85,8 +85,7 @@ module ShinyCMS
     end
 
     def self.with_main_site_helpers
-      # Plugins.with_main_site_helpers
-      loaded.select( &:main_site_helper )
+      Plugins.with_main_site_helpers
     end
 
     def self.with_models
@@ -94,11 +93,13 @@ module ShinyCMS
     end
 
     def self.with_views
+      # binding.pry
       # Plugins.with_views
       loaded.select( &:view_path )
     end
 
     def self.with_template( template_path )
+      # binding.pry
       # Plugins.with_template( template_path )
       with_views.select { |plugin| plugin.template_exists?( template_path ) }
     end
