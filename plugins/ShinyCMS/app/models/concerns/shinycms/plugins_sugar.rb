@@ -14,6 +14,10 @@ module ShinyCMS
     include Persistent💎
 
     included do
+      def loaded?( plugin_name )
+        include? plugin_name
+      end
+
       def taggable_models
         models_that_are( :taggable? ).to_a
       end
@@ -65,6 +69,7 @@ module ShinyCMS
       end
 
       delegate :include?, to: :new
+      delegate :loaded?,  to: :new
 
       delegate :taggable_models, to: :new
       delegate :votable_models,  to: :new
