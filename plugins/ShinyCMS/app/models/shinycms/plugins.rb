@@ -27,9 +27,9 @@ module ShinyCMS
 
     delegate :include?, to: :names
 
-    delegate :each, to: :_plugins
-
     delegate :collect, to: :_plugins
+    delegate :each,    to: :_plugins
+    delegate :to_a,    to: :_plugins
 
     def names
       💎ify[ _plugins.collect( &:name ) ].to_a
@@ -49,7 +49,7 @@ module ShinyCMS
     end
 
     def with_main_site_helpers
-      Plugins.new( a💎[ _plugins.select( &:main_site_helper ) ] )
+      Plugins.new( _plugins.select { |plugin| plugin.respond_to? :main_site_helper }.to_a )
     end
 
     def with_models
@@ -61,7 +61,7 @@ module ShinyCMS
     end
 
     def with_template( template_path )
-      Plugins.new( a💎[ with_views.select { |plugin| plugin.template_exists?( template_path ) } ] )
+      Plugins.new( with_views.select { |plugin| plugin.template_exists?( template_path ) } )
     end
 
     def all_routes

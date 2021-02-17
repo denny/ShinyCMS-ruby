@@ -57,15 +57,11 @@ module ShinyCMS
 
     # Returns an array of the currently enabled plugins
     def self.loaded
-      # return Plugins.new
-
-      return @loaded if @loaded
-
-      loaded_plugins = loaded_names.collect { |name| Plugin.new( name ) }
-      @loaded = loaded_plugins
+      Plugins.new.to_a
     end
 
     def self.loaded?( plugin_name )
+      # Plugins.include? plugin_name
       loaded_names.include? plugin_name.to_s
     end
 

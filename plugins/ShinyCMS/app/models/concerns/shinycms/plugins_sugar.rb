@@ -42,7 +42,8 @@ module ShinyCMS
 
       delegate :all_routes, to: :all
 
-      delegate :names, to: :new
+      delegate :names,    to: :new
+      delegate :include?, to: :new
 
       delegate :taggable_models, to: :new
       delegate :votable_models,  to: :new
