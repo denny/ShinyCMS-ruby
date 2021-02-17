@@ -6,9 +6,6 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# TODO: ONCE TESTS ARE PASSING ... replace body of each class method in Plugin
-# with a call to the corresponding method below, and re-run tests!
-
 module ShinyCMS
   # Convenience methods for ShinyCMS plugins
   module PluginsSugar
@@ -33,14 +30,14 @@ module ShinyCMS
         models_that_respond_to :sitemap_items
       end
 
-      def _unshift( plugin )
+      def unshift( plugin )
         Plugins.new( _plugins.unshift( build_plugin( plugin ) ) )
       end
     end
 
     class_methods do
       def all
-        new._unshift( 'ShinyCMS' )
+        new.unshift( 'ShinyCMS' )
       end
 
       delegate :names,      to: :new
