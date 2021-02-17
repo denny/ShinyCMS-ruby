@@ -70,7 +70,7 @@ module ShinyCMS
     end
 
     def self.all_routes
-      loaded.collect( &:routes ) + ShinyCMS::Engine.routes.routes.routes
+      Plugins.all_routes
     end
 
     def self.taggable_models
@@ -114,7 +114,7 @@ module ShinyCMS
     end
 
     def self.loaded_names
-      Plugins.new.names
+      Plugins.names
     end
 
     def self.configured_names

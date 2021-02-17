@@ -40,8 +40,9 @@ module ShinyCMS
         new.unshift( 'ShinyCMS' )
       end
 
-      delegate :names,      to: :new
-      delegate :all_routes, to: :new
+      delegate :all_routes, to: :all
+
+      delegate :names, to: :new
 
       delegate :taggable_models, to: :new
       delegate :votable_models,  to: :new
