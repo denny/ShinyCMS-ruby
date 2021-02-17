@@ -481,9 +481,9 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
-    rails-pg-extras (1.5.2)
+    rails-pg-extras (1.5.3)
       activerecord
-      ruby-pg-extras (= 1.5.2)
+      ruby-pg-extras (= 1.5.3)
     rails_best_practices (1.20.0)
       activesupport
       code_analyzer (>= 0.5.1)
@@ -573,7 +573,7 @@ GEM
     rubocop-rspec (2.2.0)
       rubocop (~> 1.0)
       rubocop-ast (>= 1.1.0)
-    ruby-pg-extras (1.5.2)
+    ruby-pg-extras (1.5.3)
       pg
       terminal-table
     ruby-progressbar (1.11.0)
