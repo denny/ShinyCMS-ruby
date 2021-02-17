@@ -12,7 +12,7 @@ module ShinyProfiles
     include ShinyCMS::ShinyDemoDataProvider
     include ShinyCMS::ShinySoftDelete
 
-    include ShinySearch::Searchable if ShinyCMS::Plugin.loaded? :ShinySearch
+    include ShinySearch::Searchable if ShinyCMS::Plugins.loaded? :ShinySearch
 
     # Associations
 
@@ -22,7 +22,7 @@ module ShinyProfiles
 
     acts_as_list scope: :profile
 
-    searchable_by :name, :url if ShinyCMS::Plugin.loaded? :ShinySearch # TODO
+    searchable_by :name, :url if ShinyCMS::Plugins.loaded? :ShinySearch # TODO
 
     # Validations
 

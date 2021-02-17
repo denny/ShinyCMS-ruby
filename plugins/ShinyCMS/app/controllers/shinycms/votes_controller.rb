@@ -49,7 +49,7 @@ module ShinyCMS
     end
 
     def plugin_votable_models
-      Plugin.votable_models
+      Plugins.votable_models
     end
 
     def find_voter

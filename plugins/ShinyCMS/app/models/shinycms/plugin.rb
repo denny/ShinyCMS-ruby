@@ -64,58 +64,12 @@ module ShinyCMS
       Plugins.include? plugin_name
     end
 
-    def self.all_routes
-      Plugins.all_routes
-    end
-
-    def self.taggable_models
-      Plugins.taggable_models
-    end
-
-    def self.votable_models
-      Plugins.votable_models
-    end
-
-    def self.models_with_demo_data
-      Plugins.models_with_demo_data
-    end
-
-    def self.models_with_sitemap_items
-      Plugins.models_with_sitemap_items
-    end
-
-    def self.with_main_site_helpers
-      Plugins.with_main_site_helpers
-    end
-
-    def self.with_models
-      Plugins.with_models
-    end
-
-    def self.with_views
-      Plugins.with_views
-    end
-
-    def self.with_template( template_path )
-      Plugins.with_template( template_path )
-    end
-
-    def self.models_that_are( method )
-      Plugins.models_that_are( method )
-    end
-
     def self.models_that_respond_to( method )
       Plugins.models_that_respond_to( method )
     end
 
     def self.loaded_names
       Plugins.names
-    end
-
-    def self.configured_names
-      requested = ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
-
-      return requested.uniq.select { |name| all_names.include?( name ) } if requested.present?
     end
 
     def self.all_names
