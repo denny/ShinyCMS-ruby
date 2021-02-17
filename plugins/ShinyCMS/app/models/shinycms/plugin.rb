@@ -93,15 +93,11 @@ module ShinyCMS
     end
 
     def self.with_views
-      # binding.pry
-      # Plugins.with_views
-      loaded.select( &:view_path )
+      Plugins.with_views
     end
 
     def self.with_template( template_path )
-      # binding.pry
-      # Plugins.with_template( template_path )
-      with_views.select { |plugin| plugin.template_exists?( template_path ) }
+      Plugins.with_template( template_path )
     end
 
     def self.models_that_are( method )

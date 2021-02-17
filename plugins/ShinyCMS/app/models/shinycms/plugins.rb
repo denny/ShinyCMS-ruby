@@ -21,6 +21,8 @@ module ShinyCMS
     delegate :include?, to: :names
 
     delegate :collect,  to: :_plugins
+    delegate :select,   to: :_plugins
+    delegate :reject,   to: :_plugins
     delegate :each,     to: :_plugins
     delegate :to_a,     to: :_plugins
 
@@ -75,10 +77,6 @@ module ShinyCMS
     private
 
     attr_reader :_plugins
-
-    def core_plugin
-      Plugin.new( 'ShinyCMS' )
-    end
 
     def all_feature_plugins
       build_plugins( all_feature_plugin_names )

@@ -60,6 +60,10 @@ module ShinyCMS
         new.with_views.to_a
       end
 
+      def with_template( template_path )
+        new.with_template( template_path ).to_a
+      end
+
       delegate :include?, to: :new
 
       delegate :taggable_models, to: :new
@@ -70,11 +74,6 @@ module ShinyCMS
 
       delegate :models_that_respond_to, to: :new
       delegate :models_that_are,        to: :new
-
-      # delegate :with_main_site_helpers, to: :new
-      # delegate :with_models,            to: :new
-      # delegate :with_views,             to: :new
-      delegate :with_template,          to: :new
     end
   end
 end
