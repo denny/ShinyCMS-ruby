@@ -35,17 +35,18 @@ module ShinyCMS
       names.include? plugin_name.to_s
     end
 
-    def add( plugin_name )
-      return self if _plugins.include? plugin_name
+    # These aren't used currently
+    # def add( plugin_name )
+    #  return self if _plugins.include? plugin_name
 
-      Plugins.new( _plugins.add( build_plugin( plugin_name ) ) )
-    end
+    #  Plugins.new( _plugins.add( build_plugin( plugin_name ) ) )
+    # end
 
-    def remove( plugin_name )
-      return self unless include? plugin_name
+    # def remove( plugin_name )
+    #  return self unless include? plugin_name
 
-      Plugins.new( _plugins.reject { |plugin| plugin.name == plugin_name } )
-    end
+    #  Plugins.new( _plugins.reject { |plugin| plugin.name == plugin_name } )
+    # end
 
     def with_main_site_helpers
       Plugins.new( _plugins.select( &:main_site_helper ) )
