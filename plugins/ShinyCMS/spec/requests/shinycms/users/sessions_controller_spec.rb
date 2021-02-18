@@ -36,7 +36,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
       get shinycms.new_user_session_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css(
@@ -55,7 +55,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
       get shinycms.new_user_session_path
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css(
@@ -84,7 +84,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_link I18n.t( 'shinycms.user.log_out' )
@@ -102,7 +102,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
       }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to root_path
+      expect( response      ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_link I18n.t( 'shinycms.user.log_out' )

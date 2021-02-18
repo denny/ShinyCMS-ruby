@@ -50,9 +50,10 @@ module ShinyCMS
 
       # Scopes and default sort order
 
-      scope :not_future_dated, -> { where( 'posted_at <= ?', Time.zone.now.iso8601 ) }
-      scope :published,        -> { visible.merge( not_future_dated ) }
-      scope :recent,           -> { published.merge( order( posted_at: :desc ) ) }
+      scope :not_future_dated,  -> { where( 'posted_at <= ?', Time.zone.now.iso8601 ) }
+      scope :most_recent_first, -> { order( posted_at: :desc ) }
+      scope :published,         -> { visible.merge( not_future_dated ) }
+      scope :recent,            -> { published.merge( most_recent_first ) }
 
       self.implicit_order_column = 'posted_at'
 
@@ -125,6 +126,12 @@ module ShinyCMS
 
       def sitemap_items
         recent.readonly
+      end
+
+      def self.admin_search( search_term )
+        where( 'title ilike ?', "%#{search_term}%" )
+          .or( where( 'body ilike ?', "%#{search_term}%" ) )
+          .most_recent_first
       end
     end
   end
