@@ -76,6 +76,10 @@ module ShinyCMS
       💎ify[ with_models.collect { |plugin| plugin.models_that_respond_to method }.flatten.sort_by( &:name ) ]
     end
 
+    def self.available_plugin_names
+      @available_plugin_names ||= 💎ify[ Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ) } ]
+    end
+
     private
 
     attr_reader :_plugins
@@ -102,15 +106,11 @@ module ShinyCMS
     end
 
     def all_plugin_names
-      @all_plugin_names ||= configured_plugin_names.select { |name| available_plugin_names.include?( name ) }
+      @all_plugin_names ||= configured_plugin_names.select { |name| self.class.available_plugin_names.include?( name ) }
     end
 
     def configured_plugin_names
       💎ify[ ENV.fetch( 'SHINYCMS_PLUGINS', '' ).split( /[, ]+/ ).uniq ]
-    end
-
-    def available_plugin_names
-      💎ify[ Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ) } ]
     end
   end
 end
