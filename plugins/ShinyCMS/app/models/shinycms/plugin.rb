@@ -12,7 +12,7 @@ module ShinyCMS
     attr_reader :name
 
     def initialize( name )
-      return unless [ 'ShinyCMS', Plugin.all_names ].flatten.include? name
+      return unless Plugins.available_plugin_names.include? name
 
       @name = name
     end
@@ -51,29 +51,6 @@ module ShinyCMS
 
     def routes
       engine.routes.routes.routes # er, okay
-    end
-
-    # Class methods
-
-    # Returns an array of the currently enabled plugins
-    def self.loaded
-      Plugins.loaded
-    end
-
-    def self.loaded?( plugin_name )
-      Plugins.include? plugin_name
-    end
-
-    def self.models_that_respond_to( method )
-      Plugins.models_that_respond_to( method )
-    end
-
-    def self.loaded_names
-      Plugins.names
-    end
-
-    def self.all_names
-      Dir[ 'plugins/*' ].collect { |plugin_name| plugin_name.sub( 'plugins/', '' ) } - [ 'ShinyCMS' ]
     end
   end
 end
