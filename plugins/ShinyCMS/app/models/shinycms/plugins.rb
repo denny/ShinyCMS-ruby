@@ -8,14 +8,15 @@
 
 module ShinyCMS
   # Methods to fetch, filter, and query collections of ShinyCMS plugins
-  # Default collection is 'all feature plugins' (excludes the core plugin)
   class Plugins
     include Persistent💎
 
     include PluginsSugar
 
+    # If no plugins or plugin names are passed to .new then it defaults to
+    # building a collection of all feature plugins (excludes the core plugin)
     def initialize( plugins = nil )
-      @_plugins = plugins.nil? ? all_feature_plugins : build_plugins( plugins )
+      @_plugins = build_plugins( plugins || all_feature_plugin_names )
     end
 
     delegate :include?, to: :names
@@ -78,43 +79,35 @@ module ShinyCMS
 
     attr_reader :_plugins
 
-    def all_feature_plugins
-      build_plugins( all_feature_plugin_names )
-    end
-
     def build_plugins( plugins )
-      return plugins if plugins.to_a.all? ShinyCMS::Plugin
+      return if plugins.nil?
+      return plugins if plugins.all? ShinyCMS::Plugin
 
-      💎ify[ plugins&.collect { |plugin| build_plugin( plugin ) } ]
+      💎ify[ plugins.collect { |plugin| build_plugin( plugin ) } ]
     end
 
     def build_plugin( plugin )
       return plugin if plugin.is_a? ShinyCMS::Plugin
-      return ShinyCMS::Plugin.new( plugin ) if plugin.is_a? String
+      return ShinyCMS::Plugin.new( plugin ) if plugin.is_a?( String ) && all_plugin_names.include?( plugin )
 
-      raise ArgumentError, 'Must be a ShinyCMS::Plugin or a ShinyCMS plugin name'
+      raise ArgumentError, 'Must be the name of a ShinyCMS plugin which is in the plugins directory'
     end
 
     def all_feature_plugin_names
-      return plugin_names_in_config_that_exist unless plugin_names_in_config_that_exist.include? 'ShinyCMS'
+      return all_plugin_names unless all_plugin_names.include? 'ShinyCMS'
 
-      plugin_names_in_config_that_exist.delete( 'ShinyCMS' )
+      all_plugin_names.delete( 'ShinyCMS' )
     end
 
-    def plugin_names_in_config_that_exist
-      plugin_names_in_config.select { |name| plugin_exists?( name ) }
+    def all_plugin_names
+      @all_plugin_names ||= configured_plugin_names.select { |name| available_plugin_names.include?( name ) }
     end
 
-    def plugin_names_in_config
-      names = ENV.fetch( 'SHINYCMS_PLUGINS', '' ).split( /[, ]+/ ).uniq.presence
-      @plugin_names_in_config = 💎ify[ names ] if names
+    def configured_plugin_names
+      💎ify[ ENV.fetch( 'SHINYCMS_PLUGINS', '' ).split( /[, ]+/ ).uniq ]
     end
 
-    def plugin_exists?( name )
-      plugin_names_on_disk.include?( name )
-    end
-
-    def plugin_names_on_disk
+    def available_plugin_names
       💎ify[ Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ) } ]
     end
   end
