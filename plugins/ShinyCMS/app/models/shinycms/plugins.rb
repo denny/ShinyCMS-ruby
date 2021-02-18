@@ -16,7 +16,7 @@ module ShinyCMS
     # If no plugins or plugin names are passed to .new then it defaults to
     # building a collection of all feature plugins (excludes the core plugin)
     def initialize( plugins = nil )
-      @_plugins = build_plugins( plugins || all_feature_plugin_names )
+      @_plugins = build_plugins( plugins ) || all_feature_plugins
     end
 
     delegate :include?, to: :names
@@ -85,6 +85,8 @@ module ShinyCMS
     attr_reader :_plugins
 
     def build_plugins( plugins )
+      return unless plugins
+
       plugins = a💎[ plugins ].flatten
 
       return plugins if plugins.all? ShinyCMS::Plugin
@@ -97,6 +99,10 @@ module ShinyCMS
       return ShinyCMS::Plugin.new( plugin ) if all_plugin_names.include?( plugin.to_s )
 
       raise ArgumentError, 'Must be the name of a ShinyCMS plugin which is in the plugins directory'
+    end
+
+    def all_feature_plugins
+      build_plugins( all_feature_plugin_names )
     end
 
     def all_feature_plugin_names
