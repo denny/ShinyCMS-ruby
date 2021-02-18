@@ -11,8 +11,8 @@ module ShinyCMS
   module ShinyDemoDataProvider
     extend ActiveSupport::Concern
 
-    included do
-      def self.dump_for_demo?
+    class_methods do
+      def dump_for_demo?
         true
       end
     end

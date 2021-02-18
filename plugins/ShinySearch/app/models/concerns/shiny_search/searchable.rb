@@ -11,13 +11,13 @@ module ShinySearch
   module Searchable
     extend ActiveSupport::Concern
 
-    included do
-      def self.searchable_by( *searchable_attributes )
+    class_methods do
+      def searchable_by( *searchable_attributes )
         algolia_search_on( searchable_attributes ) if algolia_search_is_enabled?
         pg_search_on( searchable_attributes )      if pg_search_is_enabled?
       end
 
-      def self.algolia_search_on( searchable_attributes )
+      def algolia_search_on( searchable_attributes )
         include AlgoliaSearch
 
         algoliasearch unless: :hidden?, per_environment: true do
@@ -25,17 +25,17 @@ module ShinySearch
         end
       end
 
-      def self.pg_search_on( searchable_attributes )
+      def pg_search_on( searchable_attributes )
         include PgSearch::Model
 
         multisearchable against: searchable_attributes, unless: :hidden?
       end
 
-      def self.algolia_search_is_enabled?
+      def algolia_search_is_enabled?
         ENV['ALGOLIASEARCH_APPLICATION_ID'].present?
       end
 
-      def self.pg_search_is_enabled?
+      def pg_search_is_enabled?
         ENV['DISABLE_PG_SEARCH'].blank?
       end
     end

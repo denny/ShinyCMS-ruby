@@ -47,11 +47,11 @@ module ShinyCMS
       def file_path
         "#{self.class.template_dir}/#{filename}.html.mjml"
       end
+    end
 
-      # Class methods
-
+    class_methods do
       # Get a list of available template files from the disk
-      def self.available_templates
+      def available_templates
         return [] unless template_dir
 
         filenames = Dir.glob '*.mjml', base: template_dir

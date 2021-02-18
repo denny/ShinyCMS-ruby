@@ -22,14 +22,12 @@ module ShinyCMS
         @login || username || email
       end
 
-      # Instance methods
-
       # Queue email sends
       def send_devise_notification( notification, *args )
         devise_mailer.public_send( notification, self, *args ).deliver_later
       end
 
-      # Class methods
+      # This blows up if I put it inside a 'class_methods do' block...
 
       # Override find method to search by username as well as email
       def self.find_first_by_auth_conditions( warden_conditions )
