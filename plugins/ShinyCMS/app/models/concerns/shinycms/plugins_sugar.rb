@@ -72,19 +72,19 @@ module ShinyCMS
       end
 
       def taggable_models
-        new.models_that_are( :taggable? ).to_a
+        new.taggable_models.to_a
       end
 
       def votable_models
-        new.models_that_are( :votable? ).to_a
+        new.votable_models.to_a
       end
 
       def models_with_demo_data
-        new.models_that_respond_to( :dump_for_demo? ).to_a
+        new.models_with_demo_data.to_a
       end
 
       def models_with_sitemap_items
-        new.models_that_respond_to( :sitemap_items ).to_a
+        new.models_with_sitemap_items.to_a
       end
     end
   end
