@@ -71,21 +71,11 @@ module ShinyCMS
         new.with_template( template_path ).to_a
       end
 
-      def taggable_models
-        new.taggable_models.to_a
-      end
+      delegate :taggable_models, to: :new
+      delegate :votable_models,  to: :new
 
-      def votable_models
-        new.votable_models.to_a
-      end
-
-      def models_with_demo_data
-        new.models_with_demo_data.to_a
-      end
-
-      def models_with_sitemap_items
-        new.models_with_sitemap_items.to_a
-      end
+      delegate :models_with_demo_data,     to: :new
+      delegate :models_with_sitemap_items, to: :new
     end
   end
 end
