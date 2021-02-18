@@ -81,6 +81,9 @@ module ShinyCMS
 
     def build_plugins( plugins )
       return if plugins.nil?
+
+      plugins = [ plugins ] unless plugins.respond_to? :all?
+
       return plugins if plugins.all? ShinyCMS::Plugin
 
       💎ify[ plugins.collect { |plugin| build_plugin( plugin ) } ]
@@ -88,7 +91,7 @@ module ShinyCMS
 
     def build_plugin( plugin )
       return plugin if plugin.is_a? ShinyCMS::Plugin
-      return ShinyCMS::Plugin.new( plugin ) if plugin.is_a?( String ) && all_plugin_names.include?( plugin )
+      return ShinyCMS::Plugin.new( plugin ) if all_plugin_names.include?( plugin.to_s )
 
       raise ArgumentError, 'Must be the name of a ShinyCMS plugin which is in the plugins directory'
     end
