@@ -24,12 +24,14 @@ module ShinyCMS
     delegate :collect,  to: :_plugins
     delegate :select,   to: :_plugins
     delegate :reject,   to: :_plugins
+    delegate :any?,     to: :_plugins
+    delegate :all?,     to: :_plugins
+    delegate :to_a,     to: :_plugins
     delegate :first,    to: :_plugins
     delegate :last,     to: :_plugins
     delegate :each,     to: :_plugins
-    delegate :to_a,     to: :_plugins
-    delegate :any?,     to: :_plugins
-    delegate :all?,     to: :_plugins
+    # This one makes the rspec 'all' matcher work
+    delegate :each_with_index, to: :_plugins
 
     def names
       💎ify[ _plugins.collect( &:name ) ]
