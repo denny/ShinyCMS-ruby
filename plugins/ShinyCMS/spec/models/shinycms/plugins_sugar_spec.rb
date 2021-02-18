@@ -10,6 +10,15 @@ require 'rails_helper'
 
 # Tests helper methods mixed in to the Plugins class
 RSpec.describe ShinyCMS::PluginsSugar, type: :model do
+  describe '.loaded' do
+    it 'returns an array (or similar) of plugin instances' do
+      plugins = ShinyCMS::Plugins.loaded
+
+      expect( plugins ).to respond_to :each
+      expect( plugins ).to all be_a ShinyCMS::Plugin
+    end
+  end
+
   describe '.all' do
     it 'includes the core plugin in its plugin set' do
       expect( ShinyCMS::Plugins.all.include?( 'ShinyCMS' ) ).to be true
