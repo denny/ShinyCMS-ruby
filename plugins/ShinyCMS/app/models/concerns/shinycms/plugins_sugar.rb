@@ -14,10 +14,6 @@ module ShinyCMS
     include Persistent💎
 
     included do
-      def loaded?( plugin_name )
-        include? plugin_name
-      end
-
       def taggable_models
         models_that_are( :taggable? )
       end
@@ -40,9 +36,16 @@ module ShinyCMS
     end
 
     class_methods do
+      delegate :include?, to: :new
+
+      delegate :models_that_respond_to, to: :new
+      delegate :models_that_are,        to: :new
+
       def all
         new.unshift( 'ShinyCMS' )
       end
+
+      # Each .to_a call below converts from Persistent💎 array to standard Array
 
       def all_routes
         all.all_routes.to_a
@@ -83,12 +86,6 @@ module ShinyCMS
       def models_with_sitemap_items
         new.models_that_respond_to( :sitemap_items ).to_a
       end
-
-      delegate :include?, to: :new
-      delegate :loaded?,  to: :new
-
-      delegate :models_that_respond_to, to: :new
-      delegate :models_that_are,        to: :new
     end
   end
 end
