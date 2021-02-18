@@ -24,8 +24,12 @@ module ShinyCMS
     delegate :collect,  to: :_plugins
     delegate :select,   to: :_plugins
     delegate :reject,   to: :_plugins
+    delegate :first,    to: :_plugins
+    delegate :last,     to: :_plugins
     delegate :each,     to: :_plugins
     delegate :to_a,     to: :_plugins
+    delegate :any?,     to: :_plugins
+    delegate :all?,     to: :_plugins
 
     def names
       💎ify[ _plugins.collect( &:name ) ]
@@ -49,22 +53,22 @@ module ShinyCMS
     # end
 
     def with_main_site_helpers
-      Plugins.new( _plugins.select( &:main_site_helper ) )
+      Plugins.new( _plugins.select { |plugin| plugin if plugin.main_site_helper } )
     end
 
     def with_models
-      Plugins.new( _plugins.select( &:base_model ) )
+      Plugins.new( _plugins.select { |plugin| plugin if plugin.base_model } )
     end
 
     def with_views
-      Plugins.new( _plugins.select( &:view_path ) )
+      Plugins.new( _plugins.select { |plugin| plugin if plugin.view_path } )
     end
 
     def with_template( template_path )
       Plugins.new( with_views.select { |plugin| plugin.template_exists?( template_path ) } ).to_a
     end
 
-    def all_routes
+    def routes
       💎ify[ _plugins.collect( &:routes ).flatten ]
     end
 
@@ -80,6 +84,16 @@ module ShinyCMS
       @available_plugin_names ||= 💎ify[ Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ) } ]
     end
 
+    # Return a new Plugins instance which includes the core 'ShinyCMS' plugin
+    def self.all
+      ShinyCMS::Plugins.new.unshift( 'ShinyCMS' )
+    end
+
+    # Return a new Plugins instance which does not include the core plugin
+    def self.loaded
+      ShinyCMS::Plugins.new
+    end
+
     private
 
     attr_reader :_plugins
@@ -91,7 +105,7 @@ module ShinyCMS
 
       return plugins if plugins.all? ShinyCMS::Plugin
 
-      💎ify[ plugins.collect { |plugin| build_plugin( plugin ) } ]
+      plugins.collect { |plugin| build_plugin( plugin ) }
     end
 
     def build_plugin( plugin )

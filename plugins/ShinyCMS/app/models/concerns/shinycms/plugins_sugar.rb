@@ -31,7 +31,7 @@ module ShinyCMS
       end
 
       def unshift( plugin )
-        Plugins.new( _plugins.unshift( build_plugin( plugin ) ) )
+        ShinyCMS::Plugins.new( _plugins.unshift( build_plugin( plugin ) ) )
       end
     end
 
@@ -50,20 +50,6 @@ module ShinyCMS
 
       delegate :models_that_respond_to, to: :new
       delegate :models_that_are,        to: :new
-
-      def all
-        new.unshift( 'ShinyCMS' )
-      end
-
-      # Each .to_a call below converts from Persistent💎 array to standard Array
-
-      def all_routes
-        all.all_routes.to_a
-      end
-
-      def loaded
-        new.to_a
-      end
     end
   end
 end
