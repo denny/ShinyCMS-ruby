@@ -29,5 +29,11 @@ RSpec.describe ShinyCMS::Plugins, type: :model do
         expect( test3.include?( 'ShinyBlog' ) ).to be false
       end
     end
+
+    context 'when a non-existent plugin name is passed in' do
+      it 'raises an exception' do
+        expect { described_class.new( :FAIL ) }.to raise_error ArgumentError
+      end
+    end
   end
 end
