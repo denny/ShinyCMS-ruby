@@ -34,12 +34,6 @@ module ShinyCMS
         self.class.template_file_exists? filename
       end
 
-      # Class methods
-
-      def self.template_file_exists?( filename )
-        available_templates.include? filename
-      end
-
       private
 
       def add_element( formatting, name )
@@ -76,6 +70,12 @@ module ShinyCMS
           name:         name,
           element_type: 'image'
         )
+      end
+    end
+
+    class_methods do
+      def template_file_exists?( filename )
+        available_templates.include? filename
       end
     end
   end

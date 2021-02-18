@@ -21,21 +21,17 @@ RSpec/AnyInstance:
     - 'plugins/ShinyLists/spec/requests/subscriptions_spec.rb'
     - 'plugins/ShinySearch/spec/requests/shiny_search/search_controller_spec.rb'
 
-# Offense count: 240
+# Offense count: 195
 # Configuration parameters: AssignmentOnly.
 RSpec/InstanceVariable:
   Exclude:
     - 'plugins/ShinyCMS/spec/mailers/shinycms/discussion_mailer_spec.rb'
     - 'plugins/ShinyCMS/spec/models/shinycms/discussion_spec.rb'
-    - 'plugins/ShinyCMS/spec/models/shinycms/user_spec.rb'
     - 'plugins/ShinyCMS/spec/requests/shinycms/admin/comments_controller_spec.rb'
     - 'plugins/ShinyCMS/spec/requests/shinycms/admin/discussions_controller_spec.rb'
     - 'plugins/ShinyCMS/spec/requests/shinycms/discussions_spec.rb'
     - 'plugins/ShinyCMS/spec/requests/shinycms/site_settings_controller_spec.rb'
-    - 'plugins/ShinyCMS/spec/requests/shinycms/votes_spec.rb'
     - 'plugins/ShinyCMS/spec/support/shared_examples/shinycms/pagination_example.rb'
     - 'plugins/ShinyCMS/spec/support/shared_examples/shinycms/shiny_post_example.rb'
-    - 'plugins/ShinyBlog/spec/requests/admin/blog_spec.rb'
     - 'plugins/ShinyNews/spec/requests/admin/news_spec.rb'
     - 'plugins/ShinyPages/spec/requests/pages_spec.rb'
-    - 'spec/mailer_previews/user_mailer_preview_spec.rb'

@@ -104,31 +104,33 @@ module ShinyCMS
       def items_in_same_month
         self.class.readonly.published.where( posted_at: posted_at.all_month )
       end
+    end
 
-      # Class methods
-
-      def self.posts_in_year( year_string )
+    class_methods do
+      def posts_in_year( year_string )
         year = Date.new( year_string.to_i, 1, 1 ).beginning_of_day
         where( posted_at: year.all_year ).order( :posted_at ).published.readonly
       end
 
-      def self.posts_in_month( year_string, month_string )
+      def posts_in_month( year_string, month_string )
         month = Date.new( year_string.to_i, month_string.to_i, 1 ).beginning_of_day
         where( posted_at: month.all_month ).order( :posted_at ).published.readonly
       end
 
-      def self.find_post( year, month, slug )
+      def find_post( year, month, slug )
         post = posts_in_month( year, month ).find_by( slug: slug )
         return post if post
 
         raise ActiveRecord::RecordNotFound
       end
 
-      def self.sitemap_items
+      def sitemap_items
         recent.readonly
       end
+    end
 
-      def self.admin_search( search_term )
+    class_methods do
+      def admin_search( search_term )
         where( 'title ilike ?', "%#{search_term}%" )
           .or( where( 'body ilike ?', "%#{search_term}%" ) )
           .most_recent_first
