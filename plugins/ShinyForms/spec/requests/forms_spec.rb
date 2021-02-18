@@ -46,7 +46,7 @@ RSpec.describe 'ShinyForms', type: :request do
         }
 
         expect( response ).to have_http_status :found
-        expect( response ).to redirect_to root_path
+        expect( response ).to redirect_to main_app.root_path
         follow_redirect!
         expect( response ).to have_http_status :ok
         expect( response.body ).to have_css '.notices', text: I18n.t( 'shiny_forms.forms.process_form.success' )
@@ -67,7 +67,7 @@ RSpec.describe 'ShinyForms', type: :request do
         }
 
         expect( response ).to have_http_status :found
-        expect( response ).to redirect_to root_path
+        expect( response ).to redirect_to main_app.root_path
         follow_redirect!
         expect( response ).to have_http_status :ok
         expect( response.body ).to have_css '.notices', text: I18n.t( 'shiny_forms.forms.process_form.success' )
@@ -75,7 +75,7 @@ RSpec.describe 'ShinyForms', type: :request do
     end
 
     it 'redirects as configured' do
-      form = create :plain_email_form, redirect_to: root_path
+      form = create :plain_email_form, redirect_to: main_app.root_path
 
       post shiny_forms.process_form_path( form.slug ), params: {
         shiny_form: {
@@ -85,7 +85,7 @@ RSpec.describe 'ShinyForms', type: :request do
       }
 
       expect( response ).to have_http_status :found
-      expect( response ).to redirect_to root_path
+      expect( response ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response ).to have_http_status :ok
       expect( response.body ).to have_css '.notices', text: I18n.t( 'shiny_forms.forms.process_form.success' )
@@ -101,7 +101,7 @@ RSpec.describe 'ShinyForms', type: :request do
       }
 
       expect( response ).to have_http_status :found
-      expect( response ).to redirect_to root_path
+      expect( response ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response ).to have_http_status :ok
       expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_forms.forms.process_form.failure' )
@@ -115,7 +115,7 @@ RSpec.describe 'ShinyForms', type: :request do
       }
 
       expect( response ).to have_http_status :found
-      expect( response ).to redirect_to root_path
+      expect( response ).to redirect_to main_app.root_path
       follow_redirect!
       expect( response ).to have_http_status :ok
       expect( response.body ).to have_css '.alerts', text: I18n.t( 'shiny_forms.forms.process_form.form_not_found' )
