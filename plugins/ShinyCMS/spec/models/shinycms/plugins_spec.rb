@@ -36,4 +36,17 @@ RSpec.describe ShinyCMS::Plugins, type: :model do
       end
     end
   end
+
+  describe '.loaded' do
+    it 'returns an array (or similar) of plugin instances' do
+      expect( described_class.loaded ).to respond_to :each
+      expect( described_class.loaded ).to all be_a ShinyCMS::Plugin
+    end
+  end
+
+  describe '.include?' do
+    it 'returns true if the named plugin is loaded' do
+      expect( described_class.include?( :ShinySearch ) ).to be true
+    end
+  end
 end
