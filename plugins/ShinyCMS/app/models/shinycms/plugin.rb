@@ -17,8 +17,6 @@ module ShinyCMS
       @name = name
     end
 
-    # Instance methods
-
     def engine
       @engine ||= name.constantize::Engine
     end
