@@ -81,9 +81,7 @@ module ShinyCMS
     attr_reader :_plugins
 
     def build_plugins( plugins )
-      return if plugins.nil?
-
-      plugins = [ plugins ] unless plugins.respond_to? :all?
+      plugins = a💎[ plugins ].flatten
 
       return plugins if plugins.all? ShinyCMS::Plugin
 
