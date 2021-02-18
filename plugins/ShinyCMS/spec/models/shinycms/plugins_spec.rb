@@ -51,4 +51,19 @@ RSpec.describe ShinyCMS::Plugins, type: :model do
       expect( routes ).to all be_a ActionDispatch::Journey::Route
     end
   end
+
+  describe '.loaded' do
+    it 'returns an array (or similar) of plugin instances' do
+      plugins = described_class.loaded
+
+      expect( plugins ).to respond_to :each
+      expect( plugins ).to all be_a ShinyCMS::Plugin
+    end
+  end
+
+  describe '.all' do
+    it 'includes the core plugin in its plugin set' do
+      expect( described_class.all.include?( 'ShinyCMS' ) ).to be true
+    end
+  end
 end
