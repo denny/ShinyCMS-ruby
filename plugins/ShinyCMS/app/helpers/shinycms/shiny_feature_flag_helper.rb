@@ -16,7 +16,7 @@ module ShinyCMS
         'shinycms.feature_flags.off_alert',
         feature_name: I18n.t( "shinycms.feature_flags.#{feature_name}" )
       )
-      # redirect_back( fallback_location: root_path )
+      # redirect_back( fallback_location: main_app.root_path )
       redirect_to main_app.root_path
     end
 

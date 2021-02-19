@@ -127,8 +127,10 @@ module ShinyCMS
       def sitemap_items
         recent.readonly
       end
+    end
 
-      def self.admin_search( search_term )
+    class_methods do
+      def admin_search( search_term )
         where( 'title ilike ?', "%#{search_term}%" )
           .or( where( 'body ilike ?', "%#{search_term}%" ) )
           .most_recent_first

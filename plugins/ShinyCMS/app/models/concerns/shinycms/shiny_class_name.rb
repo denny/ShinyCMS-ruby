@@ -11,14 +11,12 @@ module ShinyCMS
   module ShinyClassName
     extend ActiveSupport::Concern
 
-    included do
-      # Class methods
-
-      def self.translated_name
+    class_methods do
+      def translated_name
         I18n.t( "shinycms.models.names.#{i18n_label}" )
       end
 
-      def self.i18n_label
+      def i18n_label
         name.underscore.tr( '/', '_' )
       end
     end

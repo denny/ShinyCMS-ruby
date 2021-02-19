@@ -17,11 +17,6 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
     create :top_level_page
   end
 
-  # Devise ignores the bodge in spec/support/inflection_kludge, so here it is again
-  def shinycms
-    shiny_cms
-  end
-
   describe 'GET /login' do
     it 'renders the user login page if user logins are enabled' do
       get shinycms.new_user_session_path

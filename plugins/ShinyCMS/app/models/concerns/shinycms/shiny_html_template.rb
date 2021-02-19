@@ -14,8 +14,6 @@ module ShinyCMS
     include ShinyTemplate
 
     included do
-      # Instance methods
-
       # Create template elements, based on the content of the template file
       def add_elements
         raise ActiveRecord::Rollback unless file_exists?
@@ -31,11 +29,11 @@ module ShinyCMS
           raise ActiveRecord::Rollback unless added
         end
       end
+    end
 
-      # Class methods
-
+    class_methods do
       # Get a list of available template files from the disk
-      def self.available_templates
+      def available_templates
         return [] unless template_dir
 
         filenames = Dir.glob '*.html.erb', base: template_dir

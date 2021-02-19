@@ -73,11 +73,11 @@ module ShinyCMS
 
         user_capabilities.where( capability_id: remove ).delete_all
       end
+    end
 
-      # Class methods
-
+    class_methods do
       # Return all users that have the specified capability
-      def self.that_can( capability, category )
+      def that_can( capability, category )
         CapabilityCategory.find_by( name: category.to_s )
                           .capabilities
                           .find_by( name: capability.to_s )
@@ -86,7 +86,7 @@ module ShinyCMS
       end
 
       # Check whether we have at least one admin who can create more admins
-      def self.super_admins_exist?
+      def super_admins_exist?
         that_can( :add, :admin_users ).present?
       end
     end

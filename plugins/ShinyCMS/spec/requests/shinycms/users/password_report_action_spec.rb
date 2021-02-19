@@ -10,11 +10,6 @@ require 'rails_helper'
 
 # Tests for password-related features on main site
 RSpec.describe ShinyCMS::PasswordReportAction, type: :request do
-  # Devise ignores the bodge in spec/support/inflection_kludge, so here it is again
-  def shinycms
-    shiny_cms
-  end
-
   describe 'GET /account/password/report/Hunter2' do
     it 'returns a JSON assessment (score and suggestions) for the proposed password' do
       get shinycms.password_report_path( 'Hunter2' )
