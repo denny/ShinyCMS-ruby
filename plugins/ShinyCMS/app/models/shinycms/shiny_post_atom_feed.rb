@@ -22,6 +22,8 @@ module ShinyCMS
       @name = feed_name
 
       @feed = RSS::Atom::Feed.new( '1.0', 'UTF-8', false )
+
+      @s3_config = ShinyCMS::S3Config.get( :feeds )
     end
 
     def build( posts )
@@ -50,22 +52,26 @@ module ShinyCMS
     end
 
     def write_file_to_aws_s3
-      s3_config = ShinyCMS::S3Config.get( :feeds )
-
-      return if s3_config.blank?
+      return if @s3_config.blank?
 
       # TODO: mock this
       # :nocov:
-      s3 = Aws::S3::Resource.new(
-        secret_access_key: s3_config.secret_access_key, access_key_id: s3_config.access_key_id, region: s3_config.region
-      )
+      s3 = s3_resource
 
       write_file_to_local_disk "/tmp/#{name}.xml"
 
-      obj = s3.bucket( s3_config.bucket ).object( "feeds/atom/#{name}.xml" )
+      obj = s3.bucket( @s3_config.bucket ).object( "feeds/atom/#{name}.xml" )
       obj.upload_file( "/tmp/#{name}.xml" )
       obj.acl.put( { acl: 'public-read' } )
       # :nocov:
+    end
+
+    def s3_resource
+      Aws::S3::Resource.new(
+        secret_access_key: @s3_config.secret_access_key,
+        access_key_id:     @s3_config.access_key_id,
+        region:            @s3_config.region
+      )
     end
 
     def add_post_to_feed( post )
@@ -103,7 +109,7 @@ module ShinyCMS
     end
 
     def feeds_base_url
-      aws_s3_feeds_base_url || site_base_url
+      @s3_config&.base_url || site_base_url
     end
   end
 end
