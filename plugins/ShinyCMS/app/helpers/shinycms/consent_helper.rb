@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Helper method for retrieving consent versions
-  module ShinyConsentHelper
+  module ConsentHelper
     def consent_version( slug )
       ConsentVersion.find_by( slug: slug )
     end

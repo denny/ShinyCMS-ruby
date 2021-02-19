@@ -9,7 +9,7 @@
 module ShinyCMS
   # Includes all of the helpers that might be useful in templates and/or controllers on the main site
   module ShinyMainSiteHelper
-    include ShinyConsentHelper
+    include ConsentHelper
     include ShinyDiscussionHelper
     include ShinyFeatureFlagHelper
     include ShinyPluginHelper
