@@ -9,7 +9,7 @@
 module ShinyCMS
   # ShinyCMS base controller for the main/content site
   class MainController < ApplicationController
-    include ShinyMainSiteHelper
+    include MainSiteHelper
 
     before_action :add_theme_view_path
 

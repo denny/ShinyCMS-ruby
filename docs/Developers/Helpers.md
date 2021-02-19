@@ -6,9 +6,9 @@ There are a number of helpers included with the project. These are intended to m
 
 In many cases the helper methods are there as an easy-to-use wrapper around the most common use cases for a more complex invocation of some model code - for example, `<% posts = recent_blog_posts( 5 ) %>` is the same as `<% posts = ShinyBlog::Post.readonly.recent.limit( 5 ) %>` - hopefully this will make it easier for people to build themes even if they're not familiar with ActiveRecord.
 
-### In the main app
+### In the core plugin
 
-* ShinyMainSiteHelper    - common behaviour for main site controllers; includes many of the helpers below
+* MainSiteHelper         - common behaviour for main site controllers; includes many of the helpers below
 * AdminAreaHelper        - common behaviour for admin area controllers
 * ShinyMailerHelper      - common behaviour for Mailers
 
