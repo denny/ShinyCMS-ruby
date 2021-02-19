@@ -9,7 +9,7 @@
 ShinyPages::Engine.routes.draw do
   scope format: false do
     # Main site
-    root to: 'pages#index'
+    root to: 'pages#index', as: :shiny_pages_root
 
     # Admin area
     scope path: :admin, module: :admin do
