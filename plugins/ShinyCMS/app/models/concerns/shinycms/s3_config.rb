@@ -9,42 +9,37 @@
 module ShinyCMS
   # Model to wrap AWS S3 config - picks up details from ENV (TODO: and/or site settings)
   class S3Config
-    self <<
-      def present?( label )
-        secret_access_key( label ).present? &&
-        access_key_id( label ).present? &&
-        bucket( label ).present? &&
-        region( label ).present?
-      end
-
-    private
-
-    def secret_access_key( label )
-      ENV[ "AWS_S3_#{label.capitalize}_SECRET_ACCESS_KEY" ].presence
+    def initialize( label )
+      @label = label.to_s
+      return unless secret_access_key.present? && access_key_id.present? && bucket.present? && region.present?
     end
 
-    def access_key_id( label )
-      ENV[ "AWS_S3_#{label.capitalize}_ACCESS_KEY_ID" ].presence
+    def base_url
+      ENV[ "AWS_S3_#{@label.upcase}_BASE_URL" ].presence || endpoint
     end
 
-    def bucket( label )
-      ENV[ "AWS_S3_#{label.capitalize}_BUCKET" ].presence
+    def secret_access_key
+      ENV[ "AWS_S3_#{@label.upcase}_SECRET_ACCESS_KEY" ].presence
     end
 
-    def region( label )
-      ENV[ "AWS_S3_#{label.capitalize}_REGION" ].presence
+    def access_key_id
+      ENV[ "AWS_S3_#{@label.upcase}_ACCESS_KEY_ID" ].presence
     end
 
-    def base_url( label )
-      ENV[ "AWS_S3_#{label.capitalize}_BASE_URL" ].presence || endpoint( label )
+    def bucket
+      ENV[ "AWS_S3_#{@label.upcase}_BUCKET" ].presence
     end
 
-    def endpoint( label )
-      return if bucket( label ).blank? || region( label ).blank?
+    def region
+      ENV[ "AWS_S3_#{@label.upcase}_REGION" ].presence
+    end
+
+    def endpoint
+      return if bucket.blank? || region.blank?
 
       http = ENV[ 'SHINYCMS_USE_HTTPS' ].present? ? 'https' : 'http'
 
-      "#{http}://#{bucket( label )}.s3.#{region( label )}.amazonaws.com"
+      "#{http}://#{bucket}.s3.#{region}.amazonaws.com"
     end
   end
 end
