@@ -16,7 +16,7 @@ module ShinySEO
     def initialize
       SitemapGenerator::Sitemap.default_host = site_base_url
 
-      s3_config = ShinyCMS::S3Config.new( :feeds )
+      s3_config = ShinyCMS::S3Config.get( :feeds )
 
       use_aws_sdk_adapter( s3_config ) if s3_config.present?
     end

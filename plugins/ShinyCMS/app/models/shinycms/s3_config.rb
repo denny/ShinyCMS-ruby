@@ -11,7 +11,16 @@ module ShinyCMS
   class S3Config
     def initialize( label )
       @label = label.to_s
-      return unless secret_access_key.present? && access_key_id.present? && bucket.present? && region.present?
+    end
+
+    def self.get( label )
+      config = new( label )
+
+      if config.secret_access_key.blank? || config.access_key_id.blank? || config.bucket.blank? || config.region.blank?
+        return
+      end
+
+      config
     end
 
     def base_url

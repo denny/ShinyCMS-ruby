@@ -50,7 +50,7 @@ module ShinyCMS
     end
 
     def write_file_to_aws_s3
-      s3_config = ShinyCMS::S3Config.new( :feeds )
+      s3_config = ShinyCMS::S3Config.get( :feeds )
 
       return if s3_config.blank?
 
