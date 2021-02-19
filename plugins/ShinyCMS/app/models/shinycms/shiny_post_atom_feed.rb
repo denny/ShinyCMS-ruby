@@ -11,7 +11,6 @@ require 'rss'
 module ShinyCMS
   # Model to assist in building Atom feeds from ShinyPosts
   class ShinyPostAtomFeed
-    include ShinyS3
     include ShinySiteNameHelper
     include ShinySiteURL
 
@@ -51,19 +50,19 @@ module ShinyCMS
     end
 
     def write_file_to_aws_s3
-      return unless aws_s3_feeds_config_present?
+      s3_config = ShinyCMS::S3Config.new( :feeds )
+
+      return if s3_config.blank?
 
       # TODO: mock this
       # :nocov:
       s3 = Aws::S3::Resource.new(
-        region:            aws_s3_feeds_region,
-        access_key_id:     aws_s3_feeds_access_key_id,
-        secret_access_key: aws_s3_feeds_secret_access_key
+        secret_access_key: s3_config.secret_access_key, access_key_id: s3_config.access_key_id, region: s3_config.region
       )
 
       write_file_to_local_disk "/tmp/#{name}.xml"
 
-      obj = s3.bucket( aws_s3_feeds_bucket ).object( "feeds/atom/#{name}.xml" )
+      obj = s3.bucket( s3_config.bucket ).object( "feeds/atom/#{name}.xml" )
       obj.upload_file( "/tmp/#{name}.xml" )
       obj.acl.put( { acl: 'public-read' } )
       # :nocov:
