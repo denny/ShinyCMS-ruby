@@ -16,7 +16,7 @@ module ShinyProfiles
     include ShinyCMS::ShinyShowHide
     include ShinyCMS::ShinySoftDelete
 
-    include ShinySearch::Searchable if ShinyCMS::ShinyPlugin.loaded? :ShinySearch
+    include ShinySearch::Searchable if ShinyCMS::Plugins.include? :ShinySearch
 
     # Associations
 
@@ -42,7 +42,7 @@ module ShinyProfiles
 
     # Plugins
 
-    if ShinyCMS::ShinyPlugin.loaded? :ShinySearch
+    if ShinyCMS::Plugins.include? :ShinySearch
       searchable_by :username, :public_name, :public_email, :bio, :location, :postcode
     end
 

@@ -35,7 +35,7 @@ module ShinyCMS
 
     def name
       # TODO: FIXME: ffs
-      if  ShinyPlugin.loaded?( :ShinyProfiles ) &&
+      if  Plugins.include?( :ShinyProfiles ) &&
           FeatureFlag.enabled?( :user_profiles ) &&
           respond_to?( :profile ) &&
           profile.present?

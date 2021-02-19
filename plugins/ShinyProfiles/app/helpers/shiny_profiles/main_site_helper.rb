@@ -10,7 +10,7 @@ module ShinyProfiles
   # Helper methods for user profiles
   module MainSiteHelper
     def plugins_with_profile_content_templates
-      ShinyCMS::ShinyPlugin.with_template( 'profile/_content.html.erb' ).collect( &:name ).collect( &:underscore )
+      ShinyCMS::Plugins.with_template( 'profile/_content.html.erb' ).collect( &:name ).collect( &:underscore )
     end
   end
 end
