@@ -10,8 +10,6 @@ module ShinyCMS
   module Admin
     # Common methods for admin controllers that handle Posts
     module Posts
-      include ShinyTagAdmin
-
       def enforce_change_author_capability_for_create( category )
         params[ :post ][ :user_id ] = current_user.id unless current_user.can? :change_author, category
       end

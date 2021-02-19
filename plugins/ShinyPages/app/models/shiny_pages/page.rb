@@ -15,7 +15,7 @@ module ShinyPages
     include ShinyCMS::ShinyShowHide
     include ShinyCMS::ShinySlugInSection
     include ShinyCMS::ShinySoftDelete
-    include ShinyCMS::ShinyWithTemplate
+    include ShinyCMS::WithTemplate
 
     include ShinySearch::Searchable if ShinyCMS::Plugins.include? :ShinySearch
 

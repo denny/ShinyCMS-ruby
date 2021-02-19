@@ -9,8 +9,9 @@
 module ShinyNews
   # Admin area controller for ShinyNews plugin for ShinyCMS
   class Admin::NewsPostsController < AdminController
-    include ShinyCMS::ShinyDiscussionAdmin
-    include ShinyCMS::ShinyPostAdmin
+    include ShinyCMS::Admin::Discussions
+    include ShinyCMS::Admin::Posts
+    include ShinyCMS::Admin::Tags
 
     include ShinyCMS::ShinyDateHelper
 

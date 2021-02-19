@@ -10,7 +10,6 @@ module ShinyCMS
   # ShinyCMS base controller for the main/content site
   class MainController < ApplicationController
     include ShinyMainSiteHelper
-    include ShinyS3
 
     before_action :add_theme_view_path
 
@@ -100,7 +99,7 @@ module ShinyCMS
     end
 
     def feeds_base_url
-      aws_s3_feeds_base_url || main_app.root_url.to_s.chop
+      ShinyCMS::S3Config.new( :feeds ).base_url || main_app.root_url.to_s.chop
     end
   end
 end

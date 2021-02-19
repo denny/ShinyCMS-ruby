@@ -11,14 +11,16 @@ module ShinyCMS
   module ShinyPost
     extend ActiveSupport::Concern
 
-    include ShinySearch::Searchable if Plugins.include? :ShinySearch
     include ShinyClassName
     include ShinyShowHide
     include ShinySlugInMonth
     include ShinySoftDelete
-    include ShinyTags
     include ShinyTeaser
     include ShinyWithVotes
+
+    include ShinyCMS::WithTags
+
+    include ShinySearch::Searchable if Plugins.include? :ShinySearch
 
     included do
       # Associations
