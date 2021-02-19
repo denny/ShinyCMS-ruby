@@ -7,8 +7,8 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Helper methods for templates and controllers dealing with discussions and comments
-  module ShinyDiscussionHelper
+  # Helper methods for templates dealing with discussions and comments
+  module DiscussionHelper
     def allow_anonymous_comments?
       Setting.true?( :allow_anonymous_comments )
     end

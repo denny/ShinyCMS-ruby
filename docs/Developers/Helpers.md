@@ -17,7 +17,7 @@ In many cases the helper methods are there as an easy-to-use wrapper around the 
 * ShinyPluginHelper      - methods wrapping common uses (in views) of the Plugin model
 
 * DateHelper             - turns model timestamps into human-friendly time and date strings
-* ShinyDiscussionHelper  - discussion-related settings and searches
+* DiscussionHelper       - discussion-related settings and searches
 * ShinyElementHelper     - methods related to *Element models
 * ShinyFeatureFlagHelper - check and enforce feature flags
 * ShinyPagingHelper      - methods to help with pagination
