@@ -67,11 +67,13 @@ module ShinyCMS
     end
 
     def s3_resource
+      # :nocov:
       Aws::S3::Resource.new(
         secret_access_key: @s3_config.secret_access_key,
         access_key_id:     @s3_config.access_key_id,
         region:            @s3_config.region
       )
+      # :nocov:
     end
 
     def add_post_to_feed( post )
