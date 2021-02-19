@@ -46,22 +46,24 @@ RSpec.shared_examples ShinyCMS::ShinyPost do
 
   describe 'scopes' do
     before do
+      post.update!( posted_at: 1.hour.ago )
       @older = post.class.create!(
         title:     Faker::Books::CultureSeries.unique.culture_ship,
-        body:      'Testing',
-        user:      ShinyCMS::User.first,
+        body:      'Yesterday',
+        user:      post.author,
         posted_at: 1.day.ago
       )
       @hidden = post.class.create!(
         title:        Faker::Books::CultureSeries.unique.culture_ship,
-        body:         'Testing',
-        user:         ShinyCMS::User.first,
+        body:         'Today',
+        user:         post.author,
+        posted_at:    1.minute.ago,
         show_on_site: false
       )
       @future = post.class.create!(
         title:     Faker::Books::CultureSeries.unique.culture_ship,
-        body:      'Testing',
-        user:      ShinyCMS::User.first,
+        body:      'Tomorrow',
+        user:      post.author,
         posted_at: 1.day.since
       )
     end
@@ -76,7 +78,7 @@ RSpec.shared_examples ShinyCMS::ShinyPost do
     describe '.not_future_dated' do
       it "returns posts that aren't future-dated" do
         expect( post.class.not_future_dated.size ).to eq 3
-        expect( post.class.not_future_dated.order( :created_at ).last ).to eq @hidden
+        expect( post.class.not_future_dated.last ).to eq @hidden
       end
     end
 
