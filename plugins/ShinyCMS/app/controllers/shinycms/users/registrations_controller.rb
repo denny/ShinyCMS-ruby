@@ -16,6 +16,8 @@ module ShinyCMS
 
     before_action :check_feature_flags, only: %i[ new create ]
 
+    helper_method :root_path
+
     def new
       super
     end
@@ -34,10 +36,14 @@ module ShinyCMS
     protected
 
     def after_update_path_for( _resource )
-      edit_user_registration_path
+      shinycms.edit_user_registration_path
     end
 
     private
+
+    def root_path
+      main_app.root_path
+    end
 
     def pass_recaptcha
       return true if no_recaptcha_keys
