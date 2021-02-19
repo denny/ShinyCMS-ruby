@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       root to: 'shiny_pages/pages#index' if defined? ShinyPages
 
       # ShinyCMS core plugin
-      mount ShinyCMS::Engine, at: '/'
+      mount ShinyCMS::Engine, at: '/', as: :shinycms
 
       # ShinyCMS feature plugins
       # require "#{ShinyCMS::Engine.root}/route_helpers/mount_all_plugins"
