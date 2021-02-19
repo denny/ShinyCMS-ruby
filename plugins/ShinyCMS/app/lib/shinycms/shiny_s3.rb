@@ -7,43 +7,44 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Methods for using AWS S3 config from ENV and/or site settings
-  module S3Config
-    def aws_s3_feeds_config_present?
-      aws_s3_feeds_secret_access_key.present? &&
-        aws_s3_feeds_access_key_id.present? &&
-        aws_s3_feeds_bucket.present? &&
-        aws_s3_feeds_region.present?
-    end
+  # Model to wrap AWS S3 config - picks up details from ENV (TODO: and/or site settings)
+  class S3Config
+    self <<
+      def present?( label )
+        secret_access_key( label ).present? &&
+        access_key_id( label ).present? &&
+        bucket( label ).present? &&
+        region( label ).present?
+      end
 
     private
 
-    def aws_s3_feeds_secret_access_key
-      ENV[ 'AWS_S3_FEEDS_SECRET_ACCESS_KEY' ].presence
+    def secret_access_key( label )
+      ENV[ "AWS_S3_#{label.capitalize}_SECRET_ACCESS_KEY" ].presence
     end
 
-    def aws_s3_feeds_access_key_id
-      ENV[ 'AWS_S3_FEEDS_ACCESS_KEY_ID' ].presence
+    def access_key_id( label )
+      ENV[ "AWS_S3_#{label.capitalize}_ACCESS_KEY_ID" ].presence
     end
 
-    def aws_s3_feeds_bucket
-      ENV[ 'AWS_S3_FEEDS_BUCKET' ].presence
+    def bucket( label )
+      ENV[ "AWS_S3_#{label.capitalize}_BUCKET" ].presence
     end
 
-    def aws_s3_feeds_region
-      ENV[ 'AWS_S3_FEEDS_REGION' ].presence
+    def region( label )
+      ENV[ "AWS_S3_#{label.capitalize}_REGION" ].presence
     end
 
-    def aws_s3_feeds_base_url
-      ENV[ 'AWS_S3_FEEDS_BASE_URL' ].presence || aws_s3_feeds_endpoint
+    def base_url( label )
+      ENV[ "AWS_S3_#{label.capitalize}_BASE_URL" ].presence || endpoint( label )
     end
 
-    def aws_s3_feeds_endpoint
-      return if aws_s3_feeds_bucket.blank? || aws_s3_feeds_region.blank?
+    def endpoint( label )
+      return if bucket( label ).blank? || region( label ).blank?
 
       http = ENV[ 'SHINYCMS_USE_HTTPS' ].present? ? 'https' : 'http'
 
-      "#{http}://#{aws_s3_feeds_bucket}.s3.#{aws_s3_feeds_region}.amazonaws.com"
+      "#{http}://#{bucket( label )}.s3.#{region( label )}.amazonaws.com"
     end
   end
 end
