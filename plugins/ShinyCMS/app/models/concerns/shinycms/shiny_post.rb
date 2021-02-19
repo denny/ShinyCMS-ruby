@@ -55,6 +55,7 @@ module ShinyCMS
       scope :published,         -> { visible.merge( not_future_dated ) }
       scope :recent,            -> { published.merge( most_recent_first ) }
 
+      # TODO: FIXME: this doesn't work from here
       self.implicit_order_column = 'posted_at'
 
       # Instance methods
@@ -127,9 +128,7 @@ module ShinyCMS
       def sitemap_items
         recent.readonly
       end
-    end
 
-    class_methods do
       def admin_search( search_term )
         where( 'title ilike ?', "%#{search_term}%" )
           .or( where( 'body ilike ?', "%#{search_term}%" ) )
