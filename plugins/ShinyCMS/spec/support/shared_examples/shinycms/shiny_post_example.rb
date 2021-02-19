@@ -56,6 +56,7 @@ RSpec.shared_examples ShinyCMS::ShinyPost do
         title:        Faker::Books::CultureSeries.unique.culture_ship,
         body:         'Testing',
         user:         ShinyCMS::User.first,
+        posted_at:    1.minute.ago,
         show_on_site: false
       )
       @future = post.class.create!(
