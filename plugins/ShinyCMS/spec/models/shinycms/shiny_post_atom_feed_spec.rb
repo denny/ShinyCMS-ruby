@@ -8,23 +8,26 @@
 
 require 'rails_helper'
 
-# Tests for ShinyPostAtomFeed model
-RSpec.describe ShinyCMS::ShinyPostAtomFeed, type: :model do
-  describe 'instance methods' do
-    describe 'S3 helper methods' do
-      it 'generates an S3 base url when S3 config is present' do
-        feeder = described_class.new( :blog )
+# Tests for ShinyCMS::S3Config model
+RSpec.describe ShinyCMS::S3Config, type: :model do
+  describe '.base_url' do
+    context 'when S3 config is present' do
+      it 'generates an S3 base URL' do
+        s3_config = described_class.new( :feeds )
 
         bucket = 'atom-feed-tests'
         region = 'test'
 
-        allow( feeder ).to receive( :aws_s3_feeds_bucket ).and_return bucket
-        allow( feeder ).to receive( :aws_s3_feeds_region ).and_return region
+        allow( ENV ).to receive( :[] ).with( 'AWS_S3_FEEDS_SECRET_ACCESS_KEY' ).and_return 'test'
+        allow( ENV ).to receive( :[] ).with( 'AWS_S3_FEEDS_ACCESS_KEY_ID' ).and_return 'test'
 
-        allow( feeder ).to receive( :aws_s3_feeds_access_key_id ).and_return 'test'
-        allow( feeder ).to receive( :aws_s3_feeds_secret_access_key ).and_return 'test'
+        allow( ENV ).to receive( :[] ).with( 'AWS_S3_FEEDS_BUCKET' ).and_return bucket
+        allow( ENV ).to receive( :[] ).with( 'AWS_S3_FEEDS_REGION' ).and_return region
 
-        expect( feeder.__send__( :feeds_base_url ) ).to eq "http://#{bucket}.s3.#{region}.amazonaws.com"
+        allow( ENV ).to receive( :[] ).with( 'AWS_S3_FEEDS_BASE_URL' ).and_return nil
+        allow( ENV ).to receive( :[] ).with( 'SHINYCMS_USE_HTTPS'    ).and_return nil
+
+        expect( s3_config.base_url ).to eq "http://#{bucket}.s3.#{region}.amazonaws.com"
       end
     end
   end
