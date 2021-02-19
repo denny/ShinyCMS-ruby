@@ -42,7 +42,9 @@ module ShinyCMS
     private
 
     def root_path
+      # :nocov:
       main_app.root_path
+      # :nocov:
     end
 
     def pass_recaptcha
