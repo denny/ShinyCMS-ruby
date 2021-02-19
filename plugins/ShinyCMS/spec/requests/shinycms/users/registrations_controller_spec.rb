@@ -17,11 +17,6 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
     @page = create :top_level_page
   end
 
-  # Devise ignores the bodge in spec/support/inflection_kludge, so here it is again
-  def shinycms
-    shiny_cms
-  end
-
   describe 'GET /account/register' do
     before do
       ShinyCMS::FeatureFlag.enable :user_registration

@@ -11,7 +11,7 @@ module ShinyCMS
   class ApplicationController < ActionController::Base
     before_action :set_view_paths
 
-    helper_method :shinycms, :recaptcha_v2_site_key, :recaptcha_v3_site_key, :recaptcha_checkbox_site_key
+    helper_method :recaptcha_v2_site_key, :recaptcha_v3_site_key, :recaptcha_checkbox_site_key
 
     def self.recaptcha_v3_secret_key
       ENV[ 'RECAPTCHA_V3_SECRET_KEY' ]
@@ -35,11 +35,6 @@ module ShinyCMS
       ShinyPlugin.with_views.each do |plugin|
         prepend_view_path plugin.view_path
       end
-    end
-
-    # Rails inflection is Made Of Fail
-    def shinycms
-      shiny_cms
     end
 
     def recaptcha_v3_site_key
