@@ -12,11 +12,11 @@ In many cases the helper methods are there as an easy-to-use wrapper around the 
 * AdminAreaHelper        - common behaviour for admin area controllers
 * ShinyMailerHelper      - common behaviour for Mailers
 
-* ShinySiteNameHelper    - provides the <%= site_name %> method (included by ShinyMainSiteHelper and ShinyMailerHelper)
+* ShinySiteNameHelper    - provides the <%= site_name %> method (included by MainSiteHelper and ShinyMailerHelper)
 
 * ShinyPluginHelper      - methods wrapping common uses (in views) of the Plugin model
 
-* ShinyDateHelper        - turns model timestamps into human-friendly time and date strings
+* DateHelper             - turns model timestamps into human-friendly time and date strings
 * ShinyDiscussionHelper  - discussion-related settings and searches
 * ShinyElementHelper     - methods related to *Element models
 * ShinyFeatureFlagHelper - check and enforce feature flags

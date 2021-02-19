@@ -8,8 +8,7 @@
 
 module ShinyCMS
   # Useful methods for displaying/saving dates and times
-  # TODO: FIXME: all the timezone-related code in here is wrong and needs replacing :)
-  module ShinyDateHelper
+  module DateHelper
     def display_date_at_time( timestamp )
       return unless timestamp.is_a? Time
 
@@ -55,12 +54,6 @@ module ShinyCMS
 
       params_hash[ date_input_name.to_sym ] = "#{date_string} #{time_string}".strip
       params_hash
-    end
-
-    def convert_to_utc( input )
-      return unless input.is_a? Time
-
-      Time.local( *input.to_a ).utc
     end
   end
 end

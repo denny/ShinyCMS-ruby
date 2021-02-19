@@ -9,9 +9,9 @@
 require 'rails_helper'
 
 # Tests for date helper methods
-RSpec.describe ShinyCMS::ShinyDateHelper, type: :helper do
+RSpec.describe ShinyCMS::DateHelper, type: :helper do
   describe 'display_date_at_time( utc_time )' do
-    it 'returns a nicely-formatted date and time string, in localtime, date first' do
+    it 'returns a nicely-formatted date and time string, date first' do
       input = Time.zone.now
 
       result = helper.display_date_at_time( input )
@@ -22,7 +22,7 @@ RSpec.describe ShinyCMS::ShinyDateHelper, type: :helper do
   end
 
   describe 'display_time_on_date( utc_time )' do
-    it 'returns a nicely-formatted time and date string, in localtime, time first' do
+    it 'returns a nicely-formatted time and date string, time first' do
       input = Time.zone.now
 
       result = helper.display_time_on_date( input )
@@ -33,7 +33,7 @@ RSpec.describe ShinyCMS::ShinyDateHelper, type: :helper do
   end
 
   describe 'display_date( utc_time )' do
-    it 'returns a nicely-formatted date string, in localtime' do
+    it 'returns a nicely-formatted date string' do
       input = Time.zone.now
 
       result = helper.display_date( input )
@@ -44,24 +44,13 @@ RSpec.describe ShinyCMS::ShinyDateHelper, type: :helper do
   end
 
   describe 'display_time( utc_time )' do
-    it 'returns a nicely-formatted time string, in localtime' do
+    it 'returns a nicely-formatted time string' do
       input = Time.zone.now
 
       result = helper.display_time( input )
 
       expect( result ).to be_a String
       expect( result ).to match %r{\d\d:\d\d}
-    end
-  end
-
-  describe 'convert_to_utc( local_time )' do
-    it 'returns the equivalent Time in UTC' do
-      input = Time.zone.now.getlocal
-
-      result = helper.convert_to_utc( input )
-
-      expect( result ).to be_a Time
-      expect( result.utc? ).to be true
     end
   end
 end
