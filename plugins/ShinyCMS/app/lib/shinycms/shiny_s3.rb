@@ -7,8 +7,8 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Methods for checking and using AWS S3 config from ENV
-  module ShinyS3
+  # Methods for using AWS S3 config from ENV and/or site settings
+  module S3Config
     def aws_s3_feeds_config_present?
       aws_s3_feeds_secret_access_key.present? &&
         aws_s3_feeds_access_key_id.present? &&

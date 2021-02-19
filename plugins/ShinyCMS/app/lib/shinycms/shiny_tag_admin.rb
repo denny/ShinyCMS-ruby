@@ -7,10 +7,12 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Methods that any admin controller handling ShinyTags might want
-  module ShinyTagAdmin
-    def admin_tag_list( resource )
-      resource.tag_list.present? ? resource.tag_list&.join( ', ' ) : resource.hidden_tag_list&.join( ', ' )
+  module Admin
+    # Common methods for admin controllers that handle content WithTags
+    module Tags
+      def admin_tag_list( resource )
+        resource.tag_list.present? ? resource.tag_list&.join( ', ' ) : resource.hidden_tag_list&.join( ', ' )
+      end
     end
   end
 end
