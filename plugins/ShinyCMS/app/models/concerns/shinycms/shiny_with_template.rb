@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Common behaviour for templated content - e.g. ShinyPages::Page, ShinyNewsletters::Edition
-  module ShinyWithTemplate
+  module WithTemplate
     extend ActiveSupport::Concern
 
     included do
