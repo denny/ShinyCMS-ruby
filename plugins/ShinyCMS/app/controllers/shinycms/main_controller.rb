@@ -64,7 +64,7 @@ module ShinyCMS
 
       return shiny_profiles.profile_path( resource.username ) if feature_enabled?( :user_profiles )
 
-      root_path
+      main_app.root_path
     end
 
     private
