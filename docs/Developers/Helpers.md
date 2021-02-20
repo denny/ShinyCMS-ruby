@@ -15,15 +15,16 @@ returns the same results as this code using a model:
 
 ### From core plugin
 
-* MainSiteHelper         - useful methods for main site views - includes many of the helpers below
-* AdminAreaHelper        - useful methods for admin area views
+* MainSiteHelper    - useful methods for main site views - includes many of the helpers below
+* AdminAreaHelper   - useful methods for admin area views
 * ShinyMailerHelper      - useful methods for mailers
 
-* PluginHelper           - provides the `plugin_loaded?` method
+* PluginHelper      - provides the `plugin_loaded?` method
 
-* DateHelper             - turns DateTime objects into human-readable dates and times
-* DiscussionHelper       - discussion-related settings and searches
-* ShinyElementHelper     - methods related to *Element models
+* DateHelper        - turns DateTime objects into human-readable dates and times
+* DiscussionHelper  - discussion-related settings and searches
+* ElementHelper     - provides `element_types` method, for populating drop-down menu
+
 * ShinyFeatureFlagHelper - check and enforce feature flags
 * ShinyPagingHelper      - methods to help with pagination
 * ShinySiteNameHelper    - provides the `site_name` method - included by MainSiteHelper and ShinyMailerHelper
