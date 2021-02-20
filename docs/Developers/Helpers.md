@@ -17,7 +17,7 @@ returns the same results as this code using a model:
 
 * MainSiteHelper    - useful methods for main site views - includes many of the helpers below
 * AdminAreaHelper   - useful methods for admin area views
-* ShinyMailerHelper      - useful methods for mailers
+* MailerHelper      - useful methods for mailers
 
 * PluginHelper      - provides the `plugin_loaded?` method
 
