@@ -11,11 +11,7 @@ module ShinyNews
   class NewsController < MainController
     include ShinyCMS::FeatureFlags
 
-    include ShinyCMS::Paging
-
     before_action :check_feature_flags
-
-    helper_method :pagy_url_for
 
     def index
       @pagy, @posts = pagy_countless( Post.readonly.recent, items: items_per_page )
@@ -45,12 +41,6 @@ module ShinyNews
 
     def check_feature_flags
       enforce_feature_flags :news
-    end
-
-    # Override pager link format (to news/page/NN rather than news?page=NN)
-    def pagy_url_for( page, _pagy )
-      params = request.query_parameters.merge( only_path: true, page: page )
-      url_for( params )
     end
   end
 end

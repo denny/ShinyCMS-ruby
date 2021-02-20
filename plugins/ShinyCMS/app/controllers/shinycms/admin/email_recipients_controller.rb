@@ -9,8 +9,6 @@
 module ShinyCMS
   # Controller for main site email-recipient features in ShinyCMS
   class Admin::EmailRecipientsController < AdminController
-    helper_method :pagy_url_for
-
     def index
       authorize EmailRecipient
       @pagy, @recipients = pagy( EmailRecipient.order( updated_at: :desc ), items: items_per_page )
@@ -44,12 +42,6 @@ module ShinyCMS
       flash[ :notice ] = t( '.success' ) if recipient.destroy
 
       redirect_to email_recipients_path
-    end
-
-    # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
-    def pagy_url_for( page, _pagy )
-      params = request.query_parameters.merge( only_path: true, page: page )
-      url_for( params )
     end
   end
 end

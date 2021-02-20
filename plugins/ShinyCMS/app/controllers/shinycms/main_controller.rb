@@ -9,19 +9,21 @@
 module ShinyCMS
   # ShinyCMS base controller for the main/content site
   class MainController < ApplicationController
+    include ShinyCMS::FeatureFlags
+
     include MainSiteHelper
+
+    Plugins.with_main_site_helpers.each do |plugin|
+      helper plugin.main_site_helper
+    end
+
+    helper_method :feed_url
 
     before_action :add_theme_view_path
 
     before_action :configure_permitted_parameters, if: :devise_controller?
 
     after_action  :track_ahoy_event, if: :ahoy_web_tracking_enabled?
-
-    helper_method :feed_url
-
-    Plugins.with_main_site_helpers.each do |plugin|
-      helper plugin.main_site_helper
-    end
 
     layout 'layouts/main_site'
 

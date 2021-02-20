@@ -11,17 +11,13 @@ module ShinyCMS
   class AdminController < ApplicationController
     include Pundit
 
-    include ShinyCMS::Paging
+    helper Rails.application.routes.url_helpers
 
     before_action :check_admin_ip_list
     before_action :authenticate_user!
     before_action :cache_user_capabilities
 
     after_action :verify_authorized
-
-    helper Rails.application.routes.url_helpers
-
-    helper_method :pagy_url_for
 
     layout 'admin/layouts/admin_area'
 
@@ -56,12 +52,6 @@ module ShinyCMS
 
     def cache_user_capabilities
       current_user&.cache_capabilities
-    end
-
-    # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
-    def pagy_url_for( page, _pagy )
-      params = request.query_parameters.merge( only_path: true, page: page )
-      url_for( params )
     end
   end
 end

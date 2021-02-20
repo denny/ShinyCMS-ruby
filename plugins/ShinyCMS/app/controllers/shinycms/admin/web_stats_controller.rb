@@ -9,8 +9,6 @@
 module ShinyCMS
   # Controller for viewing web stats in ShinyCMS admin area
   class Admin::WebStatsController < AdminController
-    helper_method :pagy_url_for
-
     def index
       authorize Ahoy::Visit
 
@@ -26,7 +24,7 @@ module ShinyCMS
 
       @pagy, @visits = pagy(
         recent_visits.where( 'referrer ilike ?', "%#{search_term}%" )
-                    .or( recent_visits.where( 'landing_page ilike ?', "%#{search_term}%" ) ),
+                     .or( recent_visits.where( 'landing_page ilike ?', "%#{search_term}%" ) ),
         items: items_per_page
       )
 
@@ -46,14 +44,6 @@ module ShinyCMS
       return if params[ :user_id ].blank?
 
       ShinyCMS::User.find( params[ :user_id ] )
-    end
-
-    # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
-    def pagy_url_for( page, _pagy )
-      # :nocov:
-      params = request.query_parameters.merge( only_path: true, page: page )
-      url_for( params )
-      # :nocov:
     end
   end
 end

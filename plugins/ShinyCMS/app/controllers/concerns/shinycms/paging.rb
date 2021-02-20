@@ -12,7 +12,6 @@ module ShinyCMS
     extend ActiveSupport::Concern
 
     included do
-      include Pagy::Frontend
       include Pagy::Backend
 
       def items_per_page

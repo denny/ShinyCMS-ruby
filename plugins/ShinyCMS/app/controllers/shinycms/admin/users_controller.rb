@@ -12,8 +12,6 @@ module ShinyCMS
     before_action :stash_new_user, only: %i[ new create ]
     before_action :stash_user,     only: %i[ edit update destroy ]
 
-    helper_method :pagy_url_for
-
     def index
       authorize User
       @pagy, @users = pagy( User.order( :username ), items: items_per_page )
@@ -94,12 +92,6 @@ module ShinyCMS
       params.require( :user ).permit(
         :username, :email, :password, :admin_notes, capabilities: {}
       )
-    end
-
-    # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
-    def pagy_url_for( page, _pagy )
-      params = request.query_parameters.merge( only_path: true, page: page )
-      url_for( params )
     end
   end
 end
