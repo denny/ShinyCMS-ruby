@@ -8,23 +8,27 @@
 
 module ShinyCMS
   # Methods to help with paging
-  module ShinyPagingHelper
-    include Pagy::Frontend
-    include Pagy::Backend
+  module Paging
+    extend ActiveSupport::Concern
 
-    def items_per_page
-      items = params[:items].presence || params[:count].presence || params[:per].presence
+    included do
+      include Pagy::Frontend
+      include Pagy::Backend
 
-      return default_items_per_page if items.blank?
-      return default_items_per_page if items.match?( /\D/ )
+      def items_per_page
+        items = params[:items].presence || params[:count].presence || params[:per].presence
 
-      items.to_i
-    end
+        return default_items_per_page if items.blank?
+        return default_items_per_page if items.match?( /\D/ )
 
-    def default_items_per_page
-      return Setting.get_int( :default_items_per_page_in_admin_area ) || 20 if is_a? AdminController
+        items.to_i
+      end
 
-      Setting.get_int( :default_items_per_page ) || 10
+      def default_items_per_page
+        return ShinyCMS::Setting.get_int( :default_items_per_page_in_admin_area ) || 20 if is_a? AdminController
+
+        ShinyCMS::Setting.get_int( :default_items_per_page ) || 10
+      end
     end
   end
 end
