@@ -10,7 +10,7 @@
 class ApplicationController < ActionController::Base
   helper ShinyCMS::AdminAreaHelper
   helper ShinyCMS::SidekiqHelper
-  helper ShinyCMS::ShinyPluginHelper
+  helper ShinyCMS::PluginHelper
   helper ShinyCMS::ShinyUserHelper
 
   # I like my helpers, thankyouverymuch.

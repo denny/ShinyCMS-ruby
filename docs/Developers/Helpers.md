@@ -14,7 +14,7 @@ In many cases the helper methods are there as an easy-to-use wrapper around the 
 
 * ShinySiteNameHelper    - provides the <%= site_name %> method (included by MainSiteHelper and ShinyMailerHelper)
 
-* ShinyPluginHelper      - methods wrapping common uses (in views) of the Plugin model
+* PluginHelper           - methods wrapping common uses (in views) of the Plugin model
 
 * DateHelper             - turns model timestamps into human-friendly time and date strings
 * DiscussionHelper       - discussion-related settings and searches

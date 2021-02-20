@@ -10,7 +10,7 @@ module ShinyCMS
   # Helper to add useful common behaviour to ShinyCMS mailers
   module ShinyMailerHelper
     include ShinyFeatureFlagHelper
-    include ShinyPluginHelper
+    include PluginHelper
     include ShinySiteNameHelper
 
     def add_view_paths( plugin_path = nil )
