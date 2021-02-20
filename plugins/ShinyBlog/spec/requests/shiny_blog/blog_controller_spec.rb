@@ -114,5 +114,5 @@ RSpec.describe ShinyBlog::BlogController, type: :request do
     end
   end
 
-  it_behaves_like ShinyCMS::PagingHelper, 'blog_post', '/blog', 'h2', 'title'
+  it_behaves_like ShinyCMS::Paging, 'blog_post', '/blog', 'h2', 'title'
 end

@@ -9,10 +9,11 @@
 module ShinyCMS
   # Controller to override or augment Devise user account features
   class Users::RegistrationsController < Devise::RegistrationsController
-    include ShinyFeatureFlagHelper
-    include RecaptchaHelper
+    include ShinyCMS::FeatureFlags
 
     include PasswordReportAction
+
+    include RecaptchaHelper
 
     before_action :check_feature_flags, only: %i[ new create ]
 

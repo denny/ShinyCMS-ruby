@@ -9,6 +9,8 @@
 module ShinyForms
   # Mailers for generic form handlers provided by ShinyForms plugin for ShinyCMS
   class FormMailer < ApplicationMailer
+    include ShinyCMS::FeatureFlags
+
     before_action :check_feature_flags
 
     before_action { @to = params[:to] || ShinyCMS::Setting.get( :default_email ) }

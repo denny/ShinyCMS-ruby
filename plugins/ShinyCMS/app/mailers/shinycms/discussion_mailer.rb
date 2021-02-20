@@ -9,6 +9,8 @@
 module ShinyCMS
   # Mailer for discussion-related emails (reply notifications, etc)
   class DiscussionMailer < ApplicationMailer
+    include ShinyCMS::FeatureFlags
+
     before_action :check_feature_flags
 
     def parent_comment_notification( comment )

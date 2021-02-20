@@ -9,6 +9,8 @@
 module ShinyCMS
   # Controller for tag features on a ShinyCMS-powered site
   class TagsController < MainController
+    include ShinyCMS::FeatureFlags
+
     before_action :check_feature_flags
 
     def index
