@@ -9,15 +9,19 @@
 module ShinyCMS
   # Helper methods for turning CMS features on/off selectively
   module EnforceFeatureFlags
-    def enforce_feature_flags( feature_name )
-      return if feature_enabled? feature_name
+    extend ActiveSupport::Concern
 
-      flash[ :alert ] = I18n.t(
-        'shinycms.feature_flags.off_alert',
-        feature_name: I18n.t( "shinycms.feature_flags.#{feature_name}" )
-      )
-      # redirect_back( fallback_location: main_app.root_path )
-      redirect_to main_app.root_path
+    included do
+      def enforce_feature_flags( feature_name )
+        return if feature_enabled? feature_name
+
+        flash[ :alert ] = I18n.t(
+          'shinycms.feature_flags.off_alert',
+          feature_name: I18n.t( "shinycms.feature_flags.#{feature_name}" )
+        )
+        # redirect_back( fallback_location: main_app.root_path )
+        redirect_to main_app.root_path
+      end
     end
   end
 end
