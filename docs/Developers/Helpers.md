@@ -15,24 +15,24 @@ returns the same results as this code using a model:
 
 ### From core plugin
 
-* MainSiteHelper    - useful methods for main site views - includes many of the helpers below
-* AdminAreaHelper   - useful methods for admin area views
-* MailerHelper      - useful methods for mailers
+* MainSiteHelper     - includes all the helpers that are useful across the main site
 
-* PluginHelper      - provides the `plugin_loaded?` method
+* AdminAreaHelper    - useful methods for admin area views
+* MailerHelper       - useful methods for mailers
 
-* DateHelper        - turns DateTime objects into human-readable dates and times
-* DiscussionHelper  - discussion-related settings and searches
-* ElementHelper     - provides `element_types` method, for populating drop-down menu
+* PluginsHelper      - the `plugin_loaded?` method
 
-* ShinyFeatureFlagHelper - check and enforce feature flags
-* ShinyPagingHelper      - methods to help with pagination
-* ShinySiteNameHelper    - provides the `site_name` method - included by MainSiteHelper and ShinyMailerHelper
-* ShinyUserHelper        - user-capability checks and profile link generation
+* DatesHelper        - turn DateTime objects into human-readable dates and times
+* DiscussionsHelper  - methods to get discussion settings and fetch recent comments
+* ElementsHelper     - the `element_types` method, for populating drop-down menu
+* FeatureFlagsHelper - the `feature_enabled?` method
+* PagingHelper       - methods to help with pagination
+* SiteNameHelper     - the `site_name` method
+* UsersHelper        - provides user-capability checks and profile link generation
 
-* AkismetHelper          - methods related to the Akismet spam-flagging service
-* RecaptchaHelper        - methods related to Google's reCAPTCHA bot detection service
-* SidekiqHelper          - method to check whether Sidekiq job queues are enabled
+* AkismetHelper      - methods related to the Akismet spam-flagging service
+* RecaptchaHelper    - methods related to Google's reCAPTCHA bot detection service
+* SidekiqHelper      - the `sidekiq_web_enabled?` method
 
 ### From feature plugins
 

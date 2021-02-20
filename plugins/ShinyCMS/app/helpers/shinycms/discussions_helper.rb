@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Helper methods for templates dealing with discussions and comments
-  module DiscussionHelper
+  module DiscussionsHelper
     def allow_anonymous_comments?
       Setting.true?( :allow_anonymous_comments )
     end

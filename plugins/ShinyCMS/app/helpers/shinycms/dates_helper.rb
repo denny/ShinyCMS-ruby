@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Useful methods for displaying/saving dates and times
-  module DateHelper
+  module DatesHelper
     def display_date_at_time( timestamp )
       return unless timestamp.is_a? Time
 

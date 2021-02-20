@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Helper methods for displaying tag details (that filter out tags on hidden content)
-  module ShinyTagsHelper
+  module TagsHelper
     include ActsAsTaggableOn::TagsHelper
 
     def taggings_count( tag )

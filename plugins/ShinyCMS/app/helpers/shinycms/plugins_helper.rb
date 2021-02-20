@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Helper methods for dealing with plugins
-  module PluginHelper
+  module PluginsHelper
     def plugin_loaded?( plugin_name )
       ShinyCMS::Plugins.loaded? plugin_name
     end

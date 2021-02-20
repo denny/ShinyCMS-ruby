@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Helpers for code dealing with Page/Template/etc elements
-  module ElementHelper
+  module ElementsHelper
     # Provide list of known element types (short text, long text, etc) for use in drop-down menus
     def element_types
       I18n.t( 'shinycms.admin.elements' ).collect { |element| [ element.second, element.first ] }

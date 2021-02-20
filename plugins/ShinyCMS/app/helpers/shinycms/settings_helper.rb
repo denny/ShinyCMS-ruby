@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Helper method for retrieving site settings
-  module ShinySettingsHelper
+  module SettingsHelper
     def setting( name )
       Setting.get( name, current_user )
     end

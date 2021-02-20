@@ -16,7 +16,7 @@ module ShinyCMS
 
       # Instance methods
 
-      def votable_url_class
+      def vote_url_class_name
         self.class.name.underscore.parameterize
       end
     end

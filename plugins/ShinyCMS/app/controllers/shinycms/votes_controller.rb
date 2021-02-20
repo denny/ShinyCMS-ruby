@@ -33,7 +33,7 @@ module ShinyCMS
     private
 
     def find_resource
-      type = class_from_votable_url params[ :type ]
+      type = class_from_vote_url params[ :type ]
       return head( :bad_request ) unless votable_model_names.include? type
 
       @resource = type.constantize.find( params[ :id ] )
