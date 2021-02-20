@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Helper methods for turning CMS features on/off selectively
-  module EnforceFeatureFlags
+  module FeatureFlags
     extend ActiveSupport::Concern
 
     included do
