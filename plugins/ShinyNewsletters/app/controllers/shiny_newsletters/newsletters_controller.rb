@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Controller for main site newsletter features - from the ShinyNewsletters plugin for ShinyCMS
   class NewslettersController < MainController
-    include ShinyCMS::ShinyPagingHelper
+    include ShinyCMS::Paging
 
     helper_method :pagy_url_for
 

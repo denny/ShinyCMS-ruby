@@ -8,9 +8,9 @@
 
 module ShinyCMS
   # Helper method that returns your site's name
-  module ShinySiteNameHelper
+  module SiteNameHelper
     def site_name
-      Setting.get( :site_name ) || I18n.t( 'site_name' )
+      ShinyCMS::Setting.get( :site_name ) || I18n.t( 'site_name' )
     end
   end
 end

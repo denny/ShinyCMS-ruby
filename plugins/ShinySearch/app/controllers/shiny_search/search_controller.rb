@@ -9,7 +9,7 @@
 module ShinySearch
   # Main site controller for ShinySearch plugin for ShinyCMS
   class SearchController < MainController
-    include ShinyCMS::ShinyPagingHelper
+    include ShinyCMS::Paging
 
     include ShinySearch::MainSiteHelper
 

@@ -11,7 +11,7 @@ module ShinyCMS
   class AdminController < ApplicationController
     include Pundit
 
-    include ShinyPagingHelper
+    include ShinyCMS::Paging
 
     before_action :check_admin_ip_list
     before_action :authenticate_user!

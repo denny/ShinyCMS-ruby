@@ -9,7 +9,7 @@
 module ShinyCMS
   # Controller for vote features on a ShinyCMS site
   class VotesController < MainController
-    include ShinyVotesHelper
+    include Votes
 
     before_action :find_resource
     before_action :find_voter

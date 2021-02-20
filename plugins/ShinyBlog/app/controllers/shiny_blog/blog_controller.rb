@@ -9,7 +9,7 @@
 module ShinyBlog
   # Main site controller for blog - provided by ShinyBlog plugin for ShinyCMS
   class BlogController < MainController
-    include ShinyCMS::ShinyPagingHelper
+    include ShinyCMS::Paging
 
     before_action :check_feature_flags
 
