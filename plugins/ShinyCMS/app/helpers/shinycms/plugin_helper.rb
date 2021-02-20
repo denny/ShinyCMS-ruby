@@ -10,7 +10,7 @@ module ShinyCMS
   # Helper methods for dealing with plugins
   module PluginHelper
     def plugin_loaded?( plugin_name )
-      ShinyCMS::Plugins.include? plugin_name
+      ShinyCMS::Plugins.loaded? plugin_name
     end
 
     def plugins_with_main_site_head_templates

@@ -12,8 +12,6 @@ module ShinyPages
     include ShinyCMS::ShinyDemoDataProvider
     include ShinyCMS::ShinyElement
 
-    include ShinySearch::Searchable if ShinyCMS::Plugins.include? :ShinySearch
-
     # Assocations
 
     belongs_to :page, inverse_of: :elements
@@ -22,7 +20,10 @@ module ShinyPages
 
     acts_as_list scope: :page
 
-    searchable_by :content if ShinyCMS::Plugins.include? :ShinySearch # TODO
+    if ShinyCMS::Plugins.loaded? :ShinySearch
+      include ShinySearch::Searchable
+      searchable_by :content  # TODO
+    end
 
     # Validations
 

@@ -37,6 +37,7 @@ module ShinyCMS
 
     class_methods do
       delegate :include?, to: :new
+      delegate :loaded?,  to: :new
 
       delegate :with_main_site_helpers, to: :new
       delegate :with_views,             to: :new

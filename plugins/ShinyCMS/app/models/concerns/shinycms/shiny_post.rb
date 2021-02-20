@@ -20,8 +20,6 @@ module ShinyCMS
 
     include ShinyCMS::WithTags
 
-    include ShinySearch::Searchable if Plugins.include? :ShinySearch
-
     included do
       # Associations
 
@@ -41,7 +39,10 @@ module ShinyCMS
 
       # Plugin features
 
-      searchable_by :title, :body, :slug if Plugins.include? :ShinySearch # TODO: author
+      if Plugins.loaded? :ShinySearch
+        include ShinySearch::Searchable
+        searchable_by :title, :body, :slug  # TODO: author
+      end
 
       # Attribute aliases and delegated methods
 

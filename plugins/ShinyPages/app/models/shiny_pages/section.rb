@@ -16,8 +16,6 @@ module ShinyPages
     include ShinyCMS::ShinyShowHide
     include ShinyCMS::ShinySoftDelete
 
-    include ShinySearch::Searchable if ShinyCMS::Plugins.include? :ShinySearch
-
     include TopLevelSlugValidator
 
     # Associations
@@ -33,7 +31,10 @@ module ShinyPages
 
     # Plugin features
 
-    searchable_by :public_name, :slug if ShinyCMS::Plugins.include? :ShinySearch
+    if ShinyCMS::Plugins.loaded? :ShinySearch
+      include ShinySearch::Searchable
+      searchable_by :public_name, :slug
+    end
 
     # Scopes and sorting
 
