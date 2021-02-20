@@ -9,8 +9,6 @@
 module ShinyCMS
   # ShinyCMS base controller for the main/content site
   class MainController < ApplicationController
-    include ShinyCMS::FeatureFlags
-
     include ShinyCMS::MainSiteHelper
 
     Plugins.with_main_site_helpers.each do |plugin|
@@ -59,13 +57,7 @@ module ShinyCMS
     def after_sign_in_path_for( resource )
       check_for_pwnage( resource )
 
-      return URI( request.referer ).path if can_redirect_to_referer_after_login?
-
-      return admin_path if resource.can? :view_admin_area
-
-      return shiny_profiles.profile_path( resource.username ) if feature_enabled?( :user_profiles )
-
-      main_app.root_path
+      stored_location_for( :user ) || main_app.root_path
     end
 
     private
@@ -86,10 +78,6 @@ module ShinyCMS
       # :nocov:
       set_flash_message! :alert, :warn_pwned
       # :nocov:
-    end
-
-    def can_redirect_to_referer_after_login?
-      request.referer.present? && request.referer != new_user_session_url
     end
 
     def ahoy_web_tracking_enabled?

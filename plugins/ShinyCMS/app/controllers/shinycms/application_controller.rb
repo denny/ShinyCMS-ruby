@@ -16,6 +16,8 @@ module ShinyCMS
 
     helper_method :pagy_url_for, :recaptcha_v2_site_key, :recaptcha_v3_site_key, :recaptcha_checkbox_site_key
 
+    before_action :store_user_location!, if: :storable_location?
+
     before_action :set_view_paths
 
     def self.recaptcha_v3_secret_key
@@ -31,6 +33,14 @@ module ShinyCMS
     end
 
     private
+
+    def store_user_location!
+      store_location_for :user, request.fullpath
+    end
+
+    def storable_location?
+      request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
+    end
 
     def set_view_paths
       # Add the default templates directory to the top of view_paths

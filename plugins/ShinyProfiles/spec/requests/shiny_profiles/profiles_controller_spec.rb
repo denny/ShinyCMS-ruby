@@ -105,43 +105,54 @@ RSpec.describe ShinyProfiles::ProfilesController, type: :request do
   end
 
   describe 'POST /login' do
-    it "redirects to the user's profile page if user profiles are enabled" do
-      password = Faker::Books::CultureSeries.book
-      user = create :user, password: password
+    context 'when the user profile feature is enabled' do
+      it 'redirects to the last page the user visited before login' do
+        password = Faker::Books::CultureSeries.book
+        user = create :user, password: password
 
-      post shinycms.user_session_path, params: {
-        user: {
-          login:    user.username,
-          password: password
+        get shiny_profiles.profile_path user.username
+
+        post shinycms.user_session_path, params: {
+          user: {
+            login:    user.username,
+            password: password
+          }
         }
-      }
 
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_profiles.profile_path( user.username )
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title user.profile.name
+        expect( response      ).to have_http_status :found
+        expect( response      ).to redirect_to shiny_profiles.profile_path( user.username )
+        follow_redirect!
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title user.profile.name
+      end
     end
 
-    it "redirects to the site root if user profiles aren't enabled" do
-      password = Faker::Books::CultureSeries.book
-      user = create :user, password: password
+    context 'when the user profile feature is not enabled' do
+      it 'redirects to the homepage' do
+        page = create :top_level_page
 
-      ShinyCMS::FeatureFlag.disable :user_profiles
-      page = create :top_level_page
+        password = Faker::Books::CultureSeries.book
+        user = create :user, password: password
 
-      post shinycms.user_session_path, params: {
-        user: {
-          login:    user.username,
-          password: password
+        get shiny_profiles.profile_path user.username
+
+        ShinyCMS::FeatureFlag.disable :user_profiles
+
+        post shinycms.user_session_path, params: {
+          user: {
+            login:    user.username,
+            password: password
+          }
         }
-      }
 
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to main_app.root_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css 'h1', text: page.name
+        expect( response      ).to have_http_status :found
+        follow_redirect!
+        expect( response      ).to have_http_status :found
+        expect( response      ).to redirect_to main_app.root_path
+        follow_redirect!
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_css 'h1', text: page.name
+      end
     end
   end
 
