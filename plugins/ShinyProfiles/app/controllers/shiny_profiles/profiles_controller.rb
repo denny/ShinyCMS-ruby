@@ -9,8 +9,6 @@
 module ShinyProfiles
   # Main site controller for profile pages, provided by ShinyProfiles plugin for ShinyCMS
   class ProfilesController < MainController
-    include ShinyCMS::FeatureFlags
-
     before_action :check_feature_flags
     before_action :authenticate_user!, except: %i[ index show ]
     before_action :stash_profile,      only:   %i[ show edit update ]

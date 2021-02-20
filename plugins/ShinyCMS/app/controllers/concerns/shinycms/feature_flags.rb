@@ -13,7 +13,8 @@ module ShinyCMS
 
     included do
       def enforce_feature_flags( feature_name )
-        return if feature_enabled? feature_name
+        return if defined?( current_user ) && FeatureFlag.enabled?( feature_name, current_user )
+        return if FeatureFlag.enabled? feature_name
 
         flash[ :alert ] = I18n.t(
           'shinycms.feature_flags.off_alert',

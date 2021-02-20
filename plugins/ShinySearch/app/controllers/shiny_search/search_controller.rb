@@ -9,8 +9,6 @@
 module ShinySearch
   # Main site controller for ShinySearch plugin for ShinyCMS
   class SearchController < MainController
-    include ShinyCMS::FeatureFlags
-
     include ShinySearch::MainSiteHelper
 
     before_action :check_feature_flags

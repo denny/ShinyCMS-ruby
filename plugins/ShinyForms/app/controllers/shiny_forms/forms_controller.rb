@@ -9,8 +9,6 @@
 module ShinyForms
   # Main site controller for form handlers, provided by ShinyForms plugin for ShinyCMS
   class FormsController < MainController
-    include ShinyCMS::FeatureFlags
-
     include ShinyCMS::AkismetHelper
     include ShinyCMS::RecaptchaHelper
 

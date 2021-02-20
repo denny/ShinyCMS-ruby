@@ -11,6 +11,8 @@ module ShinyCMS
   class VotesController < MainController
     include Votes
 
+    before_action :check_feature_flags
+
     before_action :find_resource
     before_action :find_voter
 
@@ -60,6 +62,10 @@ module ShinyCMS
       return if @resource.voted_on_by?( votable_ip ) && Setting.not_true?( :anon_votes_can_change )
 
       @voter = votable_ip
+    end
+
+    def check_feature_flags
+      enforce_feature_flags :upvotes
     end
   end
 end

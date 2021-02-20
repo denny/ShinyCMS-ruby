@@ -9,8 +9,6 @@
 module ShinyNewsletters
   # Mailer to send a newsletter edition to a list subscriber - ShinyNewsletters plugin for ShinyCMS
   class NewsletterMailer < ApplicationMailer
-    include ShinyCMS::FeatureFlags
-
     before_action :check_feature_flags
 
     def send_email( edition, recipient )

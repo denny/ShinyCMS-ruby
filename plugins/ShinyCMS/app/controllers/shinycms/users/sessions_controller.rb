@@ -9,8 +9,6 @@
 module ShinyCMS
   # User login controller; almost entirely handled by Devise
   class Users::SessionsController < Devise::SessionsController
-    include ShinyCMS::FeatureFlags
-
     before_action :check_feature_flags
 
     private

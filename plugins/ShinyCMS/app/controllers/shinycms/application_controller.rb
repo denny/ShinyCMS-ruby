@@ -9,6 +9,7 @@
 module ShinyCMS
   # Base controller for ShinyCMS (see also: MainController, AdminController)
   class ApplicationController < ActionController::Base
+    include ShinyCMS::FeatureFlags
     include ShinyCMS::Paging
 
     helper Pagy::Frontend

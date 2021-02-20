@@ -9,7 +9,9 @@
 module ShinyCMS
   # ShinyCMS base controller for the main/content site
   class MainController < ApplicationController
-    include MainSiteHelper
+    include ShinyCMS::FeatureFlags
+
+    include ShinyCMS::MainSiteHelper
 
     Plugins.with_main_site_helpers.each do |plugin|
       helper plugin.main_site_helper

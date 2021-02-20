@@ -9,8 +9,6 @@
 module ShinyNews
   # Main site controller for news section - provided by ShinyNews plugin for ShinyCMS
   class NewsController < MainController
-    include ShinyCMS::FeatureFlags
-
     before_action :check_feature_flags
 
     def index
