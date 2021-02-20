@@ -9,8 +9,6 @@
 module ShinyCMS
   # Controller for discussion and comment features on a ShinyCMS site
   class DiscussionsController < MainController
-    include ShinyCMS::FeatureFlags
-
     include AkismetHelper
     include RecaptchaHelper
 

@@ -9,8 +9,6 @@
 module ShinyCMS
   # ShinyCMS base controller for the main/content site
   class MainController < ApplicationController
-    include ShinyCMS::FeatureFlags
-
     include MainSiteHelper
 
     Plugins.with_main_site_helpers.each do |plugin|
