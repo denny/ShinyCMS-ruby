@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Helper method for turning a WithVotes URL param back into a class name
-  module VotesHelper
+  module Votes
     include ActsAsTaggableOn::TagsHelper
 
     def class_from_vote_url( url_param )
