@@ -9,9 +9,9 @@
 module ShinyCMS
   # Base class for Mailers
   class ApplicationMailer < ActionMailer::Base
-    include ShinyMailerHelper
+    include MailerHelper
 
-    helper ShinyMailerHelper
+    helper MailerHelper
 
     before_action :set_view_paths
 

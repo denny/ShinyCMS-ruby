@@ -107,25 +107,23 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
       password = 'shinycms unimaginative test passphrase'
       user = create :user, password: password
 
-      different_page = create :top_level_page
-      should_go_here = "http://www.example.com/#{different_page.slug}"
+      create :top_level_page
+      page2 = create :page_in_section
+      create :page_in_section
 
-      post shinycms.user_session_path,
-           params:  {
-             user: {
-               login:    user.username,
-               password: password
-             }
-           },
-           headers: {
-             HTTP_REFERER: should_go_here
-           }
+      get  page2.path
+      post shinycms.user_session_path, params: {
+        user: {
+          login:    user.username,
+          password: password
+        }
+      }
 
       expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to should_go_here
+      expect( response      ).to redirect_to page2.path
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css 'h1', text: different_page.name
+      expect( response.body ).to have_css 'h1', text: page2.name
     end
   end
 end

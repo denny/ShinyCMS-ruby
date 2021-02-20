@@ -11,14 +11,14 @@ module ShinyCMS
   module ShinyPost
     extend ActiveSupport::Concern
 
-    include ShinySearch::Searchable if Plugins.include? :ShinySearch
     include ShinyClassName
     include ShinyShowHide
     include ShinySlugInMonth
     include ShinySoftDelete
-    include ShinyTags
     include ShinyTeaser
     include ShinyWithVotes
+
+    include ShinyCMS::WithTags
 
     included do
       # Associations
@@ -39,7 +39,10 @@ module ShinyCMS
 
       # Plugin features
 
-      searchable_by :title, :body, :slug if Plugins.include? :ShinySearch # TODO: author
+      if Plugins.loaded? :ShinySearch
+        include ShinySearch::Searchable
+        searchable_by :title, :body, :slug  # TODO: author
+      end
 
       # Attribute aliases and delegated methods
 

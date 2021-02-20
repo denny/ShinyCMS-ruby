@@ -14,7 +14,7 @@ module ShinyNewsletters
     include ShinyCMS::ShinyShowHide
     include ShinyCMS::ShinySlugInMonth
     include ShinyCMS::ShinySoftDelete
-    include ShinyCMS::ShinyWithTemplate
+    include ShinyCMS::WithTemplate
 
     # Associations
 

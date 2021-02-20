@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for plugin helper methods
-RSpec.describe ShinyCMS::ShinyPluginHelper, type: :helper do
+RSpec.describe ShinyCMS::PluginsHelper, type: :helper do
   describe 'plugin_loaded?' do
     it 'returns true if the plugin is loaded' do
       expect( helper.plugin_loaded?( :ShinySearch ) ).to be true

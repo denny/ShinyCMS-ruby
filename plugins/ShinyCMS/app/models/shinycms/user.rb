@@ -34,8 +34,8 @@ module ShinyCMS
     # Instance methods
 
     def name
-      # TODO: FIXME: ffs
-      if  Plugins.include?( :ShinyProfiles ) &&
+      # TODO: FIXME: eww.
+      if  Plugins.loaded?( :ShinyProfiles ) &&
           FeatureFlag.enabled?( :user_profiles ) &&
           respond_to?( :profile ) &&
           profile.present?

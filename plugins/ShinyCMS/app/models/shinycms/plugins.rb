@@ -41,9 +41,13 @@ module ShinyCMS
       names.include? plugin_name.to_s
     end
 
+    def loaded?( plugin_name )
+      names.include?( plugin_name.to_s ) && defined?( plugin_name.to_s.constantize ).present?
+    end
+
     # These aren't used currently
     # def add( plugin_name )
-    #  return self if _plugins.include? plugin_name
+    #  return self if include? plugin_name
 
     #  Plugins.new( _plugins.add( build_plugin( plugin_name ) ) )
     # end

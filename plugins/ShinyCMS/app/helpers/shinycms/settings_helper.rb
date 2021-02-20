@@ -7,12 +7,10 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Helper methods for displaying tag details (that filter out tags on hidden content)
-  module ShinyTagsHelper
-    include ActsAsTaggableOn::TagsHelper
-
-    def taggings_count( tag )
-      tag.taggings.where( context: 'tags' ).count
+  # Helper method for retrieving site settings
+  module SettingsHelper
+    def setting( name )
+      Setting.get( name, current_user )
     end
   end
 end

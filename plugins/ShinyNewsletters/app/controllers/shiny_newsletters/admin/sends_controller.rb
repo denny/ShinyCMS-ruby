@@ -9,13 +9,11 @@
 module ShinyNewsletters
   # Admin controller for newsletter sends - part of ShinyNewsletters plugin for ShinyCMS
   class Admin::SendsController < AdminController
-    include ShinyCMS::ShinyDateHelper
+    include ShinyCMS::DatesHelper
 
     before_action :stash_send, only: %i[ show edit update destroy start_sending cancel_sending ]
     before_action :stash_send_for_create, only: %i[ create ]
     before_action :stash_sending_and_scheduled, only: %i[ index ]
-
-    before_action :convert_send_at_to_utc
 
     def index
       authorize Send
@@ -130,10 +128,6 @@ module ShinyNewsletters
 
     def viewing_first_page?
       ( params[:page] || 1 ) == 1
-    end
-
-    def convert_send_at_to_utc
-      params[ :send_at ] = convert_to_utc( params[ :send_at ] )
     end
   end
 end

@@ -7,14 +7,12 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # User login controller; almost entirely handled by Devise
-  class Users::SessionsController < Devise::SessionsController
-    before_action :check_feature_flags
+  # Helper methods for displaying tag details (that filter out tags on hidden content)
+  module TagsHelper
+    include ActsAsTaggableOn::TagsHelper
 
-    private
-
-    def check_feature_flags
-      enforce_feature_flags :user_login
+    def taggings_count( tag )
+      tag.taggings.where( context: 'tags' ).count
     end
   end
 end

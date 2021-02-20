@@ -12,8 +12,6 @@ module ShinyProfiles
     include ShinyCMS::ShinyDemoDataProvider
     include ShinyCMS::ShinySoftDelete
 
-    include ShinySearch::Searchable if ShinyCMS::Plugins.include? :ShinySearch
-
     # Associations
 
     belongs_to :profile, inverse_of: :links
@@ -22,7 +20,10 @@ module ShinyProfiles
 
     acts_as_list scope: :profile
 
-    searchable_by :name, :url if ShinyCMS::Plugins.include? :ShinySearch # TODO
+    if ShinyCMS::Plugins.include? :ShinySearch
+      include ShinySearch::Searchable
+      searchable_by :name, :url  # TODO
+    end
 
     # Validations
 

@@ -10,76 +10,85 @@ require 'rails_helper'
 
 # Tests for main site usage of feature flags
 RSpec.describe 'Feature Flags (main site)', type: :request do
-  before do
-    ShinyCMS::FeatureFlag.enable :user_login
-    ShinyCMS::FeatureFlag.enable :user_profiles
-  end
-
   describe 'GET /login' do
-    it "succeeds with 'User Login = On'" do
-      get shinycms.new_user_session_path
-
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to include I18n.t( 'shinycms.user.log_in' )
+    before do
+      ShinyCMS::FeatureFlag.enable :user_profiles
     end
 
-    it "fails with 'User Login = Off'" do
-      create :top_level_page
+    context 'when the user_logins feature flag is on' do
+      it 'loads the login page' do
+        ShinyCMS::FeatureFlag.enable :user_login
 
-      ShinyCMS::FeatureFlag.find_or_create_by!( name: 'user_login' )
-                           .update!( enabled: false )
+        get shinycms.new_user_session_path
 
-      get shinycms.new_user_session_path
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to include I18n.t( 'shinycms.user.log_in' )
+      end
+    end
 
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to main_app.root_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css(
-        '.alerts',
-        text: I18n.t(
-          'shinycms.feature_flags.off_alert',
-          feature_name: I18n.t( 'shinycms.feature_flags.user_login' )
+    context 'when the user_logins feature flag is off' do
+      it 'redirects to the homepage' do
+        create :top_level_page
+
+        ShinyCMS::FeatureFlag.disable :user_login
+
+        get shinycms.new_user_session_path
+
+        expect( response      ).to have_http_status :found
+        expect( response      ).to redirect_to main_app.root_path
+        follow_redirect!
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_css(
+          '.alerts',
+          text: I18n.t(
+            'shinycms.feature_flags.off_alert',
+            feature_name: I18n.t( 'shinycms.feature_flags.user_login' )
+          )
         )
-      )
+      end
     end
   end
 
   describe 'GET /profile/{username}' do
-    it 'fails for non-admin user with Profile Pages feature only enabled for admins' do
-      create :top_level_page
-      user = create :user
-      sign_in user
-
-      ShinyCMS::FeatureFlag.find_or_create_by!( name: 'user_profiles' )
-                           .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
-
-      get shiny_profiles.profile_path( user.username )
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to main_app.root_path
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css(
-        '.alerts',
-        text: I18n.t(
-          'shinycms.feature_flags.off_alert',
-          feature_name: I18n.t( 'shinycms.feature_flags.user_profiles' )
-        )
+    before do
+      ShinyCMS::FeatureFlag.find_by!( name: 'user_profiles' ).update!(
+        enabled:               false,
+        enabled_for_logged_in: false,
+        enabled_for_admins:    true
       )
     end
 
-    it 'succeeds for admin user with Profile Pages feature only enabled for admins' do
-      user = create :admin_user
-      sign_in user
+    context 'with Profile Pages feature only enabled for admins' do
+      it 'succeeds for an admin user' do
+        user = create :admin_user
+        sign_in user
 
-      ShinyCMS::FeatureFlag.find_or_create_by!( name: 'user_profiles' )
-                           .update!( enabled: false, enabled_for_logged_in: false, enabled_for_admins: true )
+        get shiny_profiles.profile_path( user.username )
 
-      get shiny_profiles.profile_path( user.username )
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title user.profile.name
+      end
 
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title user.profile.name
+      it 'fails for a non-admin user' do
+        create :top_level_page
+
+        user = create :user
+        sign_in user
+
+        get shiny_profiles.profile_path( user.username )
+
+        expect( response      ).to have_http_status :found
+        expect( response      ).to redirect_to main_app.root_path
+        follow_redirect!
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_css(
+          '.alerts',
+          text: I18n.t(
+            'shinycms.feature_flags.off_alert',
+            feature_name: I18n.t( 'shinycms.feature_flags.user_profiles' )
+          )
+        )
+      end
     end
   end
 end

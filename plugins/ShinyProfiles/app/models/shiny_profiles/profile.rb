@@ -13,8 +13,6 @@ module ShinyProfiles
     include ShinyCMS::ShinyShowHide
     include ShinyCMS::ShinySoftDelete
 
-    include ShinySearch::Searchable if ShinyCMS::Plugins.include? :ShinySearch
-
     # Associations
 
     belongs_to :user, inverse_of: :profile, class_name: 'ShinyCMS::User'
@@ -39,7 +37,8 @@ module ShinyProfiles
 
     # Plugins
 
-    if ShinyCMS::Plugins.include? :ShinySearch
+    if ShinyCMS::Plugins.loaded? :ShinySearch
+      include ShinySearch::Searchable
       searchable_by :username, :public_name, :public_email, :bio, :location, :postcode
     end
 

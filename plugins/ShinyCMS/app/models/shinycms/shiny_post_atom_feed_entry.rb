@@ -11,7 +11,7 @@ require 'rss'
 module ShinyCMS
   # Model to assist in building Atom feed entries from ShinyPosts
   class ShinyPostAtomFeedEntry
-    include ShinySiteNameHelper
+    include SiteNameHelper
     include ShinySiteURL
 
     include Rails.application.routes.url_helpers

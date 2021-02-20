@@ -9,11 +9,7 @@
 module ShinyBlog
   # Main site controller for blog - provided by ShinyBlog plugin for ShinyCMS
   class BlogController < MainController
-    include ShinyCMS::ShinyPagingHelper
-
     before_action :check_feature_flags
-
-    helper_method :pagy_url_for
 
     def index
       @pagy, @posts = pagy_countless( Post.readonly.recent, items: items_per_page )
@@ -43,12 +39,6 @@ module ShinyBlog
 
     def check_feature_flags
       enforce_feature_flags :blog
-    end
-
-    # Override pager link format (to blog/page/NN rather than blog?page=NN)
-    def pagy_url_for( page, _pagy )
-      params = request.query_parameters.merge( only_path: true, page: page )
-      url_for( params )
     end
   end
 end

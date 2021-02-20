@@ -9,7 +9,7 @@
 module ShinyPages
   # Admin controller for pages - ShinyPages plugin for ShinyCMS
   class Admin::PagesController < AdminController
-    include ShinyCMS::ShinySortable
+    include ShinyCMS::Admin::Sorting
 
     before_action :stash_new_page, only: %i[ new create ]
     before_action :stash_page,     only: %i[ edit update destroy ]

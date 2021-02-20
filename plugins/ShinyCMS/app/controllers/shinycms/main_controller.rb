@@ -9,20 +9,19 @@
 module ShinyCMS
   # ShinyCMS base controller for the main/content site
   class MainController < ApplicationController
-    include ShinyMainSiteHelper
-    include ShinyS3
+    include ShinyCMS::MainSiteHelper
+
+    Plugins.with_main_site_helpers.each do |plugin|
+      helper plugin.main_site_helper
+    end
+
+    helper_method :feed_url
 
     before_action :add_theme_view_path
 
     before_action :configure_permitted_parameters, if: :devise_controller?
 
     after_action  :track_ahoy_event, if: :ahoy_web_tracking_enabled?
-
-    helper_method :feed_url
-
-    Plugins.with_main_site_helpers.each do |plugin|
-      helper plugin.main_site_helper
-    end
 
     layout 'layouts/main_site'
 
@@ -58,13 +57,7 @@ module ShinyCMS
     def after_sign_in_path_for( resource )
       check_for_pwnage( resource )
 
-      return URI( request.referer ).path if can_redirect_to_referer_after_login?
-
-      return admin_path if resource.can? :view_admin_area
-
-      return shiny_profiles.profile_path( resource.username ) if feature_enabled?( :user_profiles )
-
-      main_app.root_path
+      stored_location_for( :user ) || main_app.root_path
     end
 
     private
@@ -87,10 +80,6 @@ module ShinyCMS
       # :nocov:
     end
 
-    def can_redirect_to_referer_after_login?
-      request.referer.present? && request.referer != new_user_session_url
-    end
-
     def ahoy_web_tracking_enabled?
       FeatureFlag.enabled? :ahoy_web_tracking
     end
@@ -100,7 +89,7 @@ module ShinyCMS
     end
 
     def feeds_base_url
-      aws_s3_feeds_base_url || main_app.root_url.to_s.chop
+      ShinyCMS::S3Config.new( :feeds ).base_url || main_app.root_url.to_s.chop
     end
   end
 end

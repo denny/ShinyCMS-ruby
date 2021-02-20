@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Admin controller for newsletter templates - part of ShinyNewsletters plugin for ShinyCMS
   class Admin::TemplatesController < AdminController
-    include ShinyCMS::ShinySortable
+    include ShinyCMS::Admin::Sorting
 
     before_action :stash_new_template, only: %i[ new create ]
     before_action :stash_template,     only: %i[ edit update destroy ]

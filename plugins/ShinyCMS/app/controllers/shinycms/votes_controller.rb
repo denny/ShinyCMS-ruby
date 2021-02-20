@@ -9,7 +9,9 @@
 module ShinyCMS
   # Controller for vote features on a ShinyCMS site
   class VotesController < MainController
-    include ShinyVotesHelper
+    include Votes
+
+    before_action :check_feature_flags
 
     before_action :find_resource
     before_action :find_voter
@@ -33,7 +35,7 @@ module ShinyCMS
     private
 
     def find_resource
-      type = class_from_votable_url params[ :type ]
+      type = class_from_vote_url params[ :type ]
       return head( :bad_request ) unless votable_model_names.include? type
 
       @resource = type.constantize.find( params[ :id ] )
@@ -60,6 +62,10 @@ module ShinyCMS
       return if @resource.voted_on_by?( votable_ip ) && Setting.not_true?( :anon_votes_can_change )
 
       @voter = votable_ip
+    end
+
+    def check_feature_flags
+      enforce_feature_flags :upvotes
     end
   end
 end

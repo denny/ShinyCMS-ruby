@@ -7,10 +7,12 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Helper to return your site name - included by ShinyMainSiteHelper and ShinyMailerHelper
-  module ShinySiteNameHelper
-    def site_name
-      Setting.get( :site_name ) || I18n.t( 'site_name' )
+  module Admin
+    # Common methods for admin controllers that handle content WithTags
+    module Tags
+      def admin_tag_list( resource )
+        resource.tag_list.present? ? resource.tag_list&.join( ', ' ) : resource.hidden_tag_list&.join( ', ' )
+      end
     end
   end
 end

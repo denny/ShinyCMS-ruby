@@ -9,9 +9,16 @@
 module ShinyCMS
   # Base controller for ShinyCMS (see also: MainController, AdminController)
   class ApplicationController < ActionController::Base
-    before_action :set_view_paths
+    include ShinyCMS::FeatureFlags
+    include ShinyCMS::Paging
 
-    helper_method :recaptcha_v2_site_key, :recaptcha_v3_site_key, :recaptcha_checkbox_site_key
+    helper Pagy::Frontend
+
+    helper_method :pagy_url_for, :recaptcha_v2_site_key, :recaptcha_v3_site_key, :recaptcha_checkbox_site_key
+
+    before_action :store_user_location!, if: :storable_location?
+
+    before_action :set_view_paths
 
     def self.recaptcha_v3_secret_key
       ENV[ 'RECAPTCHA_V3_SECRET_KEY' ]
@@ -27,6 +34,14 @@ module ShinyCMS
 
     private
 
+    def store_user_location!
+      store_location_for :user, request.fullpath
+    end
+
+    def storable_location?
+      request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
+    end
+
     def set_view_paths
       # Add the default templates directory to the top of view_paths
       prepend_view_path 'plugins/ShinyCMS/app/views/shinycms'
@@ -35,6 +50,12 @@ module ShinyCMS
       Plugins.with_views.each do |plugin|
         prepend_view_path plugin.view_path
       end
+    end
+
+    # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
+    def pagy_url_for( page, _pagy )
+      params = request.query_parameters.merge( only_path: true, page: page )
+      url_for( params )
     end
 
     def recaptcha_v3_site_key

@@ -9,7 +9,7 @@
 module ShinyCMS
   # Wrapper around ActsAsTaggableOn
   # Keeps show/hide status of tags in sync with show/hide status of tagged resource
-  module ShinyTags
+  module WithTags
     extend ActiveSupport::Concern
 
     included do

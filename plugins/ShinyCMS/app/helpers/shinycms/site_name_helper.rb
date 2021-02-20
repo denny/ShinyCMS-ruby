@@ -7,12 +7,10 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Helper method for turning a ShinyWithVotes URL param back into a class name
-  module ShinyVotesHelper
-    include ActsAsTaggableOn::TagsHelper
-
-    def class_from_votable_url( url_param )
-      url_param.tr( '-', '/' ).classify
+  # Helper method that returns your site's name
+  module SiteNameHelper
+    def site_name
+      ShinyCMS::Setting.get( :site_name ) || I18n.t( 'site_name' )
     end
   end
 end
