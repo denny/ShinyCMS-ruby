@@ -11,7 +11,7 @@ module ShinyCMS
   class MainController < ApplicationController
     include ShinyCMS::MainSiteHelper
 
-    Plugins.with_main_site_helpers.each do |plugin|
+    ShinyCMS::Plugins.with_main_site_helpers.each do |plugin|
       helper plugin.main_site_helper
     end
 
@@ -68,7 +68,7 @@ module ShinyCMS
 
     def add_theme_view_path
       # Apply the configured theme, if any, by adding its view path at the top of the list
-      prepend_view_path Theme.current( current_user )&.view_path
+      prepend_view_path ShinyCMS::Theme.get( current_user )&.view_path
     end
 
     # Check user's password against pwned password service and warn if necessary
@@ -81,7 +81,7 @@ module ShinyCMS
     end
 
     def ahoy_web_tracking_enabled?
-      FeatureFlag.enabled? :ahoy_web_tracking
+      ShinyCMS::FeatureFlag.enabled? :ahoy_web_tracking
     end
 
     def track_ahoy_event

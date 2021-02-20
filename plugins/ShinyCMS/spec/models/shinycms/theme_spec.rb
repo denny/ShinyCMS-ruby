@@ -28,19 +28,19 @@ RSpec.describe ShinyCMS::Theme, type: :model do
     it 'returns nil' do
       allow( described_class ).to receive( :env_shinycms_theme ).and_return( nil )
 
-      expect( described_class.current ).to eq nil
+      expect( described_class.get ).to eq nil
     end
   end
 
   context 'when there is an ENV theme setting' do
     it 'returns the configured theme if the theme folder exists' do
-      expect( described_class.current.name ).to eq 'test1'
+      expect( described_class.get.name ).to eq 'test1'
     end
 
     it 'returns nil if the theme folder does not exist' do
       allow( described_class ).to receive( :env_shinycms_theme ).and_return( 'test3' )
 
-      expect( described_class.current ).to eq nil
+      expect( described_class.get ).to eq nil
     end
   end
 
@@ -48,7 +48,7 @@ RSpec.describe ShinyCMS::Theme, type: :model do
     it 'returns the configured theme' do
       allow( ShinyCMS::Setting ).to receive( :get ).and_return( 'test2' )
 
-      expect( described_class.current.name ).to eq 'test2'
+      expect( described_class.get.name ).to eq 'test2'
     end
   end
 
@@ -59,7 +59,7 @@ RSpec.describe ShinyCMS::Theme, type: :model do
       user    = create :admin_user
       create :setting_value, user_id: user.id, setting_id: setting.id, value: 'test2'
 
-      expect( described_class.current( user ).name ).to eq 'test2'
+      expect( described_class.get( user ).name ).to eq 'test2'
     end
 
     it "returns the site's default theme if the user theme is invalid" do
@@ -68,7 +68,7 @@ RSpec.describe ShinyCMS::Theme, type: :model do
       user    = create :user
       create :setting_value, user_id: user.id, setting_id: setting.id, value: 'test3'
 
-      expect( described_class.current( user ).name ).to eq 'test1'
+      expect( described_class.get( user ).name ).to eq 'test1'
     end
   end
 end

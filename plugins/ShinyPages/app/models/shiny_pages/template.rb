@@ -9,9 +9,10 @@
 module ShinyPages
   # Model for page templates - part of the ShinyPages plugin for ShinyCMS
   class Template < ApplicationRecord
+    include ShinyCMS::ShinyHTMLTemplate
+
     include ShinyCMS::ShinyDemoDataProvider
     include ShinyCMS::ShinyClassName
-    include ShinyCMS::ShinyHTMLTemplate
     include ShinyCMS::ShinySoftDelete
 
     # Associations
@@ -21,7 +22,7 @@ module ShinyPages
     # Class methods
 
     def self.template_dir
-      ShinyCMS::Theme.current&.template_dir 'shiny_pages/pages'
+      ShinyCMS::Theme.get&.template_dir 'shiny_pages/pages'
     end
 
     def self.admin_search( search_term )
