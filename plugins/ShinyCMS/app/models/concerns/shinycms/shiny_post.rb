@@ -58,8 +58,7 @@ module ShinyCMS
       scope :published,         -> { visible.merge( not_future_dated ) }
       scope :recent,            -> { published.merge( most_recent_first ) }
 
-      # TODO: FIXME: this doesn't work from here
-      self.implicit_order_column = 'posted_at'
+      mattr_accessor :implicit_order_column, default: :posted_at
 
       # Instance methods
 
