@@ -51,13 +51,13 @@ RSpec.describe ShinyCMS::Plugins, type: :model do
 
   describe '.include?' do
     it 'returns true if the named plugin is in its set' do
-      expect( described_class.include?( :ShinySearch ) ).to be true
+      expect( described_class.all.include?( :ShinySearch ) ).to be true
     end
   end
 
   describe '.loaded?' do
     it 'returns true if the named plugin is in its set AND defined as a constant' do
-      expect( described_class.loaded?( :ShinySearch ) ).to be true
+      expect( described_class.all.loaded?( :ShinySearch ) ).to be true
     end
   end
 end
