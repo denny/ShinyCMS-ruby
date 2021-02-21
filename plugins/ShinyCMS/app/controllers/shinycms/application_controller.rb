@@ -47,7 +47,7 @@ module ShinyCMS
       prepend_view_path 'plugins/ShinyCMS/app/views/shinycms'
 
       # Add the default templates directory for any loaded plugins above that
-      Plugins.with_views.each do |plugin|
+      ShinyCMS::Plugins.all.with_views.each do |plugin|
         prepend_view_path plugin.view_path
       end
     end
