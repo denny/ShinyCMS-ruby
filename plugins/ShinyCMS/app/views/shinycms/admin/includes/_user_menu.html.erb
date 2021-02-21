@@ -3,7 +3,7 @@
 <ul class="c-header-nav ml-auto mr-4">
   <li class="c-header-nav-item dropdown">
     <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-      <% if controller.is_a?( ShinyCMS::AdminController ) && current_user.profile&.profile_pic&.attached? %>
+      <% if shinycms_admin_controller? && current_user.profile&.profile_pic&.attached? %>
       <div class="c-avatar">
         <%= image_tag url_for( current_user.profile.profile_pic.variant( resize: '36x36!' ) ), alt: current_user.name, class: 'c-avatar-img' %>
       </div>
@@ -13,7 +13,7 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right pt-0">
       <div class="dropdown-header bg-light py-2"><strong><%= current_user.name %></strong></div>
-      <% if plugin_loaded? :ShinyProfiles && current_user.profile.present? %>
+      <% if plugin_loaded?( :ShinyProfiles ) && current_user.profile.present? %>
       <a class="dropdown-item" href="<%= shiny_profiles.profile_path( current_user.username ) %>">
         <i class="cil-user user-menu-icon"></i> <%= t( 'shiny_profiles.view_profile' ) %>
       </a>

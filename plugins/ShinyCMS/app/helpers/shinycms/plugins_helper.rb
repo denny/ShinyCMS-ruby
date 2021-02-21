@@ -9,24 +9,28 @@
 module ShinyCMS
   # Helper methods for dealing with plugins
   module PluginsHelper
+    def get_plugin( plugin_name )
+      ShinyCMS::Plugin.get plugin_name
+    end
+
     def plugin_loaded?( plugin_name )
       ShinyCMS::Plugins.loaded? plugin_name
     end
 
     def plugins_with_main_site_head_templates
-      ShinyCMS::Plugins.with_template( 'includes/_head_part.html.erb' )
+      ShinyCMS::Plugins.get.with_partial 'includes/_head_part.html.erb'
     end
 
     def plugins_with_main_site_menu_templates
-      ShinyCMS::Plugins.with_template( 'menu/_section.html.erb' )
+      ShinyCMS::Plugins.get.with_partial 'menu/_section.html.erb'
     end
 
     def plugins_with_admin_toolbar_templates
-      ShinyCMS::Plugins.with_template( 'admin/toolbar/_section.html.erb' )
+      ShinyCMS::Plugins.get.with_partial 'admin/toolbar/_section.html.erb'
     end
 
     def valid_plugin_path?( plugin_path = nil )
-      plugin_path.present? && plugin_path.starts_with?( 'plugins/' ) && plugin_path.ends_with?( 'app/views' )
+      plugin_path&.starts_with?( 'plugins/' ) && plugin_path&.ends_with?( 'app/views' )
     end
   end
 end
