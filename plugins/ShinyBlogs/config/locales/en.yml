@@ -2,28 +2,25 @@
 
 # ShinyBlogs plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# English locale strings for ShinyCMS features provided by the ShinyBlogs plugin
+
 en:
-  feature_flags:
-    shiny_blogs: Blogs
-    shiny_blogs_votes: Votes ('likes') on blog posts
-    shiny_blogs_downvotes: Down-votes ('dislikes') on blog posts
+  shinycms:
+    feature_flags:
+      shiny_blogs: Blogs
+      shiny_blogs_votes: Votes ('likes') on blog posts
+      shiny_blogs_downvotes: Down-votes ('dislikes') on blog posts
 
-  capability:
-    category:
-      shiny_blogs_blogs: Blogs
-      shiny_blogs_blog_posts: Blog Posts
-    shiny_blogs_blog_posts:
-      change_author: Change author
-
-  discussions:
-    n_comments:
-      zero: No comments
-      one: 1 comment
-      other: '%{count} comments'
+    capability:
+      category:
+        shiny_blogs_blogs: Blogs
+        shiny_blogs_blog_posts: Blog Posts
+      shiny_blogs_blog_posts:
+        change_author: Change author
 
   shiny_blogs:
     blogs:
