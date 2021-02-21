@@ -24,7 +24,7 @@
   <%= render_capability_category( f, category, category_capabilities, show ) %>
 
   <% plugins_for_edit_capabilities.each do |plugin| %>
-    <%= render partial: "#{plugin.name.underscore}/admin/user/edit_capabilities", locals: { f: f, show: show } %>
+    <%= render partial: plugin.partial( 'admin/user/edit_capabilities' ), locals: { f: f, show: show } %>
   <% end %>
 
   <% category = capability_category( :discussions ) %>

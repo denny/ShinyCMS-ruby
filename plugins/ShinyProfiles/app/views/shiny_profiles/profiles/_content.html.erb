@@ -1,7 +1,7 @@
 <section class="user-profile-content">
-  <% plugins_with_profile_content_templates.each do |plugin_name| %>
+  <% plugins_with_profile_content_templates.each do |plugin| %>
   <div style="float: left; padding-right: 2em;">
-    <%= render partial: "#{plugin_name}/profile/content" %>
+    <%= render partial: plugin.partial( 'profile/content' ) %>
   </div>
   <% end %>
 
