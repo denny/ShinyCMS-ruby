@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Provides convenience methods for interacting with ShinyCMS plugins
+  # Methods to get and query a single ShinyCMS plugin
   class Plugin
     include Persistent💎
 
@@ -41,15 +41,11 @@ module ShinyCMS
     end
 
     def base_model
-      return @base_model if defined? @base_model
-
-      @base_model = to_constant::ApplicationRecord if defined? to_constant::ApplicationRecord
+      to_constant::ApplicationRecord if defined? to_constant::ApplicationRecord
     end
 
     def main_site_helper
-      return @main_site_helper if defined? @main_site_helper
-
-      @main_site_helper = to_constant::MainSiteHelper if defined? to_constant::MainSiteHelper
+      to_constant::MainSiteHelper if defined? to_constant::MainSiteHelper
     end
 
     def models_that_are( method )
@@ -61,11 +57,11 @@ module ShinyCMS
     end
 
     def view_path
-      return @view_path if defined? @view_path
-
       path = "plugins/#{name}/app/views/#{underscore}"
 
-      @view_path = path if Dir.exist? Rails.root.join( path )
+      return unless Dir.exist? Rails.root.join( path )
+
+      path
     end
 
     def view_file_exists?( view_file )
