@@ -63,16 +63,17 @@ Lint/UselessMethodDefinition:
   Exclude:
     - plugins/ShinyCMS/app/controllers/shinycms/users/registrations_controller.rb
 
-# 💎 Persistent💎 include statements, method names, and a related comment 💎
-# 💎 Yes, they're frivolous and impractical. That's why I like them. 😃   💎
+# 💎 Persistent💎 method names and include statements (and some related comments)     💎
+# 💎 Yes, they are frivolous and impractical; that's my favourite thing about them 😃 💎
 Naming/AsciiIdentifiers:
   Exclude:
-    - plugins/ShinyCMS/app/models/shinycms/shiny_plugin.rb
+    - plugins/ShinyCMS/app/models/shinycms/plugin.rb
     - plugins/ShinyCMS/app/models/shinycms/plugins.rb
     - plugins/ShinyCMS/app/models/concerns/shinycms/plugins_sugar.rb
-
 Style/AsciiComments:
   Exclude:
+    - plugins/ShinyCMS/app/models/shinycms/plugin.rb
+    - plugins/ShinyCMS/app/models/shinycms/plugins.rb
     - plugins/ShinyCMS/app/models/concerns/shinycms/plugins_sugar.rb
 
 # I like chaining methods, it's aesthetically pleasing :-p

@@ -9,24 +9,47 @@
 module ShinyCMS
   # Provides convenience methods for interacting with ShinyCMS plugins
   class Plugin
+    include Persistent💎
+
     attr_reader :name
 
-    def initialize( name )
-      return unless Plugins.available_plugin_names.include? name
+    def initialize( plugin_name )
+      raise ArgumentError, "Plugin '#{plugin_name}' is not available" unless ShinyCMS::Plugin.available? plugin_name
 
-      @name = name
+      @name = plugin_name.to_sym
+    end
+
+    def self.get( plugin )
+      return plugin if plugin.is_a? ShinyCMS::Plugin
+      return new( plugin ) if available? plugin
+    end
+
+    def self.available?( plugin_name )
+      available_plugin_names.include? plugin_name.to_sym
+    end
+
+    def self.available_plugin_names
+      @available_plugin_names ||= a💎[ :ShinyCMS, *ShinyCMS::Plugins.all_plugin_names ]
     end
 
     def engine
-      @engine ||= name.constantize::Engine
+      @engine ||= to_constant::Engine
+    end
+
+    def routes
+      engine.routes.routes.routes # er, okay
     end
 
     def base_model
-      @base_model ||= name.constantize::ApplicationRecord if defined? name.constantize::ApplicationRecord
+      return @base_model if defined? @base_model
+
+      @base_model = to_constant::ApplicationRecord if defined? to_constant::ApplicationRecord
     end
 
     def main_site_helper
-      @main_site_helper ||= name.constantize::MainSiteHelper if defined? name.constantize::MainSiteHelper
+      return @main_site_helper if defined? @main_site_helper
+
+      @main_site_helper = to_constant::MainSiteHelper if defined? to_constant::MainSiteHelper
     end
 
     def models_that_are( method )
@@ -38,17 +61,27 @@ module ShinyCMS
     end
 
     def view_path
-      return unless File.exist? Rails.root.join( "plugins/#{name}/app/views/" )
+      return @view_path if defined? @view_path
 
-      "plugins/#{name}/app/views/#{name.underscore}"
+      path = "plugins/#{name}/app/views/#{underscore}"
+
+      @view_path = path if Dir.exist? Rails.root.join( path )
     end
 
-    def template_exists?( template_path )
-      File.exist? "#{view_path}/#{template_path}"
+    def view_file_exists?( view_file )
+      File.exist? Rails.root.join( "#{view_path}/#{view_file}" )
     end
 
-    def routes
-      engine.routes.routes.routes # er, okay
+    def partial( location )
+      "#{underscore}/#{location}"
+    end
+
+    def underscore
+      name.to_s.underscore
+    end
+
+    def to_constant
+      name.to_s.constantize
     end
   end
 end

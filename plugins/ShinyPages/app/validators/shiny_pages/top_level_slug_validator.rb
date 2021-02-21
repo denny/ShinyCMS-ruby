@@ -23,7 +23,11 @@ module ShinyPages
       end
 
       def all_routes
-        ( [ Rails.application.routes.routes.routes ] + [ ShinyCMS::Plugins.all.routes ] ).flatten
+        (
+          [ Rails.application.routes.routes.routes ] +
+          [ ShinyCMS::Engine.routes.routes.routes ] +
+          [ ShinyCMS::Plugins.loaded.routes  ]
+        ).flatten
       end
     end
   end

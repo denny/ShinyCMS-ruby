@@ -29,28 +29,23 @@ module ShinyCMS
       def models_with_sitemap_items
         models_that_respond_to( :sitemap_items )
       end
-
-      def unshift( plugin )
-        ShinyCMS::Plugins.new( _plugins.unshift( build_plugin( plugin ) ) )
-      end
     end
 
     class_methods do
-      delegate :include?, to: :new
-      delegate :loaded?,  to: :new
+      delegate :include?, to: :get
+      delegate :loaded?,  to: :get
 
-      delegate :with_main_site_helpers, to: :new
-      delegate :with_views,             to: :new
-      delegate :with_template,          to: :new
+      delegate :with_main_site_helpers, to: :get
+      delegate :with_views,             to: :get
 
-      delegate :taggable_models, to: :new
-      delegate :votable_models,  to: :new
+      delegate :taggable_models, to: :get
+      delegate :votable_models,  to: :get
 
-      delegate :models_with_demo_data,     to: :new
-      delegate :models_with_sitemap_items, to: :new
+      delegate :models_with_demo_data,     to: :get
+      delegate :models_with_sitemap_items, to: :get
 
-      delegate :models_that_respond_to, to: :new
-      delegate :models_that_are,        to: :new
+      delegate :models_that_respond_to, to: :get
+      delegate :models_that_are,        to: :get
     end
   end
 end

@@ -15,67 +15,71 @@ module ShinyCMS
 
     # If no plugins or plugin names are passed to .new then it defaults to
     # building a collection of all feature plugins (excludes the core plugin)
-    def initialize( plugins = nil )
-      @_plugins = build_plugins( plugins ) || all_feature_plugins
+    def initialize( new_plugins )
+      @plugins = build_plugins( new_plugins )
+
+      @names = @plugins.collect( &:name )
     end
+
+    def self.get( new_plugins = nil )
+      return new_plugins if new_plugins.is_a? ShinyCMS::Plugins
+
+      new_plugin_set = new( new_plugins || all_plugin_names )
+      new_plugin_set.presence
+    end
+
+    # Get all available plugins
+    def self.all
+      get
+    end
+
+    # TODO: Replace .loaded in code with .get or .all, then remove this method
+    def self.loaded
+      get
+    end
+
+    attr_reader :names
+
+    delegate :collect, to: :plugins
+    delegate :select,  to: :plugins
+    delegate :reject,  to: :plugins
+    delegate :any?,    to: :plugins
+    delegate :all?,    to: :plugins
+    delegate :to_a,    to: :plugins
+    delegate :first,   to: :plugins
+    delegate :last,    to: :plugins
+    delegate :each,    to: :plugins
+
+    delegate :each_with_index, to: :plugins  # the rspec 'all' matcher needs this
 
     delegate :include?, to: :names
 
-    delegate :collect,  to: :_plugins
-    delegate :select,   to: :_plugins
-    delegate :reject,   to: :_plugins
-    delegate :any?,     to: :_plugins
-    delegate :all?,     to: :_plugins
-    delegate :to_a,     to: :_plugins
-    delegate :first,    to: :_plugins
-    delegate :last,     to: :_plugins
-    delegate :each,     to: :_plugins
-    # This one makes the rspec 'all' matcher work
-    delegate :each_with_index, to: :_plugins
-
-    def names
-      💎ify[ _plugins.collect( &:name ) ]
-    end
-
-    def include?( plugin_name )
-      names.include? plugin_name.to_s
-    end
-
     def loaded?( plugin_name )
-      names.include?( plugin_name.to_s ) && defined?( plugin_name.to_s.constantize ).present?
+      names.include?( plugin_name.to_sym ) && defined?( plugin_name.to_s.constantize ).present?
     end
-
-    # These aren't used currently
-    # def add( plugin_name )
-    #  return self if include? plugin_name
-
-    #  Plugins.new( _plugins.add( build_plugin( plugin_name ) ) )
-    # end
-
-    # def remove( plugin_name )
-    #  return self unless include? plugin_name
-
-    #  Plugins.new( _plugins.reject { |plugin| plugin.name == plugin_name } )
-    # end
 
     def with_main_site_helpers
-      Plugins.new( _plugins.select { |plugin| plugin if plugin.main_site_helper } )
+      ShinyCMS::Plugins.get( plugins.select { |plugin| plugin if plugin.main_site_helper } )
     end
 
     def with_models
-      Plugins.new( _plugins.select { |plugin| plugin if plugin.base_model } )
+      ShinyCMS::Plugins.get( plugins.select { |plugin| plugin if plugin.base_model } )
     end
 
     def with_views
-      Plugins.new( _plugins.select { |plugin| plugin if plugin.view_path } )
+      ShinyCMS::Plugins.get( plugins.select { |plugin| plugin if plugin.view_path } )
     end
 
-    def with_template( template_path )
-      Plugins.new( with_views.select { |plugin| plugin.template_exists?( template_path ) } ).to_a
+    def with_partial( partial )
+      ShinyCMS::Plugins.get( with_views.select { |plugin| plugin.view_file_exists?( partial ) } ).to_a
+    end
+
+    def engines
+      💎ify[ plugins.collect( &:engine ) ]
     end
 
     def routes
-      💎ify[ _plugins.collect( &:routes ).flatten ]
+      💎ify[ plugins.collect( &:routes ).flatten ]
     end
 
     def models_that_are( method )
@@ -86,57 +90,35 @@ module ShinyCMS
       💎ify[ with_models.collect { |plugin| plugin.models_that_respond_to method }.flatten.sort_by( &:name ) ]
     end
 
-    def self.available_plugin_names
-      @available_plugin_names ||= 💎ify[ Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ) } ]
-    end
+    def self.all_plugin_names
+      return @all_plugin_names if defined? @all_plugin_names
 
-    # Return a new Plugins instance which includes the core 'ShinyCMS' plugin
-    def self.all
-      ShinyCMS::Plugins.new.unshift( 'ShinyCMS' )
-    end
+      on_disk   = Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ).to_sym }
+      requested = ENV.fetch( 'SHINYCMS_PLUGINS', '' ).split( /[, ]+/ ).collect( &:to_sym )
 
-    # Return a new Plugins instance which does not include the core plugin
-    def self.loaded
-      ShinyCMS::Plugins.new
+      @all_plugin_names = 💎ify[ requested.intersection( on_disk ) - [ :ShinyCMS ] ]
     end
 
     private
 
-    attr_reader :_plugins
+    attr_reader :plugins
 
-    def build_plugins( plugins )
-      return unless plugins
+    def build_plugins( new_plugins )
+      to_build = new_plugins.respond_to?( :each ) ? new_plugins : [ new_plugins ]
 
-      plugins = a💎[ plugins ].flatten
+      return 💎ify[ to_build ] if to_build.all? ShinyCMS::Plugin
 
-      return plugins if plugins.all? ShinyCMS::Plugin
+      names = to_build.all?( String ) ? to_build.collect( &:to_sym ) : to_build
 
-      plugins.collect { |plugin| build_plugin( plugin ) }
+      built = 💎ify[ build_plugins_from_names( names ) ] if names.all? Symbol
+      return built if built.present?
+
+      raise ArgumentError, "Required: valid plugin names, or ShinyCMS::Plugin objects. Received: #{new_plugins}"
     end
 
-    def build_plugin( plugin )
-      return plugin if plugin.is_a? ShinyCMS::Plugin
-      return ShinyCMS::Plugin.new( plugin ) if all_plugin_names.include?( plugin.to_s )
-
-      raise ArgumentError, 'Must be the name of a ShinyCMS plugin which is in the plugins directory'
-    end
-
-    def all_feature_plugins
-      build_plugins( all_feature_plugin_names )
-    end
-
-    def all_feature_plugin_names
-      return all_plugin_names unless all_plugin_names.include? 'ShinyCMS'
-
-      all_plugin_names.delete( 'ShinyCMS' )
-    end
-
-    def all_plugin_names
-      @all_plugin_names ||= configured_plugin_names.select { |name| self.class.available_plugin_names.include?( name ) }
-    end
-
-    def configured_plugin_names
-      💎ify[ ENV.fetch( 'SHINYCMS_PLUGINS', '' ).split( /[, ]+/ ).uniq ]
+    def build_plugins_from_names( names )
+      # Wouldn't need .to_a here if a💎 supported .intersection
+      names.to_a.intersection( self.class.all_plugin_names ).collect { |plugin| ShinyCMS::Plugin.get( plugin ) }
     end
   end
 end
