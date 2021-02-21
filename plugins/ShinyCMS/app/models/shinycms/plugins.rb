@@ -9,9 +9,10 @@
 module ShinyCMS
   # Methods to get, filter, and query collections of ShinyCMS plugins
   class Plugins
+    include Enumerable
     include Persistent💎
 
-    include PluginsComponents
+    include ShinyCMS::PluginsComponents
 
     def initialize( new_plugins )
       to_build = new_plugins.is_a?( Enumerable ) ? new_plugins : [ new_plugins ]
@@ -30,27 +31,35 @@ module ShinyCMS
       new_plugin_set.presence
     end
 
-    # Get all available plugins; pure sugar, it just reads better than .get in many places
+    # Syntactic sugar method to get a Plugins object for all available feature plugins
     def self.all
       get
     end
 
     attr_reader :names
 
-    delegate :collect, to: :plugins
-    delegate :select,  to: :plugins
-    delegate :reject,  to: :plugins
-    delegate :any?,    to: :plugins
-    delegate :all?,    to: :plugins
-    delegate :to_a,    to: :plugins
-    delegate :each,    to: :plugins
-
-    delegate :each_with_index, to: :plugins  # the rspec 'all' matcher needs this
-
+    delegate :each,     to: :plugins
     delegate :include?, to: :names
 
+    # Check if a plugin is loaded by both the CMS Plugins code, and by Ruby/Rails
     def loaded?( plugin_name )
       include?( plugin_name.to_sym ) && defined?( plugin_name.to_s.constantize ).present?
+    end
+
+    def with_main_site_helpers
+      Plugins.get( plugins.select { |plugin| plugin if plugin.main_site_helper } )
+    end
+
+    def with_models
+      Plugins.get( plugins.select { |plugin| plugin if plugin.base_model } )
+    end
+
+    def with_views
+      Plugins.get( plugins.select { |plugin| plugin if plugin.view_path } )
+    end
+
+    def with_partial( partial )
+      Plugins.get( with_views.select { |plugin| plugin.view_file_exists?( partial ) } ).to_a
     end
 
     def self.all_plugin_names
@@ -62,20 +71,15 @@ module ShinyCMS
       @all_plugin_names = 💎ify[ requested.intersection( on_disk ) - [ :ShinyCMS ] ]
     end
 
-    def with_main_site_helpers
-      ShinyCMS::Plugins.get( plugins.select { |plugin| plugin if plugin.main_site_helper } )
-    end
+    # More syntactic sugar
+    class << self
+      delegate :with_main_site_helpers, to: :all
+      delegate :with_models,            to: :all
+      delegate :with_views,             to: :all
+      delegate :with_partial,           to: :all
 
-    def with_models
-      ShinyCMS::Plugins.get( plugins.select { |plugin| plugin if plugin.base_model } )
-    end
-
-    def with_views
-      ShinyCMS::Plugins.get( plugins.select { |plugin| plugin if plugin.view_path } )
-    end
-
-    def with_partial( partial )
-      ShinyCMS::Plugins.get( with_views.select { |plugin| plugin.view_file_exists?( partial ) } ).to_a
+      delegate :loaded?,                to: :all
+      delegate :include?,               to: :all
     end
 
     private
@@ -95,8 +99,8 @@ module ShinyCMS
       names = to_build.all?( String ) ? to_build.collect( &:to_sym ) : to_build
       return unless names.all?( Symbol )
 
-      # Wouldn't need .to_a here if a💎 supported .intersection or &
-      💎ify[ names.to_a.intersection( self.class.all_plugin_names ).collect { |plugin| ShinyCMS::Plugin.get( plugin ) } ]
+      # Wouldn't need .to_a here if a💎 supported .intersection (or &)
+      💎ify[ names.to_a.intersection( Plugins.all_plugin_names ).collect { |plugin| ShinyCMS::Plugin.get( plugin ) } ]
     end
   end
 end

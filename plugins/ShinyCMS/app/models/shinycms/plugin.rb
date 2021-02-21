@@ -14,13 +14,14 @@ module ShinyCMS
     attr_reader :name
 
     def initialize( plugin_name )
-      raise ArgumentError, "Plugin '#{plugin_name}' is not available" unless ShinyCMS::Plugin.available? plugin_name
+      raise ArgumentError, "Plugin '#{plugin_name}' is not available" unless Plugin.available? plugin_name
 
       @name = plugin_name.to_sym
     end
 
     def self.get( plugin )
       return plugin if plugin.is_a? ShinyCMS::Plugin
+
       return new( plugin ) if available? plugin
     end
 
@@ -33,7 +34,7 @@ module ShinyCMS
     end
 
     def engine
-      @engine ||= to_constant::Engine
+      to_constant::Engine
     end
 
     def routes

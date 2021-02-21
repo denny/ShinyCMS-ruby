@@ -48,14 +48,17 @@ module ShinyCMS
     end
 
     class_methods do
-      delegate :taggable_models, to: :get
-      delegate :votable_models,  to: :get
+      delegate :engines, to: :all
+      delegate :routes,  to: :all
 
-      delegate :models_with_demo_data,     to: :get
-      delegate :models_with_sitemap_items, to: :get
+      delegate :taggable_models, to: :all
+      delegate :votable_models,  to: :all
 
-      delegate :models_that_respond_to, to: :get
-      delegate :models_that_are,        to: :get
+      delegate :models_with_demo_data,     to: :all
+      delegate :models_with_sitemap_items, to: :all
+
+      delegate :models_that_respond_to, to: :all
+      delegate :models_that_are,        to: :all
     end
   end
 end
