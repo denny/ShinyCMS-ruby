@@ -31,10 +31,6 @@ en:
       content:
         title: Recent news posts
     news:
-      n_comments:
-        zero: No comments
-        one: 1 comment
-        other: '%{count} comments'
       index:
         title: Recent news
         view_post: View post

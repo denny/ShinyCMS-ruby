@@ -31,10 +31,6 @@ en:
       content:
         title: Recent blog posts
     blog:
-      n_comments:
-        zero: No comments
-        one: 1 comment
-        other: '%{count} comments'
       index:
         title: Recent blog posts
         view_post: View post
