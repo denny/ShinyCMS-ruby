@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests helper methods mixed in to the Plugins class
-RSpec.describe ShinyCMS::PluginsSugar, type: :model do
+RSpec.describe ShinyCMS::PluginsComponents, type: :model do
   describe '.models_that_respond_to' do
     it 'returns an array (or similar) of models from the whole app' do
       models = ShinyCMS::Plugins.models_that_respond_to :dump_for_demo?
@@ -18,6 +18,15 @@ RSpec.describe ShinyCMS::PluginsSugar, type: :model do
 
       expect( models.first ).to be ShinyAccess::Group
       expect( models.last  ).to be ShinyProfiles::Profile
+    end
+  end
+
+  describe '.routes' do
+    it 'returns an array (or similar) of route objects' do
+      routes = described_class.get.routes
+
+      expect( routes ).to respond_to :each
+      expect( routes ).to all be_a ActionDispatch::Journey::Route
     end
   end
 end

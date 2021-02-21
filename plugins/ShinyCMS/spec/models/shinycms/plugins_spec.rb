@@ -60,13 +60,4 @@ RSpec.describe ShinyCMS::Plugins, type: :model do
       expect( described_class.loaded?( :ShinySearch ) ).to be true
     end
   end
-
-  describe '.routes' do
-    it 'returns an array (or similar) of route objects' do
-      routes = described_class.get.routes
-
-      expect( routes ).to respond_to :each
-      expect( routes ).to all be_a ActionDispatch::Journey::Route
-    end
-  end
 end
