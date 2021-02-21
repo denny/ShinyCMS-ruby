@@ -16,7 +16,7 @@
   <% if current_user.can? :change_author, :news_posts %>
   <p>
     <%= f.label :user_id, 'Author' %><br>
-    <%= f.select :user_id, User.that_can( :add, :news_posts ).pluck( :username, :id ) %>
+    <%= f.select :user_id, users_that_can_for_menu( :edit, :news_posts ) %>
   </p>
   <% else %>
   <%= f.hidden_field :user_id, value: current_user.id %>
