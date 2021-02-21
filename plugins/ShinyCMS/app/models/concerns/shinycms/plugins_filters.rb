@@ -32,9 +32,6 @@ module ShinyCMS
     end
 
     class_methods do
-      delegate :include?, to: :get
-      delegate :loaded?,  to: :get
-
       delegate :with_main_site_helpers, to: :get
       delegate :with_views,             to: :get
     end

@@ -179,7 +179,7 @@ dashboard.queries << query unless dashboard.queries.exists? query.id
 # dashboard.queries << query unless dashboard.queries.exists? query.id
 
 # Access group memberships
-if ShinyCMS::Plugins.loaded? :ShinyAccess
+if ShinyCMS::Plugins.all.loaded? :ShinyAccess
   sql = <<~SQL.squish
     select date( began_at ) as began_on,
            g.internal_name as group_name,
@@ -218,7 +218,7 @@ if ShinyCMS::Plugins.loaded? :ShinyAccess
 end
 
 # Mailing list subscriptions
-if ShinyCMS::Plugins.loaded? :ShinyLists
+if ShinyCMS::Plugins.all.loaded? :ShinyLists
   sql = <<~SQL.squish
     select date( subscribed_at ) as subscribed_on,
            l.internal_name as list_name,
