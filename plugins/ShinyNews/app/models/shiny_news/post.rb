@@ -18,10 +18,6 @@ module ShinyNews
 
     has_one :discussion, as: :resource, dependent: :destroy, class_name: 'ShinyCMS::Discussion'
 
-    # Default ordering
-    # TODO: FIXME: this is set in ShinyPost but has no effect
-    self.implicit_order_column = 'posted_at'
-
     # Instance methods
 
     def path( anchor: nil )

@@ -73,7 +73,7 @@ module ShinyForms
     end
 
     def self.theme_template_dir
-      ShinyCMS::Theme.current&.template_dir 'shiny_forms/form_mailer'
+      ShinyCMS::Theme.get&.template_dir 'shiny_forms/form_mailer'
     end
 
     def self.default_template_dir

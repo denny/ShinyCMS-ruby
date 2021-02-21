@@ -22,19 +22,19 @@ module ShinyCMS
       prepend_view_path plugin_path if valid_plugin_path?
 
       # Apply the configured theme, if any, by adding it above the defaults
-      prepend_view_path Theme.current.view_path if Theme.current
+      prepend_view_path ShinyCMS::Theme.get&.view_path
     end
 
     def default_email
-      Setting.get( :default_email ) || ENV[ 'DEFAULT_EMAIL' ]
+      ShinyCMS::Setting.get( :default_email ) || ENV[ 'DEFAULT_EMAIL' ]
     end
 
     def track_opens?
-      Setting.true?( :track_opens )
+      ShinyCMS::Setting.true?( :track_opens )
     end
 
     def track_clicks?
-      Setting.true?( :track_clicks )
+      ShinyCMS::Setting.true?( :track_clicks )
     end
   end
 end

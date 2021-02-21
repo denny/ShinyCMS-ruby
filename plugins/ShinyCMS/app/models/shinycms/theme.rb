@@ -17,6 +17,13 @@ module ShinyCMS
       @name = theme_name
     end
 
+    # Get the current theme (if any)
+    def self.get( user = nil )
+      return unless database_exists?
+
+      user_theme( user ) || site_theme || default_theme
+    end
+
     # Delegations
 
     delegate :present?, to: :name
@@ -42,13 +49,6 @@ module ShinyCMS
       return false if theme_name.blank?
 
       FileTest.directory?( Rails.root.join( view_path( theme_name ) ) )
-    end
-
-    # Find and return the current theme (if any)
-    def self.current( user = nil )
-      return unless database_exists?
-
-      user_theme( user ) || site_theme || default_theme
     end
 
     def self.user_theme( user )
