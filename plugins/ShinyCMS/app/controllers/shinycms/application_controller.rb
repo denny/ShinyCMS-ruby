@@ -9,7 +9,7 @@
 module ShinyCMS
   # Base controller for ShinyCMS (see also: MainController, AdminController)
   class ApplicationController < ActionController::Base
-    include ShinyCMS::FeatureFlags
+    include FeatureFlags
     include ShinyCMS::Paging
 
     helper Pagy::Frontend
@@ -47,7 +47,7 @@ module ShinyCMS
       prepend_view_path 'plugins/ShinyCMS/app/views/shinycms'
 
       # Add the default templates directory for any loaded plugins above that
-      ShinyCMS::Plugins.all.with_views.each do |plugin|
+      Plugins.all.with_views.each do |plugin|
         prepend_view_path plugin.view_path
       end
     end

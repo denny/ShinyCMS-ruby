@@ -35,8 +35,8 @@ module ShinyCMS
 
     def name
       # TODO: FIXME: eww.
-      if  ShinyCMS::Plugins.all.loaded?( :ShinyProfiles ) &&
-          ShinyCMS::FeatureFlag.enabled?( :user_profiles ) &&
+      if  Plugins.all.loaded?( :ShinyProfiles ) &&
+          FeatureFlag.enabled?( :user_profiles ) &&
           respond_to?( :profile ) &&
           profile.present?
 

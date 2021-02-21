@@ -9,8 +9,8 @@
 module ShinyCMS
   # Helper to add useful common behaviour to ShinyCMS mailers
   module MailerHelper
-    include ShinyCMS::FeatureFlags
-    include ShinyCMS::PluginsHelper
+    include FeatureFlags
+    include PluginsHelper
 
     include SiteNameHelper
 

@@ -37,15 +37,15 @@ module ShinyCMS
     end
 
     def plugins_for_admin_menu
-      ShinyCMS::Plugins.get.with_partial 'admin/menu/_section.html.erb'
+      Plugins.get.with_partial 'admin/menu/_section.html.erb'
     end
 
     def plugins_for_admin_other_menu
-      ShinyCMS::Plugins.get.with_partial 'admin/menu/_other_item.html.erb'
+      Plugins.get.with_partial 'admin/menu/_other_item.html.erb'
     end
 
     def plugins_for_edit_capabilities
-      ShinyCMS::Plugins.get.with_partial 'admin/user/_edit_capabilities.html.erb'
+      Plugins.get.with_partial 'admin/user/_edit_capabilities.html.erb'
     end
 
     def capability( name:, category: )

@@ -11,7 +11,7 @@ module ShinyCMS
   class MainController < ApplicationController
     include ShinyCMS::MainSiteHelper
 
-    ShinyCMS::Plugins.all.with_main_site_helpers.each do |plugin|
+    Plugins.all.with_main_site_helpers.each do |plugin|
       helper plugin.main_site_helper
     end
 
@@ -81,7 +81,7 @@ module ShinyCMS
     end
 
     def ahoy_web_tracking_enabled?
-      ShinyCMS::FeatureFlag.enabled? :ahoy_web_tracking
+      FeatureFlag.enabled? :ahoy_web_tracking
     end
 
     def track_ahoy_event
