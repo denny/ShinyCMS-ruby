@@ -70,13 +70,11 @@ Naming/AsciiIdentifiers:
     - plugins/ShinyCMS/app/models/shinycms/plugin.rb
     - plugins/ShinyCMS/app/models/shinycms/plugins.rb
     - plugins/ShinyCMS/app/models/concerns/shinycms/plugins_components.rb
-    - plugins/ShinyCMS/app/models/concerns/shinycms/plugins_filters.rb
 Style/AsciiComments:
   Exclude:
     - plugins/ShinyCMS/app/models/shinycms/plugin.rb
     - plugins/ShinyCMS/app/models/shinycms/plugins.rb
     - plugins/ShinyCMS/app/models/concerns/shinycms/plugins_components.rb
-    - plugins/ShinyCMS/app/models/concerns/shinycms/plugins_filters.rb
 
 # I like chaining methods, it's aesthetically pleasing :-p
 Performance/ChainArrayAllocation:
