@@ -2,20 +2,20 @@
 
 # ShinyBlogs plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyBlogs
   # Model class for blog posts - ShinyBlogs plugin for ShinyCMS
   class BlogPost < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinyPost
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyPost
 
     # Associations
 
     belongs_to :blog, inverse_of: :all_posts, class_name: 'ShinyBlogs::Blog'
-    belongs_to :user, inverse_of: :shiny_blogs_blog_posts
+    belongs_to :user, inverse_of: :shiny_blogs_blog_posts, class_name: 'ShinyCMS::User'
 
     has_one :discussion, as: :resource, dependent: :destroy
 
@@ -34,4 +34,4 @@ module ShinyBlogs
 end
 
 # Add inverse association for authors of blog posts
-::User.has_many :shiny_blogs_blog_posts, dependent: :restrict_with_error, class_name: 'ShinyBlogs::BlogPost'
+ShinyCMS::User.has_many :shiny_blogs_blog_posts, dependent: :restrict_with_error, class_name: 'ShinyBlogs::BlogPost'

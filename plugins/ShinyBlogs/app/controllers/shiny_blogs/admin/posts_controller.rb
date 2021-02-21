@@ -2,14 +2,14 @@
 
 # ShinyBlogs plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyBlogs
   # Admin controller for blog posts - ShinyBlogs plugin for ShinyCMS
   class Admin::PostsController < AdminController
-    include ShinyPagingHelper
+    include ShinyCMS::Paging
 
     before_action :set_blog
     before_action :set_post_for_create, only: %i[ create ]

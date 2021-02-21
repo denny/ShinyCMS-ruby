@@ -2,22 +2,22 @@
 
 # ShinyBlogs plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2020 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyBlogs
   # Model class for blogs (which are a collection of blog posts) - part of the ShinyBlogs plugin for ShinyCMS
   class Blog < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinyName
-    include ShinyShowHide
-    include ShinySlug
-    include ShinySoftDelete
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyName
+    include ShinyCMS::ShinyShowHide
+    include ShinyCMS::ShinySlug
+    include ShinyCMS::ShinySoftDelete
 
     # Associations
 
-    belongs_to :user, inverse_of: :shiny_blogs_blogs
+    belongs_to :user, inverse_of: :shiny_blogs_blogs, class_name: 'ShinyCMS::User'
 
     has_many :all_posts, inverse_of: :blog, class_name: 'BlogPost', dependent: :restrict_with_error
 
@@ -48,4 +48,4 @@ module ShinyBlogs
 end
 
 # Add inverse association for owners of blogs
-::User.has_many :shiny_blogs_blogs, dependent: :restrict_with_error, class_name: 'ShinyBlogs::Blog'
+ShinyCMS::User.has_many :shiny_blogs_blogs, dependent: :restrict_with_error, class_name: 'ShinyBlogs::Blog'
