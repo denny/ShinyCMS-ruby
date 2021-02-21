@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       plugins = ShinyCMS::Plugins.all
 
       # Currently, if ShinyPages is loaded, then we assume it controls the root path
-      # require "#{ShinyPages::Engine.root}/route_helpers/root_path_route" if ShinyCMS::Plugins.loaded? :ShinyPages
+      # require "#{ShinyPages::Engine.root}/route_helpers/root_path_route" if plugins.loaded? :ShinyPages
       root to: 'shiny_pages/pages#index' if plugins.loaded? :ShinyPages
 
       # ShinyCMS core plugin
