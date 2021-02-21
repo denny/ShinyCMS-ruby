@@ -20,9 +20,9 @@ require_relative 'seeds/feature_flags'
 # Load settings data
 require_relative 'seeds/settings'
 
-# Load seed data for any ShinyCMS plugins that are enabled
-ShinyCMS::Plugins.loaded.each do |plugin|
-  Rake::Task[ "#{plugin.name.underscore}:db:seed" ].invoke
+# Load seed data for any ShinyCMS feature plugins that are enabled
+ShinyCMS::Plugins.all.each do |plugin|
+  Rake::Task[ "#{plugin.underscore}:db:seed" ].invoke
 end
 
 # Load default dashboard data for Blazer
