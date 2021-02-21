@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
-# ============================================================================
-# Project:   ShinyBlogs plugin for ShinyCMS (Ruby version)
-# File:      plugins/ShinyBlogs/config/routes.rb
-# Purpose:   Routes for ShinyBlogs plugin
+# ShinyBlogs plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright: (c) 2009-2020 Denny de la Haye https://denny.me
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
-# ShinyCMS is free software; you can redistribute it and/or
-# modify it under the terms of the GPL (version 2 or later).
-# ============================================================================
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Routes for the ShinyBlogs plugin for ShinyCMS
 
 ShinyBlogs::Engine.routes.draw do
   scope format: false do
