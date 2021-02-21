@@ -8,12 +8,20 @@
 
 module ShinyCMS
   # Convenience methods for ShinyCMS plugins
-  module PluginsSugar
+  module PluginsComponents
     extend ActiveSupport::Concern
 
     include Persistent💎
 
     included do
+      def engines
+        💎ify[ plugins.collect( &:engine ) ]
+      end
+
+      def routes
+        💎ify[ plugins.collect( &:routes ).flatten ]
+      end
+
       def taggable_models
         models_that_are( :taggable? )
       end
@@ -29,15 +37,17 @@ module ShinyCMS
       def models_with_sitemap_items
         models_that_respond_to( :sitemap_items )
       end
+
+      def models_that_are( method )
+        💎ify[ with_models.collect { |plugin| plugin.models_that_are method }.flatten.sort_by( &:name ) ]
+      end
+
+      def models_that_respond_to( method )
+        💎ify[ with_models.collect { |plugin| plugin.models_that_respond_to method }.flatten.sort_by( &:name ) ]
+      end
     end
 
     class_methods do
-      delegate :include?, to: :get
-      delegate :loaded?,  to: :get
-
-      delegate :with_main_site_helpers, to: :get
-      delegate :with_views,             to: :get
-
       delegate :taggable_models, to: :get
       delegate :votable_models,  to: :get
 
