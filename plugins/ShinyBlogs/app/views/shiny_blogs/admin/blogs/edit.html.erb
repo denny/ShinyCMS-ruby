@@ -19,7 +19,7 @@
   </p>
   <p>
     <%= f.label :user_id, 'Owner' %><br>
-    <%= f.select :user_id, ::User.that_can( :edit, :shiny_blogs_blogs ).pluck( :username, :id ) %>
+    <%= f.select :user_id, ShinyCMS::User.that_can( :edit, :shiny_blogs_blogs ).pluck( :username, :id ) %>
   </p>
   <p>
     <%= f.label :show_on_site %>
