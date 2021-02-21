@@ -17,7 +17,7 @@ module ShinyBlogs
     belongs_to :blog, inverse_of: :all_posts, class_name: 'ShinyBlogs::Blog'
     belongs_to :user, inverse_of: :shiny_blogs_blog_posts, class_name: 'ShinyCMS::User'
 
-    has_one :discussion, as: :resource, dependent: :destroy
+    has_one :discussion, as: :resource, dependent: :destroy, class_name: 'ShinyCMS::Discussion'
 
     # Validations
 
