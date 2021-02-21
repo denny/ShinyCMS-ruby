@@ -60,6 +60,10 @@ en:
           url: URL
       comments: Comments
       n_total: '%{count} total'
+      n_comments:
+        zero: No comments
+        one: 1 comment
+        other: '%{count} comments'
       n_recent_comments:
         one: 1 recent comment
         other: '%{count} recent comments'

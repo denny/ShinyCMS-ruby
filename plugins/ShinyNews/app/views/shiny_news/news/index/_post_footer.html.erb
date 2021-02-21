@@ -7,7 +7,7 @@
 
   <% if feature_enabled?( :comments ) && post.discussion&.show_on_site? %>
   <span class="float-right">
-    <%= link_to t( 'shiny_news.news.n_comments', count: post.discussion.comments.visible.count ), post.path( anchor: 'comments' ) %>
+    <%= link_to t( 'shinycms.discussions.n_comments', count: post.discussion.comments.visible.count ), post.path( anchor: 'comments' ) %>
   </span>
   <% end %>
 </footer>
