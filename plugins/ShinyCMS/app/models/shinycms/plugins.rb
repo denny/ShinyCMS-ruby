@@ -11,7 +11,6 @@ module ShinyCMS
   class Plugins
     include Persistent💎
 
-    include PluginsFilters
     include PluginsComponents
 
     def initialize( new_plugins )
@@ -61,6 +60,22 @@ module ShinyCMS
       requested = ENV.fetch( 'SHINYCMS_PLUGINS', '' ).split( /[, ]+/ ).collect( &:to_sym )
 
       @all_plugin_names = 💎ify[ requested.intersection( on_disk ) - [ :ShinyCMS ] ]
+    end
+
+    def with_main_site_helpers
+      ShinyCMS::Plugins.get( plugins.select { |plugin| plugin if plugin.main_site_helper } )
+    end
+
+    def with_models
+      ShinyCMS::Plugins.get( plugins.select { |plugin| plugin if plugin.base_model } )
+    end
+
+    def with_views
+      ShinyCMS::Plugins.get( plugins.select { |plugin| plugin if plugin.view_path } )
+    end
+
+    def with_partial( partial )
+      ShinyCMS::Plugins.get( with_views.select { |plugin| plugin.view_file_exists?( partial ) } ).to_a
     end
 
     private
