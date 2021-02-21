@@ -77,12 +77,11 @@ module ShinyCMS
 
     class_methods do
       # Return all users that have the specified capability
-      def that_can( capability, category )
-        CapabilityCategory.find_by( name: category.to_s )
-                          .capabilities
-                          .find_by( name: capability.to_s )
-                          .user_capabilities
-                          .collect( &:user )
+      def that_can( capability, category = nil )
+        category ||= 'general'
+        ShinyCMS::Capability
+          .find_by( capability: capability.to_s, category: category.to_s )
+          .user_capabilities.collect( &:user )
       end
 
       # Check whether we have at least one admin who can create more admins

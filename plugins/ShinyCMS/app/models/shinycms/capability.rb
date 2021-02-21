@@ -18,5 +18,17 @@ module ShinyCMS
     has_many :user_capabilities, inverse_of: :capability, dependent: :restrict_with_error
 
     has_many :users, inverse_of: :capabilities, through: :user_capabilities, dependent: :restrict_with_error
+
+    # Class methods
+
+    def self.find_by( **args )
+      # Allow shorthand lookup by passing in capability and category names
+      if args.keys == %i[ capability category ]
+        CapabilityCategory.find_by( name: args[ :category   ] ).capabilities
+                          .find_by( name: args[ :capability ] )
+      else
+        super
+      end
+    end
   end
 end

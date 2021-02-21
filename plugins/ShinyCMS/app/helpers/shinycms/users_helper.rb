@@ -26,5 +26,9 @@ module ShinyCMS
 
       link_to user.name, shiny_profiles.profile_path( user.username )
     end
+
+    def users_that_can_for_menu( capability, category = nil )
+      ShinyCMS::User.that_can( capability, category ).pluck( :username, :id ).sort_by( &:first )
+    end
   end
 end
