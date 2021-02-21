@@ -52,7 +52,7 @@ RSpec.describe 'Admin: Pages', type: :request do
     it 'fails when the form is submitted without all the details' do
       post shiny_pages.pages_path, params: {
         page: {
-          public_name: 'Test'
+          public_name: Faker::Books::CultureSeries.unique.culture_ship
         }
       }
 
@@ -61,13 +61,13 @@ RSpec.describe 'Admin: Pages', type: :request do
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_pages.admin.pages.create.failure' )
     end
 
-    it 'fails when the page slug collides with a controller namespace' do
+    it 'fails if the page slug collides with a controller namespace' do
       template = create :page_template
 
       post shiny_pages.pages_path, params: {
         page: {
-          internal_name: 'Test',
-          slug:          'account',
+          internal_name: Faker::Books::CultureSeries.unique.culture_ship,
+          slug:          'test',
           template_id:   template.id
         }
       }
@@ -82,7 +82,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
       post shiny_pages.pages_path, params: {
         page: {
-          internal_name: 'Test',
+          internal_name: Faker::Books::CultureSeries.unique.culture_ship,
           template_id:   template.id
         }
       }
@@ -100,7 +100,7 @@ RSpec.describe 'Admin: Pages', type: :request do
 
       post shiny_pages.pages_path, params: {
         page: {
-          internal_name: 'Test',
+          internal_name: Faker::Books::CultureSeries.unique.culture_ship,
           template_id:   template.id
         }
       }

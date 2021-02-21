@@ -9,13 +9,15 @@
 module ShinyPages
   # Model for 'brochure' pages - part of the ShinyPages plugin for ShinyCMS
   class Page < ApplicationRecord
-    include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
-    include ShinyDemoDataProvider
-    include ShinyName
-    include ShinyShowHide
-    include ShinySlugInSection
-    include ShinySoftDelete
-    include ShinyWithTemplate
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyClassName
+    include ShinyCMS::ShinyName
+    include ShinyCMS::ShinyShowHide
+    include ShinyCMS::ShinySlugInSection
+    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::WithTemplate
+
+    include TopLevelSlugValidator
 
     # Associations
 
@@ -28,11 +30,14 @@ module ShinyPages
 
     # Validations
 
-    validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
+    validates :slug, unique_top_level_slug: true, if: -> { section.blank? }
 
     # Plugin features
 
-    searchable_by :public_name, :slug if ShinyPlugin.loaded? :ShinySearch # TODO: elements!
+    if ShinyCMS::Plugins.loaded? :ShinySearch
+      include ShinySearch::Searchable
+      searchable_by :public_name, :slug  # TODO: elements!
+    end
 
     # Scopes and sorting
 
@@ -97,7 +102,7 @@ module ShinyPages
     end
 
     def self.configured_default_page
-      name_or_slug = ::Setting.get :default_page
+      name_or_slug = ShinyCMS::Setting.get :default_page
       top_level_pages
         .where( internal_name: name_or_slug )
         .or( top_level_pages

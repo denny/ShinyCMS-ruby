@@ -1,0 +1,11 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# This script updates the databases used by the parallel_tests gem
+#
+# https://github.com/grosser/parallel_tests#copy-development-schema-repeat-after-migrations
+
+RAILS_ENV=test PARALLEL_TEST_FIRST_IS_1=true rails parallel:prepare

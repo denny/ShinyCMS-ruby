@@ -4,22 +4,25 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# English locale strings for ShinyCMS features provided by the ShinyBlog plugin
+
 en:
-  feature_flags:
-    blog: Blog
-    blog_votes: Votes on blog posts
-    blog_downvotes: Down-votes on blog posts
+  shinycms:
+    feature_flags:
+      blog: Blog
+      blog_votes: Votes on blog posts
+      blog_downvotes: Down-votes on blog posts
 
-  capability:
-    category:
-      blog_posts: Blog posts
+    capability:
+      category:
+        blog_posts: Blog posts
 
-    blog_posts:
-      change_author: Change author
+      blog_posts:
+        change_author: Change author
 
-  models:
-    names:
-      shiny_blog_post: blog post
+    models:
+      names:
+        shiny_blog_post: blog post
 
   shiny_blog:
     menu:

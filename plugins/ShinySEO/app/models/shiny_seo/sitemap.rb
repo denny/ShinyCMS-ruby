@@ -9,15 +9,16 @@
 module ShinySEO
   # A thin wrapper around the sitemap_generator gem - part of the ShinySEO plugin for ShinyCMS
   class Sitemap
-    include ShinyS3
-    include ShinySiteURL
+    include ShinyCMS::ShinySiteURL
 
     include Rails.application.routes.url_helpers
 
     def initialize
       SitemapGenerator::Sitemap.default_host = site_base_url
 
-      use_aws_sdk_adapter_if_configured
+      s3_config = ShinyCMS::S3Config.get( :feeds )
+
+      use_aws_sdk_adapter( s3_config ) if s3_config.present?
     end
 
     def generate
@@ -32,25 +33,23 @@ module ShinySEO
     private
 
     def items_for_sitemap
-      ShinyPlugin.models_with_sitemap_items
-                 .collect( &:sitemap_items ).flatten
-                 .collect { |resource| SitemapItem.new( resource ) }
+      ShinyCMS::Plugins.models_with_sitemap_items
+                       .collect( &:sitemap_items ).flatten
+                       .collect { |resource| SitemapItem.new( resource ) }
     end
 
-    def use_aws_sdk_adapter_if_configured
-      return unless aws_s3_feeds_config_present?
-
+    def use_aws_sdk_adapter( s3_config )
       require 'aws-sdk-s3'
 
-      SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new( 's3_bucket', **s3_config )
+      SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new( 's3_bucket', build( s3_config ) )
     end
 
-    def s3_config
+    def build( s3_config )
       {
-        aws_secret_access_key: aws_s3_feeds_secret_access_key,
-        aws_access_key_id:     aws_s3_feeds_access_key_id,
-        aws_region:            aws_s3_feeds_region,
-        aws_endpoint:          aws_s3_feeds_endpoint
+        aws_secret_access_key: s3_config.secret_access_key,
+        aws_access_key_id:     s3_config.access_key_id,
+        aws_region:            s3_config.region,
+        aws_endpoint:          s3_config.endpoint
       }
     end
   end

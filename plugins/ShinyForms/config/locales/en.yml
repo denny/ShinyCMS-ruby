@@ -1,13 +1,21 @@
-# Translation strings for ShinyCMS forms plugin
+# ShinyForms plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# English locale strings for ShinyCMS features provided by the ShinyForms plugin
 
 en:
-  feature_flags:
-    shiny_forms: Form handlers
-    shiny_forms_emails: Form handlers can send emails
-    recaptcha_for_forms: Protect ShinyForms with reCAPTCHA
-    akismet_for_forms: Detect spammy ShinyForm submissions with Akismet
-  settings:
-    recaptcha_score_for_forms: Minimum reCAPTCHA v3 score for ShinyForm submissions
+  shinycms:
+    feature_flags:
+      shiny_forms: Form handlers
+      shiny_forms_emails: Form handlers can send emails
+      recaptcha_for_forms: Protect ShinyForms with reCAPTCHA
+      akismet_for_forms: Detect spammy ShinyForm submissions with Akismet
+
+    settings:
+      recaptcha_score_for_forms: Minimum reCAPTCHA v3 score for ShinyForm submissions
 
   shiny_forms:
     forms:

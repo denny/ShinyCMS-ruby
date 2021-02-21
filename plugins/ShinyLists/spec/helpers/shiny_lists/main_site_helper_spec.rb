@@ -22,6 +22,7 @@ module ShinyLists
     describe 'most_recent_list' do
       it 'returns the last list created' do
         create :mailing_list
+        sleep 1
         list2 = create :mailing_list
 
         expect( helper.most_recent_list ).to eq list2

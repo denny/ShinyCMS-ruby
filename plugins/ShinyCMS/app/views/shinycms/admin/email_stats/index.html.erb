@@ -1,0 +1,55 @@
+<% @page_title = t( '.title' ) %>
+
+<%= render partial: 'admin/includes/search', locals: { placeholder: t( '.search' ), action: shinycms.search_email_stats_path } %>
+
+<% if @messages.present? %>
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Sent at
+      </th>
+      <th>
+        Sent to
+      </th>
+      <th>
+        Subject
+      </th>
+      <th>
+        Status
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @messages.each do |message| %>
+    <tr>
+      <td>
+        <%= display_time_on_date( message.sent_at ) %>
+      </td>
+      <td>
+        <% if message.user_type == 'ShinyCMS::EmailRecipient' %>
+          <%= link_to message.user.email, recipient_email_stats_path( message.user ) %>
+        <% elsif message.user_type == 'ShinyCMS::User' %>
+          <%= link_to message.user.email, user_email_stats_path( message.user ) %>
+        <% end %>
+      </td>
+      <td>
+        <%= message.subject %>
+      </td>
+      <td>
+        <% if message.opened_at.present? %>Opened: <%= message.opened_at %><% end %>
+        <% if message.clicked_at.present? %><br>Clicked: <%= message.clicked_at %><% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render partial: 'admin/includes/pager', locals: { pagy: @pagy } %>
+
+<% else %>
+<p>
+  <%= t( 'shinycms.empty_list', items: 'stats' ) %>
+</p>
+<% end %>

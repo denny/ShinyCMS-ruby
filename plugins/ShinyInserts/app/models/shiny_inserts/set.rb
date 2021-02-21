@@ -9,7 +9,7 @@
 module ShinyInserts
   # Model class for Insert Sets - from the ShinyInserts plugin for ShinyCMS
   class Set < ApplicationRecord
-    include ShinySoftDelete
+    include ShinyCMS::ShinySoftDelete
 
     has_many :elements, -> { order( :name ) }, inverse_of: :set, dependent: :destroy,
                                                class_name: 'ShinyInserts::Element'

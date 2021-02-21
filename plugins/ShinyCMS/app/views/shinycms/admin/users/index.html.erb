@@ -1,0 +1,43 @@
+<% @page_title = t( '.title' ) %>
+
+<%= render partial: 'admin/includes/search', locals: { placeholder: t( '.search' ), action: shinycms.search_users_path } %>
+
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Username
+      </th>
+      <th>
+        Email
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= user.username %>
+      </td>
+      <td>
+        <%= user.email %>
+      </td>
+      <td class="actions">
+        <% if plugin_loaded? :ShinyProfiles %>
+        <%= link_to t( 'shiny_profiles.admin.users.index.view_profile' ), shiny_profiles.profile_path( user.username ) %>
+        <%= link_to t( 'shiny_profiles.admin.users.index.edit_profile' ), shiny_profiles.admin_edit_profile_path( user.profile ) %>
+        <% end %>
+        <%= link_to t( '.edit_account'   ), edit_user_path( user ) %>
+        <%= link_to t( '.delete_account' ), user_path( user ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  <tbody>
+</table>
+
+<%= render partial: 'admin/includes/pager', locals: { pagy: @pagy } %>

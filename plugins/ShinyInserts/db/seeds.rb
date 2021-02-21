@@ -10,7 +10,7 @@
 # rails shiny_inserts:db:seed
 
 # Add admin capabilities for pundit authorisation
-category = CapabilityCategory.find_or_create_by!( name: 'inserts' )
+category = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'inserts' )
 category.capabilities.find_or_create_by!( name: 'list'    )
 category.capabilities.find_or_create_by!( name: 'add'     )
 category.capabilities.find_or_create_by!( name: 'edit'    )

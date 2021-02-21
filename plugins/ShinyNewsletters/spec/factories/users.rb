@@ -10,7 +10,7 @@
 FactoryBot.define do
   factory :newsletter_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'newsletter_editions' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'newsletter_editions' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )
@@ -26,7 +26,7 @@ FactoryBot.define do
 
   factory :newsletter_send_admin, parent: :newsletter_admin do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'newsletter_sends' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'newsletter_sends' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )
@@ -42,7 +42,7 @@ FactoryBot.define do
 
   factory :newsletter_template_admin, parent: :newsletter_admin do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'newsletter_templates' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'newsletter_templates' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )

@@ -89,10 +89,10 @@ RemoveUnusedMethodsInHelpersCheck: { except_methods: [
   'ShinyInserts::MainSiteHelper#insert',
   'ShinyInserts::MainSiteHelper#insert_type?',
   'ShinyLists::MainSiteHelper#find_list_by_slug',
-  'ShinyMailerHelper#add_view_paths',
-  'ShinyMailerHelper#default_email',
-  'ShinyMailerHelper#track_opens?',
-  'ShinyMailerHelper#track_clicks?'
+  'MailerHelper#add_view_paths',
+  'MailerHelper#default_email',
+  'MailerHelper#track_opens?',
+  'MailerHelper#track_clicks?'
 ] }
 
 # First two are aliases; next two override Devise behaviour; rest are in use, probably.

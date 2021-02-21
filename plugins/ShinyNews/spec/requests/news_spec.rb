@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
+# ShinyNews plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
 require 'rails_helper'
 
 RSpec.describe 'News', type: :request do
   before do
-    FeatureFlag.enable :news
+    ShinyCMS::FeatureFlag.enable :news
   end
 
   describe 'GET /news' do
@@ -52,7 +58,7 @@ RSpec.describe 'News', type: :request do
       get shiny_news.view_news_path
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css 'p', text: I18n.t( 'empty_list', items: 'news posts' )
+      expect( response.body ).to have_css 'p', text: I18n.t( 'shinycms.empty_list', items: 'news posts' )
     end
   end
 
@@ -111,5 +117,5 @@ RSpec.describe 'News', type: :request do
     end
   end
 
-  it_behaves_like 'Pagination', 'news_post', '/news', 'h2', 'title'
+  it_behaves_like ShinyCMS::Paging, 'news_post', '/news', 'h2', 'title'
 end

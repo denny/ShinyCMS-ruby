@@ -9,7 +9,7 @@
 # Supporting methods for loading ShinyCMS plugin gems
 
 def available_plugins
-  Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ) }
+  Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ) } - [ 'ShinyCMS' ]
 end
 
 def plugin_names

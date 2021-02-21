@@ -45,13 +45,13 @@ RSpec.describe 'List Subscription admin features', type: :request do
 
   describe 'POST /admin/list/:list_id/subscriptions' do
     it 'subscribes an email address to the specified mailing list' do
-      post shiny_lists.admin_list_subscribe_path( list ), params: {
+      post shiny_lists.list_subscriptions_path( list ), params: {
         subscription: {
           email: Faker::Internet.unique.email
         }
       }
 
-      success_message = I18n.t( 'shiny_lists.admin.subscriptions.subscribe.success' )
+      success_message = I18n.t( 'shiny_lists.admin.subscriptions.create.success' )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_lists.list_subscriptions_path( list )
@@ -66,9 +66,9 @@ RSpec.describe 'List Subscription admin features', type: :request do
     it 'unsubscribes the specified subscriber from the specified mailing list' do
       s1 = create :mailing_list_subscription, list: list
 
-      delete shiny_lists.admin_list_unsubscribe_path( list, s1 )
+      delete shiny_lists.list_subscription_path( list, s1 )
 
-      success_message = I18n.t( 'shiny_lists.admin.subscriptions.unsubscribe.success' )
+      success_message = I18n.t( 'shiny_lists.admin.subscriptions.destroy.success' )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_lists.list_subscriptions_path( list )

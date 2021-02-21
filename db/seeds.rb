@@ -20,9 +20,9 @@ require_relative 'seeds/feature_flags'
 # Load settings data
 require_relative 'seeds/settings'
 
-# Load seed data for any ShinyCMS plugins that are enabled
-ShinyPlugin.loaded.each do |plugin|
-  Rake::Task[ "#{plugin.name.underscore}:db:seed" ].invoke
+# Load seed data for any ShinyCMS feature plugins that are enabled
+ShinyCMS::Plugins.all.each do |plugin|
+  Rake::Task[ "#{plugin.underscore}:db:seed" ].invoke
 end
 
 # Load default dashboard data for Blazer
@@ -30,5 +30,5 @@ require_relative 'seeds/blazer' unless ENV['DISABLE_BLAZER'].presence&.downcase 
 
 # If there are currently no super-admin users, show the command to create one
 demo = ( Rake.application.top_level_tasks.first == 'shiny:demo:load' )
-skip = User.super_admins_exist? || demo || Rails.env.test?
+skip = ShinyCMS::User.super_admins_exist? || demo || Rails.env.test?
 puts 'To generate a ShinyCMS admin user: rails shiny:admin:create' unless skip

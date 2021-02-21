@@ -1,0 +1,11 @@
+<% return unless current_user.can? :list, :users %>
+
+  <%= render_admin_menu_section( t( 'shinycms.admin.users.menu' ), 'people' ) do %>
+
+    <%= render_admin_menu_item(
+        t( 'shinycms.admin.users.index.title' ), shinycms.users_path, 'people' ) %>
+
+    <%= render_admin_menu_item_if( current_user.can?( :add, :users ),
+        t( 'shinycms.admin.users.new.title' ), shinycms.new_user_path, 'user-follow' ) %>
+
+  <% end %>

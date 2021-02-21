@@ -9,7 +9,7 @@
 # Seed data for Feature Flags (to turn on/off areas of site functionality)
 
 def add_feature_flag( name:, description: nil, enabled: true )
-  FeatureFlag.find_or_create_by(
+  ShinyCMS::FeatureFlag.find_or_create_by(
     name:                  name,
     description:           description,
     enabled:               enabled,

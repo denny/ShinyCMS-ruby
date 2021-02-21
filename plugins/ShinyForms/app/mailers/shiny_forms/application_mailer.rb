@@ -9,9 +9,9 @@
 module ShinyForms
   # Base mailer class - ShinyForms plugin for ShinyCMS
   class ApplicationMailer < ActionMailer::Base
-    include ShinyMailerHelper
+    include ShinyCMS::MailerHelper
 
-    helper ShinyMailerHelper
+    helper ShinyCMS::MailerHelper
 
     before_action :set_view_paths
 

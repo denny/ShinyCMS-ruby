@@ -4,9 +4,12 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# English locale strings for ShinyCMS features provided by the ShinyProfiles plugin
+
 en:
-  feature_flags:
-    user_profiles: User profile pages
+  shinycms:
+    feature_flags:
+      user_profiles: User profile pages
 
   shiny_profiles:
     view_profile: View your profile

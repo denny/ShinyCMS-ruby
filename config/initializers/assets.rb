@@ -7,10 +7,10 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Version of your assets, change this if you want to expire all your assets.
-Rails.application.config.assets.version = '2020.01.04.1510'
+Rails.application.config.assets.version = '2021.02.14.0800'
 
 # Add node_modules directory to the asset load path.
-Rails.application.config.assets.paths << Rails.root.join( 'node_modules' )
+# Rails.application.config.assets.paths << Rails.root.join( 'node_modules' )
 
 # Add theme images and stylesheets to the asset load path
 def add_all_themes_to_asset_load_path

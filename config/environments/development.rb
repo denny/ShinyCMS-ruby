@@ -6,19 +6,18 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+require 'active_support/core_ext/integer/time'
+
 Rails.application.configure do
-  # Settings specified here take precedence over those in config/application.rb
+  # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  # Do not eager load code on boot.
-  # config.eager_load = false
-
   # We need eager load enabled so that we can use .descendants to check all the models
-  # for the ones that provide various capabilities - e.g. taggable/searchable/etc
+  # for the ones that provide various capabilities - e.g. taggable, demo_data, etc
   config.eager_load = true
   config.rake_eager_load = true
 
@@ -44,7 +43,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Blow up for unexpected user auth params in dev
+  # Make unpermitted params nice and conspicuous during development
   config.action_controller.action_on_unpermitted_parameters = :raise
 
   # Check whether we're pushing files up to AWS or storing them on local disk
@@ -60,32 +59,35 @@ Rails.application.configure do
     config.active_job.queue_name_prefix = ENV['SIDEKIQ_PREFIX'] if ENV['SIDEKIQ_PREFIX'].present?
   end
 
-  # We use letter_opener_web to catch all emails sent in dev
+  # Use letter_opener_web to catch all emails sent in dev
   # You can view them at http://localhost:3000/dev/outbox
   config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  # Print deprecation notices to the Rails logger
-  config.active_support.deprecation = :log
-
-  # Raise an error on page load if there are pending migrations.
+  # Raise an error on page load if there are pending migrations
   config.active_record.migration_error = :page_load
 
-  # Highlight code that triggered database queries in logs.
-  config.active_record.verbose_query_logs = true
+  # Print deprecation notices to the Rails logger
+  config.active_support.deprecation = :log
+  # Raise exceptions for disallowed deprecations
+  config.active_support.disallowed_deprecation = :raise
+  # Tell Active Support which deprecation messages to disallow.
+  config.active_support.disallowed_deprecation_warnings = []
 
-  # Debug mode disables concatenation and preprocessing of assets.
-  # This option may cause significant delays in view rendering with a large
-  # number of complex assets.
-  config.assets.debug = true
+  # Raise an error for missing translation data
+  config.i18n.raise_on_missing_translations = true
+
+  # Highlight code that triggered database queries in logs.
+  # config.active_record.verbose_query_logs = true
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  # Raises error for missing translations.
-  config.i18n.raise_on_missing_translations = true
+  # Debug mode disables concatenation and preprocessing of assets
+  # This option may cause significant delays in view rendering with a large number of complex assets
+  # config.assets.debug = true
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.

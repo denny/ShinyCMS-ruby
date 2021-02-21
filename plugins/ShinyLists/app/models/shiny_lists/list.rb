@@ -9,17 +9,18 @@
 module ShinyLists
   # Model for mailing lists
   class List < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinyName
-    include ShinySlug
-    include ShinySoftDelete
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyName
+    include ShinyCMS::ShinySlug
+    include ShinyCMS::ShinySoftDelete
 
     # Assocations
 
     has_many :subscriptions, inverse_of: :list, dependent: :destroy
-    has_many :users, through: :subscriptions, inverse_of: :lists, source: :subscriber, source_type: 'User'
+    has_many :users, through: :subscriptions, inverse_of: :lists, source: :subscriber,
+                     source_type: 'ShinyCMS::User'
     has_many :email_recipients, through: :subscriptions, inverse_of: :lists, source: :subscriber,
-                                source_type: 'EmailRecipient'
+                                source_type: 'ShinyCMS::EmailRecipient'
 
     # Scopes
 
@@ -49,10 +50,12 @@ module ShinyLists
   end
 end
 
-::EmailRecipient.has_many :subscriptions, -> { active },
-                          as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
-::EmailRecipient.has_many :lists, through: :subscriptions, inverse_of: :email_recipients, class_name: 'ShinyLists::List'
+ShinyCMS::EmailRecipient.has_many :subscriptions, -> { active }, as: :subscriber, dependent: :destroy,
+                                    class_name: 'ShinyLists::Subscription'
+ShinyCMS::EmailRecipient.has_many :lists, through: :subscriptions, inverse_of: :email_recipients,
+                                    class_name: 'ShinyLists::List'
 
-::User.has_many :subscriptions, -> { active },
-                as: :subscriber, dependent: :destroy, class_name: 'ShinyLists::Subscription'
-::User.has_many :lists, through: :subscriptions, inverse_of: :users, class_name: 'ShinyLists::List'
+ShinyCMS::User.has_many :subscriptions, -> { active }, as: :subscriber, dependent: :destroy,
+                          class_name: 'ShinyLists::Subscription'
+ShinyCMS::User.has_many :lists, through: :subscriptions, inverse_of: :users,
+                          class_name: 'ShinyLists::List'

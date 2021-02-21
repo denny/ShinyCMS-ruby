@@ -4,11 +4,12 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Translation strings for English
+# English locale strings for ShinyCMS features provided by the ShinySEO plugin
 
 en:
-  feature_flags:
-    shiny_seo: ShinySEO
+  shinycms:
+    feature_flags:
+      shiny_seo: ShinySEO
 
   shiny_seo:
     admin:

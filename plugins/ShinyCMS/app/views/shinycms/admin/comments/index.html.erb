@@ -1,0 +1,62 @@
+<% @page_title = t( '.title' ) %>
+
+<%= render partial: 'admin/includes/search', locals: { placeholder: t( '.search' ), action: shinycms.search_comments_path } %>
+
+<%= form_for 'spam_comments', url: comments_path, method: :put do |f| %>
+<table class="table table-responsive-sm table-striped">
+  <tbody>
+    <% @comments.each do |comment| %>
+    <tr>
+      <td>
+        <%= f.check_box "comment_#{comment.id}", id: "comment_#{comment.id}", class: 'itembox' %>
+      </td>
+      <td>
+        <small>
+          Posted by <%= comment.author_name_or_anon %>
+          at <%= display_time_on_date( comment.posted_at ) %>
+          <% if comment.author&.website&.present? %> - <%= comment.author.website %><% end %>
+        </small>
+        <% if comment.title? %>
+          <br><%= comment.title %>
+        <% end %>
+        <% if comment.body? %>
+          <br><%= truncate( comment.body, length: 450, separator: ' ' ) %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td style="line-height: 1.5em; vertical-align: middle;" colspan="2">
+        <input type="checkbox" id="select_all" onClick="toggle_select_all();">
+        <label for="select_all"><%= t( '.select_all' ) %></label>
+        <br><br>
+        <span style="display: inline-block; vertical-align: middle;">
+          <input type="radio" id="spam" name="spam_or_ham" value="spam">
+        </span>
+        <label for="spam"><%= t( '.confirm_spam' ) %></label>
+        <br>
+        <span style="display: inline-block; vertical-align: middle;">
+          <input type="radio" id="ham" name="spam_or_ham" value="ham">
+        </span>
+        <label for="ham"><%= t( '.remove_flag' ) %></label>
+        <br><br>
+        <%= f.submit t( 'update' ) %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<% end %>
+
+<%= render partial: 'admin/includes/pager', locals: { pagy: @pagy } %>
+
+<script>
+  function toggle_select_all() {
+    var checked  = document.getElementById( 'select_all' ).checked;
+    var boxes    = document.getElementsByClassName( 'itembox' );
+    var boxcount = boxes.length;
+
+    for ( var i = 0; i < boxcount; i++ ) {
+      boxes[i].checked = checked;
+    }
+  }
+</script>

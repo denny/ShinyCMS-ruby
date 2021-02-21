@@ -9,9 +9,8 @@
 module ShinyPages
   # Model class for page elements - part of the ShinyPages plugin for ShinyCMS
   class PageElement < ApplicationRecord
-    include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
-    include ShinyDemoDataProvider
-    include ShinyElement
+    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::ShinyElement
 
     # Assocations
 
@@ -21,7 +20,10 @@ module ShinyPages
 
     acts_as_list scope: :page
 
-    searchable_by :content if ShinyPlugin.loaded? :ShinySearch # TODO
+    if ShinyCMS::Plugins.loaded? :ShinySearch
+      include ShinySearch::Searchable
+      searchable_by :content  # TODO
+    end
 
     # Validations
 

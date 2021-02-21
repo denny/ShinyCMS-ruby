@@ -9,8 +9,9 @@
 # You can load or reload this data using the following rake task:
 # rails shiny_news:db:seed
 
-# Add feature flag
-flag = FeatureFlag.find_or_create_by!( name: 'news' )
+# Add feature flags
+
+flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'news' )
 flag.update!(
   description:           'Enable news section, provided by ShinyNews plugin',
   enabled:               true,
@@ -18,7 +19,7 @@ flag.update!(
   enabled_for_admins:    true
 )
 
-flag = FeatureFlag.find_or_create_by!( name: 'news_votes' )
+flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'news_votes' )
 flag.update!(
   description:           'Enable votes on news posts',
   enabled:               true,
@@ -26,7 +27,7 @@ flag.update!(
   enabled_for_admins:    true
 )
 
-flag = FeatureFlag.find_or_create_by!( name: 'news_downvotes' )
+flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'news_downvotes' )
 flag.update!(
   description:           'Enable down-votes on news posts',
   enabled:               true,
@@ -35,7 +36,8 @@ flag.update!(
 )
 
 # Add admin capabilities
-category = CapabilityCategory.find_or_create_by!( name: 'news_posts' )
+
+category = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'news_posts' )
 category.capabilities.find_or_create_by!( name: 'list'          )
 category.capabilities.find_or_create_by!( name: 'add'           )
 category.capabilities.find_or_create_by!( name: 'edit'          )

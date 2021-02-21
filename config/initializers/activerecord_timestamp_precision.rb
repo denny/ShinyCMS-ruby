@@ -10,9 +10,12 @@ require 'active_record/connection_adapters/postgresql_adapter'
 
 module ActiveRecord
   module ConnectionAdapters
-    # Override default Rails 6 behavior; microsecond timestamps seem a bit excessive
-    # for a CMS, and they add clutter and noise if/when you want to look at the data
+    # Rails 6 defaults to microsecond accuracy in timestamps, which seems a bit
+    # over the top for a CMS (and quite noisy when you're looking at the data).
+    # The snippet below reduces timestamp accuracy to seconds, which seems adequate.
     class PostgreSQLAdapter
+      NATIVE_DATABASE_TYPES[ :datetime ] = { name: 'timestamp', limit: 0 }
+
       def supports_datetime_with_precision?
         # :nocov:
         false
