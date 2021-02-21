@@ -17,31 +17,35 @@ module ShinyCMS
       controller.is_a? RailsEmailPreview::ApplicationController
     end
 
-    def shiny_controller?
-      !blazer_controller? && !rep_controller?
+    def shinycms_admin_controller?
+      controller.is_a?( ShinyCMS::AdminController ) && !blazer_controller? && !rep_controller?
     end
 
     def coverband_web_ui_enabled?
       ENV['DISABLE_COVERBAND_WEB_UI']&.downcase != 'true'
     end
 
-    def plugin_breadcrumb_link_text_and_path( plugin_name, controller_name )
+    def sidekiq_web_enabled?
+      ENV['DISABLE_SIDEKIQ_WEB']&.downcase != 'true'
+    end
+
+    def plugin_breadcrumb_link_text_and_path( plugin, controller_name )
       [
-        I18n.t( "#{plugin_name.underscore}.admin.#{controller_name}.breadcrumb" ),
-        plugin_name.constantize::Engine.routes.url_helpers.public_send( "#{controller_name}_path" )
+        I18n.t( "#{plugin.underscore}.admin.#{controller_name}.breadcrumb" ),
+        plugin.engine.routes.url_helpers.public_send( "#{controller_name}_path" )
       ]
     end
 
     def plugins_for_admin_menu
-      Plugins.with_template( 'admin/menu/_section.html.erb' )
+      Plugins.get.with_partial 'admin/menu/_section.html.erb'
     end
 
     def plugins_for_admin_other_menu
-      Plugins.with_template( 'admin/menu/_other_item.html.erb' )
+      Plugins.get.with_partial 'admin/menu/_other_item.html.erb'
     end
 
     def plugins_for_edit_capabilities
-      Plugins.with_template( 'admin/user/_edit_capabilities.html.erb' )
+      Plugins.get.with_partial 'admin/user/_edit_capabilities.html.erb'
     end
 
     def capability( name:, category: )

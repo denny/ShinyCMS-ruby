@@ -2,7 +2,7 @@
 
 <ul class="c-sidebar-nav">
   <% plugins_for_admin_menu.each do |plugin| %>
-  <%= render partial: "#{plugin.name.underscore}/admin/menu/section" %>
+  <%= render partial: plugin.partial( 'admin/menu/section' ) %>
   <% end %>
 
   <%= render partial: 'admin/menu/users' %>

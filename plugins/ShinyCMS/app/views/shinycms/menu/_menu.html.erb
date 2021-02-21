@@ -5,7 +5,7 @@
   <% end %>
 
   <% plugins_with_main_site_menu_templates.each do |plugin| %>
-    <%= render partial: "#{plugin.name.underscore}/menu/section" %>
+    <%= render partial: plugin.partial( 'menu/section' ) %>
   <% end %>
 
   <% if feature_enabled? :tags %>

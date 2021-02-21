@@ -81,7 +81,7 @@ module ShinyCMS
     end
 
     def ahoy_web_tracking_enabled?
-      ShinyCMS::FeatureFlag.enabled? :ahoy_web_tracking
+      FeatureFlag.enabled? :ahoy_web_tracking
     end
 
     def track_ahoy_event

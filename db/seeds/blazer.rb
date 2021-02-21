@@ -14,6 +14,8 @@ return if Rails.env.test?
 
 # :nocov:
 
+plugins = ShinyCMS::Plugins.all
+
 # Dashboard
 dashboard = Blazer::Dashboard.where( name: 'Default Dashboard' ).first_or_create!
 
@@ -179,7 +181,7 @@ dashboard.queries << query unless dashboard.queries.exists? query.id
 # dashboard.queries << query unless dashboard.queries.exists? query.id
 
 # Access group memberships
-if ShinyCMS::Plugins.loaded? :ShinyAccess
+if plugins.loaded? :ShinyAccess
   sql = <<~SQL.squish
     select date( began_at ) as began_on,
            g.internal_name as group_name,
@@ -218,7 +220,7 @@ if ShinyCMS::Plugins.loaded? :ShinyAccess
 end
 
 # Mailing list subscriptions
-if ShinyCMS::Plugins.loaded? :ShinyLists
+if plugins.loaded? :ShinyLists
   sql = <<~SQL.squish
     select date( subscribed_at ) as subscribed_on,
            l.internal_name as list_name,

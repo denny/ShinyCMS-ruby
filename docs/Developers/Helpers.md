@@ -15,10 +15,10 @@ returns the same results as this code using a model:
 
 ### From core plugin
 
-* MainSiteHelper     - includes all the helpers that are useful across the main site
+* MainSiteHelper     - no code, but includes all the helpers below that are useful on the main site
 
-* AdminAreaHelper    - useful methods for admin area views
-* MailerHelper       - useful methods for mailers
+* AdminAreaHelper    - helper methods for admin area views and controllers
+* MailerHelper       - helper methods for mailers
 
 * PluginsHelper      - the `plugin_loaded?` method
 
@@ -32,7 +32,6 @@ returns the same results as this code using a model:
 
 * AkismetHelper      - methods related to the Akismet spam-flagging service
 * RecaptchaHelper    - methods related to Google's reCAPTCHA bot detection service
-* SidekiqHelper      - the `sidekiq_web_enabled?` method
 
 ### From feature plugins
 

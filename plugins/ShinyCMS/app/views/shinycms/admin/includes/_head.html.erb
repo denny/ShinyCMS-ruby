@@ -16,7 +16,7 @@
       <%= blazer_js_var 'rootPath', root_path %>
     </script>
 
-    <% elsif shiny_controller? %>
+    <% elsif shinycms_admin_controller? %>
     <%= javascript_include_tag Ckeditor.cdn_url if try :load_html_editor? %>
     <% end %>
 

@@ -11,17 +11,19 @@
 Rails.application.routes.draw do
   scope format: false do
     if defined? ShinyCMS
+      plugins = ShinyCMS::Plugins.all
+
       # Currently, if ShinyPages is loaded, then we assume it controls the root path
-      # require "#{ShinyPages::Engine.root}/route_helpers/root_path_route" if ShinyCMS::Plugins.loaded? :ShinyPages
-      root to: 'shiny_pages/pages#index' if ShinyCMS::Plugins.loaded? :ShinyPages
+      # require "#{ShinyPages::Engine.root}/route_helpers/root_path_route" if plugins.loaded? :ShinyPages
+      root to: 'shiny_pages/pages#index' if plugins.loaded? :ShinyPages
 
       # ShinyCMS core plugin
       mount ShinyCMS::Engine, at: '/', as: :shinycms
 
       # ShinyCMS feature plugins
       # require "#{ShinyCMS::Engine.root}/route_helpers/mount_all_plugins"
-      ShinyCMS::Plugins.loaded.each do |plugin|
-        mount plugin.engine, at: '/' if plugin.engine.present?
+      plugins.engines.each do |engine|
+        mount engine, at: '/'
       end
 
       ## Other engines used by ShinyCMS
@@ -39,7 +41,7 @@ Rails.application.routes.draw do
       # require "#{ShinyCore::Engine.root}/route_helpers/catch_all_admin_route"
       match '/admin/*path', to: 'shinycms/admin#not_found', as: :admin_not_found, via: %i[ get post put patch delete ]
 
-      return unless ShinyCMS::Plugins.loaded? :ShinyPages
+      return unless plugins.loaded? :ShinyPages
 
       # This catch-all route matches anything and everything not already matched by a route
       # defined before it. It enables the ShinyPages plugin to create pages and sections at
