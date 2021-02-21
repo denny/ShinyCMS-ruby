@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
   helper ShinyCMS::AdminAreaHelper
 
   helper ShinyCMS::PluginsHelper
-  helper ShinyCMS::SidekiqHelper
   helper ShinyCMS::UsersHelper
 
   # Prevent Blazer from unloading all of the ShinyCMS helpers
