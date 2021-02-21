@@ -9,7 +9,7 @@
 FactoryBot.define do
   factory :single_blog_admin, parent: :admin_user do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'shiny_blogs_blog_posts' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'shiny_blogs_blog_posts' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )
@@ -27,7 +27,7 @@ FactoryBot.define do
 
   factory :multi_blog_admin, parent: :single_blog_admin do
     after :create do |admin|
-      category = CapabilityCategory.find_by( name: 'shiny_blogs_blogs' )
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'shiny_blogs_blogs' )
 
       list    = category.capabilities.find_by( name: 'list'    )
       add     = category.capabilities.find_by( name: 'add'     )
