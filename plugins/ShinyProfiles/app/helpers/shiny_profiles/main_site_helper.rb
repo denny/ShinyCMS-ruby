@@ -10,7 +10,7 @@ module ShinyProfiles
   # Helper methods for user profiles
   module MainSiteHelper
     def plugins_with_profile_content_templates
-      ShinyCMS::Plugins.get.with_partial 'profile/_content.html.erb'
+      ShinyCMS.plugins.with_partial 'profile/_content.html.erb'
     end
   end
 end

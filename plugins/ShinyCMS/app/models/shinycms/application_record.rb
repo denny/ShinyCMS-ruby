@@ -17,7 +17,7 @@ module ShinyCMS
     end
 
     def self.models_with_demo_data
-      [ core_models_with_demo_data + Plugins.models_with_demo_data ].flatten
+      [ core_models_with_demo_data + ShinyCMS.plugins.models_with_demo_data ].flatten
     end
 
     def self.core_models_with_demo_data

@@ -34,7 +34,7 @@ module ShinyPages
 
     # Plugin features
 
-    if ShinyCMS::Plugins.loaded? :ShinySearch
+    if ShinyCMS.plugins.loaded? :ShinySearch
       include ShinySearch::Searchable
       searchable_by :public_name, :slug  # TODO: elements!
     end

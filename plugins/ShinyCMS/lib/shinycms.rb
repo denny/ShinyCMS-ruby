@@ -9,4 +9,9 @@
 require 'shinycms/engine'
 
 # Namespace wrapper
-module ShinyCMS; end
+module ShinyCMS
+  # Build the full plugin collection and stash it in the top-level module for re-use
+  def self.plugins
+    @plugins ||= ShinyCMS::Plugins.all
+  end
+end

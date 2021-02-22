@@ -20,7 +20,7 @@ module ShinyPages
 
     acts_as_list scope: :page
 
-    if ShinyCMS::Plugins.loaded? :ShinySearch
+    if ShinyCMS.plugins.loaded? :ShinySearch
       include ShinySearch::Searchable
       searchable_by :content  # TODO
     end

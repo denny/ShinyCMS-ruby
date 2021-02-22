@@ -11,7 +11,7 @@ module ShinyCMS
   class MainController < ApplicationController
     include ShinyCMS::MainSiteHelper
 
-    ShinyCMS::Plugins.with_main_site_helpers.each do |plugin|
+    ShinyCMS.plugins.with_main_site_helpers.each do |plugin|
       helper plugin.main_site_helper
     end
 
