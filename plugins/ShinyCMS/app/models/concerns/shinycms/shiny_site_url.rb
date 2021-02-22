@@ -7,22 +7,17 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # For models that need to get the base URL for the content site
-  module ShinySiteURL
-    extend ActiveSupport::Concern
+  # Make the root URL for the main app available outside of controllers
+  module MainAppRootURL
+    def main_app_root_url
+      options = Rails.application.config.action_mailer.default_url_options
 
-    included do
-      include Rails.application.routes.url_helpers
+      Rails.application.routes.url_helpers.root_url( **options )
+    end
 
-      def site_base_url
-        root_url.to_s.chop
-      end
-
-      private
-
-      def default_url_options
-        Rails.application.config.action_mailer.default_url_options
-      end
+    # Remove the trailing /
+    def main_app_base_url
+      main_app_root_url.chop
     end
   end
 end
