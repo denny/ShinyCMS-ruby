@@ -33,9 +33,9 @@ module ShinySEO
     private
 
     def items_for_sitemap
-      ShinyCMS::Plugins.models_with_sitemap_items
-                       .collect( &:sitemap_items ).flatten
-                       .collect { |resource| SitemapItem.new( resource ) }
+      ShinyCMS.plugins.models_with_sitemap_items
+              .collect( &:sitemap_items ).flatten
+              .collect { |resource| SitemapItem.new( resource ) }
     end
 
     def use_aws_sdk_adapter( s3_config )

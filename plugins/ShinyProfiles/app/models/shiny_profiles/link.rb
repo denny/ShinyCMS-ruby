@@ -20,7 +20,7 @@ module ShinyProfiles
 
     acts_as_list scope: :profile
 
-    if ShinyCMS::Plugins.loaded? :ShinySearch
+    if ShinyCMS.plugins.loaded? :ShinySearch
       include ShinySearch::Searchable
       searchable_by :name, :url  # TODO
     end

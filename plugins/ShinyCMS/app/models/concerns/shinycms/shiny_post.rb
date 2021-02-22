@@ -39,7 +39,7 @@ module ShinyCMS
 
       # Plugin features
 
-      if ShinyCMS::Plugins.loaded? :ShinySearch
+      if ShinyCMS.plugins.loaded? :ShinySearch
         include ShinySearch::Searchable
         searchable_by :title, :body, :slug  # TODO: author
       end

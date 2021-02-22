@@ -37,7 +37,7 @@ module ShinyProfiles
 
     # Plugins
 
-    if ShinyCMS::Plugins.loaded? :ShinySearch
+    if ShinyCMS.plugins.loaded? :ShinySearch
       include ShinySearch::Searchable
       searchable_by :username, :public_name, :public_email, :bio, :location, :postcode
     end

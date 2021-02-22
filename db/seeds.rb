@@ -21,7 +21,7 @@ require_relative 'seeds/feature_flags'
 require_relative 'seeds/settings'
 
 # Load seed data for any ShinyCMS feature plugins that are enabled
-ShinyCMS::Plugins.all.each do |plugin|
+ShinyCMS.plugins.each do |plugin|
   Rake::Task[ "#{plugin.underscore}:db:seed" ].invoke
 end
 

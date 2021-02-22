@@ -43,15 +43,11 @@ module ShinyCMS
     end
 
     def votable_model_names
-      [ core_votable_models + plugin_votable_models ].flatten.collect( &:name )
+      [ core_votable_models + ShinyCMS.plugins.votable_models ].flatten.collect( &:name )
     end
 
     def core_votable_models
       ShinyCMS::ApplicationRecord.descendants.select( &:votable? )
-    end
-
-    def plugin_votable_models
-      Plugins.votable_models
     end
 
     def find_voter
