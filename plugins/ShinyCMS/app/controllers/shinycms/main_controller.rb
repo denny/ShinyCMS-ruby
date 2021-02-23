@@ -10,6 +10,7 @@ module ShinyCMS
   # ShinyCMS base controller for the main/content site
   class MainController < ApplicationController
     include ShinyCMS::MainSiteHelper
+    include ShinyCMS::MainAppRootURL
 
     ShinyCMS.plugins.with_main_site_helpers.each do |plugin|
       helper plugin.main_site_helper
@@ -89,7 +90,8 @@ module ShinyCMS
     end
 
     def feeds_base_url
-      ShinyCMS::S3Config.new( :feeds ).base_url || main_app.root_url.to_s.chop
+      s3_config = ShinyCMS::S3Config.get( :feeds )
+      s3_config&.custom_url || s3_config&.base_url || main_app_base_url
     end
   end
 end

@@ -12,9 +12,7 @@ module ShinyCMS
   # Model to assist in building Atom feed entries from ShinyPosts
   class ShinyPostAtomFeedEntry
     include SiteNameHelper
-    include ShinySiteURL
-
-    include Rails.application.routes.url_helpers
+    include ShinyCMS::MainAppRootURL
 
     attr_reader :entry, :feed, :post
 
@@ -37,7 +35,7 @@ module ShinyCMS
 
     def add_entry_id
       id = entry.class::Id.new
-      id.content = "#{site_base_url}#{post.path}"
+      id.content = "#{main_app_base_url}#{post.path}"
       entry.id = id
     end
 
@@ -70,7 +68,7 @@ module ShinyCMS
 
     def add_entry_link
       link = entry.class::Link.new
-      link.href = "#{site_base_url}#{post.path}"
+      link.href = "#{main_app_base_url}#{post.path}"
       entry.links << link
     end
 
