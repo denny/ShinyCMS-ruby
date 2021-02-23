@@ -23,32 +23,38 @@ module ShinyCMS
       config
     end
 
-    def base_url
-      ENV[ "AWS_S3_#{@label.upcase}_BASE_URL" ].presence || endpoint
-    end
-
     def secret_access_key
-      ENV[ "AWS_S3_#{@label.upcase}_SECRET_ACCESS_KEY" ].presence
+      ENV.fetch( "AWS_S3_#{@label.upcase}_SECRET_ACCESS_KEY", nil )
     end
 
     def access_key_id
-      ENV[ "AWS_S3_#{@label.upcase}_ACCESS_KEY_ID" ].presence
+      ENV.fetch( "AWS_S3_#{@label.upcase}_ACCESS_KEY_ID", nil )
     end
 
     def bucket
-      ENV[ "AWS_S3_#{@label.upcase}_BUCKET" ].presence
+      ENV.fetch( "AWS_S3_#{@label.upcase}_BUCKET", nil )
     end
 
     def region
-      ENV[ "AWS_S3_#{@label.upcase}_REGION" ].presence
+      ENV.fetch( "AWS_S3_#{@label.upcase}_REGION", nil )
     end
 
-    def endpoint
+    # Note that if you configure a custom URL, the USE_HTTPS setting is irrelevant
+    def custom_url
+      ENV.fetch( "AWS_S3_#{@label.upcase}_CUSTOM_URL", nil ).presence&.sub( %r{/$}, '' )
+    end
+
+    def base_url
       return if bucket.blank? || region.blank?
 
-      http = ENV[ 'SHINYCMS_USE_HTTPS' ].present? ? 'https' : 'http'
+      http = use_https? ? 'https' : 'http'
 
       "#{http}://#{bucket}.s3.#{region}.amazonaws.com"
+    end
+
+    def use_https?
+      Rails.application.config.force_ssl ||
+        ENV.fetch( 'SHINYCMS_USE_HTTPS', nil ).presence&.casecmp( 'true' )&.zero?
     end
   end
 end

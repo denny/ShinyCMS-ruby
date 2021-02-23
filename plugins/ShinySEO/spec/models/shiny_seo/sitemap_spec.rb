@@ -19,14 +19,14 @@ module ShinySEO
         before do
           @original_adapter = SitemapGenerator::Sitemap.adapter
 
-          allow( ENV ).to receive( :[] ).with( 'AWS_S3_FEEDS_BASE_URL' ).and_return nil
-          allow( ENV ).to receive( :[] ).with( 'SHINYCMS_USE_HTTPS'    ).and_return nil
+          # allow( ENV ).to receive( :fetch ).with( 'AWS_S3_FEEDS_BASE_URL' ).and_return nil
+          allow( ENV ).to receive( :fetch ).with( 'SHINYCMS_USE_HTTPS', nil ).and_return nil
 
-          allow( ENV ).to receive( :[] ).with( 'AWS_S3_FEEDS_SECRET_ACCESS_KEY' ).and_return 'test'
-          allow( ENV ).to receive( :[] ).with( 'AWS_S3_FEEDS_ACCESS_KEY_ID'     ).and_return 'test'
+          allow( ENV ).to receive( :fetch ).with( 'AWS_S3_FEEDS_SECRET_ACCESS_KEY', nil ).and_return 'test'
+          allow( ENV ).to receive( :fetch ).with( 'AWS_S3_FEEDS_ACCESS_KEY_ID',     nil ).and_return 'test'
 
-          allow( ENV ).to receive( :[] ).with( 'AWS_S3_FEEDS_BUCKET' ).and_return bucket
-          allow( ENV ).to receive( :[] ).with( 'AWS_S3_FEEDS_REGION' ).and_return region
+          allow( ENV ).to receive( :fetch ).with( 'AWS_S3_FEEDS_BUCKET', nil ).and_return bucket
+          allow( ENV ).to receive( :fetch ).with( 'AWS_S3_FEEDS_REGION', nil ).and_return region
         end
 
         after do
