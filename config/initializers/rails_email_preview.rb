@@ -25,7 +25,7 @@ RailsEmailPreview.setup do |config|
   # You can specify a controller for RailsEmailPreview::ApplicationController
   # to inherit from (default: '::ApplicationController'):
   # config.parent_controller = 'Admin::ApplicationController'
-  config.parent_controller = 'Admin::EmailPreviewsController'
+  config.parent_controller = 'ShinyCMS::Admin::EmailPreviewsController'
 end
 
 # Enable Comfortable Mexican Sofa integration:
@@ -35,12 +35,12 @@ Rails.application.config.to_prepare do
   # Render REP inside a custom layout
   # (set to 'application' to use app layout, default is REP's own layout)
   # This will also make application routes accessible from within REP:
-  RailsEmailPreview.layout = 'admin/layouts/admin_area'
+  RailsEmailPreview.layout = 'shinycms/admin/layouts/admin_area'
 
   # Set UI locale to something other than :en
   # RailsEmailPreview.locale = :de
 
   # Auto-load preview classes from:
   RailsEmailPreview.preview_classes =
-    RailsEmailPreview.find_preview_classes( 'app/mailer_previews' )
+    RailsEmailPreview.find_preview_classes( 'shinycms/app/mailer_previews' )
 end
