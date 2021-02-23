@@ -11,10 +11,12 @@ The current version of ShinyCMS runs on Ruby 3.0 and Rails 6.1
 ## Features
 
 * [Plugin architecture](docs/Developer/Plugins.md)
-  * Load only the features you want; reduce in-memory size and attackable surface area
+  * Load the core plugin, plus only the feature plugins that you want to use
+    * Reduces in-memory size and attackable surface area
   * Add custom functionality easily by writing your own plugins
-  * All features marked with ± below are provided by a plugin
-* [Themes](docs/Themes.md) (on the hosted site)
+  * Features marked with 𐍈 below are provided by the core plugin
+  * Features marked with ± below are provided by a feature plugin
+* [Themes](docs/Themes.md) (on the hosted site) 𐍈
   * Light-lift theme system - you can override just a few of the default partials if you want
   * Two themes included; Halcyonic, for content-rich sites, and Coming Soon for pre-launch sites
 * [Pages](docs/Features/Plugins/ShinyPages.md) ±
@@ -24,7 +26,7 @@ The current version of ShinyCMS runs on Ruby 3.0 and Rails 6.1
   * Re-usable content fragments that can be pulled into any template on any page
 * [News section](docs/Features/Plugins/ShinyNews.md) ±
 * [Blog](docs/Features/Plugins/ShinyBlog.md) ±
-* [Comments](docs/Features/MainApp/Comments.md)
+* [Comments](docs/Features/MainApp/Comments.md) 𐍈
   * Ready to add to any content; enabled by default on blog posts and optionally on news posts
   * Fully nested comment threads, so you can easily see who is replying to who at any level
   * Email notifications of replies to comments and posts
@@ -42,16 +44,21 @@ The current version of ShinyCMS runs on Ruby 3.0 and Rails 6.1
   * Use the `current_user_can_access?( :group_name )` helper to show/hide content
 * [Site search](docs/Features/Plugins/ShinySearch.md) ±
   * Ready to support multiple search backends (default is pg_search multisearch)
-* [Tags](docs/Features/MainApp/Tags.md)
+* [Tags](docs/Features/MainApp/Tags.md) 𐍈
 * [Upvotes](docs/Features/MainApp/Upvotes.md) (AKA 'likes') on posts and comments
   * Supports downvotes too, if you want a full rating/ranking system
 * [User profile pages](docs/Features/Plugins/ShinyProfiles.md) ±
   * With links to user-generated content such as recent comments, recent blog posts, etc
-* [User accounts](docs/Features/MainApp/UserAccounts.md) and administration
-  * ACL-based authorisation system for admins (powered by [Pundit](https://github.com/varvet/pundit))
-  * Uses [reCAPTCHA](https://developers.google.com/recaptcha/) to block registration by bots
-* Web interface for [site settings](docs/Features/MainApp/SiteSettings.md) and [feature flags](docs/Features/MainApp/FeatureFlags.md)
-* All emails are generated from [MJML](docs/Features/mjml.md) templates, producing more reliably cross-platform HTML emails
+* [User accounts](docs/Features/MainApp/UserAccounts.md) 𐍈
+  * User administration in website admin area
+  * Authentication powered by [Devise](https://github.com/heartcombo/devise)
+    * Uses [reCAPTCHA](https://developers.google.com/recaptcha/) to block registration by bots
+  * ACL-based authorisation system for admin area, powered by [Pundit](https://github.com/varvet/pundit)
+* [Site settings](docs/Features/MainApp/SiteSettings.md) and [feature flags](docs/Features/MainApp/FeatureFlags.md) 𐍈
+  * Website admin area for both, plus a rake task for command-line access to feature flags
+* Emails can be generated from [MJML](docs/Features/mjml.md) or HTML templates 𐍈
+  * Using MJML allows you to produce more reliably cross-platform HTML emails
+  * Default MJML templates included for most features that send email
 * Built-in tracking of [web stats](docs/Features/MainApp/WebStats.md) and [email stats](docs/Features/MainApp/EmailStats.md)
   * Powered by [Ahoy](https://github.com/ankane/ahoy) and [Ahoy::Email](https://github.com/ankane/ahoy_email)
 * Build your own [charts and dashboards](docs/Features/MainApp/Charts.md) for viewing and analyzing stats
