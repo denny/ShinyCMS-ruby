@@ -147,12 +147,12 @@ ShinyCMS::Comment.create!([
   {id: 7, discussion_id: 2, number: 3, parent_id: nil, title: nil, body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst.", ip_address: nil, locked: false, show_on_site: true, spam: true, author_type: "CommentAuthor", author_id: 3, posted_at: "2020-06-05 23:01:17", deleted_at: nil}
 ])
 ActsAsTaggableOn::Tag.create!([
-  {id: 1, name: "demo", taggings_count: 12},
-  {id: 2, name: "news", taggings_count: 4},
-  {id: 3, name: "first post", taggings_count: 8},
-  {id: 4, name: "blog", taggings_count: 8},
-  {id: 5, name: "meta", taggings_count: 4},
-  {id: 6, name: "screenshots", taggings_count: 4}
+  {id: 1, name: "demo", taggings_count: 3},
+  {id: 2, name: "news", taggings_count: 1},
+  {id: 3, name: "first post", taggings_count: 2},
+  {id: 4, name: "blog", taggings_count: 2},
+  {id: 5, name: "meta", taggings_count: 1},
+  {id: 6, name: "screenshots", taggings_count: 1}
 ])
 ActsAsTaggableOn::Tagging.create!([
   {id: 1, tag_id: 1, taggable_type: "ShinyNews::Post", taggable_id: 1, tagger_type: nil, tagger_id: nil, context: "tags"},
