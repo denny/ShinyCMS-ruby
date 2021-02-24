@@ -17,4 +17,7 @@ I18n.default_locale = :en
 
 # TODO: Add Spanish. Add American. Explicitly label English and American.
 # config.i18n.available_locales = %i[ en-GB en-US es ]
+# Set the default locale
 # config.i18n.default_locale = :'en-GB'
+# If the user's current locale is missing a translation, try these other locales
+# I18n.fallbacks = %i[ en-GB en en-US ]

@@ -2,68 +2,12 @@
 
 ## TODO
 
-### Current / next / urgent
-
-* Investigate: tests of MJML mailers (Forms, Newsletters, etc) throw this when run offline:
-    * "Mjml: warning You don't appear to have an internet connection. Try the --offline flag to use the cache for registry queries."
-        * Newsletter plugin tests tend to top the 'slowest tests' list - related?
+Note: a lot of the TODO list has been moved to the [ShinyCMS project board](https://github.com/denny/ShinyCMS-ruby/projects/1) (as has the entire 'in progress' list)
 
 
-## Features the Perl version has, which the Ruby version doesn't. Yet. :)
+## New features that I'd like to add at some point...
 
 ### Small-ish
-
-* Add 'items' extra to Pagy: https://ddnexus.github.io/pagy/extras/items.html
-    * Allow pagination URLs to specify /items/N instead of ?items=N
-
-* Site map / sitemaps
-    * 1. User-facing type - tie into search, tags, 404, etc
-    * 2. SEO type: https://github.com/kjvarga/sitemap_generator ?
-
-* Affiliate cookie
-
-### Medium-ish
-
-* Some sort of file-picker for CKEditor
-    * https://ckeditor.com/docs/ckeditor5/latest/Features/MainApp/image-upload/ckfinder.html
-
-* Polls
-
-### Large-ish
-
-* Access-controlled file downloads
-    * Can this be done with tokenised AWS links? (Probably)
-    * If so, do I want that vendor lock-in? (Probably not)
-
-* Online shop
-
-* Autoresponders
-
-* Email sequences - define a series of emails, to be sent at defined intervals
-
-* Payment handling plugins
-    * Pay to join an access control group - AKA 'paid membership'
-    * Pay to receive an email sequence - AKA 'buy a training course'
-
-* Forums
-
-* Event listings
-
-
-## New features that I'd like to add / features that I'd like to totally rebuild
-
-### Small-ish
-
-* Handle timezones
-    * https://planetruby.github.io/gems/2020/01-local-time
-    * https://github.com/basecamp/local_time#readme
-    * https://prathamesh.tech/2019/07/11/use-time-use_zone-to-navigate-timezones
-    * https://api.rubyonrails.org/classes/Time.html#method-c-use_zone
-    * https://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html
-
-* Add 'unsubscribe reason' to ShinyLists
-
-* Add a 'save form submission to database' form handler
 
 * Make a generic sidebar template that renders any partials in a specified directory
 
@@ -79,10 +23,6 @@
 
 * When not-logged-in users post a comment or subscribe to a list, offer to create an account for them
 
-* 'Deploy to Heroku' button: https://devcenter.heroku.com/articles/heroku-button
-
-* 2FA: https://github.com/tinfoil/devise-two-factor
-
 * Check site config for internal consistency on startup
     * e.g. if reCAPTCHA is enabled for registrations, the reCAPTCHA keys must be set
 
@@ -94,10 +34,6 @@
   methods to check them. The menu already makes a crazy amount of hits on the
   db and there are still a load of 'feature hidden by flag/capability/etc'
   conditionals to implement.
-
-* ¡español! :D
-    * Bonus points: https://www.ruby-toolbox.com/projects/route_translator
-    * Possibly interesting at same time: https://www.ruby-toolbox.com/projects/rack-user-locale
 
 * Add tests for form actions being what they're supposed to be on new/edit pages,
   and for delete links being correct on list pages (to catch path helper issues)
@@ -114,8 +50,6 @@
 * Refactor show/hide/visible/published/etc stuff
     * ShowHide could become a polymorphic acts_as_showable sort of thing?
         * show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
-
-* More themes!
 
 * Add folding to page sections on /admin/pages
     * Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)
@@ -142,9 +76,6 @@
 * A/B testing
     * Field Test: https://github.com/ankane/field_test
 
-* Cookie consent
-    * https://github.com/infinum/cookies_eu ?
-
 * Replace hand-rolled slug generation with FriendlyId ?
     * https://norman.github.io/friendly_id
 
@@ -161,23 +92,15 @@
 * Re-think mailer preview features
     * Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?
 
-* Invites: https://github.com/scambra/devise_invitable#readme
-
 * Image galleries / multimedia galleries / etc
 
-* Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?
-    * Think carefully about privacy implications of linking previous actions to current visitor
-
-* Surveys / Questionnaires
+* Can I merge EmailRecipient, CommentAuthor, and VotableIP, to make 'Visitor' ?
+    * Think about privacy implications of linking prior actions to current visitor
 
 * GDPR compliance
-    * https://github.com/prey/gdpr_rails
+    * https://github.com/prey/gdpr_rails ?
 
-* Switch from ERB to handlebars or similar for main site templates
-
-* Allow theme templates to be stored in database and edited in admin UI
-
-* Allow theme templates to be imported from an S3 folder
+* Switch main site templates from ERB to liquid / handlebars / similar ?
 
 * Allow in-situ editing of Page (and other?) content
     * Mercury: https://jejacks0n.github.io/mercury
@@ -185,10 +108,11 @@
 * Replace hand-rolled trees and recursion (page sections, etc) with ClosureTree ?
     * https://github.com/ClosureTree/closure_tree
 
-* Wiki?
-    * Integrate an existing project? https://www.ruby-toolbox.com/categories/wiki_apps
+* Integrate a wiki?
+    * https://www.ruby-toolbox.com/categories/wiki_apps
 
-* Integrate a static site generator? https://www.ruby-toolbox.com/categories/static_website_generation
+* Integrate a static site generator?
+    * https://www.ruby-toolbox.com/categories/static_website_generation
 
 * Run multiple ShinySites from one ShinyCMS installation?
     * https://www.ruby-toolbox.com/categories/Multitenancy

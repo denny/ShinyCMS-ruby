@@ -2,49 +2,7 @@
 
 ## In progress
 
-Features that I'm halfway through implementing (with notes on where I'm up to, what I'm stuck on, links to useful docs, etc)
-
-
-### Features that exist in the Perl version
-
-* Newsletters (HTML mailshots) and mailing lists
-    * Nearly done!
-    * Add a nice default template or two, from https://mjml.io/templates/newsletter-email
-    * Do some end-to-end testing, i.e. 'try to use it'
-
-
-### Features that don't exist in the Perl version but I seem to be working on them anyway
-
-* Redo site settings and feature flags using Sail
-    * https://github.com/vinistock/sail#readme
-
-* Plugin architecture
-    * I've converted most of the existing features into Rails Engine plugins
-    * Still to do:
-        * Move Comments, Tags, and Likes into plugins
-        * Move concerns and helpers into a plugin (ShinyToolbox?)
-            * Eventually, break them up into multiple plugins (ShinyPostTools, ShinyTemplateTools, etc)
-        * Look into moving Users into a plugin
-            * Ideally, move all the non-Devise User/Account functionality into concerns and helpers, so that people could include those into the user model of any site with Devise-powered auth, and then use any Plugin
-        * Move each plugin into its own separate gem
-            * Move pages, newsletters, and forms test templates into each plugin's spec/fixtures
-            * Look at Combustion, for minimal test apps for gems: https://github.com/pat/combustion
-            * List ShinyBlog on https://www.ruby-toolbox.com/categories/Blog_Engines
-
-* Themes
-    * Webpacker config
-        * Currently themes with JavaScript need an entry point file at `/app/javascript/packs/{theme-name}.js`, which seems messy and wrong
-        * Theme JavaScript is currently in `/themes/javascript/theme_name` - ideally it would be in `/themes/theme_name/javascript`
-
-* Algolia search backend: https://devcenter.heroku.com/articles/algoliasearch#using-with-rails
-    * NB: Not free to non-commercial sites using the CMS :(
-    * Breaking news from Bundler: A new major version is available for Algolia! Please now use the https://rubygems.org/gems/algolia gem to get the latest features.
-
-* Multiple blog support
-    * The Perl version had half-finished code for hosting multiple blogs on a single 'journal' site
-    * In the Ruby version, this has been split into two plugins:
-        * ShinyBlog (single blog) - finished (for now) and merged
-        * ShinyBlogs (multi-blog) - not finished, still in a branch
+Everything that was in this document has now been moved to the [ShinyCMS project board](https://github.com/denny/ShinyCMS-ruby/projects/1) (along with about half of the TODO list)
 
 
 ## Done / TODO
