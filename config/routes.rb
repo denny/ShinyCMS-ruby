@@ -9,8 +9,8 @@
 # Routes for main app (ShinyHostApp)
 
 Rails.application.routes.draw do
-  scope format: false do
-    if defined? ShinyCMS
+  if defined? ShinyCMS
+    scope format: false do
       # Currently, if ShinyPages is loaded, then we assume it controls the root path
       # require "#{ShinyPages::Engine.root}/route_helpers/root_path_route" if ShinyCMS.plugins.loaded? :ShinyPages
       root to: 'shiny_pages/pages#index' if ShinyCMS.plugins.loaded? :ShinyPages
