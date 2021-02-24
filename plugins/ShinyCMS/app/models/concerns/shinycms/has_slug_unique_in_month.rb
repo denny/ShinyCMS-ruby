@@ -8,10 +8,10 @@
 
 module ShinyCMS
   # Validator for slugs that only need to be unique within a given month (e.g. blog posts, news posts, etc)
-  module ShinySlugInMonth
+  module HasSlugUniqueInMonth
     extend ActiveSupport::Concern
 
-    include ShinySlug
+    include ShinyCMS::HasSlug
 
     included do
       validates :slug, unique_in_collection: {

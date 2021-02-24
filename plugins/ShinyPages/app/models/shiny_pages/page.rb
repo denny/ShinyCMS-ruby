@@ -11,9 +11,9 @@ module ShinyPages
   class Page < ApplicationRecord
     include ShinyCMS::CanHide
     include ShinyCMS::HasName
+    include ShinyCMS::HasSlugUniqueInSection
     include ShinyCMS::ShinyDemoDataProvider
     include ShinyCMS::ShinyClassName
-    include ShinyCMS::ShinySlugInSection
     include ShinyCMS::ShinySoftDelete
     include ShinyCMS::WithTemplate
 

@@ -8,10 +8,10 @@
 
 module ShinyCMS
   # Validator for slugs that only need to be unique within a section (e.g. page.slug / page_section.slug / etc)
-  module ShinySlugInSection
+  module HasSlugUniqueInSection
     extend ActiveSupport::Concern
 
-    include ShinySlug
+    include ShinyCMS::HasSlug
 
     included do
       validates :slug, uniqueness: {

@@ -11,8 +11,8 @@ module ShinyNewsletters
   class Edition < ApplicationRecord
     include ShinyCMS::CanHide
     include ShinyCMS::HasName
+    include ShinyCMS::HasSlugUniqueInMonth
     include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinySlugInMonth
     include ShinyCMS::ShinySoftDelete
     include ShinyCMS::WithTemplate
 

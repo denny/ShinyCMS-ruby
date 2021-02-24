@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Shared test code, for testing methods mixed-in by the ShinySlug concern
-RSpec.shared_examples ShinyCMS::ShinySlug do
+RSpec.shared_examples ShinyCMS::HasSlug do
   describe 'slug generation' do
     it 'can generate a slug' do
       sluggish.slug = nil

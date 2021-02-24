@@ -12,8 +12,8 @@ module ShinyCMS
     # Custom error class
     class HasBeenAgreedTo < StandardError; end
 
+    include ShinyCMS::HasSlug
     include ShinyDemoDataProvider
-    include ShinySlug
     include ShinySoftDelete
 
     # Validations
