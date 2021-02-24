@@ -8,9 +8,15 @@
 
 # Shared test code, for testing methods mixed-in by ShinyDemoDataProvider concern
 RSpec.shared_examples ShinyCMS::ShinyDemoDataProvider do
-  describe '.dump_for_demo?' do
+  describe '.demo_data?' do
     it 'returns true' do
-      expect( model.dump_for_demo? ).to be true
+      expect( model.demo_data? ).to be true
+    end
+  end
+
+  describe '.demo_data_position' do
+    it 'returns a number' do
+      expect( model.demo_data_position ).to be_a Integer
     end
   end
 end

@@ -21,7 +21,7 @@ module ShinyCMS
     end
 
     def self.core_models_with_demo_data
-      descendants.select { |model| model.respond_to? :dump_for_demo? }
+      descendants.select { |model| model.respond_to? :demo_data? }
     end
   end
 end

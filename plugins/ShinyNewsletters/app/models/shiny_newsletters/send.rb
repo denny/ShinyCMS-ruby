@@ -86,6 +86,10 @@ module ShinyNewsletters
         .or( where( 'date(finished_sending_at) = ?', search_term ) )
         .order( sent_at: :desc )
     end
+
+    def demo_data_position
+      5  # after templates, template elements, editions, and edition elements
+    end
   end
 end
 

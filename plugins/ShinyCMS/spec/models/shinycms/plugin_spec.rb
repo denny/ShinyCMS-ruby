@@ -13,7 +13,7 @@ RSpec.describe ShinyCMS::Plugin, type: :model do
   describe '.models_that_respond_to( :method? )' do
     it 'returns an array of models from this plugin' do
       plugin = described_class.new( 'ShinyBlog' )
-      models = plugin.models_that_respond_to :dump_for_demo?
+      models = plugin.models_that_respond_to :demo_data?
 
       expect( models       ).to be_an Array
       expect( models.first ).to be ShinyBlog::Post

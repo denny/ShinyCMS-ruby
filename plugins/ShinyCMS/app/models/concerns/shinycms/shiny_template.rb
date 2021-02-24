@@ -12,23 +12,15 @@ module ShinyCMS
     extend ActiveSupport::Concern
 
     included do
-      # Associations
-
       has_many :elements, -> { order( :position ) }, inverse_of: :template, dependent: :destroy,
                                                     class_name: 'TemplateElement'
 
       accepts_nested_attributes_for :elements
 
-      # Validations
-
       validates :filename, presence: true
       validates :name,     presence: true
 
-      # Before/after actions
-
       after_create :add_elements
-
-      # Instance methods
 
       def file_exists?
         self.class.template_file_exists? filename

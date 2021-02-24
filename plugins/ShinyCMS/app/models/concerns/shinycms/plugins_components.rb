@@ -31,7 +31,7 @@ module ShinyCMS
       end
 
       def models_with_demo_data
-        models_that_respond_to( :dump_for_demo? )
+        models_that_respond_to( :demo_data? )
       end
 
       def models_with_sitemap_items

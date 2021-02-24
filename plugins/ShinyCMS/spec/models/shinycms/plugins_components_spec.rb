@@ -12,7 +12,7 @@ require 'rails_helper'
 RSpec.describe ShinyCMS::PluginsComponents, type: :model do
   describe '.models_that_respond_to' do
     it 'returns an array (or similar) of models from the whole app' do
-      models = ShinyCMS::Plugins.all.models_that_respond_to :dump_for_demo?
+      models = ShinyCMS::Plugins.all.models_that_respond_to :demo_data?
 
       expect( models ).to respond_to :each
 
