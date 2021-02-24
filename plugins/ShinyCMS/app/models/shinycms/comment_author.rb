@@ -9,7 +9,7 @@
 module ShinyCMS
   # Details of unauthenticated comment authors
   class CommentAuthor < ApplicationRecord
-    include ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinySoftDelete
     include ShinyToken
 

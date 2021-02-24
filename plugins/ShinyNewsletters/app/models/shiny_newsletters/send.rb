@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Model for newsletter sends - when an edition is sent to a list
   class Send < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyCMS::ShinySoftDelete
 
     # Associations

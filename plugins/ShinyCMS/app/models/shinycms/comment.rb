@@ -9,7 +9,7 @@
 module ShinyCMS
   # Model class for comments
   class Comment < ApplicationRecord
-    include ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyShowHide
     include ShinySoftDelete
     include ShinyWithVotes

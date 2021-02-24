@@ -9,7 +9,7 @@
 module ShinyPages
   # Model for page sections - part of the ShinyPages plugin for ShinyCMS
   class Section < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyCMS::ShinyClassName
     include ShinyCMS::ShinyName
     include ShinyCMS::ShinySlugInSection

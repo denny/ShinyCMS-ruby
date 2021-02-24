@@ -11,7 +11,7 @@ module ShinyPages
   class Template < ApplicationRecord
     include ShinyCMS::ShinyHTMLTemplate
 
-    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyCMS::ShinyClassName
     include ShinyCMS::ShinySoftDelete
 
