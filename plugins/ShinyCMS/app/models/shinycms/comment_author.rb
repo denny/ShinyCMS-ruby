@@ -24,7 +24,7 @@ module ShinyCMS
     end
 
     def self.demo_data_position
-      12  # after comments
+      2  # after email recipients
     end
   end
 end

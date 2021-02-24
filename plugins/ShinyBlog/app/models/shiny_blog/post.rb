@@ -12,13 +12,9 @@ module ShinyBlog
     include ShinyCMS::HasDemoData
     include ShinyCMS::ShinyPost
 
-    # Associations
-
     belongs_to :user, inverse_of: :blog_posts, class_name: 'ShinyCMS::User'
 
     has_one :discussion, as: :resource, dependent: :destroy, class_name: 'ShinyCMS::Discussion'
-
-    # Instance methods
 
     def path( anchor: nil )
       url_helpers.view_blog_post_path(
