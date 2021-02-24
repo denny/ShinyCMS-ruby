@@ -13,18 +13,18 @@ module ShinyCMS
     include ShinySoftDelete
     include ShinyToken
 
-    # Associations
-
     has_many :comments, as: :author, dependent: :nullify
 
     belongs_to :email_recipient, optional: true
-
-    # Instance methods
 
     def email
       return if email_recipient.blank?
 
       email_recipient.email
+    end
+
+    def self.demo_data_position
+      12  # after comments
     end
   end
 end

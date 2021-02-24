@@ -87,7 +87,7 @@ module ShinyNewsletters
         .order( sent_at: :desc )
     end
 
-    def demo_data_position
+    def self.demo_data_position
       5  # after templates, template elements, editions, and edition elements
     end
   end

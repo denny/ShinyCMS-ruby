@@ -121,5 +121,9 @@ module ShinyCMS
           .or( spam.where( 'body ilike ?', "%#{search_term}%" ) )
           .order( posted_at: :desc )
     end
+
+    def self.demo_data_position
+      11  # after discussions
+    end
   end
 end

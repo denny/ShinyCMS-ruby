@@ -66,5 +66,9 @@ module ShinyCMS
 
       [ discussions, counts ]
     end
+
+    def self.demo_data_position
+      10  # arbitrary 'probably after anything that might want comments on it' number
+    end
   end
 end
