@@ -11,7 +11,7 @@ module ShinyCMS
   class Comment < ApplicationRecord
     include ShinyCMS::CanHide
     include ShinyDemoDataProvider
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
     include ShinyWithVotes
 
     # Associations

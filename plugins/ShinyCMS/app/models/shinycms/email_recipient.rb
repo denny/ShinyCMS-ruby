@@ -12,7 +12,7 @@ module ShinyCMS
   class EmailRecipient < ApplicationRecord
     include ShinyDemoDataProvider
     include ShinyEmail
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
     include ShinyToken
 
     # Associations

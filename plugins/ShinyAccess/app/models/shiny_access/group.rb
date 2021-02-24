@@ -12,7 +12,7 @@ module ShinyAccess
     include ShinyCMS::HasName
     include ShinyCMS::HasSlug
     include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Associations
 

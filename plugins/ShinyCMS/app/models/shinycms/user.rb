@@ -14,7 +14,7 @@ module ShinyCMS
     include ShinyUserAuthorization   # Pundit
 
     include ShinyEmail
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
     include ShinyUserContent
 
     # Validations

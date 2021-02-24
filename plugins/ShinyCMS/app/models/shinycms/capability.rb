@@ -9,7 +9,7 @@
 module ShinyCMS
   # Part of the Pundit-powered ACL - a capability is a thing that a user can do
   class Capability < ApplicationRecord
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Associations
 

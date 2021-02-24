@@ -11,7 +11,7 @@ module ShinyProfiles
   class Profile < ApplicationRecord
     include ShinyCMS::CanHide
     include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Associations
 

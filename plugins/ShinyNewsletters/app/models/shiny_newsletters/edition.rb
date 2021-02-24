@@ -13,7 +13,7 @@ module ShinyNewsletters
     include ShinyCMS::HasName
     include ShinyCMS::HasSlugUniqueInMonth
     include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::SoftDelete
     include ShinyCMS::WithTemplate
 
     # Associations

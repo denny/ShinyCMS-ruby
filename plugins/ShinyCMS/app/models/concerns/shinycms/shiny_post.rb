@@ -14,7 +14,7 @@ module ShinyCMS
     include ShinyCMS::CanHide
     include ShinyCMS::HasSlugUniqueInMonth
     include ShinyClassName
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
     include ShinyTeaser
     include ShinyWithVotes
 

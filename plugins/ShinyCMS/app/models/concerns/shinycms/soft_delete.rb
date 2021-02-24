@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Add soft delete to a model (mark data as deleted and hide it, but don't actually delete from database)
-  module ShinySoftDelete
+  module SoftDelete
     extend ActiveSupport::Concern
 
     included do

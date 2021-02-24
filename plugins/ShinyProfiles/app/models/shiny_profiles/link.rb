@@ -10,7 +10,7 @@ module ShinyProfiles
   # Model for user profile pages (and related features)
   class Link < ApplicationRecord
     include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Associations
 

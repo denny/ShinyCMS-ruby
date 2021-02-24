@@ -11,7 +11,7 @@ module ShinyInserts
   class Element < ApplicationRecord
     include ShinyCMS::ShinyDemoDataProvider
     include ShinyCMS::ShinyElement
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Associations
 

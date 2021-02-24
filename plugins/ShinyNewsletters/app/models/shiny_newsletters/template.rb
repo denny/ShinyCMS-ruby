@@ -12,7 +12,7 @@ module ShinyNewsletters
     include ShinyCMS::ShinyMJMLTemplate
 
     include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Associations
 

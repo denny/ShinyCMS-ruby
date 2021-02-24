@@ -14,7 +14,7 @@ module ShinyPages
     include ShinyCMS::HasSlugUniqueInSection
     include ShinyCMS::ShinyDemoDataProvider
     include ShinyCMS::ShinyClassName
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     include TopLevelSlugValidator
 

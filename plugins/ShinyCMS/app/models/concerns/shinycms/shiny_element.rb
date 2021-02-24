@@ -11,7 +11,7 @@ module ShinyCMS
   module ShinyElement
     extend ActiveSupport::Concern
 
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Allowed characters for element names: a-z A-Z 0-9 _
     ELEMENT_NAME_REGEX = %r{[_a-zA-Z0-9]+}

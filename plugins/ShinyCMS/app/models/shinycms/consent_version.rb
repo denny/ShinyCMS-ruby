@@ -14,7 +14,7 @@ module ShinyCMS
 
     include ShinyCMS::HasSlug
     include ShinyDemoDataProvider
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Validations
 

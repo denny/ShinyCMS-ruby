@@ -11,7 +11,7 @@ module ShinyCMS
   class Discussion < ApplicationRecord
     include ShinyCMS::CanHide
     include ShinyDemoDataProvider
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Assocations
 

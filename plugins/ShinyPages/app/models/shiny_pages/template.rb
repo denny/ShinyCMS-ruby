@@ -13,7 +13,7 @@ module ShinyPages
 
     include ShinyCMS::ShinyDemoDataProvider
     include ShinyCMS::ShinyClassName
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Associations
 
