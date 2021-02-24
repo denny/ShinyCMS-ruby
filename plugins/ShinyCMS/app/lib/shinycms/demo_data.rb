@@ -45,12 +45,14 @@ module ShinyCMS
     def export_demo_data
       prepare_for_export
 
-      sql = all_to_sql( models_with_demo_data )
+      create_statements = create_statements_for_all( models_with_demo_data )
 
-      munged_sql = munge_user_id( sql )
+      demo_data = munge_user_id( create_statements )
 
-      write_demo_data_to_file( munged_sql )
+      write_demo_data_to_file( demo_data )
     end
+
+    private
 
     def prepare_for_export
       # We need all the models pre-loaded so we can find those offering demo data
@@ -60,15 +62,15 @@ module ShinyCMS
       ShinyCMS::ConsentVersion.find_by( slug: 'shiny-lists-admin-subscribe' )&.delete
     end
 
-    def all_to_sql( models )
-      sql = ''
+    def create_statements_for_all( models )
+      create_statements = ''
       models.each do |model|
-        sql += to_sql( model )
+        create_statements += create_statements_for( model )
       end
-      sql
+      create_statements
     end
 
-    def to_sql( model )
+    def create_statements_for( model )
       return '' if model.all.size.zero?
 
       Rails.logger.info "Dumping: #{model}"
@@ -82,17 +84,18 @@ module ShinyCMS
       end
     end
 
-    # This change means that `load_demo_data` can just require the dump file after
+    # This change means that `import_demo_data` can just require the dump file after
     # creating @shiny_admin, and all the imported content will belong to that user
-    def munge_user_id( sql )
-      sql.gsub 'user_id: 1', 'user_id: @shiny_admin.id'
+    def munge_user_id( create_statements )
+      create_statements.gsub 'user_id: 1', 'user_id: @shiny_admin.id'
     end
 
     def models_with_demo_data
-      core_models = ShinyCMS::Plugin.get( 'ShinyCMS' ).models_that_respond_to( :demo_data? )
-      plugin_models = ShinyCMS.plugins.models_with_demo_data
+      core_plugin_models = ShinyCMS::Plugin.get( 'ShinyCMS' ).models_with_demo_data
+      feature_plugin_models = ShinyCMS.plugins.models_with_demo_data
 
-      shinycms_models = [ core_models + plugin_models ].flatten.sort_by( &:name ).sort_by( &:demo_data_position )
+      shinycms_models = [ core_plugin_models + feature_plugin_models ]
+                        .flatten.sort_by( &:name ).sort_by( &:demo_data_position )
 
       shinycms_models + other_models
     end
