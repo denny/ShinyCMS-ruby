@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Provides .name method for anything with public_name and internal_name attributes
-  module ShinyName
+  module HasName
     extend ActiveSupport::Concern
 
     included do
