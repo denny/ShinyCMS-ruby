@@ -9,7 +9,35 @@
 module ShinyCMS
   # Supporting methods for handling demo site data
   module DemoData
-    # Used when loading demo data from file into database
+    # Used when importing demo data from file into database
+
+    def prepare_admin_account_for_import( admin )
+      admin.skip_confirmation!
+      admin.save!
+
+      grant_all_capabilities( admin )
+
+      # Allow the demo data to replace @shiny_admin's user profile page
+      admin.profile.destroy_fully!
+    end
+
+    def grant_all_capabilities( admin )
+      ShinyCMS::User.transaction do
+        ShinyCMS::Capability.all.find_each do |capability|
+          admin.user_capabilities.create! capability: capability
+        end
+      end
+    end
+
+    def import_demo_data_from_file
+      skip_callbacks_on_templated_models
+
+      require Rails.root.join 'db/demo_site_data.rb'
+
+      set_callbacks_on_templated_models
+
+      fix_primary_key_sequences
+    end
 
     def skip_callbacks_on_templated_models
       ShinyPages::Page.skip_callback( :create, :after, :add_elements )
@@ -59,7 +87,7 @@ module ShinyCMS
       Rails.application.eager_load!
 
       # Avoid collision between seed data and demo data
-      ShinyCMS::ConsentVersion.find_by( slug: 'shiny-lists-admin-subscribe' )&.delete
+      ShinyCMS::ConsentVersion.find_by( slug: 'shiny-lists-admin-subscribe' )&.destroy_fully!
     end
 
     def create_statements_for_all( models )
@@ -79,7 +107,7 @@ module ShinyCMS
     end
 
     def write_demo_data_to_file( demo_data_sql )
-      File.open( Rails.root.join( 'db/demo_data.rb' ), 'w' ) do |demo_data_file|
+      File.open( Rails.root.join( 'db/demo_site_data.rb' ), 'w' ) do |demo_data_file|
         demo_data_file.write demo_data_sql
       end
     end

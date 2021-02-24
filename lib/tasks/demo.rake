@@ -16,7 +16,7 @@ require 'dotenv/tasks'
 # - inserts the demo site data
 
 # rails shiny:demo:export
-# - exports the current database contents to db/demo_data.rb
+# - exports the current database contents to db/demo_site_data.rb
 
 require_relative '../../plugins/ShinyCMS/app/lib/shinycms/demo_data'
 
@@ -29,25 +29,11 @@ namespace :shiny do
     desc 'ShinyCMS: reset database, create admin user, and load demo site data'
     task load: prereqs do
       # :nocov:
-      @shiny_admin.skip_confirmation!
-      @shiny_admin.save!
-
-      ShinyCMS::User.transaction do
-        ShinyCMS::Capability.all.find_each do |capability|
-          @shiny_admin.user_capabilities.create! capability: capability
-        end
-      end
-
-      # Allow the demo data to replace @shiny_admin's user profile page
-      @shiny_admin.profile.destroy_fully!
+      prepare_admin_account_for_import( @shiny_admin )
 
       ShinyCMS::Setting.set :theme_name, to: 'halcyonic'
 
-      skip_callbacks_on_templated_models
-      require Rails.root.join 'db/demo_data.rb'
-      set_callbacks_on_templated_models
-
-      fix_primary_key_sequences
+      import_demo_data_from_file
 
       ShinyCMS::FeatureFlag.enable :user_login
 
