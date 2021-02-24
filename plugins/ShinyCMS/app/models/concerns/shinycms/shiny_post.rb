@@ -11,8 +11,8 @@ module ShinyCMS
   module ShinyPost
     extend ActiveSupport::Concern
 
+    include ShinyCMS::CanHide
     include ShinyClassName
-    include ShinyShowHide
     include ShinySlugInMonth
     include ShinySoftDelete
     include ShinyTeaser

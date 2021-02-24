@@ -112,7 +112,7 @@
 ### Medium-ish
 
 * Refactor show/hide/visible/published/etc stuff
-    * ShowHide could become a polymorphic acts_as_showable sort of thing?
+    * CanHide could become a polymorphic acts_as_showable sort of thing?
         * show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc
 
 * More themes!

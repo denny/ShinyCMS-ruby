@@ -9,10 +9,10 @@
 module ShinyPages
   # Model for 'brochure' pages - part of the ShinyPages plugin for ShinyCMS
   class Page < ApplicationRecord
+    include ShinyCMS::CanHide
     include ShinyCMS::ShinyDemoDataProvider
     include ShinyCMS::ShinyClassName
     include ShinyCMS::ShinyName
-    include ShinyCMS::ShinyShowHide
     include ShinyCMS::ShinySlugInSection
     include ShinyCMS::ShinySoftDelete
     include ShinyCMS::WithTemplate

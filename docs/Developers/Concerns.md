@@ -4,13 +4,13 @@
 
 There are a number of concerns provided with ShinyCMS. These are intended to make it easier for people to build new features that work similarly to the existing features, from both a user and developer perspective.
 
-### In the main app
+### In the core plugin
 
+* CanHide               - check or change show/hide status of content on the site/in menus/etc
 * ShinyClassName        - return a 'human friendly', translatable version of model's class name
 * ShinyDemoDataProvider - identifies models that may provide data to the demo site
 * ShinyEmail            - sets/searches/validates models by canonical_email as well as email
 * ShinyName             - .name method, returns public_name if one is set, internal_name otherwise
-* ShinyShowHide         - check or change show/hide status of content on the site/in menus/etc
 * ShinySoftDelete       - enables soft delete features (from acts_as_paranoid) when included
 * ShinyTeaser           - generate a truncated 'teaser' of a longer post, and related methods
 * ShinyToken            - generate/reset/check UUID token attributes with optional expiry times
@@ -31,6 +31,6 @@ There are a number of concerns provided with ShinyCMS. These are intended to mak
 
 At some point in the future, most of these Concerns will probably move into some sort of ShinyTools plugin or plugins (which can then be depended on by whichever other plugins need them), as part of the long-term plan to move most or all of the main app code into plugins.
 
-### In plugins
+### In feature plugins
 
 * ShinySearch::Searchable - for models that want to be discoverable by the search feature

@@ -9,8 +9,8 @@
 module ShinyCMS
   # Model class for discussions (used to group comments)
   class Discussion < ApplicationRecord
+    include ShinyCMS::CanHide
     include ShinyDemoDataProvider
-    include ShinyShowHide
     include ShinySoftDelete
 
     # Assocations
