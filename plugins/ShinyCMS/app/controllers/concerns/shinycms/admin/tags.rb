@@ -11,7 +11,9 @@ module ShinyCMS
     # Common methods for admin controllers that handle content WithTags
     module Tags
       def admin_tag_list( resource )
-        resource.tag_list.present? ? resource.tag_list&.join( ', ' ) : resource.hidden_tag_list&.join( ', ' )
+        return resource.hidden_tag_list.to_s if resource.hidden?
+
+        resource.tag_list.to_s
       end
     end
   end
