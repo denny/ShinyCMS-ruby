@@ -12,7 +12,9 @@ module ShinyCMS
     DEMO_SITE_DATA_FILE = Rails.root.join 'db/demo_site_data.rb'
     private_constant :DEMO_SITE_DATA_FILE
 
-    # :nocov: TODO: Most of this can be tested now!
+    # TODO: More of this code can be tested now that it's not buried in a rake task
+
+    # :nocov:
 
     def import_demo_data( admin_user: )
       prepare_admin_account_for_import( admin_user )
@@ -95,7 +97,37 @@ module ShinyCMS
       SQL
     end
 
+    # :nocov:
+
     # Export
+
+    def models_with_demo_data
+      core_plugin_models = ShinyCMS::Plugin.get( 'ShinyCMS' ).models_that_respond_to( :demo_data? )
+      feature_plugin_models = ShinyCMS.plugins.models_that_respond_to( :demo_data? )
+
+      shinycms_models = [ core_plugin_models + feature_plugin_models ]
+                        .flatten.sort_by( &:name ).sort_by( &:demo_data_position )
+
+      shinycms_models + other_models
+    end
+
+    def other_models
+      [
+        ActsAsTaggableOn::Tag,
+        ActsAsTaggableOn::Tagging,
+
+        ActiveStorage::Blob,
+        ActiveStorage::Attachment
+      ]
+    end
+
+    # This change means that `import_demo_data` can just require the dump file after
+    # creating @shiny_admin, and all the imported content will belong to that user
+    def munge_user_id( create_statements )
+      create_statements.gsub 'user_id: 1', 'user_id: @shiny_admin.id'
+    end
+
+    # :nocov:
 
     def prepare_for_export
       # We need all the models pre-loaded so we can find those offering demo data
@@ -125,32 +157,6 @@ module ShinyCMS
       File.open( DEMO_SITE_DATA_FILE, 'w' ) do |demo_data_file|
         demo_data_file.write demo_data_sql
       end
-    end
-
-    # This change means that `import_demo_data` can just require the dump file after
-    # creating @shiny_admin, and all the imported content will belong to that user
-    def munge_user_id( create_statements )
-      create_statements.gsub 'user_id: 1', 'user_id: @shiny_admin.id'
-    end
-
-    def models_with_demo_data
-      core_plugin_models = ShinyCMS::Plugin.get( 'ShinyCMS' ).models_with_demo_data
-      feature_plugin_models = ShinyCMS.plugins.models_with_demo_data
-
-      shinycms_models = [ core_plugin_models + feature_plugin_models ]
-                        .flatten.sort_by( &:name ).sort_by( &:demo_data_position )
-
-      shinycms_models + other_models
-    end
-
-    def other_models
-      [
-        ActsAsTaggableOn::Tag,
-        ActsAsTaggableOn::Tagging,
-
-        ActiveStorage::Blob,
-        ActiveStorage::Attachment
-      ]
     end
   end
 end
