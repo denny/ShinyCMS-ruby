@@ -19,19 +19,4 @@ RSpec.describe ShinyCMS::Plugin, type: :model do
       expect( models.first ).to be ShinyBlog::Post
     end
   end
-
-  describe '.models_with_demo_data' do
-    it 'returns an array of models, including comments and not including user data' do
-      plugin = described_class.new( 'ShinyCMS' )
-
-      demo_models = plugin.models_with_demo_data
-
-      expect( demo_models ).to be_an Enumerable
-
-      demo_model_names = demo_models.collect( &:name )
-
-      expect( demo_model_names ).to     include 'ShinyCMS::Comment'
-      expect( demo_model_names ).not_to include 'ShinyCMS::User'
-    end
-  end
 end
