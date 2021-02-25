@@ -8,15 +8,15 @@
 
 require 'dotenv/tasks'
 
-# ShinyCMS tasks for setting up a demo site
+# ShinyCMS tasks for importing/exporting the data for the demo site
 
 # rails shiny:demo:load
 # - resets the database
 # - creates a super-admin
-# - imports the demo site data
+# - imports the demo site data from ShinyCMS::DemoData::DEMO_SITE_DATA_FILE
 
 # rails shiny:demo:export
-# - exports the current database contents to db/demo_site_data.rb
+# - exports the current database contents to DEMO_SITE_DATA_FILE
 
 # Most of the import/export code for the demo site data is in this module:
 require_relative '../../plugins/ShinyCMS/app/lib/shinycms/demo_data'
