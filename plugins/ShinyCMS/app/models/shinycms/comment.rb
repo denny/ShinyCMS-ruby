@@ -91,7 +91,7 @@ module ShinyCMS
     end
 
     def authenticated_author?
-      author_type == 'User'
+      author_type == 'ShinyCMS::User'
     end
 
     def notification_email
