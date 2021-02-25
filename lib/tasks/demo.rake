@@ -30,7 +30,13 @@ namespace :shiny do
     desc 'ShinyCMS: reset database, create admin user, and load demo site data'
     task load: prereqs do
       # :nocov:
-      import_demo_data( admin_user: @shiny_admin )
+      prepare_admin_account_for_import( @shiny_admin )
+
+      ShinyCMS::Setting.set :theme_name, to: 'halcyonic'
+
+      load_demo_site_data_file
+
+      ShinyCMS::FeatureFlag.enable :user_login
 
       puts 'Demo data loaded and admin account created.'
       puts "You can log in as '#{@shiny_admin.username}' now."
@@ -52,7 +58,13 @@ namespace :shiny do
 
     task export: %i[ environment dotenv ] do
       # :nocov:
-      export_demo_data
+      prepare_for_export
+
+      create_statements = create_statements_for_all( models_with_demo_data )
+
+      demo_data = munge_user_id( create_statements )
+
+      write_demo_data_to_file( demo_data )
       # :nocov:
     end
   end

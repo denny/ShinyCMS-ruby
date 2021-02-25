@@ -12,33 +12,71 @@ module ShinyCMS
     DEMO_SITE_DATA_FILE = Rails.root.join 'db/demo_site_data.rb'
     private_constant :DEMO_SITE_DATA_FILE
 
+    # Used by export task
+
+    def models_with_demo_data
+      core_plugin_models = ShinyCMS::Plugin.get( 'ShinyCMS' ).models_that_respond_to( :demo_data? )
+      feature_plugin_models = ShinyCMS.plugins.models_that_respond_to( :demo_data? )
+
+      shinycms_models = [ core_plugin_models + feature_plugin_models ]
+                        .flatten.sort_by( &:name ).sort_by( &:demo_data_position )
+
+      shinycms_models + other_models
+    end
+
+    def other_models
+      [
+        ActsAsTaggableOn::Tag,
+        ActsAsTaggableOn::Tagging,
+
+        ActiveStorage::Blob,
+        ActiveStorage::Attachment
+      ]
+    end
+
     # TODO: More of this code can be tested now that it's not buried in a rake task
 
     # :nocov:
 
-    def import_demo_data( admin_user: )
-      prepare_admin_account_for_import( admin_user )
+    def create_statements_for( model )
+      return '' if model.all.size.zero?
 
-      ShinyCMS::Setting.set :theme_name, to: 'halcyonic'
+      Rails.logger.info "Dumping: #{model}"
 
-      load_demo_site_data_file
-
-      ShinyCMS::FeatureFlag.enable :user_login
+      SeedDump.dump( model, exclude: %i[created_at updated_at tag_list hidden_tag_list] )
     end
 
-    def export_demo_data
-      prepare_for_export
-
-      create_statements = create_statements_for_all( models_with_demo_data )
-
-      demo_data = munge_user_id( create_statements )
-
-      write_demo_data_to_file( demo_data )
+    # This change means that `import_demo_data` can just require the dump file after
+    # creating @shiny_admin, and all the imported content will belong to that user
+    def munge_user_id( create_statements )
+      create_statements.gsub 'user_id: 1', 'user_id: @shiny_admin.id'
     end
 
     private
 
-    # Import
+    def prepare_for_export
+      # We need all the models pre-loaded so we can find those offering demo data
+      Rails.application.eager_load!
+
+      # Avoid collision between seed data and demo data
+      ShinyCMS::ConsentVersion.find_by( slug: 'shiny-lists-admin-subscribe' )&.destroy_fully!
+    end
+
+    def create_statements_for_all( models )
+      create_statements = ''
+      models.each do |model|
+        create_statements += create_statements_for( model )
+      end
+      create_statements
+    end
+
+    def write_demo_data_to_file( demo_data_sql )
+      File.open( DEMO_SITE_DATA_FILE, 'w' ) do |demo_data_file|
+        demo_data_file.write demo_data_sql
+      end
+    end
+
+    # Used by import task
 
     def prepare_admin_account_for_import( admin )
       admin.skip_confirmation!
@@ -95,68 +133,6 @@ module ShinyCMS
         SELECT setval( '#{table_name}_id_seq', COALESCE( ( SELECT MAX(id)+1 FROM #{table_name} ), 1 ), false );
         COMMIT;
       SQL
-    end
-
-    # :nocov:
-
-    # Export
-
-    def models_with_demo_data
-      core_plugin_models = ShinyCMS::Plugin.get( 'ShinyCMS' ).models_that_respond_to( :demo_data? )
-      feature_plugin_models = ShinyCMS.plugins.models_that_respond_to( :demo_data? )
-
-      shinycms_models = [ core_plugin_models + feature_plugin_models ]
-                        .flatten.sort_by( &:name ).sort_by( &:demo_data_position )
-
-      shinycms_models + other_models
-    end
-
-    def other_models
-      [
-        ActsAsTaggableOn::Tag,
-        ActsAsTaggableOn::Tagging,
-
-        ActiveStorage::Blob,
-        ActiveStorage::Attachment
-      ]
-    end
-
-    # This change means that `import_demo_data` can just require the dump file after
-    # creating @shiny_admin, and all the imported content will belong to that user
-    def munge_user_id( create_statements )
-      create_statements.gsub 'user_id: 1', 'user_id: @shiny_admin.id'
-    end
-
-    # :nocov:
-
-    def prepare_for_export
-      # We need all the models pre-loaded so we can find those offering demo data
-      Rails.application.eager_load!
-
-      # Avoid collision between seed data and demo data
-      ShinyCMS::ConsentVersion.find_by( slug: 'shiny-lists-admin-subscribe' )&.destroy_fully!
-    end
-
-    def create_statements_for_all( models )
-      create_statements = ''
-      models.each do |model|
-        create_statements += create_statements_for( model )
-      end
-      create_statements
-    end
-
-    def create_statements_for( model )
-      return '' if model.all.size.zero?
-
-      Rails.logger.info "Dumping: #{model}"
-
-      SeedDump.dump( model, exclude: %i[created_at updated_at tag_list hidden_tag_list] )
-    end
-
-    def write_demo_data_to_file( demo_data_sql )
-      File.open( DEMO_SITE_DATA_FILE, 'w' ) do |demo_data_file|
-        demo_data_file.write demo_data_sql
-      end
     end
   end
 end

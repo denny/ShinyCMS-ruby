@@ -52,4 +52,12 @@ RSpec.describe ShinyCMS::DemoData, type: :helper do
       expect( demo_model_names ).not_to include 'ShinyCMS::User'
     end
   end
+
+  describe 'create_statements_for( model )' do
+    context 'when the model holds no data' do
+      it 'returns an empty string' do
+        expect( described_class.create_statements_for( ShinyCMS::VotableIP ) ).to eq ''
+      end
+    end
+  end
 end
