@@ -30,10 +30,6 @@ module ShinyCMS
         models_that_are( :votable? )
       end
 
-      def models_with_demo_data
-        models_that_respond_to( :demo_data? )
-      end
-
       def models_with_sitemap_items
         models_that_respond_to( :sitemap_items )
       end
@@ -54,7 +50,6 @@ module ShinyCMS
       delegate :taggable_models, to: :all
       delegate :votable_models,  to: :all
 
-      delegate :models_with_demo_data,     to: :all
       delegate :models_with_sitemap_items, to: :all
 
       delegate :models_that_respond_to, to: :all

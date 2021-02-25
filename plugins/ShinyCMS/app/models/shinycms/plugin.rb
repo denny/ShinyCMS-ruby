@@ -57,10 +57,6 @@ module ShinyCMS
       base_model.descendants.select { |model| model.respond_to?( method ) }
     end
 
-    def models_with_demo_data
-      models_that_respond_to( :demo_data? )
-    end
-
     def view_path
       path = "plugins/#{name}/app/views/#{underscore}"
 
