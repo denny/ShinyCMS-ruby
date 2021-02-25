@@ -12,6 +12,8 @@ module ShinyCMS
     DEMO_SITE_DATA_FILE = Rails.root.join 'db/demo_site_data.rb'
     private_constant :DEMO_SITE_DATA_FILE
 
+    # :nocov: TODO: Most of this can be tested now!
+
     def import_demo_data( admin_user: )
       prepare_admin_account_for_import( admin_user )
 
