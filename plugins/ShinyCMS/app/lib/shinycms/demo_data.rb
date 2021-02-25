@@ -7,9 +7,34 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Supporting methods for handling demo site data
+  # Import/export demo site data
   module DemoData
-    # Used when importing demo data from file into database
+    DEMO_SITE_DATA_FILE = Rails.root.join 'db/demo_site_data.rb'
+    private_constant :DEMO_SITE_DATA_FILE
+
+    def import_demo_data( admin_user: )
+      prepare_admin_account_for_import( admin_user )
+
+      ShinyCMS::Setting.set :theme_name, to: 'halcyonic'
+
+      load_demo_site_data_file
+
+      ShinyCMS::FeatureFlag.enable :user_login
+    end
+
+    def export_demo_data
+      prepare_for_export
+
+      create_statements = create_statements_for_all( models_with_demo_data )
+
+      demo_data = munge_user_id( create_statements )
+
+      write_demo_data_to_file( demo_data )
+    end
+
+    private
+
+    # Import
 
     def prepare_admin_account_for_import( admin )
       admin.skip_confirmation!
@@ -29,10 +54,10 @@ module ShinyCMS
       end
     end
 
-    def import_demo_data_from_file
+    def load_demo_site_data_file
       skip_callbacks_on_templated_models
 
-      require Rails.root.join 'db/demo_site_data.rb'
+      require DEMO_SITE_DATA_FILE
 
       set_callbacks_on_templated_models
 
@@ -68,19 +93,7 @@ module ShinyCMS
       SQL
     end
 
-    # Used when exporting demo data from database to file
-
-    def export_demo_data
-      prepare_for_export
-
-      create_statements = create_statements_for_all( models_with_demo_data )
-
-      demo_data = munge_user_id( create_statements )
-
-      write_demo_data_to_file( demo_data )
-    end
-
-    private
+    # Export
 
     def prepare_for_export
       # We need all the models pre-loaded so we can find those offering demo data
@@ -107,7 +120,7 @@ module ShinyCMS
     end
 
     def write_demo_data_to_file( demo_data_sql )
-      File.open( Rails.root.join( 'db/demo_site_data.rb' ), 'w' ) do |demo_data_file|
+      File.open( DEMO_SITE_DATA_FILE, 'w' ) do |demo_data_file|
         demo_data_file.write demo_data_sql
       end
     end

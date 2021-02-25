@@ -13,11 +13,12 @@ require 'dotenv/tasks'
 # rails shiny:demo:load
 # - resets the database
 # - creates a super-admin
-# - inserts the demo site data
+# - imports the demo site data
 
 # rails shiny:demo:export
 # - exports the current database contents to db/demo_site_data.rb
 
+# Most of the import/export code for the demo site data is in this module:
 require_relative '../../plugins/ShinyCMS/app/lib/shinycms/demo_data'
 
 namespace :shiny do
@@ -29,13 +30,7 @@ namespace :shiny do
     desc 'ShinyCMS: reset database, create admin user, and load demo site data'
     task load: prereqs do
       # :nocov:
-      prepare_admin_account_for_import( @shiny_admin )
-
-      ShinyCMS::Setting.set :theme_name, to: 'halcyonic'
-
-      import_demo_data_from_file
-
-      ShinyCMS::FeatureFlag.enable :user_login
+      import_demo_data( admin_user: @shiny_admin )
 
       puts 'Demo data loaded and admin account created.'
       puts "You can log in as '#{@shiny_admin.username}' now."
