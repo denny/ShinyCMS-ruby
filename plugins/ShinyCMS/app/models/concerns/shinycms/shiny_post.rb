@@ -12,8 +12,8 @@ module ShinyCMS
     extend ActiveSupport::Concern
 
     include ShinyCMS::CanHide
+    include ShinyCMS::HasReadableName
     include ShinyCMS::HasSlugUniqueInMonth
-    include ShinyClassName
     include ShinyCMS::SoftDelete
     include ShinyTeaser
     include ShinyWithVotes

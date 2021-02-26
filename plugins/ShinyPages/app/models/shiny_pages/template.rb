@@ -12,7 +12,7 @@ module ShinyPages
     include ShinyCMS::ShinyHTMLTemplate
 
     include ShinyCMS::HasDemoData
-    include ShinyCMS::ShinyClassName
+    include ShinyCMS::HasReadableName
     include ShinyCMS::SoftDelete
 
     # Associations

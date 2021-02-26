@@ -76,7 +76,7 @@ module ShinyCMS
       I18n.t(
         'shinycms.discussion_mailer.discussion_notification.subject',
         comment_author_name: @comment.author.name,
-        content_type:        @resource.class.translated_name,
+        content_type:        @resource.class.readable_name,
         site_name:           site_name
       )
     end
