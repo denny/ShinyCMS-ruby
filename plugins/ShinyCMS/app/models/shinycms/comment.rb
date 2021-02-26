@@ -62,28 +62,7 @@ module ShinyCMS
     alias path anchored_path
 
     def send_notifications
-      p = parent.notification_email if parent.present?
-      notify_parent_comment_author if p.present?
-
-      d = discussion.notification_email
-      notify_discussion_owner unless d == p
-
-      a = Setting.get :all_comment_notifications_email
-      return if a.blank? || [ d, p ].include?( a )
-
-      notify_all_comment_notifications_email
-    end
-
-    def notify_parent_comment_author
-      DiscussionMailer.parent_comment_notification( self )
-    end
-
-    def notify_discussion_owner
-      DiscussionMailer.discussion_notification( self )
-    end
-
-    def notify_all_comment_notifications_email
-      DiscussionMailer.overview_notification( self )
+      DiscussionMailer.send_notifications( self )
     end
 
     def authenticated_author?

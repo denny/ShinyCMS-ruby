@@ -11,9 +11,20 @@ module ShinyCMS
   class DiscussionMailer < ApplicationMailer
     before_action :check_feature_flags
 
-    def parent_comment_notification( comment )
-      return unless comment&.parent&.notification_email&.present?
+    def self.send_notifications( comment )
+      p = comment.parent&.notification_email
+      parent_comment_notification( comment ) if p.present?
 
+      d = comment.discussion.notification_email
+      discussion_notification( comment ) unless d && d == p
+
+      a = Setting.get :all_comment_notifications_email
+      return if a.blank? || [ d, p ].include?( a )
+
+      overview_notification( comment )
+    end
+
+    def parent_comment_notification( comment )
       @reply, @parent = comment_and_parent( comment )
 
       @user = notified_user( @parent.notification_email, @parent.author.name )
@@ -27,8 +38,6 @@ module ShinyCMS
     end
 
     def discussion_notification( comment )
-      return unless comment&.discussion&.notification_email&.present?
-
       @comment, @resource, @user = comment_and_resource_and_user( comment )
 
       return if @user.do_not_email? # TODO: make this happen without explicit call
