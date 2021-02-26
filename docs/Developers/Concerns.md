@@ -21,18 +21,18 @@ There are a number of model concerns provided with ShinyCMS. As well as DRYing u
 * HasSlugUniqueInMonth   - slug is only unique within a month (includes HasSlug)
 * HasSlugUniqueInSection - slug is only unique within a section (includes HasSlug)
 
-* ShinyPost       - common behaviour for 'posts' (includes HasReadableName, CanHide, HasSlugUniqueInMonth, SoftDelete, ShinyTeaser) (included by ShinyBlog::Post, ShinyNews::Post)
+* ShinyPost       - common behaviour for 'posts' (e.g. ShinyBlog::Post, ShinyNews::Post) (includes CanHide, HasReadableName, HasSlugUniqueInMonth, SoftDelete, ShinyTeaser)
 
 #### Concerns for templates and templated content
 
 * Template        - common attributes and behaviour for any kind of layout template
-* HTMLTemplate    - HTML-based layout templates (includes Template) (e.g. ShinyPages::Template)
-* MJMLTemplate    - MJML-based layout templates (includes Template) (e.g. ShinyNewsletters::Template)
+* HTMLTemplate    - HTML-based layout templates (e.g. ShinyPages::Template) (includes Template)
+* MJMLTemplate    - MJML-based layout templates (e.g. ShinyNewsletters::Template) (includes Template)
 
 * HasTemplate     - content that has its layout defined by a template (e.g. ShinyPages::Page, ShinyNewsletters::Edition)
 
 * Element         - common behaviour for elements of templates and templated content
-* TemplateElement - elements of a layout template (includes Element) (e.g. ShinyPages::TemplateElement, ShinyNewsletters::TemplateElement)
+* TemplateElement - elements of a layout template (e.g. ShinyPages::TemplateElement, ShinyNewsletters::TemplateElement) (includes Element)
 
 
 ### In feature plugins
