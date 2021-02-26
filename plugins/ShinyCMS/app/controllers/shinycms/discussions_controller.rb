@@ -102,7 +102,7 @@ module ShinyCMS
     end
 
     def create_comment_author
-      author = CommentAuthor.new(
+      author = PseudonymousAuthor.new(
         name:       strong_params[ :author_name ],
         website:    strong_params[ :author_url ].presence,
         ip_address: request.ip

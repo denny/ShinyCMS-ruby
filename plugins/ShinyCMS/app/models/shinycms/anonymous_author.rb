@@ -9,6 +9,8 @@
 module ShinyCMS
   # Plays the role of Author for anonymous Comments
   class AnonymousAuthor < ApplicationRecord
+    has_many :comments, inverse_of: :author
+
     def name
       I18n.t 'shinycms.models.anonymous_author.anonymous'
     end

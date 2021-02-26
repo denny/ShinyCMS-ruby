@@ -12,10 +12,10 @@ FactoryBot.define do
     sequence( :number )
     title  { Faker::Books::CultureSeries.unique.culture_ship }
     body   { Faker::Lorem.paragraph }
-    author_type { 'ShinyCMS::AnonymousAuthor' }
-    author_id   { 1 }
 
     association :discussion
+
+    association :author, factory: :anonymous_author
   end
 
   factory :nested_comment, parent: :comment do

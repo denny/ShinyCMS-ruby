@@ -38,7 +38,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
 
     it 'generates an email to a pseudonymous parent comment author' do
       recipient = create :email_recipient, :confirmed
-      author = create :comment_author, name: recipient.name, email_recipient: recipient
+      author = create :pseudonymous_author, name: recipient.name, email_recipient: recipient
       top = create :top_level_comment, discussion: @discussion, author: author
 
       reply = create :nested_comment, parent: top, discussion: @discussion
