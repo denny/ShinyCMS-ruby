@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Plays the role of Author for anonymous Comments
-  class AnonymousAuthor
+  class AnonymousAuthor < ApplicationRecord
     def name
       I18n.t 'shinycms.models.anonymous_author.anonymous'
     end
@@ -17,16 +17,8 @@ module ShinyCMS
 
     def url; end
 
-    def id
-      1
-    end
-
     def comments
       ShinyCMS::Comment.where( author_type: 'ShinyCMS::AnonymousAuthor' )
-    end
-
-    def self.find( _id )
-      new
     end
   end
 end

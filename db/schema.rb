@@ -6,13 +6,12 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
-# be faster and is potentially less error prone than running all of your
-# migrations from scratch. Old migrations may fail to apply correctly if those
-# migrations use external dependencies or application code.
+# This file is the source Rails uses to define your schema when running `rails db:schema:load`.
+# When creating a new database, `rails db:schema:load` tends to be faster and is potentially
+# less error prone than running all of your migrations from scratch. Old migrations may fail
+# to apply correctly if those migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2021_02_26_024355) do
+ActiveRecord::Schema.define(version: 2021_02_26_051341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -468,6 +467,9 @@ ActiveRecord::Schema.define(version: 2021_02_26_024355) do
     t.datetime "deleted_at", precision: 0
     t.index ["deleted_at"], name: "index_shiny_profiles_profiles_on_deleted_at"
     t.index ["user_id"], name: "index_shiny_profiles_profiles_on_user_id"
+  end
+
+  create_table "shinycms_anonymous_authors", force: :cascade do |t|
   end
 
   create_table "shinycms_capabilities", force: :cascade do |t|
