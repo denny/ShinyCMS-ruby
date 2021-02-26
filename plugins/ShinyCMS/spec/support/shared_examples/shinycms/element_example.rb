@@ -6,8 +6,8 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Shared test code, for testing the methods mixed-in by the ShinyElement concern
-RSpec.shared_examples ShinyCMS::ShinyElement do
+# Shared test code, for testing the methods mixed-in by the ShinyCMS::Element concern
+RSpec.shared_examples ShinyCMS::Element do
   describe '.format_name' do
     it 'updates the record to have a valid element name' do
       # rubocop:disable Rails/SkipsModelValidations

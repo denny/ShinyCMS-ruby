@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for newsletter edition element model
 module ShinyNewsletters
   RSpec.describe EditionElement, type: :model do
-    it_behaves_like ShinyCMS::ShinyElement do
+    it_behaves_like ShinyCMS::Element do
       let( :edition ) { create :newsletter_edition                           }
       let( :element ) { create :newsletter_edition_element, edition: edition }
     end

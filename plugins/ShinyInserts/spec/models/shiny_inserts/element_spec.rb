@@ -12,7 +12,7 @@ require 'rails_helper'
 module ShinyInserts
   RSpec.describe Element, type: :model do
     describe 'concerns' do
-      it_behaves_like ShinyCMS::ShinyElement do
+      it_behaves_like ShinyCMS::Element do
         let( :element ) { create :insert_element }
       end
 

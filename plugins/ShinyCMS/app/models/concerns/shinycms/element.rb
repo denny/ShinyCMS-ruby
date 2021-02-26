@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Common behaviour for element models (ShinyPages::PageElement, ShinyInserts::Element, etc)
-  module ShinyElement
+  module Element
     extend ActiveSupport::Concern
 
     include ShinyCMS::SoftDelete
@@ -34,7 +34,7 @@ module ShinyCMS
     class_methods do
       # Elements of templated items need to be inserted after the related Template, Template Elements, and item
       def demo_data_position
-        4 unless is_a? ShinyCMS::ShinyTemplate
+        4 unless is_a? ShinyCMS::Template
       end
     end
   end

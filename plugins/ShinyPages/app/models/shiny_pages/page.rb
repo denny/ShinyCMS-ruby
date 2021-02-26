@@ -14,8 +14,8 @@ module ShinyPages
     include ShinyCMS::HasPublicName
     include ShinyCMS::HasReadableName
     include ShinyCMS::HasSlugUniqueInSection
+    include ShinyCMS::HasTemplate
     include ShinyCMS::SoftDelete
-    include ShinyCMS::WithTemplate
 
     include TopLevelSlugValidator
 

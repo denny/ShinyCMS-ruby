@@ -8,10 +8,10 @@
 
 module ShinyCMS
   # Common behaviour for ERB HTML content templates - e.g. ShinyPages::Template
-  module ShinyHTMLTemplate
+  module HTMLTemplate
     extend ActiveSupport::Concern
 
-    include ShinyTemplate
+    include ShinyCMS::Template
 
     included do
       # Create template elements, based on the content of the template file

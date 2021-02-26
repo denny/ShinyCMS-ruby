@@ -9,7 +9,7 @@
 module ShinyPages
   # Model for page templates - part of the ShinyPages plugin for ShinyCMS
   class Template < ApplicationRecord
-    include ShinyCMS::ShinyHTMLTemplate
+    include ShinyCMS::HTMLTemplate
 
     include ShinyCMS::HasDemoData
     include ShinyCMS::HasReadableName
