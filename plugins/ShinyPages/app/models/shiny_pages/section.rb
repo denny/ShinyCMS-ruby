@@ -11,7 +11,7 @@ module ShinyPages
   class Section < ApplicationRecord
     include ShinyCMS::CanHide
     include ShinyCMS::HasDemoData
-    include ShinyCMS::HasName
+    include ShinyCMS::HasPublicName
     include ShinyCMS::HasReadableName
     include ShinyCMS::HasSlugUniqueInSection
     include ShinyCMS::SoftDelete

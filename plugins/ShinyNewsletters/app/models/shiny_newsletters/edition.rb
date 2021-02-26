@@ -10,9 +10,9 @@ module ShinyNewsletters
   # Model for an edition of a newsletter
   class Edition < ApplicationRecord
     include ShinyCMS::CanHide
-    include ShinyCMS::HasName
-    include ShinyCMS::HasSlugUniqueInMonth
     include ShinyCMS::HasDemoData
+    include ShinyCMS::HasPublicName
+    include ShinyCMS::HasSlugUniqueInMonth
     include ShinyCMS::SoftDelete
     include ShinyCMS::WithTemplate
 

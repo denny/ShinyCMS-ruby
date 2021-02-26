@@ -10,7 +10,7 @@ module ShinyAccess
   # Model for access groups - part of the ShinyAccess plugin for ShinyCMS
   class Group < ApplicationRecord
     include ShinyCMS::HasDemoData
-    include ShinyCMS::HasName
+    include ShinyCMS::HasPublicName
     include ShinyCMS::HasSlug
     include ShinyCMS::SoftDelete
 

@@ -10,7 +10,7 @@ module ShinyLists
   # Model for mailing lists
   class List < ApplicationRecord
     include ShinyCMS::HasDemoData
-    include ShinyCMS::HasName
+    include ShinyCMS::HasPublicName
     include ShinyCMS::HasSlug
     include ShinyCMS::SoftDelete
 
