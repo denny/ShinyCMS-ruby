@@ -86,16 +86,12 @@ module ShinyCMS
       DiscussionMailer.overview_notification( self )
     end
 
-    def author_name_or_anon
-      author&.name&.presence || I18n.t( 'shinycms.discussions.anonymous' )
-    end
-
     def authenticated_author?
-      author_type == 'ShinyCMS::User'
+      author.is_a? AuthenticatedAuthor
     end
 
     def notification_email
-      author&.email
+      author.email
     end
 
     def lock

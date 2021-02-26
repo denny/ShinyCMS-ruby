@@ -16,7 +16,7 @@ module ShinyCMS
 
       @reply, @parent = comment_and_parent( comment )
 
-      @user = notified_user( @parent.notification_email, @parent.author_name_or_anon )
+      @user = notified_user( @parent.notification_email, @parent.author.name )
 
       return if @user.do_not_email? # TODO: make this happen without explicit call
 
@@ -58,7 +58,7 @@ module ShinyCMS
     def parent_comment_notification_subject
       I18n.t(
         'shinycms.discussion_mailer.parent_comment_notification.subject',
-        reply_author_name: @reply.author_name_or_anon,
+        reply_author_name: @reply.author.name,
         site_name:         site_name
       )
     end
@@ -66,7 +66,7 @@ module ShinyCMS
     def discussion_notification_subject
       I18n.t(
         'shinycms.discussion_mailer.discussion_notification.subject',
-        comment_author_name: @comment.author_name_or_anon,
+        comment_author_name: @comment.author.name,
         content_type:        @resource.class.translated_name,
         site_name:           site_name
       )
@@ -75,7 +75,7 @@ module ShinyCMS
     def overview_notification_subject
       I18n.t(
         'shinycms.discussion_mailer.overview_notification.subject',
-        comment_author_name: @comment.author_name_or_anon,
+        comment_author_name: @comment.author.name,
         site_name:           site_name
       )
     end

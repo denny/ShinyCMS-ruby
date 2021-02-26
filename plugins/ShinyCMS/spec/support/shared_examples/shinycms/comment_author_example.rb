@@ -16,7 +16,8 @@ RSpec.shared_examples 'ShinyCMS::Comment.author' do
 
   describe '.email' do
     it 'returns either a valid email address, or nil' do
-      expect( Email::Address.valid?( author.email ) ).to be true if author.email.present?
+      expect( EmailAddress.valid?( author.email ) ).to be true if author.email.present?
+      expect( author.email.nil? ).to be true if author.email.blank?
     end
   end
 end
