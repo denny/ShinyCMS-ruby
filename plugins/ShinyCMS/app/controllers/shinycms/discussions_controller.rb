@@ -104,7 +104,7 @@ module ShinyCMS
     def create_comment_author
       author = PseudonymousAuthor.new(
         name:       strong_params[ :author_name ],
-        website:    strong_params[ :author_url ].presence,
+        url:        strong_params[ :author_url ].presence,
         ip_address: request.ip
       )
       return author if strong_params[ :author_email ].blank?

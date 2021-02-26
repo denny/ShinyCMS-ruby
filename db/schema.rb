@@ -11,7 +11,7 @@
 # less error prone than running all of your migrations from scratch. Old migrations may fail
 # to apply correctly if those migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2021_02_26_051341) do
+ActiveRecord::Schema.define(version: 2021_02_26_060425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -576,7 +576,7 @@ ActiveRecord::Schema.define(version: 2021_02_26_051341) do
 
   create_table "shinycms_pseudonymous_authors", force: :cascade do |t|
     t.string "name", null: false
-    t.string "website"
+    t.string "url"
     t.inet "ip_address", null: false
     t.uuid "token", null: false
     t.bigint "email_recipient_id"

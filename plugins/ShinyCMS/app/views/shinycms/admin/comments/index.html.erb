@@ -14,7 +14,7 @@
         <small>
           Posted by <%= comment.author.name %>
           at <%= display_time_on_date( comment.posted_at ) %>
-          <% if comment.author&.website&.present? %> - <%= comment.author.website %><% end %>
+          <% if comment.author.url.present? %> - <%= comment.author.url %><% end %>
         </small>
         <% if comment.title? %>
           <br><%= comment.title %>
