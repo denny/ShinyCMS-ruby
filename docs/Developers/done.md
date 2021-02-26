@@ -2,6 +2,8 @@
 
 ## Done
 
+_(Note: this document is out of date and doesn't include all currently-implemented features.)_
+
 ### Features from the Perl version that are now available in the Ruby version
 
 (Noting improvements from the Perl version, if any)
@@ -85,6 +87,8 @@
 
 ## TODO / In Progress
 
-See the [TODO](TODO.md) list for features from the original ShinyCMS that I haven't started implementing in this version yet... as well as ideas for new features, that I'm trying to resist building until I've caught up with the Perl feature list.
+See the multiple 'To-do' columns of the [ShinyCMS project board](https://github.com/denny/ShinyCMS-ruby/projects/1) for features from the original ShinyCMS that I haven't started implementing in this version yet, and ideas for new features too (theoretically to be built _after_ the first list, but... things happen) ;)
 
-See the [in-progress](in-progress.md) list for features that I am currently working on (with notes on where I'm up to, and links to useful docs).
+There are also still to-do items in the old [TODO](TODO.md) document, which are slowly being transferred to the board as I get a chance.
+
+Everything from the old 'in-progress' document has now been moved to the 'In Progress' column of the project board.
