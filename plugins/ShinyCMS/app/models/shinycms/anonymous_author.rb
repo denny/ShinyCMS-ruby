@@ -18,9 +18,5 @@ module ShinyCMS
     def email; end
 
     def url; end
-
-    def comments
-      ShinyCMS::Comment.where( author_type: 'ShinyCMS::AnonymousAuthor' )
-    end
   end
 end
