@@ -122,4 +122,4 @@ Note: a lot of the TODO list has been moved to the [ShinyCMS project board](http
 
 See the [done](done.md) list for features from the original ShinyCMS that I have already implemented in this version - as well as a few new ones that snuck in along the way - with notes on improvements from the Perl version where applicable.
 
-See the [in-progress](in-progress.md) list for features that I am currently working on (with notes on where I'm up to, links to useful docs, etc).
+See the 'In Progress' column of the [ShinyCMS project board](https://github.com/denny/ShinyCMS-ruby/projects/1) for features that I am currently working on (with notes on where I'm up to, links to useful docs, etc).
