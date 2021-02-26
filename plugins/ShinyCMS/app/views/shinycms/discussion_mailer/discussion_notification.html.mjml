@@ -22,7 +22,7 @@
 
     <mj-text align="left" color="#797e82" font-family="Open Sans, Helvetica, Arial, sans-serif" font-size="13px" line-height="22px" padding-bottom="0px" padding-left="50px" padding-right="50px" padding-top="0px" padding="0px 25px 0px 25px">
       <p style="margin: 10px 0; text-align: center;">
-        <%= @comment.author_name_or_anon %> commented on your <%= @content_type %> on <%= site_name %>:
+        <%= @comment.author.name %> commented on your <%= @content_type %> on <%= site_name %>:
       </p>
     </mj-text>
 

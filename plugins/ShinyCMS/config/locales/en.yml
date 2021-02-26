@@ -216,6 +216,9 @@ en:
     # Models
 
     models:
+      anonymous_author:
+        anonymous: Anonymous
+
       setting_value:
         one_per_user: You can only have one setting per value per user
 

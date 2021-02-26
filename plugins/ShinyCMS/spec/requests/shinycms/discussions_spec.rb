@@ -251,9 +251,9 @@ RSpec.describe ShinyCMS::DiscussionsController, type: :request do
       title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
 
-      comment_count         = ShinyCMS::Comment.count
-      comment_author_count  = ShinyCMS::CommentAuthor.count
-      email_recipient_count = ShinyCMS::EmailRecipient.count
+      comment_count   = ShinyCMS::Comment.count
+      author_count    = ShinyCMS::PseudonymousAuthor.count
+      recipient_count = ShinyCMS::EmailRecipient.count
 
       post shinycms.discussion_path( @discussion ), params: {
         comment: {
@@ -268,9 +268,9 @@ RSpec.describe ShinyCMS::DiscussionsController, type: :request do
       expect( response.body ).not_to have_css '.notices', text: I18n.t( 'shinycms.discussions.add_comment.success' )
       expect( response.body ).not_to have_css 'h2', text: title
 
-      expect( ShinyCMS::Comment.count        ).to eq comment_count
-      expect( ShinyCMS::CommentAuthor.count  ).to eq comment_author_count
-      expect( ShinyCMS::EmailRecipient.count ).to eq email_recipient_count
+      expect( ShinyCMS::Comment.count            ).to eq comment_count
+      expect( ShinyCMS::PseudonymousAuthor.count ).to eq author_count
+      expect( ShinyCMS::EmailRecipient.count     ).to eq recipient_count
     end
   end
 

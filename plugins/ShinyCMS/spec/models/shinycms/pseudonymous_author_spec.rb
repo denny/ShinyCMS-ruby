@@ -8,19 +8,15 @@
 
 require 'rails_helper'
 
-# Tests for user model
-RSpec.describe ShinyCMS::User, type: :model do
+# Tests for model holding details of unauthenticated comment authors
+RSpec.describe ShinyCMS::PseudonymousAuthor, type: :model do
   describe 'concerns' do
-    it_behaves_like ShinyCMS::ShinyEmail do
-      let( :addressee ) { create :user }
+    it_behaves_like ShinyCMS::HasDemoData do
+      let( :model ) { described_class }
     end
 
     it_behaves_like 'ShinyCMS::Comment.author' do
-      let( :author ) { create :user }
-    end
-
-    it_behaves_like 'VoteableVoter' do
-      let( :voter ) { create :user }
+      let( :author ) { create :pseudonymous_author }
     end
   end
 end

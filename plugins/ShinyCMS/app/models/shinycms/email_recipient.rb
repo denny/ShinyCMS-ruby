@@ -17,7 +17,7 @@ module ShinyCMS
 
     # Associations
 
-    has_many :comment_authors, dependent: :nullify
+    has_many :pseudonymous_authors, dependent: :nullify
 
     # Email stats (powered by Ahoy)
     has_many :messages, as: :user, dependent: :nullify, class_name: 'Ahoy::Message'

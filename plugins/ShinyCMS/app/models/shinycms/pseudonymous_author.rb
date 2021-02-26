@@ -7,15 +7,15 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Details of unauthenticated comment authors
-  class CommentAuthor < ApplicationRecord
+  # Plays the role of Author for pseudonymous Comments
+  class PseudonymousAuthor < ApplicationRecord
     include ShinyCMS::HasDemoData
     include ShinySoftDelete
     include ShinyToken
 
-    has_many :comments, as: :author, dependent: :nullify
+    has_many :comments, as: :author, dependent: :nullify, class_name: 'ShinyCMS::Comment'
 
-    belongs_to :email_recipient, optional: true
+    belongs_to :email_recipient, optional: true, class_name: 'ShinyCMS::EmailRecipient'
 
     def email
       return if email_recipient.blank?

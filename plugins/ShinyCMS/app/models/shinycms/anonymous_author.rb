@@ -6,13 +6,17 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-require 'rails_helper'
+module ShinyCMS
+  # Plays the role of Author for anonymous Comments
+  class AnonymousAuthor < ApplicationRecord
+    has_many :comments, inverse_of: :author
 
-# Tests for model holding details of unauthenticated comment authors
-RSpec.describe ShinyCMS::CommentAuthor, type: :model do
-  describe 'concerns' do
-    it_behaves_like ShinyCMS::HasDemoData do
-      let( :model ) { described_class }
+    def name
+      I18n.t 'shinycms.models.anonymous_author.anonymous'
     end
+
+    def email; end
+
+    def url; end
   end
 end
