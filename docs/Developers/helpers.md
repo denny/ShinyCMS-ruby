@@ -1,17 +1,14 @@
 # ShinyCMS Developer Documentation
 
-## Helpers
+## Supporting code: helpers
 
-There are a number of helpers included with the project. These have two main purposes:
+Most of the helpers provide formatters, presentation logic, or wrappers around common uses of a model from a view (adding some much-needed isolation/abstraction in this last case).
 
-1. They provide common usage patterns. This should make it easier for plugin developers to build new features that [work similarly](https://en.wikipedia.org/wiki/Principle_of_least_astonishment) to the existing features.
-
-2. They provide easy-to-use wrappers around common uses of a model from a view (at the same time as adding some isolation and abstraction for such interactions).
-
-Hopefully the view helpers will make it easier for people to build themes even if they're not hugely familiar with ActiveRecord). For example, this code using a helper:
+Hopefully they will make it easier for people to build themes even if they're not hugely familiar with ActiveRecord). For example, this code using a helper:
 `<% posts = recent_blog_posts( 5 ) %>`
 returns the same results as this code using a model:
 `<% posts = ShinyBlog::Post.readonly.recent.limit( 5 ) %>`
+
 
 ### From core plugin
 
@@ -32,6 +29,7 @@ returns the same results as this code using a model:
 
 * AkismetHelper      - methods related to the Akismet spam-flagging service
 * RecaptchaHelper    - methods related to Google's reCAPTCHA bot detection service
+
 
 ### From feature plugins
 

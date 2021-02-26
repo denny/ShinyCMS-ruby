@@ -1,9 +1,6 @@
 # ShinyCMS Developer Documentation
 
-## Model concerns
-
-There are a number of model concerns provided with ShinyCMS. As well as DRYing up common features, I hope these will make it easier for other developers to build new features that [work similarly][Why does this matter?] to the existing features (from both a user and developer perspective).
-
+## Supporting code: model concerns
 
 ### In the core plugin
 
@@ -11,6 +8,7 @@ There are a number of model concerns provided with ShinyCMS. As well as DRYing u
 * HasDemoData     - for models that may provide data for the demo site
 * HasPublicName   - `.name` method - returns public_name if set, internal_name otherwise
 * HasReadableName - get a human-readable (and optionally, localised) version of model's class name
+* HasVotes        - pulls in ActsAsVotable, plus method to get URL-safe class name
 * SoftDelete      - adds soft delete (from acts_as_paranoid gem)
 
 * ShinyEmail      - sets/searches/validates canonical_email as well as email
@@ -23,7 +21,7 @@ There are a number of model concerns provided with ShinyCMS. As well as DRYing u
 
 * ShinyPost       - common behaviour for 'posts' (e.g. ShinyBlog::Post, ShinyNews::Post) (includes CanHide, HasReadableName, HasSlugUniqueInMonth, SoftDelete, ShinyTeaser)
 
-#### Concerns for templates and templated content
+#### Templates and templated content
 
 * Template        - common attributes and behaviour for any kind of layout template
 * HTMLTemplate    - HTML-based layout templates (e.g. ShinyPages::Template) (includes Template)
@@ -38,8 +36,3 @@ There are a number of model concerns provided with ShinyCMS. As well as DRYing u
 ### In feature plugins
 
 * ShinySearch::Searchable - for models that want to be discoverable by the search feature
-
-
-##### Links
-
-[Why does this matter?]: https://en.wikipedia.org/wiki/Principle_of_least_astonishment 'Principle of Least Surprise'
