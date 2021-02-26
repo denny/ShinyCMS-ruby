@@ -10,7 +10,7 @@ module ShinyCMS
   # Store details of people you send email to, who don't have a user account
   # e.g. newsletter subscribers, pseudonymous comment reply notifications
   class EmailRecipient < ApplicationRecord
-    include ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyEmail
     include ShinySoftDelete
     include ShinyToken

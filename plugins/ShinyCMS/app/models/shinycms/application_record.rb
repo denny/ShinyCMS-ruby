@@ -15,13 +15,5 @@ module ShinyCMS
     def self.table_name
       name.tableize.sub( '/', '_' )
     end
-
-    def self.models_with_demo_data
-      [ core_models_with_demo_data + ShinyCMS.plugins.models_with_demo_data ].flatten
-    end
-
-    def self.core_models_with_demo_data
-      descendants.select { |model| model.respond_to? :dump_for_demo? }
-    end
   end
 end

@@ -9,7 +9,7 @@
 module ShinyLists
   # Model for mailing lists
   class List < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyCMS::ShinyName
     include ShinyCMS::ShinySlug
     include ShinyCMS::ShinySoftDelete

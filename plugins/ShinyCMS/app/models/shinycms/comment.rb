@@ -9,7 +9,7 @@
 module ShinyCMS
   # Model class for comments
   class Comment < ApplicationRecord
-    include ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyShowHide
     include ShinySoftDelete
     include ShinyWithVotes
@@ -91,7 +91,7 @@ module ShinyCMS
     end
 
     def authenticated_author?
-      author_type == 'User'
+      author_type == 'ShinyCMS::User'
     end
 
     def notification_email
@@ -120,6 +120,10 @@ module ShinyCMS
       spam.where( 'title ilike ?', "%#{search_term}%" )
           .or( spam.where( 'body ilike ?', "%#{search_term}%" ) )
           .order( posted_at: :desc )
+    end
+
+    def self.demo_data_position
+      11  # after discussions
     end
   end
 end

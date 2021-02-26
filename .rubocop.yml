@@ -51,7 +51,7 @@ Layout/LineLength:
   Exclude:
     - spec/**/*.rb
     - plugins/*/spec/**/*.rb
-    - db/demo_data.rb
+    - db/demo_site_data.rb
 
 # This config file is easier to understand laid out as it is, not as this cop wants it
 Layout/MultilineArrayLineBreaks:
@@ -140,7 +140,7 @@ Style/DisableCopsWithinSourceCodeDirective:
 # The test is for a feature that parses a list of IP addresses; the demo data is demo data
 Style/IpAddresses:
   Exclude:
-    - db/demo_data.rb
+    - db/demo_site_data.rb
     - plugins/ShinyCMS/spec/requests/shinycms/admin_controller_spec.rb
 
 # I'd rather use one style of regex everywhere, and this one is clearer when working with URLs:
@@ -160,11 +160,11 @@ Layout/SpaceInsideBlockBraces:
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: space
   Exclude:
-    - db/demo_data.rb
+    - db/demo_site_data.rb
 Layout/SpaceInsideParens:
   EnforcedStyle: space
   Exclude:
-    - db/demo_data.rb
+    - db/demo_site_data.rb
 Layout/SpaceInsidePercentLiteralDelimiters:
   Enabled: false
 Layout/SpaceInsideReferenceBrackets:
@@ -189,28 +189,28 @@ Style/MethodCallWithArgsParentheses:
 # Maybe I could run it through prettify or something though...
 Layout/FirstArrayElementIndentation:
   Exclude:
-    - db/demo_data.rb
+    - db/demo_site_data.rb
 Layout/FirstMethodArgumentLineBreak:
   Exclude:
-    - db/demo_data.rb
+    - db/demo_site_data.rb
 Layout/LeadingEmptyLines:
   Exclude:
-    - db/demo_data.rb
+    - db/demo_site_data.rb
 Layout/SpaceAroundOperators:
   Exclude:
-    - db/demo_data.rb
+    - db/demo_site_data.rb
 Style/FrozenStringLiteralComment:
   Exclude:
-    - db/demo_data.rb
+    - db/demo_site_data.rb
 Style/NumericLiterals:
   Exclude:
-    - db/demo_data.rb
+    - db/demo_site_data.rb
 Style/StringHashKeys:
   Exclude:
-    - db/demo_data.rb
+    - db/demo_site_data.rb
 Style/StringLiterals:
   Exclude:
-    - db/demo_data.rb
+    - db/demo_site_data.rb
 
 # Potentially fixable at some point...
 Lint/NumberConversion:

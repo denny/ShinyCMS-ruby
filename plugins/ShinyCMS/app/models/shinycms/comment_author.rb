@@ -9,22 +9,22 @@
 module ShinyCMS
   # Details of unauthenticated comment authors
   class CommentAuthor < ApplicationRecord
-    include ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinySoftDelete
     include ShinyToken
-
-    # Associations
 
     has_many :comments, as: :author, dependent: :nullify
 
     belongs_to :email_recipient, optional: true
 
-    # Instance methods
-
     def email
       return if email_recipient.blank?
 
       email_recipient.email
+    end
+
+    def self.demo_data_position
+      2  # after email recipients
     end
   end
 end

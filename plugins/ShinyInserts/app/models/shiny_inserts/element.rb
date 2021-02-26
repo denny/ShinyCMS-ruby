@@ -9,7 +9,7 @@
 module ShinyInserts
   # Model class for Insert Elements - from the ShinyInserts plugin for ShinyCMS
   class Element < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyCMS::ShinyElement
     include ShinyCMS::ShinySoftDelete
 

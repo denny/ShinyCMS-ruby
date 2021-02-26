@@ -9,7 +9,7 @@
 module ShinyCMS
   # Model class for discussions (used to group comments)
   class Discussion < ApplicationRecord
-    include ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyShowHide
     include ShinySoftDelete
 
@@ -65,6 +65,10 @@ module ShinyCMS
       discussions = where( id: counts.keys )
 
       [ discussions, counts ]
+    end
+
+    def self.demo_data_position
+      10  # arbitrary 'probably after anything that might want comments on it' number
     end
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# ShinyNewsletters plugin for ShinyCMS ~ https://shinycms.org
+# ShinyProfiles plugin for ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
@@ -8,9 +8,9 @@
 
 require 'rails_helper'
 
-# Tests for newsletter edition model
-module ShinyNewsletters
-  RSpec.describe Edition, type: :model do
+# Tests for user profile link model
+module ShinyProfiles
+  RSpec.describe Link, type: :model do
     describe 'concerns' do
       it_behaves_like ShinyCMS::HasDemoData do
         let( :model ) { described_class }
