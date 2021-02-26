@@ -10,7 +10,7 @@ module ShinyProfiles
   # Model for user profile pages (and related features)
   class Profile < ApplicationRecord
     include ShinyCMS::CanHide
-    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyCMS::SoftDelete
 
     # Associations

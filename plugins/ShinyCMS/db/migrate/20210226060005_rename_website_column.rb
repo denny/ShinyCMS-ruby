@@ -6,11 +6,8 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Shared test code, for testing methods mixed-in by ShinyDemoDataProvider concern
-RSpec.shared_examples ShinyCMS::ShinyDemoDataProvider do
-  describe '.dump_for_demo?' do
-    it 'returns true' do
-      expect( model.dump_for_demo? ).to be true
-    end
+class RenameWebsiteColumn < ActiveRecord::Migration[6.1]
+  def change
+    rename_column :shinycms_pseudonymous_authors, :website, :url
   end
 end

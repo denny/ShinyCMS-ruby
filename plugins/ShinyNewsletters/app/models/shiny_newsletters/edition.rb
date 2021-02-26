@@ -12,7 +12,7 @@ module ShinyNewsletters
     include ShinyCMS::CanHide
     include ShinyCMS::HasName
     include ShinyCMS::HasSlugUniqueInMonth
-    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyCMS::SoftDelete
     include ShinyCMS::WithTemplate
 

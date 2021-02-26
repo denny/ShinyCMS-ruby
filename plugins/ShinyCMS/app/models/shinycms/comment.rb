@@ -10,7 +10,7 @@ module ShinyCMS
   # Model class for comments
   class Comment < ApplicationRecord
     include ShinyCMS::CanHide
-    include ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyCMS::SoftDelete
     include ShinyWithVotes
 
@@ -62,40 +62,15 @@ module ShinyCMS
     alias path anchored_path
 
     def send_notifications
-      p = parent.notification_email if parent.present?
-      notify_parent_comment_author if p.present?
-
-      d = discussion.notification_email
-      notify_discussion_owner unless d == p
-
-      a = Setting.get :all_comment_notifications_email
-      return if a.blank? || [ d, p ].include?( a )
-
-      notify_all_comment_notifications_email
-    end
-
-    def notify_parent_comment_author
-      DiscussionMailer.parent_comment_notification( self )
-    end
-
-    def notify_discussion_owner
-      DiscussionMailer.discussion_notification( self )
-    end
-
-    def notify_all_comment_notifications_email
-      DiscussionMailer.overview_notification( self )
-    end
-
-    def author_name_or_anon
-      author&.name&.presence || I18n.t( 'shinycms.discussions.anonymous' )
+      DiscussionMailer.send_notifications( self )
     end
 
     def authenticated_author?
-      author_type == 'User'
+      author.is_a? ShinyCMS::User
     end
 
     def notification_email
-      author&.email
+      author.email
     end
 
     def lock
@@ -120,6 +95,10 @@ module ShinyCMS
       spam.where( 'title ilike ?', "%#{search_term}%" )
           .or( spam.where( 'body ilike ?', "%#{search_term}%" ) )
           .order( posted_at: :desc )
+    end
+
+    def self.demo_data_position
+      11  # after discussions
     end
   end
 end

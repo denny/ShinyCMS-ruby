@@ -15,6 +15,10 @@ RSpec.describe ShinyCMS::User, type: :model do
       let( :addressee ) { create :user }
     end
 
+    it_behaves_like 'ShinyCMS::Comment.author' do
+      let( :author ) { create :user }
+    end
+
     it_behaves_like 'VoteableVoter' do
       let( :voter ) { create :user }
     end

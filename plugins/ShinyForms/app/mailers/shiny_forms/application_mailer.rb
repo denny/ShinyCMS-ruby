@@ -25,7 +25,7 @@ module ShinyForms
     private
 
     def set_view_paths
-      add_view_paths( 'plugins/ShinyForms/app/views' )
+      add_view_paths 'plugins/ShinyForms/app/views'
     end
   end
 end

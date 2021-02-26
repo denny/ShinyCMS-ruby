@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Model for newsletter edition elements
   class EditionElement < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyCMS::ShinyElement
 
     # Associations

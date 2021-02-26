@@ -20,20 +20,21 @@ module ShinyCMS
     private_constant :ANCHORED_ELEMENT_NAME_REGEX
 
     included do
-      # Associations
-
       has_one_attached :image
-
-      # Validations
 
       validates :name, presence: true, format: ANCHORED_ELEMENT_NAME_REGEX
 
       before_validation :format_name, if: -> { name.present? }
 
-      # Instance methods
-
       def format_name
         self.name = name.parameterize.underscore
+      end
+    end
+
+    class_methods do
+      # Elements of templated items need to be inserted after the related Template, Template Elements, and item
+      def demo_data_position
+        4 unless is_a? ShinyCMS::ShinyTemplate
       end
     end
   end

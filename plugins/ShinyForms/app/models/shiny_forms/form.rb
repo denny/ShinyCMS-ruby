@@ -9,9 +9,9 @@
 module ShinyForms
   # Model for forms, from ShinyForms plugin for ShinyCMS
   class Form < ApplicationRecord
+    include ShinyCMS::HasDemoData
     include ShinyCMS::HasName
     include ShinyCMS::HasSlug
-    include ShinyCMS::ShinyDemoDataProvider
     include ShinyCMS::SoftDelete
 
     # Validations

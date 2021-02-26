@@ -9,14 +9,10 @@
 require 'rails_helper'
 
 # Tests for model holding details of unauthenticated comment authors
-RSpec.describe ShinyCMS::CommentAuthor, type: :model do
-  describe 'factory' do
-    describe 'create' do
-      it 'generates a comment author instance' do
-        author = create :comment_author
-
-        expect( author ).to be_a described_class
-      end
+RSpec.describe ShinyCMS::AnonymousAuthor, type: :model do
+  describe 'concerns' do
+    it_behaves_like 'ShinyCMS::Comment.author' do
+      let( :author ) { described_class.new }
     end
   end
 end

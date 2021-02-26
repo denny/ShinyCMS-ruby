@@ -12,15 +12,9 @@ module ShinyCMS
     extend ActiveSupport::Concern
 
     included do
-      # Validations
-
       validates :template, presence: true
 
-      # Before/after actions
-
       after_create :add_elements
-
-      # Instance methods
 
       # Add the elements specified by the template
       def add_elements
@@ -37,6 +31,13 @@ module ShinyCMS
       # Returns a hash of all the elements for this item, to feed to render as local params
       def elements_hash
         elements.collect { |element| [ element.name.to_sym, ( element.image.presence || element.content ) ] }.to_h
+      end
+    end
+
+    class_methods do
+      # Templated resources need to be inserted after their Templates and their Template Elements
+      def demo_data_position
+        3
       end
     end
   end

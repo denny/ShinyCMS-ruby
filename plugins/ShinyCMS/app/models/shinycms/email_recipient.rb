@@ -10,14 +10,14 @@ module ShinyCMS
   # Store details of people you send email to, who don't have a user account
   # e.g. newsletter subscribers, pseudonymous comment reply notifications
   class EmailRecipient < ApplicationRecord
-    include ShinyDemoDataProvider
+    include ShinyCMS::HasDemoData
     include ShinyEmail
     include ShinyCMS::SoftDelete
     include ShinyToken
 
     # Associations
 
-    has_many :comment_authors, dependent: :nullify
+    has_many :pseudonymous_authors, dependent: :nullify
 
     # Email stats (powered by Ahoy)
     has_many :messages, as: :user, dependent: :nullify, class_name: 'Ahoy::Message'
