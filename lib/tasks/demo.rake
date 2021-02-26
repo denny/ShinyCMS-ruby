@@ -19,11 +19,11 @@ require 'dotenv/tasks'
 # - exports the current database contents to DEMO_SITE_DATA_FILE
 
 # Most of the import/export code for the demo site data is in this module:
-require_relative '../../plugins/ShinyCMS/app/lib/shinycms/demo_data'
+require_relative '../../plugins/ShinyCMS/app/lib/shinycms/demo_site_data'
 
 namespace :shiny do
   namespace :demo do
-    include ShinyCMS::DemoData
+    include ShinyCMS::DemoSiteData
 
     prereqs = %i[ environment dotenv confirm db:reset shiny:admin:get_admin_details ]
 

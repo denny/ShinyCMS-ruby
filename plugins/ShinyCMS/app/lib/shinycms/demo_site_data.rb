@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Import/export demo site data
-  module DemoData
+  module DemoSiteData
     DEMO_SITE_DATA_FILE = Rails.root.join 'db/demo_site_data.rb'
     private_constant :DEMO_SITE_DATA_FILE
 
