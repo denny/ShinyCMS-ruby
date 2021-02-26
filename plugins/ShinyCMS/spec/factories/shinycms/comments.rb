@@ -8,17 +8,14 @@
 
 # Factory for Comment model
 FactoryBot.define do
-  factory :comment, class: 'ShinyCMS::Comment' do
+  factory :comment, aliases: [ :top_level_comment ], class: 'ShinyCMS::Comment' do
     sequence( :number )
     title  { Faker::Books::CultureSeries.unique.culture_ship }
     body   { Faker::Lorem.paragraph }
-    author_type { 'anonymous' }
+    author_type { 'ShinyCMS::AnonymousAuthor' }
+    author_id   { 1 }
 
     association :discussion
-  end
-
-  factory :top_level_comment, parent: :comment do
-    parent_id { nil }
   end
 
   factory :nested_comment, parent: :comment do
