@@ -87,7 +87,7 @@ module ShinyCMS
     end
 
     def authenticated_author?
-      author.is_a? AuthenticatedAuthor
+      author.is_a? ShinyCMS::User
     end
 
     def notification_email
