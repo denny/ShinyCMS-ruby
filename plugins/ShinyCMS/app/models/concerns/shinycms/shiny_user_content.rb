@@ -13,16 +13,16 @@ module ShinyCMS
     extend ActiveSupport::Concern
 
     included do
+      has_many :comments, as: :author, dependent: :destroy, class_name: 'ShinyCMS::Comment'
+
+      has_many :settings, inverse_of: :user, dependent: :destroy, class_name: 'ShinyCMS::SettingValue'
+
+      # Web traffic stats and email open/click stats - powered by Ahoy and Ahoy::Email
+      has_many :visits,   dependent: :nullify, class_name: 'Ahoy::Visit'
+      has_many :messages, dependent: :nullify, class_name: 'Ahoy::Message'
+
       # Upvotes AKA 'likes' - powered by Acts As Votable
       acts_as_voter
-
-      # Email open/click stats - powered by Ahoy::Email
-      has_many :messages, dependent: :nullify, class_name: 'Ahoy::Message'
-      # Web traffic stats - powered by Ahoy
-      has_many :visits,   dependent: :nullify, class_name: 'Ahoy::Visit'
-
-      has_many :comments, as: :author, dependent: :destroy
-      has_many :settings, inverse_of: :user, dependent: :destroy, class_name: 'SettingValue'
     end
   end
 end
