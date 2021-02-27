@@ -9,7 +9,7 @@
         <meta name="description" content="Documentation for users and developers of ShinyCMS (Ruby version)">
       
       
-        <link rel="canonical" href="http://docs.shinycms.org/Developers/TODO.reduced/">
+        <link rel="canonical" href="http://docs.shinycms.org/Developers/model-concerns/">
       
       
         <meta name="author" content="Denny de la Haye">
@@ -19,7 +19,7 @@
     
     
       
-        <title>ShinyCMS Developer Documentation - ShinyCMS</title>
+        <title>Model Concerns - ShinyCMS</title>
       
     
     
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              ShinyCMS Developer Documentation
+              Model Concerns
             
           </span>
         </div>
@@ -822,10 +822,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       Developer Documentation
@@ -880,16 +882,247 @@
           
 
 
+  <li class="md-nav__item">
+    <a href="../Testing/" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../code-quality/" class="md-nav__link">
+      Code Quality
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Plugins/" class="md-nav__link">
+      Plugins
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-7" type="checkbox" id="nav-3-7" checked>
+    
+    <label class="md-nav__link" for="nav-3-7">
+      Helpers, Concerns, and other useful modules
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Helpers, Concerns, and other useful modules" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-7">
+        <span class="md-nav__icon md-icon"></span>
+        Helpers, Concerns, and other useful modules
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Concerns-and-Helpers/" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../helpers/" class="md-nav__link">
+      Helpers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Model Concerns
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Model Concerns
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supporting-code-model-concerns" class="md-nav__link">
+    Supporting code: model concerns
+  </a>
+  
+    <nav class="md-nav" aria-label="Supporting code: model concerns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-the-core-plugin" class="md-nav__link">
+    In the core plugin
+  </a>
+  
+    <nav class="md-nav" aria-label="In the core plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#templates-and-templated-content" class="md-nav__link">
+    Templates and templated content
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-feature-plugins" class="md-nav__link">
+    In feature plugins
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../controller-concerns/" class="md-nav__link">
+      Controller Concerns
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Mailers/" class="md-nav__link">
+      Mailers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../other-modules/" class="md-nav__link">
+      Other
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../demo-data/" class="md-nav__link">
+      Demo data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rake-tasks/" class="md-nav__link">
+      Rake tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-10" type="checkbox" id="nav-3-10">
     
-    <label class="md-nav__link" for="nav-3-4">
+    <label class="md-nav__link" for="nav-3-10">
       Project Progress
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Project Progress" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-4">
+      <label class="md-nav__title" for="nav-3-10">
         <span class="md-nav__icon md-icon"></span>
         Project Progress
       </label>
@@ -928,128 +1161,6 @@
   <li class="md-nav__item">
     <a href="../done/" class="md-nav__link">
       Done
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../Plugins/" class="md-nav__link">
-      Plugins
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../Testing/" class="md-nav__link">
-      Testing
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../code-quality/" class="md-nav__link">
-      Code Quality
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../demo-data/" class="md-nav__link">
-      Demo data
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../rake-tasks/" class="md-nav__link">
-      Rake tasks
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-10" type="checkbox" id="nav-3-10">
-    
-    <label class="md-nav__link" for="nav-3-10">
-      Useful shared CMS code
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Useful shared CMS code" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-10">
-        <span class="md-nav__icon md-icon"></span>
-        Useful shared CMS code
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../Concerns/" class="md-nav__link">
-      Concerns
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../Helpers/" class="md-nav__link">
-      Helpers
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../Mailers/" class="md-nav__link">
-      Mailers
     </a>
   </li>
 
@@ -1148,23 +1259,24 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#todo" class="md-nav__link">
-    TODO
+  <a href="#supporting-code-model-concerns" class="md-nav__link">
+    Supporting code: model concerns
   </a>
   
-    <nav class="md-nav" aria-label="TODO">
+    <nav class="md-nav" aria-label="Supporting code: model concerns">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    Next
+  <a href="#in-the-core-plugin" class="md-nav__link">
+    In the core plugin
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="In the core plugin">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#soon" class="md-nav__link">
-    Soon
+  <a href="#templates-and-templated-content" class="md-nav__link">
+    Templates and templated content
   </a>
   
 </li>
@@ -1173,45 +1285,16 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#new-features-that-id-like-to-add-features-that-id-like-to-totally-rebuild" class="md-nav__link">
-    New features that I'd like to add / features that I'd like to totally rebuild
-  </a>
-  
-    <nav class="md-nav" aria-label="New features that I'd like to add / features that I'd like to totally rebuild">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#small-ish" class="md-nav__link">
-    Small-ish
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#medium-ish" class="md-nav__link">
-    Medium-ish
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#large-ish" class="md-nav__link">
-    Large-ish
+  <a href="#in-feature-plugins" class="md-nav__link">
+    In feature plugins
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#done-in-progress" class="md-nav__link">
-    Done / In Progress
-  </a>
   
 </li>
       
@@ -1229,238 +1312,51 @@
                 
                 
                 <h1 id="shinycms-developer-documentation">ShinyCMS Developer Documentation</h1>
-<h2 id="todo">TODO</h2>
-<p>A lot of the 'to do' list has been moved to the <a href="https://github.com/denny/ShinyCMS-ruby/projects/1">ShinyCMS project board</a> (along with the entire 'in progress' list)</p>
-<h3 id="next">Next</h3>
+<h2 id="supporting-code-model-concerns">Supporting code: model concerns</h2>
+<h3 id="in-the-core-plugin">In the core plugin</h3>
 <ul>
-<li>Move all main app features into a ShinyCore plugin in one lump</li>
+<li>CanHide         - check or change visible/hidden status of content</li>
+<li>HasDemoData     - for models that may provide data for the demo site</li>
+<li>HasEmail        - sets/searches/validates canonical_email as well as email</li>
+<li>HasPublicName   - <code>.name</code> method - returns public_name if set, internal_name otherwise</li>
+<li>HasReadableName - get a human-readable (and optionally, localised) version of model's class name</li>
+<li>HasTags         - pulls in ActsAsTaggableOn and adds helper methods to hide tags on hidden content</li>
+<li>HasTeaser       - generate a 'teaser' from first N paragraphs of a longer post</li>
+<li>HasToken        - common behaviour for models with UUID token attributes</li>
+<li>HasVotes        - pulls in ActsAsVotable, plus method to get URL-safe class name</li>
 <li>
-<p>Then figure out the comms problems that causes for all the plugins</p>
+<p>SoftDelete      - adds soft delete (from acts_as_paranoid gem)</p>
+</li>
+<li>
+<p>HasSlug                - for models with a slug attribute (usually for URLs)</p>
+</li>
+<li>HasSlugUniqueInMonth   - slug is only unique within a month (includes HasSlug)</li>
+<li>
+<p>HasSlugUniqueInSection - slug is only unique within a section (includes HasSlug)</p>
+</li>
+<li>
+<p>Post            - common behaviour for 'posts' (e.g. ShinyBlog::Post, ShinyNews::Post) (includes CanHide, HasReadableName, HasSlugUniqueInMonth, HasTags, HasTeaser, HasVotes, and SoftDelete)</p>
+</li>
+</ul>
+<h4 id="templates-and-templated-content">Templates and templated content</h4>
 <ul>
-<li>Then start thinking about splitting those 'core' features out to their own plugins</li>
-<li>ShinyTags, ShinyComments, ShinyUpvotes, etc etc...</li>
-<li>And ShinyTools or ShinySupport or whatever, for the concerns, helpers, libs, etc</li>
-</ul>
+<li>Template        - common attributes and behaviour for any kind of layout template</li>
+<li>HTMLTemplate    - HTML-based layout templates (e.g. ShinyPages::Template) (includes Template)</li>
+<li>
+<p>MJMLTemplate    - MJML-based layout templates (e.g. ShinyNewsletters::Template) (includes Template)</p>
 </li>
 <li>
-<p>Sitemap</p>
+<p>HasTemplate     - content that has its layout defined by a template (e.g. ShinyPages::Page, ShinyNewsletters::Edition)</p>
+</li>
+<li>
+<p>Element         - common behaviour for elements of templates and templated content</p>
+</li>
+<li>TemplateElement - elements of a layout template (e.g. ShinyPages::TemplateElement, ShinyNewsletters::TemplateElement) (includes Element)</li>
+</ul>
+<h3 id="in-feature-plugins">In feature plugins</h3>
 <ul>
-<li>Get last bits of sitemap_generator into the ShinySEO plugin<ul>
-<li>Currently the gem is in main <code>Gemfile</code>, and <code>/config/sitemap.rb</code> exists</li>
-<li>Without these, the rake tasks aren't available</li>
+<li>ShinySearch::Searchable - for models that want to be discoverable by the search feature</li>
 </ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Show password-complexity scoring and suggestions in the front-end</p>
-</li>
-</ul>
-<h3 id="soon">Soon</h3>
-<ul>
-<li>Move the kinda-sorta-todo items from the ruby-3.0.0.md doc onto the project board</li>
-</ul>
-<h2 id="new-features-that-id-like-to-add-features-that-id-like-to-totally-rebuild">New features that I'd like to add / features that I'd like to totally rebuild</h2>
-<h3 id="small-ish">Small-ish</h3>
-<ul>
-<li>
-<p>Make a generic sidebar template that renders any partials in a specified directory</p>
-</li>
-<li>
-<p>Add links to the in-page alerts, where helpful? e.g. "You must <a href="/login">log in</a> first"</p>
-<ul>
-<li>https://guides.rubyonrails.org/i18n.html#using-safe-html-translations</li>
-<li>https://www.ruby-toolbox.com/projects/it</li>
-</ul>
-</li>
-<li>
-<p>Re-assess use of helpers (vs models/libs/whatever) for Akismet and reCaptcha (and others?)</p>
-</li>
-<li>
-<p>On email recipients admin page, link to a summary of their comments and newsletter subscriptions (if any exist)</p>
-</li>
-<li>
-<p>Allow an EmailRecipient to reset their token (in case they forward an email containing it to somebody else)</p>
-</li>
-<li>
-<p>When not-logged-in users post a comment or subscribe to a list, offer to create an account for them</p>
-</li>
-<li>
-<p>Check site config for internal consistency on startup</p>
-<ul>
-<li>e.g. if reCAPTCHA is enabled for registrations, the reCAPTCHA keys must be set</li>
-</ul>
-</li>
-<li>
-<p>Configurable (per-site and per-user) menu order in admin area</p>
-<ul>
-<li>( Per-site is currently partially possible, by changing the order plugins appear in ENV['SHINYCMS_PLUGINS'] )</li>
-</ul>
-</li>
-<li>
-<p>In admin area, load the full dataset for user capabilities, feature flags,
-  and possibly site settings, and stick them in some hashes, with some helper
-  methods to check them. The menu already makes a crazy amount of hits on the
-  db and there are still a load of 'feature hidden by flag/capability/etc'
-  conditionals to implement.</p>
-</li>
-<li>
-<p>Add tests for form actions being what they're supposed to be on new/edit pages,
-  and for delete links being correct on list pages (to catch path helper issues)</p>
-</li>
-<li>
-<p>Make textarea inputs grow as needed</p>
-<ul>
-<li>http://www.cryer.co.uk/resources/javascript/script21_auto_grow_text_box.htm</li>
-</ul>
-</li>
-<li>
-<p>Switch pagination to use JS helpers, to give site builders more flexibility?</p>
-</li>
-<li>
-<p>Delete ahoy and session data when Akismet reports blatant spam? (make configurable)</p>
-</li>
-</ul>
-<h3 id="medium-ish">Medium-ish</h3>
-<ul>
-<li>
-<p>Refactor show/hide/visible/published/etc stuff</p>
-<ul>
-<li>ShowHide could become a polymorphic acts_as_showable sort of thing?<ul>
-<li>show_on( :site ), show_in( :menus ), show_on( :sitemap ), etc</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Add folding to page sections on /admin/pages</p>
-<ul>
-<li>Add 'fold all' and 'open all' options (here, and anywhere else that has folding too)</li>
-<li>Decide 'intelligently' whether to fold all/none/some<ul>
-<li>(e.g. if there are &gt;20 pages in total, fold any section containing &gt;10 pages; if there are &gt;10 sections and &gt;100 pages in total, fold all sections; etc)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Blazer:</p>
-<ul>
-<li>Investigate alternatives? https://github.com/ankane/blazer/pull/316 :(<ul>
-<li>daru-view ?? https://github.com/SciRuby/daru-view#readme</li>
-</ul>
-</li>
-<li>Fix admin ACL; currently if you can view, you can add/update/delete too<ul>
-<li>Wrap in a thin ShinyStats plugin, to give it standard auth and feature flagging</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Add a polymorphic metatags model+helpers so they can be added to anything that might want them for SEO</p>
-<ul>
-<li>pages/sections, shop items/categories, etc</li>
-</ul>
-</li>
-<li>
-<p>Multi-channel notifications: https://github.com/excid3/noticed#readme</p>
-</li>
-<li>
-<p>Tests for rake tasks</p>
-<ul>
-<li>https://thoughtbot.com/blog/test-rake-tasks-like-a-boss ? (old)</li>
-</ul>
-</li>
-<li>
-<p>Improve UX for slug auto-generation</p>
-<ul>
-<li>Look at Fae CMS slugger: https://www.faecms.com/documentation/features-slugger</li>
-</ul>
-</li>
-<li>
-<p>A/B testing</p>
-<ul>
-<li>Field Test: https://github.com/ankane/field_test</li>
-</ul>
-</li>
-<li>
-<p>Replace hand-rolled slug generation with FriendlyId ?</p>
-<ul>
-<li>https://norman.github.io/friendly_id</li>
-</ul>
-</li>
-<li>
-<p>Fix geolocation (for web stats) via Cloudflare?</p>
-<ul>
-<li>https://support.cloudflare.com/hc/en-us/articles/200168236-Configuring-Cloudflare-IP-Geolocation</li>
-</ul>
-</li>
-</ul>
-<h3 id="large-ish">Large-ish</h3>
-<ul>
-<li>
-<p>Investigate RBS - https://github.com/ruby/rbs#readme</p>
-<ul>
-<li>https://honeyryderchuck.gitlab.io/httpx/2020/10/16/rbs-duck-typing-at-httpx.html</li>
-</ul>
-</li>
-<li>
-<p>View Components sound very interesting... https://viewcomponent.org</p>
-</li>
-<li>
-<p>Re-think mailer preview features</p>
-<ul>
-<li>Can I use https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails instead of REP?</li>
-</ul>
-</li>
-<li>
-<p>Image galleries / multimedia galleries / etc</p>
-</li>
-<li>
-<p>Can I merge EmailRecipient, CommentAuthor, and VotableIP into a single Visitor model?</p>
-<ul>
-<li>Think carefully about privacy implications of linking previous actions to current visitor</li>
-</ul>
-</li>
-<li>
-<p>GDPR compliance</p>
-<ul>
-<li>https://github.com/prey/gdpr_rails</li>
-</ul>
-</li>
-<li>
-<p>Switch from ERB to handlebars or similar for main site templates</p>
-</li>
-<li>
-<p>Allow in-situ editing of Page (and other?) content</p>
-<ul>
-<li>Mercury: https://jejacks0n.github.io/mercury</li>
-</ul>
-</li>
-<li>
-<p>Replace hand-rolled trees and recursion (page sections, etc) with ClosureTree ?</p>
-<ul>
-<li>https://github.com/ClosureTree/closure_tree</li>
-</ul>
-</li>
-<li>
-<p>Wiki?</p>
-<ul>
-<li>Integrate an existing project? https://www.ruby-toolbox.com/categories/wiki_apps</li>
-</ul>
-</li>
-<li>
-<p>Integrate a static site generator? https://www.ruby-toolbox.com/categories/static_website_generation</p>
-</li>
-<li>
-<p>Run multiple ShinySites from one ShinyCMS installation?</p>
-<ul>
-<li>https://www.ruby-toolbox.com/categories/Multitenancy</li>
-</ul>
-</li>
-</ul>
-<h2 id="done-in-progress">Done / In Progress</h2>
-<p>See the <a href="../done/">done</a> list for features from the original ShinyCMS that I have already implemented in this version - as well as a few new ones that snuck in along the way - with notes on improvements from the Perl version where applicable.</p>
-<p>See the <a href="../in-progress/">in-progress</a> list for features that I am currently working on (with notes on where I'm up to, links to useful docs, etc).</p>
                 
               
               
@@ -1475,6 +1371,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../helpers/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Helpers
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../controller-concerns/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Controller Concerns
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

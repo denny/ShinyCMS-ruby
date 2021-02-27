@@ -9,24 +9,24 @@
         <meta name="description" content="Documentation for users and developers of ShinyCMS (Ruby version)">
       
       
-        <link rel="canonical" href="http://docs.shinycms.org/Developers/Notes/flappy-tests/">
+        <link rel="canonical" href="http://docs.shinycms.org/Developers/controller-concerns/">
       
       
         <meta name="author" content="Denny de la Haye">
       
-      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
     
     
       
-        <title>ShinyCMS - ShinyCMS</title>
+        <title>Controller Concerns - ShinyCMS</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.bc7e593a.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bc7e593a.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab28b872.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab28b872.min.css">
         
       
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shinycms" class="md-skip">
+        <a href="#shinycms-developer-documentation" class="md-skip">
           Skip to content
         </a>
       
@@ -86,8 +86,15 @@
     </label>
     <div class="md-header-nav__title" data-md-component="header-title">
       
-        <div class="md-header-nav__ellipsis md-ellipsis">
-          ShinyCMS
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            ShinyCMS
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Controller Concerns
+            
+          </span>
         </div>
       
     </div>
@@ -206,7 +213,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../INSTALL/" class="md-nav__link">
+    <a href="../../INSTALL/" class="md-nav__link">
       Local installation
     </a>
   </li>
@@ -218,7 +225,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Configuration/" class="md-nav__link">
+    <a href="../../Configuration/" class="md-nav__link">
       Configuration
     </a>
   </li>
@@ -230,7 +237,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Cloud-Hosting/" class="md-nav__link">
+    <a href="../../Cloud-Hosting/" class="md-nav__link">
       Cloud hosting
     </a>
   </li>
@@ -242,7 +249,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Services/" class="md-nav__link">
+    <a href="../../Services/" class="md-nav__link">
       External services
     </a>
   </li>
@@ -254,7 +261,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Themes/" class="md-nav__link">
+    <a href="../../Themes/" class="md-nav__link">
       Themes
     </a>
   </li>
@@ -266,7 +273,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../demo-site/" class="md-nav__link">
+    <a href="../../demo-site/" class="md-nav__link">
       Demo site
     </a>
   </li>
@@ -278,7 +285,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../tldr/" class="md-nav__link">
+    <a href="../../tldr/" class="md-nav__link">
       tl,dr
     </a>
   </li>
@@ -316,7 +323,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/MainApp/UserAccounts/" class="md-nav__link">
+    <a href="../../Features/MainApp/UserAccounts/" class="md-nav__link">
       User Accounts
     </a>
   </li>
@@ -328,7 +335,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/MainApp/admin-features/" class="md-nav__link">
+    <a href="../../Features/MainApp/admin-features/" class="md-nav__link">
       Admin Features
     </a>
   </li>
@@ -361,7 +368,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/Plugins/ShinyPages/" class="md-nav__link">
+    <a href="../../Features/Plugins/ShinyPages/" class="md-nav__link">
       Pages
     </a>
   </li>
@@ -373,7 +380,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/Plugins/ShinyForms/" class="md-nav__link">
+    <a href="../../Features/Plugins/ShinyForms/" class="md-nav__link">
       Forms
     </a>
   </li>
@@ -385,7 +392,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/Plugins/ShinyInserts/" class="md-nav__link">
+    <a href="../../Features/Plugins/ShinyInserts/" class="md-nav__link">
       Inserts
     </a>
   </li>
@@ -397,7 +404,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/Plugins/ShinySearch/" class="md-nav__link">
+    <a href="../../Features/Plugins/ShinySearch/" class="md-nav__link">
       Search
     </a>
   </li>
@@ -435,7 +442,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/Plugins/ShinyAccess/" class="md-nav__link">
+    <a href="../../Features/Plugins/ShinyAccess/" class="md-nav__link">
       Access control
     </a>
   </li>
@@ -473,7 +480,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/Plugins/ShinyBlog/" class="md-nav__link">
+    <a href="../../Features/Plugins/ShinyBlog/" class="md-nav__link">
       Blog
     </a>
   </li>
@@ -485,7 +492,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/Plugins/ShinyNews/" class="md-nav__link">
+    <a href="../../Features/Plugins/ShinyNews/" class="md-nav__link">
       News section
     </a>
   </li>
@@ -497,7 +504,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/MainApp/Tags/" class="md-nav__link">
+    <a href="../../Features/MainApp/Tags/" class="md-nav__link">
       Tags
     </a>
   </li>
@@ -535,7 +542,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/Plugins/ShinyLists/" class="md-nav__link">
+    <a href="../../Features/Plugins/ShinyLists/" class="md-nav__link">
       Mailing Lists
     </a>
   </li>
@@ -547,7 +554,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/Plugins/ShinyNewsletters/" class="md-nav__link">
+    <a href="../../Features/Plugins/ShinyNewsletters/" class="md-nav__link">
       Newsletters
     </a>
   </li>
@@ -585,7 +592,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/MainApp/Comments/" class="md-nav__link">
+    <a href="../../Features/MainApp/Comments/" class="md-nav__link">
       Comments
     </a>
   </li>
@@ -597,7 +604,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/MainApp/Upvotes/" class="md-nav__link">
+    <a href="../../Features/MainApp/Upvotes/" class="md-nav__link">
       Upvotes
     </a>
   </li>
@@ -609,7 +616,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/Plugins/ShinyProfiles/" class="md-nav__link">
+    <a href="../../Features/Plugins/ShinyProfiles/" class="md-nav__link">
       Profile Pages
     </a>
   </li>
@@ -647,7 +654,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/MainApp/EmailStats/" class="md-nav__link">
+    <a href="../../Features/MainApp/EmailStats/" class="md-nav__link">
       Email Stats
     </a>
   </li>
@@ -659,7 +666,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/MainApp/WebStats/" class="md-nav__link">
+    <a href="../../Features/MainApp/WebStats/" class="md-nav__link">
       Web Stats
     </a>
   </li>
@@ -671,7 +678,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/MainApp/Charts/" class="md-nav__link">
+    <a href="../../Features/MainApp/Charts/" class="md-nav__link">
       Charts
     </a>
   </li>
@@ -709,7 +716,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/MainApp/FeatureFlags/" class="md-nav__link">
+    <a href="../../Features/MainApp/FeatureFlags/" class="md-nav__link">
       Feature Flags
     </a>
   </li>
@@ -721,7 +728,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/MainApp/SiteSettings/" class="md-nav__link">
+    <a href="../../Features/MainApp/SiteSettings/" class="md-nav__link">
       Site Settings
     </a>
   </li>
@@ -759,7 +766,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/MainApp/mjml/" class="md-nav__link">
+    <a href="../../Features/MainApp/mjml/" class="md-nav__link">
       MJML
     </a>
   </li>
@@ -771,7 +778,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/MainApp/pagination/" class="md-nav__link">
+    <a href="../../Features/MainApp/pagination/" class="md-nav__link">
       Pagination
     </a>
   </li>
@@ -783,7 +790,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Features/MainApp/soft-delete/" class="md-nav__link">
+    <a href="../../Features/MainApp/soft-delete/" class="md-nav__link">
       Soft Delete
     </a>
   </li>
@@ -795,7 +802,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../rake-tasks/" class="md-nav__link">
+    <a href="../../rake-tasks/" class="md-nav__link">
       Rake tasks
     </a>
   </li>
@@ -815,10 +822,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       Developer Documentation
@@ -838,7 +847,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../" class="md-nav__link">
+    <a href="../" class="md-nav__link">
       Index
     </a>
   </li>
@@ -850,7 +859,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Contributing/" class="md-nav__link">
+    <a href="../../Contributing/" class="md-nav__link">
       Contributing
     </a>
   </li>
@@ -862,7 +871,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../ProjectGoals/" class="md-nav__link">
+    <a href="../ProjectGoals/" class="md-nav__link">
       Project Goals
     </a>
   </li>
@@ -873,18 +882,56 @@
           
 
 
-  <li class="md-nav__item md-nav__item--nested">
+  <li class="md-nav__item">
+    <a href="../Testing/" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../code-quality/" class="md-nav__link">
+      Code Quality
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Plugins/" class="md-nav__link">
+      Plugins
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-7" type="checkbox" id="nav-3-7" checked>
     
-    <label class="md-nav__link" for="nav-3-4">
-      Project Progress
+    <label class="md-nav__link" for="nav-3-7">
+      Helpers, Concerns, and other useful modules
       <span class="md-nav__icon md-icon"></span>
     </label>
-    <nav class="md-nav" aria-label="Project Progress" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-4">
+    <nav class="md-nav" aria-label="Helpers, Concerns, and other useful modules" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-7">
         <span class="md-nav__icon md-icon"></span>
-        Project Progress
+        Helpers, Concerns, and other useful modules
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -895,8 +942,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../TODO/" class="md-nav__link">
-      TODO
+    <a href="../Concerns-and-Helpers/" class="md-nav__link">
+      Overview
     </a>
   </li>
 
@@ -907,8 +954,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../in-progress/" class="md-nav__link">
-      In Progress
+    <a href="../helpers/" class="md-nav__link">
+      Helpers
     </a>
   </li>
 
@@ -919,8 +966,115 @@
 
 
   <li class="md-nav__item">
-    <a href="../../done/" class="md-nav__link">
-      Done
+    <a href="../model-concerns/" class="md-nav__link">
+      Model Concerns
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Controller Concerns
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Controller Concerns
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supporting-code-controller-concerns" class="md-nav__link">
+    Supporting code: controller concerns
+  </a>
+  
+    <nav class="md-nav" aria-label="Supporting code: controller concerns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-the-core-plugin" class="md-nav__link">
+    In the core plugin
+  </a>
+  
+    <nav class="md-nav" aria-label="In the core plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-main-site-controllers-or-both" class="md-nav__link">
+    For main site controllers (or both)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-admin-controllers-only" class="md-nav__link">
+    For admin controllers only
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Mailers/" class="md-nav__link">
+      Mailers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../other-modules/" class="md-nav__link">
+      Other
     </a>
   </li>
 
@@ -936,43 +1090,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Plugins/" class="md-nav__link">
-      Plugins
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../Testing/" class="md-nav__link">
-      Testing
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../code-quality/" class="md-nav__link">
-      Code Quality
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../demo-data/" class="md-nav__link">
+    <a href="../demo-data/" class="md-nav__link">
       Demo data
     </a>
   </li>
@@ -984,7 +1102,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../rake-tasks/" class="md-nav__link">
+    <a href="../rake-tasks/" class="md-nav__link">
       Rake tasks
     </a>
   </li>
@@ -1000,13 +1118,13 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-10" type="checkbox" id="nav-3-10">
     
     <label class="md-nav__link" for="nav-3-10">
-      Useful shared CMS code
+      Project Progress
       <span class="md-nav__icon md-icon"></span>
     </label>
-    <nav class="md-nav" aria-label="Useful shared CMS code" data-md-level="2">
+    <nav class="md-nav" aria-label="Project Progress" data-md-level="2">
       <label class="md-nav__title" for="nav-3-10">
         <span class="md-nav__icon md-icon"></span>
-        Useful shared CMS code
+        Project Progress
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1017,8 +1135,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Concerns/" class="md-nav__link">
-      Concerns
+    <a href="../TODO/" class="md-nav__link">
+      TODO
     </a>
   </li>
 
@@ -1029,8 +1147,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Helpers/" class="md-nav__link">
-      Helpers
+    <a href="../in-progress/" class="md-nav__link">
+      In Progress
     </a>
   </li>
 
@@ -1041,8 +1159,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Mailers/" class="md-nav__link">
-      Mailers
+    <a href="../done/" class="md-nav__link">
+      Done
     </a>
   </li>
 
@@ -1063,7 +1181,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Licensing/" class="md-nav__link">
+    <a href="../../Licensing/" class="md-nav__link">
       Licensing
     </a>
   </li>
@@ -1075,7 +1193,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../release-notes/" class="md-nav__link">
+    <a href="../../release-notes/" class="md-nav__link">
       Release notes
     </a>
   </li>
@@ -1087,7 +1205,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../credits/" class="md-nav__link">
+    <a href="../../credits/" class="md-nav__link">
       Credits
     </a>
   </li>
@@ -1099,7 +1217,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../code-of-conduct/" class="md-nav__link">
+    <a href="../../code-of-conduct/" class="md-nav__link">
       Code of Conduct
     </a>
   </li>
@@ -1111,7 +1229,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../.." class="md-nav__link">
+    <a href="../.." class="md-nav__link">
       Index
     </a>
   </li>
@@ -1141,9 +1259,42 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#flappy-tests" class="md-nav__link">
-    Flappy tests
+  <a href="#supporting-code-controller-concerns" class="md-nav__link">
+    Supporting code: controller concerns
   </a>
+  
+    <nav class="md-nav" aria-label="Supporting code: controller concerns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-the-core-plugin" class="md-nav__link">
+    In the core plugin
+  </a>
+  
+    <nav class="md-nav" aria-label="In the core plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-main-site-controllers-or-both" class="md-nav__link">
+    For main site controllers (or both)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-admin-controllers-only" class="md-nav__link">
+    For admin controllers only
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1160,82 +1311,66 @@
               
                 
                 
-                <h1 id="shinycms">ShinyCMS</h1>
-<h2 id="flappy-tests">Flappy tests</h2>
-<p>I'm seeing intermittent but recurring 404s in a few tests; they generally
-don't recur when I run rspec again with the same seed.</p>
-<p>For now I'm just making a note of the test output here, when I remember.</p>
-<p>=====</p>
-<p>Failures:</p>
-<p>1) Comment moderation PUT /admin/comment/1/hide hides the comment
-     Failure/Error: expect( response      ).to     have_http_status :ok
-       expected the response to have status code :ok (200) but it was :not_found (404)
-     # ./spec/requests/admin/comments_spec.rb:131:in `block (3 levels) in <top (required)>'</p>
-<p>Finished in 41.06 seconds (files took 2.47 seconds to load)
-284 examples, 1 failure</p>
-<p>Failed examples:</p>
-<p>rspec ./spec/requests/admin/comments_spec.rb:125 # Comment moderation PUT /admin/comment/1/hide hides the comment</p>
-<p>Randomized with seed 26338</p>
-<p>=====</p>
-<p>Failures:</p>
-<p>1) Comment moderation PUT /admin/comment/1/hide hides the comment
-     Failure/Error: expect( response      ).to     have_http_status :ok
-       expected the response to have status code :ok (200) but it was :not_found (404)
-     # ./spec/requests/admin/comments_spec.rb:131:in `block (3 levels) in <top (required)>'</p>
-<p>Finished in 35.11 seconds (files took 2.23 seconds to load)
-285 examples, 1 failure</p>
-<p>Failed examples:</p>
-<p>rspec ./spec/requests/admin/comments_spec.rb:125 # Comment moderation PUT /admin/comment/1/hide hides the comment</p>
-<p>Randomized with seed 33162</p>
-<p>=====</p>
-<p>Failures:</p>
-<p>1) Comment moderation PUT /admin/comment/1/hide hides the comment
-     Failure/Error: expect( response      ).to     have_http_status :ok
-       expected the response to have status code :ok (200) but it was :not_found (404)
-     # ./spec/requests/admin/comments_spec.rb:131:in `block (3 levels) in <top (required)>'</p>
-<p>Finished in 37.81 seconds (files took 2.33 seconds to load)
-296 examples, 1 failure, 1 pending</p>
-<p>Failed examples:</p>
-<p>rspec ./spec/requests/admin/comments_spec.rb:125 # Comment moderation PUT /admin/comment/1/hide hides the comment</p>
-<p>Randomized with seed 47403</p>
-<p>=====</p>
-<p>Failures:</p>
-<p>1) Comment moderation PUT /admin/comment/1/unhide unhides the comment
-     Failure/Error: expect( response      ).to     have_http_status :ok
-       expected the response to have status code :ok (200) but it was :not_found (404)
-     # ./spec/requests/admin/comments_spec.rb:148:in `block (3 levels) in <top (required)>'</p>
-<p>Finished in 34.82 seconds (files took 2.19 seconds to load)
-284 examples, 1 failure</p>
-<p>Failed examples:</p>
-<p>rspec ./spec/requests/admin/comments_spec.rb:139 # Comment moderation PUT /admin/comment/1/unhide unhides the comment</p>
-<p>Randomized with seed 44271</p>
-<p>=====</p>
-<p>Failures:</p>
-<p>1) Blog scopes can fetch the visible posts (not hidden, not future-dated)
-     Failure/Error: expect( blog.posts.length ).to eq 1</p>
-<pre><code>   expected: 1
-        got: 0
-
-   (compared using ==)
- # ./spec/models/blog_spec.rb:21:in `block (3 levels) in &lt;top (required)&gt;'
-</code></pre>
-<p>Finished in 35.02 seconds (files took 2.24 seconds to load)
-285 examples, 1 failure</p>
-<p>Failed examples:</p>
-<p>rspec ./spec/models/blog_spec.rb:15 # Blog scopes can fetch the visible posts (not hidden, not future-dated)</p>
-<p>Randomized with seed 27241</p>
-<p>=====</p>
-<p>Failures:</p>
-<p>1) Blogs GET #recent returns a success response
-     Failure/Error: expect( response.body ).to     have_css 'h2',      text: post2.title
-       expected to find visible css "h2" with text "Highpoint" but there were no matches. Also found "\n      Now Look What You've Made Me Do\n    ", "\n            Recent Posts\n          ", "\n            Links\n          ", which matched the selector but not all filters. 
-     # ./spec/requests/blogs_spec.rb:47:in `block (3 levels) in <top (required)>'</p>
-<p>Finished in 49.17 seconds (files took 4.5 seconds to load)
-296 examples, 1 failure, 1 pending</p>
-<p>Failed examples:</p>
-<p>rspec ./spec/requests/blogs_spec.rb:14 # Blogs GET #recent returns a success response</p>
-<p>Randomized with seed 41103</p>
-<p>=====</p>
+                <h1 id="shinycms-developer-documentation">ShinyCMS Developer Documentation</h1>
+<h2 id="supporting-code-controller-concerns">Supporting code: controller concerns</h2>
+<p>There are several controller concerns provided with ShinyCMS. As with well as DRYing up common features, I hope these will make it easier for other developers to build new features that [work similarly][Why does this matter?] to the existing features (from both a user and developer perspective).</p>
+<h3 id="in-the-core-plugin">In the core plugin</h3>
+<h4 id="for-main-site-controllers-or-both">For main site controllers (or both)</h4>
+<ul>
+<li>
+<p>ShinyCMS::FeatureFlags</p>
+<ul>
+<li>Provides the <code>enforce_feature_flags</code> method used in any controller which implements feature-flagged functionality</li>
+</ul>
+</li>
+<li>
+<p>ShinyCMS::Paging</p>
+<ul>
+<li>Includes <a href="https://github.com/ddnexus/pagy#readme">Pagy</a>::Backend, and provides a couple of helper methods for getting items-per-page values from params or defaults from settings</li>
+<li>May well become obsolete once Pagy's <a href="https://ddnexus.github.io/pagy/extras/items">items extra</a> is integrated - if the supporting methods go, it would be clearer to include Pagy::Backend directly in the controllers</li>
+</ul>
+</li>
+<li>
+<p>ShinyCMS::PasswordReportAction</p>
+<ul>
+<li>Provides the <code>password_report</code> action, which can be mixed into any controller to provide a JSON endpoint for obtaining password reports containing complexity scores and advice (powered by <a href="https://github.com/envato/zxcvbn-ruby#readme">zxcvbn</a>)</li>
+</ul>
+</li>
+<li>
+<p>ShinyCMS::Votes</p>
+<ul>
+<li>Provides <code>url_param_to_class_name</code> method, which reverses <code>name_to_url_param</code> from the ShinyCMS::HasVotes model concern.</li>
+</ul>
+</li>
+</ul>
+<h4 id="for-admin-controllers-only">For admin controllers only</h4>
+<ul>
+<li>
+<p>ShinyCMS::Admin::Discussions</p>
+<ul>
+<li>Provides methods for dealing with the show/hide flags for discussions when editing a related resource</li>
+<li>(This seems like poor separation of concerns - and it'll be even worse when Discussions gets its own plugin)</li>
+</ul>
+</li>
+<li>
+<p>ShinyCMS::Admin::Posts</p>
+<ul>
+<li>Provides methods to handle attempts to set an author other than the logged-in user for e.g. a News Post (a capability controlled by the Pundit ACL)</li>
+</ul>
+</li>
+<li>
+<p>ShinyCMS::Admin::Sorting</p>
+<ul>
+<li>Provides methods to help implement the drag-to-sort feature</li>
+</ul>
+</li>
+<li>
+<p>ShinyCMS::Admin::Tags</p>
+<ul>
+<li>Provides a method to render tags or hidden tags (into the tag_list field on the edit page) depending on the show/hide status of the resource being edited</li>
+</ul>
+</li>
+</ul>
                 
               
               
@@ -1250,6 +1385,41 @@ don't recur when I run rspec again with the same seed.</p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../model-concerns/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Model Concerns
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../Mailers/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Mailers
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1271,15 +1441,15 @@ don't recur when I run rspec again with the same seed.</p>
       
     </div>
     
-      <script src="../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "../../..",
+          base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

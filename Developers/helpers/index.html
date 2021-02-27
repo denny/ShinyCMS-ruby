@@ -9,7 +9,7 @@
         <meta name="description" content="Documentation for users and developers of ShinyCMS (Ruby version)">
       
       
-        <link rel="canonical" href="http://docs.shinycms.org/Developers/Helpers/">
+        <link rel="canonical" href="http://docs.shinycms.org/Developers/helpers/">
       
       
         <meta name="author" content="Denny de la Haye">
@@ -882,80 +882,6 @@
           
 
 
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
-    
-    <label class="md-nav__link" for="nav-3-4">
-      Project Progress
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Project Progress" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-4">
-        <span class="md-nav__icon md-icon"></span>
-        Project Progress
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../TODO/" class="md-nav__link">
-      TODO
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../in-progress/" class="md-nav__link">
-      In Progress
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../done/" class="md-nav__link">
-      Done
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../Plugins/" class="md-nav__link">
-      Plugins
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
   <li class="md-nav__item">
     <a href="../Testing/" class="md-nav__link">
       Testing
@@ -981,20 +907,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../demo-data/" class="md-nav__link">
-      Demo data
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../rake-tasks/" class="md-nav__link">
-      Rake tasks
+    <a href="../Plugins/" class="md-nav__link">
+      Plugins
     </a>
   </li>
 
@@ -1008,16 +922,16 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-10" type="checkbox" id="nav-3-10" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-7" type="checkbox" id="nav-3-7" checked>
     
-    <label class="md-nav__link" for="nav-3-10">
-      Useful shared CMS code
+    <label class="md-nav__link" for="nav-3-7">
+      Helpers, Concerns, and other useful modules
       <span class="md-nav__icon md-icon"></span>
     </label>
-    <nav class="md-nav" aria-label="Useful shared CMS code" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-10">
+    <nav class="md-nav" aria-label="Helpers, Concerns, and other useful modules" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-7">
         <span class="md-nav__icon md-icon"></span>
-        Useful shared CMS code
+        Helpers, Concerns, and other useful modules
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1028,8 +942,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Concerns/" class="md-nav__link">
-      Concerns
+    <a href="../Concerns-and-Helpers/" class="md-nav__link">
+      Overview
     </a>
   </li>
 
@@ -1071,23 +985,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#helpers" class="md-nav__link">
-    Helpers
+  <a href="#supporting-code-helpers" class="md-nav__link">
+    Supporting code: helpers
   </a>
   
-    <nav class="md-nav" aria-label="Helpers">
+    <nav class="md-nav" aria-label="Supporting code: helpers">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#in-the-main-app" class="md-nav__link">
-    In the main app
+  <a href="#from-core-plugin" class="md-nav__link">
+    From core plugin
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#in-plugins" class="md-nav__link">
-    In plugins
+  <a href="#from-feature-plugins" class="md-nav__link">
+    From feature plugins
   </a>
   
 </li>
@@ -1110,8 +1024,130 @@
 
 
   <li class="md-nav__item">
+    <a href="../model-concerns/" class="md-nav__link">
+      Model Concerns
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../controller-concerns/" class="md-nav__link">
+      Controller Concerns
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../Mailers/" class="md-nav__link">
       Mailers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../other-modules/" class="md-nav__link">
+      Other
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../demo-data/" class="md-nav__link">
+      Demo data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rake-tasks/" class="md-nav__link">
+      Rake tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-10" type="checkbox" id="nav-3-10">
+    
+    <label class="md-nav__link" for="nav-3-10">
+      Project Progress
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Project Progress" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-10">
+        <span class="md-nav__icon md-icon"></span>
+        Project Progress
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TODO/" class="md-nav__link">
+      TODO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../in-progress/" class="md-nav__link">
+      In Progress
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../done/" class="md-nav__link">
+      Done
     </a>
   </li>
 
@@ -1210,23 +1246,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#helpers" class="md-nav__link">
-    Helpers
+  <a href="#supporting-code-helpers" class="md-nav__link">
+    Supporting code: helpers
   </a>
   
-    <nav class="md-nav" aria-label="Helpers">
+    <nav class="md-nav" aria-label="Supporting code: helpers">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#in-the-main-app" class="md-nav__link">
-    In the main app
+  <a href="#from-core-plugin" class="md-nav__link">
+    From core plugin
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#in-plugins" class="md-nav__link">
-    In plugins
+  <a href="#from-feature-plugins" class="md-nav__link">
+    From feature plugins
   </a>
   
 </li>
@@ -1250,60 +1286,68 @@
                 
                 
                 <h1 id="shinycms-developer-documentation">ShinyCMS Developer Documentation</h1>
-<h2 id="helpers">Helpers</h2>
-<p>There are a number of helpers included with the project. These are intended to make it easier for people to build new features that work similarly to the existing features, from both a user and developer perspective.</p>
-<p>In many cases the helper methods are there as an easy-to-use wrapper around the most common use cases for a more complex invocation of some model code - for example, <code>&lt;% posts = recent_blog_posts( 5 ) %&gt;</code> is the same as <code>&lt;% posts = ShinyBlog::Post.readonly.recent.limit( 5 ) %&gt;</code> - hopefully this will make it easier for people to build themes even if they're not familiar with ActiveRecord.</p>
-<h3 id="in-the-main-app">In the main app</h3>
+<h2 id="supporting-code-helpers">Supporting code: helpers</h2>
+<p>Most of the helpers provide formatters, presentation logic, or wrappers around common uses of a model from a view (adding some much-needed isolation/abstraction in this last case).</p>
+<p>Hopefully they will make it easier for people to build themes even if they're not hugely familiar with ActiveRecord). For example, this code using a helper:
+<code>&lt;% posts = recent_blog_posts( 5 ) %&gt;</code>
+returns the same results as this code using a model:
+<code>&lt;% posts = ShinyBlog::Post.readonly.recent.limit( 5 ) %&gt;</code></p>
+<h3 id="from-core-plugin">From core plugin</h3>
 <ul>
-<li>ShinyMainSiteHelper    - common behaviour for main site controllers; includes many of the helpers below</li>
-<li>AdminAreaHelper        - common behaviour for admin area controllers</li>
 <li>
-<p>ShinyMailerHelper      - common behaviour for Mailers</p>
+<p>MainSiteHelper     - no code, but includes all the helpers below that are useful on the main site</p>
 </li>
 <li>
-<p>ShinySiteNameHelper    - provides the &lt;%= site_name %&gt; method (included by ShinyMainSiteHelper and ShinyMailerHelper)</p>
+<p>AdminAreaHelper    - helper methods for admin area views and controllers</p>
 </li>
 <li>
-<p>ShinyPluginHelper      - methods wrapping common uses (in views) of the ShinyPlugin model</p>
+<p>MailerHelper       - helper methods for mailers</p>
 </li>
 <li>
-<p>ShinyDateHelper        - turns model timestamps into human-friendly time and date strings</p>
-</li>
-<li>ShinyDiscussionHelper  - discussion-related settings and searches</li>
-<li>ShinyElementHelper     - methods related to *Element models</li>
-<li>ShinyFeatureFlagHelper - check and enforce feature flags</li>
-<li>ShinyPagingHelper      - methods to help with pagination</li>
-<li>
-<p>ShinyUserHelper        - user-capability checks and profile link generation</p>
+<p>PluginsHelper      - the <code>plugin_loaded?</code> method</p>
 </li>
 <li>
-<p>AkismetHelper          - methods related to the Akismet spam-flagging service</p>
+<p>DatesHelper        - turn DateTime objects into human-readable dates and times</p>
 </li>
-<li>RecaptchaHelper        - methods related to Google's reCAPTCHA bot detection service</li>
-<li>SidekiqHelper          - method to check whether Sidekiq job queues are enabled</li>
+<li>DiscussionsHelper  - methods to get discussion settings and fetch recent comments</li>
+<li>ElementsHelper     - the <code>element_types</code> method, for populating drop-down menu</li>
+<li>FeatureFlagsHelper - the <code>feature_enabled?</code> method</li>
+<li>PagingHelper       - methods to help with pagination</li>
+<li>SiteNameHelper     - the <code>site_name</code> method</li>
+<li>
+<p>UsersHelper        - provides user-capability checks and profile link generation</p>
+</li>
+<li>
+<p>AkismetHelper      - methods related to the Akismet spam-flagging service</p>
+</li>
+<li>RecaptchaHelper    - methods related to Google's reCAPTCHA bot detection service</li>
 </ul>
-<p>At some point in the future, most of these Helpers will probably move into some sort of ShinyTools plugin or plugins (which can then be depended on by whichever other plugins need them), as part of the long-term plan to move most or all of the main app code into plugins.</p>
-<h3 id="in-plugins">In plugins</h3>
+<h3 id="from-feature-plugins">From feature plugins</h3>
+<p><em>Methods defined in feature plugin helpers called <code>MainSiteHelper</code> are automatically loaded and made available to views throughout the entire CMS.</em></p>
 <ul>
-<li>ShinyPages::MainSiteHelper    - page and page sections (default_page, default_section, etc)</li>
-<li>ShinyInserts::MainSiteHelper  - get the content for an insert element, or check its type</li>
+<li>
+<p>ShinyBlog::MainSiteHelper     - get most recent published posts, for use in sidebars etc</p>
+</li>
 <li>
 <p>ShinyForms::MainSiteHelper    - look up a form by slug</p>
 </li>
 <li>
-<p>ShinySearch::MainSiteHelper   - check which search backends are enabled, and related methods</p>
-</li>
-<li>
-<p>ShinyBlog::MainSiteHelper     - get most recent (published) posts, for use in sidebars etc</p>
-</li>
-<li>
-<p>ShinyNews::MainSiteHelper     - get most recent (published) posts, for use in sidebars etc</p>
+<p>ShinyInserts::MainSiteHelper  - get the content for an insert element, or check its type</p>
 </li>
 <li>
 <p>ShinyLists::MainSiteHelper    - look up a mailing list by slug (or fall back to most recent list)</p>
 </li>
 <li>
+<p>ShinyNews::MainSiteHelper     - get most recent published posts, for use in sidebars etc</p>
+</li>
+<li>
+<p>ShinyPages::MainSiteHelper    - page and page sections (default_page, default_section, etc)</p>
+</li>
+<li>
 <p>ShinyProfiles::MainSiteHelper - find plugins with user-content partials to include on profile pages</p>
+</li>
+<li>
+<p>ShinySearch::MainSiteHelper   - check which search backends are enabled, and related methods</p>
 </li>
 </ul>
                 
@@ -1324,7 +1368,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../Concerns/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../Concerns-and-Helpers/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1333,19 +1377,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Concerns
+                Overview
               </div>
             </div>
           </a>
         
         
-          <a href="../Mailers/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../model-concerns/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Mailers
+                Model Concerns
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
