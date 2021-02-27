@@ -13,8 +13,6 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
   before do
     ShinyCMS::FeatureFlag.enable :user_login
     ShinyCMS::FeatureFlag.disable :user_profiles
-
-    @page = create :top_level_page
   end
 
   describe 'GET /account/register' do
@@ -24,6 +22,8 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
     end
 
     it 'redirects to the site homepage if user registrations are not enabled' do
+      create :top_level_page
+
       ShinyCMS::FeatureFlag.disable :user_registration
 
       get shinycms.new_user_registration_path
@@ -89,6 +89,8 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
     end
 
     it 'creates a new user, checking V3 reCAPTCHA if a V3 key is set' do
+      create :top_level_page
+
       username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
@@ -116,6 +118,8 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
     end
 
     it 'creates a new user, checking V2 invisible reCAPTCHA if no V3 key present' do
+      create :top_level_page
+
       username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"
@@ -143,6 +147,8 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
     end
 
     it 'falls back to checkbox reCAPTCHA if invisible reCAPTCHA fails' do
+      create :top_level_page
+
       username = Faker::Internet.unique.username
       password = 'shinycms unimaginative test passphrase'
       email = "#{username}@example.com"

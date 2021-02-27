@@ -29,7 +29,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
 
       subject = I18n.t(
         'shinycms.discussion_mailer.parent_comment_notification.subject',
-        reply_author_name: reply.author_name_or_anon,
+        reply_author_name: reply.author.name,
         site_name:         site_name
       )
 
@@ -38,7 +38,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
 
     it 'generates an email to a pseudonymous parent comment author' do
       recipient = create :email_recipient, :confirmed
-      author = create :comment_author, name: recipient.name, email_recipient: recipient
+      author = create :pseudonymous_author, name: recipient.name, email_recipient: recipient
       top = create :top_level_comment, discussion: @discussion, author: author
 
       reply = create :nested_comment, parent: top, discussion: @discussion
@@ -47,7 +47,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
 
       subject = I18n.t(
         'shinycms.discussion_mailer.parent_comment_notification.subject',
-        reply_author_name: reply.author_name_or_anon,
+        reply_author_name: reply.author.name,
         site_name:         site_name
       )
 
@@ -63,7 +63,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
 
       subject = I18n.t(
         'shinycms.discussion_mailer.discussion_notification.subject',
-        comment_author_name: comment.author_name_or_anon,
+        comment_author_name: comment.author.name,
         content_type:        I18n.t( 'shinycms.models.names.shiny_blog_post' ),
         site_name:           site_name
       )
@@ -82,7 +82,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
 
       subject = I18n.t(
         'shinycms.discussion_mailer.overview_notification.subject',
-        comment_author_name: comment.author_name_or_anon,
+        comment_author_name: comment.author.name,
         site_name:           site_name
       )
 

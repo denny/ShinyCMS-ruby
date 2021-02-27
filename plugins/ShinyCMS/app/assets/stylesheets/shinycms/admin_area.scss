@@ -440,7 +440,7 @@ input.field_with_errors, select.field_with_errors, textarea.field_with_errors {
   border:           2px solid $red;
 }
 
-// preview thumbnails for ShinyElements with type='image' (in edit forms for templated content, e.g. Pages)
+// preview thumbnails for ShinyCMS::Elements with type='image' (in edit forms for templated content, e.g. Pages)
 .admin-image-thumbnail {
   border:           1px solid $light-grey;
   max-height:       150px;

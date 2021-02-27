@@ -10,7 +10,7 @@ module ShinyProfiles
   # Model for user profile pages
   class Link < ApplicationRecord
     include ShinyCMS::HasDemoData
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     belongs_to :profile, inverse_of: :links
 

@@ -9,7 +9,7 @@
 module ShinyCMS
   # Model for feature flags
   class FeatureFlag < ApplicationRecord
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Validations
 

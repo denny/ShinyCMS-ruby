@@ -13,8 +13,8 @@ module ShinyCMS
     class HasBeenAgreedTo < StandardError; end
 
     include ShinyCMS::HasDemoData
-    include ShinySlug
-    include ShinySoftDelete
+    include ShinyCMS::HasSlug
+    include ShinyCMS::SoftDelete
 
     # Validations
 
