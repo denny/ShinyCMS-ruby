@@ -9,37 +9,15 @@
 # You can load or reload this data using the following rake task:
 # rails shiny_blog:db:seed
 
-# Add feature flags
+require 'shinycms/seeder'
 
-flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'blog' )
-flag.update!(
-  description:           'Enable blog section, provided by ShinyBlog plugin',
-  enabled:               true,
-  enabled_for_logged_in: true,
-  enabled_for_admins:    true
-)
+seeder = ShinyCMS::Seeder.new
 
-flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'blog_votes' )
-flag.update!(
-  description:           'Enable votes on blog posts',
-  enabled:               true,
-  enabled_for_logged_in: true,
-  enabled_for_admins:    true
-)
+seeder.seed_feature_flag( name: :blog,           description: 'Blog feature (ShinyBlog plugin)' )
+seeder.seed_feature_flag( name: :blog_upvotes,   description: 'Enable upvotes on blog posts'    )
+seeder.seed_feature_flag( name: :blog_downvotes, description: 'Enable downvotes on blog posts'  )
 
-flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'blog_downvotes' )
-flag.update!(
-  description:           'Enable down-votes on blog posts',
-  enabled:               true,
-  enabled_for_logged_in: true,
-  enabled_for_admins:    true
-)
-
-# Add admin capabilities
+seeder.seed_standard_admin_capabilities( category: :blog_posts )
 
 category = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'blog_posts' )
-category.capabilities.find_or_create_by!( name: 'list'          )
-category.capabilities.find_or_create_by!( name: 'add'           )
-category.capabilities.find_or_create_by!( name: 'edit'          )
-category.capabilities.find_or_create_by!( name: 'destroy'       )
 category.capabilities.find_or_create_by!( name: 'change_author' )

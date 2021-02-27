@@ -10,7 +10,7 @@ en:
   shinycms:
     feature_flags:
       blog: Blog
-      blog_votes: Votes on blog posts
+      blog_upvotes: Up-votes on blog posts
       blog_downvotes: Down-votes on blog posts
 
     capability:

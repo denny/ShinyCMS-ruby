@@ -9,50 +9,20 @@
 # You can load or reload this data using the following rake task:
 # rails shiny_forms:db:seed
 
-# Feature flags
+require 'shinycms/seeder'
 
-def add_feature_flag( name:, description: nil, enabled: true )
-  ShinyCMS::FeatureFlag.find_or_create_by(
-    name:                  name,
-    description:           description,
-    enabled:               enabled,
-    enabled_for_logged_in: enabled,
-    enabled_for_admins:    enabled
-  )
-end
+seeder = ShinyCMS::Seeder.new
 
-add_feature_flag( name: 'shiny_forms',         description: 'Enable generic form handlers, from ShinyForms plugin' )
-add_feature_flag( name: 'shiny_forms_emails',  description: 'Allow form handlers to send emails' )
-add_feature_flag( name: 'recaptcha_for_forms', description: 'Protect ShinyForms with reCAPTCHA'  )
-add_feature_flag( name: 'akismet_for_forms',   description: 'Protect ShinyForms with Akismet'    )
+seeder.seed_feature_flag( name: :shiny_forms,         description: 'Enable generic form handlers (ShinyForms plugin)' )
+seeder.seed_feature_flag( name: :shiny_forms_emails,  description: 'Allow form handlers to send emails' )
+seeder.seed_feature_flag( name: :recaptcha_for_forms, description: 'Protect ShinyForms with reCAPTCHA'  )
+seeder.seed_feature_flag( name: :akismet_for_forms,   description: 'Protect ShinyForms with Akismet'    )
 
-# Admin capabilities
-
-forms_cc = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'forms' )
-forms_cc.capabilities.find_or_create_by!( name: 'list'    )
-forms_cc.capabilities.find_or_create_by!( name: 'add'     )
-forms_cc.capabilities.find_or_create_by!( name: 'edit'    )
-forms_cc.capabilities.find_or_create_by!( name: 'destroy' )
-
-# Settings
-
-def set_setting( name:, value: '', description: nil, level: 'site', locked: false )
-  setting = ShinyCMS::Setting.find_or_create_by!( name: name.to_s )
-  setting.unlock
-
-  setting.update!( description: description ) if description.present?
-  setting.update!( level: level ) unless setting.level == level
-
-  setting_value = setting.values.find_or_create_by!( user: nil )
-
-  setting_value.update!( value: value ) unless ShinyCMS::Setting.get( name ) == value
-
-  setting.lock if locked
-end
-
-set_setting(
+seeder.seed_setting(
   name:        :recaptcha_score_for_forms,
+  description: 'Minimum score for reCAPTCHA V3 on ShinyForm submissions',
   value:       '0.6',
-  locked:      true,
-  description: 'Minimum score for reCAPTCHA V3 on ShinyForm submissions'
+  locked:      true
 )
+
+seeder.seed_standard_admin_capabilities( category: :forms )
