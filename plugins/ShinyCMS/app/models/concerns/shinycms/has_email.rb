@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Common behaviour for models that store email addresses
-  module ShinyEmail
+  module HasEmail
     extend ActiveSupport::Concern
 
     included do
@@ -37,7 +37,7 @@ module ShinyCMS
       end
 
       def do_not_email?
-        !confirmed? || DoNotContact.include?( email )
+        !confirmed? || ShinyCMS::DoNotContact.include?( email )
       end
 
       def obfuscated_email

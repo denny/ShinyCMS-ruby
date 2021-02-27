@@ -6,6 +6,7 @@
 
 * CanHide         - check or change visible/hidden status of content
 * HasDemoData     - for models that may provide data for the demo site
+* HasEmail        - sets/searches/validates canonical_email as well as email
 * HasPublicName   - `.name` method - returns public_name if set, internal_name otherwise
 * HasReadableName - get a human-readable (and optionally, localised) version of model's class name
 * HasTags         - pulls in ActsAsTaggableOn and adds helper methods to hide tags on hidden content
@@ -13,8 +14,6 @@
 * HasToken        - common behaviour for models with UUID token attributes
 * HasVotes        - pulls in ActsAsVotable, plus method to get URL-safe class name
 * SoftDelete      - adds soft delete (from acts_as_paranoid gem)
-
-* ShinyEmail      - sets/searches/validates canonical_email as well as email
 
 * HasSlug                - for models with a slug attribute (usually for URLs)
 * HasSlugUniqueInMonth   - slug is only unique within a month (includes HasSlug)

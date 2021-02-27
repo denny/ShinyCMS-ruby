@@ -63,7 +63,7 @@ RSpec.describe ShinyCMS::EmailRecipient, type: :model do
       let( :model ) { described_class }
     end
 
-    it_behaves_like ShinyCMS::ShinyEmail do
+    it_behaves_like ShinyCMS::HasEmail do
       let( :addressee ) { create :email_recipient }
     end
 

@@ -11,7 +11,7 @@ module ShinyCMS
   # e.g. newsletter subscribers, pseudonymous comment reply notifications
   class EmailRecipient < ApplicationRecord
     include ShinyCMS::HasDemoData
-    include ShinyEmail
+    include ShinyCMS::HasEmail
     include ShinyCMS::HasToken
     include ShinyCMS::SoftDelete
 
