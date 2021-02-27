@@ -9,11 +9,11 @@
 module ShinyPages
   # Model for page templates - part of the ShinyPages plugin for ShinyCMS
   class Template < ApplicationRecord
-    include ShinyCMS::ShinyHTMLTemplate
+    include ShinyCMS::HTMLTemplate
 
     include ShinyCMS::HasDemoData
-    include ShinyCMS::ShinyClassName
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::HasReadableName
+    include ShinyCMS::SoftDelete
 
     # Associations
 

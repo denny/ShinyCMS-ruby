@@ -21,7 +21,7 @@ module ShinyNews
         let( :model ) { described_class }
       end
 
-      it_behaves_like ShinyCMS::ShinyPost do
+      it_behaves_like ShinyCMS::Post do
         let( :post ) { create :news_post }
       end
 

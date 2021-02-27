@@ -9,7 +9,7 @@
 module ShinyCMS
   # Model class for setting values (site-wide and per-user config settings)
   class SettingValue < ApplicationRecord
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Associations
 

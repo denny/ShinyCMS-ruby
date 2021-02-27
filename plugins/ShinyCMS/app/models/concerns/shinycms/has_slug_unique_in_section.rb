@@ -7,13 +7,17 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Add soft delete to a model (mark data as deleted and hide it, but don't actually delete from database)
-  module ShinySoftDelete
+  # Validator for slugs that only need to be unique within a section (e.g. page.slug / page_section.slug / etc)
+  module HasSlugUniqueInSection
     extend ActiveSupport::Concern
 
+    include ShinyCMS::HasSlug
+
     included do
-      acts_as_paranoid
-      validates_as_paranoid
+      validates :slug, uniqueness: {
+        scope:   :section,
+        message: I18n.t( 'shinycms.errors.messages.slug_not_unique_in_section' )
+      }
     end
   end
 end

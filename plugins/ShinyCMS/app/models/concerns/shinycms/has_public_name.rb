@@ -7,17 +7,16 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Validator for slugs that only need to be unique within a section (e.g. page.slug / page_section.slug / etc)
-  module ShinySlugInSection
+  # Provides .name method for anything with public_name and internal_name attributes
+  module HasPublicName
     extend ActiveSupport::Concern
 
-    include ShinySlug
-
     included do
-      validates :slug, uniqueness: {
-        scope:   :section,
-        message: I18n.t( 'shinycms.errors.messages.slug_not_unique_in_section' )
-      }
+      validates :internal_name, presence: true
+
+      def name
+        public_name.presence || internal_name
+      end
     end
   end
 end

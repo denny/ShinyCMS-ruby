@@ -9,10 +9,10 @@
 module ShinyCMS
   # Model class for comments
   class Comment < ApplicationRecord
+    include ShinyCMS::CanHide
     include ShinyCMS::HasDemoData
-    include ShinyShowHide
-    include ShinySoftDelete
-    include ShinyWithVotes
+    include ShinyCMS::HasVotes
+    include ShinyCMS::SoftDelete
 
     # Associations
 

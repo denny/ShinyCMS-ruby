@@ -9,8 +9,9 @@
 module ShinyBlog
   # Model for blog posts, from ShinyBlog plugin for ShinyCMS
   class Post < ApplicationRecord
+    include ShinyCMS::Post
+
     include ShinyCMS::HasDemoData
-    include ShinyCMS::ShinyPost
 
     belongs_to :user, inverse_of: :blog_posts, class_name: 'ShinyCMS::User'
 

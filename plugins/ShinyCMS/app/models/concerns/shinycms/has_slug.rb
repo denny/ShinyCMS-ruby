@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Common behaviour for URL slugs
-  module ShinySlug
+  module HasSlug
     extend ActiveSupport::Concern
 
     # Allowed characters for slugs: a-z A-Z 0-9 . _ -

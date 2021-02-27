@@ -9,7 +9,7 @@
 module ShinyCMS
   # Links users and capabilities
   class UserCapability < ApplicationRecord
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     belongs_to :user
     belongs_to :capability

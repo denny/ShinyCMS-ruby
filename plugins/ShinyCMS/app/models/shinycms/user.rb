@@ -12,10 +12,10 @@ module ShinyCMS
   class User < ApplicationRecord
     include ShinyUserAuthentication  # Devise
     include ShinyUserAuthorization   # Pundit
-
-    include ShinyEmail
-    include ShinySoftDelete
     include ShinyUserContent
+
+    include ShinyCMS::HasEmail
+    include ShinyCMS::SoftDelete
 
     # Validations
 

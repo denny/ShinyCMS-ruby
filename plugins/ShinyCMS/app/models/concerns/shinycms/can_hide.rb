@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Common behaviour for models that can be shown/hidden on the site, on site menus, etc
-  module ShinyShowHide
+  module CanHide
     extend ActiveSupport::Concern
 
     included do

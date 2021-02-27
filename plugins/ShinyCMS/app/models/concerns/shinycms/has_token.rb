@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Common behaviour for models that have a uuid token attribute
-  module ShinyToken
+  module HasToken
     extend ActiveSupport::Concern
 
     included do

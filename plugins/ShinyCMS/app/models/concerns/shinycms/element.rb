@@ -8,10 +8,10 @@
 
 module ShinyCMS
   # Common behaviour for element models (ShinyPages::PageElement, ShinyInserts::Element, etc)
-  module ShinyElement
+  module Element
     extend ActiveSupport::Concern
 
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Allowed characters for element names: a-z A-Z 0-9 _
     ELEMENT_NAME_REGEX = %r{[_a-zA-Z0-9]+}
@@ -34,7 +34,7 @@ module ShinyCMS
     class_methods do
       # Elements of templated items need to be inserted after the related Template, Template Elements, and item
       def demo_data_position
-        4 unless is_a? ShinyCMS::ShinyTemplate
+        4 unless is_a? ShinyCMS::Template
       end
     end
   end

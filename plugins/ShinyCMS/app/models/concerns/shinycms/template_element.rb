@@ -8,10 +8,10 @@
 
 module ShinyCMS
   # Common attributes and behaviours that all template element models share
-  module ShinyTemplateElement
+  module TemplateElement
     extend ActiveSupport::Concern
 
-    include ShinyElement
+    include ShinyCMS::Element
 
     included do
       # Associations

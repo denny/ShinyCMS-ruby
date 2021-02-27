@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Common behaviour for content templates - e.g. ShinyPages::Template, ShinyNewsletters::Template
-  module ShinyTemplate
+  module Template
     extend ActiveSupport::Concern
 
     included do

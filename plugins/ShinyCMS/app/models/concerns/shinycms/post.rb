@@ -8,17 +8,16 @@
 
 module ShinyCMS
   # Common behaviours for 'post' type models (blog post, news post, etc)
-  module ShinyPost
+  module Post
     extend ActiveSupport::Concern
 
-    include ShinyClassName
-    include ShinyShowHide
-    include ShinySlugInMonth
-    include ShinySoftDelete
-    include ShinyTeaser
-    include ShinyWithVotes
-
-    include ShinyCMS::WithTags
+    include ShinyCMS::CanHide
+    include ShinyCMS::HasReadableName
+    include ShinyCMS::HasSlugUniqueInMonth
+    include ShinyCMS::HasTags
+    include ShinyCMS::HasTeaser
+    include ShinyCMS::HasVotes
+    include ShinyCMS::SoftDelete
 
     included do
       # Associations
@@ -103,7 +102,7 @@ module ShinyCMS
         discussion&.most_recent_comment&.posted_at
       end
 
-      # Used by SlugInMonth validator
+      # Used by HasSlugUniqueInMonth validator
       def items_in_same_month
         self.class.readonly.published.where( posted_at: posted_at.all_month )
       end

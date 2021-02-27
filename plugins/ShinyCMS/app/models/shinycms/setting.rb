@@ -9,7 +9,7 @@
 module ShinyCMS
   # Class for settings items (definitions)
   class Setting < ApplicationRecord
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Custom error class
     class CannotUpdateLockedSetting < StandardError; end

@@ -7,18 +7,13 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Methods to facilitate easy translation of model class names into human-readable versions
-  module ShinyClassName
+  # Add soft delete to a model (mark data as deleted and hide it, but don't actually delete from database)
+  module SoftDelete
     extend ActiveSupport::Concern
 
-    class_methods do
-      def translated_name
-        I18n.t( "shinycms.models.names.#{i18n_label}" )
-      end
-
-      def i18n_label
-        name.underscore.tr( '/', '_' )
-      end
+    included do
+      acts_as_paranoid
+      validates_as_paranoid
     end
   end
 end

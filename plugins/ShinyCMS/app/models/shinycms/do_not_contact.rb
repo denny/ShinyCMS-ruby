@@ -10,7 +10,7 @@ module ShinyCMS
   # Store details of people who have asked you not to contact them at all
   # Uses EmailAddress.redact to store and search addresses via a one-way hash
   class DoNotContact < ApplicationRecord
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Validations
 

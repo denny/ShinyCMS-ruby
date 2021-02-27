@@ -8,10 +8,10 @@
 
 module ShinyCMS
   # Common behaviour for ERB MJML content templates - e.g. ShinyNewsletters::Template
-  module ShinyMJMLTemplate
+  module MJMLTemplate
     extend ActiveSupport::Concern
 
-    include ShinyTemplate
+    include ShinyCMS::Template
 
     included do
       # Validations
@@ -54,7 +54,7 @@ module ShinyCMS
       def available_templates
         return [] unless template_dir
 
-        filenames = Dir.glob '*.mjml', base: template_dir
+        filenames = Dir.glob '*.html.mjml', base: template_dir
         filenames.collect { |filename| filename.remove( '.html.mjml' ) }
       end
     end

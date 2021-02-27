@@ -6,7 +6,7 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Shared tests for methods and behaviour mixed-in by the ShinyPagingHelper
+# Shared tests for behaviour mixed-in by the ShinyCMS::Paging controller concern
 RSpec.shared_examples ShinyCMS::Paging do |factory, base_url, match_tag, match_text|
   before do
     @items = []

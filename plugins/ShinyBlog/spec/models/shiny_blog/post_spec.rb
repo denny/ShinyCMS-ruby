@@ -24,7 +24,7 @@ module ShinyBlog
         let( :model ) { described_class }
       end
 
-      it_behaves_like ShinyCMS::ShinyPost do
+      it_behaves_like ShinyCMS::Post do
         let( :post ) { create :blog_post }
       end
 
