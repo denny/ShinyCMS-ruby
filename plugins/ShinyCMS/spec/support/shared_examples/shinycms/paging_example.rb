@@ -8,12 +8,10 @@
 
 # Shared tests for behaviour mixed-in by the ShinyCMS::Paging controller concern
 RSpec.shared_examples ShinyCMS::Paging do |factory, base_url, match_tag, match_text|
+  let( :items ) { Array( 1..12 ).collect { |age| create factory.to_sym, posted_at: age.hours.ago } }
+
   before do
-    @items = []
-    Array( 1..12 ).reverse_each do |age|
-      item = create factory.to_sym, posted_at: age.hours.ago
-      @items.unshift item
-    end
+    items
   end
 
   context 'when viewing a list with twelve items in it' do
@@ -21,10 +19,10 @@ RSpec.shared_examples ShinyCMS::Paging do |factory, base_url, match_tag, match_t
       it 'shows the first ten items' do
         get base_url
 
-        expect( response.body ).to have_css match_tag, text: @items[0].public_send( match_text )
-        expect( response.body ).to have_css match_tag, text: @items[9].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items[0].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items[9].public_send( match_text )
 
-        expect( response.body ).not_to have_css match_tag, text: @items[10].public_send( match_text )
+        expect( response.body ).not_to have_css match_tag, text: items[10].public_send( match_text )
       end
     end
 
@@ -32,10 +30,10 @@ RSpec.shared_examples ShinyCMS::Paging do |factory, base_url, match_tag, match_t
       it 'shows the first ten items' do
         get "#{base_url}/page/1"
 
-        expect( response.body ).to have_css match_tag, text: @items[0].public_send( match_text )
-        expect( response.body ).to have_css match_tag, text: @items[9].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items[0].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items[9].public_send( match_text )
 
-        expect( response.body ).not_to have_css match_tag, text: @items[10].public_send( match_text )
+        expect( response.body ).not_to have_css match_tag, text: items[10].public_send( match_text )
       end
     end
 
@@ -45,10 +43,10 @@ RSpec.shared_examples ShinyCMS::Paging do |factory, base_url, match_tag, match_t
 
         get "#{base_url}/page/1?#{params.to_query}"
 
-        expect( response.body ).to have_css match_tag, text: @items[0].public_send( match_text )
-        expect( response.body ).to have_css match_tag, text: @items[4].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items[0].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items[4].public_send( match_text )
 
-        expect( response.body ).not_to have_css match_tag, text: @items[5].public_send( match_text )
+        expect( response.body ).not_to have_css match_tag, text: items[5].public_send( match_text )
       end
     end
 
@@ -58,10 +56,10 @@ RSpec.shared_examples ShinyCMS::Paging do |factory, base_url, match_tag, match_t
 
         get "#{base_url}?#{params.to_query}"
 
-        expect( response.body ).to have_css match_tag, text: @items[0].public_send( match_text )
-        expect( response.body ).to have_css match_tag, text: @items[4].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items[0].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items[4].public_send( match_text )
 
-        expect( response.body ).not_to have_css match_tag, text: @items[5].public_send( match_text )
+        expect( response.body ).not_to have_css match_tag, text: items[5].public_send( match_text )
       end
     end
 
@@ -69,10 +67,10 @@ RSpec.shared_examples ShinyCMS::Paging do |factory, base_url, match_tag, match_t
       it 'shows the last two items' do
         get "#{base_url}/page/2"
 
-        expect( response.body ).not_to have_css match_tag, text: @items[1].public_send( match_text )
+        expect( response.body ).not_to have_css match_tag, text: items[1].public_send( match_text )
 
-        expect( response.body ).to have_css match_tag, text: @items[10].public_send( match_text )
-        expect( response.body ).to have_css match_tag, text: @items[11].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items[10].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items[11].public_send( match_text )
       end
     end
 
@@ -82,12 +80,12 @@ RSpec.shared_examples ShinyCMS::Paging do |factory, base_url, match_tag, match_t
 
         get "#{base_url}/page/2?#{params.to_query}"
 
-        expect( response.body ).not_to have_css match_tag, text: @items[4].public_send( match_text )
+        expect( response.body ).not_to have_css match_tag, text: items[4].public_send( match_text )
 
-        expect( response.body ).to have_css match_tag, text: @items[5].public_send( match_text )
-        expect( response.body ).to have_css match_tag, text: @items[9].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items[5].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items[9].public_send( match_text )
 
-        expect( response.body ).not_to have_css match_tag, text: @items[10].public_send( match_text )
+        expect( response.body ).not_to have_css match_tag, text: items[10].public_send( match_text )
       end
     end
   end

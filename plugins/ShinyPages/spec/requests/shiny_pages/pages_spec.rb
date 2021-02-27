@@ -22,8 +22,10 @@ RSpec.describe 'Pages', type: :request do
   end
 
   context 'with at least one top-level page defined' do
+    let( :page ) { create :top_level_page }
+
     before do
-      @page = create :top_level_page
+      page
     end
 
     describe 'GET /' do
@@ -31,11 +33,10 @@ RSpec.describe 'Pages', type: :request do
         get '/'
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title @page.public_name
+        expect( response.body ).to have_title page.public_name
       end
 
       it 'renders an error if the template file is missing' do
-        page = create :top_level_page
         # rubocop:disable Rails/SkipsModelValidations
         page.template.update_column( :filename, 'no-such-file' )
         # rubocop:enable Rails/SkipsModelValidations
@@ -51,21 +52,21 @@ RSpec.describe 'Pages', type: :request do
 
     describe 'GET /page-name' do
       it 'fetches the specified top-level page' do
-        get "/#{@page.slug}"
+        get "/#{page.slug}"
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title @page.public_name
+        expect( response.body ).to have_title page.public_name
       end
     end
 
     describe 'GET /section-name/page-name' do
       it 'fetches the specified page from the specified section' do
-        page = create :page_in_section, :with_content
+        page2 = create :page_in_section, :with_content
 
-        get "/#{page.section.slug}/#{page.slug}"
+        get "/#{page2.section.slug}/#{page2.slug}"
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title page.public_name
+        expect( response.body ).to have_title page2.public_name
       end
     end
 
@@ -118,9 +119,9 @@ RSpec.describe 'Pages', type: :request do
 
     describe 'GET /existing-section/non-existent-slug', :production_error_responses do
       it 'returns a 404 if no matching page or sub-section is found in section' do
-        page = create :page_in_section
+        page3 = create :page_in_section
 
-        get "/#{page.section.slug}/non-existent-slug"
+        get "/#{page3.section.slug}/non-existent-slug"
 
         expect( response      ).to have_http_status :not_found
         expect( response.body ).to include 'a page that does not exist'
