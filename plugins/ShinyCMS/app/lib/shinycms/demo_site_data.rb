@@ -97,26 +97,13 @@ module ShinyCMS
     end
 
     def load_demo_site_data_file
-      reload_template_models
-
       skip_callbacks_on_some_models
 
       require DEMO_SITE_DATA_FILE
 
       set_callbacks_on_some_models
 
-      fix_primary_key_sequences
-    end
-
-    # This is ridiculous, but so far it's the only way I've found to get the
-    # template model validators to pick up the theme and hence have the correct
-    # available_templates list if the theme wasn't set before startup :( :( :(
-    def reload_template_models
-      ShinyNewsletters.__send__ :remove_const, :Template
-      ShinyPages.__send__       :remove_const, :Template
-
-      load 'plugins/ShinyNewsletters/app/models/shiny_newsletters/template.rb'
-      load 'plugins/ShinyPages/app/models/shiny_pages/template.rb'
+      fix_all_primary_key_sequences
     end
 
     def skip_callbacks_on_some_models
@@ -135,7 +122,7 @@ module ShinyCMS
       ShinyCMS::Comment.set_callback          :create, :after, :send_notifications
     end
 
-    def fix_primary_key_sequences
+    def fix_all_primary_key_sequences
       models_with_demo_data.each do |model|
         fix_primary_key_sequence( model.table_name )
       end
