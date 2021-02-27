@@ -12,6 +12,7 @@ module ShinyNews
     include ShinyCMS::Post
 
     include ShinyCMS::HasDemoData
+    include ShinyCMS::ProvidesSitemapData
 
     belongs_to :user, inverse_of: :news_posts, class_name: 'ShinyCMS::User'
 

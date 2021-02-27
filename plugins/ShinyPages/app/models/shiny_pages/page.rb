@@ -15,6 +15,7 @@ module ShinyPages
     include ShinyCMS::HasReadableName
     include ShinyCMS::HasSlugUniqueInSection
     include ShinyCMS::HasTemplate
+    include ShinyCMS::ProvidesSitemapData
     include ShinyCMS::SoftDelete
 
     include TopLevelSlugValidator
@@ -113,6 +114,8 @@ module ShinyPages
     def self.sitemap_items
       # Excludes the default page because the sitemap_generator gem includes root_path by default
       visible.readonly.where.not id: default_page.id
+      # TODO: make this put top-level pages first and then work it's way down
+      # a layer at a time - as a generic approximation of 'page importance'.
     end
   end
 end
