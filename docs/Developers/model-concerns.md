@@ -8,6 +8,7 @@
 * HasDemoData     - for models that may provide data for the demo site
 * HasPublicName   - `.name` method - returns public_name if set, internal_name otherwise
 * HasReadableName - get a human-readable (and optionally, localised) version of model's class name
+* HasTags         - pulls in ActsAsTaggableOn and adds helper methods to hide tags on hidden content
 * HasTeaser       - generate a 'teaser' from first N paragraphs of a longer post
 * HasToken        - common behaviour for models with UUID token attributes
 * HasVotes        - pulls in ActsAsVotable, plus method to get URL-safe class name
