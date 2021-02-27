@@ -16,8 +16,8 @@ RSpec/AnyInstance:
     - 'plugins/ShinyCMS/spec/requests/shinycms/admin/comments_controller_spec.rb'
     - 'plugins/ShinyCMS/spec/requests/shinycms/discussions_spec.rb'
     - 'plugins/ShinyCMS/spec/requests/shinycms/users/registrations_controller_spec.rb'
-    - 'plugins/ShinyForms/spec/requests/forms_spec.rb'
-    - 'plugins/ShinyLists/spec/requests/subscriptions_spec.rb'
+    - 'plugins/ShinyForms/spec/requests/shiny_forms/forms_spec.rb'
+    - 'plugins/ShinyLists/spec/requests/shiny_lists/subscriptions_spec.rb'
     - 'plugins/ShinySearch/spec/requests/shiny_search/search_controller_spec.rb'
 
 # Offense count: 195
@@ -32,5 +32,5 @@ RSpec/InstanceVariable:
     - 'plugins/ShinyCMS/spec/requests/shinycms/site_settings_controller_spec.rb'
     - 'plugins/ShinyCMS/spec/support/shared_examples/shinycms/paging_example.rb'
     - 'plugins/ShinyCMS/spec/support/shared_examples/shinycms/post_example.rb'
-    - 'plugins/ShinyNews/spec/requests/admin/news_spec.rb'
-    - 'plugins/ShinyPages/spec/requests/pages_spec.rb'
+    - 'plugins/ShinyNews/spec/requests/shiny_news/admin/news_spec.rb'
+    - 'plugins/ShinyPages/spec/requests/shiny_pages/pages_spec.rb'
