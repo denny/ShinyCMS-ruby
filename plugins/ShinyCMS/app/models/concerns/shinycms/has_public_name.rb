@@ -17,6 +17,8 @@ module ShinyCMS
       def name
         public_name.presence || internal_name
       end
+
+      alias_method :name, :slug_base
     end
   end
 end

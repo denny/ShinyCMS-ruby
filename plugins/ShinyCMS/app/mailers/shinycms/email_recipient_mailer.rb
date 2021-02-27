@@ -17,7 +17,7 @@ module ShinyCMS
       @user = @recipient = recipient
       @confirm_token = recipient.confirm_token
 
-      return if DoNotContact.include? recipient.email # TODO: make this happen without explicit call
+      return if DoNotContact.list_includes? recipient.email # TODO: make this happen without explicit call
 
       mail to: recipient.email_to, subject: confirm_subject do |format|
         format.html

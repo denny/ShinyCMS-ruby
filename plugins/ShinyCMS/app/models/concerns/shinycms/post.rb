@@ -45,10 +45,11 @@ module ShinyCMS
 
       # Attribute aliases and delegated methods
 
-      alias_attribute :author, :user
+      alias_attribute :author,    :user
+      alias_attribute :slug_base, :title
 
       delegate :show_on_site, to: :discussion, allow_nil: true, prefix: true
-      delegate :locked, to: :discussion, allow_nil: true, prefix: true
+      delegate :locked,       to: :discussion, allow_nil: true, prefix: true
 
       # Scopes and default sort order
 

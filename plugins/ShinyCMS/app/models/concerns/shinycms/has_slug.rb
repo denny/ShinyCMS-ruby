@@ -16,19 +16,17 @@ module ShinyCMS
     private_constant :SLUG_REGEX
 
     included do
+      validates :slug_base, presence: true
+
       validates :slug, presence: true, format: SLUG_REGEX
 
       before_validation :generate_slug, if: -> { slug.blank? }
 
-      # rubocop:disable Style/RedundantSelf
+      # Models that include this concern must provide a .slug_base method
+      # (probably an alias to their .name or .title method)
       def generate_slug
-        if self.respond_to?( :name ) && name.present?
-          self.slug = name.parameterize
-        elsif self.respond_to?( :title ) && title.present?
-          self.slug = title.parameterize
-        end
+        self.slug = slug_base.parameterize
       end
-      # rubocop:enable Style/RedundantSelf
     end
   end
 end
