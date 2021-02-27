@@ -9,15 +9,12 @@
 module ShinyInserts
   # Model class for Insert Elements - from the ShinyInserts plugin for ShinyCMS
   class Element < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinyElement
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::Element
 
-    # Associations
+    include ShinyCMS::HasDemoData
+    include ShinyCMS::SoftDelete
 
     belongs_to :set, inverse_of: :elements, class_name: 'ShinyInserts::Set'
-
-    # Validations
 
     validates :set, presence: true
   end

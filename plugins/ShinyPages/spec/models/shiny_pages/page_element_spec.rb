@@ -12,12 +12,12 @@ require 'rails_helper'
 module ShinyPages
   RSpec.describe PageElement, type: :model do
     describe 'concerns' do
-      it_behaves_like ShinyCMS::ShinyElement do
+      it_behaves_like ShinyCMS::Element do
         let( :page    ) { create :page                     }
         let( :element ) { create :page_element, page: page }
       end
 
-      it_behaves_like ShinyCMS::ShinyDemoDataProvider do
+      it_behaves_like ShinyCMS::HasDemoData do
         let( :model ) { described_class }
       end
     end

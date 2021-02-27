@@ -1,0 +1,17 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Run a 'representative sample' of spec files - one or two of each type, basically
+
+rspec spec/requests/ahoy_email_spec.rb \
+      spec/mailer_previews/rails_email_preview_spec.rb \
+      plugins/ShinyNewsletters/spec/jobs/shiny_newsletters/send_to_subscriber_spec.rb \
+      plugins/ShinyCMS/spec/mailers/shinycms/email_recipient_mailer_spec.rb \
+      plugins/ShinyCMS/spec/models/shinycms/plugins_spec.rb \
+      plugins/ShinyBlog/spec/models/shiny_blog/post_spec.rb \
+      plugins/ShinyPages/spec/requests/pages_spec.rb \
+      plugins/ShinyCMS/spec/requests/shinycms/discussions_spec.rb \
+      plugins/ShinyPages/spec/requests/admin/templates_spec.rb

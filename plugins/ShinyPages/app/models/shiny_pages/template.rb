@@ -9,11 +9,11 @@
 module ShinyPages
   # Model for page templates - part of the ShinyPages plugin for ShinyCMS
   class Template < ApplicationRecord
-    include ShinyCMS::ShinyHTMLTemplate
+    include ShinyCMS::HTMLTemplate
 
-    include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinyClassName
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::HasDemoData
+    include ShinyCMS::HasReadableName
+    include ShinyCMS::SoftDelete
 
     # Associations
 
@@ -33,7 +33,7 @@ module ShinyPages
 
     # Add another validation at the end, because it uses methods included/defined above
     validates :filename, inclusion: {
-      in:      available_templates,
+      in:      ->( _ ) { available_templates },
       message: I18n.t( 'models.shiny_pages.template.template_file_must_exist' )
     }
   end

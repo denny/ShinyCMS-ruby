@@ -12,7 +12,7 @@ require 'rails_helper'
 module ShinyNewsletters
   RSpec.describe Edition, type: :model do
     describe 'concerns' do
-      it_behaves_like ShinyCMS::ShinyDemoDataProvider do
+      it_behaves_like ShinyCMS::HasDemoData do
         let( :model ) { described_class }
       end
     end

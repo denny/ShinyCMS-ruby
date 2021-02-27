@@ -21,7 +21,7 @@ module ShinyCMS
         if resource.discussion.present?
           resource.discussion.update!( show_on_site: show, locked: lock )
         elsif show
-          Discussion.create!( resource: @post, show_on_site: show, locked: lock )
+          ShinyCMS::Discussion.create!( resource: @post, show_on_site: show, locked: lock )
         end
       end
     end

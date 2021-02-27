@@ -68,8 +68,9 @@ module ShinyCMS
     end
 
     def add_theme_view_path
-      # Apply the configured theme, if any, by adding its view path at the top of the list
-      prepend_view_path ShinyCMS::Theme.get( current_user )&.view_path
+      # Apply the configured theme, if any, by adding it above the defaults
+      theme = ShinyCMS::Theme.get( current_user )
+      prepend_view_path theme.view_path if theme.present?
     end
 
     # Check user's password against pwned password service and warn if necessary

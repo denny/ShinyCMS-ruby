@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Model for newsletter template elements
   class TemplateElement < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinyTemplateElement
+    include ShinyCMS::HasDemoData
+    include ShinyCMS::TemplateElement
   end
 end

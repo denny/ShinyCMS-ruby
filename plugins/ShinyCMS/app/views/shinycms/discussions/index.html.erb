@@ -21,7 +21,7 @@
         (<%= t( 'shinycms.discussions.n_total', count: discussion.comments.visible.count ) %>)
       </td>
       <td>
-        <%= discussion.resource.class.translated_name.titlecase %>
+        <%= discussion.resource.class.readable_name.titlecase %>
       </td>
     </tr>
     <% end %>

@@ -11,12 +11,23 @@ module ShinyCMS
   class DiscussionMailer < ApplicationMailer
     before_action :check_feature_flags
 
-    def parent_comment_notification( comment )
-      return unless comment&.parent&.notification_email&.present?
+    def self.send_notifications( comment )
+      p = comment.parent&.notification_email
+      parent_comment_notification( comment ) if p.present?
 
+      d = comment.discussion.notification_email
+      discussion_notification( comment ) unless d && d == p
+
+      a = Setting.get :all_comment_notifications_email
+      return if a.blank? || [ d, p ].include?( a )
+
+      overview_notification( comment )
+    end
+
+    def parent_comment_notification( comment )
       @reply, @parent = comment_and_parent( comment )
 
-      @user = notified_user( @parent.notification_email, @parent.author_name_or_anon )
+      @user = notified_user( @parent.notification_email, @parent.author.name )
 
       return if @user.do_not_email? # TODO: make this happen without explicit call
 
@@ -27,8 +38,6 @@ module ShinyCMS
     end
 
     def discussion_notification( comment )
-      return unless comment&.discussion&.notification_email&.present?
-
       @comment, @resource, @user = comment_and_resource_and_user( comment )
 
       return if @user.do_not_email? # TODO: make this happen without explicit call
@@ -58,7 +67,7 @@ module ShinyCMS
     def parent_comment_notification_subject
       I18n.t(
         'shinycms.discussion_mailer.parent_comment_notification.subject',
-        reply_author_name: @reply.author_name_or_anon,
+        reply_author_name: @reply.author.name,
         site_name:         site_name
       )
     end
@@ -66,8 +75,8 @@ module ShinyCMS
     def discussion_notification_subject
       I18n.t(
         'shinycms.discussion_mailer.discussion_notification.subject',
-        comment_author_name: @comment.author_name_or_anon,
-        content_type:        @resource.class.translated_name,
+        comment_author_name: @comment.author.name,
+        content_type:        @resource.class.readable_name,
         site_name:           site_name
       )
     end
@@ -75,7 +84,7 @@ module ShinyCMS
     def overview_notification_subject
       I18n.t(
         'shinycms.discussion_mailer.overview_notification.subject',
-        comment_author_name: @comment.author_name_or_anon,
+        comment_author_name: @comment.author.name,
         site_name:           site_name
       )
     end

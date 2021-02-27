@@ -9,16 +9,13 @@
 module ShinyNews
   # Model for news posts, from ShinyNews plugin for ShinyCMS
   class Post < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinyPost
+    include ShinyCMS::Post
 
-    # Associations
+    include ShinyCMS::HasDemoData
 
     belongs_to :user, inverse_of: :news_posts, class_name: 'ShinyCMS::User'
 
     has_one :discussion, as: :resource, dependent: :destroy, class_name: 'ShinyCMS::Discussion'
-
-    # Instance methods
 
     def path( anchor: nil )
       url_helpers.view_news_post_path(

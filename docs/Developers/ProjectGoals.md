@@ -2,7 +2,7 @@
 
 ## Project Goals
 
-This rewrite of ShinyCMS started out as as an educational exercise, giving me an opportunity to build a Ruby on Rails application from scratch and largely by myself. It's also been nice to have time for proper testing (100% coverage!), regular refactoring, and all the other things I don't get to do enough of at work :)
+This rewrite of ShinyCMS started out as as an educational exercise, giving me an opportunity to build a Ruby on Rails application from scratch and largely by myself. As it's gone on, it's been nice to have time for proper testing (100% coverage!), regular refactoring, and all the other things I don't get to do enough of at work :)
 
 The original, [Perl version of ShinyCMS](https://github.com/denny/ShinyCMS) was built to satisfy the varied requirements of a number of clients during 10 years of working as a freelance web developer, so it's not a small project. Even though I built the vast majority of it, I was still surprised at the length of the feature list when I tried to list it all out near the start of this project.
 
@@ -16,6 +16,8 @@ If you want to get involved in implementation of one of the features that I'm al
 
 See the [done](done.md) list for features from the original ShinyCMS that I have already implemented in this version - as well as a few new ones that snuck in along the way - with notes on improvements from the Perl version where applicable.
 
-See the [in-progress](in-progress.md) list for features that I am currently working on (with notes on where I'm up to, and links to useful docs).
+See 'to-do' column one on [the project board](https://github.com/denny/ShinyCMS-ruby/projects/1) for features from the original ShinyCMS that I haven't started implementing in this version yet. Column two has ideas for new features (that I'm trying to resist building until I've caught up with the Perl feature list). The third to-do column is plans for refactoring and other improvements that I hope to make to the code I've already written. Lots to do!
 
-See the [TODO](TODO.md) list for features from the original ShinyCMS that I haven't started implementing in this version yet... as well as ideas for new features (that I'm trying to resist building until I've caught up with the Perl feature list), and notes about fixes and refactoring that I want to do on the code I've already written.
+All my 'in progress' tasks are on the board too (column 5), usually with notes about how far I've got / what comes next / what I'm stuck on.
+
+(There are still some to-do items in the old [TODO](TODO.md) document as well; I'll get them all transferred to the project board eventually!)

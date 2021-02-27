@@ -9,10 +9,10 @@
 require 'rss'
 
 module ShinyCMS
-  # Model to assist in building Atom feed entries from ShinyPosts
+  # Model to assist in building Atom feed entries from ShinyCMS::Posts
   class ShinyPostAtomFeedEntry
-    include SiteNameHelper
     include ShinyCMS::MainAppRootURL
+    include ShinyCMS::SiteNameHelper
 
     attr_reader :entry, :feed, :post
 
@@ -73,7 +73,7 @@ module ShinyCMS
     end
 
     def feed_entry_summary( teaser )
-      return teaser unless post.body_longer_than_teaser?
+      return teaser if post.body.length < teaser.length + 10  # 10 is an arbitrary fudge factor
 
       <<~SUMMARY
         #{teaser}

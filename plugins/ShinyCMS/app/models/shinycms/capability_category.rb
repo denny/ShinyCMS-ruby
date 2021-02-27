@@ -9,7 +9,7 @@
 module ShinyCMS
   # Part of the Pundit-powered ACL - group capabilities by site area, e.g. :pages
   class CapabilityCategory < ApplicationRecord
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Associations
 
