@@ -32,10 +32,10 @@ ShinyPages::Template.create!([
 ShinyProfiles::Profile.create!([
   {id: 1, public_name: nil, public_email: nil, bio: nil, location: nil, postcode: nil, show_on_site: true, show_in_gallery: true, show_to_unauthenticated: false, user_id: @shiny_admin.id, deleted_at: nil}
 ])
-ShinyCMS::CommentAuthor.create!([
-  {id: 1, name: "ShinyCMS", website: "https://shinycms.org", ip_address: "127.0.0.1", token: "6cfe74c8-5e99-4589-9430-ac0b70e7ec1f", email_recipient_id: nil, deleted_at: nil},
-  {id: 2, name: "Pill Pusher", website: "http://spammy.website", ip_address: "127.0.0.1", token: "6de0eecc-8b3d-44ba-aee5-0e9ccbd42006", email_recipient_id: nil, deleted_at: nil},
-  {id: 3, name: "Lorem Long", website: "", ip_address: "127.0.0.1", token: "99b0c809-899e-4394-8c62-92e520e51985", email_recipient_id: nil, deleted_at: nil}
+ShinyCMS::PseudonymousAuthor.create!([
+  {id: 1, name: "ShinyCMS", url: "https://shinycms.org", ip_address: "127.0.0.1", token: "6cfe74c8-5e99-4589-9430-ac0b70e7ec1f", email_recipient_id: nil, deleted_at: nil},
+  {id: 2, name: "Pill Pusher", url: "http://spammy.website", ip_address: "127.0.0.1", token: "6de0eecc-8b3d-44ba-aee5-0e9ccbd42006", email_recipient_id: nil, deleted_at: nil},
+  {id: 3, name: "Lorem Long", url: "", ip_address: "127.0.0.1", token: "99b0c809-899e-4394-8c62-92e520e51985", email_recipient_id: nil, deleted_at: nil}
 ])
 ShinyNewsletters::TemplateElement.create!([
   {id: 1, name: "a_heading", content: "The ShinyCMS Newsletter!", element_type: "short_text", position: 1, template_id: 1, deleted_at: nil},

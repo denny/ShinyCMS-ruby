@@ -97,27 +97,42 @@ module ShinyCMS
     end
 
     def load_demo_site_data_file
-      skip_callbacks_on_templated_models
+      reload_template_models
+
+      skip_callbacks_on_some_models
 
       require DEMO_SITE_DATA_FILE
 
-      set_callbacks_on_templated_models
+      set_callbacks_on_some_models
 
       fix_primary_key_sequences
     end
 
-    def skip_callbacks_on_templated_models
-      ShinyPages::Page.skip_callback( :create, :after, :add_elements )
-      ShinyPages::Template.skip_callback( :create, :after, :add_elements )
-      ShinyNewsletters::Edition.skip_callback( :create, :after, :add_elements )
-      ShinyNewsletters::Template.skip_callback( :create, :after, :add_elements )
+    # This is ridiculous, but so far it's the only way I've found to get the
+    # template model validators to pick up the theme and hence have the correct
+    # available_templates list if the theme wasn't set before startup :( :( :(
+    def reload_template_models
+      ShinyNewsletters.__send__ :remove_const, :Template
+      ShinyPages.__send__       :remove_const, :Template
+
+      load 'plugins/ShinyNewsletters/app/models/shiny_newsletters/template.rb'
+      load 'plugins/ShinyPages/app/models/shiny_pages/template.rb'
     end
 
-    def set_callbacks_on_templated_models
-      ShinyPages::Template.set_callback( :create, :after, :add_elements )
-      ShinyPages::Page.set_callback( :create, :after, :add_elements )
-      ShinyNewsletters::Template.set_callback( :create, :after, :add_elements )
-      ShinyNewsletters::Edition.set_callback( :create, :after, :add_elements )
+    def skip_callbacks_on_some_models
+      ShinyNewsletters::Template.skip_callback :create, :after, :add_elements
+      ShinyNewsletters::Edition.skip_callback  :create, :after, :add_elements
+      ShinyPages::Template.skip_callback       :create, :after, :add_elements
+      ShinyPages::Page.skip_callback           :create, :after, :add_elements
+      ShinyCMS::Comment.skip_callback          :create, :after, :send_notifications
+    end
+
+    def set_callbacks_on_some_models
+      ShinyNewsletters::Template.set_callback :create, :after, :add_elements
+      ShinyNewsletters::Edition.set_callback  :create, :after, :add_elements
+      ShinyPages::Template.set_callback       :create, :after, :add_elements
+      ShinyPages::Page.set_callback           :create, :after, :add_elements
+      ShinyCMS::Comment.set_callback          :create, :after, :send_notifications
     end
 
     def fix_primary_key_sequences
