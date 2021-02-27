@@ -9,32 +9,12 @@
 # You can load or reload this data using the following rake task:
 # rails shiny_newsletters:db:seed
 
-# Feature flag
+require 'shinycms/seeder'
 
-flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'newsletters' )
-flag.update!(
-  description:           'Enable newsletter features (provided by ShinyNewsletters plugin)',
-  enabled:               true,
-  enabled_for_logged_in: true,
-  enabled_for_admins:    true
-)
+seeder = ShinyCMS::Seeder.new
 
-# Admin capabilities
+seeder.seed_feature_flag( name: :newsletters, description: 'Enable ShinyNewsletters plugin'  )
 
-def add_capabilities( capability_data )
-  capability_data.each_key do |category_name|
-    category = ShinyCMS::CapabilityCategory.find_or_create_by!( name: category_name )
-
-    capability_data[ category_name ].each do |capability_name|
-      category.capabilities.find_or_create_by( name: capability_name )
-    end
-  end
-end
-
-add_capabilities(
-  {
-    newsletter_editions:  %w[ list add edit destroy ],
-    newsletter_sends:     %w[ list add edit destroy ],
-    newsletter_templates: %w[ list add edit destroy ]
-  }
-)
+seeder.seed_standard_admin_capabilities( category: :newsletter_editions  )
+seeder.seed_standard_admin_capabilities( category: :newsletter_templates )
+seeder.seed_standard_admin_capabilities( category: :newsletter_sends     )

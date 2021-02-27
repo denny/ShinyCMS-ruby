@@ -9,11 +9,8 @@
 # You can load or reload this data using the following rake task:
 # rails shiny_profiles:db:seed
 
-# Add feature flag
-flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'user_profiles' )
-flag.update!(
-  description:           'User profile pages (provided by ShinyProfiles plugin)',
-  enabled:               true,
-  enabled_for_logged_in: true,
-  enabled_for_admins:    true
-)
+require 'shinycms/seeder'
+
+seeder = ShinyCMS::Seeder.new
+
+seeder.seed_feature_flag( name: :user_profiles, description: 'User profile pages (ShinyProfiles plugin)' )
