@@ -45,22 +45,27 @@ RSpec.shared_examples ShinyCMS::Post do
   end
 
   describe 'scopes' do
-    before do
-      post.update!( posted_at: 1.hour.ago )
-      @older = post.class.create!(
+    let( :older ) do
+      post.class.create!(
         title:     Faker::Books::CultureSeries.unique.culture_ship,
         body:      'Yesterday',
         user:      post.author,
         posted_at: 1.day.ago
       )
-      @hidden = post.class.create!(
+    end
+
+    let( :hidden ) do
+      post.class.create!(
         title:        Faker::Books::CultureSeries.unique.culture_ship,
         body:         'Today',
         user:         post.author,
         posted_at:    1.minute.ago,
         show_on_site: false
       )
-      @future = post.class.create!(
+    end
+
+    let( :future ) do
+      post.class.create!(
         title:     Faker::Books::CultureSeries.unique.culture_ship,
         body:      'Tomorrow',
         user:      post.author,
@@ -68,17 +73,24 @@ RSpec.shared_examples ShinyCMS::Post do
       )
     end
 
+    before do
+      post.update!( posted_at: 1.hour.ago )
+      older
+      hidden
+      future
+    end
+
     describe '.visible' do
       it "returns posts that aren't hidden" do
         expect( post.class.visible.size ).to eq 3
-        expect( post.class.visible.last ).to eq @future
+        expect( post.class.visible.last ).to eq future
       end
     end
 
     describe '.not_future_dated' do
       it "returns posts that aren't future-dated" do
         expect( post.class.not_future_dated.size ).to eq 3
-        expect( post.class.not_future_dated.last ).to eq @hidden
+        expect( post.class.not_future_dated.last ).to eq hidden
       end
     end
 
@@ -92,7 +104,7 @@ RSpec.shared_examples ShinyCMS::Post do
     describe '.recent' do
       it "returns posts that aren't hidden or future-dated, in most-recent-first order" do
         expect( post.class.recent.size ).to eq 2
-        expect( post.class.recent.last ).to eq @older
+        expect( post.class.recent.last ).to eq older
       end
     end
   end
