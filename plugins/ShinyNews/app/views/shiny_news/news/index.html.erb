@@ -6,9 +6,11 @@
 <section class="post">
   <%= render partial: 'news/index/post_header', locals: { post: post } %>
 
-  <%= sanitize post.teaser( paragraphs: 3 ) %>
+  <%= teaser = post.teaser( text: post.body, paragraphs: 3 ) %>
+  <%= sanitize teaser %>
 
-  <%= render partial: 'news/index/post_footer', locals: { post: post } %>
+  <% read_more = post.body.length > ( teaser.length + 10 ) ? 'read_more' : 'view_post' # 10 is an arbitrary fudge factor for extra newlines etc %>
+  <%= render partial: 'news/index/post_footer', locals:  { post: post, read_more: read_more } %>
 </section>
 <% end %>
 

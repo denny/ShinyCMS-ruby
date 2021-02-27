@@ -73,7 +73,7 @@ module ShinyCMS
     end
 
     def feed_entry_summary( teaser )
-      return teaser unless post.body_longer_than_teaser?
+      return teaser if post.body.length < teaser.length + 10  # 10 is an arbitrary fudge factor
 
       <<~SUMMARY
         #{teaser}

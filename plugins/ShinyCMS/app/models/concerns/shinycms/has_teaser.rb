@@ -7,35 +7,36 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Generate a teaser (short preview) from the text in .body (defaults to three paragraphs)
-  module ShinyTeaser
+  # Generate a teaser/short preview of the text passed in (defaults to .body)
+  # with the number of paragraphs requested (defaults to three)
+  module HasTeaser
     extend ActiveSupport::Concern
 
     included do
-      validates :body, presence: true
+      def teaser( paragraphs: 3, text: nil )
+        text ||= body
 
-      def body_longer_than_teaser?( paragraphs: 3 )
-        body_paragraphs.size > paragraphs
+        teaser_paragraphs = get_paragraphs( text, paragraphs )
+
+        return join_with_p_tags(  teaser_paragraphs ) if contains_p_tags(  text )
+        return join_with_br_tags( teaser_paragraphs ) if contains_br_tags( text )
+
+        text
       end
 
-      def teaser( paragraphs: 3 )
-        return body if body_paragraphs.size == 1
+      def get_paragraphs( text, paragraphs )
+        all_paragraphs = to_paragraphs( text )
 
-        paragraphs = body_paragraphs.size if body_paragraphs.size < paragraphs
+        paragraph_count = [ paragraphs, all_paragraphs.size ].min - 1
 
-        join_paragraphs( body_paragraphs[ 0..( paragraphs - 1 ) ] )
+        all_paragraphs[ 0..paragraph_count ]
       end
 
-      def body_paragraphs
-        return split_by_p_tags(  body ) if contains_p_tags(  body )
-        return split_by_br_tags( body ) if contains_br_tags( body )
+      def to_paragraphs( text )
+        return split_by_p_tags(  text ) if contains_p_tags(  text )
+        return split_by_br_tags( text ) if contains_br_tags( text )
 
-        [ body ]
-      end
-
-      def join_paragraphs( paragraphs )
-        return join_with_p_tags(  paragraphs ) if contains_p_tags(  body )
-        return join_with_br_tags( paragraphs ) if contains_br_tags( body )
+        [ text ]
       end
 
       def split_by_p_tags( text )
@@ -47,7 +48,7 @@ module ShinyCMS
       end
 
       def join_with_p_tags( paragraphs )
-        paragraphs.join( "\n</p>\n<p>" )
+        paragraphs.join "\n</p>\n<p>"
       end
 
       def join_with_br_tags( paragraphs )

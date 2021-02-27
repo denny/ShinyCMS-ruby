@@ -14,11 +14,11 @@ module ShinyCMS
     include ShinyCMS::CanHide
     include ShinyCMS::HasReadableName
     include ShinyCMS::HasSlugUniqueInMonth
+    include ShinyCMS::HasTeaser
     include ShinyCMS::HasVotes
     include ShinyCMS::SoftDelete
 
     include ShinyCMS::WithTags
-    include ShinyTeaser
 
     included do
       # Associations

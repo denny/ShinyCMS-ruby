@@ -8,12 +8,12 @@
 * HasDemoData     - for models that may provide data for the demo site
 * HasPublicName   - `.name` method - returns public_name if set, internal_name otherwise
 * HasReadableName - get a human-readable (and optionally, localised) version of model's class name
+* HasTeaser       - generate a 'teaser' from first N paragraphs of a longer post
+* HasToken        - common behaviour for models with UUID token attributes
 * HasVotes        - pulls in ActsAsVotable, plus method to get URL-safe class name
 * SoftDelete      - adds soft delete (from acts_as_paranoid gem)
 
 * ShinyEmail      - sets/searches/validates canonical_email as well as email
-* ShinyTeaser     - generate a truncated 'teaser' of a longer post
-* ShinyToken      - generate/reset/check UUID token attributes, with optional expiry times
 
 * HasSlug                - for models with a slug attribute (usually for URLs)
 * HasSlugUniqueInMonth   - slug is only unique within a month (includes HasSlug)

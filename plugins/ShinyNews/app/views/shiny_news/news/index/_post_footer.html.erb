@@ -1,9 +1,6 @@
+<% read_more_or_view_post = read_more || 'read_more' %>
 <footer>
-  <% if post.body_longer_than_teaser? %>
-    <%= link_to t( 'shiny_news.news.index.read_more' ), post.path %>
-  <% else %>
-    <%= link_to t( 'shiny_news.news.index.view_post' ), post.path %>
-  <% end %>
+  <%= link_to t( "shiny_news.news.index.#{read_more_or_view_post}" ), post.path %>
 
   <% if feature_enabled?( :comments ) && post.discussion&.show_on_site? %>
   <span class="float-right">
