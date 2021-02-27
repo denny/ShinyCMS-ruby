@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Models that supply demo site data
-  module ShinyCMS::HasDemoData
+  module HasDemoData
     extend ActiveSupport::Concern
 
     class_methods do
