@@ -36,8 +36,13 @@ module ShinyCMS
         self.canonical_email = EmailAddress.canonical( email )
       end
 
+      def ok_to_email?
+        confirmed? && !ShinyCMS::DoNotContact.list_includes?( email )
+      end
+
+      # TODO: make email address hard/non-standard to get at if marked not ok to email?
       def do_not_email?
-        !confirmed? || ShinyCMS::DoNotContact.include?( email )
+        !ok_to_email?
       end
 
       def obfuscated_email

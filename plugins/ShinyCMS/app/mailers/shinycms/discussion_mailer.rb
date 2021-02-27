@@ -29,7 +29,7 @@ module ShinyCMS
 
       @user = notified_user( @parent.notification_email, @parent.author.name )
 
-      return if @user.do_not_email? # TODO: make this happen without explicit call
+      return unless @user.ok_to_email? # TODO: make this happen without explicit call
 
       mail to: @user.email_to, subject: parent_comment_notification_subject do |format|
         format.html
@@ -40,7 +40,7 @@ module ShinyCMS
     def discussion_notification( comment )
       @comment, @resource, @user = comment_and_resource_and_user( comment )
 
-      return if @user.do_not_email? # TODO: make this happen without explicit call
+      return unless @user.ok_to_email? # TODO: make this happen without explicit call
 
       mail to: @user.email_to, subject: discussion_notification_subject do |format|
         format.html
