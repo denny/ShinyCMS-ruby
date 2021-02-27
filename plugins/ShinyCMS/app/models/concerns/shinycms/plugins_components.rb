@@ -41,6 +41,10 @@ module ShinyCMS
       def models_that_respond_to( method )
         💎ify[ with_models.collect { |plugin| plugin.models_that_respond_to method }.flatten.sort_by( &:name ) ]
       end
+
+      def models_that_include( concern )
+        💎ify[ with_models.collect { |plugin| plugin.models_that_include concern }.flatten.sort_by( &:name ) ]
+      end
     end
 
     class_methods do

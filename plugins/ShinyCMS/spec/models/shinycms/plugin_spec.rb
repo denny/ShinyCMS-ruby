@@ -10,10 +10,10 @@ require 'rails_helper'
 
 # Tests for Plugin model (represents a single plugin)
 RSpec.describe ShinyCMS::Plugin, type: :model do
-  describe '.models_that_respond_to( :method? )' do
+  describe '.models_that_include( concern )' do
     it 'returns an array of models from this plugin' do
-      plugin = described_class.new( 'ShinyBlog' )
-      models = plugin.models_that_respond_to :demo_data?
+      plugin = described_class.get( 'ShinyBlog' )
+      models = plugin.models_that_include ShinyCMS::HasDemoData
 
       expect( models       ).to be_an Enumerable
       expect( models.first ).to be ShinyBlog::Post

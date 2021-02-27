@@ -28,6 +28,8 @@ module ShinyCMS
 
     # Instance methods
 
+    alias_attribute :slug_base, :name
+
     def before_update
       return if subscriptions.blank?
 
