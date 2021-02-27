@@ -13,7 +13,7 @@
     <ul>
       <% @tagged_items[ type ].each do |item| %>
       <li>
-        <% if item.class.include? ShinyPost %>
+        <% if item.is_a? ShinyCMS::Post %>
         <%= link_to item.title, item.path %>
           posted by <%= user_profile_link( item.author ) %>
           at <%= display_time_on_date( item.posted_at ) %>

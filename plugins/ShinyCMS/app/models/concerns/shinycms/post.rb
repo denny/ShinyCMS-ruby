@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Common behaviours for 'post' type models (blog post, news post, etc)
-  module ShinyPost
+  module Post
     extend ActiveSupport::Concern
 
     include ShinyCMS::CanHide
@@ -102,7 +102,7 @@ module ShinyCMS
         discussion&.most_recent_comment&.posted_at
       end
 
-      # Used by SlugInMonth validator
+      # Used by HasSlugUniqueInMonth validator
       def items_in_same_month
         self.class.readonly.published.where( posted_at: posted_at.all_month )
       end

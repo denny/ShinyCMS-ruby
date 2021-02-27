@@ -19,7 +19,7 @@
 * HasSlugUniqueInMonth   - slug is only unique within a month (includes HasSlug)
 * HasSlugUniqueInSection - slug is only unique within a section (includes HasSlug)
 
-* ShinyPost       - common behaviour for 'posts' (e.g. ShinyBlog::Post, ShinyNews::Post) (includes CanHide, HasReadableName, HasSlugUniqueInMonth, SoftDelete, ShinyTeaser)
+* Post            - common behaviour for 'posts' (e.g. ShinyBlog::Post, ShinyNews::Post) (includes CanHide, HasReadableName, HasSlugUniqueInMonth, HasTags, HasTeaser, HasVotes, and SoftDelete)
 
 #### Templates and templated content
 
