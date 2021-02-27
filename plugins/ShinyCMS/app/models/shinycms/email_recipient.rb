@@ -12,8 +12,8 @@ module ShinyCMS
   class EmailRecipient < ApplicationRecord
     include ShinyCMS::HasDemoData
     include ShinyEmail
+    include ShinyCMS::HasToken
     include ShinyCMS::SoftDelete
-    include ShinyToken
 
     # Associations
 

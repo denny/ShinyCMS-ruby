@@ -67,7 +67,7 @@ RSpec.describe ShinyCMS::EmailRecipient, type: :model do
       let( :addressee ) { create :email_recipient }
     end
 
-    it_behaves_like ShinyCMS::ShinyToken do
+    it_behaves_like ShinyCMS::HasToken do
       let( :tokenised ) { create :email_recipient }
     end
   end
