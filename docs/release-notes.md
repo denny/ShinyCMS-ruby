@@ -33,8 +33,8 @@ This file contains information about changes (particularly breaking changes) bet
 
     * Also added:
         * ShinySEO plugin; currently it just generates sitemap files (to feed into Google et al), but I already had some ideas for the future involving metatags helpers and concerns, so I figured an SEO plugin might be a good place for all that to end up.
-        * [parallel-rspec]() - run the tests spread evenly across all your CPUs!
-        * [rspec-instafail]() - displays fuller details of test failures while the rest of the suite continues to run in 'progress dots only' mode - so I can start on the fixes before it's even finished running :)
+        * [parallel_tests](https://github.com/grosser/parallel_tests#readme) - run the tests spread evenly across all your CPUs!
+        * [rspec-instafail](https://github.com/grosser/rspec-instafail#readme) - displays fuller details of test failures while the rest of the suite continues to run in 'progress dots only' mode - so I can start on the fixes before it's even finished running :)
         * [A GitHub project board](), for task-tracking (instead of the TODO and in-progress files)
 
     * Updated:
