@@ -12,9 +12,10 @@ module ShinyCMS
     # Custom error class
     class HasBeenAgreedTo < StandardError; end
 
-    include ShinyCMS::HasDemoData
     include ShinyCMS::HasSlug
     include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     # Validations
 

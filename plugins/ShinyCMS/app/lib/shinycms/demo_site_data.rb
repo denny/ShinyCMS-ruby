@@ -15,8 +15,8 @@ module ShinyCMS
     # Used by export task
 
     def models_with_demo_data
-      core = ShinyCMS::Plugin.get( 'ShinyCMS' ).models_that_include( ShinyCMS::HasDemoData )
-      features = ShinyCMS.plugins.models_that_include( ShinyCMS::HasDemoData )
+      core = ShinyCMS::Plugin.get( 'ShinyCMS' ).models_that_include( ShinyCMS::ProvidesDemoSiteData )
+      features = ShinyCMS.plugins.models_that_include( ShinyCMS::ProvidesDemoSiteData )
 
       shinycms_models = [ core + features ].flatten.sort_by( &:name ).sort_by( &:demo_data_position )
 

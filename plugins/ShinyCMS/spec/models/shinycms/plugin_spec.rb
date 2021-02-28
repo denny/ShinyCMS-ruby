@@ -13,7 +13,7 @@ RSpec.describe ShinyCMS::Plugin, type: :model do
   describe '.models_that_include( concern )' do
     it 'returns an array of models from this plugin' do
       plugin = described_class.get( 'ShinyBlog' )
-      models = plugin.models_that_include ShinyCMS::HasDemoData
+      models = plugin.models_that_include ShinyCMS::ProvidesDemoSiteData
 
       expect( models       ).to be_an Enumerable
       expect( models.first ).to be ShinyBlog::Post

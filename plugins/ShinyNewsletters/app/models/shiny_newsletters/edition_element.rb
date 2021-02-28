@@ -11,8 +11,9 @@ module ShinyNewsletters
   class EditionElement < ApplicationRecord
     include ShinyCMS::Element
 
-    include ShinyCMS::HasDemoData
     include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     belongs_to :edition, inverse_of: :elements
 

@@ -16,7 +16,7 @@ module ShinyInserts
         let( :element ) { create :insert_element }
       end
 
-      it_behaves_like ShinyCMS::HasDemoData do
+      it_behaves_like ShinyCMS::ProvidesDemoSiteData do
         let( :model ) { described_class }
       end
     end

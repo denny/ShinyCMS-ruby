@@ -6,7 +6,7 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Shared test code, for testing methods mixed-in by ShinyCMS::HasDemoData concern
+# Shared test code, for testing methods mixed-in by ShinyCMS::ProvidesDemoSiteData concern
 RSpec.shared_examples 'ShinyCMS::Comment.author' do
   describe '.name' do
     it 'returns a string' do
