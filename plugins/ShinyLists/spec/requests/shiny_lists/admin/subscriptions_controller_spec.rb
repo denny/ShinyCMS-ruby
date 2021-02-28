@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for list subscription admin features
-RSpec.describe 'List Subscription admin features', type: :request do
+RSpec.describe ShinyLists::Admin::SubscriptionsController, type: :request do
   let( :list ) { create :mailing_list }
 
   before do

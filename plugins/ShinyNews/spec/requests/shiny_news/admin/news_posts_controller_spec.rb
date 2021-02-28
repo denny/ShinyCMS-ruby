@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for news admin features
-RSpec.describe 'Admin::News Posts', type: :request do
+RSpec.describe ShinyNews::Admin::NewsPostsController, type: :request do
   before do
     admin = create :news_admin
     sign_in admin

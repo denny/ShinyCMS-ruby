@@ -8,8 +8,7 @@
 
 require 'rails_helper'
 
-# Tests for mailing list admin features
-RSpec.describe 'Mailing List admin features', type: :request do
+RSpec.describe ShinyLists::Admin::ListsController, type: :request do
   before do
     admin = create :list_admin
     sign_in admin

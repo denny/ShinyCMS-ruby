@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for newsletter edition admin features
 
-RSpec.describe 'Admin: Newsletter Editions', type: :request do
+RSpec.describe ShinyNewsletters::Admin::EditionsController, type: :request do
   i18n_root = 'shiny_newsletters.admin.editions'
 
   before do

@@ -8,8 +8,7 @@
 
 require 'rails_helper'
 
-# Tests for form admin features
-RSpec.describe 'ShinyForms Admin', type: :request do
+RSpec.describe ShinyForms::Admin::FormsController, type: :request do
   before do
     admin = create :form_admin
     sign_in admin

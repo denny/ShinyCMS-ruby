@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for main site newsletter features
 
-RSpec.describe 'Newsletters', type: :request do
+RSpec.describe ShinyNewsletters::NewslettersController, type: :request do
   describe 'GET /newsletters' do
     it 'displays a list of newsletters sent to this subscriber recently' do
       user1 = create :user

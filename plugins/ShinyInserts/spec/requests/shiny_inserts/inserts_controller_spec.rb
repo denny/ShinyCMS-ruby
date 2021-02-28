@@ -8,7 +8,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Inserts', type: :request do
+RSpec.describe 'ShinyInserts: main site features', type: :request do
   describe 'GET /' do
     it 'fetches the page, including the content of the insert element' do
       page   = create :top_level_page
