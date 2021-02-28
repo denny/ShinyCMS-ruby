@@ -19,16 +19,14 @@ require 'dotenv/tasks'
 # - exports the current database contents to DEMO_SITE_DATA_FILE
 
 # Most of the import/export code for the demo site data is in this module:
-require_relative '../../plugins/ShinyCMS/app/lib/shinycms/demo_site_data'
+require_relative '../../app/lib/shinycms/demo_site_data'
 
 namespace :shiny do
   namespace :demo do
     include ShinyCMS::DemoSiteData
 
-    prereqs = %i[ environment dotenv confirm db:reset shiny:admin:get_admin_details ]
-
     desc 'ShinyCMS: reset database, create admin user, and load demo site data'
-    task load: prereqs do
+    task load: %i[ environment dotenv confirm db:reset shiny:admin:get_admin_details ] do
       # :nocov:
       prepare_admin_account_for_import( @shiny_admin )
 
@@ -45,9 +43,7 @@ namespace :shiny do
 
     task confirm: %i[ environment dotenv ] do
       # :nocov:
-      msg = 'Loading the demo site data wipes the database. Are you sure? (y/N) '
-
-      $stdout.print msg
+      $stdout.print 'Loading the demo site data wipes the database. Are you sure? (y/N) '
 
       unless $stdin.gets.chomp.downcase.in? %w[ y yes ]
         puts 'Thank you. No action taken, database is unchanged.'

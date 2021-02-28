@@ -38,8 +38,8 @@ Metrics/BlockLength:
     - Gemfile
     - config/environments/*
     - config/routes.rb
-    - lib/tasks/*.rake
     - plugins/Shiny*/config/routes.rb
+    - plugins/Shiny*/lib/tasks/*.rake
     - plugins/Shiny*/shiny_*.gemspec
     - plugins/Shiny*/spec/**/*.rb
     - plugins/ShinyCMS/app/models/concerns/shinycms/*.rb
