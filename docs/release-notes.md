@@ -8,11 +8,12 @@ This file contains information about changes (particularly breaking changes) bet
 
     * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.03
 
-    * Headline for this release: I moved almost all of the code that was still in the main_app, into a plugin :-o
+    * Headline for this release:
+        I moved almost all the code that was still in main_app, into a plugin! :-o
 
     * Done:
-        * The main_app is now called ShinyHostApp, and eventually it's _only_ job will be to load plugins - to demonstrate how (eventually!) ShinyCMS could potentially be integrated with any existing Rails app
-        * The code that was in main_app is now in the ShinyCMS core plugin, which you can find in `plugins/ShinyCMS`
+        * The main_app is now called ShinyHostApp, and eventually it's _only_ job will be to load plugins - to demonstrate how (eventually) ShinyCMS could potentially be integrated within any existing Rails app
+        * The code that was in main_app is now in the new ShinyCMS core plugin, which you can find in `plugins/ShinyCMS`
     * To-do:
         * The config files haven't moved yet, that's my next big job
         * The documentation is partially updated, but I haven't gone through it all yet, so there may well be discrepancies here there and everywhere
@@ -37,11 +38,12 @@ This file contains information about changes (particularly breaking changes) bet
         * [A GitHub project board](), for task-tracking (instead of the TODO and in-progress files)
 
     * Updated:
-        * Rails made its way from 6.1.1 to 6.1.3 over the month (with some security advisories involved I believe, so make sure you're up to date)
+        * LOTS OF DATABASE (TABLE NAME) CHANGES RELATED TO THE PLUGINIFICATION!!
         * After moving everything into the ShinyCMS plugin, I removed the leading 'Shiny' from a lot of helper and concern names, as they're namespaced now anyway
         * Made some changes around the comment-author area; it's a slightly more obvious role/duck-type now, with an AnonymousAuthor class joining in too
         * Pulled most of the code out of the demo-data rake task into a supporting module, and broke it up into smaller methods. Still needs more tests though.
         * I broke the plugin generator code up a bit too, but that's still pretty hideous. I got it down into the same complexity range as the rest of the system though, so it's not throwing the scale off in Ruby Critic's charts any more.
+        * Rails made its way from 6.1.1 to 6.1.3 over the month (with some security advisories involved I believe, so make sure you're up to date)
 
     * Removed:
         * Got rid of quite a lot of instance variable warnings from rubocop for the spec files - although there are still well over a hundred to go!
