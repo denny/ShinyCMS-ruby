@@ -8,7 +8,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'News', type: :request do
+RSpec.describe ShinyNews::NewsController, type: :request do
   before do
     ShinyCMS::FeatureFlag.enable :news
   end

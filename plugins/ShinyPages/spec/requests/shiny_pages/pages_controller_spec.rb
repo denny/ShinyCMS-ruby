@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for main site page features
-RSpec.describe 'Pages', type: :request do
+RSpec.describe ShinyPages::PagesController, type: :request do
   context 'without any pages in database' do
     describe 'GET /' do
       it "fetches the 'no content yet' page" do

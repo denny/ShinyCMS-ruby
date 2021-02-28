@@ -14,10 +14,10 @@
 RSpec/AnyInstance:
   Exclude:
     - 'plugins/ShinyCMS/spec/requests/shinycms/admin/comments_controller_spec.rb'
-    - 'plugins/ShinyCMS/spec/requests/shinycms/discussions_spec.rb'
+    - 'plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb'
     - 'plugins/ShinyCMS/spec/requests/shinycms/users/registrations_controller_spec.rb'
-    - 'plugins/ShinyForms/spec/requests/shiny_forms/forms_spec.rb'
-    - 'plugins/ShinyLists/spec/requests/shiny_lists/subscriptions_spec.rb'
+    - 'plugins/ShinyForms/spec/requests/shiny_forms/forms_controller_spec.rb'
+    - 'plugins/ShinyLists/spec/requests/shiny_lists/subscriptions_controller_spec.rb'
     - 'plugins/ShinySearch/spec/requests/shiny_search/search_controller_spec.rb'
 
 # Offense count: 135
@@ -28,4 +28,4 @@ RSpec/InstanceVariable:
     - 'plugins/ShinyCMS/spec/models/shinycms/discussion_spec.rb'
     - 'plugins/ShinyCMS/spec/requests/shinycms/admin/comments_controller_spec.rb'
     - 'plugins/ShinyCMS/spec/requests/shinycms/admin/discussions_controller_spec.rb'
-    - 'plugins/ShinyCMS/spec/requests/shinycms/discussions_spec.rb'
+    - 'plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb'

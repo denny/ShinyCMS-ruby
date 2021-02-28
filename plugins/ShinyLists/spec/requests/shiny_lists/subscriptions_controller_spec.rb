@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for main site list subscription features
-RSpec.describe 'List subscriptions', type: :request do
+RSpec.describe ShinyLists::SubscriptionsController, type: :request do
   before do
     ShinyCMS::FeatureFlag.enable :mailing_lists
     ShinyCMS::FeatureFlag.enable :user_login

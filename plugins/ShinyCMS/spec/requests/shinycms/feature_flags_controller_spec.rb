@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for main site usage of feature flags
-RSpec.describe 'Feature Flags (main site)', type: :request do
+RSpec.describe 'Feature Flags: main site features', type: :request do
   describe 'GET /login' do
     before do
       ShinyCMS::FeatureFlag.enable :user_profiles

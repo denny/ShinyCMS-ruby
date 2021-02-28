@@ -8,8 +8,7 @@
 
 require 'rails_helper'
 
-# Tests for access group membership admin features
-RSpec.describe 'Access group membership admin features', type: :request do
+RSpec.describe ShinyAccess::Admin::MembershipsController, type: :request do
   before do
     admin = create :access_admin
     sign_in admin

@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for newsletter template admin features
 
-RSpec.describe 'Admin: Newsletter Templates', type: :request do
+RSpec.describe ShinyNewsletters::Admin::TemplatesController, type: :request do
   before do
     admin = create :newsletter_template_admin
     sign_in admin

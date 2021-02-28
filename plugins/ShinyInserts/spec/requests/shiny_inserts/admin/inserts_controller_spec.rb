@@ -8,7 +8,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin: Inserts', type: :request do
+RSpec.describe ShinyInserts::Admin::InsertsController, type: :request do
   before do
     admin = create :insert_admin
     sign_in admin
