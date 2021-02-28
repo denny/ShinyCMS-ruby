@@ -12,7 +12,7 @@ GIT
 PATH
   remote: plugins/ShinyAccess
   specs:
-    shiny_access (21.02)
+    shiny_access (21.03)
       acts-as-taggable-on
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
@@ -24,7 +24,7 @@ PATH
 PATH
   remote: plugins/ShinyBlog
   specs:
-    shiny_blog (21.02)
+    shiny_blog (21.03)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -37,7 +37,7 @@ PATH
 PATH
   remote: plugins/ShinyCMS
   specs:
-    shinycms (21.02.14)
+    shinycms (21.03)
       acts_as_paranoid
       pagy
       pg (~> 1.2.3)
@@ -47,7 +47,7 @@ PATH
 PATH
   remote: plugins/ShinyForms
   specs:
-    shiny_forms (21.02)
+    shiny_forms (21.03)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
       pagy
@@ -58,7 +58,7 @@ PATH
 PATH
   remote: plugins/ShinyInserts
   specs:
-    shiny_inserts (21.02)
+    shiny_inserts (21.03)
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
@@ -70,7 +70,7 @@ PATH
 PATH
   remote: plugins/ShinyLists
   specs:
-    shiny_lists (21.02)
+    shiny_lists (21.03)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
       pagy
@@ -81,7 +81,7 @@ PATH
 PATH
   remote: plugins/ShinyNews
   specs:
-    shiny_news (21.02)
+    shiny_news (21.03)
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
@@ -94,7 +94,7 @@ PATH
 PATH
   remote: plugins/ShinyNewsletters
   specs:
-    shiny_newsletters (21.02)
+    shiny_newsletters (21.03)
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
@@ -106,7 +106,7 @@ PATH
 PATH
   remote: plugins/ShinyPages
   specs:
-    shiny_pages (21.02)
+    shiny_pages (21.03)
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
@@ -118,7 +118,7 @@ PATH
 PATH
   remote: plugins/ShinyProfiles
   specs:
-    shiny_profiles (21.02)
+    shiny_profiles (21.03)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
       pagy
@@ -129,7 +129,7 @@ PATH
 PATH
   remote: plugins/ShinySEO
   specs:
-    shiny_seo (21.02)
+    shiny_seo (21.03)
       pg (>= 0.18, < 2.0)
       rails (~> 6.1.2, >= 6.1.2.1)
       sitemap_generator
@@ -137,7 +137,7 @@ PATH
 PATH
   remote: plugins/ShinySearch
   specs:
-    shiny_search (21.02)
+    shiny_search (21.03)
       acts-as-taggable-on
       acts_as_paranoid
       algoliasearch-rails

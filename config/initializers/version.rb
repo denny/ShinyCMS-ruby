@@ -8,6 +8,6 @@
 
 # ShinyCMS version number ('Ubuntu style', YY.MM)
 module ShinyHostApp
-  VERSION = '21.02'
+  VERSION = '21.03'
   public_constant :VERSION
 end

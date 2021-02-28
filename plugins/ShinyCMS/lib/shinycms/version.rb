@@ -8,6 +8,6 @@
 
 # Version number ('Ubuntu style'; year and month)
 module ShinyCMS
-  VERSION = '21.02.14'
+  VERSION = '21.03'
   public_constant :VERSION
 end
