@@ -110,7 +110,6 @@ module ShinyCMS
 
       def self.sitemap_items
         recent.readonly
-        puts 'The original minty fresh method; accept no substitutes.'
       end
     end
 
