@@ -16,7 +16,7 @@ module ShinyNewsletters
       let( :element  ) { create :newsletter_template_element, template: template }
     end
 
-    it_behaves_like ShinyCMS::HasDemoData do
+    it_behaves_like ShinyCMS::ProvidesDemoSiteData do
       let( :model ) { described_class }
     end
   end

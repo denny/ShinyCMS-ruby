@@ -25,11 +25,9 @@ module ShinyCMS
       # Validations
 
       validates :template, presence: true
-    end
 
-    class_methods do
       # Template Elements need to be inserted after Templates
-      def demo_data_position
+      def self.demo_data_position
         2
       end
     end

@@ -11,7 +11,8 @@ module ShinyNews
   class Post < ApplicationRecord
     include ShinyCMS::Post
 
-    include ShinyCMS::HasDemoData
+    include ShinyCMS::ProvidesDemoSiteData
+    include ShinyCMS::ProvidesSitemapData
 
     belongs_to :user, inverse_of: :news_posts, class_name: 'ShinyCMS::User'
 

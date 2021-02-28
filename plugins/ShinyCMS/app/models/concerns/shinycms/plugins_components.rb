@@ -26,34 +26,17 @@ module ShinyCMS
         models_that_are( :taggable? )
       end
 
-      def votable_models
-        models_that_are( :votable? )
-      end
-
       def models_with_sitemap_items
-        models_that_respond_to( :sitemap_items )
+        models_that_include( ShinyCMS::ProvidesSitemapData )
       end
 
       def models_that_are( method )
         💎ify[ with_models.collect { |plugin| plugin.models_that_are method }.flatten.sort_by( &:name ) ]
       end
 
-      def models_that_respond_to( method )
-        💎ify[ with_models.collect { |plugin| plugin.models_that_respond_to method }.flatten.sort_by( &:name ) ]
+      def models_that_include( concern )
+        💎ify[ with_models.collect { |plugin| plugin.models_that_include concern }.flatten.sort_by( &:name ) ]
       end
-    end
-
-    class_methods do
-      delegate :engines, to: :all
-      delegate :routes,  to: :all
-
-      delegate :taggable_models, to: :all
-      delegate :votable_models,  to: :all
-
-      delegate :models_with_sitemap_items, to: :all
-
-      delegate :models_that_respond_to, to: :all
-      delegate :models_that_are,        to: :all
     end
   end
 end

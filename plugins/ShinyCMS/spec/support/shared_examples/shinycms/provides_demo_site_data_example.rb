@@ -6,14 +6,8 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Shared test code, for testing methods mixed-in by ShinyCMS::HasDemoData concern
-RSpec.shared_examples ShinyCMS::HasDemoData do
-  describe '.demo_data?' do
-    it 'returns true' do
-      expect( model.demo_data? ).to be true
-    end
-  end
-
+# Shared test code, for testing methods mixed-in by ShinyCMS::ProvidesDemoSiteData concern
+RSpec.shared_examples ShinyCMS::ProvidesDemoSiteData do
   describe '.demo_data_position' do
     it 'returns a number' do
       expect( model.demo_data_position ).to be_a Integer

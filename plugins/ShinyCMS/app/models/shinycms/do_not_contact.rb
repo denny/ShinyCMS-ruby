@@ -26,11 +26,11 @@ module ShinyCMS
     def self.add( email )
       return unless EmailAddress.valid?( email )
 
-      return :duplicate if include? email
+      return :duplicate if list_includes? email
       return :success   if create!( email: email )
     end
 
-    def self.include?( email )
+    def self.list_includes?( email )
       exists? email: canonicalise_and_redact( email )
     end
 

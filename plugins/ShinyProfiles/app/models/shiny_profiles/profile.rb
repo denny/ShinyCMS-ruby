@@ -10,8 +10,10 @@ module ShinyProfiles
   # Model for user profile pages (and related features)
   class Profile < ApplicationRecord
     include ShinyCMS::CanHide
-    include ShinyCMS::HasDemoData
     include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
+    include ShinyCMS::ProvidesSitemapData
 
     # Associations
 
@@ -66,7 +68,8 @@ module ShinyProfiles
     end
 
     def self.sitemap_items
-      visible.readonly
+      # TODO: let each user configure whether or not they consent to being fed into search engines
+      visible.readonly.order( updated_at: :desc )
     end
   end
 end

@@ -17,7 +17,7 @@ module ShinyPages
         let( :element ) { create :page_element, page: page }
       end
 
-      it_behaves_like ShinyCMS::HasDemoData do
+      it_behaves_like ShinyCMS::ProvidesDemoSiteData do
         let( :model ) { described_class }
       end
     end

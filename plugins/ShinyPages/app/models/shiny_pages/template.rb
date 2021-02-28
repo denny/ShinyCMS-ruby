@@ -11,9 +11,10 @@ module ShinyPages
   class Template < ApplicationRecord
     include ShinyCMS::HTMLTemplate
 
-    include ShinyCMS::HasDemoData
     include ShinyCMS::HasReadableName
     include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     # Associations
 

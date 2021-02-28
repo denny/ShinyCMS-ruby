@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for model holding details of unauthenticated comment authors
 RSpec.describe ShinyCMS::PseudonymousAuthor, type: :model do
   describe 'concerns' do
-    it_behaves_like ShinyCMS::HasDemoData do
+    it_behaves_like ShinyCMS::ProvidesDemoSiteData do
       let( :model ) { described_class }
     end
 

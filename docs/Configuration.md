@@ -30,19 +30,23 @@ rails shiny:feature:off[user_logins]
 
 The external services listed below are optional. If you add config details for them (via a .env* file (see [env.sample](env.sample)), or via your Config Vars on Heroku) then the related CMS features will be enabled or enhanced, otherwise those features will be unavailable or will have more limited functionality.
 
-### AWS S3 - file storage
-
-User uploaded files can be stored on AWS S3 instead of locally. To enable this feature you will need to have an an AWS account, create an S3 bucket, and add the relevant keys to the ENV/config.
-
-### reCAPTCHA - bot protection
-
-User registration and posting comments can be protected from bots using Google's reCAPTCHA service. To enable this feature you will need to obtain keys and add them to your ENV/config. You will get the best results with a pair of V3 keys and a pair of V2 keys (this allows you to set a minimum score for each protected feature in your Site Settings area). At first reCAPTCHA tries an 'invisible' (non-interactive) check (V3 with score if configured, V2 otherwise), falling back to a V2 checkbox if that fails.
-
 ### Akismet - spam flagging
 
 Comments can be passed to Akismet for its assessment of whether they are likely to be spam or not. Comments flagged as spam will be hidden on the main site and shown in an admin moderation queue.
 
 Processing comments in the moderation queue will send training data back to Akismet, which they use to improve their accuracy over time.
+
+### AWS S3 - file storage
+
+User uploaded files can be stored on AWS S3 instead of locally. To enable this feature you will need to have an an AWS account, create an S3 bucket, and add the relevant keys to the ENV/config.
+
+### Bugsnag - error monitoring
+
+If you add a BUGSNAG_API_KEY then ShinyCMS will start reporting to your Bugsnag account.
+
+### reCAPTCHA - bot protection
+
+User registration and posting comments can be protected from bots using Google's reCAPTCHA service. To enable this feature you will need to obtain keys and add them to your ENV/config. You will get the best results with a pair of V3 keys and a pair of V2 keys (this allows you to set a minimum score for each protected feature in your Site Settings area). At first reCAPTCHA tries an 'invisible' (non-interactive) check (V3 with score if configured, V2 otherwise), falling back to a V2 checkbox if that fails.
 
 
 ## Other services used (no config required)

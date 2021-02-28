@@ -63,10 +63,8 @@ module ShinyCMS
           element_type: 'image'
         )
       end
-    end
 
-    class_methods do
-      def template_file_exists?( filename )
+      def self.template_file_exists?( filename )
         available_templates.include? filename
       end
     end
