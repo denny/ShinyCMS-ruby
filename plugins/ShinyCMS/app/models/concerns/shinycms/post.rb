@@ -107,6 +107,11 @@ module ShinyCMS
       def items_in_same_month
         self.class.readonly.published.where( posted_at: posted_at.all_month )
       end
+
+      def self.sitemap_items
+        recent.readonly
+        puts 'The original minty fresh method; accept no substitutes.'
+      end
     end
 
     class_methods do
@@ -125,10 +130,6 @@ module ShinyCMS
         return post if post
 
         raise ActiveRecord::RecordNotFound
-      end
-
-      def sitemap_items
-        recent.readonly
       end
 
       def admin_search( search_term )
