@@ -136,17 +136,22 @@ source 'https://rubygems.org' do
   gem 'amazing_print'
 
   # Pry is a debugging tool for the Rails console
-  if env_var_true?( :shinycms_pry_console )
+  if ENV.fetch( 'SHINYCMS_PRY_CONSOLE', 'false' ).downcase == 'true'
     # Set SHINYCMS_PRY_CONSOLE=true in ENV to enable Pry in that environment
     gem 'pry-rails'
   else
-    # Pry is always enabled in dev and test environments
+    # Otherwise, Pry is enabled by default in dev and test environments
     gem 'pry-rails', groups: %i[ development test ]
   end
 
   group :production do
     # Airbrake - error monitoring and APM
-    gem 'airbrake'
+    # gem 'airbrake'
+    # (Commented out because their free trial service is ridiculously restricted,
+    # it's mostly buttons that don't work and a sales pitch every time you click
+    # on anything. If you're on Heroku I'd recommend trying Coralogix instead,
+    # that looks quite nice. And Bugsnag might look a bit clunky in comparison,
+    # but it has really well thought-out functionality, especially for teams.)
 
     # Bugsnag - error monitoring and bug triage
     gem 'bugsnag'
