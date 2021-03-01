@@ -133,6 +133,11 @@ ShinyCMS::Engine.routes.draw do
     ########################################
     # Rails engines provided by gems
 
+    # Flipper provides feature flags, this is its control panel
+    authenticate :user, ->( user ) { user.can? :edit, :feature_flags } do
+      mount Flipper::UI.app( Flipper ) => '/admin/flipper'
+    end
+
     # CKEditor provides the WYSIWYG editor used in the ShinyCMS admin area
     mount Ckeditor::Engine, at: '/admin/ckeditor'
 

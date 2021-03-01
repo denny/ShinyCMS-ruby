@@ -76,6 +76,11 @@ source 'https://rubygems.org' do
   # This adds more details to the Sidekiq web dashboard
   gem 'sidekiq-status'
 
+  # Feature flags
+  gem 'flipper'
+  # Complete with web interface
+  gem 'flipper-ui'
+
   # Bot detection to protect forms (including registration, comments, etc)
   gem 'recaptcha'
 
