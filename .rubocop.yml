@@ -56,7 +56,7 @@ Layout/LineLength:
 # This config file is easier to understand laid out as it is, not as this cop wants it
 Layout/MultilineArrayLineBreaks:
   Exclude:
-    - config/initializers/html_sanitizer.rb
+    - plugins/ShinyCMS/config/initializers/html_sanitizer.rb
 
 # This method is not useless - it allows user registrations to be feature-flagged
 Lint/UselessMethodDefinition:
@@ -93,7 +93,7 @@ Rails/Output:
 # This code is intentionally and helpfully rewriting a bit of HTML
 Rails/OutputSafety:
   Exclude:
-    - config/initializers/field_with_errors.rb
+    - plugins/ShinyCMS/config/initializers/field_with_errors.rb
 
 # This isn't an ActiveRecord create method
 Rails/SaveBang:
