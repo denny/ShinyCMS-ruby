@@ -45,9 +45,7 @@ namespace :shiny do
 
     task confirm: %i[ environment dotenv ] do
       # :nocov:
-      msg = 'Loading the demo site data wipes the database. Are you sure? (y/N) '
-
-      $stdout.print msg
+      $stdout.print 'Loading the demo site data wipes the database. Are you sure? (y/N) '
 
       unless $stdin.gets.chomp.downcase.in? %w[ y yes ]
         puts 'Thank you. No action taken, database is unchanged.'
@@ -60,9 +58,7 @@ namespace :shiny do
       # :nocov:
       prepare_for_export
 
-      create_statements = create_statements_for_all( models_with_demo_data )
-
-      demo_data = munge_user_id( create_statements )
+      demo_data = munge_user_id_in create_statements_for_all models_with_demo_data
 
       write_demo_data_to_file( demo_data )
       # :nocov:
