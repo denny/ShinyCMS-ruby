@@ -40,15 +40,15 @@ MoveCodeIntoModelCheck: { use_count: 2, ignored_files: [ 'app/views(/\w+)?/admin
 # - the method used to control access to Blazer (set in config/blazer.yml)
 # - two methods that change default Devise behaviour
 # - the `breadcrumb_link_text_and_path` helper method (in 2 admin controllers) that overrides the section link in the admin area breadcrumbs
-# - the `load_html_editor?` helper method (in 5 admin controllers) that triggers loading of the CKEditor JavaScript
-# - the `pagy_url_for` helper method (in 4 main site controllers and 14 admin controllers) that makes Pagy generate nicer URLs
+# - the `load_html_editor?` helper method (in 7 admin controllers) that triggers loading of the CKEditor JavaScript
+# - the `pagy_url_for` helper method in the ShinyCMS application controller (that everything else inherits from) that makes Pagy generate nicer URLs
 RemoveUnusedMethodsInControllersCheck: { except_methods: [
   'ShinyPages::Admin::PagesController#sort',
 
-  'ApplicationController#current_user_can_view_charts?',
+  'ApplicationController#blazer_authorize',
 
-  'MainController#after_sign_in_path_for',
-  'RegistrationsController#after_update_path_for',
+  'ShinyCMS::MainController#after_sign_in_path_for',
+  'ShinyCMS::Users::RegistrationsController#after_update_path_for',
 
   'ShinyAccess::Admin::MembershipsController#breadcrumb_link_text_and_path',
   'ShinyLists::Admin::SubscriptionsController#breadcrumb_link_text_and_path',
@@ -56,29 +56,12 @@ RemoveUnusedMethodsInControllersCheck: { except_methods: [
   'ShinyBlog::Admin::BlogPostsController#load_html_editor?',
   'ShinyInserts::Admin::InsertsController#load_html_editor?',
   'ShinyNews::Admin::NewsPostsController#load_html_editor?',
+  'ShinyNewsletters::Admin::EditionsController#load_html_editor?',
+  'ShinyNewsletters::Admin::TemplatesController#load_html_editor?',
   'ShinyPages::Admin::PagesController#load_html_editor?',
   'ShinyPages::Admin::TemplatesController#load_html_editor?',
 
-  'ShinyBlog::BlogController#pagy_url_for',
-  'ShinyNews::NewsController#pagy_url_for',
-  'ShinyNewsletters::NewslettersController#pagy_url_for',
-  'ShinySearch::SearchController#pagy_url_for',
-
-  'ShinyAccess::AdminController#pagy_url_for',
-  'ShinyBlog::AdminController#pagy_url_for',
-  'ShinyForms::AdminController#pagy_url_for',
-  'ShinyNews::AdminController#pagy_url_for',
-  'ShinyNewsletters::AdminController#pagy_url_for',
-  'ShinyLists::AdminController#pagy_url_for',
-  'ShinyPages::AdminController#pagy_url_for',
-  'ShinySearch::AdminController#pagy_url_for',
-
-  'Admin::CommentsController#pagy_url_for',
-  'Admin::ConsentVersionsController#pagy_url_for',
-  'Admin::EmailRecipientsController#pagy_url_for',
-  'Admin::EmailStatsController#pagy_url_for',
-  'Admin::UsersController#pagy_url_for',
-  'Admin::WebStatsController#pagy_url_for'
+  'ShinyCMS::ApplicationController#pagy_url_for'
 ] }
 
 # First six used in templates, last four in mailers
@@ -89,18 +72,18 @@ RemoveUnusedMethodsInHelpersCheck: { except_methods: [
   'ShinyInserts::MainSiteHelper#insert',
   'ShinyInserts::MainSiteHelper#insert_type?',
   'ShinyLists::MainSiteHelper#find_list_by_slug',
-  'MailerHelper#add_view_paths',
-  'MailerHelper#default_email',
-  'MailerHelper#track_opens?',
-  'MailerHelper#track_clicks?'
+  'ShinyCMS::MailerHelper#add_view_paths',
+  'ShinyCMS::MailerHelper#default_email',
+  'ShinyCMS::MailerHelper#track_opens?',
+  'ShinyCMS::MailerHelper#track_clicks?'
 ] }
 
 # First two are aliases; next two override Devise behaviour; rest are in use, probably.
 RemoveUnusedMethodsInModelsCheck: { except_methods: [
-  'FeatureFlag#on',
-  'FeatureFlag#off',
-  'User#find_first_by_auth_conditions',
-  'User#send_devise_notification',
+  'ShinyCMS::FeatureFlag#on',
+  'ShinyCMS::FeatureFlag#off',
+  'ShinyCMS::User#find_first_by_auth_conditions',
+  'ShinyCMS::User#send_devise_notification',
   'ShinyForms::Form#action',
   'ShinyForms::Form#template_file_exists?',
   'ShinyForms::FormHandler#plain_email',
@@ -109,7 +92,9 @@ RemoveUnusedMethodsInModelsCheck: { except_methods: [
   'ShinyNewsletters::Edition#items_in_same_month',
   'ShinyNewsletters::Send#send_at_time',
   'ShinyPages::Page#default_page?',
-  'ShinyPages::Page#top_level_menu_items'
+  'ShinyPages::Page#sitemap_items',
+  'ShinyPages::Page#top_level_menu_items',
+  'ShinyProfiles::Profile#sitemap_items'
 ] }
 
 
