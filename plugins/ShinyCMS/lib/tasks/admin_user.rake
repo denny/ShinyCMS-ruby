@@ -26,8 +26,8 @@ namespace :shinycms do
     include AdminUserTask
 
     desc 'ShinyCMS: create a new super-admin user (all capabilities enabled)'
-    # :nocov:
     task create: %i[ environment dotenv get_admin_details ] do
+      # :nocov:
       @shiny_admin.skip_confirmation!
       @shiny_admin.save!
 
@@ -38,9 +38,11 @@ namespace :shinycms do
       end
 
       puts "ShinyCMS super-admin created; you can log in as '#{@shiny_admin.username}' now."
+      # :nocov:
     end
 
     task get_admin_details: %i[ environment dotenv ] do
+      # :nocov:
       username = ENV['username'] || ENV['SHINYCMS_ADMIN_USERNAME']
       password = ENV['password'] || ENV['SHINYCMS_ADMIN_PASSWORD']
       email    = ENV['email'   ] || ENV['SHINYCMS_ADMIN_EMAIL'   ]
@@ -54,7 +56,7 @@ namespace :shinycms do
       admin, account_details = configure_password( admin, account_details )
 
       @shiny_admin = configure_email( admin, account_details )
+      # :nocov:
     end
-    # :nocov:
   end
 end

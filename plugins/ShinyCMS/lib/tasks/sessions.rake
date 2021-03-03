@@ -11,13 +11,13 @@ require 'dotenv/tasks'
 # Task to clear short sessions (probably spambots?) out of the ShinyCMS database
 
 # Usage:
-#   rails shiny:sessions:clean max=3  # Delete data for sessions up to 3 seconds long
+#   rails shinycms:sessions:clean max=3  # Delete data for sessions up to 3 seconds long
 
-namespace :shiny do
+namespace :shinycms do
   namespace :sessions do
-    # :nocov:
     desc 'ShinyCMS: delete data for short sessions'
     task clean: %i[ environment dotenv ] do
+      # :nocov:
       duration = ENV['max'].to_i
 
       unless duration.positive?
@@ -32,7 +32,7 @@ namespace :shiny do
           extract( epoch from updated_at ) - extract( epoch from created_at )
         ) < #{duration}
       SQL
+      # :nocov:
     end
-    # :nocov:
   end
 end

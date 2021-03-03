@@ -42,7 +42,6 @@ module AdminUserTask
     admin
   end
 
-  # rubocop:disable Rails/Output
   def display_errors( attribute, errors )
     errors.each do |error|
       puts "#{attribute.capitalize}: #{error}"
@@ -53,7 +52,6 @@ module AdminUserTask
     puts "Please set the #{attribute} for your admin account:"
     $stdin.gets.strip
   end
-  # rubocop:enable Rails/Output
 
   def check_details( account_details )
     admin = ShinyCMS::User.new( **account_details )
