@@ -10,23 +10,18 @@
 
 get :admin, to: 'admin#index'
 
-concern :paginatable do
-  get '(page/:page)', action: :index, on: :collection, as: ''
-end
-concern :searchable do
-  get :search, on: :collection
-end
-
 scope path: 'admin', module: 'admin' do
+  # with_paging and with_search
+  import_routes file: :admin_route_concerns
+
   # Consent versions
-  resources :consent_versions, path: 'consent-versions', concerns: %i[ paginatable searchable ]
+  resources :consent_versions, path: 'consent-versions', concerns: %i[ with_paging with_search ], except: :index
 
   # Admin area routes for comments and discussions
   import_routes file: :admin_area_for_discussions
 
   # Email Recipients
-  resources :email_recipients, path: 'email-recipients', concerns: %i[ paginatable searchable ],
-                                only: %i[ index destroy ] do
+  resources :email_recipients, path: 'email-recipients', concerns: %i[ with_paging with_search ], only: :destroy do
     put :'do-not-contact', on: :member, to: 'email_recipients#do_not_contact'
   end
 
@@ -42,6 +37,6 @@ scope path: 'admin', module: 'admin' do
   import_routes file: :admin_area_for_stats
 
   # Users
-  resources :users, except: :show, concerns: %i[ paginatable searchable ]
+  resources :users, concerns: %i[ with_paging with_search ], except: %i[ index show ]
   get 'users/usernames', to: 'users#username_search', as: :search_usernames
 end
