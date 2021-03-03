@@ -40,41 +40,59 @@ namespace :shiny do
       admin = ShinyCMS::User.new( username: username, password: password, email: email )
       admin.valid?
 
-      while admin.errors.messages.key? :username
-        admin.errors[:username].each do |error|
-          puts "Username: #{error}" unless username.nil?
-        end
-        puts 'Please choose a username for your admin account:'
-        username = $stdin.gets.strip
+      admin, username = configure_username( admin, username, password, email )
+      admin, password = configure_password( admin, username, password, email )
 
-        admin = ShinyCMS::User.new( username: username, password: password, email: email )
-        admin.valid?
-      end
-
-      while admin.errors.messages.key? :password
-        admin.errors[:password].each do |error|
-          puts "Password: #{error}" unless password.nil?
-        end
-        puts 'Please set the password of your admin account:'
-        password = $stdin.gets.strip
-
-        admin = ShinyCMS::User.new( username: username, password: password, email: email )
-        admin.valid?
-      end
-
-      while admin.errors.messages.key? :email
-        admin.errors[:email].each do |error|
-          puts "Email: #{error}" unless email.nil?
-        end
-        puts 'Please set the email address of your admin account:'
-        email = $stdin.gets.strip
-
-        admin = ShinyCMS::User.new( username: username, password: password, email: email )
-        admin.valid?
-      end
-
-      @shiny_admin = admin
+      @shiny_admin = configure_email( admin, username, password, email )
     end
     # :nocov:
   end
+end
+
+def configure_username( admin, username, password, email )
+  # :nocov:
+  while admin.errors.messages.key? :username
+    admin.errors[:username].each do |error|
+      puts "Username: #{error}" unless username.nil?
+    end
+    puts 'Please choose a username for your admin account:'
+    username = $stdin.gets.strip
+
+    admin = ShinyCMS::User.new( username: username, password: password, email: email )
+    admin.valid?
+  end
+  [ admin, username ]
+  # :nocov:
+end
+
+def configure_password( admin, username, password, email )
+  # :nocov:
+  while admin.errors.messages.key? :password
+    admin.errors[:password].each do |error|
+      puts "Password: #{error}" unless password.nil?
+    end
+    puts 'Please set the password of your admin account:'
+    password = $stdin.gets.strip
+
+    admin = ShinyCMS::User.new( username: username, password: password, email: email )
+    admin.valid?
+  end
+  [ admin, password ]
+  # :nocov:
+end
+
+def configure_email( admin, username, password, email )
+  # :nocov:
+  while admin.errors.messages.key? :email
+    admin.errors[:email].each do |error|
+      puts "Email: #{error}" unless email.nil?
+    end
+    puts 'Please set the email address of your admin account:'
+    email = $stdin.gets.strip
+
+    admin = ShinyCMS::User.new( username: username, password: password, email: email )
+    admin.valid?
+  end
+  admin
+  # :nocov:
 end

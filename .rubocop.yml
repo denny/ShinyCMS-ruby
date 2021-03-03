@@ -32,18 +32,15 @@ AllCops:
     - db/schema.rb
     - plugins/*/db/migrate/*.rb
 
-# These are allowed and expected to contain long blocks
+# These are mostly expected to contain long blocks due to their DSL
 Metrics/BlockLength:
   Exclude:
     - Gemfile
     - config/environments/*
-    - config/routes.rb
-    - lib/tasks/*.rake
-    - plugins/Shiny*/config/routes.rb
     - plugins/Shiny*/shiny_*.gemspec
     - plugins/Shiny*/spec/**/*.rb
     - plugins/ShinyCMS/app/models/concerns/shinycms/*.rb
-    - spec/**/*.rb
+    - spec/mailer_previews/*_spec.rb
 
 # Spec files with I18n.t calls in them are more readable with longer single lines
 # than they are with shorter split lines, and the demo data file is auto-generated.
