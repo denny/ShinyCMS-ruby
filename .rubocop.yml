@@ -32,7 +32,7 @@ AllCops:
     - db/schema.rb
     - plugins/*/db/migrate/*.rb
 
-# These are mostly files with a DSL that makes long blocks quite hard to avoid
+# These are mostly expected to contain long blocks due to their DSL
 Metrics/BlockLength:
   Exclude:
     - Gemfile
@@ -43,7 +43,7 @@ Metrics/BlockLength:
     - spec/mailer_previews/*_spec.rb
 
 # Spec files with I18n.t calls in them are more readable with longer single lines
-# than they are with shorter split lines. And the demo data file is auto-generated.
+# than they are with shorter split lines, and the demo data file is auto-generated.
 Layout/LineLength:
   Exclude:
     - spec/**/*.rb
