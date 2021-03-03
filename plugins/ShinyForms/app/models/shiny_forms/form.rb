@@ -78,7 +78,7 @@ module ShinyForms
     end
 
     def self.default_template_dir
-      Rails.root.join 'plugins/ShinyForms/app/views/shiny_forms/form_mailer'
+      ShinyForms::Engine.root.join 'app/views/shiny_forms/form_mailer'
     end
 
     def self.admin_search( search_term )
