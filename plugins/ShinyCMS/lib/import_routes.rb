@@ -28,7 +28,7 @@ module ActionDispatch
 
         instance_eval(
           File.read(
-            Rails.application.root.join( "plugins/#{plugin}/config/routes/#{file}.rb" )
+            Rails.root.join( "plugins/#{plugin}/config/routes/#{file}.rb" )
           )
         )
       end

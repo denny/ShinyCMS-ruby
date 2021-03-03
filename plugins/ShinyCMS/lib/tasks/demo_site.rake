@@ -24,10 +24,8 @@ namespace :shinycms do
   namespace :demo do
     include DemoSiteTask
 
-    prereqs = %i[ environment dotenv confirm db:reset shinycms:admin:get_admin_details ]
-
     desc 'ShinyCMS: reset database, create admin user, and load demo site data'
-    task load: prereqs do
+    task load: %i[ environment dotenv confirm db:reset shiny:admin:get_admin_details ] do
       # :nocov:
       prepare_admin_account_for_import( @shiny_admin )
 

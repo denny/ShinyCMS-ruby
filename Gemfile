@@ -113,9 +113,6 @@ source 'https://rubygems.org' do
   # Upvotes (AKA 'Likes') and downvotes
   gem 'acts_as_votable'
 
-  # Generate SEO sitemaps
-  gem 'sitemap_generator'
-
   # Generate Atom feeds
   gem 'rss'
 
