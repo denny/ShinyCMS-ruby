@@ -8,7 +8,8 @@
 
 require 'rails_helper'
 
-RSpec.describe ShinyCMS::DemoSiteData, type: :helper do
+# Tests for the supporting lib for the demo site rake tasks (in lib/tasks/support/)
+RSpec.describe 'DemoSiteTask', type: :helper do
   describe 'munge_user_id' do
     context 'when it finds user_id: 1 in a create statement' do
       it 'replaces it with the admin ID variable' do
