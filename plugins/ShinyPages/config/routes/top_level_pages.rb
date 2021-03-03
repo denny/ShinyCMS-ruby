@@ -14,6 +14,8 @@
 
 # Because this route matches anything that reaches it, it must be defined last!
 
-get '*path', to: 'shiny_pages/pages#show', constraints: lambda { |request|
-  !request.path.starts_with?( '/rails/active_' )
-}
+scope format: false do
+  get '*path', to: 'shiny_pages/pages#show', constraints: lambda { |request|
+    !request.path.starts_with?( '/rails/active_' )
+  }
+end

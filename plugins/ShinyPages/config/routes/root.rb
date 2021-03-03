@@ -9,4 +9,6 @@
 # Route for the root_path, if you want ShinyPages to handle it
 # See ShinyHostApp config/routes.rb for how to use this file
 
-root to: 'shiny_pages/pages#index'
+scope format: false do
+  root to: 'shiny_pages/pages#index'
+end
