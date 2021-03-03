@@ -16,6 +16,6 @@ ShinyCMS::Engine.routes.draw do
 
     import_routes file: :admin_area
 
-    import_routes file: :engine_routes_for_core_plugin
+    import_routes file: :mount_other_engines
   end
 end
