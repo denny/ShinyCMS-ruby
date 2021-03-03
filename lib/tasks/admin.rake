@@ -37,62 +37,68 @@ namespace :shiny do
       password = ENV['password'] || ENV['SHINYCMS_ADMIN_PASSWORD']
       email    = ENV['email'   ] || ENV['SHINYCMS_ADMIN_EMAIL'   ]
 
-      admin = ShinyCMS::User.new( username: username, password: password, email: email )
+      account_details = { username: username, password: password, email: email }
+
+      admin = ShinyCMS::User.new( **account_details )
       admin.valid?
 
-      admin, username = configure_username( admin, username, password, email )
-      admin, password = configure_password( admin, username, password, email )
+      admin, account_details = configure_username( admin, account_details )
+      admin, account_details = configure_password( admin, account_details )
 
-      @shiny_admin = configure_email( admin, username, password, email )
+      @shiny_admin = configure_email( admin, account_details )
     end
     # :nocov:
   end
 end
 
-def configure_username( admin, username, password, email )
-  # :nocov:
+# :nocov:
+def configure_username( admin, account_details )
   while admin.errors.messages.key? :username
-    admin.errors[:username].each do |error|
-      puts "Username: #{error}" unless username.nil?
-    end
-    puts 'Please choose a username for your admin account:'
-    username = $stdin.gets.strip
+    display_errors( 'username', admin.errors[ :username ] ) if account_details[ :username ].present?
 
-    admin = ShinyCMS::User.new( username: username, password: password, email: email )
-    admin.valid?
+    account_details[ :username ] = prompt_for_input( 'username' )
+
+    admin = check_details( account_details )
   end
-  [ admin, username ]
-  # :nocov:
+  [ admin, account_details ]
 end
 
-def configure_password( admin, username, password, email )
-  # :nocov:
+def configure_password( admin, account_details )
   while admin.errors.messages.key? :password
-    admin.errors[:password].each do |error|
-      puts "Password: #{error}" unless password.nil?
-    end
-    puts 'Please set the password of your admin account:'
-    password = $stdin.gets.strip
+    display_errors( 'password', admin.errors[ :password ] ) if account_details[ :password ].present?
 
-    admin = ShinyCMS::User.new( username: username, password: password, email: email )
-    admin.valid?
+    account_details[ :password ] = prompt_for_input( 'password' )
+
+    admin = check_details( account_details )
   end
-  [ admin, password ]
-  # :nocov:
+  [ admin, account_details ]
 end
 
-def configure_email( admin, username, password, email )
-  # :nocov:
+def configure_email( admin, account_details )
   while admin.errors.messages.key? :email
-    admin.errors[:email].each do |error|
-      puts "Email: #{error}" unless email.nil?
-    end
-    puts 'Please set the email address of your admin account:'
-    email = $stdin.gets.strip
+    display_errors( 'email', admin.errors[ :email ] ) if account_details[ :email ].present?
 
-    admin = ShinyCMS::User.new( username: username, password: password, email: email )
-    admin.valid?
+    account_details[ :email ] = prompt_for_input( 'email address' )
+
+    admin = check_details( account_details )
   end
   admin
-  # :nocov:
 end
+
+def display_errors( attribute, errors )
+  errors.each do |error|
+    puts "#{attribute.capitalize}: #{error}"
+  end
+end
+
+def prompt_for_input( attribute )
+  puts "Please set the #{attribute} for your admin account:"
+  $stdin.gets.strip
+end
+
+def check_details( account_details )
+  admin = ShinyCMS::User.new( **account_details )
+  admin.valid?
+  admin
+end
+# :nocov:
