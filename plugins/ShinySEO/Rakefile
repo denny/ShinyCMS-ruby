@@ -17,8 +17,11 @@ RDoc::Task.new( :rdoc ) do |rdoc|
 end
 
 APP_RAKEFILE = File.expand_path( '/Rakefile', __dir__ )
-load 'rails/tasks/engine.rake'
 
-load 'rails/tasks/statistics.rake'
+# load 'rails/tasks/engine.rake'
+# load 'rails/tasks/statistics.rake'
 
 require 'bundler/gem_tasks'
+
+spec = Gem::Specification.find_by_name 'sitemap_generator'
+load "#{spec.gem_dir}/lib/tasks/sitemap_generator_tasks.rake"

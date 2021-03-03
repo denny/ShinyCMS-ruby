@@ -10,4 +10,6 @@ require 'shiny_seo/engine'
 
 # Namespace wrapper
 module ShinySEO
+  spec = Gem::Specification.find_by_name 'sitemap_generator'
+  load "#{spec.gem_dir}/lib/tasks/sitemap_generator_tasks.rake"
 end

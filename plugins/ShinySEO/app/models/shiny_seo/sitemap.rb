@@ -6,6 +6,8 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+require 'sitemap_generator'
+
 module ShinySEO
   # A thin wrapper around the sitemap_generator gem - part of the ShinySEO plugin for ShinyCMS
   class Sitemap

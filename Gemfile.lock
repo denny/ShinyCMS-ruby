@@ -243,7 +243,7 @@ GEM
     amazing_print (1.2.2)
     ast (2.4.2)
     aws-eventstream (1.1.0)
-    aws-partitions (1.429.0)
+    aws-partitions (1.430.0)
     aws-sdk-core (3.112.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -746,7 +746,6 @@ DEPENDENCIES
   shinycms!
   sidekiq!
   sidekiq-status!
-  sitemap_generator!
   webmock!
   webpacker (~> 5.2)!
   zxcvbn-ruby!
