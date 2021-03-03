@@ -50,6 +50,7 @@ namespace :shiny do
 end
 
 def configure_username( admin, username, password, email )
+  # :nocov:
   while admin.errors.messages.key? :username
     admin.errors[:username].each do |error|
       puts "Username: #{error}" unless username.nil?
@@ -61,9 +62,11 @@ def configure_username( admin, username, password, email )
     admin.valid?
   end
   [ admin, username ]
+  # :nocov:
 end
 
 def configure_password( admin, username, password, email )
+  # :nocov:
   while admin.errors.messages.key? :password
     admin.errors[:password].each do |error|
       puts "Password: #{error}" unless password.nil?
@@ -75,9 +78,11 @@ def configure_password( admin, username, password, email )
     admin.valid?
   end
   [ admin, password ]
+  # :nocov:
 end
 
 def configure_email( admin, username, password, email )
+  # :nocov:
   while admin.errors.messages.key? :email
     admin.errors[:email].each do |error|
       puts "Email: #{error}" unless email.nil?
@@ -89,4 +94,5 @@ def configure_email( admin, username, password, email )
     admin.valid?
   end
   admin
+  # :nocov:
 end
