@@ -39,7 +39,7 @@ Metrics/BlockLength:
   Exclude:
     - Gemfile
     - config/environments/*
-    - plugins/Shiny*/shiny_*.gemspec
+    - plugins/Shiny*/shiny*.gemspec
     - plugins/Shiny*/spec/**/*.rb
     - plugins/ShinyCMS/app/models/concerns/shinycms/*.rb
     - spec/mailer_previews/*_spec.rb
