@@ -8,16 +8,14 @@
 
 # Routes for ShinyAccess plugin
 
+require_relative '../../../plugins/ShinyCMS/lib/import_routes'
+
 ShinyAccess::Engine.routes.draw do
   scope format: false do
     # Admin area
     scope path: :admin, module: :admin do
-      concern :with_paging do
-        get '(page/:page)', action: :index, on: :collection, as: ''
-      end
-      concern :with_search do
-        get :search, action: :search, on: :collection
-      end
+      # with_paging and with_search
+      import_routes file: :admin_route_concerns, plugin: :ShinyCMS
 
       scope path: :access do
         resources :groups, except: %i[ index show ], concerns: %i[ with_paging with_search ] do
