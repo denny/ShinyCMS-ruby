@@ -15,7 +15,7 @@ RSpec.shared_examples ShinyCMS::Paging do |factory, base_url, match_tag, match_t
   end
 
   context 'when viewing a list with twelve items in it' do
-    describe 'loading the page with no pagination params in the URL' do
+    describe 'loading the page with no page or items params in the URL' do
       it 'shows the first ten items' do
         get base_url
 

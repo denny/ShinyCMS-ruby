@@ -8,22 +8,21 @@
 
 require 'dotenv/tasks'
 
+require_relative 'support/demo_site_task'
+
 # ShinyCMS tasks for importing/exporting the data for the demo site
 
-# rails shiny:demo:load
+# rails shinycms:demo:load
 # - resets the database
 # - creates a super-admin
-# - imports the demo site data from ShinyCMS::DemoData::DEMO_SITE_DATA_FILE
+# - imports the demo site data from DemoSiteTask::DATA_FILE
 
-# rails shiny:demo:export
-# - exports the current database contents to DEMO_SITE_DATA_FILE
+# rails shinycms:demo:export
+# - exports the current database contents to DemoSiteTask::DATA_FILE
 
-# Most of the import/export code for the demo site data is in this module:
-require_relative '../../app/lib/shinycms/demo_site_data'
-
-namespace :shiny do
+namespace :shinycms do
   namespace :demo do
-    include ShinyCMS::DemoSiteData
+    include DemoSiteTask
 
     desc 'ShinyCMS: reset database, create admin user, and load demo site data'
     task load: %i[ environment dotenv confirm db:reset shiny:admin:get_admin_details ] do
@@ -36,7 +35,7 @@ namespace :shiny do
 
       ShinyCMS::FeatureFlag.enable :user_login
 
-      puts 'Demo data loaded and admin account created.'
+      puts 'Loaded demo site data and created admin account.'
       puts "You can log in as '#{@shiny_admin.username}' now."
       # :nocov:
     end
@@ -56,9 +55,7 @@ namespace :shiny do
       # :nocov:
       prepare_for_export
 
-      create_statements = create_statements_for_all( models_with_demo_data )
-
-      demo_data = munge_user_id( create_statements )
+      demo_data = munge_user_id_in create_statements_for_all models_with_demo_data
 
       write_demo_data_to_file( demo_data )
       # :nocov:
