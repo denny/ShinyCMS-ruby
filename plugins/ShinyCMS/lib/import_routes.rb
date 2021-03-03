@@ -12,8 +12,17 @@ module ActionDispatch
   module Routing
     # Monkey patch the route mapper to allow 'route partials'
     class Mapper
-      # Pass in the full path to a valid routes partial file, containing
-      # one or more route definitions that go inside a routes.draw block
+      # Pass in the filename (without .rb) of a routes partial file,
+      # and optionally, the plugin that provides that partial (defaults to
+      # the ShinyCMS core plugin if not specified). The file must be located
+      # in the config/routes directory in a plugin, and should contain one
+      # or more valid route definitions that go inside a routes.draw block.
+      # Both params can be passed as a symbol or a string.
+      #
+      # Examples:
+      #   import_routes file: :admin_area
+      #   import_routes file: :top_level_pages, plugin: :ShinyPages
+
       def import_routes( file:, plugin: 'ShinyCMS' )
         raise ArgumentError, 'File must be specified' if file.blank?
 
