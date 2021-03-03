@@ -16,7 +16,7 @@ ShinyPages::Engine.routes.draw do
     # Admin area
     scope path: :admin, module: :admin do
       # with_paging and with_search
-      import_routes file: :admin_route_concerns, plugin: :ShinyCMS
+      import_routes file: :admin_route_concerns
 
       concern :sortable do
         put :sort, on: :collection
