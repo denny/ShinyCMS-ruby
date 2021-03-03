@@ -3,10 +3,22 @@ PATH
   specs:
     shinycms (21.03)
       acts_as_paranoid
+      akismet
+      bcrypt (~> 3.1.16)
+      devise
+      devise-pwned_password
       pagy
+      persistent-dmnd
       pg (~> 1.2.3)
       pundit
       rails (~> 6.1.2, >= 6.1.2.1)
+      rails-i18n
+      recaptcha
+      sassc-rails
+      sidekiq
+      sidekiq-status
+      webpacker (~> 5.2)
+      zxcvbn-ruby
 
 GEM
   remote: https://rubygems.org/
@@ -73,9 +85,23 @@ GEM
     acts_as_paranoid (0.7.0)
       activerecord (>= 5.2, < 7.0)
       activesupport (>= 5.2, < 7.0)
+    akismet (3.0.0)
+    bcrypt (3.1.16)
     builder (3.2.4)
+    chronic_duration (0.10.6)
+      numerizer (~> 0.1.1)
     concurrent-ruby (1.1.8)
+    connection_pool (2.2.3)
     crass (1.0.6)
+    devise (4.7.3)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+    devise-pwned_password (0.1.9)
+      devise (~> 4)
+      pwned (~> 2.0.0)
     diff-lcs (1.4.4)
     erubi (1.10.0)
     factory_bot (6.1.0)
@@ -85,10 +111,14 @@ GEM
       railties (>= 5.0.0)
     faker (2.16.0)
       i18n (>= 1.6, < 2)
+    ffi (1.14.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hamster (3.0.0)
+      concurrent-ruby (~> 1.0)
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
+    json (2.5.1)
     loofah (2.9.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -99,16 +129,25 @@ GEM
     method_source (1.0.0)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
+    mini_portile2 (2.5.0)
     minitest (5.14.4)
     nio4r (2.5.5)
-    nokogiri (1.11.1-x86_64-linux)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    numerizer (0.1.1)
+    orm_adapter (0.5.0)
     pagy (3.11.0)
+    persistent-dmnd (2.0.2)
+      hamster (~> 3.0)
     pg (1.2.3)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
+    pwned (2.0.2)
     racc (1.5.2)
     rack (2.2.3)
+    rack-proxy (0.6.5)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.1.3)
@@ -131,6 +170,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
+    rails-i18n (6.0.0)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 7)
     railties (6.1.3)
       actionpack (= 6.1.3)
       activesupport (= 6.1.3)
@@ -138,6 +180,12 @@ GEM
       rake (>= 0.8.7)
       thor (~> 1.0)
     rake (13.0.3)
+    recaptcha (5.7.0)
+      json
+    redis (4.2.5)
+    responders (3.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -155,6 +203,22 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
+    semantic_range (2.3.1)
+    sidekiq (6.1.3)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
+    sidekiq-status (1.1.4)
+      chronic_duration
+      sidekiq (>= 3.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -163,15 +227,24 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     thor (1.1.0)
+    tilt (2.0.10)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    warden (1.2.9)
+      rack (>= 2.0.9)
+    webpacker (5.2.1)
+      activesupport (>= 5.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.4.2)
+    zxcvbn-ruby (1.2.0)
 
 PLATFORMS
-  x86_64-linux
+  ruby
 
 DEPENDENCIES
   factory_bot_rails!

@@ -8,6 +8,36 @@
 
 require 'shinycms/engine'
 
+# Immutable data structures (used in Plugins code)
+require 'persistent-dmnd'
+
+# Low level authentication-related stuff
+require 'bcrypt'
+# require 'activerecord/session_store'
+
+# High-level authentication and authorisation stuff
+require 'devise'
+require 'pundit'
+require 'devise/pwned_password'
+require 'zxcvbn'
+
+# Soft delete
+require 'acts_as_paranoid'
+
+# Job queues
+require 'sidekiq'
+require 'sidekiq-status'
+
+# Spambot protection
+require 'akismet'
+require 'recaptcha'
+
+# Paging
+require 'pagy'
+
+# JavaScript Gank
+require 'webpacker'
+
 # Namespace wrapper
 module ShinyCMS
   # Build the full plugin collection and stash it in the top-level module for re-use

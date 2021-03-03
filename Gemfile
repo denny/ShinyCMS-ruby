@@ -27,8 +27,11 @@ source 'https://rubygems.org' do
   # Find out which bits of your code are used more/less in actual use
   gem 'coverband', groups: %i[ development production ]
 
-  # Immutable data structures
-  gem 'persistent-dmnd'
+  # Sessions
+  # FIXME: Installing from GitHub because Ruby 3 support is merged but not released:
+  # https://github.com/rails/activerecord-session_store/pull/159
+  # https://github.com/rails/activerecord-session_store/issues/171
+  gem 'activerecord-session_store', git: 'https://github.com/rails/activerecord-session_store'
 
   # ShinyCMS core plugin
   gem 'shinycms', path: 'plugins/ShinyCMS'
@@ -38,49 +41,6 @@ source 'https://rubygems.org' do
     gem_name = underscore( plugin_name )
     gem gem_name, path: "plugins/#{plugin_name}"
   end
-
-  # Locales for the 'not USA' bits of the world
-  gem 'rails-i18n'
-
-  # Reduce boot times through caching; required in config/boot.rb
-  # gem 'bootsnap', '>= 1.4.2', require: false
-  # Use faster SCSS gem for stylesheets
-  gem 'sassc-rails'
-  # Transpile app-like JavaScript. More info: https://github.com/rails/webpacker
-  gem 'webpacker', '~> 5.2'
-
-  # Sessions
-  # FIXME: Installing from GitHub because Ruby 3.0.0 is merged but not released:
-  # https://github.com/rails/activerecord-session_store/pull/159
-  # https://github.com/rails/activerecord-session_store/issues/171
-  # gem 'activerecord-session_store'
-  gem 'activerecord-session_store', git: 'https://github.com/rails/activerecord-session_store'
-  # Stronger password encryption
-  gem 'bcrypt', '~> 3.1.16'
-
-  # User authentication
-  gem 'devise'
-  # Authorisation
-  gem 'pundit'
-
-  # Check user passwords against known data leaks
-  gem 'devise-pwned_password'
-  # Check password complexity
-  gem 'zxcvbn-ruby', require: 'zxcvbn'
-
-  # Soft delete
-  gem 'acts_as_paranoid'
-
-  # We use Sidekiq as the backend for ActiveJob (to queue email sends)
-  gem 'sidekiq'
-  # This adds more details to the Sidekiq web dashboard
-  gem 'sidekiq-status'
-
-  # Bot detection to protect forms (including registration, comments, etc)
-  gem 'recaptcha'
-
-  # Spam comment detection
-  gem 'akismet'
 
   # Email address validation
   gem 'email_address'

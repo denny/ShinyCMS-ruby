@@ -40,17 +40,52 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'pg', '~> 1.2.3'
 
+  # Immutable data structures
+  spec.add_dependency 'persistent-dmnd'
+
+  # Sessions
+  # FIXME: Installing from GitHub because Ruby 3 support is merged but not released
+  # spec.add_dependency 'activerecord-session_store'
+
+  # Stronger password encryption
+  spec.add_dependency 'bcrypt', '~> 3.1.16'
+
+  # Authentication
+  spec.add_dependency 'devise'
   # Authorisation
   spec.add_dependency 'pundit'
+
+  # Check user passwords against known data leaks
+  spec.add_dependency 'devise-pwned_password'
+  # Check password complexity
+  spec.add_dependency 'zxcvbn-ruby'
 
   # Soft delete
   spec.add_dependency 'acts_as_paranoid'
 
+  # Locales for the 'not USA' bits of the world
+  spec.add_dependency 'rails-i18n'
+
   # Pagination
   spec.add_dependency 'pagy'
 
+  # We use Sidekiq as the backend for ActiveJob (to queue email sends)
+  spec.add_dependency 'sidekiq'
+  spec.add_dependency 'sidekiq-status'
+
+  # Spambot protection
+  spec.add_dependency 'akismet'
+  spec.add_dependency 'recaptcha'
+
+  # Use faster SCSS gem for stylesheets
+  spec.add_dependency 'sassc-rails'
+  # Transpile app-like JavaScript. More info: https://github.com/rails/webpacker
+  spec.add_dependency 'webpacker', '~> 5.2'
+
   # Testing
-  spec.add_development_dependency 'factory_bot_rails'
-  spec.add_development_dependency 'faker'
   spec.add_development_dependency 'rspec-rails'
+  # Create test objects
+  spec.add_development_dependency 'factory_bot_rails'
+  # Fill test objects with test data
+  spec.add_development_dependency 'faker'
 end
