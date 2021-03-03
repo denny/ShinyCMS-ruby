@@ -92,7 +92,12 @@ Rails/OutputSafety:
   Exclude:
     - plugins/ShinyCMS/config/initializers/field_with_errors.rb
 
-# This isn't an ActiveRecord create method
+# This isn't an ActiveRecord find method
+Rails/DynamicFindBy:
+  Exclude:
+    - plugins/ShinySEO/lib/shiny_seo.rb
+
+# And this isn't an ActiveRecord create method
 Rails/SaveBang:
   Exclude:
     - plugins/ShinySEO/app/models/shiny_seo/sitemap.rb
