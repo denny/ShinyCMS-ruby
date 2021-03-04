@@ -59,54 +59,54 @@ source 'https://rubygems.org' do
     # RSpec for Rails
     gem 'rspec-rails'
 
+    # Run tests in parallel
+    gem 'parallel_tests'
+
     # Tools for working with translation strings
     # gem 'i18n-debug'
     gem 'i18n-tasks', '~> 0.9.33'
   end
 
   group :development do
-    # Linting: general
-    gem 'rubocop'
-    # Linting: performance tweaks
-    gem 'rubocop-performance'
-    # Linting: Rails-specific
-    gem 'rubocop-rails'
-    # Linting: test suite
-    gem 'rubocop-rspec'
-
-    # Code quality: Ruby Critic
-    gem 'rubycritic', '~> 4.6.0'
-    # Code quality: Rails Best Practices
-    gem 'rails_best_practices'
-
-    # Security: static code analysis
-    gem 'brakeman'
-    # Security: check gems against known CVEs
-    gem 'bundler-audit'
-
-    # Manage git hooks
-    gem 'overcommit'
-
-    # Add .analyze method to ActiveRecord objects
-    gem 'activerecord-analyze'
-
-    # Capture all emails sent by the system, and view them in a dev webmail inbox
+    # Capture all outgoing emails, with webmail interface to look at them
     gem 'letter_opener_web', '~> 1.0'
 
     # Reload dev server when files change
     gem 'listen', '~> 3.3'
 
+    # Linting: general
+    gem 'rubocop', require: false
+    # Linting: performance tweaks
+    gem 'rubocop-performance', require: false
+    # Linting: Rails-specific
+    gem 'rubocop-rails', require: false
+    # Linting: test suite
+    gem 'rubocop-rspec', require: false
+
+    # Code quality: Ruby Critic
+    gem 'rubycritic', '~> 4.6.0', require: false
+    # Code quality: Rails Best Practices
+    gem 'rails_best_practices', require: false
+
+    # Security: static code analysis
+    gem 'brakeman', require: false
+    # Security: check gem versions for reported security issues
+    gem 'bundler-audit', require: false
+
+    # Add .analyze method to ActiveRecord objects
+    gem 'activerecord-analyze'
+
     # Analysis tools for postgres
-    gem 'rails-pg-extras'
+    gem 'rails-pg-extras', require: false
 
     # Used to generate demo site data
-    gem 'seed_dump'
+    gem 'seed_dump', require: false
+
+    # Manage git hooks
+    gem 'overcommit', require: false
   end
 
   group :test do
-    # Run tests in parallel
-    gem 'parallel_tests'
-
     # Wipe the test database before each test run
     gem 'database_cleaner-active_record'
 
