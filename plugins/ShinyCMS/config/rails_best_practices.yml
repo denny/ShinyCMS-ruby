@@ -14,7 +14,6 @@
 
 ## Fail
 
-#ProtectMassAssignmentCheck: { }                     # 0 / 12
 #ReplaceInstanceVariableWithLocalVariableCheck: { }  # 64 / 63
 #SimplifyRenderInControllersCheck: { }               # 21 / 21
 #SimplifyRenderInViewsCheck: { }                     # 40 / 40
@@ -25,14 +24,18 @@
 #   after_action :verify_authorized
 #UseBeforeFilterCheck: { customize_count: 2 }  # 20 / 20
 
+# This hasn't been relevant since Rails 4 (released in 2015)
+#ProtectMassAssignmentCheck: { }
+
 
 ## Pass, with some exceptions
 
 # Ignored file contains a data migration, not seed data
 IsolateSeedDataCheck: { ignored_files: 'db/migrate/20201004150130_change_comment_author_to_polymorphic\.rb' }
 
-# FIXME: Ignore user capability checks in stats admin menu
-MoveCodeIntoModelCheck: { use_count: 2, ignored_files: [ 'plugins/ShinyCMS/app/views/shinycms/admin/menu/_stats.html.erb' ] }
+# FIXME: current_user.can? checks in stats admin menu are the only thing currently failing this
+#MoveCodeIntoModelCheck: { use_count: 2 }
+MoveCodeIntoModelCheck: { use_count: 3 }
 
 # Exceptions are:
 # - the `pagy_url_for` helper method in the ShinyCMS plugin's application controller
