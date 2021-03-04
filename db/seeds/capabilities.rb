@@ -35,7 +35,7 @@ add_capabilities(
     spam_comments:    %w[ list add destroy ],
     email_recipients: %w[ list edit destroy ],
     mailer_previews:  %w[ list show ],
-    stats:            %w[ view_web view_email view_charts make_charts ],
+    stats:            %w[ view_web view_email use_blazer ],
     feature_flags:    %w[ list edit ],
     settings:         %w[ list edit ],
     users:            %w[ list add edit destroy view_admin_notes ]
