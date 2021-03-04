@@ -13,19 +13,19 @@
 # Offense count: 24
 RSpec/AnyInstance:
   Exclude:
-    - 'plugins/ShinyCMS/spec/requests/shinycms/admin/comments_controller_spec.rb'
-    - 'plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb'
-    - 'plugins/ShinyCMS/spec/requests/shinycms/users/registrations_controller_spec.rb'
-    - 'plugins/ShinyForms/spec/requests/shiny_forms/forms_controller_spec.rb'
-    - 'plugins/ShinyLists/spec/requests/shiny_lists/subscriptions_controller_spec.rb'
-    - 'plugins/ShinySearch/spec/requests/shiny_search/search_controller_spec.rb'
+    - 'spec/requests/shinycms/admin/comments_controller_spec.rb'
+    - 'spec/requests/shinycms/discussions_controller_spec.rb'
+    - 'spec/requests/shinycms/users/registrations_controller_spec.rb'
+    - '../ShinyForms/spec/requests/shiny_forms/forms_controller_spec.rb'
+    - '../ShinyLists/spec/requests/shiny_lists/subscriptions_controller_spec.rb'
+    - '../ShinySearch/spec/requests/shiny_search/search_controller_spec.rb'
 
 # Offense count: 135
 # Configuration parameters: AssignmentOnly.
 RSpec/InstanceVariable:
   Exclude:
-    - 'plugins/ShinyCMS/spec/mailers/shinycms/discussion_mailer_spec.rb'
-    - 'plugins/ShinyCMS/spec/models/shinycms/discussion_spec.rb'
-    - 'plugins/ShinyCMS/spec/requests/shinycms/admin/comments_controller_spec.rb'
-    - 'plugins/ShinyCMS/spec/requests/shinycms/admin/discussions_controller_spec.rb'
-    - 'plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb'
+    - 'spec/mailers/shinycms/discussion_mailer_spec.rb'
+    - 'spec/models/shinycms/discussion_spec.rb'
+    - 'spec/requests/shinycms/admin/comments_controller_spec.rb'
+    - 'spec/requests/shinycms/admin/discussions_controller_spec.rb'
+    - 'spec/requests/shinycms/discussions_controller_spec.rb'
