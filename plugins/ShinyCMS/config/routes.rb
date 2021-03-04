@@ -12,10 +12,10 @@ require_relative '../lib/import_routes'
 
 ShinyCMS::Engine.routes.draw do
   scope format: false do
-    import_routes file: :main_site
+    import_routes partial: :main_site
 
-    import_routes file: :admin_area
+    import_routes partial: :admin_area
 
-    import_routes file: :mount_other_engines
+    import_routes partial: :mount_other_engines
   end
 end
