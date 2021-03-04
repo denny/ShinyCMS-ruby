@@ -13,6 +13,7 @@ require:
 
 AllCops:
   EnabledByDefault: true
+  NewCops: enable
   Exclude:
     # Not Ruby files (skipping these makes Rubocop run faster)
     - ../../app/assets/**/*  # main_app
