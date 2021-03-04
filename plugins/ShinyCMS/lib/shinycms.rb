@@ -25,17 +25,26 @@ require 'zxcvbn'
 require 'sidekiq'
 require 'sidekiq-status'
 
-# Extend model behaviour (mostly)
+# Extend behaviour, mostly of models
 require 'acts_as_paranoid'
 require 'acts_as_list'
 require 'acts-as-taggable-on'
 require 'acts_as_votable'
+
+# WYSIWYG editor
+require 'ckeditor'
 
 # Pagination
 require 'pagy'
 
 # Generate Atom feeds
 require 'rss'
+
+# Image storage on S3
+require 'aws-sdk-s3'
+# Image processing (resizing, etc)
+require 'image_processing'
+require 'mini_magick'
 
 # Spambot protection
 require 'akismet'
@@ -47,12 +56,18 @@ require 'email_address'
 # MJML email rendering
 require 'mjml-rails'
 
-# JavaScript Gank
+# JavaScript gank
 require 'webpacker'
+
+# Improvements for the Rails console
+if Rails.env.test? || Rails.env.development? || ENV.fetch( 'SHINYCMS_PRY_CONSOLE', 'false' ).downcase == 'true'
+  require 'amazing_print'
+  require 'pry-rails'
+end
 
 # Namespace wrapper
 module ShinyCMS
-  # Build the full plugin collection and stash it in the top-level module for re-use
+  # Build the configured plugin collection, and stash it in ShinyCMS.plugins for easy re-use
   def self.plugins
     @plugins ||= ShinyCMS::Plugins.all
   end

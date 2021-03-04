@@ -76,11 +76,20 @@ Gem::Specification.new do |spec|
   # Upvotes (AKA 'Likes') and downvotes
   spec.add_dependency 'acts_as_votable'
 
+  # WYSIWYG editor
+  spec.add_dependency 'ckeditor'
+
   # Pagination
   spec.add_dependency 'pagy'
 
   # Atom feeds
   spec.add_dependency 'rss'
+
+  # Image storage on S3
+  spec.add_dependency 'aws-sdk-s3'
+  # Image processing (resizing, etc)
+  spec.add_dependency 'image_processing', '~> 1.12'
+  spec.add_dependency 'mini_magick'
 
   # Spambot protection
   spec.add_dependency 'akismet'
@@ -96,6 +105,13 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'sassc-rails'
   # Transpile app-like JavaScript. More info: https://github.com/rails/webpacker
   spec.add_dependency 'webpacker', '~> 5.2'
+
+  # Improvements for the Rails console
+  spec.add_dependency 'amazing_print'
+  spec.add_dependency 'pry-rails'
+
+  # HTML & XML parser (indirect dependency; specifying minimum version to include a security fix)
+  spec.add_dependency 'nokogiri', '>= 1.11.1'
 
   # Testing
   spec.add_development_dependency 'rspec-rails'

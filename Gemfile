@@ -45,16 +45,6 @@ source 'https://rubygems.org' do
   # Webserver
   gem 'puma', '~> 5.2', groups: %i[ development production ]
 
-  # WYSIWYG editor
-  gem 'ckeditor'
-
-  # Image storage on S3
-  gem 'aws-sdk-s3'
-  # Image processing, for resizing etc
-  gem 'image_processing', '~> 1.12'
-  # Also image processing
-  gem 'mini_magick'
-
   # Email stats
   gem 'ahoy_email'
   # Web stats
@@ -64,21 +54,6 @@ source 'https://rubygems.org' do
   gem 'blazer'
   # Charts
   gem 'chartkick', '~> 3.4.2'
-
-  # HTML & XML parser
-  gem 'nokogiri', '>= 1.11.0.rc4'
-
-  # Better-looking console output
-  gem 'amazing_print'
-
-  # Pry is a debugging tool for the Rails console
-  if ENV.fetch( 'SHINYCMS_PRY_CONSOLE', 'false' ).downcase == 'true'
-    # Set SHINYCMS_PRY_CONSOLE=true in ENV to enable Pry in that environment
-    gem 'pry-rails'
-  else
-    # Otherwise, Pry is enabled by default in dev and test environments
-    gem 'pry-rails', groups: %i[ development test ]
-  end
 
   group :production do
     # Airbrake - error monitoring and APM
