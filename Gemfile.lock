@@ -290,15 +290,23 @@ GEM
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.3)
       aws-eventstream (~> 1, >= 1.0.2)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.16)
     blazer (2.4.2)
       activerecord (>= 5)
       chartkick (>= 3.2)
       railties (>= 5)
       safely_block (>= 0.1.1)
+    brakeman (5.0.0)
     bugsnag (6.19.0)
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
+    bundler-audit (0.7.0.1)
+      bundler (>= 1.2.0, < 3)
+      thor (>= 0.18, < 2)
     capybara (3.35.3)
       addressable
       mini_mime (>= 0.1.3)
@@ -318,9 +326,13 @@ GEM
       activesupport (>= 5.0, < 6.2.0)
       httparty
       railties (>= 5.0, < 6.2.0)
+    code_analyzer (0.5.2)
+      sexp_processor
     codecov (0.5.1)
       simplecov (>= 0.15, < 0.22)
     coderay (1.1.3)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.1.8)
     connection_pool (2.2.3)
     coverband (5.1.0)
@@ -332,6 +344,8 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     device_detector (1.0.5)
     devise (4.7.3)
       bcrypt (~> 3.0)
@@ -351,8 +365,10 @@ GEM
     email_address (0.1.20)
       netaddr (>= 2.0.4, < 3)
       simpleidn
+    equalizer (0.0.11)
     errbase (0.2.1)
     erubi (1.10.0)
+    erubis (2.7.0)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.1.0)
@@ -361,6 +377,15 @@ GEM
     faker (2.16.0)
       i18n (>= 1.6, < 2)
     ffi (1.14.2)
+    flay (2.12.1)
+      erubis (~> 2.7.0)
+      path_expander (~> 1.0)
+      ruby_parser (~> 3.0)
+      sexp_processor (~> 4.0)
+    flog (4.6.4)
+      path_expander (~> 1.0)
+      ruby_parser (~> 3.1, > 3.1.0)
+      sexp_processor (~> 4.8)
     geocoder (1.6.6)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -384,12 +409,14 @@ GEM
       rails-i18n
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
+    ice_nine (0.11.2)
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
     iniparse (1.5.0)
     jmespath (1.4.0)
     json (2.5.1)
+    kwalify (0.7.2)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -432,8 +459,11 @@ GEM
       iniparse (~> 1.4)
     pagy (3.11.0)
     parallel (1.20.1)
+    parallel_tests (3.5.0)
+      parallel
     parser (3.0.0.0)
       ast (~> 2.4.1)
+    path_expander (1.1.0)
     persistent-dmnd (2.0.2)
       hamster (~> 3.0)
     pg (1.2.3)
@@ -445,6 +475,7 @@ GEM
       method_source (~> 1.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
+    psych (3.3.1)
     public_suffix (4.0.6)
     puma (5.2.2)
       nio4r (~> 2.0)
@@ -483,6 +514,14 @@ GEM
     rails-pg-extras (1.5.3)
       activerecord
       ruby-pg-extras (= 1.5.3)
+    rails_best_practices (1.20.0)
+      activesupport
+      code_analyzer (>= 0.5.1)
+      erubis
+      i18n
+      json
+      require_all (~> 3.0)
+      ruby-progressbar
     rails_email_preview (2.2.2)
       rails (>= 4.2)
       request_store
@@ -503,9 +542,15 @@ GEM
     recaptcha (5.7.0)
       json
     redis (4.2.5)
+    reek (6.0.3)
+      kwalify (~> 0.7.0)
+      parser (~> 3.0.0)
+      psych (~> 3.1)
+      rainbow (>= 2.0, < 4.0)
     regexp_parser (2.1.1)
     request_store (1.5.0)
       rack (>= 1.4)
+    require_all (3.0.0)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -564,6 +609,19 @@ GEM
     ruby-progressbar (1.11.0)
     ruby-vips (2.0.17)
       ffi (~> 1.9)
+    ruby_parser (3.15.1)
+      sexp_processor (~> 4.9)
+    rubycritic (4.6.0)
+      flay (~> 2.8)
+      flog (~> 4.4)
+      launchy (>= 2.0.0)
+      parser (>= 2.6.0)
+      rainbow (~> 3.0)
+      reek (~> 6.0, < 7.0)
+      ruby_parser (~> 3.8)
+      simplecov (>= 0.17.0, < 0.21)
+      tty-which (~> 0.4.0)
+      virtus (~> 1.0)
     safely_block (0.3.0)
       errbase (>= 0.1.1)
     sassc (2.4.0)
@@ -578,6 +636,7 @@ GEM
       activerecord (>= 4)
       activesupport (>= 4)
     semantic_range (3.0.0)
+    sexp_processor (4.15.2)
     sidekiq (6.1.3)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -585,7 +644,7 @@ GEM
     sidekiq-status (1.1.4)
       chronic_duration
       sidekiq (>= 3.0)
-    simplecov (0.21.2)
+    simplecov (0.20.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
@@ -602,10 +661,11 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    terminal-table (3.0.0)
-      unicode-display_width (~> 1.1, >= 1.1.1)
+    terminal-table (1.6.0)
     thor (1.1.0)
+    thread_safe (0.3.6)
     tilt (2.0.10)
+    tty-which (0.4.2)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -614,7 +674,12 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
-    unicode-display_width (1.7.0)
+    unicode-display_width (2.0.0)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.9)
       rack (>= 2.0.9)
     webmock (3.12.0)
@@ -643,6 +708,8 @@ DEPENDENCIES
   ahoy_email!
   ahoy_matey!
   blazer!
+  brakeman!
+  bundler-audit!
   capybara (>= 2.15)!
   chartkick (~> 3.4.2)!
   codecov!
@@ -655,10 +722,12 @@ DEPENDENCIES
   letter_opener_web (~> 1.0)!
   listen (~> 3.3)!
   overcommit!
+  parallel_tests!
   pg (~> 1.2.3)!
   puma (~> 5.2)!
   rails (~> 6.1.3)!
   rails-pg-extras!
+  rails_best_practices!
   rails_email_preview!
   rspec-instafail!
   rspec-rails!
@@ -667,6 +736,7 @@ DEPENDENCIES
   rubocop-performance!
   rubocop-rails!
   rubocop-rspec!
+  rubycritic (~> 4.6.0)!
   seed_dump!
   shiny_access!
   shiny_blog!

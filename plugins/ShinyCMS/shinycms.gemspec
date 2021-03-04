@@ -121,24 +121,4 @@ Gem::Specification.new do |spec|
 
   # Fix request.ip when running behind Cloudflare proxying
   spec.add_dependency 'cloudflare-rails'
-
-  ## Development / Testing
-
-  # Code quality
-  spec.add_development_dependency 'rails_best_practices'
-  spec.add_development_dependency 'rubycritic', '~> 4.6.0'
-
-  # Security: static code analysis
-  spec.add_development_dependency 'brakeman'
-  # Security: check gems against known CVEs
-  spec.add_development_dependency 'bundler-audit'
-
-  # Run tests
-  spec.add_development_dependency 'rspec-rails'
-  # Run tests in parallel
-  spec.add_development_dependency 'parallel_tests'
-
-  # Create test objects, filled with test data
-  spec.add_development_dependency 'factory_bot_rails'
-  spec.add_development_dependency 'faker'
 end

@@ -56,9 +56,6 @@ source 'https://rubygems.org' do
   gem 'chartkick', '~> 3.4.2'
 
   group :development, :test do
-    # Run tests
-    gem 'rspec-rails'
-
     # Tools for working with translation strings
     # gem 'i18n-debug'
     gem 'i18n-tasks', '~> 0.9.33'
@@ -73,6 +70,16 @@ source 'https://rubygems.org' do
     gem 'rubocop-rails'
     # Linting: test suite
     gem 'rubocop-rspec'
+
+    # Code quality: Ruby Critic
+    gem 'rubycritic', '~> 4.6.0'
+    # Code quality: Rails Best Practices
+    gem 'rails_best_practices'
+
+    # Security: static code analysis
+    gem 'brakeman'
+    # Security: check gems against known CVEs
+    gem 'bundler-audit'
 
     # Manage git hooks
     gem 'overcommit'
@@ -94,12 +101,17 @@ source 'https://rubygems.org' do
   end
 
   group :test do
+    # RSpec for Rails
+    gem 'rspec-rails'
+    # Run tests in parallel
+    gem 'parallel_tests'
+
     # Wipe the test database before each test run
     gem 'database_cleaner-active_record'
 
     # Create test objects
     gem 'factory_bot_rails'
-    # Fill test objects with fake data
+    # Generate test data
     gem 'faker'
 
     # Integration tests (request specs)
