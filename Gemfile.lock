@@ -38,11 +38,16 @@ PATH
   remote: plugins/ShinyCMS
   specs:
     shinycms (21.03)
+      acts-as-taggable-on
+      acts_as_list
       acts_as_paranoid
+      acts_as_votable
       akismet
       bcrypt (~> 3.1.16)
       devise
       devise-pwned_password
+      email_address
+      mjml-rails
       pagy
       persistent-dmnd
       pg (~> 1.2.3)
@@ -50,6 +55,7 @@ PATH
       rails (~> 6.1.2, >= 6.1.2.1)
       rails-i18n
       recaptcha
+      rss
       sassc-rails
       sidekiq
       sidekiq-status
@@ -428,7 +434,7 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     netaddr (2.0.4)
-    nio4r (2.5.5)
+    nio4r (2.5.7)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
@@ -685,9 +691,6 @@ PLATFORMS
 DEPENDENCIES
   activerecord-analyze!
   activerecord-session_store!
-  acts-as-taggable-on!
-  acts_as_list!
-  acts_as_votable!
   ahoy_email!
   ahoy_matey!
   amazing_print!
@@ -704,7 +707,6 @@ DEPENDENCIES
   coverband!
   database_cleaner-active_record!
   dotenv-rails!
-  email_address!
   factory_bot_rails!
   faker!
   i18n-tasks (~> 0.9.33)!
@@ -712,10 +714,8 @@ DEPENDENCIES
   letter_opener_web (~> 1.0)!
   listen (~> 3.3)!
   mini_magick!
-  mjml-rails!
   nokogiri (>= 1.11.0.rc4)!
   overcommit!
-  pagy!
   parallel_tests!
   pg (~> 1.2.3)!
   pry-rails!
@@ -727,7 +727,6 @@ DEPENDENCIES
   rspec-instafail!
   rspec-rails!
   rspec_junit_formatter!
-  rss!
   rubocop!
   rubocop-performance!
   rubocop-rails!

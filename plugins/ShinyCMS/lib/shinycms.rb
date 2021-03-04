@@ -21,19 +21,31 @@ require 'pundit'
 require 'devise/pwned_password'
 require 'zxcvbn'
 
-# Soft delete
-require 'acts_as_paranoid'
-
 # Job queues
 require 'sidekiq'
 require 'sidekiq-status'
+
+# Extend model behaviour (mostly)
+require 'acts_as_paranoid'
+require 'acts_as_list'
+require 'acts-as-taggable-on'
+require 'acts_as_votable'
+
+# Pagination
+require 'pagy'
+
+# Generate Atom feeds
+require 'rss'
 
 # Spambot protection
 require 'akismet'
 require 'recaptcha'
 
-# Paging
-require 'pagy'
+# Email address validation
+require 'email_address'
+
+# MJML email rendering
+require 'mjml-rails'
 
 # JavaScript Gank
 require 'webpacker'

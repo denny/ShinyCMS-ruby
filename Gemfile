@@ -15,23 +15,11 @@ source 'https://rubygems.org' do
   # Rails 6.1
   gem 'rails', '~> 6.1.3'
 
-  # Postgres
-  gem 'pg', '~> 1.2.3'
-
-  # Webserver
-  gem 'puma', '~> 5.2', groups: %i[ development production ]
-
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/rails-now'
 
   # Find out which bits of your code are used more/less in actual use
   gem 'coverband', groups: %i[ development production ]
-
-  # Sessions
-  # FIXME: Installing from GitHub because Ruby 3 support is merged but not released:
-  # https://github.com/rails/activerecord-session_store/pull/159
-  # https://github.com/rails/activerecord-session_store/issues/171
-  gem 'activerecord-session_store', git: 'https://github.com/rails/activerecord-session_store'
 
   # ShinyCMS core plugin
   gem 'shinycms', path: 'plugins/ShinyCMS'
@@ -42,20 +30,20 @@ source 'https://rubygems.org' do
     gem gem_name, path: "plugins/#{plugin_name}"
   end
 
-  # Email address validation
-  gem 'email_address'
-
-  # MJML email rendering
-  gem 'mjml-rails'
-
   # Email previews
   gem 'rails_email_preview'
 
-  # Pagination
-  gem 'pagy'
+  # Sessions
+  # FIXME: Installing from GitHub because Ruby 3 support is merged but not released:
+  # https://github.com/rails/activerecord-session_store/pull/159
+  # https://github.com/rails/activerecord-session_store/issues/171
+  gem 'activerecord-session_store', git: 'https://github.com/rails/activerecord-session_store'
 
-  # Sortable lists
-  gem 'acts_as_list'
+  # Postgres
+  gem 'pg', '~> 1.2.3'
+
+  # Webserver
+  gem 'puma', '~> 5.2', groups: %i[ development production ]
 
   # WYSIWYG editor
   gem 'ckeditor'
@@ -66,15 +54,6 @@ source 'https://rubygems.org' do
   gem 'image_processing', '~> 1.12'
   # Also image processing
   gem 'mini_magick'
-
-  # Tags
-  gem 'acts-as-taggable-on'
-
-  # Upvotes (AKA 'Likes') and downvotes
-  gem 'acts_as_votable'
-
-  # Generate Atom feeds
-  gem 'rss'
 
   # Email stats
   gem 'ahoy_email'

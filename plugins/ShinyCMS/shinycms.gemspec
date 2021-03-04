@@ -60,22 +60,37 @@ Gem::Specification.new do |spec|
   # Check password complexity
   spec.add_dependency 'zxcvbn-ruby'
 
-  # Soft delete
-  spec.add_dependency 'acts_as_paranoid'
-
   # Locales for the 'not USA' bits of the world
   spec.add_dependency 'rails-i18n'
-
-  # Pagination
-  spec.add_dependency 'pagy'
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
   spec.add_dependency 'sidekiq'
   spec.add_dependency 'sidekiq-status'
 
+  # Soft delete
+  spec.add_dependency 'acts_as_paranoid'
+  # Sortable lists
+  spec.add_dependency 'acts_as_list'
+  # Tags
+  spec.add_dependency 'acts-as-taggable-on'
+  # Upvotes (AKA 'Likes') and downvotes
+  spec.add_dependency 'acts_as_votable'
+
+  # Pagination
+  spec.add_dependency 'pagy'
+
+  # Atom feeds
+  spec.add_dependency 'rss'
+
   # Spambot protection
   spec.add_dependency 'akismet'
   spec.add_dependency 'recaptcha'
+
+  # Email address validation
+  spec.add_dependency 'email_address'
+
+  # MJML email rendering
+  spec.add_dependency 'mjml-rails'
 
   # Use faster SCSS gem for stylesheets
   spec.add_dependency 'sassc-rails'
