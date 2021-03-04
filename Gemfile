@@ -56,6 +56,9 @@ source 'https://rubygems.org' do
   gem 'chartkick', '~> 3.4.2'
 
   group :development, :test do
+    # RSpec for Rails
+    gem 'rspec-rails'
+
     # Tools for working with translation strings
     # gem 'i18n-debug'
     gem 'i18n-tasks', '~> 0.9.33'
@@ -101,8 +104,6 @@ source 'https://rubygems.org' do
   end
 
   group :test do
-    # RSpec for Rails
-    gem 'rspec-rails'
     # Run tests in parallel
     gem 'parallel_tests'
 
