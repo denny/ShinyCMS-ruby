@@ -1,7 +1,6 @@
 <% return unless current_user.can?( :view_web,    :stats ) ||
                  current_user.can?( :view_email,  :stats ) ||
-                 current_user.can?( :view_charts, :stats ) ||
-                 current_user.can?( :make_charts, :stats ) %>
+                 current_user.can?( :use_blazer,  :stats ) %>
 
   <%= render_admin_menu_section( t( 'shinycms.admin.stats.menu' ), 'chart' ) do %>
 
@@ -11,7 +10,7 @@
     <%= render_admin_menu_item_if( current_user.can?( :view_email, :stats ),
         t( 'shinycms.admin.email_stats.menu' ), shinycms.email_stats_path, 'chart-pie' ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :make_charts, :stats ),
+    <%= render_admin_menu_item_if( current_user.can?( :use_blazer, :stats ),
         t( 'shinycms.admin.blazer.menu' ), main_app.blazer_path, 'chart-line' ) %>
 
   <% end %>

@@ -126,15 +126,13 @@ FactoryBot.define do
     after :create do |admin|
       category = ShinyCMS::CapabilityCategory.find_by( name: 'stats' )
 
-      web     = category.capabilities.find_by( name: 'view_web'    )
-      email   = category.capabilities.find_by( name: 'view_email'  )
-      charts1 = category.capabilities.find_by( name: 'view_charts' )
-      charts2 = category.capabilities.find_by( name: 'make_charts' )
+      web    = category.capabilities.find_by( name: 'view_web'   )
+      email  = category.capabilities.find_by( name: 'view_email' )
+      blazer = category.capabilities.find_by( name: 'use_blazer' )
 
       create :user_capability, user: admin, capability: web
       create :user_capability, user: admin, capability: email
-      create :user_capability, user: admin, capability: charts1
-      create :user_capability, user: admin, capability: charts2
+      create :user_capability, user: admin, capability: blazer
     end
   end
 
