@@ -10,10 +10,10 @@
 # that can be mounted within the core plugin routes file
 
 # CKEditor provides the WYSIWYG editor used in the ShinyCMS admin area
-mount Ckeditor::Engine, at: '/admin/ckeditor'
+mount Ckeditor::Engine, at: '/admin/tools/ckeditor'
 
 # LetterOpener catches all emails sent in development, with a webmail UI to view them
-mount LetterOpenerWeb::Engine, at: '/dev/outbox' if Rails.env.development?
+mount LetterOpenerWeb::Engine, at: '/dev/tools/outbox' if Rails.env.development?
 
 # Sidekiq Web provides a web dashboard for Sidekiq jobs and queues
 def sidekiq_web_enabled?
@@ -27,7 +27,7 @@ if sidekiq_web_enabled?
   Sidekiq::Web.set :sessions, false
 
   authenticate :user, ->( user ) { user.can? :manage_sidekiq_jobs } do
-    mount Sidekiq::Web, at: '/admin/sidekiq'
+    mount Sidekiq::Web, at: '/admin/tools/sidekiq'
   end
 end
 
@@ -38,6 +38,6 @@ end
 
 if coverband_web_ui_enabled?
   authenticate :user, ->( user ) { user.can? :view_code_usage } do
-    mount Coverband::Reporters::Web.new, at: '/admin/coverband', as: :coverband unless Rails.env.test?
+    mount Coverband::Reporters::Web.new, at: '/admin/tools/coverband', as: :coverband unless Rails.env.test?
   end
 end

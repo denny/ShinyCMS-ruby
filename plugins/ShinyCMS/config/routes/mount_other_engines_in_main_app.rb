@@ -15,7 +15,7 @@
 mount AhoyEmail::Engine, at: '/ahoy'
 
 # Blazer provides charts and dashboards in the ShinyCMS admin area
-mount Blazer::Engine, at: '/admin/stats' if defined? Blazer
+mount Blazer::Engine, at: '/admin/tools/blazer' if defined? Blazer
 
 # REP provides previews of site-generated emails in the ShinyCMS admin area
-mount RailsEmailPreview::Engine, at: '/admin/email-previews'
+mount RailsEmailPreview::Engine, at: '/admin/tools/rails-email-preview'
