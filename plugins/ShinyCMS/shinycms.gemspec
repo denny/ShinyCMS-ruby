@@ -124,12 +124,6 @@ Gem::Specification.new do |spec|
 
   ## Development / Testing
 
-  # Linting
-  spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'rubocop-performance'
-  spec.add_development_dependency 'rubocop-rails'
-  spec.add_development_dependency 'rubocop-rspec'
-
   # Code quality
   spec.add_development_dependency 'rails_best_practices'
   spec.add_development_dependency 'rubycritic', '~> 4.6.0'
@@ -138,9 +132,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'brakeman'
   # Security: check gems against known CVEs
   spec.add_development_dependency 'bundler-audit'
-
-  # Manage git hooks
-  spec.add_development_dependency 'overcommit'
 
   # Run tests
   spec.add_development_dependency 'rspec-rails'

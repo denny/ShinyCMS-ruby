@@ -65,6 +65,18 @@ source 'https://rubygems.org' do
   end
 
   group :development do
+    # Linting: general
+    gem 'rubocop'
+    # Linting: performance tweaks
+    gem 'rubocop-performance'
+    # Linting: Rails-specific
+    gem 'rubocop-rails'
+    # Linting: test suite
+    gem 'rubocop-rspec'
+
+    # Manage git hooks
+    gem 'overcommit'
+
     # Add .analyze method to ActiveRecord objects
     gem 'activerecord-analyze'
 
