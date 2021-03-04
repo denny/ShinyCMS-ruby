@@ -65,7 +65,14 @@ if Rails.env.test? || Rails.env.development? || ENV.fetch( 'SHINYCMS_PRY_CONSOLE
   require 'pry-rails'
 end
 
-# Namespace wrapper
+# Restore original request.ip when behind Cloudflare proxying
+require 'cloudflare/rails'
+
+# Monitoring services
+require 'airbrake' if ENV[ 'AIRBRAKE_API_KEY' ].present?
+require 'bugsnag'  if ENV[ 'BUGSNAG_API_KEY'  ].present?
+
+# Top-level namespace wrapper
 module ShinyCMS
   # Build the configured plugin collection, and stash it in ShinyCMS.plugins for easy re-use
   def self.plugins

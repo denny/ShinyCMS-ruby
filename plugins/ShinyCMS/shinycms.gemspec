@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
+  # 6.1.2.1 fixes CVE-2021-22880
   spec.add_dependency 'rails', '~> 6.1.2', '>= 6.1.2.1'
 
   spec.add_dependency 'pg', '~> 1.2.3'
@@ -101,22 +102,52 @@ Gem::Specification.new do |spec|
   # MJML email rendering
   spec.add_dependency 'mjml-rails'
 
-  # Use faster SCSS gem for stylesheets
+  # Faster SCSS gem for stylesheets
   spec.add_dependency 'sassc-rails'
-  # Transpile app-like JavaScript. More info: https://github.com/rails/webpacker
+
+  # JavaScript and endless config frustration
   spec.add_dependency 'webpacker', '~> 5.2'
 
   # Improvements for the Rails console
   spec.add_dependency 'amazing_print'
   spec.add_dependency 'pry-rails'
 
-  # HTML & XML parser (indirect dependency; specifying minimum version to include a security fix)
-  spec.add_dependency 'nokogiri', '>= 1.11.1'
+  # HTML & XML parser (indirect dependency) - 1.10.4 fixes CVE-2019-5477
+  spec.add_dependency 'nokogiri', '>= 1.10.4'
 
-  # Testing
+  ## Monitoring services
+  spec.add_dependency 'airbrake'
+  spec.add_dependency 'bugsnag'
+
+  # Fix request.ip when running behind Cloudflare proxying
+  spec.add_dependency 'cloudflare-rails'
+
+  ## Development / Testing
+
+  # Linting
+  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubocop-performance'
+  spec.add_development_dependency 'rubocop-rails'
+  spec.add_development_dependency 'rubocop-rspec'
+
+  # Code quality
+  spec.add_development_dependency 'rails_best_practices'
+  spec.add_development_dependency 'rubycritic', '~> 4.6.0'
+
+  # Security: static code analysis
+  spec.add_development_dependency 'brakeman'
+  # Security: check gems against known CVEs
+  spec.add_development_dependency 'bundler-audit'
+
+  # Manage git hooks
+  spec.add_development_dependency 'overcommit'
+
+  # Run tests
   spec.add_development_dependency 'rspec-rails'
-  # Create test objects
+  # Run tests in parallel
+  spec.add_development_dependency 'parallel_tests'
+
+  # Create test objects, filled with test data
   spec.add_development_dependency 'factory_bot_rails'
-  # Fill test objects with test data
   spec.add_development_dependency 'faker'
 end

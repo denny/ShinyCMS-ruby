@@ -18,7 +18,7 @@ source 'https://rubygems.org' do
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/rails-now'
 
-  # Find out which bits of your code are used more/less in actual use
+  # Find out which bits of your code are used more/less in production
   gem 'coverband', groups: %i[ development production ]
 
   # ShinyCMS core plugin
@@ -30,8 +30,11 @@ source 'https://rubygems.org' do
     gem gem_name, path: "plugins/#{plugin_name}"
   end
 
-  # Email previews
-  gem 'rails_email_preview'
+  # Postgres
+  gem 'pg', '~> 1.2.3'
+
+  # Webserver
+  gem 'puma', '~> 5.2', groups: %i[ development production ]
 
   # Sessions
   # FIXME: Installing from GitHub because Ruby 3 support is merged but not released:
@@ -39,11 +42,8 @@ source 'https://rubygems.org' do
   # https://github.com/rails/activerecord-session_store/issues/171
   gem 'activerecord-session_store', git: 'https://github.com/rails/activerecord-session_store'
 
-  # Postgres
-  gem 'pg', '~> 1.2.3'
-
-  # Webserver
-  gem 'puma', '~> 5.2', groups: %i[ development production ]
+  # Email previews
+  gem 'rails_email_preview'
 
   # Email stats
   gem 'ahoy_email'
@@ -55,55 +55,16 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 3.4.2'
 
-  group :production do
-    # Airbrake - error monitoring and APM
-    # gem 'airbrake'
-    # (Commented out because their free trial service is ridiculously restricted,
-    # it's mostly buttons that don't work and a sales pitch every time you click
-    # on anything. If you're on Heroku I'd recommend trying Coralogix instead,
-    # that looks quite nice. And Bugsnag might look a bit clunky in comparison,
-    # but it has really well thought-out functionality, especially for teams.)
-
-    # Bugsnag - error monitoring and bug triage
-    gem 'bugsnag'
-
-    # Fix request.ip when running behind Cloudflare proxying
-    gem 'cloudflare-rails'
-  end
-
   group :development, :test do
-    # Tests
+    # Run tests
     gem 'rspec-rails'
 
-    # Run tests in parallel on multi-core machines
-    gem 'parallel_tests'
-
-    # Utils for working with translation strings
+    # Tools for working with translation strings
     # gem 'i18n-debug'
     gem 'i18n-tasks', '~> 0.9.33'
   end
 
   group :development do
-    # Linter
-    gem 'rubocop', require: false
-    # Rails-specific linting
-    gem 'rubocop-rails', require: false
-    # Tests need linting-love too!
-    gem 'rubocop-rspec', require: false
-    # Performance-related analysis
-    gem 'rubocop-performance', require: false
-
-    # Scan for security vulnerabilities
-    gem 'brakeman', require: false
-    # Check gems for security issues
-    gem 'bundler-audit', require: false
-
-    # Best practices
-    gem 'rails_best_practices', require: false
-
-    # Ruby Critic generates easy-to-read reports from multiple static analysis tools
-    gem 'rubycritic', '~> 4.6.0', require: false
-
     # Add .analyze method to ActiveRecord objects
     gem 'activerecord-analyze'
 
@@ -112,9 +73,6 @@ source 'https://rubygems.org' do
 
     # Reload dev server when files change
     gem 'listen', '~> 3.3'
-
-    # Helps you manage your git hooks
-    gem 'overcommit', require: false
 
     # Analysis tools for postgres
     gem 'rails-pg-extras'
