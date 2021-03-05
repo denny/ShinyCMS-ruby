@@ -13,11 +13,7 @@ module ShinyPages
 
     include ShinyCMS::ProvidesDemoSiteData
 
-    # Assocations
-
     belongs_to :page, inverse_of: :elements
-
-    # Plugin features
 
     acts_as_list scope: :page
 
@@ -26,14 +22,8 @@ module ShinyPages
       searchable_by :content  # TODO
     end
 
-    # Validations
-
     validates :page, presence: true
 
-    # Instance methods
-
-    def hidden?
-      false
-    end
+    delegate :hidden?, to: :page
   end
 end
