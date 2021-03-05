@@ -98,18 +98,6 @@ FactoryBot.define do
     end
   end
 
-  factory :mailer_admin, parent: :admin_user do
-    after :create do |admin|
-      category = ShinyCMS::CapabilityCategory.find_by( name: 'mailer_previews' )
-
-      list = category.capabilities.find_by( name: 'list' )
-      show = category.capabilities.find_by( name: 'show' )
-
-      create :user_capability, user: admin, capability: list
-      create :user_capability, user: admin, capability: show
-    end
-  end
-
   factory :feature_flags_admin, parent: :admin_user do
     after :create do |admin|
       category = ShinyCMS::CapabilityCategory.find_by( name: 'feature_flags' )
@@ -171,6 +159,16 @@ FactoryBot.define do
       blazer = category.capabilities.find_by( name: 'use_blazer' )
 
       create :user_capability, user: admin, capability: blazer
+    end
+  end
+
+  factory :admin_with_rails_email_preview, parent: :admin_user do
+    after :create do |admin|
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'tools' )
+
+      rep = category.capabilities.find_by( name: 'use_rails_email_preview' )
+
+      create :user_capability, user: admin, capability: rep
     end
   end
 
