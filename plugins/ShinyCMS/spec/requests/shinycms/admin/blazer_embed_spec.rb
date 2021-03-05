@@ -11,9 +11,9 @@ require 'rails_helper'
 # Tests for the Blazer integration
 RSpec.describe 'Blazer (charts and dashboards)', type: :request do
   describe 'GET /admin/tools/blazer' do
-    context 'when logged in as a stats admin user' do
+    context 'when logged in as an admin user with access to Blazer' do
       before do
-        admin = create :stats_admin
+        admin = create :admin_with_blazer
         sign_in admin
       end
 
@@ -30,7 +30,7 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
       end
     end
 
-    context 'when logged in as an admin user without stats access' do
+    context 'when logged in as an admin user without access to the tools' do
       before do
         admin = create :page_admin
         sign_in admin
@@ -46,8 +46,7 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
         expect( response      ).to redirect_to shiny_pages.pages_path
         follow_redirect!
         expect( response      ).to have_http_status :ok
-        # FIXME: losing alert on double-redirect?
-        # expect( response.body ).to have_css '.alerts', text: I18n.t( 'shinycms.admin.blazer.auth_fail' )
+        expect( response.body ).to have_css '.alert', text: I18n.t( 'shinycms.admin.blazer.auth_fail' )
       end
     end
   end

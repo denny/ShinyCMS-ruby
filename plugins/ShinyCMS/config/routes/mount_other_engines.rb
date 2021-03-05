@@ -26,7 +26,7 @@ if sidekiq_web_enabled?
 
   Sidekiq::Web.set :sessions, false
 
-  authenticate :user, ->( user ) { user.can? :manage_sidekiq_jobs } do
+  authenticate :user, ->( user ) { user.can? :use_sidekiq_web, :tools } do
     mount Sidekiq::Web, at: '/admin/tools/sidekiq'
   end
 end
@@ -37,7 +37,7 @@ def coverband_web_ui_enabled?
 end
 
 if coverband_web_ui_enabled?
-  authenticate :user, ->( user ) { user.can? :view_code_usage } do
+  authenticate :user, ->( user ) { user.can? :use_coverband, :tools } do
     mount Coverband::Reporters::Web.new, at: '/admin/tools/coverband', as: :coverband unless Rails.env.test?
   end
 end

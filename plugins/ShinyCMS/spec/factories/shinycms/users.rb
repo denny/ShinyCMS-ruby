@@ -126,13 +126,11 @@ FactoryBot.define do
     after :create do |admin|
       category = ShinyCMS::CapabilityCategory.find_by( name: 'stats' )
 
-      web    = category.capabilities.find_by( name: 'view_web'   )
-      email  = category.capabilities.find_by( name: 'view_email' )
-      blazer = category.capabilities.find_by( name: 'use_blazer' )
+      web   = category.capabilities.find_by( name: 'view_web'   )
+      email = category.capabilities.find_by( name: 'view_email' )
 
       create :user_capability, user: admin, capability: web
       create :user_capability, user: admin, capability: email
-      create :user_capability, user: admin, capability: blazer
     end
   end
 
@@ -145,6 +143,34 @@ FactoryBot.define do
 
       create :user_capability, user: admin, capability: list
       create :user_capability, user: admin, capability: edit
+    end
+  end
+
+  factory :tools_admin, parent: :admin_user do
+    after :create do |admin|
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'tools' )
+
+      blazer    = category.capabilities.find_by( name: 'use_blazer'              )
+      coverband = category.capabilities.find_by( name: 'use_coverband'           )
+      outbox    = category.capabilities.find_by( name: 'use_letter_opener_web'   )
+      previews  = category.capabilities.find_by( name: 'use_rails_email_preview' )
+      sidekiq   = category.capabilities.find_by( name: 'use_sidekiq_web'         )
+
+      create :user_capability, user: admin, capability: blazer
+      create :user_capability, user: admin, capability: coverband
+      create :user_capability, user: admin, capability: outbox
+      create :user_capability, user: admin, capability: previews
+      create :user_capability, user: admin, capability: sidekiq
+    end
+  end
+
+  factory :admin_with_blazer, parent: :admin_user do
+    after :create do |admin|
+      category = ShinyCMS::CapabilityCategory.find_by( name: 'tools' )
+
+      blazer = category.capabilities.find_by( name: 'use_blazer' )
+
+      create :user_capability, user: admin, capability: blazer
     end
   end
 
