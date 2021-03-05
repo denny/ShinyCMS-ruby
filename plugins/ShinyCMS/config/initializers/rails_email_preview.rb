@@ -6,6 +6,10 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# RailsEmailPreview config, to embed it into the ShinyCMS admin area
+
+# Pulled into main_app by /config/initializers/rails_email_preview.rb)
+
 require 'rails_email_preview'
 
 RailsEmailPreview.setup do |config|
@@ -27,8 +31,6 @@ RailsEmailPreview.setup do |config|
 end
 
 Rails.application.config.to_prepare do
-  RailsEmailPreview.layout = 'shinycms/admin/layouts/admin_area'
-
   # RailsEmailPreview.locale = :de
 
   # Auto-load preview classes from:

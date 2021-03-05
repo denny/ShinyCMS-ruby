@@ -6,14 +6,6 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Coverband config
+# Pull Blazer config in from ShinyCMS core plugin
 
-# Pulled into main_app by /config/coverband.rb
-
-return if Rails.env.test?
-
-# :nocov:
-
-Coverband.configure do |config|
-  config.track_views = true
-end
+require_relative '../../plugins/ShinyCMS/config/initializers/blazer'

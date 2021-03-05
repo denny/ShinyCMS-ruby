@@ -476,7 +476,7 @@ en:
       blazer:
         breadcrumb: Blazer
         menu: Charts
-        auth_fail: You do not have permission to view charts
+        auth_fail: Your account does not have access to the Blazer chart features
         dashboards:
           title: Dashboards
         queries:
@@ -487,6 +487,7 @@ en:
       rails_email_preview:
         breadcrumb: Mailers
         menu: Mailer previews
+        auth_fail: Your account does not have access to the email preview features
         emails:
           index:
             title: All mailers
