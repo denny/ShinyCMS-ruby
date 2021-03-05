@@ -29,13 +29,14 @@ end
 
 add_capabilities(
   {
-    general:          %w[ view_admin_area view_admin_toolbar manage_sidekiq_jobs view_code_usage ],
+    general:          %w[ view_admin_area view_admin_toolbar ],
+    tools:            %w[ use_blazer use_coverband use_letter_opener_web use_rails_email_preview use_sidekiq_web ],
     discussions:      %w[ show hide lock unlock ],
     comments:         %w[ show hide lock unlock destroy ],
     spam_comments:    %w[ list add destroy ],
     email_recipients: %w[ list edit destroy ],
     mailer_previews:  %w[ list show ],
-    stats:            %w[ view_web view_email use_blazer ],
+    stats:            %w[ view_web view_email ],
     feature_flags:    %w[ list edit ],
     settings:         %w[ list edit ],
     users:            %w[ list add edit destroy view_admin_notes ]

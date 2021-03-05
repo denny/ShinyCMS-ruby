@@ -24,6 +24,8 @@ module ShinyCMS
     def index
       skip_authorization
 
+      flash.keep
+
       if ShinyCMS.plugins.loaded?( :ShinyPages ) && current_user.can?( :list, :pages )
         redirect_to shiny_pages.pages_path
       else

@@ -25,7 +25,7 @@ ShinyNews::Engine.routes.draw do
     # Admin area
     scope path: 'admin', module: 'admin' do
       # with_paging and with_search
-      import_routes file: :admin_route_concerns
+      import_routes partial: :admin_route_concerns
 
       resources :news_posts, path: 'news', except: %i[ index show ], concerns: %i[ with_paging with_search ]
     end

@@ -12,13 +12,13 @@ get :admin, to: 'admin#index'
 
 scope path: 'admin', module: 'admin' do
   # with_paging and with_search
-  import_routes file: :admin_route_concerns
+  import_routes partial: :admin_route_concerns
 
   # Consent versions
   resources :consent_versions, path: 'consent-versions', concerns: %i[ with_paging with_search ], except: :index
 
   # Admin area routes for comments and discussions
-  import_routes file: :admin_area_for_discussions
+  import_routes partial: :admin_area_for_discussions
 
   # Email Recipients
   resources :email_recipients, path: 'email-recipients', concerns: %i[ with_paging with_search ], only: :destroy do
@@ -34,7 +34,7 @@ scope path: 'admin', module: 'admin' do
   put 'site-settings', to: 'site_settings#update'
 
   # Admin area routes for web and email stats
-  import_routes file: :admin_area_for_stats
+  import_routes partial: :admin_area_for_stats
 
   # Users
   resources :users, concerns: %i[ with_paging with_search ], except: %i[ index show ]

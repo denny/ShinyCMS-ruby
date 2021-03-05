@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for previewing the user mailer (powered by RailsEmailPreview)
 RSpec.describe UserMailerPreview, type: :request do
   before do
-    admin = create :mailer_admin
+    admin = create :admin_with_rails_email_preview
     sign_in admin
   end
 
