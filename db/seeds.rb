@@ -29,6 +29,6 @@ end
 require_relative 'seeds/blazer' unless ENV['DISABLE_BLAZER'].presence&.downcase == 'true'
 
 # If there are currently no super-admin users, show the command to create one
-demo = ( Rake.application.top_level_tasks.first == 'shiny:demo:load' )
+demo = ( Rake.application.top_level_tasks.first == 'shinycms:demo:load' )
 skip = ShinyCMS::User.super_admins_exist? || demo || Rails.env.test?
-puts 'To generate a ShinyCMS admin user: rails shiny:admin:create' unless skip
+puts 'To generate a ShinyCMS admin user: rails shinycms:admin:create' unless skip

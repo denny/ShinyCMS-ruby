@@ -1,0 +1,11 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Run RBP. Twice.
+# (For some reason these two commands occasionally produce different results)
+
+rails_best_practices -c plugins/ShinyCMS/config/rails_best_practices.yml .
+rails_best_practices -c plugins/ShinyCMS/config/rails_best_practices.yml plugins

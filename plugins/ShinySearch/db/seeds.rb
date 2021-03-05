@@ -9,36 +9,26 @@
 # You can load or reload this data using the following rake task:
 # rails shiny_search:db:seed
 
-# Add feature flag
-flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'search' )
-flag.update!(
-  description:           'Turn on search features',
-  enabled:               true,
-  enabled_for_logged_in: true,
-  enabled_for_admins:    true
-)
+require 'shinycms/seeder'
 
-# Add setting for default search backend
-setting = ShinyCMS::Setting.find_or_create_by!( name: 'default_search_backend' )
-setting.update!(
+seeder = ShinyCMS::Seeder.new
+
+seeder.seed_feature_flag( name: :search, description: 'Search features for the main site (ShinySearch plugin)' )
+
+seeder.seed_setting(
+  name:        :default_search_backend,
   description: 'Default back-end engine for search feature (pg or algolia)',
-  level:       'site',
-  locked:      false
+  value:       'pg'
 )
-setting.values.find_or_create_by!( value: 'pg' )
 
-setting = ShinyCMS::Setting.find_or_create_by!( name: 'search_enabled_algolia' )
-setting.update!(
+seeder.seed_setting(
+  name:        :search_enabled_algolia,
   description: 'Is the Algolia search backend enabled',
-  level:       'site',
-  locked:      false
+  value:       'true'
 )
-setting.values.find_or_create_by!( value: 'true' )
 
-setting = ShinyCMS::Setting.find_or_create_by!( name: 'search_enabled_postgres' )
-setting.update!(
+seeder.seed_setting(
+  name:        :search_enabled_postgres,
   description: 'Is the Postgres search backend enabled',
-  level:       'site',
-  locked:      false
+  value:       'true'
 )
-setting.values.find_or_create_by!( value: 'true' )

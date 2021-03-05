@@ -11,9 +11,10 @@ module ShinyNewsletters
   class Template < ApplicationRecord
     include ShinyCMS::MJMLTemplate
 
-    include ShinyCMS::HasDemoData
     include ShinyCMS::HasReadableName
     include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     # Associations
 

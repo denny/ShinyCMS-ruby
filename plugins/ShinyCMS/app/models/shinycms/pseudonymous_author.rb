@@ -9,9 +9,10 @@
 module ShinyCMS
   # Plays the role of Author for pseudonymous Comments
   class PseudonymousAuthor < ApplicationRecord
-    include ShinyCMS::HasDemoData
     include ShinyCMS::HasToken
     include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     has_many :comments, as: :author, dependent: :nullify, class_name: 'ShinyCMS::Comment'
 

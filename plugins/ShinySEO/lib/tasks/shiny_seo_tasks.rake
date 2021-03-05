@@ -9,21 +9,21 @@
 require 'dotenv/tasks'
 
 # To copy and run the database migrations for ShinySEO:
-# rails shiny_seo:install:migrations
-# rails db:migrate
+#   rails shiny_seo:install:migrations
+#   rails db:migrate
 #
 # To install supporting data for ShinySEO (admin capabilities and feature flags):
-# rails shiny_seo:db:seed
+#   rails shiny_seo:db:seed
 #
 # These two tasks can be run in either order.
 
 namespace :shiny_seo do
   namespace :db do
-    # :nocov:
     desc 'ShinyCMS: load supporting data for ShinySEO plugin'
     task seed: %i[ environment dotenv ] do
+      # :nocov:
       ShinySEO::Engine.load_seed
+      # :nocov:
     end
-    # :nocov:
   end
 end

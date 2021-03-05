@@ -19,7 +19,7 @@ module ShinyNewsletters
       send.update!( started_sending_at: Time.zone.now )
 
       send.list.subscriptions.each do |subscription|
-        next if subscription.subscriber.do_not_email?
+        next unless subscription.subscriber.ok_to_email?
 
         SendToSubscriberJob.perform_later( send, subscription.subscriber )
       end

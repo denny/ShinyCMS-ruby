@@ -10,12 +10,12 @@ The current version of ShinyCMS runs on Ruby 3.0 and Rails 6.1
 
 ## Features
 
-* [Plugin architecture](docs/Developer/Plugins.md)
+* [Plugin architecture](docs/Developer/Plugins.md) 𐍈
   * Load the core plugin, plus only the feature plugins that you want to use
     * Reduces in-memory size and attackable surface area
   * Add custom functionality easily by writing your own plugins
-  * Features marked with 𐍈 below are provided by the core plugin
-  * Features marked with ± below are provided by a feature plugin
+  * Items on this list marked with 𐍈 are provided by the core plugin
+  * Items on this list marked with ± are provided by one of the feature plugins
 * [Themes](docs/Themes.md) (on the hosted site) 𐍈
   * Light-lift theme system - you can override just a few of the default partials if you want
   * Two themes included; Halcyonic, for content-rich sites, and Coming Soon for pre-launch sites
@@ -56,13 +56,14 @@ The current version of ShinyCMS runs on Ruby 3.0 and Rails 6.1
   * ACL-based authorisation system for admin area, powered by [Pundit](https://github.com/varvet/pundit)
 * [Site settings](docs/Features/MainApp/SiteSettings.md) and [feature flags](docs/Features/MainApp/FeatureFlags.md) 𐍈
   * Website admin area for both, plus a rake task for command-line access to feature flags
+* Sitemap generation and search-engine notification, powered by [SitemapGenerator](https://github.com/kjvarga/sitemap_generator#readme) ±
 * Emails can be generated from [MJML](docs/Features/mjml.md) or HTML templates 𐍈
   * Using MJML allows you to produce more reliably cross-platform HTML emails
   * Default MJML templates included for most features that send email
 * Built-in tracking of [web stats](docs/Features/MainApp/WebStats.md) and [email stats](docs/Features/MainApp/EmailStats.md)
   * Powered by [Ahoy](https://github.com/ankane/ahoy) and [Ahoy::Email](https://github.com/ankane/ahoy_email)
 * Build your own [charts and dashboards](docs/Features/MainApp/Charts.md) for viewing and analyzing stats
-  * Powered by [Blazer](https://github.com/ankane/blazer))
+  * Powered by [Blazer](https://github.com/ankane/blazer)
   * Default config includes a dozen useful charts and queries to get you started
 
 ### Planned features

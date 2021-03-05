@@ -9,51 +9,22 @@
 # You can load or reload this data using the following rake task:
 # rails shiny_pages:db:seed
 
-# Feature flag
+require 'shinycms/seeder'
 
-flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'pages' )
-flag.update!(
-  description:           "Enable 'brochure pages', provided by ShinyPages plugin",
-  enabled:               true,
-  enabled_for_logged_in: true,
-  enabled_for_admins:    true
+seeder = ShinyCMS::Seeder.new
+
+seeder.seed_feature_flag( name: :pages, description: "Content-managed, templated 'brochure pages' (ShinyPages plugin)" )
+
+seeder.seed_standard_admin_capabilities( category: :pages          )
+seeder.seed_standard_admin_capabilities( category: :page_sections  )
+seeder.seed_standard_admin_capabilities( category: :page_templates )
+
+seeder.seed_setting(
+  name:        :default_page,
+  description: 'Default top-level page (either its name or its slug)'
 )
 
-# Admin capabilities
-
-pages_cc = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'pages' )
-sections_cc = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'page_sections' )
-templates_cc = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'page_templates' )
-
-pages_cc.capabilities.find_or_create_by!( name: 'list'    )
-pages_cc.capabilities.find_or_create_by!( name: 'add'     )
-pages_cc.capabilities.find_or_create_by!( name: 'edit'    )
-pages_cc.capabilities.find_or_create_by!( name: 'destroy' )
-
-sections_cc.capabilities.find_or_create_by!( name: 'list'    )
-sections_cc.capabilities.find_or_create_by!( name: 'add'     )
-sections_cc.capabilities.find_or_create_by!( name: 'edit'    )
-sections_cc.capabilities.find_or_create_by!( name: 'destroy' )
-
-templates_cc.capabilities.find_or_create_by!( name: 'list'    )
-templates_cc.capabilities.find_or_create_by!( name: 'add'     )
-templates_cc.capabilities.find_or_create_by!( name: 'edit'    )
-templates_cc.capabilities.find_or_create_by!( name: 'destroy' )
-
-# Site settings
-
-setting1 = ShinyCMS::Setting.find_or_create_by!( name: 'default_page' )
-setting1.update!(
-  description: 'Default top-level page (either its name or its slug)',
-  level:       'site',
-  locked:      false
+seeder.seed_setting(
+  name:        :default_section,
+  description: 'Default top-level section (either its name or its slug)'
 )
-setting1.values.find_or_create_by!( value: '' )
-
-setting2 = ShinyCMS::Setting.find_or_create_by!( name: 'default_section' )
-setting2.update!(
-  description: 'Default top-level section (either its name or its slug)',
-  level:       'site',
-  locked:      false
-)
-setting2.values.find_or_create_by!( value: '' )

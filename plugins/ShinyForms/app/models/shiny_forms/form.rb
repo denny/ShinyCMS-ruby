@@ -9,10 +9,11 @@
 module ShinyForms
   # Model for forms, from ShinyForms plugin for ShinyCMS
   class Form < ApplicationRecord
-    include ShinyCMS::HasDemoData
     include ShinyCMS::HasPublicName
     include ShinyCMS::HasSlug
     include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     # Validations
 
@@ -77,7 +78,7 @@ module ShinyForms
     end
 
     def self.default_template_dir
-      Rails.root.join 'plugins/ShinyForms/app/views/shiny_forms/form_mailer'
+      ShinyForms::Engine.root.join 'app/views/shiny_forms/form_mailer'
     end
 
     def self.admin_search( search_term )

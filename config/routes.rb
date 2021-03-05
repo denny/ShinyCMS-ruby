@@ -8,48 +8,28 @@
 
 # Routes for main app (ShinyHostApp)
 
+require_relative '../plugins/ShinyCMS/lib/import_routes' if defined? ShinyCMS
+
 Rails.application.routes.draw do
   if defined? ShinyCMS
-    scope format: false do
-      # Currently, if ShinyPages is loaded, then we assume it controls the root path
-      # require "#{ShinyPages::Engine.root}/route_helpers/root_path_route" if ShinyCMS.plugins.loaded? :ShinyPages
-      root to: 'shiny_pages/pages#index' if ShinyCMS.plugins.loaded? :ShinyPages
+    # Currently, if ShinyPages is loaded, then we assume it should control the root path
+    import_routes partial: :root, plugin: :ShinyPages if ShinyCMS.plugins.loaded? :ShinyPages
 
-      # ShinyCMS core plugin
-      mount ShinyCMS::Engine, at: '/', as: :shinycms
+    import_routes partial: :mount_shinycms_core_plugin
 
-      # ShinyCMS feature plugins
-      # require "#{ShinyCMS::Engine.root}/route_helpers/mount_all_plugins"
-      ShinyCMS.plugins.engines.each do |engine|
-        mount engine, at: '/'
-      end
+    import_routes partial: :mount_shinycms_feature_plugins
 
-      ## Other engines used by ShinyCMS
+    # Engines from gems that ShinyCMS uses to provide various features
+    import_routes partial: :mount_other_engines_in_main_app
 
-      # AhoyEmail provides email tracking features
-      mount AhoyEmail::Engine, at: '/ahoy'
+    # Protect the /admin namespace from fishing expeditions
+    import_routes partial: :admin_page_not_found
 
-      # Blazer provides charts and dashboards in the ShinyCMS admin area
-      mount Blazer::Engine, at: '/admin/stats' if defined? Blazer
-
-      # REP provides previews of site-generated emails in the ShinyCMS admin area
-      mount RailsEmailPreview::Engine, at: '/admin/email-previews'
-
-      # Protect the /admin namespace from fishing expeditions
-      # require "#{ShinyCore::Engine.root}/route_helpers/catch_all_admin_route"
-      match '/admin/*path', to: 'shinycms/admin#not_found', as: :admin_not_found, via: %i[ get post put patch delete ]
-
-      return unless ShinyCMS.plugins.loaded? :ShinyPages
-
-      # This catch-all route matches anything and everything not already matched by a route
-      # defined before it. It enables the ShinyPages plugin to create pages and sections at
-      # the top level of the site - i.e. /foo instead of /pages/foo
-      #
-      # Because this route matches everything that reaches it, it must be defined last.
-      # require "#{ShinyPages::Engine.root}/route_helpers/catch_all_root_route"
-      get '*path', to: 'shiny_pages/pages#show', constraints: lambda { |request|
-        !request.path.starts_with?( '/rails/active_' )
-      }
-    end
+    # The top-level catch-all route that allows ShinyPages to create and
+    # control pages and page sections at the top-level of the main site:
+    # https://example.com/hello rather than https://example.com/pages/hello
+    #
+    # Because this route matches everything that reaches it, it must be defined last!
+    import_routes partial: :top_level_pages, plugin: :ShinyPages if ShinyCMS.plugins.loaded? :ShinyPages
   end
 end

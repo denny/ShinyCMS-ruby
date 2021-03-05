@@ -29,12 +29,10 @@ module ShinyCMS
       def format_name
         self.name = name.parameterize.underscore
       end
-    end
 
-    class_methods do
       # Elements of templated items need to be inserted after the related Template, Template Elements, and item
-      def demo_data_position
-        4 unless is_a? ShinyCMS::Template
+      def self.demo_data_position
+        4 unless include? ShinyCMS::TemplateElement
       end
     end
   end

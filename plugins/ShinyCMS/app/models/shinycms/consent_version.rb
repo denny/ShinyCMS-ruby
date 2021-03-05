@@ -12,9 +12,10 @@ module ShinyCMS
     # Custom error class
     class HasBeenAgreedTo < StandardError; end
 
-    include ShinyCMS::HasDemoData
     include ShinyCMS::HasSlug
     include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     # Validations
 
@@ -27,6 +28,8 @@ module ShinyCMS
     before_destroy :before_destroy
 
     # Instance methods
+
+    alias_attribute :slug_base, :name
 
     def before_update
       return if subscriptions.blank?

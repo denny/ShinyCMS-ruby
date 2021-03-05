@@ -59,7 +59,7 @@ RSpec.describe ShinyCMS::EmailRecipient, type: :model do
   end
 
   describe 'concerns' do
-    it_behaves_like ShinyCMS::HasDemoData do
+    it_behaves_like ShinyCMS::ProvidesDemoSiteData do
       let( :model ) { described_class }
     end
 

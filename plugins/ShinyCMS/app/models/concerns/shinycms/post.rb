@@ -45,10 +45,11 @@ module ShinyCMS
 
       # Attribute aliases and delegated methods
 
-      alias_attribute :author, :user
+      alias_attribute :author,    :user
+      alias_attribute :slug_base, :title
 
       delegate :show_on_site, to: :discussion, allow_nil: true, prefix: true
-      delegate :locked, to: :discussion, allow_nil: true, prefix: true
+      delegate :locked,       to: :discussion, allow_nil: true, prefix: true
 
       # Scopes and default sort order
 
@@ -106,6 +107,10 @@ module ShinyCMS
       def items_in_same_month
         self.class.readonly.published.where( posted_at: posted_at.all_month )
       end
+
+      def self.sitemap_items
+        recent.readonly
+      end
     end
 
     class_methods do
@@ -124,10 +129,6 @@ module ShinyCMS
         return post if post
 
         raise ActiveRecord::RecordNotFound
-      end
-
-      def sitemap_items
-        recent.readonly
       end
 
       def admin_search( search_term )

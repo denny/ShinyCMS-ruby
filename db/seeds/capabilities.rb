@@ -8,6 +8,15 @@
 
 # Seed data for capabilities (used by user authorisation code)
 
+require 'shinycms/seeder'
+
+seeder = ShinyCMS::Seeder.new
+
+seeder.seed_standard_admin_capabilities( category: :consent_versions )
+seeder.seed_standard_admin_capabilities( category: :admin_users      )
+
+# Most of the capabilities to be set here are not the standard four, so ...
+
 def add_capabilities( capability_data )
   capability_data.each_key do |category_name|
     category = ShinyCMS::CapabilityCategory.find_or_create_by!( name: category_name )
@@ -20,17 +29,16 @@ end
 
 add_capabilities(
   {
-    general:          %w[ view_admin_area view_admin_toolbar manage_sidekiq_jobs view_code_usage ],
+    general:          %w[ view_admin_area view_admin_toolbar ],
+    tools:            %w[ use_blazer use_coverband use_letter_opener_web use_rails_email_preview use_sidekiq_web ],
     discussions:      %w[ show hide lock unlock ],
     comments:         %w[ show hide lock unlock destroy ],
     spam_comments:    %w[ list add destroy ],
     email_recipients: %w[ list edit destroy ],
     mailer_previews:  %w[ list show ],
-    stats:            %w[ view_web view_email view_charts make_charts ],
+    stats:            %w[ view_web view_email ],
     feature_flags:    %w[ list edit ],
     settings:         %w[ list edit ],
-    consent_versions: %w[ list add edit destroy ],
-    users:            %w[ list add edit destroy view_admin_notes ],
-    admin_users:      %w[ list add edit destroy ]
+    users:            %w[ list add edit destroy view_admin_notes ]
   }
 )

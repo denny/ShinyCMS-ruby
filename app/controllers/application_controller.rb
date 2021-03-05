@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 
   # Control access to Blazer (method name set in config/blazer.yml)
   def blazer_authorize
-    return true if current_user&.can? :view_charts, :stats
+    return true if current_user&.can? :use_blazer, :tools
 
     redirect_to shinycms.admin_path, alert: t( 'shinycms.admin.blazer.auth_fail' )
   end

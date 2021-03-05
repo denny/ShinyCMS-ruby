@@ -6,8 +6,8 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Version number ('Ubuntu style'; year and month)
+# ShinyCMS version number ('Ubuntu style', YY.MM)
 module ShinyCMS
-  VERSION = '21.02.14'
+  VERSION = '21.03'
   public_constant :VERSION
 end

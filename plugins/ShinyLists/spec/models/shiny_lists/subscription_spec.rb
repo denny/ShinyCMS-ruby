@@ -36,7 +36,7 @@ module ShinyLists
     end
 
     describe 'concerns' do
-      it_behaves_like ShinyCMS::HasDemoData do
+      it_behaves_like ShinyCMS::ProvidesDemoSiteData do
         let( :model ) { described_class }
       end
     end

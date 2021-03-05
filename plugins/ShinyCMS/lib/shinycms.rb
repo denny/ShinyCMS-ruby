@@ -8,9 +8,73 @@
 
 require 'shinycms/engine'
 
-# Namespace wrapper
+# Immutable data structures (used in Plugins code)
+require 'persistent-dmnd'
+
+# Low level authentication-related stuff
+require 'bcrypt'
+# require 'activerecord/session_store'
+
+# High-level authentication and authorisation stuff
+require 'devise'
+require 'pundit'
+require 'devise/pwned_password'
+require 'zxcvbn'
+
+# Job queues
+require 'sidekiq'
+require 'sidekiq-status'
+
+# Extend behaviour, mostly of models
+require 'acts_as_paranoid'
+require 'acts_as_list'
+require 'acts-as-taggable-on'
+require 'acts_as_votable'
+
+# WYSIWYG editor
+require 'ckeditor'
+
+# Pagination
+require 'pagy'
+
+# Generate Atom feeds
+require 'rss'
+
+# Image storage on S3
+require 'aws-sdk-s3'
+# Image processing (resizing, etc)
+require 'image_processing'
+require 'mini_magick'
+
+# Spambot protection
+require 'akismet'
+require 'recaptcha'
+
+# Email address validation
+require 'email_address'
+
+# MJML email rendering
+require 'mjml-rails'
+
+# JavaScript gank
+require 'webpacker'
+
+# Improvements for the Rails console
+if Rails.env.test? || Rails.env.development? || ENV.fetch( 'SHINYCMS_PRY_CONSOLE', 'false' ).downcase == 'true'
+  require 'amazing_print'
+  require 'pry-rails'
+end
+
+# Restore original request.ip when behind Cloudflare proxying
+require 'cloudflare/rails'
+
+# Monitoring services
+require 'airbrake' if ENV[ 'AIRBRAKE_API_KEY' ].present?
+require 'bugsnag'  if ENV[ 'BUGSNAG_API_KEY'  ].present?
+
+# Top-level namespace wrapper
 module ShinyCMS
-  # Build the full plugin collection and stash it in the top-level module for re-use
+  # Build the configured plugin collection, and stash it in ShinyCMS.plugins for easy re-use
   def self.plugins
     @plugins ||= ShinyCMS::Plugins.all
   end

@@ -11,8 +11,9 @@ module ShinyInserts
   class Element < ApplicationRecord
     include ShinyCMS::Element
 
-    include ShinyCMS::HasDemoData
     include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     belongs_to :set, inverse_of: :elements, class_name: 'ShinyInserts::Set'
 

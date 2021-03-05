@@ -13,11 +13,10 @@ module ShinyPages
   RSpec.describe PageElement, type: :model do
     describe 'concerns' do
       it_behaves_like ShinyCMS::Element do
-        let( :page    ) { create :page                     }
-        let( :element ) { create :page_element, page: page }
+        let( :element ) { create :page_element }
       end
 
-      it_behaves_like ShinyCMS::HasDemoData do
+      it_behaves_like ShinyCMS::ProvidesDemoSiteData do
         let( :model ) { described_class }
       end
     end

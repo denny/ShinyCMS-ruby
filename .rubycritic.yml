@@ -1,4 +1,5 @@
 no_browser: true
+threshold_score: 1
 paths:
   - plugins/ShinyCMS/app
   - app

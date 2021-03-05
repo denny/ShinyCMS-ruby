@@ -16,10 +16,10 @@ class MailerPreviewPolicy
   end
 
   def index?
-    @this_user.can? :list, :mailer_previews
+    @this_user.can? :use_rails_email_preview, :tools
   end
 
   def show?
-    @this_user.can? :show, :mailer_previews
+    @this_user.can? :use_rails_email_preview, :tools
   end
 end

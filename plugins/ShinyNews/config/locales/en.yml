@@ -10,7 +10,7 @@ en:
   shinycms:
     feature_flags:
       news: News section
-      news_votes: Votes on news posts
+      news_upvotes: Up-votes on news posts
       news_downvotes: Down-votes on news posts
 
     capability:
