@@ -18,6 +18,7 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
       end
 
       it 'generates the correct button link' do
+        # This url_helper behaves weirdly if used directly on line 29, but DTRT if forced into a string first (?)
         blazer_base_path = main_app.blazer_path.to_s
 
         get blazer_base_path
@@ -39,8 +40,7 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
         get main_app.blazer_path
 
         expect( response      ).to have_http_status :found
-        # Using the shinycms.admin_path helper here gives '/admin/admin'??
-        expect( response      ).to redirect_to '/admin'
+        expect( response      ).to redirect_to '/admin'  # shinycms.admin_path helper is b0rked here (?!)
         follow_redirect!
         expect( response      ).to have_http_status :found
         expect( response      ).to redirect_to shiny_pages.pages_path
