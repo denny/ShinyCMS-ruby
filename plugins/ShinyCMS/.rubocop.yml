@@ -40,7 +40,6 @@ Metrics/BlockLength:
   Exclude:
     - ../../Gemfile
     - ../../config/environments/*
-    - ../../spec/spec_helper.rb
     - ../../spec/mailer_previews/*_spec.rb
     - ../Shiny*/shiny*.gemspec
     - ../Shiny*/spec/**/*.rb

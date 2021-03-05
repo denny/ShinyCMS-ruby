@@ -39,20 +39,20 @@ RSpec.configure do |config|
   config.default_formatter = 'doc'
 
   # Things we only do if running more than one spec file
-  unless config.files_to_run.one?
-    # Only overwrite coverage when running the full test suite
+  if config.files_to_run.size > 1
+    # Generate new coverage report
     SimpleCov.start do
       add_filter '/spec/'
     end
 
+    # Check whether we're on CI, and generate CodeCov report if so
     if ENV['CI'] == 'true'
       require 'codecov'
       SimpleCov.formatter = SimpleCov::Formatter::Codecov
     end
 
-    # Show the slowest examples and example groups at the end of the run,
-    # to help surface any specs that are running particularly slow.
-    config.profile_examples = ENV[ 'SHOW_SLOW_SPECS' ] if ENV[ 'SHOW_SLOW_SPECS' ]
+    # Optionally, show the slowest examples and example groups at the end of the run
+    config.profile_examples = ENV[ 'SHOW_SLOW_SPECS' ].to_i if ENV[ 'SHOW_SLOW_SPECS' ]
   end
 
   # rspec-expectations config goes here. You can use an alternate
@@ -120,7 +120,7 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 
   config.after( :suite ) do
-    # Remove TEST theme templates from main tree
+    # Remove TEST theme templates from main tree, unless we were running parallel rspec
     FileUtils.rm_rf test_theme if ENV[ 'TEST_ENV_NUMBER' ].blank? && Dir.exist?( test_theme )
   end
 end
