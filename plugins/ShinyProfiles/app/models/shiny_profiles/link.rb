@@ -26,9 +26,7 @@ module ShinyProfiles
     validates :name,    presence: true
     validates :url,     presence: true
 
-    def hidden?
-      false
-    end
+    delegate :hidden?, to: :profile
 
     def self.demo_data_position
       2  # after profiles

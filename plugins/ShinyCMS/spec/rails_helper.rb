@@ -65,14 +65,6 @@ RSpec.configure do |config|
     ShinyCMS::FeatureFlag.enable :ahoy_email_tracking
   end
 
-  config.before do
-    WebMock.enable!
-  end
-
-  config.after do
-    WebMock.disable!
-  end
-
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
