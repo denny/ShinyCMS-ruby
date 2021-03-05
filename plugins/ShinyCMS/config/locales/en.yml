@@ -162,6 +162,28 @@ en:
       time_on_date: '%{time} on %{date}'
       date_at_time: '%{date} at %{time}'
 
+    # Rails Email Preview
+
+    rails_email_preview:
+      breadcrumb: Mailers
+      menu: Mailer previews
+      emails:
+        index:
+          title: All mailers
+        show:
+          title: Preview email
+          breadcrumb_list: Emails
+    rep:
+      base:
+        email:
+          one: 1 email
+          other: '%{count} emails'
+        in: in
+        mailer:
+          one: 1 mailer
+          other: '%{count} mailers'
+        loading: Loading...
+
     # Mailers
 
     discussion_mailer:
