@@ -28,8 +28,6 @@ RSpec.describe ShinyCMS::DiscussionsController, type: :request do
     create :top_level_comment, discussion: @discussion
 
     @nested = create :nested_comment, discussion: @discussion, parent: @comment
-
-    WebMock.disable!
   end
 
   describe 'GET /discussions' do
