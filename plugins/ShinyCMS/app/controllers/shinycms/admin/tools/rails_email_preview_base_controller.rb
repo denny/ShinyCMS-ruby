@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Base controller for Rails Email Preview
-  class Admin::EmailPreviewsController < ShinyCMS::AdminController
+  class Admin::Tools::RailsEmailPreviewBaseController < ShinyCMS::AdminController
     before_action -> { authorize :'ShinyCMS::MailerPreview' }, only: %i[ index show ]
   end
 end
