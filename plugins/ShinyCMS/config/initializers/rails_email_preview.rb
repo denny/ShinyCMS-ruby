@@ -9,38 +9,28 @@
 require 'rails_email_preview'
 
 RailsEmailPreview.setup do |config|
-  # Hook before rendering preview:
-  # config.before_render do |message, preview_class_name, mailer_action|
-  #  # Use roadie-rails:
-  #  Roadie::Rails::MailInliner.new(message, message.roadie_options).execute
-  #  # Use premailer-rails:
-  #  Premailer::Rails::Hook.delivering_email(message)
-  #  # Use actionmailer-inline-css:
-  #  ActionMailer::InlineCssHook.delivering_email(message)
-  # end
+  # Controller that RailsEmailPreview::ApplicationController inherits from
+  config.parent_controller = 'ShinyCMS::Admin::Tools::RailsEmailPreviewBaseController'
 
-  # Show/hide Send Email button
+  # Show/hide 'Send Email' button
   config.enable_send_email = true
 
-  # You can specify a controller for RailsEmailPreview::ApplicationController
-  # to inherit from (default: '::ApplicationController'):
-  # config.parent_controller = 'Admin::ApplicationController'
-  config.parent_controller = 'ShinyCMS::Admin::EmailPreviewsController'
+  # Hook before rendering preview:
+  # config.before_render do |message, preview_class_name, mailer_action|
+  #   # Use roadie-rails:
+  #   Roadie::Rails::MailInliner.new(message, message.roadie_options).execute
+  #   # Use premailer-rails:
+  #   Premailer::Rails::Hook.delivering_email(message)
+  #   # Use actionmailer-inline-css:
+  #   ActionMailer::InlineCssHook.delivering_email(message)
+  # end
 end
 
-# Enable Comfortable Mexican Sofa integration:
-# require 'rails_email_preview/integrations/comfortable_mexica_sofa'
-
 Rails.application.config.to_prepare do
-  # Render REP inside a custom layout
-  # (set to 'application' to use app layout, default is REP's own layout)
-  # This will also make application routes accessible from within REP:
   RailsEmailPreview.layout = 'shinycms/admin/layouts/admin_area'
 
-  # Set UI locale to something other than :en
   # RailsEmailPreview.locale = :de
 
   # Auto-load preview classes from:
-  RailsEmailPreview.preview_classes =
-    RailsEmailPreview.find_preview_classes( 'shinycms/app/mailer_previews' )
+  RailsEmailPreview.preview_classes = RailsEmailPreview.find_preview_classes 'plugins/ShinyCMS/app/mailer_previews'
 end

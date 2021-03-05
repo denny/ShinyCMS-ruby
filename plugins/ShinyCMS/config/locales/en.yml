@@ -162,28 +162,6 @@ en:
       time_on_date: '%{time} on %{date}'
       date_at_time: '%{date} at %{time}'
 
-    # Rails Email Preview
-
-    rails_email_preview:
-      breadcrumb: Mailers
-      menu: Mailer previews
-      emails:
-        index:
-          title: All mailers
-        show:
-          title: Preview email
-          breadcrumb_list: Emails
-    rep:
-      base:
-        email:
-          one: 1 email
-          other: '%{count} emails'
-        in: in
-        mailer:
-          one: 1 mailer
-          other: '%{count} mailers'
-        loading: Loading...
-
     # Mailers
 
     discussion_mailer:
@@ -483,10 +461,20 @@ en:
           failure: Failed to delete user
 
       stats:
-        menu: Stats
         breadcrumb: Stats
+        menu: Stats
+
+      web_stats:
+        breadcrumb: Stats
+        menu: Web stats
+        index:
+          title: Web stats
+          search: Search stats
+
+      # ===== other engines =====
 
       blazer:
+        breadcrumb: Blazer
         menu: Charts
         auth_fail: You do not have permission to view charts
         dashboards:
@@ -496,9 +484,21 @@ en:
         checks:
           title: Checks
 
-      web_stats:
-        breadcrumb: Stats
-        menu: Web stats
-        index:
-          title: Web stats
-          search: Search stats
+      rails_email_preview:
+        breadcrumb: Mailers
+        menu: Mailer previews
+        emails:
+          index:
+            title: All mailers
+          show:
+            title: Preview email
+            breadcrumb_list: Emails
+        base:
+          email:
+            one: 1 email
+            other: '%{count} emails'
+          in: in
+          mailer:
+            one: 1 mailer
+            other: '%{count} mailers'
+          loading: Loading...

@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for discussion mailer previews (powered by RailsEmailPreview)
-RSpec.describe DiscussionMailerPreview, type: :request do
+RSpec.describe ShinyCMS::DiscussionMailerPreview, type: :request do
   before do
     admin = create :admin_with_rails_email_preview
     sign_in admin
@@ -27,7 +27,7 @@ RSpec.describe DiscussionMailerPreview, type: :request do
   describe '.overview_notification' do
     it 'shows the overview notification email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'discussion_mailer_preview-overview_notification'
+        preview_id: 'shinycms__discussion_mailer_preview-overview_notification'
       )
 
       expect( response.body ).to have_content ' commented on '
@@ -37,7 +37,7 @@ RSpec.describe DiscussionMailerPreview, type: :request do
   describe '.discussion_notification' do
     it 'shows the discussion notification email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'discussion_mailer_preview-discussion_notification'
+        preview_id: 'shinycms__discussion_mailer_preview-discussion_notification'
       )
 
       expect( response.body ).to have_content 'commented on your news post'
@@ -47,7 +47,7 @@ RSpec.describe DiscussionMailerPreview, type: :request do
   describe '.parent_comment_notification' do
     it 'shows the overview notification email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'discussion_mailer_preview-parent_comment_notification'
+        preview_id: 'shinycms__discussion_mailer_preview-parent_comment_notification'
       )
 
       expect( response.body ).to have_content 'replied to your comment'

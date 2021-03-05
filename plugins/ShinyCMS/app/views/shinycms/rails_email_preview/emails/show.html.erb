@@ -1,5 +1,5 @@
 <%- # Using ERB for this template to have precise control of tag indentation for correct rendering of raw and text.  -%>
-<% @page_title = @preview.name || t( '.title' ) %>
+<% @page_title = @preview.name || t( 'shinycms.admin.rails_email_preview.emails.show.title' ) %>
 
 <div class="rep--main-container">
   <div id="email-show" class="rep--email-show">
@@ -7,7 +7,7 @@
       <ol class="rep--breadcrumbs">
         <%= with_show_hook :breadcrumb_content do %>
           <li class="rep--breadcrumbs__breadcrumb">
-            <a href="<%= rails_email_preview.rep_emails_path(email_locale: @email_locale) %>"><%= t '.breadcrumb_list' %></a>
+            <a href="<%= rails_email_preview.rep_emails_path(email_locale: @email_locale) %>"><%= t 'shinycms.admin.rails_email_preview.emails.show.breadcrumb_list' %></a>
           </li><li class="rep--breadcrumbs__breadcrumb-active"><a href="<%= request.path %>"><%= @preview.name %></a></li>
         <% end %>
       </ol>

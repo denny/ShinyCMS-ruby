@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for previewing the user mailer (powered by RailsEmailPreview)
-RSpec.describe UserMailerPreview, type: :request do
+RSpec.describe ShinyCMS::UserMailerPreview, type: :request do
   before do
     admin = create :admin_with_rails_email_preview
     sign_in admin
@@ -20,7 +20,7 @@ RSpec.describe UserMailerPreview, type: :request do
   describe '.confirmation_instructions' do
     it 'shows the confirmation instructions email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'user_mailer_preview-confirmation_instructions'
+        preview_id: 'shinycms__user_mailer_preview-confirmation_instructions'
       )
 
       expect( response.body )
@@ -31,7 +31,7 @@ RSpec.describe UserMailerPreview, type: :request do
   describe '.reset_password_instructions' do
     it 'shows the password reset email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'user_mailer_preview-reset_password_instructions'
+        preview_id: 'shinycms__user_mailer_preview-reset_password_instructions'
       )
 
       expect( response.body )
@@ -42,7 +42,7 @@ RSpec.describe UserMailerPreview, type: :request do
   describe '.password_changed_instructions' do
     it 'shows the password changed email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'user_mailer_preview-password_changed_instructions'
+        preview_id: 'shinycms__user_mailer_preview-password_changed_instructions'
       )
 
       expect( response.body )
@@ -53,7 +53,7 @@ RSpec.describe UserMailerPreview, type: :request do
   describe '.email_changed_instructions' do
     it 'shows the email address changed notification email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'user_mailer_preview-email_changed_instructions'
+        preview_id: 'shinycms__user_mailer_preview-email_changed_instructions'
       )
 
       expect( response.body )
@@ -64,7 +64,7 @@ RSpec.describe UserMailerPreview, type: :request do
   describe '.unlock_instructions' do
     it 'shows the unlock instructions email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'user_mailer_preview-unlock_instructions'
+        preview_id: 'shinycms__user_mailer_preview-unlock_instructions'
       )
 
       expect( response.body )
