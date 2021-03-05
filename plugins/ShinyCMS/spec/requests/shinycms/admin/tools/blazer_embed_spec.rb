@@ -25,7 +25,7 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.blazer.queries.title' )
-        expect( response.body ).to have_link  I18n.t( 'shinycms.admin.stats.breadcrumb' )
+        expect( response.body ).to have_link  I18n.t( 'shinycms.admin.blazer.breadcrumb' )
         expect( response.body ).to have_link  'New Query', href: "#{blazer_base_path}/queries/new"
       end
     end
