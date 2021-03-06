@@ -10,6 +10,16 @@ require 'rails_helper'
 
 # Tests for ShinyCMS error handlers
 RSpec.describe ShinyCMS::ErrorsController, type: :request do
+  describe 'GET /wp-login.php (or any URL ending in .php)', :production_error_responses do
+    it 'returns a 400 (Bad Request) error - headers only, to keep it light' do
+      get '/wp-login.php'
+
+      expect( response ).to have_http_status :bad_request
+
+      expect( response.body ).to be_blank
+    end
+  end
+
   describe 'GET /no-such-path', :production_error_responses do
     it 'returns our Not Found page, with a 404 status' do
       get '/no-such-path'
