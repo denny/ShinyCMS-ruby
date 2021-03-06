@@ -11,13 +11,24 @@ require 'active_support/core_ext/integer/time'
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  # Enable and configure Bullet (reports on N+1 queries and related issues)
+  config.after_initialize do
+    Bullet.enable        = true
+    Bullet.alert         = true
+    Bullet.console       = true
+    Bullet.rails_logger  = true
+    Bullet.bullet_logger = true
+    Bullet.add_footer    = true
+    # Bullet.raise       = true  # Raise an error if n+1 query is found during development
+  end
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  # We need eager load enabled so that we can use .descendants to check all the models
-  # for the ones that provide various capabilities - e.g. taggable, demo_data, etc
+  # ShinyCMS needs eager load enabled so that we can use .descendants to check all the models
+  # in each plugin for the ones that provide various capabilities - e.g. taggable, demo_data, etc
   config.eager_load = true
   config.rake_eager_load = true
 
@@ -61,10 +72,10 @@ Rails.application.configure do
 
   # Use letter_opener_web to catch all emails sent in dev
   # You can view them at http://localhost:3000/dev/tools/outbox
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.perform_caching = false
-  config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method     = :letter_opener_web
+  config.action_mailer.perform_deliveries  = true
+  config.action_mailer.perform_caching     = false
 
   # Raise an error on page load if there are pending migrations
   config.active_record.migration_error = :page_load
