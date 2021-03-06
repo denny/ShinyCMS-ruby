@@ -9,21 +9,15 @@
 module ShinyBlogs
   # Model class for blog posts - ShinyBlogs plugin for ShinyCMS
   class BlogPost < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinyPost
-
-    # Associations
+    include ShinyCMS::ProvidesDemoSiteData
+    include ShinyCMS::Post
 
     belongs_to :blog, inverse_of: :all_posts, class_name: 'ShinyBlogs::Blog'
     belongs_to :user, inverse_of: :shiny_blogs_blog_posts, class_name: 'ShinyCMS::User'
 
     has_one :discussion, as: :resource, dependent: :destroy, class_name: 'ShinyCMS::Discussion'
 
-    # Validations
-
     validates :blog, presence: true
-
-    # Instance methods
 
     def path( anchor: nil )
       url_helpers.view_blog_post_path(

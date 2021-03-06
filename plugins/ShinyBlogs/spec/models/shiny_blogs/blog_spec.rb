@@ -70,7 +70,7 @@ module ShinyBlogs
       end
     end
 
-    it_behaves_like ShinyCMS::ShinyDemoDataProvider do
+    it_behaves_like ShinyCMS::ProvidesDemoSiteData do
       let( :model ) { described_class }
     end
   end

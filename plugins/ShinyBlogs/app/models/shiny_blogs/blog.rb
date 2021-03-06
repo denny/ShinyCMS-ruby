@@ -9,23 +9,19 @@
 module ShinyBlogs
   # Model class for blogs (which are a collection of blog posts) - part of the ShinyBlogs plugin for ShinyCMS
   class Blog < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinyName
-    include ShinyCMS::ShinyShowHide
-    include ShinyCMS::ShinySlug
-    include ShinyCMS::ShinySoftDelete
-
-    # Associations
+    include ShinyCMS::ProvidesDemoSiteData
+    include ShinyCMS::HasPublicName
+    include ShinyCMS::CanHide
+    include ShinyCMS::HasSlug
+    include ShinyCMS::SoftDelete
 
     belongs_to :user, inverse_of: :shiny_blogs_blogs, class_name: 'ShinyCMS::User'
 
     has_many :all_posts, inverse_of: :blog, class_name: 'BlogPost', dependent: :restrict_with_error
 
-    # Aliases
-
     alias_attribute :owner, :user
 
-    # Instance methods
+    delegate :slug_base, to: :name
 
     def posts
       all_posts.readonly.published
