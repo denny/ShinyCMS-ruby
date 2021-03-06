@@ -1,5 +1,5 @@
 <%
-  @page_title = t( '.title' )
+  @page_title = t( 'shinycms.admin.rails_email_preview.emails.index.title' )
   list = @list
   previews = @previews
 %>
@@ -26,7 +26,9 @@
   <% end %>
   <hr/>
   <p class="rep--footer">
-    <%= t 'rep.base.email', count: previews.length %> <%= t 'rep.base.in' %> <%= t 'rep.base.mailer', count: list.groups.length %>
+    <%= t 'shinycms.admin.rails_email_preview.base.email',  count: previews.length    %>
+    <%= t 'shinycms.admin.rails_email_preview.base.in' %>
+    <%= t 'shinycms.admin.rails_email_preview.base.mailer', count: list.groups.length %>
     <br/>
     <a href="https://github.com/glebm/rails_email_preview" target="_blank">
       REP <%= RailsEmailPreview::VERSION %>

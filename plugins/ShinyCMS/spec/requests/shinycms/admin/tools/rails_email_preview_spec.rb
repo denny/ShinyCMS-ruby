@@ -21,7 +21,8 @@ RSpec.describe RailsEmailPreview, type: :request do
     it 'shows the list of emails' do
       get rails_email_preview.rep_emails_path
 
-      expect( response.body ).to have_title I18n.t( 'rails_email_preview.emails.index.title' ).titlecase
+      # expect( response.body ).to have_title I18n.t( 'shinycms.admin.rails_email_preview.emails.index.title' ).titlecase
+      expect( response.body ).to have_title 'Emails - REP'
       expect( response.body ).to have_link 'Confirmation instructions'
       # expect( response.body ).to have_link text: I18n.t( 'shinycms.user_mailer.confirmation_instructions.subject', site_name: site_name )
     end

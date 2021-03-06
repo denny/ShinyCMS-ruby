@@ -104,6 +104,18 @@ Rails/SaveBang:
   Exclude:
     - ../ShinySEO/app/models/shiny_seo/sitemap.rb
 
+# Reasons. Mostly Blazer-related reasons, in both cases.
+Rails/ApplicationController:
+  Exclude:
+    - ../../app/controllers/main_controller.rb
+    - app/controllers/shinycms/admin/tools/base_controller.rb
+
+# Unused/demo controller in main_app, and 'no content' fallbacks in ShinyPages
+Rails/RenderInline:
+  Exclude:
+    - ../../app/controllers/main_controller.rb
+    - ../ShinyPages/app/controllers/shiny_pages/pages_controller.rb
+
 # There's no database activity in these before all blocks, so this cop doesn't apply
 RSpec/BeforeAfterAll:
   Exclude:

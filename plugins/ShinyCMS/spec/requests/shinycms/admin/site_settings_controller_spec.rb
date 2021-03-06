@@ -91,7 +91,7 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
     end
 
     it "won't update the level of a locked setting" do
-      s1 = ShinyCMS::Setting.set( :admin_ip_list, to: '127.0.0.1, 1.2.3.4' )
+      s1 = ShinyCMS::Setting.set( :allowed_ips, to: '127.0.0.1, 1.2.3.4' )
 
       put shinycms.admin_site_settings_path, params: {
         settings: {
@@ -117,7 +117,7 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
     end
 
     it 'will update the value of a locked setting' do
-      s1 = ShinyCMS::Setting.set( :admin_ip_list, to: '127.0.0.1, 1.2.3.4' )
+      s1 = ShinyCMS::Setting.set( :allowed_ips, to: '127.0.0.1, 1.2.3.4' )
 
       put shinycms.admin_site_settings_path, params: {
         settings: {

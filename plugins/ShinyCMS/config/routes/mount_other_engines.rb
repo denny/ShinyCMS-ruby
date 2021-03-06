@@ -12,6 +12,9 @@
 # CKEditor provides the WYSIWYG editor used in the ShinyCMS admin area
 mount Ckeditor::Engine, at: '/admin/tools/ckeditor'
 
+# RailsEmailPreview shows examples of emails that the ShinyCMS mailers can generate
+mount RailsEmailPreview::Engine, at: '/admin/tools/rails-email-preview'
+
 # LetterOpener catches all emails sent in development, with a webmail UI to view them
 mount LetterOpenerWeb::Engine, at: '/dev/tools/outbox' if Rails.env.development?
 

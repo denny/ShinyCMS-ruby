@@ -13,8 +13,8 @@ module ShinyProfiles
     before_action :authenticate_user!,         except: %i[ index show  ]
     before_action :stash_profile,              only:   %i[ show        ]
     before_action :stash_current_user_profile, only:   %i[ edit update ]
-    before_action :redirect_others_to_show,    only:   %i[ edit        ]
-    before_action :redirect_to_own_edit_page,  only:   %i[ update      ]
+    before_action :redirect_to_show_requested, only:   %i[ edit        ]
+    before_action :redirect_to_edit_self,      only:   %i[ update      ]
 
     def index
       # TODO: searchable gallery of public user profiles
@@ -45,18 +45,20 @@ module ShinyProfiles
       @profile = current_user.profile
     end
 
-    def redirect_others_to_show
-      return if params[ :username] == current_user&.username
+    def redirect_to_show_requested
+      return if current_user_matches_username_in_url?
 
       redirect_to shiny_profiles.profile_path( params[ :username] )
     end
 
-    def redirect_to_own_edit_page
-      redirect_to main_app.root_path unless current_user
-
-      return if params[ :username] == current_user.username
+    def redirect_to_edit_self
+      return if current_user_matches_username_in_url?
 
       redirect_to shiny_profiles.edit_profile_path( current_user.username )
+    end
+
+    def current_user_matches_username_in_url?
+      params[ :username] == current_user.username
     end
 
     def strong_params

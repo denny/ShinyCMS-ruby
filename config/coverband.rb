@@ -6,13 +6,6 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Coverband config
+# Pull Coverband config in from ShinyCMS core plugin
 
-return if Rails.env.test?
-
-# TODO: works fine with route in plugins/ShinyCMS/config/routes.rb
-# but ignores a config file at plugins/ShinyCMS/config/coverband.rb
-
-Coverband.configure do |config|
-  config.track_views = true
-end
+require_relative '../plugins/ShinyCMS/config/coverband'

@@ -6,6 +6,6 @@
         t( 'shinycms.admin.email_recipients.menu' ), shinycms.email_recipients_path, 'envelope-closed' ) %>
 
     <%= render_admin_menu_item_if( current_user.can?( :list, :mailer_previews ),
-        t( 'rails_email_preview.menu' ), main_app.rails_email_preview_path, 'envelope-letter' ) %>
+        t( 'shinycms.admin.rails_email_preview.menu' ), rails_email_preview.rep_emails_path, 'envelope-letter' ) %>
 
   <% end %>
