@@ -21,7 +21,7 @@ module ShinyBlogs
 
     alias_attribute :owner, :user
 
-    delegate :slug_base, to: :name
+    alias slug_base name
 
     def posts
       all_posts.readonly.published

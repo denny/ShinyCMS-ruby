@@ -20,7 +20,7 @@ module ShinyCMS
 
       validates :slug, presence: true, format: SLUG_REGEX
 
-      before_validation :generate_slug, if: -> { slug.blank? }
+      before_validation :generate_slug, if: -> { slug.blank? && slug_base.present? }
 
       # Models that include this concern must provide a .slug_base method
       # (probably an alias to their .name or .title method)
