@@ -20,7 +20,6 @@ module ShinyPages
 
       return show_page if @page
 
-      # rubocop:disable Rails/RenderInline
       render inline: <<~HTML
         <p>
           This site does not have any content yet. Please try again later.
@@ -32,7 +31,6 @@ module ShinyPages
           </i>
         </p>
       HTML
-      # rubocop:enable Rails/RenderInline
     end
 
     # Figure out whether we're at top level or going deeper
@@ -88,9 +86,7 @@ module ShinyPages
       if @page.template.file_exists?
         render template: "shiny_pages/pages/#{@page.template.filename}", locals: @page.elements_hash
       else
-        # rubocop:disable Rails/RenderInline
         render status: :failed_dependency, inline: I18n.t( 'shiny_pages.page.template_file_missing' )
-        # rubocop:enable Rails/RenderInline
       end
     end
 

@@ -9,26 +9,15 @@
 # You can load or reload this data using the following rake task:
 # rails shiny_lists:db:seed
 
-# Feature flag
+require 'shinycms/seeder'
 
-flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: 'mailing_lists' )
-flag.update!(
-  description:           'Enable mailing list features (provided by ShinyLists plugin)',
-  enabled:               true,
-  enabled_for_logged_in: true,
-  enabled_for_admins:    true
-)
+seeder = ShinyCMS::Seeder.new
 
-# Admin capabilities
+seeder.seed_feature_flag( name: :mailing_lists, description: 'Enable mailing lists (ShinyLists plugin)' )
 
-lists_cc = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'mailing_lists' )
+seeder.seed_standard_admin_capabilities( category: :mailing_lists )
+
 subscriptions_cc = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'mailing_list_subscriptions' )
-
-lists_cc.capabilities.find_or_create_by!( name: 'list'    )
-lists_cc.capabilities.find_or_create_by!( name: 'add'     )
-lists_cc.capabilities.find_or_create_by!( name: 'edit'    )
-lists_cc.capabilities.find_or_create_by!( name: 'destroy' )
-
 subscriptions_cc.capabilities.find_or_create_by!( name: 'list'    )
 subscriptions_cc.capabilities.find_or_create_by!( name: 'add'     )
 subscriptions_cc.capabilities.find_or_create_by!( name: 'destroy' )

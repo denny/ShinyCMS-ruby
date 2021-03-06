@@ -4,8 +4,8 @@ Posted by
 <% elsif comment.authenticated_author? %>
     <%= user_profile_link( comment.author ) %>
 <% else %>
-  <% if comment.author.website.present? %>
-    <%= link_to comment.author.name, comment.author.website %>
+  <% if comment.author.url.present? %>
+    <%= link_to comment.author.name, comment.author.url %>
   <% else %>
     <%= comment.author.name %>
   <% end %>

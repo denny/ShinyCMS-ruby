@@ -41,7 +41,7 @@ RSpec.describe ShinyCMS::Setting, type: :model do
 
       setting.level = 'user'
 
-      expect { setting.save( validate: false ) }
+      expect { _rbp = setting.save( validate: false ) }
         .to raise_error ShinyCMS::Setting::CannotUpdateLockedSetting, 'Attempted to update a locked setting'
     end
   end

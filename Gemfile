@@ -15,20 +15,11 @@ source 'https://rubygems.org' do
   # Rails 6.1
   gem 'rails', '~> 6.1.3'
 
-  # Postgres
-  gem 'pg', '~> 1.2.3'
-
-  # Webserver
-  gem 'puma', '~> 5.2', groups: %i[ development production ]
-
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/rails-now'
 
-  # Find out which bits of your code are used more/less in actual use
+  # Find out which bits of your code are used more/less in production
   gem 'coverband', groups: %i[ development production ]
-
-  # Immutable data structures
-  gem 'persistent-dmnd'
 
   # ShinyCMS core plugin
   gem 'shinycms', path: 'plugins/ShinyCMS'
@@ -39,85 +30,20 @@ source 'https://rubygems.org' do
     gem gem_name, path: "plugins/#{plugin_name}"
   end
 
-  # Locales for the 'not USA' bits of the world
-  gem 'rails-i18n'
+  # Postgres
+  gem 'pg', '~> 1.2.3'
 
-  # Reduce boot times through caching; required in config/boot.rb
-  # gem 'bootsnap', '>= 1.4.2', require: false
-  # Use faster SCSS gem for stylesheets
-  gem 'sassc-rails'
-  # Transpile app-like JavaScript. More info: https://github.com/rails/webpacker
-  gem 'webpacker', '~> 5.2'
+  # Webserver
+  gem 'puma', '~> 5.2', groups: %i[ development production ]
 
   # Sessions
-  # FIXME: Installing from GitHub because Ruby 3.0.0 is merged but not released:
+  # FIXME: Installing from GitHub because Ruby 3 support is merged but not released:
   # https://github.com/rails/activerecord-session_store/pull/159
   # https://github.com/rails/activerecord-session_store/issues/171
-  # gem 'activerecord-session_store'
   gem 'activerecord-session_store', git: 'https://github.com/rails/activerecord-session_store'
-  # Stronger password encryption
-  gem 'bcrypt', '~> 3.1.16'
-
-  # User authentication
-  gem 'devise'
-  # Authorisation
-  gem 'pundit'
-
-  # Check user passwords against known data leaks
-  gem 'devise-pwned_password'
-  # Check password complexity
-  gem 'zxcvbn-ruby', require: 'zxcvbn'
-
-  # Soft delete
-  gem 'acts_as_paranoid'
-
-  # We use Sidekiq as the backend for ActiveJob (to queue email sends)
-  gem 'sidekiq'
-  # This adds more details to the Sidekiq web dashboard
-  gem 'sidekiq-status'
-
-  # Bot detection to protect forms (including registration, comments, etc)
-  gem 'recaptcha'
-
-  # Spam comment detection
-  gem 'akismet'
-
-  # Email address validation
-  gem 'email_address'
-
-  # MJML email rendering
-  gem 'mjml-rails'
 
   # Email previews
   gem 'rails_email_preview'
-
-  # Pagination
-  gem 'pagy'
-
-  # Sortable lists
-  gem 'acts_as_list'
-
-  # WYSIWYG editor
-  gem 'ckeditor'
-
-  # Image storage on S3
-  gem 'aws-sdk-s3'
-  # Image processing, for resizing etc
-  gem 'image_processing', '~> 1.12'
-  # Also image processing
-  gem 'mini_magick'
-
-  # Tags
-  gem 'acts-as-taggable-on'
-
-  # Upvotes (AKA 'Likes') and downvotes
-  gem 'acts_as_votable'
-
-  # Generate SEO sitemaps
-  gem 'sitemap_generator'
-
-  # Generate Atom feeds
-  gem 'rss'
 
   # Email stats
   gem 'ahoy_email'
@@ -129,82 +55,55 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 3.4.2'
 
-  # HTML & XML parser
-  gem 'nokogiri', '>= 1.11.0.rc4'
-
-  # Better-looking console output
-  gem 'amazing_print'
-
-  # Pry is a debugging tool for the Rails console
-  if env_var_true?( :shinycms_pry_console )
-    # Set SHINYCMS_PRY_CONSOLE=true in ENV to enable Pry in that environment
-    gem 'pry-rails'
-  else
-    # Pry is always enabled in dev and test environments
-    gem 'pry-rails', groups: %i[ development test ]
-  end
-
-  group :production do
-    # Airbrake - error monitoring and APM
-    gem 'airbrake'
-
-    # Bugsnag - error monitoring and bug triage
-    gem 'bugsnag'
-
-    # Fix request.ip when running behind Cloudflare proxying
-    gem 'cloudflare-rails'
-  end
-
   group :development, :test do
-    # Tests
+    # RSpec for Rails
     gem 'rspec-rails'
 
-    # Run tests in parallel on multi-core machines
+    # Run tests in parallel
     gem 'parallel_tests'
 
-    # Utils for working with translation strings
+    # Tools for working with translation strings
     # gem 'i18n-debug'
     gem 'i18n-tasks', '~> 0.9.33'
   end
 
   group :development do
-    # Linter
-    gem 'rubocop', require: false
-    # Rails-specific linting
-    gem 'rubocop-rails', require: false
-    # Tests need linting-love too!
-    gem 'rubocop-rspec', require: false
-    # Performance-related analysis
-    gem 'rubocop-performance', require: false
-
-    # Scan for security vulnerabilities
-    gem 'brakeman', require: false
-    # Check gems for security issues
-    gem 'bundler-audit', require: false
-
-    # Best practices
-    gem 'rails_best_practices', require: false
-
-    # Ruby Critic generates easy-to-read reports from multiple static analysis tools
-    gem 'rubycritic', '~> 4.6.0', require: false
-
-    # Add .analyze method to ActiveRecord objects
-    gem 'activerecord-analyze'
-
-    # Capture all emails sent by the system, and view them in a dev webmail inbox
+    # Capture all outgoing emails, with webmail interface to look at them
     gem 'letter_opener_web', '~> 1.0'
 
     # Reload dev server when files change
     gem 'listen', '~> 3.3'
 
-    # Helps you manage your git hooks
-    gem 'overcommit', require: false
+    # Linting: general
+    gem 'rubocop', require: false
+    # Linting: performance tweaks
+    gem 'rubocop-performance', require: false
+    # Linting: Rails-specific
+    gem 'rubocop-rails', require: false
+    # Linting: test suite
+    gem 'rubocop-rspec', require: false
+
+    # Code quality: Ruby Critic
+    gem 'rubycritic', '~> 4.6.0', require: false
+    # Code quality: Rails Best Practices
+    gem 'rails_best_practices', require: false
+
+    # Security: static code analysis
+    gem 'brakeman', require: false
+    # Security: check gem versions for reported security issues
+    gem 'bundler-audit', require: false
+
+    # Add .analyze method to ActiveRecord objects
+    gem 'activerecord-analyze'
 
     # Analysis tools for postgres
-    gem 'rails-pg-extras'
+    gem 'rails-pg-extras', require: false
 
     # Used to generate demo site data
-    gem 'seed_dump'
+    gem 'seed_dump', require: false
+
+    # Manage git hooks
+    gem 'overcommit', require: false
   end
 
   group :test do
@@ -213,7 +112,7 @@ source 'https://rubygems.org' do
 
     # Create test objects
     gem 'factory_bot_rails'
-    # Fill test objects with fake data
+    # Generate test data
     gem 'faker'
 
     # Integration tests (request specs)

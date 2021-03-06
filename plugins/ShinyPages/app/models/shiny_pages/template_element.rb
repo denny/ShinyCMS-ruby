@@ -9,7 +9,8 @@
 module ShinyPages
   # Model class for template elements - part of the ShinyPages plugin for ShinyCMS
   class TemplateElement < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinyTemplateElement
+    include ShinyCMS::TemplateElement
+
+    include ShinyCMS::ProvidesDemoSiteData
   end
 end

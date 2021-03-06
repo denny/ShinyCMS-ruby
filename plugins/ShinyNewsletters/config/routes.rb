@@ -8,6 +8,8 @@
 
 # Routes for ShinyNewsletters plugin
 
+require_relative '../../../plugins/ShinyCMS/lib/import_routes'
+
 ShinyNewsletters::Engine.routes.draw do
   scope format: false do
     # Main site
@@ -22,12 +24,8 @@ ShinyNewsletters::Engine.routes.draw do
 
     # Admin area
     scope path: :admin, module: :admin do
-      concern :with_paging do
-        get '(page/:page)', action: :index, on: :collection, as: ''
-      end
-      concern :with_search do
-        get :search, action: :search, on: :collection
-      end
+      # with_paging and with_search
+      import_routes partial: :admin_route_concerns
 
       scope path: :newsletters do
         resources :editions, except: %i[ index show ], concerns: %i[ with_paging with_search ] do

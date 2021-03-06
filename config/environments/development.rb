@@ -60,7 +60,7 @@ Rails.application.configure do
   end
 
   # Use letter_opener_web to catch all emails sent in dev
-  # You can view them at http://localhost:3000/dev/outbox
+  # You can view them at http://localhost:3000/dev/tools/outbox
   config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :letter_opener_web

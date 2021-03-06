@@ -32,11 +32,11 @@ module ShinySearch
       end
 
       def algolia_search_is_enabled?
-        ENV['ALGOLIASEARCH_APPLICATION_ID'].present?
+        ENV.fetch( 'ALGOLIASEARCH_APPLICATION_ID', nil ).present?
       end
 
       def pg_search_is_enabled?
-        ENV['DISABLE_PG_SEARCH'].blank?
+        ENV.fetch( 'DISABLE_PG_SEARCH', nil )&.downcase != 'true'
       end
     end
   end

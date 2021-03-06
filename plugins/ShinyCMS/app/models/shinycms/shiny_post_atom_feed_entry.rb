@@ -9,12 +9,10 @@
 require 'rss'
 
 module ShinyCMS
-  # Model to assist in building Atom feed entries from ShinyPosts
+  # Model to assist in building Atom feed entries from ShinyCMS::Posts
   class ShinyPostAtomFeedEntry
-    include SiteNameHelper
-    include ShinySiteURL
-
-    include Rails.application.routes.url_helpers
+    include ShinyCMS::MainAppRootURL
+    include ShinyCMS::SiteNameHelper
 
     attr_reader :entry, :feed, :post
 
@@ -37,7 +35,7 @@ module ShinyCMS
 
     def add_entry_id
       id = entry.class::Id.new
-      id.content = "#{site_base_url}#{post.path}"
+      id.content = "#{main_app_base_url}#{post.path}"
       entry.id = id
     end
 
@@ -70,12 +68,12 @@ module ShinyCMS
 
     def add_entry_link
       link = entry.class::Link.new
-      link.href = "#{site_base_url}#{post.path}"
+      link.href = "#{main_app_base_url}#{post.path}"
       entry.links << link
     end
 
     def feed_entry_summary( teaser )
-      return teaser unless post.body_longer_than_teaser?
+      return teaser if post.body.length < teaser.length + 10  # 10 is an arbitrary fudge factor
 
       <<~SUMMARY
         #{teaser}

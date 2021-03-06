@@ -7,34 +7,29 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyProfiles
-  # Model for user profile pages (and related features)
+  # Model for user profile pages
   class Link < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
-    # Associations
+    include ShinyCMS::ProvidesDemoSiteData
 
     belongs_to :profile, inverse_of: :links
 
-    # Plugin features
-
     acts_as_list scope: :profile
 
-    if ShinyCMS::Plugins.loaded? :ShinySearch
+    if ShinyCMS.plugins.loaded? :ShinySearch
       include ShinySearch::Searchable
       searchable_by :name, :url  # TODO
     end
-
-    # Validations
 
     validates :profile, presence: true
     validates :name,    presence: true
     validates :url,     presence: true
 
-    # Instance methods
+    delegate :hidden?, to: :profile
 
-    def hidden?
-      false
+    def self.demo_data_position
+      2  # after profiles
     end
   end
 end

@@ -9,8 +9,9 @@
 module ShinyAccess
   # Model for tracking memberships of access groups - part of the ShinyAccess plugin for ShinyCMS
   class Membership < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     # Associations
 

@@ -12,9 +12,9 @@ require 'rails_helper'
 RSpec.describe ShinyCMS::PluginsComponents, type: :model do
   describe '.models_that_respond_to' do
     it 'returns an array (or similar) of models from the whole app' do
-      models = ShinyCMS::Plugins.get.models_that_respond_to :dump_for_demo?
+      models = ShinyCMS::Plugins.all.models_that_include ShinyCMS::ProvidesDemoSiteData
 
-      expect( models ).to respond_to :each
+      expect( models ).to be_an Enumerable
 
       expect( models.first ).to be ShinyAccess::Group
       expect( models.last  ).to be ShinyProfiles::Profile
@@ -23,9 +23,9 @@ RSpec.describe ShinyCMS::PluginsComponents, type: :model do
 
   describe '.routes' do
     it 'returns an array (or similar) of route objects' do
-      routes = ShinyCMS::Plugins.get.routes
+      routes = ShinyCMS::Plugins.all.routes
 
-      expect( routes ).to respond_to :each
+      expect( routes ).to be_an Enumerable
       expect( routes ).to all be_a ActionDispatch::Journey::Route
     end
   end

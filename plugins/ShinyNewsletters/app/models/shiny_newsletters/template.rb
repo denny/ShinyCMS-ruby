@@ -9,10 +9,12 @@
 module ShinyNewsletters
   # Model for newsletter templates - part of the ShinyNewsletters plugin for ShinyCMS
   class Template < ApplicationRecord
-    include ShinyCMS::ShinyMJMLTemplate
+    include ShinyCMS::MJMLTemplate
 
-    include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::HasReadableName
+    include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     # Associations
 
@@ -32,7 +34,7 @@ module ShinyNewsletters
 
     # Add another validation at the end, because it uses methods included/defined above
     validates :filename, inclusion: {
-      in:      available_templates,
+      in:      ->( _ ) { available_templates },
       message: I18n.t( 'models.shiny_newsletters.template.template_file_must_exist' )
     }
   end

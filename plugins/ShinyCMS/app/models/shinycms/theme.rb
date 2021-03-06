@@ -12,9 +12,7 @@ module ShinyCMS
     attr_reader :name
 
     def initialize( theme_name )
-      return unless Theme.base_directory_exists?( theme_name )
-
-      @name = theme_name
+      @name = theme_name if Theme.files_exist?( theme_name )
     end
 
     # Get the current theme (if any)
@@ -23,8 +21,6 @@ module ShinyCMS
 
       user_theme( user ) || site_theme || default_theme
     end
-
-    # Delegations
 
     delegate :present?, to: :name
     delegate :blank?,   to: :name
@@ -45,10 +41,10 @@ module ShinyCMS
       "themes/#{theme_name}/views"
     end
 
-    def self.base_directory_exists?( theme_name )
+    def self.files_exist?( theme_name )
       return false if theme_name.blank?
 
-      FileTest.directory?( Rails.root.join( view_path( theme_name ) ) )
+      FileTest.directory?( Rails.root.join( "themes/#{theme_name}" ) )
     end
 
     def self.user_theme( user )

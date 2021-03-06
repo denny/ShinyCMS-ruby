@@ -6,15 +6,15 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+require 'sitemap_generator'
+
 module ShinySEO
   # A thin wrapper around the sitemap_generator gem - part of the ShinySEO plugin for ShinyCMS
   class Sitemap
-    include ShinyCMS::ShinySiteURL
-
-    include Rails.application.routes.url_helpers
+    include ShinyCMS::MainAppRootURL
 
     def initialize
-      SitemapGenerator::Sitemap.default_host = site_base_url
+      SitemapGenerator::Sitemap.default_host = main_app_root_url
 
       s3_config = ShinyCMS::S3Config.get( :feeds )
 
@@ -33,9 +33,9 @@ module ShinySEO
     private
 
     def items_for_sitemap
-      ShinyCMS::Plugins.models_with_sitemap_items
-                       .collect( &:sitemap_items ).flatten
-                       .collect { |resource| SitemapItem.new( resource ) }
+      ShinyCMS.plugins.models_with_sitemap_items
+              .collect( &:sitemap_items ).flatten
+              .collect { |resource| SitemapItem.new( resource ) }
     end
 
     def use_aws_sdk_adapter( s3_config )
@@ -49,7 +49,7 @@ module ShinySEO
         aws_secret_access_key: s3_config.secret_access_key,
         aws_access_key_id:     s3_config.access_key_id,
         aws_region:            s3_config.region,
-        aws_endpoint:          s3_config.endpoint
+        aws_endpoint:          s3_config.base_url
       }
     end
   end

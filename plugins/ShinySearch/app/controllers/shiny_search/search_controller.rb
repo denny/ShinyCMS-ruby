@@ -33,11 +33,15 @@ module ShinySearch
 
       return algolia_search if algolia_search_is_enabled? && backend == 'algolia'
 
-      unless algolia_search_is_enabled? || pg_search_is_enabled?
+      unless at_least_one_search_backend_is_enabled?
         Rails.logger.error 'Search feature is enabled, but no search back-ends are enabled'
       end
 
       [ nil, [] ] # Minimum required to render the 'no results' page
+    end
+
+    def at_least_one_search_backend_is_enabled?
+      algolia_search_is_enabled? || pg_search_is_enabled?
     end
 
     def pg_search

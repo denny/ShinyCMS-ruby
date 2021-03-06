@@ -10,7 +10,7 @@ module ShinyCMS
   # Store details of people who have asked you not to contact them at all
   # Uses EmailAddress.redact to store and search addresses via a one-way hash
   class DoNotContact < ApplicationRecord
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
 
     # Validations
 
@@ -26,11 +26,11 @@ module ShinyCMS
     def self.add( email )
       return unless EmailAddress.valid?( email )
 
-      return :duplicate if include? email
+      return :duplicate if list_includes? email
       return :success   if create!( email: email )
     end
 
-    def self.include?( email )
+    def self.list_includes?( email )
       exists? email: canonicalise_and_redact( email )
     end
 

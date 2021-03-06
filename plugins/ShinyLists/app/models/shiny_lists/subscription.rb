@@ -9,8 +9,9 @@
 module ShinyLists
   # Model for subscriptions to mailing lists
   class Subscription < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinySoftDelete
+    include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     # Associations
 

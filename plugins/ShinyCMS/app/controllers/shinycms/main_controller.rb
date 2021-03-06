@@ -10,8 +10,9 @@ module ShinyCMS
   # ShinyCMS base controller for the main/content site
   class MainController < ApplicationController
     include ShinyCMS::MainSiteHelper
+    include ShinyCMS::MainAppRootURL
 
-    ShinyCMS::Plugins.with_main_site_helpers.each do |plugin|
+    ShinyCMS.plugins.with_main_site_helpers.each do |plugin|
       helper plugin.main_site_helper
     end
 
@@ -67,8 +68,9 @@ module ShinyCMS
     end
 
     def add_theme_view_path
-      # Apply the configured theme, if any, by adding its view path at the top of the list
-      prepend_view_path ShinyCMS::Theme.get( current_user )&.view_path
+      # Apply the configured theme, if any, by adding it above the defaults
+      theme = ShinyCMS::Theme.get( current_user )
+      prepend_view_path theme.view_path if theme.present?
     end
 
     # Check user's password against pwned password service and warn if necessary
@@ -89,7 +91,8 @@ module ShinyCMS
     end
 
     def feeds_base_url
-      ShinyCMS::S3Config.new( :feeds ).base_url || main_app.root_url.to_s.chop
+      s3_config = ShinyCMS::S3Config.get( :feeds )
+      s3_config&.custom_url || s3_config&.base_url || main_app_base_url
     end
   end
 end

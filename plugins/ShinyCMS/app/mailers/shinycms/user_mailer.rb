@@ -21,7 +21,7 @@ module ShinyCMS
       @resource = @user = user
       @token = token
 
-      return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
+      return if DoNotContact.list_includes? @user.email # TODO: make this happen without explicit call
 
       mail to: user.email_to, subject: subject_for( :confirmation ) do |format|
         format.html
@@ -33,7 +33,7 @@ module ShinyCMS
       @resource = @user = user
       @token = token
 
-      return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
+      return if DoNotContact.list_includes? @user.email # TODO: make this happen without explicit call
 
       mail to: user.email_to, subject: subject_for( :reset_password ) do |format|
         format.html
@@ -44,7 +44,7 @@ module ShinyCMS
     def password_changed_instructions( user, _args = nil )
       @resource = @user = user
 
-      return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
+      return if DoNotContact.list_includes? @user.email # TODO: make this happen without explicit call
 
       mail to: user.email_to, subject: subject_for( :password_changed ) do |format|
         format.html
@@ -55,7 +55,7 @@ module ShinyCMS
     def email_changed_instructions( user, _args = nil )
       @resource = @user = user
 
-      return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
+      return if DoNotContact.list_includes? @user.email # TODO: make this happen without explicit call
 
       mail to: user.email_to, subject: subject_for( :email_changed ) do |format|
         format.html
@@ -67,7 +67,7 @@ module ShinyCMS
       @resource = @user = user
       @token = token
 
-      return if DoNotContact.include? @user.email # TODO: make this happen without explicit call
+      return if DoNotContact.list_includes? @user.email # TODO: make this happen without explicit call
 
       mail to: user.email_to, subject: subject_for( :unlock ) do |format|
         format.html

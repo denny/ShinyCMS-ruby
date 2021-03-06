@@ -35,7 +35,7 @@ module ShinyCMS
     private
 
     def find_resource
-      type = class_from_vote_url params[ :type ]
+      type = url_param_to_class_name( params[ :type ] )
       return head( :bad_request ) unless votable_model_names.include? type
 
       @resource = type.constantize.find( params[ :id ] )
@@ -43,15 +43,10 @@ module ShinyCMS
     end
 
     def votable_model_names
-      [ core_votable_models + plugin_votable_models ].flatten.collect( &:name )
-    end
-
-    def core_votable_models
-      ShinyCMS::ApplicationRecord.descendants.select( &:votable? )
-    end
-
-    def plugin_votable_models
-      Plugins.votable_models
+      [
+        ShinyCMS::Plugin.get( 'ShinyCMS' ).models_that_include( ShinyCMS::HasVotes ) +
+          ShinyCMS.plugins.models_that_include( ShinyCMS::HasVotes )
+      ].flatten.collect( &:name )
     end
 
     def find_voter

@@ -11,8 +11,12 @@ require 'rails_helper'
 # Tests for user model
 RSpec.describe ShinyCMS::User, type: :model do
   describe 'concerns' do
-    it_behaves_like ShinyCMS::ShinyEmail do
+    it_behaves_like ShinyCMS::HasEmail do
       let( :addressee ) { create :user }
+    end
+
+    it_behaves_like 'ShinyCMS::Comment.author' do
+      let( :author ) { create :user }
     end
 
     it_behaves_like 'VoteableVoter' do

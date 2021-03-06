@@ -9,15 +9,17 @@
 module ShinyPages
   # Model for 'brochure' pages - part of the ShinyPages plugin for ShinyCMS
   class Page < ApplicationRecord
-    include ShinyCMS::ShinyDemoDataProvider
-    include ShinyCMS::ShinyClassName
-    include ShinyCMS::ShinyName
-    include ShinyCMS::ShinyShowHide
-    include ShinyCMS::ShinySlugInSection
-    include ShinyCMS::ShinySoftDelete
-    include ShinyCMS::WithTemplate
+    include ShinyCMS::CanHide
+    include ShinyCMS::HasPublicName
+    include ShinyCMS::HasReadableName
+    include ShinyCMS::HasSlugUniqueInSection
+    include ShinyCMS::HasTemplate
+    include ShinyCMS::SoftDelete
 
-    include TopLevelSlugValidator
+    include ShinyCMS::ProvidesDemoSiteData
+    include ShinyCMS::ProvidesSitemapData
+
+    include ShinyPages::TopLevelSlugValidator
 
     # Associations
 
@@ -34,7 +36,7 @@ module ShinyPages
 
     # Plugin features
 
-    if ShinyCMS::Plugins.loaded? :ShinySearch
+    if ShinyCMS.plugins.loaded? :ShinySearch
       include ShinySearch::Searchable
       searchable_by :public_name, :slug  # TODO: elements!
     end
@@ -113,6 +115,8 @@ module ShinyPages
     def self.sitemap_items
       # Excludes the default page because the sitemap_generator gem includes root_path by default
       visible.readonly.where.not id: default_page.id
+      # TODO: make this put top-level pages first and then work it's way down
+      # a layer at a time - as a generic approximation of 'page importance'.
     end
   end
 end

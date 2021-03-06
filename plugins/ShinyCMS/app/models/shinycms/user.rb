@@ -12,10 +12,10 @@ module ShinyCMS
   class User < ApplicationRecord
     include ShinyUserAuthentication  # Devise
     include ShinyUserAuthorization   # Pundit
-
-    include ShinyEmail
-    include ShinySoftDelete
     include ShinyUserContent
+
+    include ShinyCMS::HasEmail
+    include ShinyCMS::SoftDelete
 
     # Validations
 
@@ -34,16 +34,7 @@ module ShinyCMS
     # Instance methods
 
     def name
-      # TODO: FIXME: eww.
-      if  Plugins.loaded?( :ShinyProfiles ) &&
-          FeatureFlag.enabled?( :user_profiles ) &&
-          respond_to?( :profile ) &&
-          profile.present?
-
-        return profile.name
-      end
-
-      username
+      try( :profile ).try( :name ) || username
     end
 
     # Class methods

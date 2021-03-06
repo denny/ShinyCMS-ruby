@@ -1,0 +1,31 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Created with `rubocop --auto-gen-config` on 2021-02-27 using RuboCop version 1.10.0
+#
+# Entries in this file should be removed as the offenses are removed from the code.
+#
+# This file should be regenerated whenever Rubocop is updated.
+
+# Offense count: 24
+RSpec/AnyInstance:
+  Exclude:
+    - 'spec/requests/shinycms/admin/comments_controller_spec.rb'
+    - 'spec/requests/shinycms/discussions_controller_spec.rb'
+    - 'spec/requests/shinycms/users/registrations_controller_spec.rb'
+    - '../ShinyForms/spec/requests/shiny_forms/forms_controller_spec.rb'
+    - '../ShinyLists/spec/requests/shiny_lists/subscriptions_controller_spec.rb'
+    - '../ShinySearch/spec/requests/shiny_search/search_controller_spec.rb'
+
+# Offense count: 135
+# Configuration parameters: AssignmentOnly.
+RSpec/InstanceVariable:
+  Exclude:
+    - 'spec/mailers/shinycms/discussion_mailer_spec.rb'
+    - 'spec/models/shinycms/discussion_spec.rb'
+    - 'spec/requests/shinycms/admin/comments_controller_spec.rb'
+    - 'spec/requests/shinycms/admin/discussions_controller_spec.rb'
+    - 'spec/requests/shinycms/discussions_controller_spec.rb'

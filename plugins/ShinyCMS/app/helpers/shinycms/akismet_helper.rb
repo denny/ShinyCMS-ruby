@@ -71,9 +71,9 @@ module ShinyCMS
     end
 
     def merge_comment_author_details( comment, details )
-      email = comment&.author&.email
-      url   = comment&.author&.website
-      details[ :author       ] = comment.author_name_or_anon
+      email = comment.author.email
+      url   = comment.author.url
+      details[ :author       ] = comment.author.name
       details[ :author_email ] = email if email
       details[ :author_url   ] = url   if url
       details

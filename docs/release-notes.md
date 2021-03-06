@@ -4,6 +4,54 @@
 
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
+### 2021-03-01  21.03  March 2021: The 'Yo dawg I herd u liek CMS' release
+
+    * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.03
+
+    * Headline for this release:
+        I moved almost all the code that was still in main_app, into a plugin! :-o
+
+    * Done:
+        * The main_app is now called ShinyHostApp, and eventually it's _only_ job will be to load plugins - to demonstrate how (eventually) ShinyCMS could potentially be integrated within any existing Rails app
+        * The code that was in main_app is now in the new ShinyCMS core plugin, which you can find in `plugins/ShinyCMS`
+    * To-do:
+        * The config files haven't moved yet, that's my next big job
+        * The documentation is partially updated, but I haven't gone through it all yet, so there may well be discrepancies here there and everywhere
+        * Some of the engines from gems are still living in the main_app; a few of them didn't take well to being moved so I put them back there for now
+
+    * App and plugin versions:
+        * All of the feature plugins, the new ShinyCMS core plugin, and the sort-of new ShinyHostApp, have all had their versions updated to 21.03 in this release - because as you can probably imagine, everything has had quite a lot of changes this last month!
+
+    * Other significant stuff:
+        * I wrote a lot more code to support the Plugins 'infrastructure' or framework or whatever you'd call it. As well as the existing Plugin model (now ShinyCMS::Plugin, in the core plugin's models) there's also ShinyCMS::Plugins (plural) now - and a concern with some sugar/helper methods on top of that. All the code for dealing with collections of plugins moved into the new model, leaving the code that deals with individual plugins in the original class.
+
+    * Annoying side-effects of the main_app -> ShinyCMS plugin migration
+        * A whole load of the moved files lost their git history at some point during the process; I guess GitHub decided that too many things had moved and so that must mean they'd all been deleted and new files created, despite the fact that I used the `git mv` command to do it all. I kept checking on things at the start and it was going okay, so I don't know what changed. I was quite a long way into the process when I did notice that it had dropped the history for a lot of stuff, so after a long pause to think it over, I decided to carry on rather than start again.
+
+    * Adventures in immutable data structures (and shiny emojis!)
+        * I decided to use the [Persistent Diamond(https://gitlab.com/ivoanjo/persistent-dmnd) set of immutable data structures to underpin the Plugin(s) models and concern, which comes complete with a shiny little diamond emoji scattered around in the code (it's part of the method names, as well as the module name). One of my co-workers hates it, but I'm quite enjoying it... brightens my days up a bit :)
+
+    * Also added:
+        * ShinySEO plugin; currently it just generates sitemap files (to feed into Google et al), but I already had some ideas for the future involving metatags helpers and concerns, so I figured an SEO plugin might be a good place for all that to end up.
+        * [parallel_tests](https://github.com/grosser/parallel_tests#readme) - run the tests spread evenly across all your CPUs!
+        * [rspec-instafail](https://github.com/grosser/rspec-instafail#readme) - displays fuller details of test failures while the rest of the suite continues to run in 'progress dots only' mode - so I can start on the fixes before it's even finished running :)
+        * [A GitHub project board](https://github.com/denny/ShinyCMS-ruby/projects/1), for task-tracking (instead of the TODO and in-progress files)
+
+    * Updated:
+        * LOTS OF DATABASE (TABLE NAME) CHANGES RELATED TO THE PLUGINIFICATION!!
+        * After moving everything into the ShinyCMS plugin, I removed the leading 'Shiny' from a lot of helper and concern names, as they're namespaced now anyway
+        * Made some changes around the comment-author area; it's a slightly more obvious role/duck-type now, with an AnonymousAuthor class joining in too
+        * Pulled most of the code out of the demo-data rake task into a supporting module, and broke it up into smaller methods. Still needs more tests though.
+        * I broke the plugin generator code up a bit too, but that's still pretty hideous. I got it down into the same complexity range as the rest of the system though, so it's not throwing the scale off in Ruby Critic's charts any more.
+        * Rails made its way from 6.1.1 to 6.1.3 over the month (with some security advisories involved I believe, so make sure you're up to date)
+
+    * Removed:
+        * Got rid of quite a lot of instance variable warnings from rubocop for the spec files - although there are still well over a hundred to go!
+        * I both added _and_ removed the Airbrake gem; their free trial on Heroku turns out to be so feature-limited as to be useless. Coralogix and Bugsnag were both more impressive - Coralogix is very shiny, and Bugsnag has got some solid thinking behind it.
+
+    * Misc/stuff/FYI
+        * I currently have a temporary branch running parallel to main with Pry removed, as Heroku seem to have a problem with Pry right now (or more accurately, with the coderay gem that it requires); I'll reintegrate everything as soon as it seems safe.
+
 
 ### 2021-02-01  21.02  February 2021: The 'quiet after the storm' release
 
