@@ -65,7 +65,7 @@ RSpec.describe ShinyCMS::AdminController, type: :request do
       admin = create :page_admin
       sign_in admin
 
-      ShinyCMS::Setting.set( :admin_ip_list, to: '127.0.0.1' )
+      ShinyCMS::Setting.set( :allowed_ips, to: '127.0.0.1' )
 
       get shinycms.admin_path
 
@@ -80,7 +80,7 @@ RSpec.describe ShinyCMS::AdminController, type: :request do
       admin = create :page_admin
       sign_in admin
 
-      ShinyCMS::Setting.set( :admin_ip_list, to: '10.10.10.10' )
+      ShinyCMS::Setting.set( :allowed_ips, to: '10.10.10.10' )
 
       get shinycms.admin_path
 

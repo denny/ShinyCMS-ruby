@@ -11,9 +11,10 @@ module ShinyCMS
   class AdminController < ApplicationController
     include Pundit
 
+    include ShinyCMS::Admin::AccessControlByIP
+
     helper Rails.application.routes.url_helpers
 
-    before_action :check_admin_ip_list
     before_action :authenticate_user!
     before_action :cache_user_capabilities
 
@@ -40,17 +41,6 @@ module ShinyCMS
     end
 
     private
-
-    # Check whether a list of permitted admin IP addresses has been defined,
-    # and if one has, then redirect anybody not coming from one of those IPs.
-    def check_admin_ip_list
-      allowed = Setting.get :admin_ip_list
-      return if allowed.blank?
-
-      return if allowed.strip.split( /\s*,\s*|\s+/ ).include? request.remote_ip
-
-      redirect_to main_app.root_path
-    end
 
     def cache_user_capabilities
       current_user&.cache_capabilities

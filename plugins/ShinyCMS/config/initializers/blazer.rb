@@ -11,7 +11,10 @@
 # This config is pulled into main_app by /config/initializers/blazer.rb
 
 Rails.application.config.to_prepare do
-  # Embed Blazer in the ShinyCMS admin UI
+  # Wrap the ShinyCMS admin UI around Blazer's views
   Blazer::BaseController.prepend_view_path 'plugins/ShinyCMS/app/views/shinycms'
   Blazer::BaseController.layout 'admin/layouts/admin_area'
+
+  # Inject our standard IP allow-list check (if configured)
+  Blazer::BaseController.before_action :enforce_allowed_ips
 end

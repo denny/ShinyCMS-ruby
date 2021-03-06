@@ -231,7 +231,7 @@ en:
     # in one place, but not all of them would make sense as user settings.
     # Particularly not the first one!!
     settings:
-      admin_ip_list: Admin IP list
+      allowed_ips: Allowed admin IPs
       akismet_drop_blatant_spam: Drop 'blatant' spam
       akismet_log_blatant_spam: Log when dropping blatant spam
       all_comment_notifications_email: Email to notify of ALL comments

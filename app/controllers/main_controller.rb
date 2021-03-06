@@ -9,14 +9,14 @@
 # ShinyHostApp base controller
 
 # MainController instead of ApplicationController because Blazer inherits from
-# the latter, which means ApplicationController has a lot of admin stuff in it.
+# ApplicationController. And to get Blazer to render inside the ShinyCMS admin
+# UI, the ApplicationController includes a lot of admin-area capabilities and
+# behaviour. Inherit from MainController instead. :)
 
-# rubocop:disable Rails/ApplicationController
+# :nocov:
 class MainController < ActionController::Base
   def index
-    # rubocop:disable Rails/RenderInline
     render inline: 'Hello world.'
-    # rubocop:enable Rails/RenderInline
   end
 end
-# rubocop:enable Rails/ApplicationController
+# :nocov:

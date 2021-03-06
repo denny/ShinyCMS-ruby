@@ -10,12 +10,8 @@ module ShinyCMS
   module Admin
     module Tools
       # Base controller for Rails Email Preview
-      class RailsEmailPreviewBaseController < ShinyCMS::AdminController
+      class RailsEmailPreviewBaseController < ShinyCMS::Admin::Tools::BaseController
         before_action -> { authorize :'ShinyCMS::MailerPreview' }
-
-        prepend_view_path 'plugins/ShinyCMS/app/views/shinycms'
-
-        layout 'admin/layouts/admin_area'
       end
     end
   end
