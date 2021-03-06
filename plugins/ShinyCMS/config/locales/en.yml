@@ -474,7 +474,7 @@ en:
       # ===== other engines =====
 
       blazer:
-        breadcrumb: Blazer
+        breadcrumb: Charts & Dashboards
         menu: Charts
         auth_fail: Your account does not have access to the Blazer chart features
         dashboards:
@@ -487,7 +487,7 @@ en:
       rails_email_preview:
         breadcrumb: Mailers
         menu: Mailer previews
-        auth_fail: Your account does not have access to the email preview features
+        # auth_fail: Your account does not have access to the Rails Email Preview features
         emails:
           index:
             title: All mailers
