@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     # Currently, if ShinyPages is loaded, then we assume it should control the root path
     import_routes partial: :root, plugin: :ShinyPages if ShinyCMS.plugins.loaded? :ShinyPages
 
+    import_routes partial: :php_is_a_bad_request
+
     import_routes partial: :mount_shinycms_core_plugin
 
     import_routes partial: :mount_shinycms_feature_plugins
