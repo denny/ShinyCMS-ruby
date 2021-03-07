@@ -5,7 +5,7 @@
 <% end %>
 
 <% depth = depth + 2 %>
-<% comment.comments.each do |comment| %>
+<% comment.comments.includes( %i[ author comments ] ).each do |comment| %>
   <%= render partial: 'discussions/comment_thread', locals: { comment: comment, depth: depth } %>
 <% end %>
 <% depth = depth - 2 %>

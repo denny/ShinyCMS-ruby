@@ -24,6 +24,8 @@ module ShinyNewsletters
 
     # Scopes
 
+    scope :with_editions, -> { includes( [ :edition ] ) }
+
     scope :unscheduled, -> { where( started_sending_at: nil, send_at: nil ) }
     scope :scheduled,   -> { where( started_sending_at: nil ).where.not( send_at: nil ) }
     scope :due_to_send, -> { where( started_sending_at: nil ).where( 'send_at < ?', Time.zone.now ) }

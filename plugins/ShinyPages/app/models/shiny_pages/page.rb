@@ -26,9 +26,10 @@ module ShinyPages
     belongs_to :section,  inverse_of: :all_pages, optional: true
     belongs_to :template, inverse_of: :pages
 
-    has_many :elements, -> { order( :position ) }, inverse_of: :page, dependent: :destroy, class_name: 'PageElement'
+    has_many :elements, -> { order( :position ).includes( [ :image_attachment ] ) },
+             inverse_of: :page, dependent: :destroy, class_name: 'PageElement'
 
-    accepts_nested_attributes_for :elements
+    accepts_nested_attributes_for :elements, allow_destroy: true
 
     # Validations
 

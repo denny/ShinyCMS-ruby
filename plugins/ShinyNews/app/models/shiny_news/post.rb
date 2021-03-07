@@ -16,8 +16,6 @@ module ShinyNews
 
     belongs_to :user, inverse_of: :news_posts, class_name: 'ShinyCMS::User'
 
-    has_one :discussion, as: :resource, dependent: :destroy, class_name: 'ShinyCMS::Discussion'
-
     def path( anchor: nil )
       url_helpers.view_news_post_path(
         posted_year, posted_month, slug, anchor: anchor

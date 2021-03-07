@@ -12,10 +12,10 @@ module ShinyCMS
     extend ActiveSupport::Concern
 
     included do
-      has_many :elements, -> { order( :position ) }, inverse_of: :template, dependent: :destroy,
-                                                    class_name: 'TemplateElement'
+      has_many :elements, -> { order( :position ).includes( [ :image_attachment ] ) },
+               inverse_of: :template, dependent: :destroy, class_name: 'TemplateElement'
 
-      accepts_nested_attributes_for :elements
+      accepts_nested_attributes_for :elements, allow_destroy: true
 
       validates :filename, presence: true
       validates :name,     presence: true

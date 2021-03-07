@@ -60,11 +60,8 @@ module ShinyProfiles
       user = ShinyCMS::User.find_by( username: username )
       raise ActiveRecord::RecordNotFound if user.blank?
 
-      profile = find_by( user: user )
-      # TODO: Create profile if blank? (in case ShinyProfiles enabled after account created)
-      raise ActiveRecord::RecordNotFound if profile.blank?
-
-      profile
+      find_or_create_by!( user: user )
+      # ('or create' in case the profiles feature was only turned on some time after the user account was created)
     end
 
     def self.sitemap_items
@@ -74,6 +71,8 @@ module ShinyProfiles
   end
 end
 
-ShinyCMS::User.has_one :profile, inverse_of: :user, class_name: 'ShinyProfiles::Profile', dependent: :destroy
+ShinyCMS::User.has_one :profile, inverse_of: :user, dependent: :destroy, class_name: 'ShinyProfiles::Profile'
+ShinyCMS::User.has_one :profile_with_pic, -> { includes( [ :profile_pic_attachment ] ) },
+                       inverse_of: :user, dependent: :destroy, class_name: 'ShinyProfiles::Profile'
 
 ShinyCMS::User.after_create :create_profile

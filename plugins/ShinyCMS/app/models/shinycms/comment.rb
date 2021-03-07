@@ -21,7 +21,8 @@ module ShinyCMS
     belongs_to :parent, optional: true, class_name: 'Comment'
     belongs_to :author, optional: true, polymorphic: true, inverse_of: :comments
 
-    has_many :comments, -> { not_spam }, inverse_of: :parent, foreign_key: :parent_id, dependent: :destroy
+    has_many :comments, -> { not_spam.includes( [ :author ] ) },
+             inverse_of: :parent, foreign_key: :parent_id, dependent: :destroy
 
     # Validations
 

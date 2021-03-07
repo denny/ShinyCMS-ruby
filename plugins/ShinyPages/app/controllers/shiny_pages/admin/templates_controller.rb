@@ -85,6 +85,10 @@ module ShinyPages
       @template = Template.find( params[:id] )
     end
 
+    def stash_template_with_elements
+      @template = Template.find( params[:id] ).includes( [ :elements ] )
+    end
+
     def strong_params
       return if params[ :template ].blank?
 
