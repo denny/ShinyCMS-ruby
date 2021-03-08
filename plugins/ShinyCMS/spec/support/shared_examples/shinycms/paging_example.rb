@@ -6,8 +6,8 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Shared tests for behaviour mixed-in by the ShinyCMS::Paging controller concern
-RSpec.shared_examples ShinyCMS::Paging do |factory, base_url, match_tag, match_text|
+# Shared tests for pagination
+RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
   let( :items ) { Array( 1..12 ).collect { |age| create factory.to_sym, posted_at: age.hours.ago } }
 
   before do
@@ -39,9 +39,7 @@ RSpec.shared_examples ShinyCMS::Paging do |factory, base_url, match_tag, match_t
 
     describe 'specifying the first page, and a count of 5 items' do
       it 'shows the first 5 items' do
-        params = { items: 5 }
-
-        get "#{base_url}/page/1?#{params.to_query}"
+        get "#{base_url}/page/1/items/5"
 
         expect( response.body ).to have_css match_tag, text: items[0].public_send( match_text )
         expect( response.body ).to have_css match_tag, text: items[4].public_send( match_text )
@@ -52,9 +50,7 @@ RSpec.shared_examples ShinyCMS::Paging do |factory, base_url, match_tag, match_t
 
     describe 'specifying a count of 5 items, but not specifying a page' do
       it 'shows the first 5 items' do
-        params = { items: 5 }
-
-        get "#{base_url}?#{params.to_query}"
+        get "#{base_url}/items/5"
 
         expect( response.body ).to have_css match_tag, text: items[0].public_send( match_text )
         expect( response.body ).to have_css match_tag, text: items[4].public_send( match_text )
@@ -76,9 +72,7 @@ RSpec.shared_examples ShinyCMS::Paging do |factory, base_url, match_tag, match_t
 
     describe 'specifying the second page, and a count of 5 items' do
       it 'shows items 6 to 10' do
-        params = { items: 5 }
-
-        get "#{base_url}/page/2?#{params.to_query}"
+        get "#{base_url}/page/2/items/5"
 
         expect( response.body ).not_to have_css match_tag, text: items[4].public_send( match_text )
 

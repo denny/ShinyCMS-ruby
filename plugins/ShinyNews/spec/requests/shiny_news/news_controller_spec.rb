@@ -117,5 +117,5 @@ RSpec.describe ShinyNews::NewsController, type: :request do
     end
   end
 
-  it_behaves_like ShinyCMS::Paging, 'news_post', '/news', 'h2', 'title'
+  it_behaves_like 'Paging', 'news_post', '/news', 'h2', 'title'
 end

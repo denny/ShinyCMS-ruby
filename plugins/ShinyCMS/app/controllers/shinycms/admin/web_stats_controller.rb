@@ -24,8 +24,7 @@ module ShinyCMS
 
       @pagy, @visits = pagy(
         recent_visits.where( 'referrer ilike ?', "%#{search_term}%" )
-                     .or( recent_visits.where( 'landing_page ilike ?', "%#{search_term}%" ) ),
-        items: items_per_page
+                     .or( recent_visits.where( 'landing_page ilike ?', "%#{search_term}%" ) )
       )
 
       authorize @visits if @visits.present?
