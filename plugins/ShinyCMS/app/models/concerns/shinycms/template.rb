@@ -22,6 +22,8 @@ module ShinyCMS
 
       after_create :add_elements
 
+      scope :with_elements, -> { includes( [ :elements ] ) }
+
       def file_exists?
         self.class.template_file_exists? filename
       end

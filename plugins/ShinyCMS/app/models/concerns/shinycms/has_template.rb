@@ -14,6 +14,8 @@ module ShinyCMS
     included do
       validates :template, presence: true
 
+      scope :with_elements, -> { includes( [ :elements ] ) }
+
       after_create :add_elements
 
       # Add the elements specified by the template

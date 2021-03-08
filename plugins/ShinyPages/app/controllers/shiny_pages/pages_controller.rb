@@ -101,7 +101,21 @@ module ShinyPages
     end
 
     def page_for_last_slug( section, slug )
-      section&.pages&.find_by( slug: slug ) || section&.sections&.find_by( slug: slug )&.default_page
+      return if section.blank?
+
+      last_slug_matches_page( section, slug ) || last_slug_matches_section( section, slug )
+    end
+
+    def last_slug_matches_page( section, slug )
+      return if section.pages.blank?
+
+      section.pages.with_elements.find_by( slug: slug )
+    end
+
+    def last_slug_matches_section( section, slug )
+      return if section.sections.blank?
+
+      section.sections.find_by( slug: slug )&.default_page
     end
 
     def enforce_html_format

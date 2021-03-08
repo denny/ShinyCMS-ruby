@@ -98,7 +98,7 @@ RSpec.describe ShinyPages::PagesController, type: :request do
     end
 
     describe 'GET /section-name/subsection-name' do
-      it 'fetches the first page from a nested section' do
+      it 'fetches the first page from the specified subsection' do
         section1 = create :page_section
         section2 = create :page_section, section: section1
         create :page_in_section, public_name: '1st Page', section: section2

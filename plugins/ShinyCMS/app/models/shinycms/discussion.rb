@@ -22,6 +22,11 @@ module ShinyCMS
     has_many :all_comments, inverse_of: :discussion, dependent: :destroy, class_name: 'Comment'
     # TODO: Get rid of .all_comments; only used to find the next .number when creating a new comment
 
+    # Scopes
+
+    scope :with_authors,  -> { includes( [ :author   ] ) }
+    scope :with_comments, -> { includes( [ :comments ] ) }
+
     # Instance methods
 
     def notifiable?

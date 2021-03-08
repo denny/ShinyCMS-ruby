@@ -22,8 +22,7 @@ module ShinyCMS
     included do
       # Associations
 
-      has_one :discussion, -> { includes( [ :comments ] ) }, as: :resource,
-              inverse_of: :resource, dependent: :destroy, class_name: 'ShinyCMS::Discussion'
+      has_one :discussion, as: :resource, inverse_of: :resource, dependent: :destroy, class_name: 'ShinyCMS::Discussion'
 
       # Validations
 
@@ -118,12 +117,12 @@ module ShinyCMS
     class_methods do
       def posts_in_year( year_string )
         year = Date.new( year_string.to_i, 1, 1 ).beginning_of_day
-        where( posted_at: year.all_year ).order( :posted_at ).published.readonly.with_discussions
+        with_discussions.where( posted_at: year.all_year ).order( :posted_at ).published.readonly
       end
 
       def posts_in_month( year_string, month_string )
         month = Date.new( year_string.to_i, month_string.to_i, 1 ).beginning_of_day
-        where( posted_at: month.all_month ).order( :posted_at ).published.readonly.with_discussions
+        with_discussions.where( posted_at: month.all_month ).order( :posted_at ).published.readonly
       end
 
       def find_post( year, month, slug )

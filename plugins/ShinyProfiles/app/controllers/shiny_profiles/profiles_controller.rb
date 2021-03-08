@@ -38,11 +38,11 @@ module ShinyProfiles
     private
 
     def stash_profile
-      @profile = Profile.includes( :links ).for_username params[ :username ]
+      @profile = Profile.for_username params[ :username ]
     end
 
     def stash_current_user_profile
-      @profile = current_user.profile
+      @profile = current_user.full_profile
     end
 
     def redirect_to_show_requested

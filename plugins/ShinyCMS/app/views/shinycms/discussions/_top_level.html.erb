@@ -1,4 +1,5 @@
 <% comments.each do |comment| %>
   <% depth = 0 %>
-  <%= render partial: 'discussions/comment_thread', locals: { comment: comment, depth: depth } %>
+  <%= render partial: 'discussions/comment_thread',
+             locals: { discussion: discussion, comment: comment, depth: depth } %>
 <% end %>
