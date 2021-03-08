@@ -45,4 +45,14 @@ RSpec.describe ShinyCMS::Setting, type: :model do
         .to raise_error ShinyCMS::Setting::CannotUpdateLockedSetting, 'Attempted to update a locked setting'
     end
   end
+
+  describe '.get_int' do
+    it 'returns the specified setting as an integer' do
+      setting = create :setting, name: 'two_plus_two'
+      create :setting_value, setting_id: setting.id, value: '4'
+
+      expect( described_class.get_int( :two_plus_two ) ).to eq 4
+      expect( described_class.get_int( :two_plus_two ) ).to be_an Integer
+    end
+  end
 end
