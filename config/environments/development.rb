@@ -14,12 +14,12 @@ Rails.application.configure do
   # Enable and configure Bullet (reports on N+1 queries and related issues)
   config.after_initialize do
     Bullet.enable        = true
-    Bullet.alert         = true
     Bullet.console       = true
     Bullet.rails_logger  = true
     Bullet.bullet_logger = true
     Bullet.add_footer    = true
-    # Bullet.raise       = true  # Raise an error if n+1 query is found during development
+    # Bullet.alert       = true  # Pop up JavaScript alert dialogues for each issue found
+    # Bullet.raise       = true  # Raise an error if any issues are found during
   end
 
   # In the development environment your application's code is reloaded on
