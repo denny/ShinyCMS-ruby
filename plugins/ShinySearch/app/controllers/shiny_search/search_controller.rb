@@ -49,8 +49,7 @@ module ShinySearch
 
       # TODO: investigate performance of this with a large resultset
       pagy, results = pagy_array(
-        PgSearch.multisearch( @query ).includes( :searchable ).collect( &:searchable ),
-        items: items_per_page
+        PgSearch.multisearch( @query ).includes( :searchable ).collect( &:searchable )
       )
 
       [ pagy, results ]

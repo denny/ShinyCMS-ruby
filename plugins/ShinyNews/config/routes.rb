@@ -10,17 +10,15 @@ require_relative '../../../plugins/ShinyCMS/lib/import_routes'
 
 ShinyNews::Engine.routes.draw do
   scope format: false do
+    yyyy_mm = { year: %r{\d\d\d\d}, month: %r{\d\d} }
+    yyyy    = { year: %r{\d\d\d\d} }
+
     # Main site
-    get 'news(/page/:page)',        to: 'news#index', as: :view_news
+    get 'news(/page/:page)(/items/:items)', to: 'news#index', as: :view_news
 
-    get 'news/:year',               constraints: { year: %r{\d\d\d\d} },
-                                    to: 'news#year', as: :view_news_year
-
-    get 'news/:year/:month',        constraints: { year: %r{\d\d\d\d}, month: %r{\d\d} },
-                                    to: 'news#month', as: :view_news_month
-
-    get 'news/:year/:month/:slug',  constraints: { year: %r{\d\d\d\d}, month: %r{\d\d} },
-                                    to: 'news#show', as: :view_news_post
+    get 'news/:year',              to: 'news#year',  as: :view_news_year,  constraints: yyyy
+    get 'news/:year/:month',       to: 'news#month', as: :view_news_month, constraints: yyyy_mm
+    get 'news/:year/:month/:slug', to: 'news#show',  as: :view_news_post,  constraints: yyyy_mm
 
     # Admin area
     scope path: 'admin', module: 'admin' do

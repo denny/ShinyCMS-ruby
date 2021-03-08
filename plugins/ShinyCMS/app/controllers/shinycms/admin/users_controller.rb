@@ -17,7 +17,7 @@ module ShinyCMS
 
       users = ShinyCMS.plugins.loaded?( :ShinyProfiles ) ? User.with_profiles : User
 
-      @pagy, @users = pagy( users.order( :username ), items: items_per_page )
+      @pagy, @users = pagy( users.order( :username ) )
 
       authorize @users if @users.present?
     end
@@ -27,7 +27,7 @@ module ShinyCMS
 
       users = ShinyCMS.plugins.loaded?( :ShinyProfiles ) ? User.with_profiles : User
 
-      @pagy, @users = pagy( users.admin_search( params[:q] ), items: items_per_page )
+      @pagy, @users = pagy( users.admin_search( params[:q] ) )
 
       authorize @users if @users.present?
       render :index

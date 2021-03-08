@@ -18,7 +18,7 @@ module ShinyNewsletters
     def index
       authorize Send
 
-      @pagy, @sends = pagy( Send.unscheduled.with_editions, items: items_per_page )
+      @pagy, @sends = pagy( Send.unscheduled.with_editions )
 
       authorize @sends     if @sends.present?
       authorize @sending   if @sending.present?
@@ -28,7 +28,7 @@ module ShinyNewsletters
     def sent
       authorize Send
 
-      @pagy, @sent = pagy( Send.sent.with_editions, items: items_per_page )
+      @pagy, @sent = pagy( Send.sent.with_editions )
 
       authorize @sent if @sent.present?
     end
@@ -36,7 +36,7 @@ module ShinyNewsletters
     def search
       authorize Send
 
-      @pagy, @sends = pagy( Send.admin_search( params[:q] ), items: items_per_page )
+      @pagy, @sends = pagy( Send.admin_search( params[:q] ) )
 
       authorize @sends if @sends.present?
       render :index

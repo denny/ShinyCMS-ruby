@@ -24,7 +24,7 @@ module ShinyNews
     def index
       authorize Post
 
-      @pagy, @posts = pagy( Post.order( posted_at: :desc ), items: items_per_page )
+      @pagy, @posts = pagy( Post.order( posted_at: :desc ) )
 
       authorize @posts if @posts.present?
     end
@@ -32,7 +32,7 @@ module ShinyNews
     def search
       authorize Post
 
-      @pagy, @posts = pagy( Post.admin_search( params[:q] ), items: items_per_page )
+      @pagy, @posts = pagy( Post.admin_search( params[:q] ) )
 
       authorize @posts if @posts.present?
       render :index
