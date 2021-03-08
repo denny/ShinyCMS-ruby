@@ -78,4 +78,9 @@ module ShinyCMS
   def self.plugins
     @plugins ||= ShinyCMS::Plugins.all
   end
+
+  # Force a rebuild of the plugin collection
+  def self.reload_plugins
+    @plugins = ShinyCMS::Plugins.all
+  end
 end
