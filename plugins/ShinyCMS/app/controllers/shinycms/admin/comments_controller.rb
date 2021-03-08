@@ -16,7 +16,7 @@ module ShinyCMS
     # Display spam comment moderation page
     def index
       authorize Comment
-      @pagy, @comments = pagy( Comment.spam, items: items_per_page )
+      @pagy, @comments = pagy( Comment.with_authors.spam, items: items_per_page )
       authorize @comments if @comments.present?
     end
 

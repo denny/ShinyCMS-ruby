@@ -12,7 +12,7 @@ module ShinyBlog
     before_action :check_feature_flags
 
     def index
-      @pagy, @posts = pagy_countless( Post.readonly.recent, items: items_per_page )
+      @pagy, @posts = pagy_countless( Post.readonly.recent.with_discussions, items: items_per_page )
     end
 
     def month

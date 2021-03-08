@@ -21,9 +21,9 @@ module ShinyLists
 
     # Scopes
 
-    scope :active, -> { where( unsubscribed_at: nil ) }
+    scope :active, -> { where( unsubscribed_at: nil ).includes( [ :subscriber ] ) }
 
-    scope :recent, -> { order( :subscribed_at ) }
+    scope :recent, -> { order( :subscribed_at ).includes( [ :subscriber ] ) }
 
     # Instance methods
 

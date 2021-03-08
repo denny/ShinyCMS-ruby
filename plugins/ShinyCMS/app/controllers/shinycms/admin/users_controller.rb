@@ -14,14 +14,20 @@ module ShinyCMS
 
     def index
       authorize User
-      @pagy, @users = pagy( User.order( :username ), items: items_per_page )
+
+      users = ShinyCMS.plugins.loaded?( :ShinyProfiles ) ? User.with_profiles : User
+
+      @pagy, @users = pagy( users.order( :username ), items: items_per_page )
+
       authorize @users if @users.present?
     end
 
     def search
       authorize User
 
-      @pagy, @users = pagy( User.admin_search( params[:q] ), items: items_per_page )
+      users = ShinyCMS.plugins.loaded?( :ShinyProfiles ) ? User.with_profiles : User
+
+      @pagy, @users = pagy( users.admin_search( params[:q] ), items: items_per_page )
 
       authorize @users if @users.present?
       render :index

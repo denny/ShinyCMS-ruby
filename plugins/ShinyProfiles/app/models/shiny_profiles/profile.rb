@@ -28,6 +28,9 @@ module ShinyProfiles
     # The dependent: :purge_now option is required to avoid an incompatibility issue with soft delete:
     # https://github.com/ActsAsParanoid/acts_as_paranoid/issues/103
 
+    scope :with_pic,   -> { includes( [ :profile_pic_attachment ] ) }
+    scope :with_links, -> { includes( [ :links ] ) }
+
     # Validations
 
     validates :user, presence: true, uniqueness: true
@@ -60,11 +63,8 @@ module ShinyProfiles
       user = ShinyCMS::User.find_by( username: username )
       raise ActiveRecord::RecordNotFound if user.blank?
 
-      profile = find_by( user: user )
-      # TODO: Create profile if blank? (in case ShinyProfiles enabled after account created)
-      raise ActiveRecord::RecordNotFound if profile.blank?
-
-      profile
+      user.full_profile || create_profile!
+      # (the latter in case the profiles feature was turned on after this user account was created)
     end
 
     def self.sitemap_items
@@ -74,6 +74,19 @@ module ShinyProfiles
   end
 end
 
-ShinyCMS::User.has_one :profile, inverse_of: :user, class_name: 'ShinyProfiles::Profile', dependent: :destroy
+module ShinyCMS
+  # Add Profile hooks to User model
+  class User
+    has_one :profile, inverse_of: :user, dependent: :destroy, class_name: 'ShinyProfiles::Profile'
 
-ShinyCMS::User.after_create :create_profile
+    after_create :create_profile
+
+    def profile_with_pic
+      ShinyProfiles::Profile.with_pic.find_by( id: id )
+    end
+
+    def full_profile
+      ShinyProfiles::Profile.with_links.with_pic.find_by( id: id )
+    end
+  end
+end

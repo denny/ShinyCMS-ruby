@@ -15,7 +15,7 @@ module ShinyCMS
     def index
       authorize ConsentVersion
 
-      @pagy, @consent_versions = pagy( ConsentVersion.order( updated_at: :desc ), items: items_per_page )
+      @pagy, @consent_versions = pagy( ConsentVersion.recent.with_subscriptions, items: items_per_page )
 
       authorize @consent_versions if @consent_versions.present?
     end

@@ -62,6 +62,9 @@ source 'https://rubygems.org' do
     # Run tests in parallel
     gem 'parallel_tests'
 
+    # "No silver bullet"
+    gem 'bullet'
+
     # Tools for working with translation strings
     # gem 'i18n-debug'
     gem 'i18n-tasks', '~> 0.9.33'

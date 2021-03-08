@@ -18,7 +18,7 @@ module ShinyNewsletters
     def index
       authorize Send
 
-      @pagy, @sends = pagy( Send.unscheduled, items: items_per_page )
+      @pagy, @sends = pagy( Send.unscheduled.with_editions, items: items_per_page )
 
       authorize @sends     if @sends.present?
       authorize @sending   if @sending.present?
@@ -28,7 +28,7 @@ module ShinyNewsletters
     def sent
       authorize Send
 
-      @pagy, @sent = pagy( Send.sent, items: items_per_page )
+      @pagy, @sent = pagy( Send.sent.with_editions, items: items_per_page )
 
       authorize @sent if @sent.present?
     end
@@ -114,8 +114,8 @@ module ShinyNewsletters
     end
 
     def stash_sending_and_scheduled
-      @sending   = Send.sending
-      @scheduled = Send.scheduled if viewing_first_page?
+      @sending   = Send.sending.with_editions
+      @scheduled = Send.scheduled.with_editions if viewing_first_page?
     end
 
     def strong_params

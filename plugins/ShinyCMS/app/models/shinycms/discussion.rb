@@ -18,9 +18,14 @@ module ShinyCMS
 
     belongs_to :resource, inverse_of: :discussion, polymorphic: true
 
-    has_many :comments, -> { not_spam }, inverse_of: :discussion, dependent: :destroy
+    has_many :comments, -> { not_spam.includes( [ :author ] ) }, inverse_of: :discussion, dependent: :destroy
     has_many :all_comments, inverse_of: :discussion, dependent: :destroy, class_name: 'Comment'
     # TODO: Get rid of .all_comments; only used to find the next .number when creating a new comment
+
+    # Scopes
+
+    scope :with_authors,  -> { includes( [ :author   ] ) }
+    scope :with_comments, -> { includes( [ :comments ] ) }
 
     # Instance methods
 

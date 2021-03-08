@@ -43,9 +43,16 @@ module ShinyCMS
     scope :spam,      -> { where( spam: true  ).order( :created_at ) }
     scope :not_spam,  -> { where( spam: false ) }
 
+    scope :with_authors,  -> { includes( [ :author   ] ) }
+    scope :with_comments, -> { includes( [ :comments ] ) }
+
     scope :since, ->( date ) { where( 'posted_at > ?', date ) }
 
     # Instance methods
+
+    def comments
+      Comment.with_comments.with_authors.where( parent: id ).order( :number )
+    end
 
     def set_number
       self.number = discussion.next_comment_number

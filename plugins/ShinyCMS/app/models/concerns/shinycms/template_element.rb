@@ -14,15 +14,9 @@ module ShinyCMS
     include ShinyCMS::Element
 
     included do
-      # Associations
-
       belongs_to :template, inverse_of: :elements
 
-      # Plugin features
-
       acts_as_list scope: :template
-
-      # Validations
 
       validates :template, presence: true
 
