@@ -31,7 +31,7 @@ module ShinyLists
       @pagy, @subscriptions = pagy(
         subscriptions.where( 'date(subscribed_at) = ?', search_term )
                      .or( subscriptions.where( 'date(unsubscribed_at) = ?', search_term ) )
-                     .order( subscribed_at: :desc ), items: items_per_page
+                     .order( subscribed_at: :desc )
       )
 
       authorize @subscriptions if @subscriptions.present?

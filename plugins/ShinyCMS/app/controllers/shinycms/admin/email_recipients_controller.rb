@@ -11,14 +11,14 @@ module ShinyCMS
   class Admin::EmailRecipientsController < AdminController
     def index
       authorize EmailRecipient
-      @pagy, @recipients = pagy( EmailRecipient.order( updated_at: :desc ), items: items_per_page )
+      @pagy, @recipients = pagy( EmailRecipient.order( updated_at: :desc ) )
       authorize @recipients
     end
 
     def search
       authorize EmailRecipient
 
-      @pagy, @recipients = pagy( EmailRecipient.admin_search( params[:q] ), items: items_per_page )
+      @pagy, @recipients = pagy( EmailRecipient.admin_search( params[:q] ) )
 
       authorize @recipients if @recipients.present?
       render :index

@@ -13,7 +13,7 @@ module ShinyNewsletters
       authenticate_user! unless params[:token]
 
       if subscriber
-        @pagy, @recent_sends = pagy_countless( newsletters_sent_to_subscribed_lists&.recent, items: items_per_page )
+        @pagy, @recent_sends = pagy_countless( newsletters_sent_to_subscribed_lists&.recent )
       else
         flash.now[:alert] = t( '.subscriber_not_found' )
       end

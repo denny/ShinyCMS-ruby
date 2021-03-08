@@ -16,14 +16,14 @@ module ShinyCMS
     # Display spam comment moderation page
     def index
       authorize Comment
-      @pagy, @comments = pagy( Comment.with_authors.spam, items: items_per_page )
+      @pagy, @comments = pagy( Comment.with_authors.spam )
       authorize @comments if @comments.present?
     end
 
     def search
       authorize Comment
 
-      @pagy, @comments = pagy( Comment.admin_search( params[:q] ), items: items_per_page )
+      @pagy, @comments = pagy( Comment.admin_search( params[:q] ) )
 
       authorize @comments if @comments.present?
       render :index

@@ -20,7 +20,7 @@ module ShinyPages
     def index
       authorize Template
 
-      @pagy, @templates = pagy( Template.order( :name ), items: items_per_page )
+      @pagy, @templates = pagy( Template.order( :name ) )
 
       authorize @templates if @templates.present?
     end
@@ -28,7 +28,7 @@ module ShinyPages
     def search
       authorize Template
 
-      @pagy, @templates = pagy( Template.admin_search( params[:q] ), items: items_per_page )
+      @pagy, @templates = pagy( Template.admin_search( params[:q] ) )
 
       authorize @templates if @templates.present?
       render :index

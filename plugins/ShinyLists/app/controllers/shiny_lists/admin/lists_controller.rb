@@ -12,7 +12,7 @@ module ShinyLists
     def index
       authorize List
 
-      @pagy, @lists = pagy( List.order( updated_at: :desc ), items: items_per_page )
+      @pagy, @lists = pagy( List.order( updated_at: :desc ) )
 
       authorize @lists if @lists.present?
     end
@@ -20,7 +20,7 @@ module ShinyLists
     def search
       authorize List
 
-      @pagy, @lists = pagy( List.admin_search( params[:q] ), items: items_per_page )
+      @pagy, @lists = pagy( List.admin_search( params[:q] ) )
 
       authorize @lists if @lists.present?
       render :index

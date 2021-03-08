@@ -12,7 +12,7 @@ module ShinyCMS
     def index
       authorize Ahoy::Visit
 
-      @pagy, @visits = pagy( recent_visits, items: items_per_page )
+      @pagy, @visits = pagy( recent_visits )
 
       authorize @visits if @visits.present?
     end
