@@ -14,7 +14,7 @@
 <section>
   <%= render partial: 'blog/index/post_header', locals: { post: post } %>
 
-  <%= teaser = post.teaser( paragraphs: 3 ) %>
+  <% teaser = post.teaser( paragraphs: 3 ) %>
   <%= sanitize teaser %>
 
   <% read_more = post.body.length > ( teaser.length + 10 ) ? 'read_more' : 'view_post' # 10 is an arbitrary fudge factor for extra newlines etc %>
