@@ -46,7 +46,7 @@ source 'https://rubygems.org' do
   gem 'rails_email_preview'
 
   # Email stats
-  gem 'ahoy_email'
+  gem 'ahoy_email', '~> 1.1'
   # Web stats
   gem 'ahoy_matey'
 
@@ -121,6 +121,8 @@ source 'https://rubygems.org' do
     # Intercept calls to external services (notably, the Algolia API)
     gem 'webmock'
 
+    # Analyse and report on test coverage
+    gem 'simplecov', '0.20.0'
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     # Rspec report formatter for Codecov

@@ -706,7 +706,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-analyze!
   activerecord-session_store!
-  ahoy_email!
+  ahoy_email (~> 1.1)!
   ahoy_matey!
   blazer!
   brakeman!
@@ -751,6 +751,7 @@ DEPENDENCIES
   shiny_search!
   shiny_seo!
   shinycms!
+  simplecov (= 0.20.0)!
   webmock!
 
 RUBY VERSION
