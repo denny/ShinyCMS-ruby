@@ -10,17 +10,15 @@ require_relative '../../../plugins/ShinyCMS/lib/import_routes'
 
 ShinyBlog::Engine.routes.draw do
   scope format: false do
+    yyyy_mm = { year: %r{\d\d\d\d}, month: %r{\d\d} }
+    yyyy    = { year: %r{\d\d\d\d} }
+
     # Main site
-    get 'blog(/page/:page)',        to: 'blog#index', as: :view_blog
+    get 'blog(/page/:page)(/items/:items)', to: 'blog#index', as: :view_blog
 
-    get 'blog/:year',               constraints: { year: %r{\d\d\d\d} },
-                                    to: 'blog#year', as: :view_blog_year
-
-    get 'blog/:year/:month',        constraints: { year: %r{\d\d\d\d}, month: %r{\d\d} },
-                                    to: 'blog#month', as: :view_blog_month
-
-    get 'blog/:year/:month/:slug',  constraints: { year: %r{\d\d\d\d}, month: %r{\d\d} },
-                                    to: 'blog#show', as: :view_blog_post
+    get 'blog/:year',              to: 'blog#year',  as: :view_blog_year,  constraints: yyyy
+    get 'blog/:year/:month',       to: 'blog#month', as: :view_blog_month, constraints: yyyy_mm
+    get 'blog/:year/:month/:slug', to: 'blog#show',  as: :view_blog_post,  constraints: yyyy_mm
 
     # Admin area
     scope path: 'admin', module: 'admin' do
