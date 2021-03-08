@@ -9,7 +9,7 @@
 # Route concerns for ShinyCMS admin area
 
 concern :with_paging do
-  get '(page/:page)', action: :index, on: :collection, as: ''
+  get '(page/:page)(/items/:items)', action: :index, on: :collection, as: ''
 end
 
 concern :with_search do
