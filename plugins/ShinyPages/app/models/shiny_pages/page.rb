@@ -83,7 +83,7 @@ module ShinyPages
 
     def self.all_top_level_items
       pages = all_top_level_pages.to_a
-      sections = Section.all_top_level_sections.to_a
+      sections = Section.includes( %i[ all_pages all_sections ] ).all_top_level_sections.to_a
 
       [ *pages, *sections ].sort_by do |item|
         [ item.position ? 0 : 1, item.position || 0 ]
