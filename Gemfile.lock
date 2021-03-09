@@ -251,7 +251,7 @@ GEM
     acts_as_votable (0.13.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    ahoy_email (1.1.0)
+    ahoy_email (2.0.1)
       actionmailer (>= 5)
       addressable (>= 2.3.2)
       nokogiri
@@ -710,7 +710,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-analyze!
   activerecord-session_store!
-  ahoy_email (~> 1.1)!
+  ahoy_email (~> 2.0)!
   ahoy_matey!
   blazer!
   brakeman!
