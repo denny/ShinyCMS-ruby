@@ -37,10 +37,8 @@ source 'https://rubygems.org' do
   gem 'puma', '~> 5.2', groups: %i[ development production ]
 
   # Sessions
-  # FIXME: Installing from GitHub because Ruby 3 support is merged but not released:
-  # https://github.com/rails/activerecord-session_store/pull/159
-  # https://github.com/rails/activerecord-session_store/issues/171
-  gem 'activerecord-session_store', git: 'https://github.com/rails/activerecord-session_store'
+  # FIXME: Installing from fork to pick up fix for CVE-2019-16782
+  gem 'activerecord-session_store', github: 'rails-lts/activerecord-session_store', branch: 'secure-session-store'
 
   # Email previews
   gem 'rails_email_preview'
