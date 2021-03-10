@@ -16,7 +16,7 @@ module ShinyCMS
       messages = messages_to_user      if params[ :user_id ]
       messages = messages_to_recipient if params[ :recipient_id ]
 
-      @pagy, @messages = pagy( messages, items: items_per_page )
+      @pagy, @messages = pagy( messages )
 
       authorize @messages if @messages.present?
     end
@@ -29,7 +29,7 @@ module ShinyCMS
       @pagy, @messages = pagy(
         Ahoy::Message.where( 'mailer ilike ?', "%#{search_term}%" )
                     .or( Ahoy::Message.where( 'subject ilike ?', "%#{search_term}%" ) )
-                    .order( sent_at: :desc ), items: items_per_page
+                    .order( sent_at: :desc )
       )
 
       authorize @messages if @messages.present?

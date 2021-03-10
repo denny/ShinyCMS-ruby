@@ -9,6 +9,10 @@
 module ShinyCMS
   # Smarter error pages
   class ErrorsController < MainController
+    def bad_request
+      head :bad_request
+    end
+
     def not_found
       render status: :not_found
     end

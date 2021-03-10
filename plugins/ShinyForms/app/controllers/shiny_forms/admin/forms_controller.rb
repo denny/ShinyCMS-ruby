@@ -18,7 +18,7 @@ module ShinyForms
     def index
       authorize Form
 
-      @pagy, @forms = pagy( Form.all, items: items_per_page )
+      @pagy, @forms = pagy( Form.all )
 
       authorize @forms if @forms.present?
     end
@@ -26,7 +26,7 @@ module ShinyForms
     def search
       authorize Form
 
-      @pagy, @forms = pagy( Form.admin_search( params[:q] ), items: items_per_page )
+      @pagy, @forms = pagy( Form.admin_search( params[:q] ) )
 
       authorize @forms if @forms.present?
       render :index

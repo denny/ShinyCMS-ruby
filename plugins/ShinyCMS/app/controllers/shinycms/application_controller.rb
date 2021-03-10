@@ -10,7 +10,8 @@ module ShinyCMS
   # Base controller for ShinyCMS (see also: MainController, AdminController)
   class ApplicationController < ActionController::Base
     include FeatureFlags
-    include ShinyCMS::Paging
+
+    include Pagy::Backend
 
     helper Pagy::Frontend
 
@@ -52,9 +53,10 @@ module ShinyCMS
       end
     end
 
-    # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
-    def pagy_url_for( page, _pagy )
-      params = request.query_parameters.merge( only_path: true, page: page )
+    # Override pager link format, from admin/action?page=3&items=12
+    # to admin/action/page/3/items/12)
+    def pagy_url_for( page, pagy )
+      params = request.query_parameters.merge( page: page, items: pagy.vars[:items], only_path: true )
       url_for( params )
     end
 

@@ -19,7 +19,7 @@ module ShinyNewsletters
     def index
       authorize Edition
 
-      @pagy, @editions = pagy( Edition.order( updated_at: :desc ), items: items_per_page )
+      @pagy, @editions = pagy( Edition.order( updated_at: :desc ) )
 
       authorize @editions if @editions.present?
     end
@@ -27,7 +27,7 @@ module ShinyNewsletters
     def search
       authorize Edition
 
-      @pagy, @editions = pagy( Edition.admin_search( params[:q] ), items: items_per_page )
+      @pagy, @editions = pagy( Edition.admin_search( params[:q] ) )
 
       authorize @editions if @editions.present?
       render :index

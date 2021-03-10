@@ -16,8 +16,7 @@ module ShinyLists
 
       # TODO: How do I order this by subscriber.email ?
       @pagy, @subscriptions = pagy(
-        list.subscriptions.recent.order( Arel.sql( 'unsubscribed_at is null' ) ),
-        items: items_per_page
+        list.subscriptions.recent.order( Arel.sql( 'unsubscribed_at is null' ) )
       )
 
       authorize @subscriptions
@@ -31,7 +30,7 @@ module ShinyLists
       @pagy, @subscriptions = pagy(
         subscriptions.where( 'date(subscribed_at) = ?', search_term )
                      .or( subscriptions.where( 'date(unsubscribed_at) = ?', search_term ) )
-                     .order( subscribed_at: :desc ), items: items_per_page
+                     .order( subscribed_at: :desc )
       )
 
       authorize @subscriptions if @subscriptions.present?

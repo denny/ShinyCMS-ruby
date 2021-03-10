@@ -20,7 +20,7 @@ namespace :shinycms do
     desc 'ShinyCMS: list feature flags and status'
     task list: %i[ environment dotenv ] do
       # :nocov:
-      FeatureFlag.order( :name ).each do |flag|
+      ShinyCMS::FeatureFlag.order( :name ).each do |flag|
         a = flag.enabled_for_admins?    ? '+' : '-'
         l = flag.enabled_for_logged_in? ? '+' : '-'
         e = flag.enabled?               ? '+' : '-'
@@ -36,7 +36,7 @@ namespace :shinycms do
     desc 'ShinyCMS: toggle a feature flag on'
     task :on, [ :name ] => %i[ environment dotenv ] do |_t, args|
       # :nocov:
-      flag = FeatureFlag.enable args[:name]
+      flag = ShinyCMS::FeatureFlag.enable args[:name]
       puts "Set enabled=true for #{args[:name]}" if flag.valid?
       # :nocov:
     end
@@ -44,7 +44,7 @@ namespace :shinycms do
     desc 'ShinyCMS: toggle a feature flag off'
     task :off, [ :name ] => %i[ environment dotenv ] do |_t, args|
       # :nocov:
-      flag = FeatureFlag.disable args[:name]
+      flag = ShinyCMS::FeatureFlag.disable args[:name]
       puts "Set enabled=false for #{args[:name]}" if flag.valid?
       # :nocov:
     end

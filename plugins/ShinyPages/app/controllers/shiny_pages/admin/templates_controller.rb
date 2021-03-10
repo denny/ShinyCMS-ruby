@@ -11,15 +11,16 @@ module ShinyPages
   class Admin::TemplatesController < AdminController
     include ShinyCMS::Admin::Sorting
 
-    before_action :stash_new_template, only: %i[ new create ]
-    before_action :stash_template,     only: %i[ edit update destroy ]
+    before_action :stash_new_template,           only: %i[ new create   ]
+    before_action :stash_template,               only: %i[ update       ]
+    before_action :stash_template_with_elements, only: %i[ edit destroy ]
 
     helper_method :load_html_editor?
 
     def index
       authorize Template
 
-      @pagy, @templates = pagy( Template.order( :name ), items: items_per_page )
+      @pagy, @templates = pagy( Template.order( :name ) )
 
       authorize @templates if @templates.present?
     end
@@ -27,7 +28,7 @@ module ShinyPages
     def search
       authorize Template
 
-      @pagy, @templates = pagy( Template.admin_search( params[:q] ), items: items_per_page )
+      @pagy, @templates = pagy( Template.admin_search( params[:q] ) )
 
       authorize @templates if @templates.present?
       render :index
@@ -83,6 +84,10 @@ module ShinyPages
 
     def stash_template
       @template = Template.find( params[:id] )
+    end
+
+    def stash_template_with_elements
+      @template = Template.includes( [ :elements ] ).find( params[:id] )
     end
 
     def strong_params

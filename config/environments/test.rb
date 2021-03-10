@@ -6,15 +6,22 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# The test environment is used exclusively to run your application's
-# test suite. You never need to work with it otherwise. Remember that
-# your test database is "scratch space" for the test suite and is wiped
-# and recreated between test runs. Don't rely on the data there!
+# The test environment is used exclusively to run your application's test suite.
+# You never need to work with it otherwise. Remember that your test database is
+# "scratch space" for the test suite and is wiped and recreated between test runs.
+# Don't rely on the data there!
 
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+
+  # Enable and configure Bullet (reports on N+1 queries and related issues)
+  config.after_initialize do
+    Bullet.enable        = true
+    Bullet.bullet_logger = true
+    # Bullet.raise       = true  # Raise an error if n+1 query is found during test run
+  end
 
   # ShinyCMS needs eager load enabled, for ActiveRecord::Base.descendants to work properly
   # (Used to find models that have various capabilities - e.g. taggable/searchable/etc)
@@ -49,8 +56,8 @@ Rails.application.configure do
 
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method adds them to ActionMailer::Base.deliveries instead
-  config.action_mailer.delivery_method = :test
   config.action_mailer.default_url_options = { host: 'www.example.com' }
+  config.action_mailer.delivery_method = :test
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true

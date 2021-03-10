@@ -37,16 +37,14 @@ source 'https://rubygems.org' do
   gem 'puma', '~> 5.2', groups: %i[ development production ]
 
   # Sessions
-  # FIXME: Installing from GitHub because Ruby 3 support is merged but not released:
-  # https://github.com/rails/activerecord-session_store/pull/159
-  # https://github.com/rails/activerecord-session_store/issues/171
-  gem 'activerecord-session_store', git: 'https://github.com/rails/activerecord-session_store'
+  # FIXME: Installing from fork to pick up fix for CVE-2019-16782
+  gem 'activerecord-session_store', github: 'rails-lts/activerecord-session_store', branch: 'secure-session-store'
 
   # Email previews
   gem 'rails_email_preview'
 
   # Email stats
-  gem 'ahoy_email'
+  gem 'ahoy_email', '~> 1.1'
   # Web stats
   gem 'ahoy_matey'
 
@@ -61,6 +59,9 @@ source 'https://rubygems.org' do
 
     # Run tests in parallel
     gem 'parallel_tests'
+
+    # "No silver bullet"
+    gem 'bullet'
 
     # Tools for working with translation strings
     # gem 'i18n-debug'
@@ -121,6 +122,8 @@ source 'https://rubygems.org' do
     # Intercept calls to external services (notably, the Algolia API)
     gem 'webmock'
 
+    # Analyse and report on test coverage
+    gem 'simplecov', '0.20.0'
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     # Rspec report formatter for Codecov

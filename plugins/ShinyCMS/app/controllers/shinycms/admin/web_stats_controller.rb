@@ -12,7 +12,7 @@ module ShinyCMS
     def index
       authorize Ahoy::Visit
 
-      @pagy, @visits = pagy( recent_visits, items: items_per_page )
+      @pagy, @visits = pagy( recent_visits )
 
       authorize @visits if @visits.present?
     end
@@ -24,8 +24,7 @@ module ShinyCMS
 
       @pagy, @visits = pagy(
         recent_visits.where( 'referrer ilike ?', "%#{search_term}%" )
-                     .or( recent_visits.where( 'landing_page ilike ?', "%#{search_term}%" ) ),
-        items: items_per_page
+                     .or( recent_visits.where( 'landing_page ilike ?', "%#{search_term}%" ) )
       )
 
       authorize @visits if @visits.present?
