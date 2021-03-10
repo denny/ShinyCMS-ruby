@@ -15,6 +15,11 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
     ShinyCMS::FeatureFlag.disable :user_profiles
   end
 
+  let( :test_username ) { Faker::Internet.unique.username( specifier:   5 ) }
+  let( :test_password ) { Faker::Internet.unique.password( min_length: 10 ) }
+
+  let( :test_email ) { Faker::Internet.unique.email( name: test_username ) }
+
   describe 'GET /account/register' do
     before do
       ShinyCMS::FeatureFlag.enable :user_registration
@@ -91,10 +96,6 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
     it 'creates a new user, checking V3 reCAPTCHA if a V3 key is set' do
       create :top_level_page
 
-      username = Faker::Internet.unique.username
-      password = Faker::Internet.unique.password( min_length: 10 )
-      email = "#{username}@example.com"
-
       allow( described_class )
         .to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
       allow_any_instance_of( described_class )
@@ -102,9 +103,9 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
 
       post shinycms.user_registration_path, params: {
         user: {
-          username: username,
-          password: password,
-          email:    email
+          username: test_username,
+          password: test_password,
+          email:    test_email
         }
       }
 
@@ -120,10 +121,6 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
     it 'creates a new user, checking V2 invisible reCAPTCHA if no V3 key present' do
       create :top_level_page
 
-      username = Faker::Internet.unique.username
-      password = Faker::Internet.unique.password( min_length: 10 )
-      email = "#{username}@example.com"
-
       allow( described_class )
         .to receive( :recaptcha_v2_secret_key ).and_return( 'A_KEY' )
       allow_any_instance_of( described_class )
@@ -131,9 +128,9 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
 
       post shinycms.user_registration_path, params: {
         user: {
-          username: username,
-          password: password,
-          email:    email
+          username: test_username,
+          password: test_password,
+          email:    test_email
         }
       }
 
@@ -149,10 +146,6 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
     it 'falls back to checkbox reCAPTCHA if invisible reCAPTCHA fails' do
       create :top_level_page
 
-      username = Faker::Internet.unique.username
-      password = Faker::Internet.unique.password( min_length: 10 )
-      email = "#{username}@example.com"
-
       allow_any_instance_of( described_class )
         .to receive( :recaptcha_checkbox_site_key ).and_return( 'A_KEY' )
       allow_any_instance_of( described_class )
@@ -160,9 +153,9 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
 
       post shinycms.user_registration_path, params: {
         user: {
-          username: username,
-          password: password,
-          email:    email
+          username: test_username,
+          password: test_password,
+          email:    test_email
         }
       }
 
@@ -177,9 +170,9 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
 
       post shinycms.user_registration_path, params: {
         user: {
-          username: username,
-          password: password,
-          email:    email
+          username: test_username,
+          password: test_password,
+          email:    test_email
         }
       }
 
@@ -207,8 +200,7 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
 
   describe 'PUT /account/update' do
     it 'updates the user when you submit the edit form' do
-      password = Faker::Internet.unique.password( min_length: 10 )
-      user = create :user, password: password
+      user = create :user, password: test_password
       sign_in user
 
       new_name = Faker::Internet.unique.username
@@ -216,7 +208,7 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
       put shinycms.user_registration_path, params: {
         user: {
           username:         new_name,
-          current_password: password
+          current_password: test_password
         }
       }
 
