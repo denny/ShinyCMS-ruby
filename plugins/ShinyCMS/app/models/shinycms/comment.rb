@@ -105,7 +105,7 @@ module ShinyCMS
           .order( posted_at: :desc )
     end
 
-    def self.demo_data_position
+    def self.my_demo_data_position
       11  # after discussions
     end
   end

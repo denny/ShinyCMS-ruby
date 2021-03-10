@@ -19,10 +19,11 @@ module ShinyCMS
       acts_as_list scope: :template
 
       validates :template, presence: true
+    end
 
-      # Template Elements need to be inserted after Templates
-      def self.demo_data_position
-        2
+    class_methods do
+      def my_demo_data_position
+        2  # Template Elements need to be inserted after Templates
       end
     end
   end
