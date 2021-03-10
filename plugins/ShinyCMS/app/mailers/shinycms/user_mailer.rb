@@ -20,7 +20,7 @@ module ShinyCMS
     def confirmation_instructions( user, token, _args = nil )
       return if not_ok_to_email? user
 
-      set_instance_vars( user, token )
+      stash_instance_vars( user, token )
 
       mail to: @user.email_to, subject: subject_for( :confirmation ) do |format|
         format.html
@@ -31,7 +31,7 @@ module ShinyCMS
     def email_changed_instructions( user, _args = nil )
       return if not_ok_to_email? user
 
-      set_instance_vars( user )
+      stash_instance_vars( user )
 
       mail to: @user.email_to, subject: subject_for( :email_changed ) do |format|
         format.html
@@ -42,7 +42,7 @@ module ShinyCMS
     def password_changed_instructions( user, _args = nil )
       return if not_ok_to_email? user
 
-      set_instance_vars( user )
+      stash_instance_vars( user )
 
       mail to: @user.email_to, subject: subject_for( :password_changed ) do |format|
         format.html
@@ -53,7 +53,7 @@ module ShinyCMS
     def reset_password_instructions( user, token, _args = nil )
       return if not_ok_to_email? user
 
-      set_instance_vars( user, token )
+      stash_instance_vars( user, token )
 
       mail to: @user.email_to, subject: subject_for( :reset_password ) do |format|
         format.html
@@ -64,7 +64,7 @@ module ShinyCMS
     def unlock_instructions( user, token, _args = nil )
       return if not_ok_to_email? user
 
-      set_instance_vars( user, token )
+      stash_instance_vars( user, token )
 
       mail to: @user.email_to, subject: subject_for( :unlock ) do |format|
         format.html
@@ -78,12 +78,10 @@ module ShinyCMS
       DoNotContact.list_includes? user.email
     end
 
-    def set_instance_vars( user, token = nil )
+    def stash_instance_vars( user, token = nil )
       @resource = @user = user
 
       @token = token if token
-
-      true
     end
 
     def subject_for( mailer_name )

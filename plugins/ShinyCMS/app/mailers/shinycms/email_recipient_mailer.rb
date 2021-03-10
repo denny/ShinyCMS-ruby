@@ -14,15 +14,26 @@ module ShinyCMS
 
     # Email a link that the user must click to prove they have access to this email address
     def confirm( recipient )
-      @user = @recipient = recipient
-      @confirm_token = recipient.confirm_token
+      return if not_ok_to_email? recipient
 
-      return if DoNotContact.list_includes? recipient.email # TODO: make this happen without explicit call
+      stash_instance_vars( recipient )
 
       mail to: recipient.email_to, subject: confirm_subject do |format|
         format.html
         format.text
       end
+    end
+
+    private
+
+    def not_ok_to_email?( recipient )
+      DoNotContact.list_includes? recipient.email
+    end
+
+    def stash_instance_vars( recipient )
+      @recipient = @user = recipient
+
+      @confirm_token = recipient.confirm_token
     end
 
     def confirm_subject
