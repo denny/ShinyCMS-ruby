@@ -12,10 +12,11 @@ module ShinyNewsletters
     before_action :check_feature_flags
 
     def send_email( edition, recipient )
-      stash_content( edition )
       stash_user( recipient )
 
-      return if @user.do_not_email? # TODO: make this happen without explicit call
+      return if @user.not_ok_to_email? # TODO: make this happen without explicit call
+
+      stash_content( edition )
 
       mail to: @user.email_to, subject: @edition.subject, template_name: @edition.template.filename do |format|
         format.html
@@ -25,13 +26,13 @@ module ShinyNewsletters
 
     private
 
+    def stash_user( recipient )
+      @user = recipient
+    end
+
     def stash_content( edition )
       @edition  = edition
       @elements = edition.elements_hash
-    end
-
-    def stash_user( recipient )
-      @user = recipient
     end
 
     def check_feature_flags

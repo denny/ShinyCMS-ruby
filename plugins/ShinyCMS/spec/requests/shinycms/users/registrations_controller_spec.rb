@@ -92,7 +92,7 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
       create :top_level_page
 
       username = Faker::Internet.unique.username
-      password = 'shinycms unimaginative test passphrase'
+      password = Faker::Internet.unique.password( min_length: 10 )
       email = "#{username}@example.com"
 
       allow( described_class )
@@ -121,7 +121,7 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
       create :top_level_page
 
       username = Faker::Internet.unique.username
-      password = 'shinycms unimaginative test passphrase'
+      password = Faker::Internet.unique.password( min_length: 10 )
       email = "#{username}@example.com"
 
       allow( described_class )
@@ -150,7 +150,7 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
       create :top_level_page
 
       username = Faker::Internet.unique.username
-      password = 'shinycms unimaginative test passphrase'
+      password = Faker::Internet.unique.password( min_length: 10 )
       email = "#{username}@example.com"
 
       allow_any_instance_of( described_class )
@@ -207,7 +207,7 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
 
   describe 'PUT /account/update' do
     it 'updates the user when you submit the edit form' do
-      password = Faker::Books::CultureSeries.unique.culture_ship
+      password = Faker::Internet.unique.password( min_length: 10 )
       user = create :user, password: password
       sign_in user
 

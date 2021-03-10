@@ -68,7 +68,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
 
   describe 'POST /login' do
     it 'logs the user in using their email address' do
-      password = 'shinycms unimaginative test passphrase'
+      password = Faker::Internet.unique.password( min_length: 10 )
       user = create :user, password: password
 
       post shinycms.user_session_path, params: {
@@ -86,7 +86,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
     end
 
     it 'logs the user in using their username' do
-      password = 'shinycms unimaginative test passphrase'
+      password = Faker::Internet.unique.password( min_length: 10 )
       user = create :user, password: password
 
       post shinycms.user_session_path, params: {
@@ -104,7 +104,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
     end
 
     it 'redirects back to the referring page after login, if it knows it' do
-      password = 'shinycms unimaginative test passphrase'
+      password = Faker::Internet.unique.password( min_length: 10 )
       user = create :user, password: password
 
       create :top_level_page

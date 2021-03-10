@@ -10,39 +10,31 @@ module ShinyCMS
   # Rails Email Preview controller for previewing Devise-powered user emails
   class UserMailerPreview
     def confirmation_instructions
-      ShinyCMS::UserMailer.confirmation_instructions fetch_user, fake_token
+      ShinyCMS::UserMailer.confirmation_instructions preview_user, 'PREVIEW_TOKEN'
     end
 
     def reset_password_instructions
-      ShinyCMS::UserMailer.reset_password_instructions fetch_user, fake_token
+      ShinyCMS::UserMailer.reset_password_instructions preview_user, 'PREVIEW_TOKEN'
     end
 
     def password_changed_instructions
-      ShinyCMS::UserMailer.password_changed_instructions fetch_user
+      ShinyCMS::UserMailer.password_changed_instructions preview_user
     end
 
     def email_changed_instructions
-      ShinyCMS::UserMailer.email_changed_instructions fetch_user
+      ShinyCMS::UserMailer.email_changed_instructions preview_user
     end
 
     def unlock_instructions
-      ShinyCMS::UserMailer.unlock_instructions fetch_user, fake_token
+      ShinyCMS::UserMailer.unlock_instructions preview_user, 'PREVIEW_TOKEN'
     end
 
     private
 
-    def fetch_user
-      @user_id ? ShinyCMS::User.find( @user_id ) : mock_user
-    end
-
-    def fake_token
-      'PREVIEW_TOKEN'
-    end
-
-    def mock_user
+    def preview_user
       ShinyCMS::User.new(
         username: 'preview_user',
-        email:    'preview_user@example.com'
+        email:    'preview.user@example.com'
       )
     end
   end
