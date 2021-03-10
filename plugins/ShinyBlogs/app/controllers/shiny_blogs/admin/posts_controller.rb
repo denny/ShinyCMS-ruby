@@ -9,7 +9,7 @@
 module ShinyBlogs
   # Admin controller for blog posts - ShinyBlogs plugin for ShinyCMS
   class Admin::PostsController < AdminController
-    include ShinyCMS::Paging
+    include Pagy::Backend
 
     before_action :set_blog
     before_action :set_post_for_create, only: %i[ create ]
@@ -19,7 +19,7 @@ module ShinyBlogs
     def index
       authorize BlogPost
 
-      @pagy, @posts = pagy( @blog.all_posts.order( :created_at ), items: items_per_page )
+      @pagy, @posts = pagy( @blog.all_posts.order( :created_at ) )
 
       authorize @posts.first if @posts.present?
     end
