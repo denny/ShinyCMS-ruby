@@ -17,6 +17,8 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
     create :top_level_page
   end
 
+  let( :test_password ) { Faker::Internet.unique.password( min_length: 10 ) }
+
   describe 'GET /login' do
     it 'renders the user login page if user logins are enabled' do
       get shinycms.new_user_session_path
@@ -68,13 +70,12 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
 
   describe 'POST /login' do
     it 'logs the user in using their email address' do
-      password = Faker::Internet.unique.password( min_length: 10 )
-      user = create :user, password: password
+      user = create :user, password: test_password
 
       post shinycms.user_session_path, params: {
         user: {
           login:    user.email,
-          password: password
+          password: test_password
         }
       }
 
@@ -86,13 +87,12 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
     end
 
     it 'logs the user in using their username' do
-      password = Faker::Internet.unique.password( min_length: 10 )
-      user = create :user, password: password
+      user = create :user, password: test_password
 
       post shinycms.user_session_path, params: {
         user: {
           login:    user.username,
-          password: password
+          password: test_password
         }
       }
 
@@ -104,8 +104,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
     end
 
     it 'redirects back to the referring page after login, if it knows it' do
-      password = Faker::Internet.unique.password( min_length: 10 )
-      user = create :user, password: password
+      user = create :user, password: test_password
 
       create :top_level_page
       page2 = create :page_in_section
@@ -115,7 +114,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
       post shinycms.user_session_path, params: {
         user: {
           login:    user.username,
-          password: password
+          password: test_password
         }
       }
 
