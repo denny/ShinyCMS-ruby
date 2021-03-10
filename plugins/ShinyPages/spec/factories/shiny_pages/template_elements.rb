@@ -11,6 +11,8 @@ module ShinyPages
   FactoryBot.define do
     factory :page_template_element, class: 'ShinyPages::TemplateElement' do
       name { Faker::Books::CultureSeries.unique.civs.underscore }
+
+      association :template, factory: :page_template
     end
   end
 end

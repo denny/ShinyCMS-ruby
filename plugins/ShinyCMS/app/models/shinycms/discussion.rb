@@ -73,8 +73,8 @@ module ShinyCMS
       [ discussions, counts ]
     end
 
-    def self.demo_data_position
-      10  # arbitrary 'probably after anything that might want comments on it' number
+    def self.my_demo_data_position
+      10  # hopefully higher than any content types that might have discussions attached
     end
   end
 end
