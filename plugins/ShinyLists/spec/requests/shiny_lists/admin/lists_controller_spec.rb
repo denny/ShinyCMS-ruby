@@ -15,11 +15,30 @@ RSpec.describe ShinyLists::Admin::ListsController, type: :request do
   end
 
   describe 'GET /admin/lists' do
-    it 'loads the list of mailing lists' do
-      get shiny_lists.lists_path
+    context 'when there are no mailing lists' do
+      it "displays the 'no mailing lists found' message" do
+        get shiny_lists.lists_path
 
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.lists.index.title' ).titlecase
+        pager_info = 'No mailing lists found'
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.lists.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
+    end
+
+    context 'when there are mailing lists' do
+      it 'displays the list of mailing lists' do
+        create_list :mailing_list, 3
+
+        get shiny_lists.lists_path
+
+        pager_info = 'Displaying 3 mailing lists'
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.lists.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
     end
   end
 

@@ -16,26 +16,53 @@ RSpec.describe ShinyCMS::Admin::WebStatsController, type: :request do
   end
 
   describe 'GET /admin/web-stats' do
-    it 'fetches the web stats page in the admin area' do
-      get shinycms.web_stats_path
+    context 'when there are no web stats' do
+      it "displays the 'no web stats found' message" do
+        get shinycms.web_stats_path
 
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shinycms.admin.web_stats.index.title' ).titlecase
+        pager_info = 'No visits found'
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.web_stats.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
     end
 
-    it 'fetches the web stats for a specific user' do
-      user = create :user
+    context 'when there are web stats' do
+      it 'displays the web stats' do
+        # TODO: factory for ahoy visits
+        # create_list :ahoy_visit, 3
 
-      get shinycms.user_web_stats_path( user.id )
+        get shinycms.web_stats_path
+
+        # pager_info = 'Displaying 3 visits'
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.web_stats.index.title' ).titlecase
+        # expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
+    end
+  end
+
+  describe 'GET /admin/web-stats/123' do
+    it 'fetches the web stats for a specific user' do
+      visitor = create :user
+      # TODO: factory for ahoy visits
+      # create :ahoy_visit, user_id: visitor.id
+
+      get shinycms.user_web_stats_path( visitor.id )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.web_stats.index.title' ).titlecase
+      # expect( response.body ).to have_css 'td', text: visitor.username
     end
   end
 
   describe 'GET /admin/web-stats/search?q=banana' do
     it 'fetches the stats with matching details' do
       # TODO: factory for ahoy visits
+      # create :ahoy_visit, landing_page: 'apple'
+      # create :ahoy_visit, landing_page: 'banana'
 
       get shinycms.search_web_stats_path, params: { q: 'banana' }
 

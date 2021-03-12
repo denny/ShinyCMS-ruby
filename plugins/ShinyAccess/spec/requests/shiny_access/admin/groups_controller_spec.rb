@@ -15,11 +15,30 @@ RSpec.describe ShinyAccess::Admin::GroupsController, type: :request do
   end
 
   describe 'GET /admin/access/groups' do
-    it 'displays the list of access groups' do
-      get shiny_access.groups_path
+    context 'when there are no groups' do
+      it "displays the 'no groups found' message" do
+        get shiny_access.groups_path
 
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.groups.index.title' ).titlecase
+        pager_info = 'No access groups found'
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_access.admin.groups.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
+    end
+
+    context 'when there are some groups' do
+      it 'displays the list of access groups' do
+        create_list :access_group, 3
+
+        get shiny_access.groups_path
+
+        pager_info = 'Displaying 3 access groups'
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_access.admin.groups.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
     end
   end
 

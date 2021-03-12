@@ -16,26 +16,30 @@ RSpec.describe ShinyCMS::Admin::EmailRecipientsController, type: :request do
   end
 
   describe 'GET /admin/email-recipients' do
-    it 'fetches the list of email recipients' do
-      recipient1 = create :email_recipient
-      create :email_recipient
-      create :email_recipient
+    context 'when there are no email recipients' do
+      it "displays the 'no email recipients found' message" do
+        get shinycms.email_recipients_path
 
-      get shinycms.email_recipients_path
+        pager_info = 'No email recipients found'
 
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shinycms.admin.email_recipients.index.title' ).titlecase
-      expect( response.body ).to have_css 'td', text: recipient1.name
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.email_recipients.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
     end
 
-    it 'displays an appropriate message if there are no email recipients yet' do
-      get shinycms.email_recipients_path
+    context 'when there are email recipients' do
+      it 'displays the list of email recipients' do
+        create_list :email_recipient, 3
 
-      none_found = 'No items found'  # TODO: i18n
+        get shinycms.email_recipients_path
 
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shinycms.admin.email_recipients.index.title' ).titlecase
-      expect( response.body ).to have_css 'p', text: none_found
+        pager_info = 'Displaying 3 email recipients'
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.email_recipients.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
     end
   end
 

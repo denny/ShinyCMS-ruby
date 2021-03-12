@@ -22,14 +22,16 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
     let( :test_email ) { Faker::Internet.unique.email( name: test_username ) }
 
     describe 'GET /admin/users' do
-      it 'fetches the list of users in the admin area' do
-        user = create :user
+      it 'displays the list of users' do
+        create_list :user, 3
 
         get shinycms.users_path
 
+        pager_info = 'Displaying 4 users'  # including the admin user
+
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
-        expect( response.body ).to include user.username
+        expect( response.body ).to have_css '.pager-info', text: pager_info
       end
 
       it 'handles page number and items-per-page params correctly' do

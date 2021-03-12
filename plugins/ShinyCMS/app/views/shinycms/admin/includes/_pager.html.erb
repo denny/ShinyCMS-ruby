@@ -1,7 +1,21 @@
+<%
+  name ||= 'Item'
+  i18n_key = name.underscore.tr '/', '_'
+
+  if I18n.exists? "shinycms.models.names.#{i18n_key}"
+    items = t( "shinycms.models.names.#{i18n_key}" ).pluralize
+  elsif I18n.exists? 'shinycms.models.names.item'
+    items = t( 'shinycms.models.names.item' ).pluralize
+  else
+    items = 'items'
+  end
+%>
+
 <%== pagy_bootstrap_nav pagy %>
 
 <p class="pager-info">
-  <%== pagy_info pagy %>
+  <%== pagy_info pagy, items %>
+
   <%# TODO: FIXME: Oh look, the JavaScript isn't working. How terribly unusual. %#>
   <br>
   <%== pagy_items_selector_js pagy %>

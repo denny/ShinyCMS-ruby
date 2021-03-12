@@ -6,28 +6,18 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Tests for news post model
-module ShinyNews
-  RSpec.describe Post, type: :model do
-    describe 'factory' do
-      it 'can create a news post' do
-        post = create :news_post
-        expect( described_class.first ).to eq post
-      end
+RSpec.describe ShinyNews::Post, type: :model do
+  describe 'concerns' do
+    it_behaves_like ShinyCMS::ProvidesDemoSiteData do
+      let( :model ) { described_class }
     end
 
-    describe 'concerns' do
-      it_behaves_like ShinyCMS::ProvidesDemoSiteData do
-        let( :model ) { described_class }
-      end
+    it_behaves_like ShinyCMS::Post do
+      let( :post ) { create :news_post }
+    end
 
-      it_behaves_like ShinyCMS::Post do
-        let( :post ) { create :news_post }
-      end
-
-      it_behaves_like 'Voteable' do
-        let( :item ) { create :news_post }
-      end
+    it_behaves_like 'Voteable' do
+      let( :item ) { create :news_post }
     end
   end
 end

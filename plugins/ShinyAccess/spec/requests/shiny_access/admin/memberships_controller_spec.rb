@@ -17,11 +17,23 @@ RSpec.describe ShinyAccess::Admin::MembershipsController, type: :request do
   let( :group1 ) { create :access_group }
 
   describe 'GET /admin/access/groups/1/memberships' do
-    it 'displays the list of access group memberships' do
+    it "displays the 'no items found' message" do
       get shiny_access.group_memberships_path( group1 )
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
+      expect( response.body ).to have_css 'p', text: 'No access group memberships found'
+    end
+
+    it 'displays the list of access group memberships' do
+      item1 = create :access_membership, group: group1
+      create :access_membership, group: group1
+
+      get shiny_access.group_memberships_path( group1 )
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
+      expect( response.body ).to have_css 'td', text: item1.user.username
     end
   end
 

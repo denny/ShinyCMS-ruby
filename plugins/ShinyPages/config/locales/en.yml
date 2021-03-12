@@ -21,6 +21,10 @@ en:
         page_sections: Page Sections
         page_templates: Page Templates
 
+    models:
+      names:
+        shiny_pages_template: template
+
   shiny_pages:
     admin:
       pages:

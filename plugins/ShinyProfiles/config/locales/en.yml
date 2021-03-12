@@ -11,6 +11,10 @@ en:
     feature_flags:
       user_profiles: User profile pages
 
+    models:
+      names:
+        shiny_profiles_profile: user profile
+
   shiny_profiles:
     view_profile: View your profile
     edit_profile: Edit your profile

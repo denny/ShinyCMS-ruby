@@ -18,46 +18,56 @@ RSpec.describe ShinyBlog::Admin::BlogPostsController, type: :request do
   let( :admin ) { ShinyCMS::User.first }
 
   describe 'GET /admin/blog' do
-    it 'fetches the list of blog posts with less than one page of posts' do
-      create :blog_post
-      create :blog_post
-      create :blog_post
+    context 'when there are no posts' do
+      it "displays the 'no blog posts found' message" do
+        get shiny_blog.blog_posts_path
 
-      get shiny_blog.blog_posts_path
+        pager_info = 'No blog posts found'
 
-      expect( response ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
     end
 
-    it 'fetches the list of blog posts when its empty' do
-      get shiny_blog.blog_posts_path
+    context 'when there are less than one page of posts' do
+      it 'displays the list of blog posts' do
+        create_list :blog_post, 3
 
-      expect( response ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
+        get shiny_blog.blog_posts_path
+
+        pager_info = 'Displaying 3 blog posts'
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
     end
 
-    it 'fetches the list of blog posts with more than one page of posts' do
-      create_list :blog_post, 12
+    context 'when there are more than one page of posts' do
+      it 'fetches the first page' do
+        create_list :blog_post, 12
 
-      get shiny_blog.blog_posts_path
+        get shiny_blog.blog_posts_path
 
-      pager_info = 'Displaying items 1-10 of 12 in total'  # FIXME: i18n
+        pager_info = 'Displaying blog posts 1-10 of 12 in total'
 
-      expect( response ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
-      expect( response.body ).to have_css '.pager-info', text: pager_info
-    end
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
 
-    it 'fetches the second page of blog posts' do
-      create_list :blog_post, 12
+      it 'fetches the second page when requested' do
+        create_list :blog_post, 12
 
-      get shiny_blog.blog_posts_path, params: { page: 2 }
+        get shiny_blog.blog_posts_path, params: { page: 2 }
 
-      pager_info = 'Displaying items 11-12 of 12 in total'  # FIXME: i18n
+        pager_info = 'Displaying blog posts 11-12 of 12 in total'
 
-      expect( response ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
-      expect( response.body ).to have_css '.pager-info', text: pager_info
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
     end
   end
 

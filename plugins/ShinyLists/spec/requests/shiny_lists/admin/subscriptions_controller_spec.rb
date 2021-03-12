@@ -10,23 +10,38 @@ require 'rails_helper'
 
 # Tests for list subscription admin features
 RSpec.describe ShinyLists::Admin::SubscriptionsController, type: :request do
-  let( :list ) { create :mailing_list }
-
   before do
     admin = create :list_admin
     sign_in admin
   end
 
+  let( :list ) { create :mailing_list }
+
   describe 'GET /admin/list/:id/subscriptions' do
-    it 'displays the list of subscribers for the specified mailing list' do
-      create :mailing_list_subscription, list: list
-      create :mailing_list_subscription, list: list
-      create :mailing_list_subscription, list: list
+    context 'when there are no subscriptions for the specified list' do
+      it "displays the 'no subscriptions found' message" do
+        get shiny_lists.list_subscriptions_path( list )
 
-      get shiny_lists.list_subscriptions_path( list )
+        pager_info = 'No mailing list subscriptions found'
 
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.subscriptions.index.title' ).titlecase
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.subscriptions.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
+    end
+
+    context 'when there are subscriptions for the specified list' do
+      it 'displays the list of subscriptions' do
+        create_list :mailing_list_subscription, 3, list: list
+
+        get shiny_lists.list_subscriptions_path( list )
+
+        pager_info = 'Displaying 3 mailing list subscriptions'
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.subscriptions.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
     end
   end
 
