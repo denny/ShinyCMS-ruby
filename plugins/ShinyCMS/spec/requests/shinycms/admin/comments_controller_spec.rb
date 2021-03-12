@@ -31,31 +31,45 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
   end
 
   describe 'GET /admin/comments' do
-    it 'fetches the spam comment moderation page' do
-      create :comment, spam: true
-      create :comment, spam: true
-      comment3 = create :comment, spam: true
+    context 'when there are no spam comments' do
+      it "displays the 'no comments found' message" do
+        get shinycms.comments_path
 
-      get shinycms.comments_path
-
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
-      expect( response.body ).to have_css 'td', text: comment3.title
-    end
-
-    describe 'GET /admin/comments/search?q=zing' do
-      it 'fetches the list of matching spam comments' do
-        comment1 = create :comment, body: 'Zebras are zingy', spam: true
-        comment2 = create :comment, body: 'Aardvarks are awesome', spam: true
-
-        get shinycms.search_comments_path, params: { q: 'zing' }
+        pager_info = 'No comments found'
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
-
-        expect( response.body ).to     have_css 'td', text: comment1.title
-        expect( response.body ).not_to have_css 'td', text: comment2.title
+        expect( response.body ).to have_css '.pager-info', text: pager_info
       end
+    end
+
+    context 'when there are spam comments' do
+      it 'displays the list of comments' do
+        create_list :comment, 3, spam: true
+
+        get shinycms.comments_path
+
+        pager_info = 'Displaying 3 comments'
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
+    end
+  end
+
+  describe 'GET /admin/comments/search?q=zing' do
+    it 'fetches the list of matching spam comments' do
+      comment1 = create :comment, body: 'Zebras are zingy', spam: true
+      comment2 = create :comment, body: 'Aardvarks are awesome', spam: true
+
+      get shinycms.search_comments_path, params: { q: 'zing' }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
+
+      expect( response.body ).to     have_css 'td', text: comment1.title
+      expect( response.body ).not_to have_css 'td', text: comment2.title
     end
   end
 

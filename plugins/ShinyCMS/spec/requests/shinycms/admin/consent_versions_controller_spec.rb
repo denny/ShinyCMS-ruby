@@ -16,14 +16,16 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
   end
 
   describe 'GET /admin/consent-versions' do
-    it 'fetches the list of consent versions' do
-      version = create :consent_version
+    it 'displays the list of consent versions' do
+      create_list :consent_version, 3
 
       get shinycms.consent_versions_path
 
+      pager_info = 'Displaying 4 consent versions'  # including one from seed data
+
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.consent_versions.index.title' ).titlecase
-      expect( response.body ).to have_css 'td', text: version.name
+      expect( response.body ).to have_css '.pager-info', text: pager_info
     end
   end
 

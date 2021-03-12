@@ -11,6 +11,11 @@ en:
     feature_flags:
       access: Access Control
 
+    models:
+      names:
+        shiny_access_group: access group
+        shiny_access_membership: access group membership
+
   shiny_access:
     admin:
       menu: Access

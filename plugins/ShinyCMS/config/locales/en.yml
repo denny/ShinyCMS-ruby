@@ -216,6 +216,14 @@ en:
     # Models
 
     models:
+      names:
+        item: item  # generic fallback
+        ahoy_visit: visit
+        shinycms_comment: comment
+        shinycms_consent_version: consent version
+        shinycms_email_recipient: email recipient
+        shinycms_user: user
+
       anonymous_author:
         anonymous: Anonymous
 

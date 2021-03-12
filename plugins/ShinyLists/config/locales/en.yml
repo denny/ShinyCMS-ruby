@@ -16,6 +16,11 @@ en:
         mailing_lists: Mailing lists
         mailing_list_subscriptions: List subscriptions
 
+    models:
+      names:
+        shiny_lists_list: mailing list
+        shiny_lists_subscription: mailing list subscription
+
   shiny_lists:
     name: Name
     email_address: Email address
