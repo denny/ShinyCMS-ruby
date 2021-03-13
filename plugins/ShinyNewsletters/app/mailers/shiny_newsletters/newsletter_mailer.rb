@@ -10,11 +10,10 @@ module ShinyNewsletters
   # Mailer to send a newsletter edition to a list subscriber - part of the ShinyNewsletters plugin for ShinyCMS
   class NewsletterMailer < ShinyCMS::ApplicationMailer
     before_action :stash_subscriber_and_user
-    before_action :check_ok_to_email
     before_action :stash_content
     before_action :add_view_path
 
-    layout 'newsletter_mailer'
+    layout 'shiny_newsletters/layouts/newsletter_mailer'
 
     def send_email
       mail to: @subscriber.email_to, subject: @edition.subject, template_name: @edition.template.filename do |format|
@@ -44,9 +43,7 @@ module ShinyNewsletters
     end
 
     def add_view_path
-      add_to_view_paths 'plugins/ShinyNewsletters/app/views/shiny_newsletters'
+      add_to_view_paths 'plugins/ShinyNewsletters/app/views'
     end
-
-    def check_do_not_contact; end  # DNC list is checked in ok_to_email methods
   end
 end

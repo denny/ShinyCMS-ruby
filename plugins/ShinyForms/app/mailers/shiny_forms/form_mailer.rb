@@ -52,7 +52,8 @@ module ShinyForms
       add_to_view_paths 'plugins/ShinyForms/app/views'
     end
 
-    def check_do_not_contact
+    def check_ok_to_email
+      # Probably not important currently - form handlers only email site admins - but that could change
       enforce_do_not_contact @to
     end
   end

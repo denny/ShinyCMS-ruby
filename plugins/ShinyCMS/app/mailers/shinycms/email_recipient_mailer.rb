@@ -33,7 +33,7 @@ module ShinyCMS
       @recipient = @user = params[:recipient]
     end
 
-    def check_do_not_contact
+    def check_ok_to_email
       enforce_do_not_contact @recipient
     end
 

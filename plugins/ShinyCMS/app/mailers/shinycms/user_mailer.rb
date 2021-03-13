@@ -92,8 +92,6 @@ module ShinyCMS
       t( "shinycms.user_mailer.#{mailer_name}_instructions.subject", site_name: site_name )
     end
 
-    def check_ok_to_email; end
-
-    def check_do_not_contact; end
+    def check_ok_to_email; end  # Devise mailer isn't parameterized; see `do_not_contact` method instead
   end
 end
