@@ -6,20 +6,23 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# Inheriting classes must implement check_feature_flags and check_do_not_contact
+# - probably by calling enforce_feature_flags() and enforce_do_not_contact()
+
 module ShinyCMS
-  # Base class for Mailers
+  # Base class for mailers - part of the ShinyCMS core plugin
   class ApplicationMailer < ActionMailer::Base
-    include MailerHelper
+    include ShinyCMS::Mailer
 
-    helper MailerHelper
+    include SiteNameHelper
 
-    before_action :set_view_paths
+    helper SiteNameHelper
 
     default from: -> { default_email }
 
     track open: -> { track_opens? }, click: -> { track_clicks? }
 
-    layout 'mailer'
+    layout 'shinycms/layouts/mailer'
 
     private
 
@@ -27,10 +30,6 @@ module ShinyCMS
       User.find_by( email: email_address ) ||
         EmailRecipient.find_by( email: email_address ) ||
         EmailRecipient.create!( email: email_address, name: name )
-    end
-
-    def set_view_paths
-      add_view_paths
     end
   end
 end

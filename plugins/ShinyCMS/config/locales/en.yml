@@ -165,19 +165,19 @@ en:
     # Mailers
 
     discussion_mailer:
-      parent_comment_notification:
-        hello: Hello %{name},
-        subject: '%{reply_author_name} replied to your comment on %{site_name}'
-        they_said: They said
-        you_said: You said
-      discussion_notification:
-        hello: Hello %{name},
-        subject: '%{comment_author_name} commented on your %{content_type} on %{site_name}'
-        they_said: They said
-      overview_notification:
+      comment_admin_notification:
         hello: Hello %{name},
         subject: '%{comment_author_name} commented on %{site_name}'
         they_said: They said
+      content_author_notification:
+        hello: Hello %{name},
+        subject: '%{comment_author_name} commented on your %{content_type} on %{site_name}'
+        they_said: They said
+      parent_comment_author_notification:
+        hello: Hello %{name},
+        subject: '%{comment_author_name} replied to your comment on %{site_name}'
+        they_said: They said
+        you_said: You said
 
     email_recipient_mailer:
       confirm:
@@ -266,6 +266,7 @@ en:
     feature_flags:
       off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
 
+      send_emails: All outgoing email
       ahoy_email_tracking: Track email opens/clicks
       ahoy_web_tracking: Track web visitor stats
       akismet_for_comments: Detect spam comments with Akismet
@@ -274,10 +275,10 @@ en:
       recaptcha_for_comments: Protect comment form with reCAPTCHA
       recaptcha_for_registrations: Protect registration form with reCAPTCHA
       tags: Tags
-      user_login: User Login
-      user_registration: User Registration
       upvotes: Upvotes ('likes')
       downvotes: Down-votes
+      user_login: User Login
+      user_registration: User Registration
 
     # Capabilities (ACL/authorisation)
 

@@ -9,16 +9,16 @@
 module ShinyCMS
   # Rails Email Preview controller for previewing Discussion-related emails
   class DiscussionMailerPreview
-    def parent_comment_notification
-      ShinyCMS::DiscussionMailer.parent_comment_notification preview_comment
+    def parent_comment_author_notification
+      ShinyCMS::DiscussionMailer.with( comment: preview_comment ).parent_comment_author_notification
     end
 
-    def discussion_notification
-      ShinyCMS::DiscussionMailer.discussion_notification preview_comment
+    def content_author_notification
+      ShinyCMS::DiscussionMailer.with( comment: preview_comment ).content_author_notification
     end
 
-    def overview_notification
-      ShinyCMS::DiscussionMailer.overview_notification preview_comment
+    def comment_admin_notification
+      ShinyCMS::DiscussionMailer.with( comment: preview_comment ).comment_admin_notification
     end
 
     private

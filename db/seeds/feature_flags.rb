@@ -12,14 +12,19 @@ require 'shinycms/seeder'
 
 seeder = ShinyCMS::Seeder.new
 
-seeder.seed_feature_flag( name: 'comments',                    description: 'Enable comment features' )
-seeder.seed_feature_flag( name: 'comment_notifications',       description: 'Send notification emails for comments' )
-seeder.seed_feature_flag( name: 'akismet_for_comments',        description: 'Flag spam comments with Akismet' )
-seeder.seed_feature_flag( name: 'recaptcha_for_comments',      description: 'Protect comment forms with reCAPTCHA' )
+seeder.seed_feature_flag( name: 'send_emails', description: 'Allow ShinyCMS to send outgoing emails' )
+
+seeder.seed_feature_flag( name: 'comments',               description: 'Enable comment features' )
+seeder.seed_feature_flag( name: 'comment_notifications',  description: 'Send notification emails for comments' )
+seeder.seed_feature_flag( name: 'akismet_for_comments',   description: 'Flag spam comments with Akismet' )
+seeder.seed_feature_flag( name: 'recaptcha_for_comments', description: 'Protect comment forms with reCAPTCHA' )
+
 seeder.seed_feature_flag( name: 'recaptcha_for_registrations', description: 'Protect registration form with reCAPTCHA' )
-seeder.seed_feature_flag( name: 'tags',                        description: 'Enable tag features' )
-seeder.seed_feature_flag( name: 'upvotes',                     description: "Enable up-votes (AKA 'likes')" )
-seeder.seed_feature_flag( name: 'downvotes',                   description: 'Enable down-votes (requires up-votes)' )
+
+seeder.seed_feature_flag( name: 'tags',      description: 'Enable tag features' )
+
+seeder.seed_feature_flag( name: 'upvotes',   description: "Enable up-votes (AKA 'likes')" )
+seeder.seed_feature_flag( name: 'downvotes', description: 'Enable down-votes (requires up-votes)' )
 
 # These two are disabled by default, to reduce the risk of brute force attacks on new/dev/demo sites
 seeder.seed_feature_flag( name: 'user_login',        description: 'Allow users to log in',              enabled: false )

@@ -18,7 +18,7 @@ module ShinyCMS
     track click: false
 
     def confirmation_instructions( user, token, _args = nil )
-      return if not_ok_to_email? user
+      return if do_not_contact? user
 
       stash_instance_vars( user, token )
 
@@ -29,7 +29,7 @@ module ShinyCMS
     end
 
     def email_changed_instructions( user, _args = nil )
-      return if not_ok_to_email? user
+      return if do_not_contact? user
 
       stash_instance_vars( user )
 
@@ -40,7 +40,7 @@ module ShinyCMS
     end
 
     def password_changed_instructions( user, _args = nil )
-      return if not_ok_to_email? user
+      return if do_not_contact? user
 
       stash_instance_vars( user )
 
@@ -51,7 +51,7 @@ module ShinyCMS
     end
 
     def reset_password_instructions( user, token, _args = nil )
-      return if not_ok_to_email? user
+      return if do_not_contact? user
 
       stash_instance_vars( user, token )
 
@@ -62,7 +62,7 @@ module ShinyCMS
     end
 
     def unlock_instructions( user, token, _args = nil )
-      return if not_ok_to_email? user
+      return if do_not_contact? user
 
       stash_instance_vars( user, token )
 
@@ -74,7 +74,11 @@ module ShinyCMS
 
     private
 
-    def not_ok_to_email?( user )
+    def check_feature_flags
+      enforce_feature_flags
+    end
+
+    def do_not_contact?( user )
       DoNotContact.list_includes? user.email
     end
 
@@ -87,5 +91,9 @@ module ShinyCMS
     def subject_for( mailer_name )
       t( "shinycms.user_mailer.#{mailer_name}_instructions.subject", site_name: site_name )
     end
+
+    def check_ok_to_email; end
+
+    def check_do_not_contact; end
   end
 end

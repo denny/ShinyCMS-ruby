@@ -43,6 +43,7 @@ Metrics/BlockLength:
     - ../../spec/mailer_previews/*_spec.rb
     - ../Shiny*/shiny*.gemspec
     - ../Shiny*/spec/**/*.rb
+    - ../ShinyCMS/app/mailers/concerns/shinycms/mailer.rb
     - ../ShinyCMS/app/models/concerns/shinycms/*.rb
 
 # Spec files with I18n.t calls have long lines. I can live with that.
@@ -149,6 +150,10 @@ Style/ClassAndModuleChildren:
 Style/CollectionMethods:
   PreferredMethods:
     map: collect
+
+# Used in some mailers to include an explanatory comment with empty check-dnc methods
+Style/CommentedKeyword:
+  Enabled: false
 
 # I think this makes code significantly harder to read, personally
 Style/ConditionalAssignment:

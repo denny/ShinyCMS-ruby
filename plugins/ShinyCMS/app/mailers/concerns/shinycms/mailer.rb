@@ -7,34 +7,66 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Helper to add useful common behaviour to ShinyCMS mailers
-  module MailerHelper
-    include FeatureFlags
-    include PluginsHelper
+  # Common behaviour for ShinyCMS mailers - part of the ShinyCMS core plugin
+  module Mailer
+    extend ActiveSupport::Concern
 
-    include SiteNameHelper
+    # Include this concern or inherit from ShinyCMS::ApplicationMailer to get:
+    # * enforcement of the DoNotContact list
+    # * enforcement of feature flags, that also implements an overall
+    #   on/off switch for all mailers (the :send_emails feature flag)
+    # * a helper method for enforcing double opt-in
+    # * helper methods to check settings for open/click tracking
 
-    def add_view_paths( plugin_path = nil )
-      # Add the default templates directory to the top of view_paths
-      prepend_view_path 'plugins/ShinyCMS/app/views/shinycms'
+    included do
+      before_action :check_feature_flags
+      before_action :check_do_not_contact
 
-      # If a plugin view path was passed in, add that above the main app path
-      prepend_view_path plugin_path if valid_plugin_path?
+      def enforce_feature_flags( feature_flag_name = nil )
+        return if email_feature_flags_enabled?( feature_flag_name )
 
-      # Apply the configured theme, if any, by adding it above the defaults
-      prepend_view_path ShinyCMS::Theme.get&.view_path
-    end
+        # :nocov: TODO: FIXME: WHUT.
+        mail.perform_deliveries = false
+      end
 
-    def default_email
-      ShinyCMS::Setting.get( :default_email ) || ENV[ 'DEFAULT_EMAIL' ]
-    end
+      def email_feature_flags_enabled?( feature_flag_name )
+        return false unless FeatureFlag.enabled? :send_emails
 
-    def track_opens?
-      ShinyCMS::Setting.true?( :track_opens )
-    end
+        return true if feature_flag_name.blank?
 
-    def track_clicks?
-      ShinyCMS::Setting.true?( :track_clicks )
+        FeatureFlag.enabled? feature_flag_name
+      end
+
+      def enforce_do_not_contact( email_address )
+        mail.perform_deliveries = false if DoNotContact.list_includes? email_address
+      end
+
+      def enforce_ok_to_email( recipient )
+        # .ok_to_email? checks .confirmed status (AKA double opt-in) and DoNotContact
+        mail.perform_deliveries = false unless recipient.ok_to_email?
+      end
+
+      def add_to_view_paths( plugin_path )
+        # Add plugin view path, if given
+        # TODO: Move into ShinyCMS::Plugin ?
+        prepend_view_path plugin_path
+
+        # Apply the configured theme, if any, by adding it above the rest
+        # TODO: Move into ShinyCMS::Theme ?
+        prepend_view_path ShinyCMS::Theme.get&.view_path
+      end
+
+      def default_email
+        ShinyCMS::Setting.get( :default_email ) || ENV[ 'DEFAULT_EMAIL' ]
+      end
+
+      def track_opens?
+        ShinyCMS::Setting.true?( :track_opens )
+      end
+
+      def track_clicks?
+        ShinyCMS::Setting.true?( :track_clicks )
+      end
     end
   end
 end

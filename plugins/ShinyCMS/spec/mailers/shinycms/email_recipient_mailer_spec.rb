@@ -15,7 +15,7 @@ RSpec.describe ShinyCMS::EmailRecipientMailer, type: :mailer do
       recipient = create :email_recipient
       recipient.set_confirm_token
 
-      email = described_class.confirm( recipient )
+      email = described_class.with( recipient: recipient ).confirm
 
       subject = I18n.t(
         'shinycms.email_recipient_mailer.confirm.subject',

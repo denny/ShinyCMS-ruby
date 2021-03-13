@@ -44,7 +44,7 @@ module ShinyCMS
 
     def send_confirm_email
       set_confirm_token
-      EmailRecipientMailer.confirm( self ).deliver_later
+      EmailRecipientMailer.with( recipient: self ).confirm.deliver_later
     end
 
     def confirm

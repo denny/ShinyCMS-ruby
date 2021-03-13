@@ -7,18 +7,17 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyNewsletters
-  # Mailer to send a newsletter edition to a list subscriber - ShinyNewsletters plugin for ShinyCMS
-  class NewsletterMailer < ApplicationMailer
-    before_action :check_feature_flags
+  # Mailer to send a newsletter edition to a list subscriber - part of the ShinyNewsletters plugin for ShinyCMS
+  class NewsletterMailer < ShinyCMS::ApplicationMailer
+    before_action :stash_subscriber_and_user
+    before_action :check_ok_to_email
+    before_action :stash_content
+    before_action :add_view_path
 
-    def send_email( edition, recipient )
-      stash_user( recipient )
+    layout 'newsletter_mailer'
 
-      return if @user.not_ok_to_email? # TODO: make this happen without explicit call
-
-      stash_content( edition )
-
-      mail to: @user.email_to, subject: @edition.subject, template_name: @edition.template.filename do |format|
+    def send_email
+      mail to: @subscriber.email_to, subject: @edition.subject, template_name: @edition.template.filename do |format|
         format.html
         format.text
       end
@@ -26,17 +25,28 @@ module ShinyNewsletters
 
     private
 
-    def stash_user( recipient )
-      @user = recipient
-    end
-
-    def stash_content( edition )
-      @edition  = edition
-      @elements = edition.elements_hash
-    end
-
     def check_feature_flags
       enforce_feature_flags :newsletters
     end
+
+    def stash_subscriber_and_user
+      @subscriber = @user = params[:subscriber]
+    end
+
+    def check_ok_to_email
+      enforce_ok_to_email @subscriber
+    end
+
+    def stash_content
+      @edition  = params[:edition]
+
+      @elements = @edition.elements_hash
+    end
+
+    def add_view_path
+      add_to_view_paths 'plugins/ShinyNewsletters/app/views/shiny_newsletters'
+    end
+
+    def check_do_not_contact; end  # DNC list is checked in ok_to_email methods
   end
 end
