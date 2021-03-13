@@ -13,7 +13,6 @@ module ShinyCMS
     before_action :stash_parent_comment_author, only: :parent_comment_author_notification
     before_action :stash_content_author,        only: :content_author_notification
     before_action :stash_comment_admin,         only: :comment_admin_notification
-    before_action :check_ok_to_email
     before_action :add_view_path
 
     def parent_comment_author_notification
@@ -26,8 +25,6 @@ module ShinyCMS
     end
 
     def content_author_notification
-      return if @user.blank?
-
       mail to: @user.email_to, subject: content_author_notification_subject do |format|
         format.html
         format.text
@@ -35,8 +32,6 @@ module ShinyCMS
     end
 
     def comment_admin_notification
-      return if @user.blank?
-
       mail to: @user.email_to, subject: comment_admin_notification_subject do |format|
         format.html
         format.text
@@ -45,20 +40,21 @@ module ShinyCMS
 
     # Trigger as many of the above as is appropriate for a given comment
     def self.send_notifications( comment )
-      p = comment.parent.notification_email if comment.parent.present?
-      with( comment: comment ).parent_comment_author_notification if notify?( p )
+      parent_author  = comment.parent&.notification_email
+      content_author = comment.discussion.notification_email
+      admin          = ShinyCMS::Setting.get :all_comment_notifications_email
 
-      d = comment.discussion.notification_email
-      with( comment: comment ).content_author_notification if notify?( d, [ p ] )
+      with_comment = with( comment: comment )
 
-      a = ShinyCMS::Setting.get :all_comment_notifications_email
-      with( comment: comment ).comment_admin_notification if notify?( a, [ d, p ] )
+      with_comment.parent_comment_author_notification if parent_author.present?
+
+      with_comment.content_author_notification unless blank_or_already_emailed? content_author, [ parent_author ]
+
+      with_comment.comment_admin_notification unless blank_or_already_emailed? admin, [ parent_author, content_author ]
     end
 
-    def self.notify?( email_address, already_emailed = [] )
-      return false if email_address.blank?
-
-      already_emailed.exclude? email_address
+    def self.blank_or_already_emailed?( email, previous_emails )
+      ( [ nil ] + previous_emails ).include? email
     end
 
     private
@@ -74,15 +70,18 @@ module ShinyCMS
     end
 
     def stash_parent_comment_author
-      return if @parent.notification_email.blank?
+      email = @parent.notification_email
+      return if email.blank?
 
-      @user = notified_user( @parent.notification_email, @parent.author.name )
+      @user = notified_user( email, @parent.author.name )
     end
 
     def stash_content_author
-      return if @content.author.email.blank?
+      author = @content.author
+      email  = author.email
+      return if email.blank?
 
-      @user = notified_user( @content.author.email, @content.author.name )
+      @user = notified_user( email, author.name )
     end
 
     def stash_comment_admin
@@ -122,7 +121,5 @@ module ShinyCMS
         site_name:           site_name
       )
     end
-
-    def check_do_not_contact; end  # DNC list is checked in .ok_to_email?
   end
 end
