@@ -15,9 +15,9 @@ RSpec.describe 'Sail settings engine', type: :request do
     sign_in admin
   end
 
-  describe 'GET /admin/settings' do
+  describe 'GET /admin/tools/sail' do
     it 'fetches the settings page' do
-      get '/admin/settings'
+      get sail.root_path
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.sail.settings.title' )
@@ -28,7 +28,7 @@ RSpec.describe 'Sail settings engine', type: :request do
       wrong_admin = create :stats_admin
       sign_in wrong_admin
 
-      get '/admin/settings'
+      get sail.root_path
 
       expect( response ).to have_http_status :found
       expect( response ).to redirect_to '/admin'

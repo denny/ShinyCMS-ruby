@@ -24,9 +24,6 @@ Rails.application.routes.draw do
     # Engines from gems that ShinyCMS uses to provide various features
     import_routes partial: :mount_other_engines_in_main_app
 
-    # Sail handles CMS settings/configuration
-    mount Sail::Engine, at: '/admin/settings'
-
     # Protect the /admin namespace from fishing expeditions
     import_routes partial: :admin_page_not_found
 

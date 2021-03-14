@@ -15,8 +15,13 @@ mount Ckeditor::Engine, at: '/admin/tools/ckeditor'
 # RailsEmailPreview shows examples of emails that the ShinyCMS mailers can generate
 mount RailsEmailPreview::Engine, at: '/admin/tools/rails-email-preview'
 
-# LetterOpener catches all emails sent in development, with a webmail UI to view them
-mount LetterOpenerWeb::Engine, at: '/dev/tools/outbox' if Rails.env.development?
+# Sail is a tool for managing site settings and feature flags
+mount Sail::Engine, at: '/admin/tools/sail'
+
+# LetterOpener catches all emails sent in development, with a webmail UI to view them.
+# Although this is a /admin URL, it does not require authentication or authorisation
+# to access - but it is only mounted and available in the development environment.
+mount LetterOpenerWeb::Engine, at: '/admin/tools/outbox' if Rails.env.development?
 
 # Sidekiq Web provides a web dashboard for Sidekiq jobs and queues
 def sidekiq_web_enabled?

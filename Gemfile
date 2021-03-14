@@ -53,8 +53,8 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 3.4.2'
 
-  # Sail provides a control panel for managing settings
-  gem 'sail'
+  # Control panel for managing settings and feature flags
+  # gem 'sail'
   # gem 'sail', path: '/home/denny/code/denny/sail'
 
   group :development, :test do

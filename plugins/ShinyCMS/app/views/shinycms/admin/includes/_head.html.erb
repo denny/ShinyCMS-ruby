@@ -19,7 +19,7 @@
     <% elsif sail_controller? %>
     <% @page_title = t( "shinycms.admin.sail.#{controller_name}.title" ) %>
 
-    <%= stylesheet_link_tag    'sail/application', media: 'all' %>
+    <%= stylesheet_link_tag 'sail/application', media: 'all' %>
 
     <% elsif shinycms_admin_controller? %>
     <%= javascript_include_tag Ckeditor.cdn_url if try :load_html_editor? %>

@@ -67,6 +67,7 @@ PATH
       rails-i18n
       recaptcha
       rss
+      sail
       sassc-rails
       sidekiq
       sidekiq-status
@@ -753,7 +754,6 @@ DEPENDENCIES
   rubocop-rails!
   rubocop-rspec!
   rubycritic (~> 4.6.0)!
-  sail!
   seed_dump!
   shiny_access!
   shiny_blog!

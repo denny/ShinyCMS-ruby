@@ -429,7 +429,8 @@ en:
 
       sail:
         breadcrumb: Settings
-        # menu: Settings (Sail)
+        menu: Settings (Sail)
+        toolbar: Settings
         guide: Sail User Guide
         # profiles:
         #   title: Setting profiles

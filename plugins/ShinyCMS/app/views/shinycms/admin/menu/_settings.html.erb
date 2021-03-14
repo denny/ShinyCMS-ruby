@@ -9,4 +9,7 @@
     <%= render_admin_menu_item_if( current_user.can?( :list, :feature_flags ),
         t( 'shinycms.admin.feature_flags.menu' ), shinycms.feature_flags_path, 'toggle-off' ) %>
 
+    <%= render_admin_menu_item_if( current_user.can?( :list, :settings ),
+        t( 'shinycms.admin.sail.menu' ), sail.root_path, 'settings' ) %>
+
   <% end %>

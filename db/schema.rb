@@ -170,8 +170,8 @@ ActiveRecord::Schema.define(version: 2021_02_26_060425) do
     t.string "value", null: false
     t.bigint "setting_id"
     t.bigint "profile_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 0, null: false
+    t.datetime "updated_at", precision: 0, null: false
     t.index ["profile_id"], name: "index_sail_entries_on_profile_id"
     t.index ["setting_id"], name: "index_sail_entries_on_setting_id"
   end
@@ -179,8 +179,8 @@ ActiveRecord::Schema.define(version: 2021_02_26_060425) do
   create_table "sail_profiles", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "active", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 0, null: false
+    t.datetime "updated_at", precision: 0, null: false
     t.index ["name"], name: "index_sail_profiles_on_name", unique: true
   end
 
@@ -190,8 +190,8 @@ ActiveRecord::Schema.define(version: 2021_02_26_060425) do
     t.string "value", null: false
     t.string "group"
     t.integer "cast_type", limit: 2, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 0, null: false
+    t.datetime "updated_at", precision: 0, null: false
     t.index ["name"], name: "index_settings_on_name", unique: true
   end
 

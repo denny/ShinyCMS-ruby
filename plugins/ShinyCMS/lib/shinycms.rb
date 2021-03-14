@@ -21,6 +21,9 @@ require 'pundit'
 require 'devise/pwned_password'
 require 'zxcvbn'
 
+# Settings engine
+require 'sail'
+
 # Job queues
 require 'sidekiq'
 require 'sidekiq-status'
