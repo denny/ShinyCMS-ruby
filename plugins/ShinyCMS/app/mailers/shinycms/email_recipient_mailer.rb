@@ -34,7 +34,7 @@ module ShinyCMS
     end
 
     def check_ok_to_email
-      enforce_do_not_contact @recipient
+      enforce_do_not_contact @recipient.email
     end
 
     def stash_confirm_token
