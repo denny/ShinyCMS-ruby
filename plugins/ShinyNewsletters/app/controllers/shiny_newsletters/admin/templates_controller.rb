@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Admin controller for newsletter templates - part of ShinyNewsletters plugin for ShinyCMS
   class Admin::TemplatesController < AdminController
-    include ShinySortable
+    include ShinyCMS::Admin::Sorting
 
     before_action :stash_new_template, only: %i[ new create ]
     before_action :stash_template,     only: %i[ edit update destroy ]
@@ -19,7 +19,7 @@ module ShinyNewsletters
     def index
       authorize Template
 
-      @pagy, @templates = pagy( Template.order( :name ), items: items_per_page )
+      @pagy, @templates = pagy( Template.order( :name ) )
 
       authorize @templates if @templates.present?
     end
@@ -27,7 +27,7 @@ module ShinyNewsletters
     def search
       authorize Template
 
-      @pagy, @templates = pagy( Template.admin_search( params[:q] ), items: items_per_page )
+      @pagy, @templates = pagy( Template.admin_search( params[:q] ) )
 
       authorize @templates if @templates.present?
       render :index

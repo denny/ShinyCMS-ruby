@@ -6,46 +6,13 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Base controller for ShinyCMS (see also: main_controller, admin_controller)
-class ApplicationController < ActionController::Base
-  helper_method :recaptcha_v2_site_key,
-                :recaptcha_v3_site_key,
-                :recaptcha_checkbox_site_key
+# THIS CONTROLLER INHERITS FROM ONE IN THE SHINYCMS ADMIN AREA!
+# (to make it possible to embed Blazer into the ShinyCMS admin UI)
 
-  def self.recaptcha_v3_secret_key
-    ENV[ 'RECAPTCHA_V3_SECRET_KEY' ]
-  end
+# Inheriting from or using this controller for any additional purpose
+# is probably a bad idea, for security reasons and for separation of
+# concerns. Inherit from MainController instead.
 
-  def self.recaptcha_v2_secret_key
-    ENV[ 'RECAPTCHA_V2_SECRET_KEY' ]
-  end
+# Patches welcome.
 
-  def self.recaptcha_checkbox_secret_key
-    ENV[ 'RECAPTCHA_CHECKBOX_SECRET_KEY' ]
-  end
-
-  # Prevent Blazer from unhelpfully removing all of the ShinyCMS helpers
-  def self.clear_helpers
-    super unless self == Blazer::BaseController
-  end
-
-  private
-
-  def blazer_authorize
-    return true if current_user&.can? :view_charts, :stats
-
-    redirect_to main_app.admin_path, alert: t( 'admin.blazer.auth_fail' )
-  end
-
-  def recaptcha_v3_site_key
-    ENV[ 'RECAPTCHA_V3_SITE_KEY' ]
-  end
-
-  def recaptcha_v2_site_key
-    ENV[ 'RECAPTCHA_V2_SITE_KEY' ]
-  end
-
-  def recaptcha_checkbox_site_key
-    ENV[ 'RECAPTCHA_CHECKBOX_SITE_KEY' ]
-  end
-end
+class ApplicationController < ShinyCMS::Admin::Tools::BlazerBaseController; end

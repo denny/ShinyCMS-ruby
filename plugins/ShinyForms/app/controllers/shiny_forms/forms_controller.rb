@@ -6,13 +6,11 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-require_dependency 'shiny_forms/application_controller'
-
 module ShinyForms
   # Main site controller for form handlers, provided by ShinyForms plugin for ShinyCMS
   class FormsController < MainController
-    include AkismetHelper
-    include RecaptchaHelper
+    include ShinyCMS::AkismetHelper
+    include ShinyCMS::RecaptchaHelper
 
     before_action :check_feature_flags
     before_action :set_form, only: %i[ process_form ]
@@ -61,7 +59,7 @@ module ShinyForms
     end
 
     def set_form
-      @form = ShinyForms::Form.find_by( slug: params[:slug] )
+      @form = Form.find_by( slug: params[:slug] )
     end
 
     def form_data

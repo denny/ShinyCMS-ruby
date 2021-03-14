@@ -1,0 +1,13 @@
+<% @page_title = t( '.title' ) %>
+
+<h2>
+  <%= t( '.title' ) %>
+</h2>
+
+<section>
+  <div class="six-columns">
+    <% @tags.sort_by( &:name ).each do |tag| %>
+      <%= link_to tag.name, shinycms.tag_path( tag.name ) %> (<%= taggings_count( tag ) %>)<br>
+    <% end %>
+  </div>
+</section>

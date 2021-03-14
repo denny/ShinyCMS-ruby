@@ -1,0 +1,18 @@
+    <% if comment.locked? %>
+    <span class="locked"><%= t( 'shinycms.discussions.comment_locked' ) %></span>
+    <% else %>
+    <a onclick="toggleHidden('reply_form_<%= comment.id %>')"><%= t( 'shinycms.discussions.reply' ) %></a>
+
+    <% if feature_enabled?( :comment_votes ) %>
+      <span class="float-right smaller">
+      &nbsp;&nbsp;&nbsp;
+      <% if feature_enabled?( :comment_downvotes ) %>
+        <%= render partial: 'votable/vote_up_down', locals: { resource: comment } %>
+      <% else %>
+        <%= render partial: 'votable/vote_up', locals: { resource: comment } %>
+      <% end %>
+      </span>
+    <% end %>
+    <% end %>
+
+    <%= render partial: 'discussions/comment/moderation_links', locals: { comment: comment } %>

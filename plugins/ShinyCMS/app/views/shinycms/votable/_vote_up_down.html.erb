@@ -1,0 +1,17 @@
+<%= t( 'shinycms.upvotes.vote' ) %>:
+
+<% if current_user&.voted_up_on?( resource ) %>
+  <%= link_to t( 'shinycms.upvotes.remove_upvote' ),
+              shinycms.destroy_vote_path( resource.class.name.underscore, resource.id ), method: :delete %>
+<% elsif current_user&.voted_down_on?( resource ) %>
+  <%= link_to t( 'shinycms.upvotes.remove_downvote' ),
+              shinycms.destroy_vote_path( resource.class.name.underscore, resource.id ), method: :delete %>
+<% else %>
+  <%= link_to t( 'shinycms.upvotes.add_upvote' ),
+              shinycms.create_vote_path( resource.class.name.underscore, resource.id, 'up' ), method: :post %>
+  /
+  <%= link_to t( 'shinycms.upvotes.add_downvote' ),
+              shinycms.create_vote_path( resource.class.name.underscore, resource.id, 'down' ), method: :post %>
+<% end %>
+
+(<%= resource.get_upvotes.size %> / <%= resource.get_downvotes.size %>)

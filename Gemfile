@@ -13,7 +13,22 @@ source 'https://rubygems.org' do
   ruby '~> 3.0.0'
 
   # Rails 6.1
-  gem 'rails', '~> 6.1.1'
+  gem 'rails', '~> 6.1.3'
+
+  # Load ENV from .env(.*) files
+  gem 'dotenv-rails', require: 'dotenv/rails-now'
+
+  # Find out which bits of your code are used more/less in production
+  gem 'coverband', groups: %i[ development production ]
+
+  # ShinyCMS core plugin
+  gem 'shinycms', path: 'plugins/ShinyCMS'
+
+  # ShinyCMS feature plugins
+  plugin_names.each do |plugin_name|
+    gem_name = underscore( plugin_name )
+    gem gem_name, path: "plugins/#{plugin_name}"
+  end
 
   # Postgres
   gem 'pg', '~> 1.2.3'
@@ -21,88 +36,15 @@ source 'https://rubygems.org' do
   # Webserver
   gem 'puma', '~> 5.2', groups: %i[ development production ]
 
-  # Load ENV from .env(.*) files
-  gem 'dotenv-rails'
-
-  # Locales for the 'not USA' bits of the world
-  gem 'rails-i18n'
-
-  # Enable ShinyCMS plugins
-  plugin_names.each do |plugin_name|
-    gem_name = underscore( plugin_name )
-    gem gem_name, path: "plugins/#{plugin_name}"
-  end
-
-  # Reduce boot times through caching; required in config/boot.rb
-  gem 'bootsnap', '>= 1.4.2', require: false
-  # Use faster SCSS gem for stylesheets
-  gem 'sassc-rails'
-  # Transpile app-like JavaScript. More info: https://github.com/rails/webpacker
-  gem 'webpacker', '~> 5.2'
-
-  # User authentication
-  gem 'devise'
   # Sessions
-  # FIXME: temporarily installing from GitHub to pick up an unreleased fix for Ruby 3.0.0
-  # gem 'activerecord-session_store'
-  gem 'activerecord-session_store', git: 'https://github.com/rails/activerecord-session_store'
-  # Stronger password encryption
-  gem 'bcrypt', '~> 3.1.16'
-  # Check user passwords against known data leaks
-  gem 'devise-pwned_password'
-  # Check password complexity
-  # FIXME: installing from GitHub until they release 1.2.x for ruby 3.x
-  # gem 'zxcvbn-ruby', require: 'zxcvbn'
-  gem 'zxcvbn-ruby', require: 'zxcvbn', git: 'https://github.com/envato/zxcvbn-ruby'
-  # Authorisation
-  gem 'pundit'
+  # FIXME: Installing from fork to pick up fix for CVE-2019-16782
+  gem 'activerecord-session_store', github: 'rails-lts/activerecord-session_store', branch: 'secure-session-store'
 
-  # Sail provides a control panel for managing settings
-  gem 'sail', path: '/home/denny/code/denny/sail'
-
-  # Soft delete
-  gem 'acts_as_paranoid'
-
-  # We use Sidekiq as the backend for ActiveJob (to queue email sends)
-  gem 'sidekiq'
-  # This adds more details to the Sidekiq web dashboard
-  gem 'sidekiq-status'
-
-  # Bot detection to protect forms (including registration, comments, etc)
-  gem 'recaptcha'
-
-  # Spam comment detection
-  gem 'akismet'
-
-  # Validate email addresses
-  gem 'email_address'
-
-  # Email preview
+  # Email previews
   gem 'rails_email_preview'
 
-  # MJML emails
-  gem 'mjml-rails'
-
-  # Sortable lists (elements of template, etc)
-  gem 'acts_as_list'
-
-  # Tags
-  gem 'acts-as-taggable-on'
-
-  # Likes
-  gem 'acts_as_votable'
-
-  # Pagination
-  gem 'pagy'
-
-  # Generate Atom feeds
-  gem 'rss'
-
-  # CKEditor: WYSIWYG editor for admin area
-  gem 'ckeditor'
-
   # Email stats
-  gem 'ahoy_email'
+  gem 'ahoy_email', '~> 1.1'
   # Web stats
   gem 'ahoy_matey'
 
@@ -111,98 +53,71 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 3.4.2'
 
-  # Image storage on S3
-  gem 'aws-sdk-s3'
-  # Image processing, for resizing etc
-  gem 'image_processing', '~> 1.12'
-  # Also image processing
-  gem 'mini_magick'
-
-  # HTML & XML parser
-  gem 'nokogiri', '>= 1.11.0.rc4'
-
-  # Better-looking console output
-  gem 'amazing_print'
-
-  # Pry is a debugging tool for the Rails console
-  if env_var_true?( :shinycms_pry_console )
-    # Set ENV['SHINYCMS_PRY_CONSOLE']=true to explicitly enable Pry in this environment
-    gem 'pry-rails'
-  else
-    # Otherwise, it will only be enabled in dev and test environments
-    gem 'pry-rails', groups: %i[ development test ]
-  end
-
-  group :production do
-    # Airbrake - error monitoring and APM
-    gem 'airbrake'
-
-    # Bugsnag - error monitoring and bug triage
-    gem 'bugsnag'
-
-    # Fix request.ip if we're running behind Cloudflare's proxying service
-    gem 'cloudflare-rails'
-  end
+  # Sail provides a control panel for managing settings
+  gem 'sail', path: '/home/denny/code/denny/sail'
 
   group :development, :test do
-    # Tests are good, m'kay?
+    # RSpec for Rails
     gem 'rspec-rails'
 
-    # Create test objects
-    gem 'factory_bot_rails'
-    # Fill test objects with fake data
-    gem 'faker'
+    # Run tests in parallel
+    gem 'parallel_tests'
 
-    # Utils for working with translation strings
+    # "No silver bullet"
+    gem 'bullet'
+
+    # Tools for working with translation strings
     # gem 'i18n-debug'
     gem 'i18n-tasks', '~> 0.9.33'
   end
 
   group :development do
-    # Linter
+    # Capture all outgoing emails, with webmail interface to look at them
+    gem 'letter_opener_web', '~> 1.0'
+
+    # Reload dev server when files change
+    gem 'listen', '~> 3.3'
+
+    # Linting: general
     gem 'rubocop', require: false
-    # Rails-specific linting
-    gem 'rubocop-rails', require: false
-    # Tests need linting-love too!
-    gem 'rubocop-rspec', require: false
-    # Performance-related analysis
+    # Linting: performance tweaks
     gem 'rubocop-performance', require: false
+    # Linting: Rails-specific
+    gem 'rubocop-rails', require: false
+    # Linting: test suite
+    gem 'rubocop-rspec', require: false
 
-    # Scan for security vulnerabilities
-    gem 'brakeman', require: false
-    # Check gems for security issues
-    gem 'bundler-audit', require: false
-    # Check for slow code
-    gem 'fasterer', require: false
-
-    # Best practices
-    gem 'rails_best_practices'
-
-    # Ruby Critic generates easy-to-read reports from multiple static analysis tools
+    # Code quality: Ruby Critic
     gem 'rubycritic', '~> 4.6.0', require: false
+    # Code quality: Rails Best Practices
+    gem 'rails_best_practices', require: false
+
+    # Security: static code analysis
+    gem 'brakeman', require: false
+    # Security: check gem versions for reported security issues
+    gem 'bundler-audit', require: false
 
     # Add .analyze method to ActiveRecord objects
     gem 'activerecord-analyze'
 
-    # Capture all emails sent by the system, and view them in a dev webmail inbox
-    gem 'letter_opener_web', '~> 1.0'
-
-    # Reload dev server when files change
-    gem 'listen', '>= 3.0.5', '< 3.5'
-
-    # Helps you manage your git hooks
-    gem 'overcommit', require: false
-
     # Analysis tools for postgres
-    gem 'rails-pg-extras'
+    gem 'rails-pg-extras', require: false
 
     # Used to generate demo site data
-    gem 'seed_dump'
+    gem 'seed_dump', require: false
+
+    # Manage git hooks
+    gem 'overcommit', require: false
   end
 
   group :test do
     # Wipe the test database before each test run
     gem 'database_cleaner-active_record'
+
+    # Create test objects
+    gem 'factory_bot_rails'
+    # Generate test data
+    gem 'faker'
 
     # Integration tests (request specs)
     gem 'capybara', '>= 2.15'
@@ -210,9 +125,14 @@ source 'https://rubygems.org' do
     # Intercept calls to external services (notably, the Algolia API)
     gem 'webmock'
 
+    # Analyse and report on test coverage
+    gem 'simplecov', '0.20.0'
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     # Rspec report formatter for Codecov
     gem 'rspec_junit_formatter'
+
+    # Show test failure details instantly, in-line with progress dots
+    gem 'rspec-instafail'
   end
 end

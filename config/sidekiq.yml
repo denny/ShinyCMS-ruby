@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2021 Denny de la Haye ~ https://denny.me
@@ -8,7 +6,7 @@
 
 # Sidekiq configuration (for ActiveJob including Mailers)
 
-# NB: to pick up ENV settings in dev, you must run Sidekiq via dotenv: dotenv -f .env.development.local sidekiq
+# NB: to pick up ENV settings in dev, you must run Sidekiq via dotenv; see /tools/sidekiq-dev
 ---
 :concurrency: <%= ENV.fetch( 'SIDEKIQ_CONCURRENCY' ) { 1 } %>
 :max_retries: <%= ENV.fetch( 'SIDEKIQ_MAX_RETRIES' ) { 3 } %>

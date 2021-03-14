@@ -10,7 +10,6 @@ module ShinySearch
   # Main site controller for ShinySearch plugin for ShinyCMS
   class SearchController < MainController
     include ShinySearch::MainSiteHelper
-    include ShinyPagingHelper
 
     before_action :check_feature_flags
     before_action :stash_query_string
@@ -18,12 +17,10 @@ module ShinySearch
     SEARCH_BACKENDS = %w[ algolia pg ].freeze
     private_constant :SEARCH_BACKENDS
 
-    helper_method :pagy_url_for
-
     def index
       return unless @query
 
-      backend = search_params[ :engine ].presence || Setting.get( :default_search_backend )
+      backend = search_params[ :engine ].presence || ShinyCMS::Setting.get( :default_search_backend )
       backend = nil unless SEARCH_BACKENDS.include? backend
 
       @pagy, @results = perform_search( backend )
@@ -36,11 +33,15 @@ module ShinySearch
 
       return algolia_search if algolia_search_is_enabled? && backend == 'algolia'
 
-      unless algolia_search_is_enabled? || pg_search_is_enabled?
+      unless at_least_one_search_backend_is_enabled?
         Rails.logger.error 'Search feature is enabled, but no search back-ends are enabled'
       end
 
       [ nil, [] ] # Minimum required to render the 'no results' page
+    end
+
+    def at_least_one_search_backend_is_enabled?
+      algolia_search_is_enabled? || pg_search_is_enabled?
     end
 
     def pg_search
@@ -48,8 +49,7 @@ module ShinySearch
 
       # TODO: investigate performance of this with a large resultset
       pagy, results = pagy_array(
-        PgSearch.multisearch( @query ).includes( :searchable ).collect( &:searchable ),
-        items: items_per_page
+        PgSearch.multisearch( @query ).includes( :searchable ).collect( &:searchable )
       )
 
       [ pagy, results ]
@@ -73,12 +73,6 @@ module ShinySearch
 
     def check_feature_flags
       enforce_feature_flags :search
-    end
-
-    # Override pager link format (to admin/action/page/NN rather than admin/action?page=NN)
-    def pagy_url_for( page, _pagy )
-      params = request.query_parameters.merge( only_path: true, page: page )
-      url_for( params )
     end
   end
 end

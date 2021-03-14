@@ -9,32 +9,20 @@
 module ShinyBlog
   # Model for blog posts, from ShinyBlog plugin for ShinyCMS
   class Post < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinyPost
+    include ShinyCMS::Post
 
-    # Associations
+    include ShinyCMS::ProvidesDemoSiteData
+    include ShinyCMS::ProvidesSitemapData
 
-    belongs_to :user, inverse_of: :blog_posts
-
-    has_one :discussion, as: :resource, dependent: :destroy
-
-    # Instance methods
+    belongs_to :user, inverse_of: :blog_posts, class_name: 'ShinyCMS::User'
 
     def path( anchor: nil )
       url_helpers.view_blog_post_path(
         posted_year, posted_month, slug, anchor: anchor
       )
     end
-
-    # Class methods
-
-    def self.admin_search( search_term )
-      where( 'title ilike ?', "%#{search_term}%" )
-        .or( where( 'body ilike ?', "%#{search_term}%" ) )
-        .order( posted_at: :desc )
-    end
   end
 end
 
 # Add inverse association for authors of blog posts
-::User.has_many :blog_posts, dependent: :restrict_with_error, class_name: 'ShinyBlog::Post'
+ShinyCMS::User.has_many :blog_posts, dependent: :restrict_with_error, class_name: 'ShinyBlog::Post'

@@ -6,20 +6,18 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Explicitly require the main app User model here, to fix reloader glitches in dev env
-require_dependency 'user'
-
 module ShinyProfiles
   # Model for user profile pages (and related features)
   class Profile < ApplicationRecord
-    include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
-    include ShinyDemoDataProvider
-    include ShinyShowHide
-    include ShinySoftDelete
+    include ShinyCMS::CanHide
+    include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
+    include ShinyCMS::ProvidesSitemapData
 
     # Associations
 
-    belongs_to :user
+    belongs_to :user, inverse_of: :profile, class_name: 'ShinyCMS::User'
 
     has_many :links, -> { order( :position ) }, inverse_of: :profile, dependent: :destroy
 
@@ -29,6 +27,9 @@ module ShinyProfiles
     has_one_attached :profile_pic, dependent: :purge_now
     # The dependent: :purge_now option is required to avoid an incompatibility issue with soft delete:
     # https://github.com/ActsAsParanoid/acts_as_paranoid/issues/103
+
+    scope :with_pic,   -> { includes( [ :profile_pic_attachment ] ) }
+    scope :with_links, -> { includes( [ :links ] ) }
 
     # Validations
 
@@ -41,7 +42,10 @@ module ShinyProfiles
 
     # Plugins
 
-    searchable_by :username, :public_name, :public_email, :bio, :location, :postcode if ShinyPlugin.loaded? :ShinySearch
+    if ShinyCMS.plugins.loaded? :ShinySearch
+      include ShinySearch::Searchable
+      searchable_by :username, :public_name, :public_email, :bio, :location, :postcode
+    end
 
     # Instance methods
 
@@ -49,21 +53,40 @@ module ShinyProfiles
       public_name.presence || username
     end
 
+    def path
+      url_helpers.profile_path username
+    end
+
     # Class methods
 
     def self.for_username( username )
-      user = ::User.find_by( username: username )
+      user = ShinyCMS::User.find_by( username: username )
       raise ActiveRecord::RecordNotFound if user.blank?
 
-      profile = find_by( user: user )
-      # TODO: Create profile if blank? (in case ShinyProfiles enabled after account created)
-      raise ActiveRecord::RecordNotFound if profile.blank?
+      user.full_profile || create_profile!
+      # (the latter in case the profiles feature was turned on after this user account was created)
+    end
 
-      profile
+    def self.sitemap_items
+      # TODO: let each user configure whether or not they consent to being fed into search engines
+      visible.readonly.order( updated_at: :desc )
     end
   end
 end
 
-::User.has_one :profile, inverse_of: :user, class_name: 'ShinyProfiles::Profile', dependent: :destroy
+module ShinyCMS
+  # Add Profile hooks to User model
+  class User
+    has_one :profile, inverse_of: :user, dependent: :destroy, class_name: 'ShinyProfiles::Profile'
 
-::User.after_create :create_profile
+    after_create :create_profile
+
+    def profile_with_pic
+      ShinyProfiles::Profile.with_pic.find_by( id: id )
+    end
+
+    def full_profile
+      ShinyProfiles::Profile.with_links.with_pic.find_by( id: id )
+    end
+  end
+end

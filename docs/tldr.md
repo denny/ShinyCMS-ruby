@@ -3,7 +3,7 @@
 ## Installation: the tl,dr version
 
 ```bash
-git clone https://github.com/denny/ShinyCMS-ruby.git
+git clone https://github.com/denny/ShinyCMS-ruby
 cd ShinyCMS-ruby
 cp docs/env.sample .env.development.local
 # Edit .env.development.local in case you want/need to change anything

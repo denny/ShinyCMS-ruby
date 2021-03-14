@@ -1,21 +1,25 @@
-# frozen_string_literal: true
-
 # ShinyLists plugin for ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Translation strings for English
+# English locale strings for ShinyCMS features provided by the ShinyLists plugin
 
 en:
-  feature_flags:
-    mailing_lists: Mailing lists
-
-  capability:
-    category:
+  shinycms:
+    feature_flags:
       mailing_lists: Mailing lists
-      mailing_list_subscriptions: List subscriptions
+
+    capability:
+      category:
+        mailing_lists: Mailing lists
+        mailing_list_subscriptions: List subscriptions
+
+    models:
+      names:
+        shiny_lists_list: mailing list
+        shiny_lists_subscription: mailing list subscription
 
   shiny_lists:
     name: Name
@@ -72,9 +76,9 @@ en:
         index:
           title: Subscriptions
           search: Search subscriptions
-        subscribe:
+        create:
           success: Subscribed
           # failure: Failed to create subscription
-        unsubscribe:
+        destroy:
           success: Unsubscribed
           # failure: Failed to unsubscribe

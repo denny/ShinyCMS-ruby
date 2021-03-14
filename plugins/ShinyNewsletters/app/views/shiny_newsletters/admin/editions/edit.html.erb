@@ -18,7 +18,7 @@
     <%= f.text_field :description %>
   </p>
   <p>
-    <%= f.label :template_id, t( 'admin.template' ) %>
+    <%= f.label :template_id, t( 'shinycms.admin.template' ) %>
     <br><%= f.select :template_id, ShinyNewsletters::Template.pluck( :name, :id ), include_blank: '' %>
   </p>
   <p>

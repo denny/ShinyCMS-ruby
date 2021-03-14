@@ -9,18 +9,15 @@
 module ShinyNewsletters
   # Model for newsletter edition elements
   class EditionElement < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinyElement
+    include ShinyCMS::Element
 
-    # Associations
+    include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     belongs_to :edition, inverse_of: :elements
 
-    # Plugin features
-
     acts_as_list scope: :edition
-
-    # Validations
 
     validates :edition, presence: true
   end

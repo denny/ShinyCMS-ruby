@@ -1,24 +1,29 @@
-# frozen_string_literal: true
-
 # ShinyPages plugin for ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# English locale strings for ShinyCMS features provided by the ShinyPages plugin
+
 en:
-  feature_flags:
-    pages: Pages
-
-  settings:
-    default_page: Default page
-    default_section: Default section
-
-  capability:
-    category:
+  shinycms:
+    feature_flags:
       pages: Pages
-      page_sections: Page Sections
-      page_templates: Page Templates
+
+    settings:
+      default_page: Default page
+      default_section: Default section
+
+    capability:
+      category:
+        pages: Pages
+        page_sections: Page Sections
+        page_templates: Page Templates
+
+    models:
+      names:
+        shiny_pages_template: template
 
   shiny_pages:
     admin:

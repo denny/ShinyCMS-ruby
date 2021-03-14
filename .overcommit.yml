@@ -28,7 +28,7 @@ PreCommit:
     enabled: true
     quiet: false
     max_subject_width: 72
-    min_subject_width: 1
+    min_subject_width: 3
   TrailingWhitespace:
     enabled: true
     quiet: false
@@ -46,7 +46,7 @@ PrePush:
     enabled: true
     quiet: false
   Fasterer:
-    enabled: true
+    enabled: false
     quiet: false
 
 PostMerge:

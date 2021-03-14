@@ -16,7 +16,7 @@
   <% if current_user.can? :change_author, :news_posts %>
   <p>
     <%= f.label :user_id, 'Author' %><br>
-    <%= f.select :user_id, User.that_can( :add, :news_posts ).pluck( :username, :id ) %>
+    <%= f.select :user_id, users_that_can_for_menu( :add, :news_posts ) %>
   </p>
   <% else %>
   <%= f.hidden_field :user_id, value: current_user.id %>
@@ -37,11 +37,11 @@
     <%= f.check_box :show_on_site %>
   </p>
   <p>
-    <%= f.label :discussion_show_on_site, t( 'admin.discussion.enable_comments' ) %><br>
+    <%= f.label :discussion_show_on_site, t( 'shinycms.admin.discussion.enable_comments' ) %><br>
     <%= f.check_box :discussion_show_on_site %>
   </p>
   <p>
-    <%= f.label :discussion_locked, t( 'admin.discussion.lock_comments' ) %><br>
+    <%= f.label :discussion_locked, t( 'shinycms.admin.discussion.lock_comments' ) %><br>
     <%= f.check_box :discussion_locked %>
   </p>
 

@@ -9,14 +9,10 @@
 module ShinyNews
   # Main site controller for news section - provided by ShinyNews plugin for ShinyCMS
   class NewsController < MainController
-    include ShinyPagingHelper
-
     before_action :check_feature_flags
 
-    helper_method :pagy_url_for
-
     def index
-      @pagy, @posts = pagy_countless( Post.readonly.recent, items: items_per_page )
+      @pagy, @posts = pagy_countless( Post.readonly.recent.with_discussions )
     end
 
     def month
@@ -43,12 +39,6 @@ module ShinyNews
 
     def check_feature_flags
       enforce_feature_flags :news
-    end
-
-    # Override pager link format (to news/page/NN rather than news?page=NN)
-    def pagy_url_for( page, _pagy )
-      params = request.query_parameters.merge( only_path: true, page: page )
-      url_for( params )
     end
   end
 end

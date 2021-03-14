@@ -9,10 +9,11 @@
 module ShinyBlog
   # Admin area controller for ShinyBlog plugin for ShinyCMS
   class Admin::BlogPostsController < AdminController
-    include ShinyDiscussionAdmin
-    include ShinyPostAdmin
+    include ShinyCMS::Admin::Discussions
+    include ShinyCMS::Admin::Posts
+    include ShinyCMS::Admin::Tags
 
-    include ShinyDateHelper
+    include ShinyCMS::DatesHelper
 
     before_action :set_post_for_create, only: :create
     before_action :set_post, only: %i[ edit update destroy ]
@@ -23,7 +24,7 @@ module ShinyBlog
     def index
       authorize Post
 
-      @pagy, @posts = pagy( Post.order( posted_at: :desc ), items: items_per_page )
+      @pagy, @posts = pagy( Post.order( posted_at: :desc ) )
 
       authorize @posts if @posts.present?
     end
@@ -31,7 +32,7 @@ module ShinyBlog
     def search
       authorize Post
 
-      @pagy, @posts = pagy( Post.admin_search( params[:q] ), items: items_per_page )
+      @pagy, @posts = pagy( Post.admin_search( params[:q] ) )
 
       authorize @posts if @posts.present?
       render :index

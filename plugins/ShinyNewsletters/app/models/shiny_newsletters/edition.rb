@@ -9,20 +9,21 @@
 module ShinyNewsletters
   # Model for an edition of a newsletter
   class Edition < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinyName
-    include ShinyShowHide
-    include ShinySlugInMonth
-    include ShinySoftDelete
-    include ShinyWithTemplate
+    include ShinyCMS::CanHide
+    include ShinyCMS::HasPublicName
+    include ShinyCMS::HasSlugUniqueInMonth
+    include ShinyCMS::HasTemplate
+    include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     # Associations
 
     belongs_to :template, inverse_of: :editions
 
     has_many :sends,    inverse_of: :edition, dependent: :restrict_with_error
-    has_many :elements, -> { order( :position ) }, inverse_of: :edition, dependent: :destroy,
-                                                   class_name: 'EditionElement'
+    has_many :elements, -> { order( :position ).includes( [ :image_attachment ] ) },
+             inverse_of: :edition, dependent: :destroy, class_name: 'EditionElement'
 
     accepts_nested_attributes_for :elements
 

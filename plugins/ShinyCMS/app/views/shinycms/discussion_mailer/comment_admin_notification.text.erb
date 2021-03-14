@@ -1,0 +1,7 @@
+<%= @comment.author.name %> posted a comment on <%= site_name %>:
+
+<%= t( '.they_said' ) %>:
+
+<% if @comment.title? %><%= @comment.title %>
+
+<% end %><%= @comment.body %>

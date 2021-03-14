@@ -9,29 +9,26 @@
 module ShinyNewsletters
   # Admin controller for newsletter sends - part of ShinyNewsletters plugin for ShinyCMS
   class Admin::SendsController < AdminController
-    include ShinyDateHelper
+    include ShinyCMS::DatesHelper
 
     before_action :stash_send, only: %i[ show edit update destroy start_sending cancel_sending ]
-
-    before_action :convert_send_at_to_utc
+    before_action :stash_send_for_create, only: %i[ create ]
+    before_action :stash_sending_and_scheduled, only: %i[ index ]
 
     def index
       authorize Send
 
-      @sending = Send.sending
-      authorize @sending if @sending.present?
+      @pagy, @sends = pagy( Send.unscheduled.with_editions )
 
-      @scheduled = Send.scheduled if viewing_first_page?
+      authorize @sends     if @sends.present?
+      authorize @sending   if @sending.present?
       authorize @scheduled if @scheduled.present?
-
-      @pagy, @sends = pagy( Send.unscheduled, items: items_per_page )
-      authorize @sends if @sends.present?
     end
 
     def sent
       authorize Send
 
-      @pagy, @sent = pagy( Send.sent, items: items_per_page )
+      @pagy, @sent = pagy( Send.sent.with_editions )
 
       authorize @sent if @sent.present?
     end
@@ -39,7 +36,7 @@ module ShinyNewsletters
     def search
       authorize Send
 
-      @pagy, @sends = pagy( Send.admin_search( params[:q] ), items: items_per_page )
+      @pagy, @sends = pagy( Send.admin_search( params[:q] ) )
 
       authorize @sends if @sends.present?
       render :index
@@ -55,7 +52,6 @@ module ShinyNewsletters
     end
 
     def create
-      @send = Send.new( strong_params )
       authorize @send
 
       if @send.save
@@ -113,6 +109,15 @@ module ShinyNewsletters
       @send = Send.find( params[:id] )
     end
 
+    def stash_send_for_create
+      @send = Send.new( strong_params )
+    end
+
+    def stash_sending_and_scheduled
+      @sending   = Send.sending.with_editions
+      @scheduled = Send.scheduled.with_editions if viewing_first_page?
+    end
+
     def strong_params
       return if params[ :send ].blank?
 
@@ -122,11 +127,7 @@ module ShinyNewsletters
     end
 
     def viewing_first_page?
-      params[:page] == 1 || params[:page].blank?
-    end
-
-    def convert_send_at_to_utc
-      params[ :send_at ] = convert_to_utc( params[ :send_at ] )
+      ( params[:page] || 1 ) == 1
     end
   end
 end

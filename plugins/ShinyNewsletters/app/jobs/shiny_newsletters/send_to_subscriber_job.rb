@@ -12,12 +12,11 @@ module ShinyNewsletters
     include Sidekiq::Status::Worker
 
     def perform( send, subscriber )
-      return if subscriber.do_not_email?
       return if send.sent?
 
       return unless send.list.subscribed? subscriber.email
 
-      NewsletterMailer.send_email( send.edition, subscriber ).deliver
+      NewsletterMailer.with( edition: send.edition, subscriber: subscriber ).send_email.deliver
     end
   end
 end

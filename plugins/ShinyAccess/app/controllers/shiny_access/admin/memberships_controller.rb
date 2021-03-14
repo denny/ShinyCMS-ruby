@@ -14,14 +14,14 @@ module ShinyAccess
 
     def index
       authorize Membership
-      @pagy, @memberships = pagy( memberships, items: items_per_page )
+      @pagy, @memberships = pagy( memberships )
       authorize @memberships if @memberships.present?
     end
 
     def search
       authorize Membership
 
-      @pagy, @memberships = pagy( search_results, items: items_per_page )
+      @pagy, @memberships = pagy( search_results )
 
       authorize @memberships if @memberships.present?
       render :index
@@ -85,9 +85,9 @@ module ShinyAccess
     end
 
     def user_for_create
-      return User.find( strong_params[ :user_id ] ) if strong_params[ :user_id ].present?
+      return ShinyCMS::User.find( strong_params[ :user_id ] ) if strong_params[ :user_id ].present?
 
-      User.find_by( username: strong_params[ :username ] )
+      ShinyCMS::User.find_by( username: strong_params[ :username ] )
     end
   end
 end

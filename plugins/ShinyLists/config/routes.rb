@@ -8,6 +8,8 @@
 
 # Routes for ShinyLists plugin
 
+require_relative '../../../plugins/ShinyCMS/lib/import_routes'
+
 ShinyLists::Engine.routes.draw do
   scope format: false do
     # Main site
@@ -21,18 +23,12 @@ ShinyLists::Engine.routes.draw do
 
     # Admin area
     scope path: 'admin', module: 'admin' do
-      concern :paginatable do
-        get '(page/:page)', action: :index, on: :collection, as: ''
-      end
-      concern :searchable do
-        get :search, action: :search, on: :collection
-      end
+      # with_paging and with_search
+      import_routes partial: :admin_route_concerns
 
-      resources :lists, except: :show, concerns: %i[ paginatable searchable ] do
-        resources :subscriptions, only: :index, concerns: %i[ paginatable searchable ]
+      resources :lists, except: %i[ index show ], concerns: %i[ with_paging with_search ] do
+        resources :subscriptions, only: %i[ create destroy  ], concerns: %i[ with_paging with_search ]
       end
-      post   'list/:list_id/subscriptions',     to: 'subscriptions#subscribe',   as: :admin_list_subscribe
-      delete 'list/:list_id/subscriptions/:id', to: 'subscriptions#unsubscribe', as: :admin_list_unsubscribe
     end
   end
 end

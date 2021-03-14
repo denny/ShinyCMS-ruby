@@ -10,9 +10,10 @@
 
 # Several of these were copied or adapted from https://github.com/resool/blazer-demo
 
+# :nocov: The tests don't need this data loaded
 return if Rails.env.test?
 
-# :nocov:
+return if ENV.fetch( 'DISABLE_BLAZER', 'false' ).downcase == 'true'
 
 # Dashboard
 dashboard = Blazer::Dashboard.where( name: 'Default Dashboard' ).first_or_create!
@@ -179,7 +180,7 @@ dashboard.queries << query unless dashboard.queries.exists? query.id
 # dashboard.queries << query unless dashboard.queries.exists? query.id
 
 # Access group memberships
-if ShinyPlugin.loaded? :ShinyAccess
+if ShinyCMS.plugins.loaded? :ShinyAccess
   sql = <<~SQL.squish
     select date( began_at ) as began_on,
            g.internal_name as group_name,
@@ -218,7 +219,7 @@ if ShinyPlugin.loaded? :ShinyAccess
 end
 
 # Mailing list subscriptions
-if ShinyPlugin.loaded? :ShinyLists
+if ShinyCMS.plugins.loaded? :ShinyLists
   sql = <<~SQL.squish
     select date( subscribed_at ) as subscribed_on,
            l.internal_name as list_name,

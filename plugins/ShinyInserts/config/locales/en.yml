@@ -1,18 +1,19 @@
-# frozen_string_literal: true
-
 # ShinyInserts plugin for ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-en:
-  feature_flags:
-    inserts: Inserts
+# English locale strings for ShinyCMS features provided by the ShinyInserts plugin
 
-  capability:
-    category:
+en:
+  shinycms:
+    feature_flags:
       inserts: Inserts
+
+    capability:
+      category:
+        inserts: Inserts
 
   shiny_inserts:
     admin:

@@ -9,12 +9,15 @@
 module ShinyPages
   # Model for page sections - part of the ShinyPages plugin for ShinyCMS
   class Section < ApplicationRecord
-    include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
-    include ShinyDemoDataProvider
-    include ShinyName
-    include ShinySlugInSection
-    include ShinyShowHide
-    include ShinySoftDelete
+    include ShinyCMS::CanHide
+    include ShinyCMS::HasPublicName
+    include ShinyCMS::HasReadableName
+    include ShinyCMS::HasSlugUniqueInSection
+    include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
+
+    include ShinyPages::TopLevelSlugValidator
 
     # Associations
 
@@ -25,11 +28,14 @@ module ShinyPages
 
     # Validations
 
-    validates :slug, safe_top_level_slug: true, if: -> { section.blank? }
+    validates :slug, unique_top_level_slug: true, if: -> { section.blank? }
 
     # Plugin features
 
-    searchable_by :public_name, :slug if ShinyPlugin.loaded? :ShinySearch
+    if ShinyCMS.plugins.loaded? :ShinySearch
+      include ShinySearch::Searchable
+      searchable_by :public_name, :slug
+    end
 
     # Scopes and sorting
 
@@ -59,9 +65,9 @@ module ShinyPages
     # Return the default page for this section if one is set
     # If the default isn't set, return the first page in this section
     def default_page
-      return pages.find self[ :default_page_id ] if self[ :default_page_id ]
+      return pages.with_elements.find self[ :default_page_id ] if self[ :default_page_id ]
 
-      pages.min
+      pages.with_elements.min
     end
 
     def all_page_items
@@ -102,7 +108,7 @@ module ShinyPages
 
     # Return the default top-level section
     def self.default_section
-      name_or_slug = ::Setting.get :default_section
+      name_or_slug = ShinyCMS::Setting.get :default_section
       top_level_sections.where( internal_name: name_or_slug )
                         .or( top_level_sections
                         .where( slug: name_or_slug ) )

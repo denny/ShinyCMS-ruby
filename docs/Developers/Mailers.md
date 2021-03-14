@@ -1,5 +1,13 @@
 # ShinyCMS Development Documentation
 
+## Fitting into ShinyCMS
+
+If you inherit from ShinyCMS::Mailer then you'll need to implement a couple of (simple) methods used by before/after actions, that will mean:
+a) Your mailer is included in the site-wide feature flag for all email-sending features (useful in case of runaway spam emergency or whatever)
+b) Your mailer will honour the DoNotContact list (very important!)
+c) Your site will check and honour double opt-in (also important!)
+
+
 ## Working on Mailers
 
 Mailers have special config in dev and test environments, because sending test content to your real mailing list is embarrassing at best, and quite probably against the law too.

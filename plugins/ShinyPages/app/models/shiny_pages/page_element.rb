@@ -9,28 +9,21 @@
 module ShinyPages
   # Model class for page elements - part of the ShinyPages plugin for ShinyCMS
   class PageElement < ApplicationRecord
-    include ShinySearch::Searchable if ShinyPlugin.loaded? :ShinySearch
-    include ShinyDemoDataProvider
-    include ShinyElement
+    include ShinyCMS::Element
 
-    # Assocations
+    include ShinyCMS::ProvidesDemoSiteData
 
     belongs_to :page, inverse_of: :elements
 
-    # Plugin features
-
     acts_as_list scope: :page
 
-    searchable_by :content if ShinyPlugin.loaded? :ShinySearch # TODO
-
-    # Validations
+    if ShinyCMS.plugins.loaded? :ShinySearch
+      include ShinySearch::Searchable
+      searchable_by :content  # TODO
+    end
 
     validates :page, presence: true
 
-    # Instance methods
-
-    def hidden?
-      false
-    end
+    delegate :hidden?, to: :page
   end
 end

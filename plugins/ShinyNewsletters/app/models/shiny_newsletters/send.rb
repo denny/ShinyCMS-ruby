@@ -9,8 +9,9 @@
 module ShinyNewsletters
   # Model for newsletter sends - when an edition is sent to a list
   class Send < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinySoftDelete
+    include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     # Associations
 
@@ -22,6 +23,8 @@ module ShinyNewsletters
     alias_attribute :sent_at, :finished_sending_at
 
     # Scopes
+
+    scope :with_editions, -> { includes( [ :edition ] ) }
 
     scope :unscheduled, -> { where( started_sending_at: nil, send_at: nil ) }
     scope :scheduled,   -> { where( started_sending_at: nil ).where.not( send_at: nil ) }
@@ -85,6 +88,10 @@ module ShinyNewsletters
       where( 'date(started_sending_at) = ?', search_term )
         .or( where( 'date(finished_sending_at) = ?', search_term ) )
         .order( sent_at: :desc )
+    end
+
+    def self.my_demo_data_position
+      5  # after templates, template elements, editions, and edition elements
     end
   end
 end

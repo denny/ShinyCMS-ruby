@@ -10,7 +10,7 @@
     <br><%= f.text_field :description %>
   </p>
   <p>
-    <%= f.label :filename, t( 'admin.template_file' ) %>
+    <%= f.label :filename, t( 'shinycms.admin.template_file' ) %>
     <br><%= f.select :filename, ShinyPages::Template.available_templates, include_blank: '' %>
   </p>
 

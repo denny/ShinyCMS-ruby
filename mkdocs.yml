@@ -29,76 +29,77 @@ nav:
     - tl,dr:              tldr.md
 
   - Features:
-    - User Accounts:   Features/MainApp/UserAccounts.md
-    - Admin Features:  Features/MainApp/admin-features.md
+    - User Accounts:    Features/MainApp/UserAccounts.md
+    - Admin Features:   Features/MainApp/admin-features.md
 
     - Basic 'brochure site' features:
-      - Pages:         Features/Plugins/ShinyPages.md
-      - Forms:         Features/Plugins/ShinyForms.md
-      - Inserts:       Features/Plugins/ShinyInserts.md
-      - Search:        Features/Plugins/ShinySearch.md
+      - Pages:          Features/Plugins/ShinyPages.md
+      - Forms:          Features/Plugins/ShinyForms.md
+      - Inserts:        Features/Plugins/ShinyInserts.md
+      - Search:         Features/Plugins/ShinySearch.md
 
     - More advanced features:
       - Access control: Features/Plugins/ShinyAccess.md
 
     - Regular content updates:
-      - Blog:          Features/Plugins/ShinyBlog.md
-      - News section:  Features/Plugins/ShinyNews.md
-      - Tags:          Features/MainApp/Tags.md
+      - Blog:           Features/Plugins/ShinyBlog.md
+      - News section:   Features/Plugins/ShinyNews.md
+      - Tags:           Features/MainApp/Tags.md
 
     - Send promotional emails:
-      - Mailing Lists: Features/Plugins/ShinyLists.md
-      - Newsletters:   Features/Plugins/ShinyNewsletters.md
+      - Mailing Lists:  Features/Plugins/ShinyLists.md
+      - Newsletters:    Features/Plugins/ShinyNewsletters.md
 
     - Build a community:
-      - Comments:      Features/MainApp/Comments.md
-      - Upvotes:       Features/MainApp/Upvotes.md
-      - Profile Pages: Features/Plugins/ShinyProfiles.md
+      - Comments:       Features/MainApp/Comments.md
+      - Upvotes:        Features/MainApp/Upvotes.md
+      - Profile Pages:  Features/Plugins/ShinyProfiles.md
 
     - Tracking/Analytics:
-      - Email Stats:   Features/MainApp/EmailStats.md
-      - Web Stats:     Features/MainApp/WebStats.md
-      - Charts:        Features/MainApp/Charts.md
+      - Email Stats:    Features/MainApp/EmailStats.md
+      - Web Stats:      Features/MainApp/WebStats.md
+      - Charts:         Features/MainApp/Charts.md
 
     - Configuration:
-      - Feature Flags: Features/MainApp/FeatureFlags.md
-      - Site Settings: Features/MainApp/SiteSettings.md
+      - Feature Flags:  Features/MainApp/FeatureFlags.md
+      - Site Settings:  Features/MainApp/SiteSettings.md
 
     - Other:
-      - MJML:          Features/MainApp/mjml.md
-      - Pagination:    Features/MainApp/pagination.md
-      - Soft Delete:   Features/MainApp/soft-delete.md
-      - Rake tasks:    rake-tasks.md
+      - MJML:           Features/MainApp/mjml.md
+      - Pagination:     Features/MainApp/pagination.md
+      - Soft Delete:    Features/MainApp/soft-delete.md
+      - Rake tasks:     rake-tasks.md
 
   - Developer Documentation:
-    - Index:           Developers/index.md
+    - Index:            Developers/index.md
 
-    - Contributing:    Contributing.md
+    - Contributing:     Contributing.md
 
-    - Project Goals:   Developers/ProjectGoals.md
+    - Project Goals:    Developers/ProjectGoals.md
+
+    - Testing:          Developers/Testing.md
+    - Code Quality:     Developers/code-quality.md
+
+    - Plugins:          Developers/Plugins.md
+
+    - Helpers, Concerns, and other useful modules:
+      - Overview:       Developers/Concerns-and-Helpers.md
+      - Helpers:        Developers/helpers.md
+      - Model Concerns: Developers/model-concerns.md
+      - Controller Concerns: Developers/controller-concerns.md
+      - Mailers:        Developers/Mailers.md
+      - Other:          Developers/other-modules.md
+
+    - Demo data:        Developers/demo-data.md
+    - Rake tasks:       Developers/rake-tasks.md
 
     - Project Progress:
-      - TODO:          Developers/TODO.md
-      - In Progress:   Developers/in-progress.md
-      - Done:          Developers/done.md
+      - TODO:           Developers/TODO.md
+      - In Progress:    Developers/in-progress.md
+      - Done:           Developers/done.md
 
-    - Plugins:         Developers/Plugins.md
-
-    - Testing:         Developers/Testing.md
-    - Code Quality:    Developers/code-quality.md
-
-    - Demo data:       Developers/demo-data.md
-    - Rake tasks:      Developers/rake-tasks.md
-
-
-    - Useful shared CMS code:
-      - Concerns:      Developers/Concerns.md
-      - Helpers:       Developers/Helpers.md
-      - Mailers:       Developers/Mailers.md
-      # Other libs:    Developers/app-libs.md
-
-  - Licensing:         Licensing/index.md
-  - Release notes:     release-notes.md
-  - Credits:           credits.md
-  - Code of Conduct:   code-of-conduct.md
-  - Index:             index.md
+  - Licensing:          Licensing/index.md
+  - Release notes:      release-notes.md
+  - Credits:            credits.md
+  - Code of Conduct:    code-of-conduct.md
+  - Index:              index.md

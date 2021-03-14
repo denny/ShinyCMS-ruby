@@ -25,13 +25,13 @@ module ShinyProfiles
 
     # Override the breadcrumbs section link to go back to the user list
     def breadcrumb_link_text_and_path
-      [ t( 'admin.users.breadcrumb' ), main_app.users_path ]
+      [ t( 'shinycms.admin.users.breadcrumb' ), shinycms.users_path ]
     end
 
     private
 
     def stash_profile
-      @profile = Profile.find params[ :id ]
+      @profile = Profile.with_links.with_pic.find params[ :id ]
     end
 
     def strong_params

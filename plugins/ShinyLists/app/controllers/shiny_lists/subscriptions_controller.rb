@@ -44,7 +44,7 @@ module ShinyLists
     end
 
     def subscriber
-      current_user || EmailRecipient.find_by( token: token )
+      current_user || ShinyCMS::EmailRecipient.find_by( token: token )
     end
 
     def subscription
@@ -53,14 +53,14 @@ module ShinyLists
 
     def subscriber_for_subscribe
       current_user ||
-        EmailRecipient.find_by( email: subscribe_params[:email] ) ||
-        EmailRecipient.create!( email: subscribe_params[:email] )
+        ShinyCMS::EmailRecipient.find_by( email: subscribe_params[:email] ) ||
+        ShinyCMS::EmailRecipient.create!( email: subscribe_params[:email] )
     end
 
     def consent_version
       return unless subscribe_params[:consent_confirmation] == '1'
 
-      ConsentVersion.find_by( slug: subscribe_params[:consent_version] )
+      ShinyCMS::ConsentVersion.find_by( slug: subscribe_params[:consent_version] )
     end
 
     def token

@@ -1,24 +1,26 @@
-# frozen_string_literal: true
-
 # ShinyNewsletters plugin for ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Translation strings for English
+# English locale strings for ShinyCMS features provided by the ShinyNewsletters plugin
 
 en:
-  cancel: Cancel
+  shinycms:
+    feature_flags:
+      newsletters: Newsletters
 
-  feature_flags:
-    newsletters: Newsletters
+    capability:
+      category:
+        newsletter_templates: Newsletter templates
+        newsletter_editions: Newsletter editions
+        newsletter_sends: Newsletter sends
 
-  capability:
-    category:
-      newsletter_templates: Newsletter templates
-      newsletter_editions: Newsletter editions
-      newsletter_sends: Newsletter sends
+    models:
+      names:
+        shiny_newsletters_edition: newsletter edition
+        shiny_newsletters_template: templates
 
   shiny_newsletters:
     newsletters:
@@ -105,7 +107,7 @@ en:
   models:
     shiny_newsletters:
       template:
-        template_file_must_exist: '(template file must be in themes/{theme-name}/shiny_newsletters/newsletter_mailer)'
+        template_file_must_exist: '(template file must be in themes/{theme-name}/views/shiny_newsletters/newsletter_mailer)'
 
   errors:
     messages:

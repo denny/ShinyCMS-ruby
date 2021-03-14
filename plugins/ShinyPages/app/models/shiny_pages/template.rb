@@ -9,9 +9,12 @@
 module ShinyPages
   # Model for page templates - part of the ShinyPages plugin for ShinyCMS
   class Template < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinyHTMLTemplate
-    include ShinySoftDelete
+    include ShinyCMS::HTMLTemplate
+
+    include ShinyCMS::HasReadableName
+    include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     # Associations
 
@@ -20,7 +23,7 @@ module ShinyPages
     # Class methods
 
     def self.template_dir
-      Theme.current&.template_dir 'shiny_pages/pages'
+      ShinyCMS::Theme.template_dir 'shiny_pages/pages'
     end
 
     def self.admin_search( search_term )
@@ -31,7 +34,7 @@ module ShinyPages
 
     # Add another validation at the end, because it uses methods included/defined above
     validates :filename, inclusion: {
-      in:      available_templates,
+      in:      ->( _ ) { available_templates },
       message: I18n.t( 'models.shiny_pages.template.template_file_must_exist' )
     }
   end

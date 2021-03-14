@@ -8,45 +8,42 @@
 
 require_relative 'boot'
 
-# Load Rails components selectively
 require 'rails'
-# require 'action_cable/engine'
-require 'action_controller/railtie'
-# require 'action_mailbox/engine'   # Won't need for a long time (inbound email)
-require 'action_mailer/railtie'     # Outbound email (registration, etc)
-# require 'action_text/engine'
-require 'action_view/railtie'
-require 'active_job/railtie'        # Queue (for mailer tasks)
+
+require 'active_model/railtie'
+require 'active_job/railtie'
 require 'active_record/railtie'
-require 'active_storage/engine'     # File storage (CKEditor image uploads, etc)
-# require 'rails/test_unit/railtie'
+require 'active_storage/engine'
+
+require 'action_controller/railtie'
+require 'action_mailer/railtie'      # Outgoing email (user accounts, comment replies, etc)
+# require "action_mailbox/engine"    # Incoming email
+# require "action_text/engine"       # Rich Text / Trix
+require 'action_view/railtie'
+# require "action_cable/engine"
+
 require 'sprockets/railtie'
+# require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require( *Rails.groups )
 
-module ShinyCMS
-  # Application Config
+module ShinyHostApp
+  # Rails application class for the ShinyHostApp
   class Application < Rails::Application
-    # Initialize configuration defaults for Rails
+    # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
-    # Settings in config/environments/* take precedence over those set here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after
-    # loading the framework and any gems in your application.
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+
+    # Don't generate system test files.
+    config.generators.system_tests = nil
 
     # Smarter error pages
     config.exceptions_app = routes
-
-    # Remove routes for Action Mailbox (just to make `rails routes` more readable)
-    initializer(
-      :remove_actionmailbox_routes, after: :add_routing_paths
-    ) do |app|
-      app.routes_reloader.paths.delete_if do |path|
-        path.include? 'actionmailbox'
-      end
-    end
   end
 end

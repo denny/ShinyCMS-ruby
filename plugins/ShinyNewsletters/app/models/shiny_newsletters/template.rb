@@ -7,11 +7,14 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyNewsletters
-  # Model for newsletter templates
+  # Model for newsletter templates - part of the ShinyNewsletters plugin for ShinyCMS
   class Template < ApplicationRecord
-    include ShinyDemoDataProvider
-    include ShinyMJMLTemplate
-    include ShinySoftDelete
+    include ShinyCMS::MJMLTemplate
+
+    include ShinyCMS::HasReadableName
+    include ShinyCMS::SoftDelete
+
+    include ShinyCMS::ProvidesDemoSiteData
 
     # Associations
 
@@ -20,7 +23,7 @@ module ShinyNewsletters
     # Class methods
 
     def self.template_dir
-      Theme.current&.template_dir 'shiny_newsletters/newsletter_mailer'
+      ShinyCMS::Theme.template_dir 'shiny_newsletters/newsletter_mailer'
     end
 
     def self.admin_search( search_term )
@@ -28,9 +31,10 @@ module ShinyNewsletters
         .or( where( 'description ilike ?', "%#{search_term}%" ) )
         .order( :name )
     end
+
     # Add another validation at the end, because it uses methods included/defined above
     validates :filename, inclusion: {
-      in:      available_templates,
+      in:      ->( _ ) { available_templates },
       message: I18n.t( 'models.shiny_newsletters.template.template_file_must_exist' )
     }
   end

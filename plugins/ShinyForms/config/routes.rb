@@ -6,6 +6,8 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+require_relative '../../../plugins/ShinyCMS/lib/import_routes'
+
 ShinyForms::Engine.routes.draw do
   scope format: false do
     # Main site
@@ -13,14 +15,10 @@ ShinyForms::Engine.routes.draw do
 
     # Admin area
     scope path: 'admin', module: 'admin' do
-      concern :paginatable do
-        get '(page/:page)', action: :index, on: :collection, as: ''
-      end
-      concern :searchable do
-        get :search, on: :collection
-      end
+      # with_paging and with_search
+      import_routes partial: :admin_route_concerns
 
-      resources :forms, except: :show, concerns: %i[ paginatable searchable ]
+      resources :forms, except: %i[ index show ], concerns: %i[ with_paging with_search ]
     end
   end
 end
