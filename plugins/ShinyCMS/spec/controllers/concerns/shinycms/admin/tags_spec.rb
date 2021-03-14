@@ -18,8 +18,6 @@ RSpec.describe ShinyCMS::Admin::Tags, type: :request do
   describe 'GET /admin/blog/:id/edit' do
     context 'when a visible blog post has tags' do
       it 'they load on its edit page' do
-        skip 'FIXME: fails on CI but not locally'
-
         post = create :blog_post, tag_list: 'test, tag, list'
 
         expect( post.tag_list.present?        ).to be true
@@ -34,8 +32,6 @@ RSpec.describe ShinyCMS::Admin::Tags, type: :request do
 
     context 'when a hidden blog post has tags' do
       it 'they load on its edit page' do
-        skip 'FIXME: fails on CI but not locally'
-
         post = create :blog_post, tag_list: 'test, tag, list'
         post.update!( show_on_site: false )
 

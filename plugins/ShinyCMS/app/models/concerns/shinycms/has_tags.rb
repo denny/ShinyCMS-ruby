@@ -15,7 +15,7 @@ module ShinyCMS
     included do
       # Create two contexts; one for normal tags, one to stash hidden tags in
 
-      acts_as_taggable_on :tags, :hidden_tags
+      acts_as_ordered_taggable_on :tags, :hidden_tags
 
       # Adjust show/hide context for tags based on resource show/hide status
 
