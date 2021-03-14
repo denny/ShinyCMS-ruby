@@ -10,9 +10,10 @@
 
 # Several of these were copied or adapted from https://github.com/resool/blazer-demo
 
+# :nocov: The tests don't need this data loaded
 return if Rails.env.test?
 
-# :nocov:
+return if ENV.fetch( 'DISABLE_BLAZER', 'false' ).downcase == 'true'
 
 # Dashboard
 dashboard = Blazer::Dashboard.where( name: 'Default Dashboard' ).first_or_create!

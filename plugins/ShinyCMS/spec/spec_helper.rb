@@ -6,17 +6,17 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Main config for test suite
+# Main config for test suite - pulled into main_app by /spec/spec_helper
+#
+# Rails-specific test config lives in plugins/ShinyCMS/spec/rails_helper.rb
 #
 # The ShinyHostApp `.rspec` file contains `--require spec_helper` which will
-# cause this file to always be loaded, without a need to explicitly require it.
+# cause this file to always be loaded, without a need to explicitly require it
 #
-# Given that it is always loaded, you are encouraged to keep this file as
+# Given that it is always loaded, it's good practice to keep this file as
 # light as possible. Requiring heavyweight dependencies from this file will
-# add to the boot time of your test suite on EVERY test run, even for an
+# add to the boot time of the test suite on EVERY test run, even for an
 # individual file that may not need all of that loaded.
-#
-# Rails-specific test config should go in spec/rails_helper.rb
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
@@ -59,12 +59,11 @@ RSpec.configure do |config|
     config.profile_examples = ENV[ 'SHOW_SLOW_SPECS' ].to_i if ENV[ 'SHOW_SLOW_SPECS' ]
   end
 
-  # rspec-expectations config goes here. You can use an alternate
-  # assertion/expectation library such as wrong or the stdlib/minitest
-  # assertions if you prefer.
+  # rspec-expectations config. You can use an alternate assertion/expectation
+  # library such as wrong or the stdlib/minitest assertions if you prefer.
   config.expect_with :rspec do |expectations|
-    # This option will default to `true` in RSpec 4. It makes the `description`
-    # and `failure_message` of custom matchers include text for helper methods
+    # This option makes the `description` and `failure_message` of custom matchers
+    # include text for helper methods. It will default to `true` in RSpec 4.
     # defined using `chain`, e.g.:
     #     be_bigger_than(2).and_smaller_than(4).description
     #     # => "be bigger than 2 and smaller than 4"
@@ -77,8 +76,7 @@ RSpec.configure do |config|
   # library (such as bogus or mocha) by changing the `mock_with` option here.
   config.mock_with :rspec do |mocks|
     # Prevents you from mocking or stubbing a method that does not exist on
-    # a real object. This is generally recommended, and will default to
-    # `true` in RSpec 4.
+    # a real object. This will default to `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
 

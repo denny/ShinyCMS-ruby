@@ -10,13 +10,3 @@ en:
   shinycms:
     feature_flags:
       shiny_seo: ShinySEO
-
-  shiny_seo:
-    admin:
-      menu: SEO
-      sitemaps:
-        index:
-          title: Sitemaps
-      metatags:
-        index:
-          title: Meta-tags

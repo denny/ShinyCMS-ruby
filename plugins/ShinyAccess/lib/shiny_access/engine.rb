@@ -6,8 +6,6 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Rails::Engine config for ShinyAccess
-
 module ShinyAccess
   # Loads Rails::Engine features
   class Engine < ::Rails::Engine
@@ -21,7 +19,7 @@ module ShinyAccess
 
     initializer 'shiny_access.factories', after: 'factory_bot.set_factory_paths' do
       plugin_factories = File.expand_path( '../../spec/factories', __dir__ )
-      FactoryBot.definition_file_paths << plugin_factories if defined? FactoryBot
+      FactoryBot.definition_file_paths << plugin_factories
     end
   end
 end

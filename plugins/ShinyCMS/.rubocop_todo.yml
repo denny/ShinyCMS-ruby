@@ -24,7 +24,6 @@ RSpec/AnyInstance:
 # Configuration parameters: AssignmentOnly.
 RSpec/InstanceVariable:
   Exclude:
-    - 'spec/mailers/shinycms/discussion_mailer_spec.rb'
     - 'spec/models/shinycms/discussion_spec.rb'
     - 'spec/requests/shinycms/admin/comments_controller_spec.rb'
     - 'spec/requests/shinycms/admin/discussions_controller_spec.rb'

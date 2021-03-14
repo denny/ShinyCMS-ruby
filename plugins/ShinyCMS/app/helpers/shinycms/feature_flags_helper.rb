@@ -10,7 +10,7 @@ module ShinyCMS
   # Helper method for checking feature flag status in views
   module FeatureFlagsHelper
     def feature_enabled?( feature_name )
-      return FeatureFlag.enabled? feature_name unless defined? current_user
+      return FeatureFlag.enabled? feature_name unless current_user
 
       FeatureFlag.enabled? feature_name, current_user
     end

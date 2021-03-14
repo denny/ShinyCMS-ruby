@@ -8,10 +8,10 @@
 
 # Airbrake config: https://github.com/airbrake/airbrake-ruby#configuration
 
+# :nocov: Airbrake is not loaded in test env
+
 # Only load Airbrake if its ENV vars are set
 return if ENV[ 'AIRBRAKE_API_KEY' ].blank? || ENV[ 'AIRBRAKE_PROJECT_ID' ].blank?
-
-# :nocov: Airbrake is not loaded in test env
 
 Airbrake.configure do |c|
   # To find your project_id and project_key navigate to your project's
