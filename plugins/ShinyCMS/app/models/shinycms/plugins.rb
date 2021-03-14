@@ -96,10 +96,19 @@ module ShinyCMS
     end
 
     def build_plugins_from_names( requested_names )
-      # We need .to_a on the end of the first line because a💎 doesn't have .intersection (or &)
-      names_to_symbols = requested_names.collect( &:to_s ).collect( &:to_sym ).to_a
-      names_that_exist = names_to_symbols.intersection( Plugins.all_plugin_names )
+      names_as_symbols = coerce_to_symbols( requested_names )
+      names_that_exist = check_against_filenames( names_as_symbols )
+
       💎ify[ names_that_exist.collect { |name| ShinyCMS::Plugin.get( name ) } ]
+    end
+
+    def coerce_to_symbols( requested_names )
+      requested_names.collect( &:to_s ).collect( &:to_sym )
+    end
+
+    def check_against_filenames( requested_names )
+      # We need .to_a here because a💎 doesn't have .intersection (or &)
+      requested_names.to_a.intersection( Plugins.all_plugin_names )
     end
   end
 end
