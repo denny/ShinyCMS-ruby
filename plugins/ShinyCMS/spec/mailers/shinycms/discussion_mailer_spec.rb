@@ -10,8 +10,8 @@ require 'rails_helper'
 
 # Tests for the discussion mailer (comment/content reply notifications)
 RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
-  before do
-    ShinyCMS::FeatureFlag.enable :comment_notifications
+  after do
+    ShinyCMS::FeatureFlag.disable :send_emails
   end
 
   let( :discussion ) { create :discussion, resource: ( create :blog_post )          }
@@ -24,6 +24,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
         top   = create :top_level_comment, discussion: discussion, author: user
         reply = create :nested_comment, parent: top, discussion: discussion
 
+        ShinyCMS::FeatureFlag.enable :send_emails
         email = described_class.with( comment: reply ).parent_comment_author_notification
 
         subject = I18n.t(
@@ -44,6 +45,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
 
         reply = create :nested_comment, parent: top, discussion: discussion
 
+        ShinyCMS::FeatureFlag.enable :send_emails
         email = described_class.with( comment: reply ).parent_comment_author_notification
 
         subject = I18n.t(
@@ -63,9 +65,11 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
 
         reply = create :nested_comment, parent: top, discussion: discussion
 
+        ShinyCMS::FeatureFlag.enable :send_emails
         email = described_class.with( comment: reply ).parent_comment_author_notification
 
-        # (email is a NullMail object here, inside some sort of delivery wrapper)
+        # email.class == ActionMailer::Parameterized::MessageDelivery
+        # email.message.class == ActionMailer::Base::NullMail
         expect( email.subject ).to be_blank
         expect( email.body    ).to be_blank
       end
@@ -77,9 +81,10 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
 
         reply = create :nested_comment, parent: top, discussion: discussion
 
+        ShinyCMS::FeatureFlag.enable :send_emails
         email = described_class.with( comment: reply ).parent_comment_author_notification
 
-        expect( email.subject ).to be_blank  # NullMail object, as above
+        expect( email.subject ).to be_blank  # NullMail gubbins again
         expect( email.body    ).to be_blank
       end
     end
@@ -89,6 +94,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
     it 'generates email to author/owner of content that the discussion is attached to' do
       comment = create :top_level_comment, discussion: discussion
 
+      ShinyCMS::FeatureFlag.enable :send_emails
       email = described_class.with( comment: comment ).content_author_notification
 
       subject = I18n.t(
@@ -108,6 +114,7 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
 
       ShinyCMS::Setting.set :all_comment_notifications_email, to: ShinyCMS::User.first.email
 
+      ShinyCMS::FeatureFlag.enable :send_emails
       email = described_class.with( comment: comment ).comment_admin_notification
 
       subject = I18n.t(

@@ -11,6 +11,14 @@ require 'rails_helper'
 # Tests for job that sends a single copy of a newsletter edition to a subscriber
 module ShinyNewsletters
   RSpec.describe SendToSubscriberJob do
+    before do
+      ShinyCMS::FeatureFlag.enable :send_emails
+    end
+
+    after do
+      ShinyCMS::FeatureFlag.disable :send_emails
+    end
+
     describe '.perform_later' do
       it 'queues a send-to-subscriber job' do
         subscriber1 = create :email_recipient, :confirmed
@@ -35,13 +43,13 @@ module ShinyNewsletters
           result = described_class.perform_now( send1, subscriber1 )
 
           expect( result ).to be_a Mail::Message
+
+          expect( result.perform_deliveries ).to be true
         end
       end
 
       context 'with a valid send and an unconfirmed subscriber' do
         it 'does build an email, but it is not deliverable' do
-          skip 'TODO: FIXME: .perform_deliveries should be false but it is not'
-
           subscriber1 = create :email_recipient
           send1       = create :newsletter_send
           consent1    = create :consent_version

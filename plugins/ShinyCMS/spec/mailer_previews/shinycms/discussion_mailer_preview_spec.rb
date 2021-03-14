@@ -22,6 +22,12 @@ RSpec.describe ShinyCMS::DiscussionMailerPreview, type: :request do
     create :nested_comment, discussion: d, parent: c
 
     ShinyCMS::Setting.set( :all_comment_notifications_email, to: 'test@example.com' )
+
+    ShinyCMS::FeatureFlag.enable :send_emails
+  end
+
+  after do
+    ShinyCMS::FeatureFlag.disable :send_emails
   end
 
   describe '.overview_notification' do

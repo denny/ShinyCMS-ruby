@@ -10,6 +10,14 @@ require 'rails_helper'
 
 # Tests for the user mailer (used by Devise)
 RSpec.describe ShinyCMS::UserMailer, type: :mailer do
+  before do
+    ShinyCMS::FeatureFlag.enable :send_emails
+  end
+
+  after do
+    ShinyCMS::FeatureFlag.disable :send_emails
+  end
+
   let( :user  ) { create :user }
   let( :token ) { 'TEST_TOKEN' }
 
