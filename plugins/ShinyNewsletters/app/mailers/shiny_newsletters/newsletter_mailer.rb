@@ -11,7 +11,6 @@ module ShinyNewsletters
   class NewsletterMailer < ShinyCMS::ApplicationMailer
     before_action :stash_subscriber_and_user
     before_action :stash_content
-    before_action :add_view_path
 
     layout 'shiny_newsletters/layouts/newsletter_mailer'
 
@@ -40,10 +39,6 @@ module ShinyNewsletters
       @edition  = params[:edition]
 
       @elements = @edition.elements_hash
-    end
-
-    def add_view_path
-      add_to_view_paths 'plugins/ShinyNewsletters/app/views'
     end
   end
 end

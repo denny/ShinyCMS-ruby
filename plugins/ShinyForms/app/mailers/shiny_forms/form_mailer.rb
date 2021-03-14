@@ -14,12 +14,7 @@ module ShinyForms
     before_action { @form_name = params[:form_name] }
     before_action { @form_data = params[:form_data] }
 
-    before_action :add_view_path
-
     default from: -> { default_email }
-
-    # Probably no point tracking emails being delivered to site admins
-    track open: false, click: false
 
     def plain_email
       mail to: @to, subject: email_subject, &:text
@@ -48,12 +43,9 @@ module ShinyForms
       enforce_feature_flags :shiny_forms_emails
     end
 
-    def add_view_path
-      add_to_view_paths 'plugins/ShinyForms/app/views'
-    end
-
     def check_ok_to_email
-      # Probably not important currently - form handlers only email site admins - but that could change
+      # Not really necessary currently, as the existing form handlers only
+      # send email to site admins anyway - but that could change in future
       enforce_do_not_contact @to
     end
   end
