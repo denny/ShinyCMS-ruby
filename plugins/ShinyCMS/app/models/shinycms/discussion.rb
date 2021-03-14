@@ -64,6 +64,31 @@ module ShinyCMS
 
     # Class methods
 
+    # Trigger whichever notification emails are appropriate for a given comment
+    def self.send_notifications( comment )
+      parent_author, content_author, admin = email_addresses_to_notify( comment )
+
+      mailer = DiscussionMailer.with( comment: comment )
+
+      mailer.parent_comment_author_notification if parent_author.present?
+
+      mailer.content_author_notification unless blank_or_already_emailed? content_author, [ parent_author ]
+
+      mailer.comment_admin_notification unless blank_or_already_emailed? admin, [ parent_author, content_author ]
+    end
+
+    def self.email_addresses_to_notify( comment )
+      [
+        comment.parent&.notification_email,
+        comment.discussion.notification_email,
+        ShinyCMS::Setting.get( :all_comment_notifications_email )
+      ]
+    end
+
+    def self.blank_or_already_emailed?( email, previous_emails )
+      ( [ nil, '' ] + previous_emails ).include? email
+    end
+
     def self.recently_active( days: 7, count: 10 )
       counts = Comment.visible.since( days.days.ago ).group( :discussion_id )
                       .order( 'count(id) desc' ).limit( count ).count

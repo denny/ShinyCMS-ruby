@@ -13,7 +13,6 @@ module ShinyCMS
     before_action :stash_parent_comment_author, only: :parent_comment_author_notification
     before_action :stash_content_author,        only: :content_author_notification
     before_action :stash_comment_admin,         only: :comment_admin_notification
-    before_action :add_view_path
 
     def parent_comment_author_notification
       return if @user.blank?
@@ -38,29 +37,10 @@ module ShinyCMS
       end
     end
 
-    # Trigger as many of the above as is appropriate for a given comment
-    def self.send_notifications( comment )
-      parent_author  = comment.parent&.notification_email
-      content_author = comment.discussion.notification_email
-      admin          = ShinyCMS::Setting.get :all_comment_notifications_email
-
-      with_comment = with( comment: comment )
-
-      with_comment.parent_comment_author_notification if parent_author.present?
-
-      with_comment.content_author_notification unless blank_or_already_emailed? content_author, [ parent_author ]
-
-      with_comment.comment_admin_notification unless blank_or_already_emailed? admin, [ parent_author, content_author ]
-    end
-
-    def self.blank_or_already_emailed?( email, previous_emails )
-      ( [ nil ] + previous_emails ).include? email
-    end
-
     private
 
     def check_feature_flags
-      enforce_feature_flags :comment_notifications
+      enforce_feature_flags :comments, :comment_notifications
     end
 
     def stash_content
@@ -91,10 +71,6 @@ module ShinyCMS
 
     def check_ok_to_email
       enforce_ok_to_email @user if @user.present?
-    end
-
-    def add_view_path
-      add_to_view_paths 'plugins/ShinyCMS/app/views/shinycms'
     end
 
     def parent_comment_author_notification_subject
