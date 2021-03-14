@@ -8,30 +8,21 @@
 
 # Import routes from 'partial routes files' into a routes.draw block
 
-module ActionDispatch
-  module Routing
-    # Monkey patch the route mapper to allow 'route partials'
-    class Mapper
-      # Pass in the name (without .rb) of a routes partial file, and
-      # optionally, the plugin that provides that partial (defaults to the
-      # ShinyCMS core plugin if not specified). The file must be located in
-      # in the config/routes directory in a plugin, and should contain one
-      # or more valid route definitions that go inside a routes.draw block.
-      # Both params can be passed as a symbol or a string.
-      #
-      # Examples:
-      #   import_routes partial: :admin_area
-      #   import_routes partial: :top_level_pages, plugin: :ShinyPages
+# Pass in the name (without .rb) of a routes partial file, and
+# optionally, the plugin that provides that partial (defaults to the
+# ShinyCMS core plugin if not specified). The file must be located in
+# in the config/routes directory in a plugin, and should contain one
+# or more valid route definitions that go inside a routes.draw block.
+# Both params can be passed as a symbol or a string.
+#
+# Examples:
+#   import_routes partial: :admin_area
+#   import_routes partial: :top_level_pages, plugin: :ShinyPages
 
-      def import_routes( partial:, plugin: 'ShinyCMS' )
-        raise ArgumentError, 'Partial name must be specified' if partial.blank?
+def import_routes( partial:, plugin: :ShinyCMS )
+  full_path = Rails.root.join "plugins/#{plugin}/config/routes/#{partial}.rb"
 
-        instance_eval(
-          File.read(
-            Rails.root.join( "plugins/#{plugin}/config/routes/#{partial}.rb" )
-          )
-        )
-      end
-    end
-  end
+  raise ArgumentError, 'Partial file not found' unless File.file? full_path
+
+  instance_eval( File.read( full_path ) )
 end
