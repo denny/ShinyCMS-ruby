@@ -58,8 +58,8 @@ module ShinyCMS
       self.number = discussion.next_comment_number
     end
 
-    # Returns the path to a comment's parent resource, anchored to the comment
-    # Tries to fall back gracefully if comment is deleted/marked as spam
+    # Returns the path to a comment's parent resource, anchored to this specific comment
+    # (or to the top of the comment section, if this comment was just deleted or marked as spam)
     def anchored_path
       anchor = number
       anchor = 'comments' if destroyed? || spam?
@@ -70,7 +70,7 @@ module ShinyCMS
     alias path anchored_path
 
     def send_notifications
-      DiscussionMailer.send_notifications( self )
+      Discussion.send_notifications( self ) if FeatureFlag.enabled? :comment_notifications
     end
 
     def authenticated_author?

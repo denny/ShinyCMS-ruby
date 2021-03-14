@@ -52,6 +52,9 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
+# Stash current email-sending setting
+send_emails = ShinyCMS::FeatureFlag.enabled? :send_emails
+
 RSpec.configure do |config|
   config.before( :suite ) do
     DatabaseCleaner.clean_with :truncation
@@ -60,38 +63,27 @@ RSpec.configure do |config|
     Rails.application.load_tasks
     Rake::Task['db:seed'].invoke
 
-    # These default to off for privacy, but we want to test the integration
+    # These features default to off for privacy or security, but we want to test them
     ShinyCMS::FeatureFlag.enable :ahoy_web_tracking
     ShinyCMS::FeatureFlag.enable :ahoy_email_tracking
+    ShinyCMS::FeatureFlag.enable :user_registration
+    ShinyCMS::FeatureFlag.enable :user_login
+
+    # Only send emails when that's what we're testing
+    ShinyCMS::FeatureFlag.disable :send_emails
   end
 
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.after( :suite ) do
+    # Restore original email-sending setting
+    ShinyCMS::FeatureFlag.enable if send_emails
+  end
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
+  # See spec/support/shinycms/error_responses.rb
+  config.around( production_error_responses: true ) do |test|
+    disable_detailed_exceptions( &test )
+  end
 
-  # RSpec Rails can automatically mix in different behaviours to your tests
-  # based on their file location, for example enabling you to call `get` and
-  # `post` in specs under `spec/controllers`.
-  #
-  # You can disable this behaviour by removing the line below, and instead
-  # explicitly tag your specs with their type, e.g.:
-  #
-  #     RSpec.describe UsersController, :type => :controller do
-  #       # ...
-  #     end
-  #
-  # The different available types are documented in the features, such as in
-  # https://relishapp.com/rspec/rspec-rails/docs
-  config.infer_spec_type_from_file_location!
-
-  # Filter lines from Rails gems in backtraces.
-  config.filter_rails_from_backtrace!
-  # arbitrary gems may also be filtered via:
-  # config.filter_gems_from_backtrace("gem name")
+  config.include ShinyCMS::ErrorResponses
 
   # Load the Devise test helpers
   config.include Devise::Test::IntegrationHelpers, type: :request
@@ -101,9 +93,22 @@ RSpec.configure do |config|
   # expect( response.body ).to have_title 'My Page Title'
   config.include Capybara::RSpecMatchers, type: :request
 
-  config.include ShinyCMS::ErrorResponses
+  # RSpec Rails can automatically mix in different behaviours to your tests
+  # based on their file location, for example enabling you to call `get` and
+  # `post` in specs under `spec/controllers`.
+  #
+  # https://relishapp.com/rspec/rspec-rails/docs
+  config.infer_spec_type_from_file_location!
 
-  config.around( production_error_responses: true ) do |test|
-    disable_detailed_exceptions( &test )
-  end
+  # Filter lines from Rails gems in backtraces.
+  config.filter_rails_from_backtrace!
+  # arbitrary gems may also be filtered via:
+  # config.filter_gems_from_backtrace("gem name")
+
+  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
+  # If you're not using ActiveRecord, or you'd prefer not to run each of your
+  # examples within a transaction, remove the following line or set to false
+  config.use_transactional_fixtures = true
 end

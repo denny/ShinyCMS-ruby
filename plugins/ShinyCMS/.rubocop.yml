@@ -150,6 +150,10 @@ Style/CollectionMethods:
   PreferredMethods:
     map: collect
 
+# Used in some mailers to include an explanatory comment with empty check-dnc methods
+Style/CommentedKeyword:
+  Enabled: false
+
 # I think this makes code significantly harder to read, personally
 Style/ConditionalAssignment:
   Enabled: false

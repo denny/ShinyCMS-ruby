@@ -11,6 +11,14 @@ require 'rails_helper'
 # Tests for job that sends a single copy of a newsletter edition to a subscriber
 module ShinyNewsletters
   RSpec.describe SendToSubscriberJob do
+    before do
+      ShinyCMS::FeatureFlag.enable :send_emails
+    end
+
+    after do
+      ShinyCMS::FeatureFlag.disable :send_emails
+    end
+
     describe '.perform_later' do
       it 'queues a send-to-subscriber job' do
         subscriber1 = create :email_recipient, :confirmed
@@ -24,24 +32,60 @@ module ShinyNewsletters
     end
 
     describe '.perform_now' do
-      it 'with a valid send and subscriber' do
-        subscriber1 = create :email_recipient, :confirmed
-        send1       = create :newsletter_send
-        consent1    = create :consent_version
+      context 'with a valid send and subscriber' do
+        it 'builds an email for delivery' do
+          subscriber1 = create :email_recipient, :confirmed
+          send1       = create :newsletter_send
+          consent1    = create :consent_version
 
-        send1.list.subscribe( subscriber1, consent1 )
+          send1.list.subscribe( subscriber1, consent1 )
 
-        result = described_class.perform_now( send1, subscriber1 )
+          result = described_class.perform_now( send1, subscriber1 )
 
-        expect( result ).to be_a Mail::Message
+          expect( result ).to be_a Mail::Message
+
+          expect( result.perform_deliveries ).to be true
+        end
       end
 
-      context 'with an already-sent Send' do
-        it 'bails out before sending' do
+      context 'with a valid send and an unconfirmed subscriber' do
+        it 'does build an email, but it is not deliverable' do
+          subscriber1 = create :email_recipient
+          send1       = create :newsletter_send
+          consent1    = create :consent_version
+
+          send1.list.subscribe( subscriber1, consent1 )
+
+          result = described_class.perform_now( send1, subscriber1 )
+
+          expect( result ).to be_a Mail::Message
+
+          expect( result.perform_deliveries ).to be false
+        end
+      end
+
+      context 'with a valid send and a non-subscriber' do
+        it 'does not build an email for delivery' do
+          subscriber1 = create :email_recipient, :confirmed
+          send1       = create :newsletter_send
+
+          result = described_class.perform_now( send1, subscriber1 )
+
+          expect( result ).to be_nil
+        end
+      end
+
+      context 'with an already-sent Send and a valid subscriber' do
+        it 'does not build an email for delivery' do
           subscriber1 = create :email_recipient, :confirmed
           send1       = create :newsletter_send_sent
+          consent1    = create :consent_version
 
-          expect( described_class.perform_now( send1, subscriber1 ) ).to be_nil
+          send1.list.subscribe( subscriber1, consent1 )
+
+          result = described_class.perform_now( send1, subscriber1 )
+
+          expect( result ).to be_nil
         end
       end
     end

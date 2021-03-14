@@ -67,18 +67,14 @@ RemoveUnusedMethodsInControllersCheck: { except_methods: [
   'ShinyPages::Admin::TemplatesController#load_html_editor?'
 ] }
 
-# First six used in templates, last four in mailers
+# Used in templates
 RemoveUnusedMethodsInHelpersCheck: { except_methods: [
   'ShinyAccess::MainSiteHelper#current_user_can_access?',
   'ShinyAccess::MainSiteHelper#access_group_name',
   'ShinyForms::MainSiteHelper#find_form_by_slug',
   'ShinyInserts::MainSiteHelper#insert',
   'ShinyInserts::MainSiteHelper#insert_type?',
-  'ShinyLists::MainSiteHelper#find_list_by_slug',
-  'ShinyCMS::MailerHelper#add_view_paths',
-  'ShinyCMS::MailerHelper#default_email',
-  'ShinyCMS::MailerHelper#track_opens?',
-  'ShinyCMS::MailerHelper#track_clicks?'
+  'ShinyLists::MainSiteHelper#find_list_by_slug'
 ] }
 
 # First two are aliases; next two override Devise behaviour; rest are in use, probably.

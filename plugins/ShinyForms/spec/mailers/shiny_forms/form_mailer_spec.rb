@@ -12,7 +12,12 @@ require 'rails_helper'
 module ShinyForms
   RSpec.describe FormMailer, type: :mailer do
     before do
+      ShinyCMS::FeatureFlag.enable :send_emails
       ShinyCMS::FeatureFlag.enable :shiny_forms_emails
+    end
+
+    after do
+      ShinyCMS::FeatureFlag.disable :send_emails
     end
 
     let( :default_subject ) do

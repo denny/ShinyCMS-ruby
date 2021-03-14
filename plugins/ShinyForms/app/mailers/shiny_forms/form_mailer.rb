@@ -8,13 +8,13 @@
 
 module ShinyForms
   # Mailers for generic form handlers provided by ShinyForms plugin for ShinyCMS
-  class FormMailer < ApplicationMailer
-    before_action :check_feature_flags
-
+  class FormMailer < ShinyCMS::ApplicationMailer
     before_action { @to = params[:to] || ShinyCMS::Setting.get( :default_email ) }
 
     before_action { @form_name = params[:form_name] }
     before_action { @form_data = params[:form_data] }
+
+    default from: -> { default_email }
 
     def plain_email
       mail to: @to, subject: email_subject, &:text
@@ -41,6 +41,12 @@ module ShinyForms
 
     def check_feature_flags
       enforce_feature_flags :shiny_forms_emails
+    end
+
+    def check_ok_to_email
+      # Not really necessary currently, as the existing form handlers only
+      # send email to site admins anyway - but that could change in future
+      enforce_do_not_contact @to
     end
   end
 end

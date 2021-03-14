@@ -15,7 +15,6 @@ returns the same results as this code using a model:
 * MainSiteHelper     - no code, but includes all the helpers below that are useful on the main site
 
 * AdminAreaHelper    - helper methods for admin area views and controllers
-* MailerHelper       - helper methods for mailers
 
 * PluginsHelper      - the `plugin_loaded?` method
 

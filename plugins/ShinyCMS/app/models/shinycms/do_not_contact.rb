@@ -23,28 +23,28 @@ module ShinyCMS
 
     # Class methods
 
-    def self.add( email )
-      return unless EmailAddress.valid?( email )
+    def self.add( email_to_add )
+      return unless EmailAddress.valid?( email_to_add )
 
-      return :duplicate if list_includes? email
-      return :success   if create!( email: email )
+      return :duplicate if list_includes? email_to_add
+      return :success   if create!( email: email_to_add )
     end
 
-    def self.list_includes?( email )
-      exists? email: canonicalise_and_redact( email )
+    def self.list_includes?( email_to_check )
+      exists? email: canonicalise_and_redact( email_to_check )
     end
 
-    def self.canonicalise_and_redact( email )
-      new_email = EmailAddress.new( email )
-      return email if new_email.redacted?
+    def self.canonicalise_and_redact( email_to_redact )
+      email_validator = EmailAddress.new( email_to_redact )
+      return email_to_redact if email_validator.redacted?
 
-      EmailAddress.redact( new_email.canonical )
+      EmailAddress.redact( email_validator.canonical )
     end
 
     private
 
     def strip_email
-      self.email = email.strip
+      self.email = email.to_s.strip
     end
 
     def redact_email

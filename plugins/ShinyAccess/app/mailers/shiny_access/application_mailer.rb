@@ -7,9 +7,6 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyAccess
-  # Base mailer for ShinyAccess
-  class ApplicationMailer < ActionMailer::Base
-    default from: 'from@example.com'
-    layout 'mailer'
-  end
+  # Not used - Mailers inherit from ShinyCMS::ApplicationMailer
+  class ApplicationMailer < ActionMailer::Base; end
 end

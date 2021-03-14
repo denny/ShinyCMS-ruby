@@ -22,12 +22,18 @@ RSpec.describe ShinyCMS::DiscussionMailerPreview, type: :request do
     create :nested_comment, discussion: d, parent: c
 
     ShinyCMS::Setting.set( :all_comment_notifications_email, to: 'test@example.com' )
+
+    ShinyCMS::FeatureFlag.enable :send_emails
+  end
+
+  after do
+    ShinyCMS::FeatureFlag.disable :send_emails
   end
 
   describe '.overview_notification' do
     it 'shows the overview notification email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'shinycms__discussion_mailer_preview-overview_notification'
+        preview_id: 'shinycms__discussion_mailer_preview-comment_admin_notification'
       )
 
       expect( response.body ).to have_content ' commented on '
@@ -37,7 +43,7 @@ RSpec.describe ShinyCMS::DiscussionMailerPreview, type: :request do
   describe '.discussion_notification' do
     it 'shows the discussion notification email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'shinycms__discussion_mailer_preview-discussion_notification'
+        preview_id: 'shinycms__discussion_mailer_preview-content_author_notification'
       )
 
       expect( response.body ).to have_content 'commented on your news post'
@@ -47,7 +53,7 @@ RSpec.describe ShinyCMS::DiscussionMailerPreview, type: :request do
   describe '.parent_comment_notification' do
     it 'shows the overview notification email' do
       get rails_email_preview.rep_email_path(
-        preview_id: 'shinycms__discussion_mailer_preview-parent_comment_notification'
+        preview_id: 'shinycms__discussion_mailer_preview-parent_comment_author_notification'
       )
 
       expect( response.body ).to have_content 'replied to your comment'

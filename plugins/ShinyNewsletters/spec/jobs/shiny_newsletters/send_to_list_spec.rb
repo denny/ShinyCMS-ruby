@@ -11,6 +11,14 @@ require 'rails_helper'
 # Tests for job that (queues the jobs that) sends a copy of a newsletter edition to everybody on a mailing list
 module ShinyNewsletters
   RSpec.describe SendToListJob do
+    before do
+      ShinyCMS::FeatureFlag.enable :send_emails
+    end
+
+    after do
+      ShinyCMS::FeatureFlag.disable :send_emails
+    end
+
     describe '.perform_now' do
       it 'runs the send-to-list job' do
         list1 = create :mailing_list, subscriber_count: 1
