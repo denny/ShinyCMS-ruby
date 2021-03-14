@@ -10,7 +10,7 @@
 
 # :nocov:
 
-return if ENV[ 'ALGOLIASEARCH_APPLICATION_ID' ].blank? || ENV[ 'ALGOLIASEARCH_API_KEY' ].blank?
+return if ENV[ 'ALGOLIASEARCH_API_KEY' ].blank? || ENV[ 'ALGOLIASEARCH_APPLICATION_ID' ].blank?
 
 AlgoliaSearch.configuration = {
   application_id: ENV[ 'ALGOLIASEARCH_APPLICATION_ID' ],
