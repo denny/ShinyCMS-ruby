@@ -54,7 +54,8 @@ source 'https://rubygems.org' do
   gem 'chartkick', '~> 3.4.2'
 
   # Sail provides a control panel for managing settings
-  gem 'sail', path: '/home/denny/code/denny/sail'
+  gem 'sail'
+  # gem 'sail', path: '/home/denny/code/denny/sail'
 
   group :development, :test do
     # RSpec for Rails
