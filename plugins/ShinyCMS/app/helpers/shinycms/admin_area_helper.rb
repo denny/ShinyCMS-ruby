@@ -17,6 +17,10 @@ module ShinyCMS
       controller.is_a? RailsEmailPreview::ApplicationController
     end
 
+    def sail_controller?
+      controller.is_a? Sail::ApplicationController
+    end
+
     def shinycms_admin_controller?
       controller.is_a?( ShinyCMS::AdminController ) && !blazer_controller? && !rep_controller?
     end

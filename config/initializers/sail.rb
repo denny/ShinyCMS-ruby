@@ -10,16 +10,16 @@
 
 Rails.application.config.to_prepare do
   # Make Sail appear inside our admin UI
+  ::Sail::ApplicationController.prepend_view_path 'plugins/ShinyCMS/app/views/shinycms'
   ::Sail::ApplicationController.layout 'admin/layouts/admin_area'
 
   # Make the main_app url helpers available to Sail's views
-  ::Sail::ApplicationController.helper MainAppRouteDelegator
+  ::Sail::ApplicationController.helper ShinyCMS::RouteDelegator
 
   # Other helpers used in ShinyCMS admin area views (menus, breadcrumbs, etc)
-  ::Sail::ApplicationController.helper AdminAreaHelper
-  ::Sail::ApplicationController.helper ShinyPluginHelper
-  ::Sail::ApplicationController.helper ShinyUserHelper
-  ::Sail::ApplicationController.helper SidekiqHelper
+  ::Sail::ApplicationController.helper ShinyCMS::AdminAreaHelper
+  ::Sail::ApplicationController.helper ShinyCMS::PluginsHelper
+  ::Sail::ApplicationController.helper ShinyCMS::UsersHelper
 end
 
 Sail.configure do |config|
