@@ -77,6 +77,14 @@ module ShinyCMS
       author.is_a? ShinyCMS::User
     end
 
+    def pseudonymous_author?
+      author.is_a? ShinyCMS::PseudonymousAuthor
+    end
+
+    def anonymous_author?
+      author.is_a? ShinyCMS::AnonymousAuthor
+    end
+
     def notification_email
       author.email
     end
