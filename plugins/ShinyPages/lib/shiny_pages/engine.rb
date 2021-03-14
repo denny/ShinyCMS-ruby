@@ -19,7 +19,7 @@ module ShinyPages
 
     initializer 'shiny_pages.factories', after: 'factory_bot.set_factory_paths' do
       plugin_factories = File.expand_path( '../../spec/factories', __dir__ )
-      FactoryBot.definition_file_paths << plugin_factories if defined? FactoryBot
+      FactoryBot.definition_file_paths << plugin_factories
     end
   end
 end

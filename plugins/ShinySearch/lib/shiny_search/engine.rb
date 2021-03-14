@@ -9,9 +9,6 @@
 module ShinySearch
   # Loads Rails::Engine features
   class Engine < ::Rails::Engine
-    require 'algoliasearch-rails'
-    require 'pg_search'
-
     isolate_namespace ShinySearch
 
     config.generators do |g|
@@ -22,7 +19,7 @@ module ShinySearch
 
     initializer 'shiny_search.factories', after: 'factory_bot.set_factory_paths' do
       plugin_factories = File.expand_path( '../../spec/factories', __dir__ )
-      FactoryBot.definition_file_paths << plugin_factories if defined? FactoryBot
+      FactoryBot.definition_file_paths << plugin_factories
     end
   end
 end
