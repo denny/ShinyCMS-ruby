@@ -42,9 +42,26 @@ RSpec.describe ShinyCMS::Plugins, type: :model do
       end
     end
 
+    context 'when a ShinyCMS::Plugins instance is passed in' do
+      it 'returns the same instance' do
+        my_plugins = %i[ ShinyNew ShinySearch ShinySEO ]
+
+        input  = described_class.get( my_plugins )
+        result = described_class.get( input      )
+
+        expect( result ).to be input
+      end
+    end
+
     context 'when a non-existent plugin name is passed in' do
       it 'raises an exception' do
         expect { described_class.get( :FAIL ) }.to raise_error ArgumentError
+      end
+    end
+
+    context 'when the wrong types are passed in' do
+      it 'raises an exception' do
+        expect { described_class.get( [ 1, { two: 3 } ] ) }.to raise_error ArgumentError
       end
     end
   end

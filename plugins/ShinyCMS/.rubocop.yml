@@ -80,8 +80,7 @@ Performance/ChainArrayAllocation:
 
 # Another suggested change that makes the code quite a lot less readable; I'm not keen
 Performance/Casecmp:
-  Exclude:
-    - lib/shinycms.rb
+  Enabled: false
 
 # This is the (hopefully helpful) 'how to create an admin account' message displayed after seed data loads
 Rails/Output:

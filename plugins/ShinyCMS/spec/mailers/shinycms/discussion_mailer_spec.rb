@@ -72,6 +72,8 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
         # email.message.class == ActionMailer::Base::NullMail
         expect( email.subject ).to be_blank
         expect( email.body    ).to be_blank
+
+        expect( email.perform_deliveries ).to be_falsey
       end
     end
 
@@ -86,6 +88,8 @@ RSpec.describe ShinyCMS::DiscussionMailer, type: :mailer do
 
         expect( email.subject ).to be_blank  # NullMail gubbins again
         expect( email.body    ).to be_blank
+
+        expect( email.perform_deliveries ).to be_falsey
       end
     end
   end
