@@ -432,6 +432,11 @@ en:
         menu: Settings (Sail)
         toolbar: Settings
         guide: Sail User Guide
+        refresh_tooltip: Reload
+        relevancy_tooltip: Relevance
+        save: Save
+        stale: Stale
+        stale_tooltip: This setting was last updated %{days}+ days ago
         # profiles:
         #   title: Setting profiles
         settings:

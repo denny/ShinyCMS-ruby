@@ -10,14 +10,14 @@
 <!--
             <div>
               <%= form_tag(reset_setting_path(name: setting.name), method: :put, remote: true) do %>
-                <button class="refresh-button" title="<%= I18n.t("sail.refresh_tooltip") %>">
-                  <%= image_tag("sail/reset.svg", alt: I18n.t("sail.refresh_tooltip")) %>
+                <button class="refresh-button" title="<%= I18n.t("shinycms.admin.sail.refresh_tooltip") %>">
+                  <%= image_tag("sail/reset.svg", alt: I18n.t("shinycms.admin.sail.refresh_tooltip")) %>
                 </button>
               <% end %>
             </div>
 <!--
             <div>
-              <span class="relevancy-score" title="<%= I18n.t("sail.relevancy_tooltip") %>"><%= setting.relevancy %></span>
+              <span class="relevancy-score" title="<%= I18n.t("shinycms.admin.sail.relevancy_tooltip") %>"><%= setting.relevancy %></span>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
 
             <% if setting.stale? %>
               <div>
-                <%= link_to(I18n.t("sail.stale"), settings_path(query: Sail::ConstantCollection::STALE), method: :get, class: "tag stale-label", title: I18n.t("sail.stale_tooltip", days: Sail.configuration.days_until_stale)) %>
+                <%= link_to(I18n.t("shinycms.admin.sail.stale"), settings_path(query: Sail::ConstantCollection::STALE), method: :get, class: "tag stale-label", title: I18n.t("shinycms.admin.sail.stale_tooltip", days: Sail.configuration.days_until_stale)) %>
               </div>
             <% end %>
           </div>
@@ -63,7 +63,7 @@
               <% end %>
 
               <div class="submit-container">
-                <button id="btn-submit-<%= setting.name %>" type="submit" class="btn-value-submit" disabled><%= I18n.t("sail.save") %></button>
+                <button id="btn-submit-<%= setting.name %>" type="submit" class="btn-value-submit" disabled><%= I18n.t("shinycms.admin.sail.save") %></button>
 
                 <span id="success-<%= setting.name %>" class="notice success">
                   <%= image_tag("sail/checkmark.svg") %>
