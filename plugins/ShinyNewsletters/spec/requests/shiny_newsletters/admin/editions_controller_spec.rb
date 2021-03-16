@@ -19,29 +19,45 @@ RSpec.describe ShinyNewsletters::Admin::EditionsController, type: :request do
   end
 
   describe 'GET /admin/newsletters/editions' do
-    it 'fetches the list of editions in the admin area' do
-      edition1 = create :newsletter_edition
+    context 'when there are no newsletter editions' do
+      it "displays the 'no newsletter editions found' message" do
+        get shiny_newsletters.editions_path
 
-      get shiny_newsletters.editions_path
-
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( "#{i18n_root}.index.title" ).titlecase
-      expect( response.body ).to have_css 'td', text: edition1.internal_name
-    end
-
-    describe 'GET /admin/newsletters/editions/search?q=bobx' do
-      it 'fetches the list of editions with matching data' do
-        edition_a = create :newsletter_edition, description: 'Always appetising apples'
-        edition_b = create :newsletter_edition, description: 'Badly bruised bananas'
-
-        get shiny_newsletters.search_editions_path, params: { q: 'appetising apples' }
+        pager_info = 'No newsletter editions found'
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.index.title' ).titlecase
-
-        expect( response.body ).to     have_css 'td', text: edition_a.internal_name
-        expect( response.body ).not_to have_css 'td', text: edition_b.internal_name
+        expect( response.body ).to have_title I18n.t( "#{i18n_root}.index.title" ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
       end
+    end
+
+    context 'when there are newsletter editions' do
+      it 'displays the list of newsletter editions' do
+        create_list :newsletter_edition, 3
+
+        get shiny_newsletters.editions_path
+
+        pager_info = 'Displaying 3 newsletter editions'
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( "#{i18n_root}.index.title" ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
+    end
+  end
+
+  describe 'GET /admin/newsletters/editions/search?q=bobx' do
+    it 'fetches the list of editions with matching data' do
+      edition_a = create :newsletter_edition, description: 'Always appetising apples'
+      edition_b = create :newsletter_edition, description: 'Badly bruised bananas'
+
+      get shiny_newsletters.search_editions_path, params: { q: 'appetising apples' }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.index.title' ).titlecase
+
+      expect( response.body ).to     have_css 'td', text: edition_a.internal_name
+      expect( response.body ).not_to have_css 'td', text: edition_b.internal_name
     end
   end
 

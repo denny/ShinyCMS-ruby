@@ -29,16 +29,16 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// TODO
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed.
-  config.filebrowserBrowseUrl = "/admin/ckeditor/attachment_files";
+  config.filebrowserBrowseUrl = "/admin/tools/ckeditor/attachment_files";
 	// The location of a script that handles file uploads.
-  config.filebrowserUploadUrl = "/admin/ckeditor/attachment_files";
+  config.filebrowserUploadUrl = "/admin/tools/ckeditor/attachment_files";
 
 	// The location of an external file browser, that should be launched when "Browse Server" button is pressed in the Image dialog.
-  config.filebrowserImageBrowseUrl = "/admin/ckeditor/pictures";
+  config.filebrowserImageBrowseUrl = "/admin/tools/ckeditor/pictures";
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed in the Link tab of Image dialog.
-  config.filebrowserImageBrowseLinkUrl = "/admin/ckeditor/pictures";
+  config.filebrowserImageBrowseLinkUrl = "/admin/tools/ckeditor/pictures";
   // The location of a script that handles file uploads in the Image dialog.
-  config.filebrowserImageUploadUrl = "/admin/ckeditor/pictures?";
+  config.filebrowserImageUploadUrl = "/admin/tools/ckeditor/pictures?";
 
 
 	// ... apparently removing the next line causes weirdness to occur ¯\_(ツ)_/¯

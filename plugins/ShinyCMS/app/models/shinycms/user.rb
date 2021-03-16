@@ -31,6 +31,10 @@ module ShinyCMS
     validates :username, length: { maximum: 50 }
     validates :username, format: ANCHORED_USERNAME_REGEX
 
+    # Scopes
+
+    scope :with_profiles, -> { includes( [ :profile ] ) }
+
     # Instance methods
 
     def name

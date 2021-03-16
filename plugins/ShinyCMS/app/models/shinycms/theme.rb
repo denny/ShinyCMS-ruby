@@ -47,6 +47,13 @@ module ShinyCMS
       FileTest.directory?( Rails.root.join( "themes/#{theme_name}" ) )
     end
 
+    def self.template_dir( more_path = '' )
+      theme = get
+      return if theme.blank?
+
+      theme.template_dir( more_path )
+    end
+
     def self.user_theme( user )
       return if user.blank?
 

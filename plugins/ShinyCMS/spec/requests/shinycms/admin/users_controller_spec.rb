@@ -16,15 +16,22 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
       sign_in admin
     end
 
+    let( :test_username ) { Faker::Internet.unique.username( specifier:   5 ) }
+    let( :test_password ) { Faker::Internet.unique.password( min_length: 10 ) }
+
+    let( :test_email ) { Faker::Internet.unique.email( name: test_username ) }
+
     describe 'GET /admin/users' do
-      it 'fetches the list of users in the admin area' do
-        user = create :user
+      it 'displays the list of users' do
+        create_list :user, 3
 
         get shinycms.users_path
 
+        pager_info = 'Displaying 4 users'  # including the admin user
+
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
-        expect( response.body ).to include user.username
+        expect( response.body ).to have_css '.pager-info', text: pager_info
       end
 
       it 'handles page number and items-per-page params correctly' do
@@ -76,16 +83,13 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.new.title' ).titlecase
+        expect( response.body ).to have_field 'user[username]'
       end
     end
 
     describe 'POST /admin/user/new' do
       it 'fails when the form is submitted without all the details' do
-        post shinycms.users_path, params: {
-          user: {
-            username: Faker::Internet.unique.username
-          }
-        }
+        post shinycms.users_path, params: { user: { username: test_username } }
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.new.title' ).titlecase
@@ -93,13 +97,13 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
       end
 
       it 'fails when the username collides with an existing username' do
-        create :user, username: 'test'
+        create :user, username: 'existing_user'
 
         post shinycms.users_path, params: {
           user: {
-            username: 'test',
-            password: Faker::Internet.unique.password,
-            email:    Faker::Internet.unique.email
+            username: 'existing_user',
+            password: test_password,
+            email:    test_email
           }
         }
 
@@ -109,13 +113,11 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
       end
 
       it 'adds a new user when the form is submitted' do
-        username = Faker::Internet.unique.username
-
         post shinycms.users_path, params: {
           user: {
-            username: username,
-            password: Faker::Internet.unique.password,
-            email:    Faker::Internet.unique.email( name: username )
+            username: test_username,
+            password: test_password,
+            email:    test_email
           }
         }
 
@@ -124,6 +126,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase
+        expect( response.body ).to have_field 'user[username]', with: test_username
         expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shinycms.admin.users.create.success' )
       end
     end
@@ -136,6 +139,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
 
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase
+        expect( response.body ).to     have_field 'user[username]', with: user.username
         expect( response.body ).not_to have_css 'th', text: I18n.t( 'shinycms.capability.capabilities' )
       end
     end
@@ -144,11 +148,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
       it 'fails to update the user when submitted with a blank username' do
         user = create :user
 
-        put shinycms.user_path( user ), params: {
-          user: {
-            username: ''
-          }
-        }
+        put shinycms.user_path( user ), params: { user: { username: '' } }
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase
@@ -158,11 +158,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
       it 'updates the user when the form is submitted' do
         user = create :user
 
-        put shinycms.user_path( user ), params: {
-          user: {
-            username: 'new_username'
-          }
-        }
+        put shinycms.user_path( user ), params: { user: { username: 'new_username' } }
 
         expect( response      ).to have_http_status :found
         expect( response      ).to redirect_to shinycms.edit_user_path( user )
@@ -170,7 +166,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase
         expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shinycms.admin.users.update.success' )
-        expect( response.body ).to include 'new_username'
+        expect( response.body ).to have_field 'user[username]', with: 'new_username'
       end
     end
 
@@ -237,9 +233,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
 
       expect( user.capabilities.length ).to eq 0
 
-      put shinycms.user_path( user ), params: {
-        "#{field_name}": 'on'
-      }
+      put shinycms.user_path( user ), params: { "#{field_name}": 'on' }
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shinycms.edit_user_path( user )

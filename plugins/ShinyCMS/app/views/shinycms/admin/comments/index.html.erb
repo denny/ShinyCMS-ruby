@@ -47,7 +47,7 @@
 </table>
 <% end %>
 
-<%= render partial: 'admin/includes/pager', locals: { pagy: @pagy } %>
+<%= render partial: 'admin/includes/pager', locals: { pagy: @pagy, name: @comments.name } %>
 
 <script>
   function toggle_select_all() {

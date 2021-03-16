@@ -49,7 +49,7 @@ RSpec.describe 'Feature Flags: main site features', type: :request do
     end
   end
 
-  describe 'GET /profile/{username}' do
+  context 'with Profile Pages feature only enabled for admins' do
     before do
       ShinyCMS::FeatureFlag.find_by!( name: 'user_profiles' ).update!(
         enabled:               false,
@@ -58,7 +58,7 @@ RSpec.describe 'Feature Flags: main site features', type: :request do
       )
     end
 
-    context 'with Profile Pages feature only enabled for admins' do
+    describe 'GET /profile/{username}' do
       it 'succeeds for an admin user' do
         user = create :admin_user
         sign_in user
@@ -88,6 +88,40 @@ RSpec.describe 'Feature Flags: main site features', type: :request do
             feature_name: I18n.t( 'shinycms.feature_flags.user_profiles' )
           )
         )
+      end
+    end
+  end
+
+  context 'with comments feature only enabled for logged-in users' do
+    before do
+      ShinyCMS::FeatureFlag.find_by!( name: 'comments' ).update!(
+        enabled:               false,
+        enabled_for_logged_in: true,
+        enabled_for_admins:    true
+      )
+      comment
+    end
+
+    let( :post       ) { create :news_post                       }
+    let( :discussion ) { create :discussion, resource: post      }
+    let( :comment    ) { create :comment, discussion: discussion }
+
+    describe 'GET /news/1984/12/tests' do
+      it 'displays discussion if user is logged in' do
+        user = create :user
+        sign_in user
+
+        get post.path
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_css 'a', text: 'Reply to this post'
+      end
+
+      it 'does not display discusion if user is not logged in' do
+        get post.path
+
+        expect( response      ).to     have_http_status :ok
+        expect( response.body ).not_to have_css 'a', text: 'Reply to this post'
       end
     end
   end

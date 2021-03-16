@@ -2,7 +2,6 @@
 
 <% comment ||= nil %>
 <% if comment.present? %>
-  <% discussion = comment.discussion %>
   <% form_url = shinycms.comment_path( discussion, comment.number ) %>
   <% num = "_#{comment.number}" %>
 <% else %>

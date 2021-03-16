@@ -14,6 +14,8 @@ module ShinyCMS
     included do
       validates :template, presence: true
 
+      scope :with_elements, -> { includes( [ :elements ] ) }
+
       after_create :add_elements
 
       # Add the elements specified by the template
@@ -32,9 +34,11 @@ module ShinyCMS
       def elements_hash
         elements.collect { |element| [ element.name.to_sym, ( element.image.presence || element.content ) ] }.to_h
       end
+    end
 
+    class_methods do
       # Templated resources need to be inserted after their Templates and their Template Elements
-      def self.demo_data_position
+      def my_demo_data_position
         3
       end
     end

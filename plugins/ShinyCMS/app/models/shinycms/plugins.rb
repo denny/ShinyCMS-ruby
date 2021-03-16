@@ -95,12 +95,20 @@ module ShinyCMS
       raise ArgumentError, "Required: valid plugin names, or ShinyCMS::Plugin objects. Received: #{new_plugins}"
     end
 
-    def build_plugins_from_names( to_build )
-      names = to_build.all?( String ) ? to_build.collect( &:to_sym ) : to_build
-      return unless names.all?( Symbol )
+    def build_plugins_from_names( requested_names )
+      names_as_symbols = coerce_to_symbols( requested_names )
+      names_that_exist = check_against_filenames( names_as_symbols )
 
-      # Wouldn't need .to_a here if a💎 supported .intersection (or &)
-      💎ify[ names.to_a.intersection( Plugins.all_plugin_names ).collect { |plugin| ShinyCMS::Plugin.get( plugin ) } ]
+      💎ify[ names_that_exist.collect { |name| ShinyCMS::Plugin.get( name ) } ]
+    end
+
+    def coerce_to_symbols( requested_names )
+      requested_names.collect( &:to_s ).collect( &:to_sym )
+    end
+
+    def check_against_filenames( requested_names )
+      # We need .to_a here because a💎 doesn't have .intersection (or &)
+      requested_names.to_a.intersection( Plugins.all_plugin_names )
     end
   end
 end

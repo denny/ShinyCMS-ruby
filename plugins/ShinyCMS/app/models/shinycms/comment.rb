@@ -43,16 +43,23 @@ module ShinyCMS
     scope :spam,      -> { where( spam: true  ).order( :created_at ) }
     scope :not_spam,  -> { where( spam: false ) }
 
+    scope :with_authors,  -> { includes( [ :author   ] ) }
+    scope :with_comments, -> { includes( [ :comments ] ) }
+
     scope :since, ->( date ) { where( 'posted_at > ?', date ) }
 
     # Instance methods
+
+    def comments
+      Comment.with_comments.with_authors.where( parent: id ).order( :number )
+    end
 
     def set_number
       self.number = discussion.next_comment_number
     end
 
-    # Returns the path to a comment's parent resource, anchored to the comment
-    # Tries to fall back gracefully if comment is deleted/marked as spam
+    # Returns the path to a comment's parent resource, anchored to this specific comment
+    # (or to the top of the comment section, if this comment was just deleted or marked as spam)
     def anchored_path
       anchor = number
       anchor = 'comments' if destroyed? || spam?
@@ -63,11 +70,19 @@ module ShinyCMS
     alias path anchored_path
 
     def send_notifications
-      DiscussionMailer.send_notifications( self )
+      Discussion.send_notifications( self ) if FeatureFlag.enabled? :comment_notifications
     end
 
     def authenticated_author?
       author.is_a? ShinyCMS::User
+    end
+
+    def pseudonymous_author?
+      author.is_a? ShinyCMS::PseudonymousAuthor
+    end
+
+    def anonymous_author?
+      author.is_a? ShinyCMS::AnonymousAuthor
     end
 
     def notification_email
@@ -98,7 +113,7 @@ module ShinyCMS
           .order( posted_at: :desc )
     end
 
-    def self.demo_data_position
+    def self.my_demo_data_position
       11  # after discussions
     end
   end

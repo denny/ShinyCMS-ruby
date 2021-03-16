@@ -2,7 +2,7 @@
 
 <% if @discussion.comments.top_level.present? %>
   <%= render partial: 'discussions/top_level',
-             locals: { comments: @discussion.comments.top_level } %>
+             locals: { discussion: @discussion, comments: @discussion.comments.with_authors.top_level } %>
 <% else %>
   <section>
     <p>

@@ -12,9 +12,13 @@ module ShinyCMS
     extend ActiveSupport::Concern
 
     class_methods do
-      # Default restore order, for anything that doesn't care
+      # Set the order in which data is loaded by `rails shinycms:demo:load`.
+      # Defaults to 'in the first batch', i.e. no dependencies on other data.
+      #
+      # Override per model with a class method `my_demo_data_position`, that
+      # returns an integer higher than any of the models it depends on.
       def demo_data_position
-        1
+        try( :my_demo_data_position ) || 1
       end
     end
   end

@@ -46,10 +46,10 @@
   <tbody>
 </table>
 
-<%= render partial: 'admin/includes/pager', locals: { pagy: @pagy } %>
+<%= render partial: 'admin/includes/pager', locals: { pagy: @pagy, name: @subscriptions.name } %>
 
 <% else %>
-<p>
-  <%= t( 'shinycms.empty_list', items: 'subscriptions' ) %>
+<p class="pager-info">
+  <%= t( 'shinycms.empty_list', items: t( 'shinycms.models.names.shiny_lists_subscription' ).pluralize ) %>
 </p>
 <% end %>

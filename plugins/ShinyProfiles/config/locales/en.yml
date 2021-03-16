@@ -11,6 +11,10 @@ en:
     feature_flags:
       user_profiles: User profile pages
 
+    models:
+      names:
+        shiny_profiles_profile: user profile
+
   shiny_profiles:
     view_profile: View your profile
     edit_profile: Edit your profile
@@ -22,12 +26,8 @@ en:
         url: URL
         add_link: Add another link
         remove_link: Remove this link
-        not_authorized: You are not allowed to edit that profile
       update:
         success: Profile details updated
-        not_authorized: You are not allowed to edit that profile
-      authorize_user:
-        not_authorized: NOT USED (workaround for i18n-tasks bug)
 
     admin:
       profiles:

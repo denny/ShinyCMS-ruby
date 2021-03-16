@@ -10,7 +10,7 @@ You can use the command `rails --tasks` to see all the available tasks, or `rail
 ### Create new admin user
 
 ```
-rails shiny:admin:create    # ShinyCMS: create a new super-admin user
+rails shinycms:admin:create    # ShinyCMS: create a new super-admin user
 ```
 
 Prompts you for username, email, and password, and then uses those details to create a new CMS user with all admin capabilities enabled.
@@ -19,9 +19,9 @@ Prompts you for username, email, and password, and then uses those details to cr
 ### Feature Flags
 
 ```
-rails shiny:features:list        # ShinyCMS: list feature flags and status
-rails shiny:feature:on[name]     # ShinyCMS: toggle a feature flag on
-rails shiny:feature:off[name]    # ShinyCMS: toggle a feature flag off
+rails shinycms:features:list        # ShinyCMS: list feature flags and status
+rails shinycms:feature:on[name]     # ShinyCMS: toggle a feature flag on
+rails shinycms:feature:off[name]    # ShinyCMS: toggle a feature flag off
 ```
 
 These tasks can be used to enable and disable CMS features from the command line. This may be useful if you are unable to reach the CMS admin area on your website for some reason - for example, if you turn off the user logins feature, thereby logging yourself out along with everybody else.
@@ -33,16 +33,16 @@ These tasks can be used to enable and disable CMS features from the command line
 rails shiny_newsletters:scheduled:send    # ShinyCMS: check for and start any scheduled sends that are due
 ```
 
-This task can be scheduled to run as a regular task, or run on an ad-hoc basis, as you prefer.
+This task can be scheduled to run as a regular task, or run on an ad-hoc basis, or both.
 
 
 ### Delete unwanted session data
 
 ```
-rails shiny:sessions:clean    # ShinyCMS: delete data for short sessions
+rails shinycms:sessions:clean    # ShinyCMS: delete data for short sessions
 ```
 
-This task deletes session data for any sessions that lasted less than the specified number of seconds (e.g. `rails shiny:sessions:clean 3` will remove sessions that lasted less than 3 seconds in total) - not including sessions from the current date.
+This task deletes session data for any sessions that lasted less than the specified number of seconds (e.g. `rails shinycms:sessions:clean 3` will remove sessions that lasted less than 3 seconds in total) - not including sessions from the current date.
 
 ```
 rails db:sessions:trim    # Trim old sessions from the table (default: > 30 days)
@@ -58,16 +58,16 @@ rails sitemap:create     # Generate sitemaps but don't ping search engines
 rails sitemap:refresh    # Generate sitemaps and ping search engines
 ```
 
-These tasks are provided by the [sitemap_generator](https://github.com/kjvarga/sitemap_generator#readme) gem. They use the configuration file at `config/sitemap.rb`, and write the generated sitemap file to `public/sitemap.xml.gz`.
+These tasks are provided by the [sitemap_generator](https://github.com/kjvarga/sitemap_generator#readme) gem. They use the configuration file at `config/sitemap.rb`, and write the generated sitemap file to `public/sitemap.xml.gz` (or to AWS S3, if you have that configured).
 
 
 ### Demo site data
 
 ```
-rails shiny:demo:load    # ShinyCMS: reset database, create admin user, and load demo site data
+rails shinycms:demo:load    # ShinyCMS: reset database, create admin user, and load demo site data
 ```
 
-This task allows you to quickly insert the demo site data so you can experiment with CMS features. Be aware that it will wipe the current contents of the database - back up anything you want to keep before running it!
+This task allows you to load the data for the demo site, so you can experiment with all of the CMS features. Be aware that this task will wipe the current contents of the database before it loads the demo site data - before you run it, back up anything that you want to keep!
 
 
 ### Plugin migrations and seed data

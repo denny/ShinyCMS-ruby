@@ -26,9 +26,10 @@ module ShinyPages
     belongs_to :section,  inverse_of: :all_pages, optional: true
     belongs_to :template, inverse_of: :pages
 
-    has_many :elements, -> { order( :position ) }, inverse_of: :page, dependent: :destroy, class_name: 'PageElement'
+    has_many :elements, -> { order( :position ).includes( [ :image_attachment ] ) },
+             inverse_of: :page, dependent: :destroy, class_name: 'PageElement'
 
-    accepts_nested_attributes_for :elements
+    accepts_nested_attributes_for :elements, allow_destroy: true
 
     # Validations
 
@@ -82,7 +83,7 @@ module ShinyPages
 
     def self.all_top_level_items
       pages = all_top_level_pages.to_a
-      sections = Section.all_top_level_sections.to_a
+      sections = Section.includes( %i[ all_pages all_sections ] ).all_top_level_sections.to_a
 
       [ *pages, *sections ].sort_by do |item|
         [ item.position ? 0 : 1, item.position || 0 ]

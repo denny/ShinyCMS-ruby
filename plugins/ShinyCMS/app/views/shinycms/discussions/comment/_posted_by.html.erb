@@ -1,13 +1,13 @@
 Posted by
-<% if comment.author.blank? %>
-  <%= t( 'shinycms.discussions.anonymous' ) %>
-<% elsif comment.authenticated_author? %>
+<% if comment.authenticated_author? %>
     <%= user_profile_link( comment.author ) %>
-<% else %>
+<% elsif comment.pseudonymous_author? %>
   <% if comment.author.url.present? %>
     <%= link_to comment.author.name, comment.author.url %>
   <% else %>
     <%= comment.author.name %>
   <% end %>
+<% elsif comment.anonymous_author? %>
+  <%= t( 'shinycms.discussions.anonymous' ) %>
 <% end %>
 at <%= display_time_on_date( comment.posted_at ) %>

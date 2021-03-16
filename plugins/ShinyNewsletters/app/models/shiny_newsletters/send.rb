@@ -24,6 +24,8 @@ module ShinyNewsletters
 
     # Scopes
 
+    scope :with_editions, -> { includes( [ :edition ] ) }
+
     scope :unscheduled, -> { where( started_sending_at: nil, send_at: nil ) }
     scope :scheduled,   -> { where( started_sending_at: nil ).where.not( send_at: nil ) }
     scope :due_to_send, -> { where( started_sending_at: nil ).where( 'send_at < ?', Time.zone.now ) }
@@ -88,7 +90,7 @@ module ShinyNewsletters
         .order( sent_at: :desc )
     end
 
-    def self.demo_data_position
+    def self.my_demo_data_position
       5  # after templates, template elements, editions, and edition elements
     end
   end

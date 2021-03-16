@@ -1,0 +1,13 @@
+<%= @comment.author.name %> replied to your comment on <%= site_name %>:
+
+<%= t( '.you_said' ) %>:
+
+<% if @parent.title.present? %>><%= @parent.title %>
+
+<% end %><%= @parent.body %>
+
+<%= t( '.they_said' ) %>:
+
+<% if @comment.title.present? %><%= @comment.title %>
+
+<% end %><%= @comment.body %>

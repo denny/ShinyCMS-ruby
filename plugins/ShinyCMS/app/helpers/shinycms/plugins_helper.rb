@@ -28,9 +28,5 @@ module ShinyCMS
     def plugins_with_admin_toolbar_templates
       ShinyCMS.plugins.with_partial 'admin/toolbar/_section.html.erb'
     end
-
-    def valid_plugin_path?( plugin_path = nil )
-      plugin_path&.starts_with?( 'plugins/' ) && plugin_path&.ends_with?( 'app/views' )
-    end
   end
 end

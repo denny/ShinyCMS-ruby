@@ -18,46 +18,56 @@ RSpec.describe ShinyNews::Admin::NewsPostsController, type: :request do
   let( :admin ) { ShinyCMS::User.first }
 
   describe 'GET /admin/news' do
-    it 'fetches the list of news posts with less than one page of posts' do
-      create :news_post
-      create :news_post
-      create :news_post
+    context 'when there are no posts' do
+      it "displays the 'no news posts found' message" do
+        get shiny_news.news_posts_path
 
-      get shiny_news.news_posts_path
+        pager_info = 'No news posts found'
 
-      expect( response ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
     end
 
-    it 'fetches the list of news posts when its empty' do
-      get shiny_news.news_posts_path
+    context 'when there are less than one page of posts' do
+      it 'displays the list of news posts' do
+        create_list :news_post, 3
 
-      expect( response ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
+        get shiny_news.news_posts_path
+
+        pager_info = 'Displaying 3 news posts'
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
     end
 
-    it 'fetches the list of news posts with more than one page of posts' do
-      create_list :news_post, 12
+    context 'when there are more than one page of posts' do
+      it 'fetches the first page' do
+        create_list :news_post, 12
 
-      get shiny_news.news_posts_path
+        get shiny_news.news_posts_path
 
-      pager_info = 'Displaying items 1-10 of 12 in total'  # FIXME: i18n
+        pager_info = 'Displaying news posts 1-10 of 12 in total'
 
-      expect( response ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
-      expect( response.body ).to have_css '.pager-info', text: pager_info
-    end
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
 
-    it 'fetches the second page of news posts' do
-      create_list :news_post, 12
+      it 'fetches the second page when requested' do
+        create_list :news_post, 12
 
-      get shiny_news.news_posts_path, params: { page: 2 }
+        get shiny_news.news_posts_path, params: { page: 2 }
 
-      pager_info = 'Displaying items 11-12 of 12 in total'  # FIXME: i18n
+        pager_info = 'Displaying news posts 11-12 of 12 in total'
 
-      expect( response ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
-      expect( response.body ).to have_css '.pager-info', text: pager_info
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
     end
   end
 

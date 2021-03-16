@@ -13,7 +13,7 @@ require 'shinycms/seeder'
 seeder = ShinyCMS::Seeder.new
 
 seeder.seed_setting(
-  name:        :admin_ip_list,
+  name:        :allowed_ips,
   locked:      true,
   description: 'IP addresses allowed to access admin area (comma-separated)'
 )

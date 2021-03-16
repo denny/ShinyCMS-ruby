@@ -43,11 +43,6 @@
     <% end %>
   </tbody>
 </table>
-
-<%= render partial: 'admin/includes/pager', locals: { pagy: @pagy } %>
-
-<% else %>
-<p>
-  <%= t( 'shinycms.empty_list', items: 'stats' ) %>
-</p>
 <% end %>
+
+<%= render partial: 'admin/includes/pager', locals: { pagy: @pagy, name: @visits.name } %>

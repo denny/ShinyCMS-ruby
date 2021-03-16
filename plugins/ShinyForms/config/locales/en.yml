@@ -17,6 +17,10 @@ en:
     settings:
       recaptcha_score_for_forms: Minimum reCAPTCHA v3 score for ShinyForm submissions
 
+    models:
+      names:
+        shiny_forms_form: form
+
   shiny_forms:
     forms:
       process_form:

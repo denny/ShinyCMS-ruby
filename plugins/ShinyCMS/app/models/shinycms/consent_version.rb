@@ -27,6 +27,12 @@ module ShinyCMS
     before_update  :before_update
     before_destroy :before_destroy
 
+    # Scopes
+
+    scope :recent, -> { order( updated_at: :desc ) }
+
+    scope :with_subscriptions, -> { includes( [ :subscriptions ] ) }
+
     # Instance methods
 
     alias_attribute :slug_base, :name

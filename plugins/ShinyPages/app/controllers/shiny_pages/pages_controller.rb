@@ -20,7 +20,6 @@ module ShinyPages
 
       return show_page if @page
 
-      # rubocop:disable Rails/RenderInline
       render inline: <<~HTML
         <p>
           This site does not have any content yet. Please try again later.
@@ -32,7 +31,6 @@ module ShinyPages
           </i>
         </p>
       HTML
-      # rubocop:enable Rails/RenderInline
     end
 
     # Figure out whether we're at top level or going deeper
@@ -88,9 +86,7 @@ module ShinyPages
       if @page.template.file_exists?
         render template: "shiny_pages/pages/#{@page.template.filename}", locals: @page.elements_hash
       else
-        # rubocop:disable Rails/RenderInline
         render status: :failed_dependency, inline: I18n.t( 'shiny_pages.page.template_file_missing' )
-        # rubocop:enable Rails/RenderInline
       end
     end
 
@@ -105,7 +101,21 @@ module ShinyPages
     end
 
     def page_for_last_slug( section, slug )
-      section&.pages&.find_by( slug: slug ) || section&.sections&.find_by( slug: slug )&.default_page
+      return if section.blank?
+
+      last_slug_matches_page( section, slug ) || last_slug_matches_section( section, slug )
+    end
+
+    def last_slug_matches_page( section, slug )
+      return if section.pages.blank?
+
+      section.pages.with_elements.find_by( slug: slug )
+    end
+
+    def last_slug_matches_section( section, slug )
+      return if section.sections.blank?
+
+      section.sections.find_by( slug: slug )&.default_page
     end
 
     def enforce_html_format

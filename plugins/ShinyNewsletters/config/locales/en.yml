@@ -17,6 +17,11 @@ en:
         newsletter_editions: Newsletter editions
         newsletter_sends: Newsletter sends
 
+    models:
+      names:
+        shiny_newsletters_edition: newsletter edition
+        shiny_newsletters_template: templates
+
   shiny_newsletters:
     newsletters:
       index:

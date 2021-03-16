@@ -24,7 +24,7 @@ module ShinyCMS
       email_recipient.email
     end
 
-    def self.demo_data_position
+    def self.my_demo_data_position
       2  # after email recipients
     end
   end
