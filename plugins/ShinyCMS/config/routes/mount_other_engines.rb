@@ -27,8 +27,6 @@ if sidekiq_web_enabled?
   require 'sidekiq/web'
   require 'sidekiq-status/web'
 
-  Sidekiq::Web.set :sessions, false
-
   authenticate :user, ->( user ) { user.can? :use_sidekiq_web, :tools } do
     mount Sidekiq::Web, at: '/admin/tools/sidekiq'
   end
