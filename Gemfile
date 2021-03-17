@@ -53,11 +53,6 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 3.4.2'
 
-  # Feature flags
-  gem 'flipper'
-  # Complete with web interface
-  gem 'flipper-ui'
-
   group :development, :test do
     # RSpec for Rails
     gem 'rspec-rails'

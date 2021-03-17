@@ -422,6 +422,10 @@ en:
           success: Feature flags updated
           failure: Failed to update feature flags
 
+      flipper:
+        menu: Flipper
+        toolbar: Flipper
+
       letter_opener_web: Outbox
 
       other:

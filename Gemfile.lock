@@ -54,6 +54,9 @@ PATH
       devise
       devise-pwned_password
       email_address
+      flipper
+      flipper-active_record
+      flipper-ui
       image_processing (~> 1.12)
       mini_magick
       mjml-rails
@@ -386,10 +389,13 @@ GEM
       path_expander (~> 1.0)
       ruby_parser (~> 3.0)
       sexp_processor (~> 4.0)
-    flipper (0.20.3)
-    flipper-ui (0.20.3)
+    flipper (0.20.4)
+    flipper-active_record (0.20.4)
+      activerecord (>= 5.0, < 7)
+      flipper (~> 0.20.4)
+    flipper-ui (0.20.4)
       erubi (>= 1.0.0, < 2.0.0)
-      flipper (~> 0.20.3)
+      flipper (~> 0.20.4)
       rack (>= 1.4, < 3)
       rack-protection (>= 1.5.3, < 2.2.0)
     flog (4.6.4)
@@ -733,8 +739,6 @@ DEPENDENCIES
   dotenv-rails!
   factory_bot_rails!
   faker!
-  flipper!
-  flipper-ui!
   i18n-tasks (~> 0.9.33)!
   letter_opener_web (~> 1.0)!
   listen (~> 3.3)!

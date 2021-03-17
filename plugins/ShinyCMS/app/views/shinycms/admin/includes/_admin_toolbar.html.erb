@@ -47,6 +47,10 @@
     <%= link_to t( 'shinycms.admin.letter_opener_web' ), shinycms.letter_opener_web_path %>
     |
   <% end %>
+  <% if current_user_can? :edit, :feature_flags %>
+    <%= link_to t( 'shinycms.admin.flipper.toolbar' ), shinycms.flipper_path %>
+    |
+  <% end %>
   <% if current_user_can? :view_admin_area %>
     <%= link_to t( 'shinycms.admin.toolbar' ), shinycms.admin_path %>
   <% end %>

@@ -21,6 +21,11 @@ require 'pundit'
 require 'devise/pwned_password'
 require 'zxcvbn'
 
+# Feature flags
+require 'flipper'
+require 'flipper-active_record'
+require 'flipper-ui'
+
 # Job queues
 require 'sidekiq'
 require 'sidekiq-status'

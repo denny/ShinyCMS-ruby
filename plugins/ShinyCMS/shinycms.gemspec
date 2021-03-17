@@ -64,6 +64,12 @@ Gem::Specification.new do |spec|
   # Locales for the 'not USA' bits of the world
   spec.add_dependency 'rails-i18n'
 
+  # Feature flags
+  spec.add_dependency 'flipper'
+  spec.add_dependency 'flipper-active_record'
+  # Complete with web interface
+  spec.add_dependency 'flipper-ui'
+
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
   spec.add_dependency 'sidekiq'
   spec.add_dependency 'sidekiq-status'
