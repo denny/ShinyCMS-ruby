@@ -28,6 +28,9 @@ require 'view_component/engine'
 require 'sidekiq'
 require 'sidekiq-status'
 
+# Feature flags
+require 'arturo'
+
 # Extend behaviour, mostly of models
 require 'acts_as_paranoid'
 require 'acts_as_list'

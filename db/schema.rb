@@ -11,7 +11,7 @@
 # less error prone than running all of your migrations from scratch. Old migrations may fail
 # to apply correctly if those migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2021_02_26_060425) do
+ActiveRecord::Schema.define(version: 2021_03_20_143654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -155,6 +155,13 @@ ActiveRecord::Schema.define(version: 2021_02_26_060425) do
     t.datetime "created_at", precision: 0, null: false
     t.datetime "updated_at", precision: 0, null: false
     t.index ["creator_id"], name: "index_blazer_queries_on_creator_id"
+  end
+
+  create_table "features", force: :cascade do |t|
+    t.string "symbol", null: false
+    t.integer "deployment_percentage", null: false
+    t.datetime "created_at", precision: 0, null: false
+    t.datetime "updated_at", precision: 0, null: false
   end
 
   create_table "pg_search_documents", force: :cascade do |t|

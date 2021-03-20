@@ -12,4 +12,8 @@
       text: t( 'shinycms.admin.feature_flags.menu' ), icon: 'toggle-off',
       if: @current_user.can?( :list, :feature_flags ) %>
 
+  <%= component 'admin/menu/item', link: shinycms.arturo_path,
+      text: t( 'shinycms.admin.feature_flags.menu' ), icon: 'toggle-on',
+      if: @current_user.can?( :list, :feature_flags ) %>
+
 <% end %>

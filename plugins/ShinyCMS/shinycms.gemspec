@@ -70,6 +70,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'sidekiq'
   spec.add_dependency 'sidekiq-status'
 
+  # Feature flags
+  spec.add_dependency 'arturo'
+
   # Soft delete
   spec.add_dependency 'acts_as_paranoid'
   # Sortable lists

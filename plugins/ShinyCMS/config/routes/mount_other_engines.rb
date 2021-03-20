@@ -9,6 +9,9 @@
 # Routes file partial to mount engines from other gems used by ShinyCMS,
 # that can be mounted within the core plugin routes file
 
+# Arturo provides adjustable feature flags, AKA 'feature sliders'
+mount Arturo::Engine, at: '/admin/tools/arturo', as: :arturo
+
 # CKEditor provides the WYSIWYG editor used in the ShinyCMS admin area
 mount Ckeditor::Engine, at: '/admin/tools/ckeditor'
 
