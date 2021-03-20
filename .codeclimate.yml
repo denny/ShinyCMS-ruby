@@ -5,6 +5,10 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 version: "2"
+exclude_patterns:
+  db/migrate/*.rb
+  db/archived-migrations/*.rb
+  plugins/*/db/migrate/*.rb
 plugins:
   brakeman:
     enabled: true
