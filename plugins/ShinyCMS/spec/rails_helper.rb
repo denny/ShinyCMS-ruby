@@ -67,8 +67,6 @@ RSpec.configure do |config|
 
     # These features default to off for privacy or security, but we want to test them
     ShinyCMS::FeatureFlag.enable :ahoy_web_tracking
-    ShinyCMS::FeatureFlag.enable :ahoy_email_tracking
-    ShinyCMS::FeatureFlag.enable :user_registration
     ShinyCMS::FeatureFlag.enable :user_login
 
     # Stash current email-sending setting
