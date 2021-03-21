@@ -10,16 +10,16 @@
 # that can be mounted within the core plugin routes file
 
 # Arturo provides adjustable feature flags, AKA 'feature sliders'
-mount Arturo::Engine, at: '/admin/tools/arturo', as: :arturo
+mount Arturo::Engine, at: '/admin/tools/arturo', as: :arturo_engine
 
 # CKEditor provides the WYSIWYG editor used in the ShinyCMS admin area
-mount Ckeditor::Engine, at: '/admin/tools/ckeditor'
+mount Ckeditor::Engine, at: '/admin/tools/ckeditor', as: :ckeditor
 
 # RailsEmailPreview shows examples of emails that the ShinyCMS mailers can generate
-mount RailsEmailPreview::Engine, at: '/admin/tools/rails-email-preview'
+mount RailsEmailPreview::Engine, at: '/admin/tools/rails-email-preview', as: :rails_email_preview
 
 # LetterOpener catches all emails sent in development, with a webmail UI to view them
-mount LetterOpenerWeb::Engine, at: '/dev/tools/outbox' if Rails.env.development?
+mount LetterOpenerWeb::Engine, at: '/dev/tools/outbox', as: :letter_opener_web if Rails.env.development?
 
 # Sidekiq Web provides a web dashboard for Sidekiq jobs and queues
 def sidekiq_web_enabled?
@@ -31,7 +31,7 @@ if sidekiq_web_enabled?
   require 'sidekiq-status/web'
 
   authenticate :user, ->( user ) { user.can? :use_sidekiq_web, :tools } do
-    mount Sidekiq::Web, at: '/admin/tools/sidekiq'
+    mount Sidekiq::Web, at: '/admin/tools/sidekiq', as: :sidekiq_web
   end
 end
 
