@@ -9,7 +9,7 @@
 module ShinyCMS
   # Controller for viewing email stats in ShinyCMS admin area
   class Admin::EmailStatsController < Admin::BaseController
-    require_feature :email_stats
+    # require_feature :email_stats
 
     def index
       authorize Ahoy::Message
