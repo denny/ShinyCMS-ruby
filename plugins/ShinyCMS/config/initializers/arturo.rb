@@ -11,7 +11,7 @@ require 'arturo/feature'
 
 Arturo::FeatureManagement.class_eval do
   def may_manage_features?
-    current_user&.can? :edit, :feature_flags
+    user_signed_in? && current_user.can?( :edit, :feature_flags )
   end
 end
 
@@ -22,7 +22,6 @@ Arturo::Feature.cache_ttl = 1.minute
 # Create Arturo grantlists and blocklists from ShinyCMS::FeatureFlags
 Rails.application.config.to_prepare do
   ShinyCMS::FeatureFlag.all.each do |flag|
-    # binding.pry
     if flag.enabled?
       Arturo::Feature.whitelist( flag.name.to_sym )
     elsif flag.enabled_for_logged_in?
