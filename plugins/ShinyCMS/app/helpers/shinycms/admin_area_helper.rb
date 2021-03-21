@@ -15,6 +15,10 @@ module ShinyCMS
       return 'rails_email_preview' if controller.is_a? RailsEmailPreview::ApplicationController
     end
 
+    def arturo_controller?
+      controller.is_a? Arturo::FeaturesController
+    end
+
     def plugins_for_edit_capabilities
       ShinyCMS.plugins.with_partial 'admin/user/_edit_capabilities.html.erb'
     end
