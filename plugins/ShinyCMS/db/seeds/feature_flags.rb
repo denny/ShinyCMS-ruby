@@ -29,10 +29,11 @@ seeder.seed_feature_flag( name: 'downvotes', description: 'Enable down-votes (re
 # These two are disabled by default, to reduce the risk of brute force attacks on new/dev/demo sites
 seeder.seed_feature_flag( name: 'user_registration', description: 'Allow new users to create accounts', enabled: false )
 seeder.seed_feature_flag( name: 'user_login',        description: 'Allow users to log in',              enabled: false )
-# TODO: FIXME: temporarily adding some ridiculous enabled_for_* config on these two, to test Arturo stuff
-ShinyCMS::FeatureFlag.find_by( name: 'user_registration' ).update!( enabled_for_logged_in: true )
-ShinyCMS::FeatureFlag.find_by( name: 'user_login'        ).update!( enabled_for_admins:    true )
 
 # These two are disabled by default for privacy reasons
 seeder.seed_feature_flag( name: 'ahoy_web_tracking',   description: 'Track data about website traffic', enabled: false )
 seeder.seed_feature_flag( name: 'ahoy_email_tracking', description: 'Track email opens and clicks',     enabled: false )
+
+# TODO: FIXME: temporarily setting weird initial enabled_for_* options on these two, to test Arturo stuff
+ShinyCMS::FeatureFlag.find_by( name: 'user_registration'   ).update!( enabled_for_logged_in: true )
+ShinyCMS::FeatureFlag.find_by( name: 'ahoy_email_tracking' ).update!( enabled_for_admins:    true )
