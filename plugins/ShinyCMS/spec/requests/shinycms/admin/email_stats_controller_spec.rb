@@ -13,6 +13,12 @@ RSpec.describe ShinyCMS::Admin::EmailStatsController, type: :request do
   before do
     admin = create :stats_admin
     sign_in admin
+
+    ShinyCMS::FeatureFlag.enable :ahoy_email_tracking
+  end
+
+  after do
+    ShinyCMS::FeatureFlag.disable :ahoy_email_tracking
   end
 
   describe 'GET /admin/email-stats' do
