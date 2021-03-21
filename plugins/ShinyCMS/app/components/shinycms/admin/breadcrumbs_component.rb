@@ -25,6 +25,8 @@ module ShinyCMS
           t( 'shinycms.admin.rails_email_preview.breadcrumb' )
         when 'Blazer'
           t( 'shinycms.admin.blazer.breadcrumb' )
+        when 'Arturo'
+          t( 'shinycms.admin.site_settings.breadcrumb' )
         else
           t( "#{plugin_name.underscore}.admin.#{controller_name}.breadcrumb" )
         end

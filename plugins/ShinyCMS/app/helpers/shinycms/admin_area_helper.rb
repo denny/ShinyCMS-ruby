@@ -11,12 +11,9 @@ module ShinyCMS
   module AdminAreaHelper
     def admin_controller_from
       return 'shinycms' if controller.is_a? ShinyCMS::Admin::BaseController
+      return 'arturo'   if controller.is_a? Arturo::FeaturesController
       return 'blazer'   if controller.is_a? Blazer::BaseController
       return 'rails_email_preview' if controller.is_a? RailsEmailPreview::ApplicationController
-    end
-
-    def arturo_controller?
-      controller.is_a? Arturo::FeaturesController
     end
 
     def plugins_for_edit_capabilities
