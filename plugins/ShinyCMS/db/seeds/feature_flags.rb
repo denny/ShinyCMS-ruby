@@ -37,3 +37,19 @@ seeder.seed_feature_flag( name: 'ahoy_email_tracking', description: 'Track email
 # TODO: FIXME: temporarily setting weird initial enabled_for_* options on these two, to test Arturo stuff
 ShinyCMS::FeatureFlag.find_by( name: 'user_registration'   ).update!( enabled_for_logged_in: true )
 ShinyCMS::FeatureFlag.find_by( name: 'ahoy_email_tracking' ).update!( enabled_for_admins:    true )
+
+# Create Arturo grantlists and blocklists from ShinyCMS::FeatureFlags
+# Obviously this is ridiculous as it stands; if I do switch to using Arturo to manage
+# feature flags then the FeatureFlag model and most related code will disappear.
+# For now I'm just 'exploring the possiblity' so I don't want to do all that work yet.
+ShinyCMS::FeatureFlag.all.each do |flag|
+  if flag.enabled?
+    Arturo::Feature.whitelist( flag.name.to_sym )
+  elsif flag.enabled_for_logged_in?
+    Arturo::Feature.whitelist( flag.name.to_sym ) { user_signed_in? }
+  elsif flag.enabled_for_admins?
+    Arturo::Feature.whitelist( flag.name.to_sym, &:admin? )
+  else
+    Arturo::Feature.blacklist( flag.name.to_sym )
+  end
+end

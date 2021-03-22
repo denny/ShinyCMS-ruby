@@ -18,18 +18,3 @@ end
 # Caching for Feature lookups - https://github.com/zendesk/arturo#caching
 Arturo::Feature.extend( Arturo::FeatureCaching )
 Arturo::Feature.cache_ttl = 1.minute
-
-# Create Arturo grantlists and blocklists from ShinyCMS::FeatureFlags
-Rails.application.config.to_prepare do
-  ShinyCMS::FeatureFlag.all.each do |flag|
-    if flag.enabled?
-      Arturo::Feature.whitelist( flag.name.to_sym )
-    elsif flag.enabled_for_logged_in?
-      Arturo::Feature.whitelist( flag.name.to_sym ) { user_signed_in? }
-    elsif flag.enabled_for_admins?
-      Arturo::Feature.whitelist( flag.name.to_sym, &:admin? )
-    else
-      Arturo::Feature.blacklist( flag.name.to_sym )
-    end
-  end
-end
