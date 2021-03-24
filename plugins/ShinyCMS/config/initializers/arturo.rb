@@ -15,6 +15,10 @@ Arturo::FeatureManagement.class_eval do
   end
 end
 
+# :nocov:
+
+return if Rails.env.test? || Rails.env.development?
+
 # Caching for Feature lookups - https://github.com/zendesk/arturo#caching
 Arturo::Feature.extend( Arturo::FeatureCaching )
 Arturo::Feature.cache_ttl = 1.minute
