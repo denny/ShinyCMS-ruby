@@ -9,7 +9,8 @@
 module ShinyCMS
   # Controller for viewing email stats in ShinyCMS admin area
   class Admin::EmailStatsController < Admin::BaseController
-    # require_feature :email_stats
+    # TODO: FIXME: Currently seems to block everyone regardless of privs.
+    # require_feature :ahoy_email_tracking
 
     def index
       authorize Ahoy::Message

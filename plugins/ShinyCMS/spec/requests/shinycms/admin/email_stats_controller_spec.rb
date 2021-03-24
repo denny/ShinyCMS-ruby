@@ -15,6 +15,7 @@ RSpec.describe ShinyCMS::Admin::EmailStatsController, type: :request do
     sign_in admin
 
     ShinyCMS::FeatureFlag.enable :ahoy_email_tracking
+    Arturo::Feature.whitelist( :ahoy_email_tracking, &:admin? )
   end
 
   after do
