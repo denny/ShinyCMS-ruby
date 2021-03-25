@@ -9,24 +9,24 @@
         <meta name="description" content="Documentation for users and developers of ShinyCMS (Ruby version)">
       
       
-        <link rel="canonical" href="http://docs.shinycms.org/Configuration/">
+        <link rel="canonical" href="http://docs.shinycms.org/Developers/Notes/bullet/">
       
       
         <meta name="author" content="Denny de la Haye">
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
     
     
       
-        <title>Configuration - ShinyCMS</title>
+        <title>ShinyCMS Developer Notes - ShinyCMS</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.bc7e593a.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.bc7e593a.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab28b872.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab28b872.min.css">
         
       
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shinycms-documentation" class="md-skip">
+        <a href="#shinycms-developer-notes" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Configuration
+              ShinyCMS Developer Notes
             
           </span>
         </div>
@@ -190,12 +190,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
     
     <label class="md-nav__link" for="nav-1">
       Installation, configuration, deployment
@@ -215,7 +213,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../INSTALL/" class="md-nav__link">
+    <a href="../../../INSTALL/" class="md-nav__link">
       Local installation
     </a>
   </li>
@@ -225,137 +223,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Configuration
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="./" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../../Configuration/" class="md-nav__link">
       Configuration
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    Configuration
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#env-vars" class="md-nav__link">
-    ENV vars
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#feature-flags" class="md-nav__link">
-    Feature Flags
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#site-settings" class="md-nav__link">
-    Site Settings
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#services" class="md-nav__link">
-    Services
-  </a>
-  
-    <nav class="md-nav" aria-label="Services">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#akismet-spam-flagging" class="md-nav__link">
-    Akismet - spam flagging
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aws-s3-file-storage" class="md-nav__link">
-    AWS S3 - file storage
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bugsnag-error-monitoring" class="md-nav__link">
-    Bugsnag - error monitoring
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recaptcha-bot-protection" class="md-nav__link">
-    reCAPTCHA - bot protection
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#other-services-used-no-config-required" class="md-nav__link">
-    Other services used (no config required)
-  </a>
-  
-    <nav class="md-nav" aria-label="Other services used (no config required)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#have-i-been-pwned-password-leak-checking" class="md-nav__link">
-    Have I Been Pwned - password leak checking
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -365,7 +237,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Cloud-Hosting/" class="md-nav__link">
+    <a href="../../../Cloud-Hosting/" class="md-nav__link">
       Cloud hosting
     </a>
   </li>
@@ -377,7 +249,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Services/" class="md-nav__link">
+    <a href="../../../Services/" class="md-nav__link">
       External services
     </a>
   </li>
@@ -389,7 +261,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Themes/" class="md-nav__link">
+    <a href="../../../Themes/" class="md-nav__link">
       Themes
     </a>
   </li>
@@ -401,7 +273,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../demo-site/" class="md-nav__link">
+    <a href="../../../demo-site/" class="md-nav__link">
       Demo site
     </a>
   </li>
@@ -413,7 +285,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tldr/" class="md-nav__link">
+    <a href="../../../tldr/" class="md-nav__link">
       tl,dr
     </a>
   </li>
@@ -451,7 +323,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/MainApp/UserAccounts/" class="md-nav__link">
+    <a href="../../../Features/MainApp/UserAccounts/" class="md-nav__link">
       User Accounts
     </a>
   </li>
@@ -463,7 +335,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/MainApp/admin-features/" class="md-nav__link">
+    <a href="../../../Features/MainApp/admin-features/" class="md-nav__link">
       Admin Features
     </a>
   </li>
@@ -496,7 +368,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/Plugins/ShinyPages/" class="md-nav__link">
+    <a href="../../../Features/Plugins/ShinyPages/" class="md-nav__link">
       Pages
     </a>
   </li>
@@ -508,7 +380,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/Plugins/ShinyForms/" class="md-nav__link">
+    <a href="../../../Features/Plugins/ShinyForms/" class="md-nav__link">
       Forms
     </a>
   </li>
@@ -520,7 +392,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/Plugins/ShinyInserts/" class="md-nav__link">
+    <a href="../../../Features/Plugins/ShinyInserts/" class="md-nav__link">
       Inserts
     </a>
   </li>
@@ -532,7 +404,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/Plugins/ShinySearch/" class="md-nav__link">
+    <a href="../../../Features/Plugins/ShinySearch/" class="md-nav__link">
       Search
     </a>
   </li>
@@ -570,7 +442,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/Plugins/ShinyAccess/" class="md-nav__link">
+    <a href="../../../Features/Plugins/ShinyAccess/" class="md-nav__link">
       Access control
     </a>
   </li>
@@ -608,7 +480,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/Plugins/ShinyBlog/" class="md-nav__link">
+    <a href="../../../Features/Plugins/ShinyBlog/" class="md-nav__link">
       Blog
     </a>
   </li>
@@ -620,7 +492,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/Plugins/ShinyNews/" class="md-nav__link">
+    <a href="../../../Features/Plugins/ShinyNews/" class="md-nav__link">
       News section
     </a>
   </li>
@@ -632,7 +504,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/MainApp/Tags/" class="md-nav__link">
+    <a href="../../../Features/MainApp/Tags/" class="md-nav__link">
       Tags
     </a>
   </li>
@@ -670,7 +542,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/Plugins/ShinyLists/" class="md-nav__link">
+    <a href="../../../Features/Plugins/ShinyLists/" class="md-nav__link">
       Mailing Lists
     </a>
   </li>
@@ -682,7 +554,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/Plugins/ShinyNewsletters/" class="md-nav__link">
+    <a href="../../../Features/Plugins/ShinyNewsletters/" class="md-nav__link">
       Newsletters
     </a>
   </li>
@@ -720,7 +592,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/MainApp/Comments/" class="md-nav__link">
+    <a href="../../../Features/MainApp/Comments/" class="md-nav__link">
       Comments
     </a>
   </li>
@@ -732,7 +604,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/MainApp/Upvotes/" class="md-nav__link">
+    <a href="../../../Features/MainApp/Upvotes/" class="md-nav__link">
       Upvotes
     </a>
   </li>
@@ -744,7 +616,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/Plugins/ShinyProfiles/" class="md-nav__link">
+    <a href="../../../Features/Plugins/ShinyProfiles/" class="md-nav__link">
       Profile Pages
     </a>
   </li>
@@ -782,7 +654,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/MainApp/EmailStats/" class="md-nav__link">
+    <a href="../../../Features/MainApp/EmailStats/" class="md-nav__link">
       Email Stats
     </a>
   </li>
@@ -794,7 +666,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/MainApp/WebStats/" class="md-nav__link">
+    <a href="../../../Features/MainApp/WebStats/" class="md-nav__link">
       Web Stats
     </a>
   </li>
@@ -806,7 +678,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/MainApp/Charts/" class="md-nav__link">
+    <a href="../../../Features/MainApp/Charts/" class="md-nav__link">
       Charts
     </a>
   </li>
@@ -844,7 +716,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/MainApp/FeatureFlags/" class="md-nav__link">
+    <a href="../../../Features/MainApp/FeatureFlags/" class="md-nav__link">
       Feature Flags
     </a>
   </li>
@@ -856,7 +728,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/MainApp/SiteSettings/" class="md-nav__link">
+    <a href="../../../Features/MainApp/SiteSettings/" class="md-nav__link">
       Site Settings
     </a>
   </li>
@@ -894,7 +766,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/MainApp/mjml/" class="md-nav__link">
+    <a href="../../../Features/MainApp/mjml/" class="md-nav__link">
       MJML
     </a>
   </li>
@@ -906,7 +778,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/MainApp/pagination/" class="md-nav__link">
+    <a href="../../../Features/MainApp/pagination/" class="md-nav__link">
       Pagination
     </a>
   </li>
@@ -918,7 +790,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Features/MainApp/soft-delete/" class="md-nav__link">
+    <a href="../../../Features/MainApp/soft-delete/" class="md-nav__link">
       Soft Delete
     </a>
   </li>
@@ -930,7 +802,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../rake-tasks/" class="md-nav__link">
+    <a href="../../../rake-tasks/" class="md-nav__link">
       Rake tasks
     </a>
   </li>
@@ -973,7 +845,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/" class="md-nav__link">
+    <a href="../../" class="md-nav__link">
       Index
     </a>
   </li>
@@ -985,7 +857,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Contributing/" class="md-nav__link">
+    <a href="../../../Contributing/" class="md-nav__link">
       Contributing
     </a>
   </li>
@@ -997,7 +869,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/ProjectGoals/" class="md-nav__link">
+    <a href="../../ProjectGoals/" class="md-nav__link">
       Project Goals
     </a>
   </li>
@@ -1009,7 +881,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/Testing/" class="md-nav__link">
+    <a href="../../Testing/" class="md-nav__link">
       Testing
     </a>
   </li>
@@ -1021,7 +893,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/code-quality/" class="md-nav__link">
+    <a href="../../code-quality/" class="md-nav__link">
       Code Quality
     </a>
   </li>
@@ -1033,7 +905,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/Plugins/" class="md-nav__link">
+    <a href="../../Plugins/" class="md-nav__link">
       Plugins
     </a>
   </li>
@@ -1066,7 +938,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/Concerns-and-Helpers/" class="md-nav__link">
+    <a href="../../Concerns-and-Helpers/" class="md-nav__link">
       Overview
     </a>
   </li>
@@ -1078,7 +950,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/helpers/" class="md-nav__link">
+    <a href="../../helpers/" class="md-nav__link">
       Helpers
     </a>
   </li>
@@ -1090,7 +962,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/model-concerns/" class="md-nav__link">
+    <a href="../../model-concerns/" class="md-nav__link">
       Model Concerns
     </a>
   </li>
@@ -1102,7 +974,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/controller-concerns/" class="md-nav__link">
+    <a href="../../controller-concerns/" class="md-nav__link">
       Controller Concerns
     </a>
   </li>
@@ -1114,7 +986,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/Mailers/" class="md-nav__link">
+    <a href="../../Mailers/" class="md-nav__link">
       Mailers
     </a>
   </li>
@@ -1126,7 +998,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/other-modules/" class="md-nav__link">
+    <a href="../../other-modules/" class="md-nav__link">
       Other
     </a>
   </li>
@@ -1143,7 +1015,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/demo-data/" class="md-nav__link">
+    <a href="../../demo-data/" class="md-nav__link">
       Demo data
     </a>
   </li>
@@ -1155,7 +1027,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/rake-tasks/" class="md-nav__link">
+    <a href="../../rake-tasks/" class="md-nav__link">
       Rake tasks
     </a>
   </li>
@@ -1188,7 +1060,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/TODO/" class="md-nav__link">
+    <a href="../../TODO/" class="md-nav__link">
       TODO
     </a>
   </li>
@@ -1200,7 +1072,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/in-progress/" class="md-nav__link">
+    <a href="../../in-progress/" class="md-nav__link">
       In Progress
     </a>
   </li>
@@ -1212,7 +1084,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Developers/done/" class="md-nav__link">
+    <a href="../../done/" class="md-nav__link">
       Done
     </a>
   </li>
@@ -1234,7 +1106,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Licensing/" class="md-nav__link">
+    <a href="../../../Licensing/" class="md-nav__link">
       Licensing
     </a>
   </li>
@@ -1246,7 +1118,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../release-notes/" class="md-nav__link">
+    <a href="../../../release-notes/" class="md-nav__link">
       Release notes
     </a>
   </li>
@@ -1258,7 +1130,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../credits/" class="md-nav__link">
+    <a href="../../../credits/" class="md-nav__link">
       Credits
     </a>
   </li>
@@ -1270,7 +1142,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../code-of-conduct/" class="md-nav__link">
+    <a href="../../../code-of-conduct/" class="md-nav__link">
       Code of Conduct
     </a>
   </li>
@@ -1282,7 +1154,7 @@
 
 
   <li class="md-nav__item">
-    <a href=".." class="md-nav__link">
+    <a href="../../.." class="md-nav__link">
       Index
     </a>
   </li>
@@ -1312,91 +1184,30 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    Configuration
+  <a href="#bullet-recommendations" class="md-nav__link">
+    Bullet recommendations
   </a>
   
-    <nav class="md-nav" aria-label="Configuration">
+    <nav class="md-nav" aria-label="Bullet recommendations">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#env-vars" class="md-nav__link">
-    ENV vars
+  <a href="#n1-and-counter_cache-warnings" class="md-nav__link">
+    N+1 and counter_cache warnings
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#feature-flags" class="md-nav__link">
-    Feature Flags
+  <a href="#use-eager-loading" class="md-nav__link">
+    Use eager loading
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#site-settings" class="md-nav__link">
-    Site Settings
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#services" class="md-nav__link">
-    Services
-  </a>
-  
-    <nav class="md-nav" aria-label="Services">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#akismet-spam-flagging" class="md-nav__link">
-    Akismet - spam flagging
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aws-s3-file-storage" class="md-nav__link">
-    AWS S3 - file storage
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bugsnag-error-monitoring" class="md-nav__link">
-    Bugsnag - error monitoring
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recaptcha-bot-protection" class="md-nav__link">
-    reCAPTCHA - bot protection
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#other-services-used-no-config-required" class="md-nav__link">
-    Other services used (no config required)
-  </a>
-  
-    <nav class="md-nav" aria-label="Other services used (no config required)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#have-i-been-pwned-password-leak-checking" class="md-nav__link">
-    Have I Been Pwned - password leak checking
+  <a href="#avoid-eager-loading" class="md-nav__link">
+    Avoid eager loading
   </a>
   
 </li>
@@ -1419,43 +1230,283 @@
               
                 
                 
-                <h1 id="shinycms-documentation">ShinyCMS Documentation</h1>
-<h2 id="configuration">Configuration</h2>
-<p>Configuration is split between the following locations:</p>
-<h3 id="env-vars">ENV vars</h3>
-<ul>
-<li>Mostly used for secrets (database details, API keys etc)</li>
-<li>Usually loaded from .env* files, or from Settings &gt; Config Vars on Heroku</li>
-<li>See docs/env.sample for a full list of available ENV settings</li>
-</ul>
-<h3 id="feature-flags">Feature Flags</h3>
-<ul>
-<li>Turn CMS features on (or off) for all users, logged-in only, or admin only</li>
-<li>Controlled in the CMS admin area - /admin/feature-flags</li>
-<li>Can also be turned on or off, and listed, from the command line:</li>
-</ul>
-<pre><code>rails shiny:features:list
-rails shiny:feature:off[user_logins]
-</code></pre>
-<h3 id="site-settings">Site Settings</h3>
-<ul>
-<li>Configuration of CMS options and features</li>
-<li>Controlled in the CMS admin area - /admin/site-settings</li>
-</ul>
-<h2 id="services">Services</h2>
-<p>The external services listed below are optional. If you add config details for them (via a .env* file (see <a href="../env.sample">env.sample</a>), or via your Config Vars on Heroku) then the related CMS features will be enabled or enhanced, otherwise those features will be unavailable or will have more limited functionality.</p>
-<h3 id="akismet-spam-flagging">Akismet - spam flagging</h3>
-<p>Comments can be passed to Akismet for its assessment of whether they are likely to be spam or not. Comments flagged as spam will be hidden on the main site and shown in an admin moderation queue.</p>
-<p>Processing comments in the moderation queue will send training data back to Akismet, which they use to improve their accuracy over time.</p>
-<h3 id="aws-s3-file-storage">AWS S3 - file storage</h3>
-<p>User uploaded files can be stored on AWS S3 instead of locally. To enable this feature you will need to have an an AWS account, create an S3 bucket, and add the relevant keys to the ENV/config.</p>
-<h3 id="bugsnag-error-monitoring">Bugsnag - error monitoring</h3>
-<p>If you add a BUGSNAG_API_KEY then ShinyCMS will start reporting to your Bugsnag account.</p>
-<h3 id="recaptcha-bot-protection">reCAPTCHA - bot protection</h3>
-<p>User registration and posting comments can be protected from bots using Google's reCAPTCHA service. To enable this feature you will need to obtain keys and add them to your ENV/config. You will get the best results with a pair of V3 keys and a pair of V2 keys (this allows you to set a minimum score for each protected feature in your Site Settings area). At first reCAPTCHA tries an 'invisible' (non-interactive) check (V3 with score if configured, V2 otherwise), falling back to a V2 checkbox if that fails.</p>
-<h2 id="other-services-used-no-config-required">Other services used (no config required)</h2>
-<h3 id="have-i-been-pwned-password-leak-checking">Have I Been Pwned - password leak checking</h3>
-<p>The user registration and login features use Devise::PwnedPassword to check user's passwords against https://haveibeenpwned.com/Passwords and warn the user if they find a match, but this doesn't require any setup on your part.</p>
+                <h1 id="shinycms-developer-notes">ShinyCMS Developer Notes</h1>
+<h2 id="bullet-recommendations">Bullet recommendations</h2>
+<p>Docs: https://github.com/flyerhzm/bullet#log</p>
+<h3 id="n1-and-counter_cache-warnings">N+1 and counter_cache warnings</h3>
+<p>None. Which feels slightly suspicious; it seems unlikely that I didn't slip up anywhere.</p>
+<h3 id="use-eager-loading">Use eager loading</h3>
+<p>GET /newsletters
+USE eager loading detected
+  ShinyNewsletters::Send =&gt; [:edition]
+  Add to your query: .includes([:edition])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/app/views/shiny_newsletters/newsletters/index.html.erb:14:in <code>block in _plugins__hiny_ewsletters_app_views_shiny_newsletters_newsletters_index_html_erb___1313984291077648699_509180'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/app/views/shiny_newsletters/newsletters/index.html.erb:12:in</code>each'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/app/views/shiny_newsletters/newsletters/index.html.erb:12:in <code>_plugins__hiny_ewsletters_app_views_shiny_newsletters_newsletters_index_html_erb___1313984291077648699_509180'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/spec/requests/shiny_newsletters/newsletters_controller_spec.rb:28:in</code>block (3 levels) in <top (required)>'</p>
+<p>GET /newsletters
+USE eager loading detected
+  ShinyNewsletters::Send =&gt; [:edition]
+  Add to your query: .includes([:edition])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/app/views/shiny_newsletters/newsletters/index.html.erb:14:in <code>block in _plugins__hiny_ewsletters_app_views_shiny_newsletters_newsletters_index_html_erb___1313984291077648699_509180'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/app/views/shiny_newsletters/newsletters/index.html.erb:12:in</code>each'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/app/views/shiny_newsletters/newsletters/index.html.erb:12:in <code>_plugins__hiny_ewsletters_app_views_shiny_newsletters_newsletters_index_html_erb___1313984291077648699_509180'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/spec/requests/shiny_newsletters/newsletters_controller_spec.rb:48:in</code>block (4 levels) in <top (required)>'</p>
+<p>GET /admin/newsletters/sends
+USE eager loading detected
+  ShinyNewsletters::Send =&gt; [:list]
+  Add to your query: .includes([:list])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/app/views/shiny_newsletters/admin/sends/_sends.html.erb:23:in <code>block in _plugins__hiny_ewsletters_app_views_shiny_newsletters_admin_sends__sends_html_erb__1293562048999176340_469980'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/app/views/shiny_newsletters/admin/sends/_sends.html.erb:17:in</code>_plugins__hiny_ewsletters_app_views_shiny_newsletters_admin_sends__sends_html_erb__1293562048999176340_469980'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/app/views/shiny_newsletters/admin/sends/index.html.erb:14:in <code>_plugins__hiny_ewsletters_app_views_shiny_newsletters_admin_sends_index_html_erb___1839985450544989618_469920'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/spec/requests/shiny_newsletters/admin/sends_controller_spec.rb:213:in</code>block (3 levels) in <top (required)>'</p>
+<h3 id="avoid-eager-loading">Avoid eager loading</h3>
+<p>GET /blog/2021/03/kakistocrat
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/admin/comments_controller_spec.rb:165:in `block (3 levels) in <top (required)>'</p>
+<p>GET /blog/2021/03/nervous-energy
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/admin/comments_controller_spec.rb:182:in `block (3 levels) in <top (required)>'</p>
+<p>GET /news/2021/03/arrested-development
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/admin/comments_controller_spec.rb:196:in `block (3 levels) in <top (required)>'</p>
+<p>GET /news/2021/03/t3ou-4
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/admin/comments_controller_spec.rb:212:in `block (3 levels) in <top (required)>'</p>
+<p>GET /blog/2021/03/thank-you-and-goodnight
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/admin/comments_controller_spec.rb:226:in `block (3 levels) in <top (required)>'</p>
+<p>GET /discussion/54
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/admin/discussions_controller_spec.rb:51:in `block (3 levels) in <top (required)>'</p>
+<p>GET /discussion/55
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/admin/discussions_controller_spec.rb:64:in `block (3 levels) in <top (required)>'</p>
+<p>GET /discussion/56
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/admin/discussions_controller_spec.rb:80:in `block (3 levels) in <top (required)>'</p>
+<p>GET /news/2021/03/teething-problems
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:45:in `block (3 levels) in <top (required)>'</p>
+<p>GET /discussion/61
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:75:in `block (3 levels) in <top (required)>'</p>
+<p>GET /discussion/63/2
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:94:in `block (3 levels) in <top (required)>'</p>
+<p>GET /discussion/65
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:125:in `block (3 levels) in <top (required)>'</p>
+<p>GET /discussion/66
+USE eager loading detected
+  ShinyCMS::User =&gt; [:profile]
+  Add to your query: .includes([:profile])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/app/models/shinycms/user.rb:41:in <code>name'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/app/helpers/shinycms/users_helper.rb:27:in</code>user_profile_link'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/app/views/shinycms/discussions/comment/_posted_by.html.erb:5:in <code>_plugins__hiny____app_views_shinycms_discussions_comment__posted_by_html_erb___4188795360876021136_321580'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/app/views/shinycms/discussions/comment/_header.erb:10:in</code>_plugins__hiny<strong><em>_app</em>views_shinycms_discussions_comment</strong>header_erb<strong><em>2556141725059801205</em>321560'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/app/views/shinycms/discussions/_comment.html.erb:4:in <code>_plugins__hiny____app_views_shinycms_discussions__comment_html_erb___2468144538814618845_321520'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/app/views/shinycms/discussions/_comment_thread.html.erb:4:in</code>_plugins</strong>hiny<strong><em>_app</em>views_shinycms_discussions</strong>comment_thread_html_erb__2061937146636906666_321500'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/app/views/shinycms/discussions/_top_level.html.erb:3:in <code>block in _plugins__hiny____app_views_shinycms_discussions__top_level_html_erb___1714185828006341270_321400'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/app/views/shinycms/discussions/_top_level.html.erb:1:in</code>_plugins__hiny<strong><em>_app</em>views_shinycms_discussions</strong>top_level_html_erb___1714185828006341270_321400'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/app/views/shinycms/discussions/show.html.erb:4:in <code>_plugins__hiny____app_views_shinycms_discussions_show_html_erb__4004307419795142360_259880'
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:148:in</code>block (3 levels) in <top (required)>'</p>
+<p>GET /discussion/66
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:148:in `block (3 levels) in <top (required)>'</p>
+<p>GET /discussion/67
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:170:in `block (3 levels) in <top (required)>'</p>
+<p>POST /discussion/68
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:178:in `block (3 levels) in <top (required)>'</p>
+<p>GET /discussion/69
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:207:in `block (3 levels) in <top (required)>'</p>
+<p>GET /discussion/70
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:233:in `block (3 levels) in <top (required)>'</p>
+<p>POST /discussion/71
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:256:in `block (3 levels) in <top (required)>'</p>
+<p>POST /discussion/72/2
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:author]
+  Remove from your query: .includes([:author])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:280:in `block (3 levels) in <top (required)>'</p>
+<p>GET /discussion/72
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:289:in `block (3 levels) in <top (required)>'</p>
+<p>POST /discussion/73/2
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/discussions_controller_spec.rb:297:in `block (3 levels) in <top (required)>'</p>
+<p>GET /news/2021/03/thorough-but-unreliable
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/votes_controller_spec.rb:32:in `block (3 levels) in <top (required)>'</p>
+<p>GET /news/2021/03/thorough-but-unreliable
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/votes_controller_spec.rb:41:in `block (3 levels) in <top (required)>'</p>
+<p>GET /news/2021/03/excuses-and-accusations
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/votes_controller_spec.rb:57:in `block (3 levels) in <top (required)>'</p>
+<p>GET /news/2021/03/meatfucker
+AVOID eager loading detected
+  ShinyCMS::Comment =&gt; [:comments]
+  Remove from your query: .includes([:comments])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyCMS/spec/requests/shinycms/votes_controller_spec.rb:74:in `block (3 levels) in <top (required)>'</p>
+<p>POST /list/appeal-to-reason/subscribe
+AVOID eager loading detected
+  ShinyLists::Subscription =&gt; [:subscriber]
+  Remove from your query: .includes([:subscriber])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyLists/spec/requests/shiny_lists/subscriptions_controller_spec.rb:66:in `block (3 levels) in <top (required)>'</p>
+<p>POST /list/grey-area/subscribe
+AVOID eager loading detected
+  ShinyLists::Subscription =&gt; [:subscriber]
+  Remove from your query: .includes([:subscriber])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyLists/spec/requests/shiny_lists/subscriptions_controller_spec.rb:85:in `block (3 levels) in <top (required)>'</p>
+<p>POST /admin/newsletters/editions
+AVOID eager loading detected
+  ShinyNewsletters::TemplateElement =&gt; [:image_attachment]
+  Remove from your query: .includes([:image_attachment])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/spec/requests/shiny_newsletters/admin/editions_controller_spec.rb:61:in `block (3 levels) in <top (required)>'</p>
+<p>POST /admin/newsletters/editions
+AVOID eager loading detected
+  ShinyNewsletters::TemplateElement =&gt; [:image_attachment]
+  Remove from your query: .includes([:image_attachment])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyNewsletters/spec/requests/shiny_newsletters/admin/editions_controller_spec.rb:108:in `block (3 levels) in <top (required)>'</p>
+<p>POST /admin/pages
+AVOID eager loading detected
+  ShinyPages::TemplateElement =&gt; [:image_attachment]
+  Remove from your query: .includes([:image_attachment])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyPages/spec/requests/shiny_pages/admin/pages_controller_spec.rb:83:in `block (3 levels) in <top (required)>'</p>
+<p>POST /admin/pages
+AVOID eager loading detected
+  ShinyPages::TemplateElement =&gt; [:image_attachment]
+  Remove from your query: .includes([:image_attachment])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyPages/spec/requests/shiny_pages/admin/pages_controller_spec.rb:101:in `block (3 levels) in <top (required)>'</p>
+<p>GET /admin/profiles/697/edit
+AVOID eager loading detected
+  ShinyProfiles::Profile =&gt; [:links]
+  Remove from your query: .includes([:links])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyProfiles/spec/requests/shiny_profiles/admin/profiles_controller_spec.rb:22:in `block (3 levels) in <top (required)>'</p>
+<p>PUT /admin/profiles/699
+AVOID eager loading detected
+  ShinyProfiles::Profile =&gt; [:links]
+  Remove from your query: .includes([:links])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyProfiles/spec/requests/shiny_profiles/admin/profiles_controller_spec.rb:35:in `block (3 levels) in <top (required)>'</p>
+<p>GET /admin/profiles/699/edit
+AVOID eager loading detected
+  ShinyProfiles::Profile =&gt; [:links]
+  Remove from your query: .includes([:links])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyProfiles/spec/requests/shiny_profiles/admin/profiles_controller_spec.rb:43:in `block (3 levels) in <top (required)>'</p>
+<p>GET /profile/marlin/edit
+AVOID eager loading detected
+  ShinyProfiles::Profile =&gt; [:links, :profile_pic_attachment]
+  Remove from your query: .includes([:links, :profile_pic_attachment])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyProfiles/spec/requests/shiny_profiles/profiles_controller_spec.rb:67:in `block (4 levels) in <top (required)>'</p>
+<p>PUT /profile/ladawn.price
+AVOID eager loading detected
+  ShinyProfiles::Profile =&gt; [:links]
+  Remove from your query: .includes([:links])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyProfiles/spec/requests/shiny_profiles/profiles_controller_spec.rb:114:in `block (3 levels) in <top (required)>'</p>
+<p>PUT /profile/carlos_conn
+AVOID eager loading detected
+  ShinyProfiles::Profile =&gt; [:links]
+  Remove from your query: .includes([:links])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyProfiles/spec/requests/shiny_profiles/profiles_controller_spec.rb:159:in `block (3 levels) in <top (required)>'</p>
+<p>PUT /profile/carmina_glover
+AVOID eager loading detected
+  ShinyProfiles::Profile =&gt; [:links, :profile_pic_attachment]
+  Remove from your query: .includes([:links, :profile_pic_attachment])
+Call stack
+  /home/denny/code/denny/ShinyCMS-ruby/plugins/ShinyProfiles/spec/requests/shiny_profiles/profiles_controller_spec.rb:136:in `block (4 levels) in <top (required)>'</p>
                 
               
               
@@ -1470,41 +1521,6 @@ rails shiny:feature:off[user_logins]
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../INSTALL/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Local installation
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../Cloud-Hosting/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Cloud hosting
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1526,15 +1542,15 @@ rails shiny:feature:off[user_logins]
       
     </div>
     
-      <script src="../assets/javascripts/vendor.6a3d08fc.min.js"></script>
-      <script src="../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "..",
+          base: "../../..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

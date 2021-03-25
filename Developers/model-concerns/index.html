@@ -1316,7 +1316,6 @@
 <h3 id="in-the-core-plugin">In the core plugin</h3>
 <ul>
 <li>CanHide         - check or change visible/hidden status of content</li>
-<li>HasDemoData     - for models that may provide data for the demo site</li>
 <li>HasEmail        - sets/searches/validates canonical_email as well as email</li>
 <li>HasPublicName   - <code>.name</code> method - returns public_name if set, internal_name otherwise</li>
 <li>HasReadableName - get a human-readable (and optionally, localised) version of model's class name</li>
@@ -1333,6 +1332,12 @@
 <li>HasSlugUniqueInMonth   - slug is only unique within a month (includes HasSlug)</li>
 <li>
 <p>HasSlugUniqueInSection - slug is only unique within a section (includes HasSlug)</p>
+</li>
+<li>
+<p>ProvidesDemoSiteData   - for models that may provide data for the demo site</p>
+</li>
+<li>
+<p>ProvidesSitemapData    - for models that may provide data for the sitemap</p>
 </li>
 <li>
 <p>Post            - common behaviour for 'posts' (e.g. ShinyBlog::Post, ShinyNews::Post) (includes CanHide, HasReadableName, HasSlugUniqueInMonth, HasTags, HasTeaser, HasVotes, and SoftDelete)</p>
