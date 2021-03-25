@@ -23,7 +23,7 @@ module ShinyNewsletters
     # Class methods
 
     def self.template_dir
-      ShinyCMS::Theme.get&.template_dir 'shiny_newsletters/newsletter_mailer'
+      ShinyCMS::Theme.template_dir 'shiny_newsletters/newsletter_mailer'
     end
 
     def self.admin_search( search_term )

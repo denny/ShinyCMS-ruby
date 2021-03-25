@@ -18,7 +18,7 @@ module ShinyCMS
     end
 
     def recent_comments_by_user( user, count = 10 )
-      Comment.readonly.where( author: user ).recent.limit( count ) unless user.nil?
+      Comment.readonly.where( author: user ).recent.limit( count )
     end
   end
 end

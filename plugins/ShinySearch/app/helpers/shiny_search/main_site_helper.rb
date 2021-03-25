@@ -10,7 +10,7 @@ module ShinySearch
   # Utility functions for dealing with pg_multisearch and Algolia (Search as a Service provider)
   module MainSiteHelper
     def pg_search_is_enabled?
-      ENV.fetch( 'DISABLE_PG_SEARCH', nil )&.downcase != 'true'
+      ENV.fetch( 'DISABLE_PG_SEARCH', 'false' ).downcase != 'true'
     end
 
     def algolia_search_is_enabled?
@@ -25,7 +25,7 @@ module ShinySearch
     # to display their logo on search result pages. If you are using a paid plan
     # and you want to hide their logo, set ALGOLIASEARCH_USING_PAID_PLAN to 'Yes'.
     def using_paid_algolia_plan?
-      ENV[ 'ALGOLIASEARCH_USING_PAID_PLAN' ].presence&.downcase == 'yes'
+      ENV.fetch( 'ALGOLIASEARCH_USING_PAID_PLAN', 'false' ).downcase == 'true'
     end
 
     def using_free_algolia_plan?

@@ -8,17 +8,27 @@
 
 # Tests for behaviour mixed-in by the HasEmail concern
 RSpec.shared_examples ShinyCMS::HasEmail do
-  describe '.do_not_email?' do
+  describe '.not_ok_to_email?' do
     it 'returns true if the email is not confirmed' do
       allow( addressee ).to receive( :confirmed_at ).and_return nil
 
-      expect( addressee.do_not_email? ).to be true
+      expect( addressee.not_ok_to_email? ).to be true
     end
 
-    it 'returns false if the email is confirmed' do
+    it 'returns true if the email is on the Do Not Contact list' do
       addressee.confirm
 
-      expect( addressee.do_not_email? ).to be false
+      allow( ShinyCMS::DoNotContact ).to receive( :list_includes? ).and_return true
+
+      expect( addressee.not_ok_to_email? ).to be true
+    end
+  end
+
+  describe '.okay_to_email?' do
+    it 'returns true if the email is confirmed' do
+      addressee.confirm
+
+      expect( addressee.ok_to_email? ).to be true
     end
   end
 end

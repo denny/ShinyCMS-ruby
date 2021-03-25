@@ -9,9 +9,6 @@
 module ShinySearch
   # Loads Rails::Engine features
   class Engine < ::Rails::Engine
-    require 'algoliasearch-rails'
-    require 'pg_search'
-
     isolate_namespace ShinySearch
 
     config.generators do |g|

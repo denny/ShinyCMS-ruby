@@ -17,14 +17,30 @@ RSpec.describe ShinyNewsletters::Admin::TemplatesController, type: :request do
   end
 
   describe 'GET /admin/newsletters/templates' do
-    it 'fetches the list of templates in the admin area' do
-      template = create :newsletter_template
+    context 'when there are no templates' do
+      it "displays the 'no templates found' message" do
+        get shiny_newsletters.templates_path
 
-      get shiny_newsletters.templates_path
+        pager_info = 'No templates found'
 
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.templates.index.title' ).titlecase
-      expect( response.body ).to have_css 'td', text: template.name
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.templates.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
+    end
+
+    context 'when there are templates' do
+      it 'displays the list of templates' do
+        create_list :newsletter_template, 3
+
+        get shiny_newsletters.templates_path
+
+        pager_info = 'Displaying 3 templates'
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.templates.index.title' ).titlecase
+        expect( response.body ).to have_css '.pager-info', text: pager_info
+      end
     end
   end
 

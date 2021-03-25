@@ -38,7 +38,9 @@ RSpec.describe ShinySearch::SearchController, type: :request do
     before do
       ShinyCMS::FeatureFlag.enable :user_profiles
 
-      allow( ENV ).to receive( :fetch ).and_return nil  # this enables pg_search
+      allow( ENV ).to receive( :fetch ).and_return nil
+
+      allow( ENV ).to receive( :fetch ).with( 'DISABLE_PG_SEARCH', 'false' ).and_return 'false'
 
       allow( ENV ).to receive( :fetch ).with( 'SHINYCMS_THEME', nil ).and_return 'TEST'
 
@@ -87,10 +89,10 @@ RSpec.describe ShinySearch::SearchController, type: :request do
 
       allow( ENV ).to receive( :fetch ).and_return nil
 
-      allow( ENV ).to receive( :fetch ).with( 'SHINYCMS_THEME', nil ).and_return 'TEST'
-
-      allow( ENV ).to receive( :fetch ).with( 'ALGOLIASEARCH_APPLICATION_ID', nil )
-                                       .and_return 'fake-id'
+      allow( ENV ).to receive( :fetch ).with( 'SHINYCMS_THEME',                nil     ).and_return 'TEST'
+      allow( ENV ).to receive( :fetch ).with( 'ALGOLIASEARCH_APPLICATION_ID',  nil     ).and_return 'fake-id'
+      allow( ENV ).to receive( :fetch ).with( 'ALGOLIASEARCH_USING_PAID_PLAN', 'false' ).and_return 'false'
+      allow( ENV ).to receive( :fetch ).with( 'DISABLE_PG_SEARCH',             'false' ).and_return 'false'
 
       WebMock.enable!
 

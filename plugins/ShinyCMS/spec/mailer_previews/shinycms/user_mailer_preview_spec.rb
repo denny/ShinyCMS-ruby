@@ -13,6 +13,12 @@ RSpec.describe ShinyCMS::UserMailerPreview, type: :request do
   before do
     admin = create :admin_with_rails_email_preview
     sign_in admin
+
+    ShinyCMS::FeatureFlag.enable :send_emails
+  end
+
+  after do
+    ShinyCMS::FeatureFlag.disable :send_emails
   end
 
   let( :site_name ) { ShinyCMS::Setting.get( :site_name ) || I18n.t( 'site_name' ) }

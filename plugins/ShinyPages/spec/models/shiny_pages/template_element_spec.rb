@@ -13,8 +13,7 @@ module ShinyPages
   RSpec.describe TemplateElement, type: :model do
     describe 'concerns' do
       it_behaves_like ShinyCMS::Element do
-        let( :template ) { create :page_template                             }
-        let( :element  ) { create :page_template_element, template: template }
+        let( :element ) { create :page_template_element }
       end
 
       it_behaves_like ShinyCMS::ProvidesDemoSiteData do

@@ -13,10 +13,10 @@ module ShinyNewsletters
 
     def perform( send, subscriber )
       return if send.sent?
-      return unless subscriber.ok_to_email?
+
       return unless send.list.subscribed? subscriber.email
 
-      NewsletterMailer.send_email( send.edition, subscriber ).deliver
+      NewsletterMailer.with( edition: send.edition, subscriber: subscriber ).send_email.deliver
     end
   end
 end

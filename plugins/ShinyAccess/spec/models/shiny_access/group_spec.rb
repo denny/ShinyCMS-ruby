@@ -26,6 +26,18 @@ module ShinyAccess
           expect( test_group.member?( test_user ) ).to be false
         end
       end
+
+      describe '.add_member( user )' do
+        it 'returns true if the user is added to the group' do
+          expect( test_group.add_member( test_user ) ).to be true
+        end
+
+        it 'returns false if the user is already a member of the group' do
+          create :access_membership, group: test_group, user: test_user
+
+          expect( test_group.add_member( test_user ) ).to be false
+        end
+      end
     end
 
     describe 'concerns' do

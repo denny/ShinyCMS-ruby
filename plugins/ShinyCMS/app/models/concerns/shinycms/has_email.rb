@@ -29,7 +29,7 @@ module ShinyCMS
       # Instance methods
 
       def strip_email
-        self.email = email&.strip
+        self.email = email.to_s.strip
       end
 
       def generate_canonical_email
@@ -41,7 +41,7 @@ module ShinyCMS
       end
 
       # TODO: make email address hard/non-standard to get at if marked not ok to email?
-      def do_not_email?
+      def not_ok_to_email?
         !ok_to_email?
       end
 

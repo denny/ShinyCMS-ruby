@@ -8,11 +8,11 @@
 
 # Configuration for Algolia (Search as a Service)
 
-return if ENV['ALGOLIASEARCH_APPLICATION_ID'].blank?
-
 # :nocov:
 
+return if ENV[ 'ALGOLIASEARCH_API_KEY' ].blank? || ENV[ 'ALGOLIASEARCH_APPLICATION_ID' ].blank?
+
 AlgoliaSearch.configuration = {
-  application_id: ENV['ALGOLIASEARCH_APPLICATION_ID'],
-  api_key:        ENV['ALGOLIASEARCH_API_KEY']
+  application_id: ENV[ 'ALGOLIASEARCH_APPLICATION_ID' ],
+  api_key:        ENV[ 'ALGOLIASEARCH_API_KEY'        ]
 }
