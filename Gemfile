@@ -53,6 +53,9 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 3.4.2'
 
+  # Check plugin boundaries
+  gem 'packwerk'
+
   group :development, :test do
     # RSpec for Rails
     gem 'rspec-rails'

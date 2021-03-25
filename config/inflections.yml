@@ -1,0 +1,40 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Packwerk inflections config
+
+# List your inflections in this file instead of `inflections.rb`
+# See steps to set up custom inflections:
+# https://github.com/Shopify/packwerk/blob/main/USAGE.md#Inflections
+
+acronym:
+  # Acronyms used in the ShinyCMS code
+  - CMS
+  - IP
+  - HTML
+  - MJML
+  - SEO
+  - ShinyCMS
+  - URL
+
+  # Common acronyms, that might be used in CMS content
+  # (to prevent them being misformatted by methods such as .titlecase)
+  - AI
+  - API
+  - BBC
+  - CEO
+  - CPU
+  - CRM
+  - CTO
+  - EU
+  - PR
+  - REST
+  - RESTful
+  - UK
+  - USA
+  - USB
+  - VIP
+  - WWW
