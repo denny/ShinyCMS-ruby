@@ -9,8 +9,8 @@
 require 'rss'
 
 module ShinyCMS
-  # Model to assist in building Atom feed entries from ShinyCMS::Posts
-  class ShinyPostAtomFeedEntry
+  # Turn a ShinyCMS::Post into an Atom feed entry (used by ShinyCMS::AtomFeed)
+  class AtomFeedEntry
     include ShinyCMS::MainAppRootURL
     include ShinyCMS::SiteNameHelper
 
