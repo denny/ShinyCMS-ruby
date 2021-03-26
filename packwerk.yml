@@ -36,6 +36,7 @@ load_paths:
 - plugins/ShinyCMS/app/models/concerns
 - plugins/ShinyCMS/app/policies
 - plugins/ShinyCMS/app/public
+- plugins/ShinyCMS/app/public/concerns
 
 - plugins/ShinyAccess/app/controllers
 - plugins/ShinyAccess/app/helpers
@@ -97,9 +98,8 @@ load_paths:
 - plugins/ShinySearch/app/controllers
 - plugins/ShinySearch/app/helpers
 - plugins/ShinySearch/app/jobs
-- plugins/ShinySearch/app/models
-- plugins/ShinySearch/app/models/concerns
 - plugins/ShinySearch/app/public
+- plugins/ShinySearch/app/public/concerns
 
 # List of custom associations, if any
 # custom_associations:
