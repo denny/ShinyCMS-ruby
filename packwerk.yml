@@ -12,10 +12,12 @@
 include:
 - '**/*.{rb,rake,erb}'
 exclude:
-- '{bin,coverage,docs,log,node_modules,site,storage,themes,tmp,vendor}/**/*'
+#- '{bin,coverage,docs,log,node_modules,site,storage,themes,tmp,vendor}/**/*'
+- '{bin,coverage,db,docs,log,node_modules,site,spec,storage,themes,tmp,vendor,plugins/*/config,plugins/*/spec,plugins/*/lib/tasks}/**/*'
 
 # Patterns to find package configuration files (defaults to '**/')
-# package_paths: '**/config/'  # This does not do what I had hoped for.
+# package_paths: '**/config/'
+# I hoped this^ would let me put package.yml in plugins/{name}/config/ but nope.
 
 # List of application load paths
 load_paths:
@@ -97,6 +99,7 @@ load_paths:
 - plugins/ShinySearch/app/jobs
 - plugins/ShinySearch/app/models
 - plugins/ShinySearch/app/models/concerns
+- plugins/ShinySearch/app/public
 
 # List of custom associations, if any
 # custom_associations:
