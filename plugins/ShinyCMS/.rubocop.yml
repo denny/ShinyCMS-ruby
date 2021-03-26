@@ -44,6 +44,7 @@ Metrics/BlockLength:
     - ../Shiny*/shiny*.gemspec
     - ../Shiny*/spec/**/*.rb
     - ../ShinyCMS/app/models/concerns/shinycms/*.rb
+    - ../ShinyCMS/app/public/concerns/shinycms/post.rb
 
 # Spec files with I18n.t calls have long lines. I can live with that.
 Layout/LineLength:
