@@ -13,15 +13,12 @@
 enforce_dependencies: true
 
 # Turn on privacy checks for this package?
-enforce_privacy: false
-# Enforcing privacy is often not useful for the root package, because it would
-# require defining a public interface for something that should only be a thin
-# wrapper in the first place. We recommend enabling this for any new packages
-# you create to aid with encapsulation.
+enforce_privacy: true
 
 # The public path for this package (defaults to `app/public/`)
 # public_path: app/public/
 
 # Dependencies of this package (note: these require their own `package.yml` file)
-# dependencies:
-# - plugins/ShinyCMS
+dependencies:
+- plugins/ShinyCMS
+#- plugins/ShinyCMS/config  # This seems silly.
