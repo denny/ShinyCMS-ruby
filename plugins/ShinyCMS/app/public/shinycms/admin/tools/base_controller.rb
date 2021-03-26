@@ -9,7 +9,7 @@
 module ShinyCMS
   module Admin
     module Tools
-      # Base class that e.g. engines from gems can inherit from relatively safely
+      # For engine controllers to inherit from when embedding them into ShinyCMS admin area
       class BaseController < ActionController::Base
         include Pundit
 

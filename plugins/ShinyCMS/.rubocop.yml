@@ -108,7 +108,7 @@ Rails/SaveBang:
 Rails/ApplicationController:
   Exclude:
     - ../../app/controllers/main_controller.rb
-    - app/controllers/shinycms/admin/tools/base_controller.rb
+    - app/public/shinycms/admin/tools/base_controller.rb
 
 # Unused/demo controller in main_app, and 'no content' fallbacks in ShinyPages
 Rails/RenderInline:
