@@ -10,18 +10,22 @@ module ShinyCMS
   module Admin
     # Common methods for admin controllers that handle content that is a Post
     module Discussions
-      def extract_discussion_flags_from_params( request_params )
-        show = ( request_params.delete( :discussion_show_on_site ) || 0 ).to_i == 1
-        lock = ( request_params.delete( :discussion_locked       ) || 0 ).to_i == 1
+      extend ActiveSupport::Concern
 
-        [ show, lock ]
-      end
+      included do
+        def extract_discussion_flags_from_params( request_params )
+          show = ( request_params.delete( :discussion_show_on_site ) || 0 ).to_i == 1
+          lock = ( request_params.delete( :discussion_locked       ) || 0 ).to_i == 1
 
-      def create_discussion_or_update_flags( resource, show, lock )
-        if resource.discussion.present?
-          resource.discussion.update!( show_on_site: show, locked: lock )
-        elsif show
-          ShinyCMS::Discussion.create!( resource: @post, show_on_site: show, locked: lock )
+          [ show, lock ]
+        end
+
+        def create_discussion_or_update_flags( resource, show, lock )
+          if resource.discussion.present?
+            resource.discussion.update!( show_on_site: show, locked: lock )
+          elsif show
+            ShinyCMS::Discussion.create!( resource: @post, show_on_site: show, locked: lock )
+          end
         end
       end
     end

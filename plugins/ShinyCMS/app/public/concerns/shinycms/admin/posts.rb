@@ -10,12 +10,16 @@ module ShinyCMS
   module Admin
     # Common methods for admin controllers that handle Posts
     module Posts
-      def enforce_change_author_capability_for_create( category )
-        params[ :post ][ :user_id ] = current_user.id unless current_user.can? :change_author, category
-      end
+      extend ActiveSupport::Concern
 
-      def enforce_change_author_capability_for_update( category )
-        params[ :post ].delete( :user_id ) unless current_user.can? :change_author, category
+      included do
+        def enforce_change_author_capability_for_create( category )
+          params[ :post ][ :user_id ] = current_user.id unless current_user.can? :change_author, category
+        end
+
+        def enforce_change_author_capability_for_update( category )
+          params[ :post ].delete( :user_id ) unless current_user.can? :change_author, category
+        end
       end
     end
   end
