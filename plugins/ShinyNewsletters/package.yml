@@ -21,3 +21,4 @@ enforce_privacy: true
 # Dependencies of this package (note: these require their own `package.yml` file)
 dependencies:
 - plugins/ShinyCMS
+- plugins/ShinyLists
