@@ -10,7 +10,7 @@ module ShinyCMS
   # Controller for discussion and comment features on a ShinyCMS site
   class DiscussionsController < MainController
     include ShinyCMS::WithAkismet
-    include ShinyCMS::RecaptchaHelper
+    include ShinyCMS::WithRecaptcha
 
     before_action :check_feature_flags
     before_action :stash_discussion, except: %i[ index ]
