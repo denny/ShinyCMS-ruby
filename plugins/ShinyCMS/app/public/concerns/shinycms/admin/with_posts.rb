@@ -8,8 +8,8 @@
 
 module ShinyCMS
   module Admin
-    # Common methods for admin controllers that handle Posts
-    module Posts
+    # Common methods for admin controllers that handle ShinyCMS::Posts
+    module WithPosts
       extend ActiveSupport::Concern
 
       included do

@@ -9,7 +9,7 @@
 module ShinyCMS
   module Admin
     # For admin controllers that handle content from models that include HasTags
-    module Tags
+    module WithTags
       extend ActiveSupport::Concern
 
       included do
