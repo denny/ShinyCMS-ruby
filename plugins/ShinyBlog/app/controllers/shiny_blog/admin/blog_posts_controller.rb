@@ -9,11 +9,10 @@
 module ShinyBlog
   # Admin area controller for ShinyBlog plugin for ShinyCMS
   class Admin::BlogPostsController < AdminController
+    include ShinyCMS::Admin::WithDateTimeInputs
     include ShinyCMS::Admin::Discussions
     include ShinyCMS::Admin::Posts
     include ShinyCMS::Admin::Tags
-
-    include ShinyCMS::DatesHelper
 
     before_action :set_post_for_create, only: :create
     before_action :set_post, only: %i[ edit update destroy ]
