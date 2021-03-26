@@ -19,5 +19,5 @@ enforce_privacy: true
 # public_path: plugins/ShinyCMS/app/public/
 
 # Dependencies of this package (note: these require their own `package.yml` file)
-# dependencies:
-# - plugins/ShinyCMS
+dependencies:
+- .  # TODO: FIXME: Ahoy* !
