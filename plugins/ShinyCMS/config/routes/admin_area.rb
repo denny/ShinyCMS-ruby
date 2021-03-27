@@ -8,7 +8,7 @@
 
 # Routes for ShinyCMS admin area, for core plugin features
 
-get :admin, to: 'admin#index'
+get :admin, to: 'admin/root#index'
 
 scope path: 'admin', module: 'admin' do
   # with_paging and with_search

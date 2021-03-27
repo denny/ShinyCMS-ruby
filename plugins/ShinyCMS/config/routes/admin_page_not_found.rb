@@ -9,4 +9,7 @@
 # Protect the /admin namespace from fishing expeditions
 # See ShinyHostApp config/routes.rb for how to use this file
 
-match '/admin/*path', to: 'shinycms/admin#not_found', as: :admin_not_found, via: %i[ get post put patch delete ]
+# This route will match anything in the /admin URL namespace that hasn't already
+# been matched by another route; it must be defined after every other /admin URL
+
+match '/admin/*path', to: 'shinycms/admin/root#not_found', as: :admin_not_found, via: %i[ get post put patch delete ]
