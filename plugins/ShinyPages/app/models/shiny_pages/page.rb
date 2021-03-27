@@ -19,6 +19,8 @@ module ShinyPages
     include ShinyCMS::ProvidesDemoSiteData
     include ShinyCMS::ProvidesSitemapData
 
+    include ShinyCMS::SettingsHelper
+
     include ShinyPages::TopLevelSlugValidator
 
     # Associations
@@ -105,7 +107,7 @@ module ShinyPages
     end
 
     def self.configured_default_page
-      name_or_slug = ShinyCMS::Setting.get :default_page
+      name_or_slug = setting( :default_page )
       top_level_pages
         .where( internal_name: name_or_slug )
         .or( top_level_pages

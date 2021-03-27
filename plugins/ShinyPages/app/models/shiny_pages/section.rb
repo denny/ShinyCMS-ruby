@@ -19,6 +19,8 @@ module ShinyPages
 
     include ShinyPages::TopLevelSlugValidator
 
+    include ShinyCMS::SettingsHelper
+
     # Associations
 
     belongs_to :section, inverse_of: :all_sections, optional: true, class_name: 'Section'
@@ -108,7 +110,7 @@ module ShinyPages
 
     # Return the default top-level section
     def self.default_section
-      name_or_slug = ShinyCMS::Setting.get :default_section
+      name_or_slug = setting( :default_section )
       top_level_sections.where( internal_name: name_or_slug )
                         .or( top_level_sections
                         .where( slug: name_or_slug ) )
