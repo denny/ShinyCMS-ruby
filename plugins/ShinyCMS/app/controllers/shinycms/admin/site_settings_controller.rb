@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Controller for site-settings section of ShinyCMS admin area
-  class Admin::SiteSettingsController < AdminController
+  class Admin::SiteSettingsController < Admin::BaseController
     def index
       authorize Setting
       @settings = Setting.order( :name )

@@ -18,7 +18,8 @@ module ShinyCMS
     end
 
     def shinycms_admin_controller?
-      controller.is_a?( ShinyCMS::AdminController ) && !blazer_controller? && !rep_controller?
+      controller.is_a?( ShinyCMS::Admin::BaseController ) &&
+        !blazer_controller? && !rep_controller?
     end
 
     def coverband_web_ui_enabled?
