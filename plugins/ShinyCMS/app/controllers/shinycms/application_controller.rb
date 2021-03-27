@@ -15,6 +15,8 @@ module ShinyCMS
 
     helper Pagy::Frontend
 
+    helper Rails.application.routes.url_helpers
+
     helper_method :pagy_url_for, :recaptcha_v2_site_key, :recaptcha_v3_site_key, :recaptcha_checkbox_site_key
 
     before_action :store_user_location!, if: :storable_location?
