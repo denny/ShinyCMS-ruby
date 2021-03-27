@@ -7,7 +7,5 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyNews
-  class MainController < ShinyCMS::MainController
-    helper Rails.application.routes.url_helpers
-  end
+  class MainController < ShinyCMS::BaseController; end
 end
