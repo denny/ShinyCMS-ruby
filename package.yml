@@ -23,6 +23,5 @@ enforce_privacy: false
 # public_path: app/public/
 
 # Dependencies of this package (note: these require their own `package.yml` file)
-# dependencies:
-# - plugins/ShinyCMS  # TODO: FIXME: db/seeds*
-# Can't do this^, it's a circular dependency; core plugin depends on main app for Ahoy
+dependencies:
+- plugins/ShinyCMS  # TODO: db/seeds*, Blazer BaseController, User

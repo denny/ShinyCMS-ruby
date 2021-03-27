@@ -19,6 +19,8 @@ enforce_privacy: true
 # public_path: plugins/ShinyCMS/app/public/
 
 # Dependencies of this package (note: these require their own `package.yml` file)
-dependencies:
-- .  # TODO: FIXME: Ahoy* !
-# - plugins/ShinySearch  # circular dependency
+# dependencies:
+# - .                     # Ahoy and AhoyEmail (gem/engine)
+# - plugins/ShinySearch   # Searchable (model concern)
+# ^ TODO: FIXME: Both of these are circular dependencies if uncommented.
+#   Presumably that means they need abtracting instead.
