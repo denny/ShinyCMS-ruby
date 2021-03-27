@@ -17,9 +17,9 @@ module ShinyPages
 
     include ShinyCMS::ProvidesDemoSiteData
 
-    include ShinyPages::TopLevelSlugValidator
+    include ShinyCMS::WithSettings
 
-    include ShinyCMS::SettingsHelper
+    include ShinyPages::TopLevelSlugValidator
 
     # Associations
 

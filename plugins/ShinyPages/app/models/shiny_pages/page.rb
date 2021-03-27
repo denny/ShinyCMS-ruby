@@ -19,7 +19,7 @@ module ShinyPages
     include ShinyCMS::ProvidesDemoSiteData
     include ShinyCMS::ProvidesSitemapData
 
-    include ShinyCMS::SettingsHelper
+    include ShinyCMS::WithSettings
 
     include ShinyPages::TopLevelSlugValidator
 

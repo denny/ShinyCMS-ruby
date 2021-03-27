@@ -10,7 +10,7 @@ module ShinyCMS
   # Helper method for retrieving site settings
   module SettingsHelper
     def setting( name )
-      Setting.get( name, current_user )
+      ShinyCMS::Setting.readonly.get( name, current_user )
     end
   end
 end

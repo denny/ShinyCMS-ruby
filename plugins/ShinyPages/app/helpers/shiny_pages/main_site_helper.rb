@@ -9,7 +9,7 @@
 module ShinyPages
   # Helper methods for dealing with Pages and Page Sections
   module MainSiteHelper
-    def find_default_page
+    def default_page
       ShinyPages::Page.readonly.default_page
     end
 
