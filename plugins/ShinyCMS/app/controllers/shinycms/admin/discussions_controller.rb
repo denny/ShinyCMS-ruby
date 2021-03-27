@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Controller for ShinyCMS comment/discussion admin features
-  class Admin::DiscussionsController < AdminController
+  class Admin::DiscussionsController < Admin::BaseController
     before_action :stash_discussion
 
     def show
