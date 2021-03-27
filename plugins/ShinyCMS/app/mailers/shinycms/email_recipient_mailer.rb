@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Mailer for EmailRecipients (non-authenticated site users that we want to send email to)
-  class EmailRecipientMailer < ApplicationMailer
+  class EmailRecipientMailer < BaseMailer
     before_action :stash_recipient_and_user
     before_action :stash_confirm_token
 

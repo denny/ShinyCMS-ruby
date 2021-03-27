@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Mailer for user account related emails (password reset, etc) (uses Devise)
-  class UserMailer < ApplicationMailer
+  class UserMailer < BaseMailer
     include Devise::Controllers::UrlHelpers
 
     default from: ->( * ) { default_email }

@@ -8,7 +8,7 @@
 
 module ShinyNewsletters
   # Mailer to send a newsletter edition to a list subscriber - part of the ShinyNewsletters plugin for ShinyCMS
-  class NewsletterMailer < ShinyCMS::ApplicationMailer
+  class NewsletterMailer < ApplicationMailer
     before_action :stash_subscriber_and_user
     before_action :stash_content
 

@@ -8,8 +8,8 @@
 
 module ShinyForms
   # Mailers for generic form handlers provided by ShinyForms plugin for ShinyCMS
-  class FormMailer < ShinyCMS::ApplicationMailer
-    before_action { @to = params[:to] || ShinyCMS::Setting.get( :default_email ) }
+  class FormMailer < ApplicationMailer
+    before_action { @to = params[:to] || default_email }
 
     before_action { @form_name = params[:form_name] }
     before_action { @form_data = params[:form_data] }
