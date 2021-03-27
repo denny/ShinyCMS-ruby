@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # ShinyCMS base controller for the admin area
-  class AdminController < ApplicationController
+  class Admin::BaseController < ApplicationController
     include Pundit
 
     include ShinyCMS::Admin::AccessControlByIP
@@ -21,24 +21,6 @@ module ShinyCMS
     after_action :verify_authorized
 
     layout 'admin/layouts/admin_area'
-
-    def index
-      skip_authorization
-
-      flash.keep
-
-      if ShinyCMS.plugins.loaded?( :ShinyPages ) && current_user.can?( :list, :pages )
-        redirect_to shiny_pages.pages_path
-      else
-        redirect_to main_app.root_path
-      end
-    end
-
-    def not_found
-      skip_authorization
-      bad_path = params[:path]
-      redirect_to admin_path, alert: t( 'shinycms.admin.invalid_url', request_path: bad_path )
-    end
 
     private
 

@@ -8,7 +8,7 @@
 
 require 'rails_helper'
 
-# Tests for admin base controller, and other general admin features
+# Tests for some basic/generic admin features
 RSpec.describe ShinyCMS::AdminController, type: :request do
   describe 'GET /' do
     it 'shows the admin toolbar on the main site, if you are an admin' do
