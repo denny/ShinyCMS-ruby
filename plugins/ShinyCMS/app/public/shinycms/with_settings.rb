@@ -11,13 +11,6 @@ module ShinyCMS
   module WithSettings
     extend ActiveSupport::Concern
 
-    included do
-      def setting( name )
-        current_user ||= nil
-        ShinyCMS::Setting.readonly.get( name, current_user )
-      end
-    end
-
     class_methods do
       def setting( name )
         current_user ||= nil
