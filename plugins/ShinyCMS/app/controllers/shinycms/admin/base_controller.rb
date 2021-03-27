@@ -13,8 +13,6 @@ module ShinyCMS
 
     include ShinyCMS::Admin::AccessControlByIP
 
-    helper Rails.application.routes.url_helpers
-
     before_action :authenticate_user!
     before_action :cache_user_capabilities
 
