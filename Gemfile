@@ -103,9 +103,6 @@ source 'https://rubygems.org' do
     # Analysis tools for postgres
     gem 'rails-pg-extras', require: false
 
-    # Used to generate demo site data
-    gem 'seed_dump', require: false
-
     # Manage git hooks
     gem 'overcommit', require: false
   end
