@@ -6,6 +6,8 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# :nocov: - until I can get the tests past square zero
+
 Flipper.configure do |config|
   config.default do
     adapter = Flipper::Adapters::ActiveRecord.new
