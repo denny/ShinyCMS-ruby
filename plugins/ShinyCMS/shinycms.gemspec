@@ -45,8 +45,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'persistent-dmnd'
 
   # Sessions
-  # FIXME: Installing from GitHub for security patch and Ruby 3.0 support
-  # spec.add_dependency 'activerecord-session_store'
+  spec.add_dependency 'activerecord-session_store'
 
   # Stronger password encryption
   spec.add_dependency 'bcrypt', '~> 3.1.16'

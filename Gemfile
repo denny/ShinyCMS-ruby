@@ -36,10 +36,6 @@ source 'https://rubygems.org' do
   # Webserver
   gem 'puma', '~> 5.2', groups: %i[ development production ]
 
-  # Sessions
-  # FIXME: Installing from fork to pick up fix for CVE-2019-16782
-  gem 'activerecord-session_store', github: 'rails-lts/activerecord-session_store', branch: 'secure-session-store'
-
   # Email previews
   gem 'rails_email_preview'
 
