@@ -7,5 +7,5 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyLists
-  class AdminController < ShinyCMS::AdminController; end
+  class AdminController < ShinyCMS::Admin::BaseController; end
 end

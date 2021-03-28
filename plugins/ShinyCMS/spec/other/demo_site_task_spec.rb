@@ -24,7 +24,7 @@ RSpec.describe 'DemoSiteTask', type: :helper do
           ])
         EXPECTED
 
-        result = described_class.munge_user_id( input )
+        result = described_class.munge_user_id_in( input )
 
         expect( result ).to eq expected
       end
