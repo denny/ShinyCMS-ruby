@@ -14,9 +14,6 @@ mount Ckeditor::Engine, at: '/admin/tools/ckeditor'
 
 # Flipper handles feature flags
 authenticate :user, ->( user ) { user.can? :edit, :feature_flags } do
-  # adapter = Flipper::Adapters::ActiveRecord.new
-  # flipper = Flipper.new( adapter )
-
   mount Flipper::UI.app( Flipper ), at: '/admin/tools/flipper', as: :flipper
 end
 
