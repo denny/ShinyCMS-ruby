@@ -22,7 +22,7 @@ require_relative 'support/demo_site_task'
 
 namespace :shinycms do
   namespace :demo do
-    include DemoSiteTask
+    include ShinyCMS::DemoSiteTask
 
     desc 'ShinyCMS: reset database, create admin user, and load demo site data'
     task load: %i[ environment dotenv confirm db:reset shinycms:admin:get_admin_details ] do

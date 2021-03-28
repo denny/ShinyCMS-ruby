@@ -122,6 +122,9 @@ Gem::Specification.new do |spec|
   # Fix request.ip when running behind Cloudflare proxying
   spec.add_dependency 'cloudflare-rails'
 
-  # Test coverage; 0.20.0 is the latest version currently compatible with CodeCov
+  # Used to export demo site data from the database
+  spec.add_dependency 'seed_dump'
+
+  # Test coverage; 0.20.0 is the latest version currently compatible with CodeCov and Ruby Critic
   spec.add_development_dependency 'simplecov', '~> 0.20.0'
 end
