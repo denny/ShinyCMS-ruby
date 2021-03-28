@@ -10,8 +10,6 @@ require 'rails_helper'
 
 RSpec.describe 'Flipper (feature flags)', type: :request do
   describe 'GET /admin/tools/flipper' do
-    skip 'Invalid URL: /admin/tools/flipper ???' # TODO: FIXME
-
     context 'when logged in as a feature flags admin' do
       before do
         admin = create :feature_flags_admin
@@ -21,6 +19,11 @@ RSpec.describe 'Flipper (feature flags)', type: :request do
       it 'reaches Flipper' do
         get shinycms.flipper_path
 
+        flipper_features_path = "#{shinycms.flipper_path}/features"
+
+        expect( response ).to have_http_status :found
+        expect( response ).to redirect_to flipper_features_path
+        follow_redirect!
         expect( response ).to have_http_status :ok
       end
     end
@@ -41,7 +44,6 @@ RSpec.describe 'Flipper (feature flags)', type: :request do
         expect( response ).to redirect_to shiny_pages.pages_path
         follow_redirect!
         expect( response ).to have_http_status :ok
-        expect( response.body ).to have_css '.alert', text: I18n.t( 'shinycms.admin.blazer.auth_fail' )
       end
     end
   end
