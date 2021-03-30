@@ -13,7 +13,7 @@ include:
 - '**/*.{rb,rake,erb}'
 exclude:
 #- '{bin,coverage,docs,log,node_modules,site,storage,themes,tmp,vendor}/**/*'
-- '{bin,coverage,db,docs,log,node_modules,site,spec,storage,themes,tmp,vendor,plugins/*/config,plugins/*/spec,plugins/*/lib/tasks}/**/*'
+- '{bin,coverage,db,docs,log,node_modules,site,spec,storage,themes,tmp,vendor,plugins/*/config,plugins/*/spec,plugins/*/lib/tasks,plugins/ShinyCMS/db}/**/*'
 
 # Patterns to find package configuration files (defaults to '**/')
 # package_paths: '**/config/'
