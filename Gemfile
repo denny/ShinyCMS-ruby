@@ -81,7 +81,7 @@ source 'https://rubygems.org' do
     gem 'rubocop-rspec', require: false
 
     # Code quality: Ruby Critic
-    gem 'rubycritic', '~> 4.6.0', require: false
+    gem 'rubycritic', '~> 4.6.1', require: false
     # Code quality: Rails Best Practices
     gem 'rails_best_practices', require: false
 
