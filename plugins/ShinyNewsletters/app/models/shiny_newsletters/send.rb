@@ -96,5 +96,5 @@ module ShinyNewsletters
   end
 end
 
-ShinyLists::List.has_many :newsletter_sends, inverse_of: :list, dependent: :restrict_with_error,
-                                             class_name: 'ShinyNewsletters::Send'
+ShinyLists::HasList.list_has_many :newsletter_sends, inverse_of: :list,
+                                  dependent: :restrict_with_error, class_name: 'ShinyNewsletters::Send'

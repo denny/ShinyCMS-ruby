@@ -67,6 +67,8 @@ load_paths:
 - plugins/ShinyLists/app/helpers
 - plugins/ShinyLists/app/models
 - plugins/ShinyLists/app/policies
+- plugins/ShinyLists/app/public
+- plugins/ShinyLists/app/public/concerns
 
 - plugins/ShinyNews/app/controllers
 - plugins/ShinyNews/app/helpers

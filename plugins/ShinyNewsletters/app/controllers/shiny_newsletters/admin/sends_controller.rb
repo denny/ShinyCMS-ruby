@@ -11,6 +11,10 @@ module ShinyNewsletters
   class Admin::SendsController < AdminController
     include ShinyCMS::Admin::WithDateTimeInputs
 
+    include ShinyLists::Admin::WithLists
+
+    helper_method :recently_updated_lists
+
     before_action :stash_send, only: %i[ show edit update destroy start_sending cancel_sending ]
     before_action :stash_send_for_create, only: %i[ create ]
     before_action :stash_sending_and_scheduled, only: %i[ index ]
