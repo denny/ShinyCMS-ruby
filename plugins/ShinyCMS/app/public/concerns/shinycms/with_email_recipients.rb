@@ -13,7 +13,7 @@ module ShinyCMS
 
     included do
       def confirmed_email_recipients
-        EnailRecipient.readonly.confirmed
+        EmailRecipient.readonly.confirmed
       end
     end
   end
