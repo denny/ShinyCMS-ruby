@@ -9,6 +9,8 @@
 module ShinyLists
   # Controller for list subscription admin features - part of the ShinyLists plugin for ShinyCMS
   class Admin::SubscriptionsController < AdminController
+    include ShinyCMS::WithConsentVersion
+
     def index
       authorize Subscription
 
@@ -81,7 +83,7 @@ module ShinyLists
     end
 
     def admin_consent
-      ShinyCMS::ConsentVersion.find_by( slug: 'shiny-lists-admin-subscribe' )
+      consent_version_by_slug( 'shiny-lists-admin-subscribe' )
     end
 
     def subscription_params

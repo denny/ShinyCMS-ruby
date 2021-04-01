@@ -9,6 +9,8 @@
 module ShinyLists
   # Main site controller for mailing list subscriptions - part of the ShinyLists plugin for ShinyCMS
   class SubscriptionsController < MainController
+    include ShinyCMS::WithConsentVersion
+
     def index
       authenticate_user! unless params[:token]
 
@@ -60,7 +62,7 @@ module ShinyLists
     def consent_version
       return unless subscribe_params[:consent_confirmation] == '1'
 
-      ShinyCMS::ConsentVersion.find_by( slug: subscribe_params[:consent_version] )
+      consent_version_by_slug( subscribe_params[:consent_version] )
     end
 
     def token
