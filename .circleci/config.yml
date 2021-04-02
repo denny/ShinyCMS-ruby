@@ -154,7 +154,7 @@ jobs:
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
               --format progress
-            ~/ShinyCMS/tmp/cc-test-reporter after-build --exit-code $?
+            ~/ShinyCMS/tmp/cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
 
       # Store test results for CodeCov
       - store_test_results:
