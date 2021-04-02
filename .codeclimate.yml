@@ -6,14 +6,16 @@
 
 version: "2"
 exclude_patterns:
-  - "db/demo_site_data.rb"
-  - "db/migrate/"
+  - "db/"
   - "db/archived-migrations/"
   - "plugins/*/db/migrate/"
+  - "plugins/ShinyCMS/db/demo_site_data.rb"
   # "**/config/"
   - "**/node_modules/"
   # "**/spec/"
   - "themes/javascript/"
+  - "themes/*/stylesheets/"
+  - "!themes/*/stylesheets/*/shinycms.*css"
   - "**/vendor/"
 plugins:
   brakeman:
