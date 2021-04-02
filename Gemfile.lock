@@ -649,6 +649,8 @@ GEM
     rubocop-rspec (2.2.0)
       rubocop (~> 1.0)
       rubocop-ast (>= 1.1.0)
+    rubocop-thread_safety (0.4.2)
+      rubocop (>= 0.53.0)
     ruby-pg-extras (1.6.0)
       pg
       terminal-table
@@ -759,6 +761,7 @@ DEPENDENCIES
   rubocop-performance!
   rubocop-rails!
   rubocop-rspec!
+  rubocop-thread_safety!
   rubycritic (~> 4.6.1)!
   shiny_access!
   shiny_blog!

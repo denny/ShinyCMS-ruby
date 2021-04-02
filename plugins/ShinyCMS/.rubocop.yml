@@ -10,6 +10,8 @@ require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-thread_safety
+
 
 AllCops:
   EnabledByDefault: true
