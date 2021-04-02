@@ -7,47 +7,37 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 RSpec.shared_examples ShinyCMS::HasEmail do
-  describe '.not_ok_to_email?' do
-    it 'returns true if the email is on the Do Not Contact list' do
-      addressee.confirm
-
-      allow( ShinyCMS::DoNotContact ).to receive( :list_includes? ).and_return true
-
-      expect( addressee.not_ok_to_email? ).to be true
-    end
-  end
-
-  context 'when the email is confirmed' do
-    before do
-      addressee.confirm
-    end
-
+  context 'when address is confirmed and is not on Do Not Contact list' do
     describe '.ok_to_email?' do
       it 'returns true' do
+        addressee.confirm
+
+        allow( ShinyCMS::DoNotContact ).to receive( :listed? ).and_return false
+
         expect( addressee.ok_to_email? ).to be true
       end
     end
+  end
 
+  context 'when address is confirmed but is on Do Not Contact list' do
     describe '.not_ok_to_email?' do
-      it 'returns false' do
-        expect( addressee.not_ok_to_email? ).to be false
+      it 'returns true' do
+        addressee.confirm
+
+        allow( ShinyCMS::DoNotContact ).to receive( :listed? ).and_return true
+
+        expect( addressee.not_ok_to_email? ).to be true
       end
     end
   end
 
-  context 'when the email address is not confirmed' do
-    before do
-      allow( addressee ).to receive( :confirmed_at ).and_return nil
-    end
-
-    describe '.ok_to_email?' do
-      it 'returns false' do
-        expect( addressee.ok_to_email? ).to be false
-      end
-    end
-
+  describe 'when address is not confirmed' do
     describe '.not_ok_to_email?' do
       it 'returns true' do
+        allow( addressee ).to receive( :confirmed_at ).and_return nil
+
+        allow( ShinyCMS::DoNotContact ).to receive( :listed? ).and_return false
+
         expect( addressee.not_ok_to_email? ).to be true
       end
     end
