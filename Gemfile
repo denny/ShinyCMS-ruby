@@ -36,10 +36,6 @@ source 'https://rubygems.org' do
   # Webserver
   gem 'puma', '~> 5.2', groups: %i[ development production ]
 
-  # Sessions
-  # FIXME: Installing from fork to pick up fix for CVE-2019-16782
-  gem 'activerecord-session_store', github: 'rails-lts/activerecord-session_store', branch: 'secure-session-store'
-
   # Email previews
   gem 'rails_email_preview'
 
@@ -88,7 +84,7 @@ source 'https://rubygems.org' do
     gem 'rubocop-rspec', require: false
 
     # Code quality: Ruby Critic
-    gem 'rubycritic', '~> 4.6.0', require: false
+    gem 'rubycritic', '~> 4.6.1', require: false
     # Code quality: Rails Best Practices
     gem 'rails_best_practices', require: false
 
@@ -123,7 +119,7 @@ source 'https://rubygems.org' do
     gem 'webmock'
 
     # Analyse and report on test coverage
-    gem 'simplecov', '0.20.0'
+    gem 'simplecov', '0.21.2'
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     # Rspec report formatter for Codecov

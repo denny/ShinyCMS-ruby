@@ -13,7 +13,7 @@
 # and the `enforce_ok_to_email` (or `enforce_do_not_contact`) method to help with the second.
 
 module ShinyCMS
-  # Base mailer class for plugins to inherit from - part of the ShinyCMS core plugin
+  # Public base class for mailers - part of the ShinyCMS core plugin
   class BaseMailer < ApplicationMailer
     # :nocov:
     def check_feature_flags
@@ -35,8 +35,8 @@ module ShinyCMS
 
     def enforce_ok_to_email( email_recipient )
       stop! if email_recipient.blank?
-      # HasEmail.not_ok_to_email? checks on .confirmed status
-      # (AKA double opt-in) and DoNotContact status
+      # HasEmail.not_ok_to_email? checks .confirmed status (AKA double opt-in)
+      # and whether the address is listed as DoNotContact
       stop! if email_recipient.not_ok_to_email?
     end
 
@@ -44,7 +44,7 @@ module ShinyCMS
       # You should use `enforce_ok_to_email` rather than this method whenever possible.
       # The only exception is for mailer actions where checking the .confirmed status
       # is impossible or would make no sense (e.g. when sending the confirmation email!)
-      stop! if DoNotContact.list_includes? email_address
+      stop! if DoNotContact.listed? email_address
     end
   end
 end

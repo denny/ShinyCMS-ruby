@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Base class for mailers - part of the ShinyCMS core plugin
+  # Internal base class for mailers - part of the ShinyCMS core plugin
   class ApplicationMailer < ActionMailer::Base
     include SiteNameHelper
 

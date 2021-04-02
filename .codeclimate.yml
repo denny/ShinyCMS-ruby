@@ -6,9 +6,17 @@
 
 version: "2"
 exclude_patterns:
-  db/migrate/*.rb
-  db/archived-migrations/*.rb
-  plugins/*/db/migrate/*.rb
+  - "db/"
+  - "db/archived-migrations/"
+  - "plugins/*/db/migrate/"
+  - "plugins/ShinyCMS/db/demo_site_data.rb"
+  # "**/config/"
+  - "**/node_modules/"
+  # "**/spec/"
+  - "themes/javascript/"
+  - "themes/*/stylesheets/"
+  - "!themes/*/stylesheets/*/shinycms.*css"
+  - "**/vendor/"
 plugins:
   brakeman:
     enabled: true
@@ -20,13 +28,9 @@ plugins:
     enabled: true
   fixme:
     enabled: true
-  markdownlint:
-    enabled: true
   nodesecurity:
     enabled: true
   sass-lint:
-    enabled: true
-  spellcheck:
     enabled: true
   scss-lint:
     enabled: true

@@ -79,7 +79,7 @@ module ShinyCMS
     end
 
     def do_not_contact?( user )
-      DoNotContact.list_includes? user.email
+      DoNotContact.listed? user.email
     end
 
     def stash_instance_vars( user, token = nil )
