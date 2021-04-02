@@ -82,14 +82,12 @@ jobs:
           paths:
             - ~/ShinyCMS/public/packs-test/
 
-      # Install MJML binary
       - run:
           name: Install MJML binary
           command: npm install mjml
 
-      # Fetch CodeClimate coverage reporter
       - run:
-          name:  Download cc-test-reporter
+          name: Download CodeClimate coverage reporter
           command: |
             mkdir -p ~/ShinyCMS/tmp/
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ~/ShinyCMS/tmp/cc-test-reporter
@@ -142,19 +140,24 @@ jobs:
           name: Load database schema
           command: bundle exec rails db:schema:load
 
-      # Run tests!
+      - run:
+          name: Start CodeClimate reporter
+          command: ~/ShinyCMS/tmp/cc-test-reporter before-build
+
       - run:
           name: Run tests
           command: |
             mkdir /tmp/test-results
             TEST_FILES=$( circleci tests glob "spec/**/*_spec.rb" "plugins/*/spec/**/*_spec.rb" | circleci tests split --split-by=filesize )
-            ~/ShinyCMS/tmp/cc-test-reporter before-build
             bundle exec rspec $TEST_FILES \
               --profile 10 \
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
               --format progress
-            ~/ShinyCMS/tmp/cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
+
+      - run:
+          name: Upload results to CodeClimate
+          command:  ~/ShinyCMS/tmp/cc-test-reporter after-build --debug --coverage-input-type simplecov
 
       # Store test results for CodeCov
       - store_test_results:
