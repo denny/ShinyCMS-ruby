@@ -82,12 +82,18 @@ jobs:
           paths:
             - ~/ShinyCMS/public/packs-test/
 
-      # Install MJML binary
       - run:
           name: Install MJML binary
           command: npm install mjml
 
-          # Save it all for use by the test runners
+      - run:
+          name: Download CodeClimate coverage reporter
+          command: |
+            mkdir -p ~/ShinyCMS/tmp/
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ~/ShinyCMS/tmp/cc-test-reporter
+            chmod +x ~/ShinyCMS/tmp/cc-test-reporter
+
+      # Save it all for use by the test runners
       - persist_to_workspace:
           root: ~/
           paths:
@@ -112,6 +118,7 @@ jobs:
       - run:
           name: Audit Gemfile bundle for security issues
           command: bundle exec bundle-audit check --update --ignore CVE-2019-25025
+
   # Run rspec tests, for main app and plugins
   rspec:
     docker:
@@ -133,7 +140,10 @@ jobs:
           name: Load database schema
           command: bundle exec rails db:schema:load
 
-      # Run tests!
+      - run:
+          name: Start CodeClimate reporter
+          command: ~/ShinyCMS/tmp/cc-test-reporter before-build
+
       - run:
           name: Run tests
           command: |
@@ -144,6 +154,10 @@ jobs:
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
               --format progress
+
+      - run:
+          name: Upload results to CodeClimate
+          command:  ~/ShinyCMS/tmp/cc-test-reporter after-build --debug --coverage-input-type simplecov
 
       # Store test results for CodeCov
       - store_test_results:
