@@ -210,32 +210,32 @@ nav .sm li {
   margin:               0 2em 0 0 !important;
 }
 
-nav .sm li:last-child {
-  margin:               0 !important;
-}
-
 nav .sm li ul {
-  padding:               0.6em 0;
+  padding:              0.6em 0;
 }
 
 nav .sm li li {
-  font-size:            0.75em;
+  font-size:            0.8em;
   margin:               0 !important;
   text-shadow:          none;
 }
 
 nav .sm li li a {
   color:                $dark-grey !important;
-  line-height:          1.2em;
-  padding:              0.4em 0.8em;
+  padding:              0.6em 0.6em !important;
+}
+
+nav .sm li li:last-child a {
+  padding-bottom:       0.2em !important;
 }
 
 nav .sm li li a:hover {
   color:                $blue !important;
-  line-height:          1.2em;
-  padding:              0.4em 0.8em;
 }
 
+nav .sm li li li {
+  font-size:            0.9em;
+}
 
 // ===== ( alerts / notices ) =====
 
