@@ -52,7 +52,10 @@ RSpec.configure do |config|
     # Check whether we're on CI, and generate CodeCov report if so
     if ENV['CI'] == 'true'
       require 'codecov'
-      SimpleCov.formatter = SimpleCov::Formatter::Codecov
+      require 'simplecov_json_formatter'
+      SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+        [ SimpleCov::Formatter::Codecov, SimpleCov::Formatter::JSONFormatter ]
+      )
     end
 
     # Optionally, show the slowest examples and example groups at the end of the run
