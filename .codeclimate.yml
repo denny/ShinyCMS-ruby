@@ -6,9 +6,15 @@
 
 version: "2"
 exclude_patterns:
-  db/migrate/*.rb
-  db/archived-migrations/*.rb
-  plugins/*/db/migrate/*.rb
+  - "db/demo_site_data.rb"
+  - "db/migrate/"
+  - "db/archived-migrations/"
+  - "plugins/*/db/migrate/"
+  # "**/config/"
+  - "**/node_modules/"
+  # "**/spec/"
+  - "themes/javascript/"
+  - "**/vendor/"
 plugins:
   brakeman:
     enabled: true
@@ -25,8 +31,6 @@ plugins:
   nodesecurity:
     enabled: true
   sass-lint:
-    enabled: true
-  spellcheck:
     enabled: true
   scss-lint:
     enabled: true
