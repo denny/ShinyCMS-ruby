@@ -6,10 +6,10 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# This file loads some data that every ShinyCMS installation needs - feature flags, ACL capabilities, etc.
+# This file loads some data that every ShinyCMS installation needs;
+# feature flags, capabilities for the admin area ACL, etc.
 #
-# It is invoked when the database is created with `rails db:setup` or reset with `rails db:reset`.
-# You can also reload this data at any time using `rails db:seed`.
+# You can reload this data at any time using `rails shinycms:db:seed`.
 
 # Load capability data
 require_relative 'seeds/capabilities'
