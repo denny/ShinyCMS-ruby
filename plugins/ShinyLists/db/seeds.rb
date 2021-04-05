@@ -21,7 +21,7 @@ category = seeder.seed_standard_admin_capabilities( category: :mailing_list_subs
 category.capabilities.destroy!( name: 'edit' )
 
 # Consent version used when a list admin manually subscribes somebody
-ShinyCMS::HasConsentVersion.find_or_create_consent_version(
+ShinyCMS::Interface::ConsentVersion.find_or_create_by!(
   name:         'Subscribed by list admin',
   slug:         'shiny-lists-admin-subscribe',
   display_text: 'Manually subscribing people to lists might make it difficult to prove their consent. Are you sure?',

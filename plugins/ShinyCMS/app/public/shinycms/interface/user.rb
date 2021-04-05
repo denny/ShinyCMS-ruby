@@ -7,10 +7,12 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Allow other plugins to find consent versions
-  module WithConsentVersion
-    def consent_version_with_slug( slug )
-      ConsentVersion.find_by!( slug: slug )
+  module Interface
+    # Make User.has_many available to models in other plugins
+    class User
+      def self.has_many( *args, **kwargs )
+        ShinyCMS::User.has_many( *args, **kwargs )
+      end
     end
   end
 end

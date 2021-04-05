@@ -10,6 +10,8 @@ module ShinyLists
   # Controller for list subscription admin features - part of the ShinyLists plugin for ShinyCMS
   class Admin::SubscriptionsController < AdminController
     include ShinyCMS::WithConsentVersion
+    include ShinyCMS::WithEmailRecipients
+    include ShinyCMS::WithUsers
 
     def index
       authorize Subscription
@@ -77,13 +79,13 @@ module ShinyLists
     end
 
     def subscriber_for_subscribe
-      ShinyCMS::User.find_by( email: subscription_params[:email] ) ||
-        ShinyCMS::EmailRecipient.find_by( email: subscription_params[:email] ) ||
-        ShinyCMS::EmailRecipient.create!( email: subscription_params[:email] )
+      user_with_email( subscription_params[:email] ) ||
+        email_recipient_with_email( subscription_params[:email] ) ||
+        create_email_recipient( subscription_params[:email] )
     end
 
     def admin_consent
-      consent_version_by_slug( 'shiny-lists-admin-subscribe' )
+      consent_version_with_slug( 'shiny-lists-admin-subscribe' )
     end
 
     def subscription_params

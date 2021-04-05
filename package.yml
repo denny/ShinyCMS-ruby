@@ -24,4 +24,4 @@ enforce_privacy: false
 
 # Dependencies of this package (note: these require their own `package.yml` file)
 dependencies:
-- plugins/ShinyCMS  # TODO: db/seeds*, Blazer BaseController, User
+- plugins/ShinyCMS

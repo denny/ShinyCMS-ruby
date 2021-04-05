@@ -11,6 +11,7 @@ module ShinyProfiles
   class Profile < ApplicationRecord
     include ShinyCMS::CanHide
     include ShinyCMS::SoftDelete
+    include ShinyCMS::WithUsers
 
     include ShinyCMS::ProvidesDemoSiteData
     include ShinyCMS::ProvidesSitemapData
@@ -60,7 +61,7 @@ module ShinyProfiles
     # Class methods
 
     def self.for_username( username )
-      user = ShinyCMS::User.find_by( username: username )
+      user = user_with_username( username )
       raise ActiveRecord::RecordNotFound if user.blank?
 
       user.full_profile || create_profile!

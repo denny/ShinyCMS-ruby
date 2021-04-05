@@ -10,12 +10,15 @@ require 'rails_helper'
 
 # Tests for blog admin features
 RSpec.describe ShinyBlog::Admin::BlogPostsController, type: :request do
-  before do
+  let( :admin ) do
     admin = create :blog_admin
     sign_in admin
+    admin
   end
 
-  let( :admin ) { ShinyCMS::User.first }
+  before do
+    admin
+  end
 
   describe 'GET /admin/blog' do
     context 'when there are no posts' do

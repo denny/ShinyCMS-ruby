@@ -15,6 +15,18 @@ module ShinyCMS
       def confirmed_email_recipients
         EmailRecipient.readonly.confirmed
       end
+
+      def email_recipient_with_token( token )
+        ShinyCMS::EmailRecipient.find_by( token: token )
+      end
+
+      def email_recipient_with_email( address )
+        ShinyCMS::EmailRecipient.find_by( email: address )
+      end
+
+      def create_email_recipient( email_address )
+        ShinyCMS::EmailRecipient.create!( email: email_address )
+      end
     end
   end
 end
