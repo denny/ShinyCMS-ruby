@@ -33,21 +33,31 @@ module ShinyForms
     end
 
     def passed_recaptcha?
-      return true if user_signed_in?
-      return true unless feature_enabled? :recaptcha_for_forms
-      return true unless @form.use_recaptcha?
+      return true if recaptcha_not_required?
 
       verify_invisible_recaptcha( 'forms' ) || verify_checkbox_recaptcha
     end
 
+    def recaptcha_not_required?
+      return true unless @form.use_recaptcha?
+      return true unless feature_enabled? :recaptcha_for_forms
+
+      user_signed_in?
+    end
+
     def passed_akismet?
-      return true if user_signed_in?
-      return true unless akismet_api_key_is_set? && feature_enabled?( :akismet_for_forms )
-      return true unless @form.use_akismet?
+      return true if akismet_not_required?
 
       spam, _blatant = akismet_check( request, form_data )
 
       !spam
+    end
+
+    def akismet_not_required?
+      return true unless @form.use_akismet?
+      return true unless akismet_api_key_is_set? && feature_enabled?( :akismet_for_forms )
+
+      user_signed_in?
     end
 
     def redirect_after_success( notice )
