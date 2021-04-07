@@ -479,7 +479,7 @@ GEM
     parallel (1.20.1)
     parallel_tests (3.6.0)
       parallel
-    parser (3.0.0.0)
+    parser (3.0.1.0)
       ast (~> 2.4.1)
     path_expander (1.1.0)
     persistent-dmnd (2.0.2)
@@ -776,7 +776,7 @@ DEPENDENCIES
   webmock!
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 3.0.1p64
 
 BUNDLED WITH
-   2.2.3
+   2.2.15
