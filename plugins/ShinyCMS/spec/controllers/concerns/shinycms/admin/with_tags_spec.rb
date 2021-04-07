@@ -9,7 +9,7 @@
 require 'rails_helper'
 
 # Tests for Tags concern for admin controllers
-RSpec.describe ShinyCMS::Admin::Tags, type: :request do
+RSpec.describe ShinyCMS::Admin::WithTags, type: :request do
   before do
     admin = create :blog_admin
     sign_in admin

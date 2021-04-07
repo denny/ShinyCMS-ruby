@@ -50,6 +50,17 @@ Helpers:
 * Methods in `ShinyThing/app/helper/shiny_thing/MainSiteHelper.rb` will be available to all main site views, not just those rendered by your plugin's controllers
 
 
+### Boundaries, or Avoiding Tight Coupling
+
+ShinyCMS uses a gem called [Packwerk](https://github.com/shopify/packwerk#readme) to check on coupling across architectural boundaries. The short version is that you should only be using interfaces exposed as public by other plugins that you have explicitly declared a dependency on, rather than 'reaching into the middle' of other plugins or depending on them unexpectedly.
+
+The core ShinyCMS plugin has quite a lot of exposed interfaces for your plugin to leverage; base controllers you can inherit from, concerns and helpers you can use, etc etc. You can find all of this code in its `app/public` directory. Most other plugins will have far less public code exposed, as the idea is to keep them independent of each other as much possible, so that people only have to enable the ones that they want to use for a particular site.
+
+Packwerk uses `package.yml` files in each plugin to know what is and isn't inside its boundaries, and which other plugins it explicitly depends on (for example, ShinyNewsletters depends on ShinyLists).
+
+The command `bin/packwerk validate` will check to make sure those `package.yml` files are all syntaxually valid, and the command `bin/packwerk check` will check the boundaries and report any violations it finds. Typically these are when code in one plugin directly accesses a class or module from another plugin without declaring a dependency on that plugin, or accesses a class or module that the other plugin has not made public.
+
+
 ### Share and Enjoy!
 
 If possible, please share your plugin with other ShinyCMS users by making a PR back to the main ShinyCMS-ruby repo on GitHub :)

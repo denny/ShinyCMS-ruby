@@ -7,8 +7,8 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Utility functions for dealing with Akismet
-  module AkismetHelper
+  # Helper methods for dealing with Akismet
+  module WithAkismet
     def akismet_api_key_is_set?
       ENV[ 'AKISMET_API_KEY' ].present?
     end
@@ -49,7 +49,7 @@ module ShinyCMS
     private
 
     def akismet_client
-      client = Akismet::Client.new( ENV[ 'AKISMET_API_KEY' ], main_app.root_url )
+      client = ::Akismet::Client.new( ENV[ 'AKISMET_API_KEY' ], main_app.root_url )
       client.open
       client
     end

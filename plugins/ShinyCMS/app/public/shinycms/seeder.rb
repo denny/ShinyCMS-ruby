@@ -17,6 +17,7 @@ module ShinyCMS
         enabled_for_logged_in: enabled,
         enabled_for_admins:    enabled
       )
+      flag
     end
 
     def seed_setting( name:, value: '', description: nil, level: 'site', locked: false )
@@ -31,6 +32,7 @@ module ShinyCMS
       setting_value.update!( value: value ) unless ShinyCMS::Setting.get( name ) == value
 
       setting.lock if locked
+      setting
     end
 
     def seed_standard_admin_capabilities( category: )
@@ -39,6 +41,7 @@ module ShinyCMS
       cc.capabilities.find_or_create_by!( name: 'add'     )
       cc.capabilities.find_or_create_by!( name: 'edit'    )
       cc.capabilities.find_or_create_by!( name: 'destroy' )
+      cc
     end
   end
 end

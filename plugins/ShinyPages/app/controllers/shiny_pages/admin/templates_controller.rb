@@ -9,7 +9,7 @@
 module ShinyPages
   # Admin controller for templates - ShinyPages plugin for ShinyCMS
   class Admin::TemplatesController < AdminController
-    include ShinyCMS::Admin::Sorting
+    include ShinyCMS::Admin::WithSorting
 
     before_action :stash_new_template,           only: %i[ new create   ]
     before_action :stash_template,               only: %i[ update       ]

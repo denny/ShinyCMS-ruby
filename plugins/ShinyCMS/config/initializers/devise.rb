@@ -34,7 +34,7 @@ Devise.setup do |config|
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
-  config.parent_mailer = 'ShinyCMS::ApplicationMailer'
+  config.parent_mailer = 'ShinyCMS::BaseMailer'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and

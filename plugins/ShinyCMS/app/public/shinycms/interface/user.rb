@@ -7,10 +7,12 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Helper method for retrieving site settings
-  module SettingsHelper
-    def setting( name )
-      Setting.get( name, current_user )
+  module Interface
+    # Make User.has_many available to models in other plugins
+    class User
+      def self.has_many( *args, **kwargs )
+        ShinyCMS::User.has_many( *args, **kwargs )
+      end
     end
   end
 end
