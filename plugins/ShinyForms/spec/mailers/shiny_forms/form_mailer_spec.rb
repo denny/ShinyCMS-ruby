@@ -20,11 +20,9 @@ module ShinyForms
       ShinyCMS::FeatureFlag.disable :send_emails
     end
 
+    let( :site_name ) { described_class.new.site_name }
     let( :default_subject ) do
-      I18n.t(
-        'shiny_forms.mailers.form_mailer.default_subject',
-        site_name: ShinyCMS::Setting.get( :site_name )
-      )
+      I18n.t( 'shiny_forms.mailers.form_mailer.default_subject', site_name: site_name )
     end
 
     describe '.plain' do

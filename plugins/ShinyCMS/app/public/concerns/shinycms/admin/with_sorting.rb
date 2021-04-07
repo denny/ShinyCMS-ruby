@@ -9,7 +9,7 @@
 module ShinyCMS
   module Admin
     # Common methods for handling drag-to-sort content
-    module Sorting
+    module WithSorting
       extend ActiveSupport::Concern
 
       included do

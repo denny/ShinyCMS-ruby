@@ -1,0 +1,17 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# This file contains a list of dependency isssues and other boundary failures
+# between ShinyCMS plugins (and ShinyHostApp); similar to the rubocop_todo file.
+#
+# You can regenerate this file with this command: bin/packwerk update-deprecations plugins/ShinyNewsletters
+---
+plugins/ShinyLists:
+  "::ShinyLists::List":
+    violations:
+    - privacy
+    files:
+    - plugins/ShinyNewsletters/app/models/shiny_newsletters/send.rb

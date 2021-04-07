@@ -9,6 +9,10 @@
 module ShinyLists
   # Main site controller for mailing list subscriptions - part of the ShinyLists plugin for ShinyCMS
   class SubscriptionsController < MainController
+    include ShinyCMS::WithConsentVersion
+    include ShinyCMS::WithEmailRecipients
+    include ShinyCMS::WithUsers
+
     def index
       authenticate_user! unless params[:token]
 
@@ -44,23 +48,22 @@ module ShinyLists
     end
 
     def subscriber
-      current_user || ShinyCMS::EmailRecipient.find_by( token: token )
+      current_user || email_recipient_with_token( token )
+    end
+
+    def subscriber_for_subscribe
+      current_user || email_recipient_with_email( subscribe_params[:email] ) ||
+        create_email_recipient( subscribe_params[:email] )
     end
 
     def subscription
       subscriber.subscriptions.find_by( list: list )
     end
 
-    def subscriber_for_subscribe
-      current_user ||
-        ShinyCMS::EmailRecipient.find_by( email: subscribe_params[:email] ) ||
-        ShinyCMS::EmailRecipient.create!( email: subscribe_params[:email] )
-    end
-
     def consent_version
       return unless subscribe_params[:consent_confirmation] == '1'
 
-      ShinyCMS::ConsentVersion.find_by( slug: subscribe_params[:consent_version] )
+      consent_version_with_slug( subscribe_params[:consent_version] )
     end
 
     def token

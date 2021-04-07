@@ -7,14 +7,10 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  module Admin
-    # For admin controllers that handle content from models that include HasTags
-    module Tags
-      def admin_tag_list( resource )
-        return resource.hidden_tag_list.to_s if resource.hidden?
-
-        resource.tag_list.to_s
-      end
+  # Allow other plugins to find consent versions
+  module WithConsentVersion
+    def consent_version_with_slug( slug )
+      ConsentVersion.find_by!( slug: slug )
     end
   end
 end

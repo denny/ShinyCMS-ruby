@@ -9,8 +9,8 @@
 require 'rss'
 
 module ShinyCMS
-  # Model to assist in building Atom feeds from ShinyCMS::Posts
-  class ShinyPostAtomFeed
+  # Model to build an Atom feed from an array of ShinyCMS::Post records
+  class AtomFeed
     include ShinyCMS::MainAppRootURL
     include ShinyCMS::SiteNameHelper
 
@@ -77,7 +77,7 @@ module ShinyCMS
     end
 
     def add_post_to_feed( post )
-      feed_entry = ShinyPostAtomFeedEntry.new( feed )
+      feed_entry = ShinyCMS::AtomFeedEntry.new( feed )
 
       feed_entry.build( post )
 
