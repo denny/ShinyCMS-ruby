@@ -13,31 +13,14 @@ module ShinyCMS
 
     include ShinyCMS::Template
 
-    included do
-      # Create template elements, based on the content of the template file
-      def add_elements
-        raise ActiveRecord::Rollback unless file_exists?
-
-        file = "#{self.class.template_dir}/#{filename}.html.erb"
-        erb = File.read file
-
-        # Never parse HTML with a regex.
-        erb.scan(
-          %r{<%=\s+(sanitize|simple_format|image_tag\(?\s*url_for)?\(?\s*(\w+)\s*\)?(,\s+.*?)?\s*\)?\s+%>}
-        ).uniq.each do |result|
-          added = add_element result[0], result[1]
-          raise ActiveRecord::Rollback unless added
-        end
-      end
-    end
-
     class_methods do
-      # Get a list of available template files from the disk
-      def available_templates
-        return [] unless template_dir
+      def parser_regex
+        # Never parse HTML with a regex.
+        %r{<%=\s+(sanitize|simple_format|image_tag\(?\s*url_for)?\(?\s*(\w+)\s*\)?(,\s+.*?)?\s*\)?\s+%>}
+      end
 
-        filenames = Dir.glob '*.html.erb', base: template_dir
-        filenames.collect { |filename| filename.remove( '.html.erb' ) }
+      def file_extension
+        '.html.erb'
       end
     end
   end
