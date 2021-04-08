@@ -76,12 +76,14 @@ source 'https://rubygems.org' do
 
     # Linting: general
     gem 'rubocop', require: false
-    # Linting: performance tweaks
-    gem 'rubocop-performance', require: false
     # Linting: Rails-specific
     gem 'rubocop-rails', require: false
     # Linting: test suite
     gem 'rubocop-rspec', require: false
+    # Linting: thread safety
+    gem 'rubocop-thread_safety', require: false
+    # Linting: performance tweaks
+    gem 'rubocop-performance', require: false
 
     # Code quality: Ruby Critic
     gem 'rubycritic', '~> 4.6.1', require: false

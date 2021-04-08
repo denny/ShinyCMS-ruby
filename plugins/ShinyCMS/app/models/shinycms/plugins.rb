@@ -27,7 +27,7 @@ module ShinyCMS
     def self.get( new_plugins = nil )
       return new_plugins if new_plugins.is_a? ShinyCMS::Plugins
 
-      new_plugin_set = new( new_plugins || all_plugin_names )
+      new_plugin_set = new( new_plugins || feature_plugin_names )
       new_plugin_set.presence
     end
 
@@ -62,13 +62,13 @@ module ShinyCMS
       Plugins.get( with_views.select { |plugin| plugin.view_file_exists?( partial ) } ).to_a
     end
 
-    def self.all_plugin_names
-      return @all_plugin_names if defined? @all_plugin_names
+    def self.feature_plugin_names
+      return @feature_plugin_names if defined? @feature_plugin_names
 
-      on_disk   = Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ).to_sym }
-      requested = ENV.fetch( 'SHINYCMS_PLUGINS', '' ).split( /[, ]+/ ).collect( &:to_sym )
+      configured = ENV.fetch( 'SHINYCMS_PLUGINS', '' ).split( /[, ]+/ ).collect( &:to_sym )
+      on_disk    = Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ).to_sym }
 
-      @all_plugin_names = 💎ify[ requested.intersection( on_disk ) - [ :ShinyCMS ] ]
+      @feature_plugin_names = 💎ify[ configured.intersection( on_disk ) - [ :ShinyCMS ] ]
     end
 
     # More syntactic sugar
@@ -108,7 +108,7 @@ module ShinyCMS
 
     def check_against_filenames( requested_names )
       # We need .to_a here because a💎 doesn't have .intersection (or &)
-      requested_names.to_a.intersection( Plugins.all_plugin_names )
+      requested_names.to_a.intersection( Plugins.feature_plugin_names )
     end
   end
 end

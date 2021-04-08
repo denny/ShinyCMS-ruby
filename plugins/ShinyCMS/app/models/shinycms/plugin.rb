@@ -26,11 +26,11 @@ module ShinyCMS
     end
 
     def self.available?( plugin_name )
-      available_plugin_names.include? plugin_name.to_sym
+      all_plugin_names.include? plugin_name.to_sym
     end
 
-    def self.available_plugin_names
-      @available_plugin_names ||= a💎[ :ShinyCMS, *ShinyCMS::Plugins.all_plugin_names ]
+    def self.all_plugin_names
+      a💎[ :ShinyCMS, *ShinyCMS::Plugins.feature_plugin_names ]
     end
 
     def engine

@@ -10,6 +10,8 @@ require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-thread_safety
+
 
 AllCops:
   EnabledByDefault: true
@@ -74,6 +76,13 @@ Style/AsciiComments:
     - app/models/shinycms/plugin.rb
     - app/models/shinycms/plugins.rb
     - app/models/concerns/shinycms/plugins_components.rb
+
+# The plugin code uses the immutable variables from Persistent💎, so I think this is ok?
+ThreadSafety/InstanceVariableInClassMethod:
+  Exclude:
+    - 'app/models/shinycms/plugin.rb'
+    - 'app/models/shinycms/plugins.rb'
+    - 'lib/shinycms.rb' # this is plugins too
 
 # I like chaining methods, it's aesthetically pleasing :-p
 Performance/ChainArrayAllocation:

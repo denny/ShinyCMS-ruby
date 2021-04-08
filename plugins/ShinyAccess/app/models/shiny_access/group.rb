@@ -35,10 +35,10 @@ module ShinyAccess
     # Class methods
 
     def self.admin_search( query )
-      @groups = where( 'internal_name ilike ?', "%#{query}%" )
-                .or( where( 'public_name ilike ?', "%#{query}%" ) )
-                .or( where( 'slug ilike ?', "%#{query}%" ) )
-                .order( :internal_name )
+      where( 'internal_name ilike ?', "%#{query}%" )
+        .or( where( 'public_name ilike ?', "%#{query}%" ) )
+        .or( where( 'slug ilike ?', "%#{query}%" ) )
+        .order( :internal_name )
     end
   end
 end

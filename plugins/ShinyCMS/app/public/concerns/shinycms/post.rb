@@ -59,7 +59,7 @@ module ShinyCMS
       scope :published,         -> { visible.merge( not_future_dated ) }
       scope :recent,            -> { published.merge( most_recent_first ) }
 
-      mattr_accessor :implicit_order_column, default: :posted_at
+      mattr_reader :implicit_order_column, default: :posted_at
 
       # Instance methods
 
