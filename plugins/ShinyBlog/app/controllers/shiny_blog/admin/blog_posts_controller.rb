@@ -9,16 +9,10 @@
 module ShinyBlog
   # Admin area controller for ShinyBlog plugin for ShinyCMS
   class Admin::BlogPostsController < AdminController
-    include ShinyCMS::Admin::WithDateTimeInputs
-    include ShinyCMS::Admin::WithDiscussions
     include ShinyCMS::Admin::WithPosts
-    include ShinyCMS::Admin::WithTags
 
     before_action :set_post_for_create, only: :create
     before_action :set_post, only: %i[ edit update destroy ]
-
-    helper_method :admin_tag_list
-    helper_method :load_html_editor?
 
     def index
       authorize Post
@@ -110,11 +104,6 @@ module ShinyBlog
       )
 
       combine_date_and_time_params( temp_params, :posted_at )
-    end
-
-    # Return true if the page we're on might need a WYSIWYG HTML editor
-    def load_html_editor?
-      action_name == 'new' || action_name == 'edit'
     end
   end
 end
