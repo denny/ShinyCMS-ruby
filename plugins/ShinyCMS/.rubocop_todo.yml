@@ -31,7 +31,6 @@ RSpec/InstanceVariable:
 # Offense count: 7
 ThreadSafety/InstanceVariableInClassMethod:
   Exclude:
-    - '../ShinyAccess/app/models/shiny_access/group.rb'
     - 'app/models/shinycms/plugin.rb'
     - 'app/models/shinycms/plugins.rb'
     - 'lib/shinycms.rb'
