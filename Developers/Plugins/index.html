@@ -987,6 +987,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#boundaries" class="md-nav__link">
+    Boundaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#share-and-enjoy" class="md-nav__link">
     Share and Enjoy!
   </a>
@@ -1327,6 +1334,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#boundaries" class="md-nav__link">
+    Boundaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#share-and-enjoy" class="md-nav__link">
     Share and Enjoy!
   </a>
@@ -1381,8 +1395,14 @@ rspec spec plugins  # to run tests for the main app and all plugins
 * <code>ShinyThing/app/views/shiny_thing/admin/toolbar/_section.html.erb</code> will be rendered in the admin toolbar</p>
 <p>Helpers:
 * Methods in <code>ShinyThing/app/helper/shiny_thing/MainSiteHelper.rb</code> will be available to all main site views, not just those rendered by your plugin's controllers</p>
+<h3 id="boundaries">Boundaries</h3>
+<p>ShinyCMS uses a gem called <a href="https://github.com/shopify/packwerk#readme">Packwerk</a> to check on coupling across architectural boundaries.</p>
+<p>The short version is that you should only be using interfaces exposed as public by other plugins that you have explicitly declared a dependency on, rather than 'reaching into the middle' of other plugins or depending on them unexpectedly.</p>
+<p>The core ShinyCMS plugin has quite a lot of exposed interfaces for your plugin to leverage; base controllers you can inherit from, concerns and helpers you can use, etc etc. You can find all of this code in its <code>app/public</code> directory. Most other plugins will have far less public code exposed, as the idea is to keep them independent of each other as much possible, so that people only have to enable the ones that they want to use for a particular site.</p>
+<p>Packwerk uses <code>package.yml</code> files in each plugin to know what is and isn't inside its boundaries, and which other plugins it explicitly depends on (for example, ShinyNewsletters depends on ShinyLists).</p>
+<p>The command <code>bin/packwerk validate</code> will check to make sure those <code>package.yml</code> files are all syntaxually valid, and the command <code>bin/packwerk check</code> will check the boundaries and report any violations it finds. Typically these are when code in one plugin directly accesses a class or module from another plugin without declaring a dependency on that plugin, or accesses a class or module that the other plugin has not made public.</p>
 <h3 id="share-and-enjoy">Share and Enjoy!</h3>
-<p>If possible, please share your plugin with other ShinyCMS users by making a PR back to the main ShinyCMS-ruby repo on GitHub :)</p>
+<p>If possible, please share your plugin with other ShinyCMS users, by making a PR back to the main ShinyCMS-ruby repo on GitHub! :)</p>
                 
               
               
