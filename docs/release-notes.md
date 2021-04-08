@@ -4,12 +4,52 @@
 
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
+### 2021-04-08  21.04  April 2021: The 'Respecting Boundaries' release
+
+    * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.04
+
+    * Headline for this release:
+        * [Packwerk](https://github.com/Shopify/packwerk/blob/main/README.md)
+            * Define and enforce [plugin boundaries](https://github.com/denny/ShinyCMS-ruby/tree/main/docs/Developers/Plugins.md#boundaries)
+
+    * Also added:
+        * Routes partials - building blocks for routes files
+            * Intended to be useful for integrating ShinyCMS with pre-existing Rails apps
+        * Bullet (warns about N+1 queries and related issues)
+        * CircleCI config for Code Climate coverage reporting
+        * Hugely improved base class for Mailers to inherit from
+            * Again, should aid integration work, and legal compliance
+        * Items extension for Pagy
+        * As well as Packwerk config files in each plugin, there is currently a `deprecated_references.yml` file, which is similar to `rubocop_todo.yml` - it contains known boundary violations in the current code that should be fixed in the code and then removed from the file
+        * Some new classes have been added to enable plugins to talk to each other without violating boundaries, but mostly pre-existing helpers and concerns are handling this
+
+    * Moved:
+        * From main_app to core plugin:
+            * Most of the Gemfile
+            * Various config files
+            * rake tasks
+            * Rails Email Preview
+            * Base controllers used by gem Rails engines (e.g. Devise, Rails Email Preview, etc) (moved to ShinyCMS::Admin::Tools namespace)
+        * To app/public folders:
+            * Anything in one plugin (mostly ShinyCMS) that is used by another plugin
+
+    * Updated:
+        * Base controllers used by gem Rails engines heavily rewritten for easier re-use
+        * Tiny bumps for Ruby (from 3.0.0 to 3.0.1) and Rails (6.1.3 to 6.1.3.1)
+        * Renamed `shiny:*` rake tasks to `shinycms:*`
+
+    * Removed:
+        * Gemfile.lock files from plugins
+        * Unused config files in main_app (anything that was all comments)
+        * Disabled two Code Climate tools - spellcheck was removed I think, and Markdown Lint and I disagree on the value of vertical whitespace for readability in documentation :)
+
+
 ### 2021-03-01  21.03  March 2021: The 'Yo dawg I herd u liek CMS' release
 
     * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.03
 
     * Headline for this release:
-        I moved almost all the code that was still in main_app, into a plugin! :-o
+        * I moved almost all the code that was still in main_app, into a plugin! :-o
 
     * Done:
         * The main_app is now called ShinyHostApp, and eventually it's _only_ job will be to load plugins - to demonstrate how (eventually) ShinyCMS could potentially be integrated within any existing Rails app
