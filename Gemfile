@@ -8,10 +8,10 @@
 
 require_relative 'lib/gemfile_plugins_helper'
 
-source 'https://rubygems.org' do
-  # Ruby 3.0
-  ruby '~> 3.0.1'
+# Ruby 3.0
+ruby '~> 3.0.1'
 
+source 'https://rubygems.org' do
   # Rails 6.1
   gem 'rails', '~> 6.1.3'
 
