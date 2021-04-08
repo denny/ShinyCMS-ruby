@@ -11,7 +11,7 @@ module ShinyCMS
   module MJMLTemplate
     extend ActiveSupport::Concern
 
-    include ShinyCMS::Template # After refactoring, most of the methods are in here; makes this interface v. opaque
+    include ShinyCMS::Template
 
     included do
       validates :filename, mjml_syntax: true, if: -> { filename_changed? }
