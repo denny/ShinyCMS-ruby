@@ -45,8 +45,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'persistent-dmnd'
 
   # Sessions
-  # FIXME: Installing from GitHub for security patch and Ruby 3.0 support
-  # spec.add_dependency 'activerecord-session_store'
+  spec.add_dependency 'activerecord-session_store'
 
   # Stronger password encryption
   spec.add_dependency 'bcrypt', '~> 3.1.16'
@@ -125,6 +124,9 @@ Gem::Specification.new do |spec|
   # Fix request.ip when running behind Cloudflare proxying
   spec.add_dependency 'cloudflare-rails'
 
-  # Test coverage; 0.20.0 is the latest version currently compatible with CodeCov
+  # Used to export demo site data from the database
+  spec.add_dependency 'seed_dump'
+
+  # Test coverage; 0.20.0 is the latest version currently compatible with CodeCov and Ruby Critic
   spec.add_development_dependency 'simplecov', '~> 0.20.0'
 end

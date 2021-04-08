@@ -17,7 +17,5 @@ seeder.seed_feature_flag( name: :blog,           description: 'Blog feature (Shi
 seeder.seed_feature_flag( name: :blog_upvotes,   description: 'Enable upvotes on blog posts'    )
 seeder.seed_feature_flag( name: :blog_downvotes, description: 'Enable downvotes on blog posts'  )
 
-seeder.seed_standard_admin_capabilities( category: :blog_posts )
-
-category = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'blog_posts' )
+category = seeder.seed_standard_admin_capabilities( category: :blog_posts )
 category.capabilities.find_or_create_by!( name: 'change_author' )

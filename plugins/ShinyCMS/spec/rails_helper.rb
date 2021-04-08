@@ -52,8 +52,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
-# Stash current email-sending setting
-send_emails = ShinyCMS::FeatureFlag.enabled? :send_emails
+send_emails = false  # set the safer default value
 
 RSpec.configure do |config|
   config.before( :suite ) do
@@ -61,7 +60,7 @@ RSpec.configure do |config|
 
     # Load feature flags, capabilities, etc
     Rails.application.load_tasks
-    Rake::Task['db:seed'].invoke
+    Rake::Task['shinycms:db:seed'].invoke
 
     # These features default to off for privacy or security, but we want to test them
     ShinyCMS::FeatureFlag.enable :ahoy_web_tracking
@@ -69,13 +68,16 @@ RSpec.configure do |config|
     ShinyCMS::FeatureFlag.enable :user_registration
     ShinyCMS::FeatureFlag.enable :user_login
 
-    # Only send emails when that's what we're testing
+    # Stash current email-sending setting
+    send_emails = ShinyCMS::FeatureFlag.enabled? :send_emails
+
+    # Turn email off during testing (override in email tests)
     ShinyCMS::FeatureFlag.disable :send_emails
   end
 
   config.after( :suite ) do
     # Restore original email-sending setting
-    ShinyCMS::FeatureFlag.enable if send_emails
+    ShinyCMS::FeatureFlag.enable :send_emails if send_emails
   end
 
   # See spec/support/shinycms/error_responses.rb

@@ -74,7 +74,7 @@ RSpec.describe ShinyCMS::Admin::EmailRecipientsController, type: :request do
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.email_recipients.do_not_contact.success' )
       expect( response.body ).to     have_css 'td', text: recipient1.name
 
-      expect( ShinyCMS::DoNotContact.list_includes?( email1 ) ).to be true
+      expect( ShinyCMS::DoNotContact.listed?( email1 ) ).to be true
     end
 
     describe 'DELETE /admin/email-recipients/:id' do

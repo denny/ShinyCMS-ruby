@@ -37,7 +37,7 @@ module ShinyCMS
       end
 
       def ok_to_email?
-        confirmed? && !ShinyCMS::DoNotContact.list_includes?( email )
+        confirmed? && ShinyCMS::DoNotContact.not_listed?( email )
       end
 
       # TODO: make email address hard/non-standard to get at if marked not ok to email?

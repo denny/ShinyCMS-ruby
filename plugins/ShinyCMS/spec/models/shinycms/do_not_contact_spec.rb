@@ -32,7 +32,11 @@ RSpec.describe ShinyCMS::DoNotContact, type: :model do
 
       expect( nope.email ).to eq '{c33ca35ec7c29c231cc1d2d8c0639e91ddb79b48}@example.com'
 
-      expect( described_class.list_includes?( 'ShinyCMS+TEST@example.com' ) ).to be true
+      expect( described_class.listed?( 'ShinyCMS+TEST@example.com' ) ).to be true
+    end
+
+    it 'does not match an address which has not set as DNC' do
+      expect( described_class.not_listed?( 'YourIdeasAreIntriguingToMe@example.com' ) ).to be true
     end
   end
 end

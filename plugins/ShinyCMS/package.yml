@@ -1,0 +1,26 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Packwerk config for the root package of the application
+
+# Validate the configuration using `bin/packwerk validate`
+# Check your code using `bin/packwerk check`
+
+# Turn on dependency checks for this package?
+enforce_dependencies: true
+
+# Turn on privacy checks for this package?
+enforce_privacy: true
+
+# The public path for this package (defaults to `app/public/`)
+# public_path: plugins/ShinyCMS/app/public/
+
+# Dependencies of this package (note: these require their own `package.yml` file)
+# dependencies:
+# - .                     # Ahoy and AhoyEmail (gem/engine)
+# - plugins/ShinySearch   # Searchable (model concern)
+# ^ TODO: FIXME: Both of these are circular dependencies if uncommented.
+#   Presumably that means they need abtracting instead.

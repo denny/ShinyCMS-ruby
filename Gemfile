@@ -8,10 +8,10 @@
 
 require_relative 'lib/gemfile_plugins_helper'
 
-source 'https://rubygems.org' do
-  # Ruby 3.0
-  ruby '~> 3.0.0'
+# Ruby 3.0
+ruby '~> 3.0.1'
 
+source 'https://rubygems.org' do
   # Rails 6.1
   gem 'rails', '~> 6.1.3'
 
@@ -36,10 +36,6 @@ source 'https://rubygems.org' do
   # Webserver
   gem 'puma', '~> 5.2', groups: %i[ development production ]
 
-  # Sessions
-  # FIXME: Installing from fork to pick up fix for CVE-2019-16782
-  gem 'activerecord-session_store', github: 'rails-lts/activerecord-session_store', branch: 'secure-session-store'
-
   # Email previews
   gem 'rails_email_preview'
 
@@ -51,7 +47,10 @@ source 'https://rubygems.org' do
   # Charts and dashboards
   gem 'blazer'
   # Charts
-  gem 'chartkick', '~> 3.4.2'
+  gem 'chartkick', '~> 4.0.2'
+
+  # Check plugin boundaries
+  gem 'packwerk'
 
   # Control panel for managing settings and feature flags
   # gem 'sail'
@@ -81,15 +80,17 @@ source 'https://rubygems.org' do
 
     # Linting: general
     gem 'rubocop', require: false
-    # Linting: performance tweaks
-    gem 'rubocop-performance', require: false
     # Linting: Rails-specific
     gem 'rubocop-rails', require: false
     # Linting: test suite
     gem 'rubocop-rspec', require: false
+    # Linting: thread safety
+    gem 'rubocop-thread_safety', require: false
+    # Linting: performance tweaks
+    gem 'rubocop-performance', require: false
 
     # Code quality: Ruby Critic
-    gem 'rubycritic', '~> 4.6.0', require: false
+    gem 'rubycritic', '~> 4.6.1', require: false
     # Code quality: Rails Best Practices
     gem 'rails_best_practices', require: false
 
@@ -103,9 +104,6 @@ source 'https://rubygems.org' do
 
     # Analysis tools for postgres
     gem 'rails-pg-extras', require: false
-
-    # Used to generate demo site data
-    gem 'seed_dump', require: false
 
     # Manage git hooks
     gem 'overcommit', require: false
@@ -127,7 +125,7 @@ source 'https://rubygems.org' do
     gem 'webmock'
 
     # Analyse and report on test coverage
-    gem 'simplecov', '0.20.0'
+    gem 'simplecov', '0.21.2'
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     # Rspec report formatter for Codecov

@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Mailer for user account related emails (password reset, etc) (uses Devise)
-  class UserMailer < ApplicationMailer
+  class UserMailer < BaseMailer
     include Devise::Controllers::UrlHelpers
 
     default from: ->( * ) { default_email }
@@ -79,7 +79,7 @@ module ShinyCMS
     end
 
     def do_not_contact?( user )
-      DoNotContact.list_includes? user.email
+      DoNotContact.listed? user.email
     end
 
     def stash_instance_vars( user, token = nil )

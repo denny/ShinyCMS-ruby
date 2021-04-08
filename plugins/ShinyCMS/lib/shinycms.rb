@@ -13,7 +13,7 @@ require 'persistent-dmnd'
 
 # Low level authentication-related stuff
 require 'bcrypt'
-# require 'activerecord/session_store'
+require 'activerecord/session_store'
 
 # High-level authentication and authorisation stuff
 require 'devise'

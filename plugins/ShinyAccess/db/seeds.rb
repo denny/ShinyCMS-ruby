@@ -17,7 +17,5 @@ seeder.seed_feature_flag( name: :access, description: 'Access control features o
 
 seeder.seed_standard_admin_capabilities( category: :access_groups )
 
-membership_cc = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'access_group_memberships' )
-membership_cc.capabilities.find_or_create_by!( name: 'list'    )
-membership_cc.capabilities.find_or_create_by!( name: 'add'     )
-membership_cc.capabilities.find_or_create_by!( name: 'destroy' )
+category = seeder.seed_standard_admin_capabilities( category: :access_group_memberships )
+category.capabilities.destroy!( name: 'edit' )

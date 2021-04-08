@@ -59,6 +59,18 @@ module ShinyNewsletters
       scheduled? && send_at > Time.zone.now
     end
 
+    def sendable?
+      !( sent? || sending? || future_dated? )
+    end
+
+    def mark_as_sending
+      update!( started_sending_at: Time.zone.now )
+    end
+
+    def mark_as_sent
+      update!( finished_sending_at: Time.zone.now )
+    end
+
     def start_sending
       SendToListJob.perform_later( self )
     end
@@ -96,5 +108,5 @@ module ShinyNewsletters
   end
 end
 
-ShinyLists::List.has_many :newsletter_sends, inverse_of: :list, dependent: :restrict_with_error,
-                                             class_name: 'ShinyNewsletters::Send'
+ShinyLists::HasList.list_has_many :newsletter_sends, inverse_of: :list,
+                                  dependent: :restrict_with_error, class_name: 'ShinyNewsletters::Send'

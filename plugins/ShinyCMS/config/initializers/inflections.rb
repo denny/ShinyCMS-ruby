@@ -6,16 +6,18 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Add new inflection rules using the following format. Inflections
-# are locale specific, and you may define rules for as many different
-# locales as you wish. All of these examples are active by default:
-# ActiveSupport::Inflector.inflections(:en) do |inflect|
-#   inflect.plural /^(ox)$/i, '\1en'
-#   inflect.singular /^(ox)en/i, '\1'
-#   inflect.irregular 'person', 'people'
-#   inflect.uncountable %w( fish sheep )
-# end
+# TODO: FIXME: Inflections are handled via Packwerk...
 
+require 'packwerk/inflections/custom'
+
+ActiveSupport::Inflector.inflections do |inflect|
+  # Add all custom inflections in the file below
+  Packwerk::Inflections::Custom.new(
+    Rails.root.join( 'package/ShinyCMS/config/inflections.yml' )
+  ).apply_to( inflect )
+end
+
+# TODO: Get the above working, then remove this
 ActiveSupport::Inflector.inflections( :en ) do |inflect|
   # Acronyms used in the ShinyCMS code
   inflect.acronym 'CMS'

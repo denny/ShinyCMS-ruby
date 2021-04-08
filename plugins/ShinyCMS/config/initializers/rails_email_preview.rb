@@ -31,8 +31,10 @@ RailsEmailPreview.setup do |config|
 end
 
 Rails.application.config.to_prepare do
-  # RailsEmailPreview.locale = :de
+  RailsEmailPreview::EmailsController.layout 'admin/layouts/admin_area'
 
   # Auto-load preview classes from:
   RailsEmailPreview.preview_classes = RailsEmailPreview.find_preview_classes 'plugins/ShinyCMS/app/mailer_previews'
+
+  # RailsEmailPreview.locale = :de
 end
