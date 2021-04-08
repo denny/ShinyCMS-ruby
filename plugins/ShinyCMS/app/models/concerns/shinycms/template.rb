@@ -24,6 +24,14 @@ module ShinyCMS
 
       scope :with_elements, -> { includes( [ :elements ] ) }
 
+      # Create template elements, based on the content of the template file
+      def add_elements
+        file_content.scan( self.class.parser_regex ).uniq.each do |result|
+          added = add_element result[0], result[1]
+          raise ActiveRecord::Rollback unless added
+        end
+      end
+
       def file_content
         raise ActiveRecord::Rollback unless file_exists?
 
@@ -35,7 +43,8 @@ module ShinyCMS
       end
 
       def file_path
-        "#{self.class.template_dir}/#{filename}#{self.class.file_extension}"
+        klass = self.class
+        "#{klass.template_dir}/#{filename}#{klass.file_extension}"
       end
 
       private
@@ -80,6 +89,13 @@ module ShinyCMS
     class_methods do
       def template_file_exists?( filename )
         available_templates.include? filename
+      end
+
+      def available_templates
+        return [] unless template_dir
+
+        filenames = Dir.glob "*#{file_extension}", base: template_dir
+        filenames.collect { |filename| filename.remove( file_extension ) }
       end
     end
   end

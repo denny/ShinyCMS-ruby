@@ -13,26 +13,10 @@ module ShinyCMS
 
     include ShinyCMS::Template
 
-    included do
-      # Create template elements, based on the content of the template file
-      def add_elements
-        # Never parse HTML with a regex.
-        file_content.scan(
-          %r{<%=\s+(sanitize|simple_format|image_tag\(?\s*url_for)?\(?\s*(\w+)\s*\)?(,\s+.*?)?\s*\)?\s+%>}
-        ).uniq.each do |result|
-          added = add_element result[0], result[1]
-          raise ActiveRecord::Rollback unless added
-        end
-      end
-    end
-
     class_methods do
-      # Get a list of available template files from the disk
-      def available_templates
-        return [] unless template_dir
-
-        filenames = Dir.glob "*#{file_extension}", base: template_dir
-        filenames.collect { |filename| filename.remove( file_extension ) }
+      def parser_regex
+        # Never parse HTML with a regex.
+        %r{<%=\s+(sanitize|simple_format|image_tag\(?\s*url_for)?\(?\s*(\w+)\s*\)?(,\s+.*?)?\s*\)?\s+%>}
       end
 
       def file_extension

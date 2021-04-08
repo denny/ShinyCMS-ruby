@@ -11,25 +11,10 @@ module ShinyCMS
   module MJMLTemplate
     extend ActiveSupport::Concern
 
-    include ShinyCMS::Template
+    include ShinyCMS::Template # After refactoring, most of the methods are in here; makes this interface v. opaque
 
     included do
-      # Validations
-
       validates :filename, mjml_syntax: true, if: -> { filename_changed? }
-
-      # Instance methods
-
-      # Create template elements, based on the content of the template file
-      def add_elements
-        # I am so, so sorry.
-        file_content.scan(
-          %r{<%=\s+(sanitize|simple_format|url_for)?\(?\s*@elements\[\s*:(\w+)\]\s*\)?\s+%>}
-        ).uniq.each do |result|
-          added = add_element result[0], result[1]
-          raise ActiveRecord::Rollback unless added
-        end
-      end
 
       def file_content_with_erb_removed
         file_content.gsub! %r{<%=? [^%]+ %>}, ''
@@ -37,12 +22,9 @@ module ShinyCMS
     end
 
     class_methods do
-      # Get a list of available template files from the disk
-      def available_templates
-        return [] unless template_dir
-
-        filenames = Dir.glob "*#{file_extension}", base: template_dir
-        filenames.collect { |filename| filename.remove( file_extension ) }
+      def parser_regex
+        # Probably never parse MJML with a regex either.
+        %r{<%=\s+(sanitize|simple_format|url_for)?\(?\s*@elements\[\s*:(\w+)\]\s*\)?\s+%>}
       end
 
       def file_extension
