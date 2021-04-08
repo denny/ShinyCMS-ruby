@@ -60,17 +60,17 @@ module ShinyForms
     def self.theme_templates
       return [] unless theme_template_dir
 
-      filenames = Dir.glob '*.mjml', base: theme_template_dir
+      filenames = Dir.glob "*#{file_extension}", base: theme_template_dir
       template_names( filenames )
     end
 
     def self.default_templates
-      filenames = Dir.glob '*.mjml', base: default_template_dir
+      filenames = Dir.glob "*#{file_extension}", base: default_template_dir
       template_names( filenames )
     end
 
     def self.template_names( filenames )
-      filenames.collect { |filename| filename.remove( '.html.mjml' ) }
+      filenames.collect { |filename| filename.remove( file_extension ) }
     end
 
     def self.theme_template_dir
@@ -85,6 +85,10 @@ module ShinyForms
       where( 'internal_name ilike ?', "%#{search_term}%" )
         .or( where( 'slug ilike ?', "%#{search_term}%" ) )
         .order( :internal_name )
+    end
+
+    def self.file_extension
+      '.html.mjml'
     end
 
     # Add another validation here, because it uses the class methods above

@@ -24,8 +24,18 @@ module ShinyCMS
 
       scope :with_elements, -> { includes( [ :elements ] ) }
 
+      def file_content
+        raise ActiveRecord::Rollback unless file_exists?
+
+        File.read file_path
+      end
+
       def file_exists?
         self.class.template_file_exists? filename
+      end
+
+      def file_path
+        "#{self.class.template_dir}/#{filename}#{self.class.file_extension}"
       end
 
       private
@@ -65,8 +75,10 @@ module ShinyCMS
           element_type: 'image'
         )
       end
+    end
 
-      def self.template_file_exists?( filename )
+    class_methods do
+      def template_file_exists?( filename )
         available_templates.include? filename
       end
     end
