@@ -12,13 +12,25 @@ module ShinyCMS
     module WithPosts
       extend ActiveSupport::Concern
 
+      include ShinyCMS::Admin::WithDateTimeInputs
+      include ShinyCMS::Admin::WithDiscussions
+      include ShinyCMS::Admin::WithTags
+
       included do
+        helper_method :admin_tag_list
+        helper_method :load_html_editor?
+
         def enforce_change_author_capability_for_create( category )
           params[ :post ][ :user_id ] = current_user.id unless current_user.can? :change_author, category
         end
 
         def enforce_change_author_capability_for_update( category )
           params[ :post ].delete( :user_id ) unless current_user.can? :change_author, category
+        end
+
+        # Return true if the page we're on might need a WYSIWYG HTML editor
+        def load_html_editor?
+          action_name == 'new' || action_name == 'edit'
         end
       end
     end
