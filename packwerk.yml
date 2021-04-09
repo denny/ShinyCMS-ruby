@@ -36,7 +36,13 @@ load_paths:
 - plugins/ShinyCMS/app/models/concerns
 - plugins/ShinyCMS/app/policies
 - plugins/ShinyCMS/app/public
-- plugins/ShinyCMS/app/public/concerns
+- plugins/ShinyCMS/app/public/controllers
+- plugins/ShinyCMS/app/public/controllers/concerns
+- plugins/ShinyCMS/app/public/helpers
+- plugins/ShinyCMS/app/public/lib
+- plugins/ShinyCMS/app/public/mailers
+- plugins/ShinyCMS/app/public/models
+- plugins/ShinyCMS/app/public/models/concerns
 
 - plugins/ShinyAccess/app/controllers
 - plugins/ShinyAccess/app/helpers
@@ -68,7 +74,8 @@ load_paths:
 - plugins/ShinyLists/app/models
 - plugins/ShinyLists/app/policies
 - plugins/ShinyLists/app/public
-- plugins/ShinyLists/app/public/concerns
+- plugins/ShinyLists/app/public/controllers/concerns
+- plugins/ShinyLists/app/public/models/concerns
 
 - plugins/ShinyNews/app/controllers
 - plugins/ShinyNews/app/helpers
@@ -101,7 +108,7 @@ load_paths:
 - plugins/ShinySearch/app/helpers
 - plugins/ShinySearch/app/jobs
 - plugins/ShinySearch/app/public
-- plugins/ShinySearch/app/public/concerns
+- plugins/ShinySearch/app/public/models/concerns
 
 # List of custom associations, if any
 # custom_associations:

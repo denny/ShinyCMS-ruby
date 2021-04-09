@@ -46,7 +46,7 @@ Metrics/BlockLength:
     - ../Shiny*/shiny*.gemspec
     - ../Shiny*/spec/**/*.rb
     - ../ShinyCMS/app/models/concerns/shinycms/*.rb
-    - ../ShinyCMS/app/public/concerns/shinycms/*.rb
+    - ../ShinyCMS/app/public/models/concerns/shinycms/*.rb
 
 # Spec files with I18n.t calls have long lines. I can live with that.
 Layout/LineLength:
@@ -117,7 +117,7 @@ Rails/SaveBang:
 Rails/ApplicationController:
   Exclude:
     - ../../app/controllers/main_controller.rb
-    - app/public/shinycms/admin/tools/base_controller.rb
+    - app/public/controllers/shinycms/admin/tools/base_controller.rb
 
 # Unused/demo controller in main_app, and 'no content' fallbacks in ShinyPages
 Rails/RenderInline:
@@ -184,10 +184,10 @@ Style/RegexpLiteral:
 # Disabling these for now, as part of the first run at enforcing boundaries with Packwerk
 Style/StaticClass:
   Exclude:
-    - app/public/shinycms/interface/*.rb
+    - app/public/models/shinycms/interface/*.rb
 Naming/PredicateName:
   Exclude:
-    - app/public/shinycms/interface/*.rb
+    - app/public/models/shinycms/interface/*.rb
 
 # Whitespace Considered Helpful
 Layout/ExtraSpacing:

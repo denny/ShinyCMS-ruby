@@ -13,6 +13,9 @@ module ShinyLists
   class Engine < ::Rails::Engine
     isolate_namespace ShinyLists
 
+    config.paths.add 'app/public/controllers/concerns', eager_load: true
+    config.paths.add 'app/public/models/concerns',      eager_load: true
+
     config.generators do |g|
       g.test_framework :rspec
       g.fixture_replacement :factory_bot
