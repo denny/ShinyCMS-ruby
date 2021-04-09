@@ -11,6 +11,14 @@ module ShinyCMS
   class Engine < ::Rails::Engine
     isolate_namespace ShinyCMS
 
+    config.paths.add 'app/public/controllers',          eager_load: true
+    config.paths.add 'app/public/controllers/concerns', eager_load: true
+    config.paths.add 'app/public/lib',                  eager_load: true
+    config.paths.add 'app/public/helpers',              eager_load: true
+    config.paths.add 'app/public/mailers',              eager_load: true
+    config.paths.add 'app/public/models',               eager_load: true
+    config.paths.add 'app/public/models/concerns',      eager_load: true
+
     config.generators do |g|
       g.test_framework :rspec
       g.fixture_replacement :factory_bot

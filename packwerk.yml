@@ -36,7 +36,13 @@ load_paths:
 - plugins/ShinyCMS/app/models/concerns
 - plugins/ShinyCMS/app/policies
 - plugins/ShinyCMS/app/public
-- plugins/ShinyCMS/app/public/concerns
+- plugins/ShinyCMS/app/public/controllers
+- plugins/ShinyCMS/app/public/controllers/concerns
+- plugins/ShinyCMS/app/public/helpers
+- plugins/ShinyCMS/app/public/lib
+- plugins/ShinyCMS/app/public/mailers
+- plugins/ShinyCMS/app/public/models
+- plugins/ShinyCMS/app/public/models/concerns
 
 - plugins/ShinyAccess/app/controllers
 - plugins/ShinyAccess/app/helpers
