@@ -544,7 +544,6 @@ GEM
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
-    pwned (2.0.2)
     raabro (1.4.0)
     racc (1.5.2)
     rack (2.2.3)
