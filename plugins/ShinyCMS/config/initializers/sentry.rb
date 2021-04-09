@@ -6,6 +6,8 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# :nocov:
+
 sentry_dsn = ENV.fetch( 'SENTRY_DSN', '' )
 return if sentry_dsn.blank?
 
