@@ -117,6 +117,8 @@ Gem::Specification.new do |spec|
   ## Monitoring services
   spec.add_dependency 'airbrake'
   spec.add_dependency 'bugsnag'
+  spec.add_dependency 'sentry-rails'
+  spec.add_dependency 'sentry-ruby'
 
   # Fix request.ip when running behind Cloudflare proxying
   spec.add_dependency 'cloudflare-rails'
