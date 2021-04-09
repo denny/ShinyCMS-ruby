@@ -32,7 +32,7 @@ module ShinyForms
     private
 
     def email_subject
-      form_data_subject = @form_data['subject'] || nil
+      form_data_subject = @form_data[:subject] || nil
 
       return "[#{site_name}] #{form_data_subject}" if form_data_subject.present?
 
