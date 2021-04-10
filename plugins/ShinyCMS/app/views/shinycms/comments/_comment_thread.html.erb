@@ -1,0 +1,11 @@
+<% if comment.hidden? %>
+<%= render partial: 'comments/hidden_comment', locals: { comment: comment, depth: depth } %>
+<% else %>
+  <%= render partial: 'comments/comment', locals: { discussion: discussion, comment: comment, depth: depth } %>
+<% end %>
+
+<% depth = depth + 2 %>
+<% comment.comments.each do |comment| %>
+  <%= render partial: 'comments/comment_thread', locals: { discussion: discussion, comment: comment, depth: depth } %>
+<% end %>
+<% depth = depth - 2 %>

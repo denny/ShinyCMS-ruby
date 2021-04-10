@@ -24,10 +24,10 @@
       <% end %>
 
         <% if current_user_can?( :destroy, :spam_comments ) %>
-          <%= link_to t( 'shinycms.discussions.spam' ), shinycms.destroy_spam_comment_path( comment ), method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+          <%= link_to t( 'shinycms.comments.spam' ), shinycms.destroy_spam_comment_path( comment ), method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
         /
         <% elsif current_user_can?( :flag, :spam_comments ) %>
-          <%= link_to t( 'shinycms.discussions.spam' ), shinycms.flag_spam_comment_path( comment ), method: :put %>
+          <%= link_to t( 'shinycms.comments.spam' ), shinycms.flag_spam_comment_path( comment ), method: :put %>
         /
         <% end %>
 
