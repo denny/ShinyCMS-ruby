@@ -48,17 +48,30 @@ en:
         new:
           title: Create user account
 
+    comments:
+      hidden: This comment has been hidden by a moderator.
+      locked: Comment locked
+      reply: Reply to this comment
+      spam: Spam
+      untitled: (untitled comment)
+      comment_form:
+        comment: Comment
+        log_in_to_post: Log in to post a comment
+        name: Name
+        email: Email
+        url: URL
+      create:
+        success: New comment posted
+        failure: Failed to post new comment
+      profile:
+        content:
+          title: Recent comments
+
     discussions:
       anonymous: Anonymous
       pseudonymous: Pseudonymous
-      comment:
-        form:
-          comment: Comment
-          log_in_to_post: Log in to post a comment
-          name: Name
-          email: Email
-          url: URL
       comments: Comments
+      new_comment: Add a new comment
       n_total: '%{count} total'
       n_comments:
         zero: No comments
@@ -67,26 +80,9 @@ en:
       n_recent_comments:
         one: 1 recent comment
         other: '%{count} recent comments'
-      new_comment: Add a new comment
-      reply: Reply to this comment
-      hidden_comment: This comment has been hidden by a moderator.
-      comment_locked: Comment locked
-      spam: Spam
-      add_comment:
-        success: New comment posted
-        failure: Failed to post new comment
-      add_reply:
-        success: New comment posted
-        failure: Failed to post new comment
       index:
         title: Discussions
         recently_active: Recently active discussions
-      save_comment:
-        success: New comment posted
-        failure: Failed to post new comment
-      profile:
-        content:
-          title: Recent comments
 
     do_not_contact:
       new:
