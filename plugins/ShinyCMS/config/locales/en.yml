@@ -54,7 +54,7 @@ en:
       reply: Reply to this comment
       spam: Spam
       untitled: (untitled comment)
-      form:
+      comment_form:
         comment: Comment
         log_in_to_post: Log in to post a comment
         name: Name

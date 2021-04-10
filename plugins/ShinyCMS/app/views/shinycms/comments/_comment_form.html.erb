@@ -35,15 +35,15 @@
   <% if user_signed_in? %>
     <%= current_user.name %>
   <% else %>
-    <%= link_to t( 'shinycms.comments.form.log_in_to_post' ), shinycms.new_user_session_path %>
+    <%= link_to t( 'shinycms.comments.comment_form.log_in_to_post' ), shinycms.new_user_session_path %>
   <% end %>
 <% end %>
   </p>
 
   <p id="comment<%= num %>_author_details" <% if user_signed_in? %>hidden<% end %>>
-    <%= text_field_tag 'comment[author_name]',  '', id: "comment#{num}_author_name",  class: 'author', placeholder: t( 'shinycms.comments.form.name'  ) %> &nbsp;
-    <%= text_field_tag 'comment[author_email]', '', id: "comment#{num}_author_email", class: 'author', placeholder: t( 'shinycms.comments.form.email' ) %> &nbsp;
-    <%= text_field_tag 'comment[author_url]',   '', id: "comment#{num}_author_url",   class: 'author', placeholder: t( 'shinycms.comments.form.url'   ) %>
+    <%= text_field_tag 'comment[author_name]',  '', id: "comment#{num}_author_name",  class: 'author', placeholder: t( 'shinycms.comments.comment_form.name'  ) %> &nbsp;
+    <%= text_field_tag 'comment[author_email]', '', id: "comment#{num}_author_email", class: 'author', placeholder: t( 'shinycms.comments.comment_form.email' ) %> &nbsp;
+    <%= text_field_tag 'comment[author_url]',   '', id: "comment#{num}_author_url",   class: 'author', placeholder: t( 'shinycms.comments.comment_form.url'   ) %>
   </p>
 
   <p>
@@ -51,7 +51,7 @@
     <%= f.text_field :title, id: "comment#{num}_title", class: 'title' %>
   </p>
   <p>
-    <%= f.label :body, t( 'shinycms.comments.form.comment' ) %><br>
+    <%= f.label :body, t( 'shinycms.comments.comment_form.comment' ) %><br>
     <%= f.text_area :body, id: "comment#{num}_body" %>
   </p>
 

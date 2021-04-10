@@ -1,7 +1,7 @@
 <a name="<%= comment.number %>"></a>
 <section class="comment" style="margin-left: <%= depth %>em;">
   <header>
-    <%= render partial: 'discussions/comment/header', locals: { comment: comment } %>
+    <%= render partial: 'comments/comment/header', locals: { comment: comment } %>
   </header>
 
   <p>
@@ -9,12 +9,12 @@
   </p>
 
   <footer>
-    <%= render partial: 'discussions/comment/footer', locals: { comment: comment } %>
+    <%= render partial: 'comments/comment/footer', locals: { comment: comment } %>
   </footer>
 
   <% unless discussion.locked? || comment.locked? %>
   <div id="reply_form_<%= comment.id %>" style="margin: 0; padding: 0;" hidden>
-    <%= render partial: 'discussions/comment/form', locals: { discussion: discussion, comment: comment } %>
+    <%= render partial: 'comments/comment_form', locals: { discussion: discussion, comment: comment } %>
   </div>
   <% end %>
 </section>
