@@ -18,6 +18,7 @@ module ShinyCMS
     config.paths.add 'app/public/mailers',              eager_load: true
     config.paths.add 'app/public/models',               eager_load: true
     config.paths.add 'app/public/models/concerns',      eager_load: true
+    config.paths.add 'app/public/services',             eager_load: true
 
     config.generators do |g|
       g.test_framework :rspec

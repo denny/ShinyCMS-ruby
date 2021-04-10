@@ -15,11 +15,7 @@ module ShinyBlog
     def perform
       posts = Post.recent.limit( 10 )
 
-      atom_feed = ShinyCMS::AtomFeed.new( :blog )
-
-      atom_feed.build( posts )
-
-      atom_feed.write_file
+      ShinyCMS::AtomFeedBuilder.call( :blog, posts )
     end
   end
 end
