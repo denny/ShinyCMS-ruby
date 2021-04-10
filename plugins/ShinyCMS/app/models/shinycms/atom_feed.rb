@@ -17,8 +17,6 @@ module ShinyCMS
     attr_reader :name, :feed
 
     def initialize( feed_name )
-      return unless %i[ blog news ].include? feed_name
-
       @name = feed_name
 
       @feed = RSS::Atom::Feed.new( '1.0', 'UTF-8', false )
