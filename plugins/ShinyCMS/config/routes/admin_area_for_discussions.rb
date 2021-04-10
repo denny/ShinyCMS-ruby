@@ -13,12 +13,13 @@ put 'comments',              to: 'comments#update'
 get 'comments/search',       to: 'comments#search', as: :search_comments
 
 scope path: 'comment' do
-  put    ':id/show',    to: 'comments#show',          as: :show_comment
-  put    ':id/hide',    to: 'comments#hide',          as: :hide_comment
-  put    ':id/lock',    to: 'comments#lock',          as: :lock_comment
-  put    ':id/unlock',  to: 'comments#unlock',        as: :unlock_comment
-  put    ':id/is-spam', to: 'comments#mark_as_spam',  as: :spam_comment
-  delete ':id/delete',  to: 'comments#destroy',       as: :destroy_comment
+  put    ':id/show',      to: 'comments#show',          as: :show_comment
+  put    ':id/hide',      to: 'comments#hide',          as: :hide_comment
+  put    ':id/lock',      to: 'comments#lock',          as: :lock_comment
+  put    ':id/unlock',    to: 'comments#unlock',        as: :unlock_comment
+  put    ':id/flag-spam', to: 'comments#mark_as_spam',  as: :flag_spam_comment
+  delete ':id/spam',      to: 'comments#destroy',       as: :destroy_spam_comment
+  delete ':id/delete',    to: 'comments#destroy',       as: :destroy_comment
 end
 
 scope path: 'discussion' do

@@ -230,9 +230,9 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
     end
   end
 
-  describe 'PUT /admin/comment/1/is-spam' do
+  describe 'PUT /admin/comment/1/flag-spam' do
     it 'marks the comment as spam' do
-      put shinycms.spam_comment_path( @comment1 )
+      put shinycms.flag_spam_comment_path( @comment1 )
       @comment1.reload
 
       expect( response ).to have_http_status :found

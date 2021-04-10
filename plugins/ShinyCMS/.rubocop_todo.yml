@@ -14,7 +14,7 @@
 RSpec/AnyInstance:
   Exclude:
     - 'spec/requests/shinycms/admin/comments_controller_spec.rb'
-    - 'spec/requests/shinycms/discussions_controller_spec.rb'
+    - 'spec/requests/shinycms/comments_controller_spec.rb'
     - 'spec/requests/shinycms/users/registrations_controller_spec.rb'
     - '../ShinyForms/spec/requests/shiny_forms/forms_controller_spec.rb'
     - '../ShinyLists/spec/requests/shiny_lists/subscriptions_controller_spec.rb'
@@ -26,4 +26,5 @@ RSpec/InstanceVariable:
     - 'spec/models/shinycms/discussion_spec.rb'
     - 'spec/requests/shinycms/admin/comments_controller_spec.rb'
     - 'spec/requests/shinycms/admin/discussions_controller_spec.rb'
+    - 'spec/requests/shinycms/comments_controller_spec.rb'
     - 'spec/requests/shinycms/discussions_controller_spec.rb'

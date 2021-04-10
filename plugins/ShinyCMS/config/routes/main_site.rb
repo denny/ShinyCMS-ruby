@@ -38,9 +38,12 @@ end
 
 get  'discussions',            to: 'discussions#index', as: :discussions
 get  'discussion/:id',         to: 'discussions#show',  as: :discussion
-post 'discussion/:id',         to: 'discussions#add_comment'
-get  'discussion/:id/:number', to: 'discussions#show_thread', as: :comment
-post 'discussion/:id/:number', to: 'discussions#add_reply'
+
+get  'discussion/:id/from/:number', to: 'comments#index', as: :comment_thread
+
+get  'discussion/:id/:number', to: 'comments#show',        as: :comment
+post 'discussion/:id',         to: 'comments#add_comment', as: :add_comment
+post 'discussion/:id/:number', to: 'comments#add_reply',   as: :add_reply
 
 get  'email/confirm/:token', to: 'email_recipients#confirm', as: :confirm_email
 
