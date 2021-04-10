@@ -49,13 +49,7 @@ en:
           title: Create user account
 
     comments:
-      add_comment:
-        success: New comment posted
-        failure: Failed to post new comment
-      add_reply:
-        success: New comment posted
-        failure: Failed to post new comment
-      save_comment:
+      create:
         success: New comment posted
         failure: Failed to post new comment
 

@@ -74,7 +74,7 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
       expect( response      ).to redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.comments.add_comment.success' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.comments.create.success' )
       expect( response.body ).to have_css 'h2', text: title
       expect( response.body ).to include body
     end
@@ -97,7 +97,7 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
       expect( response      ).to redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.comments.add_comment.success' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.comments.create.success' )
       expect( response.body ).to have_css 'h2', text: title
       expect( response.body ).to have_css 'h3', text: user.username
     end
@@ -119,7 +119,7 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
       expect( response      ).to redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.comments.add_comment.success' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.comments.create.success' )
       expect( response.body ).to have_css 'h2', text: title
       expect( response.body ).to have_css 'h3', text: name
     end
@@ -133,7 +133,7 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shinycms.comments.add_comment.failure' )
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shinycms.comments.create.failure' )
     end
 
     it 'adds a new top-level comment to the discussion, with a recaptcha check' do
@@ -156,7 +156,7 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
       expect( response      ).to redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.comments.add_comment.success' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.comments.create.success' )
       expect( response.body ).to have_css 'h2', text: title
       expect( response.body ).to include body
     end
@@ -185,7 +185,7 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
 
       expect( ShinyCMS::Comment.last.spam ).to be true
 
-      expect( response.body ).not_to have_css '.notices', text: I18n.t( 'shinycms.comments.add_comment.success' )
+      expect( response.body ).not_to have_css '.notices', text: I18n.t( 'shinycms.comments.create.success' )
       expect( response.body ).not_to have_css 'h2', text: title
     end
 
@@ -213,7 +213,7 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).not_to have_css '.notices', text: I18n.t( 'shinycms.comments.add_comment.success' )
+      expect( response.body ).not_to have_css '.notices', text: I18n.t( 'shinycms.comments.create.success' )
       expect( response.body ).not_to have_css 'h2', text: title
 
       expect( ShinyCMS::Comment.count            ).to eq comment_count
@@ -227,7 +227,7 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
       title = Faker::Books::CultureSeries.unique.culture_ship
       body  = Faker::Lorem.paragraph
 
-      post shinycms.add_reply_path( @discussion, @comment.number ), params: {
+      post shinycms.add_comment_path( @discussion, @comment.number ), params: {
         comment: {
           title: title,
           body:  body
@@ -238,13 +238,13 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
       expect( response      ).to redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.comments.add_reply.success' )
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.comments.create.success' )
       expect( response.body ).to have_css 'h2', text: title
       expect( response.body ).to include body
     end
 
     it 'fails to post a reply with missing fields' do
-      post shinycms.add_reply_path( @discussion, @comment.number ), params: {
+      post shinycms.add_comment_path( @discussion, @comment.number ), params: {
         comment: {
           title: nil,
           body:  nil
@@ -252,7 +252,7 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shinycms.comments.add_reply.failure' )
+      expect( response.body ).to have_css '.alerts', text: I18n.t( 'shinycms.comments.create.failure' )
     end
   end
 end

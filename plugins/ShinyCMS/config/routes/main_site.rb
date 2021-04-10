@@ -36,14 +36,12 @@ devise_scope :user do
   get 'account/password/report/:password', to: 'users/registrations#password_report', as: :password_report
 end
 
-get  'discussions',            to: 'discussions#index', as: :discussions
-get  'discussion/:id',         to: 'discussions#show',  as: :discussion
+get 'discussions',    to: 'discussions#index', as: :discussions
+get 'discussion/:id', to: 'discussions#show',  as: :discussion
 
-get  'discussion/:id/from/:number', to: 'comments#index', as: :comment_thread
-
-get  'discussion/:id/:number', to: 'comments#show',        as: :comment
-post 'discussion/:id',         to: 'comments#add_comment', as: :add_comment
-post 'discussion/:id/:number', to: 'comments#add_reply',   as: :add_reply
+get  'discussion/:id/from/:number', to: 'comments#index',  as: :comment_thread
+get  'discussion/:id/:number',      to: 'comments#show',   as: :comment
+post 'discussion/:id(/:number)',    to: 'comments#create', as: :add_comment
 
 get  'email/confirm/:token', to: 'email_recipients#confirm', as: :confirm_email
 

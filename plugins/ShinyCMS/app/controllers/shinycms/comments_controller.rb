@@ -14,7 +14,7 @@ module ShinyCMS
 
     before_action :check_feature_flags
     before_action :stash_discussion
-    before_action :stash_comment, except: :add_comment
+    before_action :stash_comment
 
     def index; end # view comment thread beginning with specified comment
 
@@ -22,17 +22,9 @@ module ShinyCMS
 
     def new; end
 
-    def add_comment
-      @new_comment = @discussion.comments.new( new_comment_details )
-      save_comment
-    end
+    def create
+      @new_comment = parent.comments.new( new_comment_details )
 
-    def add_reply
-      @new_comment = @comment.comments.new( new_comment_details )
-      save_comment
-    end
-
-    def save_comment
       if new_comment_passes_checks_and_saves?
         flash[ :notice ] = t( '.success' ) unless @new_comment.spam?
         redirect_back fallback_location: discussion_path( @discussion )
@@ -49,7 +41,14 @@ module ShinyCMS
     end
 
     def stash_comment
-      @comment = @discussion.find_comment( number: params[ :number ] )
+      number = params[:number]
+      return if number.blank?
+
+      @comment = @discussion.find_comment( number: number )
+    end
+
+    def parent
+      @comment || @discussion
     end
 
     def new_comment_passes_checks_and_saves?
