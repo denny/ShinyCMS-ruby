@@ -25,6 +25,7 @@ excluded_words:
   - halcyonic
   - taggings
   - ilike
+  - packwerk
   - pryrc
   - Rakefile
   - Cloudflare
