@@ -51,12 +51,12 @@ module ShinyLists
   end
 end
 
-ShinyCMS::Interface::EmailRecipient.has_many :subscriptions, -> { active }, as: :subscriber,
-                                             dependent: :destroy, class_name: 'ShinyLists::Subscription'
-ShinyCMS::Interface::EmailRecipient.has_many :lists, through: :subscriptions, inverse_of: :email_recipients,
-                                             class_name: 'ShinyLists::List'
+ShinyCMS::EmailRecipient.has_many :subscriptions, -> { active }, as: :subscriber, dependent: :destroy,
+                                  class_name: 'ShinyLists::Subscription'
+ShinyCMS::EmailRecipient.has_many :lists, through: :subscriptions, inverse_of: :email_recipients,
+                                  class_name: 'ShinyLists::List'
 
-ShinyCMS::Interface::User.has_many :subscriptions, -> { active }, as: :subscriber, dependent: :destroy,
-                                   class_name: 'ShinyLists::Subscription'
-ShinyCMS::Interface::User.has_many :lists, through: :subscriptions, inverse_of: :users,
-                                   class_name: 'ShinyLists::List'
+ShinyCMS::User.has_many :subscriptions, -> { active }, as: :subscriber, dependent: :destroy,
+                        class_name: 'ShinyLists::Subscription'
+ShinyCMS::User.has_many :lists, through: :subscriptions, inverse_of: :users,
+                        class_name: 'ShinyLists::List'

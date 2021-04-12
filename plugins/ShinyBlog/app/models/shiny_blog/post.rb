@@ -25,4 +25,4 @@ module ShinyBlog
 end
 
 # Add inverse association for authors of blog posts
-ShinyCMS::Interface::User.has_many :blog_posts, dependent: :restrict_with_error, class_name: 'ShinyBlog::Post'
+ShinyCMS::User.has_many :blog_posts, dependent: :restrict_with_error, class_name: 'ShinyBlog::Post'

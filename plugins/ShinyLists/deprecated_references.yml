@@ -15,3 +15,13 @@ plugins/ShinyCMS:
     - privacy
     files:
     - plugins/ShinyLists/app/models/shiny_lists/subscription.rb
+  "::ShinyCMS::EmailRecipient":
+    violations:
+    - privacy
+    files:
+    - plugins/ShinyLists/app/models/shiny_lists/list.rb
+  "::ShinyCMS::User":
+    violations:
+    - privacy
+    files:
+    - plugins/ShinyLists/app/models/shiny_lists/list.rb

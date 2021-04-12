@@ -44,7 +44,7 @@ module ShinyAccess
 end
 
 # Don't want to lose records of these without a bit of deliberate effort, in case they were paid memberships
-ShinyCMS::Interface::User.has_many :access_memberships, -> { active }, inverse_of: :user,
-                                   dependent: :restrict_with_error, class_name: 'ShinyAccess::Membership'
-ShinyCMS::Interface::User.has_many :access_groups, through: :access_memberships, source: :group, inverse_of: :users,
-                                   class_name: 'ShinyAccess::Group'
+ShinyCMS::User.has_many :access_memberships, -> { active }, inverse_of: :user, dependent: :restrict_with_error,
+                        class_name: 'ShinyAccess::Membership'
+ShinyCMS::User.has_many :access_groups, through: :access_memberships, source: :group, inverse_of: :users,
+                        class_name: 'ShinyAccess::Group'
