@@ -82,7 +82,7 @@ ThreadSafety/InstanceVariableInClassMethod:
   Exclude:
     - 'app/models/shinycms/plugin.rb'
     - 'app/models/shinycms/plugins.rb'
-    - 'lib/shinycms.rb' # this is plugins too
+    - 'lib/shinycms.rb'  # this is plugins too
 
 # I like chaining methods, it's aesthetically pleasing :-p
 Performance/ChainArrayAllocation:
@@ -122,6 +122,7 @@ Rails/ApplicationController:
 # Unused/demo controller in main_app, and 'no content' fallbacks in ShinyPages
 Rails/RenderInline:
   Exclude:
+    - ../../app/controllers/application_controller.rb
     - ../../app/controllers/main_controller.rb
     - ../ShinyPages/app/controllers/shiny_pages/pages_controller.rb
 
