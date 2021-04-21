@@ -12,7 +12,6 @@ require:
   - rubocop-rspec
   - rubocop-thread_safety
 
-
 AllCops:
   EnabledByDefault: true
   NewCops: enable
@@ -113,17 +112,16 @@ Rails/SaveBang:
   Exclude:
     - ../ShinySEO/app/models/shiny_seo/sitemap.rb
 
-# Reasons. Mostly Blazer-related reasons, in both cases.
+# This base controller is for 'untrusted' code to inherit from (i.e. controllers from gems), to
+# keep them a bit more isolated from the main CMS controllers and whatever ACL privs they have.
 Rails/ApplicationController:
   Exclude:
-    - ../../app/controllers/main_controller.rb
     - app/public/controllers/shinycms/admin/tools/base_controller.rb
 
 # Unused/demo controller in main_app, and 'no content' fallbacks in ShinyPages
 Rails/RenderInline:
   Exclude:
     - ../../app/controllers/application_controller.rb
-    - ../../app/controllers/main_controller.rb
     - ../ShinyPages/app/controllers/shiny_pages/pages_controller.rb
 
 # There's no database activity in these before all blocks, so this cop doesn't apply

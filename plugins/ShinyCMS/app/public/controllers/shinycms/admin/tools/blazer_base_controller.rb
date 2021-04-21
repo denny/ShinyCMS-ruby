@@ -9,10 +9,10 @@
 module ShinyCMS
   module Admin
     module Tools
-      # Base class to inherit from in the controller that Blazer then inherits from.
-      # Unfortunately, by default this is main_app's ApplicationController,
-      # which you really don't want all this Admin stuff in. :-\
-      class BlazerBaseController < ShinyCMS::Admin::Tools::BaseController
+      # Base class to inherit from in the controller that Blazer then inherits from
+      # (this is currently /app/controllers/blazer/application.rb in ShinyHostApp)
+      # to allow Blazer to be embedded within the ShinyCMS admin area
+      class BlazerBaseController < BaseController
         # Helpers required to build the admin area UI - notably, the side menu
         helper ShinyCMS::AdminAreaHelper
         helper ShinyCMS::PluginsHelper
