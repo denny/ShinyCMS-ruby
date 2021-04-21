@@ -31,8 +31,8 @@
         <%= link_to t( 'shiny_profiles.admin.users.index.view_profile' ), shiny_profiles.profile_path( user.username ) %>
         <%= link_to t( 'shiny_profiles.admin.users.index.edit_profile' ), shiny_profiles.admin_edit_profile_path( user.profile ) %>
         <% end %>
-        <%= link_to t( '.edit_account'   ), edit_user_path( user ) %>
-        <%= link_to t( '.delete_account' ), user_path( user ),
+        <%= link_to t( '.edit_account'   ), shinycms.edit_user_path( user ) %>
+        <%= link_to t( '.delete_account' ), shinycms.user_path( user ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>
     </tr>
