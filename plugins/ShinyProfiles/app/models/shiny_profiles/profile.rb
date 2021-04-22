@@ -18,7 +18,7 @@ module ShinyProfiles
 
     # Associations
 
-    belongs_to :user, inverse_of: :profile, class_name: 'ShinyCMS::User'
+    belongs_to :user, inverse_of: :profile, class_name: ShinyCMS.config_user_model
 
     has_many :links, -> { order( :position ) }, inverse_of: :profile, dependent: :destroy
 

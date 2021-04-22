@@ -76,6 +76,17 @@ require 'sentry-rails' if ENV[ 'SENTRY_DSN'       ].present?
 
 # Top-level namespace wrapper
 module ShinyCMS
+  mattr_reader :config_user_model
+
+  def self.configure( user_model: )
+    # rubocop:disable Style/ClassVars
+    @@config_user_model = user_model if user_model
+    # rubocop:enable Style/ClassVars
+  end
+
+  # Default config
+  configure( user_model: 'ShinyCMS::User' )
+
   # Build the configured plugin collection, and stash it in ShinyCMS.plugins for easy re-use
   def self.plugins
     @plugins ||= ShinyCMS::Plugins.all

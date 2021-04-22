@@ -14,7 +14,7 @@ module ShinyNews
     include ShinyCMS::ProvidesDemoSiteData
     include ShinyCMS::ProvidesSitemapData
 
-    belongs_to :user, inverse_of: :news_posts, class_name: 'ShinyCMS::User'
+    belongs_to :user, inverse_of: :news_posts, class_name: ShinyCMS.config_user_model
 
     def path( anchor: nil )
       url_helpers.view_news_post_path(
@@ -25,4 +25,6 @@ module ShinyNews
 end
 
 # Add inverse association for authors of news posts
-ShinyCMS::User.has_many :news_posts, dependent: :restrict_with_error, class_name: 'ShinyNews::Post'
+ShinyCMS.config_user_model.constantize.has_many :news_posts,
+                                                dependent:  :restrict_with_error,
+                                                class_name: 'ShinyNews::Post'

@@ -14,7 +14,7 @@ module ShinyBlog
     include ShinyCMS::ProvidesDemoSiteData
     include ShinyCMS::ProvidesSitemapData
 
-    belongs_to :user, inverse_of: :blog_posts, class_name: 'ShinyCMS::User'
+    belongs_to :user, inverse_of: :blog_posts, class_name: ShinyCMS.config_user_model
 
     def path( anchor: nil )
       url_helpers.view_blog_post_path(
@@ -25,4 +25,6 @@ module ShinyBlog
 end
 
 # Add inverse association for authors of blog posts
-ShinyCMS::User.has_many :blog_posts, dependent: :restrict_with_error, class_name: 'ShinyBlog::Post'
+ShinyCMS.config_user_model.constantize.has_many :blog_posts,
+                                                dependent:  :restrict_with_error,
+                                                class_name: 'ShinyBlog::Post'
