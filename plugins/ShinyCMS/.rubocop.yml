@@ -128,6 +128,7 @@ Rails/RenderInline:
 # Configurable user model
 Rails/ReflectionClassName:
   Exclude:
+    - ../../app/models/ahoy/visit.rb
     - ../ShinyAccess/app/models/shiny_access/group.rb
     - ../ShinyAccess/app/models/shiny_access/membership.rb
     - ../ShinyBlog/app/models/shiny_blog/post.rb
