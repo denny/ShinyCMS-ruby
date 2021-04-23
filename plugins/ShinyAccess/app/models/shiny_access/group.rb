@@ -40,16 +40,12 @@ module ShinyAccess
         .or( where( 'slug ilike ?', "%#{query}%" ) )
         .order( :internal_name )
     end
+
+    # Integration with the configured user model
+    user_model = ShinyCMS.config_user_model
+    user_model.constantize.has_many :access_memberships, -> { active }, inverse_of: :user,
+                                    dependent: :restrict_with_error, class_name: 'ShinyAccess::Membership'
+    user_model.constantize.has_many :access_groups, through: :access_memberships, source: :group,
+                                    inverse_of: :users, class_name: 'ShinyAccess::Group'
   end
 end
-
-# Don't want to lose records of these without a bit of deliberate effort, in case they were paid memberships
-ShinyCMS.config_user_model.constantize.has_many :access_memberships, -> { active },
-                                                inverse_of: :user,
-                                                dependent:  :restrict_with_error,
-                                                class_name: 'ShinyAccess::Membership'
-ShinyCMS.config_user_model.constantize.has_many :access_groups,
-                                                through:    :access_memberships,
-                                                source:     :group,
-                                                inverse_of: :users,
-                                                class_name: 'ShinyAccess::Group'

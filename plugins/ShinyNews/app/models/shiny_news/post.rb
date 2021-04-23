@@ -16,6 +16,10 @@ module ShinyNews
 
     belongs_to :user, inverse_of: :news_posts, class_name: ShinyCMS.config_user_model
 
+    # Add inverse association for authors of news posts
+    user_model = ShinyCMS.config_user_model
+    user_model.constantize.has_many :news_posts, dependent:  :restrict_with_error, class_name: 'ShinyNews::Post'
+
     def path( anchor: nil )
       url_helpers.view_news_post_path(
         posted_year, posted_month, slug, anchor: anchor
@@ -23,8 +27,3 @@ module ShinyNews
     end
   end
 end
-
-# Add inverse association for authors of news posts
-ShinyCMS.config_user_model.constantize.has_many :news_posts,
-                                                dependent:  :restrict_with_error,
-                                                class_name: 'ShinyNews::Post'

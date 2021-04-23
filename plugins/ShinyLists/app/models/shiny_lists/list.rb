@@ -48,6 +48,13 @@ module ShinyLists
         .or( where( 'slug ilike ?', "%#{search_term}%" ) )
         .order( :internal_name )
     end
+
+    # Integration with the configured user model
+    user_model = ShinyCMS.config_user_model
+    user_model.constantize.has_many :subscriptions, -> { active }, as: :subscriber, dependent: :destroy,
+                                    class_name: 'ShinyLists::Subscription'
+    user_model.constantize.has_many :lists, through: :subscriptions, inverse_of: :users,
+                                    class_name: 'ShinyLists::List'
   end
 end
 
@@ -55,8 +62,3 @@ ShinyCMS::EmailRecipient.has_many :subscriptions, -> { active }, as: :subscriber
                                   class_name: 'ShinyLists::Subscription'
 ShinyCMS::EmailRecipient.has_many :lists, through: :subscriptions, inverse_of: :email_recipients,
                                   class_name: 'ShinyLists::List'
-
-ShinyCMS.config_user_model.constantize.has_many :subscriptions, -> { active }, as: :subscriber, dependent: :destroy,
-                                                class_name: 'ShinyLists::Subscription'
-ShinyCMS.config_user_model.constantize.has_many :lists, through: :subscriptions, inverse_of: :users,
-                                                class_name: 'ShinyLists::List'
