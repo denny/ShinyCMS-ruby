@@ -20,8 +20,3 @@ plugins/ShinyCMS:
     - privacy
     files:
     - plugins/ShinyLists/app/models/shiny_lists/list.rb
-  "::ShinyCMS::User":
-    violations:
-    - privacy
-    files:
-    - plugins/ShinyLists/app/models/shiny_lists/list.rb
