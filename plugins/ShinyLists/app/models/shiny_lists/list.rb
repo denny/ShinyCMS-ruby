@@ -19,7 +19,7 @@ module ShinyLists
 
     has_many :subscriptions, inverse_of: :list, dependent: :destroy
     has_many :users, through: :subscriptions, inverse_of: :lists, source: :subscriber,
-                     source_type: 'ShinyCMS::User'
+                     source_type: ShinyCMS.config_user_model
     has_many :email_recipients, through: :subscriptions, inverse_of: :lists, source: :subscriber,
                                 source_type: 'ShinyCMS::EmailRecipient'
 
@@ -48,15 +48,17 @@ module ShinyLists
         .or( where( 'slug ilike ?', "%#{search_term}%" ) )
         .order( :internal_name )
     end
+
+    # Integration with the configured user model
+    user_model = ShinyCMS.config_user_model
+    user_model.constantize.has_many :subscriptions, -> { active }, as: :subscriber, dependent: :destroy,
+                                    class_name: 'ShinyLists::Subscription'
+    user_model.constantize.has_many :lists, through: :subscriptions, inverse_of: :users,
+                                    class_name: 'ShinyLists::List'
   end
 end
 
-ShinyCMS::Interface::EmailRecipient.has_many :subscriptions, -> { active }, as: :subscriber,
-                                             dependent: :destroy, class_name: 'ShinyLists::Subscription'
-ShinyCMS::Interface::EmailRecipient.has_many :lists, through: :subscriptions, inverse_of: :email_recipients,
-                                             class_name: 'ShinyLists::List'
-
-ShinyCMS::Interface::User.has_many :subscriptions, -> { active }, as: :subscriber, dependent: :destroy,
-                                   class_name: 'ShinyLists::Subscription'
-ShinyCMS::Interface::User.has_many :lists, through: :subscriptions, inverse_of: :users,
-                                   class_name: 'ShinyLists::List'
+ShinyCMS::EmailRecipient.has_many :subscriptions, -> { active }, as: :subscriber, dependent: :destroy,
+                                  class_name: 'ShinyLists::Subscription'
+ShinyCMS::EmailRecipient.has_many :lists, through: :subscriptions, inverse_of: :email_recipients,
+                                  class_name: 'ShinyLists::List'

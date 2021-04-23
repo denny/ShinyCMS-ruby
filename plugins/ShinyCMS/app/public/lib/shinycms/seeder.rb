@@ -9,6 +9,15 @@
 module ShinyCMS
   # Helper methods for setting common types of seed data for ShinyCMS plugins
   class Seeder
+    def seed_consent_version( name:, slug:, display_text: nil, admin_notes: nil )
+      ShinyCMS::ConsentVersion.find_or_create_by!(
+        name:         name,
+        slug:         slug,
+        display_text: display_text,
+        admin_notes:  admin_notes
+      )
+    end
+
     def seed_feature_flag( name:, description: nil, enabled: true )
       flag = ShinyCMS::FeatureFlag.find_or_create_by!( name: name.to_s )
       flag.update!(

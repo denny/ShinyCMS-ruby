@@ -124,6 +124,17 @@ Rails/RenderInline:
     - ../../app/controllers/application_controller.rb
     - ../ShinyPages/app/controllers/shiny_pages/pages_controller.rb
 
+# Configurable user model
+Rails/ReflectionClassName:
+  Exclude:
+    - ../../app/models/ahoy/visit.rb
+    - ../ShinyAccess/app/models/shiny_access/group.rb
+    - ../ShinyAccess/app/models/shiny_access/membership.rb
+    - ../ShinyBlog/app/models/shiny_blog/post.rb
+    - ../ShinyNews/app/models/shiny_news/post.rb
+    - ../ShinyNewsletters/app/models/shiny_newsletters/send.rb
+    - ../ShinyProfiles/app/models/shiny_profiles/profile.rb
+
 # There's no database activity in these before all blocks, so this cop doesn't apply
 RSpec/BeforeAfterAll:
   Exclude:

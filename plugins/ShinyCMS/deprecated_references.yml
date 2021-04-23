@@ -16,7 +16,7 @@
     files:
     - plugins/ShinyCMS/app/controllers/shinycms/admin/email_stats_controller.rb
     - plugins/ShinyCMS/app/models/concerns/shinycms/shiny_user_content.rb
-    - plugins/ShinyCMS/app/models/shinycms/email_recipient.rb
+    - plugins/ShinyCMS/app/public/models/shinycms/email_recipient.rb
   "::Ahoy::Visit":
     violations:
     - dependency

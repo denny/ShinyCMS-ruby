@@ -19,17 +19,9 @@ module ShinyCMS
 
     # Validations
 
-    # Allowed characters for usernames: a-z A-Z 0-9 . _ -
-    USERNAME_REGEX = %r{[a-zA-Z0-9][-_.a-zA-Z0-9]*}
-    private_constant :USERNAME_REGEX
-    ANCHORED_USERNAME_REGEX = %r{\A#{USERNAME_REGEX}\z}
-    private_constant :ANCHORED_USERNAME_REGEX
-    USERNAME_ROUTE_CONSTRAINT = { username: USERNAME_REGEX }.freeze
-    public_constant :USERNAME_ROUTE_CONSTRAINT
-
     validates :username, presence: true, uniqueness: true
     validates :username, length: { maximum: 50 }
-    validates :username, format: ANCHORED_USERNAME_REGEX
+    validates :username, format: ShinyCMS::UsernameValidation::ANCHORED_REGEX
 
     # Scopes
 
@@ -38,7 +30,7 @@ module ShinyCMS
     # Instance methods
 
     def name
-      try( :profile ).try( :name ) || username
+      username
     end
 
     # Class methods
