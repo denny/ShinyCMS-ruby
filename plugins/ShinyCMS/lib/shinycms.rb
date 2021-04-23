@@ -78,7 +78,7 @@ require 'sentry-rails' if ENV[ 'SENTRY_DSN'       ].present?
 module ShinyCMS
   mattr_reader :config_user_model
 
-  def self.configure( user_model: )
+  def self.configure( user_model: nil )
     # rubocop:disable Style/ClassVars
     @@config_user_model = user_model if user_model
     # rubocop:enable Style/ClassVars

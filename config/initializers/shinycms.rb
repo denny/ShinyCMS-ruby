@@ -9,3 +9,7 @@
 # ShinyCMS.configure(
 #   user_model: 'User'  # Default: 'ShinyCMS::User'
 # )
+
+# ShinyNewsletters.configure(
+#   list_model: 'MyList'  # Default: 'ShinyLists::List'
+# )

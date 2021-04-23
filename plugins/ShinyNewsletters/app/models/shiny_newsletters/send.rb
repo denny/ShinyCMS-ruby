@@ -16,7 +16,7 @@ module ShinyNewsletters
     # Associations
 
     belongs_to :edition
-    belongs_to :list, class_name: 'ShinyLists::List'
+    belongs_to :list, class_name: ShinyNewsletters.config_list_model
 
     # Attributes and aliases
 
@@ -105,9 +105,10 @@ module ShinyNewsletters
     def self.my_demo_data_position
       5  # after templates, template elements, editions, and edition elements
     end
+
+    # Integrate with configured list model
+    ShinyNewsletters.config_list_model.constantize.has_many(
+      :newsletter_sends, inverse_of: :list, dependent: :restrict_with_error, class_name: 'ShinyNewsletters::Send'
+    )
   end
 end
-
-ShinyLists::List.has_many(
-  :newsletter_sends, inverse_of: :list, dependent: :restrict_with_error, class_name: 'ShinyNewsletters::Send'
-)
