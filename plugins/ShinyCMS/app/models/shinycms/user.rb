@@ -30,7 +30,7 @@ module ShinyCMS
     # Instance methods
 
     def name
-      try( :profile ).try( :name ) || username
+      username
     end
 
     # Class methods
