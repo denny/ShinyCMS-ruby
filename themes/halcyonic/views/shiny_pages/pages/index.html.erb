@@ -81,7 +81,7 @@
                 </header>
                 <%= image_tag( content_1_image, alt: content_1_alt_text ) if content_1_image.attached? %>
                 <p>
-                  <%= simple_format content_1_body %>
+                  <%= simple_format content_1_text %>
                 </p>
               </section>
             </div>
@@ -93,7 +93,7 @@
                   <h2><%= content_2_heading %></h2>
                   <h3><%= content_2_subheading %></h3>
                 </header>
-                <%= sanitize content_2_body %>
+                <%= sanitize content_2_html %>
               </section>
             </div>
 
