@@ -281,14 +281,5 @@ ActiveStorage::Attachment.create!([
   {id: 16, name: "image", record_type: "ShinyPages::PageElement", record_id: 56, blob_id: 16},
   {id: 17, name: "image", record_type: "ShinyPages::PageElement", record_id: 64, blob_id: 17},
   {id: 18, name: "image", record_type: "ShinyPages::PageElement", record_id: 68, blob_id: 18},
-  {id: 19, name: "image", record_type: "ShinyPages::PageElement", record_id: 72, blob_id: 19},
-  {id: 20, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 1, blob_id: 20},
-  {id: 21, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 2, blob_id: 21},
-  {id: 22, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 3, blob_id: 22},
-  {id: 23, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 4, blob_id: 23},
-  {id: 24, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 5, blob_id: 24},
-  {id: 25, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 6, blob_id: 25},
-  {id: 26, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 7, blob_id: 26},
-  {id: 27, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 8, blob_id: 27},
-  {id: 28, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 9, blob_id: 28}
+  {id: 19, name: "image", record_type: "ShinyPages::PageElement", record_id: 72, blob_id: 19}
 ])
