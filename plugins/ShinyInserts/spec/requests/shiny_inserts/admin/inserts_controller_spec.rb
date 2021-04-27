@@ -26,11 +26,9 @@ RSpec.describe ShinyInserts::Admin::InsertsController, type: :request do
   describe 'POST /admin/inserts/create' do
     it 'adds a new Short Text element' do
       post shiny_inserts.create_insert_path, params: {
-        insert_element: {
-          name:         'new_insert',
-          content:      'NEW AND IMPROVED!',
-          element_type: 'short_text'
-        }
+        'insert_element[name]':         'new_insert',
+        'insert_element[content]':      'NEW AND IMPROVED!',
+        'insert_element[element_type]': 'short_text'
       }
 
       expect( response      ).to have_http_status :found
@@ -39,7 +37,7 @@ RSpec.describe ShinyInserts::Admin::InsertsController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_inserts.admin.inserts.index.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_inserts.admin.inserts.create.success' )
-      expect( response.body ).to include 'New insert'
+      expect( response.body ).to include 'new_insert'
     end
 
     it 'adds a new element, with an empty content string' do
@@ -55,7 +53,7 @@ RSpec.describe ShinyInserts::Admin::InsertsController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_inserts.admin.inserts.index.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_inserts.admin.inserts.create.success' )
-      expect( response.body ).to include 'Insert is empty'
+      expect( response.body ).to include 'insert_is_empty'
     end
 
     it 'adds a new element, with a NULL content string' do
@@ -71,7 +69,7 @@ RSpec.describe ShinyInserts::Admin::InsertsController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_inserts.admin.inserts.index.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_inserts.admin.inserts.create.success' )
-      expect( response.body ).to include 'Insert is null'
+      expect( response.body ).to include 'insert_is_null'
     end
 
     it 'attempting to add a new insert element with no name fails gracefully' do
@@ -103,10 +101,9 @@ RSpec.describe ShinyInserts::Admin::InsertsController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'shiny_inserts.admin.inserts.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success',
                                               text: I18n.t( 'shiny_inserts.admin.inserts.destroy.success' )
-      expect( response.body ).to     include s1.name.humanize
-      expect( response.body ).to     include s3.name.humanize
+      expect( response.body ).to     include s1.name
+      expect( response.body ).to     include s3.name
       expect( response.body ).not_to include 'do_not_want'
-      expect( response.body ).not_to include 'Do not want'
     end
 
     it 'fails gracefully when attempting to delete non-existent insert' do
