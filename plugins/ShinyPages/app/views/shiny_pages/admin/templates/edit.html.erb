@@ -34,3 +34,19 @@
     <%= submit_tag t( 'update' ) %>
   </p>
 <% end %>
+
+<%= form_for :page_template_element, name: 'new_element', url: shiny_pages.template_path( @template ), method: :post do |f2| %>
+  <fieldset>
+    <legend>
+      Add an element
+    </legend>
+    <p>
+      <%= f2.text_field :name, placeholder: t( '.name_placeholder' ), class: 'textshort' %>
+      <%= f2.select :element_type, element_types %>
+      <br><%= f2.text_field :content, placeholder: t( '.content_placeholder' ), class: 'textlong' %>
+    </p>
+    <p>
+      <%= f2.submit t( 'add' ) %>
+    </p>
+  </fieldset>
+<% end %>

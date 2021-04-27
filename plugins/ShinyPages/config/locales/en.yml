@@ -74,6 +74,8 @@ en:
           title: Add new template
         edit:
           title: Edit template
+          name_placeholder: Element name
+          content_placeholder: Default content
         create:
           success: New template added
           failure: Failed to add new template
