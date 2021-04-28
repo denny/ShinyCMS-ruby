@@ -12,6 +12,6 @@ module ShinyCMS
   public_constant :VERSION
 
   # Use the start of the git commit SHA as a release identifier
-  RELEASE = `git show --abbrev=4 --pretty=%h -q`.chomp
-  public_constant :RELEASE
+  # RELEASE = `git show --abbrev=4 --pretty=%h -q`.chomp
+  # public_constant :RELEASE
 end
