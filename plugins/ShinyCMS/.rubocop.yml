@@ -191,14 +191,6 @@ Style/IpAddresses:
 Style/RegexpLiteral:
   Enabled: false
 
-# Disabling these for now, as part of the first run at enforcing boundaries with Packwerk
-Style/StaticClass:
-  Exclude:
-    - app/public/models/shinycms/interface/*.rb
-Naming/PredicateName:
-  Exclude:
-    - app/public/models/shinycms/interface/*.rb
-
 # Whitespace Considered Helpful
 Layout/ExtraSpacing:
   Enabled: false
@@ -215,6 +207,8 @@ Layout/SpaceInsideParens:
 Layout/SpaceInsidePercentLiteralDelimiters:
   Enabled: false
 Layout/SpaceInsideReferenceBrackets:
+  Enabled: false
+Layout/RedundantLineBreak:
   Enabled: false
 
 # Alignment also considered helpful. And aesthetically pleasing.
