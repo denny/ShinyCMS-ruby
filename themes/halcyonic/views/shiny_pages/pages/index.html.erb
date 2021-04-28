@@ -8,7 +8,7 @@
                 <a href="<%= banner_button_url %>" class="button-large"><%= banner_button_text %></a>
               </div>
               <div class="col-6 col-12-medium imp-medium">
-                <%= link_to image_tag( banner_image, class: 'banner-image' ), url_for( banner_image ) if banner_image.attached? %>
+                <%= link_to image_tag( banner_image, alt: banner_img_alt, class: 'banner-image' ), url_for( banner_image ) if banner_image.attached? %>
               </div>
             </div>
           </div>
@@ -23,7 +23,7 @@
 
               <!-- Feature #1 -->
               <section>
-                <%= link_to image_tag( image1, class: 'bordered-feature-image' ), url_for( image1 ) if image1.attached? %>
+                <%= link_to image_tag( image1, alt: img1_alt, class: 'bordered-feature-image' ), url_for( image1 ) if image1.attached? %>
                 <h2>
                   <%= heading1 %>
                 </h2>
@@ -35,7 +35,7 @@
 
               <!-- Feature #2 -->
               <section>
-                <%= link_to image_tag( image2, class: 'bordered-feature-image' ), url_for( image2 ) if image2.attached? %>
+                <%= link_to image_tag( image2, alt: img4_alt, class: 'bordered-feature-image' ), url_for( image2 ) if image2.attached? %>
                 <h2>
                   <%= heading2 %>
                 </h2>
@@ -47,7 +47,7 @@
 
               <!-- Feature #3 -->
               <section>
-                <%= link_to image_tag( image3, class: 'bordered-feature-image' ), url_for( image3 ) if image3.attached? %>
+                <%= link_to image_tag( image3, alt: img4_alt, class: 'bordered-feature-image' ), url_for( image3 ) if image3.attached? %>
                 <h2>
                   <%= heading3 %>
                 </h2>
@@ -59,7 +59,7 @@
 
               <!-- Feature #4 -->
               <section>
-                <%= link_to image_tag( image4, class: 'bordered-feature-image' ), url_for( image4 ) if image4.attached? %>
+                <%= link_to image_tag( image4, alt: img4_alt, class: 'bordered-feature-image' ), url_for( image4 ) if image4.attached? %>
                 <h2>
                   <%= heading4 %>
                 </h2>
@@ -83,7 +83,7 @@
                   <h2>Who We Are</h2>
                   <h3>A subheading about who we are</h3>
                 </header>
-                <%= image_tag image5 if image5.attached? %>
+                <%= image_tag image5, alt: img5_alt if image5.attached? %>
                 <p>
                   Duis neque nisi, dapibus sed mattis quis, rutrum accumsan magna sed.
                   Suspendisse eu varius nibh. Suspendisse vitae magna eget odio amet mollis
@@ -120,17 +120,17 @@
                 </header>
                 <ul class="quote-list">
                   <li>
-                    <%= image_tag image6 if image6.attached? %>
+                    <%= image_tag image6, alt: img6_alt if image6.attached? %>
                     <p>"Neque nisidapibus mattis"</p>
                     <span>Jane Doe, CEO of UntitledCorp</span>
                   </li>
                   <li>
-                    <%= image_tag image7 if image7.attached? %>
+                    <%= image_tag image7, alt: img7_alt if image7.attached? %>
                     <p>"Lorem ipsum consequat!"</p>
                     <span>John Doe, President of FakeBiz</span>
                   </li>
                   <li>
-                    <%= image_tag image8 if image8.attached? %>
+                    <%= image_tag image8, alt: img8_alt if image8.attached? %>
                     <p>"Magna veroeros amet tempus"</p>
                     <span>Mary Smith, CFO of UntitledBiz</span>
                   </li>
