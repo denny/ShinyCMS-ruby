@@ -167,26 +167,53 @@ ActsAsTaggableOn::Tagging.create!([
   {id: 10, tag_id: 6, taggable_type: "ShinyBlog::Post", taggable_id: 2, tagger_type: nil, tagger_id: nil, context: "tags"}
 ])
 ActiveStorage::Blob.create!([
-  {id: 1, key: "895rvyi7qj4ualqt88luf96va7m8", filename: "spiral.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 14483, checksum: "Rs5sddWFZwP6wSO4YWE1Yg==", service_name: "local"},
-  {id: 2, key: "oowwayhz329vwcbtuzxpitu5z5n8", filename: "banner.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 203393, checksum: "vxj9Z514JggEw282O3QH+g==", service_name: "local"},
-  {id: 3, key: "hbyoxqbk9mvqy8mv502ltmam0p7m", filename: "pages.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 176087, checksum: "hrMduxxNxkV26EkKlhimwg==", service_name: "local"},
-  {id: 4, key: "9011khp94z80gtlgvyko3dawis9y", filename: "blog.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 391167, checksum: "YaaNOr7GWayfoJSLRQpJUA==", service_name: "local"},
-  {id: 5, key: "9hdpixublgkvhvfsiwfvedfwsfn3", filename: "nested-comments.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 76843, checksum: "ogOwEnzdJBY82zYiWYH/tQ==", service_name: "local"},
-  {id: 6, key: "126zjg7e0toqp1l6em0viojbmnzt", filename: "spam-comment-moderation.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 102164, checksum: "Hfbp6FOjcENdbnyYpgHVbw==", service_name: "local"},
-  {id: 7, key: "qh356fq0wryhuq2ztszxkcij1tv7", filename: "pic05.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 3303, checksum: "ertDUTfVVXCzN7LyXVIwhg==", service_name: "local"},
-  {id: 8, key: "294ggc7m54j3ctwdm9kb7iwcudrk", filename: "pic06.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1557, checksum: "ZNUE+uSMU2cXw1RusWPZDg==", service_name: "local"},
-  {id: 9, key: "6two6sr5sst8ooq3z5niy52zp909", filename: "pic07.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1594, checksum: "mYzPOdIEPlSxliI3ap23wQ==", service_name: "local"},
-  {id: 10, key: "7z2smstul4ri2t0h7ke9a1hi81db", filename: "pic08.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1672, checksum: "2NFqN8YfXdXKw0IUsXGU1Q==", service_name: "local"}
+  {id: 1, key: "1gnjgo1fpt0jr8xwbxwcmrnft16c", filename: "banner.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 203393, checksum: "vxj9Z514JggEw282O3QH+g==", service_name: "local"},
+  {id: 2, key: "pkq90885cmh9n5k6i2dke3v1h33w", filename: "pages.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 176087, checksum: "hrMduxxNxkV26EkKlhimwg==", service_name: "local"},
+  {id: 3, key: "hs8682kbfu6y13ky78wyui775nod", filename: "blog.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 391167, checksum: "YaaNOr7GWayfoJSLRQpJUA==", service_name: "local"},
+  {id: 4, key: "w112m1libndpm9hdjlz419xe7mka", filename: "nested-comments.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 76843, checksum: "ogOwEnzdJBY82zYiWYH/tQ==", service_name: "local"},
+  {id: 5, key: "3geflemmivc3y0p4cpdbiyklwpkp", filename: "spam-comment-moderation.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 102164, checksum: "Hfbp6FOjcENdbnyYpgHVbw==", service_name: "local"},
+  {id: 6, key: "wikgprk4p1wkh83p0nt1t37zedyj", filename: "pic05.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 3303, checksum: "ertDUTfVVXCzN7LyXVIwhg==", service_name: "local"},
+  {id: 7, key: "m2g7wu7p44dlc4bc8maqfnitv3qq", filename: "pic06.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1557, checksum: "ZNUE+uSMU2cXw1RusWPZDg==", service_name: "local"},
+  {id: 8, key: "7yacs020k8xa52zi0nl2353muak0", filename: "pic07.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1594, checksum: "mYzPOdIEPlSxliI3ap23wQ==", service_name: "local"},
+  {id: 9, key: "zmbbq0ntamge31841f0bffhmh9zl", filename: "pic08.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1672, checksum: "2NFqN8YfXdXKw0IUsXGU1Q==", service_name: "local"},
+  {id: 10, key: "b861szoxlgr1z3rz1egybxgd8rm5", filename: "banner.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 24871, checksum: "byL48+0tUs5yXTK1zJYOIA==", service_name: "local"},
+  {id: 11, key: "mu27bjj29nwdyxefaukg83fevnt8", filename: "nested-comments.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 10930, checksum: "BfkSrfQEoZpF8DzoihACPg==", service_name: "local"},
+  {id: 12, key: "4m82xc7dtium86hnkviqh58ojwsx", filename: "pages.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 18751, checksum: "eGAsBavMVZywy6oaVGTZWg==", service_name: "local"},
+  {id: 13, key: "jzw56txm9vab03wr22azeu7huhbh", filename: "spam-comment-moderation.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 22435, checksum: "g/HKkLG7Mgf/8B8Z8ovWpg==", service_name: "local"},
+  {id: 14, key: "ustal8qqk9lfbd9xyv7kfuycbke5", filename: "blog.png", content_type: "image/png", metadata: {"identified"=>true}, byte_size: 29065, checksum: "LuZVRztP6i+n3oJXa6QytA==", service_name: "local"},
+  {id: 15, key: "rcxg77k9tjhg7wel2d4qix5awp7i", filename: "pic06.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1607, checksum: "0GgwDYSHxvN3mRjYvNjZ6w==", service_name: "local"},
+  {id: 16, key: "2tunomfqz1nc3mxsftok5lbz977h", filename: "pic08.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1749, checksum: "ttW8MAOQOouuvr7OiLnYNw==", service_name: "local"},
+  {id: 17, key: "avuugui09f93yylid47dqtwioqjl", filename: "pic07.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 1648, checksum: "kmM3kLvcCkWGBnpdXEFAdg==", service_name: "local"},
+  {id: 18, key: "bimea576udvoexjyr3r98l5b4sxh", filename: "pic05.jpg", content_type: "image/jpeg", metadata: {"identified"=>true}, byte_size: 3555, checksum: "hVVguOvnFkmKluo0SEhV+A==", service_name: "local"}
+])
+ActiveStorage::VariantRecord.create!([
+  {id: 1, blob_id: 1, variation_digest: "uRxKmuVZ1tDHW8nIVUApI9rTCa8="},
+  {id: 2, blob_id: 4, variation_digest: "uRxKmuVZ1tDHW8nIVUApI9rTCa8="},
+  {id: 3, blob_id: 2, variation_digest: "uRxKmuVZ1tDHW8nIVUApI9rTCa8="},
+  {id: 4, blob_id: 5, variation_digest: "uRxKmuVZ1tDHW8nIVUApI9rTCa8="},
+  {id: 5, blob_id: 3, variation_digest: "uRxKmuVZ1tDHW8nIVUApI9rTCa8="},
+  {id: 6, blob_id: 7, variation_digest: "1rYecvTNqece8xQeSStXDFfdaUM="},
+  {id: 7, blob_id: 9, variation_digest: "1rYecvTNqece8xQeSStXDFfdaUM="},
+  {id: 8, blob_id: 8, variation_digest: "1rYecvTNqece8xQeSStXDFfdaUM="},
+  {id: 9, blob_id: 6, variation_digest: "1rYecvTNqece8xQeSStXDFfdaUM="}
 ])
 ActiveStorage::Attachment.create!([
-  {id: 1, name: "profile_pic", record_type: "ShinyProfiles::Profile", record_id: 1, blob_id: 1},
-  {id: 2, name: "image", record_type: "ShinyPages::PageElement", record_id: 4, blob_id: 2},
-  {id: 3, name: "image", record_type: "ShinyPages::PageElement", record_id: 5, blob_id: 3},
-  {id: 4, name: "image", record_type: "ShinyPages::PageElement", record_id: 8, blob_id: 4},
-  {id: 5, name: "image", record_type: "ShinyPages::PageElement", record_id: 11, blob_id: 5},
-  {id: 6, name: "image", record_type: "ShinyPages::PageElement", record_id: 14, blob_id: 6},
-  {id: 7, name: "image", record_type: "ShinyPages::PageElement", record_id: 17, blob_id: 7},
-  {id: 8, name: "image", record_type: "ShinyPages::PageElement", record_id: 18, blob_id: 8},
-  {id: 9, name: "image", record_type: "ShinyPages::PageElement", record_id: 19, blob_id: 9},
-  {id: 10, name: "image", record_type: "ShinyPages::PageElement", record_id: 20, blob_id: 10}
+  {id: 1, name: "image", record_type: "ShinyPages::PageElement", record_id: 4, blob_id: 1},
+  {id: 2, name: "image", record_type: "ShinyPages::PageElement", record_id: 5, blob_id: 2},
+  {id: 3, name: "image", record_type: "ShinyPages::PageElement", record_id: 8, blob_id: 3},
+  {id: 4, name: "image", record_type: "ShinyPages::PageElement", record_id: 11, blob_id: 4},
+  {id: 5, name: "image", record_type: "ShinyPages::PageElement", record_id: 14, blob_id: 5},
+  {id: 6, name: "image", record_type: "ShinyPages::PageElement", record_id: 17, blob_id: 6},
+  {id: 7, name: "image", record_type: "ShinyPages::PageElement", record_id: 18, blob_id: 7},
+  {id: 8, name: "image", record_type: "ShinyPages::PageElement", record_id: 19, blob_id: 8},
+  {id: 9, name: "image", record_type: "ShinyPages::PageElement", record_id: 20, blob_id: 9},
+  {id: 10, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 1, blob_id: 10},
+  {id: 11, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 2, blob_id: 11},
+  {id: 12, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 3, blob_id: 12},
+  {id: 13, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 4, blob_id: 13},
+  {id: 14, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 5, blob_id: 14},
+  {id: 15, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 6, blob_id: 15},
+  {id: 16, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 7, blob_id: 16},
+  {id: 17, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 8, blob_id: 17},
+  {id: 18, name: "image", record_type: "ActiveStorage::VariantRecord", record_id: 9, blob_id: 18}
 ])
