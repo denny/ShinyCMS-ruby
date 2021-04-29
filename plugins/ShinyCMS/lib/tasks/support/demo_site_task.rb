@@ -31,6 +31,7 @@ module ShinyCMS
         ActsAsTaggableOn::Tagging,
 
         ActiveStorage::Blob,
+        ActiveStorage::VariantRecord,
         ActiveStorage::Attachment
       ]
     end
