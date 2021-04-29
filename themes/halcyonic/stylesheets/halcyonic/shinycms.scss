@@ -305,6 +305,14 @@ nav .sm li li li {
     list-style: none;
 }
 
+#content h2 {
+  color:                $nearly-black;
+}
+
+#content h3 {
+  color:                $dark-grey;
+}
+
 // ===== ( sidebars ) =====
 
 .sidebar section {
@@ -340,7 +348,23 @@ nav .sm li li li {
 }
 
 
-// ===== ( links in headers/footers ) =====
+// ===== ( page footer ) =====
+
+#footer {
+  color:                $dark-grey !important;
+}
+
+#footer a {
+  color:                $dark-grey !important;
+  text-decoration:      none;
+}
+
+#footer a:hover {
+  color:                $blue !important;
+}
+
+
+// ===== ( links in content headers/footers ) =====
 
 .content header a,
 .content footer a {
@@ -394,7 +418,7 @@ nav .sm li li li {
 }
 
 .comment header {
-  margin-bottom:       1em !important;
+  margin-bottom:        1em !important;
 }
 
 .comment footer {
