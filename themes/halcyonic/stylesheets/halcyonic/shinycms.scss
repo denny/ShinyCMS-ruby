@@ -6,10 +6,14 @@
 
 // Additional styles & overrides for the ShinyCMS Halcyonic theme
 
-$blue:              #2668ac;
-$light-blue:        #368aee;
-$lighter-blue:      #99ddff;
-$lightest-blue:     #aaeeff;
+$dark-blue-grey:    #1c2833;
+$grey-blue:         #2e343b;
+$nearly-white:      #e0ffff;
+
+$blue:              #0f4880;
+$light-blue:        #89C4F4;
+$lighter-blue:      #66ccdd;
+$lightest-blue:     #00eeff;
 
 $red:               #ed391b;
 $light-red:         #fd492b;
@@ -197,7 +201,7 @@ strong, b {
 }
 
 .white-text {
-  color:        $white !important;
+  color:        $nearly-white !important;
 }
 
 a.button:hover {
@@ -232,7 +236,7 @@ nav .sm li li {
 }
 
 nav .sm li li a {
-  color:                $dark-grey !important;
+  color:                $dark-blue-grey !important;
   padding:              0.6em !important;
 }
 
@@ -241,7 +245,7 @@ nav .sm li li:last-child a {
 }
 
 nav .sm li li a:hover {
-  color:                $blue !important;
+  color:                $light-blue !important;
 }
 
 nav .sm li li li {
@@ -253,7 +257,7 @@ nav .sm li li li {
 .header .alerts {
   background:           $alert-bg;
   border-radius:        3px;
-  color:                $nearly-black;
+  color:                $dark-blue-grey;
   margin:               0.5em !important;
   padding:              0.5em;
   text-shadow:          none;
@@ -262,7 +266,7 @@ nav .sm li li li {
 .header .notices {
   background:           $notice-bg;
   border-radius:        3px;
-  color:                $nearly-black;
+  color:                $dark-blue-grey;
   margin:               0.5em !important;
   padding:              0.5em;
   text-shadow:          none;
@@ -305,6 +309,14 @@ nav .sm li li li {
     list-style: none;
 }
 
+#content h2 {
+  color:                $nearly-black !important;
+}
+
+#content h3 {
+  color:                $dark-blue-grey !important;
+}
+
 // ===== ( sidebars ) =====
 
 .sidebar section {
@@ -340,7 +352,23 @@ nav .sm li li li {
 }
 
 
-// ===== ( links in headers/footers ) =====
+// ===== ( page footer ) =====
+
+#footer {
+  color:                $dark-blue-grey !important;
+}
+
+#footer a {
+  color:                $dark-blue-grey !important;
+  text-decoration:      none;
+}
+
+#footer a:hover {
+  color:                $blue !important;
+}
+
+
+// ===== ( links in content headers/footers ) =====
 
 .content header a,
 .content footer a {
@@ -394,7 +422,7 @@ nav .sm li li li {
 }
 
 .comment header {
-  margin-bottom:       1em !important;
+  margin-bottom:        1em !important;
 }
 
 .comment footer {
