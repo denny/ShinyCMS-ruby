@@ -26,6 +26,7 @@ load_paths:
 - app/policies
 - app/validators
 
+- plugins/ShinyCMS/app/components
 - plugins/ShinyCMS/app/controllers
 - plugins/ShinyCMS/app/controllers/concerns
 - plugins/ShinyCMS/app/helpers
@@ -36,6 +37,7 @@ load_paths:
 - plugins/ShinyCMS/app/models/concerns
 - plugins/ShinyCMS/app/policies
 - plugins/ShinyCMS/app/public
+- plugins/ShinyCMS/app/public/components
 - plugins/ShinyCMS/app/public/controllers
 - plugins/ShinyCMS/app/public/controllers/concerns
 - plugins/ShinyCMS/app/public/helpers

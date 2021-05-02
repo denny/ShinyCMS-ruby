@@ -23,6 +23,9 @@ require 'rspec/rails'
 # Capybara matchers, for more readable tests
 require 'capybara/rails'
 
+# Helpers for testing View Components
+require 'view_component/test_helpers'
+
 # Supply random fake data to tests, to make them work a bit harder
 require 'faker'
 
@@ -87,18 +90,16 @@ RSpec.configure do |config|
 
   config.include ShinyCMS::ErrorResponses
 
-  # Load the Devise test helpers
   config.include Devise::Test::IntegrationHelpers, type: :request
-  config.include Devise::Test::ControllerHelpers, type: :helper
+  config.include Devise::Test::ControllerHelpers,  type: :helper
 
-  # Allow request specs to use have_* matchers, like so:
-  # expect( response.body ).to have_title 'My Page Title'
+  config.include ViewComponent::TestHelpers, type: :component
+
+  config.include Capybara::RSpecMatchers, type: :component
   config.include Capybara::RSpecMatchers, type: :request
 
-  # RSpec Rails can automatically mix in different behaviours to your tests
-  # based on their file location, for example enabling you to call `get` and
-  # `post` in specs under `spec/controllers`.
-  #
+  # Mix in different behaviours to your tests based on their file location
+  # For example, add `get` and `post` methods to specs in `spec/requests`
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 

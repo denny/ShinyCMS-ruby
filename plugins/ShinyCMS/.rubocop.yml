@@ -58,6 +58,12 @@ Layout/MultilineArrayLineBreaks:
   Exclude:
     - config/initializers/html_sanitizer.rb
 
+# Calling super in ViewComponent intializers doesn't do anything currently
+Lint/MissingSuper:
+  Exclude:
+    - app/components/shinycms/**/*_component.rb
+    - app/public/components/shinycms/**/*_component.rb
+
 # This method is not useless - it allows user registrations to be feature-flagged
 Lint/UselessMethodDefinition:
   Exclude:
@@ -145,7 +151,7 @@ RSpec/BeforeAfterAll:
 RSpec/DescribedClassModuleWrapping:
   Enabled: false
 
-# This is ignoring config/initializers/inflections.rb (as about half of Rails does)
+# This is ignoring my custom inflections config (as about half of Rails does)
 RSpec/FilePath:
   Exclude:
     - spec/**/shinycms/**/*_spec.rb
@@ -194,6 +200,8 @@ Style/RegexpLiteral:
 # Whitespace Considered Helpful
 Layout/ExtraSpacing:
   Enabled: false
+Layout/RedundantLineBreak:
+  Enabled: false
 Layout/SpaceAroundBlockParameters:
   Enabled: false
 Layout/SpaceInsideArrayLiteralBrackets:
@@ -207,8 +215,6 @@ Layout/SpaceInsideParens:
 Layout/SpaceInsidePercentLiteralDelimiters:
   Enabled: false
 Layout/SpaceInsideReferenceBrackets:
-  Enabled: false
-Layout/RedundantLineBreak:
   Enabled: false
 
 # Alignment also considered helpful. And aesthetically pleasing.
