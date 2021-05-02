@@ -7,12 +7,8 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  # Base view component  part of the ShinyCMS core plugin
+  # Base view component - part of the ShinyCMS core plugin
   class ApplicationComponent < ViewComponent::Base
     include ShinyCMS::ViewComponentHelper
-
-    def shinycms
-      # ShinyCMS::Engine.routes.url_helpers
-    end
   end
 end
