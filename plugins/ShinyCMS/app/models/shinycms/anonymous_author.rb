@@ -20,7 +20,7 @@ module ShinyCMS
     def url; end
 
     def self.get
-      ShinyCMS::AnonymousAuthor.first || ShinyCMS::AnonymousAuthor.create!
+      # ShinyCMS::AnonymousAuthor.first || ShinyCMS::AnonymousAuthor.create!
     end
   end
 end
