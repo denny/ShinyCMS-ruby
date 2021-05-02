@@ -4,7 +4,9 @@
 </div>
 
 <nav role="nav" class="c-sidebar-nav">
-  <%= render partial: 'admin/menu/menu' %>
+  <% if current_user_can? :view_admin_area %>
+  <%= component 'admin/menu', current_user: current_user %>
+  <% end %>
 </nav>
 
 <footer class="c-sidebar-footer">
