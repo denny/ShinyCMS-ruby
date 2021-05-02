@@ -37,10 +37,6 @@ module ShinyCMS
       ]
     end
 
-    def plugins_for_admin_menu
-      ShinyCMS.plugins.with_partial 'admin/menu/_section.html.erb'
-    end
-
     def plugins_for_admin_other_menu
       ShinyCMS.plugins.with_partial 'admin/menu/_other_item.html.erb'
     end
@@ -50,11 +46,11 @@ module ShinyCMS
     end
 
     def capability( name:, category: )
-      ShinyCMS::Capability.find_by( name: name, category: category )
+      ShinyCMS::Capability.readonly.find_by( name: name, category: category )
     end
 
     def capability_category( name )
-      ShinyCMS::CapabilityCategory.find_by( name: name.to_s )
+      ShinyCMS::CapabilityCategory.readonly.find_by( name: name.to_s )
     end
 
     def render_capability_category( form, category, capabilities, show )
