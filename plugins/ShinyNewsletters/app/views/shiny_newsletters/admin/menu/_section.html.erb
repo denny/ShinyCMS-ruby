@@ -2,26 +2,33 @@
 
   <%= render_admin_menu_section( t( 'shiny_newsletters.admin.newsletters.menu' ), 'newspaper' ) do %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :list, :newsletter_editions ),
-        t( 'shiny_newsletters.admin.editions.index.title' ), shiny_newsletters.editions_path, 'newspaper' ) %>
+    <%= component 'admin/menu/item', link: shiny_newsletters.editions_path,
+        text: t( 'shiny_newsletters.admin.editions.index.title' ), icon: 'newspaper',
+        if: current_user.can?( :list, :newsletter_editions ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :add, :newsletter_editions ),
-        t( 'shiny_newsletters.admin.editions.new.title' ), shiny_newsletters.new_edition_path, 'pencil' ) %>
+    <%= component 'admin/menu/item', link: shiny_newsletters.new_edition_path,
+        text: t( 'shiny_newsletters.admin.editions.new.title' ), icon: 'pencil',
+        if: current_user.can?( :add, :newsletter_editions ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :list, :newsletter_sends ),
-        t( 'shiny_newsletters.admin.sends.index.title' ), shiny_newsletters.sends_path, 'envelope-open' ) %>
+    <%= component 'admin/menu/item', link: shiny_newsletters.sends_path,
+        text: t( 'shiny_newsletters.admin.sends.index.title' ), icon: 'envelope-open',
+        if: current_user.can?( :list, :newsletter_sends ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :list, :newsletter_sends ),
-        t( 'shiny_newsletters.admin.sends.sent.title' ), shiny_newsletters.sent_path, 'envelope-closed' ) %>
+    <%= component 'admin/menu/item', link: shiny_newsletters.sent_path,
+        text: t( 'shiny_newsletters.admin.sends.index.title' ), icon: 'envelope-closed',
+        if: current_user.can?( :list, :newsletter_sends ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :add, :newsletter_sends ),
-        t( 'shiny_newsletters.admin.sends.new.title' ), shiny_newsletters.new_send_path, 'envelope-letter' ) %>
+    <%= component 'admin/menu/item', link: shiny_newsletters.new_send_path,
+        text: t( 'shiny_newsletters.admin.sends.new.title' ), icon: 'envelope-letter',
+        if: current_user.can?( :add, :newsletter_sends ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :list, :newsletter_templates ),
-        t( 'shiny_newsletters.admin.templates.index.title' ), shiny_newsletters.templates_path, 'library' ) %>
+    <%= component 'admin/menu/item', link: shiny_newsletters.templates_path,
+        text: t( 'shiny_newsletters.admin.templates.index.title' ), icon: 'library',
+        if: current_user.can?( :list, :newsletter_templates ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :add, :newsletter_templates ),
-        t( 'shiny_newsletters.admin.templates.new.title' ), shiny_newsletters.new_template_path, 'library-add' ) %>
+    <%= component 'admin/menu/item', link: shiny_newsletters.new_template_path,
+        text: t( 'shiny_newsletters.admin.templates.new.title' ), icon: 'library-add',
+        if: current_user.can?( :add, :newsletter_templates ) %>
 
   <% end %>
 

@@ -1,3 +1,4 @@
  <% return unless sidekiq_web_enabled? && current_user.can?( :use_sidekiq_web, :tools ) %>
 
-  <%= render_admin_menu_item( t( 'shinycms.admin.sidekiq_web.menu' ), shinycms.sidekiq_web_path, 'applications' ) %>
+  <%= component 'admin/menu/item', link: shinycms.sidekiq_web_path,
+      text: t( 'shinycms.admin.sidekiq_web.menu' ), icon: 'applications' %>

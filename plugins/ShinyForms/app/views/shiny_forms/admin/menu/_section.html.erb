@@ -2,10 +2,11 @@
 
   <%= render_admin_menu_section( t( 'shiny_forms.admin.forms.menu' ), 'spreadsheet' ) do %>
 
-    <%= render_admin_menu_item(
-        t( 'shiny_forms.admin.forms.index.title' ), shiny_forms.forms_path, 'list' ) %>
+    <%= component 'admin/menu/item', link: shiny_forms.forms_path,
+        text: t( 'shiny_forms.admin.forms.index.title' ), icon: 'list' %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :add, :forms ),
-        t( 'shiny_forms.admin.forms.new.title' ), shiny_forms.new_form_path, 'pencil' ) %>
+    <%= component 'admin/menu/item', link: shiny_forms.new_form_path,
+        text: t( 'shiny_forms.admin.forms.new.title' ), icon: 'pencil',
+        if: current_user.can?( :add, :forms ) %>
 
   <% end %>

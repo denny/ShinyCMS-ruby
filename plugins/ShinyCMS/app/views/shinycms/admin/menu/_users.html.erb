@@ -2,10 +2,11 @@
 
   <%= render_admin_menu_section( t( 'shinycms.admin.users.menu' ), 'people' ) do %>
 
-    <%= render_admin_menu_item(
-        t( 'shinycms.admin.users.index.title' ), shinycms.users_path, 'people' ) %>
+    <%= component 'admin/menu/item', link: shinycms.users_path,
+        text: t( 'shinycms.admin.users.index.title' ), icon: 'people' %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :add, :users ),
-        t( 'shinycms.admin.users.new.title' ), shinycms.new_user_path, 'user-follow' ) %>
+    <%= component 'admin/menu/item', link: shinycms.new_user_path,
+        text: t( 'shinycms.admin.users.new.title' ), icon: 'user-follow',
+        if: current_user.can?( :add, :users ) %>
 
   <% end %>

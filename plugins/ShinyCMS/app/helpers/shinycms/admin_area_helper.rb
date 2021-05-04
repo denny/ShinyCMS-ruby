@@ -86,14 +86,5 @@ module ShinyCMS
       section << capture( &block )
       section << render_admin_menu_section_end
     end
-
-    def render_admin_menu_item( text, link, icon = nil, active: nil )
-      render partial: 'admin/menu/menu_item',
-             locals:  { text: text, link: link, icon: icon, set_as_active: active }
-    end
-
-    def render_admin_menu_item_if( condition, text, link, icon = nil, active: nil )
-      render_admin_menu_item( text, link, icon, active: active ) if condition
-    end
   end
 end

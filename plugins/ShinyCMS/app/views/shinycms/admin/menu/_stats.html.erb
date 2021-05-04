@@ -4,13 +4,16 @@
 
   <%= render_admin_menu_section( t( 'shinycms.admin.stats.menu' ), 'chart' ) do %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :view_web, :stats ),
-        t( 'shinycms.admin.web_stats.menu' ), shinycms.web_stats_path, 'bar-chart' ) %>
+    <%= component 'admin/menu/item', link: shinycms.web_stats_path,
+        text: t( 'shinycms.admin.web_stats.menu' ), icon: 'bar-chart',
+        if: current_user.can?( :view_web, :stats ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :view_email, :stats ),
-        t( 'shinycms.admin.email_stats.menu' ), shinycms.email_stats_path, 'chart-pie' ) %>
+    <%= component 'admin/menu/item', link: shinycms.email_stats_path,
+        text: t( 'shinycms.admin.email_stats.menu' ), icon: 'chart-pie',
+        if: current_user.can?( :view_email, :stats ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :use_blazer, :tools ),
-        t( 'shinycms.admin.blazer.menu' ), main_app.blazer_path, 'chart-line' ) %>
+    <%= component 'admin/menu/item', link: main_app.blazer_path,
+        text: t( 'shinycms.admin.blazer.menu' ), icon: 'chart-line',
+        if: current_user.can?( :use_blazer, :tools ) %>
 
   <% end %>

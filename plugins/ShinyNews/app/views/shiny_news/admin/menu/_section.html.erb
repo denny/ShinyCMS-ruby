@@ -2,10 +2,11 @@
 
   <%= render_admin_menu_section( t( 'shiny_news.admin.news_posts.menu' ), 'rss' ) do %>
 
-    <%= render_admin_menu_item(
-        t( 'shiny_news.admin.news_posts.index.title' ), shiny_news.news_posts_path, 'list' ) %>
+    <%= component 'admin/menu/item', link: shiny_news.news_posts_path,
+        text: t( 'shiny_news.admin.news_posts.index.title' ), icon: 'list' %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :add, :news_posts ),
-        t( 'shiny_news.admin.news_posts.new.title' ), shiny_news.new_news_post_path, 'pencil' ) %>
+    <%= component 'admin/menu/item', link: shiny_news.new_news_post_path,
+        text: t( 'shiny_news.admin.news_posts.new.title' ), icon: 'pencil',
+        if: current_user.can?( :add, :news_posts ) %>
 
   <% end %>

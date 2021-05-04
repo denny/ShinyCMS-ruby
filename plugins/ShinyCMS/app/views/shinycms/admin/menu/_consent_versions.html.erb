@@ -2,10 +2,11 @@
 
   <%= render_admin_menu_section( t( 'shinycms.admin.consent_versions.menu' ), 'check' ) do %>
 
-    <%= render_admin_menu_item(
-        t( 'shinycms.admin.consent_versions.index.title' ), shinycms.consent_versions_path, 'check-alt' ) %>
+    <%= component 'admin/menu/item', link: shinycms.consent_versions_path,
+        text: t( 'shinycms.admin.consent_versions.index.title' ), icon: 'check-alt' %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :add, :consent_versions ),
-        t( 'shinycms.admin.consent_versions.new.title' ), shinycms.new_consent_version_path, 'plus' ) %>
+    <%= component 'admin/menu/item', link: shinycms.consent_versions_path,
+        text: t( 'shinycms.admin.consent_versions.new.title' ), icon: 'plus',
+        if: current_user.can?( :add, :consent_versions ) %>
 
   <% end %>

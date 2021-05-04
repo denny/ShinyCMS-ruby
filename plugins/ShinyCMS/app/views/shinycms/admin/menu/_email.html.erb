@@ -2,10 +2,12 @@
 
   <%= render_admin_menu_section( t( 'shinycms.admin.email.menu' ), 'envelope-open' ) do %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :list, :email_recipients ),
-        t( 'shinycms.admin.email_recipients.menu' ), shinycms.email_recipients_path, 'envelope-closed' ) %>
+    <%= component 'admin/menu/item', link: shinycms.email_recipients_path,
+        text: t( 'shinycms.admin.email_recipients.menu' ), icon: 'envelope-closed',
+        if: current_user.can?( :list, :email_recipients ) %>
 
-    <%= render_admin_menu_item_if( current_user.can?( :list, :mailer_previews ),
-        t( 'shinycms.admin.rails_email_preview.menu' ), rails_email_preview.rep_emails_path, 'envelope-letter' ) %>
+    <%= component 'admin/menu/item', link: rails_email_preview.rep_emails_path,
+        text: t( 'shinycms.admin.rails_email_preview.menu' ), icon: 'envelope-letter',
+        if: current_user.can?( :list, :mailer_previews ) %>
 
   <% end %>
