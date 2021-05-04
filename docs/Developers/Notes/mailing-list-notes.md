@@ -1,21 +1,21 @@
-# ShinyCMS: dev notes
+# ShinyCMS Developer Notes
 
 ## Mailing Lists ( / Discussion Groups / Forums )
 
 ### (Warning! MASSIVE creature feep occurring here!)
 
-Things which aren't optional:  
+Things which aren't optional:
 * Double opt-in subscriptions are a basic human right ;)
 * Instantly-effective unsubscribe links and headers in all list emails
 * Settings with privacy implications should default to the more private setting
 
-General thoughts:  
+General thoughts:
 * UUIDs for anything that doesn't have slugs - do not expose sequential IDs!
   * Good time to switch the whole system to UUIDs under the hood?
     * Having read around on this, not convinced it's a good idea
   * HashIDs instead? https://github.com/jcypret/hashid-rails
 
-Lists / Groups:  
+Lists / Groups:
 * Enabled (emails will be delivered): yes/no
 * List details page
   * Useful info: description, owner/admins, etc
@@ -25,11 +25,11 @@ Lists / Groups:
 * Publicised (listed on hub page of some sort): yes/no
 * Open for subscriptions: yes/no / see 'List subscriptions' below
 
-List categories:  
+List categories:
 * e.g. Announcements/Promo/Discussion/etc
 * Partly for display purposes, partly for potential ACL stuff (see 'Admins')
 
-List subscriptions:  
+List subscriptions:
 * Can ask to subscribe: anybody / registered website users / nobody
 * Subscriptions require approval: yes/no
   * Subscriptions can be approved by: any subscriber / established subscribers
@@ -42,27 +42,27 @@ List subscriptions:
   (if they're leaving, they're leaving - making it harder for them is pointless)
 * List is notified of subscriptions and unsubscriptions: yes/no
 
-List archives:  
+List archives:
   * Web view of previous posts to a list
   * Provides 'view this email in your browser' functionality
   * Viewable by: anybody / subscribers / admins / nobody
     * Subscribers can see posts from before they subscribed: yes/no
 
-List posts:  
+List posts:
 * Can post to list: any subscriber / subscribers over X duration / subscribers
   over N previous posts / admins only
 * Reply-to munging (trollolol): yes/no
 * Show email of sender: yes/partial/obfuscated/no
 * Show name of sender: yes/no
 
-Moderation:  
+Moderation:
 * Posts to list require approval if they are from: anybody / unregistered
   users / new subscribers (<N posts / <X duration) / non-admins
 * Posts to list can be approved by: anybody (except the original poster) /
   established subscribers / the collective vote of >N or >N% subscribers /
   registered users / admins only
 
-Tracking (for marketing?) and Engagement (list quality/sender reputation):  
+Tracking (for marketing?) and Engagement (list quality/sender reputation):
 * Opens are tracked: yes/no
  * Is it possible to filter out 'opens' by spam-scanning software (etc) that
    downloads images (including our tracking pixels)? Look at user-agents maybe?
@@ -89,7 +89,7 @@ Tracking (for marketing?) and Engagement (list quality/sender reputation):
 (This is a near-fractal timesink of potential granularity and configurability -
 it will definitely need its own ACL system/subsystem eventually.)
 
-e.g.  
+e.g.
 * A list/group can have: owner(s?) / admins / moderators
   * owners can create/remove admins
   * admins can delete list?
