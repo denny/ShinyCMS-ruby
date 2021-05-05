@@ -10,25 +10,32 @@ module ShinyCMS
   module Admin
     # Component to render admin sidebar menu
     class MenuComponent < ApplicationComponent
+      # TODO: Whittle this list down as bits of this functionality move to plugins
+      CORE_MENU_SECTIONS = %w[
+        email
+        consent_versions
+        other
+        users
+        stats
+        settings
+        sidekiq_web
+        coverband
+      ].freeze
+      private_constant :CORE_MENU_SECTIONS
+
       def initialize( current_user: )
         @current_user = current_user
         @menu_sections = admin_menu_sections
       end
 
       def admin_menu_sections
-        # TODO: Allow each admin to customise the menu order
+        # TODO: Allow each admin to customise the menu order. Apply that order here?
         feature_plugin_admin_menu_partials + core_plugin_admin_menu_partials
       end
 
-      # rubocop:disable Layout/MultilineArrayLineBreaks
       def core_plugin_admin_menu_partials
-        core_menu_sections = %w[
-          email consent_versions other users stats settings
-          sidekiq_web coverband
-        ]
-        core_menu_sections.collect { |name| "admin/menu/#{name}" }
+        CORE_MENU_SECTIONS.collect { |name| "admin/menu/#{name}" }
       end
-      # rubocop:enable Layout/MultilineArrayLineBreaks
 
       def feature_plugin_admin_menu_partials
         plugins = ShinyCMS.plugins.with_partial( 'admin/menu/_section.html.erb' )
