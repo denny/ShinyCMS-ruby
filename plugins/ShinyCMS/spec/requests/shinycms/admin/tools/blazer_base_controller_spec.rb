@@ -13,7 +13,7 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
   describe 'GET /admin/tools/blazer' do
     context 'when logged in as an admin user with access to Blazer' do
       before do
-        admin = create :admin_with_blazer
+        admin = create :tools_admin
         sign_in admin
       end
 
