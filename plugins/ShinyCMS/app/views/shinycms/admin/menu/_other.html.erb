@@ -1,11 +1,11 @@
-  <%= render_admin_menu_section( t( 'shinycms.admin.other.menu' ), 'settings' ) do %>
+<%= component 'admin/menu/section', text: t( 'shinycms.admin.other.menu' ), icon: 'settings' do %>
 
-    <% plugins_for_admin_other_menu.each do |plugin| %>
-    <%= render partial: plugin.partial( 'admin/menu/other_item' ) %>
-    <% end %>
-
-    <%= component 'admin/menu/item', link: shinycms.comments_path,
-        text: t( 'shinycms.admin.comments.menu' ), icon: 'trash',
-        if: current_user.can?( :list, :spam_comments ) %>
-
+  <% ShinyCMS.plugins.with_partial( 'admin/menu/_other_item.html.erb' ).each do |plugin| %>
+  <%= render partial: plugin.partial( 'admin/menu/other_item' ) %>
   <% end %>
+
+  <%= component 'admin/menu/item', link: shinycms.comments_path,
+      text: t( 'shinycms.admin.comments.menu' ), icon: 'trash',
+      if: current_user.can?( :list, :spam_comments ) %>
+
+<% end %>

@@ -37,10 +37,6 @@ module ShinyCMS
       ]
     end
 
-    def plugins_for_admin_other_menu
-      ShinyCMS.plugins.with_partial 'admin/menu/_other_item.html.erb'
-    end
-
     def plugins_for_edit_capabilities
       ShinyCMS.plugins.with_partial 'admin/user/_edit_capabilities.html.erb'
     end
@@ -70,21 +66,6 @@ module ShinyCMS
         capability: capability,
         category:   capability_category
       }
-    end
-
-    def render_admin_menu_section_start( text, icon = nil, show: nil )
-      render partial: 'admin/menu/menu_section_start',
-             locals:  { text: text, icon: icon, show: show }
-    end
-
-    def render_admin_menu_section_end
-      render partial: 'admin/menu/menu_section_end'
-    end
-
-    def render_admin_menu_section( text, icon = nil, show: nil, &block )
-      section = render_admin_menu_section_start( text, icon, show: show )
-      section << capture( &block )
-      section << render_admin_menu_section_end
     end
   end
 end

@@ -1,14 +1,14 @@
 <% return unless current_user.can?( :list, :settings      ) ||
                  current_user.can?( :list, :feature_flags ) %>
 
-  <%= render_admin_menu_section( t( 'shinycms.admin.site_settings.menu' ), 'settings' ) do %>
+<%= component 'admin/menu/section', text: t( 'shinycms.admin.site_settings.menu' ), icon: 'settings' do %>
 
-    <%= component 'admin/menu/item', link: shinycms.admin_site_settings_path,
-        text: t( 'shinycms.admin.site_settings.index.title' ), icon: 'settings',
-        if: current_user.can?( :list, :settings ) %>
+  <%= component 'admin/menu/item', link: shinycms.admin_site_settings_path,
+      text: t( 'shinycms.admin.site_settings.index.title' ), icon: 'settings',
+      if: current_user.can?( :list, :settings ) %>
 
-    <%= component 'admin/menu/item', link: shinycms.feature_flags_path,
-        text: t( 'shinycms.admin.feature_flags.menu' ), icon: 'toggle-off',
-        if: current_user.can?( :list, :feature_flags ) %>
+  <%= component 'admin/menu/item', link: shinycms.feature_flags_path,
+      text: t( 'shinycms.admin.feature_flags.menu' ), icon: 'toggle-off',
+      if: current_user.can?( :list, :feature_flags ) %>
 
-  <% end %>
+<% end %>

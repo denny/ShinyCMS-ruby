@@ -1,4 +1,4 @@
  <% return unless coverband_web_ui_enabled? && current_user.can?( :use_coverband, :tools ) %>
 
-  <%= component 'admin/menu/item', link: shinycms.coverband_path,
-      text: t( 'shinycms.admin.coverband.menu' ), icon: 'spreadsheet' %>
+<%= component 'admin/menu/item', link: shinycms.coverband_path,
+    text: t( 'shinycms.admin.coverband.menu' ), icon: 'spreadsheet' %>

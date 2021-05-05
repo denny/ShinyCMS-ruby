@@ -1,12 +1,12 @@
 <% return unless current_user.can? :list, :news_posts %>
 
-  <%= render_admin_menu_section( t( 'shiny_news.admin.news_posts.menu' ), 'rss' ) do %>
+<%= component 'admin/menu/section', text: t( 'shiny_news.admin.news_posts.menu' ), icon: 'rss' do %>
 
-    <%= component 'admin/menu/item', link: shiny_news.news_posts_path,
-        text: t( 'shiny_news.admin.news_posts.index.title' ), icon: 'list' %>
+  <%= component 'admin/menu/item', link: shiny_news.news_posts_path,
+      text: t( 'shiny_news.admin.news_posts.index.title' ), icon: 'list' %>
 
-    <%= component 'admin/menu/item', link: shiny_news.new_news_post_path,
-        text: t( 'shiny_news.admin.news_posts.new.title' ), icon: 'pencil',
-        if: current_user.can?( :add, :news_posts ) %>
+  <%= component 'admin/menu/item', link: shiny_news.new_news_post_path,
+      text: t( 'shiny_news.admin.news_posts.new.title' ), icon: 'pencil',
+      if: current_user.can?( :add, :news_posts ) %>
 
-  <% end %>
+<% end %>

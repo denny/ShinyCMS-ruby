@@ -2,18 +2,18 @@
                  current_user.can?( :view_email,  :stats ) ||
                  current_user.can?( :use_blazer,  :stats ) %>
 
-  <%= render_admin_menu_section( t( 'shinycms.admin.stats.menu' ), 'chart' ) do %>
+<%= component 'admin/menu/section', text: t( 'shinycms.admin.stats.menu' ), icon: 'chart' do %>
 
-    <%= component 'admin/menu/item', link: shinycms.web_stats_path,
-        text: t( 'shinycms.admin.web_stats.menu' ), icon: 'bar-chart',
-        if: current_user.can?( :view_web, :stats ) %>
+  <%= component 'admin/menu/item', link: shinycms.web_stats_path,
+      text: t( 'shinycms.admin.web_stats.menu' ), icon: 'bar-chart',
+      if: current_user.can?( :view_web, :stats ) %>
 
-    <%= component 'admin/menu/item', link: shinycms.email_stats_path,
-        text: t( 'shinycms.admin.email_stats.menu' ), icon: 'chart-pie',
-        if: current_user.can?( :view_email, :stats ) %>
+  <%= component 'admin/menu/item', link: shinycms.email_stats_path,
+      text: t( 'shinycms.admin.email_stats.menu' ), icon: 'chart-pie',
+      if: current_user.can?( :view_email, :stats ) %>
 
-    <%= component 'admin/menu/item', link: main_app.blazer_path,
-        text: t( 'shinycms.admin.blazer.menu' ), icon: 'chart-line',
-        if: current_user.can?( :use_blazer, :tools ) %>
+  <%= component 'admin/menu/item', link: main_app.blazer_path,
+      text: t( 'shinycms.admin.blazer.menu' ), icon: 'chart-line',
+      if: current_user.can?( :use_blazer, :tools ) %>
 
-  <% end %>
+<% end %>

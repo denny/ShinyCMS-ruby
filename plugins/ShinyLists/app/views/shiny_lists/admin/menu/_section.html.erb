@@ -1,14 +1,12 @@
-<% if current_user.can? :list, :mailing_lists %>
+<% return unless current_user.can? :list, :mailing_lists %>
 
-  <%= render_admin_menu_section( t( 'shiny_lists.admin.lists.menu' ), 'envelope-closed' ) do %>
+<%= component 'admin/menu/section', text: t( 'shiny_lists.admin.lists.menu' ), icon: 'envelope-closed' do %>
 
-    <%= component 'admin/menu/item', link: shiny_lists.lists_path,
-        text: t( 'shiny_lists.admin.lists.index.title' ), icon: 'list' %>
+  <%= component 'admin/menu/item', link: shiny_lists.lists_path,
+      text: t( 'shiny_lists.admin.lists.index.title' ), icon: 'list' %>
 
-    <%= component 'admin/menu/item', link: shiny_lists.new_list_path,
-        text: t( 'shiny_lists.admin.lists.new.title' ), icon: 'playlist-add',
-        if: current_user.can?( :add, :mailing_lists ) %>
-
-  <% end %>
+  <%= component 'admin/menu/item', link: shiny_lists.new_list_path,
+      text: t( 'shiny_lists.admin.lists.new.title' ), icon: 'playlist-add',
+      if: current_user.can?( :add, :mailing_lists ) %>
 
 <% end %>
