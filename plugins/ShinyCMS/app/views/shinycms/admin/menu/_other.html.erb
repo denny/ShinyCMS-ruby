@@ -1,4 +1,5 @@
-<%= component 'admin/menu/section', text: t( 'shinycms.admin.other.menu' ), icon: 'settings' do %>
+<%= component 'admin/menu/section',
+    text: t( 'shinycms.admin.other.menu' ), icon: 'settings' do %>
 
   <% ShinyCMS.plugins.with_partial( 'admin/menu/_other_item.html.erb' ).each do |plugin| %>
   <%= render partial: plugin.partial( 'admin/menu/other_item' ) %>

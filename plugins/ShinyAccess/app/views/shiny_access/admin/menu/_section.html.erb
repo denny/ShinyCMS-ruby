@@ -1,6 +1,7 @@
 <% return unless current_user.can? :list, :access_groups %>
 
-<%= component 'admin/menu/section', text: t( 'shiny_access.admin.menu' ), icon: 'lock-locked' do %>
+<%= component 'admin/menu/section',
+    text: t( 'shiny_access.admin.menu' ), icon: 'lock-locked' do %>
 
   <%= component 'admin/menu/item', link: shiny_access.groups_path,
       text: t( 'shiny_access.admin.groups.index.title' ), icon: 'lock-locked' %>

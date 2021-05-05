@@ -1,7 +1,8 @@
 <% return unless current_user.can?( :list, :newsletter_editions  ) ||
                  current_user.can?( :list, :newsletter_templates ) %>
 
-<%= component 'admin/menu/section', text: t( 'shiny_newsletters.admin.newsletters.menu' ), icon: 'newspaper' do %>
+<%= component 'admin/menu/section',
+    text: t( 'shiny_newsletters.admin.newsletters.menu' ), icon: 'newspaper' do %>
 
   <%= component 'admin/menu/item', link: shiny_newsletters.editions_path,
       text: t( 'shiny_newsletters.admin.editions.index.title' ), icon: 'newspaper',

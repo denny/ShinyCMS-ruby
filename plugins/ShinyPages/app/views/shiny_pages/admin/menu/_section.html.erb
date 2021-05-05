@@ -1,7 +1,8 @@
 <% return unless current_user.can?( :list, :pages          ) ||
                  current_user.can?( :list, :page_templates ) %>
 
-<%= component 'admin/menu/section', text: t( 'shiny_pages.admin.pages.menu' ), icon: 'list-rich' do %>
+<%= component 'admin/menu/section',
+    text: t( 'shiny_pages.admin.pages.menu' ), icon: 'list-rich' do %>
 
   <%= component 'admin/menu/item', link: shiny_pages.pages_path,
       text: t( 'shiny_pages.admin.pages.index.title' ), icon: 'list-rich',
