@@ -19,6 +19,11 @@ module ShinyCMS
 
           @is_open = is_open
         end
+
+        # # TODO: generic extensibility mechanism for admin area submenus
+        # def extra_items_for_section( section )
+        #   ShinyCMS.plugins.with_partial( "admin/menu/_#{section}_items.html.erb" )
+        # end
       end
     end
   end
