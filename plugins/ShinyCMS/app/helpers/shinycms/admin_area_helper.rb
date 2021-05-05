@@ -23,7 +23,11 @@ module ShinyCMS
     end
 
     def coverband_web_ui_enabled?
-      ENV['DISABLE_COVERBAND_WEB_UI']&.downcase != 'true'
+      !coverband_web_ui_disabled?
+    end
+
+    def coverband_web_ui_disabled?
+      Rails.env.test? || ENV['DISABLE_COVERBAND_WEB_UI']&.downcase == 'true'
     end
 
     def sidekiq_web_enabled?
