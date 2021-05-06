@@ -1,8 +1,8 @@
 <ul class="c-sidebar-nav">
-  <% @feature_menu_sections.each do |path_to_partial| %>
-    <%= render partial: path_to_partial %>
+  <% @menu_sections.each do |section| %>
+    <%= render section.new( current_user: @current_user ) %>
   <% end %>
-  <% @core_menu_sections.each do |section| %>
-    <%= component "admin/menu/#{section}", current_user: @current_user %>
+  <% @feature_menu_partials.each do |path_to_partial| %>
+    <%= render partial: path_to_partial %>
   <% end %>
 </ul>

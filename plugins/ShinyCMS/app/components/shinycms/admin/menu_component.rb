@@ -11,22 +11,26 @@ module ShinyCMS
     # Component to render admin sidebar menu
     class MenuComponent < ApplicationComponent
       # TODO: Whittle this list down as bits of this functionality move to plugins
-      CORE_MENU_SECTIONS = %w[
-        email
-        consent_versions
-        other
-        users
-        stats
-        settings
-        sidekiq
-        coverband
+      CORE_MENU_SECTION_COMPONENTS = [
+        ShinyCMS::Admin::Menu::EmailComponent,
+        ShinyCMS::Admin::Menu::ConsentVersionsComponent,
+        ShinyCMS::Admin::Menu::OtherComponent,
+        ShinyCMS::Admin::Menu::UsersComponent,
+        ShinyCMS::Admin::Menu::StatsComponent,
+        ShinyCMS::Admin::Menu::SettingsComponent,
+        ShinyCMS::Admin::Menu::SidekiqComponent,
+        ShinyCMS::Admin::Menu::CoverbandComponent
       ].freeze
-      private_constant :CORE_MENU_SECTIONS
+      private_constant :CORE_MENU_SECTION_COMPONENTS
 
       def initialize( current_user: )
-        @feature_menu_sections = feature_plugin_admin_menu_partials
-        @core_menu_sections = CORE_MENU_SECTIONS
+        @feature_menu_partials = feature_plugin_admin_menu_partials
+        @menu_sections = menu_sections
         @current_user = current_user
+      end
+
+      def menu_sections
+        ShinyCMS.plugins.admin_menu_section_view_components + CORE_MENU_SECTION_COMPONENTS
       end
 
       def feature_plugin_admin_menu_partials

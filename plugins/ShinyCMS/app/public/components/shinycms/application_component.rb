@@ -11,16 +11,8 @@ module ShinyCMS
   class ApplicationComponent < ViewComponent::Base
     include ShinyCMS::ViewComponentHelper
 
-    def shinycms
-      ShinyCMS::Engine.routes.url_helpers
-    end
-
-    def rails_email_preview
-      RailsEmailPreview::Engine.routes.url_helpers
-    end
-
-    def main_app
-      Rails.application.routes.url_helpers
-    end
+    # Make url_helpers available to plugin components even when rendered by other engines
+    url_helpers = ShinyCMS.plugins.with_view_components.collect( &:underscore ).collect( &:to_sym )
+    delegate :shinycms, *url_helpers, :main_app, :rails_email_preview, to: :helpers
   end
 end

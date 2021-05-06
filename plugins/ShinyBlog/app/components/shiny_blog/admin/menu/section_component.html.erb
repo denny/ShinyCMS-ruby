@@ -1,4 +1,4 @@
-<% return unless current_user.can? :list, :blog_posts %>
+<% return unless @current_user.can? :list, :blog_posts %>
 
 <%= component 'admin/menu/section',
     text: t( 'shiny_blog.admin.blog_posts.menu' ), icon: 'rss' do %>
@@ -8,6 +8,6 @@
 
   <%= component 'admin/menu/item', link: shiny_blog.new_blog_post_path,
       text: t( 'shiny_blog.admin.blog_posts.new.title' ), icon: 'pencil',
-      if: current_user.can?( :add, :blog_posts ) %>
+      if: @current_user.can?( :add, :blog_posts ) %>
 
 <% end %>

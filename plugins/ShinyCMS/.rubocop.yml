@@ -61,7 +61,7 @@ Layout/MultilineArrayLineBreaks:
 # Calling super in ViewComponent intializers doesn't do anything currently
 Lint/MissingSuper:
   Exclude:
-    - app/components/shinycms/**/*_component.rb
+    - ../*/app/components/shiny*/**/*_component.rb
     - app/public/components/shinycms/**/*_component.rb
 
 # This method is not useless - it allows user registrations to be feature-flagged
@@ -95,6 +95,10 @@ Performance/ChainArrayAllocation:
 
 # Another suggested change that makes the code quite a lot less readable; I'm not keen
 Performance/Casecmp:
+  Enabled: false
+
+# This isn't safe to use if your result array could be completely empty, afaict
+Performance/MapCompact:
   Enabled: false
 
 # This is the (hopefully helpful) 'how to create an admin account' message displayed after seed data loads

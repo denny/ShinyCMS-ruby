@@ -37,6 +37,10 @@ module ShinyCMS
       def models_that_include( concern )
         💎ify[ with_models.collect { |plugin| plugin.models_that_include concern }.flatten.sort_by( &:name ) ]
       end
+
+      def admin_menu_section_view_components
+        💎ify[ with_view_components.collect( &:admin_menu_section_view_component ).compact ]
+      end
     end
   end
 end
