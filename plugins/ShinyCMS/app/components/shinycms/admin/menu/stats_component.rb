@@ -9,15 +9,10 @@
 module ShinyCMS
   module Admin
     module Menu
-      # Component to render admin menu section
-      class SectionComponent < ApplicationComponent
-        def initialize( text:, icon:, is_open: false )
-          @text = text
-          @icon = icon
-
-          @anchor = text.parameterize
-
-          @is_open = is_open
+      # Component to render Stats section in admin menu
+      class StatsComponent < ApplicationComponent
+        def initialize( current_user: )
+          @current_user = current_user
         end
       end
     end

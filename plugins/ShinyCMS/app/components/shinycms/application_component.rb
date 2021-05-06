@@ -10,5 +10,17 @@ module ShinyCMS
   # Base view component - part of the ShinyCMS core plugin
   class ApplicationComponent < ViewComponent::Base
     include ShinyCMS::ViewComponentHelper
+
+    def shinycms
+      ShinyCMS::Engine.routes.url_helpers
+    end
+
+    def rails_email_preview
+      RailsEmailPreview::Engine.routes.url_helpers
+    end
+
+    def main_app
+      Rails.application.routes.url_helpers
+    end
   end
 end
