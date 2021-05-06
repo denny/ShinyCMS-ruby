@@ -118,6 +118,10 @@ Rails/ApplicationController:
   Exclude:
     - app/public/controllers/shinycms/admin/tools/base_controller.rb
 
+# Allow read access to ENV
+Rails/EnvironmentVariableAccess:
+  AllowReads: true
+
 # Unused/demo controller in main_app, and 'no content' fallbacks in ShinyPages
 Rails/RenderInline:
   Exclude:
