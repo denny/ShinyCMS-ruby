@@ -84,27 +84,42 @@ module ShinyCMS
     end
 
     def new_comment_details
-      comment_params = { author: find_author, ip_address: request.ip }
+      comment_params = { author: comment_author, ip_address: request.ip }
       comment_params.merge!( strong_params.except( :author_type, :author_name, :author_email, :author_url ) )
       comment_params.merge!( discussion_id: @discussion.id )
     end
 
-    def find_author
-      return create_comment_author if strong_params[ :author_name ].present?
-
-      current_user if user_signed_in? && strong_params[ :author_type ] != 'anonymous'
+    def comment_author
+      authenticated_author || pseudonymous_author || ShinyCMS::AnonymousAuthor.get
     end
 
-    def create_comment_author
-      author = PseudonymousAuthor.new(
+    def authenticated_author
+      return unless strong_params[ :author_type ] == 'authenticated' && user_signed_in?
+
+      current_user
+    end
+
+    def pseudonymous_author
+      return unless strong_params[ :author_type ] == 'pseudonymous' && strong_params[ :author_name ].present?
+
+      author = new_pseudonymous_author
+      return author if strong_params[ :author_email ].blank?
+
+      author_with_email_recipient( author )
+    end
+
+    def new_pseudonymous_author
+      PseudonymousAuthor.new(
         name:       strong_params[ :author_name ],
         url:        strong_params[ :author_url ].presence,
         ip_address: request.ip
       )
-      return author if strong_params[ :author_email ].blank?
+    end
 
-      recipient = EmailRecipient.find_or_initialize_by( email: strong_params[ :author_email ] )
-      author.email_recipient = recipient
+    def author_with_email_recipient( author )
+      author.email_recipient = EmailRecipient.find_or_initialize_by(
+        email: strong_params[ :author_email ]
+      )
       author
     end
 
