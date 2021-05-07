@@ -74,6 +74,16 @@ module ShinyCMS
       "#{underscore}/#{location}"
     end
 
+    def view_components?
+      Dir.exist? "plugins/#{name}/app/components/#{underscore}"
+    end
+
+    def admin_menu_section_view_component
+      return unless defined? to_constant::Admin::Menu::SectionComponent
+
+      to_constant::Admin::Menu::SectionComponent
+    end
+
     def underscore
       name.to_s.underscore
     end

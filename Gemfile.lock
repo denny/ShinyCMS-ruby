@@ -62,6 +62,7 @@ PATH
       sentry-ruby
       sidekiq
       sidekiq-status
+      view_component
       webpacker (~> 5.2)
       zxcvbn-ruby
 
@@ -172,6 +173,8 @@ PATH
 
 GEM
   specs:
+    view_component (2.30.0)
+      activesupport (>= 5.0.0, < 7.0)
 
 GEM
   remote: https://rubygems.org/

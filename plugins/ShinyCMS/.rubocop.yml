@@ -68,6 +68,12 @@ Layout/SingleLineBlockChain:
   Exclude:
     - ../*/spec/**/*
 
+# Calling super in ViewComponent intializers doesn't do anything currently
+Lint/MissingSuper:
+  Exclude:
+    - ../*/app/components/shiny*/**/*_component.rb
+    - app/public/components/shinycms/**/*_component.rb
+
 # This method is not useless - it allows user registrations to be feature-flagged
 Lint/UselessMethodDefinition:
   Exclude:
@@ -99,6 +105,10 @@ Performance/ChainArrayAllocation:
 
 # Another suggested change that makes the code quite a lot less readable; I'm not keen
 Performance/Casecmp:
+  Enabled: false
+
+# This isn't safe to use if your result array could be completely empty, afaict
+Performance/MapCompact:
   Enabled: false
 
 # This is the (hopefully helpful) 'how to create an admin account' message displayed after seed data loads
@@ -155,7 +165,7 @@ RSpec/BeforeAfterAll:
     - spec/models/shinycms/theme_spec.rb
     - spec/support/faker.rb
 
-# This is ignoring config/initializers/inflections.rb (as about half of Rails does)
+# This is ignoring my custom inflections config (as about half of Rails does)
 RSpec/FilePath:
   Exclude:
     - spec/**/shinycms/**/*_spec.rb
@@ -206,6 +216,8 @@ Style/RegexpLiteral:
 # Whitespace Considered Helpful
 Layout/ExtraSpacing:
   Enabled: false
+Layout/RedundantLineBreak:
+  Enabled: false
 Layout/SpaceAroundBlockParameters:
   Enabled: false
 Layout/SpaceInsideArrayLiteralBrackets:
@@ -219,8 +231,6 @@ Layout/SpaceInsideParens:
 Layout/SpaceInsidePercentLiteralDelimiters:
   Enabled: false
 Layout/SpaceInsideReferenceBrackets:
-  Enabled: false
-Layout/RedundantLineBreak:
   Enabled: false
 
 # Alignment also considered helpful. And aesthetically pleasing.

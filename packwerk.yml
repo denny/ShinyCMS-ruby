@@ -26,6 +26,7 @@ load_paths:
 - app/policies
 - app/validators
 
+- plugins/ShinyCMS/app/components
 - plugins/ShinyCMS/app/controllers
 - plugins/ShinyCMS/app/controllers/concerns
 - plugins/ShinyCMS/app/helpers
@@ -36,6 +37,7 @@ load_paths:
 - plugins/ShinyCMS/app/models/concerns
 - plugins/ShinyCMS/app/policies
 - plugins/ShinyCMS/app/public
+- plugins/ShinyCMS/app/public/components
 - plugins/ShinyCMS/app/public/controllers
 - plugins/ShinyCMS/app/public/controllers/concerns
 - plugins/ShinyCMS/app/public/helpers
@@ -45,6 +47,7 @@ load_paths:
 - plugins/ShinyCMS/app/public/models/concerns
 - plugins/ShinyCMS/app/public/services
 
+- plugins/ShinyAccess/app/components
 - plugins/ShinyAccess/app/controllers
 - plugins/ShinyAccess/app/helpers
 - plugins/ShinyAccess/app/jobs
@@ -52,12 +55,14 @@ load_paths:
 - plugins/ShinyAccess/app/models
 - plugins/ShinyAccess/app/policies
 
+- plugins/ShinyBlog/app/components
 - plugins/ShinyBlog/app/controllers
 - plugins/ShinyBlog/app/helpers
 - plugins/ShinyBlog/app/jobs
 - plugins/ShinyBlog/app/models
 - plugins/ShinyBlog/app/policies
 
+- plugins/ShinyForms/app/components
 - plugins/ShinyForms/app/controllers
 - plugins/ShinyForms/app/helpers
 - plugins/ShinyForms/app/jobs
@@ -65,11 +70,13 @@ load_paths:
 - plugins/ShinyForms/app/models
 - plugins/ShinyForms/app/policies
 
+#- plugins/ShinyInserts/app/components
 - plugins/ShinyInserts/app/controllers
 - plugins/ShinyInserts/app/helpers
 - plugins/ShinyInserts/app/models
 - plugins/ShinyInserts/app/policies
 
+- plugins/ShinyLists/app/components
 - plugins/ShinyLists/app/controllers
 - plugins/ShinyLists/app/helpers
 - plugins/ShinyLists/app/models
@@ -77,18 +84,21 @@ load_paths:
 - plugins/ShinyLists/app/public
 - plugins/ShinyLists/app/public/controllers/concerns
 
+- plugins/ShinyNews/app/components
 - plugins/ShinyNews/app/controllers
 - plugins/ShinyNews/app/helpers
 - plugins/ShinyNews/app/jobs
 - plugins/ShinyNews/app/models
 - plugins/ShinyNews/app/policies
 
+- plugins/ShinyNewsletters/app/components
 - plugins/ShinyNewsletters/app/controllers
 - plugins/ShinyNewsletters/app/jobs
 - plugins/ShinyNewsletters/app/mailers
 - plugins/ShinyNewsletters/app/models
 - plugins/ShinyNewsletters/app/policies
 
+- plugins/ShinyPages/app/components
 - plugins/ShinyPages/app/controllers
 - plugins/ShinyPages/app/helpers
 - plugins/ShinyPages/app/models

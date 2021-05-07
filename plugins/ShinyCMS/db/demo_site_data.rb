@@ -6,7 +6,7 @@ ShinyCMS::ConsentVersion.create!([
   {id: 2, name: "Newsletter subscription (3rd September 2020)", slug: "newsletter-2020-09-03", display_text: "Your ideas are intriguing to me, and I wish to subscribe to your newsletter.", admin_notes: "Consent text for the homepage newsletter subscribe form (part of the demo site data).", deleted_at: nil}
 ])
 ShinyForms::Form.create!([
-  {id: 1, internal_name: "Contact Page", public_name: "Contact us", slug: "contact", description: nil, handler: "plain_email", email_to: nil, filename: nil, use_recaptcha: true, use_akismet: true, success_message: nil, redirect_to: nil, deleted_at: nil}
+  {id: 1, internal_name: "Contact Page", public_name: "Contact us", slug: "contact", description: nil, handler: "send_plain_email", email_to: nil, filename: nil, use_recaptcha: true, use_akismet: true, success_message: nil, redirect_to: nil, deleted_at: nil}
 ])
 ShinyLists::List.create!([
   {id: 1, internal_name: "Newsletter list", public_name: "Monthly newsletter", slug: "newsletter", description: "", deleted_at: nil}

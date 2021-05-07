@@ -88,8 +88,9 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
 
       post shinycms.add_comment_path( @discussion ), params: {
         comment: {
-          title: title,
-          body:  body
+          title:       title,
+          body:        body,
+          author_type: 'authenticated'
         }
       }
 
@@ -110,6 +111,7 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
         comment: {
           author_name:  name,
           author_email: Faker::Internet.unique.email,
+          author_type:  'pseudonymous',
           title:        title,
           body:         Faker::Lorem.paragraph
         }
