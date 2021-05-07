@@ -18,5 +18,9 @@ module ShinyCMS
     def email; end
 
     def url; end
+
+    def self.get
+      ShinyCMS::AnonymousAuthor.first || ShinyCMS::AnonymousAuthor.create!
+    end
   end
 end

@@ -33,6 +33,8 @@ module ShinyCMS
       username
     end
 
+    def url; end
+
     # Class methods
 
     def self.admin_search( search_term )
