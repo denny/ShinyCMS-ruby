@@ -24,20 +24,12 @@ module ShinyCMS
       private_constant :CORE_MENU_SECTION_COMPONENTS
 
       def initialize( current_user: )
-        @feature_menu_partials = feature_plugin_admin_menu_partials
         @menu_sections = menu_sections
-        @current_user = current_user
+        @current_user  = current_user
       end
 
       def menu_sections
         ShinyCMS.plugins.admin_menu_section_view_components + CORE_MENU_SECTION_COMPONENTS
-      end
-
-      def feature_plugin_admin_menu_partials
-        plugins = ShinyCMS.plugins.with_partial( 'admin/menu/_section.html.erb' )
-        return unless plugins
-
-        plugins.collect { |plugin| plugin.partial( 'admin/menu/section' ) }
       end
     end
   end

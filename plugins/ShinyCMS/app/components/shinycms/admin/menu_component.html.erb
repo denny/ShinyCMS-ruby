@@ -2,7 +2,4 @@
   <% @menu_sections.each do |section| %>
     <%= render section.new( current_user: @current_user ) %>
   <% end %>
-  <% @feature_menu_partials.each do |path_to_partial| %>
-    <%= render partial: path_to_partial %>
-  <% end %>
 </ul>
