@@ -4,6 +4,9 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Run mutation tests on the specified plugin: `tools/mutate ShinySearch`
+# Run mutation tests on a specific class: tools/mutate ShinyProfiles::Link
+# Run mutation tests on a whole plugin:   tools/mutate ShinySEO*
 
-RAILS_ENV=test bundle exec mutant run -r ./config/environment --use rspec $1*
+# Note: Mutation testing is not fast; testing a large plugin may take hours.
+
+RAILS_ENV=test bundle exec mutant run -r ./config/environment --use rspec $1
