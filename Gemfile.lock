@@ -47,7 +47,7 @@ PATH
       mini_magick
       mjml-rails
       nokogiri (>= 1.10.4)
-      pagy
+      pagy (~> 4.3.0)
       persistent-dmnd
       pg (~> 1.2.3)
       pry-rails
@@ -162,7 +162,7 @@ PATH
     shiny_search (21.04)
       acts-as-taggable-on
       acts_as_paranoid
-      algoliasearch-rails
+      algoliasearch-rails (~> 1.25)
       ckeditor
       nokogiri (>= 1.11.0.rc4)
       pagy
@@ -173,8 +173,6 @@ PATH
 
 GEM
   specs:
-    view_component (2.30.0)
-      activesupport (>= 5.0.0, < 7.0)
 
 GEM
   remote: https://oss:TavsFP4Rxs7vhBGX0Li5ksWM53EcWLyd@gem.mutant.dev/
@@ -255,7 +253,7 @@ GEM
       activerecord (>= 5.0, < 6.2)
     acts_as_list (1.0.4)
       activerecord (>= 4.2)
-    acts_as_paranoid (0.7.2)
+    acts_as_paranoid (0.7.3)
       activerecord (>= 5.2, < 7.0)
       activesupport (>= 5.2, < 7.0)
     acts_as_votable (0.13.1)
@@ -285,7 +283,7 @@ GEM
     amazing_print (1.3.0)
     ast (2.4.2)
     aws-eventstream (1.1.1)
-    aws-partitions (1.449.0)
+    aws-partitions (1.452.0)
     aws-sdk-core (3.114.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -294,7 +292,7 @@ GEM
     aws-sdk-kms (1.43.0)
       aws-sdk-core (~> 3, >= 3.112.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.94.0)
+    aws-sdk-s3 (1.94.1)
       aws-sdk-core (~> 3, >= 3.112.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
@@ -523,7 +521,7 @@ GEM
       pry (>= 0.10.4)
     psych (3.3.1)
     public_suffix (4.0.6)
-    puma (5.2.2)
+    puma (5.3.0)
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
@@ -655,7 +653,7 @@ GEM
       pg
       terminal-table
     ruby-progressbar (1.11.0)
-    ruby-vips (2.1.0)
+    ruby-vips (2.1.2)
       ffi (~> 1.12)
     ruby2_keywords (0.0.4)
     ruby_parser (3.15.1)
@@ -685,14 +683,14 @@ GEM
       activerecord (>= 4)
       activesupport (>= 4)
     semantic_range (3.0.0)
-    sentry-rails (4.3.4)
+    sentry-rails (4.4.0)
       railties (>= 5.0)
-      sentry-ruby-core (~> 4.3.0)
-    sentry-ruby (4.3.2)
+      sentry-ruby-core (~> 4.4.0.pre.beta)
+    sentry-ruby (4.4.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       faraday (>= 1.0)
-      sentry-ruby-core (= 4.3.2)
-    sentry-ruby-core (4.3.2)
+      sentry-ruby-core (= 4.4.1)
+    sentry-ruby-core (4.4.1)
       concurrent-ruby
       faraday
     sexp_processor (4.15.2)
@@ -708,13 +706,13 @@ GEM
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
-    simplecov_json_formatter (0.1.2)
+    simplecov_json_formatter (0.1.3)
     simpleidn (0.2.1)
       unf (~> 0.1.4)
     sitemap_generator (6.1.2)
       builder (~> 3.0)
     smart_properties (1.15.0)
-    sorbet-runtime (0.5.6397)
+    sorbet-runtime (0.5.6403)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -741,6 +739,8 @@ GEM
     unparser (0.6.0)
       diff-lcs (~> 1.3)
       parser (>= 3.0.0)
+    view_component (2.31.1)
+      activesupport (>= 5.0.0, < 7.0)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
