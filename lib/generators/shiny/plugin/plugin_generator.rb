@@ -78,7 +78,8 @@ module Shiny
         unwrapped_code = unwrapped_code.to_s.strip.gsub( /\s$\n/, '' )
         modules.reverse.reduce( unwrapped_code ) do |content, mod|
           str = +"module #{mod}\n"
-          str << content.lines.collect { |line| "  #{line}" }.join
+          str << content.lines.collect { |line| "  #{line}" }
+                        .join
           str << ( content.present? ? "\nend" : 'end' )
         end
       end
