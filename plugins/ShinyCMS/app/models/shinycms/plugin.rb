@@ -54,7 +54,8 @@ module ShinyCMS
     end
 
     def models_that_include( concern )
-      base_model.descendants.select { |model| model.include?( concern ) }.sort_by( &:name )
+      base_model.descendants.select { |model| model.include?( concern ) }
+                .sort_by( &:name )
     end
 
     def view_path
