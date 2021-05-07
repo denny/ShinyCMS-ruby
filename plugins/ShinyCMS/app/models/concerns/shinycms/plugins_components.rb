@@ -31,11 +31,13 @@ module ShinyCMS
       end
 
       def models_that_are( method )
-        💎ify[ with_models.collect { |plugin| plugin.models_that_are method }.flatten.sort_by( &:name ) ]
+        💎ify[ with_models.collect { |plugin| plugin.models_that_are method }
+                         .flatten.sort_by( &:name ) ]
       end
 
       def models_that_include( concern )
-        💎ify[ with_models.collect { |plugin| plugin.models_that_include concern }.flatten.sort_by( &:name ) ]
+        💎ify[ with_models.collect { |plugin| plugin.models_that_include concern }
+                         .flatten.sort_by( &:name ) ]
       end
     end
   end
