@@ -1,6 +1,6 @@
-# ShinyCMS: copying data from Perl version to Ruby version
+# ShinyCMS Developer Notes
 
-Incoherent notes follow...
+## Copying data from Perl version to Ruby version
 
 ## General
 

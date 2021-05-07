@@ -6,12 +6,12 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# THIS CONTROLLER INHERITS FROM ONE IN THE SHINYCMS ADMIN AREA!
-# (to make it possible to embed Blazer into the ShinyCMS admin UI)
-
-# Inheriting from or using this controller for any additional purpose is
-# probably a bad idea, for security reasons and for separation of concerns.
+# NOTE: THIS CONTROLLER INHERITS FROM ONE IN THE SHINYCMS ADMIN AREA
+#
+# Inheriting from or otherwise using this controller for any additional purpose
+# is probably a bad idea, for security reasons and for separation of concerns.
 
 module Blazer
+  # Used to embed Blazer into the ShinyCMS admin UI
   class ApplicationController < ShinyCMS::Admin::Tools::BlazerBaseController; end
 end

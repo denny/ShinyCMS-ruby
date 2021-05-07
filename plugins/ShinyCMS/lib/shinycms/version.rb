@@ -8,7 +8,7 @@
 
 # ShinyCMS version number ('Ubuntu style', YY.MM)
 module ShinyCMS
-  VERSION = '21.04'
+  VERSION = '21.05'
   public_constant :VERSION
 
   # Use the start of the git commit SHA as a release identifier

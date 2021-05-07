@@ -20,6 +20,7 @@ require_relative './plugin_generator_base'
 
 module Shiny
   module Generators
+    # ShinyCMS plugin generator
     class PluginGenerator < PluginGeneratorBase # :nodoc:
       alias plugin_path app_path
 
