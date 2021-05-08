@@ -1,13 +1,18 @@
-<%= render partial: 'admin/includes/message', locals: { message_type: 'danger',  message: flash[ :alert  ] } if flash[ :alert  ] %>
-<%= render partial: 'admin/includes/message', locals: { message_type: 'success', message: flash[ :notice ] } if flash[ :notice ] %>
+<%= component 'admin/alert', message: flash[ :notice ], type: 'success' if flash[ :notice ] %>
+<%= component 'admin/alert', message: flash[ :alert  ], type: 'danger'  if flash[ :alert  ] %>
 
-<%= render partial: 'admin/includes/message', locals: { message_type: 'danger',  message: flash[ :alert_danger  ] } if flash[ :alert_danger  ] %>
-<%= render partial: 'admin/includes/message', locals: { message_type: 'warning', message: flash[ :alert_warning ] } if flash[ :alert_warning ] %>
-<%= render partial: 'admin/includes/message', locals: { message_type: 'success', message: flash[ :alert_success ] } if flash[ :alert_success ] %>
-<%= render partial: 'admin/includes/message', locals: { message_type: 'info',    message: flash[ :alert_info    ] } if flash[ :alert_info    ] %>
+<% @alert_types = {
+  alert_primary:   'primary',
+  alert_secondary: 'secondary',
+  alert_light:     'light',
+  alert_dark:      'dark',
 
-<%= render partial: 'admin/includes/message', locals: { message_type: 'light',   message: flash[ :alert_light   ] } if flash[ :alert_light   ] %>
-<%= render partial: 'admin/includes/message', locals: { message_type: 'dark',    message: flash[ :alert_dark    ] } if flash[ :alert_dark    ] %>
+  alert_danger:    'danger',
+  alert_warning:   'warning',
+  alert_success:   'success',
+  alert_info:      'info'
+} %>
 
-<%= render partial: 'admin/includes/message', locals: { message_type: 'primary',   message: flash[ :alert_primary   ] } if flash[ :alert_primary   ] %>
-<%= render partial: 'admin/includes/message', locals: { message_type: 'secondary', message: flash[ :alert_secondary ] } if flash[ :alert_secondary ] %>
+<% @alert_types.each do |symbol, string| %>
+  <%= component 'admin/alert', message: flash[ symbol ], type: string if flash[ symbol ] %>
+<% end %>
