@@ -12,7 +12,14 @@ module ShinyCMS
     class AlertComponent < ApplicationComponent
       def initialize( message:, style: )
         @message = message
-        @style   = style
+        @style   = map_rails_to_bootstrap( style )
+      end
+
+      def map_rails_to_bootstrap( style )
+        return 'alert-success' if style == 'notice'
+        return 'alert-danger'  if style == 'alert'
+
+        style
       end
     end
   end

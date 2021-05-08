@@ -10,26 +10,30 @@ module ShinyCMS
   module Admin
     # Component to render the alerts in the admin area
     class AlertsComponent < ApplicationComponent
-      # This is all of CoreUI's built-in alert styles (in case anyone wants them in future),
-      # plus the Rails default flash keys (alert & notice) mapped to suitable CoreUI styles.
-      ALERT_TYPES = {
-        # flash_key:     'css-class'
-        alert_danger:    'alert-danger',  # red
-        alert:           'alert-danger',
-        alert_warning:   'alert-warning', # orange
-        alert_success:   'alert-success', # green
-        notice:          'alert-success',
-        alert_info:      'alert-info',    # blue
-        alert_primary:   'alert-primary',
-        alert_secondary: 'alert-secondary',
-        alert_light:     'alert-light',
-        alert_dark:      'alert-dark'
-      }.freeze
+      BOOTSTRAP_ALERT_TYPES = %w[
+        alert_danger
+        alert_warning
+        alert_success
+        alert_info
+        alert_primary
+        alert_secondary
+        alert_light
+        alert_dark
+      ].freeze
+      private_constant :BOOTSTRAP_ALERT_TYPES
+
+      RAILS_ALERT_TYPES = %w[ alert notice ].freeze
+      private_constant :RAILS_ALERT_TYPES
+
+      ALERT_TYPES = [ RAILS_ALERT_TYPES + BOOTSTRAP_ALERT_TYPES ].flatten.freeze
       private_constant :ALERT_TYPES
 
       def initialize( flash: )
-        @alert_types = ALERT_TYPES
-        @flash = flash
+        @alerts = extract_alerts( flash )
+      end
+
+      def extract_alerts( flash_messages )
+        flash_messages.to_h.slice( *ALERT_TYPES )
       end
     end
   end

@@ -28,7 +28,7 @@
 
       <div class="c-body">
         <main>
-          <%= component 'admin/alerts', flash: flash %>
+          <%= component 'admin/alerts', flash: flash.to_h %>
           <%= yield %>
         </main>
       </div>
