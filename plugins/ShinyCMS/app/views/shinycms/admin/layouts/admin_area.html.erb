@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <!--
 * CoreUI - Free Bootstrap Admin Template
-* @version v3.0.0-alpha.1
+* @version v3.0.0
 * @link https://coreui.io
 * Copyright (c) 2019 creativeLabs Łukasz Holeczek
 * Licensed under MIT (https://coreui.io/license)
 -->
-
-<html lang="en">
+<%#
+  Modified and adapted for use in ShinyCMS by Denny de la Haye
+  Please bring any ERB template issues to ShinyCMS, not CoreUI!
+  https://github.com/denny/ShinyCMS-ruby  https://shinycms.org
+%>
+<html lang="<%= I18n.locale.to_s %>">
   <head>
     <%= render partial: 'admin/includes/head' %>
   </head>
@@ -24,7 +28,7 @@
 
       <div class="c-body">
         <main>
-          <%= render partial: 'admin/includes/messages' %>
+          <%= component 'admin/alerts', flash: flash %>
           <%= yield %>
         </main>
       </div>

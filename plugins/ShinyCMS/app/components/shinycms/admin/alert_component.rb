@@ -10,9 +10,9 @@ module ShinyCMS
   module Admin
     # Component to render an alert in the admin area
     class AlertComponent < ApplicationComponent
-      def initialize( message:, type: )
+      def initialize( message:, style: )
         @message = message
-        @type    = type
+        @style   = style
       end
     end
   end

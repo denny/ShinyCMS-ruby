@@ -1,0 +1,3 @@
+<% @alert_types.each do |key, style| %>
+  <%= component 'admin/alert', message: @flash[ key ], style: style if @flash[ key ] %>
+<% end %>
