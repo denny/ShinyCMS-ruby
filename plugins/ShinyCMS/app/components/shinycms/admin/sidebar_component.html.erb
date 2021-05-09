@@ -4,7 +4,5 @@
 </div>
 
 <nav role="nav" class="c-sidebar-nav">
-  <% if current_user_can? :view_admin_area %>
-  <%= component 'admin/menu', current_user: current_user %>
-  <% end %>
+  <%= component 'admin/menu', current_user: @current_user %>
 </nav>

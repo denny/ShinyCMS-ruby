@@ -18,7 +18,7 @@
 
   <body class="c-app">
     <div id="sidebar" class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show">
-      <%= render partial: 'admin/includes/sidebar' %>
+      <%= component 'admin/sidebar', current_user: current_user %>
     </div>
 
     <div class="c-wrapper">
