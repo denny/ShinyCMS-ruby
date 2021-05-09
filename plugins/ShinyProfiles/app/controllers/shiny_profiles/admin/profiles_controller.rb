@@ -23,9 +23,8 @@ module ShinyProfiles
       redirect_to admin_edit_profile_path( @profile )
     end
 
-    # Override the breadcrumbs section link to go back to the user list
-    def breadcrumb_link_text_and_path
-      [ t( 'shinycms.admin.users.breadcrumb' ), shinycms.users_path ]
+    def breadcrumb_section_path
+      shinycms.users_path
     end
 
     private

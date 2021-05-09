@@ -22,13 +22,6 @@ module ShinyCMS
         !blazer_controller? && !rep_controller?
     end
 
-    def plugin_breadcrumb_link_text_and_path( plugin, controller_name )
-      [
-        I18n.t( "#{plugin.underscore}.admin.#{controller_name}.breadcrumb" ),
-        plugin.engine.routes.url_helpers.public_send( "#{controller_name}_path" )
-      ]
-    end
-
     def plugins_for_edit_capabilities
       ShinyCMS.plugins.with_partial 'admin/user/_edit_capabilities.html.erb'
     end
