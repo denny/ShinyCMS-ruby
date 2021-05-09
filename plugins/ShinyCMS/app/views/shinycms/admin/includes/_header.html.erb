@@ -1,6 +1,14 @@
 <button class="c-header-toggler c-class-toggler d-lg-none mr-auto"   type="button" data-target="#sidebar" data-class="c-sidebar-show"><span class="c-header-toggler-icon"></span></button>
 <button class="c-header-toggler c-class-toggler ml-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true"><span class="c-header-toggler-icon"></span></button>
-
-<%= render partial: 'admin/includes/breadcrumbs' %>
+<%
+  override_path = controller.try( :breadcrumb_section_path )
+  override_path ||= rails_email_preview.rep_emails_path if admin_controller_from == 'rails_email_preview'
+  override_path ||= blazer.root_path if admin_controller_from == 'blazer'
+%>
+<%= component 'admin/breadcrumbs',
+              controller_class_name: controller.class.name,
+              controller_name:       controller_name,
+              page_title:            @page_title,
+              path:                  override_path %>
 
 <%= render partial: 'admin/includes/user_menu' %>

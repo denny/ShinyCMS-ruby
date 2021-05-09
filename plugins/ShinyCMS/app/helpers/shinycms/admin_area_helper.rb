@@ -9,17 +9,10 @@
 module ShinyCMS
   # Helper methods for admin area
   module AdminAreaHelper
-    def blazer_controller?
-      controller.is_a? Blazer::BaseController
-    end
-
-    def rep_controller?
-      controller.is_a? RailsEmailPreview::ApplicationController
-    end
-
-    def shinycms_admin_controller?
-      controller.is_a?( ShinyCMS::Admin::BaseController ) &&
-        !blazer_controller? && !rep_controller?
+    def admin_controller_from
+      return 'shinycms' if controller.is_a? ShinyCMS::Admin::BaseController
+      return 'blazer'   if controller.is_a? Blazer::BaseController
+      return 'rails_email_preview' if controller.is_a? RailsEmailPreview::ApplicationController
     end
 
     def plugins_for_edit_capabilities
