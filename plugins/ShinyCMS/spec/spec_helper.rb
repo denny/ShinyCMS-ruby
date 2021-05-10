@@ -38,12 +38,13 @@ RSpec.configure do |config|
   # spec/ directory. The pattern below also loads all of the plugin spec files.
   config.pattern = '**/*_spec.rb,../plugins/*/spec/**/*_spec.rb'
 
-  # Use the documentation formatter for detailed output, unless a formatter
-  # has already been configured (e.g. via a command-line flag).
-  config.default_formatter = 'doc'
+  if config.files_to_run.size == 1
+    # Use doc formatter, for more detailed output
+    config.formatter = 'doc'
+  else
+    # Use progress formatter, for more compact output
+    config.formatter = 'progress'
 
-  # Things we only do if running more than one spec file
-  if config.files_to_run.size > 1
     # Optionally, show the slowest examples and example groups at the end of the run
     config.profile_examples = ENV[ 'SHOW_SLOW_SPECS' ].to_i if ENV[ 'SHOW_SLOW_SPECS' ]
 
