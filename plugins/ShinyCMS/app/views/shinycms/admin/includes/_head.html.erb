@@ -6,19 +6,9 @@
 
     <%= favicon_link_tag asset_path( 'shinycms/favicon.ico' ) %>
 
-    <% if admin_controller_from == 'blazer' %>
-    <% @page_title = t( "shinycms.admin.blazer.#{controller_name}.title" ) %>
+    <%= render partial: 'admin/includes/blazer_head' if admin_controller_from == 'blazer' %>
 
-    <%= stylesheet_link_tag    'blazer/application' %>
-    <%= javascript_include_tag 'blazer/application' %>
-
-    <script>
-      <%= blazer_js_var 'rootPath', root_path %>
-    </script>
-
-    <% else %>
     <%= javascript_include_tag Ckeditor.cdn_url if try :load_html_editor? %>
-    <% end %>
 
     <%= stylesheet_link_tag 'https://unpkg.com/@coreui/coreui@3.0.0/dist/css/coreui.min.css' %>
     <%= stylesheet_link_tag 'https://unpkg.com/@coreui/icons@1.0.0/css/free.min.css' %>
