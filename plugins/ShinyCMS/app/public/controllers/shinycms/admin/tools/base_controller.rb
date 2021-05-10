@@ -22,6 +22,14 @@ module ShinyCMS
         prepend_view_path 'plugins/ShinyCMS/app/views/shinycms'
 
         layout 'admin/layouts/admin_area'
+
+        helper_method :load_html_editor?
+
+        private
+
+        def load_html_editor?
+          false
+        end
       end
     end
   end

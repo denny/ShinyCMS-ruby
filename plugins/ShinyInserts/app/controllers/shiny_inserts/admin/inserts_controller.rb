@@ -72,7 +72,7 @@ module ShinyInserts
     end
 
     def load_html_editor?
-      return true if action_name == :index
+      action_name == :index
     end
   end
 end
