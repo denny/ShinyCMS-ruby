@@ -6,16 +6,7 @@
 
     <%= favicon_link_tag asset_path( 'shinycms/favicon.ico' ) %>
 
-    <% if admin_controller_from == 'blazer' %>
-    <% @page_title = t( "shinycms.admin.blazer.#{controller_name}.title" ) %>
-
-    <%= stylesheet_link_tag    'blazer/application' %>
-    <%= javascript_include_tag 'blazer/application' %>
-
-    <script>
-      <%= blazer_js_var 'rootPath', root_path %>
-    </script>
-    <% end %>
+    <%= render partial: 'admin/includes/blazer_head' if admin_controller_from == 'blazer' %>
 
     <%= javascript_include_tag Ckeditor.cdn_url if try :load_html_editor? %>
 
