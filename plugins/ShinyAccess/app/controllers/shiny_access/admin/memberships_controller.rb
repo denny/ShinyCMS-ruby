@@ -54,9 +54,8 @@ module ShinyAccess
       redirect_to group_memberships_path( @group )
     end
 
-    # Override the breadcrumbs 'section' link to go back to the groups page
-    def breadcrumb_link_text_and_path
-      [ t( 'shiny_access.admin.groups.breadcrumb' ), groups_path ]
+    def breadcrumb_section_path
+      shiny_access.groups_path
     end
 
     private

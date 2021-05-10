@@ -13,6 +13,6 @@ module ShinyCMS
 
     # Make url_helpers available to plugin components even when rendered by other engines
     url_helpers = ShinyCMS.plugins.with_view_components.collect( &:underscore ).collect( &:to_sym )
-    delegate :shinycms, *url_helpers, :main_app, :rails_email_preview, to: :helpers
+    delegate :shinycms, *url_helpers, :main_app, :rails_email_preview, :blazer, to: :helpers
   end
 end

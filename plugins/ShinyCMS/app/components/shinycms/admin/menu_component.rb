@@ -24,8 +24,8 @@ module ShinyCMS
       private_constant :CORE_MENU_SECTION_COMPONENTS
 
       def initialize( current_user: )
-        @menu_sections = menu_sections
         @current_user  = current_user
+        @menu_sections = menu_sections
       end
 
       def menu_sections

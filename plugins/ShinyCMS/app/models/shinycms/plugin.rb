@@ -41,6 +41,10 @@ module ShinyCMS
       engine.routes.routes.routes # er, okay
     end
 
+    def url_helpers
+      engine.routes.url_helpers
+    end
+
     def base_model
       to_constant::ApplicationRecord if defined? to_constant::ApplicationRecord
     end

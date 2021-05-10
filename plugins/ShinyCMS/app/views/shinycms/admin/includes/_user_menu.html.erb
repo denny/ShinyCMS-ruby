@@ -1,9 +1,14 @@
 <% return unless user_signed_in? %>
 
+<% has_profile = plugin_loaded?( :ShinyProfiles ) &&
+                 current_user.profile.present? %>
+<% has_picture = has_profile && admin_controller_from == 'shinycms' &&
+                 current_user.profile_with_pic.profile_pic.attached? %>
+
 <ul class="c-header-nav ml-auto mr-4">
   <li class="c-header-nav-item dropdown">
     <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-      <% if shinycms_admin_controller? && plugin_loaded?( :ShinyProfiles ) && current_user.profile_with_pic.profile_pic.attached? %>
+      <% if has_picture %>
       <div class="c-avatar">
         <%= image_tag url_for( current_user.profile_with_pic.profile_pic.variant( resize: '36x36!' ) ), alt: current_user.name, class: 'c-avatar-img' %>
       </div>
@@ -13,7 +18,7 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right pt-0">
       <div class="dropdown-header bg-light py-2"><strong><%= current_user.name %></strong></div>
-      <% if plugin_loaded?( :ShinyProfiles ) && current_user.profile.present? %>
+      <% if has_profile %>
       <a class="dropdown-item" href="<%= shiny_profiles.profile_path( current_user.username ) %>">
         <i class="cil-user user-menu-icon"></i> <%= t( 'shiny_profiles.view_profile' ) %>
       </a>

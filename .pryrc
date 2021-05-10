@@ -26,9 +26,9 @@ if Rails.env.development? || Rails.env.test? || ENV[ 'SHINYCMS_PRY_CONSOLE' ]&.d
   end
 
   def rails_env_for_pry_prompt
-    return Pry::Helpers::Text.cyan   '(dev)'     if Rails.env.development?
     return Pry::Helpers::Text.green  '(test)'    if Rails.env.test?
-    # return Pry::Helpers::Text.orange '(staging)' if hostname.starts_with? 'staging'
+    return Pry::Helpers::Text.cyan   '(dev)'     if Rails.env.development?
+    return Pry::Helpers::Text.orange '(staging)' if ENV.fetch( 'HEROKU_APP_NAME', '' ).include? 'staging'
 
     Pry::Helpers::Text.red "[#{Rails.env.upcase}]"
   end
