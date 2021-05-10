@@ -44,6 +44,9 @@ RSpec.configure do |config|
 
   # Things we only do if running more than one spec file
   if config.files_to_run.size > 1
+    # Optionally, show the slowest examples and example groups at the end of the run
+    config.profile_examples = ENV[ 'SHOW_SLOW_SPECS' ].to_i if ENV[ 'SHOW_SLOW_SPECS' ]
+
     # Generate new coverage report
     SimpleCov.start do
       add_filter '/spec/'
@@ -57,9 +60,6 @@ RSpec.configure do |config|
         [ SimpleCov::Formatter::Codecov, SimpleCov::Formatter::JSONFormatter ]
       )
     end
-
-    # Optionally, show the slowest examples and example groups at the end of the run
-    config.profile_examples = ENV[ 'SHOW_SLOW_SPECS' ].to_i if ENV[ 'SHOW_SLOW_SPECS' ]
   end
 
   # rspec-expectations config. You can use an alternate assertion/expectation
