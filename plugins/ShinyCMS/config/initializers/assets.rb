@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Version of your assets, change this if you want to expire all your assets.
-Rails.application.config.assets.version = '2021.02.14.0800'
+Rails.application.config.assets.version = '2021.05.07.1700'
 
 # Add node_modules directory to the asset load path.
 # Rails.application.config.assets.paths << Rails.root.join( 'node_modules' )
@@ -24,11 +24,23 @@ def available_themes
 end
 
 def add_theme_to_asset_load_path( theme_name )
-  stylesheets_dir = Rails.root.join "themes/#{theme_name}/stylesheets"
-  images_dir      = Rails.root.join "themes/#{theme_name}/images"
+  add_theme_images_to_asset_load_path( theme_name )
+  add_theme_styles_to_asset_load_path( theme_name )
+end
 
-  Rails.application.config.assets.paths << stylesheets_dir if Dir.exist? stylesheets_dir
-  Rails.application.config.assets.paths << images_dir      if Dir.exist? images_dir
+def add_theme_images_to_asset_load_path( theme_name )
+  images_dir = Rails.root.join "themes/#{theme_name}/images"
+  return unless Dir.exist? images_dir
+
+  Rails.application.config.assets.paths << images_dir
+end
+
+def add_theme_styles_to_asset_load_path( theme_name )
+  stylesheets_dir = Rails.root.join "themes/#{theme_name}/stylesheets"
+  return unless Dir.exist? stylesheets_dir
+
+  Rails.application.config.assets.paths << stylesheets_dir
+  Rails.application.config.assets.precompile += %W[ #{theme_name}.css ]
 end
 
 add_all_themes_to_asset_load_path

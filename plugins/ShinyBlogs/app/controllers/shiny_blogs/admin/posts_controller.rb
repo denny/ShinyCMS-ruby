@@ -72,9 +72,8 @@ module ShinyBlogs
       redirect_to blog_posts_path( @blog )
     end
 
-    # Override the breadcrumbs 'section' link to go back to the list of posts for this blog
-    def breadcrumb_link_text_and_path
-      [ t( 'shiny_blogs.admin.posts.breadcrumb' ), blog_posts_path( @blog ) ]
+    def breadcrumb_section_path
+      shiny_blogs.blog_posts_path
     end
 
     private

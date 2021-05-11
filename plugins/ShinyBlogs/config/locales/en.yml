@@ -39,6 +39,7 @@ en:
 
     admin:
       blogs:
+        breadcrumb: Blogs
         title: Blogs
         toolbar: Blogs
         index:

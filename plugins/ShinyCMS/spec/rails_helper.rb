@@ -20,11 +20,14 @@ require 'rspec/rails'
 
 # Add additional requires below this line; Rails is not loaded until this point
 
+# Supply random fake data to tests, to make them work a bit harder
+require 'faker'
+
 # Capybara matchers, for more readable tests
 require 'capybara/rails'
 
-# Supply random fake data to tests, to make them work a bit harder
-require 'faker'
+# Helpers for testing View Components
+require 'view_component/test_helpers'
 
 # Mock all calls to Algolia API (their free plan has a very low transaction limit)
 require 'algolia/webmock'
@@ -52,8 +55,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
-# Stash current email-sending setting
-send_emails = ShinyCMS::FeatureFlag.enabled? :send_emails
+send_emails = false  # set the safer default value
 
 RSpec.configure do |config|
   config.before( :suite ) do
@@ -61,7 +63,7 @@ RSpec.configure do |config|
 
     # Load feature flags, capabilities, etc
     Rails.application.load_tasks
-    Rake::Task['db:seed'].invoke
+    Rake::Task['shinycms:db:seed'].invoke
 
     # These features default to off for privacy or security, but we want to test them
     ShinyCMS::FeatureFlag.enable :ahoy_web_tracking
@@ -69,13 +71,16 @@ RSpec.configure do |config|
     ShinyCMS::FeatureFlag.enable :user_registration
     ShinyCMS::FeatureFlag.enable :user_login
 
-    # Only send emails when that's what we're testing
+    # Stash current email-sending setting
+    send_emails = ShinyCMS::FeatureFlag.enabled? :send_emails
+
+    # Turn email off during testing (override in email tests)
     ShinyCMS::FeatureFlag.disable :send_emails
   end
 
   config.after( :suite ) do
     # Restore original email-sending setting
-    ShinyCMS::FeatureFlag.enable if send_emails
+    ShinyCMS::FeatureFlag.enable :send_emails if send_emails
   end
 
   # See spec/support/shinycms/error_responses.rb
@@ -83,32 +88,33 @@ RSpec.configure do |config|
     disable_detailed_exceptions( &test )
   end
 
+  # Allow production-style error-handling to be selectively enabled (so it can be tested)
   config.include ShinyCMS::ErrorResponses
 
-  # Load the Devise test helpers
-  config.include Devise::Test::IntegrationHelpers, type: :request
-  config.include Devise::Test::ControllerHelpers, type: :helper
-
-  # Allow request specs to use have_* matchers, like so:
-  # expect( response.body ).to have_title 'My Page Title'
+  # Make capybara matchers (e.g. have_title) available in component and request specs
+  config.include Capybara::RSpecMatchers, type: :component
   config.include Capybara::RSpecMatchers, type: :request
 
-  # RSpec Rails can automatically mix in different behaviours to your tests
-  # based on their file location, for example enabling you to call `get` and
-  # `post` in specs under `spec/controllers`.
-  #
+  # Make devise test helper methods available in request and helper specs
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::ControllerHelpers,  type: :helper
+
+  # Make view component test helper methods available in component specs
+  config.include ViewComponent::TestHelpers, type: :component
+
+  # Mix in different behaviours to your tests based on their file location
+  # For example, add `get` and `post` methods to specs in `spec/requests`
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
-  # Filter lines from Rails gems in backtraces.
+  # Filter lines from Rails gems in backtraces
   config.filter_rails_from_backtrace!
-  # arbitrary gems may also be filtered via:
-  # config.filter_gems_from_backtrace("gem name")
+  # Arbitrary gems can also be filtered: config.filter_gems_from_backtrace( 'gem name' )
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or set to false
+  # Remove the following line (or set to false) if you're not using ActiveRecord
+  # or you'd prefer not to run each of your examples within a transaction
   config.use_transactional_fixtures = true
 end

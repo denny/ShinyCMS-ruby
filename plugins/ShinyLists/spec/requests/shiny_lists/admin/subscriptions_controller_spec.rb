@@ -54,7 +54,7 @@ RSpec.describe ShinyLists::Admin::SubscriptionsController, type: :request do
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.subscriptions.index.title' ).titlecase
-      expect( response.body ).to have_css 'td', text: 2.days.ago.to_s( :shinydate_with_day )
+      expect( response.body ).to have_css 'td', text: 2.days.ago.localtime.to_s( :shinydate_with_day )
     end
   end
 

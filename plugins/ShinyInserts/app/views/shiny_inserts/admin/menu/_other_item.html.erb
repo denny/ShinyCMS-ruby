@@ -1,2 +1,3 @@
-    <%= render_admin_menu_item_if( current_user.can?( :list, :inserts ),
-        t( 'shiny_inserts.admin.inserts.menu' ), shiny_inserts.inserts_path, 'list' ) %>
+  <%= component 'admin/menu/item', link: shiny_inserts.inserts_path,
+      text: t( 'shiny_inserts.admin.inserts.menu' ), icon: 'list',
+      if: current_user.can?( :list, :inserts ) %>

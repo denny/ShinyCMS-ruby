@@ -11,6 +11,8 @@ module ShinySearch
   class Engine < ::Rails::Engine
     isolate_namespace ShinySearch
 
+    config.paths.add 'app/public/models/concerns', eager_load: true
+
     config.generators do |g|
       g.test_framework :rspec
       g.fixture_replacement :factory_bot

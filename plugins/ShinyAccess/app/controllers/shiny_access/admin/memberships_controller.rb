@@ -9,6 +9,8 @@
 module ShinyAccess
   # Admin controller for access group memberships - part of the ShinyAccess plugin for ShinyCMS
   class Admin::MembershipsController < AdminController
+    include ShinyCMS::WithUsers
+
     before_action :stash_group
     before_action :stash_query, only: :search
 
@@ -52,9 +54,8 @@ module ShinyAccess
       redirect_to group_memberships_path( @group )
     end
 
-    # Override the breadcrumbs 'section' link to go back to the groups page
-    def breadcrumb_link_text_and_path
-      [ t( 'shiny_access.admin.groups.breadcrumb' ), groups_path ]
+    def breadcrumb_section_path
+      shiny_access.groups_path
     end
 
     private
@@ -85,9 +86,9 @@ module ShinyAccess
     end
 
     def user_for_create
-      return ShinyCMS::User.find( strong_params[ :user_id ] ) if strong_params[ :user_id ].present?
+      return user_with_id( strong_params[ :user_id ] ) if strong_params[ :user_id ].present?
 
-      ShinyCMS::User.find_by( username: strong_params[ :username ] )
+      user_with_username( strong_params[ :username ] )
     end
   end
 end

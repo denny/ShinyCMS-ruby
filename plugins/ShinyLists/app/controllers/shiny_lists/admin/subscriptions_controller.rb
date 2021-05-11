@@ -9,6 +9,10 @@
 module ShinyLists
   # Controller for list subscription admin features - part of the ShinyLists plugin for ShinyCMS
   class Admin::SubscriptionsController < AdminController
+    include ShinyCMS::WithConsentVersion
+    include ShinyCMS::WithEmailRecipients
+    include ShinyCMS::WithUsers
+
     def index
       authorize Subscription
 
@@ -55,9 +59,8 @@ module ShinyLists
       redirect_to list_subscriptions_path( list )
     end
 
-    # Override the breadcrumbs 'section' link to go back to the lists page
-    def breadcrumb_link_text_and_path
-      [ t( 'shiny_lists.admin.lists.breadcrumb' ), lists_path ]
+    def breadcrumb_section_path
+      shiny_lists.lists_path
     end
 
     private
@@ -75,13 +78,13 @@ module ShinyLists
     end
 
     def subscriber_for_subscribe
-      ShinyCMS::User.find_by( email: subscription_params[:email] ) ||
-        ShinyCMS::EmailRecipient.find_by( email: subscription_params[:email] ) ||
-        ShinyCMS::EmailRecipient.create!( email: subscription_params[:email] )
+      user_with_email( subscription_params[:email] ) ||
+        email_recipient_with_email( subscription_params[:email] ) ||
+        create_email_recipient( subscription_params[:email] )
     end
 
     def admin_consent
-      ShinyCMS::ConsentVersion.find_by( slug: 'shiny-lists-admin-subscribe' )
+      consent_version_with_slug( 'shiny-lists-admin-subscribe' )
     end
 
     def subscription_params

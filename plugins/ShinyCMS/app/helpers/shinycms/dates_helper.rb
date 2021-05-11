@@ -47,13 +47,5 @@ module ShinyCMS
 
       timestamp.localtime.to_s :time
     end
-
-    def combine_date_and_time_params( params_hash, date_input_name )
-      date_string = params_hash[ date_input_name ]
-      time_string = params_hash.delete( "#{date_input_name}_time" )
-
-      params_hash[ date_input_name.to_sym ] = "#{date_string} #{time_string}".strip
-      params_hash
-    end
   end
 end

@@ -10,12 +10,15 @@ require 'rails_helper'
 
 # Tests for news admin features
 RSpec.describe ShinyNews::Admin::NewsPostsController, type: :request do
-  before do
+  let( :admin ) do
     admin = create :news_admin
     sign_in admin
+    admin
   end
 
-  let( :admin ) { ShinyCMS::User.first }
+  before do
+    admin
+  end
 
   describe 'GET /admin/news' do
     context 'when there are no posts' do

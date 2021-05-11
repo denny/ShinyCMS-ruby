@@ -20,7 +20,7 @@ Devise.setup do |config|
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
-  config.parent_controller = 'ShinyCMS::MainController'
+  config.parent_controller = 'ShinyCMS::Users::BaseController'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -34,7 +34,7 @@ Devise.setup do |config|
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
-  config.parent_mailer = 'ShinyCMS::ApplicationMailer'
+  config.parent_mailer = 'ShinyCMS::BaseMailer'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and

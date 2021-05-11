@@ -1,7 +1,7 @@
 <%
   return unless feature_enabled? :comments
-  return unless current_user_can?( :hide, :discussions ) || current_user_can?( :lock, :discussions )
   return if discussion.blank?
+  return unless current_user_can?( :hide, :discussions ) || current_user_can?( :lock, :discussions )
 %>
 
 <div class="float-right smaller">

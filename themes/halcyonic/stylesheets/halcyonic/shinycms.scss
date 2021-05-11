@@ -6,10 +6,14 @@
 
 // Additional styles & overrides for the ShinyCMS Halcyonic theme
 
-$blue:              #2668ac;
-$light-blue:        #368aee;
-$lighter-blue:      #99ddff;
-$lightest-blue:     #aaeeff;
+$dark-blue-grey:    #1c2833;
+$grey-blue:         #2e343b;
+$nearly-white:      #e0ffff;
+
+$blue:              #0f4880;
+$light-blue:        #89C4F4;
+$lighter-blue:      #66ccdd;
+$lightest-blue:     #00eeff;
 
 $red:               #ed391b;
 $light-red:         #fd492b;
@@ -118,6 +122,17 @@ input.long {
   width:                30em;
 }
 
+.a11y-hidden {
+  border:       0;
+  clip:         rect( 0 0 0 0 );
+  height:       1px;
+  margin:       -1px;
+  overflow:     hidden;
+  padding:      0;
+  position:     absolute;
+  width:        1px;
+}
+
 // ===== ( undoing sweeping style resets ) =====
 
 blockquote {
@@ -186,7 +201,7 @@ strong, b {
 }
 
 .white-text {
-  color:        $white !important;
+  color:        $nearly-white !important;
 }
 
 a.button:hover {
@@ -210,39 +225,39 @@ nav .sm li {
   margin:               0 2em 0 0 !important;
 }
 
-nav .sm li:last-child {
-  margin:               0 !important;
-}
-
 nav .sm li ul {
-  padding:               0.6em 0;
+  padding:              0.6em 0;
 }
 
 nav .sm li li {
-  font-size:            0.75em;
+  font-size:            0.8em;
   margin:               0 !important;
   text-shadow:          none;
 }
 
 nav .sm li li a {
-  color:                $dark-grey !important;
-  line-height:          1.2em;
-  padding:              0.4em 0.8em;
+  color:                $dark-blue-grey !important;
+  padding:              0.6em !important;
+}
+
+nav .sm li li:last-child a {
+  padding-bottom:       0.2em !important;
 }
 
 nav .sm li li a:hover {
-  color:                $blue !important;
-  line-height:          1.2em;
-  padding:              0.4em 0.8em;
+  color:                $light-blue !important;
 }
 
+nav .sm li li li {
+  font-size:            0.9em;
+}
 
 // ===== ( alerts / notices ) =====
 
 .header .alerts {
   background:           $alert-bg;
   border-radius:        3px;
-  color:                $nearly-black;
+  color:                $dark-blue-grey;
   margin:               0.5em !important;
   padding:              0.5em;
   text-shadow:          none;
@@ -251,7 +266,7 @@ nav .sm li li a:hover {
 .header .notices {
   background:           $notice-bg;
   border-radius:        3px;
-  color:                $nearly-black;
+  color:                $dark-blue-grey;
   margin:               0.5em !important;
   padding:              0.5em;
   text-shadow:          none;
@@ -294,6 +309,14 @@ nav .sm li li a:hover {
     list-style: none;
 }
 
+#content h2 {
+  color:                $nearly-black !important;
+}
+
+#content h3 {
+  color:                $dark-blue-grey !important;
+}
+
 // ===== ( sidebars ) =====
 
 .sidebar section {
@@ -329,7 +352,23 @@ nav .sm li li a:hover {
 }
 
 
-// ===== ( links in headers/footers ) =====
+// ===== ( page footer ) =====
+
+#footer {
+  color:                $dark-blue-grey !important;
+}
+
+#footer a {
+  color:                $dark-blue-grey !important;
+  text-decoration:      none;
+}
+
+#footer a:hover {
+  color:                $blue !important;
+}
+
+
+// ===== ( links in content headers/footers ) =====
 
 .content header a,
 .content footer a {
@@ -383,7 +422,7 @@ nav .sm li li a:hover {
 }
 
 .comment header {
-  margin-bottom:       1em !important;
+  margin-bottom:        1em !important;
 }
 
 .comment footer {

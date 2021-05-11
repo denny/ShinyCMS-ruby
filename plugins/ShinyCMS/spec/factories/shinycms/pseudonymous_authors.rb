@@ -18,7 +18,7 @@ FactoryBot.define do
     end
 
     trait :with_url do
-      url { Faker::Internet.unique.website }
+      url { Faker::Internet.unique.url }
     end
   end
 end

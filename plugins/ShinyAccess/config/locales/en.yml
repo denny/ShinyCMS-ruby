@@ -37,6 +37,7 @@ en:
         destroy:
           success: Access group deleted
       memberships:
+        breadcrumb: Access
         index:
           title: Memberships for '%{name}'
           search: Search memberships

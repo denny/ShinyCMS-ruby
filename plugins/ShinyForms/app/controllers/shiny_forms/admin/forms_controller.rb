@@ -6,8 +6,6 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-require_dependency 'shiny_forms/application_controller'
-
 module ShinyForms
   # Admin area controller for ShinyForms plugin for ShinyCMS
   class Admin::FormsController < AdminController

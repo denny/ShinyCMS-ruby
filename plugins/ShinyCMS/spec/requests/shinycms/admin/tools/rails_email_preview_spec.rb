@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for the RailsEmailPreview engine, which powers admin previews of site emails
 RSpec.describe RailsEmailPreview, type: :request do
   before do
-    admin = create :admin_with_rails_email_preview
+    admin = create :tools_admin
     sign_in admin
   end
 
@@ -21,8 +21,7 @@ RSpec.describe RailsEmailPreview, type: :request do
     it 'shows the list of emails' do
       get rails_email_preview.rep_emails_path
 
-      # expect( response.body ).to have_title I18n.t( 'shinycms.admin.rails_email_preview.emails.index.title' ).titlecase
-      expect( response.body ).to have_title 'Emails - REP'
+      expect( response.body ).to have_title I18n.t( 'shinycms.admin.rails_email_preview.emails.index.title' ).titlecase
       expect( response.body ).to have_link 'Confirmation instructions'
       # expect( response.body ).to have_link text: I18n.t( 'shinycms.user_mailer.confirmation_instructions.subject', site_name: site_name )
     end

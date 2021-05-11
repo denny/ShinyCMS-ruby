@@ -45,8 +45,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'persistent-dmnd'
 
   # Sessions
-  # FIXME: Installing from GitHub for security patch and Ruby 3.0 support
-  # spec.add_dependency 'activerecord-session_store'
+  spec.add_dependency 'activerecord-session_store'
 
   # Stronger password encryption
   spec.add_dependency 'bcrypt', '~> 3.1.16'
@@ -63,6 +62,9 @@ Gem::Specification.new do |spec|
 
   # Locales for the 'not USA' bits of the world
   spec.add_dependency 'rails-i18n'
+
+  # View components
+  spec.add_dependency 'view_component'
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
   spec.add_dependency 'sidekiq'
@@ -81,7 +83,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ckeditor'
 
   # Pagination
-  spec.add_dependency 'pagy'
+  spec.add_dependency 'pagy', '~> 4.3.0'
 
   # Atom feeds
   spec.add_dependency 'rss'
@@ -118,10 +120,15 @@ Gem::Specification.new do |spec|
   ## Monitoring services
   spec.add_dependency 'airbrake'
   spec.add_dependency 'bugsnag'
+  spec.add_dependency 'sentry-rails'
+  spec.add_dependency 'sentry-ruby'
 
   # Fix request.ip when running behind Cloudflare proxying
   spec.add_dependency 'cloudflare-rails'
 
-  # Test coverage; 0.20.0 is the latest version currently compatible with CodeCov
+  # Used to export demo site data from the database
+  spec.add_dependency 'seed_dump'
+
+  # Test coverage; 0.20.0 is the latest version currently compatible with CodeCov and Ruby Critic
   spec.add_development_dependency 'simplecov', '~> 0.20.0'
 end
