@@ -15,8 +15,8 @@ RSpec.describe ShinyCMS::Plugin, type: :model do
       plugin = described_class.get( 'ShinyBlog' )
       models = plugin.models_that_include ShinyCMS::ProvidesDemoSiteData
 
-      expect( models       ).to be_an Enumerable
-      expect( models.first ).to be ShinyBlog::Post
+      expect( models ).to be_an Enumerable
+      expect( models.first.name ).to eq 'ShinyBlog::Post'
     end
   end
 end

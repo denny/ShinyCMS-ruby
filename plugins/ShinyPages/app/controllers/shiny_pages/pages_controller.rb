@@ -16,7 +16,7 @@ module ShinyPages
     # Handle requests for the root page
     # /  (or /pages)
     def index
-      @page = find_default_page
+      @page = default_page
 
       return show_page if @page
 

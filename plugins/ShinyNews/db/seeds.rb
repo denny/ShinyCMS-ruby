@@ -17,7 +17,5 @@ seeder.seed_feature_flag( name: 'news',           description: 'News / press-rel
 seeder.seed_feature_flag( name: 'news_upvotes',   description: 'Allow upvotes on news posts'   )
 seeder.seed_feature_flag( name: 'news_downvotes', description: 'Allow downvotes on news posts' )
 
-seeder.seed_standard_admin_capabilities( category: :news_posts )
-
-category = ShinyCMS::CapabilityCategory.find_or_create_by!( name: 'news_posts' )
+category = seeder.seed_standard_admin_capabilities( category: :news_posts )
 category.capabilities.find_or_create_by!( name: 'change_author' )

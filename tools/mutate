@@ -1,0 +1,12 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Run mutation tests on a specific class: tools/mutate ShinyProfiles::Link
+# Run mutation tests on a whole plugin:   tools/mutate ShinySEO*
+
+# Note: Mutation testing is not fast; testing a large plugin may take hours.
+
+RAILS_ENV=test bundle exec mutant run -r ./config/environment --use rspec $1

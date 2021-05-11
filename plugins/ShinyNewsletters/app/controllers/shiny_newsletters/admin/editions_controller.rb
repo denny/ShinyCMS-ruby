@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Admin controller for newsletter editions - ShinyNewsletters plugin for ShinyCMS
   class Admin::EditionsController < AdminController
-    include ShinyCMS::Admin::Sorting
+    include ShinyCMS::Admin::WithSorting
 
     before_action :stash_new_edition, only: %i[ new create ]
     before_action :stash_edition,     only: %i[ edit update send_sample destroy ]

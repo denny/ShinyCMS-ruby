@@ -26,11 +26,11 @@ module ShinyCMS
     end
 
     def self.available?( plugin_name )
-      available_plugin_names.include? plugin_name.to_sym
+      all_plugin_names.include? plugin_name.to_sym
     end
 
-    def self.available_plugin_names
-      @available_plugin_names ||= a💎[ :ShinyCMS, *ShinyCMS::Plugins.all_plugin_names ]
+    def self.all_plugin_names
+      a💎[ :ShinyCMS, *ShinyCMS::Plugins.feature_plugin_names ]
     end
 
     def engine
@@ -39,6 +39,10 @@ module ShinyCMS
 
     def routes
       engine.routes.routes.routes # er, okay
+    end
+
+    def url_helpers
+      engine.routes.url_helpers
     end
 
     def base_model
@@ -54,7 +58,8 @@ module ShinyCMS
     end
 
     def models_that_include( concern )
-      base_model.descendants.select { |model| model.include?( concern ) }.sort_by( &:name )
+      base_model.descendants.select { |model| model.include?( concern ) }
+                .sort_by( &:name )
     end
 
     def view_path
@@ -71,6 +76,16 @@ module ShinyCMS
 
     def partial( location )
       "#{underscore}/#{location}"
+    end
+
+    def view_components?
+      Dir.exist? "plugins/#{name}/app/components/#{underscore}"
+    end
+
+    def admin_menu_section_view_component
+      return unless defined? to_constant::Admin::Menu::SectionComponent
+
+      to_constant::Admin::Menu::SectionComponent
     end
 
     def underscore

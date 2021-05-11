@@ -12,11 +12,9 @@ module ShinyNewsletters
     include Sidekiq::Status::Worker
 
     def perform( send )
-      return if send.sent?
-      return if send.sending?
-      return if send.future_dated?
+      return unless send.sendable?
 
-      send.update!( started_sending_at: Time.zone.now )
+      send.mark_as_sending
 
       send.list.subscriptions.each do |subscription|
         next unless subscription.subscriber.ok_to_email?
@@ -24,7 +22,7 @@ module ShinyNewsletters
         SendToSubscriberJob.perform_later( send, subscription.subscriber )
       end
 
-      send.update!( finished_sending_at: Time.zone.now )
+      send.mark_as_sent
     end
   end
 end

@@ -1,0 +1,8 @@
+<div class="c-sidebar-brand">
+  <%= image_tag 'shinycms/ShinyCMS-logo.png', alt: 'ShinyCMS', class: 'c-sidebar-brand-full'      %>
+  <%= image_tag 'shinycms/spiral.png',        alt: 'ShinyCMS', class: 'c-sidebar-brand-minimized' %>
+</div>
+
+<nav role="nav" class="c-sidebar-nav">
+  <%= component 'admin/menu', current_user: @current_user %>
+</nav>

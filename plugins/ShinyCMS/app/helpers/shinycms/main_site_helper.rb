@@ -17,5 +17,6 @@ module ShinyCMS
     include SiteNameHelper
     include TagsHelper
     include UsersHelper
+    include ViewComponentHelper
   end
 end

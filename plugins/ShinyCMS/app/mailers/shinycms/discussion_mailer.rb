@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Mailer for discussion-related emails (reply notifications, etc)
-  class DiscussionMailer < ApplicationMailer
+  class DiscussionMailer < BaseMailer
     before_action :stash_content
     before_action :stash_parent_comment_author, only: :parent_comment_author_notification
     before_action :stash_content_author,        only: :content_author_notification

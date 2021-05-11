@@ -6,7 +6,7 @@
   html5up.net/license
 -->
 
-<html>
+<html lang="<%= I18n.locale.to_s %>">
   <%= render partial: 'includes/head' %>
 
   <body<% unless @page&.default_page? %> class="subpage"<% end %>>

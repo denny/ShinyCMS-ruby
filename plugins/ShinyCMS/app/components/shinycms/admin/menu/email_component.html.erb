@@ -1,0 +1,15 @@
+<% return unless @current_user.can?( :list, :email_recipients ) ||
+                 @current_user.can?( :list, :mailer_previews  ) %>
+
+<%= component 'admin/menu/section',
+    text: t( 'shinycms.admin.email.menu' ), icon: 'envelope-open' do %>
+
+  <%= component 'admin/menu/item', link: shinycms.email_recipients_path,
+      text: t( 'shinycms.admin.email_recipients.menu' ), icon: 'envelope-closed',
+      if: @current_user.can?( :list, :email_recipients ) %>
+
+  <%= component 'admin/menu/item', link: rails_email_preview.rep_emails_path,
+      text: t( 'shinycms.admin.rails_email_preview.menu' ), icon: 'envelope-letter',
+      if: @current_user.can?( :list, :mailer_previews ) %>
+
+<% end %>

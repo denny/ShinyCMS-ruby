@@ -6,9 +6,9 @@
 <%= form_for :subscription, url: shiny_lists.list_subscribe_path( list.slug ), method: :post, class: 'subscription_form' do |f| %>
   <% unless user_signed_in? %>
   <% if show_name_field %>
-  <%= f.text_field :name, placeholder: t( 'shiny_lists.name' ) %><br>
+  <%= f.label :name, class: 'a11y-hidden' %><%= f.text_field :name, placeholder: t( 'shiny_lists.name' ) %><br>
   <% end %>
-  <%= f.text_field :email, placeholder: t( 'shiny_lists.email_address' ) %>
+  <%= f.label :email, class: 'a11y-hidden' %><%= f.text_field :email, placeholder: t( 'shiny_lists.email_address' ) %>
   <% if show_name_field %><br><% end %>
   <% end %>
   <%= f.submit t( 'shiny_lists.subscribe' ), name: nil, class: 'button' %>

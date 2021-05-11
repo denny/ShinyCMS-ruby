@@ -13,7 +13,7 @@ require 'persistent-dmnd'
 
 # Low level authentication-related stuff
 require 'bcrypt'
-# require 'activerecord/session_store'
+require 'activerecord/session_store'
 
 # High-level authentication and authorisation stuff
 require 'devise'
@@ -25,6 +25,9 @@ require 'zxcvbn'
 require 'flipper'
 require 'flipper-active_record'
 require 'flipper-ui'
+
+# View components
+require 'view_component/engine'
 
 # Job queues
 require 'sidekiq'
@@ -74,11 +77,24 @@ end
 require 'cloudflare/rails'
 
 # Monitoring services
-require 'airbrake' if ENV[ 'AIRBRAKE_API_KEY' ].present?
-require 'bugsnag'  if ENV[ 'BUGSNAG_API_KEY'  ].present?
+require 'airbrake'     if ENV[ 'AIRBRAKE_API_KEY' ].present?
+require 'bugsnag'      if ENV[ 'BUGSNAG_API_KEY'  ].present?
+require 'sentry-ruby'  if ENV[ 'SENTRY_DSN'       ].present?
+require 'sentry-rails' if ENV[ 'SENTRY_DSN'       ].present?
 
 # Top-level namespace wrapper
 module ShinyCMS
+  mattr_reader :config_user_model
+
+  def self.configure( user_model: nil )
+    # rubocop:disable Style/ClassVars
+    @@config_user_model = user_model if user_model
+    # rubocop:enable Style/ClassVars
+  end
+
+  # Default config
+  configure( user_model: 'ShinyCMS::User' )
+
   # Build the configured plugin collection, and stash it in ShinyCMS.plugins for easy re-use
   def self.plugins
     @plugins ||= ShinyCMS::Plugins.all

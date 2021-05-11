@@ -1,0 +1,178 @@
+📦 Packwerk is inspecting 582 files
+....E.........................................EE.....................E.........................................E.....E......................................E..........E................................E.......................................................................................................................................................................................E............................E................................................E................................................................................E......................................
+📦 Finished in 2.53 seconds
+
+app/models/ahoy/visit.rb:14:2
+Privacy violation: '::ShinyCMS::User' is private to 'plugins/ShinyCMS' but referenced from '.'.
+Is there a public entrypoint in 'plugins/ShinyCMS/app/public/' that you can use instead?
+Inference details: this is a reference to ::ShinyCMS::User which seems to be defined in plugins/ShinyCMS/app/models/shinycms/user.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyAccess/app/models/shiny_access/group.rb:21:4
+Privacy violation: '::ShinyCMS::User' is private to 'plugins/ShinyCMS' but referenced from 'plugins/ShinyAccess'.
+Is there a public entrypoint in 'plugins/ShinyCMS/app/public/' that you can use instead?
+Inference details: this is a reference to ::ShinyCMS::User which seems to be defined in plugins/ShinyCMS/app/models/shinycms/user.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyAccess/app/models/shiny_access/membership.rb:19:4
+Privacy violation: '::ShinyCMS::User' is private to 'plugins/ShinyCMS' but referenced from 'plugins/ShinyAccess'.
+Is there a public entrypoint in 'plugins/ShinyCMS/app/public/' that you can use instead?
+Inference details: this is a reference to ::ShinyCMS::User which seems to be defined in plugins/ShinyCMS/app/models/shinycms/user.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyBlog/app/models/shiny_blog/post.rb:17:4
+Privacy violation: '::ShinyCMS::User' is private to 'plugins/ShinyCMS' but referenced from 'plugins/ShinyBlog'.
+Is there a public entrypoint in 'plugins/ShinyCMS/app/public/' that you can use instead?
+Inference details: this is a reference to ::ShinyCMS::User which seems to be defined in plugins/ShinyCMS/app/models/shinycms/user.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyCMS/app/controllers/shinycms/admin/email_stats_controller.rb:13:16
+Dependency violation: ::Ahoy::Message belongs to '.', but 'plugins/ShinyCMS' does not specify a dependency on '.'.
+Are we missing an abstraction?
+Is the code making the reference, and the referenced constant, in the right packages?
+
+Inference details: this is a reference to ::Ahoy::Message which seems to be defined in app/models/ahoy/message.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyCMS/app/controllers/shinycms/admin/email_stats_controller.rb:25:16
+Dependency violation: ::Ahoy::Message belongs to '.', but 'plugins/ShinyCMS' does not specify a dependency on '.'.
+Are we missing an abstraction?
+Is the code making the reference, and the referenced constant, in the right packages?
+
+Inference details: this is a reference to ::Ahoy::Message which seems to be defined in app/models/ahoy/message.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyCMS/app/controllers/shinycms/admin/email_stats_controller.rb:30:8
+Dependency violation: ::Ahoy::Message belongs to '.', but 'plugins/ShinyCMS' does not specify a dependency on '.'.
+Are we missing an abstraction?
+Is the code making the reference, and the referenced constant, in the right packages?
+
+Inference details: this is a reference to ::Ahoy::Message which seems to be defined in app/models/ahoy/message.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyCMS/app/controllers/shinycms/admin/email_stats_controller.rb:31:25
+Dependency violation: ::Ahoy::Message belongs to '.', but 'plugins/ShinyCMS' does not specify a dependency on '.'.
+Are we missing an abstraction?
+Is the code making the reference, and the referenced constant, in the right packages?
+
+Inference details: this is a reference to ::Ahoy::Message which seems to be defined in app/models/ahoy/message.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyCMS/app/controllers/shinycms/admin/email_stats_controller.rb:42:6
+Dependency violation: ::Ahoy::Message belongs to '.', but 'plugins/ShinyCMS' does not specify a dependency on '.'.
+Are we missing an abstraction?
+Is the code making the reference, and the referenced constant, in the right packages?
+
+Inference details: this is a reference to ::Ahoy::Message which seems to be defined in app/models/ahoy/message.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyCMS/app/controllers/shinycms/admin/web_stats_controller.rb:13:16
+Dependency violation: ::Ahoy::Visit belongs to '.', but 'plugins/ShinyCMS' does not specify a dependency on '.'.
+Are we missing an abstraction?
+Is the code making the reference, and the referenced constant, in the right packages?
+
+Inference details: this is a reference to ::Ahoy::Visit which seems to be defined in app/models/ahoy/visit.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyCMS/app/controllers/shinycms/admin/web_stats_controller.rb:21:16
+Dependency violation: ::Ahoy::Visit belongs to '.', but 'plugins/ShinyCMS' does not specify a dependency on '.'.
+Are we missing an abstraction?
+Is the code making the reference, and the referenced constant, in the right packages?
+
+Inference details: this is a reference to ::Ahoy::Visit which seems to be defined in app/models/ahoy/visit.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyCMS/app/controllers/shinycms/admin/web_stats_controller.rb:37:13
+Dependency violation: ::Ahoy::Visit belongs to '.', but 'plugins/ShinyCMS' does not specify a dependency on '.'.
+Are we missing an abstraction?
+Is the code making the reference, and the referenced constant, in the right packages?
+
+Inference details: this is a reference to ::Ahoy::Visit which seems to be defined in app/models/ahoy/visit.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyCMS/app/controllers/shinycms/admin/web_stats_controller.rb:39:6
+Dependency violation: ::Ahoy::Visit belongs to '.', but 'plugins/ShinyCMS' does not specify a dependency on '.'.
+Are we missing an abstraction?
+Is the code making the reference, and the referenced constant, in the right packages?
+
+Inference details: this is a reference to ::Ahoy::Visit which seems to be defined in app/models/ahoy/visit.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyCMS/app/models/concerns/shinycms/shiny_user_content.rb:21:6
+Dependency violation: ::Ahoy::Visit belongs to '.', but 'plugins/ShinyCMS' does not specify a dependency on '.'.
+Are we missing an abstraction?
+Is the code making the reference, and the referenced constant, in the right packages?
+
+Inference details: this is a reference to ::Ahoy::Visit which seems to be defined in app/models/ahoy/visit.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyCMS/app/models/concerns/shinycms/shiny_user_content.rb:22:6
+Dependency violation: ::Ahoy::Message belongs to '.', but 'plugins/ShinyCMS' does not specify a dependency on '.'.
+Are we missing an abstraction?
+Is the code making the reference, and the referenced constant, in the right packages?
+
+Inference details: this is a reference to ::Ahoy::Message which seems to be defined in app/models/ahoy/message.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyCMS/app/models/shinycms/email_recipient.rb:24:4
+Dependency violation: ::Ahoy::Message belongs to '.', but 'plugins/ShinyCMS' does not specify a dependency on '.'.
+Are we missing an abstraction?
+Is the code making the reference, and the referenced constant, in the right packages?
+
+Inference details: this is a reference to ::Ahoy::Message which seems to be defined in app/models/ahoy/message.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyCMS/app/public/concerns/shinycms/post.rb:42:16
+Dependency violation: ::ShinySearch::Searchable belongs to 'plugins/ShinySearch', but 'plugins/ShinyCMS' does not specify a dependency on 'plugins/ShinySearch'.
+Are we missing an abstraction?
+Is the code making the reference, and the referenced constant, in the right packages?
+
+Inference details: this is a reference to ::ShinySearch::Searchable which seems to be defined in plugins/ShinySearch/app/public/concerns/shiny_search/searchable.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyLists/app/models/shiny_lists/subscription.rb:20:4
+Privacy violation: '::ShinyCMS::ConsentVersion' is private to 'plugins/ShinyCMS' but referenced from 'plugins/ShinyLists'.
+Is there a public entrypoint in 'plugins/ShinyCMS/app/public/' that you can use instead?
+Inference details: this is a reference to ::ShinyCMS::ConsentVersion which seems to be defined in plugins/ShinyCMS/app/models/shinycms/consent_version.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyNews/app/models/shiny_news/post.rb:17:4
+Privacy violation: '::ShinyCMS::User' is private to 'plugins/ShinyCMS' but referenced from 'plugins/ShinyNews'.
+Is there a public entrypoint in 'plugins/ShinyCMS/app/public/' that you can use instead?
+Inference details: this is a reference to ::ShinyCMS::User which seems to be defined in plugins/ShinyCMS/app/models/shinycms/user.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyNewsletters/app/models/shiny_newsletters/send.rb:19:4
+Privacy violation: '::ShinyLists::List' is private to 'plugins/ShinyLists' but referenced from 'plugins/ShinyNewsletters'.
+Is there a public entrypoint in 'plugins/ShinyLists/app/public/' that you can use instead?
+Inference details: this is a reference to ::ShinyLists::List which seems to be defined in plugins/ShinyLists/app/models/shiny_lists/list.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+plugins/ShinyProfiles/app/models/shiny_profiles/profile.rb:80:8
+Privacy violation: '::ShinyCMS::User' is private to 'plugins/ShinyCMS' but referenced from 'plugins/ShinyProfiles'.
+Is there a public entrypoint in 'plugins/ShinyCMS/app/public/' that you can use instead?
+Inference details: this is a reference to ::ShinyCMS::User which seems to be defined in plugins/ShinyCMS/app/models/shinycms/user.rb.
+To receive help interpreting or resolving this error message, see: https://github.com/Shopify/packwerk/blob/main/TROUBLESHOOT.md#Troubleshooting-violations
+
+
+21 offenses detected

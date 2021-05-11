@@ -11,6 +11,7 @@
 Rails.application.reloader.to_prepare do
   ShinyCMS.reload_plugins
 
-  ShinyCMS::User.has_one :profile, inverse_of: :user, class_name: 'ShinyProfiles::Profile', dependent: :destroy
-  ShinyCMS::User.after_create :create_profile
+  ShinyCMS.config_user_model.constantize.has_one :profile, inverse_of: :user, dependent: :destroy,
+                                                 class_name: 'ShinyProfiles::Profile'
+  ShinyCMS.config_user_model.constantize.after_create :create_profile
 end

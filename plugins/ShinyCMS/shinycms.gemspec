@@ -45,8 +45,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'persistent-dmnd'
 
   # Sessions
-  # FIXME: Installing from GitHub for security patch and Ruby 3.0 support
-  # spec.add_dependency 'activerecord-session_store'
+  spec.add_dependency 'activerecord-session_store'
 
   # Stronger password encryption
   spec.add_dependency 'bcrypt', '~> 3.1.16'
@@ -70,6 +69,9 @@ Gem::Specification.new do |spec|
   # Complete with web interface
   spec.add_dependency 'flipper-ui'
 
+  # View components
+  spec.add_dependency 'view_component'
+
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
   spec.add_dependency 'sidekiq'
   spec.add_dependency 'sidekiq-status'
@@ -87,7 +89,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ckeditor'
 
   # Pagination
-  spec.add_dependency 'pagy'
+  spec.add_dependency 'pagy', '~> 4.3.0'
 
   # Atom feeds
   spec.add_dependency 'rss'
@@ -124,6 +126,8 @@ Gem::Specification.new do |spec|
   ## Monitoring services
   spec.add_dependency 'airbrake'
   spec.add_dependency 'bugsnag'
+  spec.add_dependency 'sentry-rails'
+  spec.add_dependency 'sentry-ruby'
 
   # Fix request.ip when running behind Cloudflare proxying
   spec.add_dependency 'cloudflare-rails'

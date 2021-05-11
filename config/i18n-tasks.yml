@@ -76,6 +76,7 @@ search:
     <% end %>
     # FIXME
     - plugins/ShinyPages/app/models
+    - plugins/ShinyCMS/app/public/components
     - plugins/ShinyCMS/app/helpers
     - plugins/ShinyCMS/app/mailers
     - plugins/ShinyCMS/app/mailers/shinycms

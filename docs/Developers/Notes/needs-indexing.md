@@ -1,4 +1,6 @@
-# Ruby console snippet to find database tables that need indexes...
+# ShinyCMS Developer Notes
+
+Ruby console snippet to find database tables that need indexes...
 
 ```ruby
 c = ActiveRecord::Base.connection

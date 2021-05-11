@@ -12,10 +12,10 @@ ShinyProfiles::Engine.routes.draw do
     get 'profiles',               to: 'profiles#index'
     get 'profile',                to: 'profiles#profile_redirect', as: :profile_redirect
     get 'profile/:username',      to: 'profiles#show', as: :profile,
-                                  constraints: ShinyCMS::User::USERNAME_ROUTE_CONSTRAINT
+                                  constraints: { username: ShinyCMS::UsernameValidation::REGEX }
     get 'profile/:username/edit', to: 'profiles#edit', as: :edit_profile,
-                                  constraints: ShinyCMS::User::USERNAME_ROUTE_CONSTRAINT
-    put 'profile/:username',      to: 'profiles#update', constraints: ShinyCMS::User::USERNAME_ROUTE_CONSTRAINT
+                                  constraints: { username: ShinyCMS::UsernameValidation::REGEX }
+    put 'profile/:username',      to: 'profiles#update', constraints: { username: ShinyCMS::UsernameValidation::REGEX }
 
     # Admin area
     scope path: 'admin', module: 'admin' do
