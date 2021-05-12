@@ -456,6 +456,7 @@ GEM
       simplecov (>= 0.15, < 0.22)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
+    colorize (0.8.1)
     concurrent-ruby (1.1.8)
     constant_resolver (0.1.5)
     coverband (5.1.0)
@@ -667,6 +668,9 @@ GEM
     rspec-support (3.10.2)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
+    rspec_pacman_formatter (0.1.7)
+      colorize
+      rspec
     rubocop (1.14.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
@@ -801,6 +805,7 @@ DEPENDENCIES
   rspec-instafail!
   rspec-rails!
   rspec_junit_formatter!
+  rspec_pacman_formatter!
   rubocop!
   rubocop-performance!
   rubocop-rails!
