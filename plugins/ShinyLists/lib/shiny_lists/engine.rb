@@ -6,12 +6,13 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Rails::Engine config for ShinyLists
-
 module ShinyLists
   # Loads Rails::Engine features
   class Engine < ::Rails::Engine
     isolate_namespace ShinyLists
+
+    config.paths.add 'app/public/controllers/concerns', eager_load: true
+    config.paths.add 'app/public/models/concerns',      eager_load: true
 
     config.generators do |g|
       g.test_framework :rspec

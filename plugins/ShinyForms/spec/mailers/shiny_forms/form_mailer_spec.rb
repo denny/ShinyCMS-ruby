@@ -32,12 +32,12 @@ module ShinyForms
         email1 = described_class.with(
           to:        form1.email_to,
           form_name: form1.internal_name,
-          form_data: { message: 'Plain text email' }
+          form_data: { message: 'Plain text email', subject: 'TEST EMAIL' }
         ).plain_email
 
         expect { email1.deliver_later }.to have_enqueued_job
 
-        expect( email1.subject ).to eq default_subject
+        expect( email1.subject ).to eq "[#{site_name}] TEST EMAIL"
         expect( email1.body    ).to include 'message: Plain text email'
       end
     end
@@ -56,6 +56,22 @@ module ShinyForms
 
         expect( email1.subject ).to eq default_subject
         expect( email1.parts.second.body ).to include 'Templated email'
+      end
+
+      it 'generates a non-sending NullMail if the template file is missing' do
+        form1 = create :template_email_form
+
+        mailer1 = described_class.with(
+          to:        form1.email_to,
+          form_name: form1.internal_name,
+          form_data: { message: 'b0rked email' }
+        )
+
+        allow( Form ).to receive( :template_file_exists? ).and_return( false )
+
+        email1 = mailer1.html_email( template_file: form1.filename )
+
+        expect( email1.deliver_now ).to be_falsey
       end
     end
   end

@@ -1,7 +1,8 @@
 ---
 exclude:
-  - app/assets/stylesheets/halcyonic/main.scss
+  - themes/halcyonic/stylesheets/halcyonic/main.scss
   - node_modules/*
+  - vendor/*
 linters:
   ImportantRule:
     enabled: false

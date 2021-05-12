@@ -18,10 +18,10 @@ seeder.seed_feature_flag( name: :mailing_lists, description: 'Enable mailing lis
 seeder.seed_standard_admin_capabilities( category: :mailing_lists )
 
 category = seeder.seed_standard_admin_capabilities( category: :mailing_list_subscriptions )
-category.capabilities.destroy!( name: 'edit' )
+category.capabilities.destroy_fully!( name: 'edit' )
 
 # Consent version used when a list admin manually subscribes somebody
-ShinyCMS::Interface::ConsentVersion.find_or_create_by!(
+seeder.seed_consent_version(
   name:         'Subscribed by list admin',
   slug:         'shiny-lists-admin-subscribe',
   display_text: 'Manually subscribing people to lists might make it difficult to prove their consent. Are you sure?',

@@ -8,6 +8,6 @@
 
 # Version number ('Ubuntu style', YY.MM) - ShinyInserts plugin for ShinyCMS
 module ShinyInserts
-  VERSION = '21.04'
+  VERSION = '21.05'
   public_constant :VERSION
 end

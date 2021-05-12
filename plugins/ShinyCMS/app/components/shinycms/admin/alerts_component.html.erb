@@ -1,0 +1,3 @@
+<% @alerts.each do |alert_type, message| %>
+  <%= component 'admin/alert', message: message, style: alert_type.dasherize %>
+<% end %>

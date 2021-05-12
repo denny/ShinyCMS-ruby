@@ -12,11 +12,15 @@ module ShinyCMS
     has_many :comments, inverse_of: :author, dependent: :restrict_with_exception
 
     def name
-      I18n.t 'shinycms.models.anonymous_author.anonymous'
+      I18n.t 'shinycms.models.anonymous_author.name'
     end
 
     def email; end
 
     def url; end
+
+    def self.get
+      ShinyCMS::AnonymousAuthor.first || ShinyCMS::AnonymousAuthor.create!
+    end
   end
 end

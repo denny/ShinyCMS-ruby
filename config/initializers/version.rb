@@ -9,9 +9,9 @@
 # This version number is specifically for the ShinyHostApp
 
 # Each ShinyCMS plugin has its own version number
-# The core plugin is currently at version 21.04
+# The core plugin is currently at version 21.05
 
 module ShinyHostApp
-  VERSION = '21.04'
+  VERSION = '21.05'
   public_constant :VERSION
 end

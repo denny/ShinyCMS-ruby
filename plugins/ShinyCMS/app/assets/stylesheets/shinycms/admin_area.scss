@@ -167,6 +167,10 @@ hr {
   padding: 0 0.8em 0 0;
 }
 
+.dropdown-menu a:active {
+  background-color:  $dark-blue;
+}
+
 /* Blazer has its own top bar which ours is appearing on top of */
 
 .topbar {

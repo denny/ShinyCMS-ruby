@@ -1,0 +1,9 @@
+<a name="<%= @anchor %>"></a>
+<li class="c-sidebar-nav-item c-sidebar-nav-dropdown <%= 'c-show' if @is_open %>" id="<%= @anchor %>">
+  <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#<%= @anchor %>">
+    <i class="cil-<%= @icon %>"></i> <b><%= @text %></b>
+  </a>
+  <ul class="c-sidebar-nav-dropdown-items">
+    <%= content %>
+  </ul>
+</li>

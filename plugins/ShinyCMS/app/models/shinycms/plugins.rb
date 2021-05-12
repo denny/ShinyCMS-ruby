@@ -62,6 +62,10 @@ module ShinyCMS
       Plugins.get( with_views.select { |plugin| plugin.view_file_exists?( partial ) } ).to_a
     end
 
+    def with_view_components
+      Plugins.get( plugins.select { |plugin| plugin if plugin.view_components? } )
+    end
+
     def self.feature_plugin_names
       return @feature_plugin_names if defined? @feature_plugin_names
 
@@ -69,17 +73,6 @@ module ShinyCMS
       on_disk    = Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ).to_sym }
 
       @feature_plugin_names = 💎ify[ configured.intersection( on_disk ) - [ :ShinyCMS ] ]
-    end
-
-    # More syntactic sugar
-    class << self
-      delegate :with_main_site_helpers, to: :all
-      delegate :with_models,            to: :all
-      delegate :with_views,             to: :all
-      delegate :with_partial,           to: :all
-
-      delegate :loaded?,                to: :all
-      delegate :include?,               to: :all
     end
 
     private
@@ -96,19 +89,15 @@ module ShinyCMS
     end
 
     def build_plugins_from_names( requested_names )
-      names_as_symbols = coerce_to_symbols( requested_names )
-      names_that_exist = check_against_filenames( names_as_symbols )
+      symbolised_names = requested_names.collect { |element| element.to_s.to_sym }
+      available_names  = check_exists_and_enabled( symbolised_names )
 
-      💎ify[ names_that_exist.collect { |name| ShinyCMS::Plugin.get( name ) } ]
+      available_names.collect { |name| ShinyCMS::Plugin.get( name ) }
     end
 
-    def coerce_to_symbols( requested_names )
-      requested_names.collect( &:to_s ).collect( &:to_sym )
-    end
-
-    def check_against_filenames( requested_names )
-      # We need .to_a here because a💎 doesn't have .intersection (or &)
-      requested_names.to_a.intersection( Plugins.feature_plugin_names )
+    def check_exists_and_enabled( requested_names )
+      # We need .to_a in the middle of this because a💎 doesn't have .intersection (or &)
+      💎ify[ requested_names.to_a.intersection( self.class.feature_plugin_names ) ]
     end
   end
 end

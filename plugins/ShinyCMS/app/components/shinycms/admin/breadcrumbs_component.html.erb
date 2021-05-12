@@ -1,0 +1,17 @@
+<nav class="breadcrumbs">
+  <ol class="breadcrumb border-0 m-0">
+    <%= component 'admin/breadcrumb_item',
+                  text: t( 'shinycms.home' ),
+                  path: main_app.root_path  %>
+
+    <%= component 'admin/breadcrumb_item',
+                  text: t( 'shinycms.admin.breadcrumb' ),
+                  path: shinycms.admin_path %>
+
+    <%= component 'admin/breadcrumb_item',
+                  text: @section_text,
+                  path: @section_path %>
+
+    <li class="breadcrumb-item active"><%= @page_title.titlecase %></li>
+  </ol>
+</nav>

@@ -20,6 +20,7 @@ Rails.application.config.to_prepare do
   ::Sail::ApplicationController.helper ShinyCMS::AdminAreaHelper
   ::Sail::ApplicationController.helper ShinyCMS::PluginsHelper
   ::Sail::ApplicationController.helper ShinyCMS::UsersHelper
+  ::Sail::ApplicationController.helper ShinyCMS::ViewComponentHelper
 end
 
 Sail.configure do |config|

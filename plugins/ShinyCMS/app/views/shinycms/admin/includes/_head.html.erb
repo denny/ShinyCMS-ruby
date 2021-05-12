@@ -6,22 +6,15 @@
 
     <%= favicon_link_tag asset_path( 'shinycms/favicon.ico' ) %>
 
-    <% if blazer_controller? %>
-    <% @page_title = t( "shinycms.admin.blazer.#{controller_name}.title" ) %>
-
-    <%= stylesheet_link_tag    'blazer/application' %>
-    <%= javascript_include_tag 'blazer/application' %>
-
-    <script>
-      <%= blazer_js_var 'rootPath', root_path %>
-    </script>
-
-    <% elsif sail_controller? %>
+    <% if admin_controller_from == 'sail' %>
     <% @page_title = t( "shinycms.admin.sail.#{controller_name}.title" ) %>
 
     <%= stylesheet_link_tag 'sail/application', media: 'all' %>
 
-    <% elsif shinycms_admin_controller? %>
+    <% elsif admin_controller_from == 'blazer' %>
+    <%= render partial: 'admin/includes/blazer_head' %>
+
+    <% else %>
     <%= javascript_include_tag Ckeditor.cdn_url if try :load_html_editor? %>
     <% end %>
 

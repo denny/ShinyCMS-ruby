@@ -41,6 +41,10 @@ module ShinyCMS
       engine.routes.routes.routes # er, okay
     end
 
+    def url_helpers
+      engine.routes.url_helpers
+    end
+
     def base_model
       to_constant::ApplicationRecord if defined? to_constant::ApplicationRecord
     end
@@ -54,7 +58,8 @@ module ShinyCMS
     end
 
     def models_that_include( concern )
-      base_model.descendants.select { |model| model.include?( concern ) }.sort_by( &:name )
+      base_model.descendants.select { |model| model.include?( concern ) }
+                .sort_by( &:name )
     end
 
     def view_path
@@ -71,6 +76,16 @@ module ShinyCMS
 
     def partial( location )
       "#{underscore}/#{location}"
+    end
+
+    def view_components?
+      Dir.exist? "plugins/#{name}/app/components/#{underscore}"
+    end
+
+    def admin_menu_section_view_component
+      return unless defined? to_constant::Admin::Menu::SectionComponent
+
+      to_constant::Admin::Menu::SectionComponent
     end
 
     def underscore
