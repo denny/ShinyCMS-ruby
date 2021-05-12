@@ -1,5 +1,5 @@
 <% name ||= 'search_form' %>
 <%= form_with name: name, url: shiny_search.search_path, method: :get, local: true do |f| %>
-  <%= f.text_field 'query' %>&nbsp;
+  <%= f.label :query, 'Search', class: 'a11y-hidden' %><%= f.text_field :query %>&nbsp;
   <%= f.submit t( 'shiny_search.search.form.search' ), name: nil, class: 'button' %>
 <% end %>

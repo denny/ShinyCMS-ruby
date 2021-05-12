@@ -1,6 +1,6 @@
 <% @page_title = t( '.title' ) %>
 
-<%= form_for @user, url: user_path( @user ), method: :put do |f| %>
+<%= form_for @user, url: shinycms.user_path( @user ), method: :put do |f| %>
   <p>
     <%= f.label :username %>
     <br><%= f.text_field :username %>

@@ -105,7 +105,14 @@ ShinyCMS requires Rails 6.1 and Ruby 2.7 or later. The project generally uses th
 
 ## Contributing
 
-See [contributing to ShinyCMS](docs/Contributing.md).
+Everyone is encouraged to help improve this project! Here are a few ways you can help:
+* Report issues
+* Improve the documentation
+* Fix bugs and submit pull requests
+* Suggest new features
+* Add new features :)
+
+See [contributing to ShinyCMS](docs/Contributing.md) for more information.
 
 
 ## Code of Conduct

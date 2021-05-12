@@ -18,7 +18,7 @@ seeder.seed_feature_flag( name: :mailing_lists, description: 'Enable mailing lis
 seeder.seed_standard_admin_capabilities( category: :mailing_lists )
 
 category = seeder.seed_standard_admin_capabilities( category: :mailing_list_subscriptions )
-category.capabilities.destroy!( name: 'edit' )
+category.capabilities.destroy_fully!( name: 'edit' )
 
 # Consent version used when a list admin manually subscribes somebody
 seeder.seed_consent_version(

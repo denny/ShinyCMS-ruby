@@ -18,4 +18,4 @@ seeder.seed_feature_flag( name: :access, description: 'Access control features o
 seeder.seed_standard_admin_capabilities( category: :access_groups )
 
 category = seeder.seed_standard_admin_capabilities( category: :access_group_memberships )
-category.capabilities.destroy!( name: 'edit' )
+category.capabilities.destroy_fully!( name: 'edit' )

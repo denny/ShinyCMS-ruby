@@ -1,0 +1,5 @@
+<ul class="c-sidebar-nav">
+  <% @menu_sections.each do |section| %>
+    <%= render section.new( current_user: @current_user ) %>
+  <% end %>
+</ul>

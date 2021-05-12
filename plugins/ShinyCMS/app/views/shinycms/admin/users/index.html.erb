@@ -30,6 +30,7 @@
         <% if plugin_loaded? :ShinyProfiles %>
         <%= link_to t( 'shiny_profiles.admin.users.index.view_profile' ), shiny_profiles.profile_path( user.username ) %>
         <%= link_to t( 'shiny_profiles.admin.users.index.edit_profile' ), shiny_profiles.admin_edit_profile_path( user.profile ) %>
+        &nbsp;
         <% end %>
         <%= link_to t( '.edit_account'   ), shinycms.edit_user_path( user ) %>
         <%= link_to t( '.delete_account' ), shinycms.user_path( user ),

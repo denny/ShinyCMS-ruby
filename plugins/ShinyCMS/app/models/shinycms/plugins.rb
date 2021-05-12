@@ -62,6 +62,10 @@ module ShinyCMS
       Plugins.get( with_views.select { |plugin| plugin.view_file_exists?( partial ) } ).to_a
     end
 
+    def with_view_components
+      Plugins.get( plugins.select { |plugin| plugin if plugin.view_components? } )
+    end
+
     def self.feature_plugin_names
       return @feature_plugin_names if defined? @feature_plugin_names
 

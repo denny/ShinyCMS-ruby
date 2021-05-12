@@ -38,7 +38,7 @@ en:
 
   # ========== ( Main Site ) ==========
 
-  # Views and Controllers
+  # Views, Components, and Controllers
 
   shinycms:
     home: Home
@@ -221,7 +221,7 @@ en:
         shinycms_user: user
 
       anonymous_author:
-        anonymous: Anonymous
+        name: Anonymous
 
       setting_value:
         one_per_user: You can only have one setting per value per user

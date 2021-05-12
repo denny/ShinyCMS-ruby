@@ -4,6 +4,50 @@
 
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
+### 2021-05-07  21.05  May 2021: The 'Component With A View' release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.05
+
+* Security updates:
+    * Rails and related Action* gems had a cluster of CVE fixes this month
+
+* Added:
+    * [View Components][1] - used to rewrite the admin menu [PR #1096][2]
+    * [mutant][3]- a mutation testing gem
+    * config/initializers/shinycms.rb - allows the host app to configure:
+        * The user model for ShinyCMS to use
+        * The list model for ShinyNewsletters to use
+    * .flayignore - causing a [dramatic improvement][4] in Ruby Critic scores
+    * Blazer::ApplicationController in the host app, for Blazer to inherit from
+    * Sentry gem and initializer
+
+* Updated:
+    * Split main site DiscussionsController, creating CommentsController too
+    * Accessibility fixes for the Halcyonic theme [PR #1088][5] [PR #1091][6] [PR #1112][7]
+        * Accessibly-hidden labels for form inputs
+        * Text contrast ratios throughout
+        * Editable image alt attributes added to index template
+            * Changes to demo site data to go with this
+    * The host app's ApplicationController is now free of confusing Blazer gank
+    * Lots of gem version bumps, besides the aforementioned rails ones
+        * Rubocop updates required some minor changes to code and config
+
+* Removed:
+    * Several packwerk todo files got removed by the configurable user model change
+    * MainController in the host app, now that ApplicationController is usable
+    * All the admin menu partials that got replaced by view components
+
+Relatively quiet month, especially compared to the last few! I'm in the process of quitting one job and finding the next, so that's taken a lot of my time and energy. I'm happy with the first pass at adding view components though, expect more of those next month.
+
+[1] https://github.com/github/view_component#readme
+[2] https://github.com/denny/ShinyCMS-ruby/pull/1096
+[3] https://github.com/mbj/mutant#readme
+[4] https://shinycms.org/blog/2021/04/cheat-codes
+[5] https://github.com/denny/ShinyCMS-ruby/pull/1088
+[6] https://github.com/denny/ShinyCMS-ruby/pull/1091
+[7] https://github.com/denny/ShinyCMS-ruby/pull/1112
+
+
 ### 2021-04-08  21.04  April 2021: The 'Respecting Boundaries' release
 
 * GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.04

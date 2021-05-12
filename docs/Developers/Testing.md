@@ -16,7 +16,7 @@ To test a single plugin, run `rspec plugins/Shiny{Thing}` from the project's roo
 
 ### How often should I run the tests?
 
-At minimum, you should run rubocop and the test suite, and fix any issues they find, before submitting a pull request. I recommend running them much more often than that :) They're particularly useful (and reassuring) when refactoring.
+At minimum, you should run rubocop and the test suite, and fix any issues they find, before submitting a pull request. I recommend running them much more often than that :) They're particularly useful (and reassuring) when refactoring - as discussed by Bob Martin: '[Fearless Competence](https://www.youtube.com/watch?v=Qjywrq2gM8o#t=31m48s)'.
 
 #### How do I get git to do this for me? :)
 

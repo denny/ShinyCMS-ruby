@@ -63,6 +63,9 @@ Gem::Specification.new do |spec|
   # Locales for the 'not USA' bits of the world
   spec.add_dependency 'rails-i18n'
 
+  # View components
+  spec.add_dependency 'view_component'
+
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
   spec.add_dependency 'sidekiq'
   spec.add_dependency 'sidekiq-status'
@@ -80,7 +83,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ckeditor'
 
   # Pagination
-  spec.add_dependency 'pagy'
+  spec.add_dependency 'pagy', '~> 4.3.0'
 
   # Atom feeds
   spec.add_dependency 'rss'

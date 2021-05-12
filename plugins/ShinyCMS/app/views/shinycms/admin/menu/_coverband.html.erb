@@ -1,3 +1,0 @@
- <% return unless coverband_web_ui_enabled? && current_user.can?( :use_coverband, :tools ) %>
-
-  <%= render_admin_menu_item( t( 'shinycms.admin.coverband.menu' ), shinycms.coverband_path, 'spreadsheet' ) %>
