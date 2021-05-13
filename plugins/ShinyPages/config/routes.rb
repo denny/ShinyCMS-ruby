@@ -22,13 +22,16 @@ ShinyPages::Engine.routes.draw do
         put :sort, on: :collection
       end
 
-      resources :pages, concerns: %i[ with_paging with_search sortable add_element ],
-                        except:   %i[ index show ], module: :pages
+      resources :pages, except: %i[ index show ], concerns: %i[ with_paging with_search sortable ] do
+        resources :elements, only: %i[ create destroy ], module: :pages
+      end
 
       scope path: :pages do
-        resources :sections,  except: :show
-        resources :templates, concerns: %i[ with_paging with_search add_element ],
-                              except:   %i[ index show ], module: :templates
+        resources :sections, except: :show
+
+        resources :templates, except: %i[ index show ], concerns: %i[ with_paging with_search ] do
+          resources :elements, only: %i[ create destroy ], module: :templates
+        end
       end
     end
   end
