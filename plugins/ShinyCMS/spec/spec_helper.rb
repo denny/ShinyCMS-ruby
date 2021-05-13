@@ -42,8 +42,12 @@ RSpec.configure do |config|
     # Use doc formatter, for more detailed output
     config.formatter = 'doc'
   else
-    # Use progress formatter, for more compact output
+    # Use the (default) progress formatter, for more compact output
     config.formatter = 'progress'
+    # Colour-coordinate the progress formatter with my desktop :)
+    config.success_color = :cyan if ENV['BLUESPEC']
+    # Use the Pacman formatter, for compact and smile-inducing output :D
+    config.formatter = 'RspecPacmanFormatter::Pacman' if ENV['SPECMAN']
 
     # Optionally, show the slowest examples and example groups at the end of the run
     config.profile_examples = ENV[ 'SHOW_SLOW_SPECS' ].to_i if ENV[ 'SHOW_SLOW_SPECS' ]
