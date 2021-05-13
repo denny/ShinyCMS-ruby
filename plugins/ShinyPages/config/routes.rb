@@ -22,21 +22,14 @@ ShinyPages::Engine.routes.draw do
         put :sort, on: :collection
       end
 
-      resources :pages, except: %i[ index show ], concerns: %i[ with_paging with_search sortable ]
+      resources :pages, concerns: %i[ with_paging with_search sortable add_element ],
+                        except:   %i[ index show ], module: :pages
 
       scope path: :pages do
         resources :sections,  except: :show
-        resources :templates, except: %i[ index show ], concerns: %i[ with_paging with_search ]
+        resources :templates, concerns: %i[ with_paging with_search add_element ],
+                              except:   %i[ index show ], module: :templates
       end
     end
-
-    ########################################################################################################
-    # This catch-all route matches anything and everything not already matched by a route defined before it.
-    # It has to be the last route set up, because it hijacks anything that gets this far.
-    # This route gives us pages and sections at the top level, e.g. /foo instead of /pages/foo
-    # TODO: work out how to load this (last!) from here, instead of main_app's config/routes.rb
-    # get '*path', to: 'pages#show', constraints: lambda { |req|
-    #   !req.path.starts_with?( '/rails/active_' )
-    # }
   end
 end

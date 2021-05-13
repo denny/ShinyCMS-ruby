@@ -15,3 +15,7 @@ end
 concern :with_search do
   get :search, action: :search, on: :collection
 end
+
+concern :add_element do
+  resources :elements, only: :create
+end
