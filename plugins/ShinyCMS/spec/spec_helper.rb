@@ -6,19 +6,21 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Main config for test suite - pulled into main_app by /spec/spec_helper
+# The ShinyHostApp `.rspec` file contains `--require spec_helper`, which means that
+# `/spec/spec_helper.rb` will always be loaded (no need to explicitly require it in
+# spec files). In turn, the only thing that file does is require this one.
 #
-# Rails-specific test config lives in plugins/ShinyCMS/spec/rails_helper.rb
+# (The .rspec file also currently requires and enables RSpec::Instafail,
+# because it doesn't seem to work when I move its config into this file)
 #
-# The ShinyHostApp `.rspec` file contains `--require spec_helper` which will
-# cause this file to always be loaded, without a need to explicitly require it
+# Because this config is always loaded, it's good practice to keep it as
+# lightweight as possible. Every heavyweight dependency in this file will
+# add to the boot time of the test suite on EVERY test run - even when
+# running a single spec file, testing code with minimal actual requirements.
 #
-# Given that it is always loaded, it's good practice to keep this file as
-# light as possible. Requiring heavyweight dependencies from this file will
-# add to the boot time of the test suite on EVERY test run, even for an
-# individual file that may not need all of that loaded.
+# Rails-specific test config lives in `plugins/ShinyCMS/spec/rails_helper.rb`
 #
-# See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+# RSpec config docs: http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'simplecov'
 
@@ -26,11 +28,6 @@ RSpec.configure do |config|
   config.before( :suite ) do
     # Copy TEST theme templates into place
     FileUtils.cp_r 'plugins/ShinyCMS/spec/fixtures/TEST', 'themes/TEST' unless Dir.exist? 'themes/TEST'
-  end
-
-  config.after( :suite ) do
-    # Remove TEST theme templates from main tree (unless we were (and possibly still are) running parallel_rspec)
-    # FileUtils.rm_rf 'themes/TEST' if Dir.exist?( 'themes/TEST' ) && ENV[ 'TEST_ENV_NUMBER' ].nil?
   end
 
   # This setting specifies which spec files to load when `rspec` is run without
@@ -48,8 +45,6 @@ RSpec.configure do |config|
     else
       # Use the (default) progress formatter, for more compact output
       config.formatter = 'progress'
-      # Colour-coordinate the progress formatter with my current desktop theme :-P
-      config.success_color = :cyan if ENV['BLUESPEC']
     end
 
     # Optionally, show the slowest examples and example groups at the end of the run
