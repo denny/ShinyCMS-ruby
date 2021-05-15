@@ -192,51 +192,6 @@ RSpec.describe ShinyPages::Admin::TemplatesController, type: :request do
     end
   end
 
-  describe 'POST /admin/pages/templates/1/elements' do
-    it 'adds a new element to the template' do
-      new_name = Faker::Books::CultureSeries.unique.civ
-
-      template = create :page_template
-
-      post shiny_pages.template_elements_path( template ), params: {
-        page_template_element: {
-          name: new_name
-        }
-      }
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_pages.edit_template_path( template )
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.templates.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_pages.admin.templates.elements.create.success' )
-      # expect( response.body ).to have_field with: new_name
-
-      new_element = template.elements.last
-      expect( new_element.name ).to eq new_name.parameterize.underscore
-    end
-  end
-
-  describe 'DELETE /admin/pages/templates/1/elements/2' do
-    it 'deletes an element from the template' do
-      template = create :page_template
-      element = template.elements.last
-      before = template.elements.count
-
-      delete shiny_pages.template_element_path( template, element )
-
-      expect( response      ).to have_http_status :found
-      expect( response      ).to redirect_to shiny_pages.edit_template_path( template )
-      follow_redirect!
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.templates.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_pages.admin.templates.elements.destroy.success' )
-
-      after = template.elements.count
-      expect( after ).to eq before - 1
-    end
-  end
-
   describe 'DELETE /admin/pages/template/delete/:id' do
     it 'deletes the specified templates' do
       t1 = create :page_template
