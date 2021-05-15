@@ -51,10 +51,8 @@ en:
         elements:
           create:
             success: New element added
-            failure: Failed to add new element
           destroy:
             success: Element deleted
-            failure: Failed to delete element
 
       sections:
         breadcrumb: Pages
@@ -88,10 +86,8 @@ en:
         elements:
           create:
             success: New element added
-            failure: Failed to add new element
           destroy:
             success: Element deleted
-            failure: Failed to delete element
         create:
           success: New template added
           failure: Failed to add new template

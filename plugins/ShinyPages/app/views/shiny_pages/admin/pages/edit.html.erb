@@ -66,7 +66,9 @@
   </p>
 <% end %>
 
-<%= form_for :page_element, name: 'new_element', url: shiny_pages.page_elements_path( @page ), method: :post do |f2| %>
+<%# return unless current_user.can? :edit, :page_templates %>
+
+<%= form_for :new_page_element, name: 'new_page_element', url: shiny_pages.page_elements_path( @page ), method: :post do |f2| %>
   <fieldset>
     <legend>
       Add an element

@@ -35,7 +35,7 @@
   </p>
 <% end %>
 
-<%= form_for :page_template_element, name: 'new_element', url: shiny_pages.template_elements_path( @template ), method: :post do |f2| %>
+<%= form_for :new_template_element, name: 'new_template_element', url: shiny_pages.template_elements_path( @template ), method: :post do |f2| %>
   <fieldset>
     <legend>
       Add an element
