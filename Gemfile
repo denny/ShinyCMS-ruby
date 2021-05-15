@@ -137,5 +137,8 @@ source 'https://rubygems.org' do
 
     # Show test failure details instantly, in-line with progress dots
     gem 'rspec-instafail'
+
+    # Because it made me smile.
+    gem 'rspec_pacman_formatter'
   end
 end
