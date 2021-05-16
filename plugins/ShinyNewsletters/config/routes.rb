@@ -28,11 +28,14 @@ ShinyNewsletters::Engine.routes.draw do
       import_routes partial: :admin_route_concerns
 
       scope path: :newsletters do
-        resources :editions, except: %i[ index show ], concerns: %i[ with_paging with_search ] do
-          get 'send-sample', on: :member
+        resources :templates, except: %i[ index show ], concerns: %i[ with_paging with_search ] do
+          resources :elements, only: %i[ create destroy ], module: :templates
         end
 
-        resources :templates, except: %i[ index show ], concerns: %i[ with_paging with_search ]
+        resources :editions, except: %i[ index show ], concerns: %i[ with_paging with_search ] do
+          resources :elements, only: %i[ create destroy ], module: :editions
+          get 'send-sample', on: :member
+        end
 
         resources :sends, except: :index, concerns: %i[ with_paging with_search ] do
           put :start,  on: :member, to: 'sends#start_sending'
