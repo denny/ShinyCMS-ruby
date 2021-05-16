@@ -28,7 +28,7 @@ module ShinyPages
     private
 
     def template
-      ShinyPages::Template.find( params[:template_id] )
+      Template.find( params[:template_id] )
     end
 
     def element
@@ -40,7 +40,7 @@ module ShinyPages
     end
 
     def strong_params
-      params.require( :new_template_element ).permit( :name, :element_type, :content )
+      params.require( :new_element ).permit( :name, :element_type, :content )
     end
   end
 end

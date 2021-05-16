@@ -22,7 +22,7 @@ RSpec.describe ShinyPages::Admin::Templates::ElementsController, type: :request 
       new_name = Faker::Books::CultureSeries.unique.civ
 
       post shiny_pages.template_elements_path( template ), params: {
-        new_template_element: {
+        new_element: {
           name: new_name
         }
       }
@@ -42,7 +42,6 @@ RSpec.describe ShinyPages::Admin::Templates::ElementsController, type: :request 
 
   describe 'DELETE /admin/pages/templates/1/elements/2' do
     it 'deletes an element from the template' do
-      template = create :page_template
       element = template.elements.last
       before = template.elements.count
 

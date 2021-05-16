@@ -22,7 +22,7 @@ RSpec.describe ShinyPages::Admin::Pages::ElementsController, type: :request do
       new_name = Faker::Books::CultureSeries.unique.civ
 
       post shiny_pages.page_elements_path( page ), params: {
-        new_page_element: {
+        new_element: {
           name: new_name
         }
       }
@@ -42,7 +42,6 @@ RSpec.describe ShinyPages::Admin::Pages::ElementsController, type: :request do
 
   describe 'DELETE /admin/pages/1/elements/2' do
     it 'deletes an element from the page' do
-      page = create :page
       element = page.elements.last
       before = page.elements.count
 
