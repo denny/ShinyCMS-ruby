@@ -47,6 +47,8 @@ en:
           title: New edition
         edit:
           title: Edit newsletter edition
+          new_element_name: New element name
+          new_element_content: Default content
         create:
           success: Newsletter edition created
           failure: Failed to create newsletter edition
@@ -56,6 +58,12 @@ en:
         destroy:
           success: Newsletter edition deleted
           failure: Failed to delete newsletter edition
+        elements:
+          create:
+            success: New element added
+          destroy:
+            success: Element deleted
+
       sends:
         breadcrumb: Newsletter sends
         index:
@@ -85,6 +93,7 @@ en:
           success: Newsletter send cancelled
         destroy:
           success: Newsletter send deleted
+
       templates:
         breadcrumb: Newsletter templates
         index:
@@ -94,6 +103,8 @@ en:
           title: New template
         edit:
           title: Edit newsletter template
+          new_element_name: New element name
+          new_element_content: Default content
         create:
           success: Newsletter template created
           failure: Failed to create newsletter template
@@ -103,6 +114,11 @@ en:
         destroy:
           success: Newsletter template deleted
           failure: Failed to delete newsletter template
+        elements:
+          create:
+            success: New element added
+          destroy:
+            success: Element deleted
 
   models:
     shiny_newsletters:

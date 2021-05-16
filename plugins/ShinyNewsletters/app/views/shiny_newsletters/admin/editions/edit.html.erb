@@ -53,3 +53,21 @@
     <%= f.submit t( 'update' ) %>
   </p>
 <% end %>
+
+<%# return unless current_user.can? :edit, :newsletter_editions %>
+
+<%= form_for :new_element, name: 'new_element', url: shiny_newsletters.edition_elements_path( @edition ), method: :post do |f2| %>
+  <fieldset>
+    <legend>
+      Add an element
+    </legend>
+    <p>
+      <%= f2.text_field :name, placeholder: t( '.new_element_name' ), class: 'textshort' %>
+      <%= f2.select :element_type, element_types %>
+      <br><%= f2.text_field :content, placeholder: t( '.new_element_content' ), class: 'textlong' %>
+    </p>
+    <p>
+      <%= f2.submit t( 'add' ) %>
+    </p>
+  </fieldset>
+<% end %>
