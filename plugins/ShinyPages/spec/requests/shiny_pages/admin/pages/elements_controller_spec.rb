@@ -8,7 +8,7 @@
 
 require 'rails_helper'
 
-# Tests for admin operations on page page elements
+# Tests for admin operations on page elements
 RSpec.describe ShinyPages::Admin::Pages::ElementsController, type: :request do
   before do
     admin = create :page_admin
