@@ -38,6 +38,8 @@ en:
           title: Add new page
         edit:
           title: Edit page
+          new_element_name: New element name
+          new_element_content: Default content
         create:
           success: New page added
           failure: Failed to add new page
@@ -46,6 +48,11 @@ en:
           failure: Failed to update page details
         destroy:
           success: Page deleted
+        elements:
+          create:
+            success: New element added
+          destroy:
+            success: Element deleted
 
       sections:
         breadcrumb: Pages
@@ -74,6 +81,13 @@ en:
           title: Add new template
         edit:
           title: Edit template
+          new_element_name: New element name
+          new_element_content: Default content
+        elements:
+          create:
+            success: New element added
+          destroy:
+            success: Element deleted
         create:
           success: New template added
           failure: Failed to add new template

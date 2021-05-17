@@ -15,6 +15,8 @@ RSpec.describe ShinyPages::Admin::TemplatesController, type: :request do
     sign_in admin
   end
 
+  let( :template ) { create :page_template }
+
   describe 'GET /admin/pages/templates' do
     context 'when there are no templates' do
       it "displays the 'no templates found' message" do
@@ -68,18 +70,6 @@ RSpec.describe ShinyPages::Admin::TemplatesController, type: :request do
   end
 
   describe 'POST /admin/pages/template/new' do
-    it 'fails when the form is submitted without all the details' do
-      post shiny_pages.templates_path, params: {
-        template: {
-          filename: 'Test'
-        }
-      }
-
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.templates.new.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_pages.admin.templates.create.failure' )
-    end
-
     it 'adds a new template when the form is submitted' do
       post shiny_pages.templates_path, params: {
         template: {
@@ -110,12 +100,22 @@ RSpec.describe ShinyPages::Admin::TemplatesController, type: :request do
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_pages.admin.templates.create.success' )
       expect( ShinyPages::TemplateElement.count ).to eq 4
     end
+
+    it 'fails when the form is submitted without all the details' do
+      post shiny_pages.templates_path, params: {
+        template: {
+          filename: 'Test'
+        }
+      }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.templates.new.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_pages.admin.templates.create.failure' )
+    end
   end
 
   describe 'GET /admin/pages/template/:id' do
     it 'loads the form to edit an existing template' do
-      template = create :page_template
-
       get shiny_pages.edit_template_path( template )
 
       expect( response      ).to have_http_status :ok
@@ -123,29 +123,16 @@ RSpec.describe ShinyPages::Admin::TemplatesController, type: :request do
     end
   end
 
-  describe 'POST /admin/pages/template/:id' do
-    it 'fails to update the template when submitted without all the details' do
-      template = create :page_template
-
-      put shiny_pages.template_path( template ), params: {
-        template: {
-          name: nil
-        }
-      }
-
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.templates.edit.title' ).titlecase
-      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_pages.admin.templates.update.failure' )
-    end
-
+  describe 'PUT /admin/pages/template/:id' do
     it 'updates the template when the form is submitted' do
       template = create :page_template
-      e_id = ShinyPages::TemplateElement.last.id
+      e_id = template.elements.last.id
 
       put shiny_pages.template_path( template ), params: {
         template: {
           name: 'Updated by test'
         },
+        # TODO: don't actually seem to be testing this, tsk
         elements: {
           "element_#{e_id}_name":    'updated_element_name',
           "element_#{e_id}_content": 'Default content',
@@ -162,7 +149,6 @@ RSpec.describe ShinyPages::Admin::TemplatesController, type: :request do
     end
 
     it 'updates the element order' do
-      template = create :page_template
       last_element = template.elements.last
 
       # Put the last element first
@@ -192,13 +178,25 @@ RSpec.describe ShinyPages::Admin::TemplatesController, type: :request do
 
       expect( last_element.reload.position ).to eq 1
     end
+
+    it 'fails to update the template when submitted without all the details' do
+      put shiny_pages.template_path( template ), params: {
+        template: {
+          name: nil
+        }
+      }
+
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.templates.edit.title' ).titlecase
+      expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_pages.admin.templates.update.failure' )
+    end
   end
 
   describe 'DELETE /admin/pages/template/delete/:id' do
     it 'deletes the specified templates' do
       t1 = create :page_template
       t2 = create :page_template
-      create :page_template
+      t3 = create :page_template
 
       delete shiny_pages.template_path( t2 )
 
@@ -211,13 +209,13 @@ RSpec.describe ShinyPages::Admin::TemplatesController, type: :request do
                                               text: I18n.t( 'shiny_pages.admin.templates.destroy.success' )
       expect( response.body ).to     have_css 'td', text: t1.name
       expect( response.body ).not_to have_css 'td', text: t2.name
+      expect( response.body ).to     have_css 'td', text: t3.name
     end
 
     it 'fails gracefully when attempting to delete a template which is in use' do
-      t1 = create :page_template
-      create :page, template: t1
+      create :page, template: template
 
-      delete shiny_pages.template_path( t1 )
+      delete shiny_pages.template_path( template )
 
       expect( response      ).to have_http_status :found
       expect( response      ).to redirect_to shiny_pages.templates_path
@@ -225,7 +223,7 @@ RSpec.describe ShinyPages::Admin::TemplatesController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.templates.index.title' ).titlecase
       expect( response.body ).to have_css '.alert-danger', text: I18n.t( 'shiny_pages.admin.templates.destroy.failure' )
-      expect( response.body ).to have_css 'td', text: t1.name
+      expect( response.body ).to have_css 'td', text: template.name
     end
   end
 end
