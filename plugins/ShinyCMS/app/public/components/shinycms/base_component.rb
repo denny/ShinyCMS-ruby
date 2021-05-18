@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Base view component - part of the ShinyCMS core plugin
-  class ApplicationComponent < ViewComponent::Base
+  class BaseComponent < ViewComponent::Base
     include ShinyCMS::ViewComponentHelper
 
     # Make url_helpers available to plugin components even when rendered by other engines
