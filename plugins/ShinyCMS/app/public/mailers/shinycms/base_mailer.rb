@@ -14,7 +14,7 @@
 
 module ShinyCMS
   # Public base class for mailers - part of the ShinyCMS core plugin
-  class BaseMailer < ApplicationMailer
+  class BaseMailer < SetupForBaseMailer
     # :nocov:
     def check_feature_flags
       stop!
