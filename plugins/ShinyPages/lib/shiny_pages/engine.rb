@@ -11,6 +11,8 @@ module ShinyPages
   class Engine < ::Rails::Engine
     isolate_namespace ShinyPages
 
+    config.paths.add 'app/public/lib', eager_load: true
+
     config.generators do |g|
       g.test_framework :rspec
       g.fixture_replacement :factory_bot

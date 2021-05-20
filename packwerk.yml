@@ -104,6 +104,8 @@ load_paths:
 - plugins/ShinyPages/app/models
 - plugins/ShinyPages/app/policies
 - plugins/ShinyPages/app/validators
+- plugins/ShinyPages/app/public
+- plugins/ShinyPages/app/public/lib
 
 - plugins/ShinyProfiles/app/controllers
 - plugins/ShinyProfiles/app/helpers
