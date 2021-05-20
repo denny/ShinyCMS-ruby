@@ -10,7 +10,7 @@ module ShinyNewsletters
   module Admin
     module Menu
       # Component to render Newsletters section in admin menu
-      class SectionComponent < ShinyCMS::ApplicationComponent
+      class SectionComponent < ApplicationComponent
         def initialize( current_user: )
           @current_user = current_user
         end
