@@ -6,15 +6,13 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Routes for ShinyCMS main site, for core plugin features
+# Main site routes for features in the core plugin
 
-# Smarter error pages
 match '404',  to: 'errors#not_found',             via: :all
 match '500',  to: 'errors#internal_server_error', via: :all
 
 get '/test/500', to: 'errors#test500' if Rails.env.test?
 
-# User Accounts / Authentication
 devise_for  :users,
             class_name:  'ShinyCMS::User',
             path:        '',
@@ -31,7 +29,6 @@ devise_for  :users,
               password:     '/account/password',
               unlock:       '/account/unlock'
             }
-
 devise_scope :user do
   get 'account/password/report/:password', to: 'users/registrations#password_report', as: :password_report
 end

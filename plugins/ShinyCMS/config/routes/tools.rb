@@ -6,8 +6,7 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Routes file partial to mount engines from other gems used by ShinyCMS,
-# that can be mounted within the core plugin routes file
+# Mount engines from gems used by ShinyCMS
 
 # CKEditor provides the WYSIWYG editor used in the ShinyCMS admin area
 mount Ckeditor::Engine, at: '/admin/tools/ckeditor'

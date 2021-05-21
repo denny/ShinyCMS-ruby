@@ -8,30 +8,31 @@
 
 # Routes for main app (ShinyHostApp)
 
-require_relative '../plugins/ShinyCMS/lib/import_routes' if defined? ShinyCMS
-
 Rails.application.routes.draw do
   if defined? ShinyCMS
-    # Currently, if ShinyPages is loaded, then we assume it should control the root path
-    import_routes partial: :root, plugin: :ShinyPages if ShinyCMS.plugins.loaded? :ShinyPages
+    # If ShinyPages is loaded, let it handle the root path
+    extend ShinyPages::Routes::RootPage if ShinyCMS.plugins.loaded? :ShinyPages
 
-    import_routes partial: :php_is_a_bad_request
+    # Treat any URL ending in .php as a bad request
+    extend ShinyCMS::Routes::PHPIsABadRequest
 
-    import_routes partial: :mount_shinycms_core_plugin
+    # Mount all the routes from ShinyCMS core and feature plugins
+    extend ShinyCMS::Routes::Plugins
 
-    import_routes partial: :mount_shinycms_feature_plugins
+    # AhoyEmail provides email tracking features
+    mount AhoyEmail::Engine, at: '/ahoy'
 
-    # Engines from gems that ShinyCMS uses to provide various features
-    import_routes partial: :mount_other_engines_in_main_app
+    # Blazer provides charts and dashboards in the ShinyCMS admin area
+    mount Blazer::Engine, at: '/admin/tools/blazer' if defined? Blazer
 
     # Protect the /admin namespace from fishing expeditions
-    import_routes partial: :admin_page_not_found
+    extend ShinyCMS::Routes::Admin404
 
-    # The top-level catch-all route that allows ShinyPages to create and
-    # control pages and page sections at the top-level of the main site:
+    # Set up the top-level catch-all route that allows ShinyPages to create
+    # and control pages and page sections at the top-level of the main site:
     # https://example.com/hello rather than https://example.com/pages/hello
     #
     # Because this route matches everything that reaches it, it must be defined last!
-    import_routes partial: :top_level_pages, plugin: :ShinyPages if ShinyCMS.plugins.loaded? :ShinyPages
+    extend ShinyPages::Routes::TopLevelPages if ShinyCMS.plugins.loaded? :ShinyPages
   end
 end

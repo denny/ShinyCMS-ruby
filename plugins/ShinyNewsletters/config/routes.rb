@@ -6,10 +6,6 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Routes for ShinyNewsletters plugin
-
-require_relative '../../../plugins/ShinyCMS/lib/import_routes'
-
 ShinyNewsletters::Engine.routes.draw do
   scope format: false do
     # Main site
@@ -24,8 +20,7 @@ ShinyNewsletters::Engine.routes.draw do
 
     # Admin area
     scope path: :admin, module: :admin do
-      # with_paging and with_search
-      import_routes partial: :admin_route_concerns
+      extend ShinyCMS::Routes::AdminConcerns  # with_paging and with_search
 
       scope path: :newsletters do
         resources :templates, except: %i[ index show ], concerns: %i[ with_paging with_search ] do

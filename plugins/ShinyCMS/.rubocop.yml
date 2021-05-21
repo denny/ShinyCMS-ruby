@@ -45,15 +45,19 @@ Bundler/GemVersion:
 # These are mostly expected to contain long blocks due to their DSLs
 Metrics/BlockLength:
   Exclude:
+    # Main app
     - ../../Gemfile
     - ../../config/environments/*
-    - ../Shiny*/config/routes.rb
-    - ../Shiny*/shiny*.gemspec
-    - ../Shiny*/spec/**/*.rb
-    - ../ShinyCMS/app/models/concerns/shinycms/*.rb
-    - ../ShinyCMS/app/public/models/concerns/shinycms/*.rb
+    # All plugins
+    - ../*/config/routes.rb
+    - ../*/shiny*.gemspec
+    - ../*/spec/**/*.rb
+    # Core plugin
+    - app/models/concerns/shinycms/*.rb
+    - app/public/models/concerns/shinycms/*.rb
+    - config/routes/*.rb
 
-# Spec files with I18n.t calls have long lines. I can live with that.
+# Spec files with I18n.t calls tend to have long lines. I can live with that.
 Layout/LineLength:
   Exclude:
     - ../*/spec/**/*.rb

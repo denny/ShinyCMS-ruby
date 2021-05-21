@@ -24,6 +24,7 @@ ActiveSupport::Inflector.inflections( :en ) do |inflect|
   inflect.acronym 'IP'
   inflect.acronym 'HTML'
   inflect.acronym 'MJML'
+  inflect.acronym 'PHP'
   inflect.acronym 'SEO'
   inflect.acronym 'ShinyCMS'
   inflect.acronym 'URL'
