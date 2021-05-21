@@ -10,10 +10,8 @@
 
 ShinyCMS::Engine.routes.draw do
   scope format: false do
-    extend ShinyCMS::Routes::MainSite
-
-    extend ShinyCMS::Routes::AdminArea
-
-    extend ShinyCMS::Routes::Tools
+    draw :main_site
+    draw :admin_area
+    draw :tools
   end
 end
