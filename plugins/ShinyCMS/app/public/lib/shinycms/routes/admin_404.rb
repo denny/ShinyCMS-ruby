@@ -20,7 +20,8 @@ module ShinyCMS
     module Admin404
       def self.extended( router )
         router.instance_exec do
-          match '/admin/*path', to: 'shinycms/admin/root#not_found', as: :admin_not_found,
+          match '/admin/*path', to:  'shinycms/admin/root#not_found',
+                                as:  :admin_not_found,
                                 via: %i[ get post put patch delete ]
         end
       end
