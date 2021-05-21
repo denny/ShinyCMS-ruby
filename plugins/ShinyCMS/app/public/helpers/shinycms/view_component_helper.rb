@@ -14,7 +14,6 @@ module ShinyCMS
       # <%= component 'users/name_with_link', user: comment.author %>
       # To do this:
       # <%= render( ShinyCMS::Users::NameWithLinkComponent.new( user: comment.author ) ) %>
-      # binding.pry
 
       # If an 'if' param was passed in, exit unless it was true
       return if args.key?( :if ) && !args[:if]
