@@ -6,10 +6,6 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Routes for ShinyLists plugin
-
-require_relative '../../../plugins/ShinyCMS/lib/import_routes'
-
 ShinyLists::Engine.routes.draw do
   scope format: false do
     # Main site
@@ -23,8 +19,7 @@ ShinyLists::Engine.routes.draw do
 
     # Admin area
     scope path: 'admin', module: 'admin' do
-      # with_paging and with_search
-      import_routes partial: :admin_route_concerns
+      extend ShinyCMS::Routes::AdminConcerns  # with_paging and with_search
 
       resources :lists, except: %i[ index show ], concerns: %i[ with_paging with_search ] do
         resources :subscriptions, only: %i[ create destroy  ], concerns: %i[ with_paging with_search ]

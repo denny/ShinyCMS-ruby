@@ -8,14 +8,12 @@
 
 # Routes for ShinyCMS core plugin
 
-require_relative '../lib/import_routes'
-
 ShinyCMS::Engine.routes.draw do
   scope format: false do
-    import_routes partial: :main_site
+    extend ShinyCMS::Routes::MainSite
 
-    import_routes partial: :admin_area
+    extend ShinyCMS::Routes::AdminArea
 
-    import_routes partial: :mount_other_engines
+    extend ShinyCMS::Routes::Tools
   end
 end

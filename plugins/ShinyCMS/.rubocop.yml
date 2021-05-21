@@ -50,10 +50,20 @@ Metrics/BlockLength:
     - ../Shiny*/config/routes.rb
     - ../Shiny*/shiny*.gemspec
     - ../Shiny*/spec/**/*.rb
-    - ../ShinyCMS/app/models/concerns/shinycms/*.rb
-    - ../ShinyCMS/app/public/models/concerns/shinycms/*.rb
+    - app/models/concerns/shinycms/*.rb
+    - app/public/models/concerns/shinycms/*.rb
+    - app/public/lib/shinycms/routes/*.rb
 
-# Spec files with I18n.t calls have long lines. I can live with that.
+# Likewise not a concern
+Metrics/MethodLength:
+  Exclude:
+    - app/public/lib/shinycms/routes/*.rb
+# Blarg.
+Metrics/AbcSize:
+  Exclude:
+    - app/public/lib/shinycms/routes/*.rb
+
+# Spec files with I18n.t calls tend to have long lines. I can live with that.
 Layout/LineLength:
   Exclude:
     - ../*/spec/**/*.rb
