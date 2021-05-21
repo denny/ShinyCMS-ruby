@@ -13,7 +13,7 @@
 # Usage; put this inside the .draw block in `/config/routes.rb`:
 #   extend ShinyPages::Routes::TopLevelPages
 
-# NB: because this route matches anything that reaches it, it must be defined last!
+# NB: Because this route matches EVERYTHING that reaches it, it must be defined last!
 
 module ShinyPages
   module Routes
