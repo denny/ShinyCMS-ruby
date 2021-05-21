@@ -6,10 +6,10 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-require_relative 'lib/gemfile_plugins_helper'
+require_relative 'plugins/ShinyCMS/lib/shinycms/gemfile_helper'
+helper = ShinyCMS::GemfileHelper.new
 
-# Ruby 3.0
-ruby '~> 3.0.1'
+ruby "~> #{helper.ruby_version}"  # get version from .ruby-version file (DRY)
 
 source 'https://rubygems.org' do
   # Rails 6.1
@@ -25,8 +25,8 @@ source 'https://rubygems.org' do
   gem 'shinycms', path: 'plugins/ShinyCMS'
 
   # ShinyCMS feature plugins
-  plugin_names.each do |plugin_name|
-    gem_name = underscore( plugin_name )
+  helper.plugin_names.each do |plugin_name|
+    gem_name = helper.underscore( plugin_name )
     gem gem_name, path: "plugins/#{plugin_name}"
   end
 
