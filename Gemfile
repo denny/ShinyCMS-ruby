@@ -95,8 +95,6 @@ source 'https://rubygems.org' do
 
     # Code quality: Ruby Critic
     gem 'rubycritic', '~> 4.6.1', require: false
-    # Code quality: Rails Best Practices
-    gem 'rails_best_practices', require: false
 
     # Security: static code analysis
     gem 'brakeman', require: false
@@ -104,7 +102,7 @@ source 'https://rubygems.org' do
     gem 'bundler-audit', require: false
 
     # Add .analyze method to ActiveRecord objects
-    gem 'activerecord-analyze'
+    # gem 'activerecord-analyze'
 
     # Analysis tools for postgres
     gem 'rails-pg-extras', require: false
