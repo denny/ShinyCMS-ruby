@@ -8,7 +8,9 @@
 
 module ShinyLists
   # Main site controller for mailing list subscriptions - part of the ShinyLists plugin for ShinyCMS
-  class SubscriptionsController < MainController
+  class SubscriptionsController < ApplicationController
+    include ShinyCMS::MainControllers
+
     include ShinyCMS::WithConsentVersion
     include ShinyCMS::WithEmailRecipients
     include ShinyCMS::WithUsers

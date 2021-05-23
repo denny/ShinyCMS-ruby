@@ -55,6 +55,7 @@ Metrics/BlockLength:
     # Core plugin
     - app/models/concerns/shinycms/*.rb
     - app/public/models/concerns/shinycms/*.rb
+    - app/public/controllers/concerns/shinycms/*.rb
     - config/routes/*.rb
 
 # Spec files with I18n.t calls tend to have long lines. I can live with that.

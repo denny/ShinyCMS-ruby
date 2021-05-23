@@ -8,7 +8,9 @@
 
 module ShinyCMS
   # Main site controller for discussion features - part of the ShinyCMS core plugin
-  class DiscussionsController < MainController
+  class DiscussionsController < ApplicationController
+    include ShinyCMS::MainControllers
+
     include ShinyCMS::WithAkismet
     include ShinyCMS::WithRecaptcha
 

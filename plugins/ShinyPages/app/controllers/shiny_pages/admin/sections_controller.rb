@@ -8,7 +8,9 @@
 
 module ShinyPages
   # Admin controller for sections - ShinyPages plugin for ShinyCMS
-  class Admin::SectionsController < AdminController
+  class Admin::SectionsController < ApplicationController
+    include ShinyCMS::AdminControllers
+
     # Redirect to the combined page+section list
     def index
       authorize ShinyPages::Section

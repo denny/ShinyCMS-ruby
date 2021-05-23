@@ -8,7 +8,9 @@
 
 module ShinyCMS
   # Controller for feature flags section of ShinyCMS admin area
-  class Admin::FeatureFlagsController < Admin::BaseController
+  class Admin::FeatureFlagsController < ApplicationController
+    include ShinyCMS::AdminControllers
+
     def index
       authorize FeatureFlag
       @flags = FeatureFlag.all.order( :name )

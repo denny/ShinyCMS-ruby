@@ -8,7 +8,9 @@
 
 module ShinyCMS
   # Controller for ShinyCMS comment admin features
-  class Admin::CommentsController < Admin::BaseController
+  class Admin::CommentsController < ApplicationController
+    include ShinyCMS::AdminControllers
+
     include ShinyCMS::WithAkismet
 
     before_action :stash_comment, except: %i[ index search update ]

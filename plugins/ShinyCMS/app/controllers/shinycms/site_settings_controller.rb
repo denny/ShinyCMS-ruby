@@ -8,7 +8,9 @@
 
 module ShinyCMS
   # Controller for user-site-settings features on a ShinyCMS site
-  class SiteSettingsController < MainController
+  class SiteSettingsController < ApplicationController
+    include ShinyCMS::MainControllers
+
     before_action :authenticate_user!
 
     def index

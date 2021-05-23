@@ -8,7 +8,9 @@
 
 module ShinyCMS
   # ShinyCMS base controller for Devise to inherit from
-  class Users::BaseController < BaseController
+  class Users::BaseController < ApplicationController
+    include ShinyCMS::MainControllers
+
     before_action :configure_permitted_parameters, if: :devise_controller?
 
     # Strong params config for Devise
