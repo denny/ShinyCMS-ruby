@@ -17,7 +17,7 @@ module ShinyCMS
       requested = ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
       available = Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ) } - [ 'ShinyCMS' ]
 
-      return requested.intersection( available ) if requested
+      return requested & available if requested
 
       available
     end
