@@ -7,5 +7,8 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyCMS
-  class ApplicationComponent < ShinyCMS::BaseComponent; end
+  # Base class for view components in the ShinyCMS core plugin
+  class ApplicationComponent < ViewComponent::Base
+    include ShinyCMS::ComponentBase
+  end
 end

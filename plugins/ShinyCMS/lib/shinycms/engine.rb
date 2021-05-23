@@ -13,6 +13,7 @@ module ShinyCMS
 
     config.paths.add 'app/components',                  eager_load: true
     config.paths.add 'app/public/components',           eager_load: true
+    config.paths.add 'app/public/components/concerns',  eager_load: true
     config.paths.add 'app/public/controllers',          eager_load: true
     config.paths.add 'app/public/controllers/concerns', eager_load: true
     config.paths.add 'app/public/lib',                  eager_load: true
