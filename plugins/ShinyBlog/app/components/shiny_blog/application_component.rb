@@ -9,6 +9,6 @@
 module ShinyBlog
   # Base class for view components - part of the ShinyBlog plugin for ShinyCMS
   class ApplicationComponent < ViewComponent::Base
-    include ShinyCMS::ComponentBase
+    include ShinyCMS::ViewComponents
   end
 end

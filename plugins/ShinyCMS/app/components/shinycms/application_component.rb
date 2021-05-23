@@ -9,6 +9,6 @@
 module ShinyCMS
   # Base class for view components in the ShinyCMS core plugin
   class ApplicationComponent < ViewComponent::Base
-    include ShinyCMS::ComponentBase
+    include ShinyCMS::ViewComponents
   end
 end

@@ -9,6 +9,6 @@
 module ShinyAccess
   # Base class for view components - part of the ShinyAccess plugin for ShinyCMS
   class ApplicationComponent < ViewComponent::Base
-    include ShinyCMS::ComponentBase
+    include ShinyCMS::ViewComponents
   end
 end

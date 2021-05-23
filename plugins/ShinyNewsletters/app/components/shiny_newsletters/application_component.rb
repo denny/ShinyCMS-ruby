@@ -9,6 +9,6 @@
 module ShinyNewsletters
   # Base class for view components - part of the ShinyNewsletters plugin for ShinyCMS
   class ApplicationComponent < ViewComponent::Base
-    include ShinyCMS::ComponentBase
+    include ShinyCMS::ViewComponents
   end
 end

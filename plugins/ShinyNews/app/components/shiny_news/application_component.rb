@@ -9,6 +9,6 @@
 module ShinyNews
   # Base class for view components - part of the ShinyNews plugin for ShinyCMS
   class ApplicationComponent < ViewComponent::Base
-    include ShinyCMS::ComponentBase
+    include ShinyCMS::ViewComponents
   end
 end
