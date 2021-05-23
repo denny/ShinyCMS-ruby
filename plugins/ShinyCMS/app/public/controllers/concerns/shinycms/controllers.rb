@@ -12,7 +12,7 @@ module ShinyCMS
     extend ActiveSupport::Concern
 
     included do
-      include ShinyCMS::FeatureFlags
+      include ShinyCMS::WithFeatureFlags
 
       include Pagy::Backend
 

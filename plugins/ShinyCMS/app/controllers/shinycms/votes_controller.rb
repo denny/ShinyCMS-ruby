@@ -11,7 +11,7 @@ module ShinyCMS
   class VotesController < ApplicationController
     include ShinyCMS::MainControllers
 
-    include Votes
+    include ShinyCMS::WithVotes
 
     before_action :check_feature_flags
 
