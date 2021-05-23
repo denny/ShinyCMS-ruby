@@ -14,8 +14,11 @@ module ShinyCMS
     included do
       include ShinyCMS::Controllers
 
-      include ShinyCMS::MainSiteHelper
       include ShinyCMS::MainAppRootURL
+
+      include ShinyCMS::FeatureFlagsHelper
+      include ShinyCMS::SettingsHelper
+      include ShinyCMS::UsersHelper
 
       helper ShinyCMS::MainSiteHelper
 
