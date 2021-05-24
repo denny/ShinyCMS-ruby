@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Common code to be included in all ShinyCMS controllers (main site and admin area)
-  module Controllers
+  module ControllerBase
     extend ActiveSupport::Concern
 
     included do

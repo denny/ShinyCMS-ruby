@@ -8,11 +8,11 @@
 
 module ShinyCMS
   # Common behaviour for ShinyCMS admin controllers
-  module AdminControllers
+  module AdminAreaControllerBase
     extend ActiveSupport::Concern
 
     included do
-      include ShinyCMS::Controllers
+      include ShinyCMS::ControllerBase
 
       include ShinyCMS::Admin::AccessControlByIP
 

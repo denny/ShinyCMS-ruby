@@ -8,11 +8,11 @@
 
 module ShinyCMS
   # Common behaviour for ShinyCMS main site controllers
-  module MainControllers
+  module MainSiteControllerBase
     extend ActiveSupport::Concern
 
     included do
-      include ShinyCMS::Controllers
+      include ShinyCMS::ControllerBase
 
       include ShinyCMS::MainAppRootURL
 
