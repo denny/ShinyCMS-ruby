@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Controller for main site newsletter features - from the ShinyNewsletters plugin for ShinyCMS
   class NewslettersController < ApplicationController
-    include ShinyCMS::MainControllers
+    include ShinyCMS::MainControllerBase
 
     include ShinyCMS::WithEmailRecipients
 

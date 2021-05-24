@@ -9,7 +9,7 @@
 module ShinyCMS
   # Smarter error pages
   class ErrorsController < ApplicationController
-    include ShinyCMS::MainControllers
+    include ShinyCMS::MainControllerBase
 
     def bad_request
       head :bad_request

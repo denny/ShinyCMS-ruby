@@ -9,7 +9,7 @@
 module ShinySearch
   # Main site controller for ShinySearch plugin for ShinyCMS
   class SearchController < ApplicationController
-    include ShinyCMS::MainControllers
+    include ShinyCMS::MainControllerBase
 
     include ShinySearch::MainSiteHelper
 

@@ -9,7 +9,7 @@
 module ShinyCMS
   # Controller for tag features on a ShinyCMS-powered site
   class TagsController < ApplicationController
-    include ShinyCMS::MainControllers
+    include ShinyCMS::MainControllerBase
 
     before_action :check_feature_flags
 

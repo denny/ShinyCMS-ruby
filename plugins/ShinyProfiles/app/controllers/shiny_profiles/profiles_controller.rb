@@ -9,7 +9,7 @@
 module ShinyProfiles
   # Main site controller for profile pages, provided by ShinyProfiles plugin for ShinyCMS
   class ProfilesController < ApplicationController
-    include ShinyCMS::MainControllers
+    include ShinyCMS::MainControllerBase
 
     before_action :check_feature_flags
     before_action :authenticate_user!,         except: %i[ index show  ]

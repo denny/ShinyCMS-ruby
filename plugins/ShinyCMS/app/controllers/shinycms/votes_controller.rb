@@ -9,7 +9,7 @@
 module ShinyCMS
   # Controller for vote features on a ShinyCMS site
   class VotesController < ApplicationController
-    include ShinyCMS::MainControllers
+    include ShinyCMS::MainControllerBase
 
     include ShinyCMS::WithVotes
 
