@@ -9,7 +9,7 @@
 module ShinyPages
   # Admin controller for templates - ShinyPages plugin for ShinyCMS
   class Admin::TemplatesController < ApplicationController
-    include ShinyCMS::AdminControllerBase
+    include ShinyCMS::AdminAreaControllerBase
 
     include ShinyCMS::Admin::WithSorting
 

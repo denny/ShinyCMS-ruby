@@ -9,7 +9,7 @@
 module ShinyCMS
   # Controller for user-site-settings features on a ShinyCMS site
   class SiteSettingsController < ApplicationController
-    include ShinyCMS::MainControllerBase
+    include ShinyCMS::MainSiteControllerBase
 
     before_action :authenticate_user!
 

@@ -9,7 +9,7 @@
 module ShinyAccess
   # Controller for access control group admin features - part of the ShinyAccess plugin for ShinyCMS
   class Admin::GroupsController < ApplicationController
-    include ShinyCMS::AdminControllerBase
+    include ShinyCMS::AdminAreaControllerBase
 
     before_action :stash_query, only: :search
     before_action :stash_group, only: %i[ edit update destroy ]

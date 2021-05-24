@@ -9,7 +9,7 @@
 module ShinyCMS
   # Main site controller for comment features - part of the ShinyCMS core plugin
   class CommentsController < ApplicationController
-    include ShinyCMS::MainControllerBase
+    include ShinyCMS::MainSiteControllerBase
 
     include ShinyCMS::WithAkismet
     include ShinyCMS::WithRecaptcha

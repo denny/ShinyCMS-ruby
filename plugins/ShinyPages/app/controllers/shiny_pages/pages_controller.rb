@@ -9,7 +9,7 @@
 module ShinyPages
   # Main site controller - ShinyPages plugin for ShinyCMS
   class PagesController < ApplicationController
-    include ShinyCMS::MainControllerBase
+    include ShinyCMS::MainSiteControllerBase
 
     include ShinyPages::MainSiteHelper
 

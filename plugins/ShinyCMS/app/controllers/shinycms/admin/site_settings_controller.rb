@@ -9,7 +9,7 @@
 module ShinyCMS
   # Controller for site-settings section of ShinyCMS admin area
   class Admin::SiteSettingsController < ApplicationController
-    include ShinyCMS::AdminControllerBase
+    include ShinyCMS::AdminAreaControllerBase
 
     def index
       authorize Setting

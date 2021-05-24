@@ -9,7 +9,7 @@
 module ShinyNews
   # Main site controller for news section - provided by ShinyNews plugin for ShinyCMS
   class NewsController < ApplicationController
-    include ShinyCMS::MainControllerBase
+    include ShinyCMS::MainSiteControllerBase
 
     before_action :check_feature_flags
 

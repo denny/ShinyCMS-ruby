@@ -9,7 +9,7 @@
 module ShinyCMS
   # Main site controller for the Do Not Contact feature in ShinyCMS
   class DoNotContactController < ApplicationController
-    include ShinyCMS::MainControllerBase
+    include ShinyCMS::MainSiteControllerBase
 
     # Display the permanent unsubscribe / 'do not contact' form
     def new; end

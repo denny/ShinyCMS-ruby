@@ -9,7 +9,7 @@
 module ShinyBlog
   # Main site controller for blog - provided by ShinyBlog plugin for ShinyCMS
   class BlogController < ApplicationController
-    include ShinyCMS::MainControllerBase
+    include ShinyCMS::MainSiteControllerBase
 
     before_action :check_feature_flags
 

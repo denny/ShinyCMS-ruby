@@ -9,7 +9,7 @@
 module ShinyCMS
   # Controller for feature flags section of ShinyCMS admin area
   class Admin::FeatureFlagsController < ApplicationController
-    include ShinyCMS::AdminControllerBase
+    include ShinyCMS::AdminAreaControllerBase
 
     def index
       authorize FeatureFlag

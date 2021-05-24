@@ -9,7 +9,7 @@
 module ShinyCMS
   # Controller for main site email-recipient features in ShinyCMS
   class EmailRecipientsController < ApplicationController
-    include ShinyCMS::MainControllerBase
+    include ShinyCMS::MainSiteControllerBase
 
     # Confirm that the person has access to the email account - AKA double opt-in
     def confirm

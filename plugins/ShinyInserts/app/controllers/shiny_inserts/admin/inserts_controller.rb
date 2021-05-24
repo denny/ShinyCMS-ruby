@@ -9,7 +9,7 @@
 module ShinyInserts
   # Admin area controller for ShinyInserts plugin for ShinyCMS
   class Admin::InsertsController < ApplicationController
-    include ShinyCMS::AdminControllerBase
+    include ShinyCMS::AdminAreaControllerBase
 
     helper_method :load_html_editor?
 

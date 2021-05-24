@@ -9,7 +9,7 @@
 module ShinyCMS
   # Controller for main site email-recipient features in ShinyCMS
   class Admin::EmailRecipientsController < ApplicationController
-    include ShinyCMS::AdminControllerBase
+    include ShinyCMS::AdminAreaControllerBase
 
     def index
       authorize EmailRecipient
