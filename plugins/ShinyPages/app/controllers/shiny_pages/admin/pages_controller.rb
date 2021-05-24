@@ -9,7 +9,7 @@
 module ShinyPages
   # Admin controller for pages - ShinyPages plugin for ShinyCMS
   class Admin::PagesController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     include ShinyCMS::Admin::WithSorting
 

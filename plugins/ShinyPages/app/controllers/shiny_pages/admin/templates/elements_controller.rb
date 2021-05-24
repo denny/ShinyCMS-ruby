@@ -9,7 +9,7 @@
 module ShinyPages
   # Admin controller for template elements - ShinyPages plugin for ShinyCMS
   class Admin::Templates::ElementsController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     def create
       authorize template

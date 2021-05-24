@@ -9,7 +9,7 @@
 module ShinyProfiles
   # Controller for admin updates to user profiles - part of the ShinyProfiles plugin for ShinyCMS
   class Admin::ProfilesController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     before_action :stash_profile
 

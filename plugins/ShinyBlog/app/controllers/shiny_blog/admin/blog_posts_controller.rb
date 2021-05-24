@@ -9,7 +9,7 @@
 module ShinyBlog
   # Admin area controller for ShinyBlog plugin for ShinyCMS
   class Admin::BlogPostsController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     include ShinyCMS::Admin::WithPosts
 

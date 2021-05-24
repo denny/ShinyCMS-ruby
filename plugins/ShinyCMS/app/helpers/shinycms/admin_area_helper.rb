@@ -15,7 +15,7 @@ module ShinyCMS
     include ShinyCMS::ViewComponentHelper
 
     def admin_controller_from
-      return 'shinycms' if controller.class.include? ShinyCMS::AdminControllers
+      return 'shinycms' if controller.class.include? ShinyCMS::AdminControllerBase
 
       return 'blazer' if controller.is_a? Blazer::BaseController
 

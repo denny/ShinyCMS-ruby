@@ -9,7 +9,7 @@
 module ShinyCMS
   # Admin controller for managing consent versions
   class Admin::ConsentVersionsController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     before_action :stash_new_consent_version, only: %i[ new create ]
     before_action :stash_consent_version,     only: %i[ show edit update destroy ]

@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Admin controller for newsletter editions - ShinyNewsletters plugin for ShinyCMS
   class Admin::EditionsController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     include ShinyCMS::Admin::WithSorting
 

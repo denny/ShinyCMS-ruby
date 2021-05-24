@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Admin controller for newsletter sends - part of ShinyNewsletters plugin for ShinyCMS
   class Admin::SendsController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     include ShinyCMS::Admin::WithDateTimeInputs
 

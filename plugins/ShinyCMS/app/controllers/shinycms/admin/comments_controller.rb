@@ -9,7 +9,7 @@
 module ShinyCMS
   # Controller for ShinyCMS comment admin features
   class Admin::CommentsController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     include ShinyCMS::WithAkismet
 

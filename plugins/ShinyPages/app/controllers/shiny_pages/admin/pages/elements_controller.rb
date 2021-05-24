@@ -9,7 +9,7 @@
 module ShinyPages
   # Admin controller for page elements - ShinyPages plugin for ShinyCMS
   class Admin::Pages::ElementsController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     def create
       authorize page

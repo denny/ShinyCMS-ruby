@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Admin controller for newsletter templates - part of ShinyNewsletters plugin for ShinyCMS
   class Admin::TemplatesController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     include ShinyCMS::Admin::WithSorting
 

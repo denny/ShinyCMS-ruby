@@ -9,7 +9,7 @@
 module ShinyNewsletters
   # Admin controller for newsletter edition elements - ShinyNewsletters plugin for ShinyCMS
   class Admin::Editions::ElementsController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     def create
       authorize edition

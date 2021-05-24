@@ -9,7 +9,7 @@
 module ShinyForms
   # Admin area controller for ShinyForms plugin for ShinyCMS
   class Admin::FormsController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     before_action :set_form_for_create, only: %i[ create ]
     before_action :set_form, only: %i[ edit update destroy ]

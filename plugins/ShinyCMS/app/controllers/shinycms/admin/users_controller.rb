@@ -9,7 +9,7 @@
 module ShinyCMS
   # Controller for users section of ShinyCMS admin area
   class Admin::UsersController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     before_action :stash_new_user, only: %i[ new create ]
     before_action :stash_user,     only: %i[ edit update destroy ]

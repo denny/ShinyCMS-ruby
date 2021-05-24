@@ -9,7 +9,7 @@
 module ShinyLists
   # Controller for mailing list admin features - part of the ShinyLists plugin for ShinyCMS
   class Admin::ListsController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     def index
       authorize List

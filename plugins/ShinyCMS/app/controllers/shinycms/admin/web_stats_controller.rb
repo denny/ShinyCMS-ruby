@@ -9,7 +9,7 @@
 module ShinyCMS
   # Controller for viewing web stats in ShinyCMS admin area
   class Admin::WebStatsController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     def index
       authorize Ahoy::Visit

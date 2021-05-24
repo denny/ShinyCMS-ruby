@@ -9,7 +9,7 @@
 module ShinyAccess
   # Admin controller for access group memberships - part of the ShinyAccess plugin for ShinyCMS
   class Admin::MembershipsController < ApplicationController
-    include ShinyCMS::AdminControllers
+    include ShinyCMS::AdminControllerBase
 
     include ShinyCMS::WithUsers
 
