@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # Common behaviour for view components - part of the ShinyCMS core plugin
-  module ViewComponents
+  module ViewComponentBase
     extend ActiveSupport::Concern
 
     included do
