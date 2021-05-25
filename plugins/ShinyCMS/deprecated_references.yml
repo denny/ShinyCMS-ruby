@@ -23,9 +23,3 @@
     files:
     - plugins/ShinyCMS/app/controllers/shinycms/admin/web_stats_controller.rb
     - plugins/ShinyCMS/app/models/concerns/shinycms/shiny_user_content.rb
-plugins/ShinySearch:
-  "::ShinySearch::Searchable":
-    violations:
-    - dependency
-    files:
-    - plugins/ShinyCMS/app/public/models/concerns/shinycms/post.rb

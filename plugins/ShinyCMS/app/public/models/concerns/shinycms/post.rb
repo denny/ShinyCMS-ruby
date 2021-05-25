@@ -36,13 +36,6 @@ module ShinyCMS
       before_validation :set_posted_at, if: -> { posted_at.blank? }
       after_commit      :build_atom_feed
 
-      # Plugin features
-
-      if ShinyCMS.plugins.loaded? :ShinySearch
-        include ShinySearch::Searchable
-        searchable_by :title, :body, :slug  # TODO: author
-      end
-
       # Attribute aliases and delegated methods
 
       alias_attribute :author,    :user
