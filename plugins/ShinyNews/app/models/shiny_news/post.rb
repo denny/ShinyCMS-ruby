@@ -20,6 +20,11 @@ module ShinyNews
     user_model = ShinyCMS.config_user_model
     user_model.constantize.has_many :news_posts, dependent:  :restrict_with_error, class_name: 'ShinyNews::Post'
 
+    if ShinyCMS.plugins.loaded? :ShinySearch
+      include ShinySearch::Searchable
+      searchable_by :title, :body, :slug  # TODO: author
+    end
+
     def path( anchor: nil )
       url_helpers.view_news_post_path(
         posted_year, posted_month, slug, anchor: anchor

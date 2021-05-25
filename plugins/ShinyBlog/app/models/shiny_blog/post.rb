@@ -20,6 +20,11 @@ module ShinyBlog
     user_model = ShinyCMS.config_user_model
     user_model.constantize.has_many :blog_posts, dependent:  :restrict_with_error, class_name: 'ShinyBlog::Post'
 
+    if ShinyCMS.plugins.loaded? :ShinySearch
+      include ShinySearch::Searchable
+      searchable_by :title, :body, :slug  # TODO: author
+    end
+
     def path( anchor: nil )
       url_helpers.view_blog_post_path(
         posted_year, posted_month, slug, anchor: anchor
