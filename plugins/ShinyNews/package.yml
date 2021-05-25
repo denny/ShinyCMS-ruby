@@ -1,23 +1,15 @@
-# ShinyCMS ~ https://shinycms.org
+# ShinyNews plugin for ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2021 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Packwerk config for the root package of the application
+# Packwerk config for this plugin
 
-# Validate the configuration using `bin/packwerk validate`
-# Check your code using `packwerk check`
-
-# Turn on dependency checks for this package?
 enforce_dependencies: true
 
-# Turn on privacy checks for this package?
 enforce_privacy: true
 
-# The public path for this package (defaults to `app/public/`)
-# public_path: app/public/
-
-# Dependencies of this package (note: these require their own `package.yml` file)
 dependencies:
 - plugins/ShinyCMS
+- plugins/ShinySearch
