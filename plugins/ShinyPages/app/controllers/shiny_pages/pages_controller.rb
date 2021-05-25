@@ -8,7 +8,9 @@
 
 module ShinyPages
   # Main site controller - ShinyPages plugin for ShinyCMS
-  class PagesController < MainController
+  class PagesController < ApplicationController
+    include ShinyCMS::MainSiteControllerBase
+
     include ShinyPages::MainSiteHelper
 
     before_action :enforce_html_format

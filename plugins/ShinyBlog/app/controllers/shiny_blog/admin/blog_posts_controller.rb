@@ -8,7 +8,9 @@
 
 module ShinyBlog
   # Admin area controller for ShinyBlog plugin for ShinyCMS
-  class Admin::BlogPostsController < AdminController
+  class Admin::BlogPostsController < ApplicationController
+    include ShinyCMS::AdminAreaControllerBase
+
     include ShinyCMS::Admin::WithPosts
 
     before_action :set_post_for_create, only: :create

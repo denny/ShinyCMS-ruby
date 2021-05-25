@@ -15,7 +15,7 @@ module ShinyCMS
 
         include ShinyCMS::Admin::AccessControlByIP
 
-        include ShinyCMS::FeatureFlags
+        include ShinyCMS::WithFeatureFlags
 
         before_action :authenticate_user!
 

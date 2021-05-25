@@ -8,7 +8,9 @@
 
 module ShinyNews
   # Admin area controller for ShinyNews plugin for ShinyCMS
-  class Admin::NewsPostsController < AdminController
+  class Admin::NewsPostsController < ApplicationController
+    include ShinyCMS::AdminAreaControllerBase
+
     include ShinyCMS::Admin::WithPosts
 
     before_action :set_post_for_create, only: :create

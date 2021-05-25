@@ -9,9 +9,16 @@
 module ShinyCMS
   # Helper methods for admin area
   module AdminAreaHelper
+    include ShinyCMS::DatesHelper
+    include ShinyCMS::ElementsHelper
+    include ShinyCMS::PluginsHelper
+    include ShinyCMS::ViewComponentHelper
+
     def admin_controller_from
-      return 'shinycms' if controller.is_a? ShinyCMS::Admin::BaseController
-      return 'blazer'   if controller.is_a? Blazer::BaseController
+      return 'shinycms' if controller.class.include? ShinyCMS::AdminAreaControllerBase
+
+      return 'blazer' if controller.is_a? Blazer::BaseController
+
       return 'rails_email_preview' if controller.is_a? RailsEmailPreview::ApplicationController
     end
 

@@ -8,7 +8,9 @@
 
 module ShinyAccess
   # Admin controller for access group memberships - part of the ShinyAccess plugin for ShinyCMS
-  class Admin::MembershipsController < AdminController
+  class Admin::MembershipsController < ApplicationController
+    include ShinyCMS::AdminAreaControllerBase
+
     include ShinyCMS::WithUsers
 
     before_action :stash_group

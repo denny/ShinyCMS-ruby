@@ -38,6 +38,7 @@ load_paths:
 - plugins/ShinyCMS/app/policies
 - plugins/ShinyCMS/app/public
 - plugins/ShinyCMS/app/public/components
+- plugins/ShinyCMS/app/public/components/concerns
 - plugins/ShinyCMS/app/public/controllers
 - plugins/ShinyCMS/app/public/controllers/concerns
 - plugins/ShinyCMS/app/public/helpers

@@ -8,7 +8,9 @@
 
 module ShinyCMS
   # Controller for main site email-recipient features in ShinyCMS
-  class Admin::EmailRecipientsController < Admin::BaseController
+  class Admin::EmailRecipientsController < ApplicationController
+    include ShinyCMS::AdminAreaControllerBase
+
     def index
       authorize EmailRecipient
       @pagy, @recipients = pagy( EmailRecipient.order( updated_at: :desc ) )

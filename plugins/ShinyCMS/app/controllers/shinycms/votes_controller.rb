@@ -8,8 +8,10 @@
 
 module ShinyCMS
   # Controller for vote features on a ShinyCMS site
-  class VotesController < MainController
-    include Votes
+  class VotesController < ApplicationController
+    include ShinyCMS::MainSiteControllerBase
+
+    include ShinyCMS::WithVotes
 
     before_action :check_feature_flags
 

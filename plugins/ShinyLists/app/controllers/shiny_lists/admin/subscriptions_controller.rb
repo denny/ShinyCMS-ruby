@@ -8,7 +8,9 @@
 
 module ShinyLists
   # Controller for list subscription admin features - part of the ShinyLists plugin for ShinyCMS
-  class Admin::SubscriptionsController < AdminController
+  class Admin::SubscriptionsController < ApplicationController
+    include ShinyCMS::AdminAreaControllerBase
+
     include ShinyCMS::WithConsentVersion
     include ShinyCMS::WithEmailRecipients
     include ShinyCMS::WithUsers

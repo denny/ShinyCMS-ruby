@@ -8,7 +8,9 @@
 
 module ShinyInserts
   # Admin area controller for ShinyInserts plugin for ShinyCMS
-  class Admin::InsertsController < AdminController
+  class Admin::InsertsController < ApplicationController
+    include ShinyCMS::AdminAreaControllerBase
+
     helper_method :load_html_editor?
 
     before_action :stash_insert_set

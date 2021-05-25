@@ -8,7 +8,7 @@
 
 module ShinyCMS
   # For controllers that handle upvotes/downvotes via ActsAsVotable
-  module Votes
+  module WithVotes
     extend ActiveSupport::Concern
 
     included do

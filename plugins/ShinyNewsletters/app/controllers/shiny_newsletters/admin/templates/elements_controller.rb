@@ -8,7 +8,9 @@
 
 module ShinyNewsletters
   # Admin controller for template elements - ShinyNewsletters plugin for ShinyCMS
-  class Admin::Templates::ElementsController < AdminController
+  class Admin::Templates::ElementsController < ApplicationController
+    include ShinyCMS::AdminAreaControllerBase
+
     def create
       authorize template
 
