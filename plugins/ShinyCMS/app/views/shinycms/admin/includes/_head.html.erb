@@ -19,6 +19,4 @@
 
     <%= stylesheet_link_tag 'shinycms/admin_area', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <title>
-      <%= "#{@page_title.titlecase} - " if @page_title %>ShinyCMS
-    </title>
+    <%= component 'admin/head/title', page_title: @page_title.titlecase %>

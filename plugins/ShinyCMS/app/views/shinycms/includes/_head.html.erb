@@ -1,7 +1,3 @@
-<title>
-  <%= @page_title %><%= ' - ' if @page_title.present? %><%= site_name %>
-</title>
-
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
 
@@ -13,3 +9,5 @@
 <% plugins_with_main_site_head_templates.each do |plugin| %>
 <%= render partial: plugin.partial( 'includes/head_part' ) %>
 <% end %>
+
+<%= component 'head/title', page_title: @page_title, site_name: site_name %>
