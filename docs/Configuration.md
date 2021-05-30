@@ -7,8 +7,8 @@ Configuration is split between the following locations:
 ### ENV vars
 
 * Mostly used for secrets (database details, API keys etc)
-* Usually loaded from .env* files, or from Settings > Config Vars on Heroku
 * See docs/env.sample for a full list of available ENV settings
+* Usually loaded from `.env*` files, or from Settings > Config Vars on Heroku
 
 ### Feature Flags
 
@@ -28,7 +28,7 @@ rails shiny:feature:off[user_logins]
 
 ## Services
 
-The external services listed below are optional. If you add config details for them (via a .env* file (see [env.sample](env.sample)), or via your Config Vars on Heroku) then the related CMS features will be enabled or enhanced, otherwise those features will be unavailable or will have more limited functionality.
+The external services listed below are optional. If you add config details for them (via a `.env*` file (see [env.sample](env.sample)), or via your Config Vars on Heroku) then the related CMS features will be enabled or enhanced, otherwise those features will be unavailable or will have more limited functionality.
 
 ### Akismet - spam flagging
 
@@ -42,7 +42,7 @@ User uploaded files can be stored on AWS S3 instead of locally. To enable this f
 
 ### Bugsnag - error monitoring
 
-If you add a BUGSNAG_API_KEY then ShinyCMS will start reporting to your Bugsnag account.
+If you add a `BUGSNAG_API_KEY` then ShinyCMS will start reporting to your Bugsnag account.
 
 ### reCAPTCHA - bot protection
 
