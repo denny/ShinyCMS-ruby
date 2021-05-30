@@ -38,7 +38,7 @@ Processing comments in the moderation queue will send training data back to Akis
 
 ### AWS S3 - file storage
 
-User uploaded files can be stored on AWS S3 instead of locally. To enable this feature you will need to have an an AWS account, create an S3 bucket, and add the relevant keys to the ENV/config.
+User uploaded files can be stored on AWS S3 instead of locally. To enable this feature you will need to have an AWS account, create an S3 bucket, and add the relevant keys to the ENV/config.
 
 ### Bugsnag - error monitoring
 
