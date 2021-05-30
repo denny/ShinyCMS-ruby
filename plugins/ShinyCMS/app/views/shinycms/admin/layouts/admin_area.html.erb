@@ -41,7 +41,10 @@
       </div>
 
       <footer class="c-footer">
-        <%= render partial: 'admin/includes/footer' %>
+        <div class="ml-auto">
+          Powered by <a href="https://shinycms.org/">ShinyCMS</a>
+          (<a href="https://github.com/denny/ShinyCMS-ruby/releases/tag/v<%= ShinyCMS::VERSION %>"><%= ShinyCMS::VERSION %></a>)
+        </div>
       </footer>
     </div>
 
