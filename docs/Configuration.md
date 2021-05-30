@@ -53,4 +53,4 @@ User registration and posting comments can be protected from bots using Google's
 
 ### Have I Been Pwned - password leak checking
 
-The user registration and login features use Devise::PwnedPassword to check user's passwords against https://haveibeenpwned.com/Passwords and warn the user if they find a match, but this doesn't require any setup on your part.
+The user registration and login features use [Devise::PwnedPassword](https://github.com/michaelbanfield/devise-pwned_password) to check user's passwords against https://haveibeenpwned.com/Passwords and warn the user if they find a match, but this doesn't require any setup on your part.
