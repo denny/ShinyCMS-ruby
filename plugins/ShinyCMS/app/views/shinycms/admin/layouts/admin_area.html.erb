@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<!--
-* CoreUI - Free Bootstrap Admin Template
-* @version v3.0.0
-* @link https://coreui.io
-* Copyright (c) 2019 creativeLabs Łukasz Holeczek
-* Licensed under MIT (https://coreui.io/license)
+<!-- CoreUI - Free Bootstrap Admin Template
+     @version v3.0.0
+     @link https://coreui.io
+     Copyright (c) 2019 creativeLabs Łukasz Holeczek
+     Licensed under MIT (https://coreui.io/license)
 -->
-<%#
-  Modified and adapted for use in ShinyCMS by Denny de la Haye
-  Please bring any ERB template issues to ShinyCMS, not CoreUI!
-  https://github.com/denny/ShinyCMS-ruby  https://shinycms.org
-%>
+<%# Adapted for use in the ShinyCMS admin area by Denny de la Haye.
+    Please raise any issues with ShinyCMS first, even if they look
+    like CoreUI bugs; they're more likely to be integration issues.
+    https://github.com/denny/ShinyCMS-ruby / https://shinycms.org
+-%>
 <html lang="<%= I18n.locale.to_s %>">
   <head>
-    <%= render partial: 'admin/includes/head' %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag   %>
+
+    <% if admin_controller_from == 'blazer' %>
+      <%= component 'admin/head/blazer', root_path: @root_path %>
+      <% @page_title = t( "shinycms.admin.blazer.#{controller_name}.title" ) %>
+    <% end %>
+
+    <%= component 'admin/head', page_title: @page_title, load_html_editor: try( :load_html_editor? ) %>
   </head>
 
   <body class="c-app">
@@ -23,7 +30,7 @@
 
     <div class="c-wrapper">
       <header class="c-header c-header-light c-header-fixed">
-        <%= render partial: 'admin/includes/header'   %>
+        <%= render partial: 'admin/includes/header' %>
       </header>
 
       <div class="c-body">
