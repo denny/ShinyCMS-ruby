@@ -6,19 +6,13 @@
 
 # i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
 
-# The "main" locale.
 base_locale: en
-## All available locales are inferred from the data by default. Alternatively, specify them explicitly:
+
+## All available locales. This is inferred from the data normally.
 # locales: [es, fr]
-## Reporting locale, default: en. Available: en, ru.
-# internal_locale: en
 
 # Read and write translations.
 data:
-  ## Translations are read from the file system. Supported format: YAML, JSON.
-  ## Provide a custom adapter:
-  # adapter: I18n::Tasks::Data::FileSystem
-
   # Locale files or `File.find` patterns where translations are read from:
   read:
     ## Default:
@@ -28,35 +22,8 @@ data:
     ## ShinyCMS plugins
     - plugins/Shiny*/config/locales/%{locale}.yml
 
-  # Locale files to write new keys to, based on a list of key pattern => file rules. Matched from top to bottom:
-  # `i18n-tasks normalize -p` will force move the keys according to these rules
-  write:
-    ## For example, write devise and simple form keys to their respective files:
-    # - ['{devise, simple_form}.*', 'config/locales/\1.%{locale}.yml']
-    ## Catch-all default:
-    # - config/locales/%{locale}.yml
-
-  # External locale data (e.g. gems).
-  # This data is not considered unused and is never written to.
-  external:
-    ## Example (replace %#= with %=):
-    # - "<%#= %x[bundle show vagrant].chomp %>/templates/locales/%{locale}.yml"
-
   ## Specify the router (see Readme for details). Valid values: conservative_router, pattern_router, or a custom class.
   # router: conservative_router
-
-  yaml:
-    write:
-      # do not wrap lines at 80 characters
-      line_width: -1
-
-  ## Pretty-print JSON:
-  # json:
-  #   write:
-  #     indent: '  '
-  #     space: ' '
-  #     object_nl: "\n"
-  #     array_nl: "\n"
 
 # Find translate calls
 search:
@@ -68,32 +35,21 @@ search:
 
   ## Root directories for relative keys resolution.
   relative_roots:
-    # Check for usage in the plugin views and controllers too
+    # Check for usage in the plugin views and controllers
     <% plugin_names = Dir[ 'plugins/*' ].sort.collect { |plugin_name| plugin_name.sub( 'plugins/', '' ) } %>
     <% plugin_names.each do |plugin_name| %>
     - <%= "plugins/#{plugin_name}/app/controllers" %>
     - <%= "plugins/#{plugin_name}/app/views" %>
     <% end %>
-    # FIXME
-    - plugins/ShinyPages/app/models
-    - plugins/ShinyCMS/app/public/components
-    - plugins/ShinyCMS/app/helpers
-    - plugins/ShinyCMS/app/mailers
-    - plugins/ShinyCMS/app/mailers/shinycms
-    #- plugins/ShinyCMS/app/views/shinycms
-    # REP, and whatever else is still in main_app
-    - app/views/
 
   ## Files or `File.fnmatch` patterns to exclude from search. Some files are always excluded regardless of this setting:
   ##   %w(*.jpg *.png *.gif *.svg *.ico *.eot *.otf *.ttf *.woff *.woff2 *.pdf *.css *.sass *.scss *.less *.yml *.json)
-  exclude:
-    - app/assets/images
-    - app/assets/fonts
-    - app/assets/videos
+  # exclude:
+  #  - app/assets/images
 
   ## Alternatively, the only files or `File.fnmatch patterns` to search in `paths`:
   ## If specified, this settings takes priority over `exclude`, but `exclude` still applies.
-  # only: ["*.rb", "*.html.slim"]
+  only: [ '*.rb', '*.html.erb', '*.html.mjml' ]
 
   ## If `strict` is `false`, guess usages such as t("categories.#{category}.title"). The default is `true`.
   # strict: false
