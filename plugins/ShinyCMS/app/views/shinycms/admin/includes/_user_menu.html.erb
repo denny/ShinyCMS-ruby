@@ -2,7 +2,7 @@
 
 <% has_profile = plugin_loaded?( :ShinyProfiles ) &&
                  current_user.profile.present? %>
-<% has_picture = has_profile && admin_controller_from == 'shinycms' &&
+<% has_picture = has_profile && shinycms_admin_controller? &&
                  current_user.profile_with_pic.profile_pic.attached? %>
 
 <ul class="c-header-nav ml-auto mr-4">

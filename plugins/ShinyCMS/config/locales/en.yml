@@ -479,18 +479,10 @@ en:
       # ===== other engines =====
 
       blazer:
-        breadcrumb: Charts & Dashboards
         menu: Charts
         auth_fail: Your account does not have access to Blazer charts and dashboards
-        dashboards:
-          title: Dashboards
-        queries:
-          title: Queries
-        checks:
-          title: Checks
 
       rails_email_preview:
-        breadcrumb: Mailers
         menu: Mailer previews
         # auth_fail: Your account does not have access to REP mailer previews
         emails:
@@ -508,3 +500,37 @@ en:
             one: 1 mailer
             other: '%{count} mailers'
           loading: Loading...
+
+  blazer:
+    admin:
+      checks:
+        breadcrumb: Blazer Checks
+        index:
+          title: Checks
+        new:
+          title: New check
+      dashboards:
+        breadcrumb: Blazer Dashboards
+        show:
+          title: View dashboard
+        new:
+          title: New dashboard
+        edit:
+          title: Edit dashboard
+      queries:
+        breadcrumb: Blazer Charts
+        home:
+          title: Queries
+        index:
+          title: Queries
+        show:
+          title: View query
+        new:
+          title: New query
+        edit:
+          title: Edit query
+
+  rails_email_preview:
+    admin:
+      emails:
+        breadcrumb: Mailers
