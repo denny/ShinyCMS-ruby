@@ -10,9 +10,9 @@ module ShinyCMS
   module Admin
     # Component to render the admin area breadcrumbs
     class BreadcrumbsComponent < ApplicationComponent
-      def initialize( page_title:, controller_name:, plugin_name:, path: nil )
+      def initialize( page_title:, controller_name:, plugin_name:, section_path: nil )
         @section_text = section_text( plugin_name, controller_name )
-        @section_path = path || section_path( plugin_name, controller_name )
+        @section_path = section_path || section_path( plugin_name, controller_name )
 
         @page_title = page_title
       end
@@ -22,6 +22,15 @@ module ShinyCMS
       end
 
       def section_path( plugin_name, controller_name )
+        case plugin_name
+        when 'RailsEmailPreview'
+          plugin_name = 'ShinyCMS'
+          controller_name = 'rails_email_preview'
+        when 'Blazer'
+          plugin_name = 'ShinyCMS'
+          controller_name = 'blazer'
+        end
+
         ShinyCMS::Plugin.get( plugin_name ).url_helpers.public_send( "#{controller_name}_path" )
       end
     end

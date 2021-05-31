@@ -8,6 +8,9 @@
 
 # Mount engines from gems used by ShinyCMS
 
+# The breadcrumbs component uses this route for its section link
+get '/admin/tools/stats', to: Blazer::Engine, as: :blazer
+
 # CKEditor provides the WYSIWYG editor used in the ShinyCMS admin area
 mount Ckeditor::Engine, at: '/admin/tools/ckeditor'
 

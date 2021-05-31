@@ -29,13 +29,22 @@
 
     <div class="c-wrapper">
       <header class="c-header c-header-light c-header-fixed">
-        <%= render partial: 'admin/includes/header',
-                   locals: { page_title: page_title, plugin_name: current_plugin_name } %>
+        <button class="c-header-toggler c-class-toggler d-lg-none mr-auto"   type="button" data-target="#sidebar" data-class="c-sidebar-show"><span class="c-header-toggler-icon"></span></button>
+        <button class="c-header-toggler c-class-toggler ml-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true"><span class="c-header-toggler-icon"></span></button>
+
+        <%= component 'admin/breadcrumbs',
+                      page_title:      page_title,
+                      section_path:    controller.try( :breadcrumb_section_path ),
+                      controller_name: controller_name,
+                      plugin_name:     current_plugin_name %>
+
+        <%= render partial: 'admin/includes/user_menu' %>
       </header>
 
       <div class="c-body">
         <main>
           <%= component 'admin/alerts', flash: flash.to_h %>
+
           <%= yield %>
         </main>
       </div>
