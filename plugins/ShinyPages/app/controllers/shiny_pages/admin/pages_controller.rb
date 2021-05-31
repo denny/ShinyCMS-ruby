@@ -16,7 +16,7 @@ module ShinyPages
     before_action :stash_new_page, only: %i[ new create ]
     before_action :stash_page,     only: %i[ edit update destroy ]
 
-    helper_method :load_html_editor?
+    helper_method :with_html_editor?
 
     def index
       authorize Page
@@ -118,7 +118,7 @@ module ShinyPages
     end
 
     # Return true if the page we're on might need a WYSIWYG HTML editor
-    def load_html_editor?
+    def with_html_editor?
       action_name == 'edit'
     end
   end

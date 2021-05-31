@@ -18,7 +18,7 @@ module ShinyCMS
 
       included do
         helper_method :admin_tag_list
-        helper_method :load_html_editor?
+        helper_method :with_html_editor?
 
         def enforce_change_author_capability_for_create( category )
           params[ :post ][ :user_id ] = current_user.id unless current_user.can? :change_author, category
@@ -29,7 +29,7 @@ module ShinyCMS
         end
 
         # Return true if the page we're on might need a WYSIWYG HTML editor
-        def load_html_editor?
+        def with_html_editor?
           action_name == 'new' || action_name == 'edit'
         end
       end

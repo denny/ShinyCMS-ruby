@@ -10,9 +10,10 @@ module ShinyCMS
   module Admin
     # Component to render the contents of the <head> section in the admin area
     class HeadComponent < ApplicationComponent
-      def initialize( page_title:, load_html_editor: false )
+      def initialize( page_title:, with_html_editor: false )
         @page_title = page_title
-        @load_html_editor = load_html_editor
+
+        @load_ckeditor_js = with_html_editor
       end
     end
   end

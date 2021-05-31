@@ -16,7 +16,7 @@ module ShinyNewsletters
     before_action :stash_new_template, only: %i[ new create ]
     before_action :stash_template,     only: %i[ edit update destroy ]
 
-    helper_method :load_html_editor?
+    helper_method :with_html_editor?
 
     def index
       authorize Template
@@ -104,7 +104,7 @@ module ShinyNewsletters
     end
 
     # Return true if the page we're on might need a WYSIWYG HTML editor
-    def load_html_editor?
+    def with_html_editor?
       action_name == 'edit'
     end
   end
