@@ -1,32 +1,25 @@
-<% return unless user_signed_in? %>
-
-<% has_profile = plugin_loaded?( :ShinyProfiles ) &&
-                 current_user.profile.present? %>
-<% has_picture = has_profile && shinycms_admin_controller? &&
-                 current_user.profile_with_pic.profile_pic.attached? %>
-
 <ul class="c-header-nav ml-auto mr-4">
   <li class="c-header-nav-item dropdown">
     <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-      <% if has_picture %>
+      <% if @admin_profile_pic.present? %>
       <div class="c-avatar">
-        <%= image_tag url_for( current_user.profile_with_pic.profile_pic.variant( resize: '36x36!' ) ), alt: current_user.name, class: 'c-avatar-img' %>
+        <%= image_tag url_for( @admin_profile_pic.variant( resize: '36x36!' ) ), alt: @admin_name, class: 'c-avatar-img' %>
       </div>
       <% else %>
       <i class="cil-user user-menu-icon"></i>
       <% end %>
     </a>
     <div class="dropdown-menu dropdown-menu-right pt-0">
-      <div class="dropdown-header bg-light py-2"><strong><%= current_user.name %></strong></div>
-      <% if has_profile %>
-      <a class="dropdown-item" href="<%= shiny_profiles.profile_path( current_user.username ) %>">
+      <div class="dropdown-header bg-light py-2"><strong><%= @admin_name %></strong></div>
+      <% if @admin_profile_id.present? %>
+      <a class="dropdown-item" href="<%= shiny_profiles.profile_path( @admin_username ) %>">
         <i class="cil-user user-menu-icon"></i> <%= t( 'shiny_profiles.view_profile' ) %>
       </a>
-      <a class="dropdown-item" href="<%= shiny_profiles.edit_profile_path( current_user.profile ) %>">
+      <a class="dropdown-item" href="<%= shiny_profiles.edit_profile_path( @admin_profile_id ) %>">
         <i class="cil-pencil user-menu-icon"></i> <%= t( 'shiny_profiles.edit_profile' ) %>
       </a>
       <% end %>
-      <a class="dropdown-item" href="<%= shinycms.edit_user_registration_path( current_user.username ) %>">
+      <a class="dropdown-item" href="<%= shinycms.edit_user_registration_path( @admin_username ) %>">
         <i class="cil-pencil user-menu-icon"></i> <%= t( 'shinycms.admin.users.edit.title' ) %>
       </a>
       <div class="dropdown-divider"></div>

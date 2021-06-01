@@ -38,7 +38,8 @@
                       controller_name: controller_name,
                       plugin_name:     current_plugin_name %>
 
-        <%= render partial: 'admin/includes/user_menu' %>
+        <%= component 'admin/user_menu',  if: user_signed_in?,
+                      user: current_user, hide_pic: !shinycms_admin_controller? %>
       </header>
 
       <div class="c-body">
