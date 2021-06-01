@@ -10,6 +10,8 @@ require 'rails_helper'
 
 # Tests for the Blazer integration
 RSpec.describe 'Blazer (charts and dashboards)', type: :request do
+  let( :blazer_base_path ) { '/admin/tools/blazer' }
+
   describe 'GET /admin/tools/blazer' do
     context 'when logged in as an admin user with access to Blazer' do
       before do
@@ -17,27 +19,29 @@ RSpec.describe 'Blazer (charts and dashboards)', type: :request do
         sign_in admin
       end
 
-      it 'generates the correct button link' do
-        blazer_base_path = '/admin/tools/blazer'
-
+      it 'allows access' do
         get blazer_base_path
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title I18n.t( 'shinycms.admin.blazer.queries.title' )
-        expect( response.body ).to have_link  I18n.t( 'shinycms.admin.blazer.breadcrumb' )
+        expect( response.body ).to have_title I18n.t( 'blazer.admin.queries.index.title' )
+        expect( response.body ).to have_link  I18n.t( 'blazer.admin.queries.breadcrumb' )
+      end
+
+      it 'generates the correct button link' do
+        get blazer_base_path
+
+        expect( response      ).to have_http_status :ok
         expect( response.body ).to have_link 'New Query', href: "#{blazer_base_path}/queries/new"
       end
     end
 
-    context 'when logged in as an admin user without access to the tools' do
+    context 'when logged in as an admin user without access to Blazer' do
       before do
         admin = create :page_admin
         sign_in admin
       end
 
       it 'does not allow access' do
-        blazer_base_path = '/admin/tools/blazer'
-
         get blazer_base_path
 
         expect( response      ).to have_http_status :found

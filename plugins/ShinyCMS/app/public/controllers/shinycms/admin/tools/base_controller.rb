@@ -23,11 +23,11 @@ module ShinyCMS
 
         layout 'admin/layouts/admin_area'
 
-        helper_method :load_html_editor?
+        helper_method :with_html_editor?
 
         private
 
-        def load_html_editor?
+        def with_html_editor?
           false
         end
       end

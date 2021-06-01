@@ -41,9 +41,11 @@ en:
           new_element_name: New element name
           new_element_content: Default content
         create:
+          title: Add new page
           success: New page added
           failure: Failed to add new page
         update:
+          title: Edit page
           success: Page details updated
           failure: Failed to update page details
         destroy:
@@ -62,9 +64,11 @@ en:
         edit:
           title: Edit section
         create:
+          title: Add new section
           success: New section added
           failure: Failed to add new section
         update:
+          title: Edit section
           success: Section details updated
           failure: Failed to update section details
         destroy:
@@ -77,8 +81,14 @@ en:
         index:
           title: List templates
           search: Search templates
+        search:
+          title: List templates
         new:
           title: Add new template
+        create:
+          title: Add new template
+          success: New template added
+          failure: Failed to add new template
         edit:
           title: Edit template
           new_element_name: New element name
@@ -88,10 +98,8 @@ en:
             success: New element added
           destroy:
             success: Element deleted
-        create:
-          success: New template added
-          failure: Failed to add new template
         update:
+          title: Edit template
           success: Template details updated
           failure: Failed to update template details
         destroy:

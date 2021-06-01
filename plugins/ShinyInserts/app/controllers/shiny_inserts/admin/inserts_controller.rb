@@ -11,7 +11,7 @@ module ShinyInserts
   class Admin::InsertsController < ApplicationController
     include ShinyCMS::AdminAreaControllerBase
 
-    helper_method :load_html_editor?
+    helper_method :with_html_editor?
 
     before_action :stash_insert_set
 
@@ -73,7 +73,7 @@ module ShinyInserts
       params.require( :insert_set ).permit( elements_attributes: {} )
     end
 
-    def load_html_editor?
+    def with_html_editor?
       action_name == :index
     end
   end

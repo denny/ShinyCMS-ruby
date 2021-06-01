@@ -24,5 +24,9 @@ module ShinyCMS
     def plugins_with_admin_toolbar_templates
       ShinyCMS.plugins.with_partial 'admin/toolbar/_section.html.erb'
     end
+
+    def current_plugin_name
+      controller.class.name.split( '::' ).first
+    end
   end
 end

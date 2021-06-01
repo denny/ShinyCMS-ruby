@@ -1,5 +1,3 @@
-<% @page_title = t( '.title' ) %>
-
 <%= form_for @post, url: shiny_blog.blog_post_path( @post ), method: :put do |f| %>
   <p>
     <%= f.label :title %><br>

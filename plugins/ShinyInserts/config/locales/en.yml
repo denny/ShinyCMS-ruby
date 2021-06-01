@@ -26,9 +26,11 @@ en:
           name_placeholder: Name
           content_placeholder: Content (can be blank)
         create:
+          title: Inserts
           success: New insert added
           failure: Failed to add new insert
         update:
+          title: Inserts
           success: Inserts updated
           # unchanged: Inserts unchanged
           failure: Failed to update inserts

@@ -35,6 +35,7 @@ en:
         edit:
           title: Edit user profile
         update:
+          title: Edit user profile
           success: User profile details updated
       users:
         index:

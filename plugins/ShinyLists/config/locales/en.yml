@@ -58,14 +58,18 @@ en:
         index:
           title: Mailing lists
           search: Search lists
+        search:
+          title: Mailing lists
         new:
           title: New mailing list
         create:
+          title: New mailing list
           success: Mailing list created
           failure: Failed to create mailing list
         edit:
           title: Edit mailing list
         update:
+          title: Edit mailing list
           success: Mailing list updated
           failure: Failed to update mailing list
         destroy:
@@ -76,6 +80,8 @@ en:
         index:
           title: Subscriptions
           search: Search subscriptions
+        search:
+          title: Subscriptions
         create:
           success: Subscribed
           # failure: Failed to create subscription

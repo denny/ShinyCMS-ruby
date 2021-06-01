@@ -39,14 +39,18 @@ en:
         index:
           title: List form handlers
           search: Search form handlers
+        search:
+          title: List form handlers
         new:
           title: Add form handler
         edit:
           title: Edit form handler
         create:
+          title: Add form handler
           success: New form handler created
           failure: Failed to create new form handler
         update:
+          title: Edit form handler
           success: Form handler updated
           failure: Failed to update form handler
         destroy:

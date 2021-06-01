@@ -14,12 +14,8 @@ module ShinyCMS
     include ShinyCMS::PluginsHelper
     include ShinyCMS::ViewComponentHelper
 
-    def admin_controller_from
-      return 'shinycms' if controller.class.include? ShinyCMS::AdminAreaControllerBase
-
-      return 'blazer' if controller.is_a? Blazer::BaseController
-
-      return 'rails_email_preview' if controller.is_a? RailsEmailPreview::ApplicationController
+    def shinycms_admin_controller?
+      controller.class.include? ShinyCMS::AdminAreaControllerBase
     end
 
     def plugins_for_edit_capabilities

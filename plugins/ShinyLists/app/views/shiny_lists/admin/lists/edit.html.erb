@@ -1,5 +1,3 @@
-<% @page_title = t( '.title' ) %>
-
 <%= form_for @list, url: shiny_lists.list_path( @list ), method: :put do |f| %>
   <p>
     <%= f.label :internal_name %>

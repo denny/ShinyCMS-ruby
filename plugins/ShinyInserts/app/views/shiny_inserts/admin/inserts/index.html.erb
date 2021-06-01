@@ -1,5 +1,3 @@
-<% @page_title = t( '.title' ) %>
-
 <%= form_for @insert_set, url: shiny_inserts.inserts_path, method: :put do |f| %>
 <table class="table table-responsive-sm table-striped">
   <%= f.fields_for :elements do |fields| %>

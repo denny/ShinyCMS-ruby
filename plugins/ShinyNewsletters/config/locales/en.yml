@@ -41,18 +41,22 @@ en:
           send_sample: Send sample
           send_to_list: Send to list
           search: Search editions
+        search:
+          title: Editions
         send_sample:
           success: Sample sent
         new:
           title: New edition
+        create:
+          title: New edition
+          success: Newsletter edition created
+          failure: Failed to create newsletter edition
         edit:
           title: Edit newsletter edition
           new_element_name: New element name
           new_element_content: Default content
-        create:
-          success: Newsletter edition created
-          failure: Failed to create newsletter edition
         update:
+          title: Edit newsletter edition
           success: Newsletter edition updated
           failure: Failed to update newsletter edition
         destroy:
@@ -71,6 +75,8 @@ en:
           no_sends: You have not started sending any newsletters yet
           send: Send
           search: Search sends
+        search:
+          title: Sends
         sent:
           title: Sent
           view_details: View Details
@@ -79,12 +85,14 @@ en:
           title: View send details
         new:
           title: Send / Schedule
-        edit:
-          title: Edit newsletter send
         create:
+          title: Send / Schedule
           success: Newsletter send created
           failure: Failed to create newsletter send
+        edit:
+          title: Edit newsletter send
         update:
+          title: Edit newsletter send
           success: Newsletter send updated
           failure: Failed to update newsletter send
         start_sending:
@@ -99,6 +107,8 @@ en:
         index:
           title: Templates
           search: Search templates
+        search:
+          title: Templates
         new:
           title: New template
         edit:
@@ -106,9 +116,11 @@ en:
           new_element_name: New element name
           new_element_content: Default content
         create:
+          title: New template
           success: Newsletter template created
           failure: Failed to create newsletter template
         update:
+          title: Edit newsletter template
           success: Newsletter template updated
           failure: Failed to update newsletter template
         destroy:
