@@ -342,6 +342,8 @@ en:
           confirm_spam: Confirm as spam (and delete)
           remove_flag: Remove spam flag (and publish)
           search: Search comments
+        search:
+          title: Spam comment moderation
         update:
           spam_or_ham: Please choose either 'confirm as spam' or 'remove spam flag'
         process_spam_comments:
@@ -356,6 +358,8 @@ en:
         index:
           title: Consent versions
           search: Search comments
+        search:
+          title: Consent versions
         show:
           title: View consent version
         new:
@@ -363,9 +367,11 @@ en:
         edit:
           title: Update consent version
         create:
+          title: Add new version
           success: New consent version added
           failure: Failed to add new consent version
         update:
+          title: Update consent version
           success: Consent version updated
           failure: Failed to update consent version
         destroy:
@@ -392,6 +398,8 @@ en:
           confirmed: Confirmed
           unconfirmed: Not Confirmed
           do_not_contact: Do Not Contact
+        search:
+          title: Manage email recipients
         do_not_contact:
           success: Email address added to Do Not Contact list
         destroy:
@@ -403,6 +411,8 @@ en:
         index:
           title: Email stats
           search: Search stats
+        search:
+          title: Email stats
 
       feature_flags:
         breadcrumb: Settings
@@ -451,14 +461,18 @@ en:
           search: Search users
           edit_account: Edit account
           delete_account: Delete account
+        search:
+          title: List users
         new:
           title: Add new user
         edit:
           title: Edit user
         create:
+          title: Add new user
           success: New user added
           failure: Failed to add new user
         update:
+          title: Edit user
           success: User details updated
           failure: Failed to update user details
         destroy:
@@ -475,6 +489,8 @@ en:
         index:
           title: Web stats
           search: Search stats
+        search:
+          title: Web stats
 
       # ===== other engines =====
 

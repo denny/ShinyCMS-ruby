@@ -1,5 +1,3 @@
-<% @page_title = t( '.title' ) %>
-
 <%= form_for @send, url: shiny_newsletters.send_path( @send ), method: :put do |f| %>
   <p>
     <%= f.label :edition_id, 'Newsletter Edition' %><br>

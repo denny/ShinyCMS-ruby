@@ -50,14 +50,18 @@ en:
         index:
           title: List news posts
           search: Search news posts
+        search:
+          title: List news posts
         new:
           title: Add news post
         edit:
           title: Edit news post
         create:
+          title: Add news post
           success: News post created
           failure: Failed to create news post
         update:
+          title: Edit news post
           success: News post updated
           failure: Failed to update news post
         destroy:

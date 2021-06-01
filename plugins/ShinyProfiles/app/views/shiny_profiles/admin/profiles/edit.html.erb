@@ -1,5 +1,3 @@
-<% @page_title = t( '.title' ) %>
-
 <%= form_for @profile, url: shiny_profiles.admin_profile_path( @profile ), method: :put do |f| %>
   <p>
     <%= f.label :public_name %>

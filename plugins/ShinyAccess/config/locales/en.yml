@@ -24,14 +24,18 @@ en:
         index:
           title: Access Groups
           search: Search groups
+        search:
+          title: Access Groups
         new:
           title: New access group
         edit:
           title: Edit access group
         create:
+          title: New access group
           success: Access group created
           failure: Failed to create group
         update:
+          title: Edit access group
           success: Access group updated
           failure: Failed to update group
         destroy:

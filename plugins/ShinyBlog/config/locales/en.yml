@@ -50,14 +50,18 @@ en:
         index:
           title: List blog posts
           search: Search blog posts
+        search:
+          title: List blog posts
         new:
           title: Add blog post
         edit:
           title: Edit blog post
         create:
+          title: Add blog post
           success: Blog post created
           failure: Failed to create blog post
         update:
+          title: Edit blog post
           success: Blog post updated
           failure: Failed to update blog post
         destroy:

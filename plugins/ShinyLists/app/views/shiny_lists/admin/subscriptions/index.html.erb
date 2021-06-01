@@ -1,5 +1,3 @@
-<% @page_title = t( '.title' ) %>
-
 <% if @subscriptions.present? %>
 <%= render partial: 'admin/includes/search', locals: { action: shiny_lists.search_list_subscriptions_path( @subscriptions.first.list ), placeholder: t( '.search' ) } %>
 
