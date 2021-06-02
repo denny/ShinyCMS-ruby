@@ -129,10 +129,10 @@ RSpec.describe ShinyInserts::Admin::InsertsController, type: :request do
 
       # The [1] here means 'the second item on the form'; it's not the db row id
       put shiny_inserts.inserts_path, params: {
-        "insert_set[elements_attributes][1][id]":           s2.id,
-        "insert_set[elements_attributes][1][name]":         s2.name,
-        "insert_set[elements_attributes][1][content]":      'Updated content',
-        "insert_set[elements_attributes][1][element_type]": s2.element_type
+        'insert_set[elements_attributes][1][id]':           s2.id,
+        'insert_set[elements_attributes][1][name]':         s2.name,
+        'insert_set[elements_attributes][1][content]':      'Updated content',
+        'insert_set[elements_attributes][1][element_type]': s2.element_type
       }
 
       expect( response      ).to     have_http_status :found
@@ -153,10 +153,10 @@ RSpec.describe ShinyInserts::Admin::InsertsController, type: :request do
 
       # The [1] here means 'the second item on the form'; it's not the db row id
       put shiny_inserts.inserts_path, params: {
-        "insert_set[elements_attributes][1][id]":           s2.id,
-        "insert_set[elements_attributes][1][name]":         s1.name,
-        "insert_set[elements_attributes][1][content]":      'Updated content',
-        "insert_set[elements_attributes][1][element_type]": s2.element_type
+        'insert_set[elements_attributes][1][id]':           s2.id,
+        'insert_set[elements_attributes][1][name]':         s1.name,
+        'insert_set[elements_attributes][1][content]':      'Updated content',
+        'insert_set[elements_attributes][1][element_type]': s2.element_type
       }
 
       expect( response      ).to     have_http_status :found

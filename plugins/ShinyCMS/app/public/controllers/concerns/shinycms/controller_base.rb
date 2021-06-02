@@ -47,7 +47,7 @@ module ShinyCMS
       end
 
       # Change pager link format from admin/action?page=3&items=12 to admin/action/page/3/items/12
-      def pagy_url_for( page, pagy )
+      def pagy_url_for( pagy, page )
         params = request.query_parameters.merge( page: page, items: pagy.vars[:items], only_path: true )
         url_for( params )
       end

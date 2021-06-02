@@ -34,7 +34,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.2.3'
 
   # Webserver
-  gem 'puma', '~> 5.2', groups: %i[ development production ]
+  gem 'puma', '~> 5.3', groups: %i[ development production ]
 
   # Email previews
   gem 'rails_email_preview'
@@ -72,12 +72,12 @@ source 'https://rubygems.org' do
 
     # Tools for working with translation strings
     # gem 'i18n-debug'
-    gem 'i18n-tasks', '~> 0.9.33'
+    gem 'i18n-tasks', '~> 0.9.34'
   end
 
   group :development do
     # Capture all outgoing emails, with webmail interface to look at them
-    gem 'letter_opener_web', '~> 1.0'
+    gem 'letter_opener_web', '~> 1.4'
 
     # Reload dev server when files change
     gem 'listen', '~> 3.5'
@@ -121,13 +121,13 @@ source 'https://rubygems.org' do
     gem 'faker'
 
     # Integration tests (request specs)
-    gem 'capybara', '>= 2.15'
+    gem 'capybara', '~> 3.35'
 
     # Intercept calls to external services (notably, the Algolia API)
     gem 'webmock'
 
     # Analyse and report on test coverage
-    gem 'simplecov', '0.21.2'
+    gem 'simplecov'
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     # Rspec report formatter for Codecov

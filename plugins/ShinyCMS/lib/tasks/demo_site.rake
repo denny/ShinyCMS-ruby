@@ -30,6 +30,7 @@ namespace :shinycms do
       prepare_admin_account_for_import( @shiny_admin )
 
       ShinyCMS::Setting.set :theme_name, to: 'halcyonic'
+      ShinyCMS::AnonymousAuthor.create! if ShinyCMS::AnonymousAuthor.first.blank?
 
       load_demo_site_data_file
 
