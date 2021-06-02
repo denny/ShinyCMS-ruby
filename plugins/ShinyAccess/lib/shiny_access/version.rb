@@ -8,6 +8,6 @@
 
 # Version number ('Ubuntu style'; year and month)
 module ShinyAccess
-  VERSION = '21.05'
+  VERSION = '21.06'
   public_constant :VERSION
 end
