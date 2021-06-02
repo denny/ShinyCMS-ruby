@@ -16,18 +16,19 @@ seeder.seed_standard_admin_capabilities( category: :consent_versions )
 seeder.seed_standard_admin_capabilities( category: :admin_users      )
 
 # Most of the capabilities to be set here are not the standard four, so ...
+class ShinyCMS::CapabilitySetup
+  def add( capability_data )
+    capability_data.each_key do |category_name|
+      category = ShinyCMS::CapabilityCategory.find_or_create_by!( name: category_name )
 
-def add_capabilities( capability_data )
-  capability_data.each_key do |category_name|
-    category = ShinyCMS::CapabilityCategory.find_or_create_by!( name: category_name )
-
-    capability_data[ category_name ].each do |capability_name|
-      category.capabilities.find_or_create_by( name: capability_name )
+      capability_data[ category_name ].each do |capability_name|
+        category.capabilities.find_or_create_by( name: capability_name )
+      end
     end
   end
 end
 
-add_capabilities(
+ShinyCMS::CapabilitySetup.new.add(
   {
     general:          %w[ view_admin_area view_admin_toolbar ],
     tools:            %w[ use_blazer use_coverband use_letter_opener_web use_rails_email_preview use_sidekiq_web ],

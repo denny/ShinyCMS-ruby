@@ -21,11 +21,9 @@ mount RailsEmailPreview::Engine, at: '/admin/tools/rails-email-preview'
 mount LetterOpenerWeb::Engine, at: '/dev/tools/outbox' if Rails.env.development?
 
 # Sidekiq Web provides a web dashboard for Sidekiq jobs and queues
-def sidekiq_web_enabled?
-  ENV['DISABLE_SIDEKIQ_WEB']&.downcase != 'true'
-end
+sidekiq_web_enabled = ( ENV['DISABLE_SIDEKIQ_WEB']&.downcase != 'true' )
 
-if sidekiq_web_enabled?
+if sidekiq_web_enabled
   require 'sidekiq/web'
   require 'sidekiq-status/web'
 
@@ -35,11 +33,9 @@ if sidekiq_web_enabled?
 end
 
 # Coverband provides a web UI for viewing code usage information
-def coverband_web_ui_enabled?
-  ENV['DISABLE_COVERBAND_WEB_UI']&.downcase != 'true'
-end
+coverband_web_ui_enabled = ( ENV['DISABLE_COVERBAND_WEB_UI']&.downcase != 'true' )
 
-if coverband_web_ui_enabled?
+if coverband_web_ui_enabled
   authenticate :user, ->( user ) { user.can? :use_coverband, :tools } do
     mount Coverband::Reporters::Web.new, at: '/admin/tools/coverband', as: :coverband unless Rails.env.test?
   end

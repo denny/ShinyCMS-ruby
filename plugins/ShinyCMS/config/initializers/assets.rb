@@ -13,34 +13,36 @@ Rails.application.config.assets.version = '2021.06.01.0300'
 Rails.application.config.assets.paths << ShinyCMS::Engine.root.join( 'app/assets/javascript' )
 
 # Add theme images and stylesheets to the asset load path
-def add_all_themes_to_asset_load_path
-  available_themes.each do |theme_name|
-    add_theme_to_asset_load_path( theme_name )
+class ShinyCMS::ThemeAssetsSetup
+  def add_all_themes_to_asset_load_path
+    available_themes.each do |theme_name|
+      add_theme_to_asset_load_path( theme_name )
+    end
+  end
+
+  def available_themes
+    Dir[ 'themes/*' ].collect { |name| name.sub( 'themes/', '' ) }
+  end
+
+  def add_theme_to_asset_load_path( theme_name )
+    add_theme_images_to_asset_load_path( theme_name )
+    add_theme_styles_to_asset_load_path( theme_name )
+  end
+
+  def add_theme_images_to_asset_load_path( theme_name )
+    images_dir = Rails.root.join "themes/#{theme_name}/images"
+    return unless Dir.exist? images_dir
+
+    Rails.application.config.assets.paths << images_dir
+  end
+
+  def add_theme_styles_to_asset_load_path( theme_name )
+    stylesheets_dir = Rails.root.join "themes/#{theme_name}/stylesheets"
+    return unless Dir.exist? stylesheets_dir
+
+    Rails.application.config.assets.paths << stylesheets_dir
+    Rails.application.config.assets.precompile += %W[ #{theme_name}.css ]
   end
 end
 
-def available_themes
-  Dir[ 'themes/*' ].collect { |name| name.sub( 'themes/', '' ) }
-end
-
-def add_theme_to_asset_load_path( theme_name )
-  add_theme_images_to_asset_load_path( theme_name )
-  add_theme_styles_to_asset_load_path( theme_name )
-end
-
-def add_theme_images_to_asset_load_path( theme_name )
-  images_dir = Rails.root.join "themes/#{theme_name}/images"
-  return unless Dir.exist? images_dir
-
-  Rails.application.config.assets.paths << images_dir
-end
-
-def add_theme_styles_to_asset_load_path( theme_name )
-  stylesheets_dir = Rails.root.join "themes/#{theme_name}/stylesheets"
-  return unless Dir.exist? stylesheets_dir
-
-  Rails.application.config.assets.paths << stylesheets_dir
-  Rails.application.config.assets.precompile += %W[ #{theme_name}.css ]
-end
-
-add_all_themes_to_asset_load_path
+ShinyCMS::ThemeAssetsSetup.new.add_all_themes_to_asset_load_path
