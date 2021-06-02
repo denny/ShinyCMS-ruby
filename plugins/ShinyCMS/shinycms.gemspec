@@ -64,7 +64,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rails-i18n'
 
   # View components
-  spec.add_dependency 'view_component'
+  # TODO: FIXME: 2.32.0 caused some sort of breakage; investigate, fix, update
+  spec.add_dependency 'view_component', '~> 2.31.1'
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
   spec.add_dependency 'sidekiq'
@@ -83,7 +84,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ckeditor'
 
   # Pagination
-  spec.add_dependency 'pagy', '~> 4.3.0'
+  # TODO: FIXME: 4.4.0 caused some sort of breakage; investigate, fix, update
+  spec.add_dependency 'pagy'
 
   # Atom feeds
   spec.add_dependency 'rss'
