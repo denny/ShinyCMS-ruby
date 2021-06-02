@@ -8,6 +8,6 @@
 
 # Version number ('Ubuntu style', YY.MM) - ShinyProfiles plugin for ShinyCMS
 module ShinyProfiles
-  VERSION = '21.05'
+  VERSION = '21.06'
   public_constant :VERSION
 end
