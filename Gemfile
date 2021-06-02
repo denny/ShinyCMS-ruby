@@ -127,7 +127,7 @@ source 'https://rubygems.org' do
     gem 'webmock'
 
     # Analyse and report on test coverage
-    gem 'simplecov', '0.21.2'
+    gem 'simplecov'
     # Analyse and report on test coverage via CodeCov
     gem 'codecov', require: false
     # Rspec report formatter for Codecov

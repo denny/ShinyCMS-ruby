@@ -814,7 +814,7 @@ DEPENDENCIES
   shiny_search!
   shiny_seo!
   shinycms!
-  simplecov (= 0.21.2)!
+  simplecov!
   webmock!
 
 RUBY VERSION

@@ -131,6 +131,6 @@ Gem::Specification.new do |spec|
   # Used to export demo site data from the database
   spec.add_dependency 'seed_dump'
 
-  # Test coverage; 0.20.0 is the latest version currently compatible with CodeCov and Ruby Critic
-  spec.add_development_dependency 'simplecov', '~> 0.20.0'
+  # Test coverage
+  spec.add_development_dependency 'simplecov'
 end
