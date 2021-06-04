@@ -9,6 +9,10 @@
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '2021.06.01.0300'
 
+# Add the admin area JS sprinkles
+Rails.application.config.assets.paths << ShinyCMS::Engine.root.join( 'app/assets/javascript' )
+Rails.application.config.assets.precompile += [ 'admin_sortable.js' ]
+
 # Add theme images and stylesheets to the asset load path
 class ShinyCMS::ThemeAssetsSetup
   def add_all_themes_to_asset_load_path
