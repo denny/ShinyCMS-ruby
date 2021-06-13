@@ -15,3 +15,6 @@
 
 // Only used by Halcyonic theme currently, but probably generally useful...?
 //= link smartmenus.css
+
+// Themes
+//= link_tree themes/javascript

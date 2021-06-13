@@ -109,9 +109,6 @@ Gem::Specification.new do |spec|
   # Faster SCSS gem for stylesheets
   spec.add_dependency 'sassc-rails'
 
-  # JavaScript and endless config frustration
-  spec.add_dependency 'webpacker', '~> 5.2'
-
   # Improvements for the Rails console
   spec.add_dependency 'amazing_print'
   spec.add_dependency 'pry-rails'

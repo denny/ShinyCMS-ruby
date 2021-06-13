@@ -59,9 +59,6 @@ require 'email_address'
 # MJML email rendering
 require 'mjml-rails'
 
-# JavaScript gank
-require 'webpacker'
-
 # Improvements for the Rails console
 if Rails.env.test? || Rails.env.development? || ENV.fetch( 'SHINYCMS_PRY_CONSOLE', 'false' ).downcase == 'true'
   require 'amazing_print'
