@@ -13,9 +13,7 @@ $( function() {
         url:  $( this ).data( 'url' ),
         type: 'PUT',
         data: $( this ).sortable( 'serialize' ),
-        headers: {
-          'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
-        }
+        headers: { 'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content }
       });
     }
   });
