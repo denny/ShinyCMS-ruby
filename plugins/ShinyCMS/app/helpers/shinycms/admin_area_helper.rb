@@ -12,6 +12,7 @@ module ShinyCMS
     include ShinyCMS::DatesHelper
     include ShinyCMS::ElementsHelper
     include ShinyCMS::PluginsHelper
+    include ShinyCMS::UsersHelper
     include ShinyCMS::ViewComponentHelper
 
     def shinycms_admin_controller?

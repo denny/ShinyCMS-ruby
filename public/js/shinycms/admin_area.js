@@ -9,10 +9,13 @@ $( function() {
   $( '#live-sortable' ).sortable({
     handle: '.handle',
     update: function( _e, _ui ) {
-      Rails.ajax({
+      $.ajax({
         url:  $( this ).data( 'url' ),
         type: 'PUT',
         data: $( this ).sortable( 'serialize' ),
+        headers: {
+          'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+        }
       });
     }
   });
