@@ -57,6 +57,7 @@ PATH
       recaptcha
       rss
       sassc-rails
+      scout_apm
       seed_dump
       sentry-rails
       sentry-ruby
@@ -672,6 +673,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    scout_apm (4.1.1)
+      parser
     seed_dump (3.3.1)
       activerecord (>= 4)
       activesupport (>= 4)

@@ -71,6 +71,7 @@ require 'cloudflare/rails'
 # Monitoring services
 require 'airbrake'     if ENV[ 'AIRBRAKE_API_KEY' ].present?
 require 'bugsnag'      if ENV[ 'BUGSNAG_API_KEY'  ].present?
+require 'scout_apm'    if ENV[ 'SCOUT_KEY'        ].present?
 require 'sentry-ruby'  if ENV[ 'SENTRY_DSN'       ].present?
 require 'sentry-rails' if ENV[ 'SENTRY_DSN'       ].present?
 
