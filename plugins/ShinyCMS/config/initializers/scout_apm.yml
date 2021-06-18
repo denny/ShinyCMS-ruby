@@ -1,0 +1,39 @@
+# This configuration file is used for Scout APM.
+# Environment variables can also be used to configure Scout. See our help docs at https://docs.scoutapm.com#environment-variables for more information.
+
+<% scout_key = ENV.fetch( 'SCOUT_KEY', nil ) %>
+
+<% scout_monitor = scout_key.present? && ENV.fetch( 'SCOUT_MONITOR', 'false' ) == 'true' %>
+
+common: &defaults
+
+  # key: Your Organization key for Scout APM. Found on the settings screen.
+  key: <%= scout_key %>
+
+  # log_level: Verboseness of logs.
+  # - Valid Options: debug, info, warn, error
+  # - Default: 'info'
+  log_level: debug
+
+  # name: Application name in APM Web UI
+  # - Default: the application names comes from the Rails or Sinatra class name
+  name: <%= ENV.fetch( 'HEROKU_APP_NAME', 'ShinyCMS' ) %>
+
+  # monitor: Enable Scout APM or not
+  # - Valid Options: true, false
+  # - Default: none
+  monitor: false
+
+production:
+  <<: *defaults
+  monitor: <%= scout_monitor %>
+
+staging:
+  <<: *defaults
+  monitor: <%= scout_monitor %>
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults

@@ -119,6 +119,7 @@ Gem::Specification.new do |spec|
   ## Monitoring services
   spec.add_dependency 'airbrake'
   spec.add_dependency 'bugsnag'
+  spec.add_dependency 'scout_apm'
   spec.add_dependency 'sentry-rails'
   spec.add_dependency 'sentry-ruby'
 
