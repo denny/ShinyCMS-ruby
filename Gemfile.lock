@@ -504,10 +504,10 @@ GEM
       parser
       sorbet-runtime
     pagy (4.7.1)
-    parallel (1.20.1)
+    parallel (1.21.0)
     parallel_tests (3.7.0)
       parallel
-    parser (3.0.1.1)
+    parser (3.0.2.0)
       ast (~> 2.4.1)
     path_expander (1.1.0)
     persistent-dmnd (2.0.2)
@@ -629,9 +629,9 @@ GEM
       rubocop-ast (>= 1.7.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.7.0)
+    rubocop-ast (1.12.0)
       parser (>= 3.0.1.1)
-    rubocop-performance (1.11.3)
+    rubocop-performance (1.12.0)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     rubocop-rails (2.10.1)
@@ -729,7 +729,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
-    unicode-display_width (2.0.0)
+    unicode-display_width (2.1.0)
     uniform_notifier (1.14.2)
     unparser (0.6.0)
       diff-lcs (~> 1.3)
