@@ -22,6 +22,11 @@ module ShinyCMS
         @login || username || email
       end
 
+      # Writer
+      def login=( login_value )
+        @login = login_value
+      end
+
       # Queue email sends
       def send_devise_notification( notification, *args )
         devise_mailer.public_send( notification, self, *args ).deliver_later
