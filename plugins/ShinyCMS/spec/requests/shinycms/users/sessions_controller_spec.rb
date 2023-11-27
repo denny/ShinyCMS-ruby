@@ -125,6 +125,19 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
       expect( response.body ).to have_css 'h1', text: page2.name
     end
 
-    # TODO: test for handling wrong password entered
+    it 'fails a login attempt with incorrect password' do
+      user = create :user, password: test_password
+
+      post shinycms.user_session_path, params: {
+        user: {
+          login:    user.email,
+          password: 'FAIL'
+        }
+      }
+
+      expect( response      ).not_to have_http_status :found
+      expect( response.body ).not_to have_link I18n.t( 'shinycms.user.log_out' )
+      expect( response.body ).to     have_button I18n.t( 'shinycms.user.log_in' )
+    end
   end
 end
