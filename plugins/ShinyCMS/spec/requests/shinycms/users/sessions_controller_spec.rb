@@ -124,5 +124,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_css 'h1', text: page2.name
     end
+
+    # TODO: test for handling wrong password entered
   end
 end
