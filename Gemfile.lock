@@ -61,7 +61,7 @@ PATH
       seed_dump
       sentry-rails
       sentry-ruby
-      sidekiq
+      sidekiq (~> 6.5.10)
       sidekiq-status
       view_component (~> 2.31.1)
       zxcvbn-ruby
@@ -347,7 +347,7 @@ GEM
       descendants_tracker (~> 0.0.1)
     colorize (0.8.1)
     concurrent-ruby (1.2.2)
-    connection_pool (2.2.5)
+    connection_pool (2.4.1)
     constant_resolver (0.1.5)
     coverband (5.1.0)
       redis
@@ -585,7 +585,7 @@ GEM
     rbtree3 (0.6.0)
     recaptcha (5.8.0)
       json
-    redis (4.2.5)
+    redis (4.8.1)
     reek (6.1.4)
       kwalify (~> 0.7.0)
       parser (~> 3.2.0)
@@ -695,10 +695,10 @@ GEM
       concurrent-ruby
       faraday
     sexp_processor (4.17.0)
-    sidekiq (6.2.1)
-      connection_pool (>= 2.2.2)
+    sidekiq (6.5.12)
+      connection_pool (>= 2.2.5, < 3)
       rack (~> 2.0)
-      redis (>= 4.2.0)
+      redis (>= 4.5.0, < 5)
     sidekiq-status (1.1.4)
       chronic_duration
       sidekiq (>= 3.0)
