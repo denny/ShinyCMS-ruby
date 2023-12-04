@@ -53,9 +53,6 @@ source 'https://rubygems.org' do
   # Check plugin boundaries
   gem 'packwerk'
 
-  # Force package update to fix inconsistent deps
-  gem 'actionmailer'
-
   group :development, :test do
     # RSpec for Rails
     gem 'rspec-rails'
