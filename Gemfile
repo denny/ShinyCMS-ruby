@@ -14,7 +14,7 @@ ruby "~> #{helper.ruby_version}"  # get version from .ruby-version file (DRY)
 source 'https://rubygems.org'
 source 'https://rubygems.org' do
   # Rails 6.1
-  gem 'rails', '~> 6.1.5'
+  gem 'rails', '~> 6.1.3'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/rails-now'
