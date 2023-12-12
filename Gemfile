@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2023 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -11,6 +11,7 @@ helper = ShinyCMS::GemfileHelper.new
 
 ruby "~> #{helper.ruby_version}"  # get version from .ruby-version file (DRY)
 
+source 'https://rubygems.org'
 source 'https://rubygems.org' do
   # Rails 6.1
   gem 'rails', '~> 6.1.3'

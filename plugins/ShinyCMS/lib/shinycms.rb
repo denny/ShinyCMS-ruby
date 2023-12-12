@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2023 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -59,9 +59,6 @@ require 'email_address'
 # MJML email rendering
 require 'mjml-rails'
 
-# JavaScript gank
-require 'webpacker'
-
 # Improvements for the Rails console
 if Rails.env.test? || Rails.env.development? || ENV.fetch( 'SHINYCMS_PRY_CONSOLE', 'false' ).downcase == 'true'
   require 'amazing_print'
@@ -74,6 +71,7 @@ require 'cloudflare/rails'
 # Monitoring services
 require 'airbrake'     if ENV[ 'AIRBRAKE_API_KEY' ].present?
 require 'bugsnag'      if ENV[ 'BUGSNAG_API_KEY'  ].present?
+require 'scout_apm'    if ENV[ 'SCOUT_KEY'        ].present?
 require 'sentry-ruby'  if ENV[ 'SENTRY_DSN'       ].present?
 require 'sentry-rails' if ENV[ 'SENTRY_DSN'       ].present?
 

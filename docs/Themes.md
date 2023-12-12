@@ -30,9 +30,7 @@ You should put theme-specific CSS into `themes/{theme_name}/stylesheets` and ima
 
 #### JavaScript
 
-Currently, if your theme needs some JavaScript then you should put the files in `themes/javascript/my_site_name`, and configure Webpacker to load it by adding a file in `/app/javascript/packs` containing `require( 'my_site_name' )`.
-
-Eventually the plan is that theme JavaScript will go in `/themes/my_site_name/javascript` and be loaded automatically, but dynamically adding things to Webpacker's config seems to be difficult, so for now this is how it works. :-\
+Currently, if your theme needs some JavaScript then you should put the files in `themes/javascript/my_site_name`. Eventually the plan is that theme JavaScript will go in `/themes/my_site_name/javascript`, but for now this is how it works.
 
 
 ## Using your theme

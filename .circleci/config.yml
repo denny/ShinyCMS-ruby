@@ -12,7 +12,7 @@ version: 2
 
 references:
   app: &app
-    image: cimg/ruby:3.0.1-node
+    image: cimg/ruby:3.0.6-node
     environment:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
@@ -45,26 +45,26 @@ jobs:
           command: gem install bundler
       - restore_cache:
           keys:
-          - bundler-cache-v7-{{ checksum "Gemfile.lock" }}
-          - bundler-cache-v7-
+          - bundler-cache-v8-{{ checksum "Gemfile.lock" }}
+          - bundler-cache-v8-
       - run:
           name: Install gems
           command: bundle check || bundle install
       - save_cache:
-          key: bundler-cache-v7-{{ checksum "Gemfile.lock" }}
+          key: bundler-cache-v8-{{ checksum "Gemfile.lock" }}
           paths:
             - ~/ShinyCMS/vendor/bundle
 
       # Restore Node dependencies from cache, or install them
       - restore_cache:
           keys:
-            - yarn-cache-v7-{{ checksum "yarn.lock" }}
-            - yarn-cache-v7-
+            - yarn-cache-v8-{{ checksum "yarn.lock" }}
+            - yarn-cache-v8-
       - run:
           name: Install Node modules
           command: yarn install --cache-folder ~/.cache/yarn
       - save_cache:
-          key: yarn-cache-v7-{{ checksum "yarn.lock" }}
+          key: yarn-cache-v8-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
             - node_modules
@@ -72,13 +72,13 @@ jobs:
       # Restore Webpacker assets from cache, or compile them
       - restore_cache:
           keys:
-            - webpacker-cache-v7-{{ .Revision }}
+            - webpacker-cache-v8-{{ .Revision }}
       - run:
           name: Compile webpacker assets
           command: bundle exec rails assets:precompile
 
       - save_cache:
-          key: webpacker-cache-v7-{{ .Revision }}
+          key: webpacker-cache-v8-{{ .Revision }}
           paths:
             - ~/ShinyCMS/public/packs-test/
 

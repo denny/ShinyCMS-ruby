@@ -16,8 +16,8 @@ Configuration is split between the following locations:
 * Controlled in the CMS admin area - `/admin/feature-flags`
 * Can also be turned on or off, and listed, from the command line:
 ```
-rails shiny:features:list
-rails shiny:feature:off[user_logins]
+rails shinycms:features:list
+rails shinycms:feature:off[user_login]
 ```
 
 ### Site Settings

@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2021 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2023 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.license     = 'GPL'
 
   spec.authors     = [ 'Denny de la Haye' ]
-  spec.email       = [ '2021@denny.me' ]
+  spec.email       = [ '2023@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
 
   spec.summary     = 'ShinyCMS'
@@ -68,7 +68,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'view_component', '~> 2.31.1'
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
-  spec.add_dependency 'sidekiq'
+  spec.add_dependency 'sidekiq', '~> 6.5.10'
   spec.add_dependency 'sidekiq-status'
 
   # Soft delete
@@ -109,9 +109,6 @@ Gem::Specification.new do |spec|
   # Faster SCSS gem for stylesheets
   spec.add_dependency 'sassc-rails'
 
-  # JavaScript and endless config frustration
-  spec.add_dependency 'webpacker', '~> 5.2'
-
   # Improvements for the Rails console
   spec.add_dependency 'amazing_print'
   spec.add_dependency 'pry-rails'
@@ -122,6 +119,7 @@ Gem::Specification.new do |spec|
   ## Monitoring services
   spec.add_dependency 'airbrake'
   spec.add_dependency 'bugsnag'
+  spec.add_dependency 'scout_apm'
   spec.add_dependency 'sentry-rails'
   spec.add_dependency 'sentry-ruby'
 
