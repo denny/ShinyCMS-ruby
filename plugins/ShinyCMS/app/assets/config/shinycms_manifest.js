@@ -4,7 +4,6 @@
 //
 // ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-//= link shinycms/admin_sortable.js
 //= link shinycms/admin_area.css
 
 //= link shinycms/admin_toolbar.css
