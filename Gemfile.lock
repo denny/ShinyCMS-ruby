@@ -510,7 +510,7 @@ GEM
       parser
       sorbet-runtime
     pagy (4.7.1)
-    parallel (1.20.1)
+    parallel (1.23.0)
     parallel_tests (3.7.0)
       parallel
     parser (3.2.2.4)
@@ -590,13 +590,13 @@ GEM
       kwalify (~> 0.7.0)
       parser (~> 3.2.0)
       rainbow (>= 2.0, < 4.0)
-    regexp_parser (2.8.2)
+    regexp_parser (2.8.3)
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rexml (3.2.5)
+    rexml (3.2.6)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -636,8 +636,8 @@ GEM
       rubocop-ast (>= 1.7.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.7.0)
-      parser (>= 3.0.1.1)
+    rubocop-ast (1.30.0)
+      parser (>= 3.2.1.0)
     rubocop-performance (1.11.3)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
@@ -645,7 +645,7 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
-    rubocop-rspec (2.3.0)
+    rubocop-rspec (2.4.0)
       rubocop (~> 1.0)
       rubocop-ast (>= 1.1.0)
     rubocop-thread_safety (0.4.2)
@@ -653,7 +653,7 @@ GEM
     ruby-pg-extras (1.6.0)
       pg
       terminal-table
-    ruby-progressbar (1.11.0)
+    ruby-progressbar (1.13.0)
     ruby-vips (2.2.0)
       ffi (~> 1.12)
     ruby2_keywords (0.0.4)
@@ -736,7 +736,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
-    unicode-display_width (2.0.0)
+    unicode-display_width (2.5.0)
     uniform_notifier (1.14.2)
     unparser (0.6.10)
       diff-lcs (~> 1.3)
