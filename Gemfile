@@ -48,7 +48,7 @@ source 'https://rubygems.org' do
   # Charts and dashboards
   gem 'blazer'
   # Charts
-  gem 'chartkick', '~> 4.0.4'
+  gem 'chartkick', '~> 5.0.5'
 
   # Check plugin boundaries
   gem 'packwerk'
