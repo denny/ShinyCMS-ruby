@@ -465,7 +465,7 @@ jquery-ui@^1.13.2:
   dependencies:
     jquery ">=1.8.0 <4.0.0"
 
-jquery@>=1.7.0, "jquery@>=1.8.0 <4.0.0", jquery@^3.6.0:
+"jquery@>=1.8.0 <4.0.0", jquery@^3.6.0:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
   integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
@@ -988,12 +988,10 @@ slick@^1.12.2:
   resolved "https://registry.yarnpkg.com/slick/-/slick-1.12.2.tgz#bd048ddb74de7d1ca6915faa4a57570b3550c2d7"
   integrity sha1-vQSN23TefRymkV+qSldXCzVQwtc=
 
-smartmenus@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/smartmenus/-/smartmenus-1.1.1.tgz#37ce42eb909071424940dc83b9d5264b6bc22959"
-  integrity sha512-O1HDCMFAsUnTeNZ4ZxENubSiaXq5CsV9LhECNl6unrHj/kIfIY+7TtPqpcQ63T+UEqwoNL0BzL/dUTvg+Rfkkw==
-  dependencies:
-    jquery ">=1.7.0"
+smartmenus@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/smartmenus/-/smartmenus-1.2.1.tgz#75d775bf7f5c7098128791569250bb5ab6c87730"
+  integrity sha512-W5UoxfywB2o9fsk6RglDoSIJoCtBPnajJCiip9JBfRX46ZV+LkTtysiChiVJNEm8QZOPb9MPC1wXrrCTzGIaAw==
 
 source-map@~0.6.0:
   version "0.6.1"
