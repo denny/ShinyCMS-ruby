@@ -352,8 +352,8 @@ GEM
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     constant_resolver (0.1.5)
-    coverband (5.1.0)
-      redis
+    coverband (6.0.1)
+      redis (>= 3.0)
     crack (0.4.5)
       rexml
     crass (1.0.6)
