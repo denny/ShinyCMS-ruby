@@ -251,7 +251,7 @@ GEM
     acts_as_paranoid (0.7.3)
       activerecord (>= 5.2, < 7.0)
       activesupport (>= 5.2, < 7.0)
-    acts_as_votable (0.13.1)
+    acts_as_votable (0.14.0)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     ahoy_email (1.1.1)
