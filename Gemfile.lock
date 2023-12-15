@@ -521,7 +521,7 @@ GEM
       ast (~> 2.4.1)
       racc
     path_expander (1.1.1)
-    persistent-dmnd (2.0.2)
+    persistent-dmnd (2.0.5)
       hamster (~> 3.0)
     pg (1.2.3)
     pg_search (2.3.5)
