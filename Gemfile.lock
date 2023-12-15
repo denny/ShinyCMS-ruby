@@ -663,7 +663,7 @@ GEM
     ruby2_keywords (0.0.4)
     ruby_parser (3.20.3)
       sexp_processor (~> 4.16)
-    rubycritic (4.6.1)
+    rubycritic (4.8.0)
       flay (~> 2.8)
       flog (~> 4.4)
       launchy (>= 2.0.0)
@@ -806,7 +806,7 @@ DEPENDENCIES
   rubocop-rails!
   rubocop-rspec!
   rubocop-thread_safety!
-  rubycritic (~> 4.6.1)!
+  rubycritic (~> 4.8.0)!
   shiny_access!
   shiny_blog!
   shiny_forms!
