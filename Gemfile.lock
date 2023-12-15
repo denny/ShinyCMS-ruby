@@ -683,7 +683,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    scout_apm (4.1.1)
+    scout_apm (5.3.5)
       parser
     seed_dump (3.3.1)
       activerecord (>= 4)
