@@ -95,7 +95,7 @@ source 'https://rubygems.org' do
     gem 'rubocop-performance', require: false
 
     # Code quality: Ruby Critic
-    gem 'rubycritic', '~> 4.6.1', require: false
+    gem 'rubycritic', '~> 4.8.0', require: false
 
     # Security: static code analysis
     gem 'brakeman', require: false
