@@ -81,7 +81,7 @@ source 'https://rubygems.org' do
     gem 'letter_opener_web', '~> 1.4'
 
     # Reload dev server when files change
-    gem 'listen', '~> 3.5'
+    gem 'listen', '~> 3.8'
 
     # Linting: general
     gem 'rubocop', require: false
