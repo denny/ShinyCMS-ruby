@@ -39,7 +39,7 @@ Gem::Specification.new do |spec|
   # 6.1.2.1 fixes CVE-2021-22880
   spec.add_dependency 'rails', '~> 6.1.2', '>= 6.1.2.1'
 
-  spec.add_dependency 'pg', '~> 1.2.3'
+  spec.add_dependency 'pg', '>= 1.2.3', '< 1.6.0'
 
   # Immutable data structures
   spec.add_dependency 'persistent-dmnd'
