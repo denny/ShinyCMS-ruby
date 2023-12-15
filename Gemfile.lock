@@ -445,7 +445,7 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     iniparse (1.5.0)
     jmespath (1.6.2)
-    json (2.6.3)
+    json (2.7.1)
     kwalify (0.7.2)
     launchy (2.5.2)
       addressable (~> 2.8)
@@ -587,8 +587,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rbtree3 (0.6.0)
-    recaptcha (5.8.0)
-      json
+    recaptcha (5.16.0)
     redis (4.8.1)
     reek (6.1.4)
       kwalify (~> 0.7.0)
