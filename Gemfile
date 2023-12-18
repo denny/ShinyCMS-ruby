@@ -41,7 +41,7 @@ source 'https://rubygems.org' do
   gem 'rails_email_preview'
 
   # Email stats
-  gem 'ahoy_email', '>= 1.1', '< 2.0'
+  gem 'ahoy_email', '>= 1.1', '< 3.0'
   # Web stats
   gem 'ahoy_matey'
 
