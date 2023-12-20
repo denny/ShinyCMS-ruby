@@ -19,6 +19,10 @@ module ShinyCMS
       controller.class.include? ShinyCMS::AdminAreaControllerBase
     end
 
+    def shinycms_version
+      ShinyCMS::VERSION
+    end
+
     def plugins_for_edit_capabilities
       ShinyCMS.plugins.with_partial 'admin/user/_edit_capabilities.html.erb'
     end

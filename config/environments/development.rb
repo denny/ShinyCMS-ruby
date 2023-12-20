@@ -97,6 +97,9 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # Raise errors in dev if Sprockets config won't work in production
+  config.assets.raise_runtime_errors = true
+
   # Debug mode disables concatenation and preprocessing of assets
   # This option may cause significant delays in view rendering with a large number of complex assets
   # config.assets.debug = true
