@@ -35,7 +35,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.2.3'
 
   # Webserver
-  gem 'puma', '~> 5.3', groups: %i[ development production ]
+  gem 'puma', '~> 6.4', groups: %i[ development production ]
 
   # Email previews
   gem 'rails_email_preview'
@@ -48,7 +48,7 @@ source 'https://rubygems.org' do
   # Charts and dashboards
   gem 'blazer'
   # Charts
-  gem 'chartkick', '~> 4.0.4'
+  gem 'chartkick', '~> 5.0.5'
 
   # Check plugin boundaries
   gem 'packwerk'
@@ -81,7 +81,7 @@ source 'https://rubygems.org' do
     gem 'letter_opener_web', '~> 1.4'
 
     # Reload dev server when files change
-    gem 'listen', '~> 3.5'
+    gem 'listen', '~> 3.8'
 
     # Linting: general
     gem 'rubocop', require: false
@@ -95,7 +95,7 @@ source 'https://rubygems.org' do
     gem 'rubocop-performance', require: false
 
     # Code quality: Ruby Critic
-    gem 'rubycritic', '~> 4.6.1', require: false
+    gem 'rubycritic', '~> 4.8.0', require: false
 
     # Security: static code analysis
     gem 'brakeman', require: false
@@ -122,7 +122,7 @@ source 'https://rubygems.org' do
     gem 'faker'
 
     # Integration tests (request specs)
-    gem 'capybara', '~> 3.35'
+    gem 'capybara', '~> 3.39'
 
     # Intercept calls to external services (notably, the Algolia API)
     gem 'webmock'
