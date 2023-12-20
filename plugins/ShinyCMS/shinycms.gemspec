@@ -39,7 +39,7 @@ Gem::Specification.new do |spec|
   # 6.1.2.1 fixes CVE-2021-22880
   spec.add_dependency 'rails', '~> 6.1.2', '>= 6.1.2.1'
 
-  spec.add_dependency 'pg', '~> 1.2.3'
+  spec.add_dependency 'pg', '>= 1.2.3', '< 1.6.0'
 
   # Immutable data structures
   spec.add_dependency 'persistent-dmnd'
@@ -68,7 +68,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'view_component', '~> 2.31.1'
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
-  spec.add_dependency 'sidekiq', '~> 6.5.10'
+  spec.add_dependency 'sidekiq', '>= 6.5.10', '< 7.3.0'
   spec.add_dependency 'sidekiq-status'
 
   # Soft delete

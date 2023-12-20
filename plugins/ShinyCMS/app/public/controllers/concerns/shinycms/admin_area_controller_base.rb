@@ -16,7 +16,7 @@ module ShinyCMS
 
       include ShinyCMS::Admin::AccessControlByIP
 
-      include Pundit
+      include Pundit::Authorization
 
       helper ShinyCMS::AdminAreaHelper
 

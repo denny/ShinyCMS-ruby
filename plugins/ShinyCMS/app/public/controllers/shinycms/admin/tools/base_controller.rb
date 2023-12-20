@@ -11,7 +11,7 @@ module ShinyCMS
     module Tools
       # For engine controllers to inherit from when embedding them into ShinyCMS admin area
       class BaseController < ActionController::Base
-        include Pundit
+        include Pundit::Authorization
 
         include ShinyCMS::Admin::AccessControlByIP
 
