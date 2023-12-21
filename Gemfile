@@ -78,7 +78,7 @@ source 'https://rubygems.org' do
 
   group :development do
     # Capture all outgoing emails, with webmail interface to look at them
-    gem 'letter_opener_web', '~> 1.4'
+    gem 'letter_opener_web', '~> 2.0'
 
     # Reload dev server when files change
     gem 'listen', '~> 3.8'
