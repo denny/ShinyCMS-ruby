@@ -498,7 +498,7 @@ GEM
       parser
       sorbet-runtime
     pagy (4.7.1)
-    parallel (1.23.0)
+    parallel (1.24.0)
     parallel_tests (4.3.0)
       parallel
     parser (3.2.2.4)
@@ -638,8 +638,8 @@ GEM
     rubocop-rspec (2.4.0)
       rubocop (~> 1.0)
       rubocop-ast (>= 1.1.0)
-    rubocop-thread_safety (0.4.2)
-      rubocop (>= 0.53.0)
+    rubocop-thread_safety (0.5.1)
+      rubocop (>= 0.90.0)
     ruby-pg-extras (5.3.1)
       pg
       terminal-table
