@@ -311,7 +311,8 @@ GEM
       chartkick (>= 5)
       railties (>= 6.1)
       safely_block (>= 0.4)
-    brakeman (6.1.0)
+    brakeman (6.1.1)
+      racc
     bugsnag (6.26.0)
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
