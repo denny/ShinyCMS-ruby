@@ -472,7 +472,7 @@ GEM
     mutant-rspec (0.11.26)
       mutant (= 0.11.26)
       rspec-core (>= 3.8.0, < 4.0.0)
-    net-imap (0.4.8)
+    net-imap (0.4.9)
       date
       net-protocol
     net-pop (0.1.2)
@@ -555,7 +555,7 @@ GEM
     rails-pg-extras (5.3.1)
       rails
       ruby-pg-extras (= 5.3.1)
-    rails_email_preview (2.2.2)
+    rails_email_preview (2.2.3)
       rails (>= 4.2)
       request_store
       sassc-rails (>= 2.0.0)
@@ -582,7 +582,7 @@ GEM
       parser (~> 3.2.0)
       rainbow (>= 2.0, < 4.0)
     regexp_parser (2.8.3)
-    request_store (1.5.0)
+    request_store (1.5.1)
       rack (>= 1.4)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -711,7 +711,7 @@ GEM
       unicode-display_width (>= 1.1.1, < 3)
     thor (1.3.0)
     thread_safe (0.3.6)
-    tilt (2.0.10)
+    tilt (2.3.0)
     timeout (0.4.1)
     tty-which (0.4.2)
     turbolinks (5.2.1)
