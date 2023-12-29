@@ -73,12 +73,12 @@ source 'https://rubygems.org' do
 
     # Tools for working with translation strings
     # gem 'i18n-debug'
-    gem 'i18n-tasks', '~> 0.9.34'
+    gem 'i18n-tasks', '~> 1.0.13'
   end
 
   group :development do
     # Capture all outgoing emails, with webmail interface to look at them
-    gem 'letter_opener_web', '~> 1.4'
+    gem 'letter_opener_web', '~> 2.0'
 
     # Reload dev server when files change
     gem 'listen', '~> 3.8'
