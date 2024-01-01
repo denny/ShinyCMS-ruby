@@ -30,7 +30,7 @@ module ShinyBlog
 
         described_class.perform_now
 
-        file_content = File.read Rails.root.join( 'public/feeds/atom/blog.xml' )
+        file_content = File.read Rails.public_path.join( 'feeds/atom/blog.xml' )
 
         expect( file_content ).to start_with atom_feed_intro
       end
