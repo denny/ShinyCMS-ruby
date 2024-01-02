@@ -65,7 +65,7 @@ Gem::Specification.new do |spec|
 
   # View components
   # TODO: FIXME: 2.32.0 caused some sort of breakage; investigate, fix, update
-  spec.add_dependency 'view_component', '~> 2.31.1'
+  spec.add_dependency 'view_component', '>= 2.31.1', '< 3.9.0'
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
   spec.add_dependency 'sidekiq', '>= 6.5.10', '< 7.3.0'
