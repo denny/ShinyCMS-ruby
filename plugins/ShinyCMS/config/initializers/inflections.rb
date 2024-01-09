@@ -6,18 +6,6 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# TODO: FIXME: Inflections are handled via Packwerk...
-
-require 'packwerk/inflections/custom'
-
-ActiveSupport::Inflector.inflections do |inflect|
-  # Add all custom inflections in the file below
-  Packwerk::Inflections::Custom.new(
-    Rails.root.join( 'package/ShinyCMS/config/inflections.yml' )
-  ).apply_to( inflect )
-end
-
-# TODO: Get the above working, then remove this
 ActiveSupport::Inflector.inflections( :en ) do |inflect|
   # Acronyms used in the ShinyCMS code
   inflect.acronym 'CMS'
