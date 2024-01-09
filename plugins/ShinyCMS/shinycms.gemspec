@@ -65,7 +65,7 @@ Gem::Specification.new do |spec|
 
   # View components
   # https://github.com/ViewComponent/view_component/security/advisories/GHSA-wf2x-8w6j-qw37
-  spec.add_dependency 'view_component', '~> 2.83'
+  spec.add_dependency 'view_component', '>= 2.83', '< 4.0'
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
   spec.add_dependency 'sidekiq', '>= 6.5.10', '< 7.3.0'
