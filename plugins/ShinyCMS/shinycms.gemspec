@@ -64,8 +64,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rails-i18n'
 
   # View components
-  # TODO: FIXME: 2.32.0 caused some sort of breakage; investigate, fix, update
-  spec.add_dependency 'view_component', '~> 2.31.1'
+  # https://github.com/ViewComponent/view_component/security/advisories/GHSA-wf2x-8w6j-qw37
+  spec.add_dependency 'view_component', '~> 2.83'
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
   spec.add_dependency 'sidekiq', '>= 6.5.10', '< 7.3.0'
