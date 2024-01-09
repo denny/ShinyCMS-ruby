@@ -13,6 +13,3 @@ include:
 - '**/*.{rb,rake,erb}'
 exclude:
 - '{bin,coverage,db,docs,log,node_modules,site,spec,storage,themes,tmp,vendor,plugins/*/config,plugins/*/spec,plugins/*/lib/tasks,plugins/ShinyCMS/db}/**/*'
-
-# Location of inflections file
-inflections_file: 'plugins/ShinyCMS/config/inflections.yml'

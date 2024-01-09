@@ -1,13 +1,9 @@
-# ShinyCMS ~ https://shinycms.org
+# This file contains a list of dependencies that are not part of the long term plan for plugins/ShinyCMS.
+# We should generally work to reduce this list, but not at the expense of actually getting work done.
 #
-# Copyright 2009-2023 Denny de la Haye ~ https://denny.me
+# You can regenerate this file using the following command:
 #
-# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
-
-# This file contains a list of dependency issues and other boundary failures
-# between ShinyCMS plugins (and ShinyHostApp); similar to the rubocop_todo file.
-#
-# You can regenerate this file with this command: bin/packwerk update-deprecations plugins/ShinyCMS
+# bin/packwerk update-todo plugins/ShinyCMS
 ---
 ".":
   "::Ahoy::Message":
