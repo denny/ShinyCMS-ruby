@@ -75,7 +75,7 @@ source 'https://rubygems.org' do
 
   group :development do
     # Check plugin boundaries
-    gem 'packwerk', '~> 2.0'
+    gem 'packwerk', '~> 3.1'
 
     # Capture all outgoing emails, with webmail interface to look at them
     gem 'letter_opener_web', '~> 2.0'
