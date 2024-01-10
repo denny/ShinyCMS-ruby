@@ -256,6 +256,8 @@ Style/MethodCallWithArgsParentheses:
 # Potentially fixable at some point...
 Lint/NumberConversion:
   Enabled: false
+Rails/RedundantPresenceValidationOnBelongsTo:
+  Enabled: false
 Style/InlineComment:
   Enabled: false
 Style/MissingElse:
