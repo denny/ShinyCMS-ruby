@@ -7,7 +7,9 @@
 # This file contains a list of dependency issues and other boundary failures
 # between ShinyCMS plugins (and ShinyHostApp); similar to the rubocop_todo file.
 #
-# You can regenerate this file with this command: bin/packwerk update-deprecations plugins/ShinyCMS
+# You can regenerate this file using the following command:
+#
+# bin/packwerk update-todo plugins/ShinyCMS
 ---
 ".":
   "::Ahoy::Message":
