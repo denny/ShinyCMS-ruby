@@ -5,7 +5,7 @@ PATH
       acts-as-taggable-on
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
-      pagy
+      pagy (~> 4.11)
       pg (>= 1.2.3, < 1.6.0)
       pundit
       rails (~> 6.1.2, >= 6.1.2.1)
@@ -47,7 +47,7 @@ PATH
       mini_magick
       mjml-rails
       nokogiri (>= 1.10.4)
-      pagy
+      pagy (~> 4.11)
       persistent-dmnd
       pg (>= 1.2.3, < 1.6.0)
       pry-rails
@@ -501,7 +501,7 @@ GEM
       parser
       sorbet-runtime (>= 0.5.9914)
       zeitwerk (>= 2.6.1)
-    pagy (4.7.1)
+    pagy (4.11.0)
     parallel (1.24.0)
     parallel_tests (4.4.0)
       parallel

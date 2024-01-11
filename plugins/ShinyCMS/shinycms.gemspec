@@ -84,8 +84,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ckeditor'
 
   # Pagination
-  # TODO: FIXME: 4.4.0 caused some sort of breakage; investigate, fix, update
-  spec.add_dependency 'pagy'
+  spec.add_dependency 'pagy', '~> 4.11'
 
   # Atom feeds
   spec.add_dependency 'rss'
