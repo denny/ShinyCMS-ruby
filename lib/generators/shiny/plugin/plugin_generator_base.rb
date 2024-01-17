@@ -11,7 +11,7 @@
 require 'rails/generators/rails/app/app_generator'
 require 'date'
 
-require_relative './plugin_builder'
+require_relative 'plugin_builder'
 
 module Shiny
   module Generators
