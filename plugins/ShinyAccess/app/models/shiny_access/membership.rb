@@ -68,7 +68,7 @@ module ShinyAccess
 
     def self.start_and_end_dates_from_string( string )
       dates = string.split %r{\s+(-|to)\s+}
-      [ Time.zone.parse( dates[0] ), Time.zone.parse( dates[2] ) ]
+      [ Time.zone.parse( dates.first ), Time.zone.parse( dates.third ) ]
     end
 
     private
