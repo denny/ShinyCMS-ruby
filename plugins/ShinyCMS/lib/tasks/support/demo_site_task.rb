@@ -41,7 +41,7 @@ module ShinyCMS
     # :nocov:
 
     def create_statements_for( model )
-      return '' if model.all.size.zero?
+      return '' if model.all.empty?
 
       Rails.logger.info "Dumping: #{model}"
 
