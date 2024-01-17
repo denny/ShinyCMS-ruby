@@ -161,7 +161,7 @@ module Shiny
 
       def raise_reserved_name_error
         raise Error, "Invalid plugin name - '#{original_name}' is in the Rails reserved words list: " \
-          "#{RESERVED_NAMES.join( ', ' )}"
+                     "#{RESERVED_NAMES.join( ', ' )}"
       end
 
       def raise_constant_already_in_use_error
