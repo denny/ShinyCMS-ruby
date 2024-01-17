@@ -19,7 +19,7 @@ RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
       it 'shows the first ten items' do
         get base_url
 
-        expect( response.body ).to have_css match_tag, text: items[0].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items.first.public_send( match_text )
         expect( response.body ).to have_css match_tag, text: items[9].public_send( match_text )
 
         expect( response.body ).not_to have_css match_tag, text: items[10].public_send( match_text )
@@ -30,7 +30,7 @@ RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
       it 'shows the first ten items' do
         get "#{base_url}/page/1"
 
-        expect( response.body ).to have_css match_tag, text: items[0].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items.first.public_send( match_text )
         expect( response.body ).to have_css match_tag, text: items[9].public_send( match_text )
 
         expect( response.body ).not_to have_css match_tag, text: items[10].public_send( match_text )
@@ -41,7 +41,7 @@ RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
       it 'shows the first 5 items' do
         get "#{base_url}/page/1/items/5"
 
-        expect( response.body ).to have_css match_tag, text: items[0].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items.first.public_send( match_text )
         expect( response.body ).to have_css match_tag, text: items[4].public_send( match_text )
 
         expect( response.body ).not_to have_css match_tag, text: items[5].public_send( match_text )
@@ -52,7 +52,7 @@ RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
       it 'shows the first 5 items' do
         get "#{base_url}/items/5"
 
-        expect( response.body ).to have_css match_tag, text: items[0].public_send( match_text )
+        expect( response.body ).to have_css match_tag, text: items.first.public_send( match_text )
         expect( response.body ).to have_css match_tag, text: items[4].public_send( match_text )
 
         expect( response.body ).not_to have_css match_tag, text: items[5].public_send( match_text )
