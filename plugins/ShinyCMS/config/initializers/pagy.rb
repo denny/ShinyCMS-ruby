@@ -21,7 +21,7 @@ require 'pagy/extras/array'
 
 # Countless extra (paginate without any count): https://ddnexus.github.io/pagy/extras/countless
 require 'pagy/extras/countless'
-# Pagy::VARS[:cycle] = false    # default
+# Pagy::DEFAULT[:cycle] = false    # default
 
 # Elasticsearch Rails extra: https://ddnexus.github.io/pagy/extras/elasticsearch_rails
 # require 'pagy/extras/elasticsearch_rails'
@@ -57,13 +57,13 @@ require 'pagy/extras/bootstrap'
 # require 'pagy/extras/navs'
 
 # Multi size var used by the *_nav_js helpers: https://ddnexus.github.io/pagy/extras/navs#steps
-# Pagy::VARS[:steps] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }   # example
+# Pagy::DEFAULT[:steps] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }   # example
 
 ### Feature Extras
 
 # HTTP Headers extra: http://ddnexus.github.io/pagy/extras/headers
 # require 'pagy/extras/headers'
-# Pagy::VARS[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }
+# Pagy::DEFAULT[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }
 
 # Support extra: https://ddnexus.github.io/pagy/extras/support
 # Extra support for features like: incremental, infinite, auto-scroll pagination
@@ -72,17 +72,17 @@ require 'pagy/extras/support'
 # Items extra: https://ddnexus.github.io/pagy/extras/items
 # Allow the client to request a custom number of items per page with an optional selector UI
 require 'pagy/extras/items'
-# Pagy::VARS[ :items_param ] = :items    # default
-# Pagy::VARS[ :max_items   ] = 100       # default
+# Pagy::DEFAULT[ :items_param ] = :items    # default
+# Pagy::DEFAULT[ :max_items   ] = 100       # default
 
 # Overflow extra: https://ddnexus.github.io/pagy/extras/overflow
 # require 'pagy/extras/overflow'
-# Pagy::VARS[:overflow] = :empty_page    # default  (other options: :last_page and :exception)
+# Pagy::DEFAULT[:overflow] = :empty_page    # default  (other options: :last_page and :exception)
 
 # Metadata (for JS frameworks) extra: https://ddnexus.github.io/pagy/extras/metadata
 # require 'pagy/extras/shared'
 # require 'pagy/extras/metadata'
-# Pagy::VARS[:metadata] = [:scaffold_url, :count, :page, :prev, :next, :last]  # example
+# Pagy::DEFAULT[:metadata] = [:scaffold_url, :count, :page, :prev, :next, :last]  # example
 
 # Trim extra: https://ddnexus.github.io/pagy/extras/trim
 # Remove page=1 param from links
@@ -90,22 +90,22 @@ require 'pagy/extras/trim'
 
 ## Pagy Variables (https://ddnexus.github.io/pagy/api/pagy#variables)
 
-# All the Pagy::VARS are set for all the Pagy instances but can be overridden
+# All the Pagy::DEFAULT are set for all the Pagy instances but can be overridden
 # per instance by just passing them to Pagy.new or the #pagy controller method
 
 ### Instance variables (https://ddnexus.github.io/pagy/api/pagy#instance-variables)
 
 # TODO: pull this from settings, and allow different defaults for main site and admin area
-Pagy::VARS[ :items ] = 10
+Pagy::DEFAULT[ :items ] = 10
 
 ### Other Variables (https://ddnexus.github.io/pagy/api/pagy#other-variables)
 
-Pagy::VARS[ :size ] = [ 3, 3, 3, 3 ]
+Pagy::DEFAULT[ :size ] = [ 3, 3, 3, 3 ]
 
-# Pagy::VARS[:page_param] = :page                           # default
-# Pagy::VARS[:params]     = {}                              # default
-# Pagy::VARS[:anchor]     = '#anchor'                       # example
-# Pagy::VARS[:link_extra] = 'data-remote="true"'            # example
+# Pagy::DEFAULT[:page_param] = :page                           # default
+# Pagy::DEFAULT[:params]     = {}                              # default
+# Pagy::DEFAULT[:anchor]     = '#anchor'                       # example
+# Pagy::DEFAULT[:link_extra] = 'data-remote="true"'            # example
 
 ## Rails
 
@@ -139,4 +139,4 @@ Rails.application.config.assets.paths << Pagy.root.join( 'javascripts' )
 # require 'pagy/extras/i18n'
 
 # Default i18n key
-# Pagy::VARS[:i18n_key] = 'pagy.item_name'
+# Pagy::DEFAULT[:i18n_key] = 'pagy.item_name'
