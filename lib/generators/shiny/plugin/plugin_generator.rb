@@ -16,7 +16,7 @@
 # * A bunch of supporting code moved into separate files
 # * Some stuff in the templates to tie the resulting plugin into ShinyCMS
 
-require_relative './plugin_generator_base'
+require_relative 'plugin_generator_base'
 
 module Shiny
   module Generators
