@@ -20,7 +20,8 @@ module ShinyCMS
 
       helper Rails.application.routes.url_helpers
 
-      helper_method :pagy_url_for, :recaptcha_v2_site_key, :recaptcha_v3_site_key, :recaptcha_checkbox_site_key
+      # helper_method :pagy_url_for, :recaptcha_v2_site_key, :recaptcha_v3_site_key, :recaptcha_checkbox_site_key
+      helper_method :recaptcha_v2_site_key, :recaptcha_v3_site_key, :recaptcha_checkbox_site_key
 
       before_action :store_user_location!, if: :storable_location?
 
@@ -46,11 +47,13 @@ module ShinyCMS
         end
       end
 
+      delegate :pagy_url_for, to: :helpers
+
       # Change pager link format from admin/action?page=3&items=12 to admin/action/page/3/items/12
-      def pagy_url_for( pagy, page )
-        params = request.query_parameters.merge( page: page, items: pagy.vars[:items], only_path: true )
-        url_for( params )
-      end
+      #def pagy_url_for( pagy, page )
+      #  params = request.query_parameters.merge( page: page, items: pagy.vars[:items], only_path: true )
+      #  url_for( params )
+      #end
 
       def recaptcha_v3_site_key
         ENV[ 'RECAPTCHA_V3_SITE_KEY' ]
