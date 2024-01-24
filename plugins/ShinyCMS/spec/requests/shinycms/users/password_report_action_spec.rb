@@ -16,7 +16,7 @@ RSpec.describe ShinyCMS::PasswordReportAction, type: :request do
 
       expect( response ).to have_http_status :ok
 
-      result = JSON.parse( response.body )
+      result = response.parsed_body
 
       expect( result['score'] ).to eq 0
       expect( result['crack_time_display'] ).to eq 'instant'

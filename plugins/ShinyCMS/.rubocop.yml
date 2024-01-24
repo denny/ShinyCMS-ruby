@@ -250,6 +250,8 @@ Layout/SpaceBeforeBrackets:
   Enabled: false
 Lint/ConstantResolution:
   Enabled: false
+Style/InvertibleUnlessCondition:
+  Enabled: false
 Style/MethodCallWithArgsParentheses:
   Enabled: false
 
@@ -287,6 +289,10 @@ Gemspec/DependencyVersion:
 Gemspec/DevelopmentDependencies:
   Enabled: false
 Gemspec/RequireMFA:
+  Enabled: false
+Rails/ActionControllerFlashBeforeRender:
+  Enabled: false
+Rails/ActionOrder:
   Enabled: false
 Style/FetchEnvVar:
   Enabled: false
