@@ -290,6 +290,10 @@ Gemspec/DevelopmentDependencies:
   Enabled: false
 Gemspec/RequireMFA:
   Enabled: false
+Rails/ActionControllerFlashBeforeRender:
+  Enabled: false
+Rails/ActionOrder:
+  Enabled: false
 Style/FetchEnvVar:
   Enabled: false
 Style/FileWrite:
