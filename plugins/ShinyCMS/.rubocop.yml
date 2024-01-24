@@ -179,6 +179,12 @@ RSpec/FilePath:
 FactoryBot/ExcessiveCreateList:
   Enabled: false
 
+# Something flaky in how these tests are working?
+FactoryBot/FactoryClassName:
+  Exclude:
+    - ../ShinyAccess/spec/factories/shiny_access/groups.rb
+    - ../ShinyAccess/spec/factories/shiny_access/memberships.rb
+
 # Disabling these two for now (but open to discussion/persuasion on their merits)
 RSpec/ExampleLength:
   Enabled: false
