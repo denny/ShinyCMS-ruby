@@ -28,7 +28,7 @@ RSpec.describe ShinyCMS::Theme, type: :model do
     it 'returns nil' do
       allow( described_class ).to receive( :env_shinycms_theme ).and_return( nil )
 
-      expect( described_class.get ).to eq nil
+      expect( described_class.get ).to be_nil
     end
   end
 
@@ -40,7 +40,7 @@ RSpec.describe ShinyCMS::Theme, type: :model do
     it 'returns nil if the theme folder does not exist' do
       allow( described_class ).to receive( :env_shinycms_theme ).and_return( 'test3' )
 
-      expect( described_class.get ).to eq nil
+      expect( described_class.get ).to be_nil
     end
   end
 

@@ -13,7 +13,7 @@ module ShinyCMS
 
     def index
       authorize FeatureFlag
-      @flags = FeatureFlag.all.order( :name )
+      @flags = FeatureFlag.order( :name )
       authorize @flags if @flags.present?
     end
 

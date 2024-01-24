@@ -27,9 +27,9 @@ module ShinyAccess
       describe '.end' do
         it 'sets the ended_at timestamp' do
           membership1 = create :access_membership
-          expect( membership1.reload.ended_at ).to be nil
+          expect( membership1.reload.ended_at ).to be_nil
           membership1.end
-          expect( membership1.reload.ended_at ).not_to be nil
+          expect( membership1.reload.ended_at ).not_to be_nil
         end
       end
     end
