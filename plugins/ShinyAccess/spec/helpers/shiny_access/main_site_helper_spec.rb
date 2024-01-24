@@ -51,7 +51,7 @@ module ShinyAccess
       end
 
       it 'returns nil if the group does not exist' do
-        expect( helper.access_group_name( :NoSuchGroup ) ).to eq nil
+        expect( helper.access_group_name( :NoSuchGroup ) ).to be_nil
       end
     end
   end
