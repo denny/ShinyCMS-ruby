@@ -250,6 +250,8 @@ Layout/SpaceBeforeBrackets:
   Enabled: false
 Lint/ConstantResolution:
   Enabled: false
+Style/InvertibleUnlessCondition:
+  Enabled: false
 Style/MethodCallWithArgsParentheses:
   Enabled: false
 
