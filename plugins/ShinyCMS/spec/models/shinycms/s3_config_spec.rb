@@ -65,7 +65,7 @@ RSpec.describe ShinyCMS::S3Config, type: :model do
       it 'returns nil' do
         s3_config = described_class.get( :feeds )
 
-        expect( s3_config ).to be nil
+        expect( s3_config ).to be_nil
       end
     end
   end
