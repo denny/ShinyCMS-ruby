@@ -122,7 +122,7 @@ source 'https://rubygems.org' do
     gem 'faker'
 
     # Integration tests (request specs)
-    gem 'capybara', '~> 3.39'
+    gem 'capybara', '~> 3.40'
 
     # Intercept calls to external services (notably, the Algolia API)
     gem 'webmock'
