@@ -82,5 +82,13 @@ RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
         expect( response.body ).not_to have_css match_tag, text: items[10].public_send( match_text )
       end
     end
+
+    describe 'URL is correctly formatted in links' do
+      it 'has a link to see older items' do
+        get "#{base_url}/page/1/items/5"
+
+        expect( response.body ).to have_link 'Older', href: "#{base_url}/page/2/items/5"
+      end
+    end
   end
 end
