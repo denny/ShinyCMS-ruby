@@ -87,8 +87,6 @@ RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
       it 'has a link to see older items' do
         get "#{base_url}/page/1/items/5"
 
-        binding.pry
-
         expect( response.body ).to have_link 'Older', href: "#{base_url}/page/2/items/5"
       end
     end
