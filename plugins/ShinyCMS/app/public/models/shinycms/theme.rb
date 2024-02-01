@@ -44,7 +44,7 @@ module ShinyCMS
     def self.files_exist?( theme_name )
       return false if theme_name.blank?
 
-      FileTest.directory?( Rails.root.join( "themes/#{theme_name}" ) )
+      Rails.root.join( "themes/#{theme_name}" ).directory?
     end
 
     def self.template_dir( more_path = '' )

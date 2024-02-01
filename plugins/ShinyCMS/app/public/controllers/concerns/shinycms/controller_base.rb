@@ -47,10 +47,12 @@ module ShinyCMS
       end
 
       # Change pager link format from admin/action?page=3&items=12 to admin/action/page/3/items/12
-      def pagy_url_for( pagy, page )
+      # rubocop:disable Lint/UnusedMethodArgument
+      def pagy_url_for( pagy, page, absolute: false, html_escaped: false )
         params = request.query_parameters.merge( page: page, items: pagy.vars[:items], only_path: true )
         url_for( params )
       end
+      # rubocop:enable Lint/UnusedMethodArgument
 
       def recaptcha_v3_site_key
         ENV[ 'RECAPTCHA_V3_SITE_KEY' ]

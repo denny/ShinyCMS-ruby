@@ -16,8 +16,8 @@ module ShinyInserts
     end
 
     def insert_type?( name, type )
-      return unless name.is_a? Symbol
-      return unless type.is_a? Symbol
+      return false unless name.is_a? Symbol
+      return false unless type.is_a? Symbol
 
       ShinyInserts::Set.first.elements.where( name: name.to_s ).pick( :element_type ) == type.to_s
     end

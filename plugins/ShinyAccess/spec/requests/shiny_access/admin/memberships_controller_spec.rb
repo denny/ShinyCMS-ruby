@@ -110,7 +110,7 @@ RSpec.describe ShinyAccess::Admin::MembershipsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
       expect( response.body ).to have_css '.alert-success', text: success_message
 
-      expect( membership1.reload.ended_at ).not_to eq nil
+      expect( membership1.reload.ended_at ).not_to be_nil
     end
 
     it 'refuses to mark an already ended membership as ending today' do

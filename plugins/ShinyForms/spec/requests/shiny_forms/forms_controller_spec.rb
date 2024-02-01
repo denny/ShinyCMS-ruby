@@ -25,6 +25,8 @@ RSpec.describe ShinyForms::FormsController, type: :request do
       create :plain_email_form, slug: 'contact'
 
       get "/#{page1.slug}"
+
+      expect( response ).to have_http_status :ok
     end
   end
 

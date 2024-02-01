@@ -99,7 +99,7 @@ RSpec.describe ShinyCMS::SiteSettingsController, type: :request do
       expect( response.body ).to have_field "settings[value_#{setting.id}]", with: initial_value
     end
 
-    it 'will update the value of a locked setting' do
+    it 'updates the value of a locked setting' do
       new_value = Faker::Books::CultureSeries.unique.culture_ship
 
       s1 = ShinyCMS::Setting.find_by( name: 'recaptcha_score_for_comments' )

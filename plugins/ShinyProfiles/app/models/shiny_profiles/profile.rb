@@ -100,8 +100,7 @@ module ShinyProfiles
         ShinyProfiles::Profile.with_links.with_pic.find_by( id: id )
       end
     end
-    # rubocop:disable Layout/ClassStructure
+
     user_model.constantize.include ShinyProfiles::Profile::ExtendUserModel
-    # rubocop:enable Layout/ClassStructure
   end
 end

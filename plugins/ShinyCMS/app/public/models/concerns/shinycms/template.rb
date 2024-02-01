@@ -27,7 +27,7 @@ module ShinyCMS
       # Create template elements, based on the content of the template file
       def add_elements
         file_content.scan( self.class.parser_regex ).uniq.each do |result|
-          added = add_element result[0], result[1]
+          added = add_element result.first, result.second
           raise ActiveRecord::Rollback unless added
         end
       end

@@ -24,12 +24,12 @@ module ShinyPages
       describe '.file_exists?' do
         it 'returns true if the template file exists on the disk' do
           template = create :page_template, filename: 'an_example'
-          expect( template.file_exists? ).to eq true
+          expect( template.file_exists? ).to be true
         end
 
         it 'returns false if the template file does not exist' do
           template = build :page_template, filename: 'NO-SUCH-FILE'
-          expect( template.file_exists? ).to eq false
+          expect( template.file_exists? ).to be false
         end
       end
 

@@ -63,13 +63,12 @@ module ShinyAccess
     def self.search_single_date( query )
       searched_date = Time.zone.parse( query )
 
-      where( began_at: searched_date.beginning_of_day..searched_date.end_of_day )
-        .or( where( ended_at: searched_date.beginning_of_day..searched_date.end_of_day ) )
+      where( began_at: searched_date.all_day ).or( where( ended_at: searched_date.all_day ) )
     end
 
     def self.start_and_end_dates_from_string( string )
       dates = string.split %r{\s+(-|to)\s+}
-      [ Time.zone.parse( dates[0] ), Time.zone.parse( dates[2] ) ]
+      [ Time.zone.parse( dates.first ), Time.zone.parse( dates.third ) ]
     end
 
     private

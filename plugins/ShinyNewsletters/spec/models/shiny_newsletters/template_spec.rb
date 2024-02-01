@@ -14,11 +14,11 @@ module ShinyNewsletters
     describe 'class methods' do
       describe '.template_file_exists?' do
         it 'returns true if the template file exists on the disk' do
-          expect( described_class.template_file_exists?( 'an_example' ) ).to eq true
+          expect( described_class.template_file_exists?( 'an_example' ) ).to be true
         end
 
         it 'returns false if the template file does not exist' do
-          expect( described_class.template_file_exists?( 'NO_SUCH_FILE' ) ).to eq false
+          expect( described_class.template_file_exists?( 'NO_SUCH_FILE' ) ).to be false
         end
       end
 

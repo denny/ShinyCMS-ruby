@@ -65,13 +65,13 @@ module ShinyCMS
     def view_path
       path = "plugins/#{name}/app/views/#{underscore}"
 
-      return unless Dir.exist? Rails.root.join( path )
+      return unless Rails.root.join( path ).exist?
 
       path
     end
 
     def view_file_exists?( view_file )
-      File.exist? Rails.root.join( "#{view_path}/#{view_file}" )
+      Rails.root.join( "#{view_path}/#{view_file}" ).exist?
     end
 
     def partial( location )

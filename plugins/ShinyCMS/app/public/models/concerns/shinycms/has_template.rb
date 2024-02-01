@@ -32,7 +32,7 @@ module ShinyCMS
 
       # Returns a hash of all the elements for this item, to feed to render as local params
       def elements_hash
-        elements.collect { |element| [ element.name.to_sym, ( element.image.presence || element.content ) ] }
+        elements.collect { |element| [ element.name.to_sym, element.image.presence || element.content ] }
                 .to_h
       end
     end

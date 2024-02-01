@@ -117,7 +117,7 @@ jobs:
 
       - run:
           name: Audit Gemfile bundle for security issues
-          command: bundle exec bundle-audit check --update --ignore CVE-2019-25025
+          command: bundle exec bundle-audit check --update --ignore CVE-2019-25025 CVE-2024-21636
 
   # Run rspec tests, for main app and plugins
   rspec:

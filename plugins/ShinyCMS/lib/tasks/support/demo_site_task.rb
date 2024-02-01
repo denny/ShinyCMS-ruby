@@ -41,7 +41,7 @@ module ShinyCMS
     # :nocov:
 
     def create_statements_for( model )
-      return '' if model.all.size.zero?
+      return '' if model.all.empty?
 
       Rails.logger.info "Dumping: #{model}"
 
@@ -92,7 +92,7 @@ module ShinyCMS
 
     def grant_all_capabilities( admin )
       ShinyCMS::User.transaction do
-        ShinyCMS::Capability.all.find_each do |capability|
+        ShinyCMS::Capability.find_each do |capability|
           admin.user_capabilities.create! capability: capability
         end
       end

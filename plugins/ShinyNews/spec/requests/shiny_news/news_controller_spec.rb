@@ -53,7 +53,7 @@ RSpec.describe ShinyNews::NewsController, type: :request do
 
     it 'throws an appropriate error if no news exists' do
       create :top_level_page
-      ShinyNews::Post.all.destroy_all
+      ShinyNews::Post.destroy_all
 
       get shiny_news.view_news_path
 

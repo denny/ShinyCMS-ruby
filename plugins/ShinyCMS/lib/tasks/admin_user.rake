@@ -32,7 +32,7 @@ namespace :shinycms do
       @shiny_admin.save!
 
       ShinyCMS::User.transaction do
-        ShinyCMS::Capability.all.find_each do |capability|
+        ShinyCMS::Capability.find_each do |capability|
           @shiny_admin.user_capabilities.create! capability: capability
         end
       end

@@ -31,7 +31,7 @@ module ShinyCMS
           controller_name = 'blazer'
         end
 
-        ShinyCMS::Plugin.get( plugin_name ).url_helpers.public_send( "#{controller_name}_path" )
+        ShinyCMS::Plugin.get( plugin_name ).url_helpers.public_send( :"#{controller_name}_path" )
       end
     end
   end

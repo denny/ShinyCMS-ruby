@@ -28,9 +28,9 @@ module ShinyLists
       describe '.unsubscribe' do
         it 'sets the unsubscribed timestamp' do
           sub1 = create :mailing_list_subscription
-          expect( sub1.reload.unsubscribed_at ).to be nil
+          expect( sub1.reload.unsubscribed_at ).to be_nil
           sub1.unsubscribe
-          expect( sub1.reload.unsubscribed_at ).not_to be nil
+          expect( sub1.reload.unsubscribed_at ).not_to be_nil
         end
       end
     end

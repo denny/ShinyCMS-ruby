@@ -90,7 +90,7 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       expect( response.body ).to have_field "settings[value_#{s1.id}]", with: 'Unchanging'
     end
 
-    it "won't update the level of a locked setting" do
+    it "doesn't update the level of a locked setting" do
       s1 = ShinyCMS::Setting.set( :allowed_ips, to: '127.0.0.1, 1.2.3.4' )
 
       put shinycms.admin_site_settings_path, params: {
@@ -116,7 +116,7 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
                                                 checked:  true
     end
 
-    it 'will update the value of a locked setting' do
+    it 'updates the value of a locked setting' do
       s1 = ShinyCMS::Setting.set( :allowed_ips, to: '127.0.0.1, 1.2.3.4' )
 
       put shinycms.admin_site_settings_path, params: {

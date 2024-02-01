@@ -23,15 +23,12 @@ module ShinyPages
       return show_page if @page
 
       render inline: <<~HTML
-        <p>
-          This site does not have any content yet. Please try again later.
+        <p>This site does not have any content yet. Please try again later.
         </p>
-        <p>
-          <i>
-            Powered by <a href="https://shinycms.org/">ShinyCMS<a/>
-            (<a href="https://shinycms.org/ruby">Ruby version</a>)
-          </i>
-        </p>
+        <p><i>
+          Powered by <a href="https://shinycms.org/">ShinyCMS<a/>
+          (<a href="https://shinycms.org/ruby">Ruby version</a>)
+        </i></p>
       HTML
     end
 

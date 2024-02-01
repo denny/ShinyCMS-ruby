@@ -45,7 +45,7 @@ module ShinyCMS
     end
 
     def minimum_score( action )
-      Setting.get( "recaptcha_score_for_#{action}".to_sym ) || Setting.get( :recaptcha_score_default ) || 0.5
+      Setting.get( :"recaptcha_score_for_#{action}" ) || Setting.get( :recaptcha_score_default ) || 0.5
     end
   end
 end

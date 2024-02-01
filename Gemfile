@@ -50,9 +50,6 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 5.0.5'
 
-  # Check plugin boundaries
-  gem 'packwerk'
-
   group :development, :test do
     # RSpec for Rails
     gem 'rspec-rails'
@@ -77,6 +74,9 @@ source 'https://rubygems.org' do
   end
 
   group :development do
+    # Check plugin boundaries
+    gem 'packwerk', '~> 3.1'
+
     # Capture all outgoing emails, with webmail interface to look at them
     gem 'letter_opener_web', '~> 2.0'
 
@@ -122,7 +122,7 @@ source 'https://rubygems.org' do
     gem 'faker'
 
     # Integration tests (request specs)
-    gem 'capybara', '~> 3.39'
+    gem 'capybara', '~> 3.40'
 
     # Intercept calls to external services (notably, the Algolia API)
     gem 'webmock'
