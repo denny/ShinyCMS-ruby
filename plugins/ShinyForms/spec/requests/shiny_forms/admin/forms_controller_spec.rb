@@ -52,7 +52,7 @@ RSpec.describe ShinyForms::Admin::FormsController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_forms.admin.forms.index.title' ).titlecase
 
-      expect( response.body ).to     have_css 'td', text: form1.internal_name
+      expect( response.body ).to have_css 'td', text: form1.internal_name
       expect( response.body ).to have_no_css 'td', text: form2.internal_name
     end
   end
@@ -161,7 +161,7 @@ RSpec.describe ShinyForms::Admin::FormsController, type: :request do
       expect( response.body ).to     have_css '.alert-success', text: success_message
       expect( response.body ).to     have_css 'td', text: f1.name
       expect( response.body ).to have_no_css 'td', text: f2.name
-      expect( response.body ).to     have_css 'td', text: f3.name
+      expect( response.body ).to have_css 'td', text: f3.name
     end
 
     it 'fails gracefully when attempting to delete a non-existent form' do

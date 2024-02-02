@@ -54,7 +54,7 @@ RSpec.describe ShinyNewsletters::Admin::TemplatesController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.templates.index.title' ).titlecase
 
-      expect( response.body ).to     have_css 'td', text: template1.name
+      expect( response.body ).to have_css 'td', text: template1.name
       expect( response.body ).to have_no_css 'td', text: template2.name
     end
   end

@@ -60,7 +60,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
 
         expect( response.body ).to have_no_css 'td', text: user_a.username
-        expect( response.body ).to     have_css 'td', text: user_b.username
+        expect( response.body ).to have_css 'td', text: user_b.username
       end
     end
 
@@ -186,7 +186,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.users.destroy.success' )
         expect( response.body ).to     have_css 'td', text: u1.username
         expect( response.body ).to have_no_css 'td', text: u2.username
-        expect( response.body ).to     have_css 'td', text: u3.username
+        expect( response.body ).to have_css 'td', text: u3.username
       end
 
       it 'fails gracefully when attempting to delete a user with non-deletable content' do

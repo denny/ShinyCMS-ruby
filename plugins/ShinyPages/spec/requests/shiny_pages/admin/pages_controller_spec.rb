@@ -251,7 +251,7 @@ RSpec.describe ShinyPages::Admin::PagesController, type: :request do
                                               text: I18n.t( 'shiny_pages.admin.pages.destroy.success' )
       expect( response.body ).to     have_css 'td', text: p1.internal_name
       expect( response.body ).to have_no_css 'td', text: p2.internal_name
-      expect( response.body ).to     have_css 'td', text: p3.internal_name
+      expect( response.body ).to have_css 'td', text: p3.internal_name
     end
   end
 

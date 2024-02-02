@@ -162,7 +162,7 @@ RSpec.describe ShinyPages::Admin::SectionsController, type: :request do
                                               text: I18n.t( 'shiny_pages.admin.sections.destroy.success' )
       expect( response.body ).to     have_css 'td', text: s1.internal_name
       expect( response.body ).to have_no_css 'td', text: s2.internal_name
-      expect( response.body ).to     have_css 'td', text: s3.internal_name
+      expect( response.body ).to have_css 'td', text: s3.internal_name
     end
 
     it 'fails gracefully when attempting to delete a non-existent section' do

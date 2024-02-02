@@ -52,7 +52,7 @@ RSpec.describe ShinyLists::Admin::ListsController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.lists.index.title' ).titlecase
 
-      expect( response.body ).to     have_css 'td', text: list1.internal_name
+      expect( response.body ).to have_css 'td', text: list1.internal_name
       expect( response.body ).to have_no_css 'td', text: list2.internal_name
     end
   end
@@ -160,7 +160,7 @@ RSpec.describe ShinyLists::Admin::ListsController, type: :request do
       expect( response.body ).to     have_css '.alert-success', text: success_message
       expect( response.body ).to     have_css 'td', text: list1.name
       expect( response.body ).to have_no_css 'td', text: list2.name
-      expect( response.body ).to     have_css 'td', text: list3.name
+      expect( response.body ).to have_css 'td', text: list3.name
     end
   end
 end

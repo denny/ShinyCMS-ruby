@@ -58,7 +58,7 @@ RSpec.describe ShinyNewsletters::Admin::SendsController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.sends.index.title' ).titlecase
 
-      expect( response.body ).to     have_css 'td', text: send1.edition.internal_name
+      expect( response.body ).to have_css 'td', text: send1.edition.internal_name
       expect( response.body ).to have_no_css 'td', text: send2.edition.internal_name
     end
   end
@@ -216,7 +216,7 @@ RSpec.describe ShinyNewsletters::Admin::SendsController, type: :request do
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shiny_newsletters.admin.sends.destroy.success' )
       expect( response.body ).to     have_css 'td', text: s1.edition.internal_name
       expect( response.body ).to have_no_css 'td', text: s2.edition.internal_name
-      expect( response.body ).to     have_css 'td', text: s3.edition.internal_name
+      expect( response.body ).to have_css 'td', text: s3.edition.internal_name
     end
   end
 end

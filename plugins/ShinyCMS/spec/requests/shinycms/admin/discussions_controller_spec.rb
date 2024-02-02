@@ -33,7 +33,7 @@ RSpec.describe ShinyCMS::Admin::DiscussionsController, type: :request do
       expect( response      ).to     have_http_status :found
       expect( response      ).to     redirect_to shinycms.discussion_path( @discussion )
       follow_redirect!
-      expect( response      ).to     have_http_status :ok
+      expect( response      ).to have_http_status :ok
       expect( response.body ).to have_no_css 'h2', text: @nested.title
       expect( response.body ).to have_no_css 'h2', text: @comment2.title
     end

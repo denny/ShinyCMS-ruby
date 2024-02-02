@@ -47,7 +47,7 @@ RSpec.describe ShinyAccess::Admin::MembershipsController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
 
-      expect( response.body ).to     have_css 'td', text: member1.user.username
+      expect( response.body ).to have_css 'td', text: member1.user.username
       expect( response.body ).to have_no_css 'td', text: member2.user.username
     end
 
@@ -65,7 +65,7 @@ RSpec.describe ShinyAccess::Admin::MembershipsController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
 
-      expect( response.body ).to     have_css 'td', text: member1.user.username
+      expect( response.body ).to have_css 'td', text: member1.user.username
       expect( response.body ).to have_no_css 'td', text: member2.user.username
     end
   end

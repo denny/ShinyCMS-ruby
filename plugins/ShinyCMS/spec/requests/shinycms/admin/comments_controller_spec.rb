@@ -68,7 +68,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
 
-      expect( response.body ).to     have_css 'td', text: comment1.title
+      expect( response.body ).to have_css 'td', text: comment1.title
       expect( response.body ).to have_no_css 'td', text: comment2.title
     end
   end
@@ -180,7 +180,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested1.title
       expect( response.body ).to have_no_css 'h2', text: @comment1.title
-      expect( response.body ).to     have_css 'i',  text: I18n.t( 'shinycms.comments.hidden' )
+      expect( response.body ).to have_css 'i',  text: I18n.t( 'shinycms.comments.hidden' )
     end
   end
 
