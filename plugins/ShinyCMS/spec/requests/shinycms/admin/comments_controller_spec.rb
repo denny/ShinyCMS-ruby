@@ -69,7 +69,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
 
       expect( response.body ).to     have_css 'td', text: comment1.title
-      expect( response.body ).not_to have_css 'td', text: comment2.title
+      expect( response.body ).to have_no_css 'td', text: comment2.title
     end
   end
 
@@ -109,7 +109,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.comments.process_spam_comments.success' )
       expect( response.body ).to     have_css 'td', text: @comment2.title
-      expect( response.body ).not_to have_css 'td', text: @nested1.title
+      expect( response.body ).to have_no_css 'td', text: @nested1.title
 
       expect( ShinyCMS::Comment.where( id: @nested1.id ) ).to be_blank
       expect( @comment2.reload.spam? ).to be true
@@ -139,7 +139,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.comments.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.comments.process_ham_comments.success' )
       expect( response.body ).to     have_css 'td', text: @comment2.title
-      expect( response.body ).not_to have_css 'td', text: @nested1.title
+      expect( response.body ).to have_no_css 'td', text: @nested1.title
 
       expect( @nested1.reload.spam?  ).to be false
       expect( @comment2.reload.spam? ).to be true
@@ -179,7 +179,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       follow_redirect!
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested1.title
-      expect( response.body ).not_to have_css 'h2', text: @comment1.title
+      expect( response.body ).to have_no_css 'h2', text: @comment1.title
       expect( response.body ).to     have_css 'i',  text: I18n.t( 'shinycms.comments.hidden' )
     end
   end
@@ -197,7 +197,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2', text: @nested1.title
       expect( response.body ).to     have_css 'h2', text: @comment1.title
-      expect( response.body ).not_to have_css 'i',  text: I18n.t( 'shinycms.comments.hidden' )
+      expect( response.body ).to have_no_css 'i',  text: I18n.t( 'shinycms.comments.hidden' )
     end
   end
 
@@ -252,7 +252,7 @@ RSpec.describe ShinyCMS::Admin::CommentsController, type: :request do
       expect( response      ).to redirect_to @news.path( anchor: 'comments' )
       follow_redirect!
       expect( response      ).to have_http_status :ok
-      expect( response.body ).not_to have_css 'td', text: @comment2.title
+      expect( response.body ).to have_no_css 'td', text: @comment2.title
     end
   end
 end

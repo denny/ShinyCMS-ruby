@@ -46,7 +46,7 @@ RSpec.describe ShinyBlog::BlogController, type: :request do
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_css 'h2',      text: post1.title
       expect( response.body ).to     have_css 'section', text: 'Third is the details'
-      expect( response.body ).not_to have_css 'section', text: "shouldn't appear in the teaser!"
+      expect( response.body ).to have_no_css 'section', text: "shouldn't appear in the teaser!"
       expect( response.body ).to     have_css 'h2',      text: post2.title
       expect( response.body ).to     have_css 'h2',      text: post3.title
     end
@@ -92,7 +92,7 @@ RSpec.describe ShinyBlog::BlogController, type: :request do
       expect( response.body ).to     have_title 'Blog posts in February'
       expect( response.body ).to     have_css 'h2', text: post1.title
       expect( response.body ).to     have_css 'h2', text: post2.title
-      expect( response.body ).not_to have_css 'h2', text: post3.title
+      expect( response.body ).to have_no_css 'h2', text: post3.title
     end
   end
 

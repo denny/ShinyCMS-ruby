@@ -56,7 +56,7 @@ RSpec.describe ShinyPages::Admin::TemplatesController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_pages.admin.templates.index.title' ).titlecase
 
       expect( response.body ).to     have_css 'td', text: template1.name
-      expect( response.body ).not_to have_css 'td', text: template2.name
+      expect( response.body ).to have_no_css 'td', text: template2.name
     end
   end
 
@@ -208,7 +208,7 @@ RSpec.describe ShinyPages::Admin::TemplatesController, type: :request do
       expect( response.body ).to     have_css '.alert-success',
                                               text: I18n.t( 'shiny_pages.admin.templates.destroy.success' )
       expect( response.body ).to     have_css 'td', text: t1.name
-      expect( response.body ).not_to have_css 'td', text: t2.name
+      expect( response.body ).to have_no_css 'td', text: t2.name
       expect( response.body ).to     have_css 'td', text: t3.name
     end
 

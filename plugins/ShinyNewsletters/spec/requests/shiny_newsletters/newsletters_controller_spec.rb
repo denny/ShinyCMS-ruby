@@ -47,12 +47,12 @@ RSpec.describe ShinyNewsletters::NewslettersController, type: :request do
 
         get shiny_newsletters.user_view_newsletters_path, params: { page: 2, items: 5 }
 
-        expect( response.body ).not_to have_css 'a', text: test_items[4].edition.name
+        expect( response.body ).to have_no_css 'a', text: test_items[4].edition.name
 
         expect( response.body ).to have_css 'a', text: test_items[5].edition.name
         expect( response.body ).to have_css 'a', text: test_items[9].edition.name
 
-        expect( response.body ).not_to have_css 'a', text: test_items[10].edition.name
+        expect( response.body ).to have_no_css 'a', text: test_items[10].edition.name
       end
     end
 

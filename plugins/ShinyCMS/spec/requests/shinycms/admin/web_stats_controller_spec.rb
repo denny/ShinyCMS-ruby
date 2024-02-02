@@ -70,7 +70,7 @@ RSpec.describe ShinyCMS::Admin::WebStatsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.web_stats.index.title' ).titlecase
 
       # expect( response.body ).to     have_css 'td', text: 'apple'
-      expect( response.body ).not_to have_css 'td', text: 'banana'
+      expect( response.body ).to have_no_css 'td', text: 'banana'
     end
   end
 end

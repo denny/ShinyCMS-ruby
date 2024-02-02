@@ -52,7 +52,7 @@ RSpec.describe ShinyCMS::Admin::EmailStatsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.email_stats.index.title' ).titlecase
 
       # expect( response.body ).to     have_css 'td', text: 'apple'
-      expect( response.body ).not_to have_css 'td', text: 'banana'
+      expect( response.body ).to have_no_css 'td', text: 'banana'
     end
   end
 end

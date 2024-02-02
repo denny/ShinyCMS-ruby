@@ -85,7 +85,7 @@ RSpec.describe ShinyBlog::Admin::BlogPostsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_blog.admin.blog_posts.index.title' ).titlecase
 
       expect( response.body ).to     have_css 'td', text: post1.title
-      expect( response.body ).not_to have_css 'td', text: post2.title
+      expect( response.body ).to have_no_css 'td', text: post2.title
     end
   end
 
@@ -285,7 +285,7 @@ RSpec.describe ShinyBlog::Admin::BlogPostsController, type: :request do
       expect( response.body ).to     have_css '.alert-success',
                                               text: I18n.t( 'shiny_blog.admin.blog_posts.destroy.success' )
       expect( response.body ).to     have_css 'td', text: p1.title
-      expect( response.body ).not_to have_css 'td', text: p2.title
+      expect( response.body ).to have_no_css 'td', text: p2.title
       expect( response.body ).to     have_css 'td', text: p3.title
     end
   end

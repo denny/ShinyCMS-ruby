@@ -44,8 +44,8 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
         expect( response.body ).to     have_css 'td', text: user3.username
-        expect( response.body ).not_to have_css 'td', text: user2.username
-        expect( response.body ).not_to have_css 'td', text: user1.username
+        expect( response.body ).to have_no_css 'td', text: user2.username
+        expect( response.body ).to have_no_css 'td', text: user1.username
       end
     end
 
@@ -59,7 +59,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
 
-        expect( response.body ).not_to have_css 'td', text: user_a.username
+        expect( response.body ).to have_no_css 'td', text: user_a.username
         expect( response.body ).to     have_css 'td', text: user_b.username
       end
     end
@@ -140,7 +140,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'shinycms.admin.users.edit.title' ).titlecase
         expect( response.body ).to     have_field 'user[username]', with: user.username
-        expect( response.body ).not_to have_css 'th', text: I18n.t( 'shinycms.capability.capabilities' )
+        expect( response.body ).to have_no_css 'th', text: I18n.t( 'shinycms.capability.capabilities' )
       end
     end
 
@@ -185,7 +185,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         expect( response.body ).to     have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
         expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.users.destroy.success' )
         expect( response.body ).to     have_css 'td', text: u1.username
-        expect( response.body ).not_to have_css 'td', text: u2.username
+        expect( response.body ).to have_no_css 'td', text: u2.username
         expect( response.body ).to     have_css 'td', text: u3.username
       end
 

@@ -191,7 +191,7 @@ Style/RequireOrder:
     - ../../config/application.rb
     - ../ShinyCMS/config/routes/tools.rb
 
-# Disabling these two for now (but open to discussion/persuasion on their merits)
+# Disabling theis one for now (but open to discussion/persuasion on its merits)
 RSpec/ExampleLength:
   Enabled: false
 
@@ -304,8 +304,6 @@ Style/SelectByRegexp:
   Enabled: false
 
 # New potentially-fixable copouts
-Capybara/NegationMatcher:
-  Enabled: false
 FactoryBot/AssociationStyle:
   Enabled: false
 Gemspec/DependencyVersion:

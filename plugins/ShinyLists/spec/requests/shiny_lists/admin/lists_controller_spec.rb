@@ -53,7 +53,7 @@ RSpec.describe ShinyLists::Admin::ListsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_lists.admin.lists.index.title' ).titlecase
 
       expect( response.body ).to     have_css 'td', text: list1.internal_name
-      expect( response.body ).not_to have_css 'td', text: list2.internal_name
+      expect( response.body ).to have_no_css 'td', text: list2.internal_name
     end
   end
 
@@ -125,7 +125,7 @@ RSpec.describe ShinyLists::Admin::ListsController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'shiny_lists.admin.lists.edit.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shiny_lists.admin.lists.update.success' )
       expect( response.body ).to     have_field 'list[internal_name]', with: new_name
-      expect( response.body ).not_to have_field 'list[internal_name]', with: old_name
+      expect( response.body ).to have_no_field 'list[internal_name]', with: old_name
     end
 
     it 'fails when the list is submitted without all the required details' do
@@ -159,7 +159,7 @@ RSpec.describe ShinyLists::Admin::ListsController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'shiny_lists.admin.lists.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: success_message
       expect( response.body ).to     have_css 'td', text: list1.name
-      expect( response.body ).not_to have_css 'td', text: list2.name
+      expect( response.body ).to have_no_css 'td', text: list2.name
       expect( response.body ).to     have_css 'td', text: list3.name
     end
   end

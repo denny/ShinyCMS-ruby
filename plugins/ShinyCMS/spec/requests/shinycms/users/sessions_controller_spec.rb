@@ -43,7 +43,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
           feature_name: I18n.t( 'shinycms.feature_flags.user_login' )
         )
       )
-      expect( response.body ).not_to have_button I18n.t( 'shinycms.user.log_in' )
+      expect( response.body ).to have_no_button I18n.t( 'shinycms.user.log_in' )
     end
 
     it 'defaults to assuming that user logins are not enabled' do
@@ -62,7 +62,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
           feature_name: I18n.t( 'shinycms.feature_flags.user_login' )
         )
       )
-      expect( response.body ).not_to have_button I18n.t( 'shinycms.user.log_in' )
+      expect( response.body ).to have_no_button I18n.t( 'shinycms.user.log_in' )
 
       ShinyCMS::FeatureFlag.find_by( name: 'test' ).update!( name: 'user_login' )
     end
@@ -136,7 +136,7 @@ RSpec.describe ShinyCMS::Users::SessionsController, type: :request do
       }
 
       expect( response      ).not_to have_http_status :found
-      expect( response.body ).not_to have_link I18n.t( 'shinycms.user.log_out' )
+      expect( response.body ).to have_no_link I18n.t( 'shinycms.user.log_out' )
       expect( response.body ).to     have_button I18n.t( 'shinycms.user.log_in' )
     end
   end

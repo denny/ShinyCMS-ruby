@@ -44,7 +44,7 @@ RSpec.describe ShinyCMS::Users::RegistrationsController, type: :request do
           feature_name: I18n.t( 'shinycms.feature_flags.user_registration' )
         )
       )
-      expect( response.body ).not_to have_button I18n.t( 'shinycms.user.register' )
+      expect( response.body ).to have_no_button I18n.t( 'shinycms.user.register' )
     end
 
     it 'renders the user registration page if user registrations are enabled' do

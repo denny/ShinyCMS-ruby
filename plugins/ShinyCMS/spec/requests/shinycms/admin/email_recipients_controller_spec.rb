@@ -54,7 +54,7 @@ RSpec.describe ShinyCMS::Admin::EmailRecipientsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.email_recipients.index.title' ).titlecase
 
       expect( response.body ).to     have_css 'td', text: recipient2.name
-      expect( response.body ).not_to have_css 'td', text: recipient1.name
+      expect( response.body ).to have_no_css 'td', text: recipient1.name
     end
   end
 
@@ -92,7 +92,7 @@ RSpec.describe ShinyCMS::Admin::EmailRecipientsController, type: :request do
         expect( response.body ).to     have_title I18n.t( 'shinycms.admin.email_recipients.index.title' ).titlecase
         expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.email_recipients.destroy.success' )
         expect( response.body ).to     have_css 'td', text: recipient1.name
-        expect( response.body ).not_to have_css 'td', text: recipient2.name
+        expect( response.body ).to have_no_css 'td', text: recipient2.name
         expect( response.body ).to     have_css 'td', text: recipient3.name
       end
     end

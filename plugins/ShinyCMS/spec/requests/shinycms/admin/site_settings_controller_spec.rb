@@ -46,7 +46,7 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       expect( response.body ).to     have_field "settings[level_#{s1.id}]",
                                                 id:      "settings_level_#{s1.id}_user",
                                                 checked: true
-      expect( response.body ).not_to have_field "settings[level_#{s1.id}]",
+      expect( response.body ).to have_no_field "settings[level_#{s1.id}]",
                                                 id:      "settings_level_#{s1.id}_site",
                                                 checked: true
     end
@@ -110,7 +110,7 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
                                                 id:       "settings_level_#{s1.id}_site",
                                                 disabled: true,
                                                 checked:  true
-      expect( response.body ).not_to have_field "settings[level_#{s1.id}]",
+      expect( response.body ).to have_no_field "settings[level_#{s1.id}]",
                                                 id:       "settings_level_#{s1.id}_user",
                                                 disabled: true,
                                                 checked:  true
@@ -133,7 +133,7 @@ RSpec.describe ShinyCMS::Admin::SiteSettingsController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.site_settings.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.site_settings.update.success' )
       expect( response.body ).to     have_field "settings[value_#{s1.id}]", with: '127.0.0.1, 4.3.2.1'
-      expect( response.body ).not_to have_field "settings[value_#{s1.id}]", with: '127.0.0.1, 1.2.3.4'
+      expect( response.body ).to have_no_field "settings[value_#{s1.id}]", with: '127.0.0.1, 1.2.3.4'
     end
   end
 end

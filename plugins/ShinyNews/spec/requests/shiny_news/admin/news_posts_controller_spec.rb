@@ -85,7 +85,7 @@ RSpec.describe ShinyNews::Admin::NewsPostsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_news.admin.news_posts.index.title' ).titlecase
 
       expect( response.body ).to     have_css 'td', text: post1.title
-      expect( response.body ).not_to have_css 'td', text: post2.title
+      expect( response.body ).to have_no_css 'td', text: post2.title
     end
   end
 
@@ -285,7 +285,7 @@ RSpec.describe ShinyNews::Admin::NewsPostsController, type: :request do
       expect( response.body ).to     have_css '.alert-success',
                                               text: I18n.t( 'shiny_news.admin.news_posts.destroy.success' )
       expect( response.body ).to     have_css 'td', text: p1.title
-      expect( response.body ).not_to have_css 'td', text: p2.title
+      expect( response.body ).to have_no_css 'td', text: p2.title
       expect( response.body ).to     have_css 'td', text: p3.title
     end
   end

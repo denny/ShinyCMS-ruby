@@ -53,7 +53,7 @@ RSpec.describe ShinyAccess::Admin::GroupsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_access.admin.groups.index.title' ).titlecase
 
       expect( response.body ).to     have_css 'td', text: group1.internal_name
-      expect( response.body ).not_to have_css 'td', text: group2.internal_name
+      expect( response.body ).to have_no_css 'td', text: group2.internal_name
     end
   end
 
@@ -125,7 +125,7 @@ RSpec.describe ShinyAccess::Admin::GroupsController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'shiny_access.admin.groups.edit.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shiny_access.admin.groups.update.success' )
       expect( response.body ).to     have_field 'group[internal_name]', with: new_name
-      expect( response.body ).not_to have_field 'group[internal_name]', with: old_name
+      expect( response.body ).to have_no_field 'group[internal_name]', with: old_name
     end
 
     it 'fails when the group is submitted without all the required details' do
@@ -159,7 +159,7 @@ RSpec.describe ShinyAccess::Admin::GroupsController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'shiny_access.admin.groups.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: success_message
       expect( response.body ).to     have_css 'td', text: group1.name
-      expect( response.body ).not_to have_css 'td', text: group2.name
+      expect( response.body ).to have_no_css 'td', text: group2.name
       expect( response.body ).to     have_css 'td', text: group3.name
     end
   end

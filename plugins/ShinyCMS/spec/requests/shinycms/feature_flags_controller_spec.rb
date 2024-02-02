@@ -121,7 +121,7 @@ RSpec.describe 'Feature Flags: main site features', type: :request do
         get post.path
 
         expect( response      ).to     have_http_status :ok
-        expect( response.body ).not_to have_css 'a', text: 'Reply to this post'
+        expect( response.body ).to have_no_css 'a', text: 'Reply to this post'
       end
     end
   end

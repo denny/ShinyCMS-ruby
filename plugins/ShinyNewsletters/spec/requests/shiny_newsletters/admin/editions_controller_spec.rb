@@ -57,7 +57,7 @@ RSpec.describe ShinyNewsletters::Admin::EditionsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_newsletters.admin.editions.index.title' ).titlecase
 
       expect( response.body ).to     have_css 'td', text: edition_a.internal_name
-      expect( response.body ).not_to have_css 'td', text: edition_b.internal_name
+      expect( response.body ).to have_no_css 'td', text: edition_b.internal_name
     end
   end
 
@@ -236,7 +236,7 @@ RSpec.describe ShinyNewsletters::Admin::EditionsController, type: :request do
       expect( response.body ).to     have_title I18n.t( "#{i18n_root}.edit.title" ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( "#{i18n_root}.update.success" )
       expect( response.body ).to     have_field 'edition_slug', with: 'updated-by-test'
-      expect( response.body ).not_to have_field 'edition_slug', with: old_slug
+      expect( response.body ).to have_no_field 'edition_slug', with: old_slug
     end
   end
 
@@ -273,7 +273,7 @@ RSpec.describe ShinyNewsletters::Admin::EditionsController, type: :request do
       expect( response.body ).to     have_title I18n.t( "#{i18n_root}.index.title" ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( "#{i18n_root}.destroy.success" )
       expect( response.body ).to     have_css 'td', text: e1.internal_name
-      expect( response.body ).not_to have_css 'td', text: e2.internal_name
+      expect( response.body ).to have_no_css 'td', text: e2.internal_name
       expect( response.body ).to     have_css 'td', text: e3.internal_name
     end
 

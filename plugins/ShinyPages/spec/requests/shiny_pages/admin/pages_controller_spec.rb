@@ -195,7 +195,7 @@ RSpec.describe ShinyPages::Admin::PagesController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'shiny_pages.admin.pages.edit.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shiny_pages.admin.pages.update.success' )
       expect( response.body ).to     have_field 'page_slug', with: 'updated-by-test'
-      expect( response.body ).not_to have_field 'page_slug', with: old_slug
+      expect( response.body ).to have_no_field 'page_slug', with: old_slug
     end
 
     it 'updates the element order' do
@@ -250,7 +250,7 @@ RSpec.describe ShinyPages::Admin::PagesController, type: :request do
       expect( response.body ).to     have_css '.alert-success',
                                               text: I18n.t( 'shiny_pages.admin.pages.destroy.success' )
       expect( response.body ).to     have_css 'td', text: p1.internal_name
-      expect( response.body ).not_to have_css 'td', text: p2.internal_name
+      expect( response.body ).to have_no_css 'td', text: p2.internal_name
       expect( response.body ).to     have_css 'td', text: p3.internal_name
     end
   end

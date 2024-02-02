@@ -187,8 +187,8 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
 
       expect( ShinyCMS::Comment.last.spam ).to be true
 
-      expect( response.body ).not_to have_css '.notices', text: I18n.t( 'shinycms.comments.create.success' )
-      expect( response.body ).not_to have_css 'h2', text: title
+      expect( response.body ).to have_no_css '.notices', text: I18n.t( 'shinycms.comments.create.success' )
+      expect( response.body ).to have_no_css 'h2', text: title
     end
 
     it "doesn't save a new comment if Akismet classifies it as 'blatant' spam" do
@@ -215,8 +215,8 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
       }
 
       expect( response      ).to have_http_status :ok
-      expect( response.body ).not_to have_css '.notices', text: I18n.t( 'shinycms.comments.create.success' )
-      expect( response.body ).not_to have_css 'h2', text: title
+      expect( response.body ).to have_no_css '.notices', text: I18n.t( 'shinycms.comments.create.success' )
+      expect( response.body ).to have_no_css 'h2', text: title
 
       expect( ShinyCMS::Comment.count            ).to eq comment_count
       expect( ShinyCMS::PseudonymousAuthor.count ).to eq author_count

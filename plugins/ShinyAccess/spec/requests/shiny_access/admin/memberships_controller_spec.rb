@@ -48,7 +48,7 @@ RSpec.describe ShinyAccess::Admin::MembershipsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
 
       expect( response.body ).to     have_css 'td', text: member1.user.username
-      expect( response.body ).not_to have_css 'td', text: member2.user.username
+      expect( response.body ).to have_no_css 'td', text: member2.user.username
     end
 
     it 'displays the list of matching memberships for a date range' do
@@ -66,7 +66,7 @@ RSpec.describe ShinyAccess::Admin::MembershipsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_access.admin.memberships.index.title', name: group1.internal_name ).titlecase
 
       expect( response.body ).to     have_css 'td', text: member1.user.username
-      expect( response.body ).not_to have_css 'td', text: member2.user.username
+      expect( response.body ).to have_no_css 'td', text: member2.user.username
     end
   end
 

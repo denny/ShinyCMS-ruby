@@ -22,7 +22,7 @@ RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
         expect( response.body ).to have_css match_tag, text: items.first.public_send( match_text )
         expect( response.body ).to have_css match_tag, text: items[9].public_send( match_text )
 
-        expect( response.body ).not_to have_css match_tag, text: items[10].public_send( match_text )
+        expect( response.body ).to have_no_css match_tag, text: items[10].public_send( match_text )
       end
     end
 
@@ -33,7 +33,7 @@ RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
         expect( response.body ).to have_css match_tag, text: items.first.public_send( match_text )
         expect( response.body ).to have_css match_tag, text: items[9].public_send( match_text )
 
-        expect( response.body ).not_to have_css match_tag, text: items[10].public_send( match_text )
+        expect( response.body ).to have_no_css match_tag, text: items[10].public_send( match_text )
       end
     end
 
@@ -44,7 +44,7 @@ RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
         expect( response.body ).to have_css match_tag, text: items.first.public_send( match_text )
         expect( response.body ).to have_css match_tag, text: items[4].public_send( match_text )
 
-        expect( response.body ).not_to have_css match_tag, text: items[5].public_send( match_text )
+        expect( response.body ).to have_no_css match_tag, text: items[5].public_send( match_text )
       end
     end
 
@@ -55,7 +55,7 @@ RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
         expect( response.body ).to have_css match_tag, text: items.first.public_send( match_text )
         expect( response.body ).to have_css match_tag, text: items[4].public_send( match_text )
 
-        expect( response.body ).not_to have_css match_tag, text: items[5].public_send( match_text )
+        expect( response.body ).to have_no_css match_tag, text: items[5].public_send( match_text )
       end
     end
 
@@ -63,7 +63,7 @@ RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
       it 'shows the last two items' do
         get "#{base_url}/page/2"
 
-        expect( response.body ).not_to have_css match_tag, text: items[1].public_send( match_text )
+        expect( response.body ).to have_no_css match_tag, text: items[1].public_send( match_text )
 
         expect( response.body ).to have_css match_tag, text: items[10].public_send( match_text )
         expect( response.body ).to have_css match_tag, text: items[11].public_send( match_text )
@@ -74,12 +74,12 @@ RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
       it 'shows items 6 to 10' do
         get "#{base_url}/page/2/items/5"
 
-        expect( response.body ).not_to have_css match_tag, text: items[4].public_send( match_text )
+        expect( response.body ).to have_no_css match_tag, text: items[4].public_send( match_text )
 
         expect( response.body ).to have_css match_tag, text: items[5].public_send( match_text )
         expect( response.body ).to have_css match_tag, text: items[9].public_send( match_text )
 
-        expect( response.body ).not_to have_css match_tag, text: items[10].public_send( match_text )
+        expect( response.body ).to have_no_css match_tag, text: items[10].public_send( match_text )
       end
     end
 

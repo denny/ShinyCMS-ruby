@@ -40,7 +40,7 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shinycms.admin.consent_versions.index.title' ).titlecase
 
       expect( response.body ).to     have_css 'td', text: consent1.name
-      expect( response.body ).not_to have_css 'td', text: consent2.name
+      expect( response.body ).to have_no_css 'td', text: consent2.name
     end
   end
 
@@ -103,7 +103,7 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
 
       expect( response      ).to     have_http_status :ok
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.consent_versions.edit.title' ).titlecase
-      expect( response.body ).not_to have_css 'th', text: I18n.t( 'shinycms.capability.capabilities' )
+      expect( response.body ).to have_no_css 'th', text: I18n.t( 'shinycms.capability.capabilities' )
     end
   end
 
@@ -164,7 +164,7 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'shinycms.admin.consent_versions.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shinycms.admin.consent_versions.destroy.success' )
       expect( response.body ).to     have_css 'td', text: version1.name
-      expect( response.body ).not_to have_css 'td', text: version2.name
+      expect( response.body ).to have_no_css 'td', text: version2.name
       expect( response.body ).to     have_css 'td', text: version3.name
     end
 

@@ -28,7 +28,7 @@ RSpec.describe ShinyCMS::Admin::RootController, type: :request do
       get main_app.root_path
 
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).not_to have_css '.shinycms-admin-toolbar'
+      expect( response.body ).to have_no_css '.shinycms-admin-toolbar'
     end
   end
 

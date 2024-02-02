@@ -53,7 +53,7 @@ RSpec.describe ShinyForms::Admin::FormsController, type: :request do
       expect( response.body ).to have_title I18n.t( 'shiny_forms.admin.forms.index.title' ).titlecase
 
       expect( response.body ).to     have_css 'td', text: form1.internal_name
-      expect( response.body ).not_to have_css 'td', text: form2.internal_name
+      expect( response.body ).to have_no_css 'td', text: form2.internal_name
     end
   end
 
@@ -126,7 +126,7 @@ RSpec.describe ShinyForms::Admin::FormsController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'shiny_forms.admin.forms.edit.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: I18n.t( 'shiny_forms.admin.forms.update.success' )
       expect( response.body ).to     have_field 'form[internal_name]', with: new_name
-      expect( response.body ).not_to have_field 'form[internal_name]', with: old_name
+      expect( response.body ).to have_no_field 'form[internal_name]', with: old_name
     end
 
     it 'fails when the form is submitted without all the required details' do
@@ -160,7 +160,7 @@ RSpec.describe ShinyForms::Admin::FormsController, type: :request do
       expect( response.body ).to     have_title I18n.t( 'shiny_forms.admin.forms.index.title' ).titlecase
       expect( response.body ).to     have_css '.alert-success', text: success_message
       expect( response.body ).to     have_css 'td', text: f1.name
-      expect( response.body ).not_to have_css 'td', text: f2.name
+      expect( response.body ).to have_no_css 'td', text: f2.name
       expect( response.body ).to     have_css 'td', text: f3.name
     end
 

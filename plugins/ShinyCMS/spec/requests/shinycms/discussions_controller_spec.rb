@@ -66,7 +66,7 @@ RSpec.describe ShinyCMS::DiscussionsController, type: :request do
       get "/news/#{@post.posted_year}/#{@post.posted_month}/#{@post.slug}"
 
       expect( response      ).to     have_http_status :ok
-      expect( response.body ).not_to have_css 'h3', text: I18n.t( 'shinycms.discussions.comments' )
+      expect( response.body ).to have_no_css 'h3', text: I18n.t( 'shinycms.discussions.comments' )
     end
   end
 

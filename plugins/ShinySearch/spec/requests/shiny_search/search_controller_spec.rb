@@ -56,7 +56,7 @@ RSpec.describe ShinySearch::SearchController, type: :request do
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'shiny_search.search.results.title', query: 'Success' )
         expect( response.body ).to     have_link profile.name, href: shiny_profiles.profile_path( profile.username )
-        expect( response.body ).not_to have_css 'p', text: I18n.t( 'shiny_search.search.no_results.no_results' )
+        expect( response.body ).to have_no_css 'p', text: I18n.t( 'shiny_search.search.no_results.no_results' )
       end
     end
 
@@ -67,7 +67,7 @@ RSpec.describe ShinySearch::SearchController, type: :request do
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'shiny_search.search.results.title', query: 'Success' )
         expect( response.body ).to     have_link profile.name, href: shiny_profiles.profile_path( profile.username )
-        expect( response.body ).not_to have_css 'p', text: I18n.t( 'shiny_search.search.no_results.no_results' )
+        expect( response.body ).to have_no_css 'p', text: I18n.t( 'shiny_search.search.no_results.no_results' )
       end
     end
 
@@ -78,7 +78,7 @@ RSpec.describe ShinySearch::SearchController, type: :request do
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'shiny_search.search.results.title', query: 'FAIL' )
         expect( response.body ).to     have_css 'p', text: I18n.t( 'shiny_search.search.no_results.no_results' )
-        expect( response.body ).not_to have_link profile.name, href: shiny_profiles.profile_path( profile.username )
+        expect( response.body ).to have_no_link profile.name, href: shiny_profiles.profile_path( profile.username )
       end
     end
   end
