@@ -8,8 +8,8 @@
 
 # Supporting methods for ShinyCMS plugin generator
 
-require 'rails/generators/rails/app/app_generator'
 require 'date'
+require 'rails/generators/rails/app/app_generator'
 
 require_relative 'plugin_builder'
 
