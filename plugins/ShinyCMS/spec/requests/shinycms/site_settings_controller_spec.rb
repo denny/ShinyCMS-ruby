@@ -48,13 +48,13 @@ RSpec.describe ShinyCMS::SiteSettingsController, type: :request do
         }
       }
 
-      expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to shinycms.site_settings_path
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shinycms.site_settings_path
       follow_redirect!
-      expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'shinycms.site_settings.index.title' ).titlecase
-      expect( response.body ).to     have_css '.notices', text: I18n.t( 'shinycms.site_settings.update.success' )
-      expect( response.body ).to     have_field "settings[value_#{setting.id}]", with: new_value
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shinycms.site_settings.index.title' ).titlecase
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.site_settings.update.success' )
+      expect( response.body ).to have_field "settings[value_#{setting.id}]", with: new_value
       expect( response.body ).to have_no_field "settings[value_#{setting.id}]", with: initial_value
     end
 
@@ -73,13 +73,13 @@ RSpec.describe ShinyCMS::SiteSettingsController, type: :request do
         }
       }
 
-      expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to shinycms.site_settings_path
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shinycms.site_settings_path
       follow_redirect!
-      expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'shinycms.site_settings.index.title' ).titlecase
-      expect( response.body ).to     have_css '.notices', text: I18n.t( 'shinycms.site_settings.update.success' )
-      expect( response.body ).to     have_field "settings[value_#{setting.id}]", with: new_value
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shinycms.site_settings.index.title' ).titlecase
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.site_settings.update.success' )
+      expect( response.body ).to have_field "settings[value_#{setting.id}]", with: new_value
       expect( response.body ).to have_no_field "settings[value_#{setting.id}]", with: initial_value
     end
 
@@ -111,13 +111,13 @@ RSpec.describe ShinyCMS::SiteSettingsController, type: :request do
         }
       }
 
-      expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to shinycms.site_settings_path
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shinycms.site_settings_path
       follow_redirect!
-      expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'shinycms.site_settings.index.title' ).titlecase
-      expect( response.body ).to     have_css '.notices', text: I18n.t( 'shinycms.site_settings.update.success' )
-      expect( response.body ).to     have_field "settings[value_#{setting.id}]", with: new_value
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shinycms.site_settings.index.title' ).titlecase
+      expect( response.body ).to have_css '.notices', text: I18n.t( 'shinycms.site_settings.update.success' )
+      expect( response.body ).to have_field "settings[value_#{setting.id}]", with: new_value
       expect( response.body ).to have_no_field "settings[value_#{setting.id}]", with: initial_value
     end
   end
