@@ -312,7 +312,7 @@ GEM
       csv
       railties (>= 6.1)
       safely_block (>= 0.4)
-    brakeman (6.1.1)
+    brakeman (6.1.2)
       racc
     bugsnag (6.26.3)
       concurrent-ruby (~> 1.0)
