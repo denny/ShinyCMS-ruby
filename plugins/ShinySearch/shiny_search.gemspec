@@ -41,7 +41,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'pg', '>= 1.2.3', '< 1.6.0'
 
   # Search back-ends
-  spec.add_dependency 'algoliasearch-rails', '~> 1.25'
+  spec.add_dependency 'algoliasearch-rails', '>= 1.25', '< 3.0'
   spec.add_dependency 'pg_search'
 
   # Authorisation
