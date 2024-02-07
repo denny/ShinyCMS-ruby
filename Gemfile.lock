@@ -355,7 +355,8 @@ GEM
     constant_resolver (0.2.0)
     coverband (6.0.2)
       redis (>= 3.0)
-    crack (0.4.5)
+    crack (0.4.6)
+      bigdecimal
       rexml
     crass (1.0.6)
     csv (3.2.8)
@@ -434,7 +435,7 @@ GEM
       activesupport (>= 6.1)
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
-    hashdiff (1.0.1)
+    hashdiff (1.1.0)
     highline (2.1.0)
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
@@ -778,7 +779,7 @@ GEM
       equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webmock (3.19.1)
+    webmock (3.20.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
