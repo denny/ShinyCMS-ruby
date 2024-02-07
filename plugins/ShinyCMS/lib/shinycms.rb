@@ -22,7 +22,7 @@ require 'pundit'
 require 'zxcvbn'
 
 # View components
-require 'view_component/engine'
+require 'view_component'
 
 # Job queues
 require 'sidekiq'
