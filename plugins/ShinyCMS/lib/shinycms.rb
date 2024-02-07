@@ -12,13 +12,13 @@ require 'shinycms/engine'
 require 'persistent-dmnd'
 
 # Low level authentication-related stuff
-require 'bcrypt'
 require 'activerecord/session_store'
+require 'bcrypt'
 
 # High-level authentication and authorisation stuff
 require 'devise'
-require 'pundit'
 require 'devise/pwned_password'
+require 'pundit'
 require 'zxcvbn'
 
 # View components
@@ -29,9 +29,9 @@ require 'sidekiq'
 require 'sidekiq-status'
 
 # Extend behaviour, mostly of models
-require 'acts_as_paranoid'
-require 'acts_as_list'
 require 'acts-as-taggable-on'
+require 'acts_as_list'
+require 'acts_as_paranoid'
 require 'acts_as_votable'
 
 # WYSIWYG editor
@@ -72,8 +72,8 @@ require 'cloudflare/rails'
 require 'airbrake'     if ENV[ 'AIRBRAKE_API_KEY' ].present?
 require 'bugsnag'      if ENV[ 'BUGSNAG_API_KEY'  ].present?
 require 'scout_apm'    if ENV[ 'SCOUT_KEY'        ].present?
-require 'sentry-ruby'  if ENV[ 'SENTRY_DSN'       ].present?
 require 'sentry-rails' if ENV[ 'SENTRY_DSN'       ].present?
+require 'sentry-ruby'  if ENV[ 'SENTRY_DSN'       ].present?
 
 # Top-level namespace wrapper
 module ShinyCMS
