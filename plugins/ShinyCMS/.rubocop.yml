@@ -185,6 +185,12 @@ FactoryBot/FactoryClassName:
     - ../ShinyAccess/spec/factories/shiny_access/groups.rb
     - ../ShinyAccess/spec/factories/shiny_access/memberships.rb
 
+# I don't want to reorder these two files
+Style/RequireOrder:
+  Exclude:
+    - ../../config/application.rb
+    - ../ShinyCMS/config/routes/tools.rb
+
 # Disabling these two for now (but open to discussion/persuasion on their merits)
 RSpec/ExampleLength:
   Enabled: false
@@ -321,6 +327,4 @@ Style/FetchEnvVar:
 Style/FileWrite:
   Enabled: false
 Style/MapToHash:
-  Enabled: false
-Style/RequireOrder:
   Enabled: false
