@@ -39,7 +39,7 @@ PATH
       bcrypt (~> 3.1.16)
       bugsnag
       ckeditor
-      cloudflare-rails (~> 4.0)
+      cloudflare-rails (~> 4.1)
       devise
       devise-pwned_password
       email_address
