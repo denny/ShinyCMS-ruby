@@ -39,7 +39,7 @@ PATH
       bcrypt (~> 3.1.16)
       bugsnag
       ckeditor
-      cloudflare-rails (~> 3.0)
+      cloudflare-rails (~> 4.0)
       devise
       devise-pwned_password
       email_address
@@ -339,10 +339,10 @@ GEM
       numerizer (~> 0.1.1)
     ckeditor (5.1.1)
       orm_adapter (~> 0.5.0)
-    cloudflare-rails (3.0.0)
-      actionpack (>= 6.0, < 7.1.0)
-      activesupport (>= 6.0, < 7.1.0)
-      railties (>= 6.0, < 7.1.0)
+    cloudflare-rails (4.1.0)
+      actionpack (>= 6.1, < 7.2.0)
+      activesupport (>= 6.1, < 7.2.0)
+      railties (>= 6.1, < 7.2.0)
     codecov (0.6.0)
       simplecov (>= 0.15, < 0.22)
     coderay (1.1.3)
