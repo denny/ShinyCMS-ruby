@@ -18,7 +18,8 @@ module ShinyCMS
       end
 
       def section_text( plugin_name, controller_name )
-        t( "#{plugin_name.underscore}.admin.#{controller_name}.breadcrumb" )
+        # t( "#{plugin_name.underscore}.admin.#{controller_name}.breadcrumb" )
+        "#{plugin_name.underscore}.admin.#{controller_name}.breadcrumb"
       end
 
       def section_path( plugin_name, controller_name )
