@@ -17,7 +17,7 @@ source 'https://rubygems.org' do
   gem 'rails', '~> 6.1.3'
 
   # Load ENV from .env(.*) files
-  gem 'dotenv-rails', require: 'dotenv/rails-now'
+  gem 'dotenv-rails', require: 'dotenv/load'
 
   # Find out which bits of your code are used more/less in production
   gem 'coverband', groups: %i[ development production ]
