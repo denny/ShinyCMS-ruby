@@ -94,6 +94,9 @@ RSpec.describe ShinySearch::SearchController, type: :request do
       allow( ENV ).to receive( :fetch ).with( 'ALGOLIASEARCH_USING_PAID_PLAN', 'false' ).and_return 'false'
       allow( ENV ).to receive( :fetch ).with( 'DISABLE_PG_SEARCH',             'false' ).and_return 'false'
 
+      # Allow cloudflare-rails gem to reach out to Cloudflare for updated IP list mid-test-run
+      WebMock.disable_net_connect!( allow: 'www.cloudflare.com' )
+
       WebMock.enable!
 
       AlgoliaSearch.configuration = { application_id: 'fake-id', api_key: 'fake-key' }
