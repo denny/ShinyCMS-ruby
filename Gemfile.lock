@@ -515,7 +515,7 @@ GEM
       childprocess (>= 0.6.3, < 6)
       iniparse (~> 1.4)
       rexml (~> 3.2)
-    packwerk (3.1.0)
+    packwerk (3.2.0)
       activesupport (>= 6.0)
       ast
       better_html
@@ -523,6 +523,7 @@ GEM
       constant_resolver (>= 0.2.0)
       parallel
       parser
+      prism (>= 0.24.0)
       sorbet-runtime (>= 0.5.9914)
       zeitwerk (>= 2.6.1)
     pagy (6.4.4)
@@ -539,6 +540,7 @@ GEM
     pg_search (2.3.6)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
+    prism (0.24.0)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -735,7 +737,7 @@ GEM
     sitemap_generator (6.3.0)
       builder (~> 3.0)
     smart_properties (1.17.0)
-    sorbet-runtime (0.5.11238)
+    sorbet-runtime (0.5.11261)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -810,7 +812,7 @@ DEPENDENCIES
   mutant-license!
   mutant-rspec!
   overcommit!
-  packwerk (~> 3.1)!
+  packwerk (~> 3.2)!
   parallel_tests!
   pg (~> 1.5.5)!
   puma (~> 6.4)!
