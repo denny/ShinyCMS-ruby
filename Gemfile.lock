@@ -602,7 +602,7 @@ GEM
     recaptcha (5.16.0)
     redis (5.0.8)
       redis-client (>= 0.17.0)
-    redis-client (0.19.1)
+    redis-client (0.20.0)
       connection_pool
     reek (6.3.0)
       dry-schema (~> 1.13.0)
@@ -716,7 +716,7 @@ GEM
     sentry-ruby (5.16.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
     sexp_processor (4.17.0)
-    sidekiq (7.2.1)
+    sidekiq (7.2.2)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
