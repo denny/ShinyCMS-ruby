@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
   # 6.1.2.1 fixes CVE-2021-22880
-  spec.add_dependency 'rails', '>= 6.1.2.1', '< 7'
+  spec.add_dependency 'rails', '>= 6.1.2.1', '< 8'
 
   spec.add_dependency 'pg', '>= 1.2.3', '< 1.6.0'
 
