@@ -11,7 +11,8 @@ module ShinyCMS
     # Component to render the admin area breadcrumbs
     class BreadcrumbsComponent < ApplicationComponent
       def initialize( page_title:, controller_name:, plugin_name:, section_path: nil )
-        @section_text = section_text( plugin_name, controller_name )
+        @plugin_name = plugin_name
+        @controller_name = controller_name
         @section_path = section_path || section_path( plugin_name, controller_name )
 
         @page_title = page_title
@@ -32,6 +33,10 @@ module ShinyCMS
         end
 
         ShinyCMS::Plugin.get( plugin_name ).url_helpers.public_send( :"#{controller_name}_path" )
+      end
+
+      def before_render
+        @section_text = section_text( @plugin_name, @controller_name )
       end
     end
   end
