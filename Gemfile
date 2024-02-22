@@ -17,7 +17,7 @@ source 'https://rubygems.org' do
   gem 'rails', '~> 6.1.3'
 
   # Load ENV from .env(.*) files
-  gem 'dotenv-rails', require: 'dotenv/rails-now'
+  gem 'dotenv-rails', require: 'dotenv/load'
 
   # Find out which bits of your code are used more/less in production
   gem 'coverband', groups: %i[ development production ]
@@ -32,7 +32,7 @@ source 'https://rubygems.org' do
   end
 
   # Postgres
-  gem 'pg', '~> 1.5.4'
+  gem 'pg', '~> 1.5.5'
 
   # Webserver
   gem 'puma', '~> 6.4', groups: %i[ development production ]
@@ -75,7 +75,7 @@ source 'https://rubygems.org' do
 
   group :development do
     # Check plugin boundaries
-    gem 'packwerk', '~> 3.1'
+    gem 'packwerk', '~> 3.2'
 
     # Capture all outgoing emails, with webmail interface to look at them
     gem 'letter_opener_web', '~> 2.0'
