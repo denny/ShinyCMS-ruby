@@ -8,7 +8,7 @@ PATH
       pagy (>= 5.10, < 8.0)
       pg (>= 1.2.3, < 1.6.0)
       pundit
-      rails (~> 6.1.2, >= 6.1.2.1)
+      rails (>= 6.1.2.1, < 7)
 
 PATH
   remote: plugins/ShinyBlog
@@ -21,7 +21,7 @@ PATH
       pagy (>= 5.10, < 8.0)
       pg (>= 1.2.3, < 1.6.0)
       pundit
-      rails (~> 6.1.2, >= 6.1.2.1)
+      rails (>= 6.1.2.1, < 7)
 
 PATH
   remote: plugins/ShinyCMS
@@ -52,7 +52,7 @@ PATH
       pg (>= 1.2.3, < 1.6.0)
       pry-rails
       pundit
-      rails (~> 6.1.2, >= 6.1.2.1)
+      rails (>= 6.1.2.1, < 7)
       rails-i18n
       recaptcha
       rss
@@ -75,7 +75,7 @@ PATH
       pagy (>= 5.10, < 8.0)
       pg (>= 1.2.3, < 1.6.0)
       pundit
-      rails (~> 6.1.2, >= 6.1.2.1)
+      rails (>= 6.1.2.1, < 7)
 
 PATH
   remote: plugins/ShinyInserts
@@ -87,7 +87,7 @@ PATH
       pagy (>= 5.10, < 8.0)
       pg (>= 1.2.3, < 1.6.0)
       pundit
-      rails (~> 6.1.2, >= 6.1.2.1)
+      rails (>= 6.1.2.1, < 7)
 
 PATH
   remote: plugins/ShinyLists
@@ -98,7 +98,7 @@ PATH
       pagy (>= 5.10, < 8.0)
       pg (>= 1.2.3, < 1.6.0)
       pundit
-      rails (~> 6.1.2, >= 6.1.2.1)
+      rails (>= 6.1.2.1, < 7)
 
 PATH
   remote: plugins/ShinyNews
@@ -111,7 +111,7 @@ PATH
       pagy (>= 5.10, < 8.0)
       pg (>= 1.2.3, < 1.6.0)
       pundit
-      rails (~> 6.1.2, >= 6.1.2.1)
+      rails (>= 6.1.2.1, < 7)
 
 PATH
   remote: plugins/ShinyNewsletters
@@ -123,7 +123,7 @@ PATH
       pagy (>= 5.10, < 8.0)
       pg (>= 1.2.3, < 1.6.0)
       pundit
-      rails (~> 6.1.2, >= 6.1.2.1)
+      rails (>= 6.1.2.1, < 7)
 
 PATH
   remote: plugins/ShinyPages
@@ -135,7 +135,7 @@ PATH
       pagy (>= 5.10, < 8.0)
       pg (>= 1.2.3, < 1.6.0)
       pundit
-      rails (~> 6.1.2, >= 6.1.2.1)
+      rails (>= 6.1.2.1, < 7)
 
 PATH
   remote: plugins/ShinyProfiles
@@ -146,7 +146,7 @@ PATH
       pagy (>= 5.10, < 8.0)
       pg (>= 1.2.3, < 1.6.0)
       pundit
-      rails (~> 6.1.2, >= 6.1.2.1)
+      rails (>= 6.1.2.1, < 7)
 
 PATH
   remote: plugins/ShinySEO
@@ -169,7 +169,7 @@ PATH
       pg (>= 1.2.3, < 1.6.0)
       pg_search
       pundit
-      rails (~> 6.1.2, >= 6.1.2.1)
+      rails (>= 6.1.2.1, < 7)
 
 GEM
   remote: https://oss:TavsFP4Rxs7vhBGX0Li5ksWM53EcWLyd@gem.mutant.dev/
