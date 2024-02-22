@@ -32,7 +32,7 @@ source 'https://rubygems.org' do
   end
 
   # Postgres
-  gem 'pg', '~> 1.5.4'
+  gem 'pg', '~> 1.5.5'
 
   # Webserver
   gem 'puma', '~> 6.4', groups: %i[ development production ]
@@ -75,7 +75,7 @@ source 'https://rubygems.org' do
 
   group :development do
     # Check plugin boundaries
-    gem 'packwerk', '~> 3.1'
+    gem 'packwerk', '~> 3.2'
 
     # Capture all outgoing emails, with webmail interface to look at them
     gem 'letter_opener_web', '~> 2.0'

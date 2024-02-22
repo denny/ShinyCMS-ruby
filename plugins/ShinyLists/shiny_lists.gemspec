@@ -47,7 +47,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'acts_as_paranoid'
 
   # Pagination
-  spec.add_dependency 'pagy', '>= 5.10', '< 7.0'
+  spec.add_dependency 'pagy', '>= 5.10', '< 8.0'
 
   # HTML & XML parser
   spec.add_dependency 'nokogiri', '>= 1.11.0.rc4'
