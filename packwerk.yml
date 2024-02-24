@@ -13,3 +13,7 @@ include:
 - '**/*.{rb,rake,erb}'
 exclude:
 - '{bin,coverage,db,docs,log,node_modules,site,spec,storage,themes,tmp,vendor,plugins/*/config,plugins/*/spec,plugins/*/lib/tasks,plugins/ShinyCMS/db}/**/*'
+
+# Check and enforce package boundaries
+require:
+  - packwerk-extensions

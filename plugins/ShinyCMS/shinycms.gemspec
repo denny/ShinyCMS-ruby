@@ -44,6 +44,9 @@ Gem::Specification.new do |spec|
   # Immutable data structures
   spec.add_dependency 'persistent-dmnd'
 
+  # Check and enforce package boundaries
+  spec.add_dependency 'packwerk-extensions'
+
   # Sessions
   spec.add_dependency 'activerecord-session_store'
 
