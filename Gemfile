@@ -32,7 +32,7 @@ source 'https://rubygems.org' do
   end
 
   # Postgres
-  gem 'pg', '~> 1.5.5'
+  gem 'pg', '~> 1.5.6'
 
   # Webserver
   gem 'puma', '~> 6.4', groups: %i[ development production ]
