@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# ShinyPages plugin for ShinyCMS ~ https://shinycms.org
+# ShinyShop plugin for ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2024 Denny de la Haye ~ https://denny.me
 #
@@ -9,20 +9,20 @@
 $LOAD_PATH.push File.expand_path( 'lib', __dir__ )
 
 # Maintain your gem's version:
-require 'shiny_pages/version'
+require 'shiny_shop/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
-  spec.name        = 'shiny_pages'
-  spec.version     = ShinyPages::VERSION
+  spec.name        = 'shiny_shop'
+  spec.version     = ShinyShop::VERSION
   spec.license     = 'GPL'
 
   spec.authors     = [ 'Denny de la Haye' ]
   spec.email       = [ '2024@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
 
-  spec.summary     = 'ShinyPages plugin for ShinyCMS'
-  spec.description = "The ShinyPages plugin provides content-managed 'brochure pages' for ShinyCMS"
+  spec.summary     = 'ShinyShop plugin for ShinyCMS'
+  spec.description = 'The ShinyShop plugin provides a shop feature for ShinyCMS'
 
   spec.required_ruby_version = '~> 3.0'
 
@@ -48,12 +48,6 @@ Gem::Specification.new do |spec|
 
   # Pagination
   spec.add_dependency 'pagy', '>= 5.10', '< 8.0'
-
-  # CKEditor: WYSIWYG editor for admin area
-  spec.add_dependency 'ckeditor'
-
-  # HTML & XML parser
-  spec.add_dependency 'nokogiri', '>= 1.11.0.rc4'
 
   # Testing
   spec.add_development_dependency 'factory_bot_rails'
