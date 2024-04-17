@@ -7,6 +7,5 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyShop
-  # Base controller for the ShinyShop plugin for ShinyCMS (see also MainController, AdminController)
   class ApplicationController < ActionController::Base; end
 end

@@ -6,10 +6,11 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# Factories for shop products - ShinyShop plugin for ShinyCMS
 module ShinyShop
-  # Base controller for ShinyShop main site features
-  # Inherits from ShinyCMS MainController
-  class MainController < ::MainController
-    helper Rails.application.routes.url_helpers
+  FactoryBot.define do
+    factory :product, class: 'ShinyShop::Product' do
+      internal_name { Faker::Books::CultureSeries.unique.culture_ship }
+    end
   end
 end

@@ -11,7 +11,9 @@ module ShinyShop
   class ApplicationMailer < ShinyCMS::BaseMailer
     def check_feature_flags
       stop!
-    end  def check_ok_to_email
+    end
+    
+    def check_ok_to_email
       stop!
     end
   end

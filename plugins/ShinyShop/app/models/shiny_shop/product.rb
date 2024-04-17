@@ -7,9 +7,9 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyShop
-  # Base controller for ShinyShop admin features
-  # Inherits from ShinyCMS AdminController
-  class AdminController < ::AdminController
-    helper Rails.application.routes.url_helpers
+  # Model for shop products
+  class Product < ApplicationRecord
+    include ShinyCMS::HasPublicName
+    include ShinyCMS::HasSlug
   end
 end

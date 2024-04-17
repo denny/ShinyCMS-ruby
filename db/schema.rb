@@ -11,7 +11,7 @@
 # less error prone than running all of your migrations from scratch. Old migrations may fail
 # to apply correctly if those migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2021_02_26_060425) do
+ActiveRecord::Schema.define(version: 2024_03_27_143611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -467,6 +467,18 @@ ActiveRecord::Schema.define(version: 2021_02_26_060425) do
     t.datetime "deleted_at", precision: 0
     t.index ["deleted_at"], name: "index_shiny_profiles_profiles_on_deleted_at"
     t.index ["user_id"], name: "index_shiny_profiles_profiles_on_user_id"
+  end
+
+  create_table "shiny_shop_products", force: :cascade do |t|
+    t.string "internal_name", null: false
+    t.string "public_name"
+    t.string "slug", null: false
+    t.text "description"
+    t.integer "position"
+    t.boolean "show_on_site", default: true, null: false
+    t.datetime "created_at", precision: 0, null: false
+    t.datetime "updated_at", precision: 0, null: false
+    t.index ["slug"], name: "index_shiny_shop_products_on_slug", unique: true
   end
 
   create_table "shinycms_anonymous_authors", force: :cascade do |t|

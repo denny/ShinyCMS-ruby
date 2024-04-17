@@ -8,6 +8,14 @@
 
 ShinyShop::Engine.routes.draw do
   scope format: false do
-    # ...
+    # Shop pages
+    root to: 'shop#index', as: :shiny_shop_root
+
+    # Admin area
+    scope path: :admin, module: :admin do
+      extend ShinyCMS::Routes::AdminConcerns  # with_paging and with_search
+
+      resources :products, only: %i[ index ]
+    end
   end
 end

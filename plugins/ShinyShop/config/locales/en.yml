@@ -6,10 +6,21 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
+# English locale strings for ShinyCMS features provided by the ShinyShop plugin
+
 en:
-  feature_flags:
-    shiny_shop: ShinyShop
+  shinycms:
+    feature_flags:
+      shop: Shop
+
+    capability:
+      category:
+        products: Shop Products
 
   shiny_shop:
     admin:
-      title: ShinyShop
+      title: Shop
+      products:
+        breadcrumb: Shop
+        index:
+          title: Products

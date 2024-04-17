@@ -172,6 +172,16 @@ PATH
       pundit
       rails (>= 6.1.2.1, < 7)
 
+PATH
+  remote: plugins/ShinyShop
+  specs:
+    shiny_shop (24.3)
+      acts_as_paranoid
+      pagy (>= 5.10, < 8.0)
+      pg (>= 1.2.3, < 1.6.0)
+      pundit
+      rails (>= 6.1.2.1, < 7)
+
 GEM
   remote: https://oss:TavsFP4Rxs7vhBGX0Li5ksWM53EcWLyd@gem.mutant.dev/
   specs:
@@ -853,6 +863,7 @@ DEPENDENCIES
   shiny_profiles!
   shiny_search!
   shiny_seo!
+  shiny_shop!
   shinycms!
   simplecov!
   webmock!

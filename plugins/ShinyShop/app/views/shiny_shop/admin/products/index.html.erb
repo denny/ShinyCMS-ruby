@@ -1,0 +1,43 @@
+<%= render partial: 'admin/includes/search', locals: { action: shiny_news.search_shop_products_path, placeholder: t( '.search' ) } %>
+
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th class="longer">
+        Name
+      </th>
+      <th>
+        SKU
+      </th>
+      <th>
+        Added / Updated
+      </th>
+      <th>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+    <tr>
+      <td>
+        <%= product.name %>
+      </td>
+      <td>
+        <%= product.sku %>
+      </td>
+      <td>
+        <%= display_time_on_date( product.posted_at ) %>
+      </td>
+      <td class="actions">
+        <%= link_to t( 'view'   ), product.path %>
+        <%= link_to t( 'edit'   ), shiny_shop.edit_news_post_path( product ) %>
+        <%= link_to t( 'delete' ), shiny_shop.news_post_path( product ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render partial: 'admin/includes/pager', locals: { pagy: @pagy, name: @product.name } %>
