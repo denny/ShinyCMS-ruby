@@ -49,6 +49,9 @@ Gem::Specification.new do |spec|
   # Pagination
   spec.add_dependency 'pagy', '>= 5.10', '< 8.0'
 
+  # Accept and process payments
+  spec.add_dependency 'stripe'
+
   # Testing
   spec.add_development_dependency 'factory_bot_rails'
   spec.add_development_dependency 'faker'

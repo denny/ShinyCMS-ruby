@@ -11,6 +11,10 @@ ShinyShop::Engine.routes.draw do
     # Shop pages
     root to: 'shop#index', as: :shiny_shop_root
 
+    get 'products', to: 'products#index'
+
+    resource :checkout, only: :create
+
     # Admin area
     scope path: :admin, module: :admin do
       extend ShinyCMS::Routes::AdminConcerns  # with_paging and with_search
