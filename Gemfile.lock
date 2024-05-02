@@ -299,7 +299,7 @@ GEM
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.20)
-    better_html (2.0.2)
+    better_html (2.1.1)
       actionview (>= 6.0)
       activesupport (>= 6.0)
       ast (~> 2.0)
@@ -517,7 +517,7 @@ GEM
       childprocess (>= 0.6.3, < 6)
       iniparse (~> 1.4)
       rexml (~> 3.2)
-    packwerk (3.2.0)
+    packwerk (3.2.1)
       activesupport (>= 6.0)
       ast
       better_html
@@ -525,7 +525,7 @@ GEM
       constant_resolver (>= 0.2.0)
       parallel
       parser
-      prism (>= 0.24.0)
+      prism (>= 0.25.0)
       sorbet-runtime (>= 0.5.9914)
       zeitwerk (>= 2.6.1)
     packwerk-extensions (0.1.9)
@@ -547,7 +547,7 @@ GEM
     pg_search (2.3.6)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
-    prism (0.24.0)
+    prism (0.27.0)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -750,7 +750,7 @@ GEM
     sitemap_generator (6.3.0)
       builder (~> 3.0)
     smart_properties (1.17.0)
-    sorbet-runtime (0.5.11352)
+    sorbet-runtime (0.5.11367)
     sorted_set (1.0.3)
       rbtree
       set (~> 1.0)
