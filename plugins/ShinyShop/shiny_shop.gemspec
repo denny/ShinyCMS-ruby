@@ -51,6 +51,7 @@ Gem::Specification.new do |spec|
 
   # Accept and process payments
   spec.add_dependency 'stripe'
+  # spec.add_dependency 'stripe_event'
 
   # Testing
   spec.add_development_dependency 'factory_bot_rails'

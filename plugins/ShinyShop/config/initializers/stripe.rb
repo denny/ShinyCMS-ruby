@@ -9,5 +9,22 @@
 # Initialiser for Stripe integration
 
 require 'stripe'
+# require 'stripe_event'  # Moved into top-level routes file for now
 
 Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+
+StripeEvent.signing_secret = ENV['STRIPE_SIGNING_SECRET']
+StripeEvent.configure do |events|
+    events.subscribe 'checkout.session.completed' do |event|
+        # Define subscriber behavior based on the event object
+        event.class       # => Stripe::Event
+        event.type        # => "charge.failed"
+        event.data.object # => #<Stripe::Charge:0x3fcb34c115f8>
+        Rails.logger.info 'stripe event received SUBSCRIBE'
+    end
+
+    events.all do |event|
+        # Handle all event types - logging, etc.
+        Rails.logger.info 'stripe event received ALL'
+    end
+end

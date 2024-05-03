@@ -15,6 +15,8 @@ ShinyShop::Engine.routes.draw do
 
     resource :checkout, only: :create
 
+    # mount StripeEvent::Engine, at: '/shop/stripe_events'
+
     # Admin area
     scope path: :admin, module: :admin do
       extend ShinyCMS::Routes::AdminConcerns  # with_paging and with_search

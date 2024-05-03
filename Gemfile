@@ -50,6 +50,10 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 5.0.6'
 
+  # Stripe
+  # gem 'stripe'
+  gem 'stripe_event'
+
   group :development, :test do
     # RSpec for Rails
     gem 'rspec-rails'
