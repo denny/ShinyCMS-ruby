@@ -70,7 +70,7 @@ source 'https://rubygems.org' do
 
     # Tools for working with translation strings
     # gem 'i18n-debug'
-    gem 'i18n-tasks', '~> 1.0.13'
+    gem 'i18n-tasks', '~> 1.0.14'
   end
 
   group :development do
