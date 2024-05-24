@@ -46,7 +46,7 @@ module ShinyCMS
 
       # Scopes and default sort order
 
-      scope :not_future_dated,  -> { where( 'posted_at <= ?', Time.zone.now.iso8601 ) }
+      scope :not_future_dated,  -> { where( posted_at: ..Time.zone.now.iso8601 ) }
       scope :most_recent_first, -> { order( posted_at: :desc ) }
       scope :with_discussions,  -> { includes( [ :discussion ] ) }
       scope :published,         -> { visible.merge( not_future_dated ) }
@@ -73,7 +73,7 @@ module ShinyCMS
       end
 
       def prev_post
-        self.class.published.where( 'posted_at < ?', posted_at ).order( posted_at: :desc ).first
+        self.class.published.where( posted_at: ...posted_at ).order( posted_at: :desc ).first
       end
 
       alias_method :previous_post, :prev_post
