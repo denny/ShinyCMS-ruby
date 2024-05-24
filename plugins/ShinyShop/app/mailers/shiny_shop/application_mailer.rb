@@ -7,14 +7,5 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyShop
-  # Base mailer for ShinyShop
-  class ApplicationMailer < ShinyCMS::BaseMailer
-    def check_feature_flags
-      stop!
-    end
-    
-    def check_ok_to_email
-      stop!
-    end
-  end
+  class ApplicationMailer < ShinyCMS::BaseMailer; end
 end
