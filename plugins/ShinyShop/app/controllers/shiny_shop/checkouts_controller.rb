@@ -18,11 +18,11 @@ module ShinyShop
         line_items: [{
           # Defined in Stripe dashboard
           price: 'price_1P95l11WqvNwCyjvpDDVpMdh',
-          quantity: 1,
+          quantity: 1
         }],
         mode: 'payment',
-        success_url: main_app.root_url,
-        cancel_url:  main_app.root_url,
+        success_url: shiny_shop.products_url,
+        cancel_url:  main_app.root_url
       })
       redirect_to session.url, status: 303
     end
