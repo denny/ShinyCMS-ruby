@@ -21,20 +21,20 @@ module ShinyShop
           quantity: 1
         }],
         mode: 'payment',
-        success_url: shiny_shop.products_url,
+        success_url: "#{shiny_shop.products_url}?session_id={CHECKOUT_SESSION_ID}",
         cancel_url:  main_app.root_url
       })
       redirect_to session.url, status: 303
     end
 
-    private
+    # private
 
     # def strong_params
-      # params.permit( :year, :month, :slug, :page, :count, :size, :per )
+    #   params.permit( :year, :month, :slug, :page, :count, :size, :per )
     # end
 
     # def check_feature_flags
-      # enforce_feature_flags :shop
+    #   enforce_feature_flags :shop
     # end
   end
 end
