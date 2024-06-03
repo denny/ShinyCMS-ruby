@@ -11,13 +11,8 @@ module ShinyShop
   class ShopMailer < ApplicationMailer
     layout 'shiny_shop/layouts/shop_mailer'
 
-    def confirmation( event )
-      puts "Fulfilling order for #{checkout_session.inspect}"
-
-      checkout_session = event['data']['object']
-
-      @recipient_email = '2024@denny.me'  # FIXME
-      mail to: @recipient_email, subject: 'Thank you!' do |format|
+    def confirmation( customer_email )
+      mail to: customer_email, subject: 'Thank you!' do |format|
         format.html
         format.text
       end
