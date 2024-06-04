@@ -48,7 +48,7 @@ source 'https://rubygems.org' do
   # Charts and dashboards
   gem 'blazer'
   # Charts
-  gem 'chartkick', '~> 5.0.6'
+  gem 'chartkick', '~> 5.0.7'
 
   # Stripe
   # gem 'stripe'
@@ -74,7 +74,7 @@ source 'https://rubygems.org' do
 
     # Tools for working with translation strings
     # gem 'i18n-debug'
-    gem 'i18n-tasks', '~> 1.0.13'
+    gem 'i18n-tasks', '~> 1.0.14'
   end
 
   group :development do
