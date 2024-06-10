@@ -13,13 +13,19 @@ module ShinyShop
 
     # before_action :check_feature_flags
 
-    def index; end
+    def index
+      if strong_params[ :session_id ]
+        session = Stripe::Checkout::Session.retrieve( strong_params[ :session_id ] )
+
+        flash.now[ :notice ] = "Thank you for your purchase, #{ session.customer_details.name }"
+      end
+    end
 
     private
 
-    # def strong_params
-      # params.permit( :year, :month, :slug, :page, :count, :size, :per )
-    # end
+    def strong_params
+      params.permit( :session_id )
+    end
 
     # def check_feature_flags
       # enforce_feature_flags :shop
