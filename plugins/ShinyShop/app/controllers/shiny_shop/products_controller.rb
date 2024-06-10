@@ -17,7 +17,9 @@ module ShinyShop
       if strong_params[ :session_id ]
         session = Stripe::Checkout::Session.retrieve( strong_params[ :session_id ] )
 
-        flash.now[ :notice ] = "Thank you for your purchase, #{ session.customer_details.name }"
+        flash[ :notice ] = "Thank you for your order, #{ session.customer_details.name }"
+
+        redirect_to shiny_shop.products_path
       end
     end
 
