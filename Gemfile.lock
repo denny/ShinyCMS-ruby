@@ -609,7 +609,7 @@ GEM
       ffi (~> 1.0)
     rbtree (0.4.6)
     rbtree3 (0.7.1)
-    recaptcha (5.16.0)
+    recaptcha (5.17.0)
     redis (5.2.0)
       redis-client (>= 0.22.0)
     redis-client (0.22.1)
