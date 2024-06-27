@@ -20,6 +20,18 @@ module ShinyShop
 
     def index
       authorize Product
+
+      @products = Product.all
+    end
+
+    def new
+      @product = Product.new
+      authorize @product
+    end
+
+    def edit
+      @product = Product.find( params[:id] )
+      authorize @product
     end
 
     def with_html_editor?
