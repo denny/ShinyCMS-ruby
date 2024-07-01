@@ -171,7 +171,7 @@ RSpec/BeforeAfterAll:
     - spec/support/faker.rb
 
 # This is ignoring my custom inflections config (as about half of Rails does)
-RSpec/FilePath:
+Rails/FilePath:
   Exclude:
     - spec/**/shinycms/**/*_spec.rb
 
@@ -318,7 +318,7 @@ Rails/ActionControllerFlashBeforeRender:
   Enabled: false
 Rails/ActionOrder:
   Enabled: false
-RSpec/Rails/InferredSpecType:
+RSpecRails/InferredSpecType:
   Enabled: false
 RSpec/SpecFilePathFormat:
   Enabled: false
