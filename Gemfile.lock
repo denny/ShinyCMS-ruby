@@ -339,7 +339,7 @@ GEM
     childprocess (5.0.0)
     chronic_duration (0.10.6)
       numerizer (~> 0.1.1)
-    ckeditor (5.1.1)
+    ckeditor (5.1.2)
       orm_adapter (~> 0.5.0)
     cloudflare-rails (4.1.0)
       actionpack (>= 6.1, < 7.2.0)
