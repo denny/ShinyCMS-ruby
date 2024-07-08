@@ -22,3 +22,7 @@ en:
         breadcrumb: Shop
         index:
           title: Products
+        new:
+          title: Add product
+        create:
+          success: Product added

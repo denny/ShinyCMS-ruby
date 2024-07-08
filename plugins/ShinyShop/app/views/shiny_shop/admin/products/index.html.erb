@@ -24,14 +24,14 @@
         <%= product.name %>
       </td>
       <td>
-        <%= product.sku %>
+        <%= product.slug %>
       </td>
       <td>
-        <%= display_time_on_date( product.posted_at ) %>
+        <%= display_time_on_date( product.updated_at ) %>
       </td>
       <td class="actions">
-        <%= link_to t( 'view'   ), product.path %>
-        <%= link_to t( 'edit'   ), shiny_shop.edit_shop_product_path( product ) %>
+        <%= link_to t( 'view'   ), shiny_shop.product_path( product ) %>
+        <%= link_to t( 'edit'   ), shiny_shop.edit_product_path( product ) %>
         <%= link_to t( 'delete' ), shiny_shop.product_path( product ),
             method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
       </td>

@@ -13,9 +13,6 @@ module ShinyShop
 
     include ShinyCMS::Admin::WithSorting
 
-    before_action :stash_new_page, only: %i[ new create ]
-    before_action :stash_page,     only: %i[ edit update destroy ]
-
     helper_method :with_html_editor?
 
     def index
@@ -29,13 +26,33 @@ module ShinyShop
       authorize @product
     end
 
+    def create
+      @product = Product.new strong_params
+      authorize @product
+
+      if @product.save
+        redirect_to shiny_shop.edit_product_path( @product ), notice: t( '.success' )
+      else
+        flash.now[ :alert ] = t( '.failure' )
+        render action: :new
+      end
+    end
+
     def edit
       @product = Product.find( params[:id] )
       authorize @product
     end
 
+    private
+
     def with_html_editor?
       action_name == :index
+    end
+
+    def strong_params
+      params.require( :product ).permit(
+        :internal_name, :public_name, :slug, :description, :position, :show_on_site
+      )
     end
   end
 end
