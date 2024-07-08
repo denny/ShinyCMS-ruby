@@ -13,7 +13,7 @@ ShinyShop::Engine.routes.draw do
 
     get 'products', to: 'products#index', as: :products_index
 
-    get 'products/:slug', to: 'products#show', as: :product
+    get 'products/:slug', to: 'products#show', as: :show_product
 
     resource :checkout, only: :create
 
@@ -23,10 +23,7 @@ ShinyShop::Engine.routes.draw do
     scope path: :admin, module: :admin do
       extend ShinyCMS::Routes::AdminConcerns  # with_paging and with_search
 
-      resources :products, only: %i[ index new edit ]
-
-      post 'products', to: 'products#create', as: :create_product
-      put  'products/:id', to: 'products#update', as: :update_product
+      resources :products, only: %i[ index new create edit update ]
     end
   end
 end

@@ -1,4 +1,4 @@
-<%= form_for @product, url: shiny_shop.update_product_path( @product ), method: :put do |f| %>
+<%= form_for @product, url: shiny_shop.product_path( @product ), method: :put do |f| %>
   <p>
     <%= f.label :internal_name %><br>
     <%= f.text_field :internal_name %>
