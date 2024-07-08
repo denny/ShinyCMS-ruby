@@ -89,6 +89,7 @@ source 'https://rubygems.org' do
     gem 'rubocop-rails', require: false
     # Linting: test suite
     gem 'rubocop-rspec', require: false
+    # Linting: rspec rails specific
     gem 'rubocop-rspec_rails', require: false
     # Linting: thread safety
     gem 'rubocop-thread_safety', require: false
