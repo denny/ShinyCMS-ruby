@@ -26,6 +26,7 @@ ShinyShop::Engine.routes.draw do
       resources :products, only: %i[ index new edit ]
 
       post 'products', to: 'products#create', as: :create_product
+      put  'products/:id', to: 'products#update', as: :update_product
     end
   end
 end

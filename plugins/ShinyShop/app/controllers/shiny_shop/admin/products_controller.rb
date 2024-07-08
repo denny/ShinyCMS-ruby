@@ -43,6 +43,18 @@ module ShinyShop
       authorize @product
     end
 
+    def update
+      @product = Product.find( params[:id] )
+      authorize @product
+
+      if @product.update( strong_params )
+        redirect_to shiny_shop.edit_product_path( @product ), notice: t( '.success' )
+      else
+        flash.now[ :alert ] = t( '.failure' )
+        render action: :edit
+      end
+    end
+
     private
 
     def with_html_editor?

@@ -26,3 +26,7 @@ en:
           title: Add product
         create:
           success: Product added
+        edit:
+          title: Edit product
+        update:
+          success: Product updated
