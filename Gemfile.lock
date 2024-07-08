@@ -173,7 +173,7 @@ PATH
       rails (>= 6.1.2.1, < 7)
 
 GEM
-  remote: https://gem.mutant.dev/
+  remote: https://oss:TavsFP4Rxs7vhBGX0Li5ksWM53EcWLyd@gem.mutant.dev/
   specs:
     mutant-license (0.1.1.2.1258176039107932962731638484160838054569.0)
 
@@ -865,7 +865,7 @@ DEPENDENCIES
   webmock!
 
 RUBY VERSION
-   ruby 3.0.6p216
+   ruby 3.0.7p220
 
 BUNDLED WITH
    2.2.33
