@@ -7,9 +7,12 @@
 inherit_from: .rubocop_todo.yml
 
 require:
+  - rubocop-capybara
+  - rubocop-factory_bot
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
   - rubocop-thread_safety
 
 AllCops:
@@ -171,7 +174,7 @@ RSpec/BeforeAfterAll:
     - spec/support/faker.rb
 
 # This is ignoring my custom inflections config (as about half of Rails does)
-RSpec/FilePath:
+Rails/FilePath:
   Exclude:
     - spec/**/shinycms/**/*_spec.rb
 
@@ -318,7 +321,7 @@ Rails/ActionControllerFlashBeforeRender:
   Enabled: false
 Rails/ActionOrder:
   Enabled: false
-RSpec/Rails/InferredSpecType:
+RSpecRails/InferredSpecType:
   Enabled: false
 RSpec/SpecFilePathFormat:
   Enabled: false

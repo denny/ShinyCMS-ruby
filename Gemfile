@@ -93,6 +93,12 @@ source 'https://rubygems.org' do
     gem 'rubocop-rails', require: false
     # Linting: test suite
     gem 'rubocop-rspec', require: false
+    # Linting: rails tests
+    gem 'rubocop-rspec_rails', require: false
+    # Linting: test factories
+    gem 'rubocop-factory_bot', require: false
+    # Linting: feature specs
+    gem 'rubocop-capybara', require: false
     # Linting: thread safety
     gem 'rubocop-thread_safety', require: false
     # Linting: performance tweaks
