@@ -15,8 +15,13 @@ module ShinyShop
     def save_with_stripe
       save
 
-      stripe_product = Stripe::Product.create({ name: public_name })
-      update! stripe_id: stripe_product.id
+      stripe_price = Stripe::Price.create({
+        currency: 'gbp',
+        unit_amount: price,
+        product_data: { name: public_name },
+      })
+
+      update! stripe_id: stripe_price.product
     end
   end
 end

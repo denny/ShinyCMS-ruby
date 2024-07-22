@@ -30,7 +30,7 @@ module ShinyShop
       @product = Product.new strong_params
       authorize @product
 
-      if @product.save
+      if @product.save_with_stripe
         redirect_to shiny_shop.edit_product_path( @product ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
@@ -63,7 +63,7 @@ module ShinyShop
 
     def strong_params
       params.require( :product ).permit(
-        :internal_name, :public_name, :slug, :description, :position, :show_on_site
+        :internal_name, :public_name, :slug, :description, :position, :show_on_site, :price
       )
     end
   end

@@ -23,6 +23,10 @@
     <%= f.label :show_on_site %>
     <br><%= f.check_box :show_on_site %>
   </p>
+  <p>
+    <%= f.label :price %>
+    <br><%= f.number_field :price %>
+  </p>
 
   <p class="top-margin">
     <%= f.submit t( 'update' ) %>
