@@ -14,20 +14,26 @@ module ShinyShop
     # before_action :check_feature_flags
 
     def create
-      session = Stripe::Checkout::Session.create({
-        line_items: [{
-          # Defined in Stripe dashboard
-          price: 'price_1P95l11WqvNwCyjvpDDVpMdh',
-          quantity: 1
-        }],
-        mode: 'payment',
+      session = Stripe::Checkout::Session.create(
+        line_items:  build_line_items,
+        mode:        'payment',
         success_url: "#{shiny_shop.products_url}?session_id={CHECKOUT_SESSION_ID}",
         cancel_url:  main_app.root_url
-      })
-      redirect_to session.url, status: 303
+      )
+      redirect_to session.url, status: :see_other
     end
 
-    # private
+    private
+
+    def build_line_items
+      [
+        {
+          # Defined in Stripe dashboard
+          price:    'price_1P95l11WqvNwCyjvpDDVpMdh',
+          quantity: 1
+        }
+      ]
+    end
 
     # def strong_params
     #   params.permit( :year, :month, :slug, :page, :count, :size, :per )

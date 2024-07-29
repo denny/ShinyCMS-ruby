@@ -13,6 +13,6 @@ require 'shinycms/seeder'
 
 seeder = ShinyCMS::Seeder.new
 
-seeder.seed_feature_flag( name: :shop, description: "Shop (ShinyShop plugin)" )
+seeder.seed_feature_flag( name: :shop, description: 'Shop (ShinyShop plugin)' )
 
 seeder.seed_standard_admin_capabilities( category: :products )

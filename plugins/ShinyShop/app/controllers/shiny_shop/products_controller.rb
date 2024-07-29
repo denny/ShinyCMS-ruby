@@ -14,13 +14,13 @@ module ShinyShop
     # before_action :check_feature_flags
 
     def index
-      if strong_params[ :session_id ]
-        session = Stripe::Checkout::Session.retrieve( strong_params[ :session_id ] )
+      return unless strong_params[ :session_id ]
 
-        flash[ :notice ] = "Thank you for your order, #{ session.customer_details.name }"
+      session = Stripe::Checkout::Session.retrieve( strong_params[ :session_id ] )
 
-        redirect_to shiny_shop.products_path
-      end
+      flash[ :notice ] = "Thank you for your order, #{session.customer_details.name}"
+
+      redirect_to shiny_shop.products_path
     end
 
     private
@@ -30,7 +30,7 @@ module ShinyShop
     end
 
     # def check_feature_flags
-      # enforce_feature_flags :shop
+    #   enforce_feature_flags :shop
     # end
   end
 end

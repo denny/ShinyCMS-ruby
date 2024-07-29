@@ -191,10 +191,9 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
       expect( last_element.position ).to eq ids.size
 
       put shiny_shop.product_path( product ), params: {
-        product:       {
+        product: {
           internal_name: product.internal_name
-        },
-        sort_order: query_string
+        }
       }
 
       expect( response      ).to have_http_status :found

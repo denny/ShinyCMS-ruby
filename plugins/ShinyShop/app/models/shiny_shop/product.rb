@@ -13,13 +13,13 @@ module ShinyShop
     include ShinyCMS::HasSlug
 
     def save_with_stripe
-      save
+      save!
 
-      stripe_price = Stripe::Price.create({
-        currency: 'gbp',
-        unit_amount: price,
-        product_data: { name: public_name },
-      })
+      stripe_price = Stripe::Price.create(
+        currency:     'gbp',
+        unit_amount:  price,
+        product_data: { name: public_name }
+      )
 
       update! stripe_id: stripe_price.product
     end

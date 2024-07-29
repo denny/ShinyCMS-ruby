@@ -16,6 +16,11 @@ en:
         products: Shop Products
 
   shiny_shop:
+    mailers:
+      shop_mailer:
+        confirmation:
+          subject: 'Thank you!'
+
     admin:
       title: Shop
       products:

@@ -12,7 +12,7 @@ module ShinyShop
     layout 'shiny_shop/layouts/shop_mailer'
 
     def confirmation( customer_email )
-      mail to: customer_email, subject: 'Thank you!' do |format|
+      mail to: customer_email, subject: I18n.t( 'shiny_shop.mailers.shop_mailer.confirmation.subject' ) do |format|
         format.html
         format.text
       end
@@ -25,8 +25,9 @@ module ShinyShop
     end
 
     def check_ok_to_email
-      return true  # FIXME
-      enforce_ok_to_email @recipient_email
+      return true # FIXME
+
+      # enforce_ok_to_email @recipient_email
     end
   end
 end
