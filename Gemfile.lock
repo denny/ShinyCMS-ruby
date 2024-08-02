@@ -656,7 +656,7 @@ GEM
     rspec_pacman_formatter (0.1.7)
       colorize
       rspec
-    rss (0.3.0)
+    rss (0.3.1)
       rexml
     rubocop (1.65.1)
       json (~> 2.3)
