@@ -732,7 +732,7 @@ GEM
       concurrent-ruby (~> 1.0, >= 1.0.2)
     set (1.1.0)
     sexp_processor (4.17.0)
-    sidekiq (7.3.0)
+    sidekiq (7.3.1)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       logger
