@@ -91,7 +91,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
 
   describe 'GET /admin/shop/product/:id' do
     it 'loads the form to edit an existing product' do
-      product = create :top_level_product, :with_content
+      product = create :product, :with_content
 
       get shiny_shop.edit_product_path( product )
 
@@ -119,7 +119,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
 
   describe 'POST /admin/shop/product/:id' do
     it 'fails to update the product when submitted with a blank name' do
-      product = create :top_level_product
+      product = create :product
 
       put shiny_shop.product_path( product ), params: {
         product: {
@@ -133,7 +133,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
     end
 
     it 'updates the product when the form is submitted' do
-      product = create :top_level_product
+      product = create :product
 
       put shiny_shop.product_path( product ), params: {
         product: {
@@ -151,7 +151,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
     end
 
     it 'recreates the slug if it is wiped before submitting an update' do
-      product = create :top_level_product
+      product = create :product
       old_slug = product.slug
 
       put shiny_shop.product_path( product ), params: {
@@ -175,7 +175,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
       template_admin = create :product_template_admin
       sign_in template_admin
 
-      product = create :top_level_product
+      product = create :product
       last_element = product.elements.last
 
       # Put the last element first
@@ -208,9 +208,9 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
 
   describe 'DELETE /admin/shop/product/delete/:id' do
     it 'deletes the specified product' do
-      p1 = create :top_level_product
-      p2 = create :top_level_product
-      p3 = create :top_level_product
+      p1 = create :product
+      p2 = create :product
+      p3 = create :product
 
       delete shiny_shop.product_path( p2 )
 
@@ -231,9 +231,9 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
     it 'sorts the products and sections as requested' do
       s1 = create :product_section, position: 1
       p2 = create :product, section: s1, position: 2
-      p3 = create :top_level_product, position: 3
+      p3 = create :product, position: 3
       s4 = create :product_section, position: 4
-      p5 = create :top_level_product, position: 5
+      p5 = create :product, position: 5
 
       put shiny_shop.sort_products_path, params: {
         sorted: [

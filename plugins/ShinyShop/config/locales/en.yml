@@ -22,7 +22,8 @@ en:
           subject: 'Thank you!'
 
     admin:
-      title: Shop
+      shiny_shop:
+        title: Shop
       products:
         breadcrumb: Shop
         index:
@@ -31,7 +32,11 @@ en:
           title: Add product
         create:
           success: Product added
+          failure: Could not add product
         edit:
           title: Edit product
         update:
           success: Product updated
+          failure: Could not update product
+        destroy:
+          success: Product removed
