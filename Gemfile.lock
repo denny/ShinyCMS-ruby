@@ -308,7 +308,7 @@ GEM
       parser (>= 2.4)
       smart_properties
     bigdecimal (3.1.8)
-    blazer (3.0.3)
+    blazer (3.0.4)
       activerecord (>= 6.1)
       chartkick (>= 5)
       csv
@@ -360,7 +360,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-    csv (3.2.8)
+    csv (3.3.0)
     database_cleaner-active_record (2.2.0)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
