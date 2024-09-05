@@ -49,7 +49,7 @@ module ShinyCMS
       scope :not_future_dated,  -> { where( posted_at: ..Time.zone.now.iso8601 ) }
       scope :most_recent_first, -> { order( posted_at: :desc ) }
       scope :with_discussions,  -> { includes( [ :discussion ] ) }
-      scope :published,         -> { visible.merge( not_future_dated ) }
+      scope :published,         -> { visible.not_future_dated }
       scope :recent,            -> { published.merge( most_recent_first ) }
 
       mattr_reader :implicit_order_column, default: :posted_at
