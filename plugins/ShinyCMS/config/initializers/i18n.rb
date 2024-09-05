@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Load locale files from any plugins
-I18n.load_path += Dir[ Rails.root.join( 'plugins/*/config/locales/*.yml' ) ]
+I18n.load_path += Rails.root.glob( 'plugins/*/config/locales/*.yml' )
 
 # Set the available locales
 I18n.available_locales = %i[ en ]
