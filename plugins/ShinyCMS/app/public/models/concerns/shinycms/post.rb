@@ -50,7 +50,7 @@ module ShinyCMS
       scope :most_recent_first, -> { order( posted_at: :desc ) }
       scope :with_discussions,  -> { includes( [ :discussion ] ) }
       scope :published,         -> { visible.not_future_dated }
-      scope :recent,            -> { published.merge( most_recent_first ) }
+      scope :recent,            -> { published.most_recent_first }
 
       mattr_reader :implicit_order_column, default: :posted_at
 
