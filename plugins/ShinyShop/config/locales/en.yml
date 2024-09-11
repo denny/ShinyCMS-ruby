@@ -24,10 +24,13 @@ en:
     admin:
       shiny_shop:
         title: Shop
+        index:
+          title: Shop
       products:
         breadcrumb: Shop
+        menu: Shop
         index:
-          title: Products
+          title: List products
         new:
           title: Add product
         create:

@@ -1,0 +1,13 @@
+<% return unless @current_user.can? :list, :products %>
+
+<%= component 'admin/menu/section',
+    text: t( 'shiny_shop.admin.products.menu' ), icon: 'rss' do %>
+
+  <%= component 'admin/menu/item', link: shiny_shop.products_path,
+      text: t( 'shiny_shop.admin.products.index.title' ), icon: 'list' %>
+
+  <%= component 'admin/menu/item', link: shiny_shop.new_product_path,
+      text: t( 'shiny_shop.admin.products.new.title' ), icon: 'pencil',
+      if: @current_user.can?( :add, :products ) %>
+
+<% end %>
