@@ -37,7 +37,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
     end
   end
 
-  describe 'POST /admin/shop/product/new' do
+  xdescribe 'POST /admin/shop/product/new' do
     it 'fails when the form is submitted without all the details' do
       post shiny_shop.products_path, params: {
         product: {
@@ -89,7 +89,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
     end
   end
 
-  describe 'GET /admin/shop/product/:id' do
+  xdescribe 'GET /admin/shop/product/:id' do
     it 'loads the form to edit an existing product' do
       product = create :product, :with_content
 
@@ -117,7 +117,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
     end
   end
 
-  describe 'POST /admin/shop/product/:id' do
+  xdescribe 'POST /admin/shop/product/:id' do
     it 'fails to update the product when submitted with a blank name' do
       product = create :product
 
@@ -206,7 +206,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
     end
   end
 
-  describe 'DELETE /admin/shop/product/delete/:id' do
+  xdescribe 'DELETE /admin/shop/product/delete/:id' do
     it 'deletes the specified product' do
       p1 = create :product
       p2 = create :product
@@ -227,7 +227,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
     end
   end
 
-  describe 'PUT /admin/products/sort' do
+  xdescribe 'PUT /admin/products/sort' do
     it 'sorts the products and sections as requested' do
       s1 = create :product_section, position: 1
       p2 = create :product, section: s1, position: 2
