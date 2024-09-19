@@ -23,7 +23,7 @@ ShinyShop::Engine.routes.draw do
     scope path: :admin, module: :admin do
       extend ShinyCMS::Routes::AdminConcerns  # with_paging and with_search
 
-      resources :products, only: %i[ index new create edit update ]
+      resources :products, except: :show
     end
   end
 end

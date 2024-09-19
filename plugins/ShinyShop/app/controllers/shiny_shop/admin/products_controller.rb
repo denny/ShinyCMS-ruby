@@ -55,6 +55,13 @@ module ShinyShop
       end
     end
 
+    def destroy
+      authorize @product
+
+      flash[ :notice ] = t( '.success' ) if @product.destroy
+      redirect_to shiny_shop.products_path
+    end
+
     private
 
     def with_html_editor?
