@@ -11,7 +11,7 @@
 # less error prone than running all of your migrations from scratch. Old migrations may fail
 # to apply correctly if those migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2024_07_22_141646) do
+ActiveRecord::Schema.define(version: 2024_09_19_142625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -480,6 +480,7 @@ ActiveRecord::Schema.define(version: 2024_07_22_141646) do
     t.datetime "updated_at", precision: 0, null: false
     t.string "stripe_id"
     t.integer "price"
+    t.boolean "active", default: false, null: false
     t.index ["slug"], name: "index_shiny_shop_products_on_slug", unique: true
     t.index ["stripe_id"], name: "index_shiny_shop_products_on_stripe_id", unique: true
   end

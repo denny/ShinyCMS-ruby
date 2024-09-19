@@ -58,7 +58,7 @@ module ShinyShop
     def destroy
       authorize @product
 
-      flash[ :notice ] = t( '.success' ) if @product.destroy
+      flash[ :notice ] = t( '.success' ) if @product.archive_with_stripe
       redirect_to shiny_shop.products_path
     end
 

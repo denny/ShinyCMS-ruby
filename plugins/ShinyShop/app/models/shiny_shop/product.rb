@@ -23,5 +23,10 @@ module ShinyShop
 
       update! stripe_id: stripe_price.product
     end
+
+    def archive_with_stripe
+      Stripe::Product.update( stripe_id, { active: false } )
+      update! active: false
+    end
   end
 end
