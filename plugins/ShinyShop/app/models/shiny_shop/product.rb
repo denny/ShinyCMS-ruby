@@ -12,19 +12,35 @@ module ShinyShop
     include ShinyCMS::HasPublicName
     include ShinyCMS::HasSlug
 
-    def save_with_stripe
+    def create_with_stripe
       save!
 
       stripe_price = Stripe::Price.create(
         currency:     'gbp',
         unit_amount:  price,
-        product_data: { name: public_name }
+        product_data: {
+          active: active,
+          name: name,
+        }
       )
 
       update! stripe_id: stripe_price.product
     end
 
+    def update_with_stripe( params )
+      update! params
+
+      # Note: price is immutable once created
+      Stripe::Product.update(
+        stripe_id, {
+          active: active,
+          name: name
+        }
+      )
+    end
+
     def archive_with_stripe
+      # TODO: Unarchive!
       Stripe::Product.update( stripe_id, { active: false } )
       update! active: false
     end
