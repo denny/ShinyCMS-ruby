@@ -12,8 +12,10 @@ module ShinyShop
     include ShinyCMS::HasPublicName
     include ShinyCMS::HasSlug
 
+    validates :price, numericality: { only_integer: true }
+
     def create_with_stripe
-      save!
+      return false unless save
 
       stripe_price = Stripe::Price.create(
         currency:     'gbp',

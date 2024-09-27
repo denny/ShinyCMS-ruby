@@ -34,6 +34,7 @@ en:
         new:
           title: Add product
         create:
+          title: Add product
           success: Product added
           failure: Could not add product
         edit:
