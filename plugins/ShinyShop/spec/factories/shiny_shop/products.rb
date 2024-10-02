@@ -11,6 +11,7 @@ module ShinyShop
   FactoryBot.define do
     factory :product, class: 'ShinyShop::Product' do
       internal_name { Faker::Books::CultureSeries.unique.culture_ship }
+      price { 666 }
     end
   end
 end

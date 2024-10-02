@@ -30,7 +30,7 @@ module ShinyShop
     end
 
     def update_with_stripe( params )
-      update! params
+      return false unless update params
 
       # Note: price is immutable once created
       Stripe::Product.update(
@@ -39,6 +39,7 @@ module ShinyShop
           name: name
         }
       )
+      true  # Successful update
     end
 
     def archive_with_stripe
