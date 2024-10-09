@@ -58,7 +58,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
       post shiny_shop.products_path, params: {
         product: {
           internal_name: Faker::Books::CultureSeries.unique.culture_ship,
-          price: 1234  # 1234p === £12.34
+          price:         1234  # 1234p === $12.34
         }
       }
 
@@ -141,7 +141,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
     end
   end
 
-  describe 'DELETE /admin/shop/product/delete/:id' do
+  describe 'PUT /admin/shop/product/delete/:id' do
     it 'archives the specified product' do
       p1 = create :product, active: true
       p2 = create :product, active: true
@@ -158,7 +158,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_shop.admin.products.index.title' ).titlecase
       expect( response.body ).to have_css '.alert-success',
-                                                text: I18n.t( 'shiny_shop.admin.products.archive.success' )
+                                          text: I18n.t( 'shiny_shop.admin.products.archive.success' )
       expect( response.body ).to have_css 'td', text: p1.internal_name
       expect( response.body ).to have_button I18n.t( 'shiny_shop.admin.products.index.revive' )
       expect( response.body ).to have_css 'td', text: p3.internal_name

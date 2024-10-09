@@ -47,7 +47,7 @@ module ShinyShop
       @product = Product.find( params[:id] )
       authorize @product
 
-      if @product.update_with_stripe( strong_params.except :price )
+      if @product.update_with_stripe( strong_params.except( :price ) )
         redirect_to shiny_shop.edit_product_path( @product ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )

@@ -22,7 +22,7 @@ module ShinyShop
         unit_amount:  price,
         product_data: {
           active: active,
-          name: name,
+          name:   name
         }
       )
 
@@ -32,11 +32,11 @@ module ShinyShop
     def update_with_stripe( params )
       return false unless update params
 
-      # Note: price is immutable once created
+      # Price is immutable once created, so just name and active status
       Stripe::Product.update(
         stripe_id, {
           active: active,
-          name: name
+          name:   name
         }
       )
       true  # Successful update
