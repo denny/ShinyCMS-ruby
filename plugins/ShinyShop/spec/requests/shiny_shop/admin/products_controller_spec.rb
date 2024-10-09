@@ -117,9 +117,11 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
       expect( response.body ).to have_field 'product_internal_name', with: 'Updated by test'
     end
 
-    it 'recreates the slug if it is wiped before submitting an update', pending: 'skip' do
+    it 'recreates the slug if it is wiped before submitting an update' do
       product = create :product
       old_slug = product.slug
+
+      allow( Stripe::Product ).to receive( :update )
 
       put shiny_shop.product_path( product ), params: {
         product: {
@@ -139,52 +141,48 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
     end
   end
 
-  describe 'DELETE /admin/shop/product/delete/:id', pending: 'Skip' do
-    it 'deletes the specified product' do
-      p1 = create :product
-      p2 = create :product
-      p3 = create :product
+  describe 'DELETE /admin/shop/product/delete/:id' do
+    it 'archives the specified product' do
+      p1 = create :product, active: true
+      p2 = create :product, active: true
+      p3 = create :product, active: true
 
-      delete shiny_shop.product_path( p2 )
+      allow( Stripe::Product ).to receive( :update )
 
-      expect( response      ).to     have_http_status :found
-      expect( response      ).to     redirect_to shiny_shop.products_path
+      # soft delete
+      put shiny_shop.archive_product_path( p2 )
+
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_shop.products_path
       follow_redirect!
-      expect( response      ).to     have_http_status :ok
-      expect( response.body ).to     have_title I18n.t( 'shiny_shop.admin.products.index.title' ).titlecase
-      expect( response.body ).to     have_css '.alert-success',
-                                              text: I18n.t( 'shiny_shop.admin.products.destroy.success' )
-      expect( response.body ).to     have_css 'td', text: p1.internal_name
-      expect( response.body ).not_to have_css 'td', text: p2.internal_name
-      expect( response.body ).to     have_css 'td', text: p3.internal_name
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_shop.admin.products.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success',
+                                                text: I18n.t( 'shiny_shop.admin.products.archive.success' )
+      expect( response.body ).to have_css 'td', text: p1.internal_name
+      expect( response.body ).to have_button I18n.t( 'shiny_shop.admin.products.index.revive' )
+      expect( response.body ).to have_css 'td', text: p3.internal_name
     end
   end
 
-  describe 'PUT /admin/products/sort', pending: 'Skip' do
-    it 'sorts the products and sections as requested' do
-      s1 = create :product_section, position: 1
-      p2 = create :product, section: s1, position: 2
-      p3 = create :product, position: 3
-      s4 = create :product_section, position: 4
-      p5 = create :product, position: 5
+  describe 'PUT /admin/shop/product/revive/:id' do
+    it 'revives the specified product' do
+      p1 = create :product
 
-      put shiny_shop.sort_products_path, params: {
-        sorted: [
-          p2.id,
-          "section#{s4.id}",
-          "section#{s1.id}",
-          p5.id,
-          p3.id
-        ]
-      }
+      allow( Stripe::Product ).to receive( :update )
 
-      expect( response ).to have_http_status :ok
+      # undo soft-delete
+      put shiny_shop.revive_product_path( p1 )
 
-      expect( s1.reload.position ).to eq 3
-      expect( p2.reload.position ).to eq 1
-      expect( p3.reload.position ).to eq 5
-      expect( s4.reload.position ).to eq 2
-      expect( p5.reload.position ).to eq 4
+      expect( response      ).to have_http_status :found
+      expect( response      ).to redirect_to shiny_shop.products_path
+      follow_redirect!
+      expect( response      ).to have_http_status :ok
+      expect( response.body ).to have_title I18n.t( 'shiny_shop.admin.products.index.title' ).titlecase
+      expect( response.body ).to have_css '.alert-success',
+                                          text: I18n.t( 'shiny_shop.admin.products.revive.success' )
+      expect( response.body ).to have_button I18n.t( 'shiny_shop.admin.products.index.archive' )
+      expect( response.body ).to have_css 'td', text: p1.internal_name
     end
   end
 end

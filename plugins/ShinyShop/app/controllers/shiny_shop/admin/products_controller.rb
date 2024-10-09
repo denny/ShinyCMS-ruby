@@ -55,7 +55,16 @@ module ShinyShop
       end
     end
 
-    def destroy
+    def revive
+      @product = Product.find( params[:id] )
+      authorize @product
+
+      flash[ :notice ] = t( '.success' ) if @product.revive_with_stripe
+      redirect_to shiny_shop.products_path
+    end
+
+    def archive
+      @product = Product.find( params[:id] )
       authorize @product
 
       flash[ :notice ] = t( '.success' ) if @product.archive_with_stripe

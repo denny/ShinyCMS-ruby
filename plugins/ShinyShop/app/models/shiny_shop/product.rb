@@ -43,9 +43,13 @@ module ShinyShop
     end
 
     def archive_with_stripe
-      # TODO: Unarchive!
       Stripe::Product.update( stripe_id, { active: false } )
       update! active: false
+    end
+
+    def revive_with_stripe
+      Stripe::Product.update( stripe_id, { active: true } )
+      update! active: true
     end
   end
 end

@@ -37,8 +37,12 @@ module ShinyShop
       edit?
     end
 
-    def destroy?
-      @this_user.can? :destroy, :products
+    def archive?
+      edit?
+    end
+
+    def revive?
+      edit?
     end
   end
 end

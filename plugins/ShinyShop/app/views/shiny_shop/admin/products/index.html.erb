@@ -19,6 +19,7 @@
 
   <tbody>
     <% @products.each do |product| %>
+    <% next unless product.active %>
     <tr>
       <td>
         <%= product.name %>
@@ -30,10 +31,31 @@
         <%= display_time_on_date( product.updated_at ) %>
       </td>
       <td class="actions">
-        <%= link_to t( 'view'   ), shiny_shop.product_path( product ) %>
-        <%= link_to t( 'edit'   ), shiny_shop.edit_product_path( product ) %>
-        <%= link_to t( 'delete' ), shiny_shop.product_path( product ),
-            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+        <%= link_to t( 'view' ), shiny_shop.product_path( product ) %>
+        <%= link_to t( 'edit' ), shiny_shop.edit_product_path( product ) %>
+        <%= button_to t( 'shiny_shop.admin.products.index.archive' ), 
+                      shiny_shop.archive_product_path( product ), method: :put %>
+      </td>
+    </tr>
+    <% end %>
+
+    <% @products.each do |product| %>
+    <% next if product.active %>
+    <tr>
+      <td>
+        <%= product.name %>
+      </td>
+      <td>
+        <%= product.slug %>
+      </td>
+      <td>
+        <%= display_time_on_date( product.updated_at ) %>
+      </td>
+      <td class="actions">
+        <%= link_to t( 'view' ), shiny_shop.product_path( product ) %>
+        <%= link_to t( 'edit' ), shiny_shop.edit_product_path( product ) %>
+        <%= button_to t( 'shiny_shop.admin.products.index.revive' ), 
+                      shiny_shop.revive_product_path( product ), method: :put %>
       </td>
     </tr>
     <% end %>

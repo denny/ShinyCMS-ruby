@@ -31,6 +31,8 @@ en:
         menu: Shop
         index:
           title: List products
+          archive: Archive
+          revive: Restore
         new:
           title: Add product
         create:
@@ -43,5 +45,7 @@ en:
           title: Edit product
           success: Product updated
           failure: Could not update product
-        destroy:
-          success: Product removed
+        revive:
+          success: Product restored
+        archive:
+          success: Product archived
