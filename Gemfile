@@ -32,7 +32,7 @@ source 'https://rubygems.org' do
   end
 
   # Postgres
-  gem 'pg', '~> 1.5.5'
+  gem 'pg', '~> 1.5.8'
 
   # Webserver
   gem 'puma', '~> 6.4', groups: %i[ development production ]
@@ -48,7 +48,7 @@ source 'https://rubygems.org' do
   # Charts and dashboards
   gem 'blazer'
   # Charts
-  gem 'chartkick', '~> 5.0.5'
+  gem 'chartkick', '~> 5.0.7'
 
   group :development, :test do
     # RSpec for Rails
@@ -70,7 +70,7 @@ source 'https://rubygems.org' do
 
     # Tools for working with translation strings
     # gem 'i18n-debug'
-    gem 'i18n-tasks', '~> 1.0.13'
+    gem 'i18n-tasks', '~> 1.0.14'
   end
 
   group :development do
@@ -81,7 +81,7 @@ source 'https://rubygems.org' do
     gem 'letter_opener_web', '~> 2.0'
 
     # Reload dev server when files change
-    gem 'listen', '~> 3.8'
+    gem 'listen', '~> 3.9'
 
     # Linting: general
     gem 'rubocop', require: false
@@ -89,6 +89,12 @@ source 'https://rubygems.org' do
     gem 'rubocop-rails', require: false
     # Linting: test suite
     gem 'rubocop-rspec', require: false
+    # Linting: rails tests
+    gem 'rubocop-rspec_rails', require: false
+    # Linting: test factories
+    gem 'rubocop-factory_bot', require: false
+    # Linting: feature specs
+    gem 'rubocop-capybara', require: false
     # Linting: thread safety
     gem 'rubocop-thread_safety', require: false
     # Linting: performance tweaks

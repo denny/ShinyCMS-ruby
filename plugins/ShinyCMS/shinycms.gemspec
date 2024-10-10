@@ -44,6 +44,9 @@ Gem::Specification.new do |spec|
   # Immutable data structures
   spec.add_dependency 'persistent-dmnd'
 
+  # Check and enforce package boundaries
+  spec.add_dependency 'packwerk-extensions'
+
   # Sessions
   spec.add_dependency 'activerecord-session_store'
 
@@ -68,7 +71,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'view_component', '>= 2.83', '< 4.0'
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
-  spec.add_dependency 'sidekiq', '>= 6.5.10', '< 7.3.0'
+  spec.add_dependency 'sidekiq', '>= 6.5.10', '< 7.4.0'
   spec.add_dependency 'sidekiq-status'
 
   # Soft delete
