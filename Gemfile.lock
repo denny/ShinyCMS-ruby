@@ -657,7 +657,7 @@ GEM
       rspec
     rss (0.3.1)
       rexml
-    rubocop (1.66.1)
+    rubocop (1.67.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
