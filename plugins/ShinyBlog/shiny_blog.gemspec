@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.summary     = 'ShinyCMS blog plugin'
   spec.description = 'Blog plugin for ShinyCMS'
 
-  spec.required_ruby_version = '~> 3.0'
+  spec.required_ruby_version = '>= 3.1'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.

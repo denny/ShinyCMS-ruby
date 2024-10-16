@@ -9,6 +9,7 @@
 module ShinyCMS
   # Helper method for rendering view components
   module ViewComponentHelper
+    # rubocop:disable Naming/BlockForwarding
     def component( name, **args, &block )
       # Use this:
       # <%= component 'users/name_with_link', user: comment.author %>
@@ -22,6 +23,7 @@ module ShinyCMS
 
       render component_instance( name, **args ), &block
     end
+    # rubocop:enable Naming/BlockForwarding
 
     private
 

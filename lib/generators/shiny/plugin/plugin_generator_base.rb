@@ -168,8 +168,8 @@ module Shiny
         raise Error, "Invalid plugin name '#{original_name}' - constant #{camelized} is already in use."
       end
 
-      def mute( &block )
-        shell.mute( &block )
+      def mute( & )
+        shell.mute( & )
       end
     end
     # rubocop:enable Metrics/ClassLength
