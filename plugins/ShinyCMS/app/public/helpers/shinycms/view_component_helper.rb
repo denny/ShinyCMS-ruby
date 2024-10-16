@@ -9,7 +9,7 @@
 module ShinyCMS
   # Helper method for rendering view components
   module ViewComponentHelper
-    def component( name, **args, &block )
+    def component( name, **args, & )
       # Use this:
       # <%= component 'users/name_with_link', user: comment.author %>
       # To do this:
