@@ -460,14 +460,15 @@ GEM
     jmespath (1.6.2)
     json (2.7.2)
     language_server-protocol (3.17.0.3)
-    launchy (2.5.2)
+    launchy (3.0.1)
       addressable (~> 2.8)
-    letter_opener (1.8.1)
-      launchy (>= 2.2, < 3)
-    letter_opener_web (2.0.0)
-      actionmailer (>= 5.2)
-      letter_opener (~> 1.7)
-      railties (>= 5.2)
+      childprocess (~> 5.0)
+    letter_opener (1.10.0)
+      launchy (>= 2.2, < 4)
+    letter_opener_web (3.0.0)
+      actionmailer (>= 6.1)
+      letter_opener (~> 1.9)
+      railties (>= 6.1)
       rexml
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -499,7 +500,7 @@ GEM
     mutant-rspec (0.12.2)
       mutant (= 0.12.2)
       rspec-core (>= 3.8.0, < 4.0.0)
-    net-imap (0.4.16)
+    net-imap (0.5.0)
       date
       net-protocol
     net-pop (0.1.2)
@@ -823,7 +824,7 @@ DEPENDENCIES
   factory_bot_rails!
   faker!
   i18n-tasks (~> 1.0.14)!
-  letter_opener_web (~> 2.0)!
+  letter_opener_web (~> 3.0)!
   listen (~> 3.9)!
   mutant-license!
   mutant-rspec!
