@@ -3,9 +3,9 @@
   "author": "Denny de la Haye (denny.me)",
   "private": true,
   "dependencies": {
-    "@rails/activestorage": "^6.1.7",
-    "@rails/ujs": "^6.1.7",
-    "acorn": "^8.12.1",
+    "@rails/activestorage": "^6.1.709",
+    "@rails/ujs": "^6.1.709",
+    "acorn": "^8.13.0",
     "core-js": "^3.38.1",
     "is-svg": "^5.1.0",
     "jquery": "^3.6.0",

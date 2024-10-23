@@ -48,7 +48,7 @@ source 'https://rubygems.org' do
   # Charts and dashboards
   gem 'blazer'
   # Charts
-  gem 'chartkick', '~> 5.0.7'
+  gem 'chartkick', '~> 5.1.1'
 
   # Stripe
   # gem 'stripe'
@@ -82,7 +82,7 @@ source 'https://rubygems.org' do
     gem 'packwerk', '~> 3.2'
 
     # Capture all outgoing emails, with webmail interface to look at them
-    gem 'letter_opener_web', '~> 2.0'
+    gem 'letter_opener_web', '~> 3.0'
 
     # Reload dev server when files change
     gem 'listen', '~> 3.9'
