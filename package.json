@@ -9,7 +9,7 @@
     "core-js": "^3.38.1",
     "is-svg": "^5.1.0",
     "jquery": "^3.6.0",
-    "jquery-ui": "^1.14.0",
+    "jquery-ui": "^1.14.1",
     "minimist": "^1.2.8",
     "mjml": "^4.15.3",
     "smartmenus": "^1.2.1",
