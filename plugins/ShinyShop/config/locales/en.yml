@@ -23,7 +23,6 @@ en:
 
     admin:
       shiny_shop:
-        title: Shop
         index:
           title: Shop
       products:
