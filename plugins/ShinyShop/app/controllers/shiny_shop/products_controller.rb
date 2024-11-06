@@ -14,6 +14,8 @@ module ShinyShop
     # before_action :check_feature_flags
 
     def index
+      # TODO: show a list of all products
+
       return unless strong_params[ :session_id ]
 
       session = Stripe::Checkout::Session.retrieve( strong_params[ :session_id ] )
@@ -22,6 +24,9 @@ module ShinyShop
 
       redirect_to shiny_shop.products_path
     end
+
+    # TODO: show one product
+    # def show
 
     private
 
