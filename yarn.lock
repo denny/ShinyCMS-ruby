@@ -26,12 +26,12 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@rails/activestorage@^6.1.710":
-  version "6.1.710"
-  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-6.1.710.tgz#bc914716f642ba233f033b7765a44dc3bfb626f5"
-  integrity sha512-hLXxAtn7hSWXkTzMGOmQmjuzJ0FzVw8j/Zi8DGS+DG9x4uPQjl+ZEVdty7pFcsBCjkpejtk0TChcBQlLW8sgOg==
+"@rails/activestorage@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-8.0.0.tgz#be5dd10acc141b95ffa2b3026e61790c36f1679c"
+  integrity sha512-qoA7U1gMcWXhDnImwDIyRQDXkQKzThT2lu2Xpim8CnTOCEeAgkQ5Co2kzodpAI2grF1JSDvwXSPYNWwVAswndA==
   dependencies:
-    spark-md5 "^3.0.0"
+    spark-md5 "^3.0.1"
 
 "@rails/ujs@^6.1.710":
   version "6.1.710"
@@ -1137,10 +1137,10 @@ source-map@~0.6.0:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-spark-md5@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.1.tgz#83a0e255734f2ab4e5c466e5a2cfc9ba2aa2124d"
-  integrity sha512-0tF3AGSD1ppQeuffsLDIOWlKUd3lS92tFxcsrh5Pe3ZphhnoK+oXIBTzOAThZCiuINZLvpiLH/1VS1/ANEJVig==
+spark-md5@^3.0.1:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
+  integrity sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==
 
 "string-width-cjs@npm:string-width@^4.2.0":
   version "4.2.3"
