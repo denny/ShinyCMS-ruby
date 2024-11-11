@@ -520,7 +520,7 @@ GEM
       childprocess (>= 0.6.3, < 6)
       iniparse (~> 1.4)
       rexml (>= 3.3.9)
-    packwerk (3.2.1)
+    packwerk (3.2.2)
       activesupport (>= 6.0)
       ast
       better_html
@@ -540,7 +540,7 @@ GEM
     parallel (1.26.3)
     parallel_tests (4.7.2)
       parallel
-    parser (3.3.5.1)
+    parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
     path_expander (1.1.1)
@@ -550,7 +550,7 @@ GEM
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
-    prism (0.30.0)
+    prism (1.2.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -751,7 +751,7 @@ GEM
     sitemap_generator (6.3.0)
       builder (~> 3.0)
     smart_properties (1.17.0)
-    sorbet-runtime (0.5.11604)
+    sorbet-runtime (0.5.11645)
     sorted_set (1.0.3)
       rbtree
       set (~> 1.0)
