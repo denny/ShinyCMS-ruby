@@ -24,11 +24,7 @@ Ahoy.mask_ips = ( ENV['AHOY_MASK_IPS'].presence == 'true' )
 
 # Set AHOY_COOKIES to the string 'false' to use anonymity sets instead
 # https://privacypatterns.org/patterns/Anonymity-set
-if ENV['AHOY_COOKIES'] == 'false'
-  Ahoy.cookies = :none
-else
-  Ahoy.cookies = true
-end
+Ahoy.cookies = ENV['AHOY_COOKIES'] == 'false' ? :none : true
 
 # Set to true for JavaScript tracking
 Ahoy.api = false
