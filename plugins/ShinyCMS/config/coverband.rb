@@ -16,4 +16,10 @@ return if Rails.env.test?
 
 Coverband.configure do |config|
   config.track_views = true
+  config.store = Coverband::Adapters::RedisStore.new(
+    Redis.new(
+      url:        ENV['REDIS_URL'],
+      ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }
+    )
+  )
 end
