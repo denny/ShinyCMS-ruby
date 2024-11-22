@@ -690,7 +690,7 @@ GEM
       rubocop-rspec (~> 3, >= 3.0.1)
     rubocop-thread_safety (0.6.0)
       rubocop (>= 1.48.1)
-    ruby-pg-extras (5.4.1)
+    ruby-pg-extras (5.4.5)
       pg
       terminal-table
     ruby-progressbar (1.13.0)
@@ -868,4 +868,4 @@ RUBY VERSION
    ruby 3.1.6p260
 
 BUNDLED WITH
-   2.2.33
+   2.5.23
