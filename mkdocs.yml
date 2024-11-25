@@ -10,7 +10,7 @@ site_name:        ShinyCMS
 site_url:         http://docs.shinycms.org/
 site_description: Documentation for users and developers of ShinyCMS (Ruby version)
 site_author:      Denny de la Haye
-copyright:        ShinyCMS is copyright 2009-2021 Denny de la Haye (denny.me)
+copyright:        ShinyCMS is copyright 2009-2024 Denny de la Haye (denny.me)
 
 repo_url: https://github.com/denny/ShinyCMS-ruby/
 edit_uri: ''
