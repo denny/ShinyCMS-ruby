@@ -29,9 +29,10 @@ rails shinycms:db:seed
 
 ## Contributing
 
-See the ShinyCMS developer documentation for information on contributing to this plugin or any other part of the ShinyCMS project.
+See the developer documentation for information on ShinyCMS features
+[in progress](docs/Developer/Progress.md) and [to-do](docs/Developer/TODO.md)
 
-Please read the Code of Conduct as well.
+Please read the [Code of Conduct](docs/code-of-conduct.md) as well.
 
 
 ## Copyright and Licensing
