@@ -16,4 +16,4 @@
 //= link smartmenus.css
 
 // Themes
-//= link_tree themes/javascript
+//= link_tree ../../../../../themes/javascript
