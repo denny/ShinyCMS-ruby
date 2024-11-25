@@ -11,7 +11,7 @@
 # less error prone than running all of your migrations from scratch. Old migrations may fail
 # to apply correctly if those migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2024_09_19_142625) do
+ActiveRecord::Schema.define(version: 2024_11_06_184645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
