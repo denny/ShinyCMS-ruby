@@ -1,6 +1,6 @@
 <h2><%= @product.name %></h2>
 <p>
-  &pound;<%= number_to_currency @product.price %> // <%= number_to_currency 3154/100 %>
+  <%= number_to_currency @product.price.to_d/100, unit: '&pound;'.html_safe %>
 </p>
 <p>
   <%= @product.description %>
