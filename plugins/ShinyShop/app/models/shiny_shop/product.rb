@@ -14,6 +14,8 @@ module ShinyShop
 
     validates :price, numericality: { only_integer: true }
 
+    scope :visible, -> { where( show_on_site: true, active: true ) }
+
     def create_with_stripe
       return false unless save
 
@@ -26,7 +28,7 @@ module ShinyShop
         }
       )
 
-      update! stripe_id: stripe_price.product
+      update! stripe_id: stripe_price.product, stripe_price_id: stripe_price.id
     end
 
     def update_with_stripe( params )

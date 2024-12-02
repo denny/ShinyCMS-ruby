@@ -6,5 +6,5 @@
   <%= @product.description %>
 </p>
 <p>
-  <%= button_to 'Buy now!', '/checkout' %>
+  <%= button_to 'Buy now!', shiny_shop.checkout_path( product: @product.slug ) %>
 </p>

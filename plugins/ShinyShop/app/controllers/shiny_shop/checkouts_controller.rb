@@ -26,10 +26,11 @@ module ShinyShop
     private
 
     def build_line_items
+      product = ShinyShop::Product.visible.find_by( slug: params[ :product ] )
       [
         {
           # Defined in Stripe dashboard
-          price:    'price_1P95l11WqvNwCyjvpDDVpMdh',
+          price:    product.stripe_price_id,
           quantity: 1
         }
       ]
