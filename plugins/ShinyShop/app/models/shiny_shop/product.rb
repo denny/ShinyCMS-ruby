@@ -28,7 +28,7 @@ module ShinyShop
         }
       )
 
-      update! stripe_id: stripe_price.product, stripe_price_id: stripe_price.id
+      update! stripe_id: stripe_price.product, stripe_price_id: stripe_price_id
     end
 
     def update_with_stripe( params )
