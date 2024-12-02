@@ -15,6 +15,7 @@ module ShinyShop
 
     def index
       # TODO: show a list of all products
+      # @pagy, @posts = pagy_countless( Post.readonly.recent.with_discussions )
 
       return unless strong_params[ :session_id ]
 
@@ -25,8 +26,9 @@ module ShinyShop
       redirect_to shiny_shop.products_path
     end
 
-    # TODO: show one product
-    # def show
+    def show
+      @product = Product.where( show_on_site: true ).find_by( slug: params[ :slug ] )
+    end
 
     private
 

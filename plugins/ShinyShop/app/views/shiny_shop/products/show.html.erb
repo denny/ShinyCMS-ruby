@@ -1,0 +1,10 @@
+<h2><%= @product.name %></h2>
+<p>
+  &pound;<%= number_to_currency @product.price %> // <%= number_to_currency 3154/100 %>
+</p>
+<p>
+  <%= @product.description %>
+</p>
+<p>
+  <%= button_to 'Buy now!', '/checkout' %>
+</p>

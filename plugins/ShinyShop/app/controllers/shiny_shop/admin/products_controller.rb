@@ -74,7 +74,7 @@ module ShinyShop
     private
 
     def with_html_editor?
-      action_name == :index
+      action_name == :create or action_name == :edit
     end
 
     def strong_params
