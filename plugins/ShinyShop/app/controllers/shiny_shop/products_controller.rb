@@ -15,7 +15,7 @@ module ShinyShop
 
     def index
       # TODO: show a list of all products
-      # @pagy, @posts = pagy_countless( Post.readonly.recent.with_discussions )
+      # @pagy, @products = pagy( Product.readonly.visible )
 
       return unless strong_params[ :session_id ]
 
@@ -27,13 +27,13 @@ module ShinyShop
     end
 
     def show
-      @product = Product.where( show_on_site: true ).find_by( slug: params[ :slug ] )
+      @product = Product.readonly.visible.find_by( slug: strong_params[ :slug ] )
     end
 
     private
 
     def strong_params
-      params.permit( :session_id )
+      params.permit( :session_id, :slug )
     end
 
     # def check_feature_flags

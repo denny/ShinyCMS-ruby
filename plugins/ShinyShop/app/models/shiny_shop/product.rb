@@ -20,7 +20,7 @@ module ShinyShop
       return false unless save
 
       stripe_price = Stripe::Price.create(
-        currency:     'gbp',
+        currency:     'gbp',  # TODO: currency handling
         unit_amount:  price,
         product_data: {
           active: active,
