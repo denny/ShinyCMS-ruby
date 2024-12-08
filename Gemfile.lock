@@ -849,7 +849,6 @@ DEPENDENCIES
   pg (~> 1.5.9)!
   puma (~> 6.5)!
   rails (~> 6.1.7)!
-  rails-html-sanitizer (= 1.6.1)!
   rails-pg-extras!
   rails_email_preview!
   rspec-instafail!
