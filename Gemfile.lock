@@ -612,7 +612,7 @@ GEM
       ffi (~> 1.0)
     rbtree (0.4.6)
     rbtree3 (0.7.1)
-    recaptcha (5.17.1)
+    recaptcha (5.18.0)
     redis (5.3.0)
       redis-client (>= 0.22.0)
     redis-client (0.22.2)
@@ -834,7 +834,6 @@ DEPENDENCIES
   pg (~> 1.5.9)!
   puma (~> 6.5)!
   rails (~> 6.1.7)!
-  rails-html-sanitizer (= 1.6.1)!
   rails-pg-extras!
   rails_email_preview!
   rspec-instafail!
