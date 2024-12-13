@@ -14,8 +14,11 @@ module ShinyShop
     # before_action :check_feature_flags
 
     def index
-      # TODO: show a list of all products
-      # @pagy, @products = pagy( Product.readonly.visible )
+      @pagy, @products = pagy( Product.readonly.visible )
+    end
+
+    def show
+      @product = Product.readonly.visible.find_by( slug: strong_params[ :slug ] )
 
       return unless strong_params[ :session_id ]
 
@@ -23,11 +26,7 @@ module ShinyShop
 
       flash[ :notice ] = "Thank you for your order, #{session.customer_details.name}"
 
-      redirect_to shiny_shop.products_path
-    end
-
-    def show
-      @product = Product.readonly.visible.find_by( slug: strong_params[ :slug ] )
+      redirect_to shiny_shop.show_product_path( @product.slug )  # Clear visible session ID off end of URL
     end
 
     private

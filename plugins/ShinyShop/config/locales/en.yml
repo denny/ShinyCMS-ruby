@@ -16,6 +16,10 @@ en:
         products: Shop Products
 
   shiny_shop:
+    products:
+      index:
+        title: Products
+
     mailers:
       shop_mailer:
         confirmation:

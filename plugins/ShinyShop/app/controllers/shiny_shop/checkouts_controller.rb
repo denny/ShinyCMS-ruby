@@ -14,23 +14,25 @@ module ShinyShop
     # before_action :check_feature_flags
 
     def create
+      @product = ShinyShop::Product.visible.find_by( slug: params[ :product ] )
+
       session = Stripe::Checkout::Session.create(
         line_items:  build_line_items,
         mode:        'payment',
-        success_url: "#{shiny_shop.products_url}?session_id={CHECKOUT_SESSION_ID}",
+        success_url: "#{shiny_shop.show_product_url( @product.slug )}?session_id={CHECKOUT_SESSION_ID}",
         cancel_url:  main_app.root_url
       )
+
       redirect_to session.url, status: :see_other
     end
 
     private
 
     def build_line_items
-      product = ShinyShop::Product.visible.find_by( slug: params[ :product ] )
       [
         {
           # Defined in Stripe dashboard
-          price:    product.stripe_price_id,
+          price:    @product.stripe_price_id,
           quantity: 1
         }
       ]
