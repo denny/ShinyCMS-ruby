@@ -24,7 +24,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
       it 'finds no live products to display' do
         get shiny_shop.products_index_path
 
-        products = create :product  # Inactive, by default
+        create :product  # Inactive, by default
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to include 'No products found'
@@ -35,7 +35,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
   context 'with live products in the database' do
     describe 'GET /products' do
       it 'fetches the list of products' do
-        product1 = create :product, active: true
+        create :product, active: true
         product2 = create :product
         product3 = create :product, active: true
 
