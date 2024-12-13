@@ -22,7 +22,7 @@ module ShinyShop
 
       return unless strong_params[ :session_id ]
 
-      session = Stripe::Checkout::Session.retrieve( strong_params[ :session_id ] )
+      session = retrieve_stripe_session :session_id
 
       flash[ :notice ] = "Thank you for your order, #{session.customer_details.name}"
 
@@ -33,6 +33,10 @@ module ShinyShop
 
     def strong_params
       params.permit( :session_id, :slug )
+    end
+
+    def retrieve_stripe_session( session_id )
+      Stripe::Checkout::Session.retrieve( strong_params[ session_id ] )
     end
 
     # def check_feature_flags
