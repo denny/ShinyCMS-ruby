@@ -51,7 +51,7 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
     end
 
     it 'adds a new product when the form is submitted' do
-      stripe_price = Stripe::Price.construct_from( product: 'price_MOCK' )
+      stripe_price = Stripe::Price.construct_from( id: 12345, product: 'price_MOCK' )
 
       allow( Stripe::Price ).to receive( :create ).and_return( stripe_price )
 
