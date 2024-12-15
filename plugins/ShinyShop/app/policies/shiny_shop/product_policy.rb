@@ -17,8 +17,7 @@ module ShinyShop
     end
 
     def index?
-      # @this_user.can? :list, :products
-      true # TODO: undo
+      @this_user.can? :list, :products
     end
 
     def new?
