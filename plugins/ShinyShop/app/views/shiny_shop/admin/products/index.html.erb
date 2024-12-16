@@ -4,7 +4,10 @@
   <thead>
     <tr>
       <th class="longer">
-        Name
+        Internal name
+      </th>
+      <th class="longer">
+        Public name
       </th>
       <th>
         SKU
@@ -22,7 +25,10 @@
     <% next unless product.active %>
     <tr>
       <td>
-        <%= product.name %>
+        <%= product.internal_name %>
+      </td>
+      <td>
+        <%= product.public_name %>
       </td>
       <td>
         <%= product.slug %>
@@ -51,7 +57,10 @@
     <% next if product.active %>
     <tr>
       <td>
-        <%= product.name %>
+        <%= product.internal_name %>
+      </td>
+      <td>
+        <%= product.public_name %>
       </td>
       <td>
         <%= product.slug %>

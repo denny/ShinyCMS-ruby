@@ -18,7 +18,7 @@ module ShinyShop
     def index
       authorize Product
 
-      @products = Product.all
+      @products = Product.order( 'lower(internal_name)' )
     end
 
     def new
