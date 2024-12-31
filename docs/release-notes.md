@@ -4,6 +4,14 @@
 
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
+### 2025-01-01  25.01  January 2025: The 'Turn On, Plug In, or Drop Out' Release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.01
+
+* BREAKING CHANGES
+    * The SHINYCMS_PLUGINS env var MUST be set now - the app will fail to start if it isn't.
+
+
 ### 2024-11-25  24.11  November 2024: The 'Three Years Off Dead For Tax Reasons' Release
 
 GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v24.11
