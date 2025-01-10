@@ -30,7 +30,7 @@ module ShinyCMS
 
         # Return true if the page we're on might need a WYSIWYG HTML editor
         def with_html_editor?
-          action_name == 'new' || action_name == 'edit'
+          %w[ new edit ].include? action_name
         end
       end
     end
