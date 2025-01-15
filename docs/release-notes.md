@@ -11,6 +11,8 @@ GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.01
 * BREAKING CHANGES
     * The SHINYCMS_PLUGINS env var MUST be set now - the app will fail to start if it isn't.
 
+* Otherwise, just updates to gems in this release - plus the ever-exciting update to the year in all the copyright notices
+
 
 ### 2024-11-25  24.11  November 2024: The 'Three Years Off Dead For Tax Reasons' Release
 
