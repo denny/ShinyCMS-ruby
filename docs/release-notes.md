@@ -4,6 +4,31 @@
 
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
+### 2024-11-25  24.11  November 2024: The 'Three Years Off Dead For Tax Reasons' Release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v24.11
+
+Sorry for the unexpected hiatus in releases. In my defence, I nearly died shortly after the last one.
+
+TL;DR, I turn out to have a massive arteriovenous malformation very near my brain stem, which ruptured on 18 June 2021, causing a haemorrhagic stroke that nearly killed me. In hindsight, that probably explains the insomnia and headaches between 2019 and 2021... I thought they were 'just' work stress.
+
+Anyway, I have been busy learning how to talk again, and then walk again, and then recovering from six months of hospital-food-induced starvation (mostly by eating properly once I was home again, but some exercise too) - so all-in-all typing and coding have had to wait their turn. I'm getting there.
+
+I don't think I've added or removed any features in this release, but there have been many many MANY gem updates - a lot of which were languishing in the dependabot queue while I recovered, and then more that flooded in once I cleared the initial backlog :)
+
+Some highlights include:
+* Ruby, from 3.0.1 to 3.1.6
+* Rails, from 6.1.3.1 to 6.1.7.10
+* Puma, from 5.6.7 to 6.4.3
+* Pg, from 1.2.3 to 1.5.9
+* pundit, from 2.1.0 to 2.4.0
+* packwerk, from 1.1.3 to 3.2.2
+* view_component, from 2.83.0 to 3.20.0
+* Plus: bcrypt, capybara, persistent_dmnd, acts_as_votable, acts-as-taggable-on, sidekiq, codecov, mjml, recapcha, bugsnag, mutant-rspec, parallel_tests, yarn, factorybot-rails, rubocop, rubocop_rails, rubocop-performance, and many many many more.
+
+I'm working on a ShinyShop plugin for the CMS as part of my rehab currently, hopefully that will be ready for initial release some time next year.
+
+
 ### 2021-06-02  21.06  June 2021: The 'Happy Birthday, Fliss!' Edition
 
 GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v21.06
@@ -34,12 +59,12 @@ Changed:
 * Moved various top-level methods into classes, to reduce pollution
     * Helper methods for Gemfile also moved from main_app to core plugin
 * Gemfile picks up Ruby version from .ruby-version (using helper method)
-* Moved `credits.md` to 'Contributors.md` which seems more common
+* Moved `credits.md` to `Contributors.md` which seems more common
 * Changed inheritance from core by feature plugin controllers/mailers/etc
     * They now load common behaviour etc from a XyzBase module rather than inheriting it from a BaseXyz class, which feels like looser coupling
 
 Also updated:
-* `bundle update` and 'yarn upgrade`
+* `bundle update` and `yarn upgrade`
     * Fixed pagy, which was pinned due to breaking changes a few releases back
     * But had to pin view_components this time :(
 
