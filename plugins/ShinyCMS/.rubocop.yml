@@ -101,7 +101,7 @@ Style/AsciiComments:
     - app/models/concerns/shinycms/plugins_components.rb
 
 # The plugin code uses the immutable variables from Persistent💎, so I think this is ok?
-ThreadSafety/InstanceVariableInClassMethod:
+ThreadSafety/ClassInstanceVariable:
   Exclude:
     - 'app/models/shinycms/plugin.rb'
     - 'app/models/shinycms/plugins.rb'
