@@ -308,7 +308,7 @@ GEM
       erubi (~> 1.4)
       parser (>= 2.4)
       smart_properties
-    bigdecimal (3.1.8)
+    bigdecimal (3.1.9)
     blazer (3.0.4)
       activerecord (>= 6.1)
       chartkick (>= 5)
@@ -729,7 +729,7 @@ GEM
     sentry-rails (5.22.1)
       railties (>= 5.0)
       sentry-ruby (~> 5.22.1)
-    sentry-ruby (5.22.1)
+    sentry-ruby (5.22.2)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
     set (1.1.0)
