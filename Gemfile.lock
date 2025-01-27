@@ -319,7 +319,7 @@ GEM
       erubi (~> 1.4)
       parser (>= 2.4)
       smart_properties
-    bigdecimal (3.1.8)
+    bigdecimal (3.1.9)
     blazer (3.0.4)
       activerecord (>= 6.1)
       chartkick (>= 5)
@@ -365,7 +365,7 @@ GEM
       descendants_tracker (~> 0.0.1)
     colorize (0.8.1)
     concurrent-ruby (1.3.4)
-    connection_pool (2.4.1)
+    connection_pool (2.5.0)
     constant_resolver (0.2.0)
     coverband (6.1.4)
       redis (>= 3.0)
@@ -451,7 +451,7 @@ GEM
     hashdiff (1.1.1)
     highline (3.0.1)
     httpclient (2.8.3)
-    i18n (1.14.6)
+    i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     i18n-tasks (1.0.14)
       activesupport (>= 4.0.2)
@@ -473,7 +473,7 @@ GEM
     iniparse (1.5.0)
     jmespath (1.6.2)
     json (2.9.1)
-    language_server-protocol (3.17.0.3)
+    language_server-protocol (3.17.0.4)
     launchy (3.0.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
@@ -487,7 +487,7 @@ GEM
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    logger (1.6.3)
+    logger (1.6.5)
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -503,7 +503,7 @@ GEM
     mini_mime (1.1.5)
     mini_portile2 (2.8.8)
     minitest (5.25.4)
-    mjml-rails (4.13.0)
+    mjml-rails (4.14.0)
     multi_json (1.15.0)
     mutant (0.12.4)
       diff-lcs (~> 1.3)
@@ -524,12 +524,12 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.1)
+    nokogiri (1.18.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     numerizer (0.1.1)
     orm_adapter (0.5.0)
-    overcommit (0.64.1)
+    overcommit (0.65.0)
       childprocess (>= 0.6.3, < 6)
       iniparse (~> 1.4)
       rexml (>= 3.3.9)
@@ -553,7 +553,7 @@ GEM
     parallel (1.26.3)
     parallel_tests (4.9.0)
       parallel
-    parser (3.3.6.0)
+    parser (3.3.7.0)
       ast (~> 2.4.1)
       racc
     path_expander (1.1.1)
@@ -628,7 +628,7 @@ GEM
     recaptcha (5.19.0)
     redis (5.3.0)
       redis-client (>= 0.22.0)
-    redis-client (0.23.0)
+    redis-client (0.23.2)
       connection_pool
     reek (6.3.0)
       dry-schema (~> 1.13.0)
@@ -641,7 +641,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.3.9)
+    rexml (3.4.0)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -672,7 +672,7 @@ GEM
       rspec
     rss (0.3.1)
       rexml
-    rubocop (1.70.0)
+    rubocop (1.71.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -682,7 +682,7 @@ GEM
       rubocop-ast (>= 1.36.2, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.37.0)
+    rubocop-ast (1.38.0)
       parser (>= 3.3.1.0)
     rubocop-capybara (2.21.0)
       rubocop (~> 1.41)
@@ -691,12 +691,12 @@ GEM
     rubocop-performance (1.23.1)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rails (2.28.0)
+    rubocop-rails (2.29.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.52.0, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rspec (3.3.0)
+    rubocop-rspec (3.4.0)
       rubocop (~> 1.61)
     rubocop-rspec_rails (2.30.0)
       rubocop (~> 1.61)
@@ -737,15 +737,16 @@ GEM
     seed_dump (3.3.1)
       activerecord (>= 4)
       activesupport (>= 4)
-    sentry-rails (5.22.1)
+    sentry-rails (5.22.2)
       railties (>= 5.0)
-      sentry-ruby (~> 5.22.1)
-    sentry-ruby (5.22.1)
+      sentry-ruby (~> 5.22.2)
+    sentry-ruby (5.22.2)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
     set (1.1.0)
     sexp_processor (4.17.0)
-    sidekiq (7.3.7)
+    sidekiq (7.3.8)
+      base64
       connection_pool (>= 2.3.0)
       logger
       rack (>= 2.2.4)
@@ -789,7 +790,7 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    unicode-display_width (3.1.3)
+    unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
     uniform_notifier (1.16.0)
@@ -833,6 +834,7 @@ DEPENDENCIES
   capybara (~> 3.40)!
   chartkick (~> 5.1.2)!
   codecov!
+  concurrent-ruby (= 1.3.4)!
   coverband!
   database_cleaner-active_record!
   dotenv-rails!
