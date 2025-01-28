@@ -19,9 +19,6 @@ source 'https://rubygems.org' do
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/load'
 
-  # TEMP FIX: https://stackoverflow.com/questions/79360526/uninitialized-constant-activesupportloggerthreadsafelevellogger-nameerror
-  gem 'concurrent-ruby', '1.3.5'
-
   # Find out which bits of your code are used more/less in production
   gem 'coverband', groups: %i[ development production ]
 
