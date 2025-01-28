@@ -364,7 +364,7 @@ GEM
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     colorize (0.8.1)
-    concurrent-ruby (1.3.4)
+    concurrent-ruby (1.3.5)
     connection_pool (2.5.0)
     constant_resolver (0.2.0)
     coverband (6.1.4)
@@ -834,7 +834,6 @@ DEPENDENCIES
   capybara (~> 3.40)!
   chartkick (~> 5.1.2)!
   codecov!
-  concurrent-ruby (= 1.3.4)!
   coverband!
   database_cleaner-active_record!
   dotenv-rails!
