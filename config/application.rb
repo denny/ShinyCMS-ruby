@@ -8,10 +8,6 @@
 
 require_relative 'boot'
 
-# Fix/ignore concurrent-ruby upgrade issue: https://stackoverflow.com/a/79361190
-# This should be safe to remove in Rails 7.1
-require 'logger'
-
 require 'rails'
 
 require 'active_model/railtie'
