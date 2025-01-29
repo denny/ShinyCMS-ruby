@@ -35,7 +35,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.5.9'
 
   # Webserver
-  gem 'puma', '~> 6.5', groups: %i[ development production ]
+  gem 'puma', '~> 6.6', groups: %i[ development production ]
 
   # Email previews
   gem 'rails_email_preview'

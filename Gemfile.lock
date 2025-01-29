@@ -559,7 +559,7 @@ GEM
     pry-rails (0.3.11)
       pry (>= 0.13.0)
     public_suffix (6.0.1)
-    puma (6.5.0)
+    puma (6.6.0)
       nio4r (~> 2.0)
     pundit (2.4.0)
       activesupport (>= 3.0.0)
@@ -833,7 +833,7 @@ DEPENDENCIES
   packwerk (~> 3.2)!
   parallel_tests!
   pg (~> 1.5.9)!
-  puma (~> 6.5)!
+  puma (~> 6.6)!
   rails (~> 6.1.7)!
   rails-pg-extras!
   rails_email_preview!
