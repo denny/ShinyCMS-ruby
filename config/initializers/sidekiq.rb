@@ -13,7 +13,9 @@ redis_options = { url: ENV['REDIS_URL'] }
 redis_options[:ssl_params] = { verify_mode: OpenSSL::SSL::VERIFY_NONE } if ENV['REDIS_VERIFY_MODE'] == 'none'
 
 Sidekiq.configure_server do |config|
+  # :nocov:
   config.redis = redis_options
+  # :nocov:
 end
 
 Sidekiq.configure_client do |config|
