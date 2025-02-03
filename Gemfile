@@ -48,7 +48,7 @@ source 'https://rubygems.org' do
   # Charts and dashboards
   gem 'blazer'
   # Charts
-  gem 'chartkick', '~> 5.1.2'
+  gem 'chartkick', '~> 5.1.3'
 
   group :development, :test do
     # RSpec for Rails
