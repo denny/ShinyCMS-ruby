@@ -34,8 +34,7 @@ Rails.application.config.action_view.apply_stylesheet_media_default = false
 # various cache keys leading to cache invalidation.
 # Rails.application.config.active_support.hash_digest_class = OpenSSL::Digest::SHA256
 
-# Don't override ActiveSupport::TimeWithZone.name and use the default Ruby
-# implementation.
+# Don't override ActiveSupport::TimeWithZone.name and use the default Ruby implementation.
 Rails.application.config.active_support.remove_deprecated_time_with_zone_name = true
 
 # Calls `Rails.application.executor.wrap` around test cases.
@@ -89,15 +88,15 @@ Rails.application.config.active_support.use_rfc4122_namespaced_uuids = true
 
 # Change the default headers to disable browsers' flawed legacy XSS protection.
 Rails.application.config.action_dispatch.default_headers = {
-  "X-Frame-Options" => "SAMEORIGIN",
-  "X-XSS-Protection" => "0",
-  "X-Content-Type-Options" => "nosniff",
-  "X-Download-Options" => "noopen",
-  "X-Permitted-Cross-Domain-Policies" => "none",
-  "Referrer-Policy" => "strict-origin-when-cross-origin"
+  'Referrer-Policy':                   'strict-origin-when-cross-origin',
+  'X-Content-Type-Options':            'nosniff',
+  'X-Download-Options':                'noopen',
+  'X-Frame-Options':                   'SAMEORIGIN',
+  'X-Permitted-Cross-Domain-Policies': 'none',
+  'X-XSS-Protection':                  '0'
 }
 
-# TODO:
+# TODO: cache format changes, do with Eliot?
 # ** Please read carefully, this must be configured in config/application.rb **
 # Change the format of the cache entry.
 # Changing this default means that all new cache entries added to the cache
@@ -143,7 +142,7 @@ Rails.application.config.action_dispatch.return_only_request_media_type_on_conte
 # TODO: double-check this with Eliot, but I think it's safe to enable
 Rails.application.config.active_storage.multiple_file_field_include_hidden = true
 
-# TODO:
+# TODO: Not sure about this - check with Eliot
 # ** Please read carefully, this must be configured in config/application.rb (NOT this file) **
 # Disables the deprecated #to_s override in some Ruby core classes
 # See https://guides.rubyonrails.org/configuring.html#config-active-support-disable-to-s-conversion for more information
