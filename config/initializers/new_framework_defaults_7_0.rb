@@ -63,7 +63,7 @@ Rails.application.config.active_record.verify_foreign_keys_for_fixtures = true
 # regardless of whether they have a default or not.
 Rails.application.config.active_record.partial_inserts = false
 
-# TODO: tried this and it broke the test suite - check with Eliot
+# TODO: Enabling this breaks one of the Ahoy::Email tests
 # Protect from open redirect attacks in `redirect_back_or_to` and `redirect_to`.
 # Rails.application.config.action_controller.raise_on_open_redirects = true
 
