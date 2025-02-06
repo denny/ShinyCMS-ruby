@@ -106,7 +106,7 @@ Rails.application.config.action_dispatch.default_headers = {
 # When you're ready to change format, add this to `config/application.rb` (NOT this file):
 #  config.active_support.cache_format_version = 7.0
 
-# TODO: didn't understand this, check with Eliot
+# TODO: cookie format changes - check with Eliot, but I think I should use :hybrid ?
 # Cookie serializer: 2 options
 #
 # If you're upgrading and haven't set `cookies_serializer` previously, your cookie serializer
