@@ -48,5 +48,15 @@ module ShinyHostApp
 
     # Smarter error pages
     config.exceptions_app = routes
+
+    # Disables the deprecated #to_s override in some Ruby core classes. For more information see
+    # https://guides.rubyonrails.org/configuring.html#config-active-support-disable-to-s-conversion
+    # config.active_support.disable_to_s_conversion = true
+
+    # Changing this default means that all new cache entries added to the cache will have a
+    # different format that is not supported by Rails 6.1 applications. Only change this value
+    # after your application is fully deployed to Rails 7.0 and you have no plans to rollback.
+    # When you're ready to change format, uncomment this:
+    # config.active_support.cache_format_version = 7.0
   end
 end
