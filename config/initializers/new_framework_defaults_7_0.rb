@@ -123,6 +123,5 @@ Rails.application.config.action_dispatch.cookies_serializer = :json
 #
 # See https://guides.rubyonrails.org/action_controller_overview.html#cookies for more information.
 
-# TODO: Enabling this breaks one of the Ahoy::Email tests
 # Protect from open redirect attacks in `redirect_back_or_to` and `redirect_to`.
-# Rails.application.config.action_controller.raise_on_open_redirects = true
+Rails.application.config.action_controller.raise_on_open_redirects = true
