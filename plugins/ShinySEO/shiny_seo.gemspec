@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
-  spec.add_dependency 'rails', '>= 7.0.8.7', '< 7.1'
+  spec.add_dependency 'rails', '>= 7.1.5.1', '< 7.2'
 
   spec.add_dependency 'pg', '>= 0.18', '< 2.0'
 
