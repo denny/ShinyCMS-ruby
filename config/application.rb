@@ -58,5 +58,11 @@ module ShinyHostApp
     # after your application is fully deployed to Rails 7.0 and you have no plans to rollback.
     # When you're ready to change format, uncomment this:
     # config.active_support.cache_format_version = 7.0
+
+    # To migrate an existing application to the `:json` serializer, use the `:hybrid` option.
+    # It is fine to use `:hybrid` long term; you should do that until you're confident *all*
+    # your cookies have been converted to JSON. To keep using `:hybrid` long term, move this
+    # config to its own initializer or to `config/application.rb`.
+    # config.action_dispatch.cookies_serializer = :hybrid
   end
 end

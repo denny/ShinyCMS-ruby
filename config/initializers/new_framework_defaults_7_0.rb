@@ -79,13 +79,13 @@ Rails.application.config.action_dispatch.default_headers = {
 # Change the return value of `ActionDispatch::Request#content_type` to the Content-Type header without modification.
 Rails.application.config.action_dispatch.return_only_request_media_type_on_content_type = false
 
+# TODO: double-check this with Eliot, but I think it's safe to enable
 # Active Storage `has_many_attached` relationships will default to replacing the current collection instead of
 # appending to it.
 # Thus, to support submitting an empty collection, the `file_field` helper will render an hidden field `include_hidden`
 # by default when `multiple_file_field_include_hidden` is set to `true`.
 # See https://guides.rubyonrails.org/configuring.html#config-active-storage-multiple-file-field-include-hidden for more
 # information.
-# TODO: double-check this with Eliot, but I think it's safe to enable
 Rails.application.config.active_storage.multiple_file_field_include_hidden = true
 
 # TODO: sounds scary, check with Eliot? Although, the more I read the less I think it matters to me
@@ -128,6 +128,16 @@ Rails.application.config.active_storage.multiple_file_field_include_hidden = tru
 #
 # See https://guides.rubyonrails.org/action_controller_overview.html#cookies for more information.
 
+# TODO: Enabling this breaks one of the Ahoy::Email tests
+# Protect from open redirect attacks in `redirect_back_or_to` and `redirect_to`.
+# Rails.application.config.action_controller.raise_on_open_redirects = true
+
+# TODO: This sounds like a good thing? Check with Eliot though.
+# ** Please read carefully, this must be configured in config/application.rb (NOT this file) **
+# Disables the deprecated #to_s override in some Ruby core classes
+# See https://guides.rubyonrails.org/configuring.html#config-active-support-disable-to-s-conversion for more information
+# config.active_support.disable_to_s_conversion = true
+
 # TODO: cache format changes... do with Eliot?
 # ** Please read carefully, this must be configured in config/application.rb **
 # Change the format of the cache entry.
@@ -136,14 +146,4 @@ Rails.application.config.active_storage.multiple_file_field_include_hidden = tru
 # Only change this value after your application is fully deployed to Rails 7.0
 # and you have no plans to rollback.
 # When you're ready to change format, add this to `config/application.rb` (NOT this file):
-#  config.active_support.cache_format_version = 7.0
-
-# TODO: This sounds like a good thing? Check with Eliot though.
-# ** Please read carefully, this must be configured in config/application.rb (NOT this file) **
-# Disables the deprecated #to_s override in some Ruby core classes
-# See https://guides.rubyonrails.org/configuring.html#config-active-support-disable-to-s-conversion for more information
-# config.active_support.disable_to_s_conversion = true
-
-# TODO: Enabling this breaks one of the Ahoy::Email tests
-# Protect from open redirect attacks in `redirect_back_or_to` and `redirect_to`.
-# Rails.application.config.action_controller.raise_on_open_redirects = true
+# config.active_support.cache_format_version = 7.0
