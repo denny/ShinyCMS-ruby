@@ -511,7 +511,7 @@ GEM
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-smtp (0.5.0)
+    net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
     nokogiri (1.18.2)
@@ -594,9 +594,9 @@ GEM
     rails-i18n (7.0.10)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
-    rails-pg-extras (5.6.1)
+    rails-pg-extras (5.6.2)
       rails
-      ruby-pg-extras (= 5.6.1)
+      ruby-pg-extras (= 5.6.2)
     rails_email_preview (2.2.3)
       rails (>= 4.2)
       request_store
@@ -693,7 +693,7 @@ GEM
       rubocop-rspec (~> 3, >= 3.0.1)
     rubocop-thread_safety (0.6.0)
       rubocop (>= 1.48.1)
-    ruby-pg-extras (5.6.1)
+    ruby-pg-extras (5.6.2)
       pg
       terminal-table
     ruby-progressbar (1.13.0)
