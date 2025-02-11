@@ -40,6 +40,11 @@ en:
 
   # Views, Components, and Controllers
 
+  # For some reason this needs to be here now? Sort of??
+  errors:
+    messages:
+      slug_not_safe_at_top_level: cannot be used as a top-level slug
+
   shinycms:
     home: Home
 
