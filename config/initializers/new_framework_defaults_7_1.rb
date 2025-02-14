@@ -174,6 +174,10 @@ Rails.application.config.active_record.commit_transaction_on_non_local_return = 
 # Controls when to generate a value for <tt>has_secure_token</tt> declarations.
 Rails.application.config.active_record.generate_secure_token_on = :initialize
 
+# Configure the log level used by the DebugExceptions middleware when logging
+# uncaught exceptions during requests.
+Rails.application.config.action_dispatch.debug_exception_log_level = :error
+
 # Configure the test helpers in Action View, Action Dispatch, and rails-dom-testing to use HTML5
 # parsers.
 #
@@ -200,11 +204,6 @@ Rails.application.config.action_view.sanitizer_vendor = Rails::HTML::Sanitizer.b
 #
 # In previous versions of Rails, Action Text always used `Rails::HTML4::Sanitizer` as its vendor.
 # Rails.application.config.action_text.sanitizer_vendor = Rails::HTML::Sanitizer.best_supported_vendor
-
-# TODO: thowing messy exceptions during tests?
-# Configure the log level used by the DebugExceptions middleware when logging
-# uncaught exceptions during requests.
-# Rails.application.config.action_dispatch.debug_exception_log_level = :error
 
 # TODO: this goes BOOM
 # No longer add autoloaded paths into `$LOAD_PATH`. This means that you won't be able
