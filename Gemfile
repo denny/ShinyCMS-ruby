@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2024 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -34,8 +34,11 @@ source 'https://rubygems.org' do
   # Postgres
   gem 'pg', '~> 1.5.9'
 
+  # Rack
+  gem 'rack', '>= 2.2.11'
+
   # Webserver
-  gem 'puma', '~> 6.5', groups: %i[ development production ]
+  gem 'puma', '~> 6.6', groups: %i[ development production ]
 
   # Email previews
   gem 'rails_email_preview'
@@ -48,7 +51,7 @@ source 'https://rubygems.org' do
   # Charts and dashboards
   gem 'blazer'
   # Charts
-  gem 'chartkick', '~> 5.1.2'
+  gem 'chartkick', '~> 5.1.3'
 
   group :development, :test do
     # RSpec for Rails

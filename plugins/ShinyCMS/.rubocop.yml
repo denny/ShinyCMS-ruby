@@ -1,6 +1,6 @@
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2024 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -101,7 +101,7 @@ Style/AsciiComments:
     - app/models/concerns/shinycms/plugins_components.rb
 
 # The plugin code uses the immutable variables from Persistent💎, so I think this is ok?
-ThreadSafety/InstanceVariableInClassMethod:
+ThreadSafety/ClassInstanceVariable:
   Exclude:
     - 'app/models/shinycms/plugin.rb'
     - 'app/models/shinycms/plugins.rb'
