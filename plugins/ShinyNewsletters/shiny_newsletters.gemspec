@@ -2,7 +2,7 @@
 
 # ShinyNewsletters plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2024 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -18,13 +18,13 @@ Gem::Specification.new do |spec|
   spec.license     = 'GPL'
 
   spec.authors     = [ 'Denny de la Haye' ]
-  spec.email       = [ '2023@denny.me' ]
+  spec.email       = [ '2025@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
 
   spec.summary     = 'ShinyNewsletters plugin for ShinyCMS'
   spec.description = 'The ShinyNewsletters plugin adds mailing list and newsletter features to ShinyCMS'
 
-  spec.required_ruby_version = '~> 3.0'
+  spec.required_ruby_version = '>= 3.1'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.

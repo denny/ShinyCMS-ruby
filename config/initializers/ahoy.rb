@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2024 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -24,7 +24,7 @@ Ahoy.mask_ips = ( ENV['AHOY_MASK_IPS'].presence == 'true' )
 
 # Set AHOY_COOKIES to the string 'false' to use anonymity sets instead
 # https://privacypatterns.org/patterns/Anonymity-set
-Ahoy.cookies = ( ENV['AHOY_COOKIES'].presence != 'false' )
+Ahoy.cookies = ENV['AHOY_COOKIES'] == 'false' ? :none : true
 
 # Set to true for JavaScript tracking
 Ahoy.api = false

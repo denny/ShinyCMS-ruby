@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2024 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -16,4 +16,10 @@ return if Rails.env.test?
 
 Coverband.configure do |config|
   config.track_views = true
+  config.store = Coverband::Adapters::RedisStore.new(
+    Redis.new(
+      url:        ENV['REDIS_URL'],
+      ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }
+    )
+  )
 end
