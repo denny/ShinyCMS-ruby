@@ -34,6 +34,9 @@ source 'https://rubygems.org' do
   # Postgres
   gem 'pg', '~> 1.5.9'
 
+  # Rack
+  gem 'rack', '>= 2.2.11'
+
   # Webserver
   gem 'puma', '~> 6.6', groups: %i[ development production ]
 
