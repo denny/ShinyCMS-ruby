@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2024 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -30,7 +30,7 @@ module ShinyCMS
 
         # Return true if the page we're on might need a WYSIWYG HTML editor
         def with_html_editor?
-          action_name == 'new' || action_name == 'edit'
+          %w[ new edit ].include? action_name
         end
       end
     end

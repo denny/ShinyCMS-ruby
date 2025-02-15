@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2024 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -16,7 +16,7 @@
 module ShinyCMS
   # Rescue calls to 'missing' ShinyCMS route helpers coming from inside other engines
   module RouteDelegator
-    def method_missing( method, *args, &block )
+    def method_missing( method, *args, & )
       if main_app_route_method?( method )
         main_app.__send__( method, *args )
       else

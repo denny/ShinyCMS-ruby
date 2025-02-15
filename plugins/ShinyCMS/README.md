@@ -29,13 +29,14 @@ rails shinycms:db:seed
 
 ## Contributing
 
-See the ShinyCMS developer documentation for information on contributing to this plugin or any other part of the ShinyCMS project.
+See the developer documentation for information on ShinyCMS features
+[in progress](docs/Developer/Progress.md) and [to-do](docs/Developer/TODO.md)
 
-Please read the Code of Conduct as well.
+Please read the [Code of Conduct](docs/code-of-conduct.md) as well.
 
 
 ## Copyright and Licensing
 
-ShinyCMS is copyright 2009-2021 Denny de la Haye https://denny.me
+ShinyCMS is copyright 2009-2025 Denny de la Haye https://denny.me
 
 ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later). You should have copies of both v2 and v2 of the GPL in the included docs folder, or you can read them online: https://opensource.org/licenses/gpl-2.0 / https://opensource.org/licenses/gpl-3.0

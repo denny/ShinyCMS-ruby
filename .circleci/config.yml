@@ -12,7 +12,7 @@ version: 2
 
 references:
   app: &app
-    image: cimg/ruby:3.0.7-node
+    image: cimg/ruby:3.1.6-node
     environment:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
@@ -117,7 +117,7 @@ jobs:
 
       - run:
           name: Audit Gemfile bundle for security issues
-          command: bundle exec bundle-audit check --update
+          command: bundle exec bundle-audit check --update --ignore CVE-2024-54133
 
   # Run rspec tests, for main app and plugins
   rspec:

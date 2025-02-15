@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2024 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL ( version 2 or later )
 
@@ -168,8 +168,8 @@ module Shiny
         raise Error, "Invalid plugin name '#{original_name}' - constant #{camelized} is already in use."
       end
 
-      def mute( &block )
-        shell.mute( &block )
+      def mute( & )
+        shell.mute( & )
       end
     end
     # rubocop:enable Metrics/ClassLength

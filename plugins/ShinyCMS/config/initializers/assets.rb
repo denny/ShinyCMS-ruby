@@ -2,12 +2,12 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2024 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 # Version of your assets, change this if you want to expire all your assets.
-Rails.application.config.assets.version = '2021.06.01.0300'
+Rails.application.config.assets.version = '2024.11.25.1700'
 
 # Add theme images and stylesheets to the asset load path
 class ShinyCMS::ThemeAssetsSetup
