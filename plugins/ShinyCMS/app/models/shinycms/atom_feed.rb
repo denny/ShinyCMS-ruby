@@ -36,7 +36,7 @@ module ShinyCMS
     end
 
     def write_file
-      write_file_to_aws_s3 || write_file_to_local_disk( Rails.root.join( "public/feeds/atom/#{name}.xml".to_s ) )
+      write_file_to_aws_s3 || write_file_to_local_disk( Rails.root.join( "public/feeds/atom/#{name}.xml" ) )
     end
 
     private
