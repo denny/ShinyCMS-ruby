@@ -11,8 +11,7 @@
 # less error prone than running all of your migrations from scratch. Old migrations may fail
 # to apply correctly if those migrations use external dependencies or application code.
 
-ActiveRecord::Schema.define(version: 2024_11_06_184645) do
-
+ActiveRecord::Schema[7.0].define(version: 2025_02_06_162503) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "pgcrypto"
@@ -34,7 +33,7 @@ ActiveRecord::Schema.define(version: 2024_11_06_184645) do
     t.string "content_type"
     t.text "metadata"
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
+    t.string "checksum"
     t.datetime "created_at", precision: 0, null: false
     t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
