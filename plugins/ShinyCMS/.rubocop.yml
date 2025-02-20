@@ -6,12 +6,14 @@
 
 inherit_from: .rubocop_todo.yml
 
-require:
-  - rubocop-capybara
-  - rubocop-factory_bot
+plugins:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
+
+require:
+  - rubocop-capybara
+  - rubocop-factory_bot
   - rubocop-rspec_rails
   - rubocop-thread_safety
 
