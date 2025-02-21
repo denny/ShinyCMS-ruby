@@ -317,11 +317,11 @@ GEM
       parser (>= 2.4)
       smart_properties
     bigdecimal (3.1.9)
-    blazer (3.0.4)
+    blazer (3.1.0)
       activerecord (>= 6.1)
       chartkick (>= 5)
       csv
-      railties (>= 6.1)
+      railties (>= 7)
       safely_block (>= 0.4)
     brakeman (7.0.0)
       racc
@@ -370,7 +370,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-    csv (3.3.0)
+    csv (3.3.2)
     database_cleaner-active_record (2.2.0)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
@@ -819,7 +819,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.18)
+    zeitwerk (2.7.2)
     zxcvbn-ruby (1.2.0)
 
 PLATFORMS
