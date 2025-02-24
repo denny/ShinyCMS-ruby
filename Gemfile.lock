@@ -318,7 +318,7 @@ GEM
       parser (>= 2.4)
       smart_properties
     bigdecimal (3.1.9)
-    blazer (3.1.0)
+    blazer (3.2.0)
       activerecord (>= 6.1)
       chartkick (>= 5)
       csv
