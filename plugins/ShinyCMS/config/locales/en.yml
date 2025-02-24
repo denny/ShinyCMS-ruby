@@ -36,11 +36,6 @@ en:
   # Confirmation dialogue
   are_you_sure: Are you sure?
 
-  # Model validation
-  errors:
-    messages:
-      slug_not_safe_at_top_level: cannot be used as a top-level slug
-
   # ========== ( Main Site ) ==========
 
   # Views, Components, and Controllers
