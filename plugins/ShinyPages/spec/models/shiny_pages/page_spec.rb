@@ -92,6 +92,15 @@ module ShinyPages
       end
     end
 
+    describe 'validations' do
+      it 'fails with appropriate error when top-level slug collides with existing route' do
+        colliding = build :page, slug: 'admin'
+
+        expect( colliding.valid? ).to be false
+        expect( colliding.errors.full_messages_for( :slug ) ).to contain_exactly 'Slug cannot be used as a top-level slug'
+      end
+    end
+
     describe 'concerns' do
       it_behaves_like ShinyCMS::ProvidesDemoSiteData do
         let( :model ) { described_class }
