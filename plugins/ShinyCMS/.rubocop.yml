@@ -10,12 +10,12 @@ plugins:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-thread_safety
 
 require:
   - rubocop-capybara
   - rubocop-factory_bot
   - rubocop-rspec_rails
-  - rubocop-thread_safety
 
 AllCops:
   EnabledByDefault: true
