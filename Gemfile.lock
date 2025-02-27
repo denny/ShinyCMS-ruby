@@ -673,7 +673,7 @@ GEM
       rspec
     rss (0.3.1)
       rexml
-    rubocop (1.73.0)
+    rubocop (1.73.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
