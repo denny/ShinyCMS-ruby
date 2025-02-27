@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.summary     = 'ShinyLists plugin for ShinyCMS'
   spec.description = 'The ShinyLists plugin adds mailing lists features to ShinyCMS'
 
-  spec.required_ruby_version = '>= 3.3'
+  spec.required_ruby_version = '>= 3.4'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
