@@ -615,9 +615,9 @@ GEM
     rails-i18n (7.0.10)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
-    rails-pg-extras (5.6.6)
+    rails-pg-extras (5.6.7)
       rails
-      ruby-pg-extras (= 5.6.6)
+      ruby-pg-extras (= 5.6.7)
     rails_email_preview (2.2.3)
       rails (>= 4.2)
       request_store
@@ -684,7 +684,7 @@ GEM
       rspec
     rss (0.3.1)
       rexml
-    rubocop (1.72.2)
+    rubocop (1.73.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -695,7 +695,7 @@ GEM
       rubocop-ast (>= 1.38.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.38.0)
+    rubocop-ast (1.38.1)
       parser (>= 3.3.1.0)
     rubocop-capybara (2.21.0)
       rubocop (~> 1.41)
@@ -720,7 +720,7 @@ GEM
     rubocop-thread_safety (0.7.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
-    ruby-pg-extras (5.6.6)
+    ruby-pg-extras (5.6.7)
       pg
       terminal-table
     ruby-progressbar (1.13.0)
