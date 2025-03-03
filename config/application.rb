@@ -33,7 +33,7 @@ module ShinyHostApp
   # Rails application class for the ShinyHostApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 7.1
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -42,6 +42,9 @@ module ShinyHostApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Add autoloaded paths into `$LOAD_PATH`
+    config.add_autoload_paths_to_load_path = true
 
     # Don't generate system test files.
     config.generators.system_tests = nil
