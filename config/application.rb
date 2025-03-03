@@ -33,7 +33,7 @@ module ShinyHostApp
   # Rails application class for the ShinyHostApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 7.1
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -43,13 +43,8 @@ module ShinyHostApp
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # TODO: Do not add autoloaded paths into `$LOAD_PATH`
-    # config.add_autoload_paths_to_load_path = false
-
-    # TODO: Change the format of the cache entry
-    # Only change this value after your application is fully deployed
-    # to Rails 7.1 and you have no plans to rollback.
-    # config.active_support.cache_format_version = 7.1
+    # Add autoloaded paths into `$LOAD_PATH`
+    config.add_autoload_paths_to_load_path = true
 
     # Don't generate system test files.
     config.generators.system_tests = nil
