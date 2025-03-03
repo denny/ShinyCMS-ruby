@@ -125,7 +125,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'sentry-ruby'
 
   # Fix request.ip when running behind Cloudflare proxying
-  spec.add_dependency 'cloudflare-rails', '~> 4.1'
+  # spec.add_dependency 'cloudflare-rails', '~> 4.1'
+
+  # Must be explicitly required from Rails 7.2 onwards
+  spec.add_dependency 'mutex_m'
+  spec.add_dependency 'ostruct'
 
   # Used to export demo site data from the database
   spec.add_dependency 'seed_dump'
