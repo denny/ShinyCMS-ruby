@@ -14,7 +14,7 @@ AmazingPrint.pry!
 
 # Show app name and current environment in console prompt.
 # Environment is colour-coded to indicate how careful you should be :)
-if Rails.env.development? || Rails.env.test? || ENV[ 'SHINYCMS_PRY_CONSOLE' ]&.downcase == 'true'
+if Rails.env.local? || ENV[ 'SHINYCMS_PRY_CONSOLE' ]&.downcase == 'true'
   def prompt_name( name )
     return name unless name.is_a?( Pry::Config )
 

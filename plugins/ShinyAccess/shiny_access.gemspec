@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.summary     = 'ShinyAccess plugin for ShinyCMS'
   spec.description = 'The ShinyAccess plugin provides access control features for ShinyCMS sites'
 
-  spec.required_ruby_version = '>= 3.2'
+  spec.required_ruby_version = '>= 3.4'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
-  spec.add_dependency 'rails', '>= 7.0.8.7', '< 7.1'
+  spec.add_dependency 'rails', '>= 7.1.5.1', '< 7.2'
 
   spec.add_dependency 'pg', '>= 1.2.3', '< 1.6.0'
 

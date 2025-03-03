@@ -81,6 +81,8 @@ ignore_missing:
 ignore_unused:
   - shinycms.admin.elements.{html,image,long_text,short_text}
   - shinycms.errors.messages.*
+  - errors.not_found.title
+  - errors.messages.slug_not_safe_at_top_level
 #  - devise.*
 # - '{devise,kaminari,will_paginate}.*'
 # - 'activerecord.attributes.*'

@@ -25,7 +25,7 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.cache_classes = false
+  config.enable_reloading = true
 
   # ShinyCMS needs eager load enabled so that we can use .descendants to check all the models
   # in each plugin for the ones that provide various capabilities - e.g. taggable, demo_data, etc
@@ -38,6 +38,9 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true     # standard dev behaviour
   # config.consider_all_requests_local = false  # behave like production
+
+  # Enable server timing
+  config.server_timing = true
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -94,6 +97,9 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = false
 
+  # Highlight code that enqueued background job in logs.
+  config.active_job.verbose_enqueue_logs = true
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
@@ -103,6 +109,13 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets
   # This option may cause significant delays in view rendering with a large number of complex assets
   # config.assets.debug = true
+
+  # Annotate rendered view with file names
+  # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # Raise error when a before_action's only/except options reference missing actions
+  # routes, locales, etc. This feature depends on the listen gem.
+  config.action_controller.raise_on_missing_callback_actions = true
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
