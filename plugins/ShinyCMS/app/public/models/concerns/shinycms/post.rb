@@ -38,8 +38,6 @@ module ShinyCMS
 
       # Attribute aliases and delegated methods
 
-      # alias_method    :author,    :user
-      alias_attribute :author,    :user
       alias_attribute :slug_base, :title
 
       delegate :show_on_site, to: :discussion, allow_nil: true, prefix: true
@@ -56,6 +54,8 @@ module ShinyCMS
       mattr_reader :implicit_order_column, default: :posted_at
 
       # Instance methods
+
+      def author = user
 
       def posted_at_time
         posted_at&.time
