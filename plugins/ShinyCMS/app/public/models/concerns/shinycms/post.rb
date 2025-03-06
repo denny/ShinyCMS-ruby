@@ -57,25 +57,15 @@ module ShinyCMS
 
       def author = user
 
-      def posted_at_time
-        posted_at&.time
-      end
+      def posted_at_time = posted_at&.time
 
-      def posted_month
-        posted_at.strftime( '%m' )
-      end
+      def posted_month = posted_at.strftime( '%m' )
 
-      def posted_year
-        posted_at.strftime( '%Y' )
-      end
+      def posted_year = posted_at.strftime( '%Y' )
 
-      def next_post
-        self.class.published.where( 'posted_at > ?', posted_at ).order( posted_at: :asc ).first
-      end
+      def next_post = self.class.published.where( 'posted_at > ?', posted_at ).order( posted_at: :asc ).first
 
-      def prev_post
-        self.class.published.where( posted_at: ...posted_at ).order( posted_at: :desc ).first
-      end
+      def prev_post = self.class.published.where( posted_at: ...posted_at ).order( posted_at: :desc ).first
 
       alias_method :previous_post, :prev_post
 
