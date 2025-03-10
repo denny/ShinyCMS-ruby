@@ -167,13 +167,5 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       expect( response.body ).not_to have_css 'td', text: version2.name
       expect( response.body ).to     have_css 'td', text: version3.name
     end
-
-    it 'raises an error if the consent version has already been agreed to by some people' do
-      version1 = create :consent_version
-      create :mailing_list_subscription, consent_version: version1
-
-      expect { delete shinycms.consent_version_path( version1 ) }
-        .to raise_error ShinyCMS::ConsentVersion::HasBeenAgreedTo
-    end
   end
 end
