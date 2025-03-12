@@ -594,7 +594,7 @@ GEM
       activesupport (>= 3.0.0)
     pwned (2.4.1)
     racc (1.8.1)
-    rack (2.2.12)
+    rack (2.2.13)
     rack-session (1.0.2)
       rack (< 3)
     rack-test (2.2.0)
@@ -883,7 +883,7 @@ DEPENDENCIES
   parallel_tests!
   pg (~> 1.5.9)!
   puma (~> 6.6)!
-  rack (>= 2.2.12)!
+  rack (>= 2.2.13)!
   rails (~> 7.2.2.1)!
   rails-pg-extras!
   rails_email_preview!
