@@ -6,7 +6,7 @@ ShinyCMS is primarily intended for use by professional web developers, as a plat
 
 Web developers can also add custom functionality by writing their own plugins. A number of helpers and concerns are provided to help you build new features quickly, and with a consistent look-and-feel to the rest of the system.
 
-The current version of ShinyCMS runs on Ruby 3.2 and Rails 7.0
+The current version of ShinyCMS runs on Ruby 3.2 and Rails 7.1
 
 ## Features
 
@@ -100,7 +100,7 @@ All other supported [external services](docs/Services.md) are optional. If you a
 
 ### Ruby and Rails versions
 
-ShinyCMS requires Rails 7.0 and Ruby 3.2 or later. The project generally uses the most recent stable release of both Ruby and Rails (currently Ruby 3.2.7 and Rails 7.0.8.7).
+ShinyCMS requires Ruby 3.2 and Rails 7.1 or later. The project generally uses the most recent stable release of both Ruby and Rails (currently Ruby 3.2.7 and Rails 7.1.5.1).
 
 
 ## Contributing
@@ -136,7 +136,6 @@ ShinyCMS includes code from other open source and free software projects, which 
 [![CircleCI](https://img.shields.io/circleci/build/github/denny/ShinyCMS-ruby?label=CircleCI&logo=circleci&logoColor=white&style=for-the-badge)](https://circleci.com/gh/denny/ShinyCMS-ruby)
 [![Codecov](https://img.shields.io/codecov/c/github/denny/ShinyCMS-ruby?label=Codecov&logo=codecov&logoColor=white&style=for-the-badge)](https://codecov.io/gh/denny/ShinyCMS-ruby)
 [![Dependabot](https://img.shields.io/static/v1?label=Dependabot&color=brightgreen&message=enabled&logo=dependabot&style=for-the-badge)](https://rubydoc.info/github/denny/ShinyCMS-ruby)
-<a href="https://hakiri.io/github/denny/ShinyCMS-ruby/main"><img src="https://hakiri.io/github/denny/ShinyCMS-ruby/main.svg" alt="Security" height="28px"></a>
 
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)

@@ -38,6 +38,7 @@ module ShinyCMS
 
       # Attribute aliases and delegated methods
 
+      # alias_method    :author,    :user
       alias_attribute :author,    :user
       alias_attribute :slug_base, :title
 

@@ -36,6 +36,7 @@ en:
         handlers:
           send_plain_email: Send plain text email
           send_html_email: Send HTML email
+          store_in_database: Store in database
         index:
           title: List form handlers
           search: Search form handlers

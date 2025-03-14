@@ -13,8 +13,8 @@ ruby "~> #{helper.ruby_version}"  # get version from .ruby-version file (DRY)
 
 source 'https://rubygems.org'
 source 'https://rubygems.org' do
-  # Rails 7.0
-  gem 'rails', '~> 7.0.8'
+  # Rails 7.1
+  gem 'rails', '~> 7.1.5'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/load'
@@ -35,7 +35,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.5.9'
 
   # Rack
-  gem 'rack', '>= 2.2.11'
+  gem 'rack', '>= 2.2.13'
 
   # Webserver
   gem 'puma', '~> 6.6', groups: %i[ development production ]

@@ -60,13 +60,13 @@ require 'email_address'
 require 'mjml-rails'
 
 # Improvements for the Rails console
-if Rails.env.test? || Rails.env.development? || ENV.fetch( 'SHINYCMS_PRY_CONSOLE', 'false' ).downcase == 'true'
+if Rails.env.local? || ENV.fetch( 'SHINYCMS_PRY_CONSOLE', 'false' ).downcase == 'true'
   require 'amazing_print'
   require 'pry-rails'
 end
 
 # Restore original request.ip when behind Cloudflare proxying
-require 'cloudflare/rails'
+require 'cloudflare_rails'
 
 # Monitoring services
 require 'airbrake'     if ENV[ 'AIRBRAKE_API_KEY' ].present?
