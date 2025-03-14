@@ -489,7 +489,7 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jmespath (1.6.2)
-    json (2.10.1)
+    json (2.10.2)
     language_server-protocol (3.17.0.4)
     launchy (3.0.1)
       addressable (~> 2.8)
