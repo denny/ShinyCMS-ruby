@@ -66,7 +66,7 @@ if Rails.env.local? || ENV.fetch( 'SHINYCMS_PRY_CONSOLE', 'false' ).downcase == 
 end
 
 # Restore original request.ip when behind Cloudflare proxying
-require 'cloudflare/rails'
+require 'cloudflare_rails'
 
 # Monitoring services
 require 'airbrake'     if ENV[ 'AIRBRAKE_API_KEY' ].present?
