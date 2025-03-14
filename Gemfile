@@ -13,8 +13,8 @@ ruby "~> #{helper.ruby_version}"  # get version from .ruby-version file (DRY)
 
 source 'https://rubygems.org'
 source 'https://rubygems.org' do
-  # Rails 6.1
-  gem 'rails', '~> 6.1.7'
+  # Rails 7.0
+  gem 'rails', '~> 7.0.8'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/load'
@@ -51,7 +51,7 @@ source 'https://rubygems.org' do
   # Charts and dashboards
   gem 'blazer'
   # Charts
-  gem 'chartkick', '~> 5.1.3'
+  gem 'chartkick', '~> 5.1.4'
 
   group :development, :test do
     # RSpec for Rails

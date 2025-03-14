@@ -34,6 +34,7 @@ RSpec.describe 'Ahoy email tracking', type: :request do
 
       expect( message.clicked_at ).to be_nil
 
+      host! 'example.com'
       get "/ahoy/messages/#{message.token}/click?url=http%3A%2F%2Fexample.com&signature=#{signature}"
 
       expect( response ).to have_http_status :found
