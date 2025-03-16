@@ -9,7 +9,7 @@
 require_relative 'plugins/ShinyCMS/lib/shinycms/gemfile_helper'
 helper = ShinyCMS::GemfileHelper.new
 
-ruby "~> #{helper.ruby_version}"  # get version from .ruby-version file (DRY)
+ruby file: '.ruby-version'
 
 source 'https://rubygems.org'
 source 'https://rubygems.org' do
