@@ -890,6 +890,7 @@ DEPENDENCIES
   packwerk (~> 3.2)!
   parallel_tests!
   pg (~> 1.5.9)!
+  prism!
   puma (~> 6.6)!
   rack (>= 2.2.13)!
   rails (~> 7.1.5)!
