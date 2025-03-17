@@ -14,14 +14,10 @@ RSpec.describe 'DemoSiteTask', type: :helper do
     context 'when it finds user_id: 1 in a create statement' do
       it 'replaces it with the admin ID variable' do
         input = <<~INPUT
-          ShinyNews::Post.create!([
-            {id: 1, title: "No news is good news?", slug: "no-news", body: "<p>Insert imaginative demo content here...</p>\r\n", show_on_site: true, user_id: 1, posted_at: "2020-05-14 14:06:33", deleted_at: nil}
-          ])
+          ShinyNews::Post.create!([{id: 1, title: "No news is good news?", slug: "no-news", body: "<p>Insert imaginative demo content here...</p>\r\n", show_on_site: true, user_id: 1, posted_at: "2020-05-14 14:06:33", deleted_at: nil}])
         INPUT
         expected = <<~EXPECTED
-          ShinyNews::Post.create!([
-            {id: 1, title: "No news is good news?", slug: "no-news", body: "<p>Insert imaginative demo content here...</p>\r\n", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-05-14 14:06:33", deleted_at: nil}
-          ])
+          ShinyNews::Post.create!([{id: 1, title: "No news is good news?", slug: "no-news", body: "<p>Insert imaginative demo content here...</p>\r\n", show_on_site: true, user_id: @shiny_admin.id, posted_at: "2020-05-14 14:06:33", deleted_at: nil}])
         EXPECTED
 
         result = described_class.munge_user_id_in( input )

@@ -9,10 +9,6 @@
 module ShinyCMS
   # Helper methods for use in the host app Gemfile
   class GemfileHelper
-    def ruby_version
-      File.read( '.ruby-version' ).strip
-    end
-
     def plugin_names
       requested = ENV[ 'SHINYCMS_PLUGINS' ]&.split( /[, ]+/ )
       available = Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ) } - [ 'ShinyCMS' ]
