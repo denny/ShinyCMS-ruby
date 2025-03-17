@@ -22,9 +22,6 @@ source 'https://rubygems.org' do
   # Find out which bits of your code are used more/less in production
   gem 'coverband', groups: %i[ development production ]
 
-  # Parser
-  gem 'prism'
-
   # ShinyCMS core plugin
   gem 'shinycms', path: 'plugins/ShinyCMS'
 
