@@ -86,7 +86,7 @@ module ShinyCMS
     def consent_version_params
       return unless params[ :consent_version ]
 
-      params.require( :consent_version ).permit( :name, :slug, :display_text, :admin_notes )
+      params.expect( consent_version: %i[ name slug display_text admin_notes ] )
     end
   end
 end
