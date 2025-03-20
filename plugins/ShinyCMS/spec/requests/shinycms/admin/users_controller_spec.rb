@@ -229,7 +229,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
       user = create :user
 
       capability_id = ShinyCMS::Capability.where( name: 'view_admin_area' ).pick( :id )
-      field_name = "user[capabilities[#{capability_id}]]"
+      field_name = "user[capabilities][#{capability_id}]"
 
       expect( user.capabilities.length ).to eq 0
 
