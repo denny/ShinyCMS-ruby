@@ -13,8 +13,8 @@ ruby file: '.ruby-version'
 
 source 'https://rubygems.org'
 source 'https://rubygems.org' do
-  # Rails 7.2
-  gem 'rails', '~> 7.2.2.1'
+  # Rails 8.0
+  gem 'rails', '~> 8.0.2'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/load'
@@ -60,10 +60,10 @@ source 'https://rubygems.org' do
     # Mutation testing
     gem 'mutant-rspec', require: false
 
-    source 'https://oss:TavsFP4Rxs7vhBGX0Li5ksWM53EcWLyd@gem.mutant.dev' do
+    # source 'https://oss:TavsFP4Rxs7vhBGX0Li5ksWM53EcWLyd@gem.mutant.dev' do
       # Verify that we're an open source project
-      gem 'mutant-license'
-    end
+      # gem 'mutant-license'
+    # end
 
     # Run tests in parallel
     gem 'parallel_tests'
