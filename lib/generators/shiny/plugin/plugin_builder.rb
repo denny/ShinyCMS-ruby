@@ -6,7 +6,7 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-module Rails
+module Generators::Shiny::Plugin
   # Supporting code for the ShinyCMS plugin generator
   class PluginBuilder
     def rakefile
