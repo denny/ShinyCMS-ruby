@@ -191,7 +191,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
 
       it 'fails gracefully when attempting to delete a user with non-deletable content' do
         u1 = create :user
-        create :blog_post, author: u1
+        create :blog_post, user: u1
 
         delete shinycms.user_path( u1 )
 

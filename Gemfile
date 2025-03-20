@@ -13,8 +13,8 @@ ruby file: '.ruby-version'
 
 source 'https://rubygems.org'
 source 'https://rubygems.org' do
-  # Rails 7.1
-  gem 'rails', '~> 7.1.5'
+  # Rails 7.2
+  gem 'rails', '~> 7.2.2.1'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/load'
