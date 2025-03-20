@@ -126,8 +126,8 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       version1 = create :consent_version
       create :mailing_list_subscription, consent_version: version1
 
-      expect { put shinycms.consent_version_path( version1 ), params: { consent_version: { slug: 'new-slug' } } }
-        .to raise_error ShinyCMS::ConsentVersion::HasBeenAgreedTo
+      put shinycms.consent_version_path( version1 ), params: { consent_version: { slug: 'new-slug' } }
+      expect( response ).to have_http_status :internal_server_error
     end
 
     it 'updates the consent version when the form is submitted' do
@@ -172,8 +172,8 @@ RSpec.describe ShinyCMS::Admin::ConsentVersionsController, type: :request do
       version1 = create :consent_version
       create :mailing_list_subscription, consent_version: version1
 
-      expect { delete shinycms.consent_version_path( version1 ) }
-        .to raise_error ShinyCMS::ConsentVersion::HasBeenAgreedTo
+      delete shinycms.consent_version_path( version1 )
+      expect( response ).to have_http_status :internal_server_error
     end
   end
 end

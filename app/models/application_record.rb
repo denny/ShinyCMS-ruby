@@ -6,4 +6,7 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-class ApplicationRecord < ActiveRecord::Base; end
+# Base class for models
+class ApplicationRecord < ActiveRecord::Base
+  self.abstract_class = true
+end
