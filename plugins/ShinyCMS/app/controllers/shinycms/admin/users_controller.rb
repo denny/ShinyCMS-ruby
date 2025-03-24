@@ -97,7 +97,7 @@ module ShinyCMS
     def strong_params
       return unless params[ :user ]
 
-      params.expect( user: %i[ username email password admin_notes capabiilities ] )
+      params.expect( user: [ :username, :email, :password, :admin_notes, capabilities: {} ] )
     end
   end
 end
