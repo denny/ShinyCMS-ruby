@@ -53,6 +53,9 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 5.1.4'
 
+  # Pagy
+  gem 'pagy', '~> 7.0.11'
+
   group :development, :test do
     # RSpec for Rails
     gem 'rspec-rails'

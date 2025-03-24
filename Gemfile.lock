@@ -571,7 +571,7 @@ GEM
       railties (>= 6.0.0)
       sorbet-runtime
       zeitwerk
-    pagy (6.5.0)
+    pagy (7.0.11)
     parallel (1.26.3)
     parallel_tests (4.9.1)
       parallel
@@ -854,7 +854,6 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    webrick (1.9.1)
     websocket-driver (0.7.7)
       base64
       websocket-extensions (>= 0.1.0)
@@ -889,6 +888,7 @@ DEPENDENCIES
   mutant-rspec!
   overcommit!
   packwerk (~> 3.2)!
+  pagy (~> 7.0.11)!
   parallel_tests!
   pg (~> 1.5.9)!
   puma (~> 6.6)!
