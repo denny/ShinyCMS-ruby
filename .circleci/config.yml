@@ -22,7 +22,7 @@ references:
       RAILS_ENV: test
       SHINYCMS_THEME: TEST
   db: &db
-    image: cimg/postgres:17.4.0
+    image: cimg/postgres:17.4
     environment:
       POSTGRES_USER: shinyuser
       POSTGRES_PASSWORD: shinypass
