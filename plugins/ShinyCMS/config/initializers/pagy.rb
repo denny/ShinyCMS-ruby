@@ -65,10 +65,6 @@ require 'pagy/extras/bootstrap'
 # require 'pagy/extras/headers'
 # Pagy::DEFAULT[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }
 
-# Support extra: https://ddnexus.github.io/pagy/extras/support
-# Extra support for features like: incremental, infinite, auto-scroll pagination
-require 'pagy/extras/support'
-
 # Items extra: https://ddnexus.github.io/pagy/extras/items
 # Allow the client to request a custom number of items per page with an optional selector UI
 require 'pagy/extras/limit'
