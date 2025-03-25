@@ -39,7 +39,7 @@ RSpec.describe ShinyCMS::Admin::UsersController, type: :request do
         user2 = create :user, username: 'aaaaa_bendy_bananas'
         user3 = create :user, username: 'aaaaa_cool_cucumbers'
 
-        get shinycms.users_path, params: { page: 2, items: 2 }
+        get shinycms.users_path, params: { page: 2, limit: 2 }
 
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'shinycms.admin.users.index.title' ).titlecase
