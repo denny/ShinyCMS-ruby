@@ -54,7 +54,7 @@ source 'https://rubygems.org' do
   gem 'chartkick', '~> 5.1.4'
 
   # Pagy
-  gem 'pagy', '~> 8.0.2'
+  gem 'pagy', '~> 8.1.2'
 
   group :development, :test do
     # RSpec for Rails
