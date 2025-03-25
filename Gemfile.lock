@@ -5,7 +5,7 @@ PATH
       acts-as-taggable-on
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
-      pagy (>= 5.10, < 8.0)
+      pagy (~> 8.0.2)
       pg (>= 1.2.3, < 1.6.0)
       pundit
       rails (>= 7.1.5.1, < 7.2)
@@ -18,7 +18,7 @@ PATH
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
-      pagy (>= 5.10, < 8.0)
+      pagy (~> 8.0.2)
       pg (>= 1.2.3, < 1.6.0)
       pundit
       rails (>= 7.1.5.1, < 7.2)
@@ -48,7 +48,7 @@ PATH
       mjml-rails
       nokogiri (>= 1.10.4)
       packwerk-extensions
-      pagy (>= 5.10, < 8.0)
+      pagy (~> 8.0.2)
       persistent-dmnd
       pg (>= 1.2.3, < 1.6.0)
       pry-rails
@@ -73,7 +73,7 @@ PATH
     shiny_forms (21.06)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
-      pagy (>= 5.10, < 8.0)
+      pagy (~> 8.0.2)
       pg (>= 1.2.3, < 1.6.0)
       pundit
       rails (>= 7.1.5.1, < 7.2)
@@ -85,7 +85,7 @@ PATH
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
-      pagy (>= 5.10, < 8.0)
+      pagy (~> 8.0.2)
       pg (>= 1.2.3, < 1.6.0)
       pundit
       rails (>= 7.1.5.1, < 7.2)
@@ -96,7 +96,7 @@ PATH
     shiny_lists (21.06)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
-      pagy (>= 5.10, < 8.0)
+      pagy (~> 8.0.2)
       pg (>= 1.2.3, < 1.6.0)
       pundit
       rails (>= 7.1.5.1, < 7.2)
@@ -109,7 +109,7 @@ PATH
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
-      pagy (>= 5.10, < 8.0)
+      pagy (~> 8.0.2)
       pg (>= 1.2.3, < 1.6.0)
       pundit
       rails (>= 7.1.5.1, < 7.2)
@@ -121,7 +121,7 @@ PATH
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
-      pagy (>= 5.10, < 8.0)
+      pagy (~> 8.0.2)
       pg (>= 1.2.3, < 1.6.0)
       pundit
       rails (>= 7.1.5.1, < 7.2)
@@ -133,7 +133,7 @@ PATH
       acts_as_paranoid
       ckeditor
       nokogiri (>= 1.11.0.rc4)
-      pagy (>= 5.10, < 8.0)
+      pagy (~> 8.0.2)
       pg (>= 1.2.3, < 1.6.0)
       pundit
       rails (>= 7.1.5.1, < 7.2)
@@ -144,7 +144,7 @@ PATH
     shiny_profiles (21.06)
       acts_as_paranoid
       nokogiri (>= 1.11.0.rc4)
-      pagy (>= 5.10, < 8.0)
+      pagy (~> 8.0.2)
       pg (>= 1.2.3, < 1.6.0)
       pundit
       rails (>= 7.1.5.1, < 7.2)
@@ -166,7 +166,7 @@ PATH
       algoliasearch-rails (~> 1.25)
       ckeditor
       nokogiri (>= 1.11.0.rc4)
-      pagy (>= 5.10, < 8.0)
+      pagy (~> 8.0.2)
       pg (>= 1.2.3, < 1.6.0)
       pg_search
       pundit
@@ -571,7 +571,7 @@ GEM
       railties (>= 6.0.0)
       sorbet-runtime
       zeitwerk
-    pagy (7.0.11)
+    pagy (8.0.2)
     parallel (1.26.3)
     parallel_tests (4.9.1)
       parallel
@@ -888,7 +888,7 @@ DEPENDENCIES
   mutant-rspec!
   overcommit!
   packwerk (~> 3.2)!
-  pagy (~> 7.0.11)!
+  pagy (~> 8.0.2)!
   parallel_tests!
   pg (~> 1.5.9)!
   puma (~> 6.6)!
