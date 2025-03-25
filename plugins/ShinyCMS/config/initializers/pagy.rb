@@ -67,7 +67,7 @@ require 'pagy/extras/bootstrap'
 
 # Support extra: https://ddnexus.github.io/pagy/extras/support
 # Extra support for features like: incremental, infinite, auto-scroll pagination
-require 'pagy/extras/support'
+require 'pagy/extras/pagy'
 
 # Items extra: https://ddnexus.github.io/pagy/extras/items
 # Allow the client to request a custom number of items per page with an optional selector UI
