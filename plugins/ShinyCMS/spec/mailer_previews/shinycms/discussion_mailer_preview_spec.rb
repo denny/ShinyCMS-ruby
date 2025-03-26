@@ -15,7 +15,7 @@ RSpec.describe ShinyCMS::DiscussionMailerPreview, type: :request do
     sign_in admin
 
     u = create :user
-    n = create :news_post, author: u
+    n = create :news_post, user: u
     d = create :discussion, resource: n
     c = create :top_level_comment, discussion: d, author: u
     create :top_level_comment, discussion: d

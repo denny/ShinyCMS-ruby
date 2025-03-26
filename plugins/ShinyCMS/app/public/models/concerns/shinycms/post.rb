@@ -38,8 +38,6 @@ module ShinyCMS
 
       # Attribute aliases and delegated methods
 
-      # alias_method    :author,    :user
-      alias_attribute :author,    :user
       alias_attribute :slug_base, :title
 
       delegate :show_on_site, to: :discussion, allow_nil: true, prefix: true
@@ -57,25 +55,17 @@ module ShinyCMS
 
       # Instance methods
 
-      def posted_at_time
-        posted_at&.time
-      end
+      def author = user
 
-      def posted_month
-        posted_at.strftime( '%m' )
-      end
+      def posted_at_time = posted_at&.time
 
-      def posted_year
-        posted_at.strftime( '%Y' )
-      end
+      def posted_month = posted_at.strftime( '%m' )
 
-      def next_post
-        self.class.published.where( 'posted_at > ?', posted_at ).order( posted_at: :asc ).first
-      end
+      def posted_year = posted_at.strftime( '%Y' )
 
-      def prev_post
-        self.class.published.where( posted_at: ...posted_at ).order( posted_at: :desc ).first
-      end
+      def next_post = self.class.published.where( 'posted_at > ?', posted_at ).order( posted_at: :asc ).first
+
+      def prev_post = self.class.published.where( posted_at: ...posted_at ).order( posted_at: :desc ).first
 
       alias_method :previous_post, :prev_post
 
