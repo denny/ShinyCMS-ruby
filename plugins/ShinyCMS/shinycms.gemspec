@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
-  spec.add_dependency 'rails', '>= 7.1.5.1', '< 7.2'
+  spec.add_dependency 'rails', '>= 7.2.2.1', '< 8.0'
 
   spec.add_dependency 'pg', '>= 1.2.3', '< 1.6.0'
 
@@ -126,6 +126,10 @@ Gem::Specification.new do |spec|
 
   # Fix request.ip when running behind Cloudflare proxying
   spec.add_dependency 'cloudflare-rails'
+
+  # Must be explicitly required from Rails 7.2 onwards
+  spec.add_dependency 'mutex_m'
+  spec.add_dependency 'ostruct'
 
   # Used to export demo site data from the database
   spec.add_dependency 'seed_dump'
