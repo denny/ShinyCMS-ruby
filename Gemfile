@@ -9,7 +9,7 @@
 require_relative 'plugins/ShinyCMS/lib/shinycms/gemfile_helper'
 helper = ShinyCMS::GemfileHelper.new
 
-ruby "~> #{helper.ruby_version}"  # get version from .ruby-version file (DRY)
+ruby file: '.ruby-version'
 
 source 'https://rubygems.org'
 source 'https://rubygems.org' do
@@ -35,7 +35,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.5.9'
 
   # Rack
-  gem 'rack', '>= 2.2.13'
+  gem 'rack'
 
   # Webserver
   gem 'puma', '~> 6.6', groups: %i[ development production ]
@@ -52,6 +52,9 @@ source 'https://rubygems.org' do
   gem 'blazer'
   # Charts
   gem 'chartkick', '~> 5.1.4'
+
+  # Pagy
+  gem 'pagy', '~> 8.6.3'
 
   group :development, :test do
     # RSpec for Rails
