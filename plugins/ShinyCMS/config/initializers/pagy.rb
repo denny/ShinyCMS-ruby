@@ -14,6 +14,12 @@
 
 ## Extras (https://ddnexus.github.io/pagy/extras)
 
+# Legacy Compatibility Extras
+
+# Size extra: Enable the Array type for the `:size` variable (e.g. `size: [1,4,4,1]`)
+# See https://ddnexus.github.io/pagy/docs/extras/size
+require 'pagy/extras/size'   # must be required before the other extras
+
 ### Backend Extras
 
 # Array extra: https://ddnexus.github.io/pagy/extras/array
@@ -55,6 +61,11 @@ require 'pagy/extras/bootstrap'
 # Notice: the other frontend extras add their own framework-styled versions,
 # so require this extra only if you need the unstyled version
 # require 'pagy/extras/navs'
+
+# Pagy extra: Add the pagy styled versions of the javascript-powered navs
+# and a few other components to the Pagy::Frontend module.
+# See https://ddnexus.github.io/pagy/docs/extras/pagy
+require 'pagy/extras/pagy'
 
 # Multi size var used by the *_nav_js helpers: https://ddnexus.github.io/pagy/extras/navs#steps
 # Pagy::DEFAULT[:steps] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }   # example
