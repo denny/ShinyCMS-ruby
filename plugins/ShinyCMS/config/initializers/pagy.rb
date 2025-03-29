@@ -14,6 +14,12 @@
 
 ## Extras (https://ddnexus.github.io/pagy/extras)
 
+### Legacy Compatibility Extras
+
+# Size extra: Enable the Array type for the `:size` variable (e.g. `size: [1,4,4,1]`)
+# See https://ddnexus.github.io/pagy/docs/extras/size
+require 'pagy/extras/size'   # must be required before the other extras
+
 ### Backend Extras
 
 # Array extra: https://ddnexus.github.io/pagy/extras/array
@@ -56,6 +62,11 @@ require 'pagy/extras/bootstrap'
 # so require this extra only if you need the unstyled version
 # require 'pagy/extras/navs'
 
+# Pagy extra: Add the pagy styled versions of the javascript-powered navs
+# and a few other components to the Pagy::Frontend module.
+# See https://ddnexus.github.io/pagy/docs/extras/pagy
+require 'pagy/extras/pagy'
+
 # Multi size var used by the *_nav_js helpers: https://ddnexus.github.io/pagy/extras/navs#steps
 # Pagy::DEFAULT[:steps] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }   # example
 
@@ -67,13 +78,19 @@ require 'pagy/extras/bootstrap'
 
 # Support extra: https://ddnexus.github.io/pagy/extras/support
 # Extra support for features like: incremental, infinite, auto-scroll pagination
-require 'pagy/extras/pagy'
+# require 'pagy/extras/support'
 
 # Items extra: https://ddnexus.github.io/pagy/extras/items
 # Allow the client to request a custom number of items per page with an optional selector UI
-require 'pagy/extras/items'
+require 'pagy/extras/limit'
+Pagy::DEFAULT[ :limit ] = 10
 # Pagy::DEFAULT[ :items_param ] = :items    # default
 # Pagy::DEFAULT[ :max_items   ] = 100       # default
+
+# customize the defaults if you need to
+# Pagy::DEFAULT[:limit_extra] = false
+# Pagy::DEFAULT[:limit_param] = :custom_param # default :limit
+# Pagy::DEFAULT[:limit_max]   = 200 # default 100
 
 # Overflow extra: https://ddnexus.github.io/pagy/extras/overflow
 # require 'pagy/extras/overflow'
