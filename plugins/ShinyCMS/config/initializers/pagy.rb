@@ -14,7 +14,7 @@
 
 ## Extras (https://ddnexus.github.io/pagy/extras)
 
-# Legacy Compatibility Extras
+### Legacy Compatibility Extras
 
 # Size extra: Enable the Array type for the `:size` variable (e.g. `size: [1,4,4,1]`)
 # See https://ddnexus.github.io/pagy/docs/extras/size
@@ -76,12 +76,21 @@ require 'pagy/extras/pagy'
 # require 'pagy/extras/headers'
 # Pagy::DEFAULT[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }
 
+# Support extra: https://ddnexus.github.io/pagy/extras/support
+# Extra support for features like: incremental, infinite, auto-scroll pagination
+# require 'pagy/extras/support'
+
 # Items extra: https://ddnexus.github.io/pagy/extras/items
 # Allow the client to request a custom number of items per page with an optional selector UI
 require 'pagy/extras/limit'
-Pagy::DEFAULT[:limit] = 10
+Pagy::DEFAULT[ :limit ] = 10
 # Pagy::DEFAULT[ :items_param ] = :items    # default
 # Pagy::DEFAULT[ :max_items   ] = 100       # default
+
+# customize the defaults if you need to
+# Pagy::DEFAULT[:limit_extra] = false
+# Pagy::DEFAULT[:limit_param] = :custom_param # default :limit
+# Pagy::DEFAULT[:limit_max]   = 200 # default 100
 
 # Overflow extra: https://ddnexus.github.io/pagy/extras/overflow
 # require 'pagy/extras/overflow'
