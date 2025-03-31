@@ -84,8 +84,8 @@ require 'pagy/extras/pagy'
 # Allow the client to request a custom number of items per page with an optional selector UI
 require 'pagy/extras/limit'
 Pagy::DEFAULT[ :limit ] = 10
-# Pagy::DEFAULT[:limit_extra] = false
-Pagy::DEFAULT[:limit_param] = :items # default :limit
+# Pagy::DEFAULT[:limit_extra] = false # default true
+Pagy::DEFAULT[ :limit_param ] = :items # default :limit
 # Pagy::DEFAULT[:limit_max]   = 200 # default 100
 
 # Overflow extra: https://ddnexus.github.io/pagy/extras/overflow
