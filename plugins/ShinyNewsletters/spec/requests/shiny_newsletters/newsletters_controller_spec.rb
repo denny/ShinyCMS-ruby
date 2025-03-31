@@ -45,7 +45,7 @@ RSpec.describe ShinyNewsletters::NewslettersController, type: :request do
           test_items.unshift item
         end
 
-        get shiny_newsletters.user_view_newsletters_path, params: { page: 2, limit: 5 }
+        get shiny_newsletters.user_view_newsletters_path, params: { page: 2, items: 5 }
 
         expect( response.body ).not_to have_css 'a', text: test_items[4].edition.name
 
