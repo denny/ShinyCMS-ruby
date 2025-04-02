@@ -20,7 +20,7 @@ GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.03
 
 SIGNIFICANT UPGRADE TIME AGAIN: Ruby 3.4, Rails 7.1
 
-Other than those major changes, there were quite a lot of changes to tests and test config, as Rubocop moves to plugins.
+Other than those major changes, there were quite a lot of minor updates to test gems and config, as Rubocop moves to a plugin architecture.
 
 
 ### 2025-02-20  25.02  February 2025: The 'UPGRADE ALL THE THINGS' release
