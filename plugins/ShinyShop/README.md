@@ -5,9 +5,7 @@ ShinyShop is a plugin for [ShinyCMS](https://shinycms.org) which adds shop featu
 
 ## Installation
 
-Add 'ShinyShop' to the SHINYCMS_PLUGINS ENV var, then run`bundle install` for your main ShinyCMS app.
-
-(Currently, all plugins are enabled by default, so you don't actually need to set the ENV var unless you want to load a subset of plugins.)
+Add 'ShinyShop' to the SHINYCMS_PLUGINS ENV var, then run `bundle install` for your main ShinyCMS app.
 
 To add the ShinyShop tables and supporting data to your ShinyCMS database:
 ```bash

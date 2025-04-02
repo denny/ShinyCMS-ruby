@@ -4,7 +4,7 @@
 
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
-### 2025-01-01  25.01  January 2025: The 'Turn On, Plug In, or Drop Out' Release
+### 2025-01-15  25.01  January 2025: The 'Turn On, Plug In, or Drop Out' Release
 
 GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.01
 
