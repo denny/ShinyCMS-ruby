@@ -18,8 +18,12 @@ require:
   - rubocop-rspec_rails
 
 AllCops:
+  ParserEngine: parser_prism
+  TargetRubyVersion: 3.4
+
   EnabledByDefault: true
   NewCops: enable
+
   Exclude:
     # Not Ruby files (skipping these makes Rubocop run faster)
     ## Main app

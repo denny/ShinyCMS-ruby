@@ -9,12 +9,12 @@
 require_relative 'plugins/ShinyCMS/lib/shinycms/gemfile_helper'
 helper = ShinyCMS::GemfileHelper.new
 
-ruby "~> #{helper.ruby_version}"  # get version from .ruby-version file (DRY)
+ruby file: '.ruby-version'
 
 source 'https://rubygems.org'
 source 'https://rubygems.org' do
-  # Rails 7.1
-  gem 'rails', '~> 7.1.5'
+  # Rails 7.2
+  gem 'rails', '~> 7.2.2.1'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/load'
@@ -35,7 +35,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.5.9'
 
   # Rack
-  gem 'rack', '>= 2.2.11'
+  gem 'rack'
 
   # Webserver
   gem 'puma', '~> 6.6', groups: %i[ development production ]
@@ -56,6 +56,9 @@ source 'https://rubygems.org' do
   # Stripe
   # gem 'stripe'
   gem 'stripe_event'
+
+  # Pagy
+  gem 'pagy', '~> 8.6.3'
 
   group :development, :test do
     # RSpec for Rails

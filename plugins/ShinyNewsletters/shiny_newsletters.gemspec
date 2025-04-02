@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
-  spec.add_dependency 'rails', '>= 7.1.5.1', '< 7.2'
+  spec.add_dependency 'rails', '>= 7.2.2.1', '< 8.0'
 
   spec.add_dependency 'pg', '>= 1.2.3', '< 1.6.0'
 
@@ -47,7 +47,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'acts_as_paranoid'
 
   # Pagination
-  spec.add_dependency 'pagy', '>= 5.10', '< 8.0'
+  spec.add_dependency 'pagy', '~> 8.6.3'
 
   # CKEditor: WYSIWYG editor for admin area
   spec.add_dependency 'ckeditor'
