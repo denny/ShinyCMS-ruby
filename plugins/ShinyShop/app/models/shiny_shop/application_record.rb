@@ -10,8 +10,5 @@ module ShinyShop
   # Base model class for ShinyShop
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
-    def url_helpers
-      ShinyShop::Engine.routes.url_helpers
-    end
   end
 end
