@@ -83,8 +83,8 @@ RSpec.shared_examples 'Paging' do |factory, base_url, match_tag, match_text|
       end
     end
 
-    describe 'URL is correctly formatted in links' do
-      it 'has a link to see older items' do
+    describe 'the link to see older items' do
+      it 'has correctly formatted URL params' do
         get "#{base_url}/page/1/items/5"
 
         expect( response.body ).to have_link 'Older', href: "#{base_url}/page/2/items/5"

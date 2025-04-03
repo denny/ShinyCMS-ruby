@@ -57,9 +57,6 @@ source 'https://rubygems.org' do
   # gem 'stripe'
   gem 'stripe_event'
 
-  # Pagy
-  gem 'pagy', '~> 8.6.3'
-
   group :development, :test do
     # RSpec for Rails
     gem 'rspec-rails'

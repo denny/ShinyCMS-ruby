@@ -12,7 +12,7 @@ module ShinyNews
     self.abstract_class = true
 
     def url_helpers
-      ShinyNews::Engine.routes.url_helpers
+      Engine.routes.url_helpers
     end
   end
 end
