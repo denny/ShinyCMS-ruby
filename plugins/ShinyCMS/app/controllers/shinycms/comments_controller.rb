@@ -126,7 +126,7 @@ module ShinyCMS
     end
 
     def strong_params
-      params.require( :comment ).permit( %i[ title body author_type author_name author_email author_url ] )
+      params.expect( comment: %i[ title body author_type author_name author_email author_url ] )
     end
 
     def check_feature_flags
