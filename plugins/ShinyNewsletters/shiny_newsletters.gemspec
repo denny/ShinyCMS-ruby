@@ -47,7 +47,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'acts_as_paranoid'
 
   # Pagination
-  spec.add_dependency 'pagy', '~> 8.6.3'
+  spec.add_dependency 'pagy', '~> 9.3.4'
 
   # CKEditor: WYSIWYG editor for admin area
   spec.add_dependency 'ckeditor'
