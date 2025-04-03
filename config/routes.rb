@@ -25,6 +25,9 @@ Rails.application.routes.draw do
     # Blazer provides charts and dashboards in the ShinyCMS admin area
     mount Blazer::Engine, at: '/admin/tools/blazer' if defined? Blazer
 
+    # This should be moved into the Shop controller
+    mount StripeEvent::Engine, at: '/shop/stripe_events'
+
     # Protect the /admin namespace from fishing expeditions
     extend ShinyCMS::Routes::Admin404
 
