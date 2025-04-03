@@ -4,7 +4,35 @@
 
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
-### 2025-01-15  25.01  January 2025: The 'Turn On, Plug In, or Drop Out' Release
+
+### 2025-04-02  25.04  April 2025: The 'Another Itsy Bitsy Bump' release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.04
+
+Theorically significant upgrade again, to Rails 7.2, but actually it was pretty small - a lot easier than the last two.
+
+Introduced some use of one-liner method definition syntax, mostly in the Post concern.
+
+
+### 2025-03-03  25.03  March 2025: The 'Another Month, Another Bump' release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.03
+
+SIGNIFICANT UPGRADE TIME AGAIN: Ruby 3.4, Rails 7.1
+
+Other than those major changes, there were quite a lot of minor updates to test gems and config, as Rubocop moves to a plugin architecture.
+
+
+### 2025-02-20  25.02  February 2025: The 'UPGRADE ALL THE THINGS' release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.02
+
+MAJOR UPGRADE TIME: Ruby 3.2, Rails 7.0
+
+It's probably best to count the whole thing as a breaking change really.
+
+
+### 2025-01-15  25.01  January 2025: The 'Turn On, Plug In, or Drop Out' release
 
 GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.01
 
@@ -14,7 +42,7 @@ GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.01
 * Otherwise, just updates to gems in this release - plus the ever-exciting update to the year in all the copyright notices
 
 
-### 2024-11-25  24.11  November 2024: The 'Three Years Off Dead For Tax Reasons' Release
+### 2024-11-25  24.11  November 2024: The 'Three Years Off Dead For Tax Reasons' release
 
 GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v24.11
 
