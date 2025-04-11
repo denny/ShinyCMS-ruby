@@ -53,6 +53,9 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 5.1.4'
 
+  # Request filtering
+  gem 'rack-attack'
+
   group :development, :test do
     # RSpec for Rails
     gem 'rspec-rails'
