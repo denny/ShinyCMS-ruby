@@ -53,17 +53,15 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 5.1.4'
 
+  # Request filtering
+  gem 'rack-attack'
+
   group :development, :test do
     # RSpec for Rails
     gem 'rspec-rails'
 
     # Mutation testing
     gem 'mutant-rspec', require: false
-
-    source 'https://oss:TavsFP4Rxs7vhBGX0Li5ksWM53EcWLyd@gem.mutant.dev' do
-      # Verify that we're an open source project
-      gem 'mutant-license'
-    end
 
     # Run tests in parallel
     gem 'parallel_tests'

@@ -11,12 +11,20 @@ require 'rails_helper'
 # Tests for ShinyCMS error handlers
 RSpec.describe ShinyCMS::ErrorsController, type: :request do
   describe 'GET /wp-login.php (or any URL ending in .php)', :production_error_responses do
-    it 'returns a 400 (Bad Request) error - headers only, to keep it light' do
+    it 'returns a 204 (No Content) page' do
       get '/wp-login.php'
 
-      expect( response ).to have_http_status :bad_request
+      expect( response ).to have_http_status :no_content
 
-      expect( response.body ).to be_blank
+      expect( response.body ).to eq 'No Content'
+    end
+  end
+
+  describe 'GET /not_wordpress.php', :production_error_responses do
+    it 'returns a 400 (Bad Request) error - headers only, to keep it light' do
+      get '/not_wordpress.php'
+
+      expect( response ).to have_http_status :bad_request
     end
   end
 
