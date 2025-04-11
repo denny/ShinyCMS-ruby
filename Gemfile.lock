@@ -186,11 +186,6 @@ PATH
       stripe
 
 GEM
-  remote: https://oss:TavsFP4Rxs7vhBGX0Li5ksWM53EcWLyd@gem.mutant.dev/
-  specs:
-    mutant-license (0.1.1.2.1258176039107932962731638484160838054569.0)
-
-GEM
   remote: https://rubygems.org/
   specs:
     actioncable (7.2.2.1)
@@ -613,6 +608,8 @@ GEM
     pwned (2.4.1)
     racc (1.8.1)
     rack (3.1.12)
+    rack-attack (6.7.0)
+      rack (>= 1.0, < 4)
     rack-session (2.1.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -897,7 +894,6 @@ DEPENDENCIES
   i18n-tasks (~> 1.0.14)!
   letter_opener_web (~> 3.0)!
   listen (~> 3.9)!
-  mutant-license!
   mutant-rspec!
   overcommit!
   packwerk (~> 3.2)!
@@ -905,6 +901,7 @@ DEPENDENCIES
   pg (~> 1.5.9)!
   puma (~> 6.6)!
   rack!
+  rack-attack!
   rails (~> 7.2.2.1)!
   rails-pg-extras!
   rails_email_preview!
