@@ -13,8 +13,7 @@ Rack::Attack.blocklisted_responder =
     [ 204, {}, [ 'No Content' ] ]
   end
 
-  Rack::Attack.blocklist( 'block common Wordpress and other PHP URLs' ) do |request|
-    # Requests are blocked if the return value is truthy
-    request.path.start_with?( '/wp-admin', '/wp-login', '/wp-content', '/account/password/new' )
-  end
+Rack::Attack.blocklist( 'block common Wordpress and other PHP URLs' ) do |request|
+  # Requests are blocked if the return value is truthy
+  request.path.start_with?( '/wp-admin', '/wp-login', '/wp-content', '/account/password/new' )
 end
