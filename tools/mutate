@@ -9,4 +9,4 @@
 
 # Note: Mutation testing is not fast; testing a large plugin may take hours.
 
-RAILS_ENV=test bundle exec mutant run -r ./config/environment --use rspec $1
+RAILS_ENV=test bundle exec mutant run -r ./config/environment --usage opensource --use rspec $1

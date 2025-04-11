@@ -60,11 +60,6 @@ source 'https://rubygems.org' do
     # Mutation testing
     gem 'mutant-rspec', require: false
 
-    source 'https://oss:TavsFP4Rxs7vhBGX0Li5ksWM53EcWLyd@gem.mutant.dev' do
-      # Verify that we're an open source project
-      gem 'mutant-license'
-    end
-
     # Run tests in parallel
     gem 'parallel_tests'
 
