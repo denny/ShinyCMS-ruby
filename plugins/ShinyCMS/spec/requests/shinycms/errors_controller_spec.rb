@@ -20,6 +20,14 @@ RSpec.describe ShinyCMS::ErrorsController, type: :request do
     end
   end
 
+  describe 'GET /not_wordpress.php', :production_error_responses do
+    it 'returns a 400 (Bad Request) error - headers only, to keep it light' do
+      get '/not_wordpress.php'
+
+      expect( response ).to have_http_status :bad_request
+    end
+  end
+
   describe 'GET /no-such-path', :production_error_responses do
     it 'returns our Not Found page, with a 404 status' do
       get '/no-such-path'
