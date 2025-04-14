@@ -18,17 +18,17 @@ devise_for  :users,
             class_name:  'ShinyCMS::User',
             path:        '',
             controllers: {
+              confirmations: 'shinycms/users/confirmations',
+              passwords:     'shinycms/users/passwords',
               registrations: 'shinycms/users/registrations',
-              sessions:      'shinycms/users/sessions'
+              sessions:      'shinycms/users/sessions',
+              unlocks:       'shinycms/users/unlocks'
             },
             path_names:  {
               sign_in:      '/login',
               sign_out:     '/logout',
               registration: '/account',
-              sign_up:      'register',
-              confirmation: '/account/confirm',
-              password:     '/account/password',
-              unlock:       '/account/unlock'
+              sign_up:      'register'
             }
 devise_scope :user do
   get 'account/password/report/:password', to: 'users/registrations#password_report', as: :password_report
