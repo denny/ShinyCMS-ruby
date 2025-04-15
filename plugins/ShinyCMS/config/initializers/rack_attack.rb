@@ -17,5 +17,5 @@ Rack::Attack.blocklist( 'block common Wordpress and other PHP URLs' ) do |reques
   # Requests are blocked if the return value is truthy
   request.path.start_with?( '/wp-admin', '/wp-login', '/wp-content' )
 
-  request.path.include?( '/wp-includes' )
+  request.path.include?( 'wp-includes' )
 end
