@@ -11,10 +11,6 @@ module ShinyCMS
   class ErrorsController < ApplicationController
     include ShinyCMS::MainSiteControllerBase
 
-    def bad_request
-      head :bad_request
-    end
-
     def not_found
       render status: :not_found
     end
