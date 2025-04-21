@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
-  spec.add_dependency 'rails', '>= 7.1.5.1', '< 7.2'
+  spec.add_dependency 'rails', '>= 7.2.2.1', '< 8.0'
 
   spec.add_dependency 'pg', '>= 1.2.3', '< 1.6.0'
 
@@ -86,7 +86,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ckeditor'
 
   # Pagination
-  spec.add_dependency 'pagy', '>= 5.10', '< 8.0'
+  spec.add_dependency 'pagy', '~> 9.3.4'
 
   # Atom feeds
   spec.add_dependency 'rss'
@@ -125,7 +125,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'sentry-ruby'
 
   # Fix request.ip when running behind Cloudflare proxying
-  spec.add_dependency 'cloudflare-rails', '~> 4.1'
+  spec.add_dependency 'cloudflare-rails'
+
+  # Must be explicitly required from Rails 7.2 onwards
+  spec.add_dependency 'mutex_m'
+  spec.add_dependency 'ostruct'
 
   # Used to export demo site data from the database
   spec.add_dependency 'seed_dump'

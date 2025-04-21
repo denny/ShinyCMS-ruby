@@ -49,7 +49,7 @@ module ShinyCMS
       # Change pager link format from admin/action?page=3&items=12 to admin/action/page/3/items/12
       # rubocop:disable Lint/UnusedMethodArgument
       def pagy_url_for( pagy, page, absolute: false, html_escaped: false )
-        params = request.query_parameters.merge( page: page, items: pagy.vars[:items], only_path: true )
+        params = request.query_parameters.merge( page: page, items: pagy.vars[:limit], only_path: true )
         url_for( params )
       end
       # rubocop:enable Lint/UnusedMethodArgument

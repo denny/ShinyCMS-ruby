@@ -9,12 +9,12 @@
 require_relative 'plugins/ShinyCMS/lib/shinycms/gemfile_helper'
 helper = ShinyCMS::GemfileHelper.new
 
-ruby "~> #{helper.ruby_version}"  # get version from .ruby-version file (DRY)
+ruby file: '.ruby-version'
 
 source 'https://rubygems.org'
 source 'https://rubygems.org' do
-  # Rails 7.1
-  gem 'rails', '~> 7.1.5'
+  # Rails 7.2
+  gem 'rails', '~> 7.2.2.1'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/load'
@@ -35,7 +35,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.5.9'
 
   # Rack
-  gem 'rack', '>= 2.2.11'
+  gem 'rack'
 
   # Webserver
   gem 'puma', '~> 6.6', groups: %i[ development production ]
@@ -53,17 +53,15 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 5.1.4'
 
+  # Request filtering
+  gem 'rack-attack'
+
   group :development, :test do
     # RSpec for Rails
     gem 'rspec-rails'
 
     # Mutation testing
     gem 'mutant-rspec', require: false
-
-    source 'https://oss:TavsFP4Rxs7vhBGX0Li5ksWM53EcWLyd@gem.mutant.dev' do
-      # Verify that we're an open source project
-      gem 'mutant-license'
-    end
 
     # Run tests in parallel
     gem 'parallel_tests'
