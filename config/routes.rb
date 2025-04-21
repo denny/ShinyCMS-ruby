@@ -13,9 +13,6 @@ Rails.application.routes.draw do
     # If ShinyPages is loaded, let it handle the root path
     extend ShinyPages::Routes::RootPage if ShinyCMS.plugins.loaded? :ShinyPages
 
-    # Treat any URL ending in .php as a bad request
-    extend ShinyCMS::Routes::PHPIsABadRequest
-
     # Mount all the routes from ShinyCMS core and feature plugins
     extend ShinyCMS::Routes::Plugins
 
