@@ -16,9 +16,9 @@
 # Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
 # Here are the few that make more sense as DEFAULTs:
 # Pagy::DEFAULT[:limit]  = 20                    # default
-Pagy::DEFAULT[:size]     = 10                    # default
+Pagy::DEFAULT[:size] = 10                    # default
 # Pagy::DEFAULT[ :size ] = [ 3, 3, 3, 3 ]
-# Pagy::DEFAULT[:ends]   = true                  # default
+# Pagy::DEFAULT[:ends] = true                  # default
 
 # TODO: pull this from settings, and allow different defaults for main site and admin area
 Pagy::DEFAULT[ :items ] = 10
