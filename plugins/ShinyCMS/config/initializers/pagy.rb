@@ -16,8 +16,8 @@
 # Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
 # Here are the few that make more sense as DEFAULTs:
 # Pagy::DEFAULT[:limit] = 20                 # default
-# Pagy::DEFAULT[:size] = 10                  # default
-Pagy::DEFAULT[ :size ] = [ 3, 3, 3, 3 ]
+Pagy::DEFAULT[:size] = 10
+# Pagy::DEFAULT[ :size ] = [ 3, 3, 3, 3 ]
 # Pagy::DEFAULT[:ends] = true                # default
 
 # TODO: pull this from settings, and allow different defaults for main site and admin area
@@ -41,7 +41,7 @@ Rails.application.config.assets.paths << Pagy.root.join( 'javascripts' )
 
 # Size extra: Enable the Array type for the `:size` variable (e.g. `size: [1,4,4,1]`)
 # See https://ddnexus.github.io/pagy/docs/extras/size
-require 'pagy/extras/size'   # must be required before the other extras
+# require 'pagy/extras/size'   # must be required before the other extras
 
 # Backend Extras
 
@@ -169,7 +169,7 @@ Pagy::DEFAULT[ :limit_param ] = :items   # default :limit
 
 # Trim extra: Remove the page=1 param from links
 # See https://ddnexus.github.io/pagy/docs/extras/trim
-require 'pagy/extras/trim'
+# require 'pagy/extras/trim'
 # set to false only if you want to make :trim_extra an opt-in variable
 # Pagy::DEFAULT[:trim_extra] = false # default true
 
