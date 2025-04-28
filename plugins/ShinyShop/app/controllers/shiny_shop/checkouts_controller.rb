@@ -11,7 +11,7 @@ module ShinyShop
   class CheckoutsController < ApplicationController
     include ShinyCMS::MainSiteControllerBase
 
-    # before_action :check_feature_flags
+    before_action :check_feature_flags
 
     def create
       @product = ShinyShop::Product.visible.find_by( slug: params[ :product ] )
