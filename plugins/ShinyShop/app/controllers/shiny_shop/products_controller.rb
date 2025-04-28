@@ -11,7 +11,7 @@ module ShinyShop
   class ProductsController < ApplicationController
     include ShinyCMS::MainSiteControllerBase
 
-    # before_action :check_feature_flags
+    before_action :check_feature_flags
 
     def index
       @pagy, @products = pagy( Product.readonly.visible )
@@ -22,7 +22,7 @@ module ShinyShop
 
       return unless strong_params[ :session_id ]
 
-      session = retrieve_stripe_session :session_id
+      session = retrieve_stripe_session
 
       flash[ :notice ] = "Thank you for your order, #{session.customer_details.name}"
 
@@ -35,12 +35,12 @@ module ShinyShop
       params.permit( :session_id, :slug )
     end
 
-    def retrieve_stripe_session( session_id )
-      Stripe::Checkout::Session.retrieve( strong_params[ session_id ] )
+    def retrieve_stripe_session
+      Stripe::Checkout::Session.retrieve( strong_params[ :session_id ] )
     end
 
-    # def check_feature_flags
-    #   enforce_feature_flags :shop
-    # end
+    def check_feature_flags
+      enforce_feature_flags :shop
+    end
   end
 end
