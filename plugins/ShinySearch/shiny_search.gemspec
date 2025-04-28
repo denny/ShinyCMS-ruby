@@ -60,7 +60,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ckeditor'
 
   # HTML & XML parser
-  spec.add_dependency 'nokogiri', '>= 1.11.0.rc4'
+  spec.add_dependency 'nokogiri', '>= 1.18.8'
 
   # Testing
   spec.add_development_dependency 'factory_bot_rails'
