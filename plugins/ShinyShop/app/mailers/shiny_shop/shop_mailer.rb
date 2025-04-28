@@ -25,9 +25,7 @@ module ShinyShop
     end
 
     def check_ok_to_email
-      return true # FIXME
-
-      # enforce_ok_to_email @recipient_email
+      enforce_ok_to_email @recipient_email
     end
   end
 end
