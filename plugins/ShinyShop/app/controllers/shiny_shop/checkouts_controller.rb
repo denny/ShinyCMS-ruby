@@ -42,8 +42,8 @@ module ShinyShop
     #   params.permit( :year, :month, :slug, :page, :count, :size, :per )
     # end
 
-    # def check_feature_flags
-    #   enforce_feature_flags :shop
-    # end
+    def check_feature_flags
+      enforce_feature_flags :shop
+    end
   end
 end
