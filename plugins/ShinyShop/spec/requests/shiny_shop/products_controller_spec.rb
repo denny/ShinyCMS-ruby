@@ -60,6 +60,24 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
 
         expect( response.body ).to have_css 'h2', text: product.name
       end
+
+      it 'thanks user after successful checkout' do
+        customer_name = Faker::Books::CultureSeries.unique.culture_ship
+        stripe_session = Stripe::Checkout::Session.construct_from(
+          id:               'testsession',
+          customer_details: { name: customer_name }
+        )
+        allow( Stripe::Checkout::Session ).to receive( :retrieve ).with( 'testsession' ).and_return( stripe_session )
+        product = create( :product, active: true )
+
+        get shiny_shop.show_product_path( product.slug, session_id: 'testsession' )
+
+        expect( response      ).to have_http_status :found
+        expect( response      ).to redirect_to shiny_shop.show_product_path( product.slug )
+        follow_redirect!
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_text "Thank you for your order, #{customer_name}"
+      end
     end
   end
 end
