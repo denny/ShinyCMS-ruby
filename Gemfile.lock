@@ -4,7 +4,7 @@ PATH
     shiny_access (21.06)
       acts-as-taggable-on
       acts_as_paranoid
-      nokogiri (>= 1.11.0.rc4)
+      nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
       pg (>= 1.2.3, < 1.6.0)
       pundit
@@ -17,7 +17,7 @@ PATH
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
-      nokogiri (>= 1.11.0.rc4)
+      nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
       pg (>= 1.2.3, < 1.6.0)
       pundit
@@ -74,7 +74,7 @@ PATH
   specs:
     shiny_forms (21.06)
       acts_as_paranoid
-      nokogiri (>= 1.11.0.rc4)
+      nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
       pg (>= 1.2.3, < 1.6.0)
       pundit
@@ -86,7 +86,7 @@ PATH
     shiny_inserts (21.06)
       acts_as_paranoid
       ckeditor
-      nokogiri (>= 1.11.0.rc4)
+      nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
       pg (>= 1.2.3, < 1.6.0)
       pundit
@@ -97,7 +97,7 @@ PATH
   specs:
     shiny_lists (21.06)
       acts_as_paranoid
-      nokogiri (>= 1.11.0.rc4)
+      nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
       pg (>= 1.2.3, < 1.6.0)
       pundit
@@ -110,7 +110,7 @@ PATH
       acts-as-taggable-on
       acts_as_paranoid
       ckeditor
-      nokogiri (>= 1.11.0.rc4)
+      nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
       pg (>= 1.2.3, < 1.6.0)
       pundit
@@ -122,7 +122,7 @@ PATH
     shiny_newsletters (21.06)
       acts_as_paranoid
       ckeditor
-      nokogiri (>= 1.11.0.rc4)
+      nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
       pg (>= 1.2.3, < 1.6.0)
       pundit
@@ -134,7 +134,7 @@ PATH
     shiny_pages (21.06)
       acts_as_paranoid
       ckeditor
-      nokogiri (>= 1.11.0.rc4)
+      nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
       pg (>= 1.2.3, < 1.6.0)
       pundit
@@ -145,7 +145,7 @@ PATH
   specs:
     shiny_profiles (21.06)
       acts_as_paranoid
-      nokogiri (>= 1.11.0.rc4)
+      nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
       pg (>= 1.2.3, < 1.6.0)
       pundit
@@ -167,7 +167,7 @@ PATH
       acts_as_paranoid
       algoliasearch-rails (>= 1.25, < 4.0)
       ckeditor
-      nokogiri (>= 1.11.0.rc4)
+      nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
       pg (>= 1.2.3, < 1.6.0)
       pg_search
@@ -551,7 +551,7 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.5)
+    nokogiri (1.18.8)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     numerizer (0.1.1)
