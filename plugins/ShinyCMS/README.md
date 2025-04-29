@@ -11,8 +11,6 @@ You need to include some ShinyCMS code snippets in the `Gemfile` and `config/rou
 
 It's not necessary to include this core plugin in the SHINYCMS_PLUGINS list, but it won't cause a problem if you do.
 
-(Currently all plugins are enabled by default, so if you want to load all of the available plugins then you don't actually need to set the ENV var at all - but this behaviour may change in future.)
-
 ### Database setup
 
 To add the ShinyCMS tables to your application's database:
