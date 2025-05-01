@@ -14,7 +14,7 @@ require 'rails/generators/rails/app/app_generator'
 require_relative 'plugin_builder'
 
 module Shiny
-  module Generators
+  module Plugin
     # rubocop:disable Metrics/ClassLength
     class PluginGeneratorBase < ::Rails::Generators::AppBase # :nodoc:
       add_shared_options_for 'plugin'
