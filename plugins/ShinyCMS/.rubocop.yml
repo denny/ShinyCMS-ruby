@@ -7,14 +7,14 @@
 inherit_from: .rubocop_todo.yml
 
 plugins:
-  - rubocop-performance
-  - rubocop-rails
   - rubocop-rspec
   - rubocop-thread_safety
 
 require:
   - rubocop-capybara
   - rubocop-factory_bot
+  - rubocop-performance
+  - rubocop-rails
   - rubocop-rspec_rails
 
 AllCops:
