@@ -182,7 +182,7 @@ PATH
       pagy (~> 9.3.4)
       pg (>= 1.2.3, < 1.6.0)
       pundit
-      rails (>= 7.2.2.1, < 8.0)
+      rails (>= 8.0.2, < 8.1)
       stripe
 
 GEM
