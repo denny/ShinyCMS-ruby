@@ -23,7 +23,7 @@ module ShinyShop
         cancel_url:  main_app.root_url
       )
 
-      redirect_to session.url, status: :see_other
+      redirect_to session.url, status: :see_other, allow_other_host: true
     end
 
     private
