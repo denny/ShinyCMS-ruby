@@ -35,7 +35,9 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.5.9'
 
   # Rack
-  gem 'rack'
+  gem 'rack', '~> 3.1.14'
+  # Rack Session
+  gem 'rack-session', '~> 2.1.1'
 
   # Webserver
   gem 'puma', '~> 6.6', groups: %i[ development production ]
