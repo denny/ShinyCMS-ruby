@@ -36,6 +36,7 @@ source 'https://rubygems.org' do
 
   # Rack
   gem 'rack', '~> 3.1.14'
+  gem 'rack-session', '~> 2.1.1'
 
   # Webserver
   gem 'puma', '~> 6.6', groups: %i[ development production ]
