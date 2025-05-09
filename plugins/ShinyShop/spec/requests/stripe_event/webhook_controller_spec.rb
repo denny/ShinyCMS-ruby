@@ -10,6 +10,10 @@ require 'rails_helper'
 
 # Tests for stripe
 RSpec.describe StripeEvent::WebhookController, type: :request do
+  let( :secret1 ) { ENV.fetch( 'STRIPE_SIGNING_SECRET' ) }
+  # let( :secret2 ) { 'secret2' }
+  # let( :charge_succeeded ) { stub_event('evt_charge_succeeded') }
+
   describe 'with Stripe::Event' do
     it 'creates an event' do
       webhook_with_signature(
@@ -26,20 +30,16 @@ RSpec.describe StripeEvent::WebhookController, type: :request do
     end
   end
 
-  let( :secret1 ) { ENV.fetch( 'STRIPE_SIGNING_SECRET' ) }
-  # let(:secret2) { 'secret2' }
-  # let(:charge_succeeded) { stub_event('evt_charge_succeeded') }
-
   # def stub_event(identifier)
-    # JSON.parse(File.read("spec/support/fixtures/#{identifier}.json"))
+  #   JSON.parse(File.read("spec/support/fixtures/#{identifier}.json"))
   # end
 
-  def generate_signature(params, secret)
+  def generate_signature( params, secret )
     payload   = params.to_json
-    timestamp = Time.now
+    timestamp = Time.now.utc
 
-    signer = Stripe::Webhook::Signature.method(:compute_signature)
-    signature = signer.call(timestamp, payload, secret)
+    signer = Stripe::Webhook::Signature.method( :compute_signature )
+    signature = signer.call( timestamp, payload, secret )
 
     "t=#{timestamp.to_i},v1=#{signature}"
   end
@@ -48,13 +48,14 @@ RSpec.describe StripeEvent::WebhookController, type: :request do
     # request.env[ 'HTTP_STRIPE_SIGNATURE' ] = signature
     # request.env['RAW_POST_DATA'] = params.to_json # works with Rails 3, 4, or 5
     # post '/shop/stripe_events', body: params.to_json
-    post '/shop/stripe_events',
-    headers: {
-      'Content-Type':     'application/json',
-      'Accept':           'application/json',
-      'Stripe-Signature': signature
-    },
-    params: params
+    # post '/shop/stripe_events',
+    post  stripe_event,
+          headers: {
+            Accept:             'application/json',
+            'Content-Type':     'application/json',
+            'Stripe-Signature': signature
+          },
+          params:  params
   end
 
   def webhook_with_signature( params, secret = secret1 )
