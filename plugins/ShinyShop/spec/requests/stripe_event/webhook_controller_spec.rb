@@ -12,17 +12,52 @@ require 'rails_helper'
 RSpec.describe StripeEvent::WebhookController, type: :request do
   describe 'with Stripe::Event' do
     it 'creates an event' do
-      post '/shop/stripe_events', params: {
-        object: {
+      webhook_with_signature(
+        {
           id:     'cs_test_a1EpQUx46ZmXVRrlDCpDTyy7DNsXwDmc3IRH12Bf8KDAm0h35Aeh18IDlG',
           object: 'checkout.session'
         }
-      }
+      )
 
       # binding.pry
 
       expect( response      ).to have_http_status :ok
       expect( response.body ).to include 'No products found'
     end
+  end
+
+  let( :secret1 ) { ENV.fetch( 'STRIPE_SIGNING_SECRET' ) }
+  # let(:secret2) { 'secret2' }
+  # let(:charge_succeeded) { stub_event('evt_charge_succeeded') }
+
+  # def stub_event(identifier)
+    # JSON.parse(File.read("spec/support/fixtures/#{identifier}.json"))
+  # end
+
+  def generate_signature(params, secret)
+    payload   = params.to_json
+    timestamp = Time.now
+
+    signer = Stripe::Webhook::Signature.method(:compute_signature)
+    signature = signer.call(timestamp, payload, secret)
+
+    "t=#{timestamp.to_i},v1=#{signature}"
+  end
+
+  def webhook( signature, params )
+    # request.env[ 'HTTP_STRIPE_SIGNATURE' ] = signature
+    # request.env['RAW_POST_DATA'] = params.to_json # works with Rails 3, 4, or 5
+    # post '/shop/stripe_events', body: params.to_json
+    post '/shop/stripe_events',
+    headers: {
+      'Content-Type':     'application/json',
+      'Accept':           'application/json',
+      'Stripe-Signature': signature
+    },
+    params: params
+  end
+
+  def webhook_with_signature( params, secret = secret1 )
+    webhook generate_signature( params, secret ), params
   end
 end
