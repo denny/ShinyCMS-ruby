@@ -38,7 +38,7 @@ RSpec.describe StripeEvent::WebhookController, type: :request do
     payload   = params.to_json
     timestamp = Time.now.utc
 
-    signer = Stripe::Webhook::Signature.method( :compute_signature )
+    signer    = Stripe::Webhook::Signature.method( :compute_signature )
     signature = signer.call( timestamp, payload, secret )
 
     "t=#{timestamp.to_i},v1=#{signature}"
