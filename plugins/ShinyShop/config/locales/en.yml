@@ -1,0 +1,54 @@
+# ShinyShop plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# English locale strings for ShinyCMS features provided by the ShinyShop plugin
+
+en:
+  shinycms:
+    feature_flags:
+      shop: Shop
+
+    capability:
+      category:
+        products: Shop Products
+
+  shiny_shop:
+    products:
+      index:
+        title: Products
+
+    mailers:
+      shop_mailer:
+        confirmation:
+          subject: 'Thank you!'
+
+    admin:
+      shiny_shop:
+        index:
+          title: Shop
+      products:
+        breadcrumb: Shop
+        menu: Shop
+        index:
+          title: List products
+          archive: Archive
+          revive: Restore
+        new:
+          title: Add product
+        create:
+          title: Add product
+          success: Product added
+          failure: Could not add product
+        edit:
+          title: Edit product
+        update:
+          title: Edit product
+          success: Product updated
+          failure: Could not update product
+        revive:
+          success: Product restored
+        archive:
+          success: Product archived
