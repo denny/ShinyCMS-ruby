@@ -10,6 +10,12 @@
 #
 # This file should be regenerated whenever Rubocop is updated.
 
+# Offense count: 2
+RSpec/DescribedClassModuleWrapping:
+  Exclude:
+    - '../ShinyPages/spec/models/shiny_pages/page_spec.rb'
+    - '../ShinySEO/spec/models/shiny_seo/sitemap_spec.rb'
+
 # Offense count: 22
 RSpec/AnyInstance:
   Exclude:
