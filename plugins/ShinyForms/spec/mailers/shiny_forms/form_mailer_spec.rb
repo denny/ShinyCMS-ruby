@@ -66,7 +66,7 @@ RSpec.describe ShinyForms::FormMailer, type: :mailer do
         form_data: { message: 'b0rked email' }
       )
 
-      allow( Form ).to receive( :template_file_exists? ).and_return( false )
+      allow( ShinyForms::Form ).to receive( :template_file_exists? ).and_return( false )
 
       email1 = mailer1.html_email( template_file: form1.filename )
 
