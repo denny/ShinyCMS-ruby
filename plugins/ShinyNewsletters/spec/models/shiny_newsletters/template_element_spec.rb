@@ -9,15 +9,13 @@
 require 'rails_helper'
 
 # Tests for newsletter template element model
-module ShinyNewsletters
-  RSpec.describe TemplateElement, type: :model do
-    it_behaves_like ShinyCMS::Element do
-      let( :template ) { create :newsletter_template                             }
-      let( :element  ) { create :newsletter_template_element, template: template }
-    end
+RSpec.describe ShinyNewsletters::TemplateElement, type: :model do
+  it_behaves_like ShinyCMS::Element do
+    let( :template ) { create :newsletter_template                             }
+    let( :element  ) { create :newsletter_template_element, template: template }
+  end
 
-    it_behaves_like ShinyCMS::ProvidesDemoSiteData do
-      let( :model ) { described_class }
-    end
+  it_behaves_like ShinyCMS::ProvidesDemoSiteData do
+    let( :model ) { described_class }
   end
 end
