@@ -15,9 +15,15 @@ RSpec.describe ShinySEO::Sitemap, type: :model do
       let( :bucket ) { 'shinycms-tests' }
       let( :region ) { 'eu-test-1'      }
 
-      before do
-        @original_adapter = SitemapGenerator::Sitemap.adapter
+      around do |example|
+        original_adapter = SitemapGenerator::Sitemap.adapter
 
+        example.run
+
+        SitemapGenerator::Sitemap.adapter = original_adapter
+      end
+
+      before do
         # allow( ENV ).to receive( :fetch ).with( 'AWS_S3_FEEDS_BASE_URL' ).and_return nil
         allow( ENV ).to receive( :fetch ).with( 'SHINYCMS_USE_HTTPS', nil ).and_return nil
 
@@ -26,10 +32,6 @@ RSpec.describe ShinySEO::Sitemap, type: :model do
 
         allow( ENV ).to receive( :fetch ).with( 'AWS_S3_FEEDS_BUCKET', nil ).and_return bucket
         allow( ENV ).to receive( :fetch ).with( 'AWS_S3_FEEDS_REGION', nil ).and_return region
-      end
-
-      after do
-        SitemapGenerator::Sitemap.adapter = @original_adapter
       end
 
       it 'uses the S3 adapter' do
