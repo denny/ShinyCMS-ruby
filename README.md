@@ -6,7 +6,7 @@ ShinyCMS is primarily intended for use by professional web developers, as a plat
 
 Web developers can also add custom functionality by writing their own plugins. A number of helpers and concerns are provided to help you build new features quickly, and with a consistent look-and-feel to the rest of the system.
 
-The current version of ShinyCMS runs on Ruby 3.4 and Rails 7.2
+The current version of ShinyCMS runs on Ruby 3.4 and Rails 8.0
 
 ## Features
 
@@ -100,7 +100,7 @@ All other supported [external services](docs/Services.md) are optional. If you a
 
 ### Ruby and Rails versions
 
-ShinyCMS requires Ruby 3.4 and Rails 7.2 or later. The project generally uses the most recent stable release of both Ruby and Rails (currently Ruby 3.4.2 and Rails 7.2.2.1).
+ShinyCMS requires Ruby 3.4 and Rails 8.0 or later. The project generally uses the most recent stable release of both Ruby and Rails (currently Ruby 3.4.3 and Rails 8.0.2).
 
 
 ## Contributing
