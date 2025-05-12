@@ -9,50 +9,48 @@
 require 'rails_helper'
 
 # Tests for some of the methods in the main site helper module
-module ShinyAccess
-  RSpec.describe MainSiteHelper, type: :helper do
-    let( :user1 ) do
-      user1 = create :user
-      sign_in user1
-      user1
+RSpec.describe ShinyAccess::MainSiteHelper, type: :helper do
+  let( :user1 ) do
+    user1 = create :user
+    sign_in user1
+    user1
+  end
+
+  describe 'current_user_can_access?( :slug )' do
+    it 'returns true if they do have active membership of the specified group' do
+      group1 = create :access_group, slug: 'TestSuite'
+      group1.add_member( user1 )
+
+      expect( helper.current_user_can_access?( :TestSuite ) ).to be true
     end
 
-    describe 'current_user_can_access?( :slug )' do
-      it 'returns true if they do have active membership of the specified group' do
-        group1 = create :access_group, slug: 'TestSuite'
-        group1.add_member( user1 )
+    it 'returns false if they do not have membership of the specified group' do
+      create :access_group, slug: 'AnotherTest'
 
-        expect( helper.current_user_can_access?( :TestSuite ) ).to be true
-      end
-
-      it 'returns false if they do not have membership of the specified group' do
-        create :access_group, slug: 'AnotherTest'
-
-        expect( helper.current_user_can_access?( :AnotherTest ) ).to be false
-      end
-
-      it 'returns false if the group does not exist' do
-        expect( helper.current_user_can_access?( :NoSuchGroup ) ).to be false
-      end
-
-      it 'returns false if their membership of the specified group has ended' do
-        group1 = create :access_group, slug: 'MoarTest'
-        create :access_membership, :ended, user: user1, group: group1
-
-        expect( helper.current_user_can_access?( :MoarTest ) ).to be false
-      end
+      expect( helper.current_user_can_access?( :AnotherTest ) ).to be false
     end
 
-    describe 'access_group_name( :slug )' do
-      it 'returns the name of the access group if it exists' do
-        group1 = create :access_group, slug: 'TestSuite'
+    it 'returns false if the group does not exist' do
+      expect( helper.current_user_can_access?( :NoSuchGroup ) ).to be false
+    end
 
-        expect( helper.access_group_name( :TestSuite ) ).to eq group1.name
-      end
+    it 'returns false if their membership of the specified group has ended' do
+      group1 = create :access_group, slug: 'MoarTest'
+      create :access_membership, :ended, user: user1, group: group1
 
-      it 'returns nil if the group does not exist' do
-        expect( helper.access_group_name( :NoSuchGroup ) ).to be_nil
-      end
+      expect( helper.current_user_can_access?( :MoarTest ) ).to be false
+    end
+  end
+
+  describe 'access_group_name( :slug )' do
+    it 'returns the name of the access group if it exists' do
+      group1 = create :access_group, slug: 'TestSuite'
+
+      expect( helper.access_group_name( :TestSuite ) ).to eq group1.name
+    end
+
+    it 'returns nil if the group does not exist' do
+      expect( helper.access_group_name( :NoSuchGroup ) ).to be_nil
     end
   end
 end

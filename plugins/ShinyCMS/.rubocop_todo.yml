@@ -10,10 +10,6 @@
 #
 # This file should be regenerated whenever Rubocop is updated.
 
-# Offense count: 27
-RSpec/DescribedClassModuleWrapping:
-  Enabled: false
-
 # Offense count: 22
 RSpec/AnyInstance:
   Exclude:
