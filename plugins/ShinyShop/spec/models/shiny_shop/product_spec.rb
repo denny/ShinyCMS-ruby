@@ -9,8 +9,6 @@
 require 'rails_helper'
 
 # Product model tests
-module ShinyShop
-  RSpec.describe Product, type: :model do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+RSpec.describe ShinyShop::Product, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end
