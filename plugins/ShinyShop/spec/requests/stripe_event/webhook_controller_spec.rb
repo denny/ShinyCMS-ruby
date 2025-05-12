@@ -18,14 +18,14 @@ RSpec.describe StripeEvent::WebhookController, type: :request do
     it 'creates an event' do
       webhook_with_signature(
         {
-          data:             {
+          data: {
             object: {
               customer_details: {
-                email: 'SPAMTRAP@denny.me'
+                email: 'SPAMTRAP@shinycms.org'
               }
             }
           },
-          type: 'checkout.session.completed',
+          type: 'checkout.session.completed'
         }
       )
 
