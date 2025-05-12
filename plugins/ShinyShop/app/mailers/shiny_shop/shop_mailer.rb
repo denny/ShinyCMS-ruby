@@ -6,26 +6,24 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-module ShinyShop
-  # Mailer to send emails from shop features - part of the ShinyShop plugin for ShinyCMS
-  class ShopMailer < ApplicationMailer
-    layout 'shiny_shop/layouts/shop_mailer'
+# Mailer to send emails from shop features - part of the ShinyShop plugin for ShinyCMS
+class ShinyShop::ShopMailer < ApplicationMailer
+  layout 'shiny_shop/layouts/shop_mailer'
 
-    def confirmation( customer_email )
-      mail to: customer_email, subject: I18n.t( 'shiny_shop.mailers.shop_mailer.confirmation.subject' ) do |format|
-        format.html
-        format.text
-      end
+  def confirmation( customer_email )
+    mail to: customer_email, subject: I18n.t( 'shiny_shop.mailers.shop_mailer.confirmation.subject' ) do |format|
+      format.html
+      format.text
     end
+  end
 
-    private
+  private
 
-    def check_feature_flags
-      enforce_feature_flags :shop
-    end
+  def check_feature_flags
+    enforce_feature_flags :shop
+  end
 
-    def check_ok_to_email
-      enforce_ok_to_email @recipient_email
-    end
+  def check_ok_to_email
+    enforce_ok_to_email @recipient_email
   end
 end
