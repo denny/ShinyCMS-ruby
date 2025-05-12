@@ -18,30 +18,34 @@ RSpec.describe StripeEvent::WebhookController, type: :request do
     it 'creates an event' do
       webhook_with_signature(
         {
-          id:     'cs_test_a1EpQUx46ZmXVRrlDCpDTyy7DNsXwDmc3IRH12Bf8KDAm0h35Aeh18IDlG',
-          object: 'checkout.session'
+          data:             {
+            object: {
+              customer_details: {
+                email: 'SPAMTRAP@denny.me'
+              }
+            }
+          },
+          type: 'checkout.session.completed',
         }
       )
 
+      expect( response ).to have_http_status :ok
       # binding.pry
-
-      expect( response      ).to have_http_status :ok
-      expect( response.body ).to include 'No products found'
+      # TODO: check email has been queued
     end
   end
 
   # def stub_event(identifier)
-  #   JSON.parse(File.read("spec/support/fixtures/#{identifier}.json"))
+  #   JSON.parse(File.read('spec/support/fixtures/#{identifier}.json'))
   # end
 
   def generate_signature( params, secret )
     payload   = params.to_json
     timestamp = Time.now.utc
 
-    signer    = Stripe::Webhook::Signature.method( :compute_signature )
-    signature = signer.call( timestamp, payload, secret )
+    signature = Stripe::Webhook::Signature.compute_signature( timestamp, payload, secret )
 
-    "t=#{timestamp.to_i},v1=#{signature}"
+    Stripe::Webhook::Signature.generate_header( timestamp, signature )
   end
 
   def webhook( signature, params )
@@ -49,13 +53,13 @@ RSpec.describe StripeEvent::WebhookController, type: :request do
     # request.env['RAW_POST_DATA'] = params.to_json # works with Rails 3, 4, or 5
     # post '/shop/stripe_events', body: params.to_json
     # post '/shop/stripe_events',
-    post  stripe_event,
+    post  stripe_event_path,
           headers: {
             Accept:             'application/json',
             'Content-Type':     'application/json',
             'Stripe-Signature': signature
           },
-          params:  params
+          params:  params.to_json
   end
 
   def webhook_with_signature( params, secret = secret1 )
