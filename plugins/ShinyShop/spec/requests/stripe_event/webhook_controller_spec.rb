@@ -11,33 +11,27 @@ require 'rails_helper'
 # Tests for stripe
 RSpec.describe StripeEvent::WebhookController, type: :request do
   let( :secret1 ) { ENV.fetch( 'STRIPE_SIGNING_SECRET' ) }
-  # let( :secret2 ) { 'secret2' }
-  # let( :charge_succeeded ) { stub_event('evt_charge_succeeded') }
 
   describe 'with Stripe::Event' do
-    it 'creates an event' do
-      webhook_with_signature(
-        {
-          data: {
-            object: {
-              customer_details: {
-                email: 'SPAMTRAP@shinycms.org'
-              }
-            }
-          },
-          type: 'checkout.session.completed'
-        }
-      )
+    it 'queues a mailer job' do
+      expect { send_checkout_session_completed_event }.to have_enqueued_job
 
       expect( response ).to have_http_status :ok
-      # binding.pry
-      # TODO: check email has been queued
     end
   end
 
-  # def stub_event(identifier)
-  #   JSON.parse(File.read('spec/support/fixtures/#{identifier}.json'))
-  # end
+  def send_checkout_session_completed_event
+    webhook_with_signature(
+      data: {
+        object: {
+          customer_details: {
+            email: 'SPAMTRAP@shinycms.org'
+          }
+        }
+      },
+      type: 'checkout.session.completed'
+    )
+  end
 
   def generate_signature( params, secret )
     payload   = params.to_json
@@ -49,10 +43,6 @@ RSpec.describe StripeEvent::WebhookController, type: :request do
   end
 
   def webhook( signature, params )
-    # request.env[ 'HTTP_STRIPE_SIGNATURE' ] = signature
-    # request.env['RAW_POST_DATA'] = params.to_json # works with Rails 3, 4, or 5
-    # post '/shop/stripe_events', body: params.to_json
-    # post '/shop/stripe_events',
     post  stripe_event_path,
           headers: {
             Accept:             'application/json',
