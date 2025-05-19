@@ -1,1 +1,9 @@
-Confirmation email MJML
+<mj-section>
+  <mj-column>
+
+    <mj-text>
+      Thank you for your purchase!
+    </mj-text>
+
+  </mj-column>
+</mj-section>

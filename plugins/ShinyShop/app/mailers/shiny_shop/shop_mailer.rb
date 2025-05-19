@@ -25,7 +25,7 @@ module ShinyShop
     end
 
     def check_ok_to_email
-      enforce_ok_to_email @recipient_email
+      true  # Shop emails are transactional, always send them
     end
   end
 end
