@@ -1,0 +1,8 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Listen for webhooks and forward to the local app
+stripe listen --forward-to localhost:3000/shop/stripe_events
