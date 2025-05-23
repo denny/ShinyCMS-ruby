@@ -131,6 +131,7 @@ source 'https://rubygems.org' do
 
     # Create test objects
     gem 'factory_bot_rails'
+
     # Generate test data
     gem 'faker'
 
