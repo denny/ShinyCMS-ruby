@@ -14,7 +14,7 @@ module ShinyShop
     before_action :check_feature_flags
 
     def create
-      @product = ShinyShop::Product.visible.find_by( slug: params[ :product ] )
+      @product = ShinyShop::Product.visible.find_by!( slug: strong_params[ :product ] )
 
       session = Stripe::Checkout::Session.create(
         line_items:  build_line_items,
@@ -38,9 +38,9 @@ module ShinyShop
       ]
     end
 
-    # def strong_params
-    #   params.permit( :year, :month, :slug, :page, :count, :size, :per )
-    # end
+    def strong_params
+      params.permit( :product )
+    end
 
     def check_feature_flags
       enforce_feature_flags :shop
