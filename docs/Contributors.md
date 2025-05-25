@@ -18,7 +18,7 @@ An incomplete list of people who have helped, directly or indirectly, with the c
 
 * Pierre-Jean Camillieri (@thingista), for maintaining a useful list of [English language acronyms](https://github.com/thingista/acronyms_and_more).
 
-* Manuel Gonçalve (@MrBowmanXD) for starting to work his way through my minor bugs backlog and TODO list on GitHub, and closing a lot of them with some minimal help and guidance from me.
+* Manuel Gonçalves (@MrBowmanXD) for starting to work his way through my minor bugs backlog and TODO list on GitHub, and closing a lot of them with some minimal help and guidance from me.
 
 * Everybody who contributed code, thinking, bug reports, and feature requests to the original ShinyCMS.
 
