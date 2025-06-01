@@ -5,6 +5,34 @@
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
 
+### 2025-06-01  25.06   June 2025: The 'Make Rubocop Happier' release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.06
+
+Most of my time this month has gone into the Shop feature branch, which is getting close to an initial merge/release, hopefully in July/August.
+
+In the main branch this month I have:
+* Bumped Ruby from 3.4.2 to 3.4.3
+* Changed the logout link to a logout button to get that working again (not sure exactly when it stopped working, but I assume it was at some point during the last few months of back-to-back Rails upgrades)
+* Merged some contributions from @MrBowmanXD, which fixed some long-standing Rubocop warnings
+* Merged a couple of gem updates from @dependabot, including one to mitigate a possible Rack DDoS flaw
+* Added some documentation about the use of Rack::Attack
+
+
+### 2025-05-01  25.05   May 2025: The 'Shiny and New!' release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.05
+
+Headline news is of course the last step (for now!) in the recent series of sequential Rails upgrades - we're now on the latest current release, Rails 8.0, having started at 6.1 in January this year and worked our way through 7.0, 7.1, and 7.2 in the last few months.
+
+The Rails 7.2->8.0 update process was again much less traumatic than the 7.0->7.1 process, so well done the Rails team for that.
+
+Also featured in this month's release:
+    * Upgraded pagy to current (9.x) series (in #1957)
+    * Added and expanded Rack::Attack filtering to save error logs filling up with botspam from hacked WordPress sites (in #1960, #1961, #1963, and #1964)
+    * Plus various gem updates, whenever dependabot offered them
+
+
 ### 2025-04-02  25.04  April 2025: The 'Another Itsy Bitsy Bump' release
 
 GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.04
