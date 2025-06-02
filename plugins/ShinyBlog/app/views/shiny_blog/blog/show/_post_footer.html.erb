@@ -3,7 +3,7 @@
     <%= render partial: 'blog/show/footer_discussion_links', locals: { post: post } %>
   <% end %>
 
-  <% if feature_enabled? :blog_votes %>
+  <% if feature_enabled? :blog_upvotes %>
     <%= render partial: 'blog/show/footer_votable_links', locals: { post: post } %>
   <% end %>
 
