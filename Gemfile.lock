@@ -596,7 +596,7 @@ GEM
       activesupport (>= 3.0.0)
     pwned (2.4.1)
     racc (1.8.1)
-    rack (3.1.14)
+    rack (3.1.16)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
     rack-session (2.1.1)
@@ -886,7 +886,7 @@ DEPENDENCIES
   parallel_tests!
   pg (~> 1.5.9)!
   puma (~> 6.6)!
-  rack (~> 3.1.14)!
+  rack (~> 3.1.16)!
   rack-attack!
   rack-session (~> 2.1.1)!
   rails (~> 8.0.2)!
