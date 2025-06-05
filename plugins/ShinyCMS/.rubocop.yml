@@ -7,15 +7,15 @@
 inherit_from: .rubocop_todo.yml
 
 plugins:
+  - rubocop-capybara
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
   - rubocop-thread_safety
 
 require:
-  - rubocop-capybara
   - rubocop-factory_bot
-  - rubocop-rspec_rails
 
 AllCops:
   ParserEngine: parser_prism
