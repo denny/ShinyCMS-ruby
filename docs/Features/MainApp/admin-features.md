@@ -13,7 +13,7 @@ Plugins appear in the admin menu in the order that they are loaded, which is spe
 
 ### Admin toolbar
 
-If you are logged into a user account with suitable admin privileges, a toolbar will appear at the bottom of every page on the main sit. This toolbar will usually include some context-aware links to relevant admin features, allowing you to easily jump straight to the admin pages for the content you are currently looking at (assuming that you have the access to do so).
+If you are logged into a user account with suitable admin privileges, a toolbar will appear at the bottom of every page on the main site. This toolbar will usually include some context-aware links to relevant admin features, allowing you to easily jump straight to the admin pages for the content you are currently looking at (assuming that you have the access to do so).
 
 
 ### Access Control List
