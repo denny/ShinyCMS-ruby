@@ -6,7 +6,7 @@
     "@rails/activestorage": "^6.1.710",
     "@rails/ujs": "^6.1.710",
     "acorn": "^8.14.1",
-    "core-js": "^3.42.0",
+    "core-js": "^3.43.0",
     "is-svg": "^6.0.0",
     "jquery": "^3.6.0",
     "jquery-ui": "^1.14.1",
