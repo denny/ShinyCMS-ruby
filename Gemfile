@@ -53,7 +53,7 @@ source 'https://rubygems.org' do
   # Charts and dashboards
   gem 'blazer'
   # Charts
-  gem 'chartkick', '~> 5.1.4'
+  gem 'chartkick', '~> 5.1.5'
 
   # Request filtering
   gem 'rack-attack'
