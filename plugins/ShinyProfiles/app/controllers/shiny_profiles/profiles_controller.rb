@@ -66,7 +66,9 @@ module ShinyProfiles
     def strong_params
       # rubocop:disable Layout/LineLength
       params.expect(
-        profile: %i[ public_name public_email profile_pic bio location postcode new_link_name: [], new_link_url: [], links_attributes: {} ]
+        profile: %i[
+          public_name public_email profile_pic bio location postcode new_link_name: [], new_link_url: [], links_attributes: {}
+        ]
       )
       # rubocop:enable Layout/LineLength
     end
