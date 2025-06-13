@@ -93,9 +93,8 @@ module ShinyForms
     end
 
     def form_params
-      params.require( :form ).permit(
-        :internal_name, :public_name, :slug, :description, :handler,
-        :email_to, :filename, :redirect_to, :success_message
+      params.expect(
+        form: %i[ internal_name public_name slug description handler email_to filename redirect_to success_message ]
       )
     end
   end

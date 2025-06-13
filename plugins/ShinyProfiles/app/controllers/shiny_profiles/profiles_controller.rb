@@ -64,10 +64,11 @@ module ShinyProfiles
     end
 
     def strong_params
-      params.require( :profile ).permit(
-        :public_name, :public_email, :profile_pic, :bio, :location, :postcode,
-        new_link_name: [], new_link_url: [], links_attributes: {}
+      # rubocop:disable Layout/LineLength
+      params.expect(
+        profile: %i[ public_name public_email profile_pic bio location postcode new_link_name: [], new_link_url: [], links_attributes: {} ]
       )
+      # rubocop:enable Layout/LineLength
     end
 
     def add_new_links
