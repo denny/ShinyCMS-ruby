@@ -78,9 +78,7 @@ module ShinyShop
     end
 
     def strong_params
-      params.require( :product ).permit(
-        :internal_name, :public_name, :slug, :description, :position, :show_on_site, :active, :price
-      )
+      params.expect( product: %i[ internal_name public_name slug description position show_on_site active price ] )
     end
   end
 end
