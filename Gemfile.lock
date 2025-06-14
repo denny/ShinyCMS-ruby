@@ -442,13 +442,6 @@ GEM
       railties (>= 5.0.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
-    fast-mcp (1.5.0)
-      addressable (~> 2.8)
-      base64
-      dry-schema (~> 1.14)
-      json (~> 2.0)
-      mime-types (~> 3.4)
-      rack (~> 3.1)
     ffi (1.17.1)
     flay (2.13.1)
       erubi (~> 1.10)
@@ -519,15 +512,10 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     method_source (1.1.0)
-    mime-types (3.7.0)
-      logger
-      mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0610)
     mini_magick (5.2.0)
       benchmark
       logger
     mini_mime (1.1.5)
-    mini_portile2 (2.8.9)
     minitest (5.25.5)
     mjml-rails (4.15.1)
     mutant (0.13.1)
@@ -551,7 +539,6 @@ GEM
       net-protocol
     nio4r (2.7.4)
     nokogiri (1.18.8)
-      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     numerizer (0.1.1)
     orm_adapter (0.5.0)
@@ -643,10 +630,10 @@ GEM
     rails-i18n (8.0.1)
       i18n (>= 0.7, < 2)
       railties (>= 8.0.0, < 9)
-    rails-pg-extras (6.0.1)
-      fast-mcp
-      rails
-      ruby-pg-extras (= 6.0.1)
+    rails-pg-extras (5.6.10)
+      activerecord
+      pg
+      terminal-table
     rails_email_preview (2.2.3)
       rails (>= 4.2)
       request_store
@@ -760,9 +747,6 @@ GEM
     rubocop-thread_safety (0.7.2)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
-    ruby-pg-extras (6.0.1)
-      pg
-      terminal-table
     ruby-progressbar (1.13.0)
     ruby-vips (2.2.3)
       ffi (~> 1.12)
