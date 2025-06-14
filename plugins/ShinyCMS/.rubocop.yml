@@ -152,6 +152,8 @@ Naming/PredicateMethod:
     - ../ShinyCMS/app/controllers/shinycms/comments_controller.rb
     - ../ShinyCMS/app/models/shinycms/feature_flag.rb
     - ../ShinyForms/app/models/shiny_forms/form.rb
+    - ../ShinyShop/app/mailers/shiny_shop/shop_mailer.rb
+    - ../ShinyShop/app/models/shiny_shop/product.rb
 
 # This base controller is for 'untrusted' code to inherit from (i.e. controllers from gems), to
 # keep them a bit more isolated from the main CMS controllers and whatever ACL privs they have.
