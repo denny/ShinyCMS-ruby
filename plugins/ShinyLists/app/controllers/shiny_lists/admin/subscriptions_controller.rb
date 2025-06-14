@@ -90,7 +90,7 @@ module ShinyLists
     end
 
     def subscription_params
-      params.require( :subscription ).permit( :email, :page, :count )
+      params.expect( subscription: %i[ email page count ] )
     end
   end
 end

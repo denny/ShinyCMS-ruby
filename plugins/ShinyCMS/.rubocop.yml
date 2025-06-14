@@ -7,15 +7,13 @@
 inherit_from: .rubocop_todo.yml
 
 plugins:
+  - rubocop-capybara
+  - rubocop-factory_bot
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
-  - rubocop-thread_safety
-
-require:
-  - rubocop-capybara
-  - rubocop-factory_bot
   - rubocop-rspec_rails
+  - rubocop-thread_safety
 
 AllCops:
   ParserEngine: parser_prism
@@ -147,6 +145,13 @@ Rails/SaveBang:
     - ../ShinyShop/app/models/shiny_shop/product.rb
     - ../ShinySEO/app/models/shiny_seo/sitemap.rb
     - ../ShinyShop/app/controllers/shiny_shop/checkouts_controller.rb
+
+# These all seem to be misfires
+Naming/PredicateMethod:
+  Exclude:
+    - ../ShinyCMS/app/controllers/shinycms/comments_controller.rb
+    - ../ShinyCMS/app/models/shinycms/feature_flag.rb
+    - ../ShinyForms/app/models/shiny_forms/form.rb
 
 # This base controller is for 'untrusted' code to inherit from (i.e. controllers from gems), to
 # keep them a bit more isolated from the main CMS controllers and whatever ACL privs they have.

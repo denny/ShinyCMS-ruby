@@ -84,7 +84,7 @@ module ShinyAccess
     end
 
     def strong_params
-      params.require( :membership ).permit( :user_id, :username )
+      params.expect( membership: %i[ user_id username ] )
     end
 
     def user_for_create

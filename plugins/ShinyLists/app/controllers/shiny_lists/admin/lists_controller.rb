@@ -73,9 +73,7 @@ module ShinyLists
     private
 
     def list_params
-      params.require( :list ).permit(
-        :internal_name, :public_name, :slug, :description
-      )
+      params.expect( list: %i[ internal_name public_name slug description ] )
     end
   end
 end

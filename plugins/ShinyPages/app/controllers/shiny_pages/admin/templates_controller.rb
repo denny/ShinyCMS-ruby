@@ -97,9 +97,7 @@ module ShinyPages
     def strong_params
       return if params[ :template ].blank?
 
-      params.require( :template ).permit(
-        :name, :description, :filename, elements_attributes: {}
-      )
+      params.expect( template: %i[ name description filename elements_attributes: {} ] )
     end
 
     def sort_elements
