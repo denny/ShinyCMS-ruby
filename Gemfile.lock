@@ -442,13 +442,6 @@ GEM
       railties (>= 5.0.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
-    fast-mcp (1.5.0)
-      addressable (~> 2.8)
-      base64
-      dry-schema (~> 1.14)
-      json (~> 2.0)
-      mime-types (~> 3.4)
-      rack (~> 3.1)
     ffi (1.17.1)
     flay (2.13.1)
       erubi (~> 1.10)
@@ -519,10 +512,6 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     method_source (1.1.0)
-    mime-types (3.7.0)
-      logger
-      mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0610)
     mini_magick (5.2.0)
       benchmark
       logger
