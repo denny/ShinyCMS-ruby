@@ -36,9 +36,7 @@ module ShinyProfiles
     end
 
     def strong_params
-      params.require( :profile ).permit(
-        :public_name, :public_email, :profile_pic, :bio, :location, :postcode
-      )
+      params.expect( profile: %i[ public_name public_email profile_pic bio location postcode ] )
     end
   end
 end

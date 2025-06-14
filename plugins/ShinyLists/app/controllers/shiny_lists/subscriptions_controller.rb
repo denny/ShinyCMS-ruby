@@ -75,7 +75,7 @@ module ShinyLists
     end
 
     def subscribe_params
-      params.require( :subscription ).permit( :name, :email, :consent_version, :consent_confirmation )
+      params.expect( subscription: %i[ name email consent_version consent_confirmation ] )
     end
 
     def view_list_subscriptions_path

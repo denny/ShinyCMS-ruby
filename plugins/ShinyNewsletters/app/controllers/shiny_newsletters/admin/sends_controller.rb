@@ -127,7 +127,7 @@ module ShinyNewsletters
     def strong_params
       return if params[ :send ].blank?
 
-      temp_params = params.require( :send ).permit( :edition_id, :list_id, :send_at, :send_at_time, :send_now )
+      temp_params = params.expect( send: %i[ edition_id list_id send_at send_at_time send_now ] )
 
       combine_date_and_time_params( temp_params, :send_at )
     end

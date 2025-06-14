@@ -98,8 +98,10 @@ module ShinyNewsletters
     def strong_params
       return if params[ :edition ].blank?
 
-      params.require( :edition ).permit(
-        :internal_name, :public_name, :slug, :description, :template_id, :show_on_site, elements_attributes: {}
+      params.expect(
+        edition: %i[
+          internal_name public_name slug description template_id show_on_site elements_attributes: {}
+        ]
       )
     end
 

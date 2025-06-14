@@ -64,13 +64,12 @@ module ShinyInserts
 
     # Permitted params for single-item operations
     def new_element_params
-      params.require( :insert_element )
-            .permit( :name, :content, :element_type )
+      params.expect( insert_element: %i[ name content element_type ] )
     end
 
     # Permitted params for multi-item operations
     def insert_params
-      params.require( :insert_set ).permit( elements_attributes: {} )
+      params.expect( insert_set: [ elements_attributes: {} ] )
     end
 
     def with_html_editor?

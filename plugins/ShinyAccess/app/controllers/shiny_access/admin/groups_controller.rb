@@ -84,9 +84,7 @@ module ShinyAccess
     end
 
     def strong_params
-      params.require( :group ).permit(
-        :internal_name, :public_name, :slug, :description
-      )
+      params.expect( group: %i[ internal_name public_name slug description ] )
     end
   end
 end

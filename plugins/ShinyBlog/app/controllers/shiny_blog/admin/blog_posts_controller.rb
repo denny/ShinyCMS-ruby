@@ -88,9 +88,7 @@ module ShinyBlog
     def strong_params_for_create
       enforce_change_author_capability_for_create( :blog_posts )
 
-      temp_params = params.require( :post ).permit(
-        :title, :slug, :body, :tag_list, :show_on_site, :user_id, :posted_at, :posted_at_time
-      )
+      temp_params = params.expect( post: %i[ title slug body tag_list show_on_site user_id posted_at posted_at_time ] )
 
       combine_date_and_time_params( temp_params, :posted_at )
     end
@@ -101,9 +99,7 @@ module ShinyBlog
 
       enforce_change_author_capability_for_update( :blog_posts )
 
-      temp_params = params.require( :post ).permit(
-        :title, :slug, :body, :tag_list, :show_on_site, :user_id, :posted_at, :posted_at_time
-      )
+      temp_params = params.expect( post: %i[ title slug body tag_list show_on_site user_id posted_at posted_at_time ] )
 
       combine_date_and_time_params( temp_params, :posted_at )
     end
