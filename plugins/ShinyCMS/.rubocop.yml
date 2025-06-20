@@ -142,7 +142,9 @@ Rails/DynamicFindBy:
 # And this isn't an ActiveRecord create method
 Rails/SaveBang:
   Exclude:
+    - ../ShinyShop/app/models/shiny_shop/product.rb
     - ../ShinySEO/app/models/shiny_seo/sitemap.rb
+    - ../ShinyShop/app/controllers/shiny_shop/checkouts_controller.rb
 
 # These all seem to be misfires
 Naming/PredicateMethod:
@@ -151,6 +153,8 @@ Naming/PredicateMethod:
     - ../ShinyCMS/app/controllers/shinycms/comments_controller.rb
     - ../ShinyCMS/app/models/shinycms/feature_flag.rb
     - ../ShinyForms/app/models/shiny_forms/form.rb
+    - ../ShinyShop/app/mailers/shiny_shop/shop_mailer.rb
+    - ../ShinyShop/app/models/shiny_shop/product.rb
 
 # This base controller is for 'untrusted' code to inherit from (i.e. controllers from gems), to
 # keep them a bit more isolated from the main CMS controllers and whatever ACL privs they have.
@@ -275,6 +279,8 @@ Layout/HashAlignment:
   EnforcedHashRocketStyle: table
 
 # Enabling these leads to less readable code in my opinion
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: false
 Layout/MultilineMethodArgumentLineBreaks:
   Enabled: false
 Layout/SpaceBeforeBrackets:

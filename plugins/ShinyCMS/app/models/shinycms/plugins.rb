@@ -22,8 +22,7 @@ module ShinyCMS
       @names = @plugins.collect( &:name )
     end
 
-    # If no plugins or plugin names are passed to .get then it defaults to
-    # building a collection of all feature plugins (excludes the core plugin)
+    # If no plugins or plugin names are passed to .get then it will build feature_plugin_names
     def self.get( new_plugins = nil )
       return new_plugins if new_plugins.is_a? ShinyCMS::Plugins
 
@@ -69,10 +68,13 @@ module ShinyCMS
     def self.feature_plugin_names
       return @feature_plugin_names if defined? @feature_plugin_names
 
-      configured = ENV.fetch( 'SHINYCMS_PLUGINS', '' ).split( /[, ]+/ ).collect( &:to_sym )
-      on_disk    = Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ).to_sym }
+      configured = ENV.fetch( 'SHINYCMS_PLUGINS' ) { abort 'SHINYCMS_PLUGINS env var must be set' }
+      abort 'SHINYCMS_PLUGINS env var must not be blank' if configured.blank?
 
-      @feature_plugin_names = 💎ify[ configured.intersection( on_disk ) - [ :ShinyCMS ] ]
+      requested = configured.split( /[, ]+/ ).collect( &:to_sym )
+      on_disk   = Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ).to_sym }
+
+      @feature_plugin_names = 💎ify[ requested.intersection( on_disk ) - [ :ShinyCMS ] ]
     end
 
     private

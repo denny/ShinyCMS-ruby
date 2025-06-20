@@ -35,5 +35,5 @@ ShinyCMS is copyright 2009-2025 Denny de la Haye https://denny.me
 
 This ShinyCMS plugin is free software; you can redistribute it and/or modify it
 under the terms of the GPL (version 2 or later). You should have copies of both
-v2 and v2 of the GPL in your ShinyCMS docs folder, or you can read them online:
+v2 and v3 of the GPL in your ShinyCMS docs folder, or you can read them online:
 https://opensource.org/licenses/gpl-2.0 / https://opensource.org/licenses/gpl-3.0
