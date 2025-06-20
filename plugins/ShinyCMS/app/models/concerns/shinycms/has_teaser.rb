@@ -18,8 +18,8 @@ module ShinyCMS
 
         teaser_paragraphs = get_paragraphs( text, paragraphs )
 
-        return join_with_p_tags(  teaser_paragraphs ) if contains_p_tags(  text )
-        return join_with_br_tags( teaser_paragraphs ) if contains_br_tags( text )
+        return join_with_p_tags(  teaser_paragraphs ) if contains_p_tags?(  text )
+        return join_with_br_tags( teaser_paragraphs ) if contains_br_tags?( text )
 
         text
       end
@@ -33,8 +33,8 @@ module ShinyCMS
       end
 
       def to_paragraphs( text )
-        return split_by_p_tags(  text ) if contains_p_tags(  text )
-        return split_by_br_tags( text ) if contains_br_tags( text )
+        return split_by_p_tags(  text ) if contains_p_tags?(  text )
+        return split_by_br_tags( text ) if contains_br_tags?( text )
 
         [ text ]
       end
@@ -55,11 +55,11 @@ module ShinyCMS
         paragraphs.join "\n<br><br>\n"
       end
 
-      def contains_p_tags( text )
+      def contains_p_tags?( text )
         text.match? %r{</p>[^<]*<p>}i
       end
 
-      def contains_br_tags( text )
+      def contains_br_tags?( text )
         text.match? %r{<br ?/?>\s*<br ?/?>}i
       end
     end

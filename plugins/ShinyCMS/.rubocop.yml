@@ -147,6 +147,7 @@ Rails/SaveBang:
 # These all seem to be misfires
 Naming/PredicateMethod:
   Exclude:
+    - ../ShinyAccess/app/models/shiny_access/group.rb
     - ../ShinyCMS/app/controllers/shinycms/comments_controller.rb
     - ../ShinyCMS/app/models/shinycms/feature_flag.rb
     - ../ShinyForms/app/models/shiny_forms/form.rb
