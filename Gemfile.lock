@@ -634,9 +634,8 @@ GEM
       i18n (>= 0.7, < 2)
       railties (>= 8.0.0, < 9)
     rails-pg-extras (5.6.10)
-      activerecord
-      pg
-      terminal-table
+      rails
+      ruby-pg-extras (= 5.6.10)
     rails_email_preview (2.2.3)
       rails (>= 4.2)
       request_store
@@ -751,6 +750,9 @@ GEM
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
       rubocop-ast (>= 1.44.0, < 2.0)
+    ruby-pg-extras (5.6.10)
+      pg
+      terminal-table
     ruby-progressbar (1.13.0)
     ruby-vips (2.2.3)
       ffi (~> 1.12)
@@ -930,7 +932,7 @@ DEPENDENCIES
   webmock!
 
 RUBY VERSION
-   ruby 3.4.3p32
+   ruby 3.4.4p34
 
 BUNDLED WITH
    2.6.7
