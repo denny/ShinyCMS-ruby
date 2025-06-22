@@ -47,13 +47,13 @@ module ShinyCMS
     end
 
     def pass_recaptcha
-      return true if no_recaptcha_keys
+      return true if no_recaptcha_keys?
       return true if verify_invisible_recaptcha( 'registrations' )
 
       verify_checkbox_recaptcha || false
     end
 
-    def no_recaptcha_keys
+    def no_recaptcha_keys?
       recaptcha_checkbox_site_key.blank? &&
         recaptcha_v2_site_key.blank? && recaptcha_v3_site_key.blank?
     end
