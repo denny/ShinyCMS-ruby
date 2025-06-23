@@ -102,6 +102,12 @@ RSpec.configure do |config|
   # Make view component test helper methods available in component specs
   config.include ViewComponent::TestHelpers, type: :component
 
+  # Extra helpers for wibbly-wobbly-timey wimey stuff
+  config.include ActiveSupport::Testing::TimeHelpers
+
+  # Unstub time
+  config.after( :each ) { travel_back }
+
   # Mix in different behaviours to your tests based on their file location
   # For example, add `get` and `post` methods to specs in `spec/requests`
   # https://relishapp.com/rspec/rspec-rails/docs
