@@ -10,5 +10,14 @@ require 'rails_helper'
 
 # Product model tests
 RSpec.describe ShinyShop::Product, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '.visible' do
+    it 'only shows the product which is marked visible on in our db and on Stripe' do
+      create :product, show_on_site: false, active: false
+      create :product, show_on_site: false, active: true
+      create :product, show_on_site: true,  active: false
+      p4 = create :product, show_on_site: true,  active: true
+
+      expect( described_class.visible ).to eq [ p4 ]
+    end
+  end
 end
