@@ -1,0 +1,25 @@
+<mjml>
+  <mj-head>
+    <mj-title>
+      <%= @email_title || "Email from #{site_name}" %>
+    </mj-title>
+
+    <% if @preview_text.present? %>
+    <mj-preview>
+      <%= @preview_text %>
+    </mj-preview>
+    <% end %>
+  </mj-head>
+
+  <mj-body>
+    <%= yield %>
+
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <%= render partial: 'shiny_lists/includes/email/manage_subscriptions' %>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

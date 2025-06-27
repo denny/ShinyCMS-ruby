@@ -6,4 +6,4 @@
 
 # Run Sidekiq in dev, picking up any relevant ENV vars (SIDEKIQ_CONCURRENCY, SIDEKIQ_PREFIX, etc)
 
-dotenv -f .env.development.local sidekiq
+bundle exec dotenv -f .env.development.local sidekiq
