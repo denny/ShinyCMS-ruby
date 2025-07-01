@@ -27,7 +27,6 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
 
-	// TODO
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed.
   config.filebrowserBrowseUrl = "/admin/tools/ckeditor/attachment_files";
 	// The location of a script that handles file uploads.
