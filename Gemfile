@@ -55,6 +55,10 @@ source 'https://rubygems.org' do
   # Charts
   gem 'chartkick', '~> 5.2.0'
 
+  # Stripe
+  # gem 'stripe'
+  gem 'stripe_event'
+
   # Request filtering
   gem 'rack-attack'
 

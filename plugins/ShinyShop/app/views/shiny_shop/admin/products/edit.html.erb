@@ -1,0 +1,38 @@
+<%= form_for @product, url: shiny_shop.product_path( @product ), method: :put do |f| %>
+  <p>
+    <%= f.label :internal_name %><br>
+    <%= f.text_field :internal_name %>
+  </p>
+  <p>
+    <%= f.label :public_name %><br>
+    <%= f.text_field :public_name %>
+  </p>
+  <p>
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :position %>
+    <br><%= f.text_field :position %>
+  </p>
+  <p>
+    <%= f.label :show_on_site %>
+    <br><%= f.check_box :show_on_site %>
+  </p>
+  <p>
+    <%= f.label :active %>
+    <br><%= f.check_box :active %>
+  </p>
+  <p>
+    <%= f.label :price %>
+    <br><%= f.number_field :price, disabled: true %>
+  </p>
+
+  <p class="top-margin">
+    <%= f.submit t( 'update' ) %>
+  </p>
+<% end %>
