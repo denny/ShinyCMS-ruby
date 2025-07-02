@@ -277,11 +277,11 @@ GEM
     acts_as_votable (0.14.0)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
-    ahoy_email (1.1.1)
-      actionmailer (>= 5)
-      addressable (>= 2.3.2)
-      nokogiri
-      safely_block (>= 0.1.1)
+    ahoy_email (3.0.0)
+      actionmailer (>= 7.1)
+      addressable (>= 2.8)
+      nokogiri (>= 1.15)
+      safely_block (>= 0.5)
     ahoy_matey (5.4.0)
       activesupport (>= 7.1)
       device_detector (>= 1)
@@ -541,7 +541,7 @@ GEM
       mutant (= 0.13.2)
       rspec-core (>= 3.8.0, < 4.0.0)
     mutex_m (0.3.0)
-    net-imap (0.5.8)
+    net-imap (0.5.9)
       date
       net-protocol
     net-pop (0.1.2)
@@ -889,7 +889,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ahoy_email (>= 1.1, < 2.0)!
+  ahoy_email (>= 1.1, < 4.0)!
   ahoy_matey!
   blazer!
   brakeman!
