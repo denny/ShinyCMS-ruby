@@ -11,7 +11,7 @@
 # less error prone than running all of your migrations from scratch. Old migrations may fail
 # to apply correctly if those migrations use external dependencies or application code.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_09_141809) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_07_134039) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_stat_statements"
@@ -634,7 +634,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_09_141809) do
     t.datetime "updated_at", precision: 0, null: false
     t.datetime "deleted_at", precision: 0
     t.index ["deleted_at"], name: "index_user_capabilities_on_deleted_at"
-    t.index ["user_id", "capability_id"], name: "index_user_capabilities_on_user_id_and_capability_id", unique: true
+    t.index ["user_id", "capability_id"], name: "index_shinycms_user_capabilities_on_user_id_and_capability_id", unique: true, where: "(deleted_at IS NULL)"
   end
 
   create_table "shinycms_users", force: :cascade do |t|
