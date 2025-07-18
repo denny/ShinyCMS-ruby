@@ -52,3 +52,8 @@ en:
           success: Product restored
         archive:
           success: Product archived
+
+  models:
+    shiny_shop:
+      template:
+        template_file_must_exist: 'Template file must be in themes/{theme-name}/shiny_shop/products'
