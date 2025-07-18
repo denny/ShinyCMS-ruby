@@ -15,6 +15,7 @@ class AddShopTables < ActiveRecord::Migration[8.0]
       t.string :filename, null: false
 
       t.timestamps
+      t.datetime :deleted_at, index: true
     end
 
     create_table :shiny_shop_template_elements, force: :cascade do |t|
@@ -26,6 +27,7 @@ class AddShopTables < ActiveRecord::Migration[8.0]
       t.belongs_to :template, foreign_key: { to_table: :shiny_shop_templates }, null: false
 
       t.timestamps
+      t.datetime :deleted_at, index: true
     end
 
     create_table :shiny_shop_sections, force: :cascade do |t|
@@ -40,6 +42,7 @@ class AddShopTables < ActiveRecord::Migration[8.0]
       t.belongs_to :section, foreign_key: { to_table: :shiny_shop_sections }
 
       t.timestamps
+      t.datetime :deleted_at, index: true
 
       t.index [:section_id, :slug], name: :index_shop_sections_on_section_id_and_slug, unique: true
     end
@@ -51,6 +54,7 @@ class AddShopTables < ActiveRecord::Migration[8.0]
       t.belongs_to :template, foreign_key: { to_table: :shiny_shop_templates }
 
       t.index [:section_id, :slug], name: :index_products_on_section_id_and_slug, unique: true
+      t.datetime :deleted_at, index: true
     end
 
     create_table :shiny_shop_product_elements, force: :cascade do |t|
@@ -62,6 +66,7 @@ class AddShopTables < ActiveRecord::Migration[8.0]
       t.belongs_to :product, foreign_key: { to_table: :shiny_shop_products }, null: false
 
       t.timestamps
+      t.datetime :deleted_at, index: true
     end
   end
 end

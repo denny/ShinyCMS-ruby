@@ -14,7 +14,7 @@ module ShinyShop
     include ShinyCMS::HasReadableName
     include ShinyCMS::SoftDelete
 
-    # include ShinyCMS::ProvidesDemoSiteData
+    include ShinyCMS::ProvidesDemoSiteData
 
     # Associations
 

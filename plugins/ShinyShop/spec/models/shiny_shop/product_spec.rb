@@ -11,7 +11,7 @@ require 'rails_helper'
 # Product model tests
 RSpec.describe ShinyShop::Product, type: :model do
   describe '.visible' do
-    it 'only shows the product which is marked visible on in our db and on Stripe' do
+    it 'only shows the product which is marked visible both in our db and on Stripe' do
       create :product, show_on_site: false, active: false
       create :product, show_on_site: false, active: true
       create :product, show_on_site: true,  active: false

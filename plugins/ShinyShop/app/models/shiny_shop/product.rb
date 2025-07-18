@@ -12,6 +12,8 @@ module ShinyShop
     include ShinyCMS::HasPublicName
     include ShinyCMS::HasSlug
 
+    include ShinyCMS::ProvidesDemoSiteData
+
     validates :price, numericality: { only_integer: true }
 
     scope :visible, -> { where( show_on_site: true, active: true ) }

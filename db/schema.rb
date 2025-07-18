@@ -477,6 +477,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_133806) do
     t.bigint "product_id", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.datetime "deleted_at", precision: nil
+    t.index ["deleted_at"], name: "index_shiny_shop_product_elements_on_deleted_at"
     t.index ["product_id"], name: "index_shiny_shop_product_elements_on_product_id"
   end
 
@@ -496,6 +498,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_133806) do
     t.boolean "show_in_menus", default: true, null: false
     t.bigint "section_id"
     t.bigint "template_id"
+    t.datetime "deleted_at", precision: nil
+    t.index ["deleted_at"], name: "index_shiny_shop_products_on_deleted_at"
     t.index ["section_id", "slug"], name: "index_products_on_section_id_and_slug", unique: true
     t.index ["section_id"], name: "index_shiny_shop_products_on_section_id"
     t.index ["slug"], name: "index_shiny_shop_products_on_slug", unique: true
@@ -515,6 +519,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_133806) do
     t.bigint "section_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.datetime "deleted_at", precision: nil
+    t.index ["deleted_at"], name: "index_shiny_shop_sections_on_deleted_at"
     t.index ["section_id", "slug"], name: "index_shop_sections_on_section_id_and_slug", unique: true
     t.index ["section_id"], name: "index_shiny_shop_sections_on_section_id"
   end
@@ -527,6 +533,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_133806) do
     t.bigint "template_id", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.datetime "deleted_at", precision: nil
+    t.index ["deleted_at"], name: "index_shiny_shop_template_elements_on_deleted_at"
     t.index ["template_id"], name: "index_shiny_shop_template_elements_on_template_id"
   end
 
@@ -536,6 +544,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_133806) do
     t.string "filename", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.datetime "deleted_at", precision: nil
+    t.index ["deleted_at"], name: "index_shiny_shop_templates_on_deleted_at"
   end
 
   create_table "shinycms_anonymous_authors", force: :cascade do |t|
