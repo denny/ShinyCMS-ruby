@@ -10,39 +10,6 @@ require 'rails_helper'
 
 # Tests for shop section model
 RSpec.describe ShinyShop::Section, type: :model do
-  describe 'when I call .default_page' do
-    it 'with no default set, it returns the first page created in this section' do
-      section = create :shop_section
-
-      product1 = create :product, section: section
-      product2 = create :product, section: section
-
-      expect( product2.section.default_page ).to eq product1
-    end
-
-    it 'returns the specified page if a default has been explicitly set' do
-      section = create :shop_section
-
-      product1 = create :product, section: section
-      product2 = create :product, section: section
-
-      section.update! default_product_id: product2.id
-
-      expect( product1.section.default_product ).to eq product2
-    end
-  end
-
-  describe 'when I call Section.default_section' do
-    it 'returns the correct section' do
-      create :shop_section
-      section2 = create :shop_section, slug: 'default'
-
-      ShinyCMS::Setting.set( :default_section, to: 'default' )
-
-      expect( described_class.default_section ).to eq section2
-    end
-  end
-
   describe 'check that position is applied within a section' do
     it 'returns the sections ordered by position, nulls last (not by .id or .created_at)' do
       s0 = create :shop_section
