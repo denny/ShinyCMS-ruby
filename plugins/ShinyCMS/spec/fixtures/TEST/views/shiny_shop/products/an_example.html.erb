@@ -1,0 +1,14 @@
+<% @page_title = @product.name %>
+<h1>
+  <%= @product.name %>
+</h1>
+<p>
+  <%= image_tag url_for( an_image ), class: 'classy' if an_image&.attached? %>
+</p>
+<h2>
+  <%= a_heading %>
+</h2>
+
+<%= simple_format some_text %>
+
+<%= sanitize html_text %>
