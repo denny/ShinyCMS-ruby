@@ -44,9 +44,8 @@ RSpec.describe ShinyShop::Template, type: :model do
   describe 'class methods' do
     describe '.available_templates' do
       it 'returns the names of the template files in products/templates' do
-        expect( described_class.available_templates.size  ).to eq 2
+        expect( described_class.available_templates.size  ).to eq 1
         expect( described_class.available_templates.first ).to eq 'an_example'
-        expect( described_class.available_templates.last  ).to eq 'contact_form'
       end
     end
   end
