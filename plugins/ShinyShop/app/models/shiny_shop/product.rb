@@ -14,6 +14,14 @@ module ShinyShop
 
     include ShinyCMS::ProvidesDemoSiteData
 
+    belongs_to :section,  inverse_of: :all_products, optional: true
+    belongs_to :template, inverse_of: :products
+
+    has_many :elements, -> { order( :position ).includes( [ :image_attachment ] ) },
+             inverse_of: :product, dependent: :destroy, class_name: 'ProductElement'
+
+    accepts_nested_attributes_for :elements, allow_destroy: true
+
     validates :price, numericality: { only_integer: true }
 
     scope :visible, -> { where( show_on_site: true, active: true ) }
