@@ -11,7 +11,14 @@ module ShinyShop
   FactoryBot.define do
     factory :product, class: 'ShinyShop::Product' do
       internal_name { Faker::Books::CultureSeries.unique.culture_ship }
+
+      association :template, factory: :product_template
+
       price { 666 }
+
+      trait :hidden do
+        show_on_site { false }
+      end
     end
   end
 end
