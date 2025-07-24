@@ -141,10 +141,6 @@ jobs:
           command: bundle exec rails db:schema:load
 
       - run:
-          name: Start CodeClimate reporter
-          command: ~/ShinyCMS/tmp/cc-test-reporter before-build
-
-      - run:
           name: Run tests
           command: |
             mkdir /tmp/test-results
@@ -154,10 +150,6 @@ jobs:
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
               --format progress
-
-      - run:
-          name: Upload results to CodeClimate
-          command:  ~/ShinyCMS/tmp/cc-test-reporter after-build --debug --coverage-input-type simplecov
 
       # Store test results for CodeCov
       - store_test_results:
