@@ -12,7 +12,7 @@ require 'rails_helper'
 RSpec.describe ShinyShop::ProductElement, type: :model do
   describe 'concerns' do
     it_behaves_like ShinyCMS::Element do
-      let( :element ) { create :page_element }
+      let( :element ) { create :product_element }
     end
 
     it_behaves_like ShinyCMS::ProvidesDemoSiteData do
