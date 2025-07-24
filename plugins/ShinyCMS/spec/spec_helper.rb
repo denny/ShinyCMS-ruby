@@ -27,7 +27,7 @@ require 'simplecov'
 RSpec.configure do |config|
   config.before( :suite ) do
     # Copy fresh TEST theme templates into place
-    FileUtils.rm_r 'themes/TEST'
+    FileUtils.rm_r 'themes/TEST' if Dir.exist? 'themes/TEST'
     FileUtils.cp_r 'plugins/ShinyCMS/spec/fixtures/TEST', 'themes/TEST'
   end
 
