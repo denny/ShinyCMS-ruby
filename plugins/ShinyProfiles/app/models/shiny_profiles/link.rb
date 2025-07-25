@@ -19,6 +19,7 @@ module ShinyProfiles
 
     if ShinyCMS.plugins.loaded? :ShinySearch
       include ShinySearch::Searchable
+
       searchable_by :name, :url  # TODO
     end
 
