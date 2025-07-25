@@ -30,6 +30,7 @@ module ShinyShop
 
     if ShinyCMS.plugins.loaded? :ShinySearch
       include ShinySearch::Searchable
+
       searchable_by :public_name, :slug
     end
 
