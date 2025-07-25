@@ -45,6 +45,7 @@ module ShinyProfiles
 
     if ShinyCMS.plugins.loaded? :ShinySearch
       include ShinySearch::Searchable
+
       searchable_by :username, :public_name, :public_email, :bio, :location, :postcode
     end
 
