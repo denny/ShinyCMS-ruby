@@ -19,6 +19,7 @@ module ShinyPages
 
     if ShinyCMS.plugins.loaded? :ShinySearch
       include ShinySearch::Searchable
+
       searchable_by :content  # TODO
     end
 
