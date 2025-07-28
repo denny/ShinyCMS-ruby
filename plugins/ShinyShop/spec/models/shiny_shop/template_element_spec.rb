@@ -8,7 +8,7 @@
 
 require 'rails_helper'
 
-# Tests for page template element model
+# Tests for shop template element model
 RSpec.describe ShinyShop::TemplateElement, type: :model do
   describe 'concerns' do
     it_behaves_like ShinyCMS::Element do
