@@ -7,7 +7,7 @@
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
 module ShinyShop
-  # Admin controller for page elements - ShinyPages plugin for ShinyCMS
+  # Admin controller for product elements - ShinyShop plugin for ShinyCMS
   class Admin::Products::ElementsController < ApplicationController
     include ShinyCMS::AdminAreaControllerBase
 

@@ -11,10 +11,10 @@ module ShinyShop
   class Admin::SectionsController < ApplicationController
     include ShinyCMS::AdminAreaControllerBase
 
-    # Redirect to the combined page+section list
+    # Redirect to the combined product+section list
     def index
       authorize ShinyShop::Section
-      redirect_to shiny_pages.pages_path
+      redirect_to shiny_shop.products_path
     end
 
     def new
@@ -44,7 +44,7 @@ module ShinyShop
       authorize @section
 
       if @section.update( section_params )
-        redirect_to shiny_pages.edit_section_path( @section ), notice: t( '.success' )
+        redirect_to shiny_shop.edit_section_path( @section ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render :edit
