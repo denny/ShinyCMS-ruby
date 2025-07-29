@@ -32,7 +32,7 @@ source 'https://rubygems.org' do
   end
 
   # Postgres
-  gem 'pg', '~> 1.5.9'
+  gem 'pg', '~> 1.6.0'
 
   # Rack
   gem 'rack', '~> 3.1.16'

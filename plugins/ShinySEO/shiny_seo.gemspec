@@ -38,7 +38,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'rails', '>= 8.0.2', '< 8.1'
 
-  spec.add_dependency 'pg', '>= 1.2.3', '< 1.6.0'
+  spec.add_dependency 'pg', '>= 1.2.3', '< 1.7.0'
 
   spec.add_dependency 'sitemap_generator'
 
