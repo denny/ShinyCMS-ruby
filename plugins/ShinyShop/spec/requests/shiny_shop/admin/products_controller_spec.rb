@@ -53,11 +53,14 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
     it 'adds a new product when the form is submitted' do
       stripe_price = Stripe::Price.construct_from( id: 123, product: 'price_MOCK' )
 
+      template = create :product_template
+
       allow( Stripe::Price ).to receive( :create ).and_return( stripe_price )
 
       post shiny_shop.products_path, params: {
         product: {
           internal_name: Faker::Books::CultureSeries.unique.culture_ship,
+          template_id:   template.id,
           price:         1234  # 1234p === $12.34
         }
       }
