@@ -5,6 +5,38 @@
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
 
+### 2025-08-04  25.08   August 2025: The 'Component With An Updated View' release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.08
+
+Major upgrade for ViewComponent this month, now at 4.0.0 - which required a bit of fiddling around to keep Blazer working, as one of its secondary dependencies broke during the update.
+
+Fixed the usage of SoftDelete so that it doesn't get stroppy about saving updates to user capabilities.
+
+Removed config for CodeClimate, which has sadly shut down. Shame, I really liked that service.
+
+Also updated: pg, rack, puma, stripe (from 10.x to 15.x), pagy, mjml-rails, bugsnag, brakeman, and as ever, nokogiri and rubocop. And many more - see Gemfile.lock changes for full details.
+
+In the background, work continues on adding functionality to flesh out the new ShinyShop engine. This month it gained a stack of Elements, Sections, Templates, and TemplateElements, similar to that found in the ShinyPages engine. I'm hoping to release another tranche of that work next month.
+
+
+### 2025-07-01  25.07   July 2025: The 'I shop, therefore I am' release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.07
+
+The big news this month is the first merge of the ShinyShop plugin into the main branch!
+
+Still a lot of work to do here, but 'release early, release often' as the famous saying goes 🙂
+
+Shop aside, there were quite a lot of dependabot PRs this month, which have all gone in, mostly without a fight. There some minor squabbles around some rubocop changes, as is starting to feel standard. There was also a minor/patch upgrade for Ruby itself.
+
+I changed buttons to links in a few places to make them less JavaScript-dependent, but eventually added rails-ujs back in explicitly to handle the others.
+
+There was a major update to rails-pg-extras which got yanked shortly after release, but not shortly enough for me to avoid installing it, so that caused some excitement. I got it downgraded to the latest minor version before the mess, once I figured out what was going on.
+
+There were also updates to rack, packwerk, pundit, view_component, and a load of monitoring gems and rubocop plugins (meaning all the rubocop-* gems I use are now the newer plugin style) as well as rubocop itself. I also added explicit config for bugsnag so that I could ignore some noisy 404s from spammy PHP exploit bots that were filling up my logs.
+
+
 ### 2025-06-01  25.06   June 2025: The 'Make Rubocop Happier' release
 
 GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.06
