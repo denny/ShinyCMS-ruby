@@ -16,8 +16,8 @@ module ShinyCMS
         include Blazer::BaseHelper
 
         # Allow blazer_js_var to use private method
-        def json_escape( s )
-          helpers.send :json_escape, s
+        def json_escape( sent )
+          helpers.__send__ :json_escape, sent
         end
 
         def initialize( root_path: '/' )
