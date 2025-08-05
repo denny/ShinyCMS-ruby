@@ -861,7 +861,7 @@ GEM
       prism (>= 1.4)
     uri (1.0.3)
     useragent (0.16.11)
-    view_component (4.0.0)
+    view_component (4.0.1)
       activesupport (>= 7.1.0, < 8.1)
       concurrent-ruby (~> 1)
     virtus (1.0.5)
