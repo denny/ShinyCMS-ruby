@@ -6,7 +6,7 @@ PATH
       acts_as_paranoid
       nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
-      pg (>= 1.2.3, < 1.6.0)
+      pg (>= 1.2.3, < 1.7.0)
       pundit
       rails (>= 8.0.2, < 8.1)
 
@@ -19,7 +19,7 @@ PATH
       ckeditor
       nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
-      pg (>= 1.2.3, < 1.6.0)
+      pg (>= 1.2.3, < 1.7.0)
       pundit
       rails (>= 8.0.2, < 8.1)
 
@@ -52,7 +52,7 @@ PATH
       packwerk-extensions
       pagy (~> 9.3.4)
       persistent-dmnd
-      pg (>= 1.2.3, < 1.6.0)
+      pg (>= 1.2.3, < 1.7.0)
       pry-rails
       pundit
       rails (>= 8.0.2, < 8.1)
@@ -66,7 +66,7 @@ PATH
       sentry-ruby
       sidekiq (>= 6.5.10, < 7.4.0)
       sidekiq-status
-      view_component (>= 2.83, < 4.0)
+      view_component (>= 2.83, < 5.0)
       zxcvbn-ruby
 
 PATH
@@ -76,7 +76,7 @@ PATH
       acts_as_paranoid
       nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
-      pg (>= 1.2.3, < 1.6.0)
+      pg (>= 1.2.3, < 1.7.0)
       pundit
       rails (>= 8.0.2, < 8.1)
 
@@ -88,7 +88,7 @@ PATH
       ckeditor
       nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
-      pg (>= 1.2.3, < 1.6.0)
+      pg (>= 1.2.3, < 1.7.0)
       pundit
       rails (>= 8.0.2, < 8.1)
 
@@ -99,7 +99,7 @@ PATH
       acts_as_paranoid
       nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
-      pg (>= 1.2.3, < 1.6.0)
+      pg (>= 1.2.3, < 1.7.0)
       pundit
       rails (>= 8.0.2, < 8.1)
 
@@ -112,7 +112,7 @@ PATH
       ckeditor
       nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
-      pg (>= 1.2.3, < 1.6.0)
+      pg (>= 1.2.3, < 1.7.0)
       pundit
       rails (>= 8.0.2, < 8.1)
 
@@ -124,7 +124,7 @@ PATH
       ckeditor
       nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
-      pg (>= 1.2.3, < 1.6.0)
+      pg (>= 1.2.3, < 1.7.0)
       pundit
       rails (>= 8.0.2, < 8.1)
 
@@ -136,7 +136,7 @@ PATH
       ckeditor
       nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
-      pg (>= 1.2.3, < 1.6.0)
+      pg (>= 1.2.3, < 1.7.0)
       pundit
       rails (>= 8.0.2, < 8.1)
 
@@ -147,7 +147,7 @@ PATH
       acts_as_paranoid
       nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
-      pg (>= 1.2.3, < 1.6.0)
+      pg (>= 1.2.3, < 1.7.0)
       pundit
       rails (>= 8.0.2, < 8.1)
 
@@ -155,7 +155,7 @@ PATH
   remote: plugins/ShinySEO
   specs:
     shiny_seo (21.06)
-      pg (>= 1.2.3, < 1.6.0)
+      pg (>= 1.2.3, < 1.7.0)
       rails (>= 8.0.2, < 8.1)
       sitemap_generator
 
@@ -169,7 +169,7 @@ PATH
       ckeditor
       nokogiri (>= 1.18.8)
       pagy (~> 9.3.4)
-      pg (>= 1.2.3, < 1.6.0)
+      pg (>= 1.2.3, < 1.7.0)
       pg_search
       pundit
       rails (>= 8.0.2, < 8.1)
@@ -180,7 +180,7 @@ PATH
     shiny_shop (24.3)
       acts_as_paranoid
       pagy (~> 9.3.4)
-      pg (>= 1.2.3, < 1.6.0)
+      pg (>= 1.2.3, < 1.7.0)
       pundit
       rails (>= 8.0.2, < 8.1)
       stripe
@@ -300,19 +300,20 @@ GEM
     amazing_print (1.8.1)
     ast (2.4.3)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1133.0)
-    aws-sdk-core (3.227.0)
+    aws-partitions (1.1142.0)
+    aws-sdk-core (3.229.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
       base64
+      bigdecimal
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-kms (1.107.0)
-      aws-sdk-core (~> 3, >= 3.227.0)
+    aws-sdk-kms (1.110.0)
+      aws-sdk-core (~> 3, >= 3.228.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.194.0)
-      aws-sdk-core (~> 3, >= 3.227.0)
+    aws-sdk-s3 (1.196.1)
+      aws-sdk-core (~> 3, >= 3.228.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
@@ -388,9 +389,9 @@ GEM
       rexml
     crass (1.0.6)
     csv (3.3.5)
-    database_cleaner-active_record (2.2.1)
+    database_cleaner-active_record (2.2.2)
       activerecord (>= 5.a)
-      database_cleaner-core (~> 2.0.0)
+      database_cleaner-core (~> 2.0)
     database_cleaner-core (2.0.1)
     date (3.4.1)
     descendants_tracker (0.0.4)
@@ -444,7 +445,7 @@ GEM
       base64
       simpleidn
     equalizer (0.0.11)
-    erb (5.0.1)
+    erb (5.0.2)
     erubi (1.13.1)
     factory_bot (6.5.4)
       activesupport (>= 6.1.0)
@@ -489,13 +490,13 @@ GEM
       concurrent-ruby (~> 1.1)
       sorted_set (~> 1.0)
     iniparse (1.5.0)
-    io-console (0.8.0)
+    io-console (0.8.1)
     irb (1.15.2)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jmespath (1.6.2)
-    json (2.13.1)
+    json (2.13.2)
     language_server-protocol (3.17.0.5)
     launchy (3.0.1)
       addressable (~> 2.8)
@@ -529,15 +530,15 @@ GEM
     mini_portile2 (2.8.9)
     minitest (5.25.5)
     mjml-rails (4.16.0)
-    mutant (0.13.2)
+    mutant (0.13.3)
       diff-lcs (~> 1.3)
       irb (~> 1.15.2)
       parser (~> 3.3.0)
       regexp_parser (~> 2.10)
       sorbet-runtime (~> 0.5.0)
       unparser (~> 0.8.0)
-    mutant-rspec (0.13.2)
-      mutant (= 0.13.2)
+    mutant-rspec (0.13.3)
+      mutant (= 0.13.3)
       rspec-core (>= 3.8.0, < 4.0.0)
     mutex_m (0.3.0)
     net-imap (0.5.9)
@@ -578,15 +579,15 @@ GEM
       zeitwerk
     pagy (9.3.5)
     parallel (1.27.0)
-    parallel_tests (5.3.1)
+    parallel_tests (5.4.0)
       parallel
-    parser (3.3.8.0)
+    parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
     path_expander (1.1.1)
     persistent-dmnd (3.0.0)
       immutable-ruby (>= 0.1.0)
-    pg (1.5.9)
+    pg (1.6.1)
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
@@ -603,13 +604,13 @@ GEM
       date
       stringio
     public_suffix (6.0.2)
-    puma (6.6.0)
+    puma (6.6.1)
       nio4r (~> 2.0)
     pundit (2.5.0)
       activesupport (>= 3.0.0)
     pwned (2.4.1)
     racc (1.8.1)
-    rack (3.1.16)
+    rack (3.2.0)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
     rack-session (2.1.1)
@@ -680,8 +681,8 @@ GEM
       parser (~> 3.3.0)
       rainbow (>= 2.0, < 4.0)
       rexml (~> 3.1)
-    regexp_parser (2.10.0)
-    reline (0.6.1)
+    regexp_parser (2.11.0)
+    reline (0.6.2)
       io-console (~> 0.5)
     request_store (1.5.1)
       rack (>= 1.4)
@@ -693,7 +694,7 @@ GEM
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
       rspec-mocks (~> 3.13.0)
-    rspec-core (3.13.4)
+    rspec-core (3.13.5)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.5)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -719,7 +720,7 @@ GEM
       rspec
     rss (0.3.1)
       rexml
-    rubocop (1.79.0)
+    rubocop (1.79.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -729,7 +730,6 @@ GEM
       regexp_parser (>= 2.9.3, < 3.0)
       rubocop-ast (>= 1.46.0, < 2.0)
       ruby-progressbar (~> 1.7)
-      tsort (>= 0.2.0)
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.46.0)
       parser (>= 3.3.7.2)
@@ -790,7 +790,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    scout_apm (5.6.4)
+    scout_apm (5.7.0)
       parser
     securerandom (0.4.1)
     seed_dump (3.3.1)
@@ -823,7 +823,7 @@ GEM
     sitemap_generator (6.3.0)
       builder (~> 3.0)
     smart_properties (1.17.0)
-    sorbet-runtime (0.5.12194)
+    sorbet-runtime (0.5.12375)
     sorted_set (1.0.3)
       rbtree
       set (~> 1.0)
@@ -835,7 +835,7 @@ GEM
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
     stringio (3.1.7)
-    stripe (15.3.0)
+    stripe (15.4.0)
     stripe_event (2.12.0)
       activesupport (>= 3.1)
       stripe (>= 2.8, < 16)
@@ -845,7 +845,6 @@ GEM
     thread_safe (0.3.6)
     tilt (2.3.0)
     timeout (0.4.3)
-    tsort (0.2.0)
     tty-which (0.4.2)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
@@ -862,10 +861,9 @@ GEM
       prism (>= 1.4)
     uri (1.0.3)
     useragent (0.16.11)
-    view_component (3.23.2)
-      activesupport (>= 5.2.0, < 8.1)
+    view_component (4.0.1)
+      activesupport (>= 7.1.0, < 8.1)
       concurrent-ruby (~> 1)
-      method_source (~> 1.0)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -911,9 +909,9 @@ DEPENDENCIES
   overcommit!
   packwerk (~> 3.2)!
   parallel_tests!
-  pg (~> 1.5.9)!
+  pg (~> 1.6.1)!
   puma (~> 6.6)!
-  rack (~> 3.1.16)!
+  rack (~> 3.2.0)!
   rack-attack!
   rack-session (~> 2.1.1)!
   rails (~> 8.0.2)!
