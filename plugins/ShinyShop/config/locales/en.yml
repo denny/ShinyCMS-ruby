@@ -89,6 +89,8 @@ en:
           failure: Could not add template
         edit:
           title: Edit template
+          new_element_name: New element name
+          new_element_content: Default content
         update:
           title: Edit template
           success: Template updated
