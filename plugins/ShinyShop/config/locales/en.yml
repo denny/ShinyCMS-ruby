@@ -80,6 +80,7 @@ en:
         breadcrumb: Shop
         index:
           title: List templates
+          search: Search templates
         new:
           title: Add template
         create:
