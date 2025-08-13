@@ -86,7 +86,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ckeditor'
 
   # Pagination
-  spec.add_dependency 'pagy', '~> 9.3.4'
+  spec.add_dependency 'pagy', '>= 9.3.4', '< 9.5.0'
 
   # Atom feeds
   spec.add_dependency 'rss'
