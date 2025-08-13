@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for shop admin features
 RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
   before do
-    admin = create :shop_admin
+    admin = create :product_admin
     sign_in admin
   end
 
