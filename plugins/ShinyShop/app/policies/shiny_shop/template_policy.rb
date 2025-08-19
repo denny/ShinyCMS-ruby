@@ -36,12 +36,8 @@ module ShinyShop
       edit?
     end
 
-    def archive?
-      edit?
-    end
-
-    def revive?
-      edit?
+    def destroy?
+      @this_user.can? :destroy, :product_templates
     end
   end
 end

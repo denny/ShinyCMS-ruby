@@ -17,11 +17,11 @@ module ShinyShop
     end
 
     def index?
-      @this_user.can? :list, :products
+      @this_user.can? :list, :product_sections
     end
 
     def new?
-      @this_user.can? :add, :products
+      @this_user.can? :add, :product_sections
     end
 
     def create?
@@ -29,19 +29,15 @@ module ShinyShop
     end
 
     def edit?
-      @this_user.can? :edit, :products
+      @this_user.can? :edit, :product_sections
     end
 
     def update?
       edit?
     end
 
-    def archive?
-      edit?
-    end
-
-    def revive?
-      edit?
+    def destroy?
+      @this_user.can? :destroy, :product_sections
     end
   end
 end
