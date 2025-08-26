@@ -22,6 +22,10 @@ module ShinyShop
       authorize Product
       authorize Section
 
+      @top_level_items = Product.all_top_level_items
+
+      @top_level_items.collect { |item| authorize item }
+
       @products = Product.order( 'lower(internal_name)' )
     end
 

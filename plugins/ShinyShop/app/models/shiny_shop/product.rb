@@ -10,6 +10,7 @@ module ShinyShop
   # Model for shop products
   class Product < ApplicationRecord
     include ShinyCMS::HasPublicName
+    include ShinyCMS::HasReadableName
     include ShinyCMS::HasSlug
 
     include ShinyCMS::ProvidesDemoSiteData
@@ -24,7 +25,16 @@ module ShinyShop
 
     validates :price, numericality: { only_integer: true }
 
+    # Scopes and sorting
+
     scope :visible, -> { where( show_on_site: true, active: true ) }
+
+    scope :top_level, -> { where( section: nil ) }
+
+    acts_as_list scope: :section
+    self.implicit_order_column = 'position'
+
+    # Instance methods
 
     def create_with_stripe
       return false unless save
@@ -62,6 +72,25 @@ module ShinyShop
     def revive_with_stripe
       Stripe::Product.update( stripe_id, { active: true } )
       update! active: true
+    end
+
+    # Class methods
+
+    def self.all_top_level_products
+      top_level
+    end
+
+    def self.top_level_products
+      top_level.visible
+    end
+
+    def self.all_top_level_items
+      products = all_top_level_products.to_a
+      sections = Section.includes( %i[ all_products all_sections ] ).all_top_level_sections.to_a
+
+      [ *products, *sections ].sort_by do |item|
+        [ item.position ? 0 : 1, item.position || 0 ]
+      end
     end
   end
 end
