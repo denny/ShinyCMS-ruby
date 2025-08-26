@@ -97,6 +97,18 @@ module ShinyCMS
       available_names.collect { |name| ShinyCMS::Plugin.get( name ) }
     end
 
+    def symbolised_names( requested_names )
+      requested_names.collect do |element|
+        # Keep this as a class name String comparison - do not compare class constants as this will fail
+        # during development app reloading, because classes are redefined
+        if element.instance_of?( ::ShinyCMS::Plugin )
+          element.name
+        else
+          element.to_s.to_sym
+        end
+      end
+    end
+
     def check_exists_and_enabled( requested_names )
       # We need .to_a in the middle of this because a💎 doesn't have .intersection (or &)
       💎ify[ requested_names.to_a.intersection( self.class.feature_plugin_names ) ]
