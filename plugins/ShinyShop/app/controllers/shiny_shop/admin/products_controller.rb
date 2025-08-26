@@ -13,10 +13,14 @@ module ShinyShop
 
     include ShinyCMS::Admin::WithSorting
 
+    # before_action :stash_new_page, only: %i[ new create ]
+    # before_action :stash_page,     only: %i[ edit update destroy ]
+
     helper_method :with_html_editor?
 
     def index
       authorize Product
+      authorize Section
 
       @products = Product.order( 'lower(internal_name)' )
     end

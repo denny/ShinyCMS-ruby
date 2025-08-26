@@ -1,4 +1,36 @@
-<%#= render partial: 'admin/includes/search', locals: { action: shiny_news.search_shop_products_path, placeholder: t( '.search' ) } %>
+<% if @products.present? %>
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <% if current_user.can? :edit, :product_sections %>
+      <th></th>
+      <% end %>
+      <th class="width25pc page">
+        Product / Section
+      </th>
+      <th>
+      </th>
+      <th class="width25pc">
+      </th>
+    </tr>
+  </thead>
+
+  <tbody id="live-sortable" data-url="<%= shiny_shop.sort_products_path %>">
+  <% @products.each do |product_item| %>
+    <%= render partial: 'product_item', locals: {
+      product_item: product_item,
+      view_path: '',
+      indent: 0.5
+    } %>
+  <% end %>
+  </tbody>
+</table>
+
+<% else %>
+<p>
+  <%= t( 'shinycms.empty_list', items: ShinyShop::Product.readable_name ) %>
+</p>
+<% end %>
 
 <table class="table table-responsive-sm table-striped">
   <thead>
