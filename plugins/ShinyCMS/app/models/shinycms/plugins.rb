@@ -91,16 +91,16 @@ module ShinyCMS
     end
 
     def build_plugins_from_names( requested_names )
-      symbolised_names = requested_names.collect { |element| element.to_s.to_sym }
-      available_names  = check_exists_and_enabled( symbolised_names )
+      collected_names = requested_names.collect { |element| element.to_s.to_sym }
+      available_names = check_exists_and_enabled( collected_names )
 
       available_names.collect { |name| ShinyCMS::Plugin.get( name ) }
     end
 
     def symbolised_names( requested_names )
       requested_names.collect do |element|
-        # Keep this as a class name String comparison - do not compare class constants as this will fail
-        # during development app reloading, because classes are redefined
+        # Keep this as a class name String comparison - do not compare class constants
+        # as this will fail during development app reloading, because classes are redefined
         if element.instance_of?( ::ShinyCMS::Plugin )
           element.name
         else
