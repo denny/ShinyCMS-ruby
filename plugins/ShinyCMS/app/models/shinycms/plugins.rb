@@ -100,8 +100,8 @@ module ShinyCMS
       requested_names.collect do |element|
         # Keep this as a class name String comparison - do not compare class constants
         # (that will fail during development app reloading, because classes are redefined)
-        if element.instance_of?( ::ShinyCMS::Plugin )
-          element.name
+        if element.class.name == 'ShinyCMS::Plugin'
+          element = element.name
         else
           element.to_s.to_sym
         end
