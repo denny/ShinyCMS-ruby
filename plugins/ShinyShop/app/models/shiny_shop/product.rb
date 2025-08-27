@@ -9,6 +9,7 @@
 module ShinyShop
   # Model for shop products
   class Product < ApplicationRecord
+    include ShinyCMS::CanHide
     include ShinyCMS::HasPublicName
     include ShinyCMS::HasReadableName
     include ShinyCMS::HasSlug
@@ -27,7 +28,8 @@ module ShinyShop
 
     # Scopes and sorting
 
-    scope :visible, -> { where( show_on_site: true, active: true ) }
+    scope :visible,          -> { where( show_on_site: true, active: true ) }
+    scope :visible_in_menus, -> { where( show_on_site: true, active: true, show_in_menus: true ) }
 
     scope :top_level, -> { where( section: nil ) }
 

@@ -1,5 +1,5 @@
 <% item_is_a_section = product_item.is_a?( ShinyShop::Section ) %>
-<% hidden_class_if_hidden = product_item.active? ? ' class="hidden"' : '' %>
+<% hidden_class_if_hidden = product_item.hidden? ? ' class="hidden"' : '' %>
 
   <% if item_is_a_section %>
   <tr id="sorted_section<%= product_item.id %>">

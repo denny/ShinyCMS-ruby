@@ -1,4 +1,4 @@
-<% if @products.present? %>
+<% if @top_level_items.present? %>
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
@@ -16,9 +16,9 @@
   </thead>
 
   <tbody id="live-sortable" data-url="<%= shiny_shop.sort_products_path %>">
-  <% @products.each do |product_item| %>
+  <% @top_level_items.each do |top_level_item| %>
     <%= render partial: 'product_item', locals: {
-      product_item: product_item,
+      product_item: top_level_item,
       view_path: '',
       indent: 0.5
     } %>

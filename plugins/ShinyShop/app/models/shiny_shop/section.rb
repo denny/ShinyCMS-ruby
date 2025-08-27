@@ -36,6 +36,8 @@ module ShinyShop
 
     # Scopes and sorting
 
+    scope :top_level, -> { where( section: nil  ) }
+
     acts_as_list scope: :section
     self.implicit_order_column = 'position'
 
@@ -77,6 +79,20 @@ module ShinyShop
 
     def submenu?
       menu_products.present? || menu_sections.present?
+    end
+
+    # Class methods
+
+    def self.all_top_level_sections
+      top_level
+    end
+
+    def self.top_level_sections
+      top_level.visible
+    end
+
+    def self.top_level_menu_sections
+      top_level.visible_in_menus
     end
   end
 end
