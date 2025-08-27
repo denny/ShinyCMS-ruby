@@ -100,11 +100,13 @@ module ShinyCMS
       requested_names.collect do |element|
         # Keep this as a class name String comparison - do not compare class constants
         # (that will fail during development app reloading, because classes are redefined)
+        # rubocop:disable Style/ClassEqualityComparison
         if element.class.name == 'ShinyCMS::Plugin'
-          element = element.name
+          element.class.name
         else
           element.to_s.to_sym
         end
+        # rubocop:enable Style/ClassEqualityComparison
       end
     end
 
