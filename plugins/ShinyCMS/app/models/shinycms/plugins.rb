@@ -102,7 +102,9 @@ module ShinyCMS
         # (that will fail during development app reloading, because classes are redefined)
         # rubocop:disable Style/ClassEqualityComparison
         if element.class.name == 'ShinyCMS::Plugin'
+          # :nocov:
           element.class.name
+          # :nocov:
         else
           element.to_s.to_sym
         end
