@@ -91,10 +91,25 @@ module ShinyCMS
     end
 
     def build_plugins_from_names( requested_names )
-      symbolised_names = requested_names.collect { |element| element.to_s.to_sym }
-      available_names  = check_exists_and_enabled( symbolised_names )
+      available_names = check_exists_and_enabled( symbolised_names( requested_names ) )
 
       available_names.collect { |name| ShinyCMS::Plugin.get( name ) }
+    end
+
+    def symbolised_names( requested_names )
+      requested_names.collect do |element|
+        # Keep this as a class name String comparison - do not compare class constants
+        # (that will fail during development app reloading, because classes are redefined)
+        # rubocop:disable Style/ClassEqualityComparison
+        if element.class.name == 'ShinyCMS::Plugin'
+          # :nocov:
+          element.class.name
+          # :nocov:
+        else
+          element.to_s.to_sym
+        end
+        # rubocop:enable Style/ClassEqualityComparison
+      end
     end
 
     def check_exists_and_enabled( requested_names )
