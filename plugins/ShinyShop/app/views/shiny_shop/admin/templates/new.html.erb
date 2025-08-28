@@ -1,0 +1,17 @@
+<%= form_for @template, url: shiny_shop.templates_path, method: :post do |f| %>
+  <p>
+    <%= f.label :name %>
+    <br><%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <br><%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :filename, 'Template file' %>
+    <br><%= f.select :filename, ShinyShop::Template.available_templates %>
+  </p>
+  <p class="top-margin">
+    <%= submit_tag t( 'add' ) %>
+  </p>
+<% end %>
