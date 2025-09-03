@@ -587,7 +587,7 @@ GEM
     path_expander (1.1.1)
     persistent-dmnd (3.0.0)
       immutable-ruby (>= 0.1.0)
-    pg (1.6.1)
+    pg (1.6.2)
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
@@ -909,7 +909,7 @@ DEPENDENCIES
   overcommit!
   packwerk (~> 3.2)!
   parallel_tests!
-  pg (~> 1.6.1)!
+  pg (~> 1.6.2)!
   puma (~> 6.6)!
   rack (~> 3.2.0)!
   rack-attack!
