@@ -40,7 +40,7 @@ source 'https://rubygems.org' do
   gem 'rack-session', '~> 2.1.1'
 
   # Webserver
-  gem 'puma', '~> 6.6', groups: %i[ development production ]
+  gem 'puma', '~> 7.0', groups: %i[ development production ]
 
   # Email previews
   gem 'rails_email_preview'
