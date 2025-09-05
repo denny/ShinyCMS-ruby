@@ -85,6 +85,8 @@ en:
         index:
           title: List templates
           search: Search templates
+        search:
+          title: List templates
         new:
           title: Add template
         create:
