@@ -81,7 +81,6 @@ en:
 
       templates:
         breadcrumb: Shop
-        toolbar: Templates
         index:
           title: List templates
           search: Search templates
