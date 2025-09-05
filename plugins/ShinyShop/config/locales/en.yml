@@ -10,6 +10,9 @@ en:
   shinycms:
     feature_flags:
       shop: Shop
+    models:
+      names: 
+        shiny_shop_template: template
 
     capability:
       category:
