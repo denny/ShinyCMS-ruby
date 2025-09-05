@@ -32,7 +32,7 @@ RSpec.describe ShinyShop::Admin::TemplatesController, type: :request do
 
     context 'when there are templates' do
       it 'displays the list of templates' do
-        create_list :page_template, 3
+        create_list :product_template, 3
 
         get shiny_shop.templates_path
 
@@ -47,8 +47,8 @@ RSpec.describe ShinyShop::Admin::TemplatesController, type: :request do
 
   describe 'GET /admin/shop/templates/search?q=zing' do
     it 'fetches the list of matching templates' do
-      template1 = create :page_template, description: 'zingy-zebra'
-      template2 = create :page_template, description: 'awesome-aardvark'
+      template1 = create :product_template, description: 'zingy-zebra'
+      template2 = create :product_template, description: 'awesome-aardvark'
 
       get shiny_shop.search_templates_path, params: { q: 'zing' }
 
@@ -98,7 +98,7 @@ RSpec.describe ShinyShop::Admin::TemplatesController, type: :request do
       expect( response      ).to have_http_status :ok
       expect( response.body ).to have_title I18n.t( 'shiny_shop.admin.templates.edit.title' ).titlecase
       expect( response.body ).to have_css '.alert-success', text: I18n.t( 'shiny_shop.admin.templates.create.success' )
-      expect( ShinyPages::TemplateElement.count ).to eq 4
+      expect( ShinyShop::TemplateElement.count ).to eq 4
     end
 
     it 'fails when the form is submitted without all the details' do
@@ -125,7 +125,7 @@ RSpec.describe ShinyShop::Admin::TemplatesController, type: :request do
 
   describe 'PUT /admin/shop/template/:id' do
     it 'updates the template when the form is submitted' do
-      template = create :page_template
+      template = create :product_template
       e_id = template.elements.last.id
 
       put shiny_shop.template_path( template ), params: {
@@ -194,9 +194,9 @@ RSpec.describe ShinyShop::Admin::TemplatesController, type: :request do
 
   describe 'DELETE /admin/shop/template/delete/:id' do
     it 'deletes the specified templates' do
-      t1 = create :page_template
-      t2 = create :page_template
-      t3 = create :page_template
+      t1 = create :product_template
+      t2 = create :product_template
+      t3 = create :product_template
 
       delete shiny_shop.template_path( t2 )
 
