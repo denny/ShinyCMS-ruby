@@ -20,6 +20,10 @@ module ShinyShop
       @this_user.can? :list, :product_templates
     end
 
+    def search?
+      index?
+    end
+
     def new?
       @this_user.can? :add, :product_templates
     end
