@@ -139,7 +139,6 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
     end
 
     it 'adds a new top-level comment to the discussion, with a recaptcha check' do
-      allow_any_instance_of( described_class ).to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
       allow( described_class ).to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
 
       ShinyCMS::FeatureFlag.enable :recaptcha_for_comments
@@ -165,8 +164,8 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
 
     it 'classifies a new comment as spam after checking Akismet' do
       ShinyCMS::FeatureFlag.enable :akismet_for_comments
-      allow_any_instance_of( Akismet::Client ).to receive( :open  )
-      allow_any_instance_of( Akismet::Client ).to receive( :check ).and_return( [ true, false ] )
+      akismet_client = instance_double( Akismet::Client, open: nil, check: [ true, false ] )
+      allow( Akismet::Client ).to receive( :new ).and_return( akismet_client )
 
       always_fail_author_name = 'viagra-test-123'
       title = Faker::Books::CultureSeries.unique.culture_ship
@@ -193,8 +192,8 @@ RSpec.describe ShinyCMS::CommentsController, type: :request do
 
     it "doesn't save a new comment if Akismet classifies it as 'blatant' spam" do
       ShinyCMS::FeatureFlag.enable :akismet_for_comments
-      allow_any_instance_of( Akismet::Client ).to receive( :open  )
-      allow_any_instance_of( Akismet::Client ).to receive( :check ).and_return( [ true, true ] )
+      akismet_client = instance_double( Akismet::Client, open: nil, check: [ true, true ] )
+      allow( Akismet::Client ).to receive( :new ).and_return( akismet_client )
 
       name  = Faker::Name.unique.name
       email = Faker::Internet.unique.email
