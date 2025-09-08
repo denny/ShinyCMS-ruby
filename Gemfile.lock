@@ -541,7 +541,7 @@ GEM
       mutant (= 0.13.3)
       rspec-core (>= 3.8.0, < 4.0.0)
     mutex_m (0.3.0)
-    net-imap (0.5.9)
+    net-imap (0.5.10)
       date
       net-protocol
     net-pop (0.1.2)
@@ -644,9 +644,11 @@ GEM
     rails-i18n (8.0.2)
       i18n (>= 0.7, < 2)
       railties (>= 8.0.0, < 9)
-    rails-pg-extras (5.6.12)
-      rails
-      ruby-pg-extras (= 5.6.12)
+    rails-pg-extras (5.6.13)
+      actionpack
+      activerecord
+      railties
+      ruby-pg-extras (= 5.6.13)
     rails_email_preview (2.2.3)
       rails (>= 4.2)
       request_store
@@ -761,7 +763,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
       rubocop-ast (>= 1.44.0, < 2.0)
-    ruby-pg-extras (5.6.12)
+    ruby-pg-extras (5.6.13)
       pg
       terminal-table
     ruby-progressbar (1.13.0)
