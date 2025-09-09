@@ -92,16 +92,16 @@ module ShinyCMS
 
     def replace_stale_plugins_in_dev( new_plugins )
       # Handle app reloading in development mode
-      if Rails.env.development?
-        # Keep this as a class name String comparison - do not compare class constants
-        # (that will fail during development app reloading, because classes are redefined)
-        # rubocop:disable Style/ClassEqualityComparison
-        is_stale_plugin_class = new_plugins.first.class.name == 'ShinyCMS::Plugin'
-        # rubocop:enable Style/ClassEqualityComparison
-        if is_stale_plugin_class
-          plugin_names = new_plugins.collect { |plugin| plugin.name }
-          return build_plugins_from_names( plugin_names )
-        end
+      return unless Rails.env.development?
+
+      # Keep this as a class name String comparison - do not compare class constants
+      # (that will fail during development app reloading, because classes are redefined)
+      # rubocop:disable Style/ClassEqualityComparison
+      is_stale_plugin_class = new_plugins.first.class.name == 'ShinyCMS::Plugin'
+      # rubocop:enable Style/ClassEqualityComparison
+      if is_stale_plugin_class
+        plugin_names = new_plugins.collect { |plugin| plugin.name }
+        return build_plugins_from_names( plugin_names )
       end
     end
 
