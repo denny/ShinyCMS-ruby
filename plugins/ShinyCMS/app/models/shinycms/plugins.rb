@@ -84,10 +84,27 @@ module ShinyCMS
     def build_plugins( new_plugins )
       return 💎ify[ new_plugins ] if new_plugins.all? ShinyCMS::Plugin
 
-      built = build_plugins_from_names( new_plugins )
+      built = replace_stale_plugins_in_dev( new_plugins ) || build_plugins_from_names( new_plugins )
       return built if built.present?
 
       raise ArgumentError, "Required: valid plugin names, or ShinyCMS::Plugin objects. Received: #{new_plugins}"
+    end
+
+    # Handle complications of safe app reloading in development mode
+    def replace_stale_plugins_in_dev( new_plugins )
+      return unless Rails.env.development?
+
+      # Keep this as a class name String comparison - do not compare class constants
+      # (that will fail during development app reloading, because classes are redefined)
+      # :nocov:
+      # rubocop:disable Style/ClassEqualityComparison
+      is_stale_plugin_class = new_plugins.first.class.name == 'ShinyCMS::Plugin'
+      # rubocop:enable Style/ClassEqualityComparison
+      return unless is_stale_plugin_class
+
+      plugin_names = new_plugins.collect( &:name )
+      return build_plugins_from_names( plugin_names )
+      # :nocov:
     end
 
     def build_plugins_from_names( requested_names )
@@ -98,17 +115,7 @@ module ShinyCMS
 
     def symbolised_names( requested_names )
       requested_names.collect do |element|
-        # Keep this as a class name String comparison - do not compare class constants
-        # (that will fail during development app reloading, because classes are redefined)
-        # rubocop:disable Style/ClassEqualityComparison
-        if element.class.name == 'ShinyCMS::Plugin'
-          # :nocov:
-          element.class.name
-          # :nocov:
-        else
-          element.to_s.to_sym
-        end
-        # rubocop:enable Style/ClassEqualityComparison
+        element.to_s.to_sym
       end
     end
 
