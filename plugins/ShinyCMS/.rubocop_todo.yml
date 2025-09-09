@@ -10,7 +10,7 @@
 #
 # This file should be regenerated whenever Rubocop is updated.
 
-# Offense count: 11
+# Offense count: 8
 RSpec/AnyInstance:
   Exclude:
     - 'spec/requests/shinycms/users/registrations_controller_spec.rb'
