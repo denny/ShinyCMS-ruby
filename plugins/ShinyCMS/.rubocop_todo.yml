@@ -10,20 +10,16 @@
 #
 # This file should be regenerated whenever Rubocop is updated.
 
-# Offense count: 22
+# Offense count: 8
 RSpec/AnyInstance:
   Exclude:
-    - 'spec/requests/shinycms/admin/comments_controller_spec.rb'
-    - 'spec/requests/shinycms/comments_controller_spec.rb'
     - 'spec/requests/shinycms/users/registrations_controller_spec.rb'
-    - '../ShinyForms/spec/requests/shiny_forms/forms_controller_spec.rb'
     - '../ShinyLists/spec/requests/shiny_lists/subscriptions_controller_spec.rb'
 
-# Offense count: 140
+# Offense count: 132
 # Configuration parameters: AssignmentOnly.
 RSpec/InstanceVariable:
   Exclude:
-    - 'spec/models/shinycms/discussion_spec.rb'
     - 'spec/requests/shinycms/admin/comments_controller_spec.rb'
     - 'spec/requests/shinycms/admin/discussions_controller_spec.rb'
     - 'spec/requests/shinycms/comments_controller_spec.rb'

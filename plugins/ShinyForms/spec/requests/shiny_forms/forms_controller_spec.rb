@@ -12,9 +12,8 @@ RSpec.describe ShinyForms::FormsController, type: :request do
   before do
     create :top_level_page
 
-    allow_any_instance_of( Akismet::Client ).to receive( :open  )
-    allow_any_instance_of( Akismet::Client ).to receive( :check ).and_return( [ false, false ] )
-    allow_any_instance_of( described_class ).to receive( :recaptcha_v3_site_key ).and_return( 'A_KEY' )
+    akismet_client = instance_double( Akismet::Client, open: nil, check: [ false, false ] )
+    allow( Akismet::Client ).to receive( :new ).and_return( akismet_client )
     allow( described_class ).to receive( :recaptcha_v3_secret_key ).and_return( 'A_KEY' )
   end
 
