@@ -101,7 +101,7 @@ module ShinyCMS
       # rubocop:enable Style/ClassEqualityComparison
       return unless is_stale_plugin_class
 
-      plugin_names = new_plugins.collect { |plugin| plugin.name }
+      plugin_names = new_plugins.collect( &:name )
       return build_plugins_from_names( plugin_names )
     end
 
