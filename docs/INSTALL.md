@@ -21,10 +21,10 @@ Create your database:
 `rails db:setup`
 
 If you want to load the [demo data](demo-site.md):  
-`rails shiny:demo:load`
+`rails shinycms:demo:load`
 
 If you didn't load the demo data, create an admin account:  
-`rails shiny:admin:create`
+`rails shinycms:admin:create`
 
 Start the server:  
 `rails s`
