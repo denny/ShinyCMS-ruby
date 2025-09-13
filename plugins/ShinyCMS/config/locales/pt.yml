@@ -93,16 +93,16 @@ pt:
 
     do_not_contact:
       new:
-        title: Do Not Contact list
-        heading: Add an email address to our Do Not Contact list
+        title: Lista de Contactos Proibidos
+        heading: Adiciona um endereço de email à nossa lista de Contactos Proibidos
         explanation: |
-          If you would prefer never to receive email from us, please enter your email address below.
-          It will be saved in an encrypted form in our database, on a list which is checked before
-          each email is sent from this site. If a match is found, the email is not sent.
+          Se preferires nunca receber emails nossos, por favor insere o teu endereço de email abaixo.
+          Será guardado de forma encriptada na nossa base de dados, numa lista que é verificada antes de
+          cada email é enviado a partir deste site. Se for encontrada uma correspondência, o email não é enviado.
       create:
-        success: Your email address has been added to our Do Not Contact list
-        failure: Failed to add email address to Do Not Contact list; please try again
-        duplicate: Your email address is already on our Do Not Contact list
+        success: O teu endereço de email foi adicionado à nossa lista de Contactos Proibidos
+        failure: Não foi possível adicionar o endereço de email à lista de Contactos Proibidos; por favor tenta novamente
+        duplicate: O teu endereço de email já está na nossa lista de Contactos Proibidos
 
     email_recipients:
       confirm:
