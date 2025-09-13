@@ -168,18 +168,18 @@ pt:
 
     discussion_mailer:
       comment_admin_notification:
-        hello: Hello %{name},
-        subject: '%{comment_author_name} commented on %{site_name}'
-        they_said: They said
+        hello: Olá %{name},
+        subject: '%{comment_author_name} comentou no %{site_name}'
+        they_said: Eles disseram
       content_author_notification:
-        hello: Hello %{name},
-        subject: '%{comment_author_name} commented on your %{content_type} on %{site_name}'
-        they_said: They said
+        hello: Olá %{name},
+        subject: '%{comment_author_name} comentou no seu %{content_type} no %{site_name}'
+        they_said: Eles disseram
       parent_comment_author_notification:
-        hello: Hello %{name},
-        subject: '%{comment_author_name} replied to your comment on %{site_name}'
-        they_said: They said
-        you_said: You said
+        hello: Olá %{name},
+        subject: '%{comment_author_name} respondeu ao seu comentário no %{site_name}'
+        they_said: Eles disseram
+        you_said: Tu disseste
 
     email_recipient_mailer:
       confirm:
