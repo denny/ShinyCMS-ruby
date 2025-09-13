@@ -125,8 +125,8 @@ pt:
         all_tags: Todas as tags...
 
     pager:
-      newer: Newer
-      older: Older
+      newer: Mais recente
+      older: Mais antigo
 
     site_settings:
       index:
