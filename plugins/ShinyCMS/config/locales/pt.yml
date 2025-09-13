@@ -115,14 +115,14 @@ pt:
 
     errors:
       messages:
-        slug_not_unique_in_month: has already been used in this month
-        slug_not_unique_in_section: has already been used in this section
+        slug_not_unique_in_month: já foi utilizado neste mês
+        slug_not_unique_in_section: já foi utilizado nesta secção
       not_found:
-        title: '%{resource_type} not found'
-        explanation: The URL you have reached is for a %{resource_type} that does not exist.
-        search_title: Search the site
-        tags_title: Popular tags
-        all_tags: All tags...
+        title: '%{resource_type} não foi encontrado'
+        explanation: O URL que atingiste é para um %{resource_type} que não existe.
+        search_title: Pesquisar o site
+        tags_title: Tags populares
+        all_tags: Todas as tags...
 
     pager:
       newer: Newer
