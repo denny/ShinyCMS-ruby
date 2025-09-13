@@ -152,7 +152,7 @@ pt:
       site_settings: Definições da página
 
     upvotes:
-      vote: Vote
+      vote: Votar
       add_upvote: '+'
       add_downvote: '-'
       remove_upvote: '(+)'
@@ -161,8 +161,8 @@ pt:
     # Helpers
 
     shiny_date_helper:
-      time_on_date: '%{time} on %{date}'
-      date_at_time: '%{date} at %{time}'
+      time_on_date: '%{time} na %{date}'
+      date_at_time: '%{date} no %{time}'
 
     # Mailers
 
