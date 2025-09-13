@@ -120,7 +120,7 @@ pt:
       not_found:
         title: '%{resource_type} não foi encontrado'
         explanation: O URL que atingiste é para um %{resource_type} que não existe.
-        search_title: Pesquisar o site
+        search_title: Pesquisar a página
         tags_title: Tags populares
         all_tags: Todas as tags...
 
@@ -138,18 +138,18 @@ pt:
     tags:
       title: Tags
       cloud:
-        title: Tag Cloud
+        title: Tag da Nuvem
       list:
-        title: Tag List
+        title: Lista de Tags
       show:
         title: "Tag: '%{tag}'"
 
     user:
-      log_in: Log in
-      log_out: Log out
-      register: Register
-      edit_account: Edit account details
-      site_settings: Site settings
+      log_in: Iniciar sessão
+      log_out: Terminar sessão
+      register: Registar
+      edit_account: Editar detalhes da conta
+      site_settings: Definições da página
 
     upvotes:
       vote: Vote
