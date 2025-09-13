@@ -111,7 +111,7 @@ pt:
         token_expired: O link de confirmação expirou; por favor solicita um novo email e tenta novamente
         # failure: Falhou a confirmação do endereço de email; por favor tenta novamente, ou avisa os administradores do site
 
-    empty_list: No %{items} found
+      empty_list: Sem %{items} encontrados
 
     errors:
       messages:
