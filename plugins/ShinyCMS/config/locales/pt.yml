@@ -106,10 +106,10 @@ pt:
 
     email_recipients:
       confirm:
-        success: Thank you for verifying your email address
-        token_not_found: Failed to find email address; please check URL and try again
-        token_expired: Your confirmation link has expired; please request a new email and try again
-        # failure: Failed to confirm email address; please try again, or alert site admins
+        success: Obrigado por verificar o teu endereço de email
+        token_not_found: Não foi possível encontrar o endereço de email; por favor verifica o URL e tenta novamente
+        token_expired: O link de confirmação expirou; por favor solicita um novo email e tenta novamente
+        # failure: Falhou a confirmação do endereço de email; por favor tenta novamente, ou avisa os administradores do site
 
     empty_list: No %{items} found
 
