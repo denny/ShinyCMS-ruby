@@ -75,21 +75,21 @@ pt:
           title: Comentários recentes
 
     discussions:
-      anonymous: Anonymous
-      pseudonymous: Pseudonymous
-      comments: Comments
-      new_comment: Add a new comment
+      anonymous: Anónimo
+      pseudonymous: Pseudónimo
+      comments: Comentários
+      new_comment: Adiciona um novo comentário
       n_total: '%{count} total'
       n_comments:
-        zero: No comments
-        one: 1 comment
-        other: '%{count} comments'
+        zero: Sem comentários
+        one: 1 Comentário
+        other: '%{count} comentários'
       n_recent_comments:
-        one: 1 recent comment
-        other: '%{count} recent comments'
+        one: 1 comentário recente
+        other: '%{count} comentários recentes'
       index:
-        title: Discussions
-        recently_active: Recently active discussions
+        title: Discussões
+        recently_active: Discussões recentemente ativas
 
     do_not_contact:
       new:
