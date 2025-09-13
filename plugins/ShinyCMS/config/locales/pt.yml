@@ -183,8 +183,8 @@ pt:
 
     email_recipient_mailer:
       confirm:
-        hello: Hello %{name},
-        subject: Confirm your email address for %{site_name}
+        hello: Olá %{name},
+        subject: Confirma o teu endereço de email para %{site_name}
 
     user_mailer:
       confirmation_instructions:
