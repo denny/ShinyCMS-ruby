@@ -130,10 +130,10 @@ pt:
 
     site_settings:
       index:
-        title: Site settings
+        title: Definições da página
       update:
-        success: Settings updated
-        unchanged: No settings were changed
+        success: Definições atualizadas
+        unchanged: As definições não foram alteradas
 
     tags:
       title: Tags
