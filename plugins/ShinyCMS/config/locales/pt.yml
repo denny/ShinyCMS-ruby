@@ -241,27 +241,27 @@ pt:
     # in one place, but not all of them would make sense as user settings.
     # Particularly not the first one!!
     settings:
-      allowed_ips: Allowed admin IPs
-      akismet_drop_blatant_spam: Drop 'blatant' spam
-      akismet_log_blatant_spam: Log when dropping blatant spam
-      all_comment_notifications_email: Email to notify of ALL comments
-      allow_anonymous_comments: Allow anonymous comments
-      allow_unauthenticated_comments: Allow unauthenticated comments
-      anon_votes_can_change: Anonymous up/downvotes can change
-      comment_upvotes: Upvotes on comments
-      comment_downvotes: Down-votes on comments
-      default_email: Default email address
-      default_items_per_page: Default items per page
-      default_items_per_page_in_admin_area: Default items per page in admin area
-      post_login_redirect: Post-login redirect
-      recaptcha_score_default: 'reCAPTCHA: Default minimum score'
-      recaptcha_score_for_comments: 'reCAPTCHA: Minimum score for comments'
-      recaptcha_score_for_registrations: 'reCAPTCHA: Minimum score for user registrations'
-      site_name: Site name
-      tag_view: Default tag view
-      theme_name: Theme name
-      track_clicks: Track if links in emails are clicked
-      track_opens: Track if emails are opened
+      allowed_ips: Endereços de IP autorizados do administrador
+      akismet_drop_blatant_spam: Drop 'blatant' spam # To confirm the meaning of drop and blatant
+      akismet_log_blatant_spam: Log when dropping blatant spam # To confirm this meaning
+      all_comment_notifications_email: Email para notificar sobre TODOS os comentários # to confirm
+      allow_anonymous_comments: Permitir comentários anónimos
+      allow_unauthenticated_comments: Permitir comentários não autenticados
+      anon_votes_can_change: O up/downvote de anónimos pode ser alterado
+      comment_upvotes: Upvotes nos comentários
+      comment_downvotes: Down-votes nos comentários
+      default_email: Endereço de email predefenido
+      default_items_per_page: Itens predefenidos por página
+      default_items_per_page_in_admin_area: Itens predefenidos por página na área de administração
+      post_login_redirect: Redirecionamento pós-login
+      recaptcha_score_default: 'reCAPTCHA: Pontuação mínima predefenida'
+      recaptcha_score_for_comments: 'reCAPTCHA: Pontuação mínima para comentários'
+      recaptcha_score_for_registrations: 'reCAPTCHA: Pontuação mínima para registos de utilizador'
+      site_name: Nome da página
+      tag_view: Tag predefenida de vista #To confirm if this is correct
+      theme_name: Nome do tema
+      track_clicks: Rastrear se os links em emails são clicados
+      track_opens: Rastrear se os emails são abertos
 
     # Feature Flags
 
