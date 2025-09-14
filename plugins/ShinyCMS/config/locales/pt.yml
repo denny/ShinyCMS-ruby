@@ -302,22 +302,22 @@ pt:
         users: Utilizadores
 
       general:
-        view_admin_area: View admin area
-        view_admin_toolbar: View admin toolbar
+        view_admin_area: Ver área de administração
+        view_admin_toolbar: Ver barra de ferramentas de administração
 
       tools:
-        use_blazer: Blazer Charts
-        use_coverband: Code Usage
-        use_letter_opener_web: Dev Outbox
-        use_rails_email_preview: Email Previews
-        use_sidekiq_web: Sidekiq Jobs
+        use_blazer: Gráficos Blazer
+        use_coverband: Utilização de Código
+        use_letter_opener_web: Caixa de saída de Dev
+        use_rails_email_preview: Pré-visualização de Email
+        use_sidekiq_web: Sidekiq Jobs # to confirm if it has translation in portuguese
 
       stats:
-        view_web: View web stats
-        view_email: View email stats
+        view_web: Ver estatísticas web
+        view_email: Ver estatísticas de email
 
       users:
-        view_admin_notes: View admin notes
+        view_admin_notes: Ver as notas do administrador
 
     # ==================== ( Admin Area ) ==============================
 
