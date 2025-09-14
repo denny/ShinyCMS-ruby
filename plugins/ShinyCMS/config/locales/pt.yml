@@ -285,21 +285,21 @@ pt:
     # Capabilities (ACL/authorisation)
 
     capability:
-      capabilities: Admin Capabilities
+      capabilities: Capacidades de Administrador
 
       category:
-        admin_users: Admin Users
-        comments: Comments
-        discussions: Discussions
-        email_recipients: Email Recipients
-        feature_flags: Feature Flags
-        general: General
-        mailer_previews: Mailer Previews
-        settings: Site Settings
-        spam_comments: Spam Comments
-        stats: Stats
-        tools: Tools
-        users: Users
+        admin_users: Utilizadores Administradores
+        comments: Comentários
+        discussions: Discussões
+        email_recipients: Recipientes de Email
+        feature_flags: Bandeira de Funcionalidade
+        general: Geral
+        mailer_previews: Pré-Visualização de Mailer
+        settings: Definições da Página
+        spam_comments: Comentários Spam
+        stats: Estatísticas
+        tools: Ferramentas
+        users: Utilizadores
 
       general:
         view_admin_area: View admin area
