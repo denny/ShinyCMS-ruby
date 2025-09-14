@@ -266,21 +266,21 @@ pt:
     # Feature Flags
 
     feature_flags:
-      off_alert: Sorry, the '%{feature_name}' feature of this site is not available.
+      off_alert: Pedimos desculpa, a funcionalidade '%{feature_name}' desta página não está disponível.
 
-      send_emails: All outgoing email
-      ahoy_email_tracking: Track email opens/clicks
-      ahoy_web_tracking: Track web visitor stats
-      akismet_for_comments: Detect spam comments with Akismet
-      comments: Comments
-      comment_notifications: Comment notifications
-      recaptcha_for_comments: Protect comment form with reCAPTCHA
-      recaptcha_for_registrations: Protect registration form with reCAPTCHA
+      send_emails: Todos os emails enviados
+      ahoy_email_tracking: Rastrear aberturas/clicks de email
+      ahoy_web_tracking: Rastrear estatísticas de visitantes web
+      akismet_for_comments: Deteta spam em comentários com Akismet
+      comments: Comentários
+      comment_notifications: Notificações de comentários
+      recaptcha_for_comments: Protege o formulário de comentários com reCAPTCHA
+      recaptcha_for_registrations: Protege o formulário de registo com reCAPTCHA
       tags: Tags
-      upvotes: Upvotes ('likes')
+      upvotes: Upvotes ('gostos')
       downvotes: Down-votes
-      user_login: User Login
-      user_registration: User Registration
+      user_login: Login do Utilizador
+      user_registration: Registo do Utilizador
 
     # Capabilities (ACL/authorisation)
 
