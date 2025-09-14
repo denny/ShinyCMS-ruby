@@ -188,32 +188,32 @@ pt:
 
     user_mailer:
       confirmation_instructions:
-        welcome: Welcome, %{name}!
-        subject: 'Please confirm your registration on %{site_name}'
-        instructions: You can confirm your email address by clicking the link below
-        link_text: Confirm my address
+        welcome: Bem-vindo %{name}!
+        subject: 'Por favor confirma o teu registo em %{site_name}'
+        instructions: Podes confirmar o teu endereço de email clicando no link abaixo
+        link_text: Confirmar o meu endereço
       password_changed_instructions:
-        hello: Hello %{name},
-        subject: 'Your password has been changed on %{site_name}'
-        text: We're contacting you to notify you that your password has been changed.
+        hello: Olá %{name},
+        subject: 'A tua palavra-passe foi alterada em %{site_name}'
+        text: Estamos a contactar-te para te notificar que a tua palavra-passe foi alterada.
       reset_password_instructions:
-        hello: Hello %{name},
-        subject: 'Instructions for resetting your password on %{site_name}'
-        instructions: Someone has requested a link to change your password. You can do this through the link below.
-        link_text: Change my password
-        if_not_you: If you didn't request this, please ignore this email.
-        no_change: Your password won't change unless you click the link above and create a new one.
+        hello: Olá %{name},
+        subject: 'Instruções para repor a tua palavra-passe em %{site_name}'
+        instructions: Alguém solicitou um link para alterar a tua palavra-passe. Podes fazê-lo através do link abaixo.
+        link_text: Alterar a minha palavra-passe
+        if_not_you: Se não foste tu a pedir isto, por favor ignora este email.
+        no_change: A tua palavra-passe não será alterada a menos que cliques no link acima e cries uma nova.
       email_changed_instructions:
-        hello: Hello %{name},
-        subject: 'Changing your email address on %{site_name}'
-        email_changing: We're contacting you to notify you that your email is being changed to
-        email_changed: We're contacting you to notify you that your email has been changed to
+        hello: Olá %{name},
+        subject: 'Mudar o teu endereço de email em %{site_name}'
+        email_changing: Estamos a contactar-te para te notificar que o teu email está a ser alterado para
+        email_changed: Estamos a contactar-te para te notificar que o teu email foi alterado para
       unlock_instructions:
-        hello: Hello %{name},
-        subject: 'Your account on %{site_name} has been locked'
-        explanation: Your account has been locked due to an excessive number of unsuccessful sign in attempts.
-        instructions: Click the link below to unlock your account
-        link_text: Unlock my account
+        hello: Olá %{name},
+        subject: 'A tua conta em %{site_name} foi bloqueada'
+        explanation: A tua conta foi bloqueada devido a um número excessivo de tentativas falhadas de início de sessão.
+        instructions: Clica no link abaixo para desbloquear a tua conta
+        link_text: Desbloquear a minha conta
 
     # Models
 
