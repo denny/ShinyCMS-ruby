@@ -220,20 +220,20 @@ pt:
     models:
       names:
         item: item  # generic fallback
-        ahoy_visit: visit
-        shinycms_comment: comment
-        shinycms_consent_version: consent version
-        shinycms_email_recipient: email recipient
-        shinycms_user: user
+        ahoy_visit: visitar
+        shinycms_comment: comentário
+        shinycms_consent_version: versão de consentimento
+        shinycms_email_recipient: recipiente de email
+        shinycms_user: utilizador
 
       anonymous_author:
-        name: Anonymous
+        name: Anónimo
 
       setting_value:
-        one_per_user: You can only have one setting per value per user
+        one_per_user: Tu só podes ter uma definição por valor por utilizador
 
       shiny_post_atom_feed_entry:
-        read_more: '( ... read full post on site ... )'
+        read_more: '(... ler o post completo no site ... )'
 
     # Settings
 
