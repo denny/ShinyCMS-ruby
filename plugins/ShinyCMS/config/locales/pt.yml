@@ -359,29 +359,29 @@ pt:
           failure: Falhou a remoção das bandeiras de spam
 
       consent_versions:
-        breadcrumb: Consent
-        menu: User consent
+        breadcrumb: Consentimento
+        menu: Consentimento do utilizador
         index:
-          title: Consent versions
-          search: Search comments
+          title: Versões de consentimento
+          search: Procurar comentários
         search:
-          title: Consent versions
+          title: Versões de Consentimento
         show:
-          title: View consent version
+          title: Ver versão de consentimento
         new:
-          title: Add new version
+          title: Adicionar nova versão
         edit:
-          title: Update consent version
+          title: Atualizar versão de consentimento
         create:
-          title: Add new version
-          success: New consent version added
-          failure: Failed to add new consent version
+          title: Adicionar nova versão
+          success: Nova versão de consentimento adicionada
+          failure: Falhou a adição de nova versão de consentimento
         update:
-          title: Update consent version
-          success: Consent version updated
-          failure: Failed to update consent version
+          title: Update consent version Atualizar versão de consentimento
+          success: Versão de consentimento atualizada
+          failure: Falhou a atualização da versão de consentimento
         destroy:
-          success: Consent version deleted
+          success: Versão de consentimento apagado
 
       coverband:
         menu: Code usage
