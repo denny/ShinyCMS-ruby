@@ -324,39 +324,39 @@ pt:
     # Views and Controllers
 
     admin:
-      breadcrumb: Admin
-      toolbar: Admin area
+      breadcrumb: Administração
+      toolbar: Área do administrador
 
-      invalid_url: 'Invalid URL: /admin/%{request_path}'
+      invalid_url: 'URL inválido: /admin/%{request_path}'
 
-      section: Section
-      template: Template
-      template_file: Template file
+      section: Secção
+      template: Modelo
+      template_file: Ficheiro modelo
       elements:
-        short_text: Short Text
-        long_text: Long Text
-        image: Image
+        short_text: Texto Curto
+        long_text: Texto Longo
+        image: Imagem
         html: HTML
-        unknown_type: UNKNOWN ELEMENT TYPE
+        unknown_type: TIPO DE ELEMENTO DESCONHECIDO
 
       comments:
-        breadcrumb: Comments
-        menu: Spam comments
+        breadcrumb: Comentários
+        menu: Comentários Spam
         index:
-          title: Spam comment moderation
-          select_all: Select all
-          confirm_spam: Confirm as spam (and delete)
-          remove_flag: Remove spam flag (and publish)
-          search: Search comments
+          title: Moderação de comentários spam
+          select_all: Selecionar tudo
+          confirm_spam: Confirmar como spam (e apagar)
+          remove_flag: Remover a bandeira de spam (e publicar)
+          search: Pesquisar comentários
         search:
-          title: Spam comment moderation
+          title: Moderação de comentários spam
         update:
-          spam_or_ham: Please choose either 'confirm as spam' or 'remove spam flag'
+          spam_or_ham: Por favor escolhe entre 'confirmar como spam' ou 'remover a bandeira de spam'
         process_spam_comments:
-          success: Spam comments deleted
+          success: Commentários de spam apagados
         process_ham_comments:
-          success: Spam flags removed (comments should now be visible on site)
-          failure: Failed to remove spam flags
+          success: Bandeiras de spam removidas (os comentários deverão ser agora visíveis no site)
+          failure: Falhou a remoção das bandeiras de spam
 
       consent_versions:
         breadcrumb: Consent
