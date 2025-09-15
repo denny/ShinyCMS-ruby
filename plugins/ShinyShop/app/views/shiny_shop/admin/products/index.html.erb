@@ -5,12 +5,20 @@
       <% if current_user.can? :edit, :product_sections %>
       <th></th>
       <% end %>
-      <th class="width25pc page">
-        Product / Section
+      <th class="longer">
+        Name
+      </th>
+      <th>
+        SKU
+      </th>
+      <th>
+        Added / Updated
       </th>
       <th>
       </th>
-      <th class="width25pc">
+      <th>
+      </th>
+      <th>
       </th>
     </tr>
   </thead>
@@ -31,79 +39,5 @@
   <%= t( 'shinycms.empty_list', items: ShinyShop::Product.readable_name ) %>
 </p>
 <% end %>
-
-<table class="table table-responsive-sm table-striped">
-  <thead>
-    <tr>
-      <th class="longer">
-        Name
-      </th>
-      <th>
-        SKU
-      </th>
-      <th>
-        Added / Updated
-      </th>
-      <th>
-      </th>
-      <th>
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-    <% next unless product.active %>
-    <tr>
-      <td>
-        <%= product.internal_name %>
-      </td>
-      <td>
-        <%= product.slug %>
-      </td>
-      <td>
-        <%= display_time_on_date( product.updated_at ) %>
-      </td>
-      <td class="actions">
-        <%= button_to t( 'shiny_shop.admin.products.index.archive' ),
-                      shiny_shop.archive_product_path( product ), method: :put %>
-      </td>
-      <td class="actions">
-        <%= link_to t( 'view' ), shiny_shop.product_path( product ) %>
-        <%= link_to t( 'edit' ), shiny_shop.edit_product_path( product ) %>
-      </td>
-    </tr>
-    <% end %>
-
-    <tr>
-      <td>
-        &nbsp;
-      </td>
-    </tr>
-
-    <% @products.each do |product| %>
-    <% next if product.active %>
-    <tr>
-      <td>
-        <%= product.internal_name %>
-      </td>
-      <td>
-        <%= product.slug %>
-      </td>
-      <td>
-        <%= display_time_on_date( product.updated_at ) %>
-      </td>
-      <td class="actions">
-        <%= button_to t( 'shiny_shop.admin.products.index.revive' ),
-                      shiny_shop.revive_product_path( product ), method: :put %>
-      </td>
-      <td class="actions">
-        <%= link_to t( 'view' ), shiny_shop.product_path( product ) %>
-        <%= link_to t( 'edit' ), shiny_shop.edit_product_path( product ) %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <%#= render partial: 'admin/includes/pager', locals: { pagy: @pagy, name: @product.name } %>
