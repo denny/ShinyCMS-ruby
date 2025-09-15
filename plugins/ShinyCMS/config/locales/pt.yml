@@ -412,13 +412,13 @@ email
           success: Destinatário de email apagado
 
       email_stats:
-        breadcrumb: Stats
-        menu: Email stats
+        breadcrumb: Estatísticas
+        menu: Estatísticas de email
         index:
-          title: Email stats
-          search: Search stats
+          title: Estatísticas de email
+          search: Estatísticas de pesquisa
         search:
-          title: Email stats
+          title: Estatísticas de email
 
       feature_flags:
         breadcrumb: Settings
