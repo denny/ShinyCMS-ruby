@@ -486,17 +486,17 @@ email
           failure: Falhou a tentativa de apagar utilizador
 
       stats:
-        breadcrumb: Stats
-        menu: Stats
+        breadcrumb: Estatísticas
+        menu: Estatísticas
 
       web_stats:
-        breadcrumb: Stats
-        menu: Web stats
+        breadcrumb: Estatísticas
+        menu: Estatísticas da web
         index:
-          title: Web stats
-          search: Search stats
+          title: Estatísticas da web
+          search: Estatísticas de pesquisa
         search:
-          title: Web stats
+          title: Estatísticas da web
 
       # ===== other engines =====
 
