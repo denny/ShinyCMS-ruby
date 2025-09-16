@@ -87,7 +87,9 @@ module ShinyShop
 
     def strong_params
       params.expect(
-        product: %i[ internal_name public_name slug description section_id template_id position show_on_site active price ]
+        product: %i[
+          internal_name public_name slug description section_id template_id position show_on_site active price
+        ]
       )
     end
   end
