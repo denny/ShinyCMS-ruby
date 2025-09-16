@@ -434,29 +434,29 @@ email
           success: Bandeiras de funcionalidade atualizadas
           failure: Falhou a atualização das bandeiras de funcionalidade
 
-      letter_opener_web: Outbox
+      letter_opener_web: Caixa de saída
 
       other:
-        menu: Other
+        menu: Outro
 
       sidekiq_web:
-        menu: Sidekiq dashboard
+        menu: Painel do Sidekiq
 
       site_settings:
-        breadcrumb: Settings
-        menu: Settings
+        breadcrumb: Definições
+        menu: Definições
         index:
-          title: Site settings
-          name: Name
-          value: Value
-          level: Level
-          user: User
-          admin: Admin
-          site: Site
+          title: Definições da página
+          name: Nome
+          value: Valor
+          level: Nível
+          user: Utilizador
+          admin: Administrador
+          site: Página
         update:
-          success: Settings updated
-          failure: Failed to update some settings
-          unchanged: No settings were changed
+          success: Definições atualizadas
+          failure: Falhou a atualização de algumas definições
+          unchanged: Não houve alteração nas definições
 
       users:
         breadcrumb: Users
