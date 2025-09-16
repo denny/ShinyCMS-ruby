@@ -421,18 +421,18 @@ email
           title: Estatísticas de email
 
       feature_flags:
-        breadcrumb: Settings
-        menu: Feature flags
+        breadcrumb: Definições
+        menu: Bandeiras de funcionalidade
         index:
-          title: Feature Flags
-          feature: Feature
-          enabled_for: Enabled for...
-          everybody: Everybody
-          logged_in: Logged-in users
-          admins: Admins
+          title: Bandeiras de funcionalidade
+          feature: Funcionalidade
+          enabled_for: Permitido para...
+          everybody: Toda a gente
+          logged_in: Utilizadores que fizeram login
+          admins: Administradores
         update:
-          success: Feature flags updated
-          failure: Failed to update feature flags
+          success: Bandeiras de funcionalidade atualizadas
+          failure: Falhou a atualização das bandeiras de funcionalidade
 
       letter_opener_web: Outbox
 
