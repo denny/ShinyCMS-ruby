@@ -501,17 +501,17 @@ email
       # ===== other engines =====
 
       blazer:
-        menu: Charts
-        auth_fail: Your account does not have access to Blazer charts and dashboards
+        menu: Gráficos
+        auth_fail: A tua conta não tem acesso ao gráficos e paineis Blazer
 
       rails_email_preview:
-        menu: Mailer previews
-        # auth_fail: Your account does not have access to REP mailer previews
+        menu: Pré-vizualização de Mailer
+        # auth_fail: A tua conta não tem acesso à pré-vizualização de REP mailer
         emails:
           index:
-            title: All mailers
+            title: Todos os mailers
           show:
-            title: Preview email
+            title: Pré-visualizar email
             breadcrumb_list: Emails
         base:
           email:
@@ -521,7 +521,7 @@ email
           mailer:
             one: 1 mailer
             other: '%{count} mailers'
-          loading: Loading...
+          loading: A carregar...
 
   blazer:
     admin:
