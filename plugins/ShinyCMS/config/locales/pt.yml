@@ -459,31 +459,31 @@ email
           unchanged: Não houve alteração nas definições
 
       users:
-        breadcrumb: Users
-        menu: Users
-        toolbar: Users
+        breadcrumb: Utilizadores
+        menu: Utilizadores
+        toolbar: Utilizadores
         index:
-          title: List users
-          search: Search users
-          edit_account: Edit account
-          delete_account: Delete account
+          title: Lista de utilizadores
+          search: Pesquisar utilizadores
+          edit_account: Editar conta
+          delete_account: Apagar conta
         search:
-          title: List users
+          title: Lista de utilizadores
         new:
-          title: Add new user
+          title: Adicionar novo utilizador
         edit:
-          title: Edit user
+          title: Editar utilizador
         create:
-          title: Add new user
-          success: New user added
-          failure: Failed to add new user
+          title: Adionar novo utilizador
+          success: Utilizador novo adicionado
+          failure: Falhou a adição de um novo utilizador
         update:
-          title: Edit user
-          success: User details updated
-          failure: Failed to update user details
+          title: Editar utilizador
+          success: Detalhes do utilizador atualizados
+          failure: Falhou a atualização dos detalhes do utilizador
         destroy:
-          success: User deleted
-          failure: Failed to delete user
+          success: Utilizador apagado
+          failure: Falhou a tentativa de apagar utilizador
 
       stats:
         breadcrumb: Stats
