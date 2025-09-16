@@ -1,0 +1,59 @@
+# ShinyAccess plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Portuguese locale strings for ShinyCMS features provided by the ShinyAccess plugin
+
+pt:
+  shinycms:
+    feature_flags:
+      access: Controlo de Acesso
+
+    models:
+      names:
+        shiny_access_group: grupo de acesso
+        shiny_access_membership: grupo de acesso de adesão
+
+  shiny_access:
+    admin:
+      menu: Acesso
+      groups:
+        breadcrumb: Acesso
+        index:
+          title: Grupos de Acesso
+          search: Grupos de Pesquisa
+        search:
+          title: Grupos de Acesso
+        new:
+          title: Novo grupo de acesso
+        edit:
+          title: Editar grupo de acesso
+        create:
+          title: Novo grupo de acesso
+          success: Grupo de acesso criado
+          failure: Falhou a criação do grupo
+        update:
+          title: Editar grupo de acesso
+          success: Grupo de acesso atualizado
+          failure: Falhou a atualização do grupo
+        destroy:
+          success: Grupo de acesso eliminado
+      memberships:
+        breadcrumb: Acesso
+        index:
+          title: Adesões para '%{name}'
+          search: Pesquisa de adesões
+          member: Membro
+          from: De
+          to: Para
+          cancel: Cancelar
+          add_member: Adiciona novo membro
+          username: Nome de utilizador
+        create:
+          success: Novo membro adicionado
+          failure: Falhou a adição de novo membro
+        destroy:
+          success: Adesão cancelada
+          failure: Falhou o cancelamento da adesão
