@@ -526,31 +526,31 @@ email
   blazer:
     admin:
       checks:
-        breadcrumb: Blazer Checks
+        breadcrumb: Verificações Blazer
         index:
-          title: Checks
+          title: Verificações
         new:
-          title: New check
+          title: Nova Verificação
       dashboards:
-        breadcrumb: Blazer Dashboards
+        breadcrumb: Painéis Blazer
         show:
-          title: View dashboard
+          title: Ver painel
         new:
-          title: New dashboard
+          title: Novo painel
         edit:
-          title: Edit dashboard
+          title: Editar painel
       queries:
-        breadcrumb: Blazer Charts
+        breadcrumb: Gráficos Blazer
         home:
           title: Queries
         index:
           title: Queries
         show:
-          title: View query
+          title: Ver query
         new:
-          title: New query
+          title: Nova query
         edit:
-          title: Edit query
+          title: Editar query
 
   rails_email_preview:
     admin:
