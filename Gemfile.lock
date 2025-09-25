@@ -675,7 +675,7 @@ GEM
     recaptcha (5.21.1)
     redis (5.4.0)
       redis-client (>= 0.22.0)
-    redis-client (0.24.0)
+    redis-client (0.26.0)
       connection_pool
     reek (6.5.0)
       dry-schema (~> 1.13)
@@ -812,9 +812,11 @@ GEM
       logger
       rack (>= 2.2.4)
       redis-client (>= 0.22.2)
-    sidekiq-status (3.0.3)
+    sidekiq-status (4.0.0)
+      base64
       chronic_duration
-      sidekiq (>= 6.0, < 8)
+      logger
+      sidekiq (>= 7, < 9)
     simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
