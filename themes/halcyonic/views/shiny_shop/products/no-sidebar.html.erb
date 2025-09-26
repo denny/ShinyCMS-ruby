@@ -1,0 +1,19 @@
+      <section id="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+
+              <section>
+                <header>
+                  <h2><%= heading    %></h2>
+                  <h3><%= subheading %></h3>
+                </header>
+
+                <%#= sanitize html_content %>
+                <%= simple_format text_content %>
+              </section>
+
+            </div>
+          </div>
+        </div>
+      </section>
