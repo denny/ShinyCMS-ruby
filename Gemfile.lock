@@ -282,7 +282,7 @@ GEM
       addressable (>= 2.3.2)
       nokogiri
       safely_block (>= 0.1.1)
-    ahoy_matey (5.4.0)
+    ahoy_matey (5.4.1)
       activesupport (>= 7.1)
       device_detector (>= 1)
       safely_block (>= 0.4)
