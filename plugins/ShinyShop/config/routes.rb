@@ -23,10 +23,24 @@ ShinyShop::Engine.routes.draw do
     scope path: :admin, module: :admin do
       extend ShinyCMS::Routes::AdminConcerns  # with_paging and with_search
 
-      resources :products, except: %i[ show destroy ]
+      concern :sortable do
+        put :sort, on: :collection
+      end
+
+      resources :products, except: %i[ show destroy ], concerns: %i[ with_paging with_search sortable ] do
+        resources :elements, only: %i[ create destroy ], module: :pages
+      end
 
       put 'products/:id/archive', to: 'products#archive', as: :archive_product
       put 'products/:id/revive',  to: 'products#revive',  as: :revive_product
+
+      scope path: :products do
+        resources :sections, except: :show
+
+        resources :templates, except: %i[ index show ], concerns: %i[ with_paging with_search ] do
+          resources :elements, only: %i[ create destroy ], module: :templates
+        end
+      end
     end
   end
 end

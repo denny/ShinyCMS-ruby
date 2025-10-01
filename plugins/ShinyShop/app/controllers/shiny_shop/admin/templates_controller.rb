@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-# ShinyPages plugin for ShinyCMS ~ https://shinycms.org
+# ShinyShop plugin for ShinyCMS ~ https://shinycms.org
 #
 # Copyright 2009-2025 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-module ShinyPages
-  # Admin controller for templates - ShinyPages plugin for ShinyCMS
+module ShinyShop
+  # Admin controller for templates - ShinyShop plugin for ShinyCMS
   class Admin::TemplatesController < ApplicationController
     include ShinyCMS::AdminAreaControllerBase
 
@@ -44,7 +44,7 @@ module ShinyPages
       authorize @template
 
       if @template.save
-        redirect_to shiny_pages.edit_template_path( @template ), notice: t( '.success' )
+        redirect_to shiny_shop.edit_template_path( @template ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render action: :new
@@ -59,7 +59,7 @@ module ShinyPages
       authorize @template
 
       if sort_elements && @template.update( strong_params )
-        redirect_to shiny_pages.edit_template_path( @template ), notice: t( '.success' )
+        redirect_to shiny_shop.edit_template_path( @template ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
         render :edit
@@ -75,7 +75,7 @@ module ShinyPages
         flash[ :alert  ] = t( '.failure' )
       end
 
-      redirect_to shiny_pages.templates_path
+      redirect_to shiny_shop.templates_path
     end
 
     private
