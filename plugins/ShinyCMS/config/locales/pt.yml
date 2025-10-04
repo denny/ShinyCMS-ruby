@@ -111,7 +111,8 @@ pt:
         token_expired: O link de confirmação expirou; por favor solicita um novo email e tenta novamente
         # failure: Falhou a confirmação do endereço de email; por favor tenta novamente, ou avisa os administradores do site
 
-      empty_list: Sem %{items} encontrados email
+    empty_list: Sem %{items} encontrados email
+
     errors:
       messages:
         slug_not_unique_in_month: já foi utilizado neste mês
