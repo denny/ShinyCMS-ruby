@@ -1,0 +1,68 @@
+# ShinyForms plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Portuguese locale strings for ShinyCMS features provided by the ShinyForms plugin
+
+pt:
+  shinycms:
+    feature_flags:
+      shiny_forms: Manuseadores de formulários
+      shiny_forms_emails: Manuseadores de formulários podem enviar emails
+      recaptcha_for_forms: Proteger ShinyForms com reCAPTCHA
+      akismet_for_forms: Detectar submissões de ShinyForm que são considerados spam com Akismet
+
+    settings:
+      recaptcha_score_for_forms: Pontuação mínima do reCAPTCHA v3 para submissão de ShinyForm
+
+    models:
+      names:
+        shiny_forms_form: formulário
+
+  shiny_forms:
+    forms:
+      process_form:
+        success: A submissão do formulário foi bem sucedida
+        failure: A submissão do formulário falhou
+        form_not_found: Manuseador de formulário não foi encontrado
+
+    admin:
+      forms:
+        breadcrumb: Formulários
+        menu: Formulários
+        toolbar: Formulários
+        handlers:
+          send_plain_email: Enviar email em texto
+          send_html_email: Enviar email em HTML
+          store_in_database: Guardar em base de dados
+        index:
+          title: Listar manuseadores de formulário
+          search: Procurar manuseadores de formulário
+        search:
+          title: Listar manuseadores de formulário
+        new:
+          title: Adicionar manuseador de formulário
+        edit:
+          title: Editar manuseador de formulário
+        create:
+          title: Adicionar manuseador de formulário
+          success: Novo manuseador de formulário criado
+          failure: Falhou a criação de um novo manuseador de formulário
+        update:
+          title: Editar manuseador de formulário
+          success: Manuseador de formulário atualizado
+          failure: Falhou a atualização do manuseador de formulário
+        destroy:
+          success: Manuseador de formulário apagado
+        set_form:
+          not_found: Manuseador de formulário não foi encontrado
+
+    mailers:
+      form_mailer:
+        default_subject: 'Dados do formulário de %{site_name}'
+
+    models:
+      forms:
+        template_file_must_exist: O ficheiro template tem de existir
