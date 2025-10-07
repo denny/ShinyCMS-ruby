@@ -70,7 +70,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'view_component', '>= 2.83', '< 5.0'
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
-  spec.add_dependency 'sidekiq', '>= 6.5.10', '< 7.4.0'
+  spec.add_dependency 'sidekiq', '>= 6.5.10', '< 8.1.0'
   spec.add_dependency 'sidekiq-status'
 
   # Soft delete

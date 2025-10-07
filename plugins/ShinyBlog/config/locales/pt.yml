@@ -1,0 +1,67 @@
+# ShinyBlog plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Portuguese locale strings for ShinyCMS features provided by the ShinyBlog plugin
+
+en:
+  shinycms:
+    feature_flags:
+      blog: Blog
+      blog_upvotes: Up-votes em blog posts
+      blog_downvotes: Down-votes em blog posts
+
+    capability:
+      category:
+        blog_posts: Blog posts
+
+      blog_posts:
+        change_author: Mudar de autor
+
+    models:
+      names:
+        shiny_blog_post: blog post
+
+  shiny_blog:
+    menu:
+      title: Blog
+    profile:
+      content:
+        title: Blog posts recentes
+    blog:
+      index:
+        title: Blog posts recentes
+        read_more: Ler mais
+      show:
+        reply: Responder a este post
+      sidebar:
+        links: Links
+        links_blurb: Leitura recomendada vinda da web
+        recent_posts: Posts recentes
+
+    admin:
+      blog_posts:
+        breadcrumb: Blog
+        menu: Blog
+        toolbar: Blog posts
+        index:
+          title: Lista de blog posts
+          search: Pesquisar blog posts
+        search:
+          title: Lista de blog posts
+        new:
+          title: Adicionar blog post
+        edit:
+          title: Editar blog post
+        create:
+          title: Adicionar blog post
+          success: Blog post criado
+          failure: Falhou a criação do blog post
+        update:
+          title: Editar blog post
+          success: Blog post editado
+          failure: Falhou a edição do blog post
+        destroy:
+          success: Blog post apagado
