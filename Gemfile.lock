@@ -863,7 +863,7 @@ GEM
       diff-lcs (~> 1.6)
       parser (>= 3.3.0)
       prism (>= 1.4)
-    uri (1.0.3)
+    uri (1.0.4)
     useragent (0.16.11)
     view_component (4.0.2)
       activesupport (>= 7.1.0, < 8.1)
