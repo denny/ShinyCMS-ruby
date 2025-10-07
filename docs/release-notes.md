@@ -5,6 +5,24 @@
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
 
+### 2025-10-07  25.10   October 2025: The 'Também disponível em português' release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.10
+
+As alluded to in the release name, this month I started merging Manuel's contributions to translate the ShinyCMS admin features into Portuguese. Obrigado Manuel! So far he's done all of the main admin area, as well as the ShinyAccess, ShinyBlog, and ShinyForms plugins. Hopefully there will be more Portuguese plugin translations to come over the next few months, to cover the rest of the CMS features.
+
+Gems updated this month: puma, pundit, sidekiq, mjml, rexml, recaptcha, sentry, mutant-rspec, and rubocop-rails
+
+
+### 2025-09-04  25.09   September 2025: The 'Still Working On The Shop Branch' release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.09
+
+Another quiet month for the main branch, with most of my work going into the shop-product-descriptions branch and some other odds and ends.
+
+Notable updates this month include puma (from 6.6.1 to 7.0.0), as well as more minor updates to rack, pg, view_component, pagy, and various rubocop gems.
+
+
 ### 2025-08-04  25.08   August 2025: The 'Component With An Updated View' release
 
 GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.08
