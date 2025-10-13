@@ -137,7 +137,8 @@ RSpec.describe ShinyPages::Admin::PagesController, type: :request do
       expect( response.body ).to have_field 'page[elements_attributes][0][image]',   type: 'file'
       expect( response.body ).to have_field 'page[elements_attributes][1][content]', type: 'text',     with: 'SHORT!'
       expect( response.body ).to have_field 'page[elements_attributes][2][content]', type: 'textarea', with: 'LONG!'
-      expect( response.body ).to have_field 'page[elements_attributes][3][content]', type: 'textarea', with: 'HTML!'
+      expect( response.body ).to have_field 'page[elements_attributes][3][content]', type: 'hidden', with: 'HTML!'
+      expect( response.body ).to have_css   'trix-editor#page_elements_attributes_3_content'
     end
   end
 
