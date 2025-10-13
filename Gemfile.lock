@@ -159,7 +159,7 @@ PATH
     shiny_search (21.06)
       acts-as-taggable-on
       acts_as_paranoid
-      algoliasearch-rails (~> 1.25)
+      algoliasearch-rails (>= 1.25, < 4.0)
       nokogiri (>= 1.18.8)
       pagy (>= 9.3.4, < 9.5.0)
       pg (>= 1.2.3, < 1.7.0)
