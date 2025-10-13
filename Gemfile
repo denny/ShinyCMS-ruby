@@ -13,14 +13,14 @@ ruby file: '.ruby-version'
 
 source 'https://rubygems.org'
 source 'https://rubygems.org' do
-  # Rails 7.2
-  gem 'rails', '~> 7.2.2.1'
+  # Rails 8.0
+  gem 'rails', '~> 8.0.2'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/load'
 
   # Find out which bits of your code are used more/less in production
-  gem 'coverband', groups: %i[ development production ]
+  gem 'coverband', groups: %i[ production development ]
 
   # ShinyCMS core plugin
   gem 'shinycms', path: 'plugins/ShinyCMS'
@@ -32,13 +32,15 @@ source 'https://rubygems.org' do
   end
 
   # Postgres
-  gem 'pg', '~> 1.5.9'
+  gem 'pg', '~> 1.6.2'
 
   # Rack
-  gem 'rack'
+  gem 'rack', '~> 3.2.3'
+  # Rack Session
+  gem 'rack-session', '~> 2.1.1'
 
   # Webserver
-  gem 'puma', '~> 6.6', groups: %i[ development production ]
+  gem 'puma', '~> 7.0', groups: %i[ development production ]
 
   # Email previews
   gem 'rails_email_preview'
@@ -51,7 +53,11 @@ source 'https://rubygems.org' do
   # Charts and dashboards
   gem 'blazer'
   # Charts
-  gem 'chartkick', '~> 5.1.4'
+  gem 'chartkick', '~> 5.2.0'
+
+  # Stripe
+  # gem 'stripe'
+  gem 'stripe_event'
 
   # Request filtering
   gem 'rack-attack'
@@ -125,6 +131,7 @@ source 'https://rubygems.org' do
 
     # Create test objects
     gem 'factory_bot_rails'
+
     # Generate test data
     gem 'faker'
 

@@ -1,0 +1,12 @@
+<% @page_title = @product.name %>
+
+<h2><%= @product.name %></h2>
+<p>
+  <%= number_to_currency @product.price.to_d/100, unit: '&pound;'.html_safe %>
+</p>
+<p>
+  <%= @product.description %>
+</p>
+<p>
+  <%= button_to 'Buy now!', shiny_shop.checkout_path( product: @product.slug ) %>
+</p>

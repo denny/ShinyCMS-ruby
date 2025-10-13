@@ -93,10 +93,13 @@ module ShinyPages
     def strong_params
       return if params[ :page ].blank?
 
-      params.require( :page ).permit(
-        :internal_name, :public_name, :slug, :description, :template_id, :section_id,
-        :position, :show_on_site, :show_in_menus, elements_attributes: {}
+      # rubocop:disable Layout/LineLength
+      params.expect(
+        page: %i[
+          internal_name public_name slug description template_id section_id position show_on_site show_in_menus elements_attributes: {}
+        ]
       )
+      # rubocop:enable Layout/LineLength
     end
 
     def sort_elements

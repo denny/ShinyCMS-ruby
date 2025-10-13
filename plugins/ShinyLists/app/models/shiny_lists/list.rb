@@ -52,13 +52,13 @@ module ShinyLists
     # Integration with the configured user model
     user_model = ShinyCMS.config_user_model
     user_model.constantize.has_many :subscriptions, -> { active }, as: :subscriber, dependent: :destroy,
-                                    class_name: 'ShinyLists::Subscription'
+                                    class_name: 'ShinyLists::Subscription', inverse_of: :subscriber
     user_model.constantize.has_many :lists, through: :subscriptions, inverse_of: :users,
                                     class_name: 'ShinyLists::List'
   end
 end
 
 ShinyCMS::EmailRecipient.has_many :subscriptions, -> { active }, as: :subscriber, dependent: :destroy,
-                                  class_name: 'ShinyLists::Subscription'
+                                  class_name: 'ShinyLists::Subscription', inverse_of: :subscriber
 ShinyCMS::EmailRecipient.has_many :lists, through: :subscriptions, inverse_of: :email_recipients,
                                   class_name: 'ShinyLists::List'

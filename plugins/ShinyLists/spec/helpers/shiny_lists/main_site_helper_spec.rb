@@ -9,24 +9,22 @@
 require 'rails_helper'
 
 # Tests for some of the methods in the main site helper module
-module ShinyLists
-  RSpec.describe MainSiteHelper, type: :helper do
-    describe 'find_list_by_slug( slug )' do
-      it 'returns the mailing_list matching the slug' do
-        list1 = create :mailing_list, slug: 'newsletter'
+RSpec.describe ShinyLists::MainSiteHelper, type: :helper do
+  describe 'find_list_by_slug( slug )' do
+    it 'returns the mailing_list matching the slug' do
+      list1 = create :mailing_list, slug: 'newsletter'
 
-        expect( helper.find_list_by_slug( 'newsletter' ) ).to eq list1
-      end
+      expect( helper.find_list_by_slug( 'newsletter' ) ).to eq list1
     end
+  end
 
-    describe 'most_recent_list' do
-      it 'returns the last list created' do
-        create :mailing_list
-        sleep 1
-        list2 = create :mailing_list
+  describe 'most_recent_list' do
+    it 'returns the last list created' do
+      create :mailing_list
+      sleep 1
+      list2 = create :mailing_list
 
-        expect( helper.most_recent_list ).to eq list2
-      end
+      expect( helper.most_recent_list ).to eq list2
     end
   end
 end

@@ -68,6 +68,7 @@ nav:
       - MJML:           Features/MainApp/mjml.md
       - Pagination:     Features/MainApp/pagination.md
       - Soft Delete:    Features/MainApp/soft-delete.md
+      - Block Bots:     Features/MainApp/rack-attack
       - Rake tasks:     rake-tasks.md
 
   - Developer Documentation:

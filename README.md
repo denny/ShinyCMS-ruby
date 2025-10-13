@@ -6,7 +6,7 @@ ShinyCMS is primarily intended for use by professional web developers, as a plat
 
 Web developers can also add custom functionality by writing their own plugins. A number of helpers and concerns are provided to help you build new features quickly, and with a consistent look-and-feel to the rest of the system.
 
-The current version of ShinyCMS runs on Ruby 3.4 and Rails 7.2
+The current version of ShinyCMS runs on Ruby 3.4 and Rails 8.0
 
 ## Features
 
@@ -100,7 +100,7 @@ All other supported [external services](docs/Services.md) are optional. If you a
 
 ### Ruby and Rails versions
 
-ShinyCMS requires Ruby 3.4 and Rails 7.2 or later. The project generally uses the most recent stable release of both Ruby and Rails (currently Ruby 3.4.2 and Rails 7.2.2.1).
+ShinyCMS requires Ruby 3.4 and Rails 8.0 or later. The project generally uses the most recent stable release of both Ruby and Rails (currently Ruby 3.4.3 and Rails 8.0.2).
 
 
 ## Contributing
@@ -137,8 +137,6 @@ ShinyCMS includes code from other open source and free software projects, which 
 [![Codecov](https://img.shields.io/codecov/c/github/denny/ShinyCMS-ruby?label=Codecov&logo=codecov&logoColor=white&style=for-the-badge)](https://codecov.io/gh/denny/ShinyCMS-ruby)
 [![Dependabot](https://img.shields.io/static/v1?label=Dependabot&color=brightgreen&message=enabled&logo=dependabot&style=for-the-badge)](https://rubydoc.info/github/denny/ShinyCMS-ruby)
 
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/denny/ShinyCMS-ruby?label=CodeClimate&logo=code-climate&style=for-the-badge)](https://codeclimate.com/github/denny/ShinyCMS-ruby/maintainability)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/denny/ShinyCMS-ruby?label=CodeFactor&logo=codefactor&logoColor=white&style=for-the-badge)](https://www.codefactor.io/repository/github/denny/shinycms-ruby)
 <a href="https://codebeat.co/projects/github-com-denny-shinycms-ruby-main"><img src="https://codebeat.co/badges/97ed8fca-23b4-469e-a7fb-fd3ec7f8e4d5" alt="CodeBeat (code quality)" height="28px"></a>
 

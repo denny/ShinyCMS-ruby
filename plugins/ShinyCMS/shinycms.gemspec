@@ -36,9 +36,9 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
-  spec.add_dependency 'rails', '>= 7.2.2.1', '< 8.0'
+  spec.add_dependency 'rails', '>= 8.0.2', '< 8.1'
 
-  spec.add_dependency 'pg', '>= 1.2.3', '< 1.6.0'
+  spec.add_dependency 'pg', '>= 1.2.3', '< 1.7.0'
 
   # Immutable data structures
   spec.add_dependency 'persistent-dmnd'
@@ -67,10 +67,10 @@ Gem::Specification.new do |spec|
 
   # View components
   # https://github.com/ViewComponent/view_component/security/advisories/GHSA-wf2x-8w6j-qw37
-  spec.add_dependency 'view_component', '>= 2.83', '< 4.0'
+  spec.add_dependency 'view_component', '>= 2.83', '< 5.0'
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
-  spec.add_dependency 'sidekiq', '>= 6.5.10', '< 7.4.0'
+  spec.add_dependency 'sidekiq', '>= 6.5.10', '< 8.1.0'
   spec.add_dependency 'sidekiq-status'
 
   # Soft delete
@@ -82,11 +82,8 @@ Gem::Specification.new do |spec|
   # Upvotes (AKA 'Likes') and downvotes
   spec.add_dependency 'acts_as_votable'
 
-  # WYSIWYG editor
-  spec.add_dependency 'ckeditor'
-
   # Pagination
-  spec.add_dependency 'pagy', '~> 9.3.4'
+  spec.add_dependency 'pagy', '>= 9.3.4', '< 9.5.0'
 
   # Atom feeds
   spec.add_dependency 'rss'

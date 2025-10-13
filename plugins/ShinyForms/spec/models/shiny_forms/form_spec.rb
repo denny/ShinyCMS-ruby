@@ -9,24 +9,22 @@
 require 'rails_helper'
 
 # Tests for Form model
-module ShinyForms
-  RSpec.describe Form, type: :model do
-    describe 'instance methods' do
-      describe '.name' do
-        it 'knows its own name' do
-          ship_name = Faker::Books::CultureSeries.unique.civs.parameterize
+RSpec.describe ShinyForms::Form, type: :model do
+  describe 'instance methods' do
+    describe '.name' do
+      it 'knows its own name' do
+        ship_name = Faker::Books::CultureSeries.unique.civs.parameterize
 
-          form = create :form, internal_name: ship_name
+        form = create :form, internal_name: ship_name
 
-          expect( form.name ).to eq ship_name
-        end
+        expect( form.name ).to eq ship_name
       end
     end
+  end
 
-    describe 'concerns' do
-      it_behaves_like ShinyCMS::ProvidesDemoSiteData do
-        let( :model ) { described_class }
-      end
+  describe 'concerns' do
+    it_behaves_like ShinyCMS::ProvidesDemoSiteData do
+      let( :model ) { described_class }
     end
   end
 end

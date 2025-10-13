@@ -20,6 +20,6 @@ You generate an up-to-date report by running `rubycritic`. You can then find the
 
 ### Other services
 
-ShinyCMS is also checked for code quality with CodeClimate, CodeBeat, and CodeFactor, and there are config files for some of these where necessary/helpful (usually to ignore certain files).
+ShinyCMS is checked for code quality with CodeBeat and CodeFactor, and there are config files for some of these where necessary/helpful (usually to ignore certain files).
 
-ShinyCMS is also checked with Hakiri and Dependabot for potential security issues in the ShinyCMS code and/or its dependencies.
+ShinyCMS is also checked with Dependabot for potential security issues in the ShinyCMS code and/or its dependencies.

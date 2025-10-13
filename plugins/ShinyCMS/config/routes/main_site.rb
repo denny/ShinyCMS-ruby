@@ -12,6 +12,7 @@ match '404',  to: 'errors#not_found',             via: :all
 match '500',  to: 'errors#internal_server_error', via: :all
 
 get '/test/500', to: 'errors#test500' if Rails.env.test?
+# get '/test/500', to: 'errors#test500' if Rails.env.test? || Rails.env.development?
 
 devise_for  :users,
             class_name:  'ShinyCMS::User',

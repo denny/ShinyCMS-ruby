@@ -9,12 +9,10 @@
 require 'rails_helper'
 
 # Tests for user profile link model
-module ShinyProfiles
-  RSpec.describe Link, type: :model do
-    describe 'concerns' do
-      it_behaves_like ShinyCMS::ProvidesDemoSiteData do
-        let( :model ) { described_class }
-      end
+RSpec.describe ShinyProfiles::Link, type: :model do
+  describe 'concerns' do
+    it_behaves_like ShinyCMS::ProvidesDemoSiteData do
+      let( :model ) { described_class }
     end
   end
 end

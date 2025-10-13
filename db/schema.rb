@@ -11,11 +11,11 @@
 # less error prone than running all of your migrations from scratch. Old migrations may fail
 # to apply correctly if those migrations use external dependencies or application code.
 
-ActiveRecord::Schema[7.0].define(version: 2025_02_06_162503) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_07_134039) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_stat_statements"
   enable_extension "pgcrypto"
-  enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -234,6 +234,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_06_162503) do
     t.datetime "updated_at", precision: 0, null: false
     t.datetime "deleted_at", precision: 0
     t.index ["deleted_at"], name: "index_shiny_forms_forms_on_deleted_at"
+    t.index ["slug"], name: "index_shiny_forms_forms_on_slug", unique: true
   end
 
   create_table "shiny_inserts_elements", force: :cascade do |t|
@@ -465,7 +466,25 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_06_162503) do
     t.datetime "updated_at", precision: 0, null: false
     t.datetime "deleted_at", precision: 0
     t.index ["deleted_at"], name: "index_shiny_profiles_profiles_on_deleted_at"
-    t.index ["user_id"], name: "index_shiny_profiles_profiles_on_user_id"
+    t.index ["user_id"], name: "index_shiny_profiles_profiles_on_user_id", unique: true
+  end
+
+  create_table "shiny_shop_products", force: :cascade do |t|
+    t.string "internal_name", null: false
+    t.string "public_name"
+    t.string "slug", null: false
+    t.text "description"
+    t.integer "position"
+    t.boolean "show_on_site", default: true, null: false
+    t.datetime "created_at", precision: 0, null: false
+    t.datetime "updated_at", precision: 0, null: false
+    t.string "stripe_id"
+    t.integer "price"
+    t.boolean "active", default: false, null: false
+    t.string "stripe_price_id"
+    t.index ["slug"], name: "index_shiny_shop_products_on_slug", unique: true
+    t.index ["stripe_id"], name: "index_shiny_shop_products_on_stripe_id", unique: true
+    t.index ["stripe_price_id"], name: "index_shiny_shop_products_on_stripe_price_id", unique: true
   end
 
   create_table "shinycms_anonymous_authors", force: :cascade do |t|
@@ -615,7 +634,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_06_162503) do
     t.datetime "updated_at", precision: 0, null: false
     t.datetime "deleted_at", precision: 0
     t.index ["deleted_at"], name: "index_user_capabilities_on_deleted_at"
-    t.index ["user_id", "capability_id"], name: "index_user_capabilities_on_user_id_and_capability_id", unique: true
+    t.index ["user_id", "capability_id"], name: "index_shinycms_user_capabilities_on_user_id_and_capability_id", unique: true, where: "(deleted_at IS NULL)"
   end
 
   create_table "shinycms_users", force: :cascade do |t|

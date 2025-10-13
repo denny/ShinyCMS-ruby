@@ -42,7 +42,7 @@ module ShinyPages
     end
 
     def strong_params
-      params.require( :new_element ).permit( :name, :element_type, :content )
+      params.expect( new_element: %i[ name element_type content ] )
     end
   end
 end

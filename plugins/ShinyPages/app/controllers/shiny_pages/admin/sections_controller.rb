@@ -65,9 +65,8 @@ module ShinyPages
     private
 
     def section_params
-      params.require( :section ).permit(
-        :internal_name, :public_name, :slug, :description, :section_id,
-        :position, :show_on_site, :show_in_menus
+      params.expect(
+        section: %i[ internal_name public_name slug description section_id position show_on_site show_in_menus ]
       )
     end
   end

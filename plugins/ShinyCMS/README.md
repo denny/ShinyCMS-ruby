@@ -11,8 +11,6 @@ You need to include some ShinyCMS code snippets in the `Gemfile` and `config/rou
 
 It's not necessary to include this core plugin in the SHINYCMS_PLUGINS list, but it won't cause a problem if you do.
 
-(Currently all plugins are enabled by default, so if you want to load all of the available plugins then you don't actually need to set the ENV var at all - but this behaviour may change in future.)
-
 ### Database setup
 
 To add the ShinyCMS tables to your application's database:
@@ -39,4 +37,4 @@ Please read the [Code of Conduct](docs/code-of-conduct.md) as well.
 
 ShinyCMS is copyright 2009-2025 Denny de la Haye https://denny.me
 
-ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later). You should have copies of both v2 and v2 of the GPL in the included docs folder, or you can read them online: https://opensource.org/licenses/gpl-2.0 / https://opensource.org/licenses/gpl-3.0
+ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later). You should have copies of both v2 and v3 of the GPL in the included docs folder, or you can read them online: https://opensource.org/licenses/gpl-2.0 / https://opensource.org/licenses/gpl-3.0

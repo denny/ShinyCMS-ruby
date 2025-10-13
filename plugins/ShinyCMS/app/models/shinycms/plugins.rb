@@ -22,8 +22,7 @@ module ShinyCMS
       @names = @plugins.collect( &:name )
     end
 
-    # If no plugins or plugin names are passed to .get then it defaults to
-    # building a collection of all feature plugins (excludes the core plugin)
+    # If no plugins or plugin names are passed to .get then it will build feature_plugin_names
     def self.get( new_plugins = nil )
       return new_plugins if new_plugins.is_a? ShinyCMS::Plugins
 
@@ -69,10 +68,13 @@ module ShinyCMS
     def self.feature_plugin_names
       return @feature_plugin_names if defined? @feature_plugin_names
 
-      configured = ENV.fetch( 'SHINYCMS_PLUGINS', '' ).split( /[, ]+/ ).collect( &:to_sym )
-      on_disk    = Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ).to_sym }
+      configured = ENV.fetch( 'SHINYCMS_PLUGINS' ) { abort 'SHINYCMS_PLUGINS env var must be set' }
+      abort 'SHINYCMS_PLUGINS env var must not be blank' if configured.blank?
 
-      @feature_plugin_names = 💎ify[ configured.intersection( on_disk ) - [ :ShinyCMS ] ]
+      requested = configured.split( /[, ]+/ ).collect( &:to_sym )
+      on_disk   = Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ).to_sym }
+
+      @feature_plugin_names = 💎ify[ requested.intersection( on_disk ) - [ :ShinyCMS ] ]
     end
 
     private
@@ -82,17 +84,39 @@ module ShinyCMS
     def build_plugins( new_plugins )
       return 💎ify[ new_plugins ] if new_plugins.all? ShinyCMS::Plugin
 
-      built = build_plugins_from_names( new_plugins )
+      built = replace_stale_plugins_in_dev( new_plugins ) || build_plugins_from_names( new_plugins )
       return built if built.present?
 
       raise ArgumentError, "Required: valid plugin names, or ShinyCMS::Plugin objects. Received: #{new_plugins}"
     end
 
+    # Handle complications of safe app reloading in development mode
+    def replace_stale_plugins_in_dev( new_plugins )
+      return unless Rails.env.development?
+
+      # Keep this as a class name String comparison - do not compare class constants
+      # (that will fail during development app reloading, because classes are redefined)
+      # :nocov:
+      # rubocop:disable Style/ClassEqualityComparison
+      is_stale_plugin_class = new_plugins.first.class.name == 'ShinyCMS::Plugin'
+      # rubocop:enable Style/ClassEqualityComparison
+      return unless is_stale_plugin_class
+
+      plugin_names = new_plugins.collect( &:name )
+      return build_plugins_from_names( plugin_names )
+      # :nocov:
+    end
+
     def build_plugins_from_names( requested_names )
-      symbolised_names = requested_names.collect { |element| element.to_s.to_sym }
-      available_names  = check_exists_and_enabled( symbolised_names )
+      available_names = check_exists_and_enabled( symbolised_names( requested_names ) )
 
       available_names.collect { |name| ShinyCMS::Plugin.get( name ) }
+    end
+
+    def symbolised_names( requested_names )
+      requested_names.collect do |element|
+        element.to_s.to_sym
+      end
     end
 
     def check_exists_and_enabled( requested_names )

@@ -36,9 +36,9 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir[ '{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md' ]
 
-  spec.add_dependency 'rails', '>= 7.2.2.1', '< 8.0'
+  spec.add_dependency 'rails', '>= 8.0.2', '< 8.1'
 
-  spec.add_dependency 'pg', '>= 1.2.3', '< 1.6.0'
+  spec.add_dependency 'pg', '>= 1.2.3', '< 1.7.0'
 
   # Authorisation
   spec.add_dependency 'pundit'
@@ -50,7 +50,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'acts-as-taggable-on'
 
   # Pagination
-  spec.add_dependency 'pagy', '~> 9.3.4'
+  spec.add_dependency 'pagy', '>= 9.3.4', '< 9.5.0'
 
   # HTML & XML parser
   spec.add_dependency 'nokogiri', '>= 1.18.8'

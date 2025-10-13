@@ -17,7 +17,7 @@ module ShinyAccess
 
     # Associations
 
-    has_many :memberships
+    has_many :memberships, dependent: :destroy
     has_many :users, through: :memberships, inverse_of: :access_groups, class_name: ShinyCMS.config_user_model
 
     # Instance methods
