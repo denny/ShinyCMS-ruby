@@ -34,9 +34,6 @@ require 'acts_as_list'
 require 'acts_as_paranoid'
 require 'acts_as_votable'
 
-# WYSIWYG editor
-require 'ckeditor'
-
 # Pagination
 require 'pagy'
 
