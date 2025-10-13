@@ -7,15 +7,6 @@
 # Portuguese locale strings for ShinyCMS core features and functionality
 
 pt:
-  #ckeditor:
-  #  page_title: 'CKEditor File Manager'
-  #  confirm_delete: 'Delete file?'
-  #  buttons:
-  #    upload: 'Upload'
-  #    cancel: 'Cancel'
-  #    delete: 'Delete'
-  #    next: 'Next'
-
   # Generic verbs (useful for submit buttons, action links, etc)
   add: Adicionar
   view: Ver
