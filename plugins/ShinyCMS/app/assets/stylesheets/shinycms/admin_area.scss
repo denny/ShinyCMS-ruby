@@ -358,7 +358,7 @@ main label {
   padding-bottom:   0;
 }
 
-main input, select, textarea {
+main input, select, textarea, trix-editor {
   background:       $input-bg;
   border:           1px solid $input-border;
   color:            $input-fg;
