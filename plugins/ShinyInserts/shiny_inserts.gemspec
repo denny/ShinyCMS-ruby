@@ -49,9 +49,6 @@ Gem::Specification.new do |spec|
   # Pagination
   spec.add_dependency 'pagy', '>= 9.3.4', '< 9.5.0'
 
-  # CKEditor: WYSIWYG editor for admin area
-  spec.add_dependency 'ckeditor'
-
   # HTML & XML parser
   spec.add_dependency 'nokogiri', '>= 1.18.8'
 

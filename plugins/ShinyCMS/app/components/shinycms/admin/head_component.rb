@@ -13,7 +13,7 @@ module ShinyCMS
       def initialize( page_title:, with_html_editor: false )
         @page_title = page_title
 
-        @load_ckeditor_js = with_html_editor
+        @load_trix = with_html_editor
       end
     end
   end

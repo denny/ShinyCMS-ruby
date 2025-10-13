@@ -18,7 +18,7 @@ require 'active_storage/engine'
 require 'action_controller/railtie'
 require 'action_mailer/railtie'      # Outgoing email (user accounts, comment replies, etc)
 # require "action_mailbox/engine"    # Incoming email
-# require "action_text/engine"       # Rich Text / Trix
+require 'action_text/engine'         # Rich Text / Trix
 require 'action_view/railtie'
 # require "action_cable/engine"
 

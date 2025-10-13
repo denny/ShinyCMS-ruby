@@ -82,9 +82,6 @@ Gem::Specification.new do |spec|
   # Upvotes (AKA 'Likes') and downvotes
   spec.add_dependency 'acts_as_votable'
 
-  # WYSIWYG editor
-  spec.add_dependency 'ckeditor'
-
   # Pagination
   spec.add_dependency 'pagy', '>= 9.3.4', '< 9.5.0'
 
