@@ -1,0 +1,39 @@
+# ShinyInserts plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Portuguese locale strings for ShinyCMS features provided by the ShinyInserts plugin
+
+pt:
+  shinycms:
+    feature_flags:
+      inserts: Inserções
+
+    capability:
+      category:
+        inserts: Inserções
+
+  shiny_inserts:
+    admin:
+      inserts:
+        breadcrumb: Inserções
+        menu: Inserções
+        toolbar: Inserções
+        index:
+          title: Inserções
+          name_placeholder: Nome
+          content_placeholder: Conteúdo (pode ficar vazio)
+        create:
+          title: Inserções
+          success: Nova inserção adicionada
+          failure: Falhou a adição de uma nova inserção
+        update:
+          title: Inserções
+          success: Inserções atualizadas
+          # unchanged: Inserções não foram mudados
+          failure: Falhou a atualização das inserções
+        destroy:
+          success: Inserção apagado
+          failure: Falhou a eliminação da inserção

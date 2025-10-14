@@ -1,0 +1,90 @@
+# ShinyLists plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Portuguese locale strings for ShinyCMS features provided by the ShinyLists plugin
+
+pt:
+  shinycms:
+    feature_flags:
+      mailing_lists: Listas de correio
+
+    capability:
+      category:
+        mailing_lists: Listas de correio
+        mailing_list_subscriptions: Lista de subscrições
+
+    models:
+      names:
+        shiny_lists_list: lista de correio
+        shiny_lists_subscription: subscrição de lista de correio
+
+  shiny_lists:
+    name: Nome
+    email_address: Endereço de email
+    subscribe: Subscrever
+    subscribed: Subscrito
+    unsubscribe: Cancelar a subscrição
+    unsubscribed: Desinscrito
+
+    email:
+      footer:
+        click_here: Clica aqui para
+        manage_subscriptions: gerir as tuas subscrições
+
+    subscriptions:
+      index:
+        title: As tuas subscrições de lista de correio
+        unsubscribe: Cancelar a subscrição
+        subscriber_not_found: Subscritor não encontrado - por favor confirme o link e tente outra vez
+        email_not_confirmed: Não vai receber qualquer email até o seu endereço de email ser confirmado
+      subscribe:
+        success: Foste subscrito
+        already_subscribed: Já estás subscrito a esta lista de correio
+        failure: Falhou a subscrição para a lista de correio - por favor confirme os seus detalhes e tente novamente
+        list_not_found: Lista de correio não foi encontrado - por favor informar os adiminstradores do site
+        consent_missing: Tem de marcar a caixa de verificação para subscrever - por favor tente novamente
+      unsubscribe:
+        success: Foste desinscrito
+        failure: A tentativa de desinscrever falhou - por favor contactar o administrador do site para ajuda
+
+    admin:
+      lists:
+        breadcrumb: Listas
+        menu: Listas de correio
+        # toolbar: Listas de correio
+        index:
+          title: Listas de correio
+          search: Listas de pesquisa
+        search:
+          title: Listas de correio
+        new:
+          title: Nova lista de correio
+        create:
+          title: Nova lista de correio
+          success: Lista de correio criado
+          failure: Falhou a criação de lista de correio
+        edit:
+          title: Editar a lista de correio
+        update:
+          title: Editar a lista de correio
+          success: Lista de correio atualizado
+          failure: Falhou a atualização da lista de correio
+        destroy:
+          success: Lista de correio apagado
+      subscriptions:
+        breadcrumb: Lista de subscrições
+        # toolbar: Subscrições
+        index:
+          title: Subscrições
+          search: Pesquisar subscrições
+        search:
+          title: Subscrições
+        create:
+          success: Subscrito
+          # failure: Falhou a criação de subscrição
+        destroy:
+          success: Desinscrito
+          # failure: Falhou a desinscrição
