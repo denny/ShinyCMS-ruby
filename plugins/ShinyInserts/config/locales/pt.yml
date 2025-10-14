@@ -9,31 +9,31 @@
 pt:
   shinycms:
     feature_flags:
-      inserts: Inseridos
+      inserts: Inserções
 
     capability:
       category:
-        inserts: Inseridos
+        inserts: Inserções
 
   shiny_inserts:
     admin:
       inserts:
-        breadcrumb: Inseridos
-        menu: Inseridos
-        toolbar: Inseridos
+        breadcrumb: Inserções
+        menu: Inserções
+        toolbar: Inserções
         index:
-          title: Inseridos
+          title: Inserções
           name_placeholder: Nome
           content_placeholder: Conteúdo (pode ficar vazio)
         create:
-          title: Inseridos
+          title: Inserções
           success: Nova inserção adicionada
           failure: Falhou a adição de uma nova inserção
         update:
-          title: Inseridos
-          success: Inseridos atualizados
-          # unchanged: Inseridos não foram mudados
-          failure: Falhou a atualização dos inseridos
+          title: Inserções
+          success: Inserções atualizadas
+          # unchanged: Inserções não foram mudados
+          failure: Falhou a atualização das inserções
         destroy:
-          success: Inserido apagado
-          failure: Falhou a eliminação do inserido
+          success: Inserção apagado
+          failure: Falhou a eliminação da inserção
