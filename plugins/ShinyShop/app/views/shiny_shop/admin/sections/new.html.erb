@@ -1,4 +1,4 @@
-<%= form_for @product, url: shiny_shop.products_path, method: :post do |f| %>
+<%= form_for @section, url: shiny_shop.sections_path, method: :post do |f| %>
   <p>
     <%= f.label :internal_name %><br>
     <%= f.text_field :internal_name %>
@@ -16,12 +16,9 @@
     <%= f.text_field :description %>
   </p>
   <p>
-    <%= f.label :template_id, 'Template' %>
-    <br><%= f.select :template_id, ShinyShop::Template.pluck( :name, :id ), include_blank: '' %>
-  </p>
-  <p>
     <%= f.label :section_id, 'Section' %>
-    <br><%= f.select :section_id, ShinyShop::Section.pluck( :internal_name, :id ), include_blank: '' %>
+    <br><%= f.select :section_id, ShinyShop::Section.pluck( :internal_name, :id ),
+            { include_blank: 'None' } %>
   </p>
   <p>
     <%= f.label :position %>
@@ -32,12 +29,8 @@
     <br><%= f.check_box :show_on_site %>
   </p>
   <p>
-    <%= f.label :active %>
-    <br><%= f.check_box :active %>
-  </p>
-  <p>
-    <%= f.label :price %>
-    <br><%= f.number_field :price %>
+    <%= f.label :show_in_menus %>
+    <br><%= f.check_box :show_in_menus %>
   </p>
 
   <p class="top-margin">
