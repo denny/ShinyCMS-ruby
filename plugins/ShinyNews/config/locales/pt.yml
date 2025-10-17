@@ -1,0 +1,68 @@
+# ShinyNews plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Portuguese locale strings for ShinyCMS features provided by the ShinyNews plugin
+
+pt:
+  shinycms:
+    feature_flags:
+      news: Secção de notícias
+      news_upvotes: Votos positivos nos artigos de notícias
+      news_downvotes: Votos negativos nos artigos de notícias
+
+    capability:
+      category:
+        news_posts: Notícias
+
+      news_posts:
+        change_author: Mudar autor
+
+    models:
+      names:
+        shiny_news_post: Artigo de notícias
+
+  shiny_news:
+    menu:
+      title: Notícias
+    profile:
+      content:
+        title: Artigos de notícias recentes
+    news:
+      index:
+        title: Notícias recentes
+        view_post: Ver artigo
+        read_more: Ler mais
+      show:
+        reply: Responder a este artigo
+      sidebar:
+        links: Links
+        links_blurb: Leitura recomendada vindo da web
+        recent_posts: Artigos recentes
+
+    admin:
+      news_posts:
+        breadcrumb: Notícias
+        menu: Notícias
+        toolbar: Artigos de notícias
+        index:
+          title: Lista de artigos de notícias
+          search: Procurar artigos de notícias
+        search:
+          title: Lista de artigos de notícias
+        new:
+          title: Adicionar artigo de notícias
+        edit:
+          title: Editar o artigo de notícias
+        create:
+          title: Adicionar artigo de notícias
+          success: Artigo de notícias criado
+          failure: Falhou a criação do artigo de notícias
+        update:
+          title: Editar o artigo de notícias
+          success: Artigo de notícias atualizado
+          failure: Falhou a atualização de artigo de notícias
+        destroy:
+          success: Artigo de notícias apagado
