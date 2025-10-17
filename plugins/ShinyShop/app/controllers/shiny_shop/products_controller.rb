@@ -14,7 +14,7 @@ module ShinyShop
     before_action :check_feature_flags
 
     def index
-      @pagy, @products = pagy( Product.readonly.visible )
+      @pagy, @products = pagy( Product.readonly.top_level_products )
     end
 
     def show

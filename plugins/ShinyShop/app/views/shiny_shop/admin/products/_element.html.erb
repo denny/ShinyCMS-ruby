@@ -14,7 +14,7 @@
     <%= fields.text_area content %>
   <% elsif element_type == 'html' %>
     <%= fields.label content, name.humanize %><br>
-    <%= fields.cktext_area content, ckeditor: { customConfig: '/js/ckeditor/config.js' } %>
+    <%= fields.rich_text_area content %>
   <% elsif element_type == 'image' %>
     <%= fields.label 'image', name.humanize %><br>
     <% if image.attached? %>
