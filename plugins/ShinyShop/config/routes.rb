@@ -27,9 +27,7 @@ ShinyShop::Engine.routes.draw do
         put :sort, on: :collection
       end
 
-      resources :products, except: %i[ show destroy ], concerns: %i[ with_paging with_search sortable ] do
-        resources :elements, only: %i[ create destroy ], module: :pages
-      end
+      resources :products, except: %i[ show destroy ], concerns: %i[ with_paging with_search sortable ]
 
       put 'products/:id/archive', to: 'products#archive', as: :archive_product
       put 'products/:id/revive',  to: 'products#revive',  as: :revive_product
