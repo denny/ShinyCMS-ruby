@@ -1,0 +1,142 @@
+# ShinyNewsletters plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Portuguese locale strings for ShinyCMS features provided by the ShinyNewsletters plugin
+
+pt:
+  shinycms:
+    feature_flags:
+      newsletters: Boletins informativos
+
+    capability:
+      category:
+        newsletter_templates: Modelos de boletim informativo
+        newsletter_editions: Edições de boletim informativo
+        newsletter_sends: Boletins informativos enviados
+
+    models:
+      names:
+        shiny_newsletters_edition: Edição do boletim informativo
+        shiny_newsletters_template: modelos
+
+  shiny_newsletters:
+    newsletters:
+      index:
+        title: Boletins informativos
+        subscriber_not_found: Não foi possível encontrar o subsritor - por favor verifique o link e tente novamente
+      show:
+        title: Ver boletim informativo
+
+    admin:
+      newsletters:
+        breadcrumb: Boletins informativos
+        menu: Boletins informativos
+      editions:
+        breadcrumb: Edições de boletins informativos
+        index:
+          title: Edições
+          send_sample: Enviar amostra
+          send_to_list: Enviar para a lista
+          search: Pesquisar edições
+        search:
+          title: Edições
+        send_sample:
+          success: Amostra enviada
+        new:
+          title: Nova edição
+        create:
+          title: Nova edição
+          success: Edição de boletim informativo criado
+          failure: Falhou a criação de edição de boletim informativo
+        edit:
+          title: Editar edição de boletim informativo
+          new_element_name: Novo nome de elemento
+          new_element_content: Conteúdo predefenido
+        update:
+          title: Editar edição de boletim informativo
+          success: Edição de boletim informativo atualizado
+          failure: Falhou a atualização da edição do boletim informativo
+        destroy:
+          success: Edição de boletim informativo apagado
+          failure: Falhou a eliminação da edição do boletim informativo
+        elements:
+          create:
+            success: Novo elemento adicionado
+          destroy:
+            success: Elemento eliminado
+
+      sends:
+        breadcrumb: Boletins informativos enviados
+        index:
+          title: Enviados
+          no_sends: Ainda não começaste a enviar boletins informativos
+          send: Enviar
+          search: Pesquisar enviados
+        search:
+          title: Enviados
+        sent:
+          title: Enviado
+          view_details: Ver detalhes
+          no_sends_sent: Ainda não enviaste boletins informativos
+        show:
+          title: Ver detalhes de envio
+        new:
+          title: Enviar / Agendar
+        create:
+          title: Enviar / Agendar
+          success: Envio de boletim informativo criado
+          failure: Falhou a criação de envio de boletim informativo
+        edit:
+          title: Editar envio de boletim informativo
+        update:
+          title: Editar envio de boletim informativo
+          success: Envio de boletim informativo atualizado
+          failure: Falhou a atualização de envio de boletim informativo
+        start_sending:
+          success: Envio foi iniciado
+        cancel_sending:
+          success: Envio de boletim informativo cancelado
+        destroy:
+          success: Envio de boletim informativo eliminado
+
+      templates:
+        breadcrumb: Modelos de boletim informativo
+        index:
+          title: Modelos
+          search: Pesquisar modelos
+        search:
+          title: Modelos
+        new:
+          title: Novo modelo
+        edit:
+          title: Editar modelo de boletim informativo
+          new_element_name: Novo nome de elemento
+          new_element_content: Conteúdo predefenido
+        create:
+          title: Novo modelo
+          success: Modelo de boletim informativo criado
+          failure: Falhou a criação do modelo de boletim informativo
+        update:
+          title: Editar modelo de boletim informativo
+          success: Modelo de boletim informativo atualizado
+          failure: Falhou a atualização do modelo de boletim informativo
+        destroy:
+          success: Modelo de boletim informativo eliminado
+          failure: Falhou a eliminação do modelo de boletim informativo
+        elements:
+          create:
+            success: Novo elemento adicionado
+          destroy:
+            success: Elemento eliminado
+
+  models:
+    shiny_newsletters:
+      template:
+        template_file_must_exist: '(Ficheiro modelo tem de estar no themes/{theme-name}/views/shiny_newsletters/newsletter_mailer)'
+
+  errors:
+    messages:
+      invalid_mjml: '(ficheiro modelo não é valido MJML)'
