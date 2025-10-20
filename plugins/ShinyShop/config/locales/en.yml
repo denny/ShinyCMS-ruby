@@ -55,11 +55,6 @@ en:
           success: Product restored
         archive:
           success: Product archived
-        elements:
-          create:
-            success: New element added
-          destroy:
-            success: Element deleted
 
       sections:
         breadcrumb: Shop
