@@ -436,7 +436,7 @@ GEM
       base64
       simpleidn
     equalizer (0.0.11)
-    erb (5.0.2)
+    erb (5.1.1)
     erubi (1.13.1)
     factory_bot (6.5.5)
       activesupport (>= 6.1.0)
@@ -582,7 +582,7 @@ GEM
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
-    pp (0.6.2)
+    pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
     prism (1.6.0)
@@ -660,9 +660,10 @@ GEM
       ffi (~> 1.0)
     rbtree (0.4.6)
     rbtree3 (0.7.1)
-    rdoc (6.14.2)
+    rdoc (6.15.0)
       erb
       psych (>= 4.0.0)
+      tsort
     recaptcha (5.21.1)
     redis (5.4.0)
       redis-client (>= 0.22.0)
@@ -789,9 +790,9 @@ GEM
     seed_dump (3.3.1)
       activerecord (>= 4)
       activesupport (>= 4)
-    sentry-rails (5.28.0)
+    sentry-rails (5.28.1)
       railties (>= 5.0)
-      sentry-ruby (~> 5.28.0)
+      sentry-ruby (~> 5.28.1)
     sentry-ruby (5.28.1)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
@@ -840,6 +841,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.3.0)
     timeout (0.4.3)
+    tsort (0.2.0)
     tty-which (0.4.2)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
