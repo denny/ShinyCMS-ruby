@@ -261,7 +261,7 @@ GEM
     acts-as-taggable-on (12.0.0)
       activerecord (>= 7.1, < 8.1)
       zeitwerk (>= 2.4, < 3.0)
-    acts_as_list (1.2.5)
+    acts_as_list (1.2.6)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
     acts_as_paranoid (0.10.3)
