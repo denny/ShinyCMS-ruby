@@ -49,6 +49,22 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
       end
     end
 
+    describe 'GET /shop/:section' do
+      it 'displays list of products in section' do
+        section  = create :shop_section
+        product1 = create :product, section: section
+        product2 = create :product, section: section
+
+        get shiny_shop.show_section_path( section.slug )
+
+        binding.pry
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title section.public_name
+        expect( response.body ).to have_text  product1.public_name
+        expect( response.body ).to have_text  product2.public_name
+      end
+    end
+
     describe 'GET /products/:slug' do
       it 'views a product' do
         product = create( :product, active: true )

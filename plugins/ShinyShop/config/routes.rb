@@ -11,7 +11,9 @@ ShinyShop::Engine.routes.draw do
     # Shop pages
     root to: 'shop#index', as: :shiny_shop_root
 
-    get 'products', to: 'products#index', as: :products_index
+    get 'shop', to: 'products#index', as: :products_index
+
+    resources :sections, only: :show
 
     get 'products/:slug', to: 'products#show', as: :show_product
 
