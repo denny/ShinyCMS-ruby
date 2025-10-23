@@ -1,0 +1,30 @@
+# ShinySearch plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Portuguese locale strings for ShinyCMS features provided by the ShinySearch plugin
+
+pt:
+  shinycms:
+    feature_flags:
+      search: Pesquisar
+
+    settings:
+      default_search_backend: Pesquisa predefinida back-end
+      search_enabled_algolia: Permitir pesquisa Agolia backend
+      search_enabled_postgres: Permitir pesquisa Postgres backend
+
+  shiny_search:
+    search:
+      form:
+        search: Pesquisar
+      new:
+        title: Pesquisar a página
+      results:
+        title: "Pesquisar resultados para '%{query}'"
+      no_results:
+        no_results: Nenhum resultado encontrado.
+        try_again: "Por favor tenta outra pesquisa:"
+        try_tags: "Ou, você pode explorar as nossas secções de etiquetas:"
