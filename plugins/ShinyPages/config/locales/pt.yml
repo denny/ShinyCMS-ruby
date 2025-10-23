@@ -1,0 +1,115 @@
+# ShinyPages plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Portuguese locale strings for ShinyCMS features provided by the ShinyPages plugin
+
+pt:
+  shinycms:
+    feature_flags:
+      pages: Páginas
+
+    settings:
+      default_page: Página predefinida
+      default_section: Secção predefinida
+
+    capability:
+      category:
+        pages: Páginas
+        page_sections: Secções da página
+        page_templates: Modelos da página
+
+    models:
+      names:
+        shiny_pages_template: modelo
+
+  shiny_pages:
+    admin:
+      pages:
+        breadcrumb: Páginas
+        menu: Páginas
+        toolbar: Páginas
+        index:
+          title: Lista de páginas
+          # search: Procurar páginas e secções
+        new:
+          title: Adicionar nova página
+        edit:
+          title: Editar página
+          new_element_name: Nome do novo elemento
+          new_element_content: Conteúdo predefinido
+        create:
+          title: Adicionar nova página
+          success: Nova página adicionada
+          failure: Falhou a adição da nova página
+        update:
+          title: Editar página
+          success: Detalhes da página atualizados
+          failure: Falhou a atualização dos detalhes da página
+        destroy:
+          success: Página apagada
+        elements:
+          create:
+            success: Novo elemento adicionado
+          destroy:
+            success: Elemento apagado
+
+      sections:
+        breadcrumb: Páginas
+        toolbar: Secções
+        new:
+          title: Adicionar nova secção
+        edit:
+          title: Editar secção
+        create:
+          title: Adicionar nova secção
+          success: Nova secção adicionada
+          failure: Falhou a adição de nova secção
+        update:
+          title: Editar secção
+          success: Detalhes da secção atualizados
+          failure: Falhou a atualização dos detalhes da secção
+        destroy:
+          success: Secção apagada
+          failure: Falhou a divisão da página
+
+      templates:
+        breadcrumb: Modelos da página
+        toolbar: Modelos
+        index:
+          title: Lista de modelos
+          search: Procurar modelos
+        search:
+          title: Lista de modelos
+        new:
+          title: Adicionar novo modelo
+        create:
+          title: Adicionar novo modelo
+          success: Novo modelo adicionado
+          failure: Falhou a adição de novo modelo
+        edit:
+          title: Editar modelo
+          new_element_name: Novo nome de elemento
+          new_element_content: Conteúdo predefinido
+        elements:
+          create:
+            success: Novo elemento adicionado
+          destroy:
+            success: Elemento eliminado
+        update:
+          title: Editar modelo
+          success: Detalhes do modelo atualizados
+          failure: Falhou a atualização dos detalhes do modelo
+        destroy:
+          success: Modelo apagado
+          failure: Falhou a eliminação do modelo
+
+    page:
+      template_file_missing: 'Não foi possível mostrar a página; o ficheiro modelo está em falta.'
+
+  models:
+    shiny_pages:
+      template:
+        template_file_must_exist: 'O ficheiro modelo tem de estar em themes/{theme-name}/shiny_pages/pages'
