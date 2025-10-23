@@ -1,0 +1,43 @@
+# ShinyProfiles plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Portuguese locale strings for ShinyCMS features provided by the ShinyProfiles plugin
+
+pt:
+  shinycms:
+    feature_flags:
+      user_profiles: Páginas do perfil do utilizador
+
+    models:
+      names:
+        shiny_profiles_profile: perfil de utilizador
+
+  shiny_profiles:
+    view_profile: Ver o teu perfil
+    edit_profile: Editar o teu perfil
+    profiles:
+      edit:
+        title: Editar o perfil de %{name}
+        links: Hiperligações
+        name: Nome
+        url: URL
+        add_link: Adiciona outra hiperligação
+        remove_link: Remove esta hiperligação
+      update:
+        success: Detalhes do perfil atualizados
+
+    admin:
+      profiles:
+        breadcrumb: Perfis do utilizador
+        edit:
+          title: Editar perfil de utilizador
+        update:
+          title: Editar perfil de utilizador
+          success: Detalhes do perfil de utilizador atualizados
+      users:
+        index:
+          view_profile: Ver perfil
+          edit_profile: Editar perfil
