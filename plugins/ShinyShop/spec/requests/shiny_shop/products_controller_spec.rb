@@ -34,7 +34,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
 
   context 'with live products in the database' do
     describe 'GET /products' do
-      it 'fetches the list of products' do
+      it 'fetches the list of top-level products and sections' do
         create :product, active: true
         product2 = create :product
         product3 = create :product, active: true
@@ -49,13 +49,13 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
       end
     end
 
-    describe 'GET /shop/:section' do
+    describe 'GET /products/:section' do
       it 'displays list of products in section' do
         section  = create :shop_section
         product1 = create :product, section: section
         product2 = create :product, section: section
 
-        get shiny_shop.show_section_path( section.slug )
+        get shiny_shop.section_index_path( section.slug )
 
         # binding.pry
         expect( response      ).to have_http_status :ok
