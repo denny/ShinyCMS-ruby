@@ -100,7 +100,9 @@ All other supported [external services](docs/Services.md) are optional. If you a
 
 ### Ruby and Rails versions
 
-ShinyCMS requires Ruby 3.4 and Rails 8.0 or later. The project generally uses the most recent stable release of both Ruby and Rails (currently Ruby 3.4.3 and Rails 8.0.2).
+ShinyCMS requires Ruby 3.4 and Rails 8.0 or later. The project generally uses the most recent stable release of both Ruby and Rails (currently Ruby 3.4.5 and Rails 8.0.4).
+
+(ShinyCMS does not run with Rails 8.0.3, which seems to have a fairly hefty bug that breaks ShinyBlog, ShinyNews, ShinyPages, and ShinyShop.)
 
 
 ## Contributing
