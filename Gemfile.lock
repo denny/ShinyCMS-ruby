@@ -432,7 +432,7 @@ GEM
       dry-inflector (~> 1.0)
       dry-logic (~> 1.4)
       zeitwerk (~> 2.6)
-    email_address (0.2.6)
+    email_address (0.2.7)
       base64
       simpleidn
     equalizer (0.0.11)
