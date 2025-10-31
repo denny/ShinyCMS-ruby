@@ -51,7 +51,7 @@ module ShinyShop
       all_sections.visible
     end
 
-    def menu_pages
+    def menu_products
       products.visible_in_menus
     end
 
