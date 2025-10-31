@@ -487,7 +487,7 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jmespath (1.6.2)
-    json (2.15.1)
+    json (2.15.2)
     language_server-protocol (3.17.0.5)
     launchy (3.0.1)
       addressable (~> 2.8)
@@ -716,7 +716,7 @@ GEM
       rspec
     rss (0.3.1)
       rexml
-    rubocop (1.81.6)
+    rubocop (1.81.7)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
