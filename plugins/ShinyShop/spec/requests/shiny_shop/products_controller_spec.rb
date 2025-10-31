@@ -11,20 +11,20 @@ require 'rails_helper'
 # Tests for shop
 RSpec.describe ShinyShop::ProductsController, type: :request do
   context 'without any live products in the database' do
-    describe 'GET /products (none defined)' do
+    describe 'GET /shop (none defined)' do
       it 'finds no products to display' do
-        get shiny_shop.products_index_path
+        get shiny_shop.shop_path
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to include 'No products found'
       end
     end
 
-    describe 'GET /products (none live)' do
+    describe 'GET /shop (none live)' do
       it 'finds no live products to display' do
         create :product  # Inactive, by default
 
-        get shiny_shop.products_index_path
+        get shiny_shop.shop_path
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to include 'No products found'
@@ -33,19 +33,35 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
   end
 
   context 'with live products in the database' do
-    describe 'GET /products' do
-      it 'fetches the list of products' do
+    describe 'GET /shop' do
+      it 'fetches the list of top-level products and sections' do
         create :product, active: true
         product2 = create :product
         product3 = create :product, active: true
 
-        get shiny_shop.products_index_path
+        get shiny_shop.shop_path
 
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'shiny_shop.products.index.title' ).titlecase
 
         expect( response.body ).not_to have_css 'h2', text: product2.name
         expect( response.body ).to     have_css 'h2', text: product3.name
+      end
+    end
+
+    describe 'GET /shop/:section' do
+      it 'displays list of products in section' do
+        section  = create :shop_section
+        product1 = create :product, section: section, active: true
+        product2 = create :product, section: section, active: true
+
+        get shiny_shop.products_index_path( section.slug )
+
+        # binding.pry
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title section.public_name
+        expect( response.body ).to have_text  product1.name
+        expect( response.body ).to have_text  product2.name
       end
     end
 

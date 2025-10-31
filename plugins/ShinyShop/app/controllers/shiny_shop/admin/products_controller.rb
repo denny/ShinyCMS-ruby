@@ -13,10 +13,18 @@ module ShinyShop
 
     include ShinyCMS::Admin::WithSorting
 
+    # before_action :stash_new_page, only: %i[ new create ]
+    # before_action :stash_page,     only: %i[ edit update destroy ]
+
     helper_method :with_html_editor?
 
     def index
       authorize Product
+      authorize Section
+
+      @top_level_items = Product.all_top_level_items
+
+      @top_level_items.collect { |item| authorize item }
 
       @products = Product.order( 'lower(internal_name)' )
     end
@@ -78,7 +86,11 @@ module ShinyShop
     end
 
     def strong_params
-      params.expect( product: %i[ internal_name public_name slug description position show_on_site active price ] )
+      params.expect(
+        product: %i[
+          internal_name public_name slug description section_id template_id position show_on_site active price
+        ]
+      )
     end
   end
 end

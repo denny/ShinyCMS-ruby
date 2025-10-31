@@ -6,19 +6,13 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# Factories for shop products - ShinyShop plugin for ShinyCMS
+# Factories for page template elements - ShinyPages plugin for ShinyCMS
 module ShinyShop
   FactoryBot.define do
-    factory :product, class: 'ShinyShop::Product' do
-      internal_name { Faker::Books::CultureSeries.unique.culture_ship }
+    factory :product_template_element, class: 'ShinyShop::TemplateElement' do
+      name { Faker::Books::CultureSeries.unique.civs.underscore }
 
       association :template, factory: :product_template
-
-      price { 666 }
-
-      trait :hidden do
-        show_on_site { false }
-      end
     end
   end
 end
