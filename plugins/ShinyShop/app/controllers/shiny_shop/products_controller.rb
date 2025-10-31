@@ -14,7 +14,12 @@ module ShinyShop
     before_action :check_feature_flags
 
     def index
-      @pagy, @products = pagy( Product.readonly.top_level_products )
+      if strong_params[ :slug ]
+        @section = Section.readonly.visible.find_by( slug: strong_params[ :slug ] )
+        @pagy, @products = pagy( @section.products.readonly )
+      else
+        @pagy, @products = pagy( Product.readonly.top_level_products )
+      end
     end
 
     def show
