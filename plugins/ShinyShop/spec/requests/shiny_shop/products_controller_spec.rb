@@ -57,7 +57,6 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
 
         get shiny_shop.products_index_path( section.slug )
 
-        # binding.pry
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title section.public_name
         expect( response.body ).to have_text  product1.name
