@@ -44,8 +44,8 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'shiny_shop.products.index.title' ).titlecase
 
-        expect( response.body ).not_to have_css 'h2', text: product2.name
-        expect( response.body ).to     have_css 'h2', text: product3.name
+        expect( response.body ).not_to have_css 'h3', text: product2.name
+        expect( response.body ).to     have_css 'h3', text: product3.name
       end
     end
 
@@ -58,13 +58,13 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         get shiny_shop.products_index_path( section.slug )
 
         expect( response      ).to have_http_status :ok
-        expect( response.body ).to have_title section.public_name
+        expect( response.body ).to have_title section.name
         expect( response.body ).to have_text  product1.name
         expect( response.body ).to have_text  product2.name
       end
     end
 
-    describe 'GET /products/:slug' do
+    describe 'GET /shop/:slug' do
       it 'views a product' do
         product = create( :product, active: true )
 
