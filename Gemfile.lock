@@ -482,7 +482,7 @@ GEM
       sorted_set (~> 1.0)
     iniparse (1.5.0)
     io-console (0.8.1)
-    irb (1.15.2)
+    irb (1.15.3)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
@@ -662,7 +662,7 @@ GEM
       ffi (~> 1.0)
     rbtree (0.4.6)
     rbtree3 (0.7.1)
-    rdoc (6.15.0)
+    rdoc (6.15.1)
       erb
       psych (>= 4.0.0)
       tsort
@@ -858,7 +858,7 @@ GEM
       diff-lcs (~> 1.6)
       parser (>= 3.3.0)
       prism (>= 1.4)
-    uri (1.0.4)
+    uri (1.1.1)
     useragent (0.16.11)
     view_component (4.1.0)
       activesupport (>= 7.1.0, < 8.2)
