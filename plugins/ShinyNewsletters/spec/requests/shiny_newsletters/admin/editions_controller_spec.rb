@@ -11,10 +11,10 @@ require 'rails_helper'
 # Tests for newsletter edition admin features
 
 RSpec.describe ShinyNewsletters::Admin::EditionsController, type: :request do
-  # rubocop:disable RSpec/LeakyConstantDeclaration
+  # rubocop:disable RSpec/LeakyLocalVariable
   # This is just a string constant, to reduce visual clutter within this test file
   i18n_root = 'shiny_newsletters.admin.editions'
-  # rubocop:enable RSpec/LeakyConstantDeclaration
+  # rubocop:enable RSpec/LeakyLocalVariable
 
   before do
     admin = create :newsletter_admin
