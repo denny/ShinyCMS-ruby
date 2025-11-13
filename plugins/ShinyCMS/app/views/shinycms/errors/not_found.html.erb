@@ -1,6 +1,4 @@
-<% resource_type ||= 'page' %>
-
-<% @page_title = t( '.title', resource_type: resource_type.capitalize ) %>
+<% @page_title = t( '.title', resource_type: @resource_type.capitalize ) %>
 
 <section>
   <header>
@@ -10,7 +8,7 @@
   </header>
 
   <p>
-    <%= t( '.explanation', resource_type: resource_type.downcase ) %>
+    <%= t( '.explanation', resource_type: @resource_type.downcase ) %>
   </p>
 </section>
 

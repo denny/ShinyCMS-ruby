@@ -14,38 +14,118 @@ module ShinyShop
     before_action :check_feature_flags
 
     def index
-      if strong_params[ :slug ]
-        @section = Section.readonly.visible.find_by( slug: strong_params[ :slug ] )
-        @pagy, @products = pagy( @section.products.readonly )
-      else
-        @pagy, @products = pagy( Product.readonly.top_level_products )
-      end
+      @pagy, @products = pagy( Product.readonly.top_level_products )
     end
 
+    # Figure out whether we're at top level or going deeper
     def show
-      @product = Product.readonly.visible.find_by( slug: strong_params[ :slug ] )
+      # @section = Section.readonly.visible.find_by!( slug: strong_params[ :slug ] )
+
+      # @pagy, @products = pagy( @section.products.readonly )
 
       return unless strong_params[ :session_id ]
 
-      session = retrieve_stripe_session
-
-      flash[ :notice ] = "Thank you for your order, #{session.customer_details.name}"
-
-      redirect_to shiny_shop.show_product_path( @product.slug )  # Clear visible session ID off end of URL
+      confirm_order
     end
 
     private
 
-    def strong_params
-      params.permit( :session_id, :slug )
+    # Remove the visible Stripe params from the URL
+    def confirm_order
+      session = retrieve_stripe_session
+
+      flash[ :notice ] = "Thank you for your order, #{session.customer_details.name}"
+
+      # TODO: deal with path stuff
+      redirect_to shiny_shop.product_or_section_path( @product.slug )
+    end
+
+    # Handle requests with a single-part path - e.g. /foo
+    def show_top_level( slug )
+      return if show_top_level_product( slug )
+      return if show_top_level_section( slug )
+
+      raise ActiveRecord::RecordNotFound, 'Product not found'
+    end
+
+    def show_top_level_product( slug )
+      @product = find_top_level_product( slug )
+      return unless @product
+
+      show_product
+      true
+    end
+
+    def show_top_level_section( slug )
+      @product = find_top_level_section( slug )&.default_product
+      return unless @product
+
+      show_product
+      true
+    end
+
+    # Handle requests with a multi-part path - e.g. /foo/bar, /foo/bar/baz, etc
+    def show_in_section( path_parts )
+      slug = path_parts.pop
+      section = traverse_path( path_parts, top_level_sections )
+
+      @product = product_for_last_slug( section, slug )
+      show_product && return if @product
+
+      raise ActiveRecord::RecordNotFound, 'Product not found'
+    end
+
+    # Render the product with the appropriate template
+    def show_product
+      if @product.template.file_exists?
+        render template: "shiny_shop/products/#{@product.template.filename}", locals: @product.elements_hash
+      else
+        render status: :failed_dependency, inline: I18n.t( 'shiny_shop.products.template_file_missing' )
+      end
+    end
+
+    # Find the correct section to look for the specified (or default) product in
+    def traverse_path( path_parts, sections )
+      slug = path_parts.shift
+      section = sections&.find_by( slug: slug )
+
+      return section if path_parts.empty? || section.nil?
+
+      traverse_path( path_parts, section.sections )
+    end
+
+    def product_for_last_slug( section, slug )
+      return if section.blank?
+
+      last_slug_matches_product( section, slug ) || last_slug_matches_section( section, slug )
+    end
+
+    def last_slug_matches_product( section, slug )
+      return if section.products.blank?
+
+      section.products.with_elements.find_by( slug: slug )
+    end
+
+    def last_slug_matches_section( section, slug )
+      return if section.sections.blank?
+
+      section.sections.find_by( slug: slug )&.default_product
     end
 
     def retrieve_stripe_session
       Stripe::Checkout::Session.retrieve( strong_params[ :session_id ] )
     end
 
+    def strong_params
+      params.permit( :session_id, :slug )
+    end
+
     def check_feature_flags
       enforce_feature_flags :shop
+    end
+
+    def enforce_html_format
+      request.format = :html
     end
   end
 end

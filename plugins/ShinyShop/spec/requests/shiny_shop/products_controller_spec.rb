@@ -55,7 +55,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         product1 = create :product, section: section, active: true
         product2 = create :product, section: section, active: true
 
-        get shiny_shop.products_index_path( section.slug )
+        get shiny_shop.product_or_section_path( section.slug )
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title section.name
@@ -68,7 +68,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
       it 'views a product' do
         product = create( :product, active: true )
 
-        get shiny_shop.show_product_path( product.slug )
+        get shiny_shop.product_or_section_path( product.slug )
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title product.name
@@ -85,13 +85,51 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         allow( Stripe::Checkout::Session ).to receive( :retrieve ).with( 'testsession' ).and_return( stripe_session )
         product = create( :product, active: true )
 
-        get shiny_shop.show_product_path( product.slug, session_id: 'testsession' )
+        get shiny_shop.product_or_section_path( product.slug, session_id: 'testsession' )
 
         expect( response      ).to have_http_status :found
         expect( response      ).to redirect_to shiny_shop.show_product_path( product.slug )
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_text "Thank you for your order, #{customer_name}"
+      end
+    end
+
+    describe 'GET /shop/non-existent-slug', :production_error_responses do
+      it 'returns a 404 if no matching product or section is found at top-level' do
+        get '/shop/non-existent-slug'
+
+        expect( response      ).to have_http_status :not_found
+        expect( response.body ).to include 'Section not found'
+      end
+    end
+
+    describe 'GET /shop/existing-section/non-existent-slug', :production_error_responses do
+      it 'returns a 404 if no matching product or sub-section is found in section' do
+        prod1 = create :product_in_section
+
+        get "/shop/#{prod1.section.slug}/non-existent-slug"
+
+        expect( response      ).to have_http_status :not_found
+        expect( response.body ).to include 'Section not found'
+      end
+    end
+
+    describe 'GET /shop/non-existent-section/irrelevant-slug', :production_error_responses do
+      it 'returns a 404 if a page is requested in nested non-existent sections' do
+        get '/shop/non-existent-section/and-another/irrelevant-slug'
+
+        expect( response      ).to have_http_status :not_found
+        expect( response.body ).to include 'Section not found'
+      end
+    end
+
+    describe 'GET /shop/not-html-404.xml', :production_error_responses do
+      it 'still returns a 404 even if a non-existent non-HTML resource is requested' do
+        get '/shop/not-html-404.xml'
+
+        expect( response      ).to have_http_status :not_found
+        expect( response.body ).to include 'Product not found'
       end
     end
   end

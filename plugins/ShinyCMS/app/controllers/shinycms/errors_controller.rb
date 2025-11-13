@@ -12,6 +12,9 @@ module ShinyCMS
     include ShinyCMS::MainSiteControllerBase
 
     def not_found
+      @resource_type = request.env[ 'action_dispatch.exception' ]&.model&.demodulize || 'Page'
+      request.env[ 'action_dispatch.exception' ]&.model&.demodulize
+
       render status: :not_found
     end
 
