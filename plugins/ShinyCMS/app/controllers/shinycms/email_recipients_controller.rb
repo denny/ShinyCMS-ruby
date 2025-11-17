@@ -21,7 +21,7 @@ module ShinyCMS
         flash[ :alert ] = t( confirm_failure_message( recipient ) )
       end
 
-      redirect_back fallback_location: main_app.root_path
+      redirect_back_or_to main_app.root_path
     end
 
     private
