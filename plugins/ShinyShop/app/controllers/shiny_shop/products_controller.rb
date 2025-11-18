@@ -19,9 +19,14 @@ module ShinyShop
 
     # Figure out whether we're at top level or going deeper
     def show
+      path_parts = params[ :path ].split '/'
       # @section = Section.readonly.visible.find_by!( slug: strong_params[ :slug ] )
+      @section = Section.readonly.visible.find_by!( slug: path_parts.last )
 
-      # @pagy, @products = pagy( @section.products.readonly )
+      if @section
+        @pagy, @products = pagy( @section.products.readonly )
+        render 'index'
+      end
 
       return unless strong_params[ :session_id ]
 
