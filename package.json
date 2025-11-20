@@ -6,12 +6,12 @@
     "@rails/activestorage": "^6.1.710",
     "@rails/ujs": "^6.1.710",
     "acorn": "^8.15.0",
-    "core-js": "^3.46.0",
+    "core-js": "^3.47.0",
     "is-svg": "^6.1.0",
     "jquery": "^3.6.0",
     "jquery-ui": "^1.14.1",
     "minimist": "^1.2.8",
-    "mjml": "^4.16.1",
+    "mjml": "^4.17.1",
     "smartmenus": "^1.2.1",
     "yarn": "^1.22.22"
   }

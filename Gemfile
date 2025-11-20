@@ -35,7 +35,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.6.2'
 
   # Rack
-  gem 'rack', '~> 3.2.3'
+  gem 'rack', '~> 3.2.4'
   # Rack Session
   gem 'rack-session', '~> 2.1.1'
 
@@ -77,7 +77,7 @@ source 'https://rubygems.org' do
 
     # Tools for working with translation strings
     # gem 'i18n-debug'
-    gem 'i18n-tasks', '~> 1.0.14'
+    gem 'i18n-tasks', '~> 1.1.0'
   end
 
   group :development do
