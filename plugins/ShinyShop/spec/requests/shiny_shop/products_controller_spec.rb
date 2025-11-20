@@ -129,7 +129,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         get '/shop/not-html-404.xml'
 
         expect( response      ).to have_http_status :not_found
-        expect( response.body ).to include 'Product not found'
+        expect( response.body ).to be_empty
       end
     end
   end
