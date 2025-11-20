@@ -19,7 +19,7 @@ module ShinyShop
       session = Stripe::Checkout::Session.create(
         line_items:  build_line_items,
         mode:        'payment',
-        success_url: "#{shiny_shop.show_product_url( @product.slug )}?session_id={CHECKOUT_SESSION_ID}",
+        success_url: "#{shiny_shop.product_or_section_url( @product.slug )}?session_id={CHECKOUT_SESSION_ID}",
         cancel_url:  main_app.root_url
       )
 
