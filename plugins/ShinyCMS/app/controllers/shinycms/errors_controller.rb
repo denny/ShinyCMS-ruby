@@ -12,10 +12,15 @@ module ShinyCMS
     include ShinyCMS::MainSiteControllerBase
 
     def not_found
-      @resource_type = request.env[ 'action_dispatch.exception' ]&.model&.demodulize || 'Page'
-      request.env[ 'action_dispatch.exception' ]&.model&.demodulize
-
-      render status: :not_found
+      respond_to do |format|
+        format.html do
+          @resource_type = request.env[ 'action_dispatch.exception' ]&.model&.demodulize || 'Page'
+          render status: :not_found
+        end
+        format.any do
+          head :not_found
+        end
+      end
     end
 
     def internal_server_error
