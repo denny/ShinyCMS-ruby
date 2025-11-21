@@ -83,7 +83,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'acts_as_votable'
 
   # Pagination
-  spec.add_dependency 'pagy', '>= 9.3.4', '< 9.5.0'
+  spec.add_dependency 'pagy', '>= 9.3.4', '< 43.2.0'
 
   # Atom feeds
   spec.add_dependency 'rss'
