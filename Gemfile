@@ -14,7 +14,7 @@ ruby file: '.ruby-version'
 source 'https://rubygems.org'
 source 'https://rubygems.org' do
   # Rails 8.0
-  gem 'rails', '~> 8.0.4'
+  gem 'rails', '~> 8.1.1'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/load'
