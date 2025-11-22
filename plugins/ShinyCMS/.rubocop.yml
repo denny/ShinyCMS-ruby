@@ -49,6 +49,10 @@ Bundler/GemVersion:
   Exclude:
     - ../../Gemfile
 
+# I'm going to allow this, at least until I find a neater way of doing the same thing
+Rails/Env:
+  Enabled: false
+
 # These are mostly expected to contain long blocks due to their DSLs
 Metrics/BlockLength:
   Exclude:
