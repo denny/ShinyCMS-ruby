@@ -88,7 +88,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         get shiny_shop.product_or_section_path( product.slug, session_id: 'testsession' )
 
         expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to shiny_shop.show_product_path( product.slug )
+        expect( response      ).to redirect_to shiny_shop.product_or_section_path( product.slug )
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_text "Thank you for your order, #{customer_name}"
@@ -100,7 +100,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         get '/shop/non-existent-slug'
 
         expect( response      ).to have_http_status :not_found
-        expect( response.body ).to include 'Section not found'
+        expect( response.body ).to include 'Product not found'
       end
     end
 
@@ -111,7 +111,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         get "/shop/#{prod1.section.slug}/non-existent-slug"
 
         expect( response      ).to have_http_status :not_found
-        expect( response.body ).to include 'Section not found'
+        expect( response.body ).to include 'Product not found'
       end
     end
 
@@ -120,7 +120,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         get '/shop/non-existent-section/and-another/irrelevant-slug'
 
         expect( response      ).to have_http_status :not_found
-        expect( response.body ).to include 'Section not found'
+        expect( response.body ).to include 'Product not found'
       end
     end
 

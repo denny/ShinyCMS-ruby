@@ -17,7 +17,7 @@ ShinyShop::Engine.routes.draw do
 
     # get 'shop/:slug', to: 'products#show', as: :show_product
 
-    get 'shop/*path', to: 'products#show', as: :product_or_section
+    get 'shop/*path', to: 'products#product_or_section', as: :product_or_section
 
     resource :checkout, only: :create
 

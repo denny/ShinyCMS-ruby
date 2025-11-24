@@ -17,23 +17,38 @@ module ShinyShop
       @pagy, @products = pagy( Product.readonly.top_level_products )
     end
 
-    # Figure out whether we're at top level or going deeper
-    def show
-      path_parts = params[ :path ].split '/'
-      # @section = Section.readonly.visible.find_by!( slug: strong_params[ :slug ] )
-      @section = Section.readonly.visible.find_by!( slug: path_parts.last )
+    def product_or_section
+      @path_parts = params[ :path ].split '/'
+      @section = Section.readonly.visible.find_by( slug: @path_parts.last )
 
       if @section
-        @pagy, @products = pagy( @section.products.readonly )
-        render 'index'
+        section_index
+      else
+        show
       end
+    end
 
-      return unless strong_params[ :session_id ]
+    def section_index
+      @pagy, @products = pagy( @section.products.readonly )
+      render 'index'
+    end
 
-      confirm_order
+    def show
+      @product = Product.readonly.visible.find_by!( slug: @path_parts.last )
+      # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
+
+      if just_purchased?
+        confirm_order
+      else
+        render 'show'
+      end
     end
 
     private
+
+    def just_purchased?
+      strong_params[ :session_id ].present?
+    end
 
     # Remove the visible Stripe params from the URL
     def confirm_order
