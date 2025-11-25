@@ -370,7 +370,7 @@ GEM
       descendants_tracker (~> 0.0.1)
     colorize (0.8.1)
     concurrent-ruby (1.3.5)
-    connection_pool (2.5.4)
+    connection_pool (2.5.5)
     constant_resolver (0.3.0)
     coverband (6.1.6)
       base64
@@ -664,7 +664,7 @@ GEM
       ffi (~> 1.0)
     rbtree (0.4.6)
     rbtree3 (0.7.1)
-    rdoc (6.15.1)
+    rdoc (6.16.0)
       erb
       psych (>= 4.0.0)
       tsort
@@ -794,9 +794,9 @@ GEM
     seed_dump (3.3.1)
       activerecord (>= 4)
       activesupport (>= 4)
-    sentry-rails (6.1.1)
+    sentry-rails (6.1.2)
       railties (>= 5.2.0)
-      sentry-ruby (~> 6.1.1)
+      sentry-ruby (~> 6.1.2)
     sentry-ruby (6.1.2)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
