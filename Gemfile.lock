@@ -463,7 +463,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (1.1.1)
+    i18n-tasks (1.1.2)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -904,7 +904,7 @@ DEPENDENCIES
   dotenv-rails!
   factory_bot_rails!
   faker!
-  i18n-tasks (~> 1.1.1)!
+  i18n-tasks (~> 1.1.2)!
   letter_opener_web (~> 3.0)!
   listen (~> 3.9)!
   mutant-rspec!
