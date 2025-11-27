@@ -68,8 +68,10 @@ module ShinyCMS
     def self.feature_plugin_names
       return @feature_plugin_names if defined? @feature_plugin_names
 
+      # rubocop:disable Rails/Exit
       configured = ENV.fetch( 'SHINYCMS_PLUGINS' ) { abort 'SHINYCMS_PLUGINS env var must be set' }
       abort 'SHINYCMS_PLUGINS env var must not be blank' if configured.blank?
+      # rubocop:enable Rails/Exit
 
       requested = configured.split( /[, ]+/ ).collect( &:to_sym )
       on_disk   = Dir[ 'plugins/*' ].collect { |name| name.sub( 'plugins/', '' ).to_sym }

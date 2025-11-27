@@ -25,7 +25,7 @@ module ShinyCMS
         flash[:alert] = t( '.failure' )
       end
 
-      redirect_back fallback_location: do_not_contact_path
+      redirect_back_or_to do_not_contact_path
     end
   end
 end
