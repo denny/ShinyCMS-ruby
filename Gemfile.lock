@@ -370,7 +370,7 @@ GEM
       descendants_tracker (~> 0.0.1)
     colorize (0.8.1)
     concurrent-ruby (1.3.5)
-    connection_pool (2.5.4)
+    connection_pool (2.5.5)
     constant_resolver (0.3.0)
     coverband (6.1.5)
       base64
@@ -520,7 +520,7 @@ GEM
       logger
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (5.26.1)
+    minitest (5.26.2)
     mjml-rails (4.16.0)
     mutant (0.13.5)
       diff-lcs (~> 1.3)
@@ -740,7 +740,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.47.1, < 2.0)
-    rubocop-rails (2.34.0)
+    rubocop-rails (2.34.1)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
