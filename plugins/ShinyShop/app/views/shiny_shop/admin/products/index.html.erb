@@ -1,13 +1,12 @@
-<%#= render partial: 'admin/includes/search', locals: { action: shiny_news.search_shop_products_path, placeholder: t( '.search' ) } %>
-
+<% if @top_level_items.present? %>
 <table class="table table-responsive-sm table-striped">
   <thead>
     <tr>
+      <% if current_user.can? :edit, :product_sections %>
+      <th></th>
+      <% end %>
       <th class="longer">
-        Internal name
-      </th>
-      <th class="longer">
-        Public name
+        Name
       </th>
       <th>
         SKU
@@ -17,68 +16,28 @@
       </th>
       <th>
       </th>
+      <th>
+      </th>
+      <th>
+      </th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @products.each do |product| %>
-    <% next unless product.active %>
-    <tr>
-      <td>
-        <%= product.internal_name %>
-      </td>
-      <td>
-        <%= product.public_name %>
-      </td>
-      <td>
-        <%= product.slug %>
-      </td>
-      <td>
-        <%= display_time_on_date( product.updated_at ) %>
-      </td>
-      <td class="actions">
-        <%= button_to t( 'shiny_shop.admin.products.index.archive' ),
-                      shiny_shop.archive_product_path( product ), method: :put %>
-      </td>
-      <td class="actions">
-        <%= link_to t( 'view' ), shiny_shop.product_path( product ) %>
-        <%= link_to t( 'edit' ), shiny_shop.edit_product_path( product ) %>
-      </td>
-    </tr>
-    <% end %>
-
-    <tr>
-      <td>
-        &nbsp;
-      </td>
-    </tr>
-
-    <% @products.each do |product| %>
-    <% next if product.active %>
-    <tr>
-      <td>
-        <%= product.internal_name %>
-      </td>
-      <td>
-        <%= product.public_name %>
-      </td>
-      <td>
-        <%= product.slug %>
-      </td>
-      <td>
-        <%= display_time_on_date( product.updated_at ) %>
-      </td>
-      <td class="actions">
-        <%= button_to t( 'shiny_shop.admin.products.index.revive' ),
-                      shiny_shop.revive_product_path( product ), method: :put %>
-      </td>
-      <td class="actions">
-        <%= link_to t( 'view' ), shiny_shop.product_path( product ) %>
-        <%= link_to t( 'edit' ), shiny_shop.edit_product_path( product ) %>
-      </td>
-    </tr>
-    <% end %>
+  <tbody id="live-sortable" data-url="<%= shiny_shop.sort_products_path %>">
+  <% @top_level_items.each do |top_level_item| %>
+    <%= render partial: 'product_item', locals: {
+      product_item: top_level_item,
+      view_path: '',
+      indent: 0.5
+    } %>
+  <% end %>
   </tbody>
 </table>
+
+<% else %>
+<p>
+  <%= t( 'shinycms.empty_list', items: ShinyShop::Product.readable_name ) %>
+</p>
+<% end %>
 
 <%#= render partial: 'admin/includes/pager', locals: { pagy: @pagy, name: @product.name } %>
