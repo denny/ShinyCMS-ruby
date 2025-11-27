@@ -29,7 +29,7 @@ module ShinyCMS
 
       if new_comment_passes_checks_and_saves?
         flash[ :notice ] = t( '.success' ) unless @new_comment.spam?
-        redirect_back fallback_location: discussion_path( @discussion )
+        redirect_back_or_to discussion_path( @discussion )
       else
         flash.now[ :alert ] = t( '.failure' )
         render action: :new

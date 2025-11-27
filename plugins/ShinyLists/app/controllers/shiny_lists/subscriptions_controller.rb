@@ -29,17 +29,17 @@ module ShinyLists
 
     def subscribe
       if list && consent_version && list.subscribe( subscriber_for_subscribe, consent_version )
-        redirect_back fallback_location: view_list_subscriptions_path, notice: subscribe_success_message
+        redirect_back_or_to view_list_subscriptions_path, notice: subscribe_success_message
       else
-        redirect_back fallback_location: main_app.root_path, alert: subscribe_failure_message
+        redirect_back_or_to main_app.root_path, alert: subscribe_failure_message
       end
     end
 
     def unsubscribe
       if subscription&.unsubscribe
-        redirect_back fallback_location: view_list_subscriptions_path, notice: t( '.success' )
+        redirect_back_or_to view_list_subscriptions_path, notice: t( '.success' )
       else
-        redirect_back fallback_location: main_app.root_path, alert: t( '.failure' )
+        redirect_back_or_to main_app.root_path, alert: t( '.failure' )
       end
     end
 

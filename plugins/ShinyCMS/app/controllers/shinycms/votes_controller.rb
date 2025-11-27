@@ -25,13 +25,13 @@ module ShinyCMS
         @resource.upvote_by @voter
       end
 
-      redirect_back fallback_location: @resource.path
+      redirect_back_or_to @resource.path
     end
 
     def destroy
       @resource.unvote_by @voter
 
-      redirect_back fallback_location: @resource.path
+      redirect_back_or_to @resource.path
     end
 
     private

@@ -66,7 +66,7 @@ module ShinyForms
       if @form.redirect_to.present?
         redirect_to @form.redirect_to, notice: notice
       else
-        redirect_back fallback_location: main_app.root_path, notice: notice
+        redirect_back_or_to main_app.root_path, notice: notice
       end
     end
 
