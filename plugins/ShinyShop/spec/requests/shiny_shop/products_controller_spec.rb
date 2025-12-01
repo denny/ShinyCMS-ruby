@@ -76,6 +76,28 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         expect( response.body ).to have_css 'h2', text: product.name
       end
 
+      it 'displays products in different sections with same slug' do
+        slug = Faker::Books::CultureSeries.unique.culture_ship.parameterize
+        section1 = create :shop_section
+        section2 = create :shop_section
+        product1 = create( :product, section: section1, active: true, slug: slug )
+        product2 = create( :product, section: section2, active: true, slug: slug )
+
+        get shiny_shop.product_or_section_path( section1.slug, product1.slug )
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title product1.name
+
+        expect( response.body ).to have_css 'h2', text: product1.name
+
+        get shiny_shop.product_or_section_path( section2.slug, product2.slug )
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title product2.name
+
+        expect( response.body ).to have_css 'h2', text: product2.name
+      end
+
       it 'thanks user after successful checkout' do
         customer_name = Faker::Books::CultureSeries.unique.culture_ship
         stripe_session = Stripe::Checkout::Session.construct_from(
