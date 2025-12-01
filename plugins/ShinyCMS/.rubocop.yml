@@ -127,6 +127,11 @@ Performance/Casecmp:
 Performance/MapCompact:
   Enabled: false
 
+# Bit of a disagreement between the RuboCop and CodeFactor parsers trying to do this in the file itself
+Rails/Exit:
+  Exclude:
+    - app/models/shinycms/plugins.rb
+
 # This is the (hopefully helpful) 'how to create an admin account' message displayed after seed data loads
 Rails/Output:
   Exclude:
