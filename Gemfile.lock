@@ -802,7 +802,7 @@ GEM
       concurrent-ruby (~> 1.0, >= 1.0.2)
     set (1.1.1)
     sexp_processor (4.17.0)
-    sidekiq (8.0.9)
+    sidekiq (8.0.10)
       connection_pool (>= 2.5.0)
       json (>= 2.9.0)
       logger (>= 1.6.2)
