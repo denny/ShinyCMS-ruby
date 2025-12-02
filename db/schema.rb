@@ -11,7 +11,7 @@
 # less error prone than running all of your migrations from scratch. Old migrations may fail
 # to apply correctly if those migrations use external dependencies or application code.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_15_133806) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_02_133022) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_stat_statements"
@@ -502,7 +502,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_133806) do
     t.index ["deleted_at"], name: "index_shiny_shop_products_on_deleted_at"
     t.index ["section_id", "slug"], name: "index_products_on_section_id_and_slug", unique: true
     t.index ["section_id"], name: "index_shiny_shop_products_on_section_id"
-    t.index ["slug"], name: "index_shiny_shop_products_on_slug", unique: true
     t.index ["stripe_id"], name: "index_shiny_shop_products_on_stripe_id", unique: true
     t.index ["stripe_price_id"], name: "index_shiny_shop_products_on_stripe_price_id", unique: true
     t.index ["template_id"], name: "index_shiny_shop_products_on_template_id"
