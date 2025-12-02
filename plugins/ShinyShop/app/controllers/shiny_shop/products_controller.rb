@@ -34,8 +34,13 @@ module ShinyShop
     end
 
     def show
-      @product = Product.readonly.visible.find_by!( slug: @path_parts.last )
-      # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
+      if @path_parts.size > 1
+        section = Section.readonly.visible.find_by( slug: @path_parts.first )
+        @product = section.products.readonly.visible.find_by!( slug: @path_parts.last )
+      else
+        @product = Product.readonly.visible.find_by!( slug: @path_parts.last )
+        # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
+      end
 
       if just_purchased?
         confirm_order

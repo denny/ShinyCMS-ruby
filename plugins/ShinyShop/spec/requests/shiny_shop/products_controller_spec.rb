@@ -83,14 +83,14 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         product1 = create( :product, section: section1, active: true, slug: slug )
         product2 = create( :product, section: section2, active: true, slug: slug )
 
-        get shiny_shop.product_or_section_path( section1.slug, product1.slug )
+        get shiny_shop.product_or_section_path( [ section1.slug, product1.slug ] )
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title product1.name
 
         expect( response.body ).to have_css 'h2', text: product1.name
 
-        get shiny_shop.product_or_section_path( section2.slug, product2.slug )
+        get shiny_shop.product_or_section_path( [ section2.slug, product2.slug ] )
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title product2.name
