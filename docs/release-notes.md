@@ -5,6 +5,17 @@
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
 
+### 2025-12-02  25.12   December 2025: The 'oops, missed a bit' release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.12
+
+I missed doing a dev release last month because I kept thinking I'd nearly got the ShinyShop branch ready for another merge and release, and it kept being 'nearly but not quite ready' for the whole month - and it's still not ready now. So let that be a lesson to you (okay, to me) - "release early, release often" means what it says!
+
+I am hoping to get another release out at the start of January 2026 with another tranche of the Shop stuff in it, but either way I hope to have learned my lesson here, and not to miss doing my monthly dev releases in future.
+
+This month does include updates both minor and major to rack, view_component, stripe, sidekiq, glob, mjml, brakeman, sentry-ruby and sentry-rails, aws-sdk-s3, acts-as-as-taggable-on, core-js, coverband, i18n-tasks, bundler-audit, and rails-pg-extras (none of which required significant code changes) and many various rubocop-* plugins (some of which did, albeit generally for no particularly useful reason that I could tell).
+
+
 ### 2025-10-07  25.10   October 2025: The 'Também disponível em português' release
 
 GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v25.10
