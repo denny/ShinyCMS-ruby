@@ -791,9 +791,10 @@ GEM
     scout_apm (5.8.0)
       parser
     securerandom (0.4.1)
-    seed_dump (3.3.1)
+    seed_dump (3.4.0)
       activerecord (>= 4)
       activesupport (>= 4)
+      seed_dump
     sentry-rails (6.2.0)
       railties (>= 5.2.0)
       sentry-ruby (~> 6.2.0)
