@@ -36,7 +36,7 @@ module ShinyShop
     def show
       if @path_parts.size > 1
         section = Section.readonly.visible.find_by( slug: @path_parts.first )
-        raise ActiveRecord::RecordNotFound.new( 'Product not found', Product.name ) unless section
+        raise ActiveRecord::RecordNotFound.new( I18n.t( 'Product not found' ), Product.name ) unless section
 
         @product = section.products.readonly.visible.find_by!( slug: @path_parts.last )
         # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
