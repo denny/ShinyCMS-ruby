@@ -39,7 +39,13 @@ module ShinyShop
         @path_parts[0..-2].each do |part|
           section = Section.readonly.visible.find_by( slug: part )
 
-          raise ActiveRecord::RecordNotFound.new( t( 'shinycms.errors.not_found.title', resource_type: 'Product' ), Product.name ) unless section
+          unless section
+            raise ActiveRecord::RecordNotFound.new(
+              t( 'shinycms.errors.not_found.title',
+              resource_type: 'Product' ),
+              Product.name
+            )
+          end
         end
 
         @product = section.products.readonly.visible.find_by!( slug: @path_parts.last )
