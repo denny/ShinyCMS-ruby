@@ -98,7 +98,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         expect( response.body ).to have_css 'h2', text: product2.name
       end
 
-      it 'displays products in different sections with same slug' do
+      it 'displays product in deeply-nested sections' do
         section1 = create :shop_section
         section2 = create :shop_section, section: section1
         section3 = create :shop_section, section: section2
