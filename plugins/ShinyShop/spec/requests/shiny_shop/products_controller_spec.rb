@@ -151,9 +151,11 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
       end
     end
 
-    describe 'GET /shop/non-existent-section/irrelevant-slug', :production_error_responses do
+    describe 'GET /shop/non-existent-section/existing-slug', :production_error_responses do
       it 'returns a 404 if a page is requested in nested non-existent sections' do
-        get '/shop/non-existent-section/and-another/irrelevant-slug'
+        prod1 = create :product_in_section
+
+        get "/shop/non-existent-slug/#{prod1.slug}"
 
         expect( response      ).to have_http_status :not_found
         expect( response.body ).to include 'Product not found'
