@@ -36,16 +36,16 @@ module ShinyShop
     def show
       if @path_parts.size > 1
         section = nil
+        section_scope = Section.top_level_sections
         @path_parts[0..-2].each do |part|
-          section = Section.readonly.visible.find_by( slug: part )
+          section = section_scope.readonly.find_by( slug: part )
 
-          unless section
-            raise ActiveRecord::RecordNotFound.new(
-              t( 'shinycms.errors.not_found.title',
-              resource_type: 'Product' ),
-              Product.name
-            )
-          end
+          raise ActiveRecord::RecordNotFound.new(
+            I18n.t( 'shinycms.errors.not_found.title', resource_type: 'Product' ),
+            Product.name
+          ) unless section
+
+          section_scope = section.sections
         end
 
         @product = section.products.readonly.visible.find_by!( slug: @path_parts.last )
