@@ -170,5 +170,11 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         expect( response.body ).to be_empty
       end
     end
+
+    describe 'GET /shop/no-such-section/valid-section' do
+      it 'displays a 404 page' do
+        # foo
+      end
+    end
   end
 end
