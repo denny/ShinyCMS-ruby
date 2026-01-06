@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Be sure to restart your server when you modify this file.
 #
 # This file eases your Rails 8.1 framework defaults upgrade.
@@ -20,8 +22,10 @@
 #     end
 #   end
 #
+# rubocop:disable Style/AsciiComments
 # Renders `{"key":"\u2028\u2029\u003c\u003e\u0026"}` with the previous default, but `{"key":"  <>&"}` with the config
 # set to `false`.
+# rubocop:enable Style/AsciiComments
 #
 # Applications that want to keep the escaping behavior can set the config to `true`.
 #++
