@@ -296,8 +296,8 @@ GEM
     amazing_print (2.0.0)
     ast (2.4.3)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1186.0)
-    aws-sdk-core (3.239.0)
+    aws-partitions (1.1200.0)
+    aws-sdk-core (3.241.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -305,11 +305,11 @@ GEM
       bigdecimal
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-kms (1.117.0)
-      aws-sdk-core (~> 3, >= 3.234.0)
+    aws-sdk-kms (1.119.0)
+      aws-sdk-core (~> 3, >= 3.241.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.205.0)
-      aws-sdk-core (~> 3, >= 3.234.0)
+    aws-sdk-s3 (1.210.0)
+      aws-sdk-core (~> 3, >= 3.241.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
@@ -342,8 +342,8 @@ GEM
     bullet (8.1.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
-    bundler-audit (0.9.2)
-      bundler (>= 1.2.0, < 3)
+    bundler-audit (0.9.3)
+      bundler (>= 1.2.0)
       thor (~> 1.0)
     capybara (3.40.0)
       addressable
@@ -401,9 +401,9 @@ GEM
       pwned (~> 2.4)
     diff-lcs (1.6.2)
     docile (1.4.0)
-    dotenv (3.1.8)
-    dotenv-rails (3.1.8)
-      dotenv (= 3.1.8)
+    dotenv (3.2.0)
+    dotenv-rails (3.2.0)
+      dotenv (= 3.2.0)
       railties (>= 6.1)
     drb (2.2.3)
     dry-configurable (1.1.0)
@@ -445,7 +445,7 @@ GEM
     factory_bot_rails (6.5.1)
       factory_bot (~> 6.5)
       railties (>= 6.1.0)
-    faker (3.5.2)
+    faker (3.5.3)
       i18n (>= 1.8.11, < 2)
     ffi (1.17.1)
     flay (2.13.1)
@@ -465,7 +465,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (1.1.1)
+    i18n-tasks (1.1.2)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -640,11 +640,11 @@ GEM
     rails-i18n (8.1.0)
       i18n (>= 0.7, < 2)
       railties (>= 8.0.0, < 9)
-    rails-pg-extras (5.6.13)
+    rails-pg-extras (5.6.14)
       actionpack
       activerecord
       railties
-      ruby-pg-extras (= 5.6.13)
+      ruby-pg-extras (= 5.6.14)
     rails_email_preview (2.2.3)
       rails (>= 4.2)
       request_store
@@ -666,7 +666,7 @@ GEM
       ffi (~> 1.0)
     rbtree (0.4.6)
     rbtree3 (0.7.1)
-    rdoc (6.16.0)
+    rdoc (6.16.1)
       erb
       psych (>= 4.0.0)
       tsort
@@ -744,7 +744,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.47.1, < 2.0)
-    rubocop-rails (2.33.4)
+    rubocop-rails (2.34.2)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
@@ -761,7 +761,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
       rubocop-ast (>= 1.44.0, < 2.0)
-    ruby-pg-extras (5.6.13)
+    ruby-pg-extras (5.6.14)
       pg
       terminal-table
     ruby-progressbar (1.13.0)
@@ -793,9 +793,10 @@ GEM
     scout_apm (5.8.0)
       parser
     securerandom (0.4.1)
-    seed_dump (3.3.1)
+    seed_dump (3.4.0)
       activerecord (>= 4)
       activesupport (>= 4)
+      seed_dump
     sentry-rails (6.2.0)
       railties (>= 5.2.0)
       sentry-ruby (~> 6.2.0)
@@ -804,7 +805,7 @@ GEM
       concurrent-ruby (~> 1.0, >= 1.0.2)
     set (1.1.1)
     sexp_processor (4.17.0)
-    sidekiq (8.0.9)
+    sidekiq (8.0.10)
       connection_pool (>= 2.5.0)
       json (>= 2.9.0)
       logger (>= 1.6.2)
@@ -836,7 +837,7 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    stringio (3.1.8)
+    stringio (3.1.9)
     stripe (17.2.0)
     stripe_event (2.13.0)
       activesupport (>= 3.1)
@@ -906,7 +907,7 @@ DEPENDENCIES
   dotenv-rails!
   factory_bot_rails!
   faker!
-  i18n-tasks (~> 1.1.1)!
+  i18n-tasks (~> 1.1.2)!
   letter_opener_web (~> 3.0)!
   listen (~> 3.9)!
   mutant-rspec!
