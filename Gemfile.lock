@@ -36,6 +36,7 @@ PATH
       amazing_print
       aws-sdk-s3
       bcrypt (~> 3.1.16)
+      benchmark
       bugsnag
       cloudflare-rails
       devise
@@ -320,6 +321,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     base64 (0.3.0)
     bcrypt (3.1.20)
+    benchmark (0.5.0)
     better_html (2.1.1)
       actionview (>= 6.0)
       activesupport (>= 6.0)
