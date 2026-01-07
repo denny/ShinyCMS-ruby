@@ -33,7 +33,12 @@ module ShinyHostApp
   # Rails application class for the ShinyHostApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 8.0
+    config.load_defaults 8.1
+
+    # Please, add to the `ignore` list any other `lib` subdirectories that do
+    # not contain `.rb` files, or that should not be reloaded or eager loaded.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    config.autoload_lib( ignore: %w[ assets generators tasks ] )
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -42,11 +47,6 @@ module ShinyHostApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-
-    # Please, add to the `ignore` list any other `lib` subdirectories that do
-    # not contain `.rb` files, or that should not be reloaded or eager loaded.
-    # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib( ignore: %w[ assets generators tasks ] )
 
     # Add autoloaded paths into `$LOAD_PATH`
     config.add_autoload_paths_to_load_path = true
