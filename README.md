@@ -6,7 +6,7 @@ ShinyCMS is primarily intended for use by professional web developers, as a plat
 
 Web developers can also add custom functionality by writing their own plugins. A number of helpers and concerns are provided to help you build new features quickly, and with a consistent look-and-feel to the rest of the system.
 
-The current version of ShinyCMS runs on Ruby 3.4 and Rails 8.0
+The current version of ShinyCMS runs on Ruby 3.4 and Rails 8.1
 
 ## Features
 
@@ -100,9 +100,7 @@ All other supported [external services](docs/Services.md) are optional. If you a
 
 ### Ruby and Rails versions
 
-ShinyCMS requires Ruby 3.4 and Rails 8.0 or later. The project generally uses the most recent stable release of both Ruby and Rails (currently Ruby 3.4.5 and Rails 8.0.4).
-
-(ShinyCMS does not run with Rails 8.0.3, which seems to have a fairly hefty bug that breaks ShinyBlog, ShinyNews, ShinyPages, and ShinyShop.)
+ShinyCMS requires Ruby 3.4 and Rails 8.1 or later. The project generally uses the most recent stable release of both Ruby and Rails (currently Ruby 3.4.5 and Rails 8.1.1).
 
 
 ## Contributing
@@ -126,7 +124,7 @@ Please read and follow the code of conduct - thank you.
 
 ## Copyright and Licensing
 
-ShinyCMS is copyright 2009-2025 Denny de la Haye - https://denny.me
+ShinyCMS is copyright 2009-2026 Denny de la Haye - https://denny.me
 
 ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later). There are copies of both [v2](docs/Licensing/gnu-gpl-2.0.md) and [v3](docs/Licensing/gnu-gpl-3.0.md) of the GPL in [docs/Licensing](docs/Licensing/index.md), or you can read them online: https://opensource.org/licenses/gpl-2.0 / https://opensource.org/licenses/gpl-3.0
 
