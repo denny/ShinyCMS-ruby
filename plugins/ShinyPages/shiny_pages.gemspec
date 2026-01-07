@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.license     = 'GPL'
 
   spec.authors     = [ 'Denny de la Haye' ]
-  spec.email       = [ '2025@denny.me' ]
+  spec.email       = [ '2026@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
 
   spec.summary     = 'ShinyPages plugin for ShinyCMS'
