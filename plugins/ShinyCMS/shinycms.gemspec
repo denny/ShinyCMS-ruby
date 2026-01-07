@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.license     = 'GPL'
 
   spec.authors     = [ 'Denny de la Haye' ]
-  spec.email       = [ '2025@denny.me' ]
+  spec.email       = [ '2026@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
 
   spec.summary     = 'ShinyCMS'
@@ -124,12 +124,15 @@ Gem::Specification.new do |spec|
   # Fix request.ip when running behind Cloudflare proxying
   spec.add_dependency 'cloudflare-rails'
 
+  # Used to export demo site data from the database
+  spec.add_dependency 'seed_dump'
+
   # Must be explicitly required from Rails 7.2 onwards
   spec.add_dependency 'mutex_m'
   spec.add_dependency 'ostruct'
 
-  # Used to export demo site data from the database
-  spec.add_dependency 'seed_dump'
+  # Must be explicitly required from Rails 8.2 onwards (warns from 8.1)
+  spec.add_dependency 'benchmark'
 
   # Test coverage
   spec.add_development_dependency 'simplecov'
