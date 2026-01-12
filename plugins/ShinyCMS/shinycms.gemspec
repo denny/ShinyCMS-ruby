@@ -69,6 +69,9 @@ Gem::Specification.new do |spec|
   # https://github.com/ViewComponent/view_component/security/advisories/GHSA-wf2x-8w6j-qw37
   spec.add_dependency 'view_component', '>= 2.83', '< 5.0'
 
+  # This ActionText::Trix version fixes GHSA-g9jg-w8vm-g96v
+  spec.add_dependency 'action_text-trix', '>= 2.1.16'
+
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
   spec.add_dependency 'sidekiq', '>= 6.5.10', '< 8.1.0'
   spec.add_dependency 'sidekiq-status'
