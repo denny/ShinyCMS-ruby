@@ -26,6 +26,7 @@ PATH
   remote: plugins/ShinyCMS
   specs:
     shinycms (21.06)
+      action_text-trix (>= 2.1.16)
       activerecord-session_store
       acts-as-taggable-on
       acts_as_list
@@ -182,7 +183,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    action_text-trix (2.1.15)
+    action_text-trix (2.1.16)
       railties
     actioncable (8.1.1)
       actionpack (= 8.1.1)
@@ -450,6 +451,7 @@ GEM
     faker (3.5.3)
       i18n (>= 1.8.11, < 2)
     ffi (1.17.1)
+    ffi (1.17.1-x86-linux-gnu)
     flay (2.13.1)
       erubi (~> 1.10)
       path_expander (~> 1.0)
@@ -893,6 +895,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-linux
 
 DEPENDENCIES
   ahoy_email (>= 1.1, < 2.0)!
