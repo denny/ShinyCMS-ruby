@@ -158,7 +158,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         get "/shop/non-existent-slug/#{prod1.slug}"
 
         expect( response      ).to have_http_status :not_found
-        expect( response.body ).to include 'Product not found'
+        expect( response.body ).to include 'Section not found'
       end
     end
 
