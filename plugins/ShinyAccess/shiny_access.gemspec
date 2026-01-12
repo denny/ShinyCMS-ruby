@@ -50,7 +50,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'acts-as-taggable-on'
 
   # Pagination
-  spec.add_dependency 'pagy', '>= 9.3.4', '< 9.5.0'
+  spec.add_dependency 'pagy', '>= 9.3.4', '< 43.2.0'
 
   # HTML & XML parser
   spec.add_dependency 'nokogiri', '>= 1.18.8'
