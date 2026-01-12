@@ -19,12 +19,36 @@ module ShinyShop
 
     def product_or_section
       @path_parts = params[ :path ].split '/'
-      @section = Section.readonly.visible.find_by( slug: @path_parts.last )
 
-      if @section
-        section_index
-      else
+      is_product = Product.exists?( slug: @path_parts.last )
+      if is_product
         show
+      else
+        @section = find_section
+        section_index
+      end
+    end
+
+    def find_section
+      if @path_parts.size > 1
+        section = nil
+        section_scope = Section.top_level_sections
+        @path_parts[0..-2].each do |part|
+          section = section_scope.readonly.visible.find_by( slug: part )
+
+          raise ActiveRecord::RecordNotFound.new(
+            I18n.t( 'shinycms.errors.not_found.title', resource_type: 'Product' ),
+            Product.name
+          ) unless section
+
+          section_scope = section.sections
+        end
+
+        section_scope.readonly.visible.find_by!( slug: @path_parts.last )
+        # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
+      else
+        Section.top_level_sections.readonly.find_by!( slug: @path_parts.last )
+        # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
       end
     end
 

@@ -171,9 +171,15 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
       end
     end
 
-    describe 'GET /shop/no-such-section/valid-section' do
+    describe 'GET /shop/no-such-section/valid-section', :production_error_responses do
       it 'displays a 404 page' do
-        # foo
+        section1 = create :shop_section
+        section2 = create :shop_section, section: section1
+
+        get shiny_shop.product_or_section_path( [ 'no-such-section', section2.slug ] )
+
+        expect( response ).to have_http_status :not_found
+        expect( response.body ).to include 'Section not found'
       end
     end
   end
