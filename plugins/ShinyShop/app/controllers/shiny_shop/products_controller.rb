@@ -34,12 +34,7 @@ module ShinyShop
         section = nil
         section_scope = Section.top_level_sections
         @path_parts[0..-2].each do |part|
-          section = section_scope.readonly.visible.find_by( slug: part )
-
-          raise ActiveRecord::RecordNotFound.new(
-            I18n.t( 'shinycms.errors.not_found.title', resource_type: 'Section' ),
-            Section.name
-          ) unless section
+          section = section_scope.readonly.visible.find_by!( slug: part )
 
           section_scope = section.sections
         end
@@ -64,15 +59,13 @@ module ShinyShop
         @path_parts[0..-2].each do |part|
           section = section_scope.readonly.find_by( slug: part )
 
-          raise ActiveRecord::RecordNotFound.new(
-            I18n.t( 'shinycms.errors.not_found.title', resource_type: 'Product' ),
-            Product.name
-          ) unless section
+          break unless section
 
           section_scope = section.sections
         end
 
-        @product = section.products.readonly.visible.find_by!( slug: @path_parts.last )
+        products = section&.products || Product.none
+        @product = products.readonly.visible.find_by!( slug: @path_parts.last )
         # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
       else
         @product = Product.readonly.visible.find_by!( slug: @path_parts.last )
