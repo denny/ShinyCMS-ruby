@@ -136,7 +136,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         get '/shop/non-existent-slug'
 
         expect( response      ).to have_http_status :not_found
-        expect( response.body ).to include 'Product not found'
+        expect( response.body ).to include 'Section not found'
       end
     end
 
@@ -147,27 +147,18 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         get "/shop/#{prod1.section.slug}/non-existent-slug"
 
         expect( response      ).to have_http_status :not_found
-        expect( response.body ).to include 'Product not found'
+        expect( response.body ).to include 'Section not found'
       end
     end
 
     describe 'GET /shop/non-existent-section/existing-slug', :production_error_responses do
-      it 'returns a 404 if a page is requested in nested non-existent sections' do
+      it 'returns a 404 if a product is requested in nested non-existent sections' do
         prod1 = create :product_in_section
 
         get "/shop/non-existent-slug/#{prod1.slug}"
 
         expect( response      ).to have_http_status :not_found
-        expect( response.body ).to include 'Section not found'
-      end
-    end
-
-    describe 'GET /shop/not-html-404.xml', :production_error_responses do
-      it 'still returns a 404 even if a non-existent non-HTML resource is requested' do
-        get '/shop/not-html-404.xml'
-
-        expect( response      ).to have_http_status :not_found
-        expect( response.body ).to be_empty
+        expect( response.body ).to include 'Product not found'
       end
     end
 
@@ -180,6 +171,15 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
 
         expect( response ).to have_http_status :not_found
         expect( response.body ).to include 'Section not found'
+      end
+    end
+
+    describe 'GET /shop/not-html-404.xml', :production_error_responses do
+      it 'still returns a 404 even if a non-existent non-HTML resource is requested' do
+        get '/shop/not-html-404.xml'
+
+        expect( response      ).to have_http_status :not_found
+        expect( response.body ).to be_empty
       end
     end
   end

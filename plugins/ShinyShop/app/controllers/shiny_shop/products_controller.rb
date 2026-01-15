@@ -37,8 +37,8 @@ module ShinyShop
           section = section_scope.readonly.visible.find_by( slug: part )
 
           raise ActiveRecord::RecordNotFound.new(
-            I18n.t( 'shinycms.errors.not_found.title', resource_type: 'Product' ),
-            Product.name
+            I18n.t( 'shinycms.errors.not_found.title', resource_type: 'Section' ),
+            Section.name
           ) unless section
 
           section_scope = section.sections
