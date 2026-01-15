@@ -30,21 +30,16 @@ module ShinyShop
     end
 
     def find_section
-      if @path_parts.size > 1
-        section = nil
-        section_scope = Section.top_level_sections
-        @path_parts[0..-2].each do |part|
-          section = section_scope.readonly.visible.find_by!( slug: part )
+      section_scope = Section.top_level_sections
 
-          section_scope = section.sections
-        end
+      @path_parts[0..-2].each do |part|
+        section = section_scope.readonly.visible.find_by!( slug: part )
 
-        section_scope.readonly.visible.find_by!( slug: @path_parts.last )
-        # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
-      else
-        Section.top_level_sections.readonly.find_by!( slug: @path_parts.last )
-        # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
+        section_scope = section.sections
       end
+
+      section_scope.readonly.visible.find_by!( slug: @path_parts.last )
+      # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
     end
 
     def section_index
@@ -53,6 +48,8 @@ module ShinyShop
     end
 
     def show
+      products = Product.all
+
       if @path_parts.size > 1
         section = nil
         section_scope = Section.top_level_sections
@@ -65,12 +62,10 @@ module ShinyShop
         end
 
         products = section&.products || Product.none
-        @product = products.readonly.visible.find_by!( slug: @path_parts.last )
-        # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
-      else
-        @product = Product.readonly.visible.find_by!( slug: @path_parts.last )
-        # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
       end
+
+      @product = products.readonly.visible.find_by!( slug: @path_parts.last )
+      # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
 
       if just_purchased?
         confirm_order
