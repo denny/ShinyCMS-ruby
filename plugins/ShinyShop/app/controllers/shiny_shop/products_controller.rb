@@ -50,18 +50,18 @@ module ShinyShop
     def show
       products = Product.all
 
-      if @path_parts.size > 1
-        section = nil
-        section_scope = Section.top_level_sections
-        @path_parts[0..-2].each do |part|
-          section = section_scope.readonly.find_by( slug: part )
+      section_scope = Section.top_level_sections
 
-          break unless section
+      @path_parts[0..-2].each do |part|
+        section = section_scope.readonly.find_by( slug: part )
 
+        if section
           section_scope = section.sections
+          products = section.products
+        else
+          products = Product.none
+          break
         end
-
-        products = section&.products || Product.none
       end
 
       @product = products.readonly.visible.find_by!( slug: @path_parts.last )
