@@ -21,18 +21,19 @@ module ShinyShop
       @path_parts = params[ :path ].split '/'
 
       is_product = Product.exists?( slug: @path_parts.last )
+
       if is_product
         show
       else
-        @section = find_section
+        @section = find_section( @path_parts )
         section_index
       end
     end
 
-    def find_section
+    def find_section( path_parts, error: true )
       section_scope = Section.top_level_sections
 
-      @path_parts[0..-2].each do |part|
+      path_parts[0..-2].each do |part|
         section = section_scope.readonly.visible.find_by( slug: part )
 
         if section
@@ -43,8 +44,12 @@ module ShinyShop
         end
       end
 
-      section_scope.readonly.visible.find_by!( slug: @path_parts.last )
       # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
+      if error
+        section_scope.readonly.visible.find_by!( slug: path_parts.last )
+      else
+        section_scope.readonly.visible.find_by( slug: path_parts.last )
+      end
     end
 
     def section_index
@@ -53,20 +58,16 @@ module ShinyShop
     end
 
     def show
-      products = Product.all
-
-      section_scope = Section.top_level_sections
-
-      @path_parts[0..-2].each do |part|
-        section = section_scope.readonly.find_by( slug: part )
+      if @path_parts.size > 1
+        section = find_section( @path_parts[0..-2], error: false )
 
         if section
-          section_scope = section.sections
           products = section.products
         else
           products = Product.none
-          break
         end
+      else
+        products = Product.all
       end
 
       @product = products.readonly.visible.find_by!( slug: @path_parts.last )
