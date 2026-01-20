@@ -33,9 +33,14 @@ module ShinyShop
       section_scope = Section.top_level_sections
 
       @path_parts[0..-2].each do |part|
-        section = section_scope.readonly.visible.find_by!( slug: part )
+        section = section_scope.readonly.visible.find_by( slug: part )
 
-        section_scope = section.sections
+        if section
+          section_scope = section.sections
+        else
+          section_scope = Section.none
+          break
+        end
       end
 
       section_scope.readonly.visible.find_by!( slug: @path_parts.last )
