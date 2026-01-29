@@ -11,4 +11,10 @@
   <% if feature_enabled? :tags %>
   <%= render partial: 'menu/tags' %>
   <% end %>
+
+  <% if plugin_loaded? :ShinyShop %>
+  <%= render partial: 'shiny_shop/menu/products',
+             locals: { items: shop_top_level_menu_items, path: '/' } %>
+  <% end %>
+  BOO!
 </ul>

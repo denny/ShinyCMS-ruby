@@ -86,6 +86,19 @@ module ShinyShop
       top_level.visible
     end
 
+    def self.top_level_menu_products
+      top_level.visible_in_menus
+    end
+
+    def self.top_level_menu_items
+      products = top_level_menu_products.to_a
+      sections = Section.top_level_menu_sections.to_a
+
+      [ *products, *sections ].sort_by do |item|
+        [ item.position ? 0 : 1, item.position || 0 ]
+      end
+    end
+
     def self.all_top_level_items
       products = all_top_level_products.to_a
       sections = Section.includes( %i[ all_products all_sections ] ).all_top_level_sections.to_a

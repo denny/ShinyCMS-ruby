@@ -1,0 +1,11 @@
+<% items.each do |menu_item| %>
+<li>
+  <%= link_to menu_item.name, "#{path}#{menu_item.slug}" %>
+  <% if menu_item.try( :submenu? ) %>
+  <ul>
+    <%= render partial: 'menu/pages', locals: {
+      items: menu_item.menu_items, path: "#{path}#{menu_item.slug}/" } %>
+  </ul>
+  <% end %>
+</li>
+<% end %>
