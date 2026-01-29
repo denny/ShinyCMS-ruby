@@ -63,6 +63,10 @@ RSpec.configure do |config|
       SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
         [ SimpleCov::Formatter::Codecov, SimpleCov::Formatter::JSONFormatter ]
       )
+    else
+      SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+        [ SimpleCov::Formatter::HTMLFormatter ]
+      )
     end
   end
 
