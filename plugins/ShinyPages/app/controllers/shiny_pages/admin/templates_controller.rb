@@ -53,7 +53,6 @@ module ShinyPages
 
     def edit
       authorize @template
-      # binding.pry
     end
 
     def update
@@ -86,7 +85,6 @@ module ShinyPages
     end
 
     def stash_template
-      # binding.pry
       @template = Template.find( params[:id] )
     end
 
