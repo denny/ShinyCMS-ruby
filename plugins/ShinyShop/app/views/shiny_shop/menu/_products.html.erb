@@ -1,10 +1,9 @@
 <% items.each do |menu_item| %>
 <li>
-  <%= link_to menu_item.name, "#{path}#{menu_item.slug}" %>
+  <%= link_to menu_item.name, shiny_shop.product_or_section_path( menu_item.slugs ) %>
   <% if menu_item.try( :submenu? ) %>
   <ul>
-    <%= render partial: 'menu/pages', locals: {
-      items: menu_item.menu_items, path: "#{path}#{menu_item.slug}/" } %>
+    <%= render partial: 'menu/products', locals: { items: menu_item.menu_items } %>
   </ul>
   <% end %>
 </li>

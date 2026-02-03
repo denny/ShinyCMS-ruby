@@ -76,6 +76,12 @@ module ShinyShop
       update! active: true
     end
 
+    def slugs
+      return [ slug ] if section.nil?
+
+      section.slugs + [ slug ]
+    end
+
     # Class methods
 
     def self.all_top_level_products

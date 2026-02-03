@@ -14,6 +14,6 @@
 
   <% if plugin_loaded? :ShinyShop %>
   <%= render partial: 'shiny_shop/menu/products',
-             locals: { items: shop_top_level_menu_items, path: '/' } %>
+             locals: { items: shop_top_level_menu_items } %>
   <% end %>
 </ul>

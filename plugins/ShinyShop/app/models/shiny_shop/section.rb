@@ -59,6 +59,12 @@ module ShinyShop
       sections.visible_in_menus
     end
 
+    def slugs
+      return [ slug ] if section.nil?
+
+      section.slugs + [ slug ]
+    end
+
     def all_product_items
       products = all_products.to_a
       sections = all_sections.to_a

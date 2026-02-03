@@ -110,7 +110,7 @@ module ShinyShop
     end
 
     def strong_params
-      params.permit( :session_id, :slug )
+      params.permit( :session_id, :slug, :path )
     end
 
     def check_feature_flags
