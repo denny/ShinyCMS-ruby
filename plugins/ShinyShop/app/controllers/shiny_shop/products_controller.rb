@@ -53,13 +53,8 @@ module ShinyShop
 
       path_parts[0..-2].each do |part|
         section = section_scope.readonly.visible.find_by( slug: part )
-
-        if section
-          section_scope = section.sections
-        else
-          section_scope = Section.none
-          break
-        end
+        section_scope = section&.sections || Section.none
+        break unless section
       end
 
       # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
