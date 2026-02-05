@@ -116,9 +116,5 @@ module ShinyShop
     def check_feature_flags
       enforce_feature_flags :shop
     end
-
-    def enforce_html_format
-      request.format = :html
-    end
   end
 end
