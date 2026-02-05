@@ -30,6 +30,24 @@ module ShinyShop
       end
     end
 
+    def section_index
+      @pagy, @products = pagy( @section.products.readonly )
+      render 'index'
+    end
+
+    def show
+      @product = find_product
+      # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
+
+      if just_purchased?
+        confirm_order
+      else
+        render 'show'
+      end
+    end
+
+    private
+
     def find_section( path_parts, error: true )
       section_scope = Section.top_level_sections
 
@@ -45,42 +63,22 @@ module ShinyShop
       end
 
       # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
-      if error
-        section_scope.readonly.visible.find_by!( slug: path_parts.last )
-      else
-        section_scope.readonly.visible.find_by( slug: path_parts.last )
-      end
+      section_relation = section_scope.readonly.visible
+      error ? section_relation.find_by!( slug: path_parts.last ) : section_relation.find_by( slug: path_parts.last )
     end
 
-    def section_index
-      @pagy, @products = pagy( @section.products.readonly )
-      render 'index'
-    end
-
-    def show
+    def find_product
       if @path_parts.size > 1
         section = find_section( @path_parts[0..-2], error: false )
 
-        if section
-          products = section.products
-        else
-          products = Product.none
-        end
+        products = section&.products || Product.none
       else
         products = Product.all
       end
 
-      @product = products.readonly.visible.find_by!( slug: @path_parts.last )
+      products.readonly.visible.find_by!( slug: @path_parts.last )
       # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
-
-      if just_purchased?
-        confirm_order
-      else
-        render 'show'
-      end
     end
-
-    private
 
     def just_purchased?
       strong_params[ :session_id ].present?
