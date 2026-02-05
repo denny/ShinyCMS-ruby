@@ -14,29 +14,96 @@ module ShinyShop
     before_action :check_feature_flags
 
     def index
-      @pagy, @products = pagy( Product.readonly.visible )
+      @pagy, @products = pagy( Product.readonly.top_level_products )
+    end
+
+    def product_or_section
+      @path_parts = params[ :path ].split '/'
+
+      is_product = Product.exists?( slug: @path_parts.last )
+
+      if is_product
+        show
+      else
+        @section = find_section( @path_parts )
+        section_index
+      end
+    end
+
+    def section_index
+      @pagy, @products = pagy( @section.products.readonly )
+      render 'index'
     end
 
     def show
-      @product = Product.readonly.visible.find_by( slug: strong_params[ :slug ] )
+      @product = find_product
+      # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
 
-      return unless strong_params[ :session_id ]
-
-      session = retrieve_stripe_session
-
-      flash[ :notice ] = "Thank you for your order, #{session.customer_details.name}"
-
-      redirect_to shiny_shop.show_product_path( @product.slug )  # Clear visible session ID off end of URL
+      if just_purchased?
+        confirm_order
+      else
+        render 'show'
+      end
     end
 
     private
 
-    def strong_params
-      params.permit( :session_id, :slug )
+    def find_section( path_parts, error: true )
+      section_scope = Section.top_level_sections
+
+      path_parts[0..-2].each do |part|
+        section = section_scope.readonly.visible.find_by( slug: part )
+        section_scope = section&.sections || Section.none
+        break unless section
+      end
+
+      # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
+      section_relation = section_scope.readonly.visible
+      error ? section_relation.find_by!( slug: path_parts.last ) : section_relation.find_by( slug: path_parts.last )
     end
+
+    def find_product
+      if @path_parts.size > 1
+        section = find_section( @path_parts[0..-2], error: false )
+
+        products = section&.products || Product.none
+      else
+        products = Product.all
+      end
+
+      products.readonly.visible.find_by!( slug: @path_parts.last )
+      # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
+    end
+
+    def just_purchased?
+      strong_params[ :session_id ].present?
+    end
+
+    # Remove the visible Stripe params from the URL
+    def confirm_order
+      session = retrieve_stripe_session
+
+      flash[ :notice ] = "Thank you for your order, #{session.customer_details.name}"
+
+      # TODO: deal with path stuff
+      redirect_to shiny_shop.product_or_section_path( @product.slug )
+    end
+
+    # Render the product with the appropriate template
+    # def show_product
+    #  if @product.template.file_exists?
+    #    render template: "shiny_shop/products/#{@product.template.filename}", locals: @product.elements_hash
+    #  else
+    #    render status: :failed_dependency, inline: I18n.t( 'shiny_shop.products.template_file_missing' )
+    #  end
+    # end
 
     def retrieve_stripe_session
       Stripe::Checkout::Session.retrieve( strong_params[ :session_id ] )
+    end
+
+    def strong_params
+      params.permit( :session_id, :slug, :path )
     end
 
     def check_feature_flags
