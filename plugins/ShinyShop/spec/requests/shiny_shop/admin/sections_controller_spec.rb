@@ -137,6 +137,7 @@ RSpec.describe ShinyShop::Admin::SectionsController, type: :request do
       s1 = create :shop_section
       s2 = create :shop_section
       s3 = create :shop_section
+      s4 = create :shop_section, section: s1
 
       delete shiny_shop.section_path( s2 )
 
