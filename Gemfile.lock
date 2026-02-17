@@ -921,7 +921,7 @@ DEPENDENCIES
   parallel_tests!
   pg (~> 1.6.2)!
   puma (~> 7.1)!
-  rack (~> 3.2.4)!
+  rack (~> 3.2.5)!
   rack-attack!
   rack-session (~> 2.1.1)!
   rails (~> 8.1.1)!
