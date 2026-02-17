@@ -35,7 +35,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.6.2'
 
   # Rack
-  gem 'rack', '~> 3.2.4'
+  gem 'rack', '~> 3.2.5'
   # Rack Session
   gem 'rack-session', '~> 2.1.1'
 
