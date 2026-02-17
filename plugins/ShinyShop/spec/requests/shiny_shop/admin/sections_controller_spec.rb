@@ -151,6 +151,7 @@ RSpec.describe ShinyShop::Admin::SectionsController, type: :request do
       expect( response.body ).to     have_css 'td', text: s1.internal_name
       expect( response.body ).not_to have_css 'td', text: s2.internal_name
       expect( response.body ).to     have_css 'td', text: s3.internal_name
+      expect( response.body ).to     have_css 'td', text: s4.internal_name
     end
 
     it 'fails gracefully when attempting to delete a non-existent section' do
