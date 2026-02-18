@@ -5,6 +5,15 @@
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
 
+### 2026-02-17  26.02   February 2026: The 'So Close And Yet So Far' release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v26.02
+
+Another month, another near miss on marging the ShinyShop plugin. Literally four lines left not covered by tests. So, March, hopefully.
+
+I did manage a minor Rails bump (to 8.1.2), as well as various other gems.
+
+
 ### 2026-01-07  26.01   January 2026: The 'Happy New Rails' release
 
 GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v26.01
@@ -12,7 +21,6 @@ GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v26.01
 We are now running on Rails 8.1
 
 No major changes were required, mostly just changing method calls from positional to named arguments in a few places. I think it took me longer to update the year in all the copyright notices :)
-
 
 
 ### 2025-12-02  25.12   December 2025: The 'oops, missed a bit' release
