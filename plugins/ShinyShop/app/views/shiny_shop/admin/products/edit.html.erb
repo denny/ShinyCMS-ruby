@@ -16,6 +16,14 @@
     <%= f.text_field :description %>
   </p>
   <p>
+    <%= f.label :template_id, 'Template' %>
+    <br><%= f.select :template_id, ShinyShop::Template.pluck( :name, :id ), include_blank: '' %>
+  </p>
+  <p>
+    <%= f.label :section_id, 'Section' %>
+    <br><%= f.select :section_id, ShinyShop::Section.pluck( :internal_name, :id ), include_blank: '' %>
+  </p>
+  <p>
     <%= f.label :position %>
     <br><%= f.text_field :position %>
   </p>

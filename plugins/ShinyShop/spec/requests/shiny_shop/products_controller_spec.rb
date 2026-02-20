@@ -11,20 +11,20 @@ require 'rails_helper'
 # Tests for shop
 RSpec.describe ShinyShop::ProductsController, type: :request do
   context 'without any live products in the database' do
-    describe 'GET /products (none defined)' do
+    describe 'GET /shop (none defined)' do
       it 'finds no products to display' do
-        get shiny_shop.products_index_path
+        get shiny_shop.shop_path
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to include 'No products found'
       end
     end
 
-    describe 'GET /products (none live)' do
+    describe 'GET /shop (none live)' do
       it 'finds no live products to display' do
         create :product  # Inactive, by default
 
-        get shiny_shop.products_index_path
+        get shiny_shop.shop_path
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to include 'No products found'
@@ -33,32 +33,83 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
   end
 
   context 'with live products in the database' do
-    describe 'GET /products' do
-      it 'fetches the list of products' do
+    describe 'GET /shop' do
+      it 'fetches the list of top-level products and sections' do
         create :product, active: true
         product2 = create :product
         product3 = create :product, active: true
 
-        get shiny_shop.products_index_path
+        get shiny_shop.shop_path
 
         expect( response      ).to     have_http_status :ok
         expect( response.body ).to     have_title I18n.t( 'shiny_shop.products.index.title' ).titlecase
 
-        expect( response.body ).not_to have_css 'h2', text: product2.name
-        expect( response.body ).to     have_css 'h2', text: product3.name
+        expect( response.body ).not_to have_css 'h3', text: product2.name
+        expect( response.body ).to     have_css 'h3', text: product3.name
       end
     end
 
-    describe 'GET /products/:slug' do
+    describe 'GET /shop/:section' do
+      it 'displays list of products in section' do
+        section  = create :shop_section
+        product1 = create :product, section: section, active: true
+        product2 = create :product, section: section, active: true
+
+        get shiny_shop.product_or_section_path( section.slug )
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title section.name
+        expect( response.body ).to have_text  product1.name
+        expect( response.body ).to have_text  product2.name
+      end
+    end
+
+    describe 'GET /shop/:slug' do
       it 'views a product' do
         product = create( :product, active: true )
 
-        get shiny_shop.show_product_path( product.slug )
+        get shiny_shop.product_or_section_path( product.slug )
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title product.name
 
         expect( response.body ).to have_css 'h2', text: product.name
+      end
+
+      it 'displays products in different sections with same slug' do
+        slug = Faker::Books::CultureSeries.unique.culture_ship.parameterize
+        section1 = create :shop_section
+        section2 = create :shop_section
+        product1 = create( :product, section: section1, active: true, slug: slug )
+        product2 = create( :product, section: section2, active: true, slug: slug )
+
+        get shiny_shop.product_or_section_path( [ section1.slug, product1.slug ] )
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title product1.name
+
+        expect( response.body ).to have_css 'h2', text: product1.name
+
+        get shiny_shop.product_or_section_path( [ section2.slug, product2.slug ] )
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title product2.name
+
+        expect( response.body ).to have_css 'h2', text: product2.name
+      end
+
+      it 'displays product in deeply-nested sections' do
+        section1 = create :shop_section
+        section2 = create :shop_section, section: section1
+        section3 = create :shop_section, section: section2
+        product1 = create( :product, section: section3, active: true )
+
+        get shiny_shop.product_or_section_path( [ section1.slug, section2.slug, section3.slug, product1.slug ] )
+
+        expect( response      ).to have_http_status :ok
+        expect( response.body ).to have_title product1.name
+
+        expect( response.body ).to have_css 'h2', text: product1.name
       end
 
       it 'thanks user after successful checkout' do
@@ -70,13 +121,65 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         allow( Stripe::Checkout::Session ).to receive( :retrieve ).with( 'testsession' ).and_return( stripe_session )
         product = create( :product, active: true )
 
-        get shiny_shop.show_product_path( product.slug, session_id: 'testsession' )
+        get shiny_shop.product_or_section_path( product.slug, session_id: 'testsession' )
 
         expect( response      ).to have_http_status :found
-        expect( response      ).to redirect_to shiny_shop.show_product_path( product.slug )
+        expect( response      ).to redirect_to shiny_shop.product_or_section_path( product.slug )
         follow_redirect!
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_text "Thank you for your order, #{customer_name}"
+      end
+    end
+
+    describe 'GET /shop/non-existent-slug', :production_error_responses do
+      it 'returns a 404 if no matching product or section is found at top-level' do
+        get '/shop/non-existent-slug'
+
+        expect( response      ).to have_http_status :not_found
+        expect( response.body ).to include 'Section not found'
+      end
+    end
+
+    describe 'GET /shop/existing-section/non-existent-slug', :production_error_responses do
+      it 'returns a 404 if no matching product or sub-section is found in section' do
+        prod1 = create :product_in_section
+
+        get "/shop/#{prod1.section.slug}/non-existent-slug"
+
+        expect( response      ).to have_http_status :not_found
+        expect( response.body ).to include 'Section not found'
+      end
+    end
+
+    describe 'GET /shop/non-existent-section/existing-slug', :production_error_responses do
+      it 'returns a 404 if a product is requested in nested non-existent sections' do
+        prod1 = create :product_in_section
+
+        get "/shop/non-existent-slug/#{prod1.slug}"
+
+        expect( response      ).to have_http_status :not_found
+        expect( response.body ).to include 'Product not found'
+      end
+    end
+
+    describe 'GET /shop/no-such-section/valid-section', :production_error_responses do
+      it 'displays a 404 page' do
+        section1 = create :shop_section
+        section2 = create :shop_section, section: section1
+
+        get shiny_shop.product_or_section_path( [ 'no-such-section', section2.slug ] )
+
+        expect( response ).to have_http_status :not_found
+        expect( response.body ).to include 'Section not found'
+      end
+    end
+
+    describe 'GET /shop/not-html-404.xml', :production_error_responses do
+      it 'still returns a 404 even if a non-existent non-HTML resource is requested' do
+        get '/shop/not-html-404.xml'
+
+        expect( response      ).to have_http_status :not_found
+        expect( response.body ).to be_empty
       end
     end
   end

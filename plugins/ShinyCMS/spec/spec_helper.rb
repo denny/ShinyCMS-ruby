@@ -26,8 +26,9 @@ require 'simplecov'
 
 RSpec.configure do |config|
   config.before( :suite ) do
-    # Copy TEST theme templates into place
-    FileUtils.cp_r 'plugins/ShinyCMS/spec/fixtures/TEST', 'themes/TEST' unless Dir.exist? 'themes/TEST'
+    # Copy fresh TEST theme templates into place
+    FileUtils.rm_r 'themes/TEST' if Dir.exist? 'themes/TEST'
+    FileUtils.cp_r 'plugins/ShinyCMS/spec/fixtures/TEST', 'themes/TEST'
   end
 
   # This setting specifies which spec files to load when `rspec` is run without
@@ -61,6 +62,10 @@ RSpec.configure do |config|
       require 'simplecov_json_formatter'
       SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
         [ SimpleCov::Formatter::Codecov, SimpleCov::Formatter::JSONFormatter ]
+      )
+    else
+      SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+        [ SimpleCov::Formatter::HTMLFormatter ]
       )
     end
   end
