@@ -53,7 +53,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'pagy', '>= 9.3.4', '< 9.5.0'
 
   # HTML & XML parser
-  spec.add_dependency 'nokogiri', '>= 1.18.8'
+  spec.add_dependency 'nokogiri', '>= 1.9.1'
 
   # Testing
   spec.add_development_dependency 'factory_bot_rails'
