@@ -180,6 +180,7 @@ Rails/RenderInline:
   Exclude:
     - ../../app/controllers/application_controller.rb
     - ../ShinyPages/app/controllers/shiny_pages/pages_controller.rb
+    - ../ShinyShop/app/controllers/shiny_shop/products_controller.rb
 
 # Configurable user model
 Rails/ReflectionClassName:

@@ -1,0 +1,28 @@
+<%= render partial: 'admin/includes/search', locals: { action: shiny_shop.search_templates_path, placeholder: t( '.search' ) } %>
+
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>
+        Template
+      </th>
+      <th>
+        &nbsp;
+      </th>
+    </tr>
+  </thead>
+  <% @templates.each do |template| %>
+  <tr class="showfocus">
+    <td>
+      <%= template.name %>
+    </td>
+    <td class="actions">
+      <%= link_to t( 'edit'   ), shiny_shop.edit_template_path( template ) %>
+      <%= link_to t( 'delete' ), shiny_shop.template_path( template ),
+          method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<%= render partial: 'admin/includes/pager', locals: { pagy: @pagy, name: @templates.name } %>

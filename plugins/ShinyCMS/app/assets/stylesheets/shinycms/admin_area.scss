@@ -194,6 +194,10 @@ main p {
   padding:          0.5em 1em;
 }
 
+.button_to {
+  display: inline;
+}
+
 
 // ========== ( drag-to-sort ) ==========
 
@@ -299,6 +303,16 @@ form .ui-sortable-handle {
   color:            $button-text;
   height:           2em;
   padding:          0.3em 0.5em;
+  text-decoration:  none;
+}
+
+.table-striped .actions button {
+  background:       $input-bg;
+  border:           1px solid $input-border;
+  border-radius:    0.2em;
+  color:            $button-text;
+  height:           1.9em;
+  padding:          0.2em 0.5em 0.4em;
   text-decoration:  none;
 }
 

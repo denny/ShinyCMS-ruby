@@ -84,7 +84,7 @@ RSpec.describe ShinyCMS::DiscussionsController, type: :request do
 
       expect( response      ).to have_http_status :not_found
       expect( response.body ).to have_css 'h2', text: I18n.t(
-        'shinycms.errors.not_found.title', resource_type: 'Page'
+        'shinycms.errors.not_found.title', resource_type: 'Discussion'
       )
     end
   end

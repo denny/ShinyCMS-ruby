@@ -1,8 +1,14 @@
-<% @page_title = I18n.t( 'shiny_shop.products.index.title' ) %>
+<% if @section %>
+  <% @page_title = @section.name %>
+<% else %>
+  <% @page_title = I18n.t( 'shiny_shop.products.index.title' ) %>
+<% end %>
+
+<h2><%= @page_title %></h2>
 
 <% if @products.any? %>
   <% @products.each do |product| %>
-    <h2><%= product.name %></h2>
+    <h3><%= product.name %></h3>
     <p>
       <%= number_to_currency product.price.to_d/100, unit: '&pound;'.html_safe %>
     </p>

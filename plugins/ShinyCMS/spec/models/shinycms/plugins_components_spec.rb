@@ -17,7 +17,7 @@ RSpec.describe ShinyCMS::PluginsComponents, type: :model do
       expect( models ).to be_an Enumerable
 
       expect( models.first ).to be ShinyAccess::Group
-      expect( models.last  ).to be ShinyProfiles::Profile
+      expect( models.last  ).to be ShinyShop::TemplateElement
     end
   end
 

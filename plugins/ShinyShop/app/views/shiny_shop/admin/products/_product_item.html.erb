@@ -1,0 +1,50 @@
+<% item_is_a_section = product_item.is_a?( ShinyShop::Section ) %>
+<% hidden_class_if_hidden = product_item.hidden? ? ' class="hidden"' : '' %>
+
+  <% if item_is_a_section %>
+  <tr id="sorted_section<%= product_item.id %>">
+  <% else %>
+  <tr id="sorted_<%= product_item.id %>">
+  <% end %>
+    <% if current_user.can? :edit, :product_sections %>
+    <td class="handle"><i class="cil-elevator"></i></td>
+    <% end %>
+    <td style="padding-left: <%= indent %>em;"<%= hidden_class_if_hidden %>>
+      <% if item_is_a_section %><b><% end %><%= product_item.internal_name %><% if item_is_a_section %></b><% end %>
+    </td>
+    <td>
+      <%= product_item.slug %>
+    </td>
+    <td>
+      <%= display_time_on_date( product_item.updated_at ) %>
+    </td>
+    <td>
+    </td>
+    <td class="actions">
+      <%= link_to t( 'view'   ), "#{view_path}/#{product_item.slug}" %>
+      <% if item_is_a_section %>
+        <%= link_to t( 'edit'   ), shiny_shop.edit_section_path( product_item ) %>
+        <%= link_to t( 'delete' ), shiny_shop.section_path( product_item ),
+            method: :delete, data: { confirm: t( 'are_you_sure' ) } %>
+      <% else %>
+        <%= link_to t( 'edit' ), shiny_shop.edit_product_path( product_item ) %>
+        <% if product_item.active %>
+          <%= button_to t( 'shiny_shop.admin.products.index.archive' ),
+                            shiny_shop.archive_product_path( product_item ), method: :put %>
+        <% else %>
+          <%= button_to t( 'shiny_shop.admin.products.index.revive' ),
+                            shiny_shop.revive_product_path( product_item ), method: :put %>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+
+  <% if item_is_a_section && product_item.all_product_items.present? %>
+    <% product_item.all_product_items.each do |subsection_item| %>
+      <%= render partial: 'product_item', locals: {
+        product_item: subsection_item,
+        view_path: "#{view_path}/#{product_item.slug}",
+        indent: indent + 2
+      } %>
+    <% end %>
+  <% end %>

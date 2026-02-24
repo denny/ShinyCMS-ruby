@@ -10,6 +10,9 @@ en:
   shinycms:
     feature_flags:
       shop: Shop
+    models:
+      names: 
+        shiny_shop_template: template
 
     capability:
       category:
@@ -52,3 +55,56 @@ en:
           success: Product restored
         archive:
           success: Product archived
+
+      sections:
+        breadcrumb: Shop
+        new:
+          title: Add new section
+        edit:
+          title: Edit section
+        create:
+          title: Add new section
+          success: New section added
+          failure: Failed to add new section
+        update:
+          title: Edit section
+          success: Section details updated
+          failure: Failed to update section details
+        destroy:
+          success: Section deleted
+          failure: Failed to section page
+
+      templates:
+        breadcrumb: Shop
+        index:
+          title: List templates
+          search: Search templates
+        search:
+          title: List templates
+        new:
+          title: Add template
+        create:
+          title: Add template
+          success: Template added
+          failure: Could not add template
+        edit:
+          title: Edit template
+          new_element_name: New element name
+          new_element_content: Default content
+        update:
+          title: Edit template
+          success: Template updated
+          failure: Could not update template
+        destroy:
+          success: Template deleted
+          failure: Failed to delete template
+        elements:
+          create:
+            success: New element added
+          destroy:
+            success: Element deleted
+
+  models:
+    shiny_shop:
+      template:
+        template_file_must_exist: 'Template file must be in themes/{theme-name}/shiny_shop/products'

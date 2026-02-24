@@ -11,7 +11,7 @@
 # less error prone than running all of your migrations from scratch. Old migrations may fail
 # to apply correctly if those migrations use external dependencies or application code.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_07_134039) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_02_133022) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_stat_statements"
@@ -469,6 +469,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_07_134039) do
     t.index ["user_id"], name: "index_shiny_profiles_profiles_on_user_id", unique: true
   end
 
+  create_table "shiny_shop_product_elements", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "content"
+    t.string "element_type", default: "short_text", null: false
+    t.integer "position"
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "deleted_at", precision: nil
+    t.index ["deleted_at"], name: "index_shiny_shop_product_elements_on_deleted_at"
+    t.index ["product_id"], name: "index_shiny_shop_product_elements_on_product_id"
+  end
+
   create_table "shiny_shop_products", force: :cascade do |t|
     t.string "internal_name", null: false
     t.string "public_name"
@@ -482,9 +495,56 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_07_134039) do
     t.integer "price"
     t.boolean "active", default: false, null: false
     t.string "stripe_price_id"
-    t.index ["slug"], name: "index_shiny_shop_products_on_slug", unique: true
+    t.boolean "show_in_menus", default: true, null: false
+    t.bigint "section_id"
+    t.bigint "template_id"
+    t.datetime "deleted_at", precision: nil
+    t.index ["deleted_at"], name: "index_shiny_shop_products_on_deleted_at"
+    t.index ["section_id", "slug"], name: "index_products_on_section_id_and_slug", unique: true
+    t.index ["section_id"], name: "index_shiny_shop_products_on_section_id"
     t.index ["stripe_id"], name: "index_shiny_shop_products_on_stripe_id", unique: true
     t.index ["stripe_price_id"], name: "index_shiny_shop_products_on_stripe_price_id", unique: true
+    t.index ["template_id"], name: "index_shiny_shop_products_on_template_id"
+  end
+
+  create_table "shiny_shop_sections", force: :cascade do |t|
+    t.string "internal_name", null: false
+    t.string "public_name"
+    t.string "slug", null: false
+    t.text "description"
+    t.integer "position"
+    t.boolean "show_in_menus", default: true, null: false
+    t.boolean "show_on_site", default: true, null: false
+    t.bigint "section_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "deleted_at", precision: nil
+    t.index ["deleted_at"], name: "index_shiny_shop_sections_on_deleted_at"
+    t.index ["section_id", "slug"], name: "index_shop_sections_on_section_id_and_slug", unique: true
+    t.index ["section_id"], name: "index_shiny_shop_sections_on_section_id"
+  end
+
+  create_table "shiny_shop_template_elements", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "content"
+    t.string "element_type", default: "short_text", null: false
+    t.integer "position"
+    t.bigint "template_id", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "deleted_at", precision: nil
+    t.index ["deleted_at"], name: "index_shiny_shop_template_elements_on_deleted_at"
+    t.index ["template_id"], name: "index_shiny_shop_template_elements_on_template_id"
+  end
+
+  create_table "shiny_shop_templates", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "filename", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "deleted_at", precision: nil
+    t.index ["deleted_at"], name: "index_shiny_shop_templates_on_deleted_at"
   end
 
   create_table "shinycms_anonymous_authors", force: :cascade do |t|
@@ -746,6 +806,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_07_134039) do
   add_foreign_key "shiny_pages_template_elements", "shiny_pages_templates", column: "template_id"
   add_foreign_key "shiny_profiles_links", "shiny_profiles_profiles", column: "profile_id"
   add_foreign_key "shiny_profiles_profiles", "shinycms_users", column: "user_id"
+  add_foreign_key "shiny_shop_product_elements", "shiny_shop_products", column: "product_id"
+  add_foreign_key "shiny_shop_products", "shiny_shop_sections", column: "section_id"
+  add_foreign_key "shiny_shop_products", "shiny_shop_templates", column: "template_id"
+  add_foreign_key "shiny_shop_sections", "shiny_shop_sections", column: "section_id"
+  add_foreign_key "shiny_shop_template_elements", "shiny_shop_templates", column: "template_id"
   add_foreign_key "shinycms_capabilities", "shinycms_capability_categories", column: "category_id"
   add_foreign_key "shinycms_comments", "shinycms_comments", column: "parent_id"
   add_foreign_key "shinycms_comments", "shinycms_discussions", column: "discussion_id"
