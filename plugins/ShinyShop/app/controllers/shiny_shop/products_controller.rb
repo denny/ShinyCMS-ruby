@@ -37,8 +37,6 @@ module ShinyShop
 
     def show
       @product = find_product
-      # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
-
       if just_purchased?
         confirm_order
       else
@@ -57,7 +55,7 @@ module ShinyShop
         break unless section
       end
 
-      # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
+      # Add 'nice' 404 with popular products or something, and a flash 'not found' message
       section_relation = section_scope.readonly.visible
       error ? section_relation.find_by!( slug: path_parts.last ) : section_relation.find_by( slug: path_parts.last )
     end
@@ -72,7 +70,7 @@ module ShinyShop
       end
 
       products.readonly.visible.find_by!( slug: @path_parts.last )
-      # TODO: 'Nice' 404 with popular products or something, and a flash 'not found' message
+      # Add 'nice' 404 with popular products or something, and a flash 'not found' message
     end
 
     def just_purchased?
@@ -85,7 +83,7 @@ module ShinyShop
 
       flash[ :notice ] = "Thank you for your order, #{session.customer_details.name}"
 
-      # TODO: deal with path stuff
+      # Need to deal with path stuff here
       redirect_to shiny_shop.product_or_section_path( @product.slug )
     end
 
