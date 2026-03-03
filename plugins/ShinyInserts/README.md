@@ -31,7 +31,7 @@ Please read the Code of Conduct as well.
 
 ## Copyright and Licensing
 
-ShinyCMS is copyright 2009-2025 Denny de la Haye https://denny.me
+ShinyCMS is copyright 2009-2026 Denny de la Haye https://denny.me
 
 This ShinyCMS plugin is free software; you can redistribute it and/or modify it
 under the terms of the GPL (version 2 or later). You should have copies of both

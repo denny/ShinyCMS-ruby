@@ -2,7 +2,7 @@
 
 # ShinyLists plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.license     = 'GPL'
 
   spec.authors     = [ 'Denny de la Haye' ]
-  spec.email       = [ '2025@denny.me' ]
+  spec.email       = [ '2026@denny.me' ]
   spec.homepage    = 'https://shinycms.org'
 
   spec.summary     = 'ShinyLists plugin for ShinyCMS'
@@ -50,7 +50,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'pagy', '>= 9.3.4', '< 43.2.0'
 
   # HTML & XML parser
-  spec.add_dependency 'nokogiri', '>= 1.18.8'
+  spec.add_dependency 'nokogiri', '>= 1.9.1'
 
   # Testing
   spec.add_development_dependency 'factory_bot_rails'

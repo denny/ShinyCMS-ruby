@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -12,7 +12,15 @@ module ShinyCMS
     include ShinyCMS::MainSiteControllerBase
 
     def not_found
-      render status: :not_found
+      respond_to do |format|
+        format.html do
+          @resource_type = request.env[ 'action_dispatch.exception' ]&.model&.demodulize || 'Page'
+          render status: :not_found
+        end
+        format.any do
+          head :not_found
+        end
+      end
     end
 
     def internal_server_error

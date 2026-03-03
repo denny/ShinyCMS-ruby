@@ -13,8 +13,8 @@ ruby file: '.ruby-version'
 
 source 'https://rubygems.org'
 source 'https://rubygems.org' do
-  # Rails 8.0
-  gem 'rails', '~> 8.0.4'
+  # Rails 8.1
+  gem 'rails', '~> 8.1.2'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/load'
@@ -35,7 +35,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.6.2'
 
   # Rack
-  gem 'rack', '~> 3.2.4'
+  gem 'rack', '~> 3.2.5'
   # Rack Session
   gem 'rack-session', '~> 2.1.1'
 

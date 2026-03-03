@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -25,13 +25,13 @@ module ShinyCMS
         @resource.upvote_by @voter
       end
 
-      redirect_back fallback_location: @resource.path
+      redirect_back_or_to @resource.path
     end
 
     def destroy
       @resource.unvote_by @voter
 
-      redirect_back fallback_location: @resource.path
+      redirect_back_or_to @resource.path
     end
 
     private

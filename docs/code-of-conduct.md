@@ -55,7 +55,7 @@ a project may be further defined and clarified by project maintainers.
 ## Reporting
 
 Instances of abusive, harassing, or otherwise unacceptable behaviour may be
-reported by contacting the project lead at 2025@denny.me - all complaints will
+reported by contacting the project lead at 2026@denny.me - all complaints will
 be reviewed and investigated and will result in a response that is deemed
 necessary and appropriate to the circumstances. The project lead is obligated
 to maintain confidentiality with regard to the reporter of an incident.

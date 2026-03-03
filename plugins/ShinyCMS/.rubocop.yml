@@ -49,6 +49,10 @@ Bundler/GemVersion:
   Exclude:
     - ../../Gemfile
 
+# I'm going to allow this, at least until I find a neater way of doing the same thing
+Rails/Env:
+  Enabled: false
+
 # These are mostly expected to contain long blocks due to their DSLs
 Metrics/BlockLength:
   Exclude:
@@ -123,6 +127,11 @@ Performance/Casecmp:
 Performance/MapCompact:
   Enabled: false
 
+# Bit of a disagreement between the RuboCop and CodeFactor parsers trying to do this in the file itself
+Rails/Exit:
+  Exclude:
+    - app/models/shinycms/plugins.rb
+
 # This is the (hopefully helpful) 'how to create an admin account' message displayed after seed data loads
 Rails/Output:
   Exclude:
@@ -171,6 +180,7 @@ Rails/RenderInline:
   Exclude:
     - ../../app/controllers/application_controller.rb
     - ../ShinyPages/app/controllers/shiny_pages/pages_controller.rb
+    - ../ShinyShop/app/controllers/shiny_shop/products_controller.rb
 
 # Configurable user model
 Rails/ReflectionClassName:

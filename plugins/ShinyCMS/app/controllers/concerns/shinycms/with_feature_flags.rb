@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -21,7 +21,7 @@ module ShinyCMS
           feature_name: I18n.t( "shinycms.feature_flags.#{feature_flag_name}" )
         )
 
-        # redirect_back( fallback_location: main_app.root_path )
+        # redirect_back_or_to main_app.root_path
         redirect_to main_app.root_path
       end
     end

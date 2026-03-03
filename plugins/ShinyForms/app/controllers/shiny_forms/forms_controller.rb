@@ -2,7 +2,7 @@
 
 # ShinyForms plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -66,7 +66,7 @@ module ShinyForms
       if @form.redirect_to.present?
         redirect_to @form.redirect_to, notice: notice
       else
-        redirect_back fallback_location: main_app.root_path, notice: notice
+        redirect_back_or_to main_app.root_path, notice: notice
       end
     end
 
