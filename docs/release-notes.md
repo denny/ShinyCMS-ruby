@@ -5,6 +5,15 @@
 This file contains information about changes (particularly breaking changes) between releases - with the most recent release first.
 
 
+### 2026-03-03  26.03   March 2026: The 'Better Late Than Never' release
+
+GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v26.03
+
+Finally merged the ongoing progress in the Shop plugin branch, as it currently has 100% test coverage again. Still plenty of things to do before it's a useful feature, but it's nice to get the progress pulled into main again, so people can fiddle with it there if they want to take a look. As ever, any and all feedback will be gratefully received!
+
+In other, less exciting news this month, there were minor updates for acorn and nokogiri.
+
+
 ### 2026-02-17  26.02   February 2026: The 'So Close And Yet So Far' release
 
 GitHub tag: https://github.com/denny/ShinyCMS-ruby/releases/tag/v26.02
