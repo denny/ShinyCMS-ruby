@@ -12,21 +12,5 @@ module ShinyShop
     def shop_top_level_menu_items
       ShinyShop::Product.readonly.top_level_menu_items
     end
-
-    def find_top_level_products( slug )
-      top_level_products&.find_by( slug: slug )
-    end
-
-    def shop_find_top_level_section( slug )
-      top_level_sections&.find_by( slug: slug )
-    end
-
-    def top_level_products
-      ShinyShop::Product.readonly.top_level_products
-    end
-
-    def shop_top_level_sections
-      ShinyShop::Section.readonly.top_level_shop_sections
-    end
   end
 end
