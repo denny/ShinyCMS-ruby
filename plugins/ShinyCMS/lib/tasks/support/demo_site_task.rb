@@ -144,7 +144,7 @@ module ShinyCMS
       ActiveStorage::Attachment.all.each do |attached|
         name = attached.filename.to_s
         io   = File.open( Rails.root.join( 'public', 'images', name ) )
-        attached.record.image.attach io: , filename: name
+        attached.record.image.attach io: io, filename: name
       end
     end
   end
