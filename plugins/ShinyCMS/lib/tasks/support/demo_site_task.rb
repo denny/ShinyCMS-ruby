@@ -143,7 +143,7 @@ module ShinyCMS
     def load_demo_site_extras
       ActiveStorage::Attachment.all.each do |attached|
         name = attached.filename.to_s
-        file = Rails.root.join( 'public', 'images', name ).open
+        file = Rails.public_path( 'public', 'images', name ).open
         attached.record.image.attach io: file, filename: name
       end
     end
