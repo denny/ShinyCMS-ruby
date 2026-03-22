@@ -58,7 +58,7 @@ module ShinyShop
     def update
       authorize @template
 
-      if sort_elements && @template.update( strong_params )
+      if sort_elements && @template.update!( strong_params )
         redirect_to shiny_shop.edit_template_path( @template ), notice: t( '.success' )
       else
         flash.now[ :alert ] = t( '.failure' )
