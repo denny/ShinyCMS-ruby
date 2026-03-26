@@ -15,4 +15,5 @@ return if bugsnag_api_key.blank?
 Bugsnag.configure do |config|
   config.api_key = bugsnag_api_key
   config.discard_classes << 'ActiveRecord::RecordNotFound'
+  config.discard_classes << 'ActionController::InvalidAuthenticityToken'
 end
