@@ -69,11 +69,10 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         product = create( :product, active: true )
 
         get shiny_shop.product_or_section_path( product.slug )
-
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title product.name
 
-        expect( response.body ).to have_css 'h2', text: product.name
+        expect( response.body ).to have_css 'h1', text: product.name
       end
 
       it 'displays products in different sections with same slug' do
@@ -88,14 +87,14 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title product1.name
 
-        expect( response.body ).to have_css 'h2', text: product1.name
+        expect( response.body ).to have_css 'h1', text: product1.name
 
         get shiny_shop.product_or_section_path( [ section2.slug, product2.slug ] )
 
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title product2.name
 
-        expect( response.body ).to have_css 'h2', text: product2.name
+        expect( response.body ).to have_css 'h1', text: product2.name
       end
 
       it 'displays product in deeply-nested sections' do
@@ -109,7 +108,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         expect( response      ).to have_http_status :ok
         expect( response.body ).to have_title product1.name
 
-        expect( response.body ).to have_css 'h2', text: product1.name
+        expect( response.body ).to have_css 'h1', text: product1.name
       end
 
       it 'thanks user after successful checkout' do
