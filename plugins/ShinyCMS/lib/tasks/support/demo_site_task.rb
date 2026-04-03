@@ -139,5 +139,13 @@ module ShinyCMS
         COMMIT;
       SQL
     end
+
+    def load_demo_site_extras
+      ActiveStorage::Attachment.find_each do |attached|
+        name = attached.filename.to_s
+        file = Rails.public_path( 'public', 'images', name ).open
+        attached.record.image.attach io: file, filename: name
+      end
+    end
   end
 end

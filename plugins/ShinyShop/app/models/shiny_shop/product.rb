@@ -13,6 +13,7 @@ module ShinyShop
     include ShinyCMS::HasPublicName
     include ShinyCMS::HasReadableName
     include ShinyCMS::HasSlug
+    include ShinyCMS::HasTemplate
 
     include ShinyCMS::ProvidesDemoSiteData
 
