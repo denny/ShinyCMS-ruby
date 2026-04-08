@@ -9,8 +9,12 @@
                   <h3><%= subheading %></h3>
                 </header>
 
-                <%#= sanitize html_content %>
-                <%= simple_format text_content %>
+                <%= sanitize html_content %>
+
+                <h1>
+                <%= html_content %>
+                </h1>
+                <%#= simple_format text_content %>
               </section>
 
             </div>
