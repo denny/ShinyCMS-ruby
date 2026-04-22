@@ -273,8 +273,8 @@ GEM
       activerecord (>= 6.1, < 8.2)
       activesupport (>= 6.1, < 8.2)
     acts_as_votable (0.14.0)
-    addressable (2.8.7)
-      public_suffix (>= 2.0.2, < 7.0)
+    addressable (2.9.0)
+      public_suffix (>= 2.0.2, < 8.0)
     ahoy_email (1.1.1)
       actionmailer (>= 5)
       addressable (>= 2.3.2)
@@ -605,17 +605,17 @@ GEM
     psych (5.3.1)
       date
       stringio
-    public_suffix (6.0.2)
+    public_suffix (7.0.5)
     puma (7.1.0)
       nio4r (~> 2.0)
     pundit (2.5.2)
       activesupport (>= 3.0.0)
     pwned (2.4.1)
     racc (1.8.1)
-    rack (3.2.5)
+    rack (3.2.6)
     rack-attack (6.8.0)
       rack (>= 1.0, < 4)
-    rack-session (2.1.1)
+    rack-session (2.1.2)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
     rack-test (2.2.0)
@@ -923,7 +923,7 @@ DEPENDENCIES
   parallel_tests!
   pg (~> 1.6.2)!
   puma (~> 7.1)!
-  rack (~> 3.2.5)!
+  rack (~> 3.2.6)!
   rack-attack!
   rack-session (~> 2.1.1)!
   rails (~> 8.1.2)!
