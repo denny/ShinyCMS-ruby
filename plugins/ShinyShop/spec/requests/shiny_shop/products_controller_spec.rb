@@ -75,6 +75,19 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
         expect( response.body ).to have_css 'h1', text: product.name
       end
 
+      it 'displays missing template error' do
+        product = create( :product, active: true )
+
+        # rubocop:disable Rails/SkipsModelValidations
+        product.template.update_column( :filename, 'no-such-file' )
+        # rubocop:enable Rails/SkipsModelValidations
+
+        get shiny_shop.product_or_section_path( product.slug )
+
+        expect( response      ).to have_http_status :failed_dependency
+        expect( response.body ).to include I18n.t( 'shiny_shop.products.template_file_missing' )
+      end
+
       it 'displays products in different sections with same slug' do
         slug = Faker::Books::CultureSeries.unique.culture_ship.parameterize
         section1 = create :shop_section
@@ -151,7 +164,7 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
     end
 
     describe 'GET /shop/non-existent-section/existing-slug', :production_error_responses do
-      it 'returns a 404 if a product is requested in nested non-existent sections' do
+      it 'returns a 404 if a product is requested which is nested in non-existent sections' do
         prod1 = create :product_in_section
 
         get "/shop/non-existent-slug/#{prod1.slug}"
