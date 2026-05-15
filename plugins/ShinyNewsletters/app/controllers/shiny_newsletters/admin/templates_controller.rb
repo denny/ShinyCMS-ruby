@@ -90,7 +90,7 @@ module ShinyNewsletters
     def strong_params
       return if params[ :template ].blank?
 
-      params.expect( template: %i[ name description filename elements_attributes: {} ] )
+      params.expect( template: [ :name, :description, :filename, { elements_attributes: {} } ] )
     end
 
     def sort_elements

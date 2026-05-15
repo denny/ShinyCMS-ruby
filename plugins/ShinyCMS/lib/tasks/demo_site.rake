@@ -34,10 +34,11 @@ namespace :shinycms do
 
       load_demo_site_data_file
 
+      load_demo_site_extras
+
       ShinyCMS::FeatureFlag.enable :user_login
 
-      puts 'Loaded demo site data and created admin account.'
-      puts "You can log in as '#{@shiny_admin.username}' now."
+      puts "Loaded demo site data and created admin account. You can log in as '#{@shiny_admin.username}' now."
       # :nocov:
     end
 

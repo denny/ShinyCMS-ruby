@@ -40,11 +40,20 @@ module ShinyShop
       if just_purchased?
         confirm_order
       else
-        render 'show'
+        show_product
       end
     end
 
     private
+
+    # Render the product with the appropriate template
+    def show_product
+      if @product.template.file_exists?
+        render template: "shiny_shop/products/#{@product.template.filename}", locals: @product.elements_hash
+      else
+        render status: :failed_dependency, inline: I18n.t( 'shiny_shop.products.template_file_missing' )
+      end
+    end
 
     def find_section( path_parts, error: true )
       section_scope = Section.top_level_sections

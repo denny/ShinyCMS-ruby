@@ -20,6 +20,7 @@ en:
 
   shiny_shop:
     products:
+      template_file_missing: 'Unable to display product; its template file is missing.'
       index:
         title: Products
 
