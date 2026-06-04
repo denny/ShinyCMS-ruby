@@ -14,7 +14,7 @@ module ShinyNews
     before_action :check_feature_flags
 
     def index
-      @pagy, @posts = pagy_countless( Post.readonly.recent.with_discussions )
+      @pagy, @posts = pagy( :countless, Post.readonly.recent.with_discussions )
     end
 
     def month
