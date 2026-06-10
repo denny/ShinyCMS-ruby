@@ -96,15 +96,6 @@ module ShinyShop
       redirect_to shiny_shop.product_or_section_path( @product.slug )
     end
 
-    # Render the product with the appropriate template
-    # def show_product
-    #  if @product.template.file_exists?
-    #    render template: "shiny_shop/products/#{@product.template.filename}", locals: @product.elements_hash
-    #  else
-    #    render status: :failed_dependency, inline: I18n.t( 'shiny_shop.products.template_file_missing' )
-    #  end
-    # end
-
     def retrieve_stripe_session
       Stripe::Checkout::Session.retrieve( strong_params[ :session_id ] )
     end
