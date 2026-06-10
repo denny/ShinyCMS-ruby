@@ -18,7 +18,7 @@ module ShinyCMS
 
       helper Rails.application.routes.url_helpers
 
-      helper_method :pagy_url_for, :recaptcha_v2_site_key, :recaptcha_v3_site_key, :recaptcha_checkbox_site_key
+      helper_method :recaptcha_v2_site_key, :recaptcha_v3_site_key, :recaptcha_checkbox_site_key
 
       before_action :store_user_location!, if: :storable_location?
 
@@ -45,12 +45,12 @@ module ShinyCMS
       end
 
       # Change pager link format from admin/action?page=3&items=12 to admin/action/page/3/items/12
-      # rubocop:disable Lint/UnusedMethodArgument
-      def pagy_url_for( pagy, page, absolute: false, html_escaped: false )
-        params = request.query_parameters.merge( page: page, items: pagy.options[:limit], only_path: true )
-        url_for( params )
-      end
-      # rubocop:enable Lint/UnusedMethodArgument
+      # DJDrubocop:disable Lint/UnusedMethodArgument
+      # def pagy_url_for( pagy, page, absolute: false, html_escaped: false )
+      #  params = request.query_parameters.merge( page: page, items: pagy.options[:limit], only_path: true )
+      #  url_for( params )
+      # end
+      # DJDrubocop:enable Lint/UnusedMethodArgument
 
       def recaptcha_v3_site_key
         ENV[ 'RECAPTCHA_V3_SITE_KEY' ]

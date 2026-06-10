@@ -38,6 +38,7 @@ Pagy::OPTIONS.freeze
 #
 # Rails.application.config.assets.paths << Pagy::ROOT.join(':javascripts')
 # Rails.application.config.assets.paths << Pagy::ROOT.join(':stylesheets')
+Rails.application.config.assets.paths << Pagy::ROOT.join( 'javascripts' )
 
 ############# Overriding Pagy::I18n Lookup #################################################
 # See https://ddnexus.github.io/pagy/resources/i18n/ for details.
