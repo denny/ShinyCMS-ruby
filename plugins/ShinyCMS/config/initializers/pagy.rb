@@ -40,6 +40,8 @@ Pagy::OPTIONS.freeze
 # Rails.application.config.assets.paths << Pagy::ROOT.join(':stylesheets')
 Rails.application.config.assets.paths << Pagy::ROOT.join( 'javascripts' )
 
+require Pagy::ROOT.join( 'apps/enable_rails_page_segment.rb' )
+
 ############# Overriding Pagy::I18n Lookup #################################################
 # See https://ddnexus.github.io/pagy/resources/i18n/ for details.
 # Example for Rails:
