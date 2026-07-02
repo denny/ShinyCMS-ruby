@@ -2,7 +2,7 @@
 
 # ShinyShop plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for shop admin features
 RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
   before do
-    admin = create :shop_admin
+    admin = create :product_admin
     sign_in admin
   end
 
@@ -53,11 +53,14 @@ RSpec.describe ShinyShop::Admin::ProductsController, type: :request do
     it 'adds a new product when the form is submitted' do
       stripe_price = Stripe::Price.construct_from( id: 123, product: 'price_MOCK' )
 
+      template = create :product_template
+
       allow( Stripe::Price ).to receive( :create ).and_return( stripe_price )
 
       post shiny_shop.products_path, params: {
         product: {
           internal_name: Faker::Books::CultureSeries.unique.culture_ship,
+          template_id:   template.id,
           price:         1234  # 1234p === $12.34
         }
       }

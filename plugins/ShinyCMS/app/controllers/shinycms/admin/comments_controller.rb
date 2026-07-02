@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -49,37 +49,37 @@ module ShinyCMS
     def show
       authorize @comment
       @comment.show
-      redirect_back fallback_location: @comment.anchored_path
+      redirect_back_or_to @comment.anchored_path
     end
 
     def hide
       authorize @comment
       @comment.hide
-      redirect_back fallback_location: @comment.anchored_path
+      redirect_back_or_to @comment.anchored_path
     end
 
     def lock
       authorize @comment
       @comment.lock
-      redirect_back fallback_location: @comment.anchored_path
+      redirect_back_or_to @comment.anchored_path
     end
 
     def unlock
       authorize @comment
       @comment.unlock
-      redirect_back fallback_location: @comment.anchored_path
+      redirect_back_or_to @comment.anchored_path
     end
 
     def destroy
       authorize @comment
       @comment.destroy!
-      redirect_back fallback_location: @comment.anchored_path
+      redirect_back_or_to @comment.anchored_path
     end
 
     def mark_as_spam
       authorize @comment
       @comment.mark_as_spam
-      redirect_back fallback_location: @comment.anchored_path
+      redirect_back_or_to @comment.anchored_path
     end
 
     private

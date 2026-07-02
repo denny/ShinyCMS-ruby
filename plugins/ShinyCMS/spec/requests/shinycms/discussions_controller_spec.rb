@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -84,7 +84,7 @@ RSpec.describe ShinyCMS::DiscussionsController, type: :request do
 
       expect( response      ).to have_http_status :not_found
       expect( response.body ).to have_css 'h2', text: I18n.t(
-        'shinycms.errors.not_found.title', resource_type: 'Page'
+        'shinycms.errors.not_found.title', resource_type: 'Discussion'
       )
     end
   end

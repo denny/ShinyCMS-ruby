@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -34,10 +34,11 @@ namespace :shinycms do
 
       load_demo_site_data_file
 
+      load_demo_site_extras
+
       ShinyCMS::FeatureFlag.enable :user_login
 
-      puts 'Loaded demo site data and created admin account.'
-      puts "You can log in as '#{@shiny_admin.username}' now."
+      puts "Loaded demo site data and created admin account. You can log in as '#{@shiny_admin.username}' now."
       # :nocov:
     end
 

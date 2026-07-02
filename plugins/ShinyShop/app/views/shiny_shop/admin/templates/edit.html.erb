@@ -1,0 +1,50 @@
+<%= form_for @template, url: shiny_shop.template_path( @template ), method: :put do |f| %>
+  <p>
+    <%= f.label :name %>
+    <br><%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <br><%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :filename, t( 'shinycms.admin.template_file' ) %>
+    <br><%= f.select :filename, ShinyShop::Template.available_templates, include_blank: '' %>
+  </p>
+
+  <p>
+    <label>Change element order
+      <br><input type="checkbox" onChange="toggleShowHandles( this.checked );">
+    </label>
+  </p>
+
+  <%= hidden_field_tag :sort_order, '', id: :sort_order %>
+  <table class="elements">
+    <tbody id="sortable">
+    <%= f.fields_for :elements do |fields| %>
+      <% this = @template.elements[fields.index] %>
+      <%= render partial: 'element', locals: { fields: fields, id: this.id, name: this.name, element_type: this.element_type, content: :content, image: this.image } %>
+    <% end %>
+    </tbody>
+  </table>
+
+  <p class="top-margin">
+    <%= submit_tag t( 'update' ) %>
+  </p>
+<% end %>
+
+<%= form_for :new_element, name: 'new_element', url: shiny_shop.template_elements_path( @template ), method: :post do |f2| %>
+  <fieldset>
+    <legend>
+      Add an element
+    </legend>
+    <p>
+      <%= f2.text_field :name, placeholder: t( '.new_element_name' ), class: 'textshort' %>
+      <%= f2.select :element_type, element_types %>
+      <br><%= f2.text_field :content, placeholder: t( '.new_element_content' ), class: 'textlong' %>
+    </p>
+    <p>
+      <%= f2.submit t( 'add' ) %>
+    </p>
+  </fieldset>
+<% end %>

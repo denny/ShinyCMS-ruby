@@ -2,7 +2,7 @@
 
 # ShinyShop plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -16,3 +16,5 @@ seeder = ShinyCMS::Seeder.new
 seeder.seed_feature_flag( name: :shop, description: 'Shop (ShinyShop plugin)' )
 
 seeder.seed_standard_admin_capabilities( category: :products )
+seeder.seed_standard_admin_capabilities( category: :product_sections  )
+seeder.seed_standard_admin_capabilities( category: :product_templates )

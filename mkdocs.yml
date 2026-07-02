@@ -1,6 +1,6 @@
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -10,7 +10,7 @@ site_name:        ShinyCMS
 site_url:         http://docs.shinycms.org/
 site_description: Documentation for users and developers of ShinyCMS (Ruby version)
 site_author:      Denny de la Haye
-copyright:        ShinyCMS is copyright 2009-2025 Denny de la Haye (denny.me)
+copyright:        ShinyCMS is copyright 2009-2026 Denny de la Haye (denny.me)
 
 repo_url: https://github.com/denny/ShinyCMS-ruby/
 edit_uri: ''

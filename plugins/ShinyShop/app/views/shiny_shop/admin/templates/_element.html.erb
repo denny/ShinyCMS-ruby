@@ -1,0 +1,22 @@
+<tr id="sorted_<%= id %>">
+  <td class="handle" hidden><i class="cil-elevator"></i></td>
+  <td>
+  <br><%= fields.label content, name.humanize %>
+  <%= fields.select :element_type, element_types %><br>
+  <% if element_type == 'short_text' %>
+    <%= fields.text_field content %>
+  <% elsif element_type == 'long_text' %>
+    <%= fields.text_area content %>
+  <% elsif element_type == 'html' %>
+    <%= fields.rich_text_area content %>
+  <% elsif element_type == 'image' %>
+    <% if image.attached? %>
+    <%= image_tag url_for( image.variant( resize_to_limit: [ nil, 150 ] ) ), class: 'admin-image-thumbnail' %>
+    &nbsp;(<%= image.filename %>)
+    <% end %>
+    <%= fields.file_field 'image', accept: 'image/png,image/gif,image/jpeg' %>
+  <% else %>
+    [ <%= t( 'shinycms.admin.elements.unknown_type' ) %> ]
+  <% end %>
+  </td>
+</tr>

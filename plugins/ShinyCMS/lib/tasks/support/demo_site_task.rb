@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -138,6 +138,14 @@ module ShinyCMS
         SELECT setval( '#{table_name}_id_seq', COALESCE( ( SELECT MAX(id)+1 FROM #{table_name} ), 1 ), false );
         COMMIT;
       SQL
+    end
+
+    def load_demo_site_extras
+      ActiveStorage::Attachment.find_each do |attached|
+        name = attached.filename.to_s
+        file = Rails.public_path( 'public', 'images', name ).open
+        attached.record.image.attach io: file, filename: name
+      end
     end
   end
 end

@@ -2,7 +2,7 @@
 
 # ShinyNewsletters plugin for ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -11,7 +11,7 @@ require 'rails_helper'
 # Tests for newsletter edition admin features
 
 RSpec.describe ShinyNewsletters::Admin::EditionsController, type: :request do
-  i18n_root = 'shiny_newsletters.admin.editions'
+  let( :i18n_root ) { 'shiny_newsletters.admin.editions' }
 
   before do
     admin = create :newsletter_admin

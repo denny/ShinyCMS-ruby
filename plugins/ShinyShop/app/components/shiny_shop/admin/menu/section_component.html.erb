@@ -1,4 +1,6 @@
-<% return unless @current_user.can? :list, :products %>
+<% return unless @current_user.can?( :list, :products          ) ||
+                 @current_user.can?( :list, :product_sections  ) ||
+                 @current_user.can?( :list, :product_templates ) %>
 
 <%= component 'admin/menu/section',
     text: t( 'shiny_shop.admin.products.menu' ), icon: 'rss' do %>
@@ -9,5 +11,17 @@
   <%= component 'admin/menu/item', link: shiny_shop.new_product_path,
       text: t( 'shiny_shop.admin.products.new.title' ), icon: 'pencil',
       if: @current_user.can?( :add, :products ) %>
+
+  <%= component 'admin/menu/item', link: shiny_shop.new_section_path,
+      text: t( 'shiny_shop.admin.sections.new.title' ), icon: 'playlist-add',
+      if: @current_user.can?( :add, :product_sections ) %>
+
+  <%= component 'admin/menu/item', link: shiny_shop.templates_path,
+      text: t( 'shiny_shop.admin.templates.index.title' ), icon: 'library',
+      if: @current_user.can?( :list, :product_templates ) %>
+
+  <%= component 'admin/menu/item', link: shiny_shop.new_template_path,
+      text: t( 'shiny_shop.admin.templates.new.title' ), icon: 'library-add',
+      if: @current_user.can?( :add, :product_templates ) %>
 
 <% end %>

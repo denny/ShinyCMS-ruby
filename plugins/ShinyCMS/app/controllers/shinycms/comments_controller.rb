@@ -2,7 +2,7 @@
 
 # ShinyCMS ~ https://shinycms.org
 #
-# Copyright 2009-2025 Denny de la Haye ~ https://denny.me
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
@@ -29,7 +29,7 @@ module ShinyCMS
 
       if new_comment_passes_checks_and_saves?
         flash[ :notice ] = t( '.success' ) unless @new_comment.spam?
-        redirect_back fallback_location: discussion_path( @discussion )
+        redirect_back_or_to discussion_path( @discussion )
       else
         flash.now[ :alert ] = t( '.failure' )
         render action: :new

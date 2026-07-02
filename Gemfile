@@ -13,8 +13,8 @@ ruby file: '.ruby-version'
 
 source 'https://rubygems.org'
 source 'https://rubygems.org' do
-  # Rails 8.0
-  gem 'rails', '~> 8.0.4'
+  # Rails 8.1
+  gem 'rails', '~> 8.1.2'
 
   # Load ENV from .env(.*) files
   gem 'dotenv-rails', require: 'dotenv/load'
@@ -35,7 +35,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.6.2'
 
   # Rack
-  gem 'rack', '~> 3.2.3'
+  gem 'rack', '~> 3.2.6'
   # Rack Session
   gem 'rack-session', '~> 2.1.1'
 
@@ -77,7 +77,7 @@ source 'https://rubygems.org' do
 
     # Tools for working with translation strings
     # gem 'i18n-debug'
-    gem 'i18n-tasks', '~> 1.0.14'
+    gem 'i18n-tasks', '~> 1.1.2'
   end
 
   group :development do
