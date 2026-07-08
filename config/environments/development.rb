@@ -111,7 +111,7 @@ Rails.application.configure do
   # config.assets.debug = true
 
   # Annotate rendered view with file names
-  # config.action_view.annotate_rendered_view_with_filenames = true
+  config.action_view.annotate_rendered_view_with_filenames = true
 
   # Raise error when a before_action's only/except options reference missing actions
   # routes, locales, etc. This feature depends on the listen gem.
