@@ -8,7 +8,7 @@
 
 # CircleCI config, for https://circleci.com/gh/denny/ShinyCMS-ruby
 
-version: 2
+version: 2.1
 
 references:
   app: &app
