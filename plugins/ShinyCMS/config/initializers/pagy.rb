@@ -61,10 +61,10 @@ require Pagy::ROOT.join( 'apps/enable_rails_page_segment.rb' )
 class Pagy
   # Override Pagy URL construction to fix URLs with empty anchor fragments
   module LinkableOverride
-    def compose_url(absolute, _path, params, fragment)
-      params[:anchor]    = fragment if fragment && fragment != '' # This fixes scuffy output from Pagy
+    def compose_url( absolute, _path, params, fragment )
+      params[:anchor]    = fragment if fragment && fragment != '' # This fixes scruffy output from Pagy
       params[:only_path] = !absolute
-      @context.url_for(params)
+      @context.url_for( params )
     end
   end
 end
