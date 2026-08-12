@@ -13,9 +13,9 @@
 # See https://ddnexus.github.io/pagy/toolbox/configuration/options/ for details.
 # Examples:
 #
-# Pagy::OPTIONS[:limit]     = 10     # Limit the items per page
-# Pagy::OPTIONS[:max_limit] = 100    # The client is allowed to request a limit up to 100
-# Pagy::OPTIONS[:jsonapi]   = true   # Use JSON:API compliant URLs
+# Pagy::OPTIONS[:limit]   = 10     # Limit the items per page
+Pagy::OPTIONS[:max_limit] = 100    # The client is allowed to request a limit up to 100
+# Pagy::OPTIONS[:jsonapi] = true   # Use JSON:API compliant URLs
 
 Pagy::OPTIONS[ :size  ] = 10
 Pagy::OPTIONS[ :items ] = 10
