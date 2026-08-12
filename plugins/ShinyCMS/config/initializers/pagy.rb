@@ -57,3 +57,14 @@ require Pagy::ROOT.join( 'apps/enable_rails_page_segment.rb' )
 # See https://ddnexus.github.io/pagy/toolbox/paginators/calendar#localization for details.
 #
 # Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)
+
+class Pagy
+  # Override Pagy URL construction to fix URLs with empty anchor fragments
+  module LinkableOverride
+    def compose_url(absolute, _path, params, fragment)
+      params[:anchor]    = fragment if fragment && fragment != '' # This fixes scuffy output from Pagy
+      params[:only_path] = !absolute
+      @context.url_for(params)
+    end
+  end
+end
