@@ -86,11 +86,13 @@ module ShinyShop
     end
 
     def strong_params
+      # rubocop:disable Layout/LineLength
       params.expect(
-        product: %i[
-          internal_name public_name slug description section_id template_id position show_on_site active price
+        product: [
+          :internal_name, :public_name, :slug, :description, :section_id, :template_id, :position, :show_on_site, :active, :price, { elements_attributes: {} }
         ]
       )
+      # rubocop:enable Layout/LineLength
     end
   end
 end

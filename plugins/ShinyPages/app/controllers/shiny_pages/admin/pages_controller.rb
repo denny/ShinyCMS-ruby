@@ -95,8 +95,8 @@ module ShinyPages
 
       # rubocop:disable Layout/LineLength
       params.expect(
-        page: %i[
-          internal_name public_name slug description template_id section_id position show_on_site show_in_menus elements_attributes: {}
+        page: [
+          :internal_name, :public_name, :slug, :description, :template_id, :section_id, :position, :show_on_site, :show_in_menus, { elements_attributes: {} }
         ]
       )
       # rubocop:enable Layout/LineLength
