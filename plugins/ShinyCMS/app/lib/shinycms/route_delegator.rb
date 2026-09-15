@@ -25,9 +25,9 @@ module ShinyCMS
     end
 
     def respond_to_missing?( method )
-      # :nocov:
+      # simplecov:disable
       super || main_app_route_method?( method )
-      # :nocov:
+      # simplecov:enable
     end
 
     private

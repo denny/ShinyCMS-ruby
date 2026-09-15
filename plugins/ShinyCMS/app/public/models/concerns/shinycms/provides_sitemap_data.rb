@@ -19,9 +19,9 @@ module ShinyCMS
       # Default method to return something vaguely/generically appropriate. Models
       # can and should override this if they want to do something more interesting!
       def sitemap_items
-        # :nocov:
+        # simplecov:disable
         visible.recent_updates.readonly
-        # :nocov:
+        # simplecov:enable
       end
     end
   end

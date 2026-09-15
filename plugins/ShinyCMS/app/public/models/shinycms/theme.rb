@@ -79,9 +79,9 @@ module ShinyCMS
     def self.database_exists?
       ActiveRecord::Base.connection.active?
     rescue ActiveRecord::NoDatabaseError
-      # :nocov:
+      # simplecov:disable
       false
-      # :nocov:
+      # simplecov:enable
     end
   end
 end

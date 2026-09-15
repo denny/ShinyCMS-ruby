@@ -54,9 +54,9 @@ module ShinyCMS
     def check_for_pwnage( resource )
       return unless resource.try( :pwned? )
 
-      # :nocov:
+      # simplecov:disable
       set_flash_message! :alert, :warn_pwned
-      # :nocov:
+      # simplecov:enable
     end
   end
 end

@@ -53,7 +53,7 @@ module ShinyCMS
       return if @s3_config.blank?
 
       # TODO: mock this
-      # :nocov:
+      # simplecov:disable
       s3 = s3_resource
 
       write_file_to_local_disk "/tmp/#{name}.xml"
@@ -61,17 +61,17 @@ module ShinyCMS
       obj = s3.bucket( @s3_config.bucket ).object( "feeds/atom/#{name}.xml" )
       obj.upload_file( "/tmp/#{name}.xml" )
       obj.acl.put( { acl: 'public-read' } )
-      # :nocov:
+      # simplecov:enable
     end
 
     def s3_resource
-      # :nocov:
+      # simplecov:disable
       Aws::S3::Resource.new(
         secret_access_key: @s3_config.secret_access_key,
         access_key_id:     @s3_config.access_key_id,
         region:            @s3_config.region
       )
-      # :nocov:
+      # simplecov:enable
     end
 
     def add_post_to_feed( post )

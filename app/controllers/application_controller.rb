@@ -6,10 +6,10 @@
 #
 # ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
 
-# :nocov:
+# simplecov:disable
 class ApplicationController < ActionController::Base
   def index
     render inline: 'Hello world.'
   end
 end
-# :nocov:
+# simplecov:enable
