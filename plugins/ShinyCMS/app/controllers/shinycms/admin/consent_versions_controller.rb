@@ -80,7 +80,7 @@ module ShinyCMS
     end
 
     def stash_consent_version
-      @consent_version = ConsentVersion.find( params[:id] )
+      @consent_version = ConsentVersion.find( params.expect( :id ) )
     end
 
     def consent_version_params

@@ -97,9 +97,8 @@ module ShinyCMS
       # Keep this as a class name String comparison - do not compare class constants
       # (that will fail during development app reloading, because classes are redefined)
       # simplecov:disable
-      # rubocop:disable Style/ClassEqualityComparison
+      # rubocop:disable-next Style/ClassEqualityComparison
       is_stale_plugin_class = new_plugins.first.class.name == 'ShinyCMS::Plugin'
-      # rubocop:enable Style/ClassEqualityComparison
       return unless is_stale_plugin_class
 
       plugin_names = new_plugins.collect( &:name )

@@ -40,7 +40,7 @@ module ShinyCMS
       type = url_param_to_class_name( params[ :type ] )
       return head( :bad_request ) unless votable_model_names.include? type
 
-      @resource = type.constantize.find( params[ :id ] )
+      @resource = type.constantize.find( params.expect( :id ) )
       return head( :not_found ) if @resource.blank?
     end
 

@@ -28,7 +28,7 @@ module ShinyCMS
 
     def do_not_contact
       authorize EmailRecipient
-      recipient = EmailRecipient.find( params[ :id ] )
+      recipient = EmailRecipient.find( params.expect( :id ) )
       authorize recipient
 
       flash[ :notice ] = t( '.success' ) if recipient && DoNotContact.add( recipient.email )
@@ -38,7 +38,7 @@ module ShinyCMS
 
     def destroy
       authorize EmailRecipient
-      recipient = EmailRecipient.find( params[ :id ] )
+      recipient = EmailRecipient.find( params.expect( :id ) )
       authorize recipient
 
       flash[ :notice ] = t( '.success' ) if recipient.destroy

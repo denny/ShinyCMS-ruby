@@ -85,7 +85,7 @@ module ShinyCMS
     private
 
     def stash_comment
-      @comment = Comment.find( params[ :id ] )
+      @comment = Comment.find( params.expect( :id ) )
     end
 
     def update_params

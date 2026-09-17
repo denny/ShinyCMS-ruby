@@ -31,7 +31,7 @@ module ShinyCMS
     private
 
     def stash_discussion
-      @discussion = Discussion.readonly.find params[ :id ]
+      @discussion = Discussion.readonly.find params.expect( :id )
     end
 
     def check_feature_flags

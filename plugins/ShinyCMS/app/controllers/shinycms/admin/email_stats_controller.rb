@@ -53,11 +53,11 @@ module ShinyCMS
     end
 
     def user
-      User.find( params[ :user_id ] )
+      User.find( params.expect( :user_id ) )
     end
 
     def email_recipient
-      EmailRecipient.find( params[ :recipient_id ] )
+      EmailRecipient.find( params.expect( :recipient_id ) )
     end
   end
 end

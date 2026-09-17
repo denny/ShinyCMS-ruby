@@ -16,12 +16,11 @@ module ShinyCMS
     # Strong params config for Devise
     SIGN_UP_PARAMS = %i[ username email password password_confirmation ].freeze
     SIGN_IN_PARAMS = %i[ username email password password_confirmation login remember_me ].freeze
-    # rubocop:disable Layout/MultilineArrayLineBreaks
+    # rubocop:disable-next Layout/MultilineArrayLineBreaks
     ACCOUNT_UPDATE_PARAMS = %i[
       username email password password_confirmation current_password
       display_name display_email profile_pic bio website location postcode
     ].freeze
-    # rubocop:enable Layout/MultilineArrayLineBreaks
     private_constant :SIGN_UP_PARAMS
     private_constant :SIGN_IN_PARAMS
     private_constant :ACCOUNT_UPDATE_PARAMS
