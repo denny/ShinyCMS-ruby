@@ -132,12 +132,6 @@ Rails/Exit:
   Exclude:
     - app/models/shinycms/plugins.rb
 
-# Turn off special-case handling of hiding single lines - I'd rather have consistent code
-Style/DirectiveScope:
-  Exclude:
-    - 'app/controllers/shinycms/users/base_controller.rb'
-    - 'app/models/shinycms/plugins.rb'
-
 # This is the (hopefully helpful) 'how to create an admin account' message displayed after seed data loads
 Rails/Output:
   Exclude:
