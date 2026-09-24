@@ -36,7 +36,7 @@ module ShinyCMS
       ]
     end
 
-    # TODO: More of this code can be tested now that it's not buried in a rake task
+    # More of this code can be tested now that it's not buried in a rake task
 
     # :nocov:
 
@@ -108,7 +108,7 @@ module ShinyCMS
       fix_all_primary_key_sequences
     end
 
-    # TODO: FIXME: Hardcoded model names, just say 'no'.
+    # Hardcoded model names, just say 'no'.
     def skip_callbacks_on_some_models
       # rubocop:disable ThreadSafety/ActiveSupportCallbacks
       ShinyNewsletters::Template.skip_callback :create, :after, :add_elements
