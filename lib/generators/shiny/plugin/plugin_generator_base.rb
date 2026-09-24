@@ -15,7 +15,7 @@ require_relative 'plugin_builder'
 
 module Shiny
   module Plugin
-    # rubocop:disable Metrics/ClassLength
+    # rubocop:disable-next Metrics/ClassLength
     class PluginGeneratorBase < ::Rails::Generators::AppBase # :nodoc:
       add_shared_options_for 'plugin'
 
@@ -172,6 +172,5 @@ module Shiny
         shell.mute( & )
       end
     end
-    # rubocop:enable Metrics/ClassLength
   end
 end
