@@ -110,19 +110,23 @@ module ShinyCMS
 
     # TODO: FIXME: Hardcoded model names, just say 'no'.
     def skip_callbacks_on_some_models
+      # rubocop:disable ThreadSafety/ActiveSupportCallbacks
       ShinyNewsletters::Template.skip_callback :create, :after, :add_elements
       ShinyNewsletters::Edition.skip_callback  :create, :after, :add_elements
       ShinyPages::Template.skip_callback       :create, :after, :add_elements
       ShinyPages::Page.skip_callback           :create, :after, :add_elements
       ShinyCMS::Comment.skip_callback          :create, :after, :send_notifications
+      # rubocop:enable ThreadSafety/ActiveSupportCallbacks
     end
 
     def set_callbacks_on_some_models
+      # rubocop:disable ThreadSafety/ActiveSupportCallbacks
       ShinyNewsletters::Template.set_callback :create, :after, :add_elements
       ShinyNewsletters::Edition.set_callback  :create, :after, :add_elements
       ShinyPages::Template.set_callback       :create, :after, :add_elements
       ShinyPages::Page.set_callback           :create, :after, :add_elements
       ShinyCMS::Comment.set_callback          :create, :after, :send_notifications
+      # rubocop:enable ThreadSafety/ActiveSupportCallbacks
     end
 
     def fix_all_primary_key_sequences

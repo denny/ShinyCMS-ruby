@@ -263,6 +263,10 @@ Style/IpAddresses:
 Style/RegexpLiteral:
   Enabled: false
 
+Lint/TodoComment:
+  Exclude:
+    - lib/tasks/support/demo_site_task.rb
+
 # Whitespace Considered Helpful
 Layout/ExtraSpacing:
   Enabled: false
