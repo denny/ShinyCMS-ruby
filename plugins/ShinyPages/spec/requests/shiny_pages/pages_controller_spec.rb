@@ -37,9 +37,8 @@ RSpec.describe ShinyPages::PagesController, type: :request do
       end
 
       it 'renders an error if the template file is missing' do
-        # rubocop:disable Rails/SkipsModelValidations
+        # rubocop:disable-next Rails/SkipsModelValidations
         page.template.update_column( :filename, 'no-such-file' )
-        # rubocop:enable Rails/SkipsModelValidations
 
         ShinyCMS::Setting.set( :default_page, to: page.slug )
 

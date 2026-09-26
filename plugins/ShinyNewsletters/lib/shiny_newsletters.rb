@@ -13,9 +13,8 @@ module ShinyNewsletters
   mattr_reader :config_list_model
 
   def self.configure( list_model: nil )
-    # rubocop:disable Style/ClassVars
+    # rubocop:disable-next Style/ClassVars
     @@config_list_model = list_model if list_model
-    # rubocop:enable Style/ClassVars
   end
 
   # Default config

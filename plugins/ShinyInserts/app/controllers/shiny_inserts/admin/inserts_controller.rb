@@ -69,7 +69,7 @@ module ShinyInserts
 
     # Permitted params for multi-item operations
     def insert_params
-      params.expect( insert_set: [ elements_attributes: {} ] )
+      params.expect( insert_set: [ { elements_attributes: {} } ] )
     end
 
     def with_html_editor?

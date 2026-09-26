@@ -8,9 +8,8 @@
 
 module ShinyCMS
   # Base class underpinning CMS integration of mailers - part of the ShinyCMS core plugin
-  # rubocop:disable Rails/ApplicationMailer
+  # rubocop:disable-next Rails/ApplicationMailer
   class SetupForBaseMailer < ActionMailer::Base
-    # rubocop:enable Rails/ApplicationMailer
     include SiteNameHelper
 
     helper SiteNameHelper

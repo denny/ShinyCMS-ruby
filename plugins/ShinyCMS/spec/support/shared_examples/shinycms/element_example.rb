@@ -10,9 +10,8 @@
 RSpec.shared_examples ShinyCMS::Element do
   describe '.format_name' do
     it 'updates the record to have a valid element name' do
-      # rubocop:disable Rails/SkipsModelValidations
+      # rubocop:disable-next Rails/SkipsModelValidations
       element.update_attribute( :name, 'Format Me Please!' )
-      # rubocop:enable Rails/SkipsModelValidations
       element.format_name
 
       expect( element.name ).to eq 'format_me_please'

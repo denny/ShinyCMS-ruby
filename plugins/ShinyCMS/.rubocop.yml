@@ -263,6 +263,11 @@ Style/IpAddresses:
 Style/RegexpLiteral:
   Enabled: false
 
+# This generator is inherited from Rails and then rudely hacked about even more
+Style/DirectiveScope:
+  Exclude:
+    - ../../lib/generators/shiny/plugin/plugin_generator.rb
+
 # Whitespace Considered Helpful
 Layout/ExtraSpacing:
   Enabled: false
@@ -335,7 +340,7 @@ Style/SelectByRegexp:
   Enabled: false
 
 # New potentially-fixable copouts
-Capybara/NegationMatcher:
+Capybara/RSpec/NegationMatcher:
   Enabled: false
 FactoryBot/AssociationStyle:
   Enabled: false

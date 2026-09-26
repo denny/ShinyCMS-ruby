@@ -78,9 +78,8 @@ RSpec.describe ShinyShop::ProductsController, type: :request do
       it 'displays missing template error' do
         product = create( :product, active: true )
 
-        # rubocop:disable Rails/SkipsModelValidations
+        # rubocop:disable-next Rails/SkipsModelValidations
         product.template.update_column( :filename, 'no-such-file' )
-        # rubocop:enable Rails/SkipsModelValidations
 
         get shiny_shop.product_or_section_path( product.slug )
 
