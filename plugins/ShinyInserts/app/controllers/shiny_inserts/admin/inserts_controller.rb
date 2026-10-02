@@ -46,7 +46,7 @@ module ShinyInserts
     end
 
     def destroy
-      element = @insert_set.elements.find( params[ :id ] )
+      element = @insert_set.elements.find( params.expect( :id ) )
       authorize element
 
       flash[ :notice ] = t( '.success' ) if element.destroy

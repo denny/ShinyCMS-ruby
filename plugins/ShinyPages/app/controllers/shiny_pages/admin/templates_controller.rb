@@ -85,11 +85,11 @@ module ShinyPages
     end
 
     def stash_template
-      @template = Template.find( params[:id] )
+      @template = Template.find( params.expect( :id ) )
     end
 
     def stash_template_with_elements
-      @template = Template.includes( [ :elements ] ).find( params[:id] )
+      @template = Template.includes( [ :elements ] ).find( params.expect( :id ) )
     end
 
     def strong_params

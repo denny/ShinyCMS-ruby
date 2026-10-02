@@ -74,7 +74,7 @@ module ShinyNews
     private
 
     def set_post
-      @post = Post.find( params[:id] )
+      @post = Post.find( params.expect( :id ) )
     end
 
     def set_post_for_create

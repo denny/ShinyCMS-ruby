@@ -73,7 +73,7 @@ module ShinyForms
     private
 
     def set_form
-      @form = ShinyForms::Form.find( params[:id] )
+      @form = ShinyForms::Form.find( params.expect( :id ) )
     rescue ActiveRecord::RecordNotFound
       skip_authorization
       redirect_to forms_path, alert: t( 'shiny_forms.admin.forms.set_form.not_found' )

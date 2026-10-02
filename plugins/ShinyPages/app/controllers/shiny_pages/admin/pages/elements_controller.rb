@@ -30,11 +30,11 @@ module ShinyPages
     private
 
     def page
-      ShinyPages::Page.find( params[:page_id] )
+      ShinyPages::Page.find( params.expect( :page_id ) )
     end
 
     def element
-      page.elements.find( params[:id] )
+      page.elements.find( params.expect( :id ) )
     end
 
     def new_element

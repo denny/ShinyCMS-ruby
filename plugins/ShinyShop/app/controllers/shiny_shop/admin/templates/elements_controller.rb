@@ -30,11 +30,11 @@ module ShinyShop
     private
 
     def template
-      Template.find( params[:template_id] )
+      Template.find( params.expect( :template_id ) )
     end
 
     def element
-      template.elements.find( params[:id] )
+      template.elements.find( params.expect( :id ) )
     end
 
     def new_element

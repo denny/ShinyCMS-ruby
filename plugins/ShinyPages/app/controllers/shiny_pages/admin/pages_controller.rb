@@ -87,7 +87,7 @@ module ShinyPages
     end
 
     def stash_page
-      @page = Page.find( params[:id] )
+      @page = Page.find( params.expect( :id ) )
     end
 
     def strong_params

@@ -112,7 +112,7 @@ module ShinyNewsletters
     private
 
     def stash_send
-      @send = Send.find( params[:id] )
+      @send = Send.find( params.expect( :id ) )
     end
 
     def stash_send_for_create

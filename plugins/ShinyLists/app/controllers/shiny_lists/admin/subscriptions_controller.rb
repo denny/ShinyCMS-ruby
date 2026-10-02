@@ -68,7 +68,7 @@ module ShinyLists
     private
 
     def list
-      ShinyLists::List.find( params[:list_id] )
+      ShinyLists::List.find( params.expect( :list_id ) )
     end
 
     def subscriptions
@@ -76,7 +76,7 @@ module ShinyLists
     end
 
     def subscription
-      subscriptions.find( params[:id] )
+      subscriptions.find( params.expect( :id ) )
     end
 
     def subscriber_for_subscribe
