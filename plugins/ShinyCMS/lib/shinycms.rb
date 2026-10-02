@@ -77,9 +77,8 @@ module ShinyCMS
   mattr_reader :config_user_model
 
   def self.configure( user_model: nil )
-    # rubocop:disable Style/ClassVars
+    # rubocop:disable-next Style/ClassVars
     @@config_user_model = user_model if user_model
-    # rubocop:enable Style/ClassVars
   end
 
   # Default config

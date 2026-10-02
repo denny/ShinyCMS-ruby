@@ -46,7 +46,7 @@ module ShinyInserts
     end
 
     def destroy
-      element = @insert_set.elements.find( params[ :id ] )
+      element = @insert_set.elements.find( params.expect( :id ) )
       authorize element
 
       flash[ :notice ] = t( '.success' ) if element.destroy
@@ -69,7 +69,7 @@ module ShinyInserts
 
     # Permitted params for multi-item operations
     def insert_params
-      params.expect( insert_set: [ elements_attributes: {} ] )
+      params.expect( insert_set: [ { elements_attributes: {} } ] )
     end
 
     def with_html_editor?

@@ -75,7 +75,7 @@ module ShinyAccess
     end
 
     def stash_group
-      @group = Group.find( params[:id] )
+      @group = Group.find( params.expect( :id ) )
     end
 
     def stash_query

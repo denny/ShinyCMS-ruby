@@ -87,19 +87,18 @@ module ShinyPages
     end
 
     def stash_page
-      @page = Page.find( params[:id] )
+      @page = Page.find( params.expect( :id ) )
     end
 
     def strong_params
       return if params[ :page ].blank?
 
-      # rubocop:disable Layout/LineLength
+      # rubocop:disable-next Layout/LineLength
       params.expect(
         page: %i[
           internal_name public_name slug description template_id section_id position show_on_site show_in_menus elements_attributes: {}
         ]
       )
-      # rubocop:enable Layout/LineLength
     end
 
     def sort_elements

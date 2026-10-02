@@ -31,7 +31,7 @@ module ShinyCMS
     private
 
     def feature_flag_params
-      params.expect( features: [ flags: {} ] )
+      params.expect( features: [ { flags: {} } ] )
     end
   end
 end

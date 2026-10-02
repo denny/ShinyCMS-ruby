@@ -44,7 +44,7 @@ module ShinyCMS
     def user
       return if params[ :user_id ].blank?
 
-      ShinyCMS::User.find( params[ :user_id ] )
+      ShinyCMS::User.find( params.expect( :user_id ) )
     end
   end
 end
