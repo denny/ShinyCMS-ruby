@@ -36,7 +36,7 @@ module ShinyCMS
       ]
     end
 
-    # TODO: More of this code can be tested now that it's not buried in a rake task
+    # More of this code can be tested now that it's not buried in a rake task
 
     # :nocov:
 
@@ -108,7 +108,7 @@ module ShinyCMS
       fix_all_primary_key_sequences
     end
 
-    # TODO: FIXME: Hardcoded model names, just say 'no'.
+    # Hardcoded model names, just say 'no'.
     def skip_callbacks_on_some_models
       ShinyNewsletters::Template.skip_callback :create, :after, :add_elements
       ShinyNewsletters::Edition.skip_callback  :create, :after, :add_elements
@@ -143,7 +143,7 @@ module ShinyCMS
     def load_demo_site_extras
       ActiveStorage::Attachment.find_each do |attached|
         name = attached.filename.to_s
-        file = Rails.public_path( 'public', 'images', name ).open
+        file = Rails.public_path.join( 'images', name ).open
         attached.record.image.attach io: file, filename: name
       end
     end
