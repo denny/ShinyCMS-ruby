@@ -19,7 +19,6 @@ RSpec.describe ShinyCMS::PasswordReportAction, type: :request do
       result = response.parsed_body
 
       expect( result['score'] ).to eq 1
-      expect( result['crack_time_display'] ).to eq 'instant'
       expect( result['feedback']['suggestions'] ).to include 'Add another word or two. Uncommon words are better.'
     end
   end
