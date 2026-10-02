@@ -268,6 +268,11 @@ Style/DirectiveScope:
   Exclude:
     - ../../lib/generators/shiny/plugin/plugin_generator.rb
 
+# Only used to set up test data
+ThreadSafety/ActiveSupportCallbacks:
+  Exclude:
+    - lib/tasks/support/demo_site_task.rb
+
 # Whitespace Considered Helpful
 Layout/ExtraSpacing:
   Enabled: false
