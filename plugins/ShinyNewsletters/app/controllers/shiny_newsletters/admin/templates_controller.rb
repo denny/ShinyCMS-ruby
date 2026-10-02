@@ -84,7 +84,7 @@ module ShinyNewsletters
     end
 
     def stash_template
-      @template = Template.find( params[:id] )
+      @template = Template.find( params.expect( :id ) )
     end
 
     def strong_params

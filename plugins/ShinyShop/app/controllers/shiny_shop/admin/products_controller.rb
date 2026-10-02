@@ -47,12 +47,12 @@ module ShinyShop
     end
 
     def edit
-      @product = Product.find( params[:id] )
+      @product = Product.find( params.expect( :id ) )
       authorize @product
     end
 
     def update
-      @product = Product.find( params[:id] )
+      @product = Product.find( params.expect( :id ) )
       authorize @product
 
       if @product.update_with_stripe( strong_params.except( :price ) )
@@ -64,7 +64,7 @@ module ShinyShop
     end
 
     def revive
-      @product = Product.find( params[:id] )
+      @product = Product.find( params.expect( :id ) )
       authorize @product
 
       flash[ :notice ] = t( '.success' ) if @product.revive_with_stripe
@@ -72,7 +72,7 @@ module ShinyShop
     end
 
     def archive
-      @product = Product.find( params[:id] )
+      @product = Product.find( params.expect( :id ) )
       authorize @product
 
       flash[ :notice ] = t( '.success' ) if @product.archive_with_stripe

@@ -46,12 +46,12 @@ module ShinyLists
     end
 
     def edit
-      @list = List.find( params[:id] )
+      @list = List.find( params.expect( :id ) )
       authorize @list
     end
 
     def update
-      @list = List.find( params[:id] )
+      @list = List.find( params.expect( :id ) )
       authorize @list
 
       if @list.update( list_params )
@@ -63,7 +63,7 @@ module ShinyLists
     end
 
     def destroy
-      list = List.find( params[:id] )
+      list = List.find( params.expect( :id ) )
       authorize list
 
       flash[ :notice ] = t( '.success' ) if list.destroy

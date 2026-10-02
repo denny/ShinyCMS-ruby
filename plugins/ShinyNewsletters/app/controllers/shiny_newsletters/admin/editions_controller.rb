@@ -92,7 +92,7 @@ module ShinyNewsletters
     end
 
     def stash_edition
-      @edition = Edition.find( params[:id] )
+      @edition = Edition.find( params.expect( :id ) )
     end
 
     def strong_params

@@ -35,12 +35,12 @@ module ShinyShop
     end
 
     def edit
-      @section = ShinyShop::Section.find( params[:id] )
+      @section = ShinyShop::Section.find( params.expect( :id ) )
       authorize @section
     end
 
     def update
-      @section = ShinyShop::Section.find( params[:id] )
+      @section = ShinyShop::Section.find( params.expect( :id ) )
       authorize @section
 
       if @section.update( section_params )
@@ -52,7 +52,7 @@ module ShinyShop
     end
 
     def destroy
-      section = ShinyShop::Section.find( params[:id] )
+      section = ShinyShop::Section.find( params.expect( :id ) )
       authorize section
 
       flash[ :notice ] = t( '.success' ) if section.destroy

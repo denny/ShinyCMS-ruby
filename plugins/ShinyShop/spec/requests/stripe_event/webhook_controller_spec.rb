@@ -10,7 +10,7 @@ require 'rails_helper'
 
 # Tests for stripe
 RSpec.describe StripeEvent::WebhookController, type: :request do
-  let( :secret1 ) { ENV.fetch( 'STRIPE_SIGNING_SECRET' ) }
+  let( :secret1 ) { ENV[ 'STRIPE_SIGNING_SECRET' ] }
 
   describe 'with Stripe::Event' do
     it 'queues a mailer job' do

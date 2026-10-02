@@ -18,7 +18,7 @@ module ShinyShop
     end
 
     def product_or_section
-      @path_parts = params[ :path ].split '/'
+      @path_parts = params.expect( :path ).split '/'
 
       is_product = Product.exists?( slug: @path_parts.last )
 

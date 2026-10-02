@@ -32,7 +32,7 @@ module ShinyProfiles
     private
 
     def stash_profile
-      @profile = Profile.with_links.with_pic.find params[ :id ]
+      @profile = Profile.with_links.with_pic.find params.expect( :id )
     end
 
     def strong_params

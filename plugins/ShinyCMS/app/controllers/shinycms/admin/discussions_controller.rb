@@ -40,7 +40,7 @@ module ShinyCMS
     private
 
     def stash_discussion
-      @discussion = Discussion.find( params[ :id ] )
+      @discussion = Discussion.find( params.expect( :id ) )
     end
   end
 end

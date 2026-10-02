@@ -30,11 +30,11 @@ module ShinyNewsletters
     private
 
     def edition
-      Edition.find( params[:edition_id] )
+      Edition.find( params.expect( :edition_id ) )
     end
 
     def element
-      edition.elements.find( params[:id] )
+      edition.elements.find( params.expect( :id ) )
     end
 
     def new_element

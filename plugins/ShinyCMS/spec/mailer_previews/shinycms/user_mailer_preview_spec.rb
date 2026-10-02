@@ -30,7 +30,7 @@ RSpec.describe ShinyCMS::UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'shinycms.user_mailer.confirmation_instructions.subject', site_name: site_name )
+        .to have_text I18n.t( 'shinycms.user_mailer.confirmation_instructions.subject', site_name: site_name )
     end
   end
 
@@ -41,7 +41,7 @@ RSpec.describe ShinyCMS::UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'shinycms.user_mailer.reset_password_instructions.subject', site_name: site_name )
+        .to have_text I18n.t( 'shinycms.user_mailer.reset_password_instructions.subject', site_name: site_name )
     end
   end
 
@@ -52,7 +52,7 @@ RSpec.describe ShinyCMS::UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'shinycms.user_mailer.password_changed_instructions.subject', site_name: site_name )
+        .to have_text I18n.t( 'shinycms.user_mailer.password_changed_instructions.subject', site_name: site_name )
     end
   end
 
@@ -63,7 +63,7 @@ RSpec.describe ShinyCMS::UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'shinycms.user_mailer.email_changed_instructions.subject', site_name: site_name )
+        .to have_text I18n.t( 'shinycms.user_mailer.email_changed_instructions.subject', site_name: site_name )
     end
   end
 
@@ -74,7 +74,7 @@ RSpec.describe ShinyCMS::UserMailerPreview, type: :request do
       )
 
       expect( response.body )
-        .to have_content I18n.t( 'shinycms.user_mailer.unlock_instructions.subject', site_name: site_name )
+        .to have_text I18n.t( 'shinycms.user_mailer.unlock_instructions.subject', site_name: site_name )
     end
   end
 end

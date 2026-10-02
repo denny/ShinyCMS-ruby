@@ -34,7 +34,7 @@ module ShinyPages
 
     # Figure out whether we're at top level or going deeper
     def show
-      path_parts = params[ :path ].split '/'
+      path_parts = params.expect( :path ).split '/'
 
       if path_parts.size == 1
         show_top_level( path_parts.first )

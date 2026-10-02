@@ -36,7 +36,7 @@ RSpec.describe ShinyCMS::DiscussionMailerPreview, type: :request do
         preview_id: 'shinycms__discussion_mailer_preview-comment_admin_notification'
       )
 
-      expect( response.body ).to have_content ' commented on '
+      expect( response.body ).to have_text ' commented on '
     end
   end
 
@@ -46,7 +46,7 @@ RSpec.describe ShinyCMS::DiscussionMailerPreview, type: :request do
         preview_id: 'shinycms__discussion_mailer_preview-content_author_notification'
       )
 
-      expect( response.body ).to have_content 'commented on your news post'
+      expect( response.body ).to have_text 'commented on your news post'
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe ShinyCMS::DiscussionMailerPreview, type: :request do
         preview_id: 'shinycms__discussion_mailer_preview-parent_comment_author_notification'
       )
 
-      expect( response.body ).to have_content 'replied to your comment'
+      expect( response.body ).to have_text 'replied to your comment'
     end
   end
 end
