@@ -513,7 +513,7 @@ GEM
       railties (>= 6.1)
       rexml
     lint_roller (1.1.0)
-    listen (3.10.0)
+    listen (3.10.1)
       logger
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -932,7 +932,7 @@ DEPENDENCIES
   faker!
   i18n-tasks (~> 1.1.2)!
   letter_opener_web (~> 3.0)!
-  listen (~> 3.9)!
+  listen (~> 3.10)!
   mutant-rspec!
   overcommit!
   packwerk (~> 3.2)!
