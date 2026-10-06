@@ -586,7 +586,7 @@ GEM
       railties (>= 6.0.0)
       sorbet-runtime
       zeitwerk
-    pagy (43.6.2)
+    pagy (43.7.0)
       json
       uri
       yaml
