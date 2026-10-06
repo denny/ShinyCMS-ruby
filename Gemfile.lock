@@ -6,7 +6,7 @@ PATH
       acts_as_paranoid
       nokogiri (>= 1.9.1)
       pagy
-      pg (>= 1.2.3, < 1.7.0)
+      pg (>= 1.2.3, < 1.8.0)
       pundit
       rails (>= 8.0.2, < 8.2)
 
@@ -18,7 +18,7 @@ PATH
       acts_as_paranoid
       nokogiri (>= 1.18.8)
       pagy
-      pg (>= 1.2.3, < 1.7.0)
+      pg (>= 1.2.3, < 1.8.0)
       pundit
       rails (>= 8.0.2, < 8.2)
 
@@ -52,7 +52,7 @@ PATH
       packwerk-extensions
       pagy
       persistent-dmnd
-      pg (>= 1.2.3, < 1.7.0)
+      pg (>= 1.2.3, < 1.8.0)
       pry-rails
       pundit
       rails (>= 8.0.2, < 8.2)
@@ -76,7 +76,7 @@ PATH
       acts_as_paranoid
       nokogiri (>= 1.9.1)
       pagy
-      pg (>= 1.2.3, < 1.7.0)
+      pg (>= 1.2.3, < 1.8.0)
       pundit
       rails (>= 8.0.2, < 8.2)
 
@@ -87,7 +87,7 @@ PATH
       acts_as_paranoid
       nokogiri (>= 1.9.1)
       pagy
-      pg (>= 1.2.3, < 1.7.0)
+      pg (>= 1.2.3, < 1.8.0)
       pundit
       rails (>= 8.0.2, < 8.2)
 
@@ -98,7 +98,7 @@ PATH
       acts_as_paranoid
       nokogiri (>= 1.9.1)
       pagy
-      pg (>= 1.2.3, < 1.7.0)
+      pg (>= 1.2.3, < 1.8.0)
       pundit
       rails (>= 8.0.2, < 8.2)
 
@@ -110,7 +110,7 @@ PATH
       acts_as_paranoid
       nokogiri (>= 1.9.1)
       pagy
-      pg (>= 1.2.3, < 1.7.0)
+      pg (>= 1.2.3, < 1.8.0)
       pundit
       rails (>= 8.0.2, < 8.2)
 
@@ -121,7 +121,7 @@ PATH
       acts_as_paranoid
       nokogiri (>= 1.9.1)
       pagy
-      pg (>= 1.2.3, < 1.7.0)
+      pg (>= 1.2.3, < 1.8.0)
       pundit
       rails (>= 8.0.2, < 8.2)
 
@@ -132,7 +132,7 @@ PATH
       acts_as_paranoid
       nokogiri (>= 1.9.1)
       pagy
-      pg (>= 1.2.3, < 1.7.0)
+      pg (>= 1.2.3, < 1.8.0)
       pundit
       rails (>= 8.0.2, < 8.2)
 
@@ -143,7 +143,7 @@ PATH
       acts_as_paranoid
       nokogiri (>= 1.9.1)
       pagy
-      pg (>= 1.2.3, < 1.7.0)
+      pg (>= 1.2.3, < 1.8.0)
       pundit
       rails (>= 8.0.2, < 8.2)
 
@@ -151,7 +151,7 @@ PATH
   remote: plugins/ShinySEO
   specs:
     shiny_seo (21.06)
-      pg (>= 1.2.3, < 1.7.0)
+      pg (>= 1.2.3, < 1.8.0)
       rails (>= 8.0.2, < 8.2)
       sitemap_generator
 
@@ -164,7 +164,7 @@ PATH
       algoliasearch-rails (~> 1.25)
       nokogiri (>= 1.18.8)
       pagy
-      pg (>= 1.2.3, < 1.7.0)
+      pg (>= 1.2.3, < 1.8.0)
       pg_search
       pundit
       rails (>= 8.0.2, < 8.2)
@@ -175,7 +175,7 @@ PATH
     shiny_shop (24.3)
       acts_as_paranoid
       pagy
-      pg (>= 1.2.3, < 1.7.0)
+      pg (>= 1.2.3, < 1.8.0)
       pundit
       rails (>= 8.0.2, < 8.2)
       stripe
@@ -599,7 +599,7 @@ GEM
     path_expander (2.0.1)
     persistent-dmnd (3.0.0)
       immutable-ruby (>= 0.1.0)
-    pg (1.6.3)
+    pg (1.7.0)
     pg_search (2.4.0)
       activerecord (>= 8.0)
       activesupport (>= 8.0)
@@ -937,7 +937,7 @@ DEPENDENCIES
   overcommit!
   packwerk (~> 3.2)!
   parallel_tests!
-  pg (~> 1.6.2)!
+  pg (~> 1.7.0)!
   puma (~> 8.0)!
   rack (~> 3.2.6)!
   rack-attack!
