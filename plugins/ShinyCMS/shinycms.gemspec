@@ -73,7 +73,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'action_text-trix', '>= 2.1.16'
 
   # We use Sidekiq as the backend for ActiveJob (to queue email sends)
-  spec.add_dependency 'sidekiq', '>= 6.5.10', '< 8.1.0'
+  spec.add_dependency 'sidekiq', '>= 6.5.10', '< 8.2.0'
   spec.add_dependency 'sidekiq-status'
 
   # Soft delete
