@@ -275,11 +275,11 @@ GEM
     acts_as_votable (0.14.0)
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
-    ahoy_email (1.1.1)
-      actionmailer (>= 5)
-      addressable (>= 2.3.2)
-      nokogiri
-      safely_block (>= 0.1.1)
+    ahoy_email (4.0.0)
+      actionmailer (>= 7.2)
+      addressable (>= 2.8)
+      nokogiri (>= 1.15)
+      safely_block (>= 0.5)
     ahoy_matey (5.5.0)
       activesupport (>= 7.2)
       cgi
@@ -557,7 +557,7 @@ GEM
       net-protocol
     net-protocol (0.4.0)
       timeout
-    net-smtp (0.5.1)
+    net-smtp (0.5.2)
       net-protocol
     nio4r (2.7.5)
     nokogiri (1.19.4)
@@ -916,7 +916,7 @@ PLATFORMS
   x86-linux
 
 DEPENDENCIES
-  ahoy_email (>= 1.1, < 2.0)!
+  ahoy_email (>= 1.1, < 5.0)!
   ahoy_matey!
   blazer!
   brakeman!
