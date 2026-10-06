@@ -96,7 +96,6 @@ Gem::Specification.new do |spec|
   # Image processing (resizing, etc)
   spec.add_dependency 'image_processing', '>= 1.12', '< 3.0'
   spec.add_dependency 'mini_magick'
-  spec.add_dependency 'ruby-vips', '~> 2.0'
 
   # Spambot protection
   spec.add_dependency 'akismet'

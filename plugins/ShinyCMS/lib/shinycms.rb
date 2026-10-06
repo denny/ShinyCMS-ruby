@@ -45,7 +45,6 @@ require 'aws-sdk-s3'
 # Image processing (resizing, etc)
 require 'image_processing'
 require 'mini_magick'
-require 'ruby-vips'
 
 # Spambot protection
 require 'akismet'
