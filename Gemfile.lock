@@ -581,10 +581,9 @@ GEM
       parser
       prism (>= 1.4.0)
       zeitwerk (>= 2.6.1)
-    packwerk-extensions (0.3.0)
-      packwerk (>= 2.2.1)
+    packwerk-extensions (0.4.0)
+      packwerk (>= 3)
       railties (>= 6.0.0)
-      sorbet-runtime
       zeitwerk
     pagy (43.7.0)
       json
@@ -846,7 +845,7 @@ GEM
     sitemap_generator (7.1.1)
       builder (~> 3.0)
     smart_properties (1.17.0)
-    sorbet-runtime (0.6.13506)
+    sorbet-runtime (0.6.13532)
     sorted_set (1.1.0)
       rbtree
     sprockets (4.4.1)
