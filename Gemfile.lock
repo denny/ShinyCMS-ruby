@@ -43,7 +43,7 @@ PATH
       devise
       devise-pwned_password
       email_address
-      image_processing (~> 1.12)
+      image_processing (>= 1.12, < 3.0)
       mini_magick
       mjml-rails
       mutex_m
@@ -59,6 +59,7 @@ PATH
       rails-i18n
       recaptcha
       rss
+      ruby-vips (~> 2.0)
       sassc-rails
       scout_apm
       seed_dump
@@ -485,9 +486,7 @@ GEM
       ruby-progressbar (~> 1.8, >= 1.8.1)
       terminal-table (>= 1.5.1)
     ice_nine (0.11.2)
-    image_processing (1.14.0)
-      mini_magick (>= 4.9.5, < 6)
-      ruby-vips (>= 2.0.17, < 3)
+    image_processing (2.2.0)
     immutable-ruby (0.2.0)
       concurrent-ruby (~> 1.1)
       sorted_set (~> 1.0)

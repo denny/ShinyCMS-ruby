@@ -94,7 +94,7 @@ Gem::Specification.new do |spec|
   # Image storage on S3
   spec.add_dependency 'aws-sdk-s3'
   # Image processing (resizing, etc)
-  spec.add_dependency 'image_processing', '~> 1.12'
+  spec.add_dependency 'image_processing', '>= 1.12', '< 3.0'
   spec.add_dependency 'mini_magick'
 
   # Spambot protection
