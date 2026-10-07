@@ -59,7 +59,6 @@ PATH
       rails-i18n
       recaptcha
       rss
-      ruby-vips (~> 2.0)
       sassc-rails
       scout_apm
       seed_dump
@@ -783,9 +782,6 @@ GEM
       pg
       terminal-table
     ruby-progressbar (1.13.0)
-    ruby-vips (2.3.0)
-      ffi (~> 1.12)
-      logger
     ruby_parser (3.22.0)
       racc (~> 1.5)
       sexp_processor (~> 4.16)
