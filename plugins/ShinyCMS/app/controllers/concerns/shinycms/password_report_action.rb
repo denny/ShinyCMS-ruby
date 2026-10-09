@@ -13,7 +13,9 @@ module ShinyCMS
 
     included do
       def password_report
-        render json: Zxcvbn.test( params[ :password ] )
+        Rails.logger.silence do
+          render json: Zxcvbn.test( params[ :password ] )
+        end
       end
     end
   end
