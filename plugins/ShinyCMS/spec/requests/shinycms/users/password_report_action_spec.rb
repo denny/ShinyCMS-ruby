@@ -10,9 +10,9 @@ require 'rails_helper'
 
 # Tests for password-related features on main site
 RSpec.describe ShinyCMS::PasswordReportAction, type: :request do
-  describe 'GET /account/password/report/Hunter2' do
+  describe 'POST /account/password/report' do
     it 'returns a JSON assessment (score and suggestions) for the proposed password' do
-      get shinycms.password_report_path( 'Hunter2' )
+      post shinycms.password_report_path, params: { password: 'Hunter2' }
 
       expect( response ).to have_http_status :ok
 
