@@ -31,7 +31,7 @@ devise_for  :users,
               sign_up:      'register'
             }
 devise_scope :user do
-  get 'account/password/report/:password', to: 'users/registrations#password_report', as: :password_report
+  post 'account/password/report', to: 'users/registrations#password_report', as: :password_report
 end
 
 get 'discussions',    to: 'discussions#index', as: :discussions
