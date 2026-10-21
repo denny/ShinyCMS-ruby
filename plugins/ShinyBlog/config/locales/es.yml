@@ -6,7 +6,7 @@
 
 # English locale strings for ShinyCMS features provided by the ShinyBlog plugin
 
-en:
+es:
   shinycms:
     feature_flags:
       blog: Blog
