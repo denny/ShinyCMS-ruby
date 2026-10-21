@@ -16,7 +16,7 @@ es:
 
     capability:
       category:
-        products: Productos de la tienda
+        products: Productos
 
   shiny_shop:
     products:
@@ -33,34 +33,34 @@ es:
       shiny_shop:
         index:
           title: Tienda
-      # Ran out of free translations here!
       products:
-        breadcrumb: Shop
-        menu: Shop
+        breadcrumb: Tienda
+        menu: Tienda
         index:
-          title: List products
-          archive: Archive
-          revive: Restore
+          title: Listar productos
+          archive: Archivo
+          revive: Restaurar
         new:
-          title: Add product
+          title: Añadir producto
         create:
-          title: Add product
-          success: Product added
-          failure: Could not add product
+          title: Añadir producto
+          success: Producto añadido
+          failure: No se pudo añadir el producto
         edit:
-          title: Edit product
+          title: Editar producto
         update:
-          title: Edit product
-          success: Product updated
-          failure: Could not update product
+          title: Editar producto
+          success: Producto actualizado
+          failure: Producto no actualizado
         revive:
-          success: Product restored
+          success: Producto restaurado
         archive:
-          success: Product archived
+          success: Producto archivado
 
       sections:
-        breadcrumb: Shop
+        breadcrumb: Tienda
         new:
+      # TODO: translate everything below this line
           title: Add new section
         edit:
           title: Edit section
@@ -77,7 +77,7 @@ es:
           failure: Failed to section page
 
       templates:
-        breadcrumb: Shop
+        breadcrumb: Tienda
         index:
           title: List templates
           search: Search templates
@@ -109,4 +109,4 @@ es:
   models:
     shiny_shop:
       template:
-        template_file_must_exist: 'Template file must be in themes/{theme-name}/shiny_shop/products'
+        template_file_must_exist: 'El archivo de plantilla debe estar en themes/{theme-name}/shiny_shop/products'
