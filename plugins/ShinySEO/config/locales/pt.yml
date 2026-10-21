@@ -6,7 +6,7 @@
 
 # Portuguese locale strings for ShinyCMS features provided by the ShinySEO plugin
 
-en:
+pt:
   shinycms:
     feature_flags:
       shiny_seo: ShinySEO
