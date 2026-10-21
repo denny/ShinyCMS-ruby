@@ -583,7 +583,7 @@ GEM
       packwerk (>= 3)
       railties (>= 6.0.0)
       zeitwerk
-    pagy (43.7.1)
+    pagy (43.8.0)
       json
       uri
       yaml
