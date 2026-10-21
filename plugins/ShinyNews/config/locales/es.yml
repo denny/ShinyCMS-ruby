@@ -1,0 +1,68 @@
+# ShinyNews plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Spanish locale strings for ShinyCMS features provided by the ShinyNews plugin
+
+es:
+  shinycms:
+    feature_flags:
+      news: Sección de noticias
+      news_upvotes: Votos positivos en publicaciones de noticias
+      news_downvotes: Votos negativos en publicaciones de noticias
+
+    capability:
+      category:
+        news_posts: Noticias
+
+      news_posts:
+        change_author: Cambiar autor
+
+    models:
+      names:
+        shiny_news_post: publicación de noticias
+
+  shiny_news:
+    menu:
+      title: Noticias
+    profile:
+      content:
+        title: Publicaciones de noticias recientes
+    news:
+      index:
+        title: Noticias recientes
+        view_post: Ver publicación
+        read_more: Leer más
+      show:
+        reply: Responder a esta publicación
+      sidebar:
+        links: Enlaces
+        links_blurb: Lectura recomendada de todo el web
+        recent_posts: Publicaciones recientes
+
+    admin:
+      news_posts:
+        breadcrumb: Noticias
+        menu: Noticias
+        toolbar: Publicaciones de noticias
+        index:
+          title: Lista de publicaciones de noticias
+          search: Buscar publicaciones de noticias
+        search:
+          title: Lista de publicaciones de noticias
+        new:
+          title: Agregar publicación de noticias
+        edit:
+          title: Editar publicación de noticias
+        create:
+          title: Agregar publicación de noticias
+          success: Publicación de noticias creada
+          failure: Error al crear publicación de noticias
+        update:
+          title: Editar publicación de noticias
+          success: Publicación de noticias actualizada
+          failure: Error al actualizar publicación de noticias
+        destroy:
+          success: Publicación de noticias eliminada
