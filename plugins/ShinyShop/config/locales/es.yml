@@ -60,25 +60,25 @@ es:
       sections:
         breadcrumb: Tienda
         new:
-      # TODO: translate everything below this line
-          title: Add new section
+          title: Añadir sección
         edit:
-          title: Edit section
+          title: Editar sección
         create:
-          title: Add new section
-          success: New section added
-          failure: Failed to add new section
+          title: Añadir sección
+          success: Se ha añadido una nueva sección
+          failure: No se pudo añadir una nueva sección
         update:
-          title: Edit section
-          success: Section details updated
-          failure: Failed to update section details
+          title: Editar sección
+          success: Sección actualizada
+          failure: No se pudo actualizar la sección
         destroy:
-          success: Section deleted
-          failure: Failed to section page
+          success: Sección eliminada
+          failure: No se pudo eliminar la sección
 
       templates:
         breadcrumb: Tienda
         index:
+      # TODO: translate everything below this line
           title: List templates
           search: Search templates
         search:
