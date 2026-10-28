@@ -53,7 +53,7 @@ source 'https://rubygems.org' do
   # Charts and dashboards
   gem 'blazer'
   # Charts
-  gem 'chartkick', '~> 5.2.1'
+  gem 'chartkick', '~> 5.3.0'
 
   # Stripe
   # gem 'stripe'
