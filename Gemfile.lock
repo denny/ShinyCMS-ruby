@@ -818,7 +818,7 @@ GEM
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
       logger
-    sexp_processor (4.17.5)
+    sexp_processor (4.17.6)
     sidekiq (8.1.7)
       connection_pool (>= 3.0.0)
       json (>= 2.16.0)
@@ -1186,7 +1186,7 @@ CHECKSUMS
   seed_dump (3.4.2) sha256=42ed9ec7a84c19c4c77727db4f2f77a9fac3103e72694ea1ac5a1895b8b9b1a6
   sentry-rails (7.1.0) sha256=21e2092f8ab013ec384a4a3e406622a1c2a04d6638c697b8f922d9d46da634fa
   sentry-ruby (7.1.0) sha256=bd6d2d022d879268526f62f0dccfb76aac99542bfce355e2b6a49cd1a81c0102
-  sexp_processor (4.17.5) sha256=ae2b48ba98353d5d465ce8759836b7a05f2e12c5879fcd14d7815b026de32f0e
+  sexp_processor (4.17.6) sha256=3c5d0e9db06377abde06db51dbacb14ce239ed0bd038ae515bc42c81602c6c1f
   shiny_access (21.06)
   shiny_blog (21.06)
   shiny_forms (21.06)
