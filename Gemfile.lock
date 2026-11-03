@@ -805,7 +805,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    scout_apm (6.3.1)
+    scout_apm (6.3.2)
       parser
     securerandom (0.4.1)
     seed_dump (3.4.2)
@@ -1182,7 +1182,7 @@ CHECKSUMS
   safely_block (1.0.0) sha256=bea80e084e620adeada62fd98cf461bbb9888d40dc0f06d337df9d01e1a658e5
   sassc (2.4.0) sha256=4c60a2b0a3b36685c83b80d5789401c2f678c1652e3288315a1551d811d9f83e
   sassc-rails (2.1.2) sha256=5f4fdf3881fc9bdc8e856ffbd9850d70a2878866feae8114aa45996179952db5
-  scout_apm (6.3.1) sha256=61f79ba5af6ebce7efbfd19e0312b9ec9186517ebe355efa914f461c6b508a80
+  scout_apm (6.3.2) sha256=9896811266128e07e63657a814179b9a5663111bc784528961a07485965a3656
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   seed_dump (3.4.2) sha256=42ed9ec7a84c19c4c77727db4f2f77a9fac3103e72694ea1ac5a1895b8b9b1a6
   sentry-rails (7.2.0) sha256=c3874fed94a68f3f60a917243b6e25414ff284455abd14e3351479a32807af79
