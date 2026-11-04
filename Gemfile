@@ -35,7 +35,7 @@ source 'https://rubygems.org' do
   gem 'pg', '~> 1.7.0'
 
   # Rack
-  gem 'rack', '~> 3.2.6'
+  gem 'rack', '~> 3.2.8'
   # Rack Session
   gem 'rack-session', '~> 2.1.1'
 
@@ -53,7 +53,7 @@ source 'https://rubygems.org' do
   # Charts and dashboards
   gem 'blazer'
   # Charts
-  gem 'chartkick', '~> 5.2.1'
+  gem 'chartkick', '~> 5.3.0'
 
   # Stripe
   # gem 'stripe'
