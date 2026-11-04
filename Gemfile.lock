@@ -8,7 +8,7 @@ PATH
       pagy
       pg (>= 1.2.3, < 1.8.0)
       pundit
-      rails (>= 8.0.2, < 8.2)
+      rails (>= 8.1.4.1, < 8.2)
 
 PATH
   remote: plugins/ShinyBlog
@@ -20,7 +20,7 @@ PATH
       pagy
       pg (>= 1.2.3, < 1.8.0)
       pundit
-      rails (>= 8.0.2, < 8.2)
+      rails (>= 8.1.4.1, < 8.2)
 
 PATH
   remote: plugins/ShinyCMS
@@ -55,7 +55,7 @@ PATH
       pg (>= 1.2.3, < 1.8.0)
       pry-rails
       pundit
-      rails (>= 8.0.2, < 8.2)
+      rails (>= 8.1.4.1, < 8.2)
       rails-i18n
       recaptcha
       rss
@@ -78,7 +78,7 @@ PATH
       pagy
       pg (>= 1.2.3, < 1.8.0)
       pundit
-      rails (>= 8.0.2, < 8.2)
+      rails (>= 8.1.4.1, < 8.2)
 
 PATH
   remote: plugins/ShinyInserts
@@ -89,7 +89,7 @@ PATH
       pagy
       pg (>= 1.2.3, < 1.8.0)
       pundit
-      rails (>= 8.0.2, < 8.2)
+      rails (>= 8.1.4.1, < 8.2)
 
 PATH
   remote: plugins/ShinyLists
@@ -100,7 +100,7 @@ PATH
       pagy
       pg (>= 1.2.3, < 1.8.0)
       pundit
-      rails (>= 8.0.2, < 8.2)
+      rails (>= 8.1.4.1, < 8.2)
 
 PATH
   remote: plugins/ShinyNews
@@ -112,7 +112,7 @@ PATH
       pagy
       pg (>= 1.2.3, < 1.8.0)
       pundit
-      rails (>= 8.0.2, < 8.2)
+      rails (>= 8.1.4.1, < 8.2)
 
 PATH
   remote: plugins/ShinyNewsletters
@@ -123,7 +123,7 @@ PATH
       pagy
       pg (>= 1.2.3, < 1.8.0)
       pundit
-      rails (>= 8.0.2, < 8.2)
+      rails (>= 8.1.4.1, < 8.2)
 
 PATH
   remote: plugins/ShinyPages
@@ -134,7 +134,7 @@ PATH
       pagy
       pg (>= 1.2.3, < 1.8.0)
       pundit
-      rails (>= 8.0.2, < 8.2)
+      rails (>= 8.1.4.1, < 8.2)
 
 PATH
   remote: plugins/ShinyProfiles
@@ -145,14 +145,14 @@ PATH
       pagy
       pg (>= 1.2.3, < 1.8.0)
       pundit
-      rails (>= 8.0.2, < 8.2)
+      rails (>= 8.1.4.1, < 8.2)
 
 PATH
   remote: plugins/ShinySEO
   specs:
     shiny_seo (21.06)
       pg (>= 1.2.3, < 1.8.0)
-      rails (>= 8.0.2, < 8.2)
+      rails (>= 8.1.4.1, < 8.2)
       sitemap_generator
 
 PATH
@@ -167,7 +167,7 @@ PATH
       pg (>= 1.2.3, < 1.8.0)
       pg_search
       pundit
-      rails (>= 8.0.2, < 8.2)
+      rails (>= 8.1.4.1, < 8.2)
 
 PATH
   remote: plugins/ShinyShop
@@ -177,7 +177,7 @@ PATH
       pagy
       pg (>= 1.2.3, < 1.8.0)
       pundit
-      rails (>= 8.0.2, < 8.2)
+      rails (>= 8.1.4.1, < 8.2)
       stripe
 
 GEM
