@@ -1,0 +1,142 @@
+# ShinyNewsletters plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Spanish locale strings for ShinyCMS features provided by the ShinyNewsletters plugin
+
+es:
+  shinycms:
+    feature_flags:
+      newsletters: Boletines
+
+    capability:
+      category:
+        newsletter_templates: Plantillas de boletín
+        newsletter_editions: Ediciones de boletín
+        newsletter_sends: Envíos de boletín
+
+    models:
+      names:
+        shiny_newsletters_edition: Edición de boletín
+        shiny_newsletters_template: templates
+
+  shiny_newsletters:
+    newsletters:
+      index:
+        title: Boletines
+        subscriber_not_found: No se pudo encontrar el suscriptor, verifique el enlace y vuelva a intentarlo
+      show:
+        title: Ver boletín
+
+    admin:
+      newsletters:
+        breadcrumb: Boletines
+        menu: Boletines
+      editions:
+        breadcrumb: Ediciones de boletín
+        index:
+          title: Ediciones
+          send_sample: Enviar muestra
+          send_to_list: Enviar a la lista
+          search: Buscar ediciones
+        search:
+          title: Ediciones
+        send_sample:
+          success: Muestra enviada
+        new:
+          title: Nueva edición
+        create:
+          title: Nueva edición
+          success: Edición de boletín creada
+          failure: Error al crear edición de boletín
+        edit:
+          title: Editar edición de boletín
+          new_element_name: Nombre de nuevo elemento
+          new_element_content: Contenido predeterminado
+        update:
+          title: Editar edición de boletín
+          success: Edición de boletín actualizada
+          failure: Falló la actualización de la edición del boletín
+        destroy:
+          success: Edición de boletín eliminada
+          failure: Falló la eliminación de la edición del boletín
+        elements:
+          create:
+            success: Nuevo elemento agregado
+          destroy:
+            success: Elemento eliminado
+
+      sends:
+        breadcrumb: Envíos de boletín
+        index:
+          title: Envíos
+          no_sends: No ha iniciado el envío de boletines aún
+          send: Enviar
+          search: Buscar envíos
+        search:
+          title: Envíos
+        sent:
+          title: Enviado
+          view_details: Ver detalles
+          no_sends_sent: No ha enviado boletines aún
+        show:
+          title: Ver detalles del envío
+        new:
+          title: Enviar / Programar
+        create:
+          title: Enviar / Programar
+          success: Boletín de envío creado
+          failure: Falló la creación del envío del boletín
+        edit:
+          title: Editar envío de boletín
+        update:
+          title: Editar envío de boletín
+          success: Envío de boletín actualizado
+          failure: Falló la actualización del envío del boletín
+        start_sending:
+          success: Se inició el envío
+        cancel_sending:
+          success: Envío de boletín cancelado
+        destroy:
+          success: Envío de boletín eliminado
+
+      templates:
+        breadcrumb: Plantillas de boletín
+        index:
+          title: Plantillas
+          search: Buscar plantillas
+        search:
+          title: Plantillas
+        new:
+          title: Nueva plantilla
+        edit:
+          title: Editar plantilla de boletín
+          new_element_name: Nombre del nuevo elemento
+          new_element_content: Contenido predeterminado
+        create:
+          title: Nueva plantilla
+          success: Plantilla de boletín creada
+          failure: Error al crear plantilla de boletín
+        update:
+          title: Editar plantilla de boletín
+          success: Plantilla de boletín actualizada
+          failure: Error al actualizar plantilla de boletín
+        destroy:
+          success: Plantilla de boletín eliminada
+          failure: Error al eliminar plantilla de boletín
+        elements:
+          create:
+            success: Nuevo elemento agregado
+          destroy:
+            success: Elemento eliminado
+
+  models:
+    shiny_newsletters:
+      template:
+        template_file_must_exist: '(el archivo de plantilla debe estar en themes/{theme-name}/views/shiny_newsletters/newsletter_mailer)'
+
+  errors:
+    messages:
+      invalid_mjml: '(el archivo de plantilla no es un MJML válido)'

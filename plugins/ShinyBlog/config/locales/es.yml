@@ -1,0 +1,68 @@
+# ShinyBlog plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Spanish locale strings for ShinyCMS features provided by the ShinyBlog plugin
+
+es:
+  shinycms:
+    feature_flags:
+      blog: Blog
+      blog_upvotes: Votos positivos en publicaciones del blog
+      blog_downvotes: Votos negativos en publicaciones del blog
+
+    capability:
+      category:
+        blog_posts: Publicaciones del blog
+
+      blog_posts:
+        change_author: Cambiar autor
+
+    models:
+      names:
+        shiny_blog_post: publicación del blog
+
+  shiny_blog:
+    menu:
+      title: Blog
+    profile:
+      content:
+        title: Publicaciones recientes del blog
+    blog:
+      index:
+        title: Publicaciones recientes del blog
+        view_post: Ver publicación
+        read_more: Leer más
+      show:
+        reply: Responder a esta publicación
+      sidebar:
+        links: Enlaces
+        links_blurb: Lectura recomendada de todo el web
+        recent_posts: Publicaciones recientes
+
+    admin:
+      blog_posts:
+        breadcrumb: Blog
+        menu: Blog
+        toolbar: Publicaciones del blog
+        index:
+          title: Lista de publicaciones del blog
+          search: Buscar publicaciones del blog
+        search:
+          title: Lista de publicaciones del blog
+        new:
+          title: Agregar publicación del blog
+        edit:
+          title: Editar publicación del blog
+        create:
+          title: Agregar publicación del blog
+          success: Publicación del blog creada
+          failure: Error al crear publicación del blog
+        update:
+          title: Editar publicación del blog
+          success: Publicación del blog actualizada
+          failure: Error al actualizar publicación del blog
+        destroy:
+          success: Publicación del blog eliminada

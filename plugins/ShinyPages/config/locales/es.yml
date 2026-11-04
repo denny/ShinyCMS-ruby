@@ -1,0 +1,115 @@
+# ShinyPages plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Spanish locale strings for ShinyCMS features provided by the ShinyPages plugin
+
+es:
+  shinycms:
+    feature_flags:
+      pages: Páginas
+
+    settings:
+      default_page: Página predeterminada
+      default_section: Sección predeterminada
+
+    capability:
+      category:
+        pages: Páginas
+        page_sections: Secciones de página
+        page_templates: Plantillas de página
+
+    models:
+      names:
+        shiny_pages_template: template
+
+  shiny_pages:
+    admin:
+      pages:
+        breadcrumb: Páginas
+        menu: Páginas
+        toolbar: Páginas
+        index:
+          title: Listar páginas
+          # search: Search pages and sections
+        new:
+          title: Agregar nueva página
+        edit:
+          title: Editar página
+          new_element_name: Nombre del nuevo elemento
+          new_element_content: Contenido predeterminado
+        create:
+          title: Agregar nueva página
+          success: Nueva página agregada
+          failure: Error al agregar nueva página
+        update:
+          title: Editar página
+          success: Detalles de página actualizados
+          failure: Error al actualizar detalles de página
+        destroy:
+          success: Página eliminada
+        elements:
+          create:
+            success: Nuevo elemento agregado
+          destroy:
+            success: Elemento eliminado
+
+      sections:
+        breadcrumb: Páginas
+        toolbar: Secciones
+        new:
+          title: Agregar nueva sección
+        edit:
+          title: Editar sección
+        create:
+          title: Agregar nueva sección
+          success: Sección agregada con éxito
+          failure: Error al agregar nueva sección
+        update:
+          title: Editar sección
+          success: Detalles de la sección actualizados
+          failure: Error al actualizar detalles de la sección
+        destroy:
+          success: Sección eliminada
+          failure: Error al cargar la página de la sección
+
+      templates:
+        breadcrumb: Plantillas de página
+        toolbar: Plantillas
+        index:
+          title: Listar plantillas
+          search: Buscar plantillas
+        search:
+          title: Listar plantillas
+        new:
+          title: Agregar nueva plantilla
+        create:
+          title: Agregar nueva plantilla
+          success: Plantilla agregada con éxito
+          failure: Error al agregar nueva plantilla
+        edit:
+          title: Editar plantilla
+          new_element_name: Nuevo nombre de elemento
+          new_element_content: Contenido predeterminado
+        elements:
+          create:
+            success: Nuevo elemento agregado
+          destroy:
+            success: Elemento eliminado
+        update:
+          title: Editar plantilla
+          success: Detalles de la plantilla actualizados
+          failure: Error al actualizar detalles de la plantilla
+        destroy:
+          success: Plantilla eliminada
+          failure: Error al eliminar plantilla
+
+    page:
+      template_file_missing: 'Imposible mostrar la página; su archivo de plantilla está missing.'
+
+  models:
+    shiny_pages:
+      template:
+        template_file_must_exist: 'El archivo de plantilla debe estar en themes/{theme-name}/shiny_pages/pages'
