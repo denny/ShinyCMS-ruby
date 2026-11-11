@@ -1,0 +1,549 @@
+# ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Spanish locale strings for ShinyCMS core features and functionality
+
+es:
+  # Generic verbs (useful for submit buttons, action links, etc)
+  add: Agregar
+  view: Ver
+  list: Lista
+  back: Atrás
+  edit: Editar
+  post: Publicar
+  show: Mostrar
+  hide: Ocultar
+  lock: Bloquear
+  unlock: Desbloquear
+  search: Buscar
+  cancel: Cancelar
+  update: Actualizar
+  delete: Eliminar
+  destroy: Eliminar
+
+  # Confirmation dialogue
+  are_you_sure: ¿Estás seguro?
+
+  # These error message strings need to be at app top level
+  errors:
+    messages:
+      slug_not_safe_at_top_level: no se puede utilizar como slug de nivel superior
+    not_found:
+      title: No encontrado
+
+  # ========== ( Main Site ) ==========
+
+  # Views, Components, and Controllers
+
+  shinycms:
+    home: Inicio
+
+    devise:
+      registrations:
+        new:
+          title: Crear cuenta de usuario
+
+    comments:
+      hidden: Este comentario ha sido ocultado por un moderador.
+      locked: Comentario bloqueado
+      reply: Responder a este comentario
+      spam: Spam
+      untitled: (comentario sin título)
+      comment_form:
+        comment: Comentario
+        log_in_to_post: Iniciar sesión para publicar un comentario
+        name: Nombre
+        email: Correo electrónico
+        url: URL
+      create:
+        success: Nuevo comentario publicado
+        failure: No se pudo publicar el nuevo comentario
+      profile:
+        content:
+          title: Comentarios recientes
+
+    discussions:
+      anonymous: Anónimo
+      pseudonymous: Seudónimo
+      comments: Comentarios
+      new_comment: Agregar un nuevo comentario
+      n_total: '%{count} total'
+      n_comments:
+        zero: No hay comentarios
+        one: 1 comentario
+        other: '%{count} comentarios'
+      n_recent_comments:
+        one: 1 comentario reciente
+        other: '%{count} comentarios recientes'
+      index:
+        title: Discusiones
+        recently_active: Discusiones recientemente activas
+
+    do_not_contact:
+      new:
+        title: Lista de no contactar
+        heading: Agregar una dirección de correo electrónico a nuestra lista de no contactar
+        explanation: |
+          Si prefiere nunca recibir correo electrónico de nosotros, ingrese su dirección de correo electrónico a continuación.
+          Se guardará en forma cifrada en nuestra base de datos, en una lista que se verifica antes de
+          cada correo electrónico que se envía desde este sitio. Si se encuentra una coincidencia, el correo electrónico no se envía.
+      create:
+        success: Su dirección de correo electrónico ha sido agregada a nuestra lista de no contactar
+        failure: No se pudo agregar la dirección de correo electrónico a la lista de no contactar; inténtelo de nuevo
+        duplicate: Su dirección de correo electrónico ya está en nuestra lista de no contactar
+
+    email_recipients:
+      confirm:
+        success: Gracias por verificar su dirección de correo electrónico
+        token_not_found: No se encontró la dirección de correo electrónico; por favor, verifique la URL y vuelva a intentarlo
+        token_expired: Su enlace de confirmación ha caducado; por favor, solicite un nuevo correo electrónico e inténtelo de nuevo
+        # failure: Failed to confirm email address; please try again, or alert site admins
+
+    empty_list: No se encontró %{items}
+
+    errors:
+      messages:
+        slug_not_unique_in_month: ya ha sido utilizado este mes
+        slug_not_unique_in_section: ya ha sido utilizado en esta sección
+      not_found:
+        title: '%{resource_type} no encontrado'
+        explanation: La URL a la que ha llegado es para un %{resource_type} que no existe
+        search_title: Buscar en el sitio
+        tags_title: Etiquetas populares
+        all_tags: Todas las etiquetas...
+
+    pager:
+      newer: Más recientes
+      older: Más antiguos
+
+    site_settings:
+      index:
+        title: Configuración del sitio
+      update:
+        success: Configuración actualizada
+        unchanged: No se cambiaron las configuraciones
+
+    tags:
+      title: Etiquetas
+      cloud:
+        title: Nube de etiquetas
+      list:
+        title: Lista de etiquetas
+      show:
+        title: "Etiqueta: '%{tag}'"
+
+    user:
+      log_in: Iniciar sesión
+      log_out: Cerrar sesión
+      register: Registrarse
+      edit_account: Editar detalles de la cuenta
+      site_settings: Configuraciones del sitio
+
+    upvotes:
+      vote: Votar
+      add_upvote: '+'
+      add_downvote: '-'
+      remove_upvote: '(+)'
+      remove_downvote: '(-)'
+
+    # Helpers
+
+    shiny_date_helper:
+      time_on_date: '%{time} en %{date}'
+      date_at_time: '%{date} a las %{time}'
+
+    # Mailers
+
+    discussion_mailer:
+      comment_admin_notification:
+        hello: Hola %{name},
+        subject: '%{comment_author_name} comentó sobre %{site_name}'
+        they_said: Dijeron
+      content_author_notification:
+        hello: Hola %{name},
+        subject: '%{comment_author_name} comentó sobre tu %{content_type} en %{site_name}'
+        they_said: Dijeron
+      parent_comment_author_notification:
+        hello: Hola %{name},
+        subject: '%{comment_author_name} respondió a tu comentario sobre %{site_name}'
+        they_said: Dijeron
+        you_said: Tú dijiste
+
+    email_recipient_mailer:
+      confirm:
+        hello: Hola %{name},
+        subject: Confirma tu dirección de correo electrónico para %{site_name}
+
+    user_mailer:
+      confirmation_instructions:
+        welcome: Bienvenido, %{name}!
+        subject: 'Por favor, confirma tu registro en %{site_name}'
+        instructions: Puedes confirmar tu dirección de correo electrónico haciendo clic en el enlace a continuación
+        link_text: Confirmar mi dirección
+      password_changed_instructions:
+        hello: Hola %{name},
+        subject: 'Tu contraseña ha sido cambiada en %{site_name}'
+        text: Nosotros te estamos contactando para notificarte que tu contraseña ha sido cambiada.
+      reset_password_instructions:
+        hello: Hola %{name},
+        subject: 'Instrucciones para restablecer tu contraseña en %{site_name}'
+        instructions: Alguien ha solicitado un enlace para cambiar tu contraseña. Puedes hacerlo a través del enlace a continuación.
+        link_text: Cambiar mi contraseña
+        if_not_you: Si no solicitó esto, por favor ignore este correo electrónico.
+        no_change: Su contraseña no cambiará a menos que haga clic en el enlace de arriba y cree una nueva.
+      email_changed_instructions:
+        hello: Hola %{name},
+        subject: 'Cambiar la dirección de correo electrónico en %{site_name}'
+        email_changing: Nos estamos poniendo en contacto con usted para notificarle que su correo electrónico está siendo cambiado a
+        email_changed: Nos estamos poniendo en contacto con usted para notificarle que su correo electrónico ha sido cambiado a
+      unlock_instructions:
+        hello: Hola %{name},
+        subject: 'Su cuenta en %{site_name} ha sido bloqueada'
+        explanation: Su cuenta ha sido bloqueada debido a un número excesivo de intentos de inicio de sesión fallidos.
+        instructions: Haga clic en el enlace a continuación para desbloquear su cuenta
+        link_text: Desbloquear mi cuenta
+
+    # Models
+
+    models:
+      names:
+        item: item  # generic fallback
+        ahoy_visit: visit
+        shinycms_comment: comment
+        shinycms_consent_version: versión de consentimiento
+        shinycms_email_recipient: destinatario de correo electrónico
+        shinycms_user: user
+
+      anonymous_author:
+        name: Anónimo
+
+      setting_value:
+        one_per_user: Solo puede tener una configuración por valor por usuario
+
+      shiny_post_atom_feed_entry:
+        read_more: '(... leer publicación completa en el sitio... )'
+
+    # Settings
+
+    # NB: These translations strings are all here to keep them together
+    # in one place, but not all of them would make sense as user settings.
+    # Particularly not the first one!!
+    settings:
+      allowed_ips: Direcciones IP de administrador permitidas
+      akismet_drop_blatant_spam: Eliminar spam 'obvio'
+      akismet_log_blatant_spam: Registrar cuando se elimina spam obvio
+      all_comment_notifications_email: Correo electrónico para notificar de todos los comentarios
+      allow_anonymous_comments: Permitir comentarios anónimos
+      allow_unauthenticated_comments: Permitir comentarios no autenticados
+      anon_votes_can_change: Los votos anónimos de arriba/abajo pueden cambiar
+      comment_upvotes: Votos positivos en los comentarios
+      comment_downvotes: Votos negativos en los comentarios
+      default_email: Dirección de correo electrónico predeterminada
+      default_items_per_page: Elementos predeterminados por página
+      default_items_per_page_in_admin_area: Elementos predeterminados por página en el área de administración
+      post_login_redirect: Redirección después del inicio de sesión
+      recaptcha_score_default: 'reCAPTCHA: Puntuación mínima predeterminada'
+      recaptcha_score_for_comments: 'reCAPTCHA: Puntuación mínima para comentarios'
+      recaptcha_score_for_registrations: 'reCAPTCHA: Puntuación mínima para registros de usuario'
+      site_name: Nombre del sitio
+      tag_view: Vista de etiqueta predeterminada
+      theme_name: Nombre del tema
+      track_clicks: Seguir si se hacen clic en los enlaces de los correos electrónicos
+      track_opens: Seguir si se abren los correos electrónicos
+
+    # Feature Flags
+
+    feature_flags:
+      off_alert: Lo sentimos, la función '%{feature_name}' de este sitio no está disponible.
+
+      send_emails: Todos los correos electrónicos salientes
+      ahoy_email_tracking: Seguimiento de aperturas/hacer clic en correos electrónicos
+      ahoy_web_tracking: Seguimiento de estadísticas de visitantes web
+      akismet_for_comments: Detectar comentarios de spam con Akismet
+      comments: Comentarios
+      comment_notifications: Notificaciones de comentarios
+      recaptcha_for_comments: Proteger el formulario de comentarios con reCAPTCHA
+      recaptcha_for_registrations: Proteger el formulario de registro con reCAPTCHA
+      tags: Etiquetas
+      upvotes: Votos positivos ('me gusta')
+      downvotes: Votos negativos
+      user_login: Inicio de sesión del usuario
+      user_registration: Registro del usuario
+
+    # Capabilities (ACL/authorisation)
+
+    capability:
+      capabilities: Capacidades de administrador
+
+      category:
+        admin_users: Usuarios administradores
+        comments: Comentarios
+        discussions: Discusiones
+        email_recipients: Destinatarios de correo electrónico
+        feature_flags: Indicadores de características
+        general: General
+        mailer_previews: Vistas previas de correo
+        settings: Configuraciones del sitio
+        spam_comments: Comentarios de spam
+        stats: Estadísticas
+        tools: Herramientas
+        users: Usuarios
+
+      general:
+        view_admin_area: Ver área de administrador
+        view_admin_toolbar: Ver barra de herramientas de administrador
+
+      tools:
+        use_blazer: Gráficos de Blazer
+        use_coverband: Uso de código
+        use_letter_opener_web: Bandeja de salida de desarrollo
+        use_rails_email_preview: Vistas previas de correo electrónico
+        use_sidekiq_web: Trabajos de Sidekiq
+
+      stats:
+        view_web: Ver estadísticas web
+        view_email: Ver estadísticas de correo electrónico
+
+      users:
+        view_admin_notes: Ver notas de administrador
+
+    # ==================== ( Admin Area ) ==============================
+
+    # Views and Controllers
+
+    admin:
+      breadcrumb: Administrador
+      toolbar: Área de administrador
+
+      invalid_url: 'URL inválida: /admin/%{request_path}'
+
+      section: Sección
+      template: Plantilla
+      template_file: Archivo de plantilla
+      elements:
+        short_text: Texto corto
+        long_text: Texto largo
+        image: Imagen
+        html: HTML
+        unknown_type: TIPO DE ELEMENTO DESCONOCIDO
+
+      comments:
+        breadcrumb: Comentarios
+        menu: Comentarios de spam
+        index:
+          title: Moderación de comentarios de spam
+          select_all: Seleccionar todo
+          confirm_spam: Confirmar como spam (y eliminar)
+          remove_flag: Eliminar marca de spam (y publicar)
+          search: Buscar comentarios
+        search:
+          title: Moderación de comentarios de spam
+        update:
+          spam_or_ham: Por favor, elija 'confirmar como spam' o 'eliminar marca de spam'
+        process_spam_comments:
+          success: Comentarios de spam eliminados
+        process_ham_comments:
+          success: Marcas de spam eliminadas (los comentarios deberían ser visibles en el sitio)
+          failure: No se pudo eliminar las marcas de spam
+
+      consent_versions:
+        breadcrumb: Consentimiento
+        menu: Consentimiento del usuario
+        index:
+          title: Versiones de consentimiento
+          search: Buscar comentarios
+        search:
+          title: Versiones de consentimiento
+        show:
+          title: Ver versión de consentimiento
+        new:
+          title: Agregar nueva versión
+        edit:
+          title: Actualizar versión de consentimiento
+        create:
+          title: Agregar nueva versión
+          success: Nueva versión de consentimiento agregada
+          failure: No se pudo agregar nueva versión de consentimiento
+        update:
+          title: Actualizar versión de consentimiento
+          success: Versión de consentimiento actualizada
+          failure: No se pudo actualizar la versión de consentimiento
+        destroy:
+          success: Versión de consentimiento eliminada
+
+      coverband:
+        menu: Uso de código
+
+      discussion:
+        toolbar: Discusión
+        enable_comments: Habilitar comentarios
+        show_comments: Mostrar comentarios
+        lock_comments: Bloquear comentarios
+
+      email:
+        menu: Correo electrónico
+
+      email_recipients:
+        breadcrumb: Destinatarios de correo electrónico
+        menu: Destinatarios de correo electrónico
+        index:
+          title: Administrar destinatarios de correo electrónico
+          search: Buscar destinatarios de correo electrónico
+          confirmed: Confirmado
+          unconfirmed: No confirmado
+          do_not_contact: No contactar
+        search:
+          title: Administrar destinatarios de correo electrónico
+        do_not_contact:
+          success: Dirección de correo electrónico agregada a la lista de no contactar
+        destroy:
+          success: Destinatario de correo electrónico eliminado
+
+      email_stats:
+        breadcrumb: Estadísticas
+        menu: Estadísticas de correo electrónico
+        index:
+          title: Estadísticas de correo electrónico
+          search: Buscar estadísticas
+        search:
+          title: Estadísticas de correo electrónico
+
+      feature_flags:
+        breadcrumb: Configuración
+        menu: Indicadores de características
+        index:
+          title: Indicadores de características
+          feature: Característica
+          enabled_for: Habilitado para...
+          everybody: Todos
+          logged_in: Usuarios conectados
+          admins: Administradores
+        update:
+          success: Banderas de función actualizadas
+          failure: Falló la actualización de las banderas de función
+
+      letter_opener_web: Bandeja de salida
+
+      other:
+        menu: Otros
+
+      sidekiq_web:
+        menu: Panel de Sidekiq
+
+      site_settings:
+        breadcrumb: Configuraciones
+        menu: Configuraciones
+        index:
+          title: Configuraciones del sitio
+          name: Nombre
+          value: Valor
+          level: Nivel
+          user: Usuario
+          admin: Administrador
+          site: Sitio
+        update:
+          success: Configuraciones actualizadas
+          failure: Falló la actualización de algunas configuraciones
+          unchanged: No se cambiaron las configuraciones
+
+      users:
+        breadcrumb: Usuarios
+        menu: Usuarios
+        toolbar: Usuarios
+        index:
+          title: Lista de usuarios
+          search: Buscar usuarios
+          edit_account: Editar cuenta
+          delete_account: Eliminar cuenta
+        search:
+          title: Lista de usuarios
+        new:
+          title: Agregar nuevo usuario
+        edit:
+          title: Editar usuario
+        create:
+          title: Agregar nuevo usuario
+          success: Nuevo usuario agregado
+          failure: Falló al agregar nuevo usuario
+        update:
+          title: Editar usuario
+          success: Detalles del usuario actualizados
+          failure: Falló la actualización de los detalles del usuario
+        destroy:
+          success: Usuario eliminado
+          failure: Error al eliminar usuario
+
+      stats:
+        breadcrumb: Estadísticas
+        menu: Estadísticas
+
+      web_stats:
+        breadcrumb: Estadísticas
+        menu: Estadísticas web
+        index:
+          title: Estadísticas web
+          search: Estadísticas de búsqueda
+        search:
+          title: Estadísticas web
+
+      # ===== other engines =====
+
+      blazer:
+        menu: Gráficos
+        auth_fail: Su cuenta no tiene acceso a gráficos y paneles de Blazer
+
+      rails_email_preview:
+        menu: Previsualizaciones de mailer
+        # auth_fail: Your account does not have access to REP mailer previews
+        emails:
+          index:
+            title: Todos los mailers
+          show:
+            title: Previsualizar correo electrónico
+            breadcrumb_list: Correos electrónicos
+        base:
+          email:
+            one: 1 correo electrónico
+            other: '%{count} correos electrónicos'
+          in: in
+          mailer:
+            one: 1 mailer
+            other: '%{count} mailers'
+          loading: Cargando...
+
+  blazer:
+    admin:
+      checks:
+        breadcrumb: Verificaciones de Blazer
+        index:
+          title: Verificaciones
+        new:
+          title: Nueva verificación
+      dashboards:
+        breadcrumb: Paneles de Blazer
+        show:
+          title: Ver panel
+        new:
+          title: Nueva pantalla de inicio
+        edit:
+          title: Editar panel
+      queries:
+        breadcrumb: Gráficos de Blazer
+        home:
+          title: Consultas
+        index:
+          title: Consultas
+        show:
+          title: Ver consulta
+        new:
+          title: Nueva consulta
+        edit:
+          title: Editar consulta
+
+  rails_email_preview:
+    admin:
+      emails:
+        breadcrumb: Mailers
