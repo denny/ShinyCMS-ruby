@@ -851,12 +851,12 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    stripe (19.6.3)
+    stripe (20.1.0)
       bigdecimal
       logger
-    stripe_event (2.15.0)
+    stripe_event (2.16.0)
       activesupport (>= 3.1)
-      stripe (>= 2.8, < 20)
+      stripe (>= 2.8, < 21)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
     thor (1.5.0)
@@ -1213,8 +1213,8 @@ CHECKSUMS
   sorted_set (1.1.0) sha256=bac01eb16b6bcfcdb7d732a28e87422be8b5c9fdcfeadbe9072682407524ee83
   sprockets (4.4.1) sha256=fbd665edad0916de5c7abefef0fc616866a60c5e48ce2846f39ac3fc5df9e184
   sprockets-rails (3.5.2) sha256=a9e88e6ce9f8c912d349aa5401509165ec42326baf9e942a85de4b76dbc4119e
-  stripe (19.6.3) sha256=4ce3f7663dc8b7bddde4aa0ef0fd086b18bb1dd2ad9d5a5aca1e1338ce0dec98
-  stripe_event (2.15.0) sha256=95e4c18d2b716ee807be31d9b3f3a845e737cd3d0474da3e0631dbc04cdd43ef
+  stripe (20.1.0) sha256=5bf6bcab5ce2035324593d2ef5a555e1082d8599694cd44ca1ae30ef187cdc94
+  stripe_event (2.16.0) sha256=f4971b376e9f118b62ad28a89b761a44e03156c8d3a6cd5d31b4fd9d1e2548eb
   terminal-table (4.0.0) sha256=f504793203f8251b2ea7c7068333053f0beeea26093ec9962e62ea79f94301d2
   thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73
   thread_safe (0.3.6) sha256=9ed7072821b51c57e8d6b7011a8e282e25aeea3a4065eab326e43f66f063b05a
