@@ -11,12 +11,14 @@ en:
     feature_flags:
       shop: Shop
     models:
-      names: 
+      names:
         shiny_shop_template: template
 
     capability:
       category:
         products: Shop Products
+        product_sections: Shop Sections
+        product_templates: Shop Product Templates
 
   shiny_shop:
     products:
