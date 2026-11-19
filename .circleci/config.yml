@@ -12,7 +12,7 @@ version: 2.1
 
 references:
   app: &app
-    image: cimg/ruby:3.4.11-node
+    image: cimg/ruby:3.4.13-node
     environment:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
