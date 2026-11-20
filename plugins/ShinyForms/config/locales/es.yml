@@ -1,0 +1,68 @@
+# ShinyForms plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Spanish locale strings for ShinyCMS features provided by the ShinyForms plugin
+
+es:
+  shinycms:
+    feature_flags:
+      shiny_forms: Controladores de formularios
+      shiny_forms_emails: Los controladores de formularios pueden enviar correos electrónicos
+      recaptcha_for_forms: Proteja ShinyForms con reCAPTCHA
+      akismet_for_forms: Detectar envíos de formularios de ShinyForm con spam con Akismet
+
+    settings:
+      recaptcha_score_for_forms: Puntuación mínima de reCAPTCHA v3 para envíos de formularios de ShinyForm
+
+    models:
+      names:
+        shiny_forms_form: form
+
+  shiny_forms:
+    forms:
+      process_form:
+        success: Su envío de formulario fue exitoso
+        failure: Falló el envío del formulario
+        form_not_found: No se encontró el controlador de formulario
+
+    admin:
+      forms:
+        breadcrumb: Formularios
+        menu: Formularios
+        toolbar: Formularios
+        handlers:
+          send_plain_email: Enviar correo electrónico de texto plano
+          send_html_email: Enviar correo electrónico HTML
+          store_in_database: Almacenar en la base de datos
+        index:
+          title: Lista de controladores de formularios
+          search: Buscar controladores de formularios
+        search:
+          title: Lista de controladores de formularios
+        new:
+          title: Agregar controlador de formulario
+        edit:
+          title: Editar controlador de formulario
+        create:
+          title: Agregar controlador de formulario
+          success: Se creó un nuevo controlador de formulario
+          failure: Falló la creación de un nuevo controlador de formulario
+        update:
+          title: Editar controlador de formulario
+          success: Se actualizó el controlador de formulario
+          failure: Falló la actualización del controlador de formulario
+        destroy:
+          success: Se eliminó el controlador de formulario
+        set_form:
+          not_found: No se encontró el controlador de formulario
+
+    mailers:
+      form_mailer:
+        default_subject: 'Datos del formulario de %{site_name}'
+
+    models:
+      forms:
+        template_file_must_exist: El archivo de plantilla debe existir

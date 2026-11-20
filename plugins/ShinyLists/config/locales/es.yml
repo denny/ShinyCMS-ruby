@@ -1,0 +1,90 @@
+# ShinyLists plugin for ShinyCMS ~ https://shinycms.org
+#
+# Copyright 2009-2026 Denny de la Haye ~ https://denny.me
+#
+# ShinyCMS is free software; you can redistribute it and/or modify it under the terms of the GPL (version 2 or later)
+
+# Spanish locale strings for ShinyCMS features provided by the ShinyLists plugin
+
+es:
+  shinycms:
+    feature_flags:
+      mailing_lists: Listas de correo
+
+    capability:
+      category:
+        mailing_lists: Listas de correo
+        mailing_list_subscriptions: Suscripciones a listas de correo
+
+    models:
+      names:
+        shiny_lists_list: lista de correo
+        shiny_lists_subscription: suscripción a lista de correo
+
+  shiny_lists:
+    name: Nombre
+    email_address: Dirección de correo electrónico
+    subscribe: Suscribirse
+    subscribed: Suscripto
+    unsubscribe: Darse de baja
+    unsubscribed: Dado de baja
+
+    email:
+      footer:
+        click_here: Haga clic aquí para
+        manage_subscriptions: administrar sus suscripciones
+
+    subscriptions:
+      index:
+        title: Suscripciones a listas de correo
+        unsubscribe: Darse de baja
+        subscriber_not_found: No se encontró el suscriptor - por favor, verifique el enlace y vuelva a intentarlo
+        email_not_confirmed: No recibirá ningún correo electrónico hasta que su dirección de correo electrónico haya sido confirmada
+      subscribe:
+        success: Ha sido suscrito
+        already_subscribed: Ya está suscrito a esta lista de correo
+        failure: Falló al suscribirse a la lista de correo - por favor, verifique sus datos y vuelva a intentarlo
+        list_not_found: No se encontró la lista de correo - por favor, informe a los administradores del sitio
+        consent_missing: Debe marcar la casilla para suscribirse - por favor, vuelva a intentarlo
+      unsubscribe:
+        success: Ha sido dado de baja
+        failure: Falló el intento de darse de baja - por favor, póngase en contacto con los administradores del sitio para obtener ayuda
+
+    admin:
+      lists:
+        breadcrumb: Listas
+        menu: Listas de correo
+        # toolbar: Mailing lists
+        index:
+          title: Listas de correo
+          search: Buscar listas
+        search:
+          title: Listas de correo
+        new:
+          title: Nueva lista de correo
+        create:
+          title: Nueva lista de correo
+          success: Lista de correo creada
+          failure: Error al crear lista de correo
+        edit:
+          title: Editar lista de correo
+        update:
+          title: Editar lista de correo
+          success: Lista de correo actualizada
+          failure: Error al actualizar lista de correo
+        destroy:
+          success: Lista de correo eliminada
+      subscriptions:
+        breadcrumb: Suscripciones de lista
+        # toolbar: Subscriptions
+        index:
+          title: Suscripciones
+          search: Buscar suscripciones
+        search:
+          title: Suscripciones
+        create:
+          success: Suscripto
+          # failure: Failed to create subscription
+        destroy:
+          success: No suscripto
+          # failure: Failed to unsubscribe
