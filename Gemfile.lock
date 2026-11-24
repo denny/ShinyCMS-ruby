@@ -497,7 +497,7 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jmespath (1.6.2)
-    json (3.1.0)
+    json (3.2.0)
     language_server-protocol (3.17.0.6)
     launchy (3.1.1)
       addressable (~> 2.8)
@@ -882,7 +882,7 @@ GEM
       prism (>= 1.5.1)
     uri (1.1.2)
     useragent (0.16.11)
-    view_component (4.24.0)
+    view_component (4.25.0)
       actionview (>= 7.1.0)
       activesupport (>= 7.1.0)
       prism (>= 1.0)
@@ -1078,7 +1078,7 @@ CHECKSUMS
   io-console (0.9.5) sha256=83dd9bbf4c4680416629245b39cd4212eb5f4d9a4ea91804870c1f6b846414d5
   irb (1.19.0) sha256=55ee56acbdd6c9fe06a2e6909f46a24e5c41f45f16906bab04e8049cf46f1d27
   jmespath (1.6.2) sha256=238d774a58723d6c090494c8879b5e9918c19485f7e840f2c1c7532cf84ebcb1
-  json (3.1.0) sha256=3ce7ccf8fde58960177a3a756c31f292a4c1e1dedee884547096a5b0604e3bd8
+  json (3.2.0) sha256=4a4e222a9ee6ffb296ab3171b6b39d85fec83afc4e7b57eee17edf68c74aec87
   language_server-protocol (3.17.0.6) sha256=5ef2c0c138f8267e1bc631d3328347d354f96724b0af22f2c79516120443b7f0
   launchy (3.1.1) sha256=72b847b5cc961589dde2c395af0108c86ff0119f42d4648d25b5440ebb10059e
   letter_opener (1.10.0) sha256=2ff33f2e3b5c3c26d1959be54b395c086ca6d44826e8bf41a14ff96fdf1bdbb2
@@ -1233,7 +1233,7 @@ CHECKSUMS
   unparser (0.9.0) sha256=4331f174a73a23b69250b13d47da3794ed1449711ee0f9ed8947dc020ba76067
   uri (1.1.2) sha256=89292e98eabbef6248b0a0ed5e7e398e152f83f17560023a6d94a7f492b169fb
   useragent (0.16.11) sha256=700e6413ad4bb954bb63547fa098dddf7b0ebe75b40cc6f93b8d54255b173844
-  view_component (4.24.0) sha256=03d47405cd63ea5c7154332b122cc24c50382b55e8f94eb2a269ce8ad73ae98a
+  view_component (4.25.0) sha256=c6acf5d257dded3c9afc3b3c4d10c92e06ec1ba42d382028d1f30e3efc41b1f5
   virtus (1.0.5) sha256=d3053b9ff62d3f8b7b233f7e1aa9530b73ed7e541bee2c62f2c711362287371a
   warden (1.2.9) sha256=46684f885d35a69dbb883deabf85a222c8e427a957804719e143005df7a1efd0
   webmock (3.36.0) sha256=1b9a5704f23ca67e6eab34edb1a019447a1a02c9a8401f473702ea19c5752000
