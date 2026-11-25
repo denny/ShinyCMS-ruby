@@ -583,7 +583,7 @@ GEM
       packwerk (>= 3)
       railties (>= 6.0.0)
       zeitwerk
-    pagy (43.8.2)
+    pagy (43.8.5)
       json
       uri
       yaml
@@ -1111,7 +1111,7 @@ CHECKSUMS
   overcommit (0.76.0) sha256=199e992e54c9b5447f2a2f0737e6b1af2a381c4261767249aa88a6e076c27c60
   packwerk (3.3.1) sha256=095d3c295ec52c21bd7fef393462d892cae2e3cbfa98e740fcd0ef5529afd3d2
   packwerk-extensions (0.4.0) sha256=2aae10dd437c163fda2f1a8c913f320f1af15b66494933aa24b16b705ef3655d
-  pagy (43.8.2) sha256=3c2b4621c4b5dc2023a8909a5cb7bf29b37ff1e3773a07c192782ae16f2716c6
+  pagy (43.8.5) sha256=ac428e2345af0456170c78a384be3208926f1bee2ebe667eaa3f15047eb94fe7
   parallel (2.3.0) sha256=f75a3e904101ce6a1ccb6b8dc800cbafd42166d83330192438dcf29395167a6f
   parallel_tests (5.9.0) sha256=593169873cfeefe54f233103238cb3b078320e6eac0155d0f1107b39233f98f8
   parser (3.3.14.0) sha256=62f8f76af7b919425ee2d811880e9dcb8011ab40bfd59970dfb583141697e58f
