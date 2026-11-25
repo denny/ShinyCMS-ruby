@@ -10,6 +10,9 @@
         Email
       </th>
       <th>
+        Admin
+      </th>
+      <th>
         &nbsp;
       </th>
     </tr>
@@ -23,6 +26,9 @@
       </td>
       <td>
         <%= user.email %>
+      </td>
+      <td>
+        <%= '&#x2714;'.html_safe if user.admin? %>
       </td>
       <td class="actions">
         <% if plugin_loaded? :ShinyProfiles %>
