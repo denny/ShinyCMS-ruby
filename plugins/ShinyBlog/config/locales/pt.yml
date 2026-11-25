@@ -6,7 +6,7 @@
 
 # Portuguese locale strings for ShinyCMS features provided by the ShinyBlog plugin
 
-en:
+pt:
   shinycms:
     feature_flags:
       blog: Blog
