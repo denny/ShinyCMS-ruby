@@ -82,6 +82,8 @@ Wait for the approval of your changes
 
 Perhaps in a nearby future your changes might be accepted and you might have change this project forever, thanks :)
 
+P.S: Install the Github CLI and authenticate `gh auth login` to push changes using HTTP in your computer.
+
 ### Job queues (for sending email)
 
 If you want the system to send emails, you will need to run Sidekiq, which in turn requires you to run Redis:  
