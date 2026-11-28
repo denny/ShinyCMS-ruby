@@ -8,6 +8,14 @@ git clone https://github.com/denny/ShinyCMS-ruby.git
 cd ShinyCMS-ruby
 ```
 
+If you want to contribute to this project, create a fork of the project (middle button that says "Fork" near starred and watch button. Above the Green Code button on the main page of the repository)
+
+If you are contributing to this project, you can use your username instead of denny:
+```
+git clone https://github.com/username/ShinyCMS-ruby.git
+cd ShinyCLS-ruby
+```
+
 Copy the example config file and edit it to suit your requirements (in particular, you might need to set your DATABASE_URL):  
 `cp docs/env.sample .env.development.local`
 
@@ -30,6 +38,25 @@ Start the server:
 `rails s`
 
 You should now have a ShinyCMS site at http://localhost:3000, with an admin area at http://localhost:3000/admin
+
+### For contributors
+
+In order to make changes, create a branch using git
+`git branch name-of-branch`
+
+Change to the branch created earlier
+`git checkout name-of-branch`
+
+Make your changes on the branch
+
+Push your changes to Github
+`git push origin name-of-branch`
+
+Go to github and submit a pull request (In the project repository will appear a prompt to submit a pull request, add a title and the associated issue, give a description and what problem it solves and submit)
+
+Wait for the approval of your changes
+
+P.S: Install the Github CLI and authenticate `gh auth login` to push changes using HTTP in your computer.
 
 ### Job queues (for sending email)
 
