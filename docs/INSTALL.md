@@ -8,6 +8,14 @@ git clone https://github.com/denny/ShinyCMS-ruby.git
 cd ShinyCMS-ruby
 ```
 
+If you want to contribute to this project, create a fork of the project (middle button that says "Fork" near starred and watch button. Above the Green Code button on the main page of the repository)
+
+If you are contributing to this project, you can use your username instead of denny:
+```
+git clone https://github.com/username/ShinyCMS-ruby.git
+cd ShinyCLS-ruby
+```
+
 Copy the example config file and edit it to suit your requirements (in particular, you might need to set your DATABASE_URL):  
 `cp docs/env.sample .env.development.local`
 
@@ -31,47 +39,15 @@ Start the server:
 
 You should now have a ShinyCMS site at http://localhost:3000, with an admin area at http://localhost:3000/admin
 
-### Installation for contributors
-
-Create a fork of the project (middle button that says "Fork" near starred and watch button. Above the Green Code button on the main page of the repository)
-
-Get the code (replace username with your github username)
-```
-git clone https://github.com/username/ShinyCMS-ruby.git
-cd ShinyCMS-ruby
-```
-
-Copy the example config file and edit it to suit your requirements (in particular, you might need to set your DATABASE_URL):
-`cp docs/env.sample .env.development.local`
-
-Note: Generally you would need to replace the "your_db_password" with the password for your postgresql database that was named after your computer username and create populate the field "SECRET_KEY_BASE" with the value from rails secret, but you can only do this after bundle install command is issued on the terminal.
-
-Install the required Ruby and JavaScript libraries:
-```
-bundle install
-yarn install
-```
-
-Create database:
-`rails db:setup`
-
-If you want to load the [demo data](demo-site.md):
-
-If you didn't load the demo data, create an admin account:
-`rails shinycms:admin:create`
-
-Start the server:
-`rails s`
-
-You should now have a ShinyCMS site at http://localhost:3000, with an admin area at http://localhost:3000/admin.
+### For contributors
 
 In order to make changes, create a branch using git
 `git branch name-of-branch`
 
-Change to this branch
+Change to the branch created earlier
 `git checkout name-of-branch`
 
-Make your changes on this branch
+Make your changes on the branch
 
 Push your changes to Github
 `git push origin name-of-branch`
@@ -79,8 +55,6 @@ Push your changes to Github
 Go to github and submit a pull request (In the project repository will appear a prompt to submit a pull request, add a title and the associated issue, give a description and what problem it solves and submit)
 
 Wait for the approval of your changes
-
-Perhaps in a nearby future your changes might be accepted and you might have change this project forever, thanks :)
 
 P.S: Install the Github CLI and authenticate `gh auth login` to push changes using HTTP in your computer.
 
